@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -49,11 +50,26 @@ public class StorePortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		long remoteAppId = ParamUtil.getLong(actionRequest, "appId");
+		String token = ParamUtil.getString(actionRequest, "token");
 		String version = ParamUtil.getString(actionRequest, "version");
 		String url = ParamUtil.getString(actionRequest, "url");
 
-		URL urlObj = new URL(url);
+		String encodedClientId = MarketplaceUtil.encodeClientId(
+			themeDisplay.getCompanyId(), themeDisplay.getUserId(), token);
+
+		StringBundler sb = new StringBundler(5);
+
+		sb.append(url);
+		sb.append(StringPool.SLASH);
+		sb.append(encodedClientId);
+		sb.append(StringPool.SLASH);
+		sb.append(token);
+
+		URL urlObj = new URL(sb.toString());
 
 		InputStream inputStream = urlObj.openStream();
 
@@ -96,12 +112,8 @@ public class StorePortlet extends MVCPortlet {
 
 		String token = ParamUtil.getString(actionRequest, "token");
 
-		String clientId = ExpandoValueLocalServiceUtil.getData(
-			themeDisplay.getCompanyId(), User.class.getName(), "MP",
-			"client-id", themeDisplay.getUserId(), "default-client-id");
-
 		String encodedClientId = MarketplaceUtil.encodeClientId(
-			clientId, token);
+			themeDisplay.getCompanyId(), themeDisplay.getUserId(), token);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
