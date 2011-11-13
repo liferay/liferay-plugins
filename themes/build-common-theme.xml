@@ -1,94 +1,20 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="build-common-theme" xmlns:antelope="antlib:ise.antelope.tasks">
+<project name="build-common-theme">
 	<property name="project.dir" value="../.." />
 
 	<import file="../build-common-plugin.xml" />
 
 	<target name="build-css">
-		<for param="css.file">
-			<path>
-				<fileset
-					dir="docroot/_diffs/css"
-					includes="*.css"
-				/>
-			</path>
-			<sequential>
-				<antcall target="build-css-cmd">
-					<param name="css.file" value="@{css.file}" />
-				</antcall>
-			</sequential>
-		</for>
-	</target>
-
-	<target name="build-css-cmd">
-		<loadfile property="css.content" srcfile="${css.file}" />
-
-		<antelope:post
-			append="false"
-			property="css.formatted"
-			to="http://teenage.cz/acidofil/tools/cssformat.php"
-			verbose="false"
-		>
-			<antelope:prop name="css" value="${css.content}" />
-			<antelope:prop name="akce" value="format" />
-			<antelope:prop name="sortclasses" value="0" />
-			<antelope:prop name="sortattrs" value="1" />
-			<antelope:prop name="stripcomms" value="0" />
-			<antelope:prop name="textarea" value="1" />
-			<antelope:prop name="mergeclasses" value="0" />
-			<antelope:prop name="mergeattrs" value="1" />
-			<antelope:prop name="shortcolors" value="1" />
-			<antelope:prop name="shortattrs" value="1" />
-		</antelope:post>
-
-		<!--
-		<textarea rows="12" cols="100">
-		-->
-
-		<antelope:stringutil string="${css.formatted}" property="css.formatted.beginindex">
-			<indexof string="textarea rows" />
-		</antelope:stringutil>
-
-		<math
-			datatype="int"
-			operand1="${css.formatted.beginindex}"
-			operand2="31"
-			operation="+"
-			result="css.formatted.beginindex"
-		/>
-
-		<!--
-		</textarea>
-		-->
-
-		<antelope:stringutil string="${css.formatted}" property="css.formatted.endindex">
-			<indexof string="/textarea" fromindex="${css.formatted.beginindex}" />
-		</antelope:stringutil>
-
-		<math
-			datatype="int"
-			operand1="${css.formatted.endindex}"
-			operand2="3"
-			operation="-"
-			result="css.formatted.endindex"
-		/>
-
-		<antelope:stringutil string="${css.formatted}" property="css.formatted">
-			<substring beginindex="${css.formatted.beginindex}" endindex="${css.formatted.endindex}" />
-		</antelope:stringutil>
-
-		<echo message="${css.formatted}" file="${css.file}" />
-
 		<java
-			classname="com.liferay.portal.tools.CSSFormatter"
+			classname="com.liferay.portal.tools.SassToCssBuilder"
 			classpathref="portal.classpath"
 			fork="true"
 			newenvironment="true"
 		>
-			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-			<arg line="${css.file}" />
+			<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
+			<arg value="sass.dir=${basedir}/docroot" />
 		</java>
 	</target>
 
