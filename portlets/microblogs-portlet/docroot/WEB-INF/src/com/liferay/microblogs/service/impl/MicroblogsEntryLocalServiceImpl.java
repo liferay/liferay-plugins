@@ -94,7 +94,7 @@ public class MicroblogsEntryLocalServiceImpl
 			actitivtyKey = MicroblogsActivityKeys.REPLY_ENTRY;
 		}
 		else if (type == MicroblogsEntryConstants.TYPE_REPOST) {
-			actitivtyKey =  MicroblogsActivityKeys.REPOST_ENTRY;
+			actitivtyKey = MicroblogsActivityKeys.REPOST_ENTRY;
 		}
 
 		SocialActivityLocalServiceUtil.addActivity(

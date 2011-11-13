@@ -114,7 +114,7 @@ public class LiferayPersonService implements PersonService {
 			SecurityToken securityToken)
 		throws Exception {
 
-		List<Person> people =  new ArrayList<Person>();
+		List<Person> people = new ArrayList<Person>();
 
 		for (UserId userId : userIds) {
 			Person person = null;
