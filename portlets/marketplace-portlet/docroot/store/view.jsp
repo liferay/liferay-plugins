@@ -32,7 +32,7 @@
 			frame.ancestor().removeClass('loading-animation');
 			A.one('.time-out-message').show();
 		},
-		30000
+		120000
 	);
 
 	A.receiveMessage(
