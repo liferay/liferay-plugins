@@ -53,10 +53,10 @@ public class StorePortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long remoteAppId = ParamUtil.getLong(actionRequest, "appId");
 		String token = ParamUtil.getString(actionRequest, "token");
-		String version = ParamUtil.getString(actionRequest, "version");
+		long remoteAppId = ParamUtil.getLong(actionRequest, "appId");
 		String url = ParamUtil.getString(actionRequest, "url");
+		String version = ParamUtil.getString(actionRequest, "version");
 
 		String encodedClientId = MarketplaceUtil.encodeClientId(
 			themeDisplay.getCompanyId(), themeDisplay.getUserId(), token);
