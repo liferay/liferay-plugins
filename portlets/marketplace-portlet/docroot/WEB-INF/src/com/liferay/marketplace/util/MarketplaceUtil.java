@@ -42,13 +42,20 @@ public class MarketplaceUtil {
 		return new String(xor(encodedClientIdBytes, token.getBytes()));
 	}
 
-	public static String encodeClientId(String decodedClientId, String token) {
-		if (Validator.isNull(decodedClientId) || Validator.isNull(token)) {
+	public static String encodeClientId(
+			long companyId, long userId, String token)
+		throws PortalException, SystemException {
+
+		if (Validator.isNull(token)) {
 			return StringPool.BLANK;
 		}
 
+		String clientId = ExpandoValueLocalServiceUtil.getData(
+			companyId, User.class.getName(), "MP", "client-id", userId,
+			"default-client-id");
+
 		byte[] encodedClientIdBytes = xor(
-			decodedClientId.getBytes(), token.getBytes());
+			clientId.getBytes(), token.getBytes());
 
 		return UnicodeFormatter.bytesToHex(encodedClientIdBytes);
 	}
