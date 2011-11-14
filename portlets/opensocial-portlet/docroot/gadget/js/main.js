@@ -69,6 +69,16 @@ AUI().add(
 						setter: '_setParentUrl'
 					},
 					portletId:{},
+					pubsubURILoadTimeout: {
+						setter: function(v) {
+							if (v > 0) {
+								return v;
+							}
+							else {
+								return null;
+							}
+						}
+					},
 					requiresPubsub:{},
 					rpcRelay: {},
 					rpcToken: {
@@ -169,6 +179,7 @@ AUI().add(
 									IframeContainer: {
 										iframeAttrs: iframeAttrs,
 										parent: instance.get('contentBox'),
+										timeout: instance.get('pubsubURILoadTimeout'),
 										tunnelURI: shindig.uri(instance.get('serverBase') + instance.get('rpcRelay')).resolve(shindig.uri(window.location.href)),
 										uri: instance.get('iframeUrl')
 									}

@@ -56,6 +56,7 @@ String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUs
 			moduleId: '<%= moduleId %>',
 			nocache: '<%= PortletPropsValues.SHINDIG_NO_CACHE %>',
 			portletId: '<%= portletDisplay.getId() %>',
+			pubsubURILoadTimeout: <%= PortletPropsValues.PUBSUB_URI_LOAD_TIMEOUT %>,
 			requiresPubsub: <%= requiresPubsub %>,
 			scrolling: <%= modulePrefs.getScrolling() %>,
 			secureToken: '<%= secureToken %>',
