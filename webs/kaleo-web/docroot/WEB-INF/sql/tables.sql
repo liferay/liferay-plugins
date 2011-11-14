@@ -43,7 +43,7 @@ create table KaleoDefinition (
 	name VARCHAR(200) null,
 	title STRING null,
 	description STRING null,
-	content STRING null,
+	content TEXT null,
 	version INTEGER,
 	active_ BOOLEAN,
 	startKaleoNodeId LONG
