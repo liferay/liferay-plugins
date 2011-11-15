@@ -600,9 +600,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		node.setTimers(timers);
 	}
 
-	protected void parseTransition(Definition definition, Element nodeElement)
-		throws WorkflowException {
-
+	protected void parseTransition(Definition definition, Element nodeElement) {
 		String sourceName = nodeElement.elementText("name");
 
 		Node sourceNode = definition.getNode(sourceName);
@@ -642,10 +640,9 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 	}
 
 	protected void parseTransitions(
-			Definition definition, List<Element> conditionElements,
-			List<Element> forkElements, List<Element> joinElements,
-			List<Element> stateElements, List<Element> taskElements)
-		throws WorkflowException {
+		Definition definition, List<Element> conditionElements,
+		List<Element> forkElements, List<Element> joinElements,
+		List<Element> stateElements, List<Element> taskElements) {
 
 		for (Element conditionElement : conditionElements) {
 			parseTransition(definition, conditionElement);
