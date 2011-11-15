@@ -60,12 +60,8 @@ AUI().use(
 				return instance._popup;
 			},
 
-			updateMicroblogs: function(form, comment, microblogsEntryId) {
+			updateMicroblogs: function(form, url, updateContainer) {
 				var instance = this;
-
-				redirect = form.one('input[name="_1_WAR_microblogsportlet_redirect"]');
-
-				url = redirect.get("value");
 
 				A.io.request(
 					form.getAttribute('action'),
@@ -75,22 +71,17 @@ AUI().use(
 						},
 						on: {
 							success: function() {
-								instance.updateMicroblogsList(url, comment, microblogsEntryId);
+								instance.updateMicroblogsList(url, updateContainer);
 							}
 						}
 					}
 				);
 			},
 
-			updateMicroblogsList: function(url, comment, microblogsEntryId) {
+			updateMicroblogsList: function(url, updateContainer) {
 				var instance = this;
 
-				if (comment) {
-					instance._micrblogsEntries = A.one('.microblogs-portlet #comments-container-' + microblogsEntryId);
-				}
-				else {
-					instance._micrblogsEntries = A.one('.microblogs-portlet .portlet-body');
-				}
+				instance._micrblogsEntries = updateContainer;
 
 				if (!instance._micrblogsEntries.io) {
 					instance._micrblogsEntries.plug(

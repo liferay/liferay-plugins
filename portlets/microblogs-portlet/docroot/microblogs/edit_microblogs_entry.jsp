@@ -257,7 +257,7 @@ if (comment) {
 			var autocompleteContent = autocomplete.one('#<portlet:namespace />autocompleteContent');
 			var highlighterContent = form.one('#<portlet:namespace/>highlighterContent');
 
-			var inputValue = '<%= ((microblogsEntry != null) && (edit)) ? microblogsEntry.getContent() : StringPool.BLANK %>';
+			var inputValue = '<%= ((microblogsEntry != null) && (edit)) ? StringUtil.replace(microblogsEntry.getContent(), "\'", "\\'") : StringPool.BLANK %>';
 
 			if (autocomplete.height() < 45 || highlighterContent.height() < 45) {
 				autocomplete.height(45);
@@ -462,7 +462,15 @@ if (comment) {
 				content.val(updatedText);
 			</c:if>
 
-			Liferay.Microblogs.updateMicroblogs(form, <%= comment ? true : false %>, <%= microblogsEntryId %>);
+			var url = form.one('input[name="<portlet:namespace />_redirect"]');
+
+			var updateContainer = A.one('.microblogs-portlet .portlet-body');
+
+			<c:if test="<%= comment %>">
+				updateContainer = A.one('.microblogs-portlet #comments-container-<%= microblogsEntryId %>');
+			</c:if>
+
+			Liferay.Microblogs.updateMicroblogs(form, url, updateContainer);
 
 			<c:if test="<%= repost %>">
 				Liferay.Microblogs.closePopup();

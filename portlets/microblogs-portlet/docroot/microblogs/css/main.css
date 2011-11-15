@@ -162,7 +162,6 @@ $microblogs-border-color: #C7D0DA;
 		}
 	}
 
-
 	.reply {
 		margin-left: 50px;
 
@@ -203,6 +202,10 @@ $microblogs-border-color: #C7D0DA;
 		.microblogs-entry .footer {
 			padding: 0;
 		}
+	}
+
+	.microblogs-status-container .footer .action-container {
+		display: none;
 	}
 
 	.microblogs-entry-form:after, .microblogs-entry:after {
