@@ -772,8 +772,7 @@ public class IMAPAccessor {
 
 				BodyPart attachmentBodyPart = new MimeBodyPart();
 
-				attachmentBodyPart.setDataHandler(
-					new DataHandler(dataSource));
+				attachmentBodyPart.setDataHandler(new DataHandler(dataSource));
 				attachmentBodyPart.setFileName(mailFile.getFileName());
 
 				multipart.addBodyPart(attachmentBodyPart);

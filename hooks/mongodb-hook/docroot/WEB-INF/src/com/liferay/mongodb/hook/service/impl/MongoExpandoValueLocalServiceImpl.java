@@ -666,8 +666,7 @@ public class MongoExpandoValueLocalServiceImpl
 
 		ExpandoValue expandoValue = ExpandoValueUtil.create(0);
 
-		expandoValue.setCompanyId(
-			expandoValueDBObject.getLong("companyId"));
+		expandoValue.setCompanyId(expandoValueDBObject.getLong("companyId"));
 		expandoValue.setTableId(expandoValueDBObject.getLong("tableId"));
 		expandoValue.setColumnId(expandoColumn.getColumnId());
 		expandoValue.setRowId(expandoValueDBObject.getLong("rowId"));

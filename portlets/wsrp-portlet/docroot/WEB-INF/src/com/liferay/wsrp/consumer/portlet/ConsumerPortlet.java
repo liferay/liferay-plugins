@@ -2033,8 +2033,7 @@ public class ConsumerPortlet extends GenericPortlet {
 			return;
 		}
 
-		portletSession.setAttribute(
-			WebKeys.SESSION_CONTEXT, sessionContext);
+		portletSession.setAttribute(WebKeys.SESSION_CONTEXT, sessionContext);
 
 		serviceHolder.setSessionContext(sessionContext);
 

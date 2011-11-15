@@ -396,8 +396,7 @@ public class ShindigUtil {
 			actionRequest, "keyType");
 
 		for (int i = 0; i < serviceNames.length; i++) {
-			String consumerKey = (String)ArrayUtil.getValue(
-				consumerKeys, i);
+			String consumerKey = (String)ArrayUtil.getValue(consumerKeys, i);
 
 			String consumerSecret = (String)ArrayUtil.getValue(
 				consumerSecrets, i);

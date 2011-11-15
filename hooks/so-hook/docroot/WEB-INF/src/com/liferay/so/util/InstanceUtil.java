@@ -99,8 +99,7 @@ public class InstanceUtil {
 
 		// Directory
 
-		portlet = PortletLocalServiceUtil.getPortletById(
-			PortletKeys.DIRECTORY);
+		portlet = PortletLocalServiceUtil.getPortletById(PortletKeys.DIRECTORY);
 
 		portlet.setAddDefaultResource(true);
 

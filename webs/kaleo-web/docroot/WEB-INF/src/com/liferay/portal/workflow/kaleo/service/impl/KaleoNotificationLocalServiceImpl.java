@@ -114,8 +114,7 @@ public class KaleoNotificationLocalServiceImpl
 
 		// Kaleo notifications
 
-		kaleoNotificationPersistence.removeByCompanyId(
-			companyId);
+		kaleoNotificationPersistence.removeByCompanyId(companyId);
 
 		// Kaleo notification recipients
 

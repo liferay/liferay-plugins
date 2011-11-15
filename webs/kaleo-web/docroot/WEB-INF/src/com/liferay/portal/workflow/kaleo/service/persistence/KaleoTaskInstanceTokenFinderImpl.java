@@ -498,8 +498,7 @@ public class KaleoTaskInstanceTokenFinderImpl
 			GroupLocalServiceUtil.getOrganizationsRelatedGroups(
 				user.getOrganizations()));
 		groups.addAll(
-			GroupLocalServiceUtil.getUserGroupsGroups(
-				user.getUserGroups()));
+			GroupLocalServiceUtil.getUserGroupsGroups(user.getUserGroups()));
 		groups.addAll(
 			GroupLocalServiceUtil.getUserGroupsRelatedGroups(
 				user.getUserGroups()));
