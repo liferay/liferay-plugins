@@ -47,11 +47,6 @@ public class Definition {
 			State state = (State)node;
 
 			if (state.isInitial()) {
-				if (_initialState != null) {
-					throw new WorkflowException(
-						"Duplicate initial state " + state.getName());
-				}
-
 				_initialState = state;
 			}
 		}

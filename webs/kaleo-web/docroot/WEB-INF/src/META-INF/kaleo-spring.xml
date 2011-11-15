@@ -58,6 +58,7 @@
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.WorkflowEngine" class="com.liferay.portal.workflow.kaleo.runtime.DefaultWorkflowEngineImpl">
 		<property name="workflowDeployer" ref="com.liferay.portal.workflow.kaleo.deployment.WorkflowDeployer" />
 		<property name="workflowModelParser" ref="com.liferay.portal.workflow.kaleo.parser.WorkflowModelParser" />
+		<property name="workflowValidator" ref="com.liferay.portal.workflow.kaleo.parser.WorkflowValidator" />
 	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.action.ActionExecutorFactory" class="com.liferay.portal.workflow.kaleo.runtime.action.ActionExecutorFactory">
 		<property name="actionExecutors">
@@ -219,5 +220,11 @@
 
 	<!-- Parser -->
 
-	<bean id="com.liferay.portal.workflow.kaleo.parser.WorkflowModelParser" class="com.liferay.portal.workflow.kaleo.parser.XMLWorkflowModelParser" />
+	<bean id="com.liferay.portal.workflow.kaleo.parser.WorkflowModelParser" class="com.liferay.portal.workflow.kaleo.parser.XMLWorkflowModelParser">
+		<property name="validate" value="true" />
+	</bean>
+
+	<!-- Validator -->
+
+	<bean id="com.liferay.portal.workflow.kaleo.parser.WorkflowValidator" class="com.liferay.portal.workflow.kaleo.parser.DefaultWorkflowValidator" />
 </beans>

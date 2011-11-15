@@ -607,11 +607,6 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 
 		Node sourceNode = definition.getNode(sourceName);
 
-		if (sourceNode == null) {
-			throw new WorkflowException(
-				"Unable to find source node " + sourceName);
-		}
-
 		Element transitionsElement = nodeElement.element("transitions");
 
 		if (transitionsElement == null) {
@@ -627,11 +622,6 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			String targetName = transitionElement.elementText("target");
 
 			Node targetNode = definition.getNode(targetName);
-
-			if (targetNode == null) {
-				throw new WorkflowException(
-					"Unable to find target node " + targetName);
-			}
 
 			boolean defaultValue = GetterUtil.getBoolean(
 				transitionElement.elementText("default"), true);
