@@ -609,8 +609,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			PropertyFactoryUtil.forName("companyId").eq(
 				serviceContext.getCompanyId()));
 		dynamicQuery.add(
-			PropertyFactoryUtil.forName("kaleoInstanceId").eq(
-				kaleoInstanceId));
+			PropertyFactoryUtil.forName("kaleoInstanceId").eq(kaleoInstanceId));
 
 		addCompletedCriterion(dynamicQuery, completed);
 

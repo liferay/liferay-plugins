@@ -1185,8 +1185,7 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		// Home layout
 
-		Layout layout = addLayout(
-			group, "Home", false, "/home", "home");
+		Layout layout = addLayout(group, "Home", false, "/home", "home");
 
 		// Home Page Banner content portlet
 
@@ -1729,8 +1728,7 @@ public class UpgradeCompany extends UpgradeProcess {
 			LocaleUtil.getDefault(),
 			"Writers are responsible for creating content.");
 
-		Role writerRole = RoleLocalServiceUtil.fetchRole(
-			companyId, "Writer");
+		Role writerRole = RoleLocalServiceUtil.fetchRole(companyId, "Writer");
 
 		if (writerRole == null) {
 			writerRole = RoleLocalServiceUtil.addRole(
@@ -1770,8 +1768,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		Role publisherRole = RoleLocalServiceUtil.getRole(
 			companyId, "Publisher");
 
-		Role writerRole = RoleLocalServiceUtil.getRole(
-			companyId, "Writer");
+		Role writerRole = RoleLocalServiceUtil.getRole(companyId, "Writer");
 
 		// Users
 
@@ -1815,8 +1812,7 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		serviceContext.setAssetTagNames(
 			new String[] {"new", "features", "control panel"});
-		serviceContext.setAssetCategoryIds(
-			new long[] {
+		serviceContext.setAssetCategoryIds(new long[] {
 				learningAssetCategory.getCategoryId(),
 				liferayAssetCategory.getCategoryId()
 			});
@@ -1826,13 +1822,11 @@ public class UpgradeCompany extends UpgradeProcess {
 			brunoUser.getUserId(), "New Control Panel!!",
 			"/users/blogs/controlpanel.xml", serviceContext);
 
-		serviceContext.setAssetCategoryIds(
-			new long[] {
+		serviceContext.setAssetCategoryIds(new long[] {
 				learningAssetCategory.getCategoryId(),
 				liferayAssetCategory.getCategoryId()
 			});
-		serviceContext.setAssetTagNames(
-			new String[] {
+		serviceContext.setAssetTagNames(new String[] {
 				"configuration", "portal.properties", "customization"
 			});
 
@@ -1841,8 +1835,7 @@ public class UpgradeCompany extends UpgradeProcess {
 			"Configuration of the portal: portal.properties",
 			"/users/blogs/portalproperties.xml", serviceContext);
 
-		serviceContext.setAssetCategoryIds(
-			new long[] {
+		serviceContext.setAssetCategoryIds(new long[] {
 				learningAssetCategory.getCategoryId(),
 				liferayAssetCategory.getCategoryId()
 			});
@@ -1854,8 +1847,7 @@ public class UpgradeCompany extends UpgradeProcess {
 			kendraUser.getUserId(), "Using the wiki", "/users/blogs/wiki.xml",
 			serviceContext);
 
-		serviceContext.setAssetCategoryIds(
-			new long[] {
+		serviceContext.setAssetCategoryIds(new long[] {
 				learningAssetCategory.getCategoryId(),
 				liferayAssetCategory.getCategoryId()
 			});

@@ -237,8 +237,7 @@ public class WSRPProducerLocalServiceImpl
 	protected void updateGroup(WSRPProducer wsrpProducer, String name)
 		throws PortalException, SystemException {
 
-		Group group = groupLocalService.getGroup(
-			wsrpProducer.getGroupId());
+		Group group = groupLocalService.getGroup(wsrpProducer.getGroupId());
 
 		group.setName(getGroupName(name));
 

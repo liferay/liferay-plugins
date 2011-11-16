@@ -27,8 +27,7 @@ public class GuiceServletContextListener extends BasePortalLifecycle
 	implements ServletContextListener {
 
 	public void contextDestroyed(ServletContextEvent servletContextEvent) {
-		_guiceServletContextListener.contextDestroyed(
-			servletContextEvent);
+		_guiceServletContextListener.contextDestroyed(servletContextEvent);
 	}
 
 	public void contextInitialized(ServletContextEvent servletContextEvent) {

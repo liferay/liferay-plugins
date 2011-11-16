@@ -230,8 +230,7 @@ public class PrivateMessagingUtil {
 				continue;
 			}
 
-			User user = UserLocalServiceUtil.getUser(
-				userThread.getUserId());
+			User user = UserLocalServiceUtil.getUser(userThread.getUserId());
 
 			if (!users.contains(user)) {
 				users.add(user);

@@ -23,9 +23,7 @@ public class PortalKaleoManagerUtil {
 		return _portalKaleoManager;
 	}
 
-	public void setPortalKaleoManager(
-		PortalKaleoManager portalKaleoManager) {
-
+	public void setPortalKaleoManager(PortalKaleoManager portalKaleoManager) {
 		_portalKaleoManager = portalKaleoManager;
 	}
 

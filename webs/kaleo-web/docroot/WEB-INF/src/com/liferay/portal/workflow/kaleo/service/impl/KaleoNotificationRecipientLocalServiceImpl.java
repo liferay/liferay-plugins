@@ -72,8 +72,7 @@ public class KaleoNotificationRecipientLocalServiceImpl
 	public void deleteCompanyKaleoNotificationRecipients(long companyId)
 		throws SystemException {
 
-		kaleoNotificationRecipientPersistence.removeByCompanyId(
-			companyId);
+		kaleoNotificationRecipientPersistence.removeByCompanyId(companyId);
 	}
 
 	public void deleteKaleoDefinitionKaleoNotificationRecipients(
@@ -105,8 +104,7 @@ public class KaleoNotificationRecipientLocalServiceImpl
 
 			RoleRecipient roleRecipient = (RoleRecipient)recipient;
 
-			int roleType = RoleUtil.getRoleType(
-				roleRecipient.getRoleType());
+			int roleType = RoleUtil.getRoleType(roleRecipient.getRoleType());
 
 			Role role = null;
 

@@ -65,8 +65,7 @@ public class ExecutionContextUtil {
 		jsonObject.put(
 			"serviceContext", JSONFactoryUtil.serialize(serviceContext));
 
-		jsonObject.put(
-			"transitionName", executionContext.getTransitionName());
+		jsonObject.put("transitionName", executionContext.getTransitionName());
 
 		return jsonObject.toString();
 	}

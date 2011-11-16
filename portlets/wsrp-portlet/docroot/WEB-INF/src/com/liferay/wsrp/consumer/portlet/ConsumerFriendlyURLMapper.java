@@ -79,8 +79,7 @@ public class ConsumerFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 		addPathElement(sb, navigationalState[0]);
 
-		liferayPortletURL.addParameterIncludedInPath(
-			"wsrp-navigationalState");
+		liferayPortletURL.addParameterIncludedInPath("wsrp-navigationalState");
 
 		return sb.toString();
 	}

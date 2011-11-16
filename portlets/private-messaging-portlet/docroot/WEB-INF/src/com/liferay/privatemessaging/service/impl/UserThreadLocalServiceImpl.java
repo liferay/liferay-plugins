@@ -351,8 +351,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		Company company = CompanyLocalServiceUtil.getCompany(
 			sender.getCompanyId());
 
-		InternetAddress from = new InternetAddress(
-			company.getEmailAddress());
+		InternetAddress from = new InternetAddress(company.getEmailAddress());
 
 		String subject = StringUtil.read(
 			PrivateMessagingPortlet.class.getResourceAsStream(

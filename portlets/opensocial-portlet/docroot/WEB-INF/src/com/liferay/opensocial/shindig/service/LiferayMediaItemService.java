@@ -69,8 +69,7 @@ public class LiferayMediaItemService implements MediaItemService {
 		throws ProtocolException {
 
 		try {
-			doCreateMediaItem(
-				userId, appId, albumId, mediaItem, securityToken);
+			doCreateMediaItem(userId, appId, albumId, mediaItem, securityToken);
 
 			return ImmediateFuture.newInstance(null);
 		}

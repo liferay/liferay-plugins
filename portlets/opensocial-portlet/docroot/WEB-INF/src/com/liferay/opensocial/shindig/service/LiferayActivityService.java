@@ -285,9 +285,7 @@ public class LiferayActivityService implements ActivityService {
 
 		Activity activity = null;
 
-		if (socialActivity.getClassName().equals(
-				Activity.class.getName())) {
-
+		if (socialActivity.getClassName().equals(Activity.class.getName())) {
 			activity = getExternalActivity(socialActivity);
 		}
 		else {

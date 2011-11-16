@@ -180,8 +180,7 @@ public class DefaultTaskManagerImpl
 
 		KaleoTask kaleoTask = kaleoTaskInstanceToken.getKaleoTask();
 
-		workflowContext.put(
-			WorkflowConstants.CONTEXT_TASK_COMMENTS, comment);
+		workflowContext.put(WorkflowConstants.CONTEXT_TASK_COMMENTS, comment);
 
 		ActionExecutorUtil.executeKaleoActions(
 			KaleoNode.class.getName(), kaleoTask.getKaleoNodeId(),
@@ -195,8 +194,7 @@ public class DefaultTaskManagerImpl
 			previousTaskAssignmentInstances, kaleoTaskInstanceToken,
 			comment, workflowContext, serviceContext);
 
-		return new WorkflowTaskAdapter(
-			kaleoTaskInstanceToken, workflowContext);
+		return new WorkflowTaskAdapter(kaleoTaskInstanceToken, workflowContext);
 	}
 
 	protected WorkflowTask doCompleteWorkflowTask(

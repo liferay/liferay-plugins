@@ -239,8 +239,7 @@ public class V2MarkupServiceImpl
 
 		String rawContent = getRawContent(httpOptions);
 
-		String windowState = getWindowState(
-			getMarkup.getMarkupParams());
+		String windowState = getWindowState(getMarkup.getMarkupParams());
 
 		String content = getContent(rawContent, windowState);
 

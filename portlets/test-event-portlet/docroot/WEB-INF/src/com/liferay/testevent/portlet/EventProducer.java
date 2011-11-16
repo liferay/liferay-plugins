@@ -54,8 +54,7 @@ public class EventProducer extends GenericPortlet {
 	public void processAction(
 		ActionRequest actionRequest, ActionResponse actionResponse) {
 
-		QName qName = new QName(
-			"http://www.liferay.com", "LPS-18191");
+		QName qName = new QName("http://www.liferay.com", "LPS-18191");
 
 		HashMap<String, String> hashMap = new HashMap<String, String>();
 

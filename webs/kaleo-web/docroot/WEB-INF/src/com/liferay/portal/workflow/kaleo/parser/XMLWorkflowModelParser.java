@@ -536,8 +536,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 
 		parseNotificationElements(timerNotificationElements, timer);
 
-		Element reassignmentsElement = timersElement.element(
-			"reassignments");
+		Element reassignmentsElement = timersElement.element("reassignments");
 
 		if (reassignmentsElement != null) {
 			Set<Assignment> assignments = parseAssignments(

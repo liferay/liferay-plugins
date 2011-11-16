@@ -41,8 +41,7 @@ public class FriendsRequestInterpreter extends BaseSocialRequestInterpreter {
 			SocialRequest request, ThemeDisplay themeDisplay)
 		throws Exception {
 
-		String creatorUserName = getUserName(
-			request.getUserId(), themeDisplay);
+		String creatorUserName = getUserName(request.getUserId(), themeDisplay);
 
 		User creatorUser = UserLocalServiceUtil.getUserById(
 			request.getUserId());

@@ -109,8 +109,7 @@ public class TimerMessageListener extends BaseMessageListener {
 		return kaleoTimerInstanceToken;
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(
-		TimerMessageListener.class);
+	private static Log _log = LogFactoryUtil.getLog(TimerMessageListener.class);
 
 	private KaleoSignaler _kaleoSignaler;
 	private WorkflowEngine _workflowEngine;
