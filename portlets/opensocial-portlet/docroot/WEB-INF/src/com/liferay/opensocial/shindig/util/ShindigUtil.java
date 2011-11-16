@@ -284,8 +284,7 @@ public class ShindigUtil {
 		return namespace.hashCode();
 	}
 
-	public static Map<String, OAuthService> getOAuthServices(
-			String url)
+	public static Map<String, OAuthService> getOAuthServices(String url)
 		throws Exception {
 
 		GadgetSpec gadgetSpec = getGadgetSpec(url);

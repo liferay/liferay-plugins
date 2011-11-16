@@ -230,8 +230,7 @@ public class LiferayAppDataService implements AppDataService {
 		return user.getCompanyId();
 	}
 
-	protected ExpandoColumn getExpandoColumn(
-			long companyId, String columnName)
+	protected ExpandoColumn getExpandoColumn(long companyId, String columnName)
 		throws Exception {
 
 		ExpandoTable expandoTable = null;

@@ -255,8 +255,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		return (int)dynamicQueryCount(countQuery);
 	}
 
-	public Message updateContent(
-			long messageId, String body, String flags)
+	public Message updateContent(long messageId, String body, String flags)
 		throws PortalException, SystemException {
 
 		Message message = messagePersistence.findByPrimaryKey(messageId);
