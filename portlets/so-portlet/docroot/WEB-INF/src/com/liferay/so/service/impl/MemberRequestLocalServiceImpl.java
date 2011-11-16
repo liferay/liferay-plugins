@@ -229,8 +229,7 @@ public class MemberRequestLocalServiceImpl
 		return memberRequest;
 	}
 
-	protected String getCreateAccountURL(
-			String key, ThemeDisplay themeDisplay)
+	protected String getCreateAccountURL(String key, ThemeDisplay themeDisplay)
 		throws Exception {
 
 		return getLoginURL(key, themeDisplay) +
