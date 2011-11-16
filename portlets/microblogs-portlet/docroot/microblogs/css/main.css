@@ -79,6 +79,7 @@ $microblogs-border-color: #C7D0DA;
 	}
 
 	.autocomplete {
+		background-color: #FFF;
 		height: 18px;
 		position: relative;
 		padding: 8px;

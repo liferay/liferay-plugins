@@ -147,7 +147,7 @@ portletURL.setParameter("tabs1", tabs1);
 	<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" type="article" />
 </div>
 
-<aui:script use="aui-base">
+<aui:script use="aui-base,aui-io">
 	AUI().ready(
 		function() {
 			Liferay.Microblogs.init(
@@ -157,9 +157,7 @@ portletURL.setParameter("tabs1", tabs1);
 			);
 		}
 	);
-</aui:script>
 
-<aui:script use="aui-base,aui-io">
 	var microblogsContainer = A.one('.microblogs-portlet .microblogs-container');
 
 	microblogsContainer.delegate(
@@ -170,8 +168,6 @@ portletURL.setParameter("tabs1", tabs1);
 			var uri = event.currentTarget.getAttribute('href');
 
 			var microblogsEntryId = event.currentTarget.getAttribute('data-microblogsEntryId');
-
-			var microblogsEntry = microblogsContainer.one('#microblogs-entry-' + microblogsEntryId);
 
 			var commentsContainer = A.one('.microblogs-portlet #comments-container-' + microblogsEntryId);
 
@@ -193,6 +189,8 @@ portletURL.setParameter("tabs1", tabs1);
 				commentsContainer.io.start();
 			}
 
+			var microblogsEntry = microblogsContainer.one('#microblogs-entry-' + microblogsEntryId);
+
 			microblogsEntry.toggleClass('show-comments');
 		},
 		'.microblogs-entry .comment a'
@@ -208,8 +206,6 @@ portletURL.setParameter("tabs1", tabs1);
 			var microblogsEntryId = event.currentTarget.getAttribute('data-microblogsEntryId');
 
 			var microblogsEntry = A.one('.microblogs-portlet #microblogs-entry-' + microblogsEntryId);
-
-			var content = microblogsEntry.one('.content');
 
 			var editContainer = microblogsEntry.one('.edit-container');
 
@@ -232,6 +228,8 @@ portletURL.setParameter("tabs1", tabs1);
 			else {
 				editForm.toggle();
 			}
+
+			var content = microblogsEntry.one('.content');
 
 			content.toggle();
 		},

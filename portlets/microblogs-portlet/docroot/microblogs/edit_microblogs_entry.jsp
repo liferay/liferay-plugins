@@ -32,7 +32,7 @@ if (microblogsEntryId > 0) {
 }
 else {
 	try {
-		microblogsEntryId = (Long)request.getAttribute("receiverMicroblogsEntryId");
+		microblogsEntryId = (Long)request.getAttribute("view_comments.jsp-receiverMicroblogsEntryId");
 
 		microblogsEntry = MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(microblogsEntryId);
 	}
