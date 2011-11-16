@@ -25,8 +25,8 @@
 			<![CDATA[
 				import com.liferay.portal.kernel.util.GetterUtil;
 				import com.liferay.portal.kernel.workflow.WorkflowConstants;
-				import com.liferay.portal.kernel.workflow.WorkflowHandlerRegistryUtil;
 				import com.liferay.portal.kernel.workflow.WorkflowHandler;
+				import com.liferay.portal.kernel.workflow.WorkflowHandlerRegistryUtil;
 				import com.liferay.portlet.asset.model.AssetCategory;
 				import com.liferay.portlet.asset.model.AssetEntry;
 				import com.liferay.portlet.asset.model.AssetRenderer;
@@ -36,11 +36,12 @@
 				import java.util.List;
 
 				String className = (String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_NAME);
-				long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
 
 				WorkflowHandler workflowHandler = WorkflowHandlerRegistryUtil.getWorkflowHandler(className);
 
 				AssetRendererFactory assetRendererFactory = workflowHandler.getAssetRendererFactory();
+
+				long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
 
 				AssetRenderer assetRenderer = workflowHandler.getAssetRenderer(classPK);
 
