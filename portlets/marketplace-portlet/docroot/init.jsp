@@ -43,12 +43,12 @@ String portletId = portletDisplay.getId();
 String iFrameURL = StringPool.BLANK;
 
 if (portletId.equals(PortletKeys.MY_MARKETPLACE)) {
-	iFrameURL = HttpUtil.setParameter(MarketplaceConstants.MARKETPLACE_URL_LOGOUT, "referer", MarketplaceConstants.MARKETPLACE_URL_MANAGE_APPS);
+	iFrameURL = HttpUtil.setParameter(MarketplaceConstants.MARKETPLACE_URL_LOGOUT, "referer", MarketplaceConstants.MARKETPLACE_PATH_MANAGE_APPS);
 }
 else if (portletId.equals(PortletKeys.STORE) && (appId > 0)) {
-	iFrameURL = HttpUtil.setParameter(MarketplaceConstants.MARKETPLACE_URL_LOGOUT, "referer", MarketplaceConstants.MARKETPLACE_URL_HOME + "/application/" + appId);
+	iFrameURL = HttpUtil.setParameter(MarketplaceConstants.MARKETPLACE_URL_LOGOUT, "referer", MarketplaceConstants.MARKETPLACE_PATH_STORE + "/application/" + appId);
 }
 else {
-	iFrameURL = HttpUtil.setParameter(MarketplaceConstants.MARKETPLACE_URL_LOGOUT, "referer", MarketplaceConstants.MARKETPLACE_URL_HOME);
+	iFrameURL = HttpUtil.setParameter(MarketplaceConstants.MARKETPLACE_URL_LOGOUT, "referer", MarketplaceConstants.MARKETPLACE_PATH_STORE);
 }
 %>
