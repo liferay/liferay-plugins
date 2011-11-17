@@ -72,8 +72,7 @@ public abstract class BaseTaskAssignmentSelector
 	}
 
 	protected KaleoTaskAssignment getUserKaleoTaskAssignment(User user) {
-		KaleoTaskAssignment kaleoTaskAssignment =
-			new KaleoTaskAssignmentImpl();
+		KaleoTaskAssignment kaleoTaskAssignment = new KaleoTaskAssignmentImpl();
 
 		kaleoTaskAssignment.setAssigneeClassName(User.class.getName());
 		kaleoTaskAssignment.setAssigneeClassPK(user.getUserId());

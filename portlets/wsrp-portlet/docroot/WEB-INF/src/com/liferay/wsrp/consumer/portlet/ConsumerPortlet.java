@@ -1927,8 +1927,7 @@ public class ConsumerPortlet extends GenericPortlet {
 			String extensionURL1 = rewriteMatcher.group(3);
 			String extensionURL2 = rewriteMatcher.group(4);
 
-			Map<String, String> parameterMap =
-				new HashMap<String, String>();
+			Map<String, String> parameterMap = new HashMap<String, String>();
 
 			if (Validator.isNotNull(namespace)) {
 				rewriteMatcher.appendReplacement(
