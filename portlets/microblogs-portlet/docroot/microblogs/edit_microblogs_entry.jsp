@@ -17,9 +17,13 @@
 <%@ include file="/init.jsp" %>
 
 <%
+String redirect = ParamUtil.getString(request, "redirect");
+
 long microblogsEntryId = ParamUtil.getLong(request, "microblogsEntryId");
 
-String redirect = ParamUtil.getString(request, "redirect");
+if (microblogsEntryId <= 0) {
+	microblogsEntryId = GetterUtil.getLong(request.getAttribute("view_comments.jsp-receiverMicroblogsEntryId"));
+}
 
 MicroblogsEntry microblogsEntry = null;
 
@@ -28,15 +32,6 @@ if (microblogsEntryId > 0) {
 		microblogsEntry = MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(microblogsEntryId);
 	}
 	catch (NoSuchEntryException nsee) {
-	}
-}
-else {
-	try {
-		microblogsEntryId = (Long)request.getAttribute("view_comments.jsp-receiverMicroblogsEntryId");
-
-		microblogsEntry = MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(microblogsEntryId);
-	}
-	catch (Exception e) {
 	}
 }
 
@@ -48,8 +43,6 @@ String receiverUserDisplayURL = StringPool.BLANK;
 String receiverUserFullName = StringPool.BLANK;
 String receiverUserPortaitURL = StringPool.BLANK;
 String receiverUserScreenName = StringPool.BLANK;
-
-boolean comment = GetterUtil.getBoolean((String)request.getAttribute("view_comments.jsp-comment"), false);
 
 boolean edit = ParamUtil.getBoolean(request, "edit");
 boolean repost = ParamUtil.getBoolean(request, "repost");
@@ -72,11 +65,10 @@ if ((microblogsEntry != null) && !edit) {
 	}
 }
 
+String formName = "fm" + microblogsEntryId;
 String formCssClass = "microblogs-entry-form";
 
-String formName = "fm" + microblogsEntryId;
-
-boolean view = true;
+boolean comment = GetterUtil.getBoolean((String)request.getAttribute("view_comments.jsp-comment"), false);
 
 if (comment) {
 	formCssClass += " reply";
@@ -87,6 +79,7 @@ if (comment) {
 	<div class="repost-header">
 		<span><liferay-ui:message key="do-you-want-to-repost-this-entry" /></span>
 	</div>
+
 	<c:choose>
 		<c:when test="<%= microblogsEntry == null %>">
 			<div class="portlet-msg-error">
@@ -155,12 +148,10 @@ if (comment) {
 				<span class="placeholder-text">
 					<c:choose>
 						<c:when test="<%= comment %>">
-							Leave a comment...
-						</c:when>
-						<c:when test="<%= edit %>">
+							<liferay-ui:message key="leave-a-comment" />
 						</c:when>
 						<c:otherwise>
-							Update your status...
+							<liferay-ui:message key="update-your-status" />
 						</c:otherwise>
 					</c:choose>
 				</span>
@@ -273,18 +264,16 @@ if (comment) {
 
 			var contentTextarea = form.one('#<portlet:namespace />contentInput textarea');
 
-			<c:if test="<%= view %>">
-				contentTextarea.on(
-					'focus',
-					function(contentTextarea) {
-						var buttonContainer = form.one('.aui-button-holder');
+			contentTextarea.on(
+				'focus',
+				function(contentTextarea) {
+					var buttonContainer = form.one('.aui-button-holder');
 
-						buttonContainer.show();
+					buttonContainer.show();
 
-						autocompleteContent.one('.placeholder-text').remove();
-					}
-				);
-			</c:if>
+					autocompleteContent.one('.placeholder-text').remove();
+				}
+			);
 
 			contentTextarea.on(
 				'input',
@@ -458,15 +447,15 @@ if (comment) {
 				content.val(updatedText);
 			</c:if>
 
-			var url = form.one('input[name="<portlet:namespace />_redirect"]');
+			var url = form.one('input[name="<portlet:namespace />redirect"]');
 
 			var updateContainer = A.one('.microblogs-portlet .portlet-body');
 
 			<c:if test="<%= comment %>">
-				updateContainer = A.one('.microblogs-portlet #comments-container-<%= microblogsEntryId %>');
+				updateContainer = A.one('.microblogs-portlet #commentsContainer<%= microblogsEntryId %>');
 			</c:if>
 
-			Liferay.Microblogs.updateMicroblogs(form, url, updateContainer);
+			Liferay.Microblogs.updateMicroblogs(form, url.get("value"), updateContainer);
 
 			<c:if test="<%= repost %>">
 				Liferay.Microblogs.closePopup();

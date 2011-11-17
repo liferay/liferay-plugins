@@ -23,11 +23,7 @@ long receiverMicroblogsEntryId = ParamUtil.getLong(request, "receiverMicroblogsE
 
 String cur = ParamUtil.getString(request, "cur");
 
-List<MicroblogsEntry> results = null;
-int total = 0;
-
-total = MicroblogsEntryLocalServiceUtil.getReceiverMicroblogsEntryMicroblogsEntriesCount(MicroblogsEntryConstants.TYPE_REPLY, receiverMicroblogsEntryId);
-results = MicroblogsEntryLocalServiceUtil.getReceiverMicroblogsEntryMicroblogsEntries(MicroblogsEntryConstants.TYPE_REPLY, receiverMicroblogsEntryId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new EntryCreateDateComparator(true));
+List<MicroblogsEntry> microblogsEntries = MicroblogsEntryLocalServiceUtil.getReceiverMicroblogsEntryMicroblogsEntries(MicroblogsEntryConstants.TYPE_REPLY, receiverMicroblogsEntryId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new EntryCreateDateComparator(true));
 
 PortletURL microblogsEntriesURL = renderResponse.createRenderURL();
 
@@ -37,12 +33,12 @@ microblogsEntriesURL.setParameter("jspPage", "/microblogs/view.jsp");
 microblogsEntriesURL.setParameter("tabs1", tabs1);
 microblogsEntriesURL.setParameter("cur", cur);
 
-request.setAttribute(WebKeys.MICROBLOGS_ENTRIES, results);
+request.setAttribute(WebKeys.MICROBLOGS_ENTRIES, microblogsEntries);
 request.setAttribute(WebKeys.MICROBLOGS_ENTRIES_URL, microblogsEntriesURL);
 %>
 
-<div class="commentsContainerContent">
-	<c:if test="<%= !results.isEmpty() %>">
+<div class="comments-container-content">
+	<c:if test="<%= !microblogsEntries.isEmpty() %>">
 		<liferay-util:include page="/microblogs/view_microblogs_entries.jsp" servletContext="<%= application %>" />
 	</c:if>
 

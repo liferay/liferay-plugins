@@ -49,7 +49,6 @@ portletURL.setParameter("tabs1", tabs1);
 %>
 
 <div class="microblogs-container">
-
 	<c:if test="<%= MicroblogsPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ENTRY) && !userPublicPage %>">
 		<liferay-util:include page="/microblogs/edit_microblogs_entry.jsp" servletContext="<%= application %>" />
 	</c:if>
@@ -69,13 +68,9 @@ portletURL.setParameter("tabs1", tabs1);
 	int total = 0;
 
 	if (tabs1.equals("timeline")) {
-		long microblogsEntryUserId = themeDisplay.getUserId();
-
 		if (userPublicPage) {
-			microblogsEntryUserId = group.getClassPK();
-
-			results = MicroblogsEntryServiceUtil.getUserMicroblogsEntries(microblogsEntryUserId, searchContainer.getStart(), searchContainer.getEnd());
-			total = MicroblogsEntryServiceUtil.getUserMicroblogsEntriesCount(microblogsEntryUserId);
+			results = MicroblogsEntryServiceUtil.getUserMicroblogsEntries(group.getClassPK(), searchContainer.getStart(), searchContainer.getEnd());
+			total = MicroblogsEntryServiceUtil.getUserMicroblogsEntriesCount(group.getClassPK());
 		}
 		else {
 			results = MicroblogsEntryServiceUtil.getMicroblogsEntries(searchContainer.getStart(), searchContainer.getEnd());
@@ -169,9 +164,9 @@ portletURL.setParameter("tabs1", tabs1);
 
 			var microblogsEntryId = event.currentTarget.getAttribute('data-microblogsEntryId');
 
-			var commentsContainer = A.one('.microblogs-portlet #comments-container-' + microblogsEntryId);
+			var commentsContainer = A.one('.microblogs-portlet #commentsContainer' + microblogsEntryId);
 
-			var commentsContainerContent = commentsContainer.one(".commentsContainerContent");
+			var commentsContainerContent = commentsContainer.one('.comments-container-content');
 
 			if (!commentsContainerContent) {
 				if (!commentsContainer.io) {
@@ -189,7 +184,7 @@ portletURL.setParameter("tabs1", tabs1);
 				commentsContainer.io.start();
 			}
 
-			var microblogsEntry = microblogsContainer.one('#microblogs-entry-' + microblogsEntryId);
+			var microblogsEntry = microblogsContainer.one('#microblogsEntry' + microblogsEntryId);
 
 			microblogsEntry.toggleClass('show-comments');
 		},
@@ -205,11 +200,11 @@ portletURL.setParameter("tabs1", tabs1);
 
 			var microblogsEntryId = event.currentTarget.getAttribute('data-microblogsEntryId');
 
-			var microblogsEntry = A.one('.microblogs-portlet #microblogs-entry-' + microblogsEntryId);
+			var microblogsEntry = A.one('.microblogs-portlet #microblogsEntry' + microblogsEntryId);
 
 			var editContainer = microblogsEntry.one('.edit-container');
 
-			var editForm = microblogsEntry.one('#<portlet:namespace />fm' + microblogsEntryId);
+			var editForm = editContainer.one('#<portlet:namespace />fm' + microblogsEntryId);
 
 			if (!editForm) {
 				if (!editContainer.io) {
@@ -241,7 +236,7 @@ portletURL.setParameter("tabs1", tabs1);
 		function(event) {
 			event.preventDefault();
 
-			if (confirm("Are you sure you want to delete this post?")) {
+			if (confirm('Are you sure you want to delete this post?')) {
 
 				A.io.request(
 					event.currentTarget.getAttribute('href'),
