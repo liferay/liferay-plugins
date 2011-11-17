@@ -51,10 +51,11 @@ String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUs
 	new Liferay.OpenSocial.Gadget(
 		{
 			appId: '<%= gadget.getUrl() %>',
-			debug: '<%= PortletPropsValues.SHINDIG_JS_DEBUG %>',
+			checksum: '<%= gadgetSpec.getChecksum() %>',
+			debug: <%= PortletPropsValues.SHINDIG_JS_DEBUG %>,
 			height: <%= modulePrefs.getHeight() %>,
 			moduleId: '<%= moduleId %>',
-			nocache: '<%= PortletPropsValues.SHINDIG_NO_CACHE %>',
+			nocache: <%= PortletPropsValues.SHINDIG_NO_CACHE %>,
 			portletId: '<%= portletDisplay.getId() %>',
 			pubsubURILoadTimeout: <%= PortletPropsValues.PUBSUB_URI_LOAD_TIMEOUT %>,
 			requiresPubsub: <%= requiresPubsub %>,

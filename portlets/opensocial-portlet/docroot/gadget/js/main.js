@@ -32,6 +32,7 @@ AUI().add(
 				ATTRS: {
 					additionalParams: {},
 					appId: {},
+					checksum: {},
 					content: {},
 					country: {
 						value: 'ALL'
@@ -61,9 +62,7 @@ AUI().add(
 							return Gadget._id++;
 						}
 					},
-					nocache: {
-						value: 1
-					},
+					nocache: {},
 					parentUrl: {
 						value: document.location.protocol + '://' + document.location.host,
 						setter: '_setParentUrl'
@@ -384,23 +383,27 @@ AUI().add(
 
 						var urlData = {
 							aid: instance.get('appId'),
+							checksum: instance.get('checksum'),
 							container: instance._CONTAINER,
 							mid: instance.get('moduleId'),
-							nocache: instance.get('nocache'),
 							country: instance.get('country'),
 							lang: instance.get('language'),
 							view: instance.get('view'),
 							url: instance.get('specUrl')
 						};
 
+						if (instance.get('debug')) {
+							urlData.debug = 1;
+						}
+
+						if (instance.get('nocache')) {
+							urlData.nocache = 1;
+						}
+
 						var parentUrl = instance.get('parentUrl');
 
 						if (parentUrl) {
 							urlData.parent = parentUrl;
-						}
-
-						if (instance.get('debug')) {
-							urlData.debug = 1;
 						}
 
 						url = instance.get('serverBase') + 'ifr?' + A.QueryString.stringify(urlData);
