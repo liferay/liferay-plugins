@@ -255,7 +255,8 @@
 		<delete dir="tmp" />
 		<delete file="${plugin.file}" />
 
-		<delete>
+		<delete includeemptydirs="true">
+			<fileset dir="docroot" includes="**/.sass-cache/**" />
 			<fileset dir="docroot" includes="**/.sprite.png" />
 			<fileset dir="docroot" includes="**/.sprite.properties" />
 			<fileset dir="docroot" includes="**/Thumbs.db" />
