@@ -172,6 +172,8 @@
 	</target>
 
 	<target name="war" depends="compile">
+		<antcall target="build-css" />
+
 		<if>
 			<not>
 				<available file="docroot/images/screenshot.png" />
