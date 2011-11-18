@@ -1,21 +1,3 @@
-<%--
-/**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
- *
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
- *
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
- */
---%>
-
-<%@ include file="/css_init.jsp" %>
-
 /* ---------- All Tasks Toggle ---------- */
 
 .tasks-portlet .taglib-search-iterator-page-iterator-bottom {
@@ -92,17 +74,17 @@
 }
 
 .tasks-portlet .control-wrapper .add-task {
-	background-image: url(<%= themeImagesPath %>/common/add.png);
+	background-image: url(@theme_image_path@/common/add.png);
 }
 
 .tasks-portlet .control-wrapper .filter-tasks {
-	background-image: url(<%= themeImagesPath %>/common/tag.png);
+	background-image: url(@theme_image_path@/common/tag.png);
 	padding-right: 0;
 	float: right;
 }
 
 .tasks-portlet .control-wrapper .permission-tasks {
-	background-image: url(<%= themeImagesPath %>/common/permissions.png);
+	background-image: url(@theme_image_path@/common/permissions.png);
 }
 
 /* ---------- Filter ---------- */
@@ -143,13 +125,13 @@
 }
 
 .tasks-portlet .asset-tag-filter .asset-tag {
-	background: url(<%= request.getContextPath() %>/images/unselected.png) no-repeat 0% 50%;
+	background: url(../images/unselected.png) no-repeat 0% 50%;
 	padding-left: 16px;
 	margin-right: 0.5em;
 }
 
 .tasks-portlet .asset-tag-filter .asset-tag.selected {
-	background-image: url(<%= request.getContextPath() %>/images/selected.png);
+	background-image: url(../images/selected.png);
 	font-weight: bold;
 }
 
@@ -164,15 +146,15 @@
 }
 
 .tasks-portlet .tasks-title.high {
-	background: url(<%= request.getContextPath() %>/images/priority_high.png) no-repeat;
+	background: url(../images/priority_high.png) no-repeat;
 }
 
 .tasks-portlet .tasks-title.low {
-	background: url(<%= request.getContextPath() %>/images/priority_low.png) no-repeat;
+	background: url(../images/priority_low.png) no-repeat;
 }
 
 .tasks-portlet .tasks-title.normal {
-	background: url(<%= request.getContextPath() %>/images/priority_normal.png) no-repeat;
+	background: url(../images/priority_normal.png) no-repeat;
 }
 
 /* ---------- Progress ---------- */
@@ -226,7 +208,7 @@
 }
 
 .tasks-portlet .progress-selector {
-	background: url(<%= themeImagesPath %>/spacer.png);
+	background: url(@theme_image_path@/spacer.png);
 	left: 0;
 	position: absolute;
 	top: 0;
@@ -269,7 +251,7 @@
 }
 
 .tasks-portlet .tags-wrapper .icon {
-	background: url(<%= themeImagesPath %>/common/tag.png) no-repeat;
+	background: url(@theme_image_path@/common/tag.png) no-repeat;
 	height: 16px;
 	width: 16px;
 }
@@ -310,15 +292,15 @@
 }
 
 .tasks-dialog .task-data-container .reporter {
-	background: url(<%= themeImagesPath %>/common/add_user.png) no-repeat 0 50%;
+	background: url(@theme_image_path@/common/add_user.png) no-repeat 0 50%;
 }
 
 .tasks-dialog .task-data-container .assignee {
-	background: url(<%= themeImagesPath %>/common/assign.png) no-repeat 0 50%;
+	background: url(@theme_image_path@/common/assign.png) no-repeat 0 50%;
 }
 
 .tasks-dialog .task-data-container .modified-date {
-	background: url(<%= themeImagesPath %>/common/calendar.png) no-repeat 0 50%;
+	background: url(@theme_image_path@/common/calendar.png) no-repeat 0 50%;
 	border-right: none;
 }
 
@@ -332,19 +314,19 @@
 }
 
 .tasks-dialog .task-data-table .high {
-	background: url(<%= request.getContextPath() %>/images/priority_high.png) no-repeat 0 50%;
+	background: url(../images/priority_high.png) no-repeat 0 50%;
 }
 
 .tasks-dialog .task-data-table .normal {
-	background: url(<%= request.getContextPath() %>/images/priority_normal.png) no-repeat 0 50%;
+	background: url(../images/priority_normal.png) no-repeat 0 50%;
 }
 
 .tasks-dialog .task-data-table .low {
-	background: url(<%= request.getContextPath() %>/images/priority_low.png) no-repeat 0 50%;
+	background: url(../images/priority_low.png) no-repeat 0 50%;
 }
 
 .tasks-dialog .task-data-table .due-date {
-	background: url(<%= themeImagesPath %>/common/date.png) no-repeat 0 50%;
+	background: url(@theme_image_path@/common/date.png) no-repeat 0 50%;
 }
 
 .tasks-dialog .task-action {
