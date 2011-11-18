@@ -1,21 +1,3 @@
-<%--
-/**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
- *
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
- *
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
- */
---%>
-
-<%@ include file="/css_init.jsp" %>
-
 $border-color: #EBEBEB;
 $section-header-bg: #CCE6F7;
 
@@ -130,7 +112,7 @@ $section-header-bg: #CCE6F7;
 		}
 
 		.empty {
-			background: url(<%= themeImagesPath %>/messages/alert.png) no-repeat 0 50%;
+			background: url(@theme_image_path@/messages/alert.png) no-repeat 0 50%;
 			margin: 5px;
 			padding-left: 25px;
 		}
@@ -319,11 +301,11 @@ $section-header-bg: #CCE6F7;
 	}
 
 	.lfr-user-action-confirm a {
-		background: url(<%= themeImagesPath %>/common/activate.png) no-repeat;
+		background: url(@theme_image_path@/common/activate.png) no-repeat;
 	}
 
 	.lfr-user-action-ignore a {
-		background: url(<%= themeImagesPath %>/common/deactivate.png) no-repeat;
+		background: url(@theme_image_path@/common/deactivate.png) no-repeat;
 	}
 
 	.lfr-asset-metadata {
@@ -334,15 +316,15 @@ $section-header-bg: #CCE6F7;
 		}
 
 		.lfr-asset-coworker {
-			background: url(<%= themeImagesPath %>/social/coworker.png) no-repeat;
+			background: url(@theme_image_path@/social/coworker.png) no-repeat;
 		}
 
 		.lfr-asset-follower {
-			background: url(<%= themeImagesPath %>/social/follower.png) no-repeat;
+			background: url(@theme_image_path@/social/follower.png) no-repeat;
 		}
 
 		.lfr-asset-following {
-			background: url(<%= themeImagesPath %>/social/following.png) no-repeat;
+			background: url(@theme_image_path@/social/following.png) no-repeat;
 		}
 	}
 
