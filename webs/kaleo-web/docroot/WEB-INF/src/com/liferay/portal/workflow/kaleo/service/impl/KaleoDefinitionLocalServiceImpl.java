@@ -310,7 +310,7 @@ public class KaleoDefinitionLocalServiceImpl
 			definition.getName(), serviceContext);
 
 		return addKaleoDefinition(
-			kaleoDefinition.getName(), title, kaleoDefinition.getDescription(),
+			definition.getName(), title, definition.getDescription(),
 			definition.getContent(), kaleoDefinition.getVersion() + 1,
 			serviceContext);
 	}
