@@ -26,7 +26,6 @@ public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
 	public static final String KNOWLEDGE_BASE_KB_TEMPLATE =
 		"KNOWLEDGE_BASE_KB_TEMPLATE";
 
-	public static final String KNOWLEDGE_BASE_STATUS =
-		"KNOWLEDGE_BASE_STATUS";
+	public static final String KNOWLEDGE_BASE_STATUS = "KNOWLEDGE_BASE_STATUS";
 
 }

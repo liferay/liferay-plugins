@@ -379,8 +379,7 @@ public class EditorPortlet extends AdminPortlet {
 				jsonObject.put("label", fileEntry.getTitle());
 				jsonObject.put("leaf", true);
 
-				JSONObject jsonPermissions =
-					JSONFactoryUtil.createJSONObject();
+				JSONObject jsonPermissions = JSONFactoryUtil.createJSONObject();
 
 				if (gadgetId > 0) {
 					boolean unpublishPermission = GadgetPermission.contains(
