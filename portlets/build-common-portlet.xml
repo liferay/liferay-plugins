@@ -7,13 +7,15 @@
 	<import file="../build-common-plugin.xml" />
 
 	<target name="build-css">
+		<property name="liferay.lib.portal.dir" location="${app.server.lib.portal.dir}" />
+
 		<java
 			classname="com.liferay.portal.tools.SassToCssBuilder"
 			classpathref="portal.classpath"
 			fork="true"
 			newenvironment="true"
 		>
-			<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
+			<jvmarg value="-Dliferay.lib.portal.dir=${liferay.lib.portal.dir}" />
 			<arg value="sass.dir=${basedir}/docroot" />
 		</java>
 	</target>
@@ -21,6 +23,6 @@
 	<target name="war" depends="compile">
 		<antcall target="build-css" />
 
-		<antcall target="build-common-plugin.compile" />
+		<antcall target="build-common-plugin.war" />
 	</target>
 </project>
