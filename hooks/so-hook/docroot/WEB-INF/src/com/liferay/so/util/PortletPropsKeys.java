@@ -31,9 +31,6 @@ public interface PortletPropsKeys {
 	public static final String SITE_PROTOTYPE_PORTLETS =
 		"site.prototype.portlets.";
 
-	public static final String USER_NEW_LAYOUT_TEMPLATE =
-		"user.new.layout.template";
-
 	public static final String USER_PRIVATE_LAYOUT_PORTLETS =
 		"user.private.layout.portlets.";
 

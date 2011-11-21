@@ -29,7 +29,6 @@ import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.so.util.LayoutUtil;
 import com.liferay.so.util.PortletPropsKeys;
-import com.liferay.so.util.PortletPropsValues;
 
 /**
  * @author Brian Wing Shun Chan
@@ -73,7 +72,7 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		Layout layout = LayoutUtil.addLayout(
 			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Home",
-			PortletPropsValues.USER_NEW_LAYOUT_TEMPLATE);
+			"1_column");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/home",
@@ -85,7 +84,7 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		layout = LayoutUtil.addLayout(
 			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
-			"Contacts Center", PortletPropsValues.USER_NEW_LAYOUT_TEMPLATE);
+			"Contacts Center", "1_column");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/contacts-center",
@@ -97,7 +96,7 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		layout = LayoutUtil.addLayout(
 			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
-			"Microblogs", PortletPropsValues.USER_NEW_LAYOUT_TEMPLATE);
+			"Microblogs", "1_column");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/microblogs",
@@ -109,7 +108,7 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		layout = LayoutUtil.addLayout(
 			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
-			"Messages", PortletPropsValues.USER_NEW_LAYOUT_TEMPLATE);
+			"Messages", "1_column");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/messages",
@@ -121,7 +120,7 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		layout = LayoutUtil.addLayout(
 			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
-			"Tasks", PortletPropsValues.USER_NEW_LAYOUT_TEMPLATE);
+			"Tasks", "1_column");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/tasks",
@@ -149,7 +148,7 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		layout = LayoutUtil.addLayout(
 			group, false, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
-			"Contacts", PortletPropsValues.USER_NEW_LAYOUT_TEMPLATE);
+			"Contacts", "1_column");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/contacts",
@@ -161,7 +160,7 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		layout = LayoutUtil.addLayout(
 			group, false, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
-			"Microblogs", PortletPropsValues.USER_NEW_LAYOUT_TEMPLATE);
+			"Microblogs", "1_column");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/microblogs",

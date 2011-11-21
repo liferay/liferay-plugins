@@ -32,8 +32,4 @@ import com.liferay.util.portlet.PortletProps;
 		GetterUtil.getString(
 			PortletProps.get(PortletPropsKeys.SITE_PROTOTYPE_LAYOUT_TEMPLATE));
 
-	public static final String USER_NEW_LAYOUT_TEMPLATE =
-		GetterUtil.getString(
-			PortletProps.get(PortletPropsKeys.USER_NEW_LAYOUT_TEMPLATE));
-
 }
