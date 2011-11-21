@@ -119,12 +119,20 @@ public class LayoutUtil {
 			if (portletId.startsWith("1_WAR_wysiwygportlet")) {
 				updatePortletTitle(layout, portletId, "Welcome");
 			}
-			else if (portletId.equals("2_WAR_microblogsportlet")) {
+			else if (portletId.contains("_WAR_contactsportlet")) {
+				configureProfile(layout, portletId);
 				removePortletBorder(layout, portletId);
 			}
-			else if (portletId.startsWith("71_INSTANCE_")) {
+			else if (portletId.contains("1_WAR_tasksportlet")) {
 				removePortletBorder(layout, portletId);
-				configureNavigation(layout, portletId);
+			}
+			else if (portletId.equals("1_WAR_privatemessagingportlet") ||
+					 portletId.contains("_WAR_microblogsportlet") ||
+					 portletId.equals("33") || portletId.equals("8") ||
+					 portletId.equals("20") || portletId.equals("19") ||
+					 portletId.equals("36") || portletId.equals("29")) {
+
+				removePortletBorder(layout, portletId);
 			}
 		}
 	}
@@ -179,15 +187,28 @@ public class LayoutUtil {
 		portletSetup.store();
 	}
 
-	public static void configureNavigation(Layout layout, String portletId)
+	public static void configureProfile(Layout layout, String portletId)
 		throws Exception {
 
 		PortletPreferences portletSetup =
 			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
 				layout, portletId);
 
-		portletSetup.setValue("displayStyle", "from-level-0");
-		portletSetup.setValue("bulletStyle", StringPool.BLANK);
+		if (portletId.equals("2_WAR_contactsportlet_INSTANCE_abcd")) {
+			portletSetup.setValue("displayStyle", "1");
+			portletSetup.setValue("showIcon", "false");
+		}
+		else if (portletId.equals("2_WAR_contactsportlet_INSTANCE_efgh")) {
+			portletSetup.setValue("displayStyle", "2");
+			portletSetup.setValue("showSites", "false");
+			portletSetup.setValue("showRecentActivity", "false");
+		}
+		else if (portletId.equals("2_WAR_contactsportlet_INSTANCE_ijkl")) {
+			portletSetup.setValue("displayStyle", "2");
+			portletSetup.setValue("showRecentActivity", "false");
+			portletSetup.setValue("showSites", "true");
+			portletSetup.setValue("showUsersInformation", "false");
+		}
 
 		portletSetup.store();
 	}
