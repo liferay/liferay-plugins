@@ -46,7 +46,7 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 	}
 %>
 
-	<div class="microblogs-entry" id="microblogs-entry-<%= microblogsEntry.getMicroblogsEntryId() %>">
+	<div class="microblogs-entry" id="microblogsEntry<%= microblogsEntry.getMicroblogsEntryId() %>">
 		<span class="thumbnail">
 			<a href="<%= userDisplayURL %>"><img alt="<%= userFullName %>" src="<%= userPortaitURL %>" /></a>
 		</span>
@@ -136,9 +136,7 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 						</portlet:renderURL>
 
 						<span class="action comment">
-							<a data-microblogsEntryId="<%= microblogsEntry.getMicroblogsEntryId() %>" href="<%= commentsURL %>">
-								<%= replyCount > 0 ? replyCount : StringPool.BLANK %> <liferay-ui:message key='<%= replyCount > 1 ? "comments" : "comment" %>' />
-							</a>
+							<a data-microblogsEntryId="<%= microblogsEntry.getMicroblogsEntryId() %>" href="<%= commentsURL %>"><%= replyCount > 0 ? replyCount : StringPool.BLANK %> <liferay-ui:message key='<%= replyCount > 1 ? "comments" : "comment" %>' /></a>
 						</span>
 					</c:if>
 
@@ -154,9 +152,7 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 						%>
 
 						<span class="action repost">
-							<a data-microblogsEntryId="<%= microblogsEntry.getMicroblogsEntryId() %>" href="<%= repostURL %>">
-								<liferay-ui:message key="repost" />
-							</a>
+							<a data-microblogsEntryId="<%= microblogsEntry.getMicroblogsEntryId() %>" href="<%= repostURL %>"><liferay-ui:message key="repost" /></a>
 						</span>
 					</c:if>
 
@@ -169,9 +165,7 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 						</portlet:renderURL>
 
 						<span class="action edit">
-							<a data-microblogsEntryId="<%= microblogsEntry.getMicroblogsEntryId() %>" href="<%= updateMicroblogsEntryURL %>">
-								<liferay-ui:message key="edit" />
-							</a>
+							<a data-microblogsEntryId="<%= microblogsEntry.getMicroblogsEntryId() %>" href="<%= updateMicroblogsEntryURL %>"><liferay-ui:message key="edit" /></a>
 						</span>
 					</c:if>
 
@@ -186,7 +180,7 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 			</div>
 		</div>
 
-		<div class="comments-container reply" id="comments-container-<%= microblogsEntry.getMicroblogsEntryId() %>"><!-- --></div>
+		<div class="comments-container reply" id="commentsContainer<%= microblogsEntry.getMicroblogsEntryId() %>"><!-- --></div>
 	</div>
 
 <%

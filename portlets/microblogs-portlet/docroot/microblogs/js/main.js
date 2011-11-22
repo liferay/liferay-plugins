@@ -92,7 +92,7 @@ AUI().use(
 					);
 				}
 
-				if (!url) {
+				if (url == '') {
 					url = instance._microblogsEntriesURL;
 				}
 
