@@ -38,7 +38,7 @@ portletURL.setParameter("jspPage", "/status_update/view.jsp");
 	<liferay-util:include page="/microblogs/edit_microblogs_entry.jsp" servletContext="<%= application %>" />
 </c:if>
 
-<div class="microblogs-container">
+<div class="microblogs-container microblogs-status-container">
 
 	<%
 	List<MicroblogsEntry> microblogsEntries = null;

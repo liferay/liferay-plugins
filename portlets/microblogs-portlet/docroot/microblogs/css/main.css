@@ -12,43 +12,10 @@
  * details.
  */
 
-.microblogs-portlet .action-container {
-	margin-left: 15px;
-	visibility: hidden;
-}
-
-.microblogs-portlet .control-container {
-	float: right;
-}
-
-.ie6 .microblogs-portlet .action-container {
-	visibility: visible;
-}
-
-.microblogs-portlet .taglib-header, .aui-dialog.microblogs-portlet .taglib-header {
-	border-bottom: none;
-	margin: 0;
-}
-
-.microblogs-portlet .autocomplete {
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	background-color:#FFF;
-	border-color: #BFBFBF #DEDEDE #DEDEDE #BFBFBF;
-	border-radius: 5px;
-	border-style: solid;
-	border-width: 1px;
-	margin: 10px 0;
-	min-height: 20px;
-	min-width: 99%;
-	padding: 5px 1px;
-	position: relative;
-}
-
 .microblogs-portlet .highlighter-content {
 	color: transparent;
 	left: 1px;
-	padding: 5px 1px;
+	padding: 5px;
 	position: absolute;
 	top: 1px;
 	word-wrap: break-word;
@@ -57,218 +24,47 @@
 
 .microblogs-portlet .highlighter-content.textbox {
 	min-height: 20px;
-	padding: 0;
+	padding: 2px;
 	position: static;
 }
 
 .microblogs-portlet .highlighter-content b, .microblogs-portlet .highlighter-content b span {
-	background-color: #D8DFEA;
+	background-color: #97D1FF;
 	font-weight: normal;
+	line-height: 1.45em;
+	margin: -2px -2px 0;
+	padding: 2px 2px 0;
 }
 
 .microblogs-portlet .highlighter-content span {
 	display: inline-block;
-	white-space: pre;
-}
-
-.ie .microblogs-portlet .highlighter-content span {
 	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+	white-space: pre;
 }
 
 .microblogs-portlet .aui-field-input-text {
 	background: none transparent;
 	border: none;
 	min-width: 99%;
-	outline: none;
 	position: absolute;
 	resize: none;
 	top: 0;
+	outline: none;
 	z-index: 999;
-}
-
-.microblogs-portlet .microblogs-entry:hover .action-container {
-	visibility: visible;
-}
-
-.microblogs-portlet .microblogs-entry {
-	margin-bottom: 10px;
-	width: 100%;
-}
-
-.microblogs-portlet .microblogs-status-container .microblogs-entry {
-	margin-bottom: 0;
-	width: 98%;
-}
-
-.aui-dialog.microblogs-portlet .microblogs-entry {
-	margin-top: 10px;
-}
-
-.microblogs-portlet .microblogs-container, .microblogs-portlet .microblogs-status-container {
-	margin-top: 10px;
-}
-
-
-.microblogs-portlet .microblogs-countdown {
-	color: #C8C9CA;
-	font-size: 20px;
-	margin-right: 5px;
-	vertical-align: bottom;
-}
-
-.microblogs-portlet .microblogs-countdown-warned {
-	color: #F00;
-}
-
-.microblogs-portlet .microblogs-entry .user-name {
-	font-size: 12px;
-	font-weight: bold;
-}
-
-.microblogs-portlet .microblogs-status-container .user-name {
-	display: none;
-}
-
-.microblogs-portlet .microblogs-entry .small {
-	color: #4F4F4F;
-	font-size: 10px;
-}
-
-.microblogs-portlet .microblogs-entry .content {
-	font-size: 12px;
-}
-
-.microblogs-portlet .microblogs-entry .footer {
-	color: #4F4F4F;
-	font-size: 10px;
-	height: 15px;
-	margin-top: 5px;
-}
-
-.microblogs-portlet .microblogs-entry .footer span {
-	margin-right: 2px;
-}
-
-.microblogs-portlet .aui-button-holder {
-	width: 100%;
-}
-
-.microblogs-portlet .aui-button-holder .aui-field-select, .microblogs-portlet .thumbnail {
-	float: left;
-}
-
-.microblogs-portlet .aui-button-holder .button-holder-right {
-	float: right;
-}
-
-.microblogs-portlet .thumbnail img {
-	width: 50px;
-}
-
-.microblogs-portlet .thumbnail a {
-	text-decoration: none;
-}
-
-.microblogs-portlet .entry-bubble, .microblogs-portlet .my-entry-bubble {
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	background: #FFF;
-	border-color: #CCC;
-	border-radius: 5px;
-	border-style: solid;
-	border-width: 1px 1px 3px 3px;
-	color: #000;
-	margin-left: 65px;
-	padding-left: 5px;
-	padding: 3px;
-	position: relative;
-}
-
-.microblogs-portlet .my-entry-bubble {
-	background: #DFF4FF;
-	border-color: #A7CEDF;
-	margin-left: 65px;
-	position: relative;
-}
-
-.microblogs-portlet .entry-bubble:before, .microblogs-portlet .entry-bubble:after {
-	border: 12px solid transparent;
-	border-left: 0;
-	border-right-color: #C8C9CA;
-	content: "";
-	left: -13px;
-	position: absolute;
-	top: 16px;
-}
-
-.microblogs-portlet .entry-bubble:after {
-	border: 10px solid transparent;
-	border-right-color: #FFF;
-	left: -20px;
-}
-
-.microblogs-portlet .entry-bubble div, .microblogs-portlet .my-entry-bubble div {
-	left: -7px;
-	margin-bottom: 3px;
-	margin-left: 10px;
-	position: relative;
-}
-
-.microblogs-portlet .my-entry-bubble:before, .microblogs-portlet .my-entry-bubble:after {
-	border: 12px solid transparent;
-	border-left: 0;
-	border-right-color: #A7CEDF;
-	content: "";
-	left: -13px;
-	position: absolute;
-	top: 16px;
-}
-
-.microblogs-portlet .my-entry-bubble:after {
-	border: 10px solid transparent;
-	border-right-color: #DFF4FF;
-	left: -20px;
-}
-
-.microblogs-portlet .aui-tabview-list {
-	margin-top: 5px;
-}
-
-.microblogs-portlet .microblogs-reply-icon {
-	float: right;
-	font-size: 10px;
-	font-weight: normal;
-	margin: 5px -3px;
-}
-
-.microblogs-portlet .aui-toolbar {
-	display: none;
-}
-
-.microblogs-portlet .aui-combobox-content .aui-field-content {
-	display: block;
-}
-
-.microblogs-portlet .microblogs-button-input {
-	color: #34404F;
-}
-
-.microblogs-portlet .microblogs-button-input-disabled {
-	color: #C8C9CA;
 }
 
 .microblogs-autocomplete {
 	clear: both;
 	height: 50px;
-}
 
-.microblogs-autocomplete .thumbnail {
-	margin: 0 5px 0 0;
-}
+	.thumbnail {
+		margin: 0 5px 0 0;
 
-.microblogs-autocomplete .thumbnail img {
-	float:left;
-	width: 50px;
+		img {
+			float:left;
+			width: 50px;
+		}
+	}
 }
 
 .microblogs-autocomplete .user-name {
@@ -278,4 +74,125 @@
 
 .microblogs-autocomplete .small {
 	font-size: 10px;
+}
+
+$microblogs-border-color: #C7D0DA;
+
+.microblogs-portlet {
+	.taglib-header {
+		display: none;
+	}
+
+	.microblogs-entry-form {
+		border-bottom: 1px solid $microblogs-border-color;
+		padding: 10px 11px;
+		position: relative;
+
+		.aui-field-text {
+			display: block;
+			padding: 0 5px;
+		}
+
+		.aui-field-text textarea {
+			margin: 0 -10px;
+			height: 1.25em;
+			width: 100%;
+		}
+
+		.aui-field-text-focused {
+			textarea {
+				height: auto;
+			}
+		}
+
+		.aui-button-holder {
+			margin: 5px 0 0;
+		}
+		
+		.aui-field-select {
+			display: inline-block;
+		}
+
+		.button-holder-right {
+			float: right;
+			line-height: 1em;
+		}
+
+		.microblogs-countdown {
+			background: #CFD8E1;
+			color: #FFF;
+			padding: 2px;
+			position: absolute;
+			right: 14px;
+			top: 14px;
+		}
+
+		 .microblogs-countdown-warned {
+			background: #F00;
+		}
+	}
+
+	.autocomplete {
+		height: 18px;
+		position: relative;
+	}
+
+	.microblogs-entry {
+		border-bottom: 1px solid $microblogs-border-color;
+		margin: 0 25px;
+		padding: 1em 0 .5em;
+
+		&.reply {
+			margin-left: 80px;
+		}
+	}
+
+	.thumbnail {
+		float: left;
+		height: 45px;
+		overflow: hidden;
+		width: 45px;
+		margin-right: 2px;
+
+		img {
+			max-width: 45px;
+		}
+	}
+
+	.microblogs-entry-content {
+		margin-left: 55px;
+
+		.user-name {
+			font-weight: bold;
+		}
+
+		.footer .action-container {
+			display: none;	
+		}
+
+		&:hover .footer .action-container {
+			display: inline;
+		}
+	}
+
+	.reply {
+		.thumbnail {
+			height: 26px;
+			width: 26px;
+
+			img {
+				max-width: 26px;
+			}
+		}
+
+		.microblogs-entry-content {
+			margin-left: 35px;
+		}
+	}
+
+	.microblogs-entry-form:after, .microblogs-entry:after {
+		content: "";
+		clear: both;
+		display: block;
+	}
 }
