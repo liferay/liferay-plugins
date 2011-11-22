@@ -39,8 +39,6 @@ microblogsEntriesURL.setParameter("cur", cur);
 
 request.setAttribute(WebKeys.MICROBLOGS_ENTRIES, results);
 request.setAttribute(WebKeys.MICROBLOGS_ENTRIES_URL, microblogsEntriesURL);
-
-request.setAttribute("receiverMicroblogsEntryId", receiverMicroblogsEntryId);
 %>
 
 <div class="commentsContainerContent">
@@ -49,6 +47,7 @@ request.setAttribute("receiverMicroblogsEntryId", receiverMicroblogsEntryId);
 	</c:if>
 
 	<%
+	request.setAttribute("view_comments.jsp-receiverMicroblogsEntryId", receiverMicroblogsEntryId);
 	request.setAttribute("view_comments.jsp-comment", "true");
 	%>
 

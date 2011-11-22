@@ -81,7 +81,7 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 
 					PortletURL viewURL = renderResponse.createRenderURL();
 
-					viewURL.setWindowState(LiferayWindowState.EXCLUSIVE);
+					viewURL.setWindowState(LiferayWindowState.NORMAL);
 
 					viewURL.setParameter("jspPage", "/microblogs/view.jsp");
 					viewURL.setParameter("tabs1", assetTagName);
@@ -101,10 +101,8 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 
 					assetTagName = assetTagName.replace("]", StringPool.BLANK);
 
-					User taggedUser = null;
-
 					try {
-						taggedUser = UserLocalServiceUtil.getUserByScreenName(microblogsEntry.getCompanyId(), assetTagName);
+						User taggedUser = UserLocalServiceUtil.getUserByScreenName(microblogsEntry.getCompanyId(), assetTagName);
 
 						assetTagName = PortalUtil.getUserName(taggedUser.getUserId(), assetTagName);
 
