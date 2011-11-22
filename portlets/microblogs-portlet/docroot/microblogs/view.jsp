@@ -19,6 +19,8 @@
 <%
 String tabs1 = ParamUtil.getString(request, "tabs1", "timeline");
 
+int cur = ParamUtil.getInteger(request, SearchContainer.DEFAULT_CUR_PARAM);
+
 String redirect = ParamUtil.getString(request, "redirect");
 
 long receiverUserId = ParamUtil.getLong(request, "receiverUserId");
@@ -123,15 +125,13 @@ portletURL.setParameter("tabs1", tabs1);
 	searchContainer.setResults(results);
 	searchContainer.setTotal(total);
 
-	String cur = ParamUtil.getString(request, "cur");
-
 	PortletURL microblogsEntriesURL = renderResponse.createRenderURL();
 
 	microblogsEntriesURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 
 	microblogsEntriesURL.setParameter("jspPage", "/microblogs/view.jsp");
 	microblogsEntriesURL.setParameter("tabs1", tabs1);
-	microblogsEntriesURL.setParameter("cur", cur);
+	microblogsEntriesURL.setParameter("cur", String.valueOf(cur));
 
 	request.setAttribute(WebKeys.MICROBLOGS_ENTRIES, results);
 	request.setAttribute(WebKeys.MICROBLOGS_ENTRIES_URL, microblogsEntriesURL);
