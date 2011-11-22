@@ -100,50 +100,53 @@ request.setAttribute("view_user.jsp-user", user2);
 
 		<c:if test="<%= ((displayStyle == ContactsConstants.DISPLAY_STYLE_DETAIL) || (displayStyle ==ContactsConstants.DISPLAY_STYLE_FULL)) && UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.VIEW) %>">
 			<aui:layout cssClass="user-information">
-				<aui:column cssClass="user-information-column-1" columnWidth="<%= showSites ? 80 : 100 %>">
-					<div class="user-information-title">
-						<liferay-ui:message key="about" />
-					</div>
 
-					<div class="lfr-user-info-container">
-						<liferay-util:include page="/contacts_center/view_user_information.jsp" servletContext="<%= application %>" />
-					</div>
-
-					<%
-					Map<String, String> extensions = ContactsExtensionsUtil.getExtensions();
-
-					Set<String> servletContextNames = extensions.keySet();
-
-					for (String servletContextName : servletContextNames) {
-						String extensionPath = extensions.get(servletContextName);
-
-						ServletContext extensionServletContext = ServletContextPool.get(servletContextName);
-
-						String title = extensionPath.substring(extensionPath.lastIndexOf(StringPool.SLASH) + 1, extensionPath.lastIndexOf(StringPool.PERIOD));
-
-						title = title.replace(CharPool.UNDERLINE, CharPool.DASH);
-
-						String cssClass = "lfr-" + title + "-container";
-					%>
-
+				<c:if test="<%= showUsersInformation %>">
+					<aui:column cssClass="user-information-column-1" columnWidth="<%= showSites ? 80 : 100 %>">
 						<div class="user-information-title">
-							<liferay-ui:message key="<%= title %>" />
+							<liferay-ui:message key="about" />
 						</div>
 
-						<div class="section">
-							<div class="<%= cssClass %>">
-								<liferay-util:include page="<%= extensionPath %>" servletContext="<%= extensionServletContext %>" />
+						<div class="lfr-user-info-container">
+							<liferay-util:include page="/contacts_center/view_user_information.jsp" servletContext="<%= application %>" />
+						</div>
+
+						<%
+						Map<String, String> extensions = ContactsExtensionsUtil.getExtensions();
+
+						Set<String> servletContextNames = extensions.keySet();
+
+						for (String servletContextName : servletContextNames) {
+							String extensionPath = extensions.get(servletContextName);
+
+							ServletContext extensionServletContext = ServletContextPool.get(servletContextName);
+
+							String title = extensionPath.substring(extensionPath.lastIndexOf(StringPool.SLASH) + 1, extensionPath.lastIndexOf(StringPool.PERIOD));
+
+							title = title.replace(CharPool.UNDERLINE, CharPool.DASH);
+
+							String cssClass = "lfr-" + title + "-container";
+						%>
+
+							<div class="user-information-title">
+								<liferay-ui:message key="<%= title %>" />
 							</div>
-						</div>
 
-					<%
-					}
-					%>
+							<div class="section">
+								<div class="<%= cssClass %>">
+									<liferay-util:include page="<%= extensionPath %>" servletContext="<%= extensionServletContext %>" />
+								</div>
+							</div>
 
-				</aui:column>
+						<%
+						}
+						%>
+
+					</aui:column>
+				</c:if>
 
 				<c:if test="<%= showSites %>">
-					<aui:column cssClass="user-information-column-2" columnWidth="20">
+					<aui:column cssClass="user-information-column-2" columnWidth="<%= showUsersInformation ? 20 : 100 %>">
 
 						<%
 						LinkedHashMap groupParams = new LinkedHashMap();
