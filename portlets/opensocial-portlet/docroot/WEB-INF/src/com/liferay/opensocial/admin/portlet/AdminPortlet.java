@@ -17,11 +17,12 @@ package com.liferay.opensocial.admin.portlet;
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.service.OAuthConsumerLocalServiceUtil;
+import com.liferay.opensocial.service.permission.GadgetPermission;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
+import com.liferay.opensocial.util.ActionKeys;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
@@ -30,7 +31,6 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-import javax.portlet.PortletRequest;
 
 /**
  * @author Michael Young
@@ -42,9 +42,18 @@ public class AdminPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		checkPermissions(actionRequest);
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		PermissionChecker permissionChecker =
+			themeDisplay.getPermissionChecker();
+
+		long groupId = themeDisplay.getScopeGroupId();
 
 		long gadgetId = ParamUtil.getLong(actionRequest, "gadgetId");
+
+		GadgetPermission.check(
+			permissionChecker, groupId, gadgetId, ActionKeys.DELETE);
 
 		GadgetLocalServiceUtil.deleteGadget(gadgetId);
 	}
@@ -53,7 +62,18 @@ public class AdminPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		checkPermissions(actionRequest);
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		PermissionChecker permissionChecker =
+			themeDisplay.getPermissionChecker();
+
+		long groupId = themeDisplay.getScopeGroupId();
+
+		long gadgetId = ParamUtil.getLong(actionRequest, "gadgetId");
+
+		GadgetPermission.check(
+			permissionChecker, groupId, gadgetId, ActionKeys.UPDATE);
 
 		long oAuthConsumerId = ParamUtil.getLong(
 			actionRequest, "oAuthConsumerId");
@@ -64,8 +84,6 @@ public class AdminPortlet extends MVCPortlet {
 	public void updateGadget(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
-
-		checkPermissions(actionRequest);
 
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
@@ -81,23 +99,20 @@ public class AdminPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		checkPermissions(actionRequest);
-
-		ShindigUtil.updateOAuthConsumers(actionRequest, actionResponse);
-	}
-
-	protected void checkPermissions(PortletRequest portletRequest)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
 		PermissionChecker permissionChecker =
 			themeDisplay.getPermissionChecker();
 
-		if (!permissionChecker.isCompanyAdmin()) {
-			throw new PrincipalException();
-		}
+		long groupId = themeDisplay.getScopeGroupId();
+
+		long gadgetId = ParamUtil.getLong(actionRequest, "gadgetId");
+
+		GadgetPermission.check(
+			permissionChecker, groupId, gadgetId, ActionKeys.UPDATE);
+
+		ShindigUtil.updateOAuthConsumers(actionRequest, actionResponse);
 	}
 
 	protected Gadget doAddGadget(
@@ -106,6 +121,14 @@ public class AdminPortlet extends MVCPortlet {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
+
+		PermissionChecker permissionChecker =
+			themeDisplay.getPermissionChecker();
+
+		long groupId = themeDisplay.getScopeGroupId();
+
+		GadgetPermission.check(
+			permissionChecker, groupId, ActionKeys.PUBLISH_GADGET);
 
 		String url = ParamUtil.getString(actionRequest, "url");
 		String portletCategoryNames = ParamUtil.getString(
@@ -123,7 +146,18 @@ public class AdminPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		PermissionChecker permissionChecker =
+			themeDisplay.getPermissionChecker();
+
+		long groupId = themeDisplay.getScopeGroupId();
+
 		long gadgetId = ParamUtil.getLong(actionRequest, "gadgetId");
+
+		GadgetPermission.check(
+			permissionChecker, groupId, gadgetId, ActionKeys.UPDATE);
 
 		String portletCategoryNames = ParamUtil.getString(
 			actionRequest, "portletCategoryNames");

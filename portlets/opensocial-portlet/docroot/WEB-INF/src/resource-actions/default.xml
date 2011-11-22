@@ -43,13 +43,18 @@
 		<portlet-name>3</portlet-name>
 		<permissions>
 			<supports>
+				<action-key>ADD_TO_PAGE</action-key>
+				<action-key>CONFIGURATION</action-key>
 				<action-key>VIEW</action-key>
 			</supports>
 			<site-member-defaults>
 				<action-key>VIEW</action-key>
 			</site-member-defaults>
 			<guest-defaults>
+				<action-key>VIEW</action-key>
 			</guest-defaults>
+			<guest-unsupported>
+				<action-key>CONFIGURATION</action-key>
 			<guest-unsupported />
 		</permissions>
 	</portlet-resource>
@@ -76,7 +81,7 @@
 	<model-resource>
 		<model-name>com.liferay.opensocial</model-name>
 		<portlet-ref>
-			<portlet-name>2</portlet-name>
+			<portlet-name>1</portlet-name>
 		</portlet-ref>
 		<permissions>
 			<supports>
@@ -96,7 +101,7 @@
 	<model-resource>
 		<model-name>com.liferay.opensocial.model.Gadget</model-name>
 		<portlet-ref>
-			<portlet-name>2</portlet-name>
+			<portlet-name>1</portlet-name>
 		</portlet-ref>
 		<permissions>
 			<supports>

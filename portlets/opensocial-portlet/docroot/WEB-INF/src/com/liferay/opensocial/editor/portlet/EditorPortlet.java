@@ -60,27 +60,6 @@ import org.apache.shindig.gadgets.spec.ModulePrefs;
 public class EditorPortlet extends AdminPortlet {
 
 	@Override
-	public void deleteGadget(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
-
-		long groupId = themeDisplay.getScopeGroupId();
-
-		long gadgetId = ParamUtil.getLong(actionRequest, "gadgetId");
-
-		GadgetPermission.check(
-			permissionChecker, groupId, gadgetId, ActionKeys.DELETE);
-
-		GadgetLocalServiceUtil.deleteGadget(gadgetId);
-	}
-
-	@Override
 	public void serveResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws IOException, PortletException {
