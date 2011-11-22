@@ -113,7 +113,9 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 				}
 				%>
 
-				<span><%= content %><span>
+				<span>
+					<%= content %>
+				</span>
 			</div>
 
 			<div class="edit-container"><!-- --></div>

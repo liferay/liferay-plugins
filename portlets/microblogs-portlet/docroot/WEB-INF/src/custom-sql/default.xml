@@ -74,7 +74,7 @@
 			INNER JOIN
 				AssetEntry ON
 					(AssetEntry.classPK = MicroblogsEntry.microblogsEntryId)
-			INNER JOIN 
+			INNER JOIN
 				AssetEntries_AssetTags ON
 					(AssetEntries_AssetTags.entryId = AssetEntry.entryId)
 			INNER JOIN
@@ -196,7 +196,7 @@
 			INNER JOIN
 				AssetEntry ON
 					(AssetEntry.classPK = MicroblogsEntry.microblogsEntryId)
-			INNER JOIN 
+			INNER JOIN
 				AssetEntries_AssetTags ON
 					(AssetEntries_AssetTags.entryId = AssetEntry.entryId)
 			INNER JOIN
