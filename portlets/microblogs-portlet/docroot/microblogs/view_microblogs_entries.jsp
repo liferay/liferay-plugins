@@ -187,9 +187,10 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 				</span>
 			</div>
 		</div>
+
+		<div class="comments-container reply" id="comments-container-<%= microblogsEntry.getMicroblogsEntryId() %>"><!-- --></div>
 	</div>
 
-	<div class="comments-container reply" id="comments-container-<%= microblogsEntry.getMicroblogsEntryId() %>"><!-- --></div>
 
 <%
 }

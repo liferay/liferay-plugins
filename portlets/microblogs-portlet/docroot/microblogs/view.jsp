@@ -171,6 +171,8 @@ portletURL.setParameter("tabs1", tabs1);
 
 			var microblogsEntryId = event.currentTarget.getAttribute('data-microblogsEntryId');
 
+			var microblogsEntry = microblogsContainer.one('#microblogs-entry-' + microblogsEntryId);
+
 			var commentsContainer = A.one('.microblogs-portlet #comments-container-' + microblogsEntryId);
 
 			var commentsContainerContent = commentsContainer.one(".commentsContainerContent");
@@ -190,9 +192,8 @@ portletURL.setParameter("tabs1", tabs1);
 
 				commentsContainer.io.start();
 			}
-			else {
-				commentsContainerContent.toggle();
-			}
+
+			microblogsEntry.toggleClass('show-comments');
 		},
 		'.microblogs-entry .comment a'
 	);
