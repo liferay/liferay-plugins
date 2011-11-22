@@ -118,23 +118,29 @@ public class MicroblogsEntryLocalServiceImpl
 	public void deleteMicroblogsEntry(MicroblogsEntry microblogsEntry)
 		throws PortalException, SystemException {
 
-		// Microblogs entry
+		try {
 
-		microblogsEntryPersistence.remove(microblogsEntry);
+			// Microblogs entry
 
-		// Asset
+			microblogsEntryPersistence.remove(microblogsEntry);
 
-		AssetEntryLocalServiceUtil.deleteEntry(
-			MicroblogsEntry.class.getName(),
-			microblogsEntry.getMicroblogsEntryId());
+			// Social
 
-		// Social
+			AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(
+				MicroblogsEntry.class.getName(),
+				microblogsEntry.getMicroblogsEntryId());
 
-		AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(
-			MicroblogsEntry.class.getName(),
-			microblogsEntry.getMicroblogsEntryId());
+			SocialActivityLocalServiceUtil.deleteActivities(assetEntry);
 
-		SocialActivityLocalServiceUtil.deleteActivities(assetEntry);
+			// Asset
+
+			AssetEntryLocalServiceUtil.deleteEntry(
+				MicroblogsEntry.class.getName(),
+				microblogsEntry.getMicroblogsEntryId());
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void deleteUserMicroblogsEntries(long userId)

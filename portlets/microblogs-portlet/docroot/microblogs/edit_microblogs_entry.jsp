@@ -19,6 +19,8 @@
 <%
 long microblogsEntryId = ParamUtil.getLong(request, "microblogsEntryId");
 
+String redirect = ParamUtil.getString(request, "redirect");
+
 MicroblogsEntry microblogsEntry = null;
 
 if (microblogsEntryId > 0) {
@@ -26,6 +28,15 @@ if (microblogsEntryId > 0) {
 		microblogsEntry = MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(microblogsEntryId);
 	}
 	catch (NoSuchEntryException nsee) {
+	}
+}
+else {
+	try {
+		microblogsEntryId = (Long)request.getAttribute("receiverMicroblogsEntryId");
+
+		microblogsEntry = MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(microblogsEntryId);
+	}
+	catch (Exception e) {
 	}
 }
 
@@ -38,11 +49,12 @@ String receiverUserFullName = StringPool.BLANK;
 String receiverUserPortaitURL = StringPool.BLANK;
 String receiverUserScreenName = StringPool.BLANK;
 
+boolean comment = GetterUtil.getBoolean((String)request.getAttribute("view_comments.jsp-comment"), false);
+
 boolean edit = ParamUtil.getBoolean(request, "edit");
-boolean reply = ParamUtil.getBoolean(request, "reply");
 boolean repost = ParamUtil.getBoolean(request, "repost");
 
-if ((microblogsEntry != null) && (reply || repost)) {
+if ((microblogsEntry != null) && !edit) {
 	modifiedDate = dateFormatDateTime.format(microblogsEntry.getModifiedDate());
 
 	receiverUserId = microblogsEntry.getUserId();
@@ -60,31 +72,21 @@ if ((microblogsEntry != null) && (reply || repost)) {
 	}
 }
 
-String header = "whats-happening";
+String formCssClass = "microblogs-entry-form";
 
-String formName = "dialogFm";
+String formName = "fm" + microblogsEntryId;
 
-boolean view = false;
+boolean view = true;
 
-if (edit) {
-	header = "what-do-you-want-to-say-instead";
-}
-else if (repost) {
-	header = "repost-this-entry-to-your-followers";
-}
-else if (reply) {
-	header = "what-do-you-want-to-say-to-x";
-}
-else {
-	formName = "fm";
-
-	view = true;
+if (comment) {
+	formCssClass += " reply";
 }
 %>
 
-<liferay-ui:header title="<%= LanguageUtil.format(pageContext, header, receiverUserFullName) %>" />
-
-<c:if test="<%= reply || repost %>">
+<c:if test="<%= repost %>">
+	<div class="repost-header">
+		<span><liferay-ui:message key="do-you-want-to-repost-this-entry" /></span>
+	</div>
 	<c:choose>
 		<c:when test="<%= microblogsEntry == null %>">
 			<div class="portlet-msg-error">
@@ -117,9 +119,14 @@ else {
 
 <portlet:actionURL name="updateMicroblogsEntry" var="updateMicroblogsEntryURL" />
 
-<aui:form action="<%= updateMicroblogsEntryURL %>" cssClass="microblogs-entry-form" name="<%= formName %>">
-	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-	<aui:input name="microblogsEntryId" type="hidden" value="<%= (repost || reply) ? 0 : microblogsEntryId %>" />
+<portlet:renderURL var="commentsURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
+	<portlet:param name="jspPage" value="/microblogs/view_comments.jsp" />
+	<portlet:param name="receiverMicroblogsEntryId" value="<%= String.valueOf(microblogsEntryId) %>" />
+</portlet:renderURL>
+
+<aui:form action="<%= updateMicroblogsEntryURL %>" cssClass="<%= formCssClass %>" name="<%= formName %>">
+	<aui:input name="redirect" type="hidden" value="<%= comment ? commentsURL : redirect %>" />
+	<aui:input name="microblogsEntryId" type="hidden" value="<%= edit ? microblogsEntryId : 0 %>" />
 	<aui:input name="receiverUserId" type="hidden" value="<%= receiverUserId %>" />
 	<aui:input name="receiverMicroblogsEntryId" type="hidden" value="<%= microblogsEntryId %>" />
 
@@ -129,27 +136,46 @@ else {
 
 			<aui:input name="content" type="hidden" value="<%= microblogsEntry.getContent() %>" />
 		</c:when>
-		<c:when test="<%= reply %>">
+		<c:when test="<%= comment %>">
 			<aui:input name="type" type="hidden" value="<%= MicroblogsEntryConstants.TYPE_REPLY %>" />
 
-			<aui:input name="receiverMicroblogsEntryId" type="hidden" value="<%= microblogsEntryId %>" />
+
 		</c:when>
 	</c:choose>
 
 	<aui:model-context bean="<%= microblogsEntry %>" model="<%= MicroblogsEntry.class %>" />
 
 	<c:if test="<%= !repost %>">
-		<div class="autocomplete" id="<portlet:namespace />autocomplete">
-			<div id="<portlet:namespace />autocompleteContent"></div>
+		<c:if test="<%= comment %>">
+			<span class="thumbnail">
+				<a href="<%= user.getDisplayURL(themeDisplay) %>"><img alt="<%= user.getFullName() %>" src="<%= user.getPortraitURL(themeDisplay) %>" /></a>
+			</span>
+		</c:if>
 
-			<div class="highlighter-content <%= edit || repost || reply ? StringPool.BLANK : "textbox" %>" id="<portlet:namespace />highlighterContent"></div>
+		<div class="autocomplete" id="<portlet:namespace />autocomplete">
+			<div id="<portlet:namespace />autocompleteContent">
+				<span class="placeholder-text">
+					<c:choose>
+						<c:when test="<%= comment %>">
+							Leave a comment...
+						</c:when>
+						<c:when test="<%= edit %>">
+						</c:when>
+						<c:otherwise>
+							Update your status...
+						</c:otherwise>
+					</c:choose>
+				</span>
+			</div>
+
+			<div class="highlighter-content <%= comment || edit || repost ? StringPool.BLANK : "textbox" %>" id="<portlet:namespace />highlighterContent"></div>
 		</div>
 
 		<aui:input label="" name="content" type="hidden" />
 	</c:if>
 
-	<aui:button-row cssClass='<%= view ? "aui-helper-hidden" : StringPool.BLANK %>'>
-		<c:if test="<%= !repost && !reply %>">
+	<aui:button-row cssClass='<%= !repost ? "aui-helper-hidden" : StringPool.BLANK %>'>
+		<c:if test="<%= !comment && !repost %>">
 
 			<%
 			int socialRelationType = 0;
@@ -161,8 +187,7 @@ else {
 
 			<aui:select label="viewable-by" inlineLabel="true" name="socialRelationType">
 				<aui:option label="everyone" selected="<%= socialRelationType == MicroblogsEntryConstants.TYPE_EVERYONE %>" value="<%= MicroblogsEntryConstants.TYPE_EVERYONE %>" />
-				<aui:option label="friends" selected="<%= socialRelationType == SocialRelationConstants.TYPE_BI_FRIEND %>" value="<%= SocialRelationConstants.TYPE_BI_FRIEND %>" />
-				<aui:option label="coworkers" selected="<%= socialRelationType == SocialRelationConstants.TYPE_BI_COWORKER %>" value="<%=SocialRelationConstants.TYPE_BI_COWORKER %>" />
+				<aui:option label="connections" selected="<%= socialRelationType == SocialRelationConstants.TYPE_BI_CONNECTION %>" value="<%= SocialRelationConstants.TYPE_BI_CONNECTION %>" />
 				<aui:option label="followers" selected="<%= socialRelationType == SocialRelationConstants.TYPE_UNI_FOLLOWER %>" value="<%= SocialRelationConstants.TYPE_UNI_FOLLOWER %>" />
 			</aui:select>
 		</c:if>
@@ -174,7 +199,7 @@ else {
 
 			<aui:button inputCssClass="microblogs-button-input" name="submit" type="submit" value="post" />
 
-			<c:if test="<%= !view %>">
+			<c:if test="<%= repost %>">
 				<aui:button onClick="Liferay.Microblogs.closePopup();" type="cancel" />
 			</c:if>
 		</span>
@@ -201,7 +226,7 @@ else {
 		'</div>' +
 		'<div>' +
 			'<span class="user-name">{fullName}</span><br />' +
-			'<span class="small">{email}</span><br />' +
+			'<span class="small">{emailAddress}</span><br />' +
 			'<span class="job-title">{jobTitle}</span>' +
 		'</div>' +
 	'</div>';
@@ -228,8 +253,9 @@ else {
 		};
 
 		var createTextarea = function(divId) {
-			var autocomplete = A.one('#<portlet:namespace/>autocomplete');
-			var highlighterContent = A.one('#<portlet:namespace/>highlighterContent');
+			var autocomplete = form.one('#<portlet:namespace/>autocomplete');
+			var autocompleteContent = autocomplete.one('#<portlet:namespace />autocompleteContent');
+			var highlighterContent = form.one('#<portlet:namespace/>highlighterContent');
 
 			var inputValue = '<%= ((microblogsEntry != null) && (edit)) ? microblogsEntry.getContent() : StringPool.BLANK %>';
 
@@ -245,9 +271,9 @@ else {
 					id: '<portlet:namespace />contentInput',
 					value: inputValue
 				}
-			).render(divId);
+			).render(autocompleteContent);
 
-			var contentTextarea = A.one('#<portlet:namespace />contentInput textarea');
+			var contentTextarea = form.one('#<portlet:namespace />contentInput textarea');
 
 			<c:if test="<%= view %>">
 				contentTextarea.on(
@@ -256,6 +282,8 @@ else {
 						var buttonContainer = form.one('.aui-button-holder');
 
 						buttonContainer.show();
+
+						autocompleteContent.one('.placeholder-text').remove();
 					}
 				);
 			</c:if>
@@ -309,6 +337,8 @@ else {
 				function(result) {
 					var userData = result.raw;
 
+					console.log('sub');
+
 					return A.Lang.sub(TPL_SEARCH_RESULTS, userData);
 				}
 			);
@@ -317,7 +347,7 @@ else {
 		var updateHighlightDivContent = function(event) {
 			var inputValue = event.inputValue;
 
-			var highlighterContent = A.one('#<portlet:namespace/>highlighterContent');
+			var highlighterContent = form.one('#<portlet:namespace/>highlighterContent');
 
 			var query = inputValue.match(REGEX_USER_NAME);
 
@@ -339,8 +369,8 @@ else {
 		var updateHighlightDivSize = function(event) {
 			var contentInput = event.currentTarget;
 
-			var autocomplete = A.one('#<portlet:namespace/>autocomplete');
-			var highlighterContent = A.one('#<portlet:namespace/>highlighterContent');
+			var autocomplete = form.one('#<portlet:namespace/>autocomplete');
+			var highlighterContent = form.one('#<portlet:namespace/>highlighterContent');
 
 			var contentInputHeight = contentInput.height();
 
@@ -377,7 +407,7 @@ else {
 					maxResults: 5,
 					on: {
 						clear: function() {
-							var highlighterContent = A.one('#<portlet:namespace/>highlighterContent');
+							var highlighterContent = form.one('#<portlet:namespace/>highlighterContent');
 
 							highlighterContent.html('');
 						},
@@ -392,37 +422,15 @@ else {
 			).render();
 		}
 
-		form.on(
-			'submit',
-			function(event) {
-				event.halt(true);
-
-				var content = A.one('#<portlet:namespace />content');
-				var contentInput = A.one('#<portlet:namespace />contentInput textarea');
-
-				var contentInputValue = contentInput.val();
-
-				var updatedText = replaceName(contentInputValue, 'screenName');
-
-				content.val(updatedText);
-
-				Liferay.Microblogs.updateMicroblogs(form);
-
-				<c:if test="<%= !view %>">
-					Liferay.Microblogs.closePopup();
-				</c:if>
-			}
-		);
-
 		<c:choose>
-			<c:when test="<%= !reply && !edit %>">
-				var autocomplete = A.one('#<portlet:namespace/>autocomplete');
+			<c:when test="<%= !edit %>">
+				var autocomplete = form.one('#<portlet:namespace/>autocomplete');
 
 				autocomplete.on(
 					'click',
 					function(event) {
-						var contentInput = A.one('#<portlet:namespace/>contentInput');
-						var highlighterContent = A.one('#<portlet:namespace/>highlighterContent');
+						var contentInput = form.one('#<portlet:namespace/>contentInput');
+						var highlighterContent = form.one('#<portlet:namespace/>highlighterContent');
 
 						if (!contentInput) {
 							highlighterContent.removeClass('textbox');
@@ -437,4 +445,28 @@ else {
 			</c:otherwise>
 		</c:choose>
 	</c:if>
+
+	form.on(
+		'submit',
+		function(event) {
+			event.halt(true);
+
+			<c:if test="<%= !repost %>">
+				var content = form.one('#<portlet:namespace />content');
+				var contentInput = form.one('#<portlet:namespace />contentInput textarea');
+
+				var contentInputValue = contentInput.val();
+
+				var updatedText = replaceName(contentInputValue, 'screenName');
+
+				content.val(updatedText);
+			</c:if>
+
+			Liferay.Microblogs.updateMicroblogs(form, <%= comment ? true : false %>, <%= microblogsEntryId %>);
+
+			<c:if test="<%= repost %>">
+				Liferay.Microblogs.closePopup();
+			</c:if>
+		}
+	);
 </aui:script>
