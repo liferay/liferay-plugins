@@ -250,7 +250,9 @@ portletURL.setParameter("tabs1", tabs1);
 					{
 						on: {
 							success: function(event, id, obj) {
-								Liferay.Microblogs.updateMicroblogsList('<%= microblogsEntriesURL %>');
+								var updateContainer = A.one('.microblogs-portlet .portlet-body');
+
+								Liferay.Microblogs.updateMicroblogsList('<%= microblogsEntriesURL %>', updateContainer);
 							}
 						}
 					}

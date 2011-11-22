@@ -191,7 +191,6 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 		<div class="comments-container reply" id="comments-container-<%= microblogsEntry.getMicroblogsEntryId() %>"><!-- --></div>
 	</div>
 
-
 <%
 }
 %>
