@@ -19,11 +19,13 @@
 <%
 String tabs1 = ParamUtil.getString(request, "tabs1", "timeline");
 
+int cur = ParamUtil.getInteger(request, SearchContainer.DEFAULT_CUR_PARAM);
+
 long receiverMicroblogsEntryId = ParamUtil.getLong(request, "receiverMicroblogsEntryId");
 
-String cur = ParamUtil.getString(request, "cur");
-
 List<MicroblogsEntry> microblogsEntries = MicroblogsEntryLocalServiceUtil.getReceiverMicroblogsEntryMicroblogsEntries(MicroblogsEntryConstants.TYPE_REPLY, receiverMicroblogsEntryId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new EntryCreateDateComparator(true));
+
+request.setAttribute(WebKeys.MICROBLOGS_ENTRIES, microblogsEntries);
 
 PortletURL microblogsEntriesURL = renderResponse.createRenderURL();
 
@@ -31,9 +33,8 @@ microblogsEntriesURL.setWindowState(WindowState.NORMAL);
 
 microblogsEntriesURL.setParameter("jspPage", "/microblogs/view.jsp");
 microblogsEntriesURL.setParameter("tabs1", tabs1);
-microblogsEntriesURL.setParameter("cur", cur);
+microblogsEntriesURL.setParameter("cur", String.valueOf(cur));
 
-request.setAttribute(WebKeys.MICROBLOGS_ENTRIES, microblogsEntries);
 request.setAttribute(WebKeys.MICROBLOGS_ENTRIES_URL, microblogsEntriesURL);
 %>
 
