@@ -123,11 +123,9 @@ public class LayoutUtil {
 				configureProfile(layout, portletId);
 				removePortletBorder(layout, portletId);
 			}
-			else if (portletId.contains("1_WAR_tasksportlet")) {
-				removePortletBorder(layout, portletId);
-			}
-			else if (portletId.equals("1_WAR_privatemessagingportlet") ||
-					 portletId.contains("_WAR_microblogsportlet") ||
+			else if (portletId.contains("_WAR_microblogsportlet") ||
+					 portletId.equals("1_WAR_privatemessagingportlet") ||
+					 portletId.contains("1_WAR_tasksportlet") ||
 					 portletId.equals("33") || portletId.equals("8") ||
 					 portletId.equals("20") || portletId.equals("19") ||
 					 portletId.equals("36") || portletId.equals("29")) {
