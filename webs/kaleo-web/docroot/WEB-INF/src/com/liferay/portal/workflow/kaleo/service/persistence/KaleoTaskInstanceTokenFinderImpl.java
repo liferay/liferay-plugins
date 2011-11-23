@@ -27,11 +27,9 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
-import com.liferay.portal.model.UserGroupGroupRole;
 import com.liferay.portal.model.UserGroupRole;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
-import com.liferay.portal.service.UserGroupGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
@@ -504,24 +502,11 @@ public class KaleoTaskInstanceTokenFinderImpl
 				user.getUserGroups()));
 
 		for (Group group : groups) {
-			if (group.isUserGroup()) {
-				List <UserGroupGroupRole> userGroupGroupRoles =
-					UserGroupGroupRoleLocalServiceUtil.getUserGroupGroupRoles(
-						group.getClassPK());
+			List<Role> roles = RoleLocalServiceUtil.getGroupRoles(
+				group.getGroupId());
 
-				for (UserGroupGroupRole userGroupGroupRole :
-						userGroupGroupRoles) {
-
-					roleIds.add(userGroupGroupRole.getRoleId());
-				}
-			}
-			else {
-				List<Role> roles = RoleLocalServiceUtil.getGroupRoles(
-					group.getGroupId());
-
-				for (Role role : roles) {
-					roleIds.add(role.getRoleId());
-				}
+			for (Role role : roles) {
+				roleIds.add(role.getRoleId());
 			}
 		}
 
