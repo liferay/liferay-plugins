@@ -53,6 +53,8 @@
 
 					<aui:input label="show-sites" name="preferences--showSites--" type="checkbox" value="<%= showSites %>" />
 
+					<aui:input name="preferences--showUsersInformation--" type="checkbox" value="<%= showUsersInformation %>" />
+
 					<aui:input name="preferences--showWebsites--" type="checkbox" value="<%= showWebsites %>" />
 				</aui:column>
 			</aui:field-wrapper>
@@ -61,22 +63,3 @@
 		<aui:button type="submit" />
 	</aui:form>
 </div>
-
-<aui:script use="aui-base">
-	var showUserInfoCheckbox = A.one('#<portlet:namespace />showUsersInformationCheckbox');
-
-	var extraFields = A.one('.lfr-user-profile-preferences');
-
-	var toggleExtraFields = function() {
-		if (showUserInfoCheckbox.attr('checked')) {
-			extraFields.show();
-		}
-		else {
-			extraFields.hide();
-		}
-	}
-
-	showUserInfoCheckbox.on('change', toggleExtraFields)
-
-	toggleExtraFields();
-</aui:script>
