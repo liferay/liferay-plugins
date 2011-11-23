@@ -21,6 +21,7 @@ import com.liferay.opensocial.model.impl.GadgetImpl;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.service.OAuthConsumerLocalServiceUtil;
 import com.liferay.opensocial.util.PortletPropsValues;
+import com.liferay.portal.kernel.concurrent.ConcurrentHashSet;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -45,8 +46,8 @@ import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
 
 import java.io.File;
 
-import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -76,6 +77,10 @@ import org.json.JSONObject;
  * @author Dennis Ju
  */
 public class ShindigUtil {
+
+	public static void clearGadgetSpecCache(String url) {
+		_ignoreGadgetSpecCache.add(url);
+	}
 
 	public static String createSecurityToken(
 			String ownerId, long viewerId, String appId, String domain,
@@ -247,7 +252,7 @@ public class ShindigUtil {
 
 		gadgetContextJSONObject.put("debug", debug);
 
-		if (!ignoreCache && _gadgetSpecErrorCache.contains(url)) {
+		if (!ignoreCache && _ignoreGadgetSpecCache.contains(url)) {
 			ignoreCache = true;
 		}
 
@@ -265,10 +270,10 @@ public class ShindigUtil {
 		try {
 			gadget = _processor.process(jsonRpcGadgetContext);
 
-			_gadgetSpecErrorCache.remove(url);
+			_ignoreGadgetSpecCache.remove(url);
 		}
 		catch (ProcessingException pe) {
-			_gadgetSpecErrorCache.add(url);
+			_ignoreGadgetSpecCache.add(url);
 
 			throw pe;
 		}
@@ -432,8 +437,8 @@ public class ShindigUtil {
 	private static BasicSecurityTokenCodec _basicSecurityTokenCodec;
 	@Inject
 	private static ContainerConfig _containerConfig;
-	private static HashSet<String> _gadgetSpecErrorCache =
-		new HashSet<String>();
+	private static Set<String> _ignoreGadgetSpecCache =
+		new ConcurrentHashSet<String>();
 	private static AutoResetThreadLocal<String> _host =
 		new AutoResetThreadLocal<String>(
 			ShindigUtil.class + "._host", StringPool.BLANK);

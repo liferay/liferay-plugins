@@ -67,6 +67,8 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		else {
 			String url = getParameter(actionRequest, "url");
 
+			ShindigUtil.clearGadgetSpecCache(url);
+
 			setPreference(actionRequest, "url", url);
 
 			super.processAction(portletConfig, actionRequest, actionResponse);

@@ -18,6 +18,7 @@ import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.service.OAuthConsumerLocalServiceUtil;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -27,6 +28,8 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.util.bridges.mvc.MVCPortlet;
+
+import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -59,6 +62,31 @@ public class AdminPortlet extends MVCPortlet {
 			actionRequest, "oAuthConsumerId");
 
 		OAuthConsumerLocalServiceUtil.deleteOAuthConsumer(oAuthConsumerId);
+	}
+
+	public void refreshGadgets(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		checkPermissions(actionRequest);
+
+		long[] gadgetIds = ParamUtil.getLongValues(actionRequest, "gadgetId");
+
+		if (gadgetIds.length == 0) {
+			List<Gadget> gadgets = GadgetLocalServiceUtil.getGadgets(
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+
+			for (Gadget gadget : gadgets) {
+				ShindigUtil.clearGadgetSpecCache(gadget.getUrl());
+			}
+		}
+		else {
+			for (long gadgetId : gadgetIds) {
+				Gadget gadget = GadgetLocalServiceUtil.getGadget(gadgetId);
+
+				ShindigUtil.clearGadgetSpecCache(gadget.getUrl());
+			}
+		}
 	}
 
 	public void updateGadget(
