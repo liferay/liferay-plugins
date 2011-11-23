@@ -274,7 +274,7 @@ public class InstanceUtil {
 
 		layout = LayoutUtil.addLayout(
 			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Documents",
-			"2_columns_iii");
+			"1_column");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/documents",

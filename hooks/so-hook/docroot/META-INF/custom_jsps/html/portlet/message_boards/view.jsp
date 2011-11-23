@@ -23,6 +23,8 @@
 String topLink = ParamUtil.getString(request, "topLink", "message-boards-home");
 %>
 
+<liferay-util:include page="/html/portlet/message_boards/top_links.jsp" />
+
 <c:choose>
 	<c:when test='<%= topLink.equals("message-boards-home") %>'>
 
@@ -122,8 +124,6 @@ String topLink = ParamUtil.getString(request, "topLink", "message-boards-home");
 	</c:when>
 	<c:otherwise>
 		<liferay-ui:header title="<%= topLink %>" />
-
-		<liferay-util:include page="/html/portlet/message_boards/sidebar.jsp" />
 
 		<liferay-util:include page="/html/portlet/message_boards/view.jsp" useCustomPage="<%= false %>" />
 	</c:otherwise>

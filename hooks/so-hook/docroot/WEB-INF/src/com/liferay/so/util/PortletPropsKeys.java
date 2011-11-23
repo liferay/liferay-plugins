@@ -31,14 +31,13 @@ public interface PortletPropsKeys {
 	public static final String SITE_PROTOTYPE_PORTLETS =
 		"site.prototype.portlets.";
 
-	public static final String USER_APPLICATIONS = "user.applications";
-
-	public static final String USER_LAYOUT_PORTLETS = "user.layout.portlets.";
-
-	public static final String USER_NEW_LAYOUT_PORTLETS =
-		"user.new.layout.portlets.";
-
 	public static final String USER_NEW_LAYOUT_TEMPLATE =
 		"user.new.layout.template";
+
+	public static final String USER_PRIVATE_LAYOUT_PORTLETS =
+		"user.private.layout.portlets.";
+
+	public static final String USER_PUBLIC_LAYOUT_PORTLETS =
+		"user.public.layout.portlets.";
 
 }
