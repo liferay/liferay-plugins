@@ -16,7 +16,6 @@ package com.liferay.chat.service.persistence;
 
 import com.liferay.chat.model.Entry;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
@@ -1072,6 +1071,4 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public Entry remove(Entry entry) throws SystemException;
 }

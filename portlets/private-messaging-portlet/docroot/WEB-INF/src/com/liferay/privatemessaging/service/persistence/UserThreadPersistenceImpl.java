@@ -280,24 +280,11 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 *
 	 * @param primaryKey the primary key of the user thread
 	 * @return the user thread that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a user thread with the primary key could not be found
+	 * @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public UserThread remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the user thread with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param userThreadId the primary key of the user thread
-	 * @return the user thread that was removed
-	 * @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public UserThread remove(long userThreadId)
 		throws NoSuchUserThreadException, SystemException {
 		Session session = null;
 
@@ -305,18 +292,18 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 			session = openSession();
 
 			UserThread userThread = (UserThread)session.get(UserThreadImpl.class,
-					Long.valueOf(userThreadId));
+					primaryKey);
 
 			if (userThread == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + userThreadId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchUserThreadException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					userThreadId);
+					primaryKey);
 			}
 
-			return userThreadPersistence.remove(userThread);
+			return remove(userThread);
 		}
 		catch (NoSuchUserThreadException nsee) {
 			throw nsee;
@@ -330,15 +317,16 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	}
 
 	/**
-	 * Removes the user thread from the database. Also notifies the appropriate model listeners.
+	 * Removes the user thread with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param userThread the user thread
+	 * @param userThreadId the primary key of the user thread
 	 * @return the user thread that was removed
+	 * @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	@Override
-	public UserThread remove(UserThread userThread) throws SystemException {
-		return super.remove(userThread);
+	public UserThread remove(long userThreadId)
+		throws NoSuchUserThreadException, SystemException {
+		return remove(Long.valueOf(userThreadId));
 	}
 
 	@Override
@@ -2367,7 +2355,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 */
 	public void removeByMBThreadId(long mbThreadId) throws SystemException {
 		for (UserThread userThread : findByMBThreadId(mbThreadId)) {
-			userThreadPersistence.remove(userThread);
+			remove(userThread);
 		}
 	}
 
@@ -2379,7 +2367,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 */
 	public void removeByUserId(long userId) throws SystemException {
 		for (UserThread userThread : findByUserId(userId)) {
-			userThreadPersistence.remove(userThread);
+			remove(userThread);
 		}
 	}
 
@@ -2394,7 +2382,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		throws NoSuchUserThreadException, SystemException {
 		UserThread userThread = findByU_M(userId, mbThreadId);
 
-		userThreadPersistence.remove(userThread);
+		remove(userThread);
 	}
 
 	/**
@@ -2407,7 +2395,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	public void removeByU_D(long userId, boolean deleted)
 		throws SystemException {
 		for (UserThread userThread : findByU_D(userId, deleted)) {
-			userThreadPersistence.remove(userThread);
+			remove(userThread);
 		}
 	}
 
@@ -2422,7 +2410,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	public void removeByU_R_D(long userId, boolean read, boolean deleted)
 		throws SystemException {
 		for (UserThread userThread : findByU_R_D(userId, read, deleted)) {
-			userThreadPersistence.remove(userThread);
+			remove(userThread);
 		}
 	}
 
@@ -2433,7 +2421,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 */
 	public void removeAll() throws SystemException {
 		for (UserThread userThread : findAll()) {
-			userThreadPersistence.remove(userThread);
+			remove(userThread);
 		}
 	}
 

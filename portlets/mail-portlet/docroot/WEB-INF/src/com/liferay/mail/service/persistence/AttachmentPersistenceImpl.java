@@ -193,24 +193,11 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 *
 	 * @param primaryKey the primary key of the attachment
 	 * @return the attachment that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a attachment with the primary key could not be found
+	 * @throws com.liferay.mail.NoSuchAttachmentException if a attachment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Attachment remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the attachment with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param attachmentId the primary key of the attachment
-	 * @return the attachment that was removed
-	 * @throws com.liferay.mail.NoSuchAttachmentException if a attachment with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Attachment remove(long attachmentId)
 		throws NoSuchAttachmentException, SystemException {
 		Session session = null;
 
@@ -218,18 +205,18 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 			session = openSession();
 
 			Attachment attachment = (Attachment)session.get(AttachmentImpl.class,
-					Long.valueOf(attachmentId));
+					primaryKey);
 
 			if (attachment == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + attachmentId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchAttachmentException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					attachmentId);
+					primaryKey);
 			}
 
-			return attachmentPersistence.remove(attachment);
+			return remove(attachment);
 		}
 		catch (NoSuchAttachmentException nsee) {
 			throw nsee;
@@ -243,15 +230,16 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	}
 
 	/**
-	 * Removes the attachment from the database. Also notifies the appropriate model listeners.
+	 * Removes the attachment with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param attachment the attachment
+	 * @param attachmentId the primary key of the attachment
 	 * @return the attachment that was removed
+	 * @throws com.liferay.mail.NoSuchAttachmentException if a attachment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	@Override
-	public Attachment remove(Attachment attachment) throws SystemException {
-		return super.remove(attachment);
+	public Attachment remove(long attachmentId)
+		throws NoSuchAttachmentException, SystemException {
+		return remove(Long.valueOf(attachmentId));
 	}
 
 	@Override
@@ -926,7 +914,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 */
 	public void removeByMessageId(long messageId) throws SystemException {
 		for (Attachment attachment : findByMessageId(messageId)) {
-			attachmentPersistence.remove(attachment);
+			remove(attachment);
 		}
 	}
 
@@ -937,7 +925,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 */
 	public void removeAll() throws SystemException {
 		for (Attachment attachment : findAll()) {
-			attachmentPersistence.remove(attachment);
+			remove(attachment);
 		}
 	}
 

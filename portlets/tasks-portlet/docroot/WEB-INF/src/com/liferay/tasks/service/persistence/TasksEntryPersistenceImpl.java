@@ -310,24 +310,11 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 *
 	 * @param primaryKey the primary key of the tasks entry
 	 * @return the tasks entry that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a tasks entry with the primary key could not be found
+	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public TasksEntry remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the tasks entry with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param tasksEntryId the primary key of the tasks entry
-	 * @return the tasks entry that was removed
-	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public TasksEntry remove(long tasksEntryId)
 		throws NoSuchTasksEntryException, SystemException {
 		Session session = null;
 
@@ -335,18 +322,18 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 			session = openSession();
 
 			TasksEntry tasksEntry = (TasksEntry)session.get(TasksEntryImpl.class,
-					Long.valueOf(tasksEntryId));
+					primaryKey);
 
 			if (tasksEntry == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + tasksEntryId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchTasksEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					tasksEntryId);
+					primaryKey);
 			}
 
-			return tasksEntryPersistence.remove(tasksEntry);
+			return remove(tasksEntry);
 		}
 		catch (NoSuchTasksEntryException nsee) {
 			throw nsee;
@@ -360,15 +347,16 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	}
 
 	/**
-	 * Removes the tasks entry from the database. Also notifies the appropriate model listeners.
+	 * Removes the tasks entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param tasksEntry the tasks entry
+	 * @param tasksEntryId the primary key of the tasks entry
 	 * @return the tasks entry that was removed
+	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	@Override
-	public TasksEntry remove(TasksEntry tasksEntry) throws SystemException {
-		return super.remove(tasksEntry);
+	public TasksEntry remove(long tasksEntryId)
+		throws NoSuchTasksEntryException, SystemException {
+		return remove(Long.valueOf(tasksEntryId));
 	}
 
 	@Override
@@ -4629,7 +4617,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	public void removeByGroupId(long groupId) throws SystemException {
 		for (TasksEntry tasksEntry : findByGroupId(groupId)) {
-			tasksEntryPersistence.remove(tasksEntry);
+			remove(tasksEntry);
 		}
 	}
 
@@ -4641,7 +4629,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	public void removeByUserId(long userId) throws SystemException {
 		for (TasksEntry tasksEntry : findByUserId(userId)) {
-			tasksEntryPersistence.remove(tasksEntry);
+			remove(tasksEntry);
 		}
 	}
 
@@ -4654,7 +4642,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	public void removeByAssigneeUserId(long assigneeUserId)
 		throws SystemException {
 		for (TasksEntry tasksEntry : findByAssigneeUserId(assigneeUserId)) {
-			tasksEntryPersistence.remove(tasksEntry);
+			remove(tasksEntry);
 		}
 	}
 
@@ -4667,7 +4655,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	public void removeByResolverUserId(long resolverUserId)
 		throws SystemException {
 		for (TasksEntry tasksEntry : findByResolverUserId(resolverUserId)) {
-			tasksEntryPersistence.remove(tasksEntry);
+			remove(tasksEntry);
 		}
 	}
 
@@ -4681,7 +4669,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	public void removeByG_U(long groupId, long userId)
 		throws SystemException {
 		for (TasksEntry tasksEntry : findByG_U(groupId, userId)) {
-			tasksEntryPersistence.remove(tasksEntry);
+			remove(tasksEntry);
 		}
 	}
 
@@ -4695,7 +4683,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	public void removeByG_A(long groupId, long assigneeUserId)
 		throws SystemException {
 		for (TasksEntry tasksEntry : findByG_A(groupId, assigneeUserId)) {
-			tasksEntryPersistence.remove(tasksEntry);
+			remove(tasksEntry);
 		}
 	}
 
@@ -4709,7 +4697,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	public void removeByG_R(long groupId, long resolverUserId)
 		throws SystemException {
 		for (TasksEntry tasksEntry : findByG_R(groupId, resolverUserId)) {
-			tasksEntryPersistence.remove(tasksEntry);
+			remove(tasksEntry);
 		}
 	}
 
@@ -4720,7 +4708,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	 */
 	public void removeAll() throws SystemException {
 		for (TasksEntry tasksEntry : findAll()) {
-			tasksEntryPersistence.remove(tasksEntry);
+			remove(tasksEntry);
 		}
 	}
 

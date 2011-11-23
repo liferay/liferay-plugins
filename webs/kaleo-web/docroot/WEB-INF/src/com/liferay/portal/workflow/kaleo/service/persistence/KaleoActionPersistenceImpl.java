@@ -241,24 +241,11 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	 *
 	 * @param primaryKey the primary key of the kaleo action
 	 * @return the kaleo action that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a kaleo action with the primary key could not be found
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchActionException if a kaleo action with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KaleoAction remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the kaleo action with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoActionId the primary key of the kaleo action
-	 * @return the kaleo action that was removed
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchActionException if a kaleo action with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoAction remove(long kaleoActionId)
 		throws NoSuchActionException, SystemException {
 		Session session = null;
 
@@ -266,18 +253,18 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 			session = openSession();
 
 			KaleoAction kaleoAction = (KaleoAction)session.get(KaleoActionImpl.class,
-					Long.valueOf(kaleoActionId));
+					primaryKey);
 
 			if (kaleoAction == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + kaleoActionId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchActionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					kaleoActionId);
+					primaryKey);
 			}
 
-			return kaleoActionPersistence.remove(kaleoAction);
+			return remove(kaleoAction);
 		}
 		catch (NoSuchActionException nsee) {
 			throw nsee;
@@ -291,16 +278,16 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	}
 
 	/**
-	 * Removes the kaleo action from the database. Also notifies the appropriate model listeners.
+	 * Removes the kaleo action with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kaleoAction the kaleo action
+	 * @param kaleoActionId the primary key of the kaleo action
 	 * @return the kaleo action that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchActionException if a kaleo action with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	@Override
-	public KaleoAction remove(KaleoAction kaleoAction)
-		throws SystemException {
-		return super.remove(kaleoAction);
+	public KaleoAction remove(long kaleoActionId)
+		throws NoSuchActionException, SystemException {
+		return remove(Long.valueOf(kaleoActionId));
 	}
 
 	@Override
@@ -1844,7 +1831,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoAction kaleoAction : findByCompanyId(companyId)) {
-			kaleoActionPersistence.remove(kaleoAction);
+			remove(kaleoAction);
 		}
 	}
 
@@ -1858,7 +1845,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 		throws SystemException {
 		for (KaleoAction kaleoAction : findByKaleoDefinitionId(
 				kaleoDefinitionId)) {
-			kaleoActionPersistence.remove(kaleoAction);
+			remove(kaleoAction);
 		}
 	}
 
@@ -1874,7 +1861,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 		String executionType) throws SystemException {
 		for (KaleoAction kaleoAction : findByKCN_KCPK_ET(kaleoClassName,
 				kaleoClassPK, executionType)) {
-			kaleoActionPersistence.remove(kaleoAction);
+			remove(kaleoAction);
 		}
 	}
 
@@ -1885,7 +1872,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	 */
 	public void removeAll() throws SystemException {
 		for (KaleoAction kaleoAction : findAll()) {
-			kaleoActionPersistence.remove(kaleoAction);
+			remove(kaleoAction);
 		}
 	}
 

@@ -221,24 +221,11 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 *
 	 * @param primaryKey the primary key of the j i r a change group
 	 * @return the j i r a change group that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a j i r a change group with the primary key could not be found
+	 * @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a j i r a change group with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public JIRAChangeGroup remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the j i r a change group with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param jiraChangeGroupId the primary key of the j i r a change group
-	 * @return the j i r a change group that was removed
-	 * @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a j i r a change group with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public JIRAChangeGroup remove(long jiraChangeGroupId)
 		throws NoSuchJIRAChangeGroupException, SystemException {
 		Session session = null;
 
@@ -246,19 +233,18 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 			session = openSession();
 
 			JIRAChangeGroup jiraChangeGroup = (JIRAChangeGroup)session.get(JIRAChangeGroupImpl.class,
-					Long.valueOf(jiraChangeGroupId));
+					primaryKey);
 
 			if (jiraChangeGroup == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-						jiraChangeGroupId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchJIRAChangeGroupException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					jiraChangeGroupId);
+					primaryKey);
 			}
 
-			return jiraChangeGroupPersistence.remove(jiraChangeGroup);
+			return remove(jiraChangeGroup);
 		}
 		catch (NoSuchJIRAChangeGroupException nsee) {
 			throw nsee;
@@ -272,16 +258,16 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	}
 
 	/**
-	 * Removes the j i r a change group from the database. Also notifies the appropriate model listeners.
+	 * Removes the j i r a change group with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param jiraChangeGroup the j i r a change group
+	 * @param jiraChangeGroupId the primary key of the j i r a change group
 	 * @return the j i r a change group that was removed
+	 * @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a j i r a change group with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	@Override
-	public JIRAChangeGroup remove(JIRAChangeGroup jiraChangeGroup)
-		throws SystemException {
-		return super.remove(jiraChangeGroup);
+	public JIRAChangeGroup remove(long jiraChangeGroupId)
+		throws NoSuchJIRAChangeGroupException, SystemException {
+		return remove(Long.valueOf(jiraChangeGroupId));
 	}
 
 	@Override
@@ -1354,7 +1340,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 */
 	public void removeByJiraUserId(String jiraUserId) throws SystemException {
 		for (JIRAChangeGroup jiraChangeGroup : findByJiraUserId(jiraUserId)) {
-			jiraChangeGroupPersistence.remove(jiraChangeGroup);
+			remove(jiraChangeGroup);
 		}
 	}
 
@@ -1366,7 +1352,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 */
 	public void removeByJiraIssueId(long jiraIssueId) throws SystemException {
 		for (JIRAChangeGroup jiraChangeGroup : findByJiraIssueId(jiraIssueId)) {
-			jiraChangeGroupPersistence.remove(jiraChangeGroup);
+			remove(jiraChangeGroup);
 		}
 	}
 
@@ -1377,7 +1363,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 */
 	public void removeAll() throws SystemException {
 		for (JIRAChangeGroup jiraChangeGroup : findAll()) {
-			jiraChangeGroupPersistence.remove(jiraChangeGroup);
+			remove(jiraChangeGroup);
 		}
 	}
 

@@ -239,24 +239,11 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 *
 	 * @param primaryKey the primary key of the w s r p producer
 	 * @return the w s r p producer that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a w s r p producer with the primary key could not be found
+	 * @throws com.liferay.wsrp.NoSuchProducerException if a w s r p producer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public WSRPProducer remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the w s r p producer with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param wsrpProducerId the primary key of the w s r p producer
-	 * @return the w s r p producer that was removed
-	 * @throws com.liferay.wsrp.NoSuchProducerException if a w s r p producer with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public WSRPProducer remove(long wsrpProducerId)
 		throws NoSuchProducerException, SystemException {
 		Session session = null;
 
@@ -264,19 +251,18 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 			session = openSession();
 
 			WSRPProducer wsrpProducer = (WSRPProducer)session.get(WSRPProducerImpl.class,
-					Long.valueOf(wsrpProducerId));
+					primaryKey);
 
 			if (wsrpProducer == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-						wsrpProducerId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchProducerException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					wsrpProducerId);
+					primaryKey);
 			}
 
-			return wsrpProducerPersistence.remove(wsrpProducer);
+			return remove(wsrpProducer);
 		}
 		catch (NoSuchProducerException nsee) {
 			throw nsee;
@@ -290,16 +276,16 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	}
 
 	/**
-	 * Removes the w s r p producer from the database. Also notifies the appropriate model listeners.
+	 * Removes the w s r p producer with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param wsrpProducer the w s r p producer
+	 * @param wsrpProducerId the primary key of the w s r p producer
 	 * @return the w s r p producer that was removed
+	 * @throws com.liferay.wsrp.NoSuchProducerException if a w s r p producer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	@Override
-	public WSRPProducer remove(WSRPProducer wsrpProducer)
-		throws SystemException {
-		return super.remove(wsrpProducer);
+	public WSRPProducer remove(long wsrpProducerId)
+		throws NoSuchProducerException, SystemException {
+		return remove(Long.valueOf(wsrpProducerId));
 	}
 
 	@Override
@@ -1563,7 +1549,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 */
 	public void removeByUuid(String uuid) throws SystemException {
 		for (WSRPProducer wsrpProducer : findByUuid(uuid)) {
-			wsrpProducerPersistence.remove(wsrpProducer);
+			remove(wsrpProducer);
 		}
 	}
 
@@ -1578,7 +1564,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 		throws NoSuchProducerException, SystemException {
 		WSRPProducer wsrpProducer = findByUUID_G(uuid, groupId);
 
-		wsrpProducerPersistence.remove(wsrpProducer);
+		remove(wsrpProducer);
 	}
 
 	/**
@@ -1589,7 +1575,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (WSRPProducer wsrpProducer : findByCompanyId(companyId)) {
-			wsrpProducerPersistence.remove(wsrpProducer);
+			remove(wsrpProducer);
 		}
 	}
 
@@ -1600,7 +1586,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 */
 	public void removeAll() throws SystemException {
 		for (WSRPProducer wsrpProducer : findAll()) {
-			wsrpProducerPersistence.remove(wsrpProducer);
+			remove(wsrpProducer);
 		}
 	}
 

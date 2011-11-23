@@ -170,41 +170,29 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	 *
 	 * @param primaryKey the primary key of the type
 	 * @return the type that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a type with the primary key could not be found
+	 * @throws com.liferay.ams.NoSuchTypeException if a type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Type remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the type with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param typeId the primary key of the type
-	 * @return the type that was removed
-	 * @throws com.liferay.ams.NoSuchTypeException if a type with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Type remove(long typeId) throws NoSuchTypeException, SystemException {
+		throws NoSuchTypeException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			Type type = (Type)session.get(TypeImpl.class, Long.valueOf(typeId));
+			Type type = (Type)session.get(TypeImpl.class, primaryKey);
 
 			if (type == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + typeId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchTypeException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					typeId);
+					primaryKey);
 			}
 
-			return typePersistence.remove(type);
+			return remove(type);
 		}
 		catch (NoSuchTypeException nsee) {
 			throw nsee;
@@ -218,15 +206,15 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	}
 
 	/**
-	 * Removes the type from the database. Also notifies the appropriate model listeners.
+	 * Removes the type with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param type the type
+	 * @param typeId the primary key of the type
 	 * @return the type that was removed
+	 * @throws com.liferay.ams.NoSuchTypeException if a type with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	@Override
-	public Type remove(Type type) throws SystemException {
-		return super.remove(type);
+	public Type remove(long typeId) throws NoSuchTypeException, SystemException {
+		return remove(Long.valueOf(typeId));
 	}
 
 	@Override
@@ -520,7 +508,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	 */
 	public void removeAll() throws SystemException {
 		for (Type type : findAll()) {
-			typePersistence.remove(type);
+			remove(type);
 		}
 	}
 

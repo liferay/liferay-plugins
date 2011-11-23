@@ -243,24 +243,11 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 *
 	 * @param primaryKey the primary key of the meetups registration
 	 * @return the meetups registration that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a meetups registration with the primary key could not be found
+	 * @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a meetups registration with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MeetupsRegistration remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the meetups registration with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param meetupsRegistrationId the primary key of the meetups registration
-	 * @return the meetups registration that was removed
-	 * @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a meetups registration with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public MeetupsRegistration remove(long meetupsRegistrationId)
 		throws NoSuchMeetupsRegistrationException, SystemException {
 		Session session = null;
 
@@ -268,19 +255,18 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 			session = openSession();
 
 			MeetupsRegistration meetupsRegistration = (MeetupsRegistration)session.get(MeetupsRegistrationImpl.class,
-					Long.valueOf(meetupsRegistrationId));
+					primaryKey);
 
 			if (meetupsRegistration == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-						meetupsRegistrationId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchMeetupsRegistrationException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					meetupsRegistrationId);
+					primaryKey);
 			}
 
-			return meetupsRegistrationPersistence.remove(meetupsRegistration);
+			return remove(meetupsRegistration);
 		}
 		catch (NoSuchMeetupsRegistrationException nsee) {
 			throw nsee;
@@ -294,16 +280,16 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	}
 
 	/**
-	 * Removes the meetups registration from the database. Also notifies the appropriate model listeners.
+	 * Removes the meetups registration with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param meetupsRegistration the meetups registration
+	 * @param meetupsRegistrationId the primary key of the meetups registration
 	 * @return the meetups registration that was removed
+	 * @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a meetups registration with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	@Override
-	public MeetupsRegistration remove(MeetupsRegistration meetupsRegistration)
-		throws SystemException {
-		return super.remove(meetupsRegistration);
+	public MeetupsRegistration remove(long meetupsRegistrationId)
+		throws NoSuchMeetupsRegistrationException, SystemException {
+		return remove(Long.valueOf(meetupsRegistrationId));
 	}
 
 	@Override
@@ -1571,7 +1557,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		throws SystemException {
 		for (MeetupsRegistration meetupsRegistration : findByMeetupsEntryId(
 				meetupsEntryId)) {
-			meetupsRegistrationPersistence.remove(meetupsRegistration);
+			remove(meetupsRegistration);
 		}
 	}
 
@@ -1587,7 +1573,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		MeetupsRegistration meetupsRegistration = findByU_ME(userId,
 				meetupsEntryId);
 
-		meetupsRegistrationPersistence.remove(meetupsRegistration);
+		remove(meetupsRegistration);
 	}
 
 	/**
@@ -1601,7 +1587,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		throws SystemException {
 		for (MeetupsRegistration meetupsRegistration : findByME_S(
 				meetupsEntryId, status)) {
-			meetupsRegistrationPersistence.remove(meetupsRegistration);
+			remove(meetupsRegistration);
 		}
 	}
 
@@ -1612,7 +1598,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 */
 	public void removeAll() throws SystemException {
 		for (MeetupsRegistration meetupsRegistration : findAll()) {
-			meetupsRegistrationPersistence.remove(meetupsRegistration);
+			remove(meetupsRegistration);
 		}
 	}
 

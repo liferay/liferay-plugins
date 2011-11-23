@@ -14,7 +14,6 @@
 
 package com.liferay.socialnetworking.service.persistence;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 import com.liferay.socialnetworking.model.WallEntry;
@@ -540,6 +539,4 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public WallEntry remove(WallEntry wallEntry) throws SystemException;
 }
