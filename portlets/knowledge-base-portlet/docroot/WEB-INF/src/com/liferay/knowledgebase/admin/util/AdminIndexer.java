@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.admin.util;
 
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
+import com.liferay.knowledgebase.service.permission.KBArticlePermission;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.comparator.KBArticleModifiedDateComparator;
@@ -35,6 +36,8 @@ import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.security.permission.ActionKeys;
+import com.liferay.portal.security.permission.PermissionChecker;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -59,6 +62,21 @@ public class AdminIndexer extends BaseIndexer {
 
 	public String getPortletId() {
 		return PORTLET_ID;
+	}
+
+	@Override
+	public boolean hasPermission(
+			PermissionChecker permissionChecker, long entryClassPK,
+			String actionId)
+		throws Exception {
+
+		return KBArticlePermission.contains(
+			permissionChecker, entryClassPK, ActionKeys.VIEW);
+	}
+
+	@Override
+	public boolean isFilterSearch() {
+		return _FILTER_SEARCH;
 	}
 
 	@Override
@@ -174,7 +192,7 @@ public class AdminIndexer extends BaseIndexer {
 				kbArticle.getResourcePrimKey(),
 				WorkflowConstants.STATUS_APPROVED, null);
 
- 		Collection<Document> documents = new ArrayList<Document>();
+		Collection<Document> documents = new ArrayList<Document>();
 
 		for (KBArticle curKBArticle : kbArticles) {
 			documents.add(getDocument(curKBArticle));
@@ -215,5 +233,7 @@ public class AdminIndexer extends BaseIndexer {
 
 		SearchEngineUtil.updateDocuments(companyId, documents);
 	}
+
+	private static final boolean _FILTER_SEARCH = true;
 
 }
