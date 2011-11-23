@@ -39,7 +39,7 @@
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
-		<display-name>My Marketplace</display-name>
+		<display-name>Purchased</display-name>
 		<portlet-class>com.liferay.marketplace.store.portlet.StorePortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
@@ -51,9 +51,9 @@
 		</supports>
 		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
-			<title>My Marketplace</title>
-			<short-title>My Marketplace</short-title>
-			<keywords>My Marketplace</keywords>
+			<title>Purchased</title>
+			<short-title>Purchased</short-title>
+			<keywords>Purchased</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>
