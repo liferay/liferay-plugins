@@ -435,13 +435,16 @@ public class ShindigUtil {
 
 	@Inject
 	private static BasicSecurityTokenCodec _basicSecurityTokenCodec;
+
 	@Inject
 	private static ContainerConfig _containerConfig;
-	private static Set<String> _ignoreGadgetSpecCache =
-		new ConcurrentHashSet<String>();
+
 	private static AutoResetThreadLocal<String> _host =
 		new AutoResetThreadLocal<String>(
 			ShindigUtil.class + "._host", StringPool.BLANK);
+	private static Set<String> _ignoreGadgetSpecCache =
+		new ConcurrentHashSet<String>();
+
 	@Inject
 	private static Processor _processor;
 
