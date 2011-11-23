@@ -4,6 +4,7 @@ Liferay.Service.registerClass(
 	Liferay.Service.OpenSocial, "Gadget",
 	{
 		addGadget: true,
-		deleteGadget: true
+		deleteGadget: true,
+		updateGadget: true
 	}
 );
