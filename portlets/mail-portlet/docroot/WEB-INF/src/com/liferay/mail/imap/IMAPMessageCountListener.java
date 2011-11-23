@@ -23,8 +23,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.model.User;
 
-import com.sun.mail.imap.IMAPFolder;
-
 import javax.mail.Message;
 import javax.mail.event.MessageCountEvent;
 import javax.mail.event.MessageCountListener;
@@ -44,11 +42,10 @@ public class IMAPMessageCountListener implements MessageCountListener {
 	public void messagesAdded(MessageCountEvent messageCountEvent) {
 		Message[] jxMessages = messageCountEvent.getMessages();
 
-		IMAPFolder imapFolder = null;
+		javax.mail.Folder imapFolder = null;
 
 		try {
-			imapFolder = _imapAccessor.openFolder(
-				(IMAPFolder)jxMessages[0].getFolder());
+			imapFolder = _imapAccessor.openFolder(jxMessages[0].getFolder());
 
 			Folder folder = FolderLocalServiceUtil.getFolder(
 				_account.getAccountId(), imapFolder.getFullName());
@@ -72,11 +69,10 @@ public class IMAPMessageCountListener implements MessageCountListener {
 	public void messagesRemoved(MessageCountEvent messageCountEvent) {
 		Message[] jxMessages = messageCountEvent.getMessages();
 
-		IMAPFolder imapFolder = null;
+		javax.mail.Folder imapFolder = null;
 
 		try {
-			imapFolder = _imapAccessor.openFolder(
-				(IMAPFolder)jxMessages[0].getFolder());
+			imapFolder = _imapAccessor.openFolder(jxMessages[0].getFolder());
 
 			Folder folder = FolderLocalServiceUtil.getFolder(
 				_account.getAccountId(), imapFolder.getFullName());
