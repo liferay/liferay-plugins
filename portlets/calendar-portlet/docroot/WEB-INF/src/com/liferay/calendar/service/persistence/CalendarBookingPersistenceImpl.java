@@ -291,24 +291,11 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	 *
 	 * @param primaryKey the primary key of the calendar booking
 	 * @return the calendar booking that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a calendar booking with the primary key could not be found
+	 * @throws com.liferay.calendar.NoSuchBookingException if a calendar booking with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public CalendarBooking remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the calendar booking with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param calendarBookingId the primary key of the calendar booking
-	 * @return the calendar booking that was removed
-	 * @throws com.liferay.calendar.NoSuchBookingException if a calendar booking with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public CalendarBooking remove(long calendarBookingId)
 		throws NoSuchBookingException, SystemException {
 		Session session = null;
 
@@ -316,19 +303,18 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 			session = openSession();
 
 			CalendarBooking calendarBooking = (CalendarBooking)session.get(CalendarBookingImpl.class,
-					Long.valueOf(calendarBookingId));
+					primaryKey);
 
 			if (calendarBooking == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-						calendarBookingId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchBookingException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					calendarBookingId);
+					primaryKey);
 			}
 
-			return calendarBookingPersistence.remove(calendarBooking);
+			return remove(calendarBooking);
 		}
 		catch (NoSuchBookingException nsee) {
 			throw nsee;
@@ -342,16 +328,16 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	}
 
 	/**
-	 * Removes the calendar booking from the database. Also notifies the appropriate model listeners.
+	 * Removes the calendar booking with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param calendarBooking the calendar booking
+	 * @param calendarBookingId the primary key of the calendar booking
 	 * @return the calendar booking that was removed
+	 * @throws com.liferay.calendar.NoSuchBookingException if a calendar booking with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	@Override
-	public CalendarBooking remove(CalendarBooking calendarBooking)
-		throws SystemException {
-		return super.remove(calendarBooking);
+	public CalendarBooking remove(long calendarBookingId)
+		throws NoSuchBookingException, SystemException {
+		return remove(Long.valueOf(calendarBookingId));
 	}
 
 	@Override
@@ -2410,7 +2396,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	 */
 	public void removeByUuid(String uuid) throws SystemException {
 		for (CalendarBooking calendarBooking : findByUuid(uuid)) {
-			calendarBookingPersistence.remove(calendarBooking);
+			remove(calendarBooking);
 		}
 	}
 
@@ -2425,7 +2411,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 		throws NoSuchBookingException, SystemException {
 		CalendarBooking calendarBooking = findByUUID_G(uuid, groupId);
 
-		calendarBookingPersistence.remove(calendarBooking);
+		remove(calendarBooking);
 	}
 
 	/**
@@ -2438,7 +2424,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 		throws SystemException {
 		for (CalendarBooking calendarBooking : findByCalendarEventId(
 				calendarEventId)) {
-			calendarBookingPersistence.remove(calendarBooking);
+			remove(calendarBooking);
 		}
 	}
 
@@ -2452,7 +2438,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 		throws SystemException {
 		for (CalendarBooking calendarBooking : findByCalendarResourceId(
 				calendarResourceId)) {
-			calendarBookingPersistence.remove(calendarBooking);
+			remove(calendarBooking);
 		}
 	}
 
@@ -2466,7 +2452,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	public void removeByC_C(long classNameId, long classPK)
 		throws SystemException {
 		for (CalendarBooking calendarBooking : findByC_C(classNameId, classPK)) {
-			calendarBookingPersistence.remove(calendarBooking);
+			remove(calendarBooking);
 		}
 	}
 
@@ -2477,7 +2463,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	 */
 	public void removeAll() throws SystemException {
 		for (CalendarBooking calendarBooking : findAll()) {
-			calendarBookingPersistence.remove(calendarBooking);
+			remove(calendarBooking);
 		}
 	}
 

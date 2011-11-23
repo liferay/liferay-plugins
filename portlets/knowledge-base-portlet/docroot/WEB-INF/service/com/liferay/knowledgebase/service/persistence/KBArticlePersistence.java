@@ -16,7 +16,6 @@ package com.liferay.knowledgebase.service.persistence;
 
 import com.liferay.knowledgebase.model.KBArticle;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
@@ -6322,6 +6321,4 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public KBArticle remove(KBArticle kbArticle) throws SystemException;
 }

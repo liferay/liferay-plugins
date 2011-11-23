@@ -14,7 +14,6 @@
 
 package com.liferay.twitter.service.persistence;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 import com.liferay.twitter.model.Feed;
@@ -279,6 +278,4 @@ public interface FeedPersistence extends BasePersistence<Feed> {
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public Feed remove(Feed feed) throws SystemException;
 }

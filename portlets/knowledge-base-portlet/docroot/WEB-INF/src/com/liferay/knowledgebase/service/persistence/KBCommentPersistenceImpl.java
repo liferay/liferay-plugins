@@ -306,24 +306,11 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 *
 	 * @param primaryKey the primary key of the k b comment
 	 * @return the k b comment that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a k b comment with the primary key could not be found
+	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a k b comment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBComment remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the k b comment with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kbCommentId the primary key of the k b comment
-	 * @return the k b comment that was removed
-	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a k b comment with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KBComment remove(long kbCommentId)
 		throws NoSuchCommentException, SystemException {
 		Session session = null;
 
@@ -331,18 +318,18 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 			session = openSession();
 
 			KBComment kbComment = (KBComment)session.get(KBCommentImpl.class,
-					Long.valueOf(kbCommentId));
+					primaryKey);
 
 			if (kbComment == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + kbCommentId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchCommentException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					kbCommentId);
+					primaryKey);
 			}
 
-			return kbCommentPersistence.remove(kbComment);
+			return remove(kbComment);
 		}
 		catch (NoSuchCommentException nsee) {
 			throw nsee;
@@ -356,15 +343,16 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	/**
-	 * Removes the k b comment from the database. Also notifies the appropriate model listeners.
+	 * Removes the k b comment with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kbComment the k b comment
+	 * @param kbCommentId the primary key of the k b comment
 	 * @return the k b comment that was removed
+	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a k b comment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	@Override
-	public KBComment remove(KBComment kbComment) throws SystemException {
-		return super.remove(kbComment);
+	public KBComment remove(long kbCommentId)
+		throws NoSuchCommentException, SystemException {
+		return remove(Long.valueOf(kbCommentId));
 	}
 
 	@Override
@@ -2594,7 +2582,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	public void removeByUuid(String uuid) throws SystemException {
 		for (KBComment kbComment : findByUuid(uuid)) {
-			kbCommentPersistence.remove(kbComment);
+			remove(kbComment);
 		}
 	}
 
@@ -2609,7 +2597,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 		throws NoSuchCommentException, SystemException {
 		KBComment kbComment = findByUUID_G(uuid, groupId);
 
-		kbCommentPersistence.remove(kbComment);
+		remove(kbComment);
 	}
 
 	/**
@@ -2620,7 +2608,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	public void removeByGroupId(long groupId) throws SystemException {
 		for (KBComment kbComment : findByGroupId(groupId)) {
-			kbCommentPersistence.remove(kbComment);
+			remove(kbComment);
 		}
 	}
 
@@ -2634,7 +2622,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	public void removeByG_C(long groupId, long classNameId)
 		throws SystemException {
 		for (KBComment kbComment : findByG_C(groupId, classNameId)) {
-			kbCommentPersistence.remove(kbComment);
+			remove(kbComment);
 		}
 	}
 
@@ -2648,7 +2636,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	public void removeByC_C(long classNameId, long classPK)
 		throws SystemException {
 		for (KBComment kbComment : findByC_C(classNameId, classPK)) {
-			kbCommentPersistence.remove(kbComment);
+			remove(kbComment);
 		}
 	}
 
@@ -2664,7 +2652,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 		throws NoSuchCommentException, SystemException {
 		KBComment kbComment = findByU_C_C(userId, classNameId, classPK);
 
-		kbCommentPersistence.remove(kbComment);
+		remove(kbComment);
 	}
 
 	/**
@@ -2674,7 +2662,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	public void removeAll() throws SystemException {
 		for (KBComment kbComment : findAll()) {
-			kbCommentPersistence.remove(kbComment);
+			remove(kbComment);
 		}
 	}
 

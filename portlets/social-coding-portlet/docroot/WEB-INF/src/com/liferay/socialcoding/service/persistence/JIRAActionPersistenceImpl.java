@@ -231,24 +231,11 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 *
 	 * @param primaryKey the primary key of the j i r a action
 	 * @return the j i r a action that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a j i r a action with the primary key could not be found
+	 * @throws com.liferay.socialcoding.NoSuchJIRAActionException if a j i r a action with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public JIRAAction remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the j i r a action with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param jiraActionId the primary key of the j i r a action
-	 * @return the j i r a action that was removed
-	 * @throws com.liferay.socialcoding.NoSuchJIRAActionException if a j i r a action with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public JIRAAction remove(long jiraActionId)
 		throws NoSuchJIRAActionException, SystemException {
 		Session session = null;
 
@@ -256,18 +243,18 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 			session = openSession();
 
 			JIRAAction jiraAction = (JIRAAction)session.get(JIRAActionImpl.class,
-					Long.valueOf(jiraActionId));
+					primaryKey);
 
 			if (jiraAction == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + jiraActionId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchJIRAActionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					jiraActionId);
+					primaryKey);
 			}
 
-			return jiraActionPersistence.remove(jiraAction);
+			return remove(jiraAction);
 		}
 		catch (NoSuchJIRAActionException nsee) {
 			throw nsee;
@@ -281,15 +268,16 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	}
 
 	/**
-	 * Removes the j i r a action from the database. Also notifies the appropriate model listeners.
+	 * Removes the j i r a action with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param jiraAction the j i r a action
+	 * @param jiraActionId the primary key of the j i r a action
 	 * @return the j i r a action that was removed
+	 * @throws com.liferay.socialcoding.NoSuchJIRAActionException if a j i r a action with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	@Override
-	public JIRAAction remove(JIRAAction jiraAction) throws SystemException {
-		return super.remove(jiraAction);
+	public JIRAAction remove(long jiraActionId)
+		throws NoSuchJIRAActionException, SystemException {
+		return remove(Long.valueOf(jiraActionId));
 	}
 
 	@Override
@@ -1747,7 +1735,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	public void removeByJiraUserId(String jiraUserId) throws SystemException {
 		for (JIRAAction jiraAction : findByJiraUserId(jiraUserId)) {
-			jiraActionPersistence.remove(jiraAction);
+			remove(jiraAction);
 		}
 	}
 
@@ -1759,7 +1747,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	public void removeByJiraIssueId(long jiraIssueId) throws SystemException {
 		for (JIRAAction jiraAction : findByJiraIssueId(jiraIssueId)) {
-			jiraActionPersistence.remove(jiraAction);
+			remove(jiraAction);
 		}
 	}
 
@@ -1771,7 +1759,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	public void removeByType(String type) throws SystemException {
 		for (JIRAAction jiraAction : findByType(type)) {
-			jiraActionPersistence.remove(jiraAction);
+			remove(jiraAction);
 		}
 	}
 
@@ -1782,7 +1770,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	public void removeAll() throws SystemException {
 		for (JIRAAction jiraAction : findAll()) {
-			jiraActionPersistence.remove(jiraAction);
+			remove(jiraAction);
 		}
 	}
 

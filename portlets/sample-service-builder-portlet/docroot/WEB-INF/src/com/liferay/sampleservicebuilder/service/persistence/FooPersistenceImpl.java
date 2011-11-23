@@ -234,41 +234,29 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 *
 	 * @param primaryKey the primary key of the foo
 	 * @return the foo that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a foo with the primary key could not be found
+	 * @throws com.liferay.sampleservicebuilder.NoSuchFooException if a foo with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Foo remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the foo with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param fooId the primary key of the foo
-	 * @return the foo that was removed
-	 * @throws com.liferay.sampleservicebuilder.NoSuchFooException if a foo with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Foo remove(long fooId) throws NoSuchFooException, SystemException {
+		throws NoSuchFooException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			Foo foo = (Foo)session.get(FooImpl.class, Long.valueOf(fooId));
+			Foo foo = (Foo)session.get(FooImpl.class, primaryKey);
 
 			if (foo == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + fooId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchFooException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					fooId);
+					primaryKey);
 			}
 
-			return fooPersistence.remove(foo);
+			return remove(foo);
 		}
 		catch (NoSuchFooException nsee) {
 			throw nsee;
@@ -282,15 +270,15 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	}
 
 	/**
-	 * Removes the foo from the database. Also notifies the appropriate model listeners.
+	 * Removes the foo with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param foo the foo
+	 * @param fooId the primary key of the foo
 	 * @return the foo that was removed
+	 * @throws com.liferay.sampleservicebuilder.NoSuchFooException if a foo with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	@Override
-	public Foo remove(Foo foo) throws SystemException {
-		return super.remove(foo);
+	public Foo remove(long fooId) throws NoSuchFooException, SystemException {
+		return remove(Long.valueOf(fooId));
 	}
 
 	@Override
@@ -1529,7 +1517,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 */
 	public void removeByUuid(String uuid) throws SystemException {
 		for (Foo foo : findByUuid(uuid)) {
-			fooPersistence.remove(foo);
+			remove(foo);
 		}
 	}
 
@@ -1544,7 +1532,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		throws NoSuchFooException, SystemException {
 		Foo foo = findByUUID_G(uuid, groupId);
 
-		fooPersistence.remove(foo);
+		remove(foo);
 	}
 
 	/**
@@ -1555,7 +1543,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 */
 	public void removeByField2(boolean field2) throws SystemException {
 		for (Foo foo : findByField2(field2)) {
-			fooPersistence.remove(foo);
+			remove(foo);
 		}
 	}
 
@@ -1566,7 +1554,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 */
 	public void removeAll() throws SystemException {
 		for (Foo foo : findAll()) {
-			fooPersistence.remove(foo);
+			remove(foo);
 		}
 	}
 

@@ -307,24 +307,11 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	 *
 	 * @param primaryKey the primary key of the kaleo definition
 	 * @return the kaleo definition that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a kaleo definition with the primary key could not be found
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a kaleo definition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KaleoDefinition remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the kaleo definition with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoDefinitionId the primary key of the kaleo definition
-	 * @return the kaleo definition that was removed
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a kaleo definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoDefinition remove(long kaleoDefinitionId)
 		throws NoSuchDefinitionException, SystemException {
 		Session session = null;
 
@@ -332,19 +319,18 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 			session = openSession();
 
 			KaleoDefinition kaleoDefinition = (KaleoDefinition)session.get(KaleoDefinitionImpl.class,
-					Long.valueOf(kaleoDefinitionId));
+					primaryKey);
 
 			if (kaleoDefinition == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-						kaleoDefinitionId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchDefinitionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					kaleoDefinitionId);
+					primaryKey);
 			}
 
-			return kaleoDefinitionPersistence.remove(kaleoDefinition);
+			return remove(kaleoDefinition);
 		}
 		catch (NoSuchDefinitionException nsee) {
 			throw nsee;
@@ -358,16 +344,16 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Removes the kaleo definition from the database. Also notifies the appropriate model listeners.
+	 * Removes the kaleo definition with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kaleoDefinition the kaleo definition
+	 * @param kaleoDefinitionId the primary key of the kaleo definition
 	 * @return the kaleo definition that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a kaleo definition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	@Override
-	public KaleoDefinition remove(KaleoDefinition kaleoDefinition)
-		throws SystemException {
-		return super.remove(kaleoDefinition);
+	public KaleoDefinition remove(long kaleoDefinitionId)
+		throws NoSuchDefinitionException, SystemException {
+		return remove(Long.valueOf(kaleoDefinitionId));
 	}
 
 	@Override
@@ -2520,7 +2506,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoDefinition kaleoDefinition : findByCompanyId(companyId)) {
-			kaleoDefinitionPersistence.remove(kaleoDefinition);
+			remove(kaleoDefinition);
 		}
 	}
 
@@ -2534,7 +2520,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	public void removeByC_N(long companyId, String name)
 		throws SystemException {
 		for (KaleoDefinition kaleoDefinition : findByC_N(companyId, name)) {
-			kaleoDefinitionPersistence.remove(kaleoDefinition);
+			remove(kaleoDefinition);
 		}
 	}
 
@@ -2548,7 +2534,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	public void removeByC_A(long companyId, boolean active)
 		throws SystemException {
 		for (KaleoDefinition kaleoDefinition : findByC_A(companyId, active)) {
-			kaleoDefinitionPersistence.remove(kaleoDefinition);
+			remove(kaleoDefinition);
 		}
 	}
 
@@ -2564,7 +2550,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		throws NoSuchDefinitionException, SystemException {
 		KaleoDefinition kaleoDefinition = findByC_N_V(companyId, name, version);
 
-		kaleoDefinitionPersistence.remove(kaleoDefinition);
+		remove(kaleoDefinition);
 	}
 
 	/**
@@ -2579,7 +2565,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		throws SystemException {
 		for (KaleoDefinition kaleoDefinition : findByC_N_A(companyId, name,
 				active)) {
-			kaleoDefinitionPersistence.remove(kaleoDefinition);
+			remove(kaleoDefinition);
 		}
 	}
 
@@ -2590,7 +2576,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	 */
 	public void removeAll() throws SystemException {
 		for (KaleoDefinition kaleoDefinition : findAll()) {
-			kaleoDefinitionPersistence.remove(kaleoDefinition);
+			remove(kaleoDefinition);
 		}
 	}
 
@@ -3216,7 +3202,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 			}
 		}
 
-		containsKaleoNode = new ContainsKaleoNode(this);
+		containsKaleoNode = new ContainsKaleoNode();
 	}
 
 	public void destroy() {
@@ -3264,10 +3250,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	protected ContainsKaleoNode containsKaleoNode;
 
 	protected class ContainsKaleoNode {
-		protected ContainsKaleoNode(
-			KaleoDefinitionPersistenceImpl persistenceImpl) {
-			super();
-
+		protected ContainsKaleoNode() {
 			_mappingSqlQuery = MappingSqlQueryFactoryUtil.getMappingSqlQuery(getDataSource(),
 					_SQL_CONTAINSKALEONODE,
 					new int[] { java.sql.Types.BIGINT, java.sql.Types.BIGINT },

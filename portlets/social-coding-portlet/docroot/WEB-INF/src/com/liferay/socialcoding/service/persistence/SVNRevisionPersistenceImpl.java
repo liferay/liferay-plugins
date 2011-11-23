@@ -234,24 +234,11 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 *
 	 * @param primaryKey the primary key of the s v n revision
 	 * @return the s v n revision that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a s v n revision with the primary key could not be found
+	 * @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a s v n revision with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SVNRevision remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the s v n revision with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param svnRevisionId the primary key of the s v n revision
-	 * @return the s v n revision that was removed
-	 * @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a s v n revision with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public SVNRevision remove(long svnRevisionId)
 		throws NoSuchSVNRevisionException, SystemException {
 		Session session = null;
 
@@ -259,18 +246,18 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 			session = openSession();
 
 			SVNRevision svnRevision = (SVNRevision)session.get(SVNRevisionImpl.class,
-					Long.valueOf(svnRevisionId));
+					primaryKey);
 
 			if (svnRevision == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + svnRevisionId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchSVNRevisionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					svnRevisionId);
+					primaryKey);
 			}
 
-			return svnRevisionPersistence.remove(svnRevision);
+			return remove(svnRevision);
 		}
 		catch (NoSuchSVNRevisionException nsee) {
 			throw nsee;
@@ -284,16 +271,16 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	}
 
 	/**
-	 * Removes the s v n revision from the database. Also notifies the appropriate model listeners.
+	 * Removes the s v n revision with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param svnRevision the s v n revision
+	 * @param svnRevisionId the primary key of the s v n revision
 	 * @return the s v n revision that was removed
+	 * @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a s v n revision with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	@Override
-	public SVNRevision remove(SVNRevision svnRevision)
-		throws SystemException {
-		return super.remove(svnRevision);
+	public SVNRevision remove(long svnRevisionId)
+		throws NoSuchSVNRevisionException, SystemException {
+		return remove(Long.valueOf(svnRevisionId));
 	}
 
 	@Override
@@ -1789,7 +1776,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 */
 	public void removeBySVNUserId(String svnUserId) throws SystemException {
 		for (SVNRevision svnRevision : findBySVNUserId(svnUserId)) {
-			svnRevisionPersistence.remove(svnRevision);
+			remove(svnRevision);
 		}
 	}
 
@@ -1802,7 +1789,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	public void removeBySVNRepositoryId(long svnRepositoryId)
 		throws SystemException {
 		for (SVNRevision svnRevision : findBySVNRepositoryId(svnRepositoryId)) {
-			svnRevisionPersistence.remove(svnRevision);
+			remove(svnRevision);
 		}
 	}
 
@@ -1817,7 +1804,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		throws SystemException {
 		for (SVNRevision svnRevision : findBySVNU_SVNR(svnUserId,
 				svnRepositoryId)) {
-			svnRevisionPersistence.remove(svnRevision);
+			remove(svnRevision);
 		}
 	}
 
@@ -1828,7 +1815,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 */
 	public void removeAll() throws SystemException {
 		for (SVNRevision svnRevision : findAll()) {
-			svnRevisionPersistence.remove(svnRevision);
+			remove(svnRevision);
 		}
 	}
 

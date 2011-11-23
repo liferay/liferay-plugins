@@ -171,24 +171,11 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 *
 	 * @param primaryKey the primary key of the definition
 	 * @return the definition that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a definition with the primary key could not be found
+	 * @throws com.liferay.ams.NoSuchDefinitionException if a definition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Definition remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the definition with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param definitionId the primary key of the definition
-	 * @return the definition that was removed
-	 * @throws com.liferay.ams.NoSuchDefinitionException if a definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Definition remove(long definitionId)
 		throws NoSuchDefinitionException, SystemException {
 		Session session = null;
 
@@ -196,18 +183,18 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 			session = openSession();
 
 			Definition definition = (Definition)session.get(DefinitionImpl.class,
-					Long.valueOf(definitionId));
+					primaryKey);
 
 			if (definition == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + definitionId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchDefinitionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					definitionId);
+					primaryKey);
 			}
 
-			return definitionPersistence.remove(definition);
+			return remove(definition);
 		}
 		catch (NoSuchDefinitionException nsee) {
 			throw nsee;
@@ -221,15 +208,16 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	}
 
 	/**
-	 * Removes the definition from the database. Also notifies the appropriate model listeners.
+	 * Removes the definition with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param definition the definition
+	 * @param definitionId the primary key of the definition
 	 * @return the definition that was removed
+	 * @throws com.liferay.ams.NoSuchDefinitionException if a definition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	@Override
-	public Definition remove(Definition definition) throws SystemException {
-		return super.remove(definition);
+	public Definition remove(long definitionId)
+		throws NoSuchDefinitionException, SystemException {
+		return remove(Long.valueOf(definitionId));
 	}
 
 	@Override
@@ -537,7 +525,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	public void removeAll() throws SystemException {
 		for (Definition definition : findAll()) {
-			definitionPersistence.remove(definition);
+			remove(definition);
 		}
 	}
 

@@ -352,24 +352,11 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	 *
 	 * @param primaryKey the primary key of the calendar resource
 	 * @return the calendar resource that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a calendar resource with the primary key could not be found
+	 * @throws com.liferay.calendar.NoSuchResourceException if a calendar resource with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public CalendarResource remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the calendar resource with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param calendarResourceId the primary key of the calendar resource
-	 * @return the calendar resource that was removed
-	 * @throws com.liferay.calendar.NoSuchResourceException if a calendar resource with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public CalendarResource remove(long calendarResourceId)
 		throws NoSuchResourceException, SystemException {
 		Session session = null;
 
@@ -377,19 +364,18 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 			session = openSession();
 
 			CalendarResource calendarResource = (CalendarResource)session.get(CalendarResourceImpl.class,
-					Long.valueOf(calendarResourceId));
+					primaryKey);
 
 			if (calendarResource == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-						calendarResourceId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchResourceException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					calendarResourceId);
+					primaryKey);
 			}
 
-			return calendarResourcePersistence.remove(calendarResource);
+			return remove(calendarResource);
 		}
 		catch (NoSuchResourceException nsee) {
 			throw nsee;
@@ -403,16 +389,16 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	}
 
 	/**
-	 * Removes the calendar resource from the database. Also notifies the appropriate model listeners.
+	 * Removes the calendar resource with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param calendarResource the calendar resource
+	 * @param calendarResourceId the primary key of the calendar resource
 	 * @return the calendar resource that was removed
+	 * @throws com.liferay.calendar.NoSuchResourceException if a calendar resource with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	@Override
-	public CalendarResource remove(CalendarResource calendarResource)
-		throws SystemException {
-		return super.remove(calendarResource);
+	public CalendarResource remove(long calendarResourceId)
+		throws NoSuchResourceException, SystemException {
+		return remove(Long.valueOf(calendarResourceId));
 	}
 
 	@Override
@@ -4187,7 +4173,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	 */
 	public void removeByUuid(String uuid) throws SystemException {
 		for (CalendarResource calendarResource : findByUuid(uuid)) {
-			calendarResourcePersistence.remove(calendarResource);
+			remove(calendarResource);
 		}
 	}
 
@@ -4202,7 +4188,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		throws NoSuchResourceException, SystemException {
 		CalendarResource calendarResource = findByUUID_G(uuid, groupId);
 
-		calendarResourcePersistence.remove(calendarResource);
+		remove(calendarResource);
 	}
 
 	/**
@@ -4213,7 +4199,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	 */
 	public void removeByActive(boolean active) throws SystemException {
 		for (CalendarResource calendarResource : findByActive(active)) {
-			calendarResourcePersistence.remove(calendarResource);
+			remove(calendarResource);
 		}
 	}
 
@@ -4227,7 +4213,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	public void removeByG_A(long groupId, boolean active)
 		throws SystemException {
 		for (CalendarResource calendarResource : findByG_A(groupId, active)) {
-			calendarResourcePersistence.remove(calendarResource);
+			remove(calendarResource);
 		}
 	}
 
@@ -4242,7 +4228,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		throws NoSuchResourceException, SystemException {
 		CalendarResource calendarResource = findByC_C(classNameId, classPK);
 
-		calendarResourcePersistence.remove(calendarResource);
+		remove(calendarResource);
 	}
 
 	/**
@@ -4257,7 +4243,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		throws SystemException {
 		for (CalendarResource calendarResource : findByG_N_A(groupId, name,
 				active)) {
-			calendarResourcePersistence.remove(calendarResource);
+			remove(calendarResource);
 		}
 	}
 
@@ -4273,7 +4259,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		throws SystemException {
 		for (CalendarResource calendarResource : findByC_N_A(companyId, name,
 				active)) {
-			calendarResourcePersistence.remove(calendarResource);
+			remove(calendarResource);
 		}
 	}
 
@@ -4284,7 +4270,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	 */
 	public void removeAll() throws SystemException {
 		for (CalendarResource calendarResource : findAll()) {
-			calendarResourcePersistence.remove(calendarResource);
+			remove(calendarResource);
 		}
 	}
 

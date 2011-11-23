@@ -16,7 +16,6 @@ package com.liferay.microblogs.service.persistence;
 
 import com.liferay.microblogs.model.MicroblogsEntry;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
@@ -1186,7 +1185,4 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public MicroblogsEntry remove(MicroblogsEntry microblogsEntry)
-		throws SystemException;
 }

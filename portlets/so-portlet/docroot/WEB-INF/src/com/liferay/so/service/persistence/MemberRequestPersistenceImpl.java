@@ -267,24 +267,11 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 *
 	 * @param primaryKey the primary key of the member request
 	 * @return the member request that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a member request with the primary key could not be found
+	 * @throws com.liferay.so.NoSuchMemberRequestException if a member request with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MemberRequest remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the member request with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param memberRequestId the primary key of the member request
-	 * @return the member request that was removed
-	 * @throws com.liferay.so.NoSuchMemberRequestException if a member request with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public MemberRequest remove(long memberRequestId)
 		throws NoSuchMemberRequestException, SystemException {
 		Session session = null;
 
@@ -292,19 +279,18 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			session = openSession();
 
 			MemberRequest memberRequest = (MemberRequest)session.get(MemberRequestImpl.class,
-					Long.valueOf(memberRequestId));
+					primaryKey);
 
 			if (memberRequest == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-						memberRequestId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchMemberRequestException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					memberRequestId);
+					primaryKey);
 			}
 
-			return memberRequestPersistence.remove(memberRequest);
+			return remove(memberRequest);
 		}
 		catch (NoSuchMemberRequestException nsee) {
 			throw nsee;
@@ -318,16 +304,16 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	}
 
 	/**
-	 * Removes the member request from the database. Also notifies the appropriate model listeners.
+	 * Removes the member request with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param memberRequest the member request
+	 * @param memberRequestId the primary key of the member request
 	 * @return the member request that was removed
+	 * @throws com.liferay.so.NoSuchMemberRequestException if a member request with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	@Override
-	public MemberRequest remove(MemberRequest memberRequest)
-		throws SystemException {
-		return super.remove(memberRequest);
+	public MemberRequest remove(long memberRequestId)
+		throws NoSuchMemberRequestException, SystemException {
+		return remove(Long.valueOf(memberRequestId));
 	}
 
 	@Override
@@ -1769,7 +1755,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		throws NoSuchMemberRequestException, SystemException {
 		MemberRequest memberRequest = findByKey(key);
 
-		memberRequestPersistence.remove(memberRequest);
+		remove(memberRequest);
 	}
 
 	/**
@@ -1781,7 +1767,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	public void removeByReceiverUserId(long receiverUserId)
 		throws SystemException {
 		for (MemberRequest memberRequest : findByReceiverUserId(receiverUserId)) {
-			memberRequestPersistence.remove(memberRequest);
+			remove(memberRequest);
 		}
 	}
 
@@ -1795,7 +1781,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	public void removeByR_S(long receiverUserId, int status)
 		throws SystemException {
 		for (MemberRequest memberRequest : findByR_S(receiverUserId, status)) {
-			memberRequestPersistence.remove(memberRequest);
+			remove(memberRequest);
 		}
 	}
 
@@ -1812,7 +1798,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		MemberRequest memberRequest = findByG_R_S(groupId, receiverUserId,
 				status);
 
-		memberRequestPersistence.remove(memberRequest);
+		remove(memberRequest);
 	}
 
 	/**
@@ -1822,7 +1808,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 */
 	public void removeAll() throws SystemException {
 		for (MemberRequest memberRequest : findAll()) {
-			memberRequestPersistence.remove(memberRequest);
+			remove(memberRequest);
 		}
 	}
 

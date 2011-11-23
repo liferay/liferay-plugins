@@ -232,24 +232,11 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 *
 	 * @param primaryKey the primary key of the wall entry
 	 * @return the wall entry that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a wall entry with the primary key could not be found
+	 * @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public WallEntry remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the wall entry with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param wallEntryId the primary key of the wall entry
-	 * @return the wall entry that was removed
-	 * @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public WallEntry remove(long wallEntryId)
 		throws NoSuchWallEntryException, SystemException {
 		Session session = null;
 
@@ -257,18 +244,18 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 			session = openSession();
 
 			WallEntry wallEntry = (WallEntry)session.get(WallEntryImpl.class,
-					Long.valueOf(wallEntryId));
+					primaryKey);
 
 			if (wallEntry == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + wallEntryId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchWallEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					wallEntryId);
+					primaryKey);
 			}
 
-			return wallEntryPersistence.remove(wallEntry);
+			return remove(wallEntry);
 		}
 		catch (NoSuchWallEntryException nsee) {
 			throw nsee;
@@ -282,15 +269,16 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	}
 
 	/**
-	 * Removes the wall entry from the database. Also notifies the appropriate model listeners.
+	 * Removes the wall entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param wallEntry the wall entry
+	 * @param wallEntryId the primary key of the wall entry
 	 * @return the wall entry that was removed
+	 * @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	@Override
-	public WallEntry remove(WallEntry wallEntry) throws SystemException {
-		return super.remove(wallEntry);
+	public WallEntry remove(long wallEntryId)
+		throws NoSuchWallEntryException, SystemException {
+		return remove(Long.valueOf(wallEntryId));
 	}
 
 	@Override
@@ -1722,7 +1710,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 */
 	public void removeByGroupId(long groupId) throws SystemException {
 		for (WallEntry wallEntry : findByGroupId(groupId)) {
-			wallEntryPersistence.remove(wallEntry);
+			remove(wallEntry);
 		}
 	}
 
@@ -1734,7 +1722,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 */
 	public void removeByUserId(long userId) throws SystemException {
 		for (WallEntry wallEntry : findByUserId(userId)) {
-			wallEntryPersistence.remove(wallEntry);
+			remove(wallEntry);
 		}
 	}
 
@@ -1748,7 +1736,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	public void removeByG_U(long groupId, long userId)
 		throws SystemException {
 		for (WallEntry wallEntry : findByG_U(groupId, userId)) {
-			wallEntryPersistence.remove(wallEntry);
+			remove(wallEntry);
 		}
 	}
 
@@ -1759,7 +1747,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 */
 	public void removeAll() throws SystemException {
 		for (WallEntry wallEntry : findAll()) {
-			wallEntryPersistence.remove(wallEntry);
+			remove(wallEntry);
 		}
 	}
 

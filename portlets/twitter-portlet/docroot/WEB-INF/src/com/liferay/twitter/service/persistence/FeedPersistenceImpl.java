@@ -218,41 +218,29 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 *
 	 * @param primaryKey the primary key of the feed
 	 * @return the feed that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a feed with the primary key could not be found
+	 * @throws com.liferay.twitter.NoSuchFeedException if a feed with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Feed remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the feed with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param feedId the primary key of the feed
-	 * @return the feed that was removed
-	 * @throws com.liferay.twitter.NoSuchFeedException if a feed with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Feed remove(long feedId) throws NoSuchFeedException, SystemException {
+		throws NoSuchFeedException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			Feed feed = (Feed)session.get(FeedImpl.class, Long.valueOf(feedId));
+			Feed feed = (Feed)session.get(FeedImpl.class, primaryKey);
 
 			if (feed == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + feedId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchFeedException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					feedId);
+					primaryKey);
 			}
 
-			return feedPersistence.remove(feed);
+			return remove(feed);
 		}
 		catch (NoSuchFeedException nsee) {
 			throw nsee;
@@ -266,15 +254,15 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	}
 
 	/**
-	 * Removes the feed from the database. Also notifies the appropriate model listeners.
+	 * Removes the feed with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param feed the feed
+	 * @param feedId the primary key of the feed
 	 * @return the feed that was removed
+	 * @throws com.liferay.twitter.NoSuchFeedException if a feed with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	@Override
-	public Feed remove(Feed feed) throws SystemException {
-		return super.remove(feed);
+	public Feed remove(long feedId) throws NoSuchFeedException, SystemException {
+		return remove(Long.valueOf(feedId));
 	}
 
 	@Override
@@ -945,7 +933,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		throws NoSuchFeedException, SystemException {
 		Feed feed = findByC_TWUI(companyId, twitterUserId);
 
-		feedPersistence.remove(feed);
+		remove(feed);
 	}
 
 	/**
@@ -959,7 +947,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		throws NoSuchFeedException, SystemException {
 		Feed feed = findByC_TSN(companyId, twitterScreenName);
 
-		feedPersistence.remove(feed);
+		remove(feed);
 	}
 
 	/**
@@ -969,7 +957,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 */
 	public void removeAll() throws SystemException {
 		for (Feed feed : findAll()) {
-			feedPersistence.remove(feed);
+			remove(feed);
 		}
 	}
 

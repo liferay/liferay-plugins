@@ -16,7 +16,6 @@ package com.liferay.knowledgebase.service.persistence;
 
 import com.liferay.knowledgebase.model.KBComment;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
@@ -799,6 +798,4 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public KBComment remove(KBComment kbComment) throws SystemException;
 }

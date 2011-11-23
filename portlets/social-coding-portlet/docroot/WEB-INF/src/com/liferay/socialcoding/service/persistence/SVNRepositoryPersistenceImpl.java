@@ -191,24 +191,11 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 *
 	 * @param primaryKey the primary key of the s v n repository
 	 * @return the s v n repository that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a s v n repository with the primary key could not be found
+	 * @throws com.liferay.socialcoding.NoSuchSVNRepositoryException if a s v n repository with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public SVNRepository remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the s v n repository with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param svnRepositoryId the primary key of the s v n repository
-	 * @return the s v n repository that was removed
-	 * @throws com.liferay.socialcoding.NoSuchSVNRepositoryException if a s v n repository with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public SVNRepository remove(long svnRepositoryId)
 		throws NoSuchSVNRepositoryException, SystemException {
 		Session session = null;
 
@@ -216,19 +203,18 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 			session = openSession();
 
 			SVNRepository svnRepository = (SVNRepository)session.get(SVNRepositoryImpl.class,
-					Long.valueOf(svnRepositoryId));
+					primaryKey);
 
 			if (svnRepository == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-						svnRepositoryId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchSVNRepositoryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					svnRepositoryId);
+					primaryKey);
 			}
 
-			return svnRepositoryPersistence.remove(svnRepository);
+			return remove(svnRepository);
 		}
 		catch (NoSuchSVNRepositoryException nsee) {
 			throw nsee;
@@ -242,16 +228,16 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	}
 
 	/**
-	 * Removes the s v n repository from the database. Also notifies the appropriate model listeners.
+	 * Removes the s v n repository with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param svnRepository the s v n repository
+	 * @param svnRepositoryId the primary key of the s v n repository
 	 * @return the s v n repository that was removed
+	 * @throws com.liferay.socialcoding.NoSuchSVNRepositoryException if a s v n repository with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	@Override
-	public SVNRepository remove(SVNRepository svnRepository)
-		throws SystemException {
-		return super.remove(svnRepository);
+	public SVNRepository remove(long svnRepositoryId)
+		throws NoSuchSVNRepositoryException, SystemException {
+		return remove(Long.valueOf(svnRepositoryId));
 	}
 
 	@Override
@@ -729,7 +715,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		throws NoSuchSVNRepositoryException, SystemException {
 		SVNRepository svnRepository = findByUrl(url);
 
-		svnRepositoryPersistence.remove(svnRepository);
+		remove(svnRepository);
 	}
 
 	/**
@@ -739,7 +725,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 */
 	public void removeAll() throws SystemException {
 		for (SVNRepository svnRepository : findAll()) {
-			svnRepositoryPersistence.remove(svnRepository);
+			remove(svnRepository);
 		}
 	}
 

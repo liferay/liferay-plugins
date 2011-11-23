@@ -767,24 +767,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 *
 	 * @param primaryKey the primary key of the k b article
 	 * @return the k b article that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a k b article with the primary key could not be found
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBArticle remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the k b article with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kbArticleId the primary key of the k b article
-	 * @return the k b article that was removed
-	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KBArticle remove(long kbArticleId)
 		throws NoSuchArticleException, SystemException {
 		Session session = null;
 
@@ -792,18 +779,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			session = openSession();
 
 			KBArticle kbArticle = (KBArticle)session.get(KBArticleImpl.class,
-					Long.valueOf(kbArticleId));
+					primaryKey);
 
 			if (kbArticle == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + kbArticleId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchArticleException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					kbArticleId);
+					primaryKey);
 			}
 
-			return kbArticlePersistence.remove(kbArticle);
+			return remove(kbArticle);
 		}
 		catch (NoSuchArticleException nsee) {
 			throw nsee;
@@ -817,15 +804,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	/**
-	 * Removes the k b article from the database. Also notifies the appropriate model listeners.
+	 * Removes the k b article with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kbArticle the k b article
+	 * @param kbArticleId the primary key of the k b article
 	 * @return the k b article that was removed
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	@Override
-	public KBArticle remove(KBArticle kbArticle) throws SystemException {
-		return super.remove(kbArticle);
+	public KBArticle remove(long kbArticleId)
+		throws NoSuchArticleException, SystemException {
+		return remove(Long.valueOf(kbArticleId));
 	}
 
 	@Override
@@ -20055,7 +20043,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	public void removeByUuid(String uuid) throws SystemException {
 		for (KBArticle kbArticle : findByUuid(uuid)) {
-			kbArticlePersistence.remove(kbArticle);
+			remove(kbArticle);
 		}
 	}
 
@@ -20070,7 +20058,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		throws NoSuchArticleException, SystemException {
 		KBArticle kbArticle = findByUUID_G(uuid, groupId);
 
-		kbArticlePersistence.remove(kbArticle);
+		remove(kbArticle);
 	}
 
 	/**
@@ -20082,7 +20070,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public void removeByResourcePrimKey(long resourcePrimKey)
 		throws SystemException {
 		for (KBArticle kbArticle : findByResourcePrimKey(resourcePrimKey)) {
-			kbArticlePersistence.remove(kbArticle);
+			remove(kbArticle);
 		}
 	}
 
@@ -20096,7 +20084,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public void removeByR_G(long resourcePrimKey, long groupId)
 		throws SystemException {
 		for (KBArticle kbArticle : findByR_G(resourcePrimKey, groupId)) {
-			kbArticlePersistence.remove(kbArticle);
+			remove(kbArticle);
 		}
 	}
 
@@ -20111,7 +20099,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		throws NoSuchArticleException, SystemException {
 		KBArticle kbArticle = findByR_V(resourcePrimKey, version);
 
-		kbArticlePersistence.remove(kbArticle);
+		remove(kbArticle);
 	}
 
 	/**
@@ -20124,7 +20112,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public void removeByR_L(long resourcePrimKey, boolean latest)
 		throws SystemException {
 		for (KBArticle kbArticle : findByR_L(resourcePrimKey, latest)) {
-			kbArticlePersistence.remove(kbArticle);
+			remove(kbArticle);
 		}
 	}
 
@@ -20138,7 +20126,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public void removeByR_M(long resourcePrimKey, boolean main)
 		throws SystemException {
 		for (KBArticle kbArticle : findByR_M(resourcePrimKey, main)) {
-			kbArticlePersistence.remove(kbArticle);
+			remove(kbArticle);
 		}
 	}
 
@@ -20152,7 +20140,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public void removeByR_S(long resourcePrimKey, int status)
 		throws SystemException {
 		for (KBArticle kbArticle : findByR_S(resourcePrimKey, status)) {
-			kbArticlePersistence.remove(kbArticle);
+			remove(kbArticle);
 		}
 	}
 
@@ -20166,7 +20154,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public void removeByG_L(long groupId, boolean latest)
 		throws SystemException {
 		for (KBArticle kbArticle : findByG_L(groupId, latest)) {
-			kbArticlePersistence.remove(kbArticle);
+			remove(kbArticle);
 		}
 	}
 
@@ -20180,7 +20168,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public void removeByG_M(long groupId, boolean main)
 		throws SystemException {
 		for (KBArticle kbArticle : findByG_M(groupId, main)) {
-			kbArticlePersistence.remove(kbArticle);
+			remove(kbArticle);
 		}
 	}
 
@@ -20193,7 +20181,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	public void removeByG_S(long groupId, int status) throws SystemException {
 		for (KBArticle kbArticle : findByG_S(groupId, status)) {
-			kbArticlePersistence.remove(kbArticle);
+			remove(kbArticle);
 		}
 	}
 
@@ -20207,7 +20195,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public void removeByC_L(long companyId, boolean latest)
 		throws SystemException {
 		for (KBArticle kbArticle : findByC_L(companyId, latest)) {
-			kbArticlePersistence.remove(kbArticle);
+			remove(kbArticle);
 		}
 	}
 
@@ -20221,7 +20209,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public void removeByC_M(long companyId, boolean main)
 		throws SystemException {
 		for (KBArticle kbArticle : findByC_M(companyId, main)) {
-			kbArticlePersistence.remove(kbArticle);
+			remove(kbArticle);
 		}
 	}
 
@@ -20235,7 +20223,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public void removeByC_S(long companyId, int status)
 		throws SystemException {
 		for (KBArticle kbArticle : findByC_S(companyId, status)) {
-			kbArticlePersistence.remove(kbArticle);
+			remove(kbArticle);
 		}
 	}
 
@@ -20249,7 +20237,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public void removeByP_L(long parentResourcePrimKey, boolean latest)
 		throws SystemException {
 		for (KBArticle kbArticle : findByP_L(parentResourcePrimKey, latest)) {
-			kbArticlePersistence.remove(kbArticle);
+			remove(kbArticle);
 		}
 	}
 
@@ -20263,7 +20251,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public void removeByP_M(long parentResourcePrimKey, boolean main)
 		throws SystemException {
 		for (KBArticle kbArticle : findByP_M(parentResourcePrimKey, main)) {
-			kbArticlePersistence.remove(kbArticle);
+			remove(kbArticle);
 		}
 	}
 
@@ -20277,7 +20265,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public void removeByP_S(long parentResourcePrimKey, int status)
 		throws SystemException {
 		for (KBArticle kbArticle : findByP_S(parentResourcePrimKey, status)) {
-			kbArticlePersistence.remove(kbArticle);
+			remove(kbArticle);
 		}
 	}
 
@@ -20292,7 +20280,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public void removeByR_G_L(long resourcePrimKey, long groupId, boolean latest)
 		throws SystemException {
 		for (KBArticle kbArticle : findByR_G_L(resourcePrimKey, groupId, latest)) {
-			kbArticlePersistence.remove(kbArticle);
+			remove(kbArticle);
 		}
 	}
 
@@ -20307,7 +20295,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public void removeByR_G_M(long resourcePrimKey, long groupId, boolean main)
 		throws SystemException {
 		for (KBArticle kbArticle : findByR_G_M(resourcePrimKey, groupId, main)) {
-			kbArticlePersistence.remove(kbArticle);
+			remove(kbArticle);
 		}
 	}
 
@@ -20322,7 +20310,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public void removeByR_G_S(long resourcePrimKey, long groupId, int status)
 		throws SystemException {
 		for (KBArticle kbArticle : findByR_G_S(resourcePrimKey, groupId, status)) {
-			kbArticlePersistence.remove(kbArticle);
+			remove(kbArticle);
 		}
 	}
 
@@ -20338,7 +20326,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		boolean latest) throws SystemException {
 		for (KBArticle kbArticle : findByG_P_L(groupId, parentResourcePrimKey,
 				latest)) {
-			kbArticlePersistence.remove(kbArticle);
+			remove(kbArticle);
 		}
 	}
 
@@ -20354,7 +20342,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		boolean main) throws SystemException {
 		for (KBArticle kbArticle : findByG_P_M(groupId, parentResourcePrimKey,
 				main)) {
-			kbArticlePersistence.remove(kbArticle);
+			remove(kbArticle);
 		}
 	}
 
@@ -20370,7 +20358,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		int status) throws SystemException {
 		for (KBArticle kbArticle : findByG_P_S(groupId, parentResourcePrimKey,
 				status)) {
-			kbArticlePersistence.remove(kbArticle);
+			remove(kbArticle);
 		}
 	}
 
@@ -20387,7 +20375,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		String sections, boolean latest) throws SystemException {
 		for (KBArticle kbArticle : findByG_P_S_L(groupId,
 				parentResourcePrimKey, sections, latest)) {
-			kbArticlePersistence.remove(kbArticle);
+			remove(kbArticle);
 		}
 	}
 
@@ -20404,7 +20392,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		String sections, boolean main) throws SystemException {
 		for (KBArticle kbArticle : findByG_P_S_M(groupId,
 				parentResourcePrimKey, sections, main)) {
-			kbArticlePersistence.remove(kbArticle);
+			remove(kbArticle);
 		}
 	}
 
@@ -20421,7 +20409,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		String sections, int status) throws SystemException {
 		for (KBArticle kbArticle : findByG_P_S_S(groupId,
 				parentResourcePrimKey, sections, status)) {
-			kbArticlePersistence.remove(kbArticle);
+			remove(kbArticle);
 		}
 	}
 
@@ -20432,7 +20420,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	public void removeAll() throws SystemException {
 		for (KBArticle kbArticle : findAll()) {
-			kbArticlePersistence.remove(kbArticle);
+			remove(kbArticle);
 		}
 	}
 

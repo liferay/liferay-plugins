@@ -16,7 +16,6 @@ package com.liferay.mail.service.persistence;
 
 import com.liferay.mail.model.Folder;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
@@ -340,6 +339,4 @@ public interface FolderPersistence extends BasePersistence<Folder> {
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public Folder remove(Folder folder) throws SystemException;
 }

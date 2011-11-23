@@ -227,24 +227,11 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 *
 	 * @param primaryKey the primary key of the kaleo task
 	 * @return the kaleo task that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a kaleo task with the primary key could not be found
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a kaleo task with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KaleoTask remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the kaleo task with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoTaskId the primary key of the kaleo task
-	 * @return the kaleo task that was removed
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a kaleo task with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTask remove(long kaleoTaskId)
 		throws NoSuchTaskException, SystemException {
 		Session session = null;
 
@@ -252,18 +239,18 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 			session = openSession();
 
 			KaleoTask kaleoTask = (KaleoTask)session.get(KaleoTaskImpl.class,
-					Long.valueOf(kaleoTaskId));
+					primaryKey);
 
 			if (kaleoTask == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + kaleoTaskId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchTaskException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					kaleoTaskId);
+					primaryKey);
 			}
 
-			return kaleoTaskPersistence.remove(kaleoTask);
+			return remove(kaleoTask);
 		}
 		catch (NoSuchTaskException nsee) {
 			throw nsee;
@@ -277,15 +264,16 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Removes the kaleo task from the database. Also notifies the appropriate model listeners.
+	 * Removes the kaleo task with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param kaleoTask the kaleo task
+	 * @param kaleoTaskId the primary key of the kaleo task
 	 * @return the kaleo task that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a kaleo task with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	@Override
-	public KaleoTask remove(KaleoTask kaleoTask) throws SystemException {
-		return super.remove(kaleoTask);
+	public KaleoTask remove(long kaleoTaskId)
+		throws NoSuchTaskException, SystemException {
+		return remove(Long.valueOf(kaleoTaskId));
 	}
 
 	@Override
@@ -1502,7 +1490,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoTask kaleoTask : findByCompanyId(companyId)) {
-			kaleoTaskPersistence.remove(kaleoTask);
+			remove(kaleoTask);
 		}
 	}
 
@@ -1515,7 +1503,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	public void removeByKaleoDefinitionId(long kaleoDefinitionId)
 		throws SystemException {
 		for (KaleoTask kaleoTask : findByKaleoDefinitionId(kaleoDefinitionId)) {
-			kaleoTaskPersistence.remove(kaleoTask);
+			remove(kaleoTask);
 		}
 	}
 
@@ -1529,7 +1517,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		throws NoSuchTaskException, SystemException {
 		KaleoTask kaleoTask = findByKaleoNodeId(kaleoNodeId);
 
-		kaleoTaskPersistence.remove(kaleoTask);
+		remove(kaleoTask);
 	}
 
 	/**
@@ -1539,7 +1527,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 */
 	public void removeAll() throws SystemException {
 		for (KaleoTask kaleoTask : findAll()) {
-			kaleoTaskPersistence.remove(kaleoTask);
+			remove(kaleoTask);
 		}
 	}
 
