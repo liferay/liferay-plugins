@@ -126,9 +126,9 @@ public class LayoutUtil {
 			else if (portletId.contains("_WAR_microblogsportlet") ||
 					 portletId.equals("1_WAR_privatemessagingportlet") ||
 					 portletId.contains("1_WAR_tasksportlet") ||
-					 portletId.equals("33") || portletId.equals("8") ||
-					 portletId.equals("20") || portletId.equals("19") ||
-					 portletId.equals("36") || portletId.equals("29")) {
+					 portletId.equals("8") || portletId.equals("19") ||
+					 portletId.equals("20") || portletId.equals("29") ||
+					 portletId.equals("33") || portletId.equals("36")) {
 
 				removePortletBorder(layout, portletId);
 			}
