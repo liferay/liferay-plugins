@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <div class="loading-animation">
-	<iframe class="aui-helper-hidden-accessible" id="<portlet:namespace />frame" name="<portlet:namespace />frame" scrolling="no" src="about:blank"></iframe>
+	<iframe class="aui-helper-hidden-accessible" frameborder="0" id="<portlet:namespace />frame" name="<portlet:namespace />frame" scrolling="no" src="about:blank"></iframe>
 </div>
 
 <form action="<%= iFrameURL %>" id="<portlet:namespace />fm" method="post" target="<portlet:namespace />frame">
