@@ -28,9 +28,7 @@
 	<liferay-ui:message key="could-not-connect-to-the-liferay-marketplace" />
 </div>
 
-<aui:script use="aui-base,aui-io,aui-messaging">
-	var serverURL;
-
+<aui:script use="aui-base,aui-io,liferay-marketplace-messenger">
 	var frame = A.one('#<portlet:namespace />frame');
 
 	var timeout = setTimeout(
@@ -41,7 +39,13 @@
 		120000
 	);
 
-	A.receiveMessage(
+	Liferay.MarketplaceMessenger.init(
+		{
+			targetFrame: frame
+		}
+	);
+
+	Liferay.MarketplaceMessenger.receiveMessage(
 		function(event) {
 			var response = event.responseData;
 
@@ -55,7 +59,7 @@
 				frame.removeClass('aui-helper-hidden-accessible');
 				frame.ancestor().removeClass('loading-animation');
 
-				serverURL = response.serverURL;
+				Liferay.MarketplaceMessenger.setTargetURI(response.serverURL);
 
 				frame.height(response.height + 50);
 			}
@@ -86,7 +90,7 @@
 							success: function(event, id, obj) {
 								var response = this.get('responseData');
 
-								A.postMessage(response, serverURL, frame);
+								Liferay.MarketplaceMessenger.postMessage(response);
 							}
 						}
 					}
