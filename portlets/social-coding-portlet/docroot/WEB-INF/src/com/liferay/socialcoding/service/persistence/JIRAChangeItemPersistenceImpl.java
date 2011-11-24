@@ -178,6 +178,17 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<JIRAChangeItem> jiraChangeItems) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (JIRAChangeItem jiraChangeItem : jiraChangeItems) {
+			EntityCacheUtil.removeResult(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
+				JIRAChangeItemImpl.class, jiraChangeItem.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new j i r a change item with the primary key. Does not add the j i r a change item to the database.
 	 *
@@ -266,11 +277,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
-			JIRAChangeItemImpl.class, jiraChangeItem.getPrimaryKey());
+		clearCache(jiraChangeItem);
 
 		return jiraChangeItem;
 	}

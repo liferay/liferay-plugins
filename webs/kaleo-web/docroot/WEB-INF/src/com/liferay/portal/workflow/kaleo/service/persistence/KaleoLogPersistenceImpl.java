@@ -287,6 +287,17 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<KaleoLog> kaleoLogs) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (KaleoLog kaleoLog : kaleoLogs) {
+			EntityCacheUtil.removeResult(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
+				KaleoLogImpl.class, kaleoLog.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new kaleo log with the primary key. Does not add the kaleo log to the database.
 	 *
@@ -374,11 +385,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoLogImpl.class, kaleoLog.getPrimaryKey());
+		clearCache(kaleoLog);
 
 		return kaleoLog;
 	}

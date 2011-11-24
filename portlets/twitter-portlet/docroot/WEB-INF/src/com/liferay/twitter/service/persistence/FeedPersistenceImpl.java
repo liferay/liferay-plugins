@@ -184,6 +184,23 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(feed);
+	}
+
+	@Override
+	public void clearCache(List<Feed> feeds) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (Feed feed : feeds) {
+			EntityCacheUtil.removeResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
+				FeedImpl.class, feed.getPrimaryKey());
+
+			clearUniqueFindersCache(feed);
+		}
+	}
+
+	protected void clearUniqueFindersCache(Feed feed) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TWUI,
 			new Object[] {
 				Long.valueOf(feed.getCompanyId()),
@@ -283,26 +300,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		FeedModelImpl feedModelImpl = (FeedModelImpl)feed;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TWUI,
-			new Object[] {
-				Long.valueOf(feedModelImpl.getCompanyId()),
-				Long.valueOf(feedModelImpl.getTwitterUserId())
-			});
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TSN,
-			new Object[] {
-				Long.valueOf(feedModelImpl.getCompanyId()),
-				
-			feedModelImpl.getTwitterScreenName()
-			});
-
-		EntityCacheUtil.removeResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
-			FeedImpl.class, feed.getPrimaryKey());
+		clearCache(feed);
 
 		return feed;
 	}

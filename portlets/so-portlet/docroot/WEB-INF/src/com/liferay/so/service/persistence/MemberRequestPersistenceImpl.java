@@ -236,6 +236,23 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(memberRequest);
+	}
+
+	@Override
+	public void clearCache(List<MemberRequest> memberRequests) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (MemberRequest memberRequest : memberRequests) {
+			EntityCacheUtil.removeResult(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
+				MemberRequestImpl.class, memberRequest.getPrimaryKey());
+
+			clearUniqueFindersCache(memberRequest);
+		}
+	}
+
+	protected void clearUniqueFindersCache(MemberRequest memberRequest) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY,
 			new Object[] { memberRequest.getKey() });
 
@@ -335,23 +352,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		MemberRequestModelImpl memberRequestModelImpl = (MemberRequestModelImpl)memberRequest;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY,
-			new Object[] { memberRequestModelImpl.getKey() });
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_R_S,
-			new Object[] {
-				Long.valueOf(memberRequestModelImpl.getGroupId()),
-				Long.valueOf(memberRequestModelImpl.getReceiverUserId()),
-				Integer.valueOf(memberRequestModelImpl.getStatus())
-			});
-
-		EntityCacheUtil.removeResult(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
-			MemberRequestImpl.class, memberRequest.getPrimaryKey());
+		clearCache(memberRequest);
 
 		return memberRequest;
 	}

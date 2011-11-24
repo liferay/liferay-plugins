@@ -221,6 +221,17 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<KaleoAction> kaleoActions) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (KaleoAction kaleoAction : kaleoActions) {
+			EntityCacheUtil.removeResult(KaleoActionModelImpl.ENTITY_CACHE_ENABLED,
+				KaleoActionImpl.class, kaleoAction.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new kaleo action with the primary key. Does not add the kaleo action to the database.
 	 *
@@ -309,11 +320,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(KaleoActionModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoActionImpl.class, kaleoAction.getPrimaryKey());
+		clearCache(kaleoAction);
 
 		return kaleoAction;
 	}

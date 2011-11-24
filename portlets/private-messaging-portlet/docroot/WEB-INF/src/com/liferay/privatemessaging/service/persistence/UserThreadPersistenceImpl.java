@@ -253,6 +253,23 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(userThread);
+	}
+
+	@Override
+	public void clearCache(List<UserThread> userThreads) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (UserThread userThread : userThreads) {
+			EntityCacheUtil.removeResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+				UserThreadImpl.class, userThread.getPrimaryKey());
+
+			clearUniqueFindersCache(userThread);
+		}
+	}
+
+	protected void clearUniqueFindersCache(UserThread userThread) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M,
 			new Object[] {
 				Long.valueOf(userThread.getUserId()),
@@ -348,19 +365,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		UserThreadModelImpl userThreadModelImpl = (UserThreadModelImpl)userThread;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M,
-			new Object[] {
-				Long.valueOf(userThreadModelImpl.getUserId()),
-				Long.valueOf(userThreadModelImpl.getMbThreadId())
-			});
-
-		EntityCacheUtil.removeResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
-			UserThreadImpl.class, userThread.getPrimaryKey());
+		clearCache(userThread);
 
 		return userThread;
 	}

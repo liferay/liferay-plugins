@@ -211,6 +211,17 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<JIRAAction> jiraActions) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (JIRAAction jiraAction : jiraActions) {
+			EntityCacheUtil.removeResult(JIRAActionModelImpl.ENTITY_CACHE_ENABLED,
+				JIRAActionImpl.class, jiraAction.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new j i r a action with the primary key. Does not add the j i r a action to the database.
 	 *
@@ -299,11 +310,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(JIRAActionModelImpl.ENTITY_CACHE_ENABLED,
-			JIRAActionImpl.class, jiraAction.getPrimaryKey());
+		clearCache(jiraAction);
 
 		return jiraAction;
 	}

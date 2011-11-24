@@ -218,6 +218,25 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(wsrpConsumerPortlet);
+	}
+
+	@Override
+	public void clearCache(List<WSRPConsumerPortlet> wsrpConsumerPortlets) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (WSRPConsumerPortlet wsrpConsumerPortlet : wsrpConsumerPortlets) {
+			EntityCacheUtil.removeResult(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
+				WSRPConsumerPortletImpl.class,
+				wsrpConsumerPortlet.getPrimaryKey());
+
+			clearUniqueFindersCache(wsrpConsumerPortlet);
+		}
+	}
+
+	protected void clearUniqueFindersCache(
+		WSRPConsumerPortlet wsrpConsumerPortlet) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_W_P,
 			new Object[] {
 				Long.valueOf(wsrpConsumerPortlet.getWsrpConsumerId()),
@@ -318,20 +337,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		WSRPConsumerPortletModelImpl wsrpConsumerPortletModelImpl = (WSRPConsumerPortletModelImpl)wsrpConsumerPortlet;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_W_P,
-			new Object[] {
-				Long.valueOf(wsrpConsumerPortletModelImpl.getWsrpConsumerId()),
-				
-			wsrpConsumerPortletModelImpl.getPortletHandle()
-			});
-
-		EntityCacheUtil.removeResult(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerPortletImpl.class, wsrpConsumerPortlet.getPrimaryKey());
+		clearCache(wsrpConsumerPortlet);
 
 		return wsrpConsumerPortlet;
 	}

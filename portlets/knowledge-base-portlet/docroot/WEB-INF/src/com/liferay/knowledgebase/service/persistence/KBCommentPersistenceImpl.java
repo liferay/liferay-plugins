@@ -269,6 +269,23 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(kbComment);
+	}
+
+	@Override
+	public void clearCache(List<KBComment> kbComments) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (KBComment kbComment : kbComments) {
+			EntityCacheUtil.removeResult(KBCommentModelImpl.ENTITY_CACHE_ENABLED,
+				KBCommentImpl.class, kbComment.getPrimaryKey());
+
+			clearUniqueFindersCache(kbComment);
+		}
+	}
+
+	protected void clearUniqueFindersCache(KBComment kbComment) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] {
 				kbComment.getUuid(), Long.valueOf(kbComment.getGroupId())
@@ -374,26 +391,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		KBCommentModelImpl kbCommentModelImpl = (KBCommentModelImpl)kbComment;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
-			new Object[] {
-				kbCommentModelImpl.getUuid(),
-				Long.valueOf(kbCommentModelImpl.getGroupId())
-			});
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_C_C,
-			new Object[] {
-				Long.valueOf(kbCommentModelImpl.getUserId()),
-				Long.valueOf(kbCommentModelImpl.getClassNameId()),
-				Long.valueOf(kbCommentModelImpl.getClassPK())
-			});
-
-		EntityCacheUtil.removeResult(KBCommentModelImpl.ENTITY_CACHE_ENABLED,
-			KBCommentImpl.class, kbComment.getPrimaryKey());
+		clearCache(kbComment);
 
 		return kbComment;
 	}

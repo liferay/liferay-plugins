@@ -227,6 +227,23 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(module);
+	}
+
+	@Override
+	public void clearCache(List<Module> modules) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (Module module : modules) {
+			EntityCacheUtil.removeResult(ModuleModelImpl.ENTITY_CACHE_ENABLED,
+				ModuleImpl.class, module.getPrimaryKey());
+
+			clearUniqueFindersCache(module);
+		}
+	}
+
+	protected void clearUniqueFindersCache(Module module) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_C,
 			new Object[] {
 				Long.valueOf(module.getAppId()),
@@ -325,20 +342,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		ModuleModelImpl moduleModelImpl = (ModuleModelImpl)module;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_C,
-			new Object[] {
-				Long.valueOf(moduleModelImpl.getAppId()),
-				
-			moduleModelImpl.getContextName()
-			});
-
-		EntityCacheUtil.removeResult(ModuleModelImpl.ENTITY_CACHE_ENABLED,
-			ModuleImpl.class, module.getPrimaryKey());
+		clearCache(module);
 
 		return module;
 	}

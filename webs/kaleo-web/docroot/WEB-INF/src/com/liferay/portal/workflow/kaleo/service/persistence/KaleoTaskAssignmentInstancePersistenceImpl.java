@@ -255,6 +255,19 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(
+		List<KaleoTaskAssignmentInstance> kaleoTaskAssignmentInstances) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance : kaleoTaskAssignmentInstances) {
+			EntityCacheUtil.removeResult(KaleoTaskAssignmentInstanceModelImpl.ENTITY_CACHE_ENABLED,
+				KaleoTaskAssignmentInstanceImpl.class,
+				kaleoTaskAssignmentInstance.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new kaleo task assignment instance with the primary key. Does not add the kaleo task assignment instance to the database.
 	 *
@@ -346,12 +359,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(KaleoTaskAssignmentInstanceModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTaskAssignmentInstanceImpl.class,
-			kaleoTaskAssignmentInstance.getPrimaryKey());
+		clearCache(kaleoTaskAssignmentInstance);
 
 		return kaleoTaskAssignmentInstance;
 	}

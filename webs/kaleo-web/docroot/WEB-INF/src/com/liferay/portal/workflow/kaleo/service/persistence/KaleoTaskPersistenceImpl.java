@@ -203,6 +203,23 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(kaleoTask);
+	}
+
+	@Override
+	public void clearCache(List<KaleoTask> kaleoTasks) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (KaleoTask kaleoTask : kaleoTasks) {
+			EntityCacheUtil.removeResult(KaleoTaskModelImpl.ENTITY_CACHE_ENABLED,
+				KaleoTaskImpl.class, kaleoTask.getPrimaryKey());
+
+			clearUniqueFindersCache(kaleoTask);
+		}
+	}
+
+	protected void clearUniqueFindersCache(KaleoTask kaleoTask) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID,
 			new Object[] { Long.valueOf(kaleoTask.getKaleoNodeId()) });
 	}
@@ -295,16 +312,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		KaleoTaskModelImpl kaleoTaskModelImpl = (KaleoTaskModelImpl)kaleoTask;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID,
-			new Object[] { Long.valueOf(kaleoTaskModelImpl.getKaleoNodeId()) });
-
-		EntityCacheUtil.removeResult(KaleoTaskModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTaskImpl.class, kaleoTask.getPrimaryKey());
+		clearCache(kaleoTask);
 
 		return kaleoTask;
 	}

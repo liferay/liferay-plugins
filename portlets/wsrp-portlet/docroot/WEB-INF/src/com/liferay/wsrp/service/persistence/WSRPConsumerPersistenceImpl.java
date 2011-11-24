@@ -193,6 +193,17 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<WSRPConsumer> wsrpConsumers) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (WSRPConsumer wsrpConsumer : wsrpConsumers) {
+			EntityCacheUtil.removeResult(WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
+				WSRPConsumerImpl.class, wsrpConsumer.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new w s r p consumer with the primary key. Does not add the w s r p consumer to the database.
 	 *
@@ -285,11 +296,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerImpl.class, wsrpConsumer.getPrimaryKey());
+		clearCache(wsrpConsumer);
 
 		return wsrpConsumer;
 	}

@@ -231,6 +231,19 @@ public class KaleoNotificationRecipientPersistenceImpl
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(
+		List<KaleoNotificationRecipient> kaleoNotificationRecipients) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (KaleoNotificationRecipient kaleoNotificationRecipient : kaleoNotificationRecipients) {
+			EntityCacheUtil.removeResult(KaleoNotificationRecipientModelImpl.ENTITY_CACHE_ENABLED,
+				KaleoNotificationRecipientImpl.class,
+				kaleoNotificationRecipient.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new kaleo notification recipient with the primary key. Does not add the kaleo notification recipient to the database.
 	 *
@@ -320,12 +333,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(KaleoNotificationRecipientModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoNotificationRecipientImpl.class,
-			kaleoNotificationRecipient.getPrimaryKey());
+		clearCache(kaleoNotificationRecipient);
 
 		return kaleoNotificationRecipient;
 	}

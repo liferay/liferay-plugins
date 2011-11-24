@@ -194,6 +194,23 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(calendarEvent);
+	}
+
+	@Override
+	public void clearCache(List<CalendarEvent> calendarEvents) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (CalendarEvent calendarEvent : calendarEvents) {
+			EntityCacheUtil.removeResult(CalendarEventModelImpl.ENTITY_CACHE_ENABLED,
+				CalendarEventImpl.class, calendarEvent.getPrimaryKey());
+
+			clearUniqueFindersCache(calendarEvent);
+		}
+	}
+
+	protected void clearUniqueFindersCache(CalendarEvent calendarEvent) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] {
 				calendarEvent.getUuid(),
@@ -293,19 +310,7 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		CalendarEventModelImpl calendarEventModelImpl = (CalendarEventModelImpl)calendarEvent;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
-			new Object[] {
-				calendarEventModelImpl.getUuid(),
-				Long.valueOf(calendarEventModelImpl.getGroupId())
-			});
-
-		EntityCacheUtil.removeResult(CalendarEventModelImpl.ENTITY_CACHE_ENABLED,
-			CalendarEventImpl.class, calendarEvent.getPrimaryKey());
+		clearCache(calendarEvent);
 
 		return calendarEvent;
 	}

@@ -260,6 +260,23 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(calendarBooking);
+	}
+
+	@Override
+	public void clearCache(List<CalendarBooking> calendarBookings) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (CalendarBooking calendarBooking : calendarBookings) {
+			EntityCacheUtil.removeResult(CalendarBookingModelImpl.ENTITY_CACHE_ENABLED,
+				CalendarBookingImpl.class, calendarBooking.getPrimaryKey());
+
+			clearUniqueFindersCache(calendarBooking);
+		}
+	}
+
+	protected void clearUniqueFindersCache(CalendarBooking calendarBooking) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] {
 				calendarBooking.getUuid(),
@@ -359,19 +376,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		CalendarBookingModelImpl calendarBookingModelImpl = (CalendarBookingModelImpl)calendarBooking;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
-			new Object[] {
-				calendarBookingModelImpl.getUuid(),
-				Long.valueOf(calendarBookingModelImpl.getGroupId())
-			});
-
-		EntityCacheUtil.removeResult(CalendarBookingModelImpl.ENTITY_CACHE_ENABLED,
-			CalendarBookingImpl.class, calendarBooking.getPrimaryKey());
+		clearCache(calendarBooking);
 
 		return calendarBooking;
 	}

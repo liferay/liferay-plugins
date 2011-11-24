@@ -193,6 +193,23 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(oAuthConsumer);
+	}
+
+	@Override
+	public void clearCache(List<OAuthConsumer> oAuthConsumers) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (OAuthConsumer oAuthConsumer : oAuthConsumers) {
+			EntityCacheUtil.removeResult(OAuthConsumerModelImpl.ENTITY_CACHE_ENABLED,
+				OAuthConsumerImpl.class, oAuthConsumer.getPrimaryKey());
+
+			clearUniqueFindersCache(oAuthConsumer);
+		}
+	}
+
+	protected void clearUniqueFindersCache(OAuthConsumer oAuthConsumer) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_S,
 			new Object[] {
 				oAuthConsumer.getGadgetKey(),
@@ -221,24 +238,11 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	 *
 	 * @param primaryKey the primary key of the o auth consumer
 	 * @return the o auth consumer that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a o auth consumer with the primary key could not be found
+	 * @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public OAuthConsumer remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the o auth consumer with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param oAuthConsumerId the primary key of the o auth consumer
-	 * @return the o auth consumer that was removed
-	 * @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public OAuthConsumer remove(long oAuthConsumerId)
 		throws NoSuchOAuthConsumerException, SystemException {
 		Session session = null;
 
@@ -246,19 +250,18 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 			session = openSession();
 
 			OAuthConsumer oAuthConsumer = (OAuthConsumer)session.get(OAuthConsumerImpl.class,
-					Long.valueOf(oAuthConsumerId));
+					primaryKey);
 
 			if (oAuthConsumer == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-						oAuthConsumerId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchOAuthConsumerException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					oAuthConsumerId);
+					primaryKey);
 			}
 
-			return oAuthConsumerPersistence.remove(oAuthConsumer);
+			return remove(oAuthConsumer);
 		}
 		catch (NoSuchOAuthConsumerException nsee) {
 			throw nsee;
@@ -272,16 +275,16 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	}
 
 	/**
-	 * Removes the o auth consumer from the database. Also notifies the appropriate model listeners.
+	 * Removes the o auth consumer with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param oAuthConsumer the o auth consumer
+	 * @param oAuthConsumerId the primary key of the o auth consumer
 	 * @return the o auth consumer that was removed
+	 * @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	@Override
-	public OAuthConsumer remove(OAuthConsumer oAuthConsumer)
-		throws SystemException {
-		return super.remove(oAuthConsumer);
+	public OAuthConsumer remove(long oAuthConsumerId)
+		throws NoSuchOAuthConsumerException, SystemException {
+		return remove(Long.valueOf(oAuthConsumerId));
 	}
 
 	@Override
@@ -303,20 +306,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		OAuthConsumerModelImpl oAuthConsumerModelImpl = (OAuthConsumerModelImpl)oAuthConsumer;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_S,
-			new Object[] {
-				oAuthConsumerModelImpl.getGadgetKey(),
-				
-			oAuthConsumerModelImpl.getServiceName()
-			});
-
-		EntityCacheUtil.removeResult(OAuthConsumerModelImpl.ENTITY_CACHE_ENABLED,
-			OAuthConsumerImpl.class, oAuthConsumer.getPrimaryKey());
+		clearCache(oAuthConsumer);
 
 		return oAuthConsumer;
 	}
@@ -1194,7 +1184,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	 */
 	public void removeByGadgetKey(String gadgetKey) throws SystemException {
 		for (OAuthConsumer oAuthConsumer : findByGadgetKey(gadgetKey)) {
-			oAuthConsumerPersistence.remove(oAuthConsumer);
+			remove(oAuthConsumer);
 		}
 	}
 
@@ -1209,7 +1199,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 		throws NoSuchOAuthConsumerException, SystemException {
 		OAuthConsumer oAuthConsumer = findByG_S(gadgetKey, serviceName);
 
-		oAuthConsumerPersistence.remove(oAuthConsumer);
+		remove(oAuthConsumer);
 	}
 
 	/**
@@ -1219,7 +1209,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	 */
 	public void removeAll() throws SystemException {
 		for (OAuthConsumer oAuthConsumer : findAll()) {
-			oAuthConsumerPersistence.remove(oAuthConsumer);
+			remove(oAuthConsumer);
 		}
 	}
 

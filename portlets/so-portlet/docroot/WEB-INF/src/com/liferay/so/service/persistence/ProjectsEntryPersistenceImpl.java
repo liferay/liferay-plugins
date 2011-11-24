@@ -176,6 +176,17 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<ProjectsEntry> projectsEntries) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (ProjectsEntry projectsEntry : projectsEntries) {
+			EntityCacheUtil.removeResult(ProjectsEntryModelImpl.ENTITY_CACHE_ENABLED,
+				ProjectsEntryImpl.class, projectsEntry.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new projects entry with the primary key. Does not add the projects entry to the database.
 	 *
@@ -264,11 +275,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(ProjectsEntryModelImpl.ENTITY_CACHE_ENABLED,
-			ProjectsEntryImpl.class, projectsEntry.getPrimaryKey());
+		clearCache(projectsEntry);
 
 		return projectsEntry;
 	}

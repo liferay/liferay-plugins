@@ -215,6 +215,17 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<KaleoNode> kaleoNodes) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (KaleoNode kaleoNode : kaleoNodes) {
+			EntityCacheUtil.removeResult(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
+				KaleoNodeImpl.class, kaleoNode.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new kaleo node with the primary key. Does not add the kaleo node to the database.
 	 *
@@ -303,11 +314,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoNodeImpl.class, kaleoNode.getPrimaryKey());
+		clearCache(kaleoNode);
 
 		return kaleoNode;
 	}

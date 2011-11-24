@@ -203,6 +203,23 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(app);
+	}
+
+	@Override
+	public void clearCache(List<App> apps) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (App app : apps) {
+			EntityCacheUtil.removeResult(AppModelImpl.ENTITY_CACHE_ENABLED,
+				AppImpl.class, app.getPrimaryKey());
+
+			clearUniqueFindersCache(app);
+		}
+	}
+
+	protected void clearUniqueFindersCache(App app) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
 			new Object[] { Long.valueOf(app.getRemoteAppId()) });
 	}
@@ -296,16 +313,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		AppModelImpl appModelImpl = (AppModelImpl)app;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
-			new Object[] { Long.valueOf(appModelImpl.getRemoteAppId()) });
-
-		EntityCacheUtil.removeResult(AppModelImpl.ENTITY_CACHE_ENABLED,
-			AppImpl.class, app.getPrimaryKey());
+		clearCache(app);
 
 		return app;
 	}

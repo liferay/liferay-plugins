@@ -300,6 +300,17 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<Entry> entries) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (Entry entry : entries) {
+			EntityCacheUtil.removeResult(EntryModelImpl.ENTITY_CACHE_ENABLED,
+				EntryImpl.class, entry.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new entry with the primary key. Does not add the entry to the database.
 	 *
@@ -386,11 +397,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(EntryModelImpl.ENTITY_CACHE_ENABLED,
-			EntryImpl.class, entry.getPrimaryKey());
+		clearCache(entry);
 
 		return entry;
 	}

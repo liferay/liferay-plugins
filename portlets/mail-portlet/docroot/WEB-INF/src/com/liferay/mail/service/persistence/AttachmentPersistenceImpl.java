@@ -173,6 +173,17 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<Attachment> attachments) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (Attachment attachment : attachments) {
+			EntityCacheUtil.removeResult(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
+				AttachmentImpl.class, attachment.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new attachment with the primary key. Does not add the attachment to the database.
 	 *
@@ -261,11 +272,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
-			AttachmentImpl.class, attachment.getPrimaryKey());
+		clearCache(attachment);
 
 		return attachment;
 	}
