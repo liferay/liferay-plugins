@@ -57,7 +57,7 @@ a:hover {
 		padding: 5px 0 10px;
 
 		.theme-logo {
-			background-image: url(../images/custom/so-logo.png);
+			background-image: url(../images/custom/so_logo.png);
 			height: 64px;
 			width: 186px;
 		}
@@ -374,7 +374,7 @@ a:hover {
 /* ---------- Forms ---------- */
 
 #page-search input[type=text], .aui-search-bar input[type=text], .so-search-bar input.search-field, #so-sidebar .search input[type=text] {
-	background-image: url(../images/custom/so-search-icon.png);
+	background-image: url(../images/custom/so_search_icon.png);
 	background-position: right 0;
 	background-repeat: no-repeat;
 	padding-right: 25px;
