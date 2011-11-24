@@ -100,12 +100,11 @@ public class AdminPortlet extends MVCPortlet {
 		PermissionChecker permissionChecker =
 			themeDisplay.getPermissionChecker();
 
-		long groupId = themeDisplay.getScopeGroupId();
-
 		long gadgetId = ParamUtil.getLong(actionRequest, "gadgetId");
 
 		GadgetPermission.check(
-			permissionChecker, groupId, gadgetId, ActionKeys.UPDATE);
+			permissionChecker, themeDisplay.getScopeGroupId(), gadgetId,
+			ActionKeys.UPDATE);
 
 		ShindigUtil.updateOAuthConsumers(actionRequest, actionResponse);
 	}
