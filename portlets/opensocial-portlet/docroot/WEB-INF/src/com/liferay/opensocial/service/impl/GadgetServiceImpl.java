@@ -51,4 +51,15 @@ public class GadgetServiceImpl extends GadgetServiceBaseImpl {
 		gadgetLocalService.deleteGadget(gadgetId);
 	}
 
+	public void updateGadget(long gadgetId, String portletCategoryNames,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		GadgetPermission.check(
+			getPermissionChecker(), serviceContext.getScopeGroupId(), gadgetId,
+			ActionKeys.UPDATE);
+
+		gadgetLocalService.updateGadget(gadgetId, portletCategoryNames);
+	}
+
 }
