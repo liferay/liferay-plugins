@@ -124,9 +124,11 @@ public class AdminPortlet extends MVCPortlet {
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			Gadget.class.getName(), actionRequest);
 
-		return GadgetServiceUtil.addGadget(
+		Gadget gadget = GadgetServiceUtil.addGadget(
 			themeDisplay.getCompanyId(), url, portletCategoryNames,
 			serviceContext);
+
+		return gadget;
 	}
 
 	protected void doUpdateGadget(
