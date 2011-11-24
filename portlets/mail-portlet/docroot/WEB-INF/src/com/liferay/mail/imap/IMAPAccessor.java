@@ -320,25 +320,25 @@ public class IMAPAccessor {
 			boolean deleteMissingMessages)
 		throws PortalException, SystemException {
 
-		Folder sourceIMAPFolder = null;
-		Folder destinationIMAPFolder = null;
+		Folder sourceJxFolder = null;
+		Folder destinationJxFolder = null;
 
 		try {
-			sourceIMAPFolder = openFolder(sourceFolderId);
+			sourceJxFolder = openFolder(sourceFolderId);
 
-			sourceIMAPFolder.addMessageCountListener(
+			sourceJxFolder.addMessageCountListener(
 				new IMAPMessageCountListener(_user, _account, _password));
 
-			destinationIMAPFolder = openFolder(destinationFolderId);
+			destinationJxFolder = openFolder(destinationFolderId);
 
-			destinationIMAPFolder.addMessageCountListener(
+			destinationJxFolder.addMessageCountListener(
 				new IMAPMessageCountListener(_user, _account, _password));
 
 			List<Message> jxMessages = getMessages(
-				sourceIMAPFolder, messageIds, deleteMissingMessages);
+				sourceJxFolder, messageIds, deleteMissingMessages);
 
 			for (Message jxMessage : jxMessages) {
-				destinationIMAPFolder.appendMessages(new Message[] {jxMessage});
+				destinationJxFolder.appendMessages(new Message[] {jxMessage});
 
 				jxMessage.setFlag(Flags.Flag.DELETED, true);
 			}
@@ -347,8 +347,8 @@ public class IMAPAccessor {
 			throw new MailException(me);
 		}
 		finally {
-			closeFolder(sourceIMAPFolder, true);
-			closeFolder(destinationIMAPFolder, false);
+			closeFolder(sourceJxFolder, true);
+			closeFolder(destinationJxFolder, false);
 		}
 	}
 
