@@ -236,29 +236,43 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 *
 	 * @param primaryKey the primary key of the gadget
 	 * @return the gadget that was removed
-	 * @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
+	 * @throws com.liferay.portal.NoSuchModelException if a gadget with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Gadget remove(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return remove(((Long)primaryKey).longValue());
+	}
+
+	/**
+	 * Removes the gadget with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param gadgetId the primary key of the gadget
+	 * @return the gadget that was removed
+	 * @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Gadget remove(long gadgetId)
 		throws NoSuchGadgetException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			Gadget gadget = (Gadget)session.get(GadgetImpl.class, primaryKey);
+			Gadget gadget = (Gadget)session.get(GadgetImpl.class,
+					Long.valueOf(gadgetId));
 
 			if (gadget == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + gadgetId);
 				}
 
 				throw new NoSuchGadgetException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					primaryKey);
+					gadgetId);
 			}
 
-			return remove(gadget);
+			return gadgetPersistence.remove(gadget);
 		}
 		catch (NoSuchGadgetException nsee) {
 			throw nsee;
@@ -272,16 +286,15 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	}
 
 	/**
-	 * Removes the gadget with the primary key from the database. Also notifies the appropriate model listeners.
+	 * Removes the gadget from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param gadgetId the primary key of the gadget
+	 * @param gadget the gadget
 	 * @return the gadget that was removed
-	 * @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Gadget remove(long gadgetId)
-		throws NoSuchGadgetException, SystemException {
-		return remove(Long.valueOf(gadgetId));
+	@Override
+	public Gadget remove(Gadget gadget) throws SystemException {
+		return super.remove(gadget);
 	}
 
 	@Override
@@ -2174,7 +2187,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 */
 	public void removeByUuid(String uuid) throws SystemException {
 		for (Gadget gadget : findByUuid(uuid)) {
-			remove(gadget);
+			gadgetPersistence.remove(gadget);
 		}
 	}
 
@@ -2186,7 +2199,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (Gadget gadget : findByCompanyId(companyId)) {
-			remove(gadget);
+			gadgetPersistence.remove(gadget);
 		}
 	}
 
@@ -2201,7 +2214,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		throws NoSuchGadgetException, SystemException {
 		Gadget gadget = findByC_U(companyId, url);
 
-		remove(gadget);
+		gadgetPersistence.remove(gadget);
 	}
 
 	/**
@@ -2211,7 +2224,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 */
 	public void removeAll() throws SystemException {
 		for (Gadget gadget : findAll()) {
-			remove(gadget);
+			gadgetPersistence.remove(gadget);
 		}
 	}
 

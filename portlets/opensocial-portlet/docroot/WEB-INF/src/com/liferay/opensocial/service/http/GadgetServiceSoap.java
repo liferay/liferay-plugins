@@ -96,5 +96,20 @@ public class GadgetServiceSoap {
 		}
 	}
 
+	public static void updateGadget(long gadgetId,
+		java.lang.String portletCategoryNames,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws RemoteException {
+		try {
+			GadgetServiceUtil.updateGadget(gadgetId, portletCategoryNames,
+				serviceContext);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(GadgetServiceSoap.class);
 }

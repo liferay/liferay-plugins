@@ -235,11 +235,24 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 *
 	 * @param primaryKey the primary key of the o auth token
 	 * @return the o auth token that was removed
-	 * @throws com.liferay.opensocial.NoSuchOAuthTokenException if a o auth token with the primary key could not be found
+	 * @throws com.liferay.portal.NoSuchModelException if a o auth token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public OAuthToken remove(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return remove(((Long)primaryKey).longValue());
+	}
+
+	/**
+	 * Removes the o auth token with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param oAuthTokenId the primary key of the o auth token
+	 * @return the o auth token that was removed
+	 * @throws com.liferay.opensocial.NoSuchOAuthTokenException if a o auth token with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public OAuthToken remove(long oAuthTokenId)
 		throws NoSuchOAuthTokenException, SystemException {
 		Session session = null;
 
@@ -247,18 +260,18 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 			session = openSession();
 
 			OAuthToken oAuthToken = (OAuthToken)session.get(OAuthTokenImpl.class,
-					primaryKey);
+					Long.valueOf(oAuthTokenId));
 
 			if (oAuthToken == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + oAuthTokenId);
 				}
 
 				throw new NoSuchOAuthTokenException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					primaryKey);
+					oAuthTokenId);
 			}
 
-			return remove(oAuthToken);
+			return oAuthTokenPersistence.remove(oAuthToken);
 		}
 		catch (NoSuchOAuthTokenException nsee) {
 			throw nsee;
@@ -272,16 +285,15 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	}
 
 	/**
-	 * Removes the o auth token with the primary key from the database. Also notifies the appropriate model listeners.
+	 * Removes the o auth token from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param oAuthTokenId the primary key of the o auth token
+	 * @param oAuthToken the o auth token
 	 * @return the o auth token that was removed
-	 * @throws com.liferay.opensocial.NoSuchOAuthTokenException if a o auth token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public OAuthToken remove(long oAuthTokenId)
-		throws NoSuchOAuthTokenException, SystemException {
-		return remove(Long.valueOf(oAuthTokenId));
+	@Override
+	public OAuthToken remove(OAuthToken oAuthToken) throws SystemException {
+		return super.remove(oAuthToken);
 	}
 
 	@Override
@@ -1318,7 +1330,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	public void removeByG_S(String gadgetKey, String serviceName)
 		throws SystemException {
 		for (OAuthToken oAuthToken : findByG_S(gadgetKey, serviceName)) {
-			remove(oAuthToken);
+			oAuthTokenPersistence.remove(oAuthToken);
 		}
 	}
 
@@ -1338,7 +1350,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		OAuthToken oAuthToken = findByU_G_S_M_T(userId, gadgetKey, serviceName,
 				moduleId, tokenName);
 
-		remove(oAuthToken);
+		oAuthTokenPersistence.remove(oAuthToken);
 	}
 
 	/**
@@ -1348,7 +1360,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 */
 	public void removeAll() throws SystemException {
 		for (OAuthToken oAuthToken : findAll()) {
-			remove(oAuthToken);
+			oAuthTokenPersistence.remove(oAuthToken);
 		}
 	}
 
