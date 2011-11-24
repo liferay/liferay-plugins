@@ -254,6 +254,18 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<KaleoTaskAssignment> kaleoTaskAssignments) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (KaleoTaskAssignment kaleoTaskAssignment : kaleoTaskAssignments) {
+			EntityCacheUtil.removeResult(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
+				KaleoTaskAssignmentImpl.class,
+				kaleoTaskAssignment.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new kaleo task assignment with the primary key. Does not add the kaleo task assignment to the database.
 	 *
@@ -342,11 +354,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTaskAssignmentImpl.class, kaleoTaskAssignment.getPrimaryKey());
+		clearCache(kaleoTaskAssignment);
 
 		return kaleoTaskAssignment;
 	}

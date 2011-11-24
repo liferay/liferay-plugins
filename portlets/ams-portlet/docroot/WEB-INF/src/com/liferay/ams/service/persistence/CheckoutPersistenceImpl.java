@@ -151,6 +151,17 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<Checkout> checkouts) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (Checkout checkout : checkouts) {
+			EntityCacheUtil.removeResult(CheckoutModelImpl.ENTITY_CACHE_ENABLED,
+				CheckoutImpl.class, checkout.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new checkout with the primary key. Does not add the checkout to the database.
 	 *
@@ -238,11 +249,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(CheckoutModelImpl.ENTITY_CACHE_ENABLED,
-			CheckoutImpl.class, checkout.getPrimaryKey());
+		clearCache(checkout);
 
 		return checkout;
 	}

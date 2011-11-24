@@ -266,6 +266,17 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<MicroblogsEntry> microblogsEntries) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (MicroblogsEntry microblogsEntry : microblogsEntries) {
+			EntityCacheUtil.removeResult(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
+				MicroblogsEntryImpl.class, microblogsEntry.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new microblogs entry with the primary key. Does not add the microblogs entry to the database.
 	 *
@@ -354,11 +365,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
-			MicroblogsEntryImpl.class, microblogsEntry.getPrimaryKey());
+		clearCache(microblogsEntry);
 
 		return microblogsEntry;
 	}

@@ -189,6 +189,23 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(folder);
+	}
+
+	@Override
+	public void clearCache(List<Folder> folders) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (Folder folder : folders) {
+			EntityCacheUtil.removeResult(FolderModelImpl.ENTITY_CACHE_ENABLED,
+				FolderImpl.class, folder.getPrimaryKey());
+
+			clearUniqueFindersCache(folder);
+		}
+	}
+
+	protected void clearUniqueFindersCache(Folder folder) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_F,
 			new Object[] {
 				Long.valueOf(folder.getAccountId()),
@@ -283,20 +300,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		FolderModelImpl folderModelImpl = (FolderModelImpl)folder;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_F,
-			new Object[] {
-				Long.valueOf(folderModelImpl.getAccountId()),
-				
-			folderModelImpl.getFullName()
-			});
-
-		EntityCacheUtil.removeResult(FolderModelImpl.ENTITY_CACHE_ENABLED,
-			FolderImpl.class, folder.getPrimaryKey());
+		clearCache(folder);
 
 		return folder;
 	}

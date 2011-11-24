@@ -290,6 +290,17 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<TasksEntry> tasksEntries) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (TasksEntry tasksEntry : tasksEntries) {
+			EntityCacheUtil.removeResult(TasksEntryModelImpl.ENTITY_CACHE_ENABLED,
+				TasksEntryImpl.class, tasksEntry.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new tasks entry with the primary key. Does not add the tasks entry to the database.
 	 *
@@ -378,11 +389,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(TasksEntryModelImpl.ENTITY_CACHE_ENABLED,
-			TasksEntryImpl.class, tasksEntry.getPrimaryKey());
+		clearCache(tasksEntry);
 
 		return tasksEntry;
 	}

@@ -235,6 +235,17 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<KaleoNotification> kaleoNotifications) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (KaleoNotification kaleoNotification : kaleoNotifications) {
+			EntityCacheUtil.removeResult(KaleoNotificationModelImpl.ENTITY_CACHE_ENABLED,
+				KaleoNotificationImpl.class, kaleoNotification.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new kaleo notification with the primary key. Does not add the kaleo notification to the database.
 	 *
@@ -323,11 +334,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(KaleoNotificationModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoNotificationImpl.class, kaleoNotification.getPrimaryKey());
+		clearCache(kaleoNotification);
 
 		return kaleoNotification;
 	}

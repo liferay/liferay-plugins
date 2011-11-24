@@ -222,6 +222,23 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(status);
+	}
+
+	@Override
+	public void clearCache(List<Status> statuses) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (Status status : statuses) {
+			EntityCacheUtil.removeResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
+				StatusImpl.class, status.getPrimaryKey());
+
+			clearUniqueFindersCache(status);
+		}
+	}
+
+	protected void clearUniqueFindersCache(Status status) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID,
 			new Object[] { Long.valueOf(status.getUserId()) });
 	}
@@ -312,16 +329,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		StatusModelImpl statusModelImpl = (StatusModelImpl)status;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID,
-			new Object[] { Long.valueOf(statusModelImpl.getUserId()) });
-
-		EntityCacheUtil.removeResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
-			StatusImpl.class, status.getPrimaryKey());
+		clearCache(status);
 
 		return status;
 	}

@@ -216,6 +216,25 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(meetupsRegistration);
+	}
+
+	@Override
+	public void clearCache(List<MeetupsRegistration> meetupsRegistrations) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (MeetupsRegistration meetupsRegistration : meetupsRegistrations) {
+			EntityCacheUtil.removeResult(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+				MeetupsRegistrationImpl.class,
+				meetupsRegistration.getPrimaryKey());
+
+			clearUniqueFindersCache(meetupsRegistration);
+		}
+	}
+
+	protected void clearUniqueFindersCache(
+		MeetupsRegistration meetupsRegistration) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_ME,
 			new Object[] {
 				Long.valueOf(meetupsRegistration.getUserId()),
@@ -311,19 +330,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		MeetupsRegistrationModelImpl meetupsRegistrationModelImpl = (MeetupsRegistrationModelImpl)meetupsRegistration;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_ME,
-			new Object[] {
-				Long.valueOf(meetupsRegistrationModelImpl.getUserId()),
-				Long.valueOf(meetupsRegistrationModelImpl.getMeetupsEntryId())
-			});
-
-		EntityCacheUtil.removeResult(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
-			MeetupsRegistrationImpl.class, meetupsRegistration.getPrimaryKey());
+		clearCache(meetupsRegistration);
 
 		return meetupsRegistration;
 	}

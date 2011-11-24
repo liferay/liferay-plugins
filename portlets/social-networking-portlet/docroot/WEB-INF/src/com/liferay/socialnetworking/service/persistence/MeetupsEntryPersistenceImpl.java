@@ -192,6 +192,17 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<MeetupsEntry> meetupsEntries) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (MeetupsEntry meetupsEntry : meetupsEntries) {
+			EntityCacheUtil.removeResult(MeetupsEntryModelImpl.ENTITY_CACHE_ENABLED,
+				MeetupsEntryImpl.class, meetupsEntry.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new meetups entry with the primary key. Does not add the meetups entry to the database.
 	 *
@@ -280,11 +291,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(MeetupsEntryModelImpl.ENTITY_CACHE_ENABLED,
-			MeetupsEntryImpl.class, meetupsEntry.getPrimaryKey());
+		clearCache(meetupsEntry);
 
 		return meetupsEntry;
 	}

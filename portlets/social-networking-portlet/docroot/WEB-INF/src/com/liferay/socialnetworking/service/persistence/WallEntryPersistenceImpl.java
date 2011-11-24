@@ -212,6 +212,17 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<WallEntry> wallEntries) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (WallEntry wallEntry : wallEntries) {
+			EntityCacheUtil.removeResult(WallEntryModelImpl.ENTITY_CACHE_ENABLED,
+				WallEntryImpl.class, wallEntry.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new wall entry with the primary key. Does not add the wall entry to the database.
 	 *
@@ -300,11 +311,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(WallEntryModelImpl.ENTITY_CACHE_ENABLED,
-			WallEntryImpl.class, wallEntry.getPrimaryKey());
+		clearCache(wallEntry);
 
 		return wallEntry;
 	}

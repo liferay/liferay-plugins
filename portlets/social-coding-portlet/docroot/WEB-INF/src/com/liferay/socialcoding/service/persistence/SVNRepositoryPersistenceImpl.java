@@ -167,6 +167,23 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(svnRepository);
+	}
+
+	@Override
+	public void clearCache(List<SVNRepository> svnRepositories) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (SVNRepository svnRepository : svnRepositories) {
+			EntityCacheUtil.removeResult(SVNRepositoryModelImpl.ENTITY_CACHE_ENABLED,
+				SVNRepositoryImpl.class, svnRepository.getPrimaryKey());
+
+			clearUniqueFindersCache(svnRepository);
+		}
+	}
+
+	protected void clearUniqueFindersCache(SVNRepository svnRepository) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_URL,
 			new Object[] { svnRepository.getUrl() });
 	}
@@ -259,16 +276,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		SVNRepositoryModelImpl svnRepositoryModelImpl = (SVNRepositoryModelImpl)svnRepository;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_URL,
-			new Object[] { svnRepositoryModelImpl.getUrl() });
-
-		EntityCacheUtil.removeResult(SVNRepositoryModelImpl.ENTITY_CACHE_ENABLED,
-			SVNRepositoryImpl.class, svnRepository.getPrimaryKey());
+		clearCache(svnRepository);
 
 		return svnRepository;
 	}

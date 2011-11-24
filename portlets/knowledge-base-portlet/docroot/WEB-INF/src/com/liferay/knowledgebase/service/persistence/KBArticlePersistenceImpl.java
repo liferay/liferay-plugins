@@ -731,6 +731,23 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(kbArticle);
+	}
+
+	@Override
+	public void clearCache(List<KBArticle> kbArticles) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (KBArticle kbArticle : kbArticles) {
+			EntityCacheUtil.removeResult(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
+				KBArticleImpl.class, kbArticle.getPrimaryKey());
+
+			clearUniqueFindersCache(kbArticle);
+		}
+	}
+
+	protected void clearUniqueFindersCache(KBArticle kbArticle) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] {
 				kbArticle.getUuid(), Long.valueOf(kbArticle.getGroupId())
@@ -835,25 +852,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		KBArticleModelImpl kbArticleModelImpl = (KBArticleModelImpl)kbArticle;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
-			new Object[] {
-				kbArticleModelImpl.getUuid(),
-				Long.valueOf(kbArticleModelImpl.getGroupId())
-			});
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_R_V,
-			new Object[] {
-				Long.valueOf(kbArticleModelImpl.getResourcePrimKey()),
-				Integer.valueOf(kbArticleModelImpl.getVersion())
-			});
-
-		EntityCacheUtil.removeResult(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
-			KBArticleImpl.class, kbArticle.getPrimaryKey());
+		clearCache(kbArticle);
 
 		return kbArticle;
 	}

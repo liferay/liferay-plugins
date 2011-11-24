@@ -171,6 +171,17 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<Bar> bars) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (Bar bar : bars) {
+			EntityCacheUtil.removeResult(BarModelImpl.ENTITY_CACHE_ENABLED,
+				BarImpl.class, bar.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new bar with the primary key. Does not add the bar to the database.
 	 *
@@ -256,11 +267,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(BarModelImpl.ENTITY_CACHE_ENABLED,
-			BarImpl.class, bar.getPrimaryKey());
+		clearCache(bar);
 
 		return bar;
 	}

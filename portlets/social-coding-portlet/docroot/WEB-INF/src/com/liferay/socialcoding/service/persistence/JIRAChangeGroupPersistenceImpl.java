@@ -201,6 +201,17 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<JIRAChangeGroup> jiraChangeGroups) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (JIRAChangeGroup jiraChangeGroup : jiraChangeGroups) {
+			EntityCacheUtil.removeResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
+				JIRAChangeGroupImpl.class, jiraChangeGroup.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new j i r a change group with the primary key. Does not add the j i r a change group to the database.
 	 *
@@ -289,11 +300,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
-			JIRAChangeGroupImpl.class, jiraChangeGroup.getPrimaryKey());
+		clearCache(jiraChangeGroup);
 
 		return jiraChangeGroup;
 	}

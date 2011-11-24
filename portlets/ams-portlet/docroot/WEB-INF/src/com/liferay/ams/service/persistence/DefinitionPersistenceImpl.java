@@ -151,6 +151,17 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<Definition> definitions) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (Definition definition : definitions) {
+			EntityCacheUtil.removeResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
+				DefinitionImpl.class, definition.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new definition with the primary key. Does not add the definition to the database.
 	 *
@@ -239,11 +250,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			DefinitionImpl.class, definition.getPrimaryKey());
+		clearCache(definition);
 
 		return definition;
 	}

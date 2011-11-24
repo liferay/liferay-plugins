@@ -203,6 +203,17 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<KaleoTimer> kaleoTimers) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (KaleoTimer kaleoTimer : kaleoTimers) {
+			EntityCacheUtil.removeResult(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
+				KaleoTimerImpl.class, kaleoTimer.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new kaleo timer with the primary key. Does not add the kaleo timer to the database.
 	 *
@@ -291,11 +302,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTimerImpl.class, kaleoTimer.getPrimaryKey());
+		clearCache(kaleoTimer);
 
 		return kaleoTimer;
 	}

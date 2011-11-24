@@ -209,6 +209,23 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(wsrpProducer);
+	}
+
+	@Override
+	public void clearCache(List<WSRPProducer> wsrpProducers) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (WSRPProducer wsrpProducer : wsrpProducers) {
+			EntityCacheUtil.removeResult(WSRPProducerModelImpl.ENTITY_CACHE_ENABLED,
+				WSRPProducerImpl.class, wsrpProducer.getPrimaryKey());
+
+			clearUniqueFindersCache(wsrpProducer);
+		}
+	}
+
+	protected void clearUniqueFindersCache(WSRPProducer wsrpProducer) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] {
 				wsrpProducer.getUuid(), Long.valueOf(wsrpProducer.getGroupId())
@@ -307,19 +324,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		WSRPProducerModelImpl wsrpProducerModelImpl = (WSRPProducerModelImpl)wsrpProducer;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
-			new Object[] {
-				wsrpProducerModelImpl.getUuid(),
-				Long.valueOf(wsrpProducerModelImpl.getGroupId())
-			});
-
-		EntityCacheUtil.removeResult(WSRPProducerModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPProducerImpl.class, wsrpProducer.getPrimaryKey());
+		clearCache(wsrpProducer);
 
 		return wsrpProducer;
 	}

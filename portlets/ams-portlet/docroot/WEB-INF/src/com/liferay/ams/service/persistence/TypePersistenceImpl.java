@@ -150,6 +150,17 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<Type> types) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (Type type : types) {
+			EntityCacheUtil.removeResult(TypeModelImpl.ENTITY_CACHE_ENABLED,
+				TypeImpl.class, type.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new type with the primary key. Does not add the type to the database.
 	 *
@@ -235,11 +246,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(TypeModelImpl.ENTITY_CACHE_ENABLED,
-			TypeImpl.class, type.getPrimaryKey());
+		clearCache(type);
 
 		return type;
 	}

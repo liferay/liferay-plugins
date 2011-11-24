@@ -401,6 +401,23 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(jiraIssue);
+	}
+
+	@Override
+	public void clearCache(List<JIRAIssue> jiraIssues) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (JIRAIssue jiraIssue : jiraIssues) {
+			EntityCacheUtil.removeResult(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+				JIRAIssueImpl.class, jiraIssue.getPrimaryKey());
+
+			clearUniqueFindersCache(jiraIssue);
+		}
+	}
+
+	protected void clearUniqueFindersCache(JIRAIssue jiraIssue) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY,
 			new Object[] { jiraIssue.getKey() });
 	}
@@ -493,16 +510,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		JIRAIssueModelImpl jiraIssueModelImpl = (JIRAIssueModelImpl)jiraIssue;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY,
-			new Object[] { jiraIssueModelImpl.getKey() });
-
-		EntityCacheUtil.removeResult(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
-			JIRAIssueImpl.class, jiraIssue.getPrimaryKey());
+		clearCache(jiraIssue);
 
 		return jiraIssue;
 	}

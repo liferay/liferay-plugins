@@ -150,6 +150,17 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<Asset> assets) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (Asset asset : assets) {
+			EntityCacheUtil.removeResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
+				AssetImpl.class, asset.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new asset with the primary key. Does not add the asset to the database.
 	 *
@@ -236,11 +247,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
-			AssetImpl.class, asset.getPrimaryKey());
+		clearCache(asset);
 
 		return asset;
 	}

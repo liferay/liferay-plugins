@@ -252,6 +252,17 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<KaleoInstance> kaleoInstances) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (KaleoInstance kaleoInstance : kaleoInstances) {
+			EntityCacheUtil.removeResult(KaleoInstanceModelImpl.ENTITY_CACHE_ENABLED,
+				KaleoInstanceImpl.class, kaleoInstance.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new kaleo instance with the primary key. Does not add the kaleo instance to the database.
 	 *
@@ -340,11 +351,7 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(KaleoInstanceModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoInstanceImpl.class, kaleoInstance.getPrimaryKey());
+		clearCache(kaleoInstance);
 
 		return kaleoInstance;
 	}

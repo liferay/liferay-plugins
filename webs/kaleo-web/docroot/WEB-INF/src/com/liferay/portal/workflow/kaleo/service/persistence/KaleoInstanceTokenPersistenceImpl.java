@@ -274,6 +274,17 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<KaleoInstanceToken> kaleoInstanceTokens) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (KaleoInstanceToken kaleoInstanceToken : kaleoInstanceTokens) {
+			EntityCacheUtil.removeResult(KaleoInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
+				KaleoInstanceTokenImpl.class, kaleoInstanceToken.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new kaleo instance token with the primary key. Does not add the kaleo instance token to the database.
 	 *
@@ -362,11 +373,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(KaleoInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoInstanceTokenImpl.class, kaleoInstanceToken.getPrimaryKey());
+		clearCache(kaleoInstanceToken);
 
 		return kaleoInstanceToken;
 	}

@@ -185,6 +185,23 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(account);
+	}
+
+	@Override
+	public void clearCache(List<Account> accounts) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (Account account : accounts) {
+			EntityCacheUtil.removeResult(AccountModelImpl.ENTITY_CACHE_ENABLED,
+				AccountImpl.class, account.getPrimaryKey());
+
+			clearUniqueFindersCache(account);
+		}
+	}
+
+	protected void clearUniqueFindersCache(Account account) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_A,
 			new Object[] { Long.valueOf(account.getUserId()), account.getAddress() });
 	}
@@ -275,20 +292,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		AccountModelImpl accountModelImpl = (AccountModelImpl)account;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_A,
-			new Object[] {
-				Long.valueOf(accountModelImpl.getUserId()),
-				
-			accountModelImpl.getAddress()
-			});
-
-		EntityCacheUtil.removeResult(AccountModelImpl.ENTITY_CACHE_ENABLED,
-			AccountImpl.class, account.getPrimaryKey());
+		clearCache(account);
 
 		return account;
 	}

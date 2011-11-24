@@ -214,6 +214,17 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<SVNRevision> svnRevisions) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (SVNRevision svnRevision : svnRevisions) {
+			EntityCacheUtil.removeResult(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
+				SVNRevisionImpl.class, svnRevision.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new s v n revision with the primary key. Does not add the s v n revision to the database.
 	 *
@@ -302,11 +313,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
-			SVNRevisionImpl.class, svnRevision.getPrimaryKey());
+		clearCache(svnRevision);
 
 		return svnRevision;
 	}

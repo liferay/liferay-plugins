@@ -207,6 +207,23 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(message);
+	}
+
+	@Override
+	public void clearCache(List<Message> messages) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (Message message : messages) {
+			EntityCacheUtil.removeResult(MessageModelImpl.ENTITY_CACHE_ENABLED,
+				MessageImpl.class, message.getPrimaryKey());
+
+			clearUniqueFindersCache(message);
+		}
+	}
+
+	protected void clearUniqueFindersCache(Message message) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_F_R,
 			new Object[] {
 				Long.valueOf(message.getFolderId()),
@@ -300,19 +317,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		MessageModelImpl messageModelImpl = (MessageModelImpl)message;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_F_R,
-			new Object[] {
-				Long.valueOf(messageModelImpl.getFolderId()),
-				Long.valueOf(messageModelImpl.getRemoteMessageId())
-			});
-
-		EntityCacheUtil.removeResult(MessageModelImpl.ENTITY_CACHE_ENABLED,
-			MessageImpl.class, message.getPrimaryKey());
+		clearCache(message);
 
 		return message;
 	}
