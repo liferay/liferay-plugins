@@ -172,7 +172,6 @@ portal-dependency-jars=vaadin.jar</echo>
 				<copy todir="${portlet.dir}/docroot/WEB-INF/tld">
 					<fileset dir="${app.server.portal.dir}/WEB-INF/tld">
 						<include name="aui.tld" />
-						<include name="liferay-aui.tld" />
 						<include name="liferay-faces.tld" />
 						<include name="liferay-portlet.tld" />
 						<include name="liferay-portlet-ext.tld" />
