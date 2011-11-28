@@ -29,7 +29,7 @@ $theme.include($body_top_include)
 				</a>
 			</div>
 
-			#if (!$is_user_owned)
+			#if (!$page_group.isUser())
 				<div class="community-title">
 					<a href="$community_default_url" title="#language("go-to") $community_name">
 						<span>$community_name</span>
@@ -55,14 +55,14 @@ $theme.include($body_top_include)
 
 	<div id="content">
 		<div id="so-sidebar">
-			#if ($is_user_owned)
+			#if ($page_group.isUser())
 				<div class="$user_detail_class">
 					<div class="profile-image">
-						<a href="$current_user_profile_url"><img src="$profile_portrait_url" alt="$currentUserName"></a>
+						<a href="$current_user_profile_url"><img src="$current_user_profile_portrait_url" alt="$current_user_name"></a>
 					</div>
 
 					#if (!$is_profile_page)
-						<a href="$current_user_profile_url" class="profile-name">$currentUserName</a>
+						<a href="$current_user_profile_url" class="profile-name">$current_user_name</a>
 					#end
 				</div>
 			#end
@@ -71,7 +71,7 @@ $theme.include($body_top_include)
 				#parse ("$full_templates_path/navigation.vm")
 			#end
 
-			#if ($is_user_owned)
+			#if ($page_group.isUser())
 				#parse ("$full_templates_path/sidebar_portlets.vm")
 			#end
 		</div>
