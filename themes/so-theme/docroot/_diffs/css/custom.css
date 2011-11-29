@@ -1,11 +1,11 @@
 @import "compass";
 
+$border-color: #C7D0DA;
+$content-width: ($fixed-width - $navigation-width) - 2px;
+$fixed-width: 980px;
 $header: #8F0920;
 $link: #2571AD;
-$border-color: #C7D0DA;
-$fixed-width: 980px;
 $navigation-width: 200px;
-$content-width: ($fixed-width - $navigation-width) - 2px;
 
 /* ---------- Base ---------- */
 
@@ -38,8 +38,8 @@ a:hover {
 }
 
 #banner:after, .so-portlet-activities .activity-item:after, #footer {
-	content: "";
 	clear: both;
+	content: "";
 	display: block;
 }
 
@@ -282,11 +282,11 @@ a:hover {
 		}
 
 		.portlet-column:before {
+			bottom: 0;
 			content: "";
 			border-right: 1px solid $border-color;
 			position: absolute;
 			top: 0;
-			bottom: 0;
 		}
 
 		.portlet-column-content {
@@ -381,10 +381,10 @@ a:hover {
 }
 
 input[type=text], textarea, input[type=password], .aui-field-select, .microblogs-portlet .autocomplete, .aui-textboxlistentry-holder {
-	background: #FFF;
-	border: 1px solid $border-color;
 	@include border-radius(5px);
 	@include box-shadow(0 1px 3px #C9C9C9 inset);
+	background: #FFF;
+	border: 1px solid $border-color;
 	padding: 6px 5px;
 
 	&:hover, &:active, &:focus, &.focus {
@@ -422,17 +422,17 @@ input[type=text], textarea, input[type=password], .aui-field-select, .microblogs
 }
 
 input[type=submit], input[type=button], input[type=reset], button, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .aui-panel-hd, .aui-dialog-hd, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .aui-button-input, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .results-header th {
+	@include border-radius(3px);
+	@include box-shadow(0 1px 0 #F4F3F3 inset, 0 -1px 0 #D9D8D8 inset);
 	background: #E9E8E8;
 	border-color: #CECECE;
-	@include border-radius(3px);
-	@include box-shadow(0 1px 0 #f4f3f3 inset,0 -1px 0 #d9d8d8 inset);
 	text-shadow: none;
 }
 
 .microblogs-portlet .autocomplete input[type=text], .aui-panel-hd button, .aui-panel-hd .aui-button, .aui-panel-hd .aui-state-default, .aui-textboxlistentry-holder .aui-field-input-text {
-	border-color: transparent;
 	@include border-radius(0);
 	@include box-shadow(none);
+	border-color: transparent;
 }
 
 .aui-tab-content, .aui-toolbar-item {
@@ -448,7 +448,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover {
 		background: #EEE;
 		border-color: #AAA;
 		color: #5A5A5A;
-	}	
+	}
 }
 
 .aui-toolbar {
@@ -494,8 +494,8 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover {
 	padding: 0;
 
 	.aui-tab:first-child, .first, .first .aui-tab-content {
-		border-left-width: 0;
 		@include border-radius(3px 0 0 0);
+		border-left-width: 0;
 	}
 
 	.last, .last .aui-tab-content {
@@ -518,14 +518,14 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover {
 		font-size: .95em;
 		font-weight: bold;
 		padding: 3px 12px 2px;
-		text-shadow: none;		
+		text-shadow: none;
 	}
 
 	.aui-tab-active {
 		.aui-tab-content, .aui-tab-content:hover {
+			@include box-shadow(none);
 			background: #FFF;
 			border-color: #CECECE #CECECE #FFF;
-			@include box-shadow(none);
 
 			.aui-tab-label {
 				color: #5A5A5A;
@@ -578,7 +578,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover {
 	margin: 0;
 
 	.header-back-to a {
-		padding: 5px 10px;	
+		padding: 5px 10px;
 	}
 }
 
@@ -645,14 +645,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover {
 	display: none;
 }
 
-.sidebar .search-input {
-	width: 145px;
-}
-
-.sidebar .search-button {
-	width: 58px;
-}
-
 #wrapper .sidebar h2 {
 	border: none;
 	font-size: 12px;
@@ -677,6 +669,14 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover {
 		list-style-type: disc;
 		padding-left: .3em;
 	}
+
+	.search-input {
+		width: 145px;
+	}
+
+	.search-button {
+		width: 58px;
+	}
 }
 
 /* ---------- Taglib ---------- */
@@ -687,13 +687,13 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover {
 
 /* ---------- Portlet ---------- */
 
-/* ---------- Asset Publisher ---------- */
+/* Asset Publisher */
 
 .ie6 .portlet-asset-publisher .asset-metadata {
 	display: none;
 }
 
-/* ---------- Bookmarks ---------- */
+/* Bookmarks */
 
 .portlet-bookmarks .control-wrapper {
 	text-align: right;
@@ -709,7 +709,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover {
 	padding-right: 16px;
 }
 
-/* ---------- Calendar ---------- */
+/* Calendar */
 
 .portlet-calendar h1.title {
 	border-bottom: none;
@@ -942,15 +942,13 @@ table.calendar {
 	background: #7F80A4;
 }
 
-/* ---------- Dockbar ---------- */
+/* Dockbar */
 
 .user-group .add-content-menu .add-page {
 	display: none;
 }
 
-/* ---------- Document Library ---------- */
-
-/* ---------- Message Boards ---------- */
+/* Message Boards */
 
 .portlet-message-boards {
 	.category-current {
@@ -972,8 +970,8 @@ table.calendar {
 		.votes, .status {
 			display: block;
 			height: auto;
-			padding: 0;
 			margin: 0;
+			padding: 0;
 			width: auto;
 		}
 
@@ -984,19 +982,19 @@ table.calendar {
 	}
 }
 
-/* ---------- Recent Documents ---------- */
+/* Recent Documents */
 
 .portlet-recent-documents {
 	td {
 		font-size: 11px;
 	}
-	
+
 	.portlet-content img {
 		padding: 0 5px 8px 0;
 	}
 }
 
-/* ---------- RSS ---------- */
+/* RSS */
 
 .portlet-rss {
 	.feed-entry-title {
@@ -1012,13 +1010,13 @@ table.calendar {
 	}
 }
 
-/* ---------- Search ---------- */
+/* Search */
 
 .portlet-search .entry-title {
 	font-size: 1em;
 }
 
-/* ---------- SO: Sites ---------- */
+/* SO: Sites */
 
 .so-portlet-sites .site-list-container span {
 	display: block;
@@ -1065,13 +1063,13 @@ table.calendar {
 	}
 }
 
-/* ---------- TMS: Tasks ---------- */
+/* TMS: Tasks */
 
 .tms-portlet-tasks .progress {
 	background-color: #FFD8B2;
 }
 
-/* ---------- Portlet Styling ---------- */
+/* Portlet Styling */
 
 .controls-hidden .delete-tab {
 	display: none;
@@ -1081,7 +1079,7 @@ table.calendar {
 	display: block;
 }
 
-/* ---------- Blogs ---------- */
+/* Blogs */
 
 .portlet-blogs {
 	.portlet-borderless-container .portlet-body {
@@ -1122,7 +1120,7 @@ table.calendar {
 	}
 }
 
-/* ---------- Recent Bloggers ---------- */
+/* Recent Bloggers  */
 
 .portlet-recent-bloggers {
 	.portlet-content {
@@ -1137,7 +1135,7 @@ table.calendar {
 		.results-row td {
 			padding: 5px;
 		}
-		
+
 		.taglib-user-display {
 			padding: 0;
 
@@ -1163,7 +1161,7 @@ table.calendar {
 	}
 }
 
-/* ---------- Contacts Portlet ---------- */
+/*  Contacts Portlet  */
 
 .contacts-portlet {
 	.contacts-profile {
@@ -1191,7 +1189,7 @@ table.calendar {
 	border-bottom-width: 1px;
 }
 
-/* ---------- Microblogs Portlet ---------- */
+/*  Microblogs Portlet  */
 
 .microblogs-portlet {
 	.microblogs-entry-form textarea {
@@ -1217,10 +1215,10 @@ table.calendar {
 	top: -6px;
 
 	.microblogs-entry, .portlet-msg-info {
-		background-color: #FFF;
-		border: 1px solid #C7D0DA;
 		@include border-radius(5px);
 		@include box-shadow(0 3px 2px #DDD);
+		background-color: #FFF;
+		border: 1px solid #C7D0DA;
 		margin: 10px;
 		padding: 8px 10px;
 	}
@@ -1274,7 +1272,7 @@ table.calendar {
 	}
 }
 
-/* ---------- Activities Portlet ---------- */
+/*  Activities Portlet  */
 
 .so-portlet-activities {
 	.portlet-title {
@@ -1304,7 +1302,7 @@ table.calendar {
 		height: 45px;
 		width: 45px;
 	}
-	
+
 	.user-portrait .avatar img {
 		max-width: 45px;
 	}
@@ -1342,7 +1340,7 @@ table.calendar {
 	}
 }
 
-/* ---------- Private Messaging ---------- */
+/*  Private Messaging  */
 
 .private-messaging-portlet {
 	.controls {
@@ -1350,11 +1348,9 @@ table.calendar {
 	}
 }
 
-/* ---------- Tasks Portlet ---------- */
+/*  Tasks Portlet  */
 
 .tasks-portlet {
-	zoom: 1;
-
 	.aui-tabview-list, .control-wrapper, .filter-wrapper, .list-wrapper, .tasks-options {
 		margin: 1em;
 	}
@@ -1364,20 +1360,24 @@ table.calendar {
 	}
 
 	&:after {
-		content: "";
 		clear: both;
+		content: "";
 		display: block;
 	}
 }
 
-/* ---------- Sites Portlet --------- */
-
-.so-portlet-sites-dialog .aui-button-holder {
-	margin: 0 -10px -10px;
-	@include border-radius(0 0 3px 3px);
+.ie .tasks-portlet {
+	zoom: 1;
 }
 
-/* ---------- Documents and Images Library ---------- */
+/*  Sites Portlet */
+
+.so-portlet-sites-dialog .aui-button-holder {
+	@include border-radius(0 0 3px 3px);
+	margin: 0 -10px -10px;
+}
+
+/* Documents and Images Library */
 
 .portlet-document-library {
 	.lfr-app-column-view {
@@ -1387,7 +1387,7 @@ table.calendar {
 	.aui-column-content-first, .aui-column-content-last {
 		padding: 0;
 	}
-	
+
 	.lfr-header-row {
 		background: #EEE;
 		border-bottom: 1px solid #AAA;
