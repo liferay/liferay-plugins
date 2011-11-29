@@ -29,7 +29,7 @@ else if (tabs1.equals("my-meetups")) {
 }
 %>
 
-<c:if test="<%= permissionChecker.isCompanyAdmin(company.getCompanyId()) %>">
+<c:if test="<%= permissionChecker.isCommunityAdmin(group.getGroupId()) || permissionChecker.isCompanyAdmin(company.getCompanyId()) %>">
 
 	<%
 	PortletURL portletURL = renderResponse.createRenderURL();
@@ -118,7 +118,7 @@ for (int i = 0; i < meetupsEntries.size(); i++) {
 
 			<liferay-ui:icon-list>
 
-				<c:if test="<%= permissionChecker.isCompanyAdmin(company.getCompanyId()) %>">
+				<c:if test="<%= permissionChecker.isCommunityAdmin(group.getGroupId()) || permissionChecker.isCompanyAdmin(company.getCompanyId()) %>">
 
 					<%
 					PortletURL editMeetupsEntryURL = renderResponse.createRenderURL();
@@ -145,7 +145,7 @@ for (int i = 0; i < meetupsEntries.size(); i++) {
 					url="<%= viewMeetupsEntryURL.toString() %>"
 				/>
 
-				<c:if test="<%= permissionChecker.isCompanyAdmin(company.getCompanyId()) %>">
+				<c:if test="<%= permissionChecker.isCommunityAdmin(group.getGroupId()) || permissionChecker.isCompanyAdmin(company.getCompanyId()) %>">
 
 					<%
 					PortletURL deleteMeetupsEntryURL = renderResponse.createActionURL();
