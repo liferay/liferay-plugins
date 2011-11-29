@@ -2,10 +2,11 @@
 
 $border-color: #C7D0DA;
 $fixed-width: 980px;
-$navigation-width: 200px;
-$content-width: ($fixed-width - $navigation-width) - 2px;
 $header: #8F0920;
 $link: #2571AD;
+$navigation-width: 200px;
+
+$content-width: ($fixed-width - $navigation-width) - 2px;
 
 /* ---------- Base ---------- */
 
