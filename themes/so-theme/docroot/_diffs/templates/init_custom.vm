@@ -1,0 +1,64 @@
+#*
+This file allows you to override and define new Velocity variables.
+*#
+
+#set ($scopeGroup = $theme_display.getScopeGroup())
+#set ($classPK = $scopeGroup.getClassPK())
+
+#set ($useThemeLogo = ($company.getLogoId() == 0) && !$layout.layoutSet.isLogo())
+
+#set ($logo = "logo")
+
+#if ($useThemeLogo)
+	#set ($logo = "${logo} theme-logo")
+#else
+	#set ($logo = "${logo} company-logo")
+#end
+
+#set ($userProfileURL = $community_default_public_url)
+
+#set ($navClass = "")
+
+#if ($is_signed_in)
+	#set ($navClass = "sort-pages modify-pages")
+#end
+
+#set ($is_current_user_page = $page_group.isUser() && ($page_group.getClassPK() == $user_id))
+
+#set ($is_profile_page = $page_group.isUser() && !$layout.getPrivateLayout())
+
+#set ($is_user_owned = $is_current_user_page || $is_profile_page)
+
+#set ($userLocalService= $serviceLocator.findService("com.liferay.portal.service.UserLocalService"))
+
+#set ($currentUser = $userLocalService.getUserById($classPK))
+
+#set ($profile_portrait_url = $currentUser.getPortraitURL($themeDisplay))
+
+#if ($currentUser.getPortraitId() == 0)
+	#set ($profile_portrait_url = $images_folder + "/custom/user_profile_male_default.png")
+
+	#if ($currentUser.isFemale())
+		#set ($profile_portrait_url = $images_folder + "/custom/user_profile_female_default.png")
+	#end
+#end
+
+#set ($currentUserName = $currentUser.getFullName())
+
+#set ($current_user_profile_url = $theme_display.getURLPortal() + $theme_display.getPathFriendlyURLPublic() + "/" + $currentUser.getScreenName())
+
+#set ($user_detail_class = "so-user-detail")
+
+#if ($page_group.isUser())
+	#set ($css_class = $css_class + " user-group")
+#end
+
+#if ($is_profile_page)
+	#set ($the_title = $currentUserName)
+	#set ($css_class = $css_class + " profile-page")
+	#set ($user_detail_class = "user-profile-detail")
+#end
+
+#if ($is_curent_user_page)
+	#set ($community_name = $languageUtil.get($locale, "my-private-pages"))
+#end
