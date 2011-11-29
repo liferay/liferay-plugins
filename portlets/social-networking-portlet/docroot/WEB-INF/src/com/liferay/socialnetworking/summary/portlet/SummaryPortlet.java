@@ -176,7 +176,7 @@ public class SummaryPortlet extends MVCPortlet {
 			WebKeys.THEME_DISPLAY);
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			Group.class.getName(), actionRequest);
+			actionRequest);
 
 		UserLocalServiceUtil.unsetGroupUsers(
 			themeDisplay.getScopeGroupId(),
