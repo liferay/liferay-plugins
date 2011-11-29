@@ -463,7 +463,12 @@ AUI().add(
 					{
 						autoLoad: false,
 						method: 'POST',
-						uri: themeDisplay.getLayoutURL() + '/-/mail/view_message'
+						uri: themeDisplay.getLayoutURL() + '/-/mail/view_message',
+						after: {
+							success: function() {
+								instance.loadFolders(instance.accountId);
+							}
+						}
 					}
 				);
 
