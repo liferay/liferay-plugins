@@ -16,10 +16,11 @@
 
 <h3>$sidebar_portlet_title</h3>
 
-#set ($VOID = $velocityPortletPreferences.setValue("displayStyle", "0"))
-#set ($VOID = $velocityPortletPreferences.setValue("portletSetupShowBorders", "false"))
+$velocityPortletPreferences.setValue("displayStyle", "0")
+$velocityPortletPreferences.setValue("portletSetupShowBorders", "false")
 
 $theme.runtime($sidebar_portlet, "", $velocityPortletPreferences.toString())
 
 #set ($queryString = "param1=value1&param2=value2")
-#set ($VOID = $velocityPortletPreferences.reset())
+
+$velocityPortletPreferences.reset()
