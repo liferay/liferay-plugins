@@ -194,7 +194,7 @@ public class WebFormUtil {
 	}
 
 	public static boolean validate(
-			String currentFieldValue, Map<String,String> fieldsMap,
+			String currentFieldValue, Map<String, String> fieldsMap,
 			String validationScript)
 		throws Exception {
 

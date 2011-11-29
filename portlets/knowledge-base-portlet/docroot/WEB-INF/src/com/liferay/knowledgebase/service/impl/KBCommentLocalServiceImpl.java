@@ -77,7 +77,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void deleteKBComment (KBComment kbComment)
+	public void deleteKBComment(KBComment kbComment)
 		throws PortalException, SystemException {
 
 		// KB comment
@@ -93,7 +93,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void deleteKBComment (long kbCommentId)
+	public void deleteKBComment(long kbCommentId)
 		throws PortalException, SystemException {
 
 		KBComment kbComment = kbCommentPersistence.findByPrimaryKey(
@@ -102,7 +102,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		deleteKBComment(kbComment);
 	}
 
-	public void deleteKBComments (String className, long classPK)
+	public void deleteKBComments(String className, long classPK)
 		throws PortalException, SystemException {
 
 		long classNameId = PortalUtil.getClassNameId(className);

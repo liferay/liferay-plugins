@@ -75,7 +75,7 @@ public class LiferayMediaItemService implements MediaItemService {
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(e,e);
+				_log.debug(e, e);
 			}
 
 			throw new ProtocolException(
@@ -212,7 +212,7 @@ public class LiferayMediaItemService implements MediaItemService {
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(e,e);
+				_log.debug(e, e);
 			}
 
 			throw new ProtocolException(
