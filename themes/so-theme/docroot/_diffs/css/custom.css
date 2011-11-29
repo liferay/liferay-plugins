@@ -380,7 +380,7 @@ a:hover {
 	padding-right: 25px;
 }
 
-input[type=text], textarea, input[type=password], .aui-field-select, .microblogs-portlet .autocomplete {
+input[type=text], textarea, input[type=password], .aui-field-select, .microblogs-portlet .autocomplete, .aui-textboxlistentry-holder {
 	background: #FFF;
 	border: 1px solid $border-color;
 	@include border-radius(5px);
@@ -421,12 +421,7 @@ input[type=text], textarea, input[type=password], .aui-field-select, .microblogs
 	vertical-align: top;
 }
 
-.microblogs-portlet .autocomplete input[type=text] {
-	@include border-radius(0);
-	@include box-shadow(none);
-}
-
-input[type=submit], input[type=button], input[type=reset], button, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .aui-panel-hd, .aui-dialog-hd, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .aui-button-input, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox {
+input[type=submit], input[type=button], input[type=reset], button, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .aui-panel-hd, .aui-dialog-hd, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .aui-button-input, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .results-header th {
 	background: #E9E8E8;
 	border-color: #CECECE;
 	@include border-radius(3px);
@@ -434,7 +429,13 @@ input[type=submit], input[type=button], input[type=reset], button, .aui-state-de
 	text-shadow: none;
 }
 
-.aui-tab-content {
+.microblogs-portlet .autocomplete input[type=text], .aui-panel-hd button, .aui-panel-hd .aui-button, .aui-panel-hd .aui-state-default, .aui-textboxlistentry-holder .aui-field-input-text {
+	border-color: transparent;
+	@include border-radius(0);
+	@include box-shadow(none);
+}
+
+.aui-tab-content, .aui-toolbar-item {
 	@include border-radius(0);
 }
 
@@ -1090,8 +1091,8 @@ table.calendar {
 	.search-form {
 		background: #F4F4F4;
 		float: none;
-		padding: 5px;
 		margin: -10px -10px 10px -9px;
+		padding: 5px;
 
 		.aui-search-bar {
 			float: right;
@@ -1241,9 +1242,9 @@ table.calendar {
 		border-color: transparent transparent #C7D0DA;
 		content: "";
 		display: block;
-		position: absolute;
 		left: 30px;
 		margin: 0;
+		position: absolute;
 		top: -16px;
 	}
 
@@ -1290,8 +1291,8 @@ table.calendar {
 
 	.activity-item {
 		border-bottom: 1px solid #E7E7E7;
-		padding: 1em;
 		margin: 0;
+		padding: 1em;
 	}
 
 	.user-portrait .icon {
@@ -1352,14 +1353,20 @@ table.calendar {
 /* ---------- Tasks Portlet ---------- */
 
 .tasks-portlet {
-	.tasks-options {
-		zoom: 1;
+	zoom: 1;
 
-		&:after {
-			content: "";
-			clear: both;
-			display: block;
-		}
+	.aui-tabview-list, .control-wrapper, .filter-wrapper, .list-wrapper, .tasks-options {
+		margin: 1em;
+	}
+
+	.filter-wrapper {
+		margin-top: -0.5em;
+	}
+
+	&:after {
+		content: "";
+		clear: both;
+		display: block;
 	}
 }
 

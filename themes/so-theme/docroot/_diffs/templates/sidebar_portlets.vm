@@ -3,27 +3,25 @@
 #set ($sidebarPortletTitle = "")
 
 #if ($is_user_owned)
-	#set ($instanceId = 'SIPO')
+	#set ($instanceId = 's1po')
 	#set ($sidebarPortlet = "5_WAR_soportlet")
-	#set ($sidebarPortletTitle = $currentUser.getFirstName() + "'s Sites")
+	#set ($sidebarPortletTitle = $languageUtil.get($locale, "javax.portlet.title.134"))
 #end
 
 #if ($is_profile_page)
-	#set ($instanceId = 'CONT')
+	#set ($instanceId = 'cona')
 	#set ($sidebarPortlet = "3_WAR_contactsportlet")
-	#set ($sidebarPortletTitle = $currentUser.getFirstName() + "'s Contacts")
+	#set ($sidebarPortletTitle = $languageUtil.format($locale, "x's-contacts", $currentUser.getFirstName()))
 #end
 
-<hr/>
+<hr />
 
 <h3>$sidebarPortletTitle</h3>
 
 #set ($VOID = $velocityPortletPreferences.setValue('displayStyle', '0'))
-
 #set ($VOID = $velocityPortletPreferences.setValue('portletSetupShowBorders', 'false'))
 
 $theme.runtime($sidebarPortlet, '', $velocityPortletPreferences.toString())
 
 #set ($queryString = "param1=value1&param2=value2")
-
 #set ($VOID = $velocityPortletPreferences.reset())

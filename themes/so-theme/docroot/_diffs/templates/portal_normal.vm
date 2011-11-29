@@ -10,7 +10,6 @@
 	$theme.include($top_head_include)
 </head>
 
-
 <body class="$css_class">
 
 $theme.include($body_top_include)
@@ -53,18 +52,19 @@ $theme.include($body_top_include)
 			<a href="$sign_in_url" id="sign-in" rel="nofollow">$sign_in_text</a>
 		#end
 	</header>
+
 	<div id="content">
 		<div id="so-sidebar">
 			#if ($is_user_owned)
-			<div class="$user_detail_class">
-				<div class="profile-image">
-					<a href="$current_user_profile_url"><img src="$profile_portrait_url" alt="$currentUserName"></a>
-				</div>
+				<div class="$user_detail_class">
+					<div class="profile-image">
+						<a href="$current_user_profile_url"><img src="$profile_portrait_url" alt="$currentUserName"></a>
+					</div>
 
-				#if (!$is_profile_page)
-					<a href="$current_user_profile_url" class="profile-name">$currentUserName</a>
-				#end
-			</div>
+					#if (!$is_profile_page)
+						<a href="$current_user_profile_url" class="profile-name">$currentUserName</a>
+					#end
+				</div>
 			#end
 
 			#if ($has_navigation)
