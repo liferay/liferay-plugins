@@ -329,6 +329,19 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	/**
 	 * Removes the entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param entryId the primary key of the entry
+	 * @return the entry that was removed
+	 * @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Entry remove(long entryId)
+		throws NoSuchEntryException, SystemException {
+		return remove(Long.valueOf(entryId));
+	}
+
+	/**
+	 * Removes the entry with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the entry
 	 * @return the entry that was removed
 	 * @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
@@ -364,19 +377,6 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the entry with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param entryId the primary key of the entry
-	 * @return the entry that was removed
-	 * @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Entry remove(long entryId)
-		throws NoSuchEntryException, SystemException {
-		return remove(Long.valueOf(entryId));
 	}
 
 	@Override

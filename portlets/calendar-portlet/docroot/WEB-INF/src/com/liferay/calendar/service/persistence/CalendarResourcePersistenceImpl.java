@@ -367,6 +367,19 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	/**
 	 * Removes the calendar resource with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param calendarResourceId the primary key of the calendar resource
+	 * @return the calendar resource that was removed
+	 * @throws com.liferay.calendar.NoSuchResourceException if a calendar resource with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public CalendarResource remove(long calendarResourceId)
+		throws NoSuchResourceException, SystemException {
+		return remove(Long.valueOf(calendarResourceId));
+	}
+
+	/**
+	 * Removes the calendar resource with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the calendar resource
 	 * @return the calendar resource that was removed
 	 * @throws com.liferay.calendar.NoSuchResourceException if a calendar resource with the primary key could not be found
@@ -403,19 +416,6 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the calendar resource with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param calendarResourceId the primary key of the calendar resource
-	 * @return the calendar resource that was removed
-	 * @throws com.liferay.calendar.NoSuchResourceException if a calendar resource with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public CalendarResource remove(long calendarResourceId)
-		throws NoSuchResourceException, SystemException {
-		return remove(Long.valueOf(calendarResourceId));
 	}
 
 	@Override

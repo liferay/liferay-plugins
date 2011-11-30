@@ -267,6 +267,19 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	/**
 	 * Removes the w s r p consumer portlet with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param wsrpConsumerPortletId the primary key of the w s r p consumer portlet
+	 * @return the w s r p consumer portlet that was removed
+	 * @throws com.liferay.wsrp.NoSuchConsumerPortletException if a w s r p consumer portlet with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public WSRPConsumerPortlet remove(long wsrpConsumerPortletId)
+		throws NoSuchConsumerPortletException, SystemException {
+		return remove(Long.valueOf(wsrpConsumerPortletId));
+	}
+
+	/**
+	 * Removes the w s r p consumer portlet with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the w s r p consumer portlet
 	 * @return the w s r p consumer portlet that was removed
 	 * @throws com.liferay.wsrp.NoSuchConsumerPortletException if a w s r p consumer portlet with the primary key could not be found
@@ -303,19 +316,6 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the w s r p consumer portlet with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param wsrpConsumerPortletId the primary key of the w s r p consumer portlet
-	 * @return the w s r p consumer portlet that was removed
-	 * @throws com.liferay.wsrp.NoSuchConsumerPortletException if a w s r p consumer portlet with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public WSRPConsumerPortlet remove(long wsrpConsumerPortletId)
-		throws NoSuchConsumerPortletException, SystemException {
-		return remove(Long.valueOf(wsrpConsumerPortletId));
 	}
 
 	@Override

@@ -230,6 +230,19 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	/**
 	 * Removes the j i r a change group with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param jiraChangeGroupId the primary key of the j i r a change group
+	 * @return the j i r a change group that was removed
+	 * @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a j i r a change group with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAChangeGroup remove(long jiraChangeGroupId)
+		throws NoSuchJIRAChangeGroupException, SystemException {
+		return remove(Long.valueOf(jiraChangeGroupId));
+	}
+
+	/**
+	 * Removes the j i r a change group with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the j i r a change group
 	 * @return the j i r a change group that was removed
 	 * @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a j i r a change group with the primary key could not be found
@@ -266,19 +279,6 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the j i r a change group with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param jiraChangeGroupId the primary key of the j i r a change group
-	 * @return the j i r a change group that was removed
-	 * @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a j i r a change group with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public JIRAChangeGroup remove(long jiraChangeGroupId)
-		throws NoSuchJIRAChangeGroupException, SystemException {
-		return remove(Long.valueOf(jiraChangeGroupId));
 	}
 
 	@Override

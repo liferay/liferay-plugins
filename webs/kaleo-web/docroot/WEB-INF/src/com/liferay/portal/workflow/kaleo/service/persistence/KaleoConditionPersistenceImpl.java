@@ -250,6 +250,19 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	/**
 	 * Removes the kaleo condition with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param kaleoConditionId the primary key of the kaleo condition
+	 * @return the kaleo condition that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchConditionException if a kaleo condition with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoCondition remove(long kaleoConditionId)
+		throws NoSuchConditionException, SystemException {
+		return remove(Long.valueOf(kaleoConditionId));
+	}
+
+	/**
+	 * Removes the kaleo condition with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the kaleo condition
 	 * @return the kaleo condition that was removed
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchConditionException if a kaleo condition with the primary key could not be found
@@ -286,19 +299,6 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the kaleo condition with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoConditionId the primary key of the kaleo condition
-	 * @return the kaleo condition that was removed
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchConditionException if a kaleo condition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoCondition remove(long kaleoConditionId)
-		throws NoSuchConditionException, SystemException {
-		return remove(Long.valueOf(kaleoConditionId));
 	}
 
 	@Override

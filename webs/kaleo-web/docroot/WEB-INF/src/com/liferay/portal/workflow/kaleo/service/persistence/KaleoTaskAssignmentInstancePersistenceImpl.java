@@ -287,6 +287,20 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	/**
 	 * Removes the kaleo task assignment instance with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param kaleoTaskAssignmentInstanceId the primary key of the kaleo task assignment instance
+	 * @return the kaleo task assignment instance that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException if a kaleo task assignment instance with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTaskAssignmentInstance remove(
+		long kaleoTaskAssignmentInstanceId)
+		throws NoSuchTaskAssignmentInstanceException, SystemException {
+		return remove(Long.valueOf(kaleoTaskAssignmentInstanceId));
+	}
+
+	/**
+	 * Removes the kaleo task assignment instance with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the kaleo task assignment instance
 	 * @return the kaleo task assignment instance that was removed
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException if a kaleo task assignment instance with the primary key could not be found
@@ -323,20 +337,6 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the kaleo task assignment instance with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoTaskAssignmentInstanceId the primary key of the kaleo task assignment instance
-	 * @return the kaleo task assignment instance that was removed
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException if a kaleo task assignment instance with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTaskAssignmentInstance remove(
-		long kaleoTaskAssignmentInstanceId)
-		throws NoSuchTaskAssignmentInstanceException, SystemException {
-		return remove(Long.valueOf(kaleoTaskAssignmentInstanceId));
 	}
 
 	@Override

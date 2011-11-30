@@ -246,6 +246,18 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	/**
 	 * Removes the app with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param appId the primary key of the app
+	 * @return the app that was removed
+	 * @throws com.liferay.marketplace.NoSuchAppException if a app with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public App remove(long appId) throws NoSuchAppException, SystemException {
+		return remove(Long.valueOf(appId));
+	}
+
+	/**
+	 * Removes the app with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the app
 	 * @return the app that was removed
 	 * @throws com.liferay.marketplace.NoSuchAppException if a app with the primary key could not be found
@@ -281,18 +293,6 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the app with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param appId the primary key of the app
-	 * @return the app that was removed
-	 * @throws com.liferay.marketplace.NoSuchAppException if a app with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public App remove(long appId) throws NoSuchAppException, SystemException {
-		return remove(Long.valueOf(appId));
 	}
 
 	@Override

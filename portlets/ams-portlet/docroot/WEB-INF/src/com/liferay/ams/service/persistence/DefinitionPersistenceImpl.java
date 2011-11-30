@@ -180,6 +180,19 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	/**
 	 * Removes the definition with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param definitionId the primary key of the definition
+	 * @return the definition that was removed
+	 * @throws com.liferay.ams.NoSuchDefinitionException if a definition with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Definition remove(long definitionId)
+		throws NoSuchDefinitionException, SystemException {
+		return remove(Long.valueOf(definitionId));
+	}
+
+	/**
+	 * Removes the definition with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the definition
 	 * @return the definition that was removed
 	 * @throws com.liferay.ams.NoSuchDefinitionException if a definition with the primary key could not be found
@@ -216,19 +229,6 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the definition with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param definitionId the primary key of the definition
-	 * @return the definition that was removed
-	 * @throws com.liferay.ams.NoSuchDefinitionException if a definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Definition remove(long definitionId)
-		throws NoSuchDefinitionException, SystemException {
-		return remove(Long.valueOf(definitionId));
 	}
 
 	@Override

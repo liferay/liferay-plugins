@@ -264,6 +264,19 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	/**
 	 * Removes the kaleo notification with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param kaleoNotificationId the primary key of the kaleo notification
+	 * @return the kaleo notification that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationException if a kaleo notification with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoNotification remove(long kaleoNotificationId)
+		throws NoSuchNotificationException, SystemException {
+		return remove(Long.valueOf(kaleoNotificationId));
+	}
+
+	/**
+	 * Removes the kaleo notification with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the kaleo notification
 	 * @return the kaleo notification that was removed
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationException if a kaleo notification with the primary key could not be found
@@ -300,19 +313,6 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the kaleo notification with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoNotificationId the primary key of the kaleo notification
-	 * @return the kaleo notification that was removed
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationException if a kaleo notification with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoNotification remove(long kaleoNotificationId)
-		throws NoSuchNotificationException, SystemException {
-		return remove(Long.valueOf(kaleoNotificationId));
 	}
 
 	@Override

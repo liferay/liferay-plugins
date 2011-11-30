@@ -207,6 +207,19 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	/**
 	 * Removes the j i r a change item with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param jiraChangeItemId the primary key of the j i r a change item
+	 * @return the j i r a change item that was removed
+	 * @throws com.liferay.socialcoding.NoSuchJIRAChangeItemException if a j i r a change item with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAChangeItem remove(long jiraChangeItemId)
+		throws NoSuchJIRAChangeItemException, SystemException {
+		return remove(Long.valueOf(jiraChangeItemId));
+	}
+
+	/**
+	 * Removes the j i r a change item with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the j i r a change item
 	 * @return the j i r a change item that was removed
 	 * @throws com.liferay.socialcoding.NoSuchJIRAChangeItemException if a j i r a change item with the primary key could not be found
@@ -243,19 +256,6 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the j i r a change item with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param jiraChangeItemId the primary key of the j i r a change item
-	 * @return the j i r a change item that was removed
-	 * @throws com.liferay.socialcoding.NoSuchJIRAChangeItemException if a j i r a change item with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public JIRAChangeItem remove(long jiraChangeItemId)
-		throws NoSuchJIRAChangeItemException, SystemException {
-		return remove(Long.valueOf(jiraChangeItemId));
 	}
 
 	@Override

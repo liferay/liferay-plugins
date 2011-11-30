@@ -254,6 +254,19 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	/**
 	 * Removes the w s r p producer with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param wsrpProducerId the primary key of the w s r p producer
+	 * @return the w s r p producer that was removed
+	 * @throws com.liferay.wsrp.NoSuchProducerException if a w s r p producer with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public WSRPProducer remove(long wsrpProducerId)
+		throws NoSuchProducerException, SystemException {
+		return remove(Long.valueOf(wsrpProducerId));
+	}
+
+	/**
+	 * Removes the w s r p producer with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the w s r p producer
 	 * @return the w s r p producer that was removed
 	 * @throws com.liferay.wsrp.NoSuchProducerException if a w s r p producer with the primary key could not be found
@@ -290,19 +303,6 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the w s r p producer with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param wsrpProducerId the primary key of the w s r p producer
-	 * @return the w s r p producer that was removed
-	 * @throws com.liferay.wsrp.NoSuchProducerException if a w s r p producer with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public WSRPProducer remove(long wsrpProducerId)
-		throws NoSuchProducerException, SystemException {
-		return remove(Long.valueOf(wsrpProducerId));
 	}
 
 	@Override

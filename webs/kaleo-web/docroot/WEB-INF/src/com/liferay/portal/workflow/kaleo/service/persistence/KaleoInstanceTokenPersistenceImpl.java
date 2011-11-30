@@ -303,6 +303,19 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	/**
 	 * Removes the kaleo instance token with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param kaleoInstanceTokenId the primary key of the kaleo instance token
+	 * @return the kaleo instance token that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceTokenException if a kaleo instance token with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoInstanceToken remove(long kaleoInstanceTokenId)
+		throws NoSuchInstanceTokenException, SystemException {
+		return remove(Long.valueOf(kaleoInstanceTokenId));
+	}
+
+	/**
+	 * Removes the kaleo instance token with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the kaleo instance token
 	 * @return the kaleo instance token that was removed
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceTokenException if a kaleo instance token with the primary key could not be found
@@ -339,19 +352,6 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the kaleo instance token with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoInstanceTokenId the primary key of the kaleo instance token
-	 * @return the kaleo instance token that was removed
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceTokenException if a kaleo instance token with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoInstanceToken remove(long kaleoInstanceTokenId)
-		throws NoSuchInstanceTokenException, SystemException {
-		return remove(Long.valueOf(kaleoInstanceTokenId));
 	}
 
 	@Override

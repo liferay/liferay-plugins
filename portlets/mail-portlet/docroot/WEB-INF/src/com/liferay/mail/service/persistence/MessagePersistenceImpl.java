@@ -249,6 +249,19 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	/**
 	 * Removes the message with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param messageId the primary key of the message
+	 * @return the message that was removed
+	 * @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Message remove(long messageId)
+		throws NoSuchMessageException, SystemException {
+		return remove(Long.valueOf(messageId));
+	}
+
+	/**
+	 * Removes the message with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the message
 	 * @return the message that was removed
 	 * @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
@@ -284,19 +297,6 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the message with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param messageId the primary key of the message
-	 * @return the message that was removed
-	 * @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Message remove(long messageId)
-		throws NoSuchMessageException, SystemException {
-		return remove(Long.valueOf(messageId));
 	}
 
 	@Override

@@ -306,6 +306,19 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	/**
 	 * Removes the calendar booking with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param calendarBookingId the primary key of the calendar booking
+	 * @return the calendar booking that was removed
+	 * @throws com.liferay.calendar.NoSuchBookingException if a calendar booking with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public CalendarBooking remove(long calendarBookingId)
+		throws NoSuchBookingException, SystemException {
+		return remove(Long.valueOf(calendarBookingId));
+	}
+
+	/**
+	 * Removes the calendar booking with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the calendar booking
 	 * @return the calendar booking that was removed
 	 * @throws com.liferay.calendar.NoSuchBookingException if a calendar booking with the primary key could not be found
@@ -342,19 +355,6 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the calendar booking with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param calendarBookingId the primary key of the calendar booking
-	 * @return the calendar booking that was removed
-	 * @throws com.liferay.calendar.NoSuchBookingException if a calendar booking with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public CalendarBooking remove(long calendarBookingId)
-		throws NoSuchBookingException, SystemException {
-		return remove(Long.valueOf(calendarBookingId));
 	}
 
 	@Override

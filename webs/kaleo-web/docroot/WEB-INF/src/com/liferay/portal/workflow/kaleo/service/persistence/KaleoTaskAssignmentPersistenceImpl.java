@@ -284,6 +284,19 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	/**
 	 * Removes the kaleo task assignment with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param kaleoTaskAssignmentId the primary key of the kaleo task assignment
+	 * @return the kaleo task assignment that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentException if a kaleo task assignment with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTaskAssignment remove(long kaleoTaskAssignmentId)
+		throws NoSuchTaskAssignmentException, SystemException {
+		return remove(Long.valueOf(kaleoTaskAssignmentId));
+	}
+
+	/**
+	 * Removes the kaleo task assignment with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the kaleo task assignment
 	 * @return the kaleo task assignment that was removed
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentException if a kaleo task assignment with the primary key could not be found
@@ -320,19 +333,6 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the kaleo task assignment with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoTaskAssignmentId the primary key of the kaleo task assignment
-	 * @return the kaleo task assignment that was removed
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentException if a kaleo task assignment with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTaskAssignment remove(long kaleoTaskAssignmentId)
-		throws NoSuchTaskAssignmentException, SystemException {
-		return remove(Long.valueOf(kaleoTaskAssignmentId));
 	}
 
 	@Override

@@ -180,6 +180,19 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	/**
 	 * Removes the checkout with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param checkoutId the primary key of the checkout
+	 * @return the checkout that was removed
+	 * @throws com.liferay.ams.NoSuchCheckoutException if a checkout with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Checkout remove(long checkoutId)
+		throws NoSuchCheckoutException, SystemException {
+		return remove(Long.valueOf(checkoutId));
+	}
+
+	/**
+	 * Removes the checkout with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the checkout
 	 * @return the checkout that was removed
 	 * @throws com.liferay.ams.NoSuchCheckoutException if a checkout with the primary key could not be found
@@ -216,19 +229,6 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the checkout with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param checkoutId the primary key of the checkout
-	 * @return the checkout that was removed
-	 * @throws com.liferay.ams.NoSuchCheckoutException if a checkout with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Checkout remove(long checkoutId)
-		throws NoSuchCheckoutException, SystemException {
-		return remove(Long.valueOf(checkoutId));
 	}
 
 	@Override

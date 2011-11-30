@@ -782,6 +782,19 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Removes the k b article with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param kbArticleId the primary key of the k b article
+	 * @return the k b article that was removed
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle remove(long kbArticleId)
+		throws NoSuchArticleException, SystemException {
+		return remove(Long.valueOf(kbArticleId));
+	}
+
+	/**
+	 * Removes the k b article with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the k b article
 	 * @return the k b article that was removed
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
@@ -818,19 +831,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the k b article with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kbArticleId the primary key of the k b article
-	 * @return the k b article that was removed
-	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KBArticle remove(long kbArticleId)
-		throws NoSuchArticleException, SystemException {
-		return remove(Long.valueOf(kbArticleId));
 	}
 
 	@Override

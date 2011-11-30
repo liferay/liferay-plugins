@@ -288,6 +288,19 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 	/**
 	 * Removes the kaleo task instance token with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param kaleoTaskInstanceTokenId the primary key of the kaleo task instance token
+	 * @return the kaleo task instance token that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a kaleo task instance token with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTaskInstanceToken remove(long kaleoTaskInstanceTokenId)
+		throws NoSuchTaskInstanceTokenException, SystemException {
+		return remove(Long.valueOf(kaleoTaskInstanceTokenId));
+	}
+
+	/**
+	 * Removes the kaleo task instance token with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the kaleo task instance token
 	 * @return the kaleo task instance token that was removed
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a kaleo task instance token with the primary key could not be found
@@ -324,19 +337,6 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the kaleo task instance token with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoTaskInstanceTokenId the primary key of the kaleo task instance token
-	 * @return the kaleo task instance token that was removed
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a kaleo task instance token with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTaskInstanceToken remove(long kaleoTaskInstanceTokenId)
-		throws NoSuchTaskInstanceTokenException, SystemException {
-		return remove(Long.valueOf(kaleoTaskInstanceTokenId));
 	}
 
 	@Override

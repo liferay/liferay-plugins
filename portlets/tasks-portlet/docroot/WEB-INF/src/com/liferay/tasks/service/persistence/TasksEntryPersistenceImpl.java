@@ -319,6 +319,19 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	/**
 	 * Removes the tasks entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param tasksEntryId the primary key of the tasks entry
+	 * @return the tasks entry that was removed
+	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public TasksEntry remove(long tasksEntryId)
+		throws NoSuchTasksEntryException, SystemException {
+		return remove(Long.valueOf(tasksEntryId));
+	}
+
+	/**
+	 * Removes the tasks entry with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the tasks entry
 	 * @return the tasks entry that was removed
 	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
@@ -355,19 +368,6 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the tasks entry with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param tasksEntryId the primary key of the tasks entry
-	 * @return the tasks entry that was removed
-	 * @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public TasksEntry remove(long tasksEntryId)
-		throws NoSuchTasksEntryException, SystemException {
-		return remove(Long.valueOf(tasksEntryId));
 	}
 
 	@Override

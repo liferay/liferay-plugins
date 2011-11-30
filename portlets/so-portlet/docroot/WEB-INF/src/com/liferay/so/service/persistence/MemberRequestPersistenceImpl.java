@@ -282,6 +282,19 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	/**
 	 * Removes the member request with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param memberRequestId the primary key of the member request
+	 * @return the member request that was removed
+	 * @throws com.liferay.so.NoSuchMemberRequestException if a member request with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MemberRequest remove(long memberRequestId)
+		throws NoSuchMemberRequestException, SystemException {
+		return remove(Long.valueOf(memberRequestId));
+	}
+
+	/**
+	 * Removes the member request with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the member request
 	 * @return the member request that was removed
 	 * @throws com.liferay.so.NoSuchMemberRequestException if a member request with the primary key could not be found
@@ -318,19 +331,6 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the member request with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param memberRequestId the primary key of the member request
-	 * @return the member request that was removed
-	 * @throws com.liferay.so.NoSuchMemberRequestException if a member request with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public MemberRequest remove(long memberRequestId)
-		throws NoSuchMemberRequestException, SystemException {
-		return remove(Long.valueOf(memberRequestId));
 	}
 
 	@Override

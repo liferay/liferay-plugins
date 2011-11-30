@@ -261,6 +261,19 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	/**
 	 * Removes the status with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param statusId the primary key of the status
+	 * @return the status that was removed
+	 * @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Status remove(long statusId)
+		throws NoSuchStatusException, SystemException {
+		return remove(Long.valueOf(statusId));
+	}
+
+	/**
+	 * Removes the status with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the status
 	 * @return the status that was removed
 	 * @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
@@ -296,19 +309,6 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the status with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param statusId the primary key of the status
-	 * @return the status that was removed
-	 * @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Status remove(long statusId)
-		throws NoSuchStatusException, SystemException {
-		return remove(Long.valueOf(statusId));
 	}
 
 	@Override

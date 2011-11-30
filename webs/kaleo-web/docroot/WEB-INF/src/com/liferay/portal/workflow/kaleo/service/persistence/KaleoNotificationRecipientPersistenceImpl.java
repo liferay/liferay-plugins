@@ -262,6 +262,19 @@ public class KaleoNotificationRecipientPersistenceImpl
 	/**
 	 * Removes the kaleo notification recipient with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param kaleoNotificationRecipientId the primary key of the kaleo notification recipient
+	 * @return the kaleo notification recipient that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a kaleo notification recipient with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoNotificationRecipient remove(long kaleoNotificationRecipientId)
+		throws NoSuchNotificationRecipientException, SystemException {
+		return remove(Long.valueOf(kaleoNotificationRecipientId));
+	}
+
+	/**
+	 * Removes the kaleo notification recipient with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the kaleo notification recipient
 	 * @return the kaleo notification recipient that was removed
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a kaleo notification recipient with the primary key could not be found
@@ -298,19 +311,6 @@ public class KaleoNotificationRecipientPersistenceImpl
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the kaleo notification recipient with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoNotificationRecipientId the primary key of the kaleo notification recipient
-	 * @return the kaleo notification recipient that was removed
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a kaleo notification recipient with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoNotificationRecipient remove(long kaleoNotificationRecipientId)
-		throws NoSuchNotificationRecipientException, SystemException {
-		return remove(Long.valueOf(kaleoNotificationRecipientId));
 	}
 
 	@Override

@@ -321,6 +321,19 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	/**
 	 * Removes the k b comment with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param kbCommentId the primary key of the k b comment
+	 * @return the k b comment that was removed
+	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a k b comment with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBComment remove(long kbCommentId)
+		throws NoSuchCommentException, SystemException {
+		return remove(Long.valueOf(kbCommentId));
+	}
+
+	/**
+	 * Removes the k b comment with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the k b comment
 	 * @return the k b comment that was removed
 	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a k b comment with the primary key could not be found
@@ -357,19 +370,6 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the k b comment with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kbCommentId the primary key of the k b comment
-	 * @return the k b comment that was removed
-	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a k b comment with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KBComment remove(long kbCommentId)
-		throws NoSuchCommentException, SystemException {
-		return remove(Long.valueOf(kbCommentId));
 	}
 
 	@Override

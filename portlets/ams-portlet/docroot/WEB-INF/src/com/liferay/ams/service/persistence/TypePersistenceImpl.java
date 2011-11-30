@@ -179,6 +179,18 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	/**
 	 * Removes the type with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param typeId the primary key of the type
+	 * @return the type that was removed
+	 * @throws com.liferay.ams.NoSuchTypeException if a type with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Type remove(long typeId) throws NoSuchTypeException, SystemException {
+		return remove(Long.valueOf(typeId));
+	}
+
+	/**
+	 * Removes the type with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the type
 	 * @return the type that was removed
 	 * @throws com.liferay.ams.NoSuchTypeException if a type with the primary key could not be found
@@ -214,18 +226,6 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the type with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param typeId the primary key of the type
-	 * @return the type that was removed
-	 * @throws com.liferay.ams.NoSuchTypeException if a type with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Type remove(long typeId) throws NoSuchTypeException, SystemException {
-		return remove(Long.valueOf(typeId));
 	}
 
 	@Override
