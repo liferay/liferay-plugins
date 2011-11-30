@@ -136,7 +136,7 @@ public class DeploymentHelperContextListener implements ServletContextListener {
 			int value = -1;
 
 			while ((value = inputStream.read(bytes)) != -1) {
-				outputStream.write(bytes, 0 , value);
+				outputStream.write(bytes, 0, value);
 			}
 		}
 		finally {

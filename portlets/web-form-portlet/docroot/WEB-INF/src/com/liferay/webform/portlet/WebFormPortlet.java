@@ -130,7 +130,7 @@ public class WebFormPortlet extends MVCPortlet {
 			}
 		}
 
-		Map<String,String> fieldsMap = new LinkedHashMap<String,String>();
+		Map<String, String> fieldsMap = new LinkedHashMap<String, String>();
 
 		for (int i = 1; true; i++) {
 			String fieldLabel = preferences.getValue(
@@ -303,7 +303,7 @@ public class WebFormPortlet extends MVCPortlet {
 			resourceRequest, resourceResponse, fileName, bytes, contentType);
 	}
 
-	protected String getMailBody(Map<String,String> fieldsMap) {
+	protected String getMailBody(Map<String, String> fieldsMap) {
 		StringBuilder sb = new StringBuilder();
 
 		for (String fieldLabel : fieldsMap.keySet()) {
@@ -319,7 +319,7 @@ public class WebFormPortlet extends MVCPortlet {
 	}
 
 	protected boolean saveDatabase(
-			long companyId, Map<String,String> fieldsMap,
+			long companyId, Map<String, String> fieldsMap,
 			PortletPreferences preferences, String databaseTableName)
 		throws Exception {
 
@@ -347,7 +347,7 @@ public class WebFormPortlet extends MVCPortlet {
 		}
 	}
 
-	protected boolean saveFile(Map<String,String> fieldsMap, String fileName) {
+	protected boolean saveFile(Map<String, String> fieldsMap, String fileName) {
 
 		// Save the file as a standard Excel CSV format. Use ; as a delimiter,
 		// quote each entry with double quotes, and escape double quotes in
@@ -378,7 +378,7 @@ public class WebFormPortlet extends MVCPortlet {
 	}
 
 	protected boolean sendEmail(
-		long companyId, Map<String,String> fieldsMap,
+		long companyId, Map<String, String> fieldsMap,
 		PortletPreferences preferences) {
 
 		try {
@@ -426,7 +426,7 @@ public class WebFormPortlet extends MVCPortlet {
 	}
 
 	protected Set<String> validate(
-			Map<String,String> fieldsMap, PortletPreferences preferences)
+			Map<String, String> fieldsMap, PortletPreferences preferences)
 		throws Exception {
 
 		Set<String> validationErrors = new HashSet<String>();
