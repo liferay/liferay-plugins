@@ -232,6 +232,19 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	/**
 	 * Removes the folder with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param folderId the primary key of the folder
+	 * @return the folder that was removed
+	 * @throws com.liferay.mail.NoSuchFolderException if a folder with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Folder remove(long folderId)
+		throws NoSuchFolderException, SystemException {
+		return remove(Long.valueOf(folderId));
+	}
+
+	/**
+	 * Removes the folder with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the folder
 	 * @return the folder that was removed
 	 * @throws com.liferay.mail.NoSuchFolderException if a folder with the primary key could not be found
@@ -267,19 +280,6 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the folder with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param folderId the primary key of the folder
-	 * @return the folder that was removed
-	 * @throws com.liferay.mail.NoSuchFolderException if a folder with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Folder remove(long folderId)
-		throws NoSuchFolderException, SystemException {
-		return remove(Long.valueOf(folderId));
 	}
 
 	@Override

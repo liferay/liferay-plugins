@@ -221,6 +221,19 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	/**
 	 * Removes the meetups entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param meetupsEntryId the primary key of the meetups entry
+	 * @return the meetups entry that was removed
+	 * @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a meetups entry with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MeetupsEntry remove(long meetupsEntryId)
+		throws NoSuchMeetupsEntryException, SystemException {
+		return remove(Long.valueOf(meetupsEntryId));
+	}
+
+	/**
+	 * Removes the meetups entry with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the meetups entry
 	 * @return the meetups entry that was removed
 	 * @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a meetups entry with the primary key could not be found
@@ -257,19 +270,6 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the meetups entry with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param meetupsEntryId the primary key of the meetups entry
-	 * @return the meetups entry that was removed
-	 * @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a meetups entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public MeetupsEntry remove(long meetupsEntryId)
-		throws NoSuchMeetupsEntryException, SystemException {
-		return remove(Long.valueOf(meetupsEntryId));
 	}
 
 	@Override

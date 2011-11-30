@@ -316,6 +316,19 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	/**
 	 * Removes the kaleo log with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param kaleoLogId the primary key of the kaleo log
+	 * @return the kaleo log that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a kaleo log with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoLog remove(long kaleoLogId)
+		throws NoSuchLogException, SystemException {
+		return remove(Long.valueOf(kaleoLogId));
+	}
+
+	/**
+	 * Removes the kaleo log with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the kaleo log
 	 * @return the kaleo log that was removed
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a kaleo log with the primary key could not be found
@@ -352,19 +365,6 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the kaleo log with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoLogId the primary key of the kaleo log
-	 * @return the kaleo log that was removed
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a kaleo log with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoLog remove(long kaleoLogId)
-		throws NoSuchLogException, SystemException {
-		return remove(Long.valueOf(kaleoLogId));
 	}
 
 	@Override

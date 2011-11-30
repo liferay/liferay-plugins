@@ -226,6 +226,19 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 	/**
 	 * Removes the w s r p consumer with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param wsrpConsumerId the primary key of the w s r p consumer
+	 * @return the w s r p consumer that was removed
+	 * @throws com.liferay.wsrp.NoSuchConsumerException if a w s r p consumer with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public WSRPConsumer remove(long wsrpConsumerId)
+		throws NoSuchConsumerException, SystemException {
+		return remove(Long.valueOf(wsrpConsumerId));
+	}
+
+	/**
+	 * Removes the w s r p consumer with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the w s r p consumer
 	 * @return the w s r p consumer that was removed
 	 * @throws com.liferay.wsrp.NoSuchConsumerException if a w s r p consumer with the primary key could not be found
@@ -262,19 +275,6 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the w s r p consumer with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param wsrpConsumerId the primary key of the w s r p consumer
-	 * @return the w s r p consumer that was removed
-	 * @throws com.liferay.wsrp.NoSuchConsumerException if a w s r p consumer with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public WSRPConsumer remove(long wsrpConsumerId)
-		throws NoSuchConsumerException, SystemException {
-		return remove(Long.valueOf(wsrpConsumerId));
 	}
 
 	@Override

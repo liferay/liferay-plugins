@@ -233,6 +233,18 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	/**
 	 * Removes the feed with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param feedId the primary key of the feed
+	 * @return the feed that was removed
+	 * @throws com.liferay.twitter.NoSuchFeedException if a feed with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Feed remove(long feedId) throws NoSuchFeedException, SystemException {
+		return remove(Long.valueOf(feedId));
+	}
+
+	/**
+	 * Removes the feed with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the feed
 	 * @return the feed that was removed
 	 * @throws com.liferay.twitter.NoSuchFeedException if a feed with the primary key could not be found
@@ -268,18 +280,6 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the feed with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param feedId the primary key of the feed
-	 * @return the feed that was removed
-	 * @throws com.liferay.twitter.NoSuchFeedException if a feed with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Feed remove(long feedId) throws NoSuchFeedException, SystemException {
-		return remove(Long.valueOf(feedId));
 	}
 
 	@Override

@@ -240,6 +240,19 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 	/**
 	 * Removes the calendar event with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param calendarEventId the primary key of the calendar event
+	 * @return the calendar event that was removed
+	 * @throws com.liferay.calendar.NoSuchEventException if a calendar event with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public CalendarEvent remove(long calendarEventId)
+		throws NoSuchEventException, SystemException {
+		return remove(Long.valueOf(calendarEventId));
+	}
+
+	/**
+	 * Removes the calendar event with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the calendar event
 	 * @return the calendar event that was removed
 	 * @throws com.liferay.calendar.NoSuchEventException if a calendar event with the primary key could not be found
@@ -276,19 +289,6 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the calendar event with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param calendarEventId the primary key of the calendar event
-	 * @return the calendar event that was removed
-	 * @throws com.liferay.calendar.NoSuchEventException if a calendar event with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public CalendarEvent remove(long calendarEventId)
-		throws NoSuchEventException, SystemException {
-		return remove(Long.valueOf(calendarEventId));
 	}
 
 	@Override

@@ -200,6 +200,18 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	/**
 	 * Removes the bar with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param barId the primary key of the bar
+	 * @return the bar that was removed
+	 * @throws com.liferay.testtransaction.NoSuchBarException if a bar with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Bar remove(long barId) throws NoSuchBarException, SystemException {
+		return remove(Long.valueOf(barId));
+	}
+
+	/**
+	 * Removes the bar with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the bar
 	 * @return the bar that was removed
 	 * @throws com.liferay.testtransaction.NoSuchBarException if a bar with the primary key could not be found
@@ -235,18 +247,6 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the bar with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param barId the primary key of the bar
-	 * @return the bar that was removed
-	 * @throws com.liferay.testtransaction.NoSuchBarException if a bar with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Bar remove(long barId) throws NoSuchBarException, SystemException {
-		return remove(Long.valueOf(barId));
 	}
 
 	@Override

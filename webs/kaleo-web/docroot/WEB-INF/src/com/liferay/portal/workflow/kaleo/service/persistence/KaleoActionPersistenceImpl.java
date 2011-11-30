@@ -250,6 +250,19 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	/**
 	 * Removes the kaleo action with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param kaleoActionId the primary key of the kaleo action
+	 * @return the kaleo action that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchActionException if a kaleo action with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoAction remove(long kaleoActionId)
+		throws NoSuchActionException, SystemException {
+		return remove(Long.valueOf(kaleoActionId));
+	}
+
+	/**
+	 * Removes the kaleo action with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the kaleo action
 	 * @return the kaleo action that was removed
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchActionException if a kaleo action with the primary key could not be found
@@ -286,19 +299,6 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the kaleo action with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoActionId the primary key of the kaleo action
-	 * @return the kaleo action that was removed
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchActionException if a kaleo action with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoAction remove(long kaleoActionId)
-		throws NoSuchActionException, SystemException {
-		return remove(Long.valueOf(kaleoActionId));
 	}
 
 	@Override

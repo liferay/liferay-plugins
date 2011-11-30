@@ -274,6 +274,19 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	/**
 	 * Removes the module with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param moduleId the primary key of the module
+	 * @return the module that was removed
+	 * @throws com.liferay.marketplace.NoSuchModuleException if a module with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Module remove(long moduleId)
+		throws NoSuchModuleException, SystemException {
+		return remove(Long.valueOf(moduleId));
+	}
+
+	/**
+	 * Removes the module with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the module
 	 * @return the module that was removed
 	 * @throws com.liferay.marketplace.NoSuchModuleException if a module with the primary key could not be found
@@ -309,19 +322,6 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the module with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param moduleId the primary key of the module
-	 * @return the module that was removed
-	 * @throws com.liferay.marketplace.NoSuchModuleException if a module with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Module remove(long moduleId)
-		throws NoSuchModuleException, SystemException {
-		return remove(Long.valueOf(moduleId));
 	}
 
 	@Override

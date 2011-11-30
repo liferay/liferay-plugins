@@ -240,6 +240,19 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	/**
 	 * Removes the j i r a action with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param jiraActionId the primary key of the j i r a action
+	 * @return the j i r a action that was removed
+	 * @throws com.liferay.socialcoding.NoSuchJIRAActionException if a j i r a action with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAAction remove(long jiraActionId)
+		throws NoSuchJIRAActionException, SystemException {
+		return remove(Long.valueOf(jiraActionId));
+	}
+
+	/**
+	 * Removes the j i r a action with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the j i r a action
 	 * @return the j i r a action that was removed
 	 * @throws com.liferay.socialcoding.NoSuchJIRAActionException if a j i r a action with the primary key could not be found
@@ -276,19 +289,6 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the j i r a action with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param jiraActionId the primary key of the j i r a action
-	 * @return the j i r a action that was removed
-	 * @throws com.liferay.socialcoding.NoSuchJIRAActionException if a j i r a action with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public JIRAAction remove(long jiraActionId)
-		throws NoSuchJIRAActionException, SystemException {
-		return remove(Long.valueOf(jiraActionId));
 	}
 
 	@Override

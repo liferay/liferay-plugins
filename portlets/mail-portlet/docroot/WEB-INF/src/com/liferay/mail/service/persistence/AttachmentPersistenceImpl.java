@@ -202,6 +202,19 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	/**
 	 * Removes the attachment with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param attachmentId the primary key of the attachment
+	 * @return the attachment that was removed
+	 * @throws com.liferay.mail.NoSuchAttachmentException if a attachment with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Attachment remove(long attachmentId)
+		throws NoSuchAttachmentException, SystemException {
+		return remove(Long.valueOf(attachmentId));
+	}
+
+	/**
+	 * Removes the attachment with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the attachment
 	 * @return the attachment that was removed
 	 * @throws com.liferay.mail.NoSuchAttachmentException if a attachment with the primary key could not be found
@@ -238,19 +251,6 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the attachment with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param attachmentId the primary key of the attachment
-	 * @return the attachment that was removed
-	 * @throws com.liferay.mail.NoSuchAttachmentException if a attachment with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Attachment remove(long attachmentId)
-		throws NoSuchAttachmentException, SystemException {
-		return remove(Long.valueOf(attachmentId));
 	}
 
 	@Override

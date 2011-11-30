@@ -440,6 +440,19 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	/**
 	 * Removes the j i r a issue with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param jiraIssueId the primary key of the j i r a issue
+	 * @return the j i r a issue that was removed
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAIssue remove(long jiraIssueId)
+		throws NoSuchJIRAIssueException, SystemException {
+		return remove(Long.valueOf(jiraIssueId));
+	}
+
+	/**
+	 * Removes the j i r a issue with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the j i r a issue
 	 * @return the j i r a issue that was removed
 	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
@@ -476,19 +489,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the j i r a issue with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param jiraIssueId the primary key of the j i r a issue
-	 * @return the j i r a issue that was removed
-	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public JIRAIssue remove(long jiraIssueId)
-		throws NoSuchJIRAIssueException, SystemException {
-		return remove(Long.valueOf(jiraIssueId));
 	}
 
 	@Override

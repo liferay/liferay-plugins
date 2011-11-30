@@ -179,6 +179,19 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	/**
 	 * Removes the asset with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param assetId the primary key of the asset
+	 * @return the asset that was removed
+	 * @throws com.liferay.ams.NoSuchAssetException if a asset with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Asset remove(long assetId)
+		throws NoSuchAssetException, SystemException {
+		return remove(Long.valueOf(assetId));
+	}
+
+	/**
+	 * Removes the asset with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the asset
 	 * @return the asset that was removed
 	 * @throws com.liferay.ams.NoSuchAssetException if a asset with the primary key could not be found
@@ -214,19 +227,6 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the asset with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param assetId the primary key of the asset
-	 * @return the asset that was removed
-	 * @throws com.liferay.ams.NoSuchAssetException if a asset with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Asset remove(long assetId)
-		throws NoSuchAssetException, SystemException {
-		return remove(Long.valueOf(assetId));
 	}
 
 	@Override

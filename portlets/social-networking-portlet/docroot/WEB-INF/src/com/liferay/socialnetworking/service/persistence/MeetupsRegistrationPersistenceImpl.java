@@ -260,6 +260,19 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	/**
 	 * Removes the meetups registration with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param meetupsRegistrationId the primary key of the meetups registration
+	 * @return the meetups registration that was removed
+	 * @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a meetups registration with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MeetupsRegistration remove(long meetupsRegistrationId)
+		throws NoSuchMeetupsRegistrationException, SystemException {
+		return remove(Long.valueOf(meetupsRegistrationId));
+	}
+
+	/**
+	 * Removes the meetups registration with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the meetups registration
 	 * @return the meetups registration that was removed
 	 * @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a meetups registration with the primary key could not be found
@@ -296,19 +309,6 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the meetups registration with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param meetupsRegistrationId the primary key of the meetups registration
-	 * @return the meetups registration that was removed
-	 * @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a meetups registration with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public MeetupsRegistration remove(long meetupsRegistrationId)
-		throws NoSuchMeetupsRegistrationException, SystemException {
-		return remove(Long.valueOf(meetupsRegistrationId));
 	}
 
 	@Override

@@ -305,6 +305,19 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	/**
 	 * Removes the kaleo transition with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param kaleoTransitionId the primary key of the kaleo transition
+	 * @return the kaleo transition that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a kaleo transition with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTransition remove(long kaleoTransitionId)
+		throws NoSuchTransitionException, SystemException {
+		return remove(Long.valueOf(kaleoTransitionId));
+	}
+
+	/**
+	 * Removes the kaleo transition with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the kaleo transition
 	 * @return the kaleo transition that was removed
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a kaleo transition with the primary key could not be found
@@ -341,19 +354,6 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the kaleo transition with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoTransitionId the primary key of the kaleo transition
-	 * @return the kaleo transition that was removed
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a kaleo transition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTransition remove(long kaleoTransitionId)
-		throws NoSuchTransitionException, SystemException {
-		return remove(Long.valueOf(kaleoTransitionId));
 	}
 
 	@Override

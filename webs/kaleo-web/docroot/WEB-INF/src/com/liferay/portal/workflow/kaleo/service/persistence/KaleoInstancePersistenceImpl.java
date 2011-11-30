@@ -281,6 +281,19 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 	/**
 	 * Removes the kaleo instance with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param kaleoInstanceId the primary key of the kaleo instance
+	 * @return the kaleo instance that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException if a kaleo instance with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoInstance remove(long kaleoInstanceId)
+		throws NoSuchInstanceException, SystemException {
+		return remove(Long.valueOf(kaleoInstanceId));
+	}
+
+	/**
+	 * Removes the kaleo instance with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the kaleo instance
 	 * @return the kaleo instance that was removed
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException if a kaleo instance with the primary key could not be found
@@ -317,19 +330,6 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the kaleo instance with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoInstanceId the primary key of the kaleo instance
-	 * @return the kaleo instance that was removed
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException if a kaleo instance with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoInstance remove(long kaleoInstanceId)
-		throws NoSuchInstanceException, SystemException {
-		return remove(Long.valueOf(kaleoInstanceId));
 	}
 
 	@Override

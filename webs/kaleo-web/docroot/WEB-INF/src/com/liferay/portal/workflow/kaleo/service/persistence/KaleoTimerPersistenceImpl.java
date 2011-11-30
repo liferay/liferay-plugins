@@ -232,6 +232,19 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	/**
 	 * Removes the kaleo timer with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param kaleoTimerId the primary key of the kaleo timer
+	 * @return the kaleo timer that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerException if a kaleo timer with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimer remove(long kaleoTimerId)
+		throws NoSuchTimerException, SystemException {
+		return remove(Long.valueOf(kaleoTimerId));
+	}
+
+	/**
+	 * Removes the kaleo timer with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the kaleo timer
 	 * @return the kaleo timer that was removed
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerException if a kaleo timer with the primary key could not be found
@@ -268,19 +281,6 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the kaleo timer with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoTimerId the primary key of the kaleo timer
-	 * @return the kaleo timer that was removed
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerException if a kaleo timer with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTimer remove(long kaleoTimerId)
-		throws NoSuchTimerException, SystemException {
-		return remove(Long.valueOf(kaleoTimerId));
 	}
 
 	@Override

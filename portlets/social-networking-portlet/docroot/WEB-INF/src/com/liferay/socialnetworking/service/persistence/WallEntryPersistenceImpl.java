@@ -241,6 +241,19 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	/**
 	 * Removes the wall entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param wallEntryId the primary key of the wall entry
+	 * @return the wall entry that was removed
+	 * @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public WallEntry remove(long wallEntryId)
+		throws NoSuchWallEntryException, SystemException {
+		return remove(Long.valueOf(wallEntryId));
+	}
+
+	/**
+	 * Removes the wall entry with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the wall entry
 	 * @return the wall entry that was removed
 	 * @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
@@ -277,19 +290,6 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the wall entry with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param wallEntryId the primary key of the wall entry
-	 * @return the wall entry that was removed
-	 * @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public WallEntry remove(long wallEntryId)
-		throws NoSuchWallEntryException, SystemException {
-		return remove(Long.valueOf(wallEntryId));
 	}
 
 	@Override

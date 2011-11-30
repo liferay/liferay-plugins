@@ -295,6 +295,19 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	/**
 	 * Removes the microblogs entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param microblogsEntryId the primary key of the microblogs entry
+	 * @return the microblogs entry that was removed
+	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MicroblogsEntry remove(long microblogsEntryId)
+		throws NoSuchEntryException, SystemException {
+		return remove(Long.valueOf(microblogsEntryId));
+	}
+
+	/**
+	 * Removes the microblogs entry with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the microblogs entry
 	 * @return the microblogs entry that was removed
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
@@ -331,19 +344,6 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the microblogs entry with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param microblogsEntryId the primary key of the microblogs entry
-	 * @return the microblogs entry that was removed
-	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public MicroblogsEntry remove(long microblogsEntryId)
-		throws NoSuchEntryException, SystemException {
-		return remove(Long.valueOf(microblogsEntryId));
 	}
 
 	@Override

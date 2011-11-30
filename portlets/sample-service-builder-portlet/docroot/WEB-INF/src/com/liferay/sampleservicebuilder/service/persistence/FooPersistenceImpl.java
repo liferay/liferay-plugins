@@ -249,6 +249,18 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	/**
 	 * Removes the foo with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param fooId the primary key of the foo
+	 * @return the foo that was removed
+	 * @throws com.liferay.sampleservicebuilder.NoSuchFooException if a foo with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Foo remove(long fooId) throws NoSuchFooException, SystemException {
+		return remove(Long.valueOf(fooId));
+	}
+
+	/**
+	 * Removes the foo with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the foo
 	 * @return the foo that was removed
 	 * @throws com.liferay.sampleservicebuilder.NoSuchFooException if a foo with the primary key could not be found
@@ -284,18 +296,6 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the foo with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param fooId the primary key of the foo
-	 * @return the foo that was removed
-	 * @throws com.liferay.sampleservicebuilder.NoSuchFooException if a foo with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Foo remove(long fooId) throws NoSuchFooException, SystemException {
-		return remove(Long.valueOf(fooId));
 	}
 
 	@Override

@@ -205,6 +205,19 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	/**
 	 * Removes the projects entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param projectsEntryId the primary key of the projects entry
+	 * @return the projects entry that was removed
+	 * @throws com.liferay.so.NoSuchProjectsEntryException if a projects entry with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public ProjectsEntry remove(long projectsEntryId)
+		throws NoSuchProjectsEntryException, SystemException {
+		return remove(Long.valueOf(projectsEntryId));
+	}
+
+	/**
+	 * Removes the projects entry with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the projects entry
 	 * @return the projects entry that was removed
 	 * @throws com.liferay.so.NoSuchProjectsEntryException if a projects entry with the primary key could not be found
@@ -241,19 +254,6 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the projects entry with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param projectsEntryId the primary key of the projects entry
-	 * @return the projects entry that was removed
-	 * @throws com.liferay.so.NoSuchProjectsEntryException if a projects entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public ProjectsEntry remove(long projectsEntryId)
-		throws NoSuchProjectsEntryException, SystemException {
-		return remove(Long.valueOf(projectsEntryId));
 	}
 
 	@Override

@@ -242,6 +242,19 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	/**
 	 * Removes the kaleo task with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param kaleoTaskId the primary key of the kaleo task
+	 * @return the kaleo task that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a kaleo task with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTask remove(long kaleoTaskId)
+		throws NoSuchTaskException, SystemException {
+		return remove(Long.valueOf(kaleoTaskId));
+	}
+
+	/**
+	 * Removes the kaleo task with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the kaleo task
 	 * @return the kaleo task that was removed
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a kaleo task with the primary key could not be found
@@ -278,19 +291,6 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the kaleo task with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoTaskId the primary key of the kaleo task
-	 * @return the kaleo task that was removed
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a kaleo task with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTask remove(long kaleoTaskId)
-		throws NoSuchTaskException, SystemException {
-		return remove(Long.valueOf(kaleoTaskId));
 	}
 
 	@Override

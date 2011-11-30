@@ -244,6 +244,19 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	/**
 	 * Removes the kaleo node with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param kaleoNodeId the primary key of the kaleo node
+	 * @return the kaleo node that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a kaleo node with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoNode remove(long kaleoNodeId)
+		throws NoSuchNodeException, SystemException {
+		return remove(Long.valueOf(kaleoNodeId));
+	}
+
+	/**
+	 * Removes the kaleo node with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the kaleo node
 	 * @return the kaleo node that was removed
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a kaleo node with the primary key could not be found
@@ -280,19 +293,6 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the kaleo node with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoNodeId the primary key of the kaleo node
-	 * @return the kaleo node that was removed
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a kaleo node with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoNode remove(long kaleoNodeId)
-		throws NoSuchNodeException, SystemException {
-		return remove(Long.valueOf(kaleoNodeId));
 	}
 
 	@Override

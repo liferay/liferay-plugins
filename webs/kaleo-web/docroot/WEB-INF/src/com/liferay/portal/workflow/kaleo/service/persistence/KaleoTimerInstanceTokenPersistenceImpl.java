@@ -293,6 +293,19 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	/**
 	 * Removes the kaleo timer instance token with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param kaleoTimerInstanceTokenId the primary key of the kaleo timer instance token
+	 * @return the kaleo timer instance token that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException if a kaleo timer instance token with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimerInstanceToken remove(long kaleoTimerInstanceTokenId)
+		throws NoSuchTimerInstanceTokenException, SystemException {
+		return remove(Long.valueOf(kaleoTimerInstanceTokenId));
+	}
+
+	/**
+	 * Removes the kaleo timer instance token with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the kaleo timer instance token
 	 * @return the kaleo timer instance token that was removed
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException if a kaleo timer instance token with the primary key could not be found
@@ -329,19 +342,6 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the kaleo timer instance token with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoTimerInstanceTokenId the primary key of the kaleo timer instance token
-	 * @return the kaleo timer instance token that was removed
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException if a kaleo timer instance token with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoTimerInstanceToken remove(long kaleoTimerInstanceTokenId)
-		throws NoSuchTimerInstanceTokenException, SystemException {
-		return remove(Long.valueOf(kaleoTimerInstanceTokenId));
 	}
 
 	@Override

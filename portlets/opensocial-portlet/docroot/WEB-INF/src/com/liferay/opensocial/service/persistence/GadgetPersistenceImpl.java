@@ -251,6 +251,19 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	/**
 	 * Removes the gadget with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param gadgetId the primary key of the gadget
+	 * @return the gadget that was removed
+	 * @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Gadget remove(long gadgetId)
+		throws NoSuchGadgetException, SystemException {
+		return remove(Long.valueOf(gadgetId));
+	}
+
+	/**
+	 * Removes the gadget with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the gadget
 	 * @return the gadget that was removed
 	 * @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
@@ -286,19 +299,6 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the gadget with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param gadgetId the primary key of the gadget
-	 * @return the gadget that was removed
-	 * @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Gadget remove(long gadgetId)
-		throws NoSuchGadgetException, SystemException {
-		return remove(Long.valueOf(gadgetId));
 	}
 
 	@Override

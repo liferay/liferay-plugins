@@ -224,6 +224,19 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	/**
 	 * Removes the account with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param accountId the primary key of the account
+	 * @return the account that was removed
+	 * @throws com.liferay.mail.NoSuchAccountException if a account with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Account remove(long accountId)
+		throws NoSuchAccountException, SystemException {
+		return remove(Long.valueOf(accountId));
+	}
+
+	/**
+	 * Removes the account with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the account
 	 * @return the account that was removed
 	 * @throws com.liferay.mail.NoSuchAccountException if a account with the primary key could not be found
@@ -259,19 +272,6 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the account with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param accountId the primary key of the account
-	 * @return the account that was removed
-	 * @throws com.liferay.mail.NoSuchAccountException if a account with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Account remove(long accountId)
-		throws NoSuchAccountException, SystemException {
-		return remove(Long.valueOf(accountId));
 	}
 
 	@Override

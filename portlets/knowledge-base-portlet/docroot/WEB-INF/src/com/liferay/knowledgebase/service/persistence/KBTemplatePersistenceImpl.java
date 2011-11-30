@@ -256,6 +256,19 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	/**
 	 * Removes the k b template with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param kbTemplateId the primary key of the k b template
+	 * @return the k b template that was removed
+	 * @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBTemplate remove(long kbTemplateId)
+		throws NoSuchTemplateException, SystemException {
+		return remove(Long.valueOf(kbTemplateId));
+	}
+
+	/**
+	 * Removes the k b template with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the k b template
 	 * @return the k b template that was removed
 	 * @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
@@ -292,19 +305,6 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the k b template with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kbTemplateId the primary key of the k b template
-	 * @return the k b template that was removed
-	 * @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KBTemplate remove(long kbTemplateId)
-		throws NoSuchTemplateException, SystemException {
-		return remove(Long.valueOf(kbTemplateId));
 	}
 
 	@Override

@@ -322,6 +322,19 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	/**
 	 * Removes the kaleo definition with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param kaleoDefinitionId the primary key of the kaleo definition
+	 * @return the kaleo definition that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a kaleo definition with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoDefinition remove(long kaleoDefinitionId)
+		throws NoSuchDefinitionException, SystemException {
+		return remove(Long.valueOf(kaleoDefinitionId));
+	}
+
+	/**
+	 * Removes the kaleo definition with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the kaleo definition
 	 * @return the kaleo definition that was removed
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a kaleo definition with the primary key could not be found
@@ -358,19 +371,6 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the kaleo definition with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoDefinitionId the primary key of the kaleo definition
-	 * @return the kaleo definition that was removed
-	 * @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a kaleo definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public KaleoDefinition remove(long kaleoDefinitionId)
-		throws NoSuchDefinitionException, SystemException {
-		return remove(Long.valueOf(kaleoDefinitionId));
 	}
 
 	@Override

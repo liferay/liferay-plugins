@@ -295,6 +295,19 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	/**
 	 * Removes the user thread with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param userThreadId the primary key of the user thread
+	 * @return the user thread that was removed
+	 * @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public UserThread remove(long userThreadId)
+		throws NoSuchUserThreadException, SystemException {
+		return remove(Long.valueOf(userThreadId));
+	}
+
+	/**
+	 * Removes the user thread with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param primaryKey the primary key of the user thread
 	 * @return the user thread that was removed
 	 * @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
@@ -331,19 +344,6 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the user thread with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param userThreadId the primary key of the user thread
-	 * @return the user thread that was removed
-	 * @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public UserThread remove(long userThreadId)
-		throws NoSuchUserThreadException, SystemException {
-		return remove(Long.valueOf(userThreadId));
 	}
 
 	@Override
