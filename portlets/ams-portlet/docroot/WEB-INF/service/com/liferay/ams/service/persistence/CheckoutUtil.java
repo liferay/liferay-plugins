@@ -95,13 +95,6 @@ public class CheckoutUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static Checkout remove(Checkout checkout) throws SystemException {
-		return getPersistence().remove(checkout);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static Checkout update(Checkout checkout, boolean merge)

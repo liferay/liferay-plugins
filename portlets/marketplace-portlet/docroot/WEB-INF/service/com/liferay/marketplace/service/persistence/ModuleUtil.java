@@ -94,13 +94,6 @@ public class ModuleUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static Module remove(Module module) throws SystemException {
-		return getPersistence().remove(module);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static Module update(Module module, boolean merge)

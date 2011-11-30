@@ -95,14 +95,6 @@ public class DefinitionUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static Definition remove(Definition definition)
-		throws SystemException {
-		return getPersistence().remove(definition);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static Definition update(Definition definition, boolean merge)

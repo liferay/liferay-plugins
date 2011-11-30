@@ -95,14 +95,6 @@ public class JIRAIssueUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static JIRAIssue remove(JIRAIssue jiraIssue)
-		throws SystemException {
-		return getPersistence().remove(jiraIssue);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static JIRAIssue update(JIRAIssue jiraIssue, boolean merge)

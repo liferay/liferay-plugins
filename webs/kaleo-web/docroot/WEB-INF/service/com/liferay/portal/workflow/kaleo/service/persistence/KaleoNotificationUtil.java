@@ -94,14 +94,6 @@ public class KaleoNotificationUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static KaleoNotification remove(KaleoNotification kaleoNotification)
-		throws SystemException {
-		return getPersistence().remove(kaleoNotification);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static KaleoNotification update(

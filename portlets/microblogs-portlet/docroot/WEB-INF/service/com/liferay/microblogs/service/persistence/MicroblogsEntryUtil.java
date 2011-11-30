@@ -95,14 +95,6 @@ public class MicroblogsEntryUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static MicroblogsEntry remove(MicroblogsEntry microblogsEntry)
-		throws SystemException {
-		return getPersistence().remove(microblogsEntry);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static MicroblogsEntry update(MicroblogsEntry microblogsEntry,

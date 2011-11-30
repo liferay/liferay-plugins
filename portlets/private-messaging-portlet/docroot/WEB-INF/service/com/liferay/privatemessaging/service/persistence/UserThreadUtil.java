@@ -95,14 +95,6 @@ public class UserThreadUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static UserThread remove(UserThread userThread)
-		throws SystemException {
-		return getPersistence().remove(userThread);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static UserThread update(UserThread userThread, boolean merge)

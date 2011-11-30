@@ -95,14 +95,6 @@ public class KBArticleUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static KBArticle remove(KBArticle kbArticle)
-		throws SystemException {
-		return getPersistence().remove(kbArticle);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static KBArticle update(KBArticle kbArticle, boolean merge)

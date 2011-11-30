@@ -95,14 +95,6 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static KBTemplate remove(KBTemplate kbTemplate)
-		throws SystemException {
-		return getPersistence().remove(kbTemplate);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static KBTemplate update(KBTemplate kbTemplate, boolean merge)

@@ -94,14 +94,6 @@ public class KaleoTaskUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static KaleoTask remove(KaleoTask kaleoTask)
-		throws SystemException {
-		return getPersistence().remove(kaleoTask);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static KaleoTask update(KaleoTask kaleoTask, boolean merge)
