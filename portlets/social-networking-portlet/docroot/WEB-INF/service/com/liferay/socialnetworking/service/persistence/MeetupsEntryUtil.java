@@ -95,14 +95,6 @@ public class MeetupsEntryUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static MeetupsEntry remove(MeetupsEntry meetupsEntry)
-		throws SystemException {
-		return getPersistence().remove(meetupsEntry);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static MeetupsEntry update(MeetupsEntry meetupsEntry, boolean merge)
