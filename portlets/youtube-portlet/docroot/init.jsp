@@ -60,6 +60,7 @@ boolean loop = GetterUtil.getBoolean(preferences.getValue("loop", "false"));
 String playerColor = preferences.getValue("playerColor", StringPool.BLANK);
 boolean showInfo = GetterUtil.getBoolean(preferences.getValue("showInfo", "true"));
 boolean showThickerBorder = GetterUtil.getBoolean(preferences.getValue("showThickerBorder", "false"));
+boolean showThumbnail = GetterUtil.getBoolean(preferences.getValue("showThumbnail", "false"));
 String startTime = preferences.getValue("startTime", StringPool.BLANK);
 String url = preferences.getValue("url", StringPool.BLANK);
 String width = preferences.getValue("width", "480");
