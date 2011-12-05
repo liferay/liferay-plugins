@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+
+<javadocs>
+	<javadoc>
+		<name>CompanyLocalServiceImpl</name>
+		<type>com.liferay.so.hook.service.impl.CompanyLocalServiceImpl</type>
+		<comment><![CDATA[]]></comment>
+		<author><![CDATA[Ryan Park]]></author>
+		<method>
+			<name>CompanyLocalServiceImpl</name>
+			<comment><![CDATA[]]></comment>
+			<param>
+				<name>companyLocalService</name>
+				<type>com.liferay.portal.service.CompanyLocalService</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>checkCompany</name>
+			<comment><![CDATA[]]></comment>
+			<param>
+				<name>webId</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>mx</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>shardName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+</javadocs>
