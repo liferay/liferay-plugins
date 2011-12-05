@@ -448,6 +448,9 @@ public class UpgradeCompany extends UpgradeProcess {
 			birthdayMonth, birthdayDay, birthdayYear, jobTitle, groupIds,
 			organizationIds, roleIds, userGroupIds, sendEmail, serviceContext);
 
+		UserLocalServiceUtil.updateLastLogin(
+			user.getUserId(), user.getLoginIP());
+
 		UserLocalServiceUtil.updatePasswordReset(user.getUserId(), false);
 
 		byte[] portrait = getBytes(
