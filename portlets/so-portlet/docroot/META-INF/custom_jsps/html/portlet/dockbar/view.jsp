@@ -57,6 +57,10 @@ int x = html.indexOf("<li class=\"user-avatar \" id=\"_145_userAvatar\">");
 			<span></span>
 		</li>
 
+		<li>
+			<liferay-portlet:runtime portletName="7_WAR_soportlet" />
+		</li>
+
 		<%= html.substring(x) %>
 	</c:when>
 	<c:otherwise>

@@ -19,6 +19,125 @@
 
 <%@ include file="/init.jsp" %>
 
-<liferay-util:include page="/notifications/view_social_requests.jsp" servletContext="<%= application %>" />
+<liferay-portlet:actionURL name="deleteUserNotificationEvents" portletName="6_WAR_soportlet" var="deleteURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>">
+	<portlet:param name="redirect" value="<%= currentURL %>" />
+</liferay-portlet:actionURL>
 
-<liferay-util:include page="/notifications/view_member_requests.jsp" servletContext="<%= application %>" />
+<aui:form action="<%= deleteURL %>" method="get" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "deleteNotifications();" %>'>
+	<aui:input name="userNotificationEventUuids" type="hidden" />
+
+	<aui:fieldset>
+		<div class="view-all-user-notifications">
+			<div class="user-notification-events">
+
+				<liferay-portlet:renderURL varImpl="iteratorURL" />
+
+				<liferay-ui:search-container
+					deltaConfigurable="<%= true %>"
+					emptyResultsMessage="you-have-no-notification"
+					iteratorURL="<%= iteratorURL %>"
+					rowChecker="<%= new RowChecker(renderResponse) %>"
+				>
+
+					<%
+					List<UserNotificationEvent> userNotificationEvents = UserNotificationEventLocalServiceUtil.getUserNotificationEvents(themeDisplay.getUserId(), true, searchContainer.getStart(), searchContainer.getEnd());
+					int notificationCount = userNotificationEvents.size();
+					%>
+
+					<liferay-ui:search-container-results
+						results="<%= userNotificationEvents %>"
+						total="<%= notificationCount %>"
+					/>
+
+					<liferay-ui:search-container-row
+						className="com.liferay.portal.model.UserNotificationEvent"
+						escapedModel="<%= false %>"
+						keyProperty="uuid"
+						modelVar="notificationEvent"
+					>
+
+						<%
+						JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject(notificationEvent.getPayload());
+
+						long senderUserId = notificationEventJSON.getLong("senderUserId", 0);
+
+						String userDisplayURL = StringPool.BLANK;
+						String userFullName = PortalUtil.getUserName(senderUserId, StringPool.BLANK);
+						String userPortaitURL = StringPool.BLANK;
+
+						try {
+							User curUser = UserLocalServiceUtil.getUserById(senderUserId);
+
+							userDisplayURL = curUser.getDisplayURL(themeDisplay);
+							userPortaitURL = curUser.getPortraitURL(themeDisplay);
+						}
+						catch (NoSuchUserException nsue) {
+						}
+						%>
+
+						<liferay-ui:search-container-column-text name="notifications" valign="top">
+
+							<c:choose>
+								<c:when test='<%= notificationEventJSON.getString("portletId", StringPool.BLANK).equals("1_WAR_privatemessagingportlet") %>'>
+									<%@ include file="/notifications/view_private_message.jspf" %>
+								</c:when>
+								<c:when test='<%= notificationEventJSON.getString("portletId", StringPool.BLANK).equals("2_WAR_soportlet") %>'>
+									<%@ include file="/notifications/view_member_request.jspf" %>
+								</c:when>
+								<c:when test='<%= notificationEventJSON.getString("portletId", StringPool.BLANK).equals("1_WAR_contactsportlet") %>'>
+									<%@ include file="/notifications/view_social_request.jspf" %>
+								</c:when>
+								<c:when test='<%= notificationEventJSON.getString("portletId", StringPool.BLANK).equals("1_WAR_tasksportlet") %>'>
+									<%@ include file="/notifications/view_task.jspf" %>
+								</c:when>
+								<c:when test='<%= notificationEventJSON.getString("portletId", StringPool.BLANK).equals("1_WAR_microblogsportlet") %>'>
+									<%@ include file="/notifications/view_microblogs.jspf" %>
+								</c:when>
+							</c:choose>
+
+						</liferay-ui:search-container-column-text>
+					</liferay-ui:search-container-row>
+
+					<liferay-ui:search-iterator />
+
+					<c:if test="<%= !results.isEmpty() %>">
+						<aui:button-row cssName="delete-button-row">
+							<aui:button type="submit" value="delete" />
+						</aui:button-row>
+					</c:if>
+
+				</liferay-ui:search-container>
+			</div>
+		</div>
+	</aui:fieldset>
+</aui:form>
+
+<aui:script use="aui-base">
+	var userNotificationEvents = A.one('.view-all-user-notifications .user-notification-events');
+
+	userNotificationEvents.delegate(
+		'click',
+		function(event) {
+			var portletURL = event.currentTarget.getAttribute('data-portlet-url');
+
+			if (portletURL) {
+				window.location = portletURL;
+			}
+		},
+		'.user-notification-event-content'
+	);
+
+	var deleteUserNotificationEvents = A.one('.view-all-user-notifications .user-notification-events');
+
+	Liferay.provide(
+		window,
+		'<portlet:namespace />deleteNotifications',
+		function() {
+			document.<portlet:namespace />fm.method = "post";
+			document.<portlet:namespace />fm.<portlet:namespace />userNotificationEventUuids.value = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
+
+			submitForm(document.<portlet:namespace />fm);
+		},
+		['liferay-util-list-fields']
+	);
+</aui:script>

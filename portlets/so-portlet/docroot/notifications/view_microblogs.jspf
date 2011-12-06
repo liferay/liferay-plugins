@@ -1,0 +1,84 @@
+<%--
+/**
+ * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ *
+ * This file is part of Liferay Social Office. Liferay Social Office is free
+ * software: you can redistribute it and/or modify it under the terms of the GNU
+ * Affero General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ *
+ * Liferay Social Office is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License
+ * for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
+ */
+--%>
+
+<%
+Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), notificationEventJSON.getString("portletId"));
+
+PortletURL portletURL = null;
+
+Group mySite = user.getGroup();
+
+long contactsPlid = PortalUtil.getPlidFromPortletId(mySite.getGroupId(), true, notificationEventJSON.getString("portletId"));
+
+if (contactsPlid != 0) {
+	portletURL = PortletURLFactoryUtil.create(request, notificationEventJSON.getString("portletId"), contactsPlid, PortletRequest.RENDER_PHASE);
+
+	portletURL.setParameter("receiverMicroblogsEntryId", String.valueOf(notificationEventJSON.getLong("microblogsEntryId")));
+}
+else {
+	portletURL = liferayPortletResponse.createRenderURL(notificationEventJSON.getString("portletId"));
+
+	portletURL.setWindowState(WindowState.MAXIMIZED);
+
+	portletURL.setParameter("jspPage", "/microblogs/view.jsp");
+	portletURL.setParameter("receiverMicroblogsEntryId", String.valueOf(notificationEventJSON.getLong("microblogsEntryId")));
+}
+
+int curDaysBetween = DateUtil.getDaysBetween(new Date(notificationEvent.getTimestamp()), new Date(), timeZone);
+%>
+
+<div class="user-notification-event-content" data-portletUrl="<%= portletURL %>">
+	<div class="user-notification-event-sender">
+		<span class="thumbnail">
+			<img alt="<%= userFullName %>" src="<%= userPortaitURL %>" />
+		</span>
+
+		<span class="portlet-icon">
+			<liferay-portlet:icon-portlet portlet="<%= portlet %>" />
+		</span>
+	</div>
+
+	<div class="notification-entry">
+		<div class="title">
+			<b><%= userFullName %></b> <liferay-ui:message key='<%= notificationEventJSON.getString("title", StringPool.BLANK) %>' />
+		</div>
+
+		<div class="body">
+			<%= StringUtil.shorten(notificationEventJSON.getString("body", StringPool.BLANK), 50) %>
+		</div>
+
+		<div class="datetime">
+			<c:choose>
+				<c:when test="<%= curDaysBetween == 0 %>">
+					<liferay-ui:message key="today" />
+				</c:when>
+				<c:when test="<%= curDaysBetween == 1 %>">
+					<liferay-ui:message key="yesterday" />
+				</c:when>
+				<c:otherwise>
+					<%= dateFormatDate.format(notificationEvent.getTimestamp()) %>
+				</c:otherwise>
+			</c:choose>
+
+			<%= timeFormatDate.format(notificationEvent.getTimestamp()) %>
+		</div>
+	</div>
+
+	<div class="clear"></div>
+</div>
