@@ -222,7 +222,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 					roleAssignment.setAutoCreate(autoCreate);
 				}
 				else {
-					roleAssignment = new RoleAssignment(roleId, roleType);
+					roleAssignment = new RoleAssignment(roleId);
 				}
 
 				assignments.add(roleAssignment);
