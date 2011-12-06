@@ -87,19 +87,11 @@
 			width="<%= width %>"
 			wmode="opaque"
 		>
-
-			<%
-			if (showThumbnail) {
-			%>
-
-			<aui:a href="<%= _WATCH_URL + id %>" rel="external" title='<%= LanguageUtil.get(pageContext, "watch-this-video-at-youtube") %>'>
-				<img alt="<liferay-ui:message key="youtube-video" />" height="<%= height %>" src="<%= imageURL %>" width="<%= width %>" />
-			</aui:a>
-
-			<%
-			}
-			%>
-
+			<c:if test="<%= showThumbnail %>">
+				<aui:a href="<%= _WATCH_URL + id %>" rel="external" title='<%= LanguageUtil.get(pageContext, "watch-this-video-at-youtube") %>'>
+					<img alt="<liferay-ui:message key="youtube-video" />" height="<%= height %>" src="<%= imageURL %>" width="<%= width %>" />
+				</aui:a>
+			</c:if>
 		</liferay-ui:flash>
 	</c:when>
 	<c:otherwise>
