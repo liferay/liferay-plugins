@@ -1,0 +1,159 @@
+/**
+ * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+.so-portlet-dockbar-notifications .user-notification-events-container {
+	-moz-border-radius: 0 0 5px 5px;
+	-webkit-border-radius: 0 0 5px 5px;
+	background: #FFF;
+	border-radius: 0 0 5px 5px;
+	border: 1px solid #636364;
+	border-top: 0;
+	top: 30px;
+	padding: 5px 0;
+	position: absolute;
+	right: 0;
+	width: 350px;
+}
+
+.so-portlet-dockbar-notifications .user-notification-events {
+	display: inline-block;
+	margin: 0;
+	padding: 0 10px;
+}
+
+.so-portlet-dockbar-notifications .user-notification-events:hover .user-notification-events-container {
+	background: #CCC9C9 url(@theme_image_path@/application/menu_bg.png) repeat-x 0 0;
+}
+
+.so-portlet-dockbar-notifications .user-notification-events:hover {
+	background: #5C94DA url(@theme_image_path@/dockbar/button_active_bg.png) repeat-x 0 0;
+	border-color: #636363;
+	border-style: solid solid none;
+	border-width: 1px 1px 0;
+	cursor: pointer;
+	margin-bottom: -2px;
+	padding: 4px 8px;
+}
+
+.so-portlet-dockbar-notifications .user-notification-events:hover .user-notification-events-icon{
+	background: transparent;
+	font-size: 15px;
+}
+
+.so-portlet-dockbar-notifications .user-notification-events-icon {
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	background: #666;
+	border-radius: 5px;
+	color: #FFF;
+	font-size: 11px;
+	font-weight: bold;
+	padding: 2px 5px;
+}
+
+.so-portlet-dockbar-notifications .user-notification-events-seperator {
+	margin: 0;
+}
+
+.so-portlet-dockbar-notifications .user-notification-event-content,
+.so-portlet-dockbar-notifications .user-notification-event-header,
+.so-portlet-dockbar-notifications .user-notification-event-footer,
+.so-portlet-dockbar-notifications .no-new-notification {
+	border-bottom: 1px solid #C0C2C5;
+	font-size: 12px;
+	padding: 5px;
+}
+
+.so-portlet-dockbar-notifications .user-notification-event-header .dismiss-notifications {
+	font-size: 12px;
+	text-shadow: none;
+}
+
+.so-portlet-dockbar-notifications .user-notification-event-header .dismiss-notifications:hover {
+	text-decoration: underline;
+}
+
+.so-portlet-dockbar-notifications .user-notification-event-content {
+	min-height: 40px;
+}
+
+.so-portlet-dockbar-notifications .user-notification-event-content .notification-entry {
+	margin-left: 50px;
+	white-space: normal;
+}
+
+.so-portlet-dockbar-notifications .user-notification-event-footer {
+	font-weight: bold;
+	min-height: 20px;
+}
+
+.so-portlet-dockbar-notifications .user-notification-event-content:hover {
+	background: #5C94DA url(@theme_image_path@/dockbar/button_active_bg.png) repeat-x 0 0;
+	color: #FFF;
+}
+
+.so-portlet-dockbar-notifications .user-notification-event-content .subject,
+.so-portlet-dockbar-notifications .user-notification-event-content .body{
+	font-size: 11px;
+}
+
+.so-portlet-dockbar-notifications .user-notification-event-content .datetime {
+	font-size: 10px;
+}
+
+.so-portlet-dockbar-notifications .user-notification-event-sender .thumbnail {
+	float: left;
+	padding: 0 2px;
+}
+
+.so-portlet-dockbar-notifications .user-notification-event-sender .thumbnail img{
+	width: 40px;
+}
+
+.so-portlet-dockbar-notifications .user-notification-event-sender .portlet-icon {
+	margin-left: -15px;
+	margin-top: 30px;
+	position: absolute;
+}
+
+.so-portlet-dockbar-notifications .user-notification-event-content a {
+	color: #000;
+	text-decoration: none;
+	text-shadow: none;
+}
+
+.so-portlet-dockbar-notifications .user-notification-event-content:hover a {
+	color: #FFF;
+}
+
+.so-portlet-dockbar-notifications .user-notification-event-content:hover a:hover {
+	text-decoration: underline;
+}
+
+.so-portlet-dockbar-notifications .user-notification-event-content .lfr-user-action-item a {
+	font-size: 12px;
+	padding: 0 20px;
+}
+
+.so-portlet-dockbar-notifications .user-notification-event-content .request {
+	margin-top: 5px;
+}
+
+.so-portlet-dockbar-notifications .user-notification-event-content .request .lfr-user-action-confirm a {
+	background: url(@theme_image_path@/common/activate.png) no-repeat;
+}
+
+.so-portlet-dockbar-notifications .user-notification-event-content .request .lfr-user-action-ignore a {
+	background: url(@theme_image_path@/common/deactivate.png) no-repeat;
+}
