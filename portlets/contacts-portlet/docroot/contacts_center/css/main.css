@@ -169,18 +169,16 @@ $section-header-bg: #CCE6F7;
 			font-weight: bold;
 		}
 
-		.social-relations {
-			.lfr-asset-metadata {
-				display: none;
-			}
-		}
-
 		.aui-column-content {
 			padding: 0 10px;
 		}
 
 		.aui-column:before {
 			border-width: 0;
+		}
+
+		.social-relations .lfr-asset-metadata {
+			display: none;
 		}
 	}
 
@@ -205,6 +203,7 @@ $section-header-bg: #CCE6F7;
 		a {
 			display: inline-block;
 			padding: 3px 4px;
+
 			&:hover {
 				text-decoration: none;
 			}
@@ -245,7 +244,6 @@ $section-header-bg: #CCE6F7;
 			margin: 0 0 0 105px;
 			padding: 0;
 		}
-
 	}
 
 	.project {
