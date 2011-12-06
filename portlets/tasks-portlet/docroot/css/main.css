@@ -50,8 +50,8 @@
 
 		.filter-tasks {
 			background-image: url(@theme_image_path@/common/tag.png);
-			padding-right: 0;
 			float: right;
+			padding-right: 0;
 		}
 
 		.permission-tasks {
@@ -67,16 +67,16 @@
 		background: #DFF4FF;
 		border: 1px solid #A7CEDF;
 		border-radius: 4px;
-		position: relative;
 		margin: 0 0 1em;
+		position: relative;
 
 		&:after {
 			border: 10px solid;
 			border-color: transparent transparent #A7CEDF;
 			content: "";
 			position: absolute;
-			top: -20px;
 			right: 10px;
+			top: -20px;
 		}
 
 		h3 {
@@ -98,8 +98,8 @@
 
 	.asset-tag-filter .asset-tag {
 		background: url(../images/unselected.png) no-repeat 0% 50%;
-		padding-left: 16px;
 		margin-right: 0.5em;
+		padding-left: 16px;
 
 		&.selected {
 			background-image: url(../images/selected.png);
@@ -310,8 +310,8 @@
 	.task-action {
 		background: #EEE;
 		border-top: 1px solid #BFBFBF;
-		padding: .5em;
 		margin: 1em 0;
+		padding: .5em;
 	}
 
 	.task-action-spacer {
