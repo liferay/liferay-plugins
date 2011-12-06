@@ -61,7 +61,10 @@ AUI().use(
 				if (!instance._popup) {
 					instance._popup = new A.Dialog(
 						{
+							centered: true,
+							constrain2view: true,
 							cssClass: 'tasks-dialog',
+							modal: true,
 							resizable: false,
 							width: 600
 						}
