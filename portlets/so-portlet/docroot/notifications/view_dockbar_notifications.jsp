@@ -47,14 +47,12 @@ int notificationCount = notificationEvents.size();
 
 				JSONObject notificationEventJSON = notificationEvent.getPayload();
 
-				long senderUserId = notificationEventJSON.getLong("senderUserId");
-
 				String userDisplayURL = StringPool.BLANK;
-				String userFullName = PortalUtil.getUserName(senderUserId, StringPool.BLANK);
+				String userFullName = PortalUtil.getUserName(notificationEventJSON.getLong("senderUserId"), StringPool.BLANK);
 				String userPortaitURL = StringPool.BLANK;
 
 				try {
-					User curUser = UserLocalServiceUtil.getUserById(senderUserId);
+					User curUser = UserLocalServiceUtil.getUserById(notificationEventJSON.getLong("senderUserId"));
 
 					userDisplayURL = curUser.getDisplayURL(themeDisplay);
 					userPortaitURL = curUser.getPortraitURL(themeDisplay);
@@ -64,21 +62,15 @@ int notificationCount = notificationEvents.size();
 			%>
 
 				<c:choose>
-					<c:when test='<%= notificationEventJSON.getString("portletId").equals("1_WAR_privatemessagingportlet") %>'>
-						<%@ include file="/notifications/view_private_message.jspf" %>
-					</c:when>
 					<c:when test='<%= notificationEventJSON.getString("portletId").equals("2_WAR_soportlet") %>'>
 						<%@ include file="/notifications/view_member_request.jspf" %>
 					</c:when>
 					<c:when test='<%= notificationEventJSON.getString("portletId").equals("1_WAR_contactsportlet") %>'>
 						<%@ include file="/notifications/view_social_request.jspf" %>
 					</c:when>
-					<c:when test='<%= notificationEventJSON.getString("portletId").equals("1_WAR_tasksportlet") %>'>
-						<%@ include file="/notifications/view_task.jspf" %>
-					</c:when>
-					<c:when test='<%= notificationEventJSON.getString("portletId").equals("1_WAR_microblogsportlet") %>'>
-						<%@ include file="/notifications/view_microblogs.jspf" %>
-					</c:when>
+					<c:otherwise>
+						<%@ include file="/notifications/view_notification.jspf" %>
+					</c:otherwise>
 				</c:choose>
 
 			<%

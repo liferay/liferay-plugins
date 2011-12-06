@@ -77,21 +77,15 @@
 
 						<liferay-ui:search-container-column-text name="notifications" valign="top">
 							<c:choose>
-								<c:when test='<%= notificationEventJSON.getString("portletId", StringPool.BLANK).equals("1_WAR_privatemessagingportlet") %>'>
-									<%@ include file="/notifications/view_private_message.jspf" %>
-								</c:when>
-								<c:when test='<%= notificationEventJSON.getString("portletId", StringPool.BLANK).equals("2_WAR_soportlet") %>'>
+								<c:when test='<%= notificationEventJSON.getString("portletId").equals("2_WAR_soportlet") %>'>
 									<%@ include file="/notifications/view_member_request.jspf" %>
 								</c:when>
-								<c:when test='<%= notificationEventJSON.getString("portletId", StringPool.BLANK).equals("1_WAR_contactsportlet") %>'>
+								<c:when test='<%= notificationEventJSON.getString("portletId").equals("1_WAR_contactsportlet") %>'>
 									<%@ include file="/notifications/view_social_request.jspf" %>
 								</c:when>
-								<c:when test='<%= notificationEventJSON.getString("portletId", StringPool.BLANK).equals("1_WAR_tasksportlet") %>'>
-									<%@ include file="/notifications/view_task.jspf" %>
-								</c:when>
-								<c:when test='<%= notificationEventJSON.getString("portletId", StringPool.BLANK).equals("1_WAR_microblogsportlet") %>'>
-									<%@ include file="/notifications/view_microblogs.jspf" %>
-								</c:when>
+								<c:otherwise>
+									<%@ include file="/notifications/view_notification.jspf" %>
+								</c:otherwise>
 							</c:choose>
 						</liferay-ui:search-container-column-text>
 					</liferay-ui:search-container-row>
