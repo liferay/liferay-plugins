@@ -108,4 +108,7 @@ public interface WorkflowEngine {
 			ServiceContext serviceContext)
 		throws WorkflowException;
 
+	public void validateWorkflowDefinition(InputStream inputStream)
+		throws WorkflowException;
+
 }
