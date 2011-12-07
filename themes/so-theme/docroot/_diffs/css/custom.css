@@ -422,7 +422,7 @@ input[type=text], textarea, input[type=password], .aui-field-select, .aui-textbo
 	vertical-align: top;
 }
 
-button, input[type=submit], input[type=button], input[type=reset], .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .aui-dialog-hd, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .aui-button-input, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .results-header th {
+button, input[type=submit], input[type=button], input[type=reset], .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .aui-dialog-hd, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .aui-button-input, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .results-header th, .contacts-portlet .social-relations a:hover {
 	@include border-radius(3px);
 	@include box-shadow(0 1px 0 #F4F3F3 inset, 0 -1px 0 #D9D8D8 inset);
 	background: #E9E8E8;
@@ -444,7 +444,7 @@ button, input[type=submit], input[type=button], input[type=reset], .aui-panel-hd
 	padding-right: 30px;
 }
 
-input[type=submit], input[type=button], input[type=reset], .aui-state-hover {
+input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .contacts-portlet .social-relations a:hover {
 	&:hover {
 		background: #EEE;
 		border-color: #AAA;
@@ -1178,12 +1178,44 @@ table.calendar {
 		border-width: 1px 0 0;
 		margin-left: 1px;
 	}
+	
+	.social-relations a {
+		border: 1px solid transparent;
+		color: #34404F;
+		display: inline-block;
+		font-weight: bold;
+		line-height: 1em;
+		padding: 6px 4px;
+	}
+
+	.contacts-action-content span {
+		padding-right: 0;
+	}
 }
 
 .profile-page .contacts-portlet {
 	.contacts-profile, .lfr-contact-grid-item {
 		border-bottom-width: 0;
 	}
+
+	.contacts-profile .lfr-contact-grid-item {
+		padding-top: 20px;
+	}
+
+	.social-relations {
+		margin-left: 1px;
+	}
+
+	.lfr-app-column-view {
+		.contacts-profile .lfr-contact-grid-item {
+			padding-top: 10px;
+		}
+
+		.social-relations {
+			margin-left: 0;
+		}
+	}
+
 }
 
 .portlet-column-only .contacts-portlet .contacts-profile {
