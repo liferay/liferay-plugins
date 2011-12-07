@@ -245,6 +245,19 @@ $section-header-bg: #CCE6F7;
 			margin: 0 0 0 105px;
 			padding: 0;
 		}
+
+	}
+
+	.project {
+		margin-bottom: 1em;
+
+		.project-date {
+			text-indent: 5px;
+		}
+
+		.project-description {
+			margin-left: 105px;
+		}
 	}
 
 	.property-type {
@@ -253,6 +266,10 @@ $section-header-bg: #CCE6F7;
 
 	.property-list li {
 		list-style: none;
+	}
+
+	.lfr-app-column-view .user-information-column-1-content {
+		padding-top: 10px;
 	}
 
 	.user-information-title {
