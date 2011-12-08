@@ -366,12 +366,12 @@
 			</param>
 			<param>
 				<name>assetCategoryIds</name>
-				<type>long</type>
+				<type>long[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>assetTagNames</name>
-				<type>java.lang.String</type>
+				<type>java.lang.String[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>

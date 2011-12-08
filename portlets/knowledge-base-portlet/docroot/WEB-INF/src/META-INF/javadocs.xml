@@ -72,7 +72,7 @@
 			</param>
 			<param>
 				<name>sections</name>
-				<type>java.lang.String</type>
+				<type>java.lang.String[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -196,7 +196,7 @@
 			<comment><![CDATA[]]></comment>
 			<param>
 				<name>resourcePrimKeys</name>
-				<type>long</type>
+				<type>long[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
@@ -369,7 +369,7 @@
 			<comment><![CDATA[]]></comment>
 			<param>
 				<name>resourcePrimKeys</name>
-				<type>long</type>
+				<type>long[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -475,7 +475,7 @@
 			</param>
 			<param>
 				<name>sections</name>
-				<type>java.lang.String</type>
+				<type>java.lang.String[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -514,7 +514,7 @@
 			</param>
 			<param>
 				<name>sections</name>
-				<type>java.lang.String</type>
+				<type>java.lang.String[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -844,7 +844,7 @@
 			</param>
 			<param>
 				<name>sections</name>
-				<type>java.lang.String</type>
+				<type>java.lang.String[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -883,12 +883,12 @@
 			</param>
 			<param>
 				<name>assetCategoryIds</name>
-				<type>long</type>
+				<type>long[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>assetTagNames</name>
-				<type>java.lang.String</type>
+				<type>java.lang.String[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
@@ -912,12 +912,12 @@
 			</param>
 			<param>
 				<name>groupPermissions</name>
-				<type>java.lang.String</type>
+				<type>java.lang.String[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>guestPermissions</name>
-				<type>java.lang.String</type>
+				<type>java.lang.String[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
@@ -1433,7 +1433,7 @@
 			</param>
 			<param>
 				<name>sections</name>
-				<type>java.lang.String</type>
+				<type>java.lang.String[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -1525,7 +1525,7 @@
 			</param>
 			<param>
 				<name>resourcePrimKeys</name>
-				<type>long</type>
+				<type>long[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
@@ -1768,7 +1768,7 @@
 			</param>
 			<param>
 				<name>curStartValues</name>
-				<type>int</type>
+				<type>int[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -1870,7 +1870,7 @@
 			</param>
 			<param>
 				<name>resourcePrimKeys</name>
-				<type>long</type>
+				<type>long[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -1923,7 +1923,7 @@
 			</param>
 			<param>
 				<name>sections</name>
-				<type>java.lang.String</type>
+				<type>java.lang.String[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -1962,7 +1962,7 @@
 			</param>
 			<param>
 				<name>sections</name>
-				<type>java.lang.String</type>
+				<type>java.lang.String[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -2218,7 +2218,7 @@
 			</param>
 			<param>
 				<name>sections</name>
-				<type>java.lang.String</type>
+				<type>java.lang.String[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -2669,7 +2669,7 @@
 			<comment><![CDATA[]]></comment>
 			<param>
 				<name>kbTemplateIds</name>
-				<type>long</type>
+				<type>long[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
@@ -2824,12 +2824,12 @@
 			</param>
 			<param>
 				<name>groupPermissions</name>
-				<type>java.lang.String</type>
+				<type>java.lang.String[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>guestPermissions</name>
-				<type>java.lang.String</type>
+				<type>java.lang.String[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
@@ -2966,7 +2966,7 @@
 			</param>
 			<param>
 				<name>kbTemplateIds</name>
-				<type>long</type>
+				<type>long[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
@@ -3077,7 +3077,7 @@
 			</param>
 			<param>
 				<name>curStartValues</name>
-				<type>int</type>
+				<type>int[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>

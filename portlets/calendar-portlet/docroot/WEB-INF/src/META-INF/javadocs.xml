@@ -1981,7 +1981,7 @@
 			</param>
 			<param>
 				<name>groupIds</name>
-				<type>long</type>
+				<type>long[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -2035,7 +2035,7 @@
 			</param>
 			<param>
 				<name>groupIds</name>
-				<type>long</type>
+				<type>long[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -2113,7 +2113,7 @@
 			</param>
 			<param>
 				<name>groupIds</name>
-				<type>long</type>
+				<type>long[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>

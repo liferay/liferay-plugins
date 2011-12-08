@@ -70,7 +70,7 @@
 			</param>
 			<param>
 				<name>receiverUserIds</name>
-				<type>long</type>
+				<type>long[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -114,7 +114,7 @@
 			</param>
 			<param>
 				<name>emailAddresses</name>
-				<type>java.lang.String</type>
+				<type>java.lang.String[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>

@@ -387,12 +387,12 @@
 			</param>
 			<param>
 				<name>assetTagIds</name>
-				<type>long</type>
+				<type>long[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>notAssetTagIds</name>
-				<type>long</type>
+				<type>long[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -455,12 +455,12 @@
 			</param>
 			<param>
 				<name>tagsEntryIds</name>
-				<type>long</type>
+				<type>long[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>notTagsEntryIds</name>
-				<type>long</type>
+				<type>long[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
@@ -541,12 +541,12 @@
 			</param>
 			<param>
 				<name>assetCategoryIds</name>
-				<type>long</type>
+				<type>long[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>assetTagNames</name>
-				<type>java.lang.String</type>
+				<type>java.lang.String[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
