@@ -17,10 +17,6 @@
  */
 --%>
 
-<%
-Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), "1_WAR_contactsportlet");
-%>
-
 <div class="user-notification-event-content">
 	<div class="user-notification-event-sender">
 		<span class="thumbnail">
@@ -28,7 +24,7 @@ Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(),
 		</span>
 
 		<span class="portlet-icon">
-			<liferay-portlet:icon-portlet portlet="<%= portlet %>" />
+			<liferay-portlet:icon-portlet portlet='<%= PortletLocalServiceUtil.getPortletById(company.getCompanyId(), notificationEventJSON.getString("portletId")) %>' />
 		</span>
 	</div>
 
