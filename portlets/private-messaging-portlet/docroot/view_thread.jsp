@@ -20,12 +20,6 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 
 <portlet:renderURL var="backURL" windowState="<%= WindowState.NORMAL.toString() %>" />
 
-<liferay-ui:header
-	backLabel="messages"
-	backURL="<%= backURL.toString() %>"
-	title="<%= HtmlUtil.escape(PrivateMessagingUtil.getThreadSubject(mbThreadId)) %>"
-/>
-
 <aui:layout cssClass="controls">
 	<liferay-portlet:actionURL name="markMessagesAsUnread" var="markAsUnreadURL">
 		<portlet:param name="mbThreadIds" value="<%= String.valueOf(mbThreadId) %>" />
@@ -39,6 +33,12 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 
 	<aui:button href="<%= deleteMessageURL %>" name="deleteMessage" value="delete" />
 </aui:layout>
+
+<liferay-ui:header
+	backLabel="messages"
+	backURL="<%= backURL.toString() %>"
+	title="<%= HtmlUtil.escape(PrivateMessagingUtil.getThreadSubject(mbThreadId)) %>"
+/>
 
 <aui:layout cssClass="thread-info">
 	Between

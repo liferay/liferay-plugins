@@ -7,7 +7,7 @@ AUI().add(
 
 				instance.namespace = params.namespace;
 
-				instance.privateMessagingContainer = A.one('#p_p_id' + params.namespace + ' .controls');
+				instance.privateMessagingContainer = A.one('#p_p_id' + params.namespace + ' .messages-content');
 
 				instance._assignEvents();
 			},

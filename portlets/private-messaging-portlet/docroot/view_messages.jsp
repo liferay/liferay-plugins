@@ -15,26 +15,26 @@
 --%>
 
 <aui:layout cssClass="controls">
-	<aui:column columnWidth="15" cssClass="col-1">
+	<aui:column columnWidth="85" cssClass="col-1">
 		<liferay-ui:message key="select" />:
 
 		<span class="select-all"><a href="javascript:;"><liferay-ui:message key="all" /></a></span>
 
 		<span class="select-none"><a href="javascript:;"><liferay-ui:message key="none" /></a></span>
-	</aui:column>
 
-	<aui:column columnWidth="35">
 		<aui:button cssClass="mark-messages-as-unread" name="markAsUnread" value="mark-as-unread" />
+
+		<aui:button cssClass="mark-messages-as-read" name="markAsRead" value="mark-as-read" />
 
 		<aui:button cssClass="delete-messages" name="deleteMessage" value="delete" />
 	</aui:column>
 
-	<aui:column columnWidth="50" cssClass="col-2">
+	<aui:column columnWidth="15" cssClass="col-2">
 		<aui:button cssClass="new-message" name="newMessage" value="new-message" />
 	</aui:column>
 </aui:layout>
 
-<liferay-ui:search-container delta="25" emptyResultsMessage="no-messages-found">
+<liferay-ui:search-container delta="10" emptyResultsMessage="no-messages-found">
 	<liferay-ui:search-container-results>
 
 		<%
@@ -87,25 +87,16 @@
 				PortletURL viewThreadURL = renderResponse.createRenderURL();
 
 				viewThreadURL.setParameter("mbThreadId", String.valueOf(userThread.getMbThreadId()));
+				%>
 
+				<a class="message-link" href="<%= viewThreadURL.toString() %>">
+
+				<%
 				for (int i = 0; i < users.size(); i++) {
 					User curUser = users.get(i);
 				%>
 
-					<c:choose>
-						<c:when test="<%= LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED %>">
-							<liferay-portlet:actionURL var="publicPagesURL" portletName="<%= PortletKeys.MY_SITES %>">
-								<portlet:param name="struts_action" value="/my_sites/view" />
-								<portlet:param name="groupId" value="<%= String.valueOf(curUser.getGroup().getGroupId()) %>" />
-								<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
-							</liferay-portlet:actionURL>
-
-							<a class="profile-link" href="<%= publicPagesURL %>"><%= HtmlUtil.escape(curUser.getFullName()) %></a>
-						</c:when>
-						<c:otherwise>
-							<span class="profile-link"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
-						</c:otherwise>
-					</c:choose>
+					<span class="author-sender"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
 
 					<c:if test="<%= i != users.size() - 1 %>">
 						,
@@ -119,19 +110,20 @@
 					<%= dateFormatDateTime.format(lastMBMessage.getCreateDate()) %>
 				</span>
 
-				<div class="subject">
-					<a href="<%= viewThreadURL.toString() %>"><%= HtmlUtil.escape(StringUtil.shorten(lastMBMessage.getSubject(), 50)) %></a>
-				</div>
+					<div class="subject">
+						<%= HtmlUtil.escape(StringUtil.shorten(lastMBMessage.getSubject(), 50)) %>
+					</div>
 
-				<div class="body">
-					<c:if test="<%= user.getUserId() == lastMBMessage.getUserId() %>">
-						<liferay-ui:icon
-							src="/html/themes/classic/images/mail/replied.png"
-						/>
-					</c:if>
+					<div class="body">
+						<c:if test="<%= user.getUserId() == lastMBMessage.getUserId() %>">
+							<liferay-ui:icon
+								src="/html/themes/classic/images/mail/replied.png"
+							/>
+						</c:if>
 
-					<%= HtmlUtil.escape(StringUtil.shorten(lastMBMessage.getBody(), 100)) %>
-				</div>
+						<%= HtmlUtil.escape(StringUtil.shorten(lastMBMessage.getBody(), 100)) %>
+					</div>
+				</a>
 			</div>
 		</liferay-ui:search-container-column-text>
 	</liferay-ui:search-container-row>
