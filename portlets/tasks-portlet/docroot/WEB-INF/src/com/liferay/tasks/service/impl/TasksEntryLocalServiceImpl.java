@@ -17,6 +17,11 @@ package com.liferay.tasks.service.impl;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
+import com.liferay.portal.kernel.notifications.NotificationEvent;
+import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
@@ -31,15 +36,6 @@ import com.liferay.tasks.model.TasksEntry;
 import com.liferay.tasks.model.TasksEntryConstants;
 import com.liferay.tasks.service.base.TasksEntryLocalServiceBaseImpl;
 import com.liferay.tasks.social.TasksActivityKeys;
-
-import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
-import com.liferay.portal.kernel.notifications.NotificationEvent;
-import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
-
-import com.liferay.portal.kernel.json.JSONFactoryUtil;
-import com.liferay.portal.kernel.json.JSONObject;
-
-import com.liferay.portal.kernel.language.LanguageUtil;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -429,10 +425,8 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 
 		notificationEventJSON.put("portletId", "1_WAR_tasksportlet");
 		notificationEventJSON.put("senderUserId", senderUserId);
-		notificationEventJSON.put(
-			"tasksEntryId", tasksEntry.getTasksEntryId());
-		notificationEventJSON.put(
-			"body", tasksEntry.getTitle());
+		notificationEventJSON.put("tasksEntryId", tasksEntry.getTasksEntryId());
+		notificationEventJSON.put("body", tasksEntry.getTitle());
 
 		for (long receiverUserId : receiverUserIds) {
 			User receiverUser = UserLocalServiceUtil.getUserById(
@@ -448,7 +442,7 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 					title = "assigned-you-a-task";
 				}
 			}
-			else if (status != previousStatus){
+			else if (status != previousStatus) {
 				String statusLabel = TasksEntryConstants.getStatusLabel(
 					tasksEntry.getStatus());
 

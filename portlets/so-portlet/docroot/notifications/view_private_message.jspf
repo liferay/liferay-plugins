@@ -18,8 +18,6 @@
 --%>
 
 <%
-Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), notificationEventJSON.getString("portletId"));
-
 PortletURL portletURL = null;
 
 Group mySite = user.getGroup();
@@ -40,7 +38,6 @@ else {
 	portletURL.setParameter("mbThreadId", String.valueOf(notificationEventJSON.getLong("mbThreadId")));
 }
 
-
 int curDaysBetween = DateUtil.getDaysBetween(new Date(notificationEvent.getTimestamp()), new Date(), timeZone);
 %>
 
@@ -51,17 +48,17 @@ int curDaysBetween = DateUtil.getDaysBetween(new Date(notificationEvent.getTimes
 		</span>
 
 		<span class="portlet-icon">
-			<liferay-portlet:icon-portlet portlet="<%= portlet %>" />
+			<liferay-portlet:icon-portlet portlet='<%= PortletLocalServiceUtil.getPortletById(company.getCompanyId(), notificationEventJSON.getString("portletId")) %>' />
 		</span>
 	</div>
 
 	<div class="notification-entry">
 		<div class="title">
-			<b><%= userFullName %></b> <liferay-ui:message key='<%= notificationEventJSON.getString("title", StringPool.BLANK) %>' />
+			<b><%= userFullName %></b> <liferay-ui:message key='<%= notificationEventJSON.getString("title") %>' />
 		</div>
 
 		<div class="body">
-			<%= StringUtil.shorten(notificationEventJSON.getString("body", StringPool.BLANK), 50) %>
+			<%= StringUtil.shorten(notificationEventJSON.getString("body"), 50) %>
 		</div>
 
 		<div class="datetime">

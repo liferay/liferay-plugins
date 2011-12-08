@@ -43,7 +43,7 @@ int notificationCount = notificationEvents.size();
 
 				JSONObject notificationEventJSON = notificationEvent.getPayload();
 
-				long senderUserId = notificationEventJSON.getLong("senderUserId", 0);
+				long senderUserId = notificationEventJSON.getLong("senderUserId");
 
 				String userDisplayURL = StringPool.BLANK;
 				String userFullName = PortalUtil.getUserName(senderUserId, StringPool.BLANK);
@@ -60,19 +60,19 @@ int notificationCount = notificationEvents.size();
 			%>
 
 				<c:choose>
-					<c:when test='<%= notificationEventJSON.getString("portletId", StringPool.BLANK).equals("1_WAR_privatemessagingportlet") %>'>
+					<c:when test='<%= notificationEventJSON.getString("portletId").equals("1_WAR_privatemessagingportlet") %>'>
 						<%@ include file="/notifications/view_private_message.jspf" %>
 					</c:when>
-					<c:when test='<%= notificationEventJSON.getString("portletId", StringPool.BLANK).equals("2_WAR_soportlet") %>'>
+					<c:when test='<%= notificationEventJSON.getString("portletId").equals("2_WAR_soportlet") %>'>
 						<%@ include file="/notifications/view_member_request.jspf" %>
 					</c:when>
-					<c:when test='<%= notificationEventJSON.getString("portletId", StringPool.BLANK).equals("1_WAR_contactsportlet") %>'>
+					<c:when test='<%= notificationEventJSON.getString("portletId").equals("1_WAR_contactsportlet") %>'>
 						<%@ include file="/notifications/view_social_request.jspf" %>
 					</c:when>
-					<c:when test='<%= notificationEventJSON.getString("portletId", StringPool.BLANK).equals("1_WAR_tasksportlet") %>'>
+					<c:when test='<%= notificationEventJSON.getString("portletId").equals("1_WAR_tasksportlet") %>'>
 						<%@ include file="/notifications/view_task.jspf" %>
 					</c:when>
-					<c:when test='<%= notificationEventJSON.getString("portletId", StringPool.BLANK).equals("1_WAR_microblogsportlet") %>'>
+					<c:when test='<%= notificationEventJSON.getString("portletId").equals("1_WAR_microblogsportlet") %>'>
 						<%@ include file="/notifications/view_microblogs.jspf" %>
 					</c:when>
 				</c:choose>
@@ -124,35 +124,37 @@ int notificationCount = notificationEvents.size();
 		}
 	);
 
-	userNotificationEvents.delegate(
-		'click',
-		function(event) {
-			var portletURL = event.currentTarget.getAttribute('data-portletUrl');
-
-			if (portletURL) {
-				window.location = portletURL;
-			}
-		},
-		'.user-notification-event-content'
-	);
-
-	var dismissNotifications = userNotificationEvents.one('.dismiss-notifications');
-
-	if (dismissNotifications) {
-		dismissNotifications.on(
+	<c:if test="<%= notificationCount > 0 %>">
+		userNotificationEvents.delegate(
 			'click',
 			function(event) {
-				A.io.request(
-					'<liferay-portlet:actionURL name="dismissUserNotificationEvents" portletName="6_WAR_soportlet" windowState="<%= LiferayWindowState.NORMAL.toString() %>"><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="userNotificationEventUuids" value="<%= userNotificationEventUuids %>" /></liferay-portlet:actionURL>',
-					{
-						after: {
-							success: function(event, id, obj) {
-								window.location.reload();
+				var portletURL = event.currentTarget.getAttribute('data-portletUrl');
+
+				if (portletURL) {
+					window.location = portletURL;
+				}
+			},
+			'.user-notification-event-content'
+		);
+
+		var dismissNotifications = userNotificationEvents.one('.dismiss-notifications');
+
+		if (dismissNotifications) {
+			dismissNotifications.on(
+				'click',
+				function(event) {
+					A.io.request(
+						'<liferay-portlet:actionURL name="dismissUserNotificationEvents" portletName="6_WAR_soportlet" windowState="<%= LiferayWindowState.NORMAL.toString() %>"><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="userNotificationEventUuids" value="<%= userNotificationEventUuids %>" /></liferay-portlet:actionURL>',
+						{
+							after: {
+								success: function(event, id, obj) {
+									window.location.reload();
+								}
 							}
 						}
-					}
-				);
-			}
-		);
-	}
+					);
+				}
+			);
+		}
+	</c:if>
 </aui:script>
