@@ -196,7 +196,8 @@ public class KaleoInstanceTokenLocalServiceImpl
 		KaleoInstanceToken kaleoInstanceToken =
 			kaleoInstanceTokenPersistence.create(rootKaleoInstanceTokenId);
 
-		long groupId = StagingUtil.getLiveGroupId(serviceContext.getScopeGroupId());
+		long groupId = StagingUtil.getLiveGroupId(
+			serviceContext.getScopeGroupId());
 
 		kaleoInstanceToken.setGroupId(groupId);
 
