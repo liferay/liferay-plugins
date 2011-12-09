@@ -69,7 +69,7 @@
 
 							Group group = GroupLocalServiceUtil.getGroup(groupId);
 
-							List<Role> roles = new ArrayList<Role>();
+							roles = new ArrayList<Role>();
 
 							Role adminRole = RoleLocalServiceUtil.getRole(companyId, "Administrator");
 
