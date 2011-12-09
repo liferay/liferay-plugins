@@ -91,7 +91,7 @@
 			</param>
 			<param>
 				<name>thumbnail</name>
-				<type>byte</type>
+				<type>byte[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
@@ -242,7 +242,7 @@
 			</param>
 			<param>
 				<name>thumbnail</name>
-				<type>byte</type>
+				<type>byte[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>

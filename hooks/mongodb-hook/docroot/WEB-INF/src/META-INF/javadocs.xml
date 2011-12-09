@@ -5,7 +5,7 @@
 		<name>MongoExpandoColumnLocalServiceImpl</name>
 		<type>com.liferay.mongodb.hook.service.impl.MongoExpandoColumnLocalServiceImpl</type>
 		<comment><![CDATA[]]></comment>
-		<author><![CDATA[Raymond AugÃ©]]></author>
+		<author><![CDATA[Raymond Augé]]></author>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
 			<name>MongoExpandoColumnLocalServiceImpl</name>
@@ -79,7 +79,7 @@
 		<name>MongoExpandoRowLocalServiceImpl</name>
 		<type>com.liferay.mongodb.hook.service.impl.MongoExpandoRowLocalServiceImpl</type>
 		<comment><![CDATA[]]></comment>
-		<author><![CDATA[Raymond AugÃ©]]></author>
+		<author><![CDATA[Raymond Augé]]></author>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
 			<name>MongoExpandoRowLocalServiceImpl</name>
@@ -342,7 +342,7 @@
 		<name>MongoExpandoTableLocalServiceImpl</name>
 		<type>com.liferay.mongodb.hook.service.impl.MongoExpandoTableLocalServiceImpl</type>
 		<comment><![CDATA[]]></comment>
-		<author><![CDATA[Raymond AugÃ©]]></author>
+		<author><![CDATA[Raymond Augé]]></author>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
 			<name>MongoExpandoTableLocalServiceImpl</name>
@@ -382,7 +382,7 @@
 		<name>MongoExpandoValueLocalServiceImpl</name>
 		<type>com.liferay.mongodb.hook.service.impl.MongoExpandoValueLocalServiceImpl</type>
 		<comment><![CDATA[]]></comment>
-		<author><![CDATA[Raymond AugÃ©]]></author>
+		<author><![CDATA[Raymond Augé]]></author>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
 			<name>MongoExpandoValueLocalServiceImpl</name>
