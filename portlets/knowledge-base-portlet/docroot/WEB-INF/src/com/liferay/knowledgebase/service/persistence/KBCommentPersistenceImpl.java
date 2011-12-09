@@ -49,7 +49,6 @@ import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import com.liferay.portlet.asset.service.persistence.AssetEntryPersistence;
 import com.liferay.portlet.social.service.persistence.SocialActivityPersistence;
 
 import java.io.Serializable;
@@ -3114,8 +3113,6 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	@BeanReference(type = AssetEntryPersistence.class)
-	protected AssetEntryPersistence assetEntryPersistence;
 	@BeanReference(type = SocialActivityPersistence.class)
 	protected SocialActivityPersistence socialActivityPersistence;
 	private static final String _SQL_SELECT_KBCOMMENT = "SELECT kbComment FROM KBComment kbComment";
