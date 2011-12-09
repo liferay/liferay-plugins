@@ -65,50 +65,48 @@
 		<liferay-ui:search-container-column-text valign="top">
 
 			<%
-			long userId = PrivateMessagingUtil.getThreadRepresentativeUserId(user.getUserId(), userThread.getMbThreadId());
+			long threadRepresentativeUserId = PrivateMessagingUtil.getThreadRepresentativeUserId(user.getUserId(), userThread.getMbThreadId());
+
+			MBMessage lastMBMessage = PrivateMessagingUtil.getLastThreadMessage(user.getUserId(), userThread.getMbThreadId());
 			%>
 
 			<liferay-ui:user-display
-				userId="<%= userId %>"
+				userId="<%= threadRepresentativeUserId %>"
 				displayStyle="<%= 2 %>"
 			/>
 
 			<div class="last-thread">
-
-				<%
-				List<User> users = PrivateMessagingUtil.getThreadUsers(user.getUserId(), userThread.getMbThreadId());
-
-				if (users.isEmpty()) {
-					users.add(user);
-				}
-
-				MBMessage lastMBMessage = PrivateMessagingUtil.getLastThreadMessage(user.getUserId(), userThread.getMbThreadId());
-
-				PortletURL viewThreadURL = renderResponse.createRenderURL();
-
-				viewThreadURL.setParameter("mbThreadId", String.valueOf(userThread.getMbThreadId()));
-				%>
+				<portlet:renderURL var="viewThreadURL">
+					<portlet:param name="jspPage" value="/view.jsp" />
+					<portlet:param name="mbThreadId" value="<%= String.valueOf(userThread.getMbThreadId()) %>" />
+				</portlet:renderURL>
 
 				<a class="message-link" href="<%= viewThreadURL.toString() %>">
 
-				<%
-				for (int i = 0; i < users.size(); i++) {
-					User curUser = users.get(i);
-				%>
+					<%
+					List<User> users = PrivateMessagingUtil.getThreadUsers(user.getUserId(), userThread.getMbThreadId());
 
-					<span class="author-sender"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
+					if (users.isEmpty()) {
+						users.add(user);
+					}
 
-					<c:if test="<%= i != users.size() - 1 %>">
-						,
-					</c:if>
+					for (int i = 0; i < users.size(); i++) {
+						User curUser = users.get(i);
+					%>
 
-				<%
-				}
-				%>
+						<span class="author-sender"><%= HtmlUtil.escape(curUser.getFullName())  %></span>
 
-				<span class="date">
-					<%= dateFormatDateTime.format(lastMBMessage.getCreateDate()) %>
-				</span>
+						<c:if test="<%= i != users.size() - 1 %>">
+							,
+						</c:if>
+
+					<%
+					}
+					%>
+
+					<span class="date">
+						<%= dateFormatDateTime.format(lastMBMessage.getCreateDate()) %>
+					</span>
 
 					<div class="subject">
 						<%= HtmlUtil.escape(StringUtil.shorten(lastMBMessage.getSubject(), 50)) %>
