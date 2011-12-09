@@ -31,7 +31,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FilenameFilter;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -154,7 +153,7 @@ public class PluginExecutor extends BaseExecutor {
 
 		String context = arguments.poll();
 
-		List<File> deployDirs = getDeployDirectories(context);
+		List<File> deployDirs = getUpdateDirectories(context);
 
 		for (File deployDir : deployDirs) {
 			if (!deployDir.exists()) {
@@ -220,20 +219,20 @@ public class PluginExecutor extends BaseExecutor {
 		}
 	}
 
-	protected List<File> getDeployDirectories(final String context)
+	protected List<File> getUpdateDirectories(final String context)
 		throws Exception {
 
 		List<File> deployDirs = new ArrayList<File>();
 
-		String deployDirName = DeployManagerUtil.getDeployDir();
+		File deployDirParent = DeployManagerUtil.getUpdateDir();
 
-		File deployDir = new File(deployDirName, context);
+		File deployDir = new File(deployDirParent, context);
 
 		if (deployDir.exists()) {
 			deployDirs.add(deployDir);
 		}
 		else {
-			File deployWarDir = new File(deployDirName, context + ".war");
+			File deployWarDir = new File(deployDirParent, context + ".war");
 
 			deployDirs.add(deployWarDir);
 		}
