@@ -29,8 +29,8 @@ public class ErrorLogExecutor extends OutputLogExecutor {
 		File logFile = null;
 
 		if (ServerDetector.isGlassfish()) {
-			File logDirectory =
-				new File(System.getProperty("catalina.home"), "logs");
+			File logDirectory = new File(
+				System.getProperty("catalina.home"), "logs");
 
 			logFile = new File(logDirectory, "server.log");
 		}
