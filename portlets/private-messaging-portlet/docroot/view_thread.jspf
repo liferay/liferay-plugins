@@ -41,7 +41,7 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 />
 
 <aui:layout cssClass="thread-info">
-	Between
+	<liferay-ui:message key="between" />
 
 	<%
 	List<User> users = PrivateMessagingUtil.getThreadUsers(user.getUserId(), mbThreadId);
@@ -81,10 +81,10 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 				<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
 			</liferay-portlet:actionURL>
 
-			and <a class="profile-link" href="<%= selfPublicPagesURL %>"><liferay-ui:message key="you" /></a>
+			<liferay-ui:message key="and" /> <a class="profile-link" href="<%= selfPublicPagesURL %>"><liferay-ui:message key="you" /></a>
 		</c:when>
 		<c:otherwise>
-			and <span class="profile-link"><liferay-ui:message key="you" /></span>
+			<liferay-ui:message key="and" /> <span class="profile-link"><liferay-ui:message key="you" /></span>
 		</c:otherwise>
 	</c:choose>
 </aui:layout>
