@@ -15,6 +15,7 @@
 package com.liferay.portal.search.solr.servlet;
 
 import com.liferay.portal.kernel.concurrent.ConcurrentHashSet;
+import com.liferay.portal.kernel.util.BasePortalLifecycle;
 import com.liferay.portal.search.solr.server.LiveServerChecker;
 
 import java.util.Set;
@@ -25,9 +26,25 @@ import javax.servlet.ServletContextListener;
 /**
  * @author Zsigmond Rab
  */
-public class SolrWebContextListener implements ServletContextListener {
+public class SolrServletContextListener
+	extends BasePortalLifecycle implements ServletContextListener {
+
+	public static void registerLiveServerChecker(
+		LiveServerChecker liveServerChecker) {
+
+		_liveServerCheckers.add(liveServerChecker);
+	}
 
 	public void contextDestroyed(ServletContextEvent servletContextEvent) {
+		portalDestroy();
+	}
+
+	public void contextInitialized(ServletContextEvent servletContextEvent) {
+		registerPortalLifecycle();
+	}
+
+	@Override
+	protected void doPortalDestroy() throws Exception {
 		for (LiveServerChecker liveServerChecker : _liveServerCheckers) {
 			liveServerChecker.shutdown();
 
@@ -35,13 +52,8 @@ public class SolrWebContextListener implements ServletContextListener {
 		}
 	}
 
-	public void contextInitialized(ServletContextEvent servletContextEvent) {
-	}
-
-	public static void registerLiveServerChecker(
-		LiveServerChecker liveServerChecker) {
-
-		_liveServerCheckers.add(liveServerChecker);
+	@Override
+	protected void doPortalInit() {
 	}
 
 	private static Set<LiveServerChecker> _liveServerCheckers =

@@ -14,9 +14,10 @@
 
 package com.liferay.portal.search.solr.server;
 
-import com.liferay.portal.search.solr.servlet.SolrWebContextListener;
+import com.liferay.portal.search.solr.servlet.SolrServletContextListener;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -41,7 +42,7 @@ public class LiveServerChecker implements Runnable {
 		_scheduledExecutorService.scheduleWithFixedDelay(
 			this, 0, delay, TimeUnit.SECONDS);
 
-		SolrWebContextListener.registerLiveServerChecker(this);
+		SolrServletContextListener.registerLiveServerChecker(this);
 	}
 
 	public void run() {
@@ -51,9 +52,9 @@ public class LiveServerChecker implements Runnable {
 		solrServerWrappers.addAll(_solrServerFactory.getLiveServers());
 
 		for (SolrServerWrapper solrServerWrapper : solrServerWrappers) {
-			SolrServer server = solrServerWrapper.getServer();
+			SolrServer solrServer = solrServerWrapper.getServer();
 
-			if (server == null) {
+			if (solrServer == null) {
 				continue;
 			}
 
@@ -74,8 +75,15 @@ public class LiveServerChecker implements Runnable {
 	}
 
 	public void shutdown() {
-		_solrServerFactory.getLiveServers().clear();
-		_solrServerFactory.getDeadServers().clear();
+		List<SolrServerWrapper> deadSolrServerWrappers =
+			_solrServerFactory.getDeadServers();
+
+		deadSolrServerWrappers.clear();
+
+		List<SolrServerWrapper> liveSolrServerWrappers =
+			_solrServerFactory.getLiveServers();
+
+		liveSolrServerWrappers.clear();
 
 		_scheduledExecutorService.shutdownNow();
 	}
