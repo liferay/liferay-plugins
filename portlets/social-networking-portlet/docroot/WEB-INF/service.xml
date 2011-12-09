@@ -123,7 +123,6 @@
 			<finder-column name="groupId" />
 			<finder-column name="userId" />
 		</finder>
-
 	</entity>
 	<exceptions>
 		<exception>MeetupsEntryEndDate</exception>
