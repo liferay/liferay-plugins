@@ -143,7 +143,7 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 				</span>
 
 				<div class="body">
-					<%= HtmlUtil.escape(mbMessage.getBody()) %>
+					<%= StringUtil.replace(HtmlUtil.escape(mbMessage.getBody()), "\n", "<br />") %>
 
 					<c:if test="<%= mbMessage.isAttachments() %>">
 						<hr />
