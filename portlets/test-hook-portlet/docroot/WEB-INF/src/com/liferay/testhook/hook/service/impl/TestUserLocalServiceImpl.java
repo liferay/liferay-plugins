@@ -44,11 +44,11 @@ public class TestUserLocalServiceImpl extends UserLocalServiceWrapper {
 
 	@Override
 	public User getUserByEmailAddress(long companyId, String emailAddress)
-			throws PortalException, SystemException {
+		throws PortalException, SystemException {
 
 		System.out.println(
-				"Called TestUserLocalServiceImpl.getUserByEmailAddress(" +
-					companyId + ", " + emailAddress + ")");
+			"Called TestUserLocalServiceImpl.getUserByEmailAddress(" +
+				companyId + ", " + emailAddress + ")");
 
 		User user = super.getUserByEmailAddress(companyId, emailAddress);
 
