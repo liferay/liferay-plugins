@@ -22,7 +22,6 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
@@ -128,10 +127,8 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 
 		// Social
 
-		AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(
+		SocialActivityLocalServiceUtil.deleteActivities(
 			TasksEntry.class.getName(), tasksEntry.getTasksEntryId());
-
-		SocialActivityLocalServiceUtil.deleteActivities(assetEntry);
 	}
 
 	public List<TasksEntry> getAssigneeTasksEntries(
