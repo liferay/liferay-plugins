@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -204,7 +205,7 @@ public class WebFormUtil {
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append("currentFieldValue = String('" + currentFieldValue + "');\n");
+		sb.append("currentFieldValue = String('" + HtmlUtil.escapeJS(currentFieldValue) + "');\n");
 
 		sb.append("var fieldsMap = {};\n");
 
@@ -218,14 +219,14 @@ public class WebFormUtil {
 				new String[] {"\r\n", "\r", "\n"},
 				new String[] {"\\n", "\\n", "\\n"});
 
-			sb.append(value);
+			sb.append(HtmlUtil.escapeJS(value));
 
 			sb.append("';\n");
 		}
 
 		sb.append("function validation(currentFieldValue, fieldsMap) {\n");
 		sb.append(validationScript);
-		sb.append("};\n");
+		sb.append("}\n");
 		sb.append("internalValidationResult = ");
 		sb.append("validation(currentFieldValue, fieldsMap);");
 
