@@ -152,12 +152,11 @@ $section-header-bg: #CCE6F7;
 
 	.contacts-profile {
 		border-bottom-width: 1px;
-		padding: 20px 10px 5px;
-		position: relative;
 
 		.lfr-contact-grid-item {
 			border-bottom-width: 0;
 			display: inline-block;
+			padding: 10px 10px 5px;
 		}
 
 		.lfr-contact-name a {
@@ -170,18 +169,6 @@ $section-header-bg: #CCE6F7;
 			font-weight: bold;
 		}
 
-		.social-relations {
-			position: absolute;
-			right: 0;
-			text-align: right;
-			top: 30px;
-			width: auto;
-
-			.lfr-asset-metadata {
-				display: none;
-			}
-		}
-
 		.aui-column-content {
 			padding: 0 10px;
 		}
@@ -189,31 +176,36 @@ $section-header-bg: #CCE6F7;
 		.aui-column:before {
 			border-width: 0;
 		}
+
+		.social-relations .lfr-asset-metadata {
+			display: none;
+		}
+	}
+
+	.contacts-profile {
+		border-bottom-width: 0;
 	}
 
 	.contacts-result-container .contacts-container {
 		margin-left: 30%;
 		min-height: 500px;
-
-		.contacts-profile {
-			border-bottom-width: 0;
-			padding-top: 10px;
-		}
 	}
 
-	.contacts-result-container-content {
-		.contacts-profile {
-			.lfr-contact-info {
-				padding: 8px;
-			}
+	.contacts-result-container-content .contacts-profile .lfr-contact-info {
+		padding: 8px;
+	}
 
-			.social-relations {
-				background: $section-header-bg;
-				position: static;
-				padding: 5px;
-				left: 0;
-				margin: 5px -10px 10px;
-				top: 0;
+	.social-relations {
+		background: #EEE;
+		padding: 4px 8px;
+		width: auto;
+
+		a {
+			display: inline-block;
+			padding: 3px 4px;
+
+			&:hover {
+				text-decoration: none;
 			}
 		}
 	}
@@ -254,12 +246,28 @@ $section-header-bg: #CCE6F7;
 		}
 	}
 
+	.project {
+		margin-bottom: 1em;
+
+		.project-date {
+			text-indent: 5px;
+		}
+
+		.project-description {
+			margin-left: 105px;
+		}
+	}
+
 	.property-type {
 		font-weight: bold;
 	}
 
 	.property-list li {
 		list-style: none;
+	}
+
+	.lfr-app-column-view .user-information-column-1-content {
+		padding-top: 10px;
 	}
 
 	.user-information-title {

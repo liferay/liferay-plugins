@@ -69,8 +69,8 @@ body {
 	margin: 0;
 }
 
-.ie6 .#navigation ul,
-.ie7 .#navigation ul {
+.ie6 #navigation ul,
+.ie7 #navigation ul {
 	zoom: 1;
 }
 

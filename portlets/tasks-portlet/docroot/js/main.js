@@ -49,7 +49,6 @@ AUI().use(
 				popup.show();
 
 				popup.set('title', title);
-				popup.set('xy', [viewportRegion.left + 20, viewportRegion.top + 20]);
 
 				popup.io.set('uri', url);
 				popup.io.start();
@@ -61,7 +60,10 @@ AUI().use(
 				if (!instance._popup) {
 					instance._popup = new A.Dialog(
 						{
+							centered: true,
+							constrain2view: true,
 							cssClass: 'tasks-dialog',
+							modal: true,
 							resizable: false,
 							width: 600
 						}

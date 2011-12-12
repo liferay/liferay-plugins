@@ -73,13 +73,11 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 	* Deletes the wall entry from the database. Also notifies the appropriate model listeners.
 	*
 	* @param wallEntry the wall entry
-	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
 	public void deleteWallEntry(
 		com.liferay.socialnetworking.model.WallEntry wallEntry)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		_wallEntryLocalService.deleteWallEntry(wallEntry);
 	}
 

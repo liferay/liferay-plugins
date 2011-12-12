@@ -30,7 +30,6 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
-import javax.portlet.PortletMode;
 import javax.portlet.PortletPreferences;
 import javax.portlet.ValidatorException;
 
@@ -44,9 +43,7 @@ public class StocksPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
 
-		if (actionRequest.getPortletMode().equals(PortletMode.EDIT)) {
-			updatePreferences(actionRequest, actionResponse);
-		}
+		updatePreferences(actionRequest, actionResponse);
 	}
 
 	protected void updatePreferences(

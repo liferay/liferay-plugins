@@ -41,7 +41,6 @@ import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.security.auth.PrincipalException;
@@ -465,9 +464,11 @@ public class ArticlePortlet extends MVCPortlet {
 		long defaultValue = GetterUtil.getLong(
 			preferences.getValue("resourcePrimKey", null));
 
-		String jspPage = renderRequest.getParameter("jspPage");
+		String jspPage = ParamUtil.getString(renderRequest, "jspPage");
 
-		if ((defaultValue == 0) && Validator.equals(viewJSP, jspPage)) {
+		if (((defaultValue == 0) && jspPage.equals(viewJSP)) ||
+			jspPage.equals("/article/select_configuration_article.jsp")) {
+
 			return 0;
 		}
 

@@ -61,7 +61,7 @@ $theme.include($body_top_include)
 						<a href="$current_user_profile_url"><img src="$current_user_profile_portrait_url" alt="$current_user_name"></a>
 					</div>
 
-					#if (!$is_profile_page)
+					#if ($page_group.isUser() && !$layout.isPublicLayout())
 						<a href="$current_user_profile_url" class="profile-name">$current_user_name</a>
 					#end
 				</div>
