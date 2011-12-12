@@ -972,7 +972,10 @@ public class IMAPAccessor {
 		String fileName = part.getFileName();
 		Object content = part.getContent();
 
-		if (content instanceof Multipart) {
+		if (content instanceof InputStream) {
+			return;
+		}
+		else if (content instanceof Multipart) {
 			Multipart multipart = (Multipart)content;
 
 			for (int i = 0; i < multipart.getCount(); i++) {
@@ -984,8 +987,6 @@ public class IMAPAccessor {
 						String.valueOf(i)),
 					curPart, mailFiles);
 			}
-		} else if (content instanceof InputStream) {
-			return;
 		} else if (Validator.isNull(fileName)) {
 			String contentType = part.getContentType().toLowerCase();
 
