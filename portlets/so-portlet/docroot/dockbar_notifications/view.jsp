@@ -20,3 +20,28 @@
 <%@ include file="/init.jsp" %>
 
 <liferay-util:include page="/notifications/view_dockbar_notifications.jsp" portletId="6_WAR_soportlet" />
+
+<aui:script use="liferay-dockbar">
+	Liferay.once(
+		'initDockbar',
+		function() {
+			var notificationsMenuVars = {
+				container: A.one('#<portlet:namespace />notificationsMenuContainer'),
+				contentBox: A.one('#<portlet:namespace />notificationsMenuContent'),
+				trigger: A.one('#_145_notificationsMenu')
+			};
+
+			Liferay.Dockbar.addMenu(
+				{
+					align: {
+						node: notificationsMenuVars.trigger,
+							points: ['tr', 'br']
+					},
+					boundingBox: notificationsMenuVars.container,
+					name: 'notificationsMenu',
+					trigger: notificationsMenuVars.trigger,
+					width: '300px'
+				}
+			);
+	});
+</aui:script>

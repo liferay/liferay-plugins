@@ -57,7 +57,7 @@ int x = html.indexOf("<li class=\"user-avatar \" id=\"_145_userAvatar\">");
 			<span></span>
 		</li>
 
-		<li>
+		<li class="notifications-menu has-submenu" id="<portlet:namespace />notificationsMenu">
 			<liferay-portlet:runtime portletName="7_WAR_soportlet" />
 		</li>
 
