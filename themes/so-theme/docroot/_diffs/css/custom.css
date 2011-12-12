@@ -1169,7 +1169,7 @@ table.calendar {
 		border-width: 1px 0 0;
 		margin-left: 1px;
 	}
-	
+
 	.social-relations a {
 		border: 1px solid transparent;
 		color: #34404F;
@@ -1378,10 +1378,8 @@ table.calendar {
 		border-width: 0 0 1px;
 	}
 
-	.message-link {
-		&:hover {
-			text-decoration: none;
-		}
+	.message-link:hover {
+		text-decoration: none;
 	}
 
 	.messages .taglib-search-iterator .col-1 {

@@ -106,7 +106,6 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 		className="com.liferay.portlet.messageboards.model.MBMessage"
 		modelVar="mbMessage"
 	>
-
 		<liferay-ui:search-container-column-text valign="top">
 			<liferay-ui:user-display
 				userId="<%= mbMessage.getUserId() %>"
