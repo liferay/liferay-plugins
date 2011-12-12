@@ -26,8 +26,12 @@ List<NotificationEvent> notificationEvents = ChannelHubManagerUtil.getNotificati
 int notificationCount = notificationEvents.size();
 %>
 
-<span class="user-notification-events">
-	<span class="aui-helper-hidden aui-menu-content user-notification-events-container">
+<a class="menu-button user-notification-events-icon" href="javascript:;">
+	<span class="notification-count"><%= notificationCount %></span>
+</a>
+
+<div class="aui-menu aui-overlaycontext-hidden user-notification-events" id="<portlet:namespace />notificationsMenuContainer">
+	<div class="aui-menu-content user-notification-events-container" id="<portlet:namespace />notificationsMenuContent">
 		<c:if test="<%= !notificationEvents.isEmpty() %>">
 
 			<%
@@ -105,24 +109,12 @@ int notificationCount = notificationEvents.size();
 				<a href="<%= viewAllNotifications %>"><liferay-ui:message key="view-all" />&raquo;</a>
 			</span>
 		</div>
-	</span>
-
-	<span class="user-notification-events-icon">
-		<%= notificationCount %>
-	</span>
-</span>
+	</div>
+</div>
 
 <aui:script use="aui-base">
 	var userNotificationEvents = A.one('.dockbar .user-notification-events');
-
 	var userNotificationsContainer = userNotificationEvents.one('.user-notification-events-container');
-
-	userNotificationEvents.on(
-		['mouseover', 'mouseout'],
-		function(event) {
-			userNotificationsContainer.toggleClass('aui-helper-hidden');
-		}
-	);
 
 	<c:if test="<%= notificationCount > 0 %>">
 		userNotificationEvents.delegate(

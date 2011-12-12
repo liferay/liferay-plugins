@@ -17,7 +17,7 @@
  */
 --%>
 
-<div class="user-notification-event-content">
+<div class="aui-menu-item user-notification-event-content">
 	<div class="user-notification-event-sender">
 		<span class="thumbnail">
 			<img alt="<%= userFullName %>" src="<%= userPortaitURL %>" />
@@ -57,6 +57,4 @@
 			</span>
 		</div>
 	</div>
-
-	<div class="clear"></div>
 </div>
