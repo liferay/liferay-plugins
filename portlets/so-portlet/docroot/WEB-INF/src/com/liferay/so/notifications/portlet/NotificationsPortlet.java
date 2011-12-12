@@ -83,7 +83,6 @@ public class NotificationsPortlet extends MVCPortlet {
 			(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
 		for (String userNotificationEventUuid : userNotificationEventUuids) {
-
 			ChannelHubManagerUtil.deleteUserNotificiationEvent(
 				themeDisplay.getCompanyId(), themeDisplay.getUserId(),
 				userNotificationEventUuid);
@@ -163,9 +162,9 @@ public class NotificationsPortlet extends MVCPortlet {
 
 		long memberRequestId = ParamUtil.getLong(
 			actionRequest, "memberRequestId");
-		int status = ParamUtil.getInteger(actionRequest, "status");
 		String notificationUuid = ParamUtil.getString(
 			actionRequest, "notificationUuid");
+		int status = ParamUtil.getInteger(actionRequest, "status");
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
@@ -199,10 +198,10 @@ public class NotificationsPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long requestId = ParamUtil.getLong(actionRequest, "requestId");
-		int status = ParamUtil.getInteger(actionRequest, "status");
 		String notificationUuid = ParamUtil.getString(
 			actionRequest, "notificationUuid");
+		long requestId = ParamUtil.getLong(actionRequest, "requestId");
+		int status = ParamUtil.getInteger(actionRequest, "status");
 
 		SocialRequest socialRequest =
 			SocialRequestLocalServiceUtil.getSocialRequest(requestId);

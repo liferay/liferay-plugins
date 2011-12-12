@@ -399,7 +399,7 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 		long assigneeUserId = tasksEntry.getAssigneeUserId();
 		long creatorUserId = tasksEntry.getUserId();
 
-		List<Long> receiverUserIds = new ArrayList<Long>(3);
+		List<Long> receiverUserIds = new ArrayList<Long>();
 
 		if (creatorUserId != senderUserId ) {
 			receiverUserIds.add(creatorUserId);
@@ -408,7 +408,7 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 		if (assigneeUserId != senderUserId &&
 			!receiverUserIds.contains(assigneeUserId)) {
 
-				receiverUserIds.add(assigneeUserId);
+			receiverUserIds.add(assigneeUserId);
 		}
 
 		if (previousAssigneeUserId != 0 &&
@@ -420,10 +420,10 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 
 		JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject();
 
+		notificationEventJSON.put("body", tasksEntry.getTitle());
+		notificationEventJSON.put("entryId", tasksEntry.getTasksEntryId());
 		notificationEventJSON.put("portletId", "1_WAR_tasksportlet");
 		notificationEventJSON.put("senderUserId", senderUserId);
-		notificationEventJSON.put("tasksEntryId", tasksEntry.getTasksEntryId());
-		notificationEventJSON.put("body", tasksEntry.getTitle());
 
 		for (long receiverUserId : receiverUserIds) {
 			User receiverUser = UserLocalServiceUtil.getUserById(
