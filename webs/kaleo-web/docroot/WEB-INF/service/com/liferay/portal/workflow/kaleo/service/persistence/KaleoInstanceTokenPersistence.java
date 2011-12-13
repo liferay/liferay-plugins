@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 
@@ -816,7 +815,4 @@ public interface KaleoInstanceTokenPersistence extends BasePersistence<KaleoInst
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public KaleoInstanceToken remove(KaleoInstanceToken kaleoInstanceToken)
-		throws SystemException;
 }

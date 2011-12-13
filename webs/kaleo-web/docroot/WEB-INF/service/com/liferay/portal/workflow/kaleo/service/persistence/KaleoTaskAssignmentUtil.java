@@ -94,14 +94,6 @@ public class KaleoTaskAssignmentUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static KaleoTaskAssignment remove(
-		KaleoTaskAssignment kaleoTaskAssignment) throws SystemException {
-		return getPersistence().remove(kaleoTaskAssignment);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static KaleoTaskAssignment update(

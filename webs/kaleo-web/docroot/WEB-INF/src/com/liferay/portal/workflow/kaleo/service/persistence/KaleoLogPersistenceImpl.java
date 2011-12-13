@@ -287,6 +287,17 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<KaleoLog> kaleoLogs) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (KaleoLog kaleoLog : kaleoLogs) {
+			EntityCacheUtil.removeResult(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
+				KaleoLogImpl.class, kaleoLog.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new kaleo log with the primary key. Does not add the kaleo log to the database.
 	 *
@@ -305,20 +316,6 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	/**
 	 * Removes the kaleo log with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the kaleo log
-	 * @return the kaleo log that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a kaleo log with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public KaleoLog remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the kaleo log with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param kaleoLogId the primary key of the kaleo log
 	 * @return the kaleo log that was removed
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a kaleo log with the primary key could not be found
@@ -326,24 +323,38 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	 */
 	public KaleoLog remove(long kaleoLogId)
 		throws NoSuchLogException, SystemException {
+		return remove(Long.valueOf(kaleoLogId));
+	}
+
+	/**
+	 * Removes the kaleo log with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the kaleo log
+	 * @return the kaleo log that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a kaleo log with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KaleoLog remove(Serializable primaryKey)
+		throws NoSuchLogException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			KaleoLog kaleoLog = (KaleoLog)session.get(KaleoLogImpl.class,
-					Long.valueOf(kaleoLogId));
+					primaryKey);
 
 			if (kaleoLog == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + kaleoLogId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchLogException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					kaleoLogId);
+					primaryKey);
 			}
 
-			return kaleoLogPersistence.remove(kaleoLog);
+			return remove(kaleoLog);
 		}
 		catch (NoSuchLogException nsee) {
 			throw nsee;
@@ -354,18 +365,6 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the kaleo log from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoLog the kaleo log
-	 * @return the kaleo log that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public KaleoLog remove(KaleoLog kaleoLog) throws SystemException {
-		return super.remove(kaleoLog);
 	}
 
 	@Override
@@ -386,11 +385,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(KaleoLogModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoLogImpl.class, kaleoLog.getPrimaryKey());
+		clearCache(kaleoLog);
 
 		return kaleoLog;
 	}
@@ -3113,7 +3108,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoLog kaleoLog : findByCompanyId(companyId)) {
-			kaleoLogPersistence.remove(kaleoLog);
+			remove(kaleoLog);
 		}
 	}
 
@@ -3126,7 +3121,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	public void removeByKaleoDefinitionId(long kaleoDefinitionId)
 		throws SystemException {
 		for (KaleoLog kaleoLog : findByKaleoDefinitionId(kaleoDefinitionId)) {
-			kaleoLogPersistence.remove(kaleoLog);
+			remove(kaleoLog);
 		}
 	}
 
@@ -3139,7 +3134,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	public void removeByKaleoInstanceId(long kaleoInstanceId)
 		throws SystemException {
 		for (KaleoLog kaleoLog : findByKaleoInstanceId(kaleoInstanceId)) {
-			kaleoLogPersistence.remove(kaleoLog);
+			remove(kaleoLog);
 		}
 	}
 
@@ -3153,7 +3148,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		throws SystemException {
 		for (KaleoLog kaleoLog : findByKaleoTaskInstanceTokenId(
 				kaleoTaskInstanceTokenId)) {
-			kaleoLogPersistence.remove(kaleoLog);
+			remove(kaleoLog);
 		}
 	}
 
@@ -3167,7 +3162,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	public void removeByKITI_T(long kaleoInstanceTokenId, String type)
 		throws SystemException {
 		for (KaleoLog kaleoLog : findByKITI_T(kaleoInstanceTokenId, type)) {
-			kaleoLogPersistence.remove(kaleoLog);
+			remove(kaleoLog);
 		}
 	}
 
@@ -3185,7 +3180,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		throws SystemException {
 		for (KaleoLog kaleoLog : findByKCN_KCPK_KITI_T(kaleoClassName,
 				kaleoClassPK, kaleoInstanceTokenId, type)) {
-			kaleoLogPersistence.remove(kaleoLog);
+			remove(kaleoLog);
 		}
 	}
 
@@ -3196,7 +3191,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	 */
 	public void removeAll() throws SystemException {
 		for (KaleoLog kaleoLog : findAll()) {
-			kaleoLogPersistence.remove(kaleoLog);
+			remove(kaleoLog);
 		}
 	}
 

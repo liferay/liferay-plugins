@@ -94,13 +94,6 @@ public class KaleoLogUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static KaleoLog remove(KaleoLog kaleoLog) throws SystemException {
-		return getPersistence().remove(kaleoLog);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static KaleoLog update(KaleoLog kaleoLog, boolean merge)

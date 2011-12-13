@@ -42,4 +42,17 @@ public class TestUserLocalServiceImpl extends UserLocalServiceWrapper {
 		return new TestUserImpl(user);
 	}
 
+	@Override
+	public User getUserByEmailAddress(long companyId, String emailAddress)
+		throws PortalException, SystemException {
+
+		System.out.println(
+			"Called TestUserLocalServiceImpl.getUserByEmailAddress(" +
+				companyId + ", " + emailAddress + ")");
+
+		User user = super.getUserByEmailAddress(companyId, emailAddress);
+
+		return new TestUserImpl(user);
+	}
+
 }

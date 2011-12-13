@@ -211,6 +211,23 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(kbTemplate);
+	}
+
+	@Override
+	public void clearCache(List<KBTemplate> kbTemplates) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (KBTemplate kbTemplate : kbTemplates) {
+			EntityCacheUtil.removeResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+				KBTemplateImpl.class, kbTemplate.getPrimaryKey());
+
+			clearUniqueFindersCache(kbTemplate);
+		}
+	}
+
+	protected void clearUniqueFindersCache(KBTemplate kbTemplate) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] {
 				kbTemplate.getUuid(), Long.valueOf(kbTemplate.getGroupId())
@@ -239,20 +256,6 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	/**
 	 * Removes the k b template with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the k b template
-	 * @return the k b template that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a k b template with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public KBTemplate remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the k b template with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param kbTemplateId the primary key of the k b template
 	 * @return the k b template that was removed
 	 * @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
@@ -260,24 +263,38 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	public KBTemplate remove(long kbTemplateId)
 		throws NoSuchTemplateException, SystemException {
+		return remove(Long.valueOf(kbTemplateId));
+	}
+
+	/**
+	 * Removes the k b template with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the k b template
+	 * @return the k b template that was removed
+	 * @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KBTemplate remove(Serializable primaryKey)
+		throws NoSuchTemplateException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			KBTemplate kbTemplate = (KBTemplate)session.get(KBTemplateImpl.class,
-					Long.valueOf(kbTemplateId));
+					primaryKey);
 
 			if (kbTemplate == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + kbTemplateId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchTemplateException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					kbTemplateId);
+					primaryKey);
 			}
 
-			return kbTemplatePersistence.remove(kbTemplate);
+			return remove(kbTemplate);
 		}
 		catch (NoSuchTemplateException nsee) {
 			throw nsee;
@@ -288,18 +305,6 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the k b template from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kbTemplate the k b template
-	 * @return the k b template that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public KBTemplate remove(KBTemplate kbTemplate) throws SystemException {
-		return super.remove(kbTemplate);
 	}
 
 	@Override
@@ -321,19 +326,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		KBTemplateModelImpl kbTemplateModelImpl = (KBTemplateModelImpl)kbTemplate;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
-			new Object[] {
-				kbTemplateModelImpl.getUuid(),
-				Long.valueOf(kbTemplateModelImpl.getGroupId())
-			});
-
-		EntityCacheUtil.removeResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
-			KBTemplateImpl.class, kbTemplate.getPrimaryKey());
+		clearCache(kbTemplate);
 
 		return kbTemplate;
 	}
@@ -1870,7 +1863,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	public void removeByUuid(String uuid) throws SystemException {
 		for (KBTemplate kbTemplate : findByUuid(uuid)) {
-			kbTemplatePersistence.remove(kbTemplate);
+			remove(kbTemplate);
 		}
 	}
 
@@ -1885,7 +1878,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		throws NoSuchTemplateException, SystemException {
 		KBTemplate kbTemplate = findByUUID_G(uuid, groupId);
 
-		kbTemplatePersistence.remove(kbTemplate);
+		remove(kbTemplate);
 	}
 
 	/**
@@ -1896,7 +1889,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	public void removeByGroupId(long groupId) throws SystemException {
 		for (KBTemplate kbTemplate : findByGroupId(groupId)) {
-			kbTemplatePersistence.remove(kbTemplate);
+			remove(kbTemplate);
 		}
 	}
 
@@ -1907,7 +1900,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	public void removeAll() throws SystemException {
 		for (KBTemplate kbTemplate : findAll()) {
-			kbTemplatePersistence.remove(kbTemplate);
+			remove(kbTemplate);
 		}
 	}
 

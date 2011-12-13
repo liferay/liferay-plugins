@@ -154,13 +154,13 @@ public class PluginExecutor extends BaseExecutor {
 
 		String context = arguments.poll();
 
-		List<File> deployDirs = getDeployDirectories(context);
+		List<File> installedDirs = getInstalledDirectories(context);
 
-		for (File deployDir : deployDirs) {
-			if (!deployDir.exists()) {
+		for (File installedDir : installedDirs) {
+			if (!installedDir.exists()) {
 				responseJSONObject.put(
 					JSONKeys.ERROR,
-					"Context directory " + deployDir.getAbsolutePath() +
+					"Context directory " + installedDir.getAbsolutePath() +
 						" does not exist");
 				responseJSONObject.put(JSONKeys.STATUS, 1);
 
@@ -174,12 +174,12 @@ public class PluginExecutor extends BaseExecutor {
 			return;
 		}
 
-		for (File deployDirectory : deployDirs) {
+		for (File deployDirectory : installedDirs) {
 			FileUtil.unzip(tempFile, deployDirectory);
 		}
 
 		File partialAppDeletePropsFile = new File(
-			deployDirs.get(0), "META-INF/liferay-partialapp-delete.props");
+			installedDirs.get(0), "META-INF/liferay-partialapp-delete.props");
 
 		if (!partialAppDeletePropsFile.exists()) {
 			return;
@@ -191,7 +191,7 @@ public class PluginExecutor extends BaseExecutor {
 		String line = null;
 
 		while ((line = bufferedReader.readLine()) != null) {
-			for (File deployDirectory : deployDirs) {
+			for (File deployDirectory : installedDirs) {
 				File staleFile = new File(deployDirectory, line.trim());
 
 				if (!staleFile.exists()) {
@@ -220,22 +220,22 @@ public class PluginExecutor extends BaseExecutor {
 		}
 	}
 
-	protected List<File> getDeployDirectories(final String context)
+	protected List<File> getInstalledDirectories(final String context)
 		throws Exception {
 
-		List<File> deployDirs = new ArrayList<File>();
+		List<File> installedDirs = new ArrayList<File>();
 
-		String deployDirName = DeployManagerUtil.getDeployDir();
+		String installedDirName = DeployManagerUtil.getInstalledDir();
 
-		File deployDir = new File(deployDirName, context);
+		File installedDir = new File(installedDirName, context);
 
-		if (deployDir.exists()) {
-			deployDirs.add(deployDir);
+		if (installedDir.exists()) {
+			installedDirs.add(installedDir);
 		}
 		else {
-			File deployWarDir = new File(deployDirName, context + ".war");
+			File deployWarDir = new File(installedDirName, context + ".war");
 
-			deployDirs.add(deployWarDir);
+			installedDirs.add(deployWarDir);
 		}
 
 		if (ServerDetector.isTomcat()) {
@@ -274,11 +274,11 @@ public class PluginExecutor extends BaseExecutor {
 				File tempContextDir = tempContextDirs[
 					tempContextDirs.length - 1];
 
-				deployDirs.add(tempContextDir);
+				installedDirs.add(tempContextDir);
 			}
 		}
 
-		return deployDirs;
+		return installedDirs;
 	}
 
 	protected File getTempFile(

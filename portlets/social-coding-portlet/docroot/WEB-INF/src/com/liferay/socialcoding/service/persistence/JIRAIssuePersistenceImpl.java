@@ -401,6 +401,23 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(jiraIssue);
+	}
+
+	@Override
+	public void clearCache(List<JIRAIssue> jiraIssues) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (JIRAIssue jiraIssue : jiraIssues) {
+			EntityCacheUtil.removeResult(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
+				JIRAIssueImpl.class, jiraIssue.getPrimaryKey());
+
+			clearUniqueFindersCache(jiraIssue);
+		}
+	}
+
+	protected void clearUniqueFindersCache(JIRAIssue jiraIssue) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY,
 			new Object[] { jiraIssue.getKey() });
 	}
@@ -423,20 +440,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	/**
 	 * Removes the j i r a issue with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the j i r a issue
-	 * @return the j i r a issue that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a j i r a issue with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public JIRAIssue remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the j i r a issue with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param jiraIssueId the primary key of the j i r a issue
 	 * @return the j i r a issue that was removed
 	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
@@ -444,24 +447,38 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	public JIRAIssue remove(long jiraIssueId)
 		throws NoSuchJIRAIssueException, SystemException {
+		return remove(Long.valueOf(jiraIssueId));
+	}
+
+	/**
+	 * Removes the j i r a issue with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the j i r a issue
+	 * @return the j i r a issue that was removed
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public JIRAIssue remove(Serializable primaryKey)
+		throws NoSuchJIRAIssueException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			JIRAIssue jiraIssue = (JIRAIssue)session.get(JIRAIssueImpl.class,
-					Long.valueOf(jiraIssueId));
+					primaryKey);
 
 			if (jiraIssue == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + jiraIssueId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchJIRAIssueException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					jiraIssueId);
+					primaryKey);
 			}
 
-			return jiraIssuePersistence.remove(jiraIssue);
+			return remove(jiraIssue);
 		}
 		catch (NoSuchJIRAIssueException nsee) {
 			throw nsee;
@@ -472,18 +489,6 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the j i r a issue from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param jiraIssue the j i r a issue
-	 * @return the j i r a issue that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public JIRAIssue remove(JIRAIssue jiraIssue) throws SystemException {
-		return super.remove(jiraIssue);
 	}
 
 	@Override
@@ -505,16 +510,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		JIRAIssueModelImpl jiraIssueModelImpl = (JIRAIssueModelImpl)jiraIssue;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY,
-			new Object[] { jiraIssueModelImpl.getKey() });
-
-		EntityCacheUtil.removeResult(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
-			JIRAIssueImpl.class, jiraIssue.getPrimaryKey());
+		clearCache(jiraIssue);
 
 		return jiraIssue;
 	}
@@ -5246,7 +5242,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	public void removeByProjectId(long projectId) throws SystemException {
 		for (JIRAIssue jiraIssue : findByProjectId(projectId)) {
-			jiraIssuePersistence.remove(jiraIssue);
+			remove(jiraIssue);
 		}
 	}
 
@@ -5260,7 +5256,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		throws NoSuchJIRAIssueException, SystemException {
 		JIRAIssue jiraIssue = findByKey(key);
 
-		jiraIssuePersistence.remove(jiraIssue);
+		remove(jiraIssue);
 	}
 
 	/**
@@ -5272,7 +5268,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public void removeByReporterJiraUserId(String reporterJiraUserId)
 		throws SystemException {
 		for (JIRAIssue jiraIssue : findByReporterJiraUserId(reporterJiraUserId)) {
-			jiraIssuePersistence.remove(jiraIssue);
+			remove(jiraIssue);
 		}
 	}
 
@@ -5285,7 +5281,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public void removeByAssigneeJiraUserId(String assigneeJiraUserId)
 		throws SystemException {
 		for (JIRAIssue jiraIssue : findByAssigneeJiraUserId(assigneeJiraUserId)) {
-			jiraIssuePersistence.remove(jiraIssue);
+			remove(jiraIssue);
 		}
 	}
 
@@ -5299,7 +5295,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public void removeByMD_P(Date modifiedDate, long projectId)
 		throws SystemException {
 		for (JIRAIssue jiraIssue : findByMD_P(modifiedDate, projectId)) {
-			jiraIssuePersistence.remove(jiraIssue);
+			remove(jiraIssue);
 		}
 	}
 
@@ -5313,7 +5309,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public void removeByP_RJUI(long projectId, String reporterJiraUserId)
 		throws SystemException {
 		for (JIRAIssue jiraIssue : findByP_RJUI(projectId, reporterJiraUserId)) {
-			jiraIssuePersistence.remove(jiraIssue);
+			remove(jiraIssue);
 		}
 	}
 
@@ -5327,7 +5323,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public void removeByP_AJUI(long projectId, String assigneeJiraUserId)
 		throws SystemException {
 		for (JIRAIssue jiraIssue : findByP_AJUI(projectId, assigneeJiraUserId)) {
-			jiraIssuePersistence.remove(jiraIssue);
+			remove(jiraIssue);
 		}
 	}
 
@@ -5343,7 +5339,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		String reporterJiraUserId) throws SystemException {
 		for (JIRAIssue jiraIssue : findByMD_P_RJUI(modifiedDate, projectId,
 				reporterJiraUserId)) {
-			jiraIssuePersistence.remove(jiraIssue);
+			remove(jiraIssue);
 		}
 	}
 
@@ -5359,7 +5355,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		String assigneeJiraUserId) throws SystemException {
 		for (JIRAIssue jiraIssue : findByMD_P_AJUI(modifiedDate, projectId,
 				assigneeJiraUserId)) {
-			jiraIssuePersistence.remove(jiraIssue);
+			remove(jiraIssue);
 		}
 	}
 
@@ -5375,7 +5371,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		String status) throws SystemException {
 		for (JIRAIssue jiraIssue : findByP_RJUI_S(projectId,
 				reporterJiraUserId, status)) {
-			jiraIssuePersistence.remove(jiraIssue);
+			remove(jiraIssue);
 		}
 	}
 
@@ -5391,7 +5387,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		String status) throws SystemException {
 		for (JIRAIssue jiraIssue : findByP_AJUI_S(projectId,
 				assigneeJiraUserId, status)) {
-			jiraIssuePersistence.remove(jiraIssue);
+			remove(jiraIssue);
 		}
 	}
 
@@ -5402,7 +5398,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	public void removeAll() throws SystemException {
 		for (JIRAIssue jiraIssue : findAll()) {
-			jiraIssuePersistence.remove(jiraIssue);
+			remove(jiraIssue);
 		}
 	}
 

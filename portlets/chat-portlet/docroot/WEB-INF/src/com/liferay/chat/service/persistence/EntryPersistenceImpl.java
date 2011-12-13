@@ -300,6 +300,17 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<Entry> entries) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (Entry entry : entries) {
+			EntityCacheUtil.removeResult(EntryModelImpl.ENTITY_CACHE_ENABLED,
+				EntryImpl.class, entry.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new entry with the primary key. Does not add the entry to the database.
 	 *
@@ -318,20 +329,6 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	/**
 	 * Removes the entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the entry
-	 * @return the entry that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Entry remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the entry with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param entryId the primary key of the entry
 	 * @return the entry that was removed
 	 * @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
@@ -339,24 +336,37 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	public Entry remove(long entryId)
 		throws NoSuchEntryException, SystemException {
+		return remove(Long.valueOf(entryId));
+	}
+
+	/**
+	 * Removes the entry with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the entry
+	 * @return the entry that was removed
+	 * @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Entry remove(Serializable primaryKey)
+		throws NoSuchEntryException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			Entry entry = (Entry)session.get(EntryImpl.class,
-					Long.valueOf(entryId));
+			Entry entry = (Entry)session.get(EntryImpl.class, primaryKey);
 
 			if (entry == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + entryId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					entryId);
+					primaryKey);
 			}
 
-			return entryPersistence.remove(entry);
+			return remove(entry);
 		}
 		catch (NoSuchEntryException nsee) {
 			throw nsee;
@@ -367,18 +377,6 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the entry from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param entry the entry
-	 * @return the entry that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Entry remove(Entry entry) throws SystemException {
-		return super.remove(entry);
 	}
 
 	@Override
@@ -399,11 +397,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(EntryModelImpl.ENTITY_CACHE_ENABLED,
-			EntryImpl.class, entry.getPrimaryKey());
+		clearCache(entry);
 
 		return entry;
 	}
@@ -3408,7 +3402,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	public void removeByCreateDate(long createDate) throws SystemException {
 		for (Entry entry : findByCreateDate(createDate)) {
-			entryPersistence.remove(entry);
+			remove(entry);
 		}
 	}
 
@@ -3420,7 +3414,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	public void removeByFromUserId(long fromUserId) throws SystemException {
 		for (Entry entry : findByFromUserId(fromUserId)) {
-			entryPersistence.remove(entry);
+			remove(entry);
 		}
 	}
 
@@ -3432,7 +3426,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	public void removeByToUserId(long toUserId) throws SystemException {
 		for (Entry entry : findByToUserId(toUserId)) {
-			entryPersistence.remove(entry);
+			remove(entry);
 		}
 	}
 
@@ -3446,7 +3440,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public void removeByC_F(long createDate, long fromUserId)
 		throws SystemException {
 		for (Entry entry : findByC_F(createDate, fromUserId)) {
-			entryPersistence.remove(entry);
+			remove(entry);
 		}
 	}
 
@@ -3460,7 +3454,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public void removeByC_T(long createDate, long toUserId)
 		throws SystemException {
 		for (Entry entry : findByC_T(createDate, toUserId)) {
-			entryPersistence.remove(entry);
+			remove(entry);
 		}
 	}
 
@@ -3475,7 +3469,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public void removeByC_F_T(long createDate, long fromUserId, long toUserId)
 		throws SystemException {
 		for (Entry entry : findByC_F_T(createDate, fromUserId, toUserId)) {
-			entryPersistence.remove(entry);
+			remove(entry);
 		}
 	}
 
@@ -3490,7 +3484,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public void removeByF_T_C(long fromUserId, long toUserId, String content)
 		throws SystemException {
 		for (Entry entry : findByF_T_C(fromUserId, toUserId, content)) {
-			entryPersistence.remove(entry);
+			remove(entry);
 		}
 	}
 
@@ -3501,7 +3495,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	public void removeAll() throws SystemException {
 		for (Entry entry : findAll()) {
-			entryPersistence.remove(entry);
+			remove(entry);
 		}
 	}
 

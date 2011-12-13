@@ -95,14 +95,6 @@ public class WSRPConsumerUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static WSRPConsumer remove(WSRPConsumer wsrpConsumer)
-		throws SystemException {
-		return getPersistence().remove(wsrpConsumer);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static WSRPConsumer update(WSRPConsumer wsrpConsumer, boolean merge)

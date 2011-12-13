@@ -266,6 +266,17 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<MicroblogsEntry> microblogsEntries) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (MicroblogsEntry microblogsEntry : microblogsEntries) {
+			EntityCacheUtil.removeResult(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
+				MicroblogsEntryImpl.class, microblogsEntry.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new microblogs entry with the primary key. Does not add the microblogs entry to the database.
 	 *
@@ -284,20 +295,6 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	/**
 	 * Removes the microblogs entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the microblogs entry
-	 * @return the microblogs entry that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a microblogs entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public MicroblogsEntry remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the microblogs entry with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param microblogsEntryId the primary key of the microblogs entry
 	 * @return the microblogs entry that was removed
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
@@ -305,25 +302,38 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	public MicroblogsEntry remove(long microblogsEntryId)
 		throws NoSuchEntryException, SystemException {
+		return remove(Long.valueOf(microblogsEntryId));
+	}
+
+	/**
+	 * Removes the microblogs entry with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the microblogs entry
+	 * @return the microblogs entry that was removed
+	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public MicroblogsEntry remove(Serializable primaryKey)
+		throws NoSuchEntryException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			MicroblogsEntry microblogsEntry = (MicroblogsEntry)session.get(MicroblogsEntryImpl.class,
-					Long.valueOf(microblogsEntryId));
+					primaryKey);
 
 			if (microblogsEntry == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-						microblogsEntryId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					microblogsEntryId);
+					primaryKey);
 			}
 
-			return microblogsEntryPersistence.remove(microblogsEntry);
+			return remove(microblogsEntry);
 		}
 		catch (NoSuchEntryException nsee) {
 			throw nsee;
@@ -334,19 +344,6 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the microblogs entry from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param microblogsEntry the microblogs entry
-	 * @return the microblogs entry that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public MicroblogsEntry remove(MicroblogsEntry microblogsEntry)
-		throws SystemException {
-		return super.remove(microblogsEntry);
 	}
 
 	@Override
@@ -368,11 +365,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
-			MicroblogsEntryImpl.class, microblogsEntry.getPrimaryKey());
+		clearCache(microblogsEntry);
 
 		return microblogsEntry;
 	}
@@ -4194,7 +4187,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (MicroblogsEntry microblogsEntry : findByCompanyId(companyId)) {
-			microblogsEntryPersistence.remove(microblogsEntry);
+			remove(microblogsEntry);
 		}
 	}
 
@@ -4206,7 +4199,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	public void removeByUserId(long userId) throws SystemException {
 		for (MicroblogsEntry microblogsEntry : findByUserId(userId)) {
-			microblogsEntryPersistence.remove(microblogsEntry);
+			remove(microblogsEntry);
 		}
 	}
 
@@ -4219,7 +4212,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	public void removeByU_T(long userId, int type) throws SystemException {
 		for (MicroblogsEntry microblogsEntry : findByU_T(userId, type)) {
-			microblogsEntryPersistence.remove(microblogsEntry);
+			remove(microblogsEntry);
 		}
 	}
 
@@ -4233,7 +4226,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	public void removeByT_R(int type, long receiverUserId)
 		throws SystemException {
 		for (MicroblogsEntry microblogsEntry : findByT_R(type, receiverUserId)) {
-			microblogsEntryPersistence.remove(microblogsEntry);
+			remove(microblogsEntry);
 		}
 	}
 
@@ -4248,7 +4241,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		throws SystemException {
 		for (MicroblogsEntry microblogsEntry : findByT_RMEI(type,
 				receiverMicroblogsEntryId)) {
-			microblogsEntryPersistence.remove(microblogsEntry);
+			remove(microblogsEntry);
 		}
 	}
 
@@ -4259,7 +4252,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 */
 	public void removeAll() throws SystemException {
 		for (MicroblogsEntry microblogsEntry : findAll()) {
-			microblogsEntryPersistence.remove(microblogsEntry);
+			remove(microblogsEntry);
 		}
 	}
 

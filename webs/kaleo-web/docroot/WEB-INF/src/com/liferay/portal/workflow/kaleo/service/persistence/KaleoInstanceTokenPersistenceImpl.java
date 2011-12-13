@@ -274,6 +274,17 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<KaleoInstanceToken> kaleoInstanceTokens) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (KaleoInstanceToken kaleoInstanceToken : kaleoInstanceTokens) {
+			EntityCacheUtil.removeResult(KaleoInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
+				KaleoInstanceTokenImpl.class, kaleoInstanceToken.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new kaleo instance token with the primary key. Does not add the kaleo instance token to the database.
 	 *
@@ -292,20 +303,6 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	/**
 	 * Removes the kaleo instance token with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the kaleo instance token
-	 * @return the kaleo instance token that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a kaleo instance token with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public KaleoInstanceToken remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the kaleo instance token with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param kaleoInstanceTokenId the primary key of the kaleo instance token
 	 * @return the kaleo instance token that was removed
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceTokenException if a kaleo instance token with the primary key could not be found
@@ -313,25 +310,38 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	 */
 	public KaleoInstanceToken remove(long kaleoInstanceTokenId)
 		throws NoSuchInstanceTokenException, SystemException {
+		return remove(Long.valueOf(kaleoInstanceTokenId));
+	}
+
+	/**
+	 * Removes the kaleo instance token with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the kaleo instance token
+	 * @return the kaleo instance token that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceTokenException if a kaleo instance token with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KaleoInstanceToken remove(Serializable primaryKey)
+		throws NoSuchInstanceTokenException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			KaleoInstanceToken kaleoInstanceToken = (KaleoInstanceToken)session.get(KaleoInstanceTokenImpl.class,
-					Long.valueOf(kaleoInstanceTokenId));
+					primaryKey);
 
 			if (kaleoInstanceToken == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-						kaleoInstanceTokenId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchInstanceTokenException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					kaleoInstanceTokenId);
+					primaryKey);
 			}
 
-			return kaleoInstanceTokenPersistence.remove(kaleoInstanceToken);
+			return remove(kaleoInstanceToken);
 		}
 		catch (NoSuchInstanceTokenException nsee) {
 			throw nsee;
@@ -342,19 +352,6 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the kaleo instance token from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoInstanceToken the kaleo instance token
-	 * @return the kaleo instance token that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public KaleoInstanceToken remove(KaleoInstanceToken kaleoInstanceToken)
-		throws SystemException {
-		return super.remove(kaleoInstanceToken);
 	}
 
 	@Override
@@ -376,11 +373,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(KaleoInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoInstanceTokenImpl.class, kaleoInstanceToken.getPrimaryKey());
+		clearCache(kaleoInstanceToken);
 
 		return kaleoInstanceToken;
 	}
@@ -2650,7 +2643,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoInstanceToken kaleoInstanceToken : findByCompanyId(companyId)) {
-			kaleoInstanceTokenPersistence.remove(kaleoInstanceToken);
+			remove(kaleoInstanceToken);
 		}
 	}
 
@@ -2664,7 +2657,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		throws SystemException {
 		for (KaleoInstanceToken kaleoInstanceToken : findByKaleoDefinitionId(
 				kaleoDefinitionId)) {
-			kaleoInstanceTokenPersistence.remove(kaleoInstanceToken);
+			remove(kaleoInstanceToken);
 		}
 	}
 
@@ -2678,7 +2671,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		throws SystemException {
 		for (KaleoInstanceToken kaleoInstanceToken : findByKaleoInstanceId(
 				kaleoInstanceId)) {
-			kaleoInstanceTokenPersistence.remove(kaleoInstanceToken);
+			remove(kaleoInstanceToken);
 		}
 	}
 
@@ -2693,7 +2686,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		throws SystemException {
 		for (KaleoInstanceToken kaleoInstanceToken : findByC_PKITI(companyId,
 				parentKaleoInstanceTokenId)) {
-			kaleoInstanceTokenPersistence.remove(kaleoInstanceToken);
+			remove(kaleoInstanceToken);
 		}
 	}
 
@@ -2710,7 +2703,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		throws SystemException {
 		for (KaleoInstanceToken kaleoInstanceToken : findByC_PKITI_CD(
 				companyId, parentKaleoInstanceTokenId, completionDate)) {
-			kaleoInstanceTokenPersistence.remove(kaleoInstanceToken);
+			remove(kaleoInstanceToken);
 		}
 	}
 
@@ -2721,7 +2714,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	 */
 	public void removeAll() throws SystemException {
 		for (KaleoInstanceToken kaleoInstanceToken : findAll()) {
-			kaleoInstanceTokenPersistence.remove(kaleoInstanceToken);
+			remove(kaleoInstanceToken);
 		}
 	}
 

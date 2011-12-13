@@ -22,6 +22,8 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -148,12 +150,7 @@ public class WebFormUtil {
 		s = s.trim();
 
 		if (!s.endsWith(delimiter)) {
-			StringBuilder sb = new StringBuilder();
-
-			sb.append(s);
-			sb.append(delimiter);
-
-			s = sb.toString();
+			s = s.concat(delimiter);
 		}
 
 		if (s.equals(delimiter)) {
@@ -194,7 +191,7 @@ public class WebFormUtil {
 	}
 
 	public static boolean validate(
-			String currentFieldValue, Map<String,String> fieldsMap,
+			String currentFieldValue, Map<String, String> fieldsMap,
 			String validationScript)
 		throws Exception {
 
@@ -202,9 +199,11 @@ public class WebFormUtil {
 
 		Context context = Context.enter();
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
-		sb.append("currentFieldValue = String('" + currentFieldValue + "');\n");
+		sb.append("currentFieldValue = String('");
+		sb.append(HtmlUtil.escapeJS(currentFieldValue));
+		sb.append("');\n");
 
 		sb.append("var fieldsMap = {};\n");
 
@@ -218,14 +217,13 @@ public class WebFormUtil {
 				new String[] {"\r\n", "\r", "\n"},
 				new String[] {"\\n", "\\n", "\\n"});
 
-			sb.append(value);
-
+			sb.append(HtmlUtil.escapeJS(value));
 			sb.append("';\n");
 		}
 
 		sb.append("function validation(currentFieldValue, fieldsMap) {\n");
 		sb.append(validationScript);
-		sb.append("};\n");
+		sb.append("}\n");
 		sb.append("internalValidationResult = ");
 		sb.append("validation(currentFieldValue, fieldsMap);");
 
@@ -244,7 +242,7 @@ public class WebFormUtil {
 				scope, "internalValidationResult");
 
 			if (obj instanceof Boolean) {
-				validationResult = ((Boolean)obj).booleanValue();
+				validationResult = (Boolean)obj;
 			}
 			else {
 				throw new Exception("The script must return a boolean value");

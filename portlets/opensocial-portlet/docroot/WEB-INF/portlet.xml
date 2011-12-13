@@ -24,9 +24,9 @@
 		</supports>
 		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
-			<title>OpenSocial</title>
-			<short-title>OpenSocial</short-title>
-			<keywords>OpenSocial</keywords>
+			<title>OpenSocial Gadget Publisher</title>
+			<short-title>OpenSocial Gadget Publisher</short-title>
+			<keywords>OpenSocial Gadget Publisher</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>
@@ -68,6 +68,7 @@
 	</portlet>
 	<portlet>
 		<portlet-name>3</portlet-name>
+		<display-name>OpenSocial Gadget</display-name>
 		<portlet-class>com.liferay.opensocial.adhocgadget.portlet.AdhocGadgetPortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
@@ -87,6 +88,18 @@
 			<short-title>OpenSocial Gadget</short-title>
 			<keywords>OpenSocial Gadget</keywords>
 		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
 	</portlet>
 	<portlet>
 		<portlet-name>4</portlet-name>

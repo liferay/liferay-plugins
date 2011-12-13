@@ -45,8 +45,7 @@ public class ResourceActionTaskAssignmentSelector
 
 		Map<String, Serializable> workflowContext =
 			executionContext.getWorkflowContext();
-		ServiceContext serviceContext =
-			executionContext.getServiceContext();
+		ServiceContext serviceContext = executionContext.getServiceContext();
 
 		ServiceContext workflowContextServiceContext =
 			(ServiceContext)workflowContext.get(
@@ -64,8 +63,7 @@ public class ResourceActionTaskAssignmentSelector
 			(String)workflowContext.get(
 				WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
 
-		String assigneeActionId =
-			kaleoTaskAssignment.getAssigneeActionId();
+		String assigneeActionId = kaleoTaskAssignment.getAssigneeActionId();
 
 		List<Role> roles = RoleLocalServiceUtil.getResourceRoles(
 			serviceContext.getCompanyId(), resourceName,

@@ -147,7 +147,7 @@ public class MenuItem implements Serializable {
 		Pattern pattern = Pattern.compile(
 			"((==\\s((.)*)\\s==)*(\\Q[[\\E((.)*)\\Q]]\\E)*)*");
 
-		Matcher matcher =  pattern.matcher(wikiPage.getContent());
+		Matcher matcher = pattern.matcher(wikiPage.getContent());
 
 		MenuItem menuItem = null;
 

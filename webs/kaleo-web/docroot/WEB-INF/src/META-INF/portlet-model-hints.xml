@@ -71,7 +71,7 @@
 			<hint-collection name="TEXTAREA" />
 		</field>
 		<field name="content" type="String">
-			<hint-collection name="TEXTAREA" />
+			<hint-collection name="CLOB" />
 		</field>
 		<field name="version" type="int" />
 		<field name="active" type="boolean" />

@@ -17,14 +17,18 @@
 <%@ include file="/init.jsp" %>
 
 <div class="loading-animation">
-	<iframe class="aui-helper-hidden-accessible" id="<portlet:namespace />frame" scrolling="no" src="javascript:;"></iframe>
+	<iframe class="aui-helper-hidden-accessible" frameborder="0" id="<portlet:namespace />frame" name="<portlet:namespace />frame" scrolling="no" src="about:blank"></iframe>
 </div>
+
+<form action="<%= iFrameURL %>" id="<portlet:namespace />fm" method="post" target="<portlet:namespace />frame">
+<input name="mpClientURL" value="<%= themeDisplay.getPortalURL() + themeDisplay.getURLCurrent() %>" type="hidden" />
+</form>
 
 <div class="aui-helper-hidden time-out-message portlet-msg-error">
 	<liferay-ui:message key="could-not-connect-to-the-liferay-marketplace" />
 </div>
 
-<aui:script use="aui-base,aui-io,aui-messaging">
+<aui:script use="aui-base,aui-io,liferay-marketplace-messenger">
 	var frame = A.one('#<portlet:namespace />frame');
 
 	var timeout = setTimeout(
@@ -32,33 +36,50 @@
 			frame.ancestor().removeClass('loading-animation');
 			A.one('.time-out-message').show();
 		},
-		30000
+		120000
 	);
 
-	A.receiveMessage(
+	Liferay.MarketplaceMessenger.init(
+		{
+			targetFrame: frame
+		}
+	);
+
+	Liferay.MarketplaceMessenger.receiveMessage(
 		function(event) {
 			var response = event.responseData;
 
-			if (response.height) {
+			if (!response.cmd) {
+				return;
+			}
+
+			if (response.cmd == 'init') {
 				clearTimeout(timeout);
 
 				frame.removeClass('aui-helper-hidden-accessible');
 				frame.ancestor().removeClass('loading-animation');
 
+				Liferay.MarketplaceMessenger.setTargetURI(response.serverURL);
+
 				frame.height(response.height + 50);
 			}
+			else if (response.cmd == 'goto') {
+				var url = null;
 
-			if (response.panel) {
-				var url = '<liferay-portlet:renderURL doAsGroupId="<%= themeDisplay.getScopeGroupId() %>" portletName="<%= portletId.equals(PortletKeys.STORE) ? PortletKeys.MY_MARKETPLACE : PortletKeys.STORE %>" windowState="<%= WindowState.MAXIMIZED.toString() %>" />';
+				if (response.panel === "control-panel") {
+					url = '<%= themeDisplay.getURLControlPanel() %>';
+				}
+				else {
+					url = '<liferay-portlet:renderURL doAsGroupId="<%= themeDisplay.getScopeGroupId() %>" portletName="<%= portletId.equals(PortletKeys.STORE) ? PortletKeys.MY_MARKETPLACE : PortletKeys.STORE %>" windowState="<%= WindowState.MAXIMIZED.toString() %>" />';
 
-				if (response.appId) {
-					url = Liferay.Util.addParams('appId=' + response.appId, url);
+					if (response.appId) {
+						url = Liferay.Util.addParams('appId=' + response.appId, url);
+					}
 				}
 
 				window.location = url;
 			}
-
-			if (response.cmd) {
+			else {
 				A.io.request(
 					'<portlet:actionURL />',
 					{
@@ -69,7 +90,7 @@
 							success: function(event, id, obj) {
 								var response = this.get('responseData');
 
-								A.postMessage(response, '<%= iFrameURL %>', frame);
+								Liferay.MarketplaceMessenger.postMessage(response);
 							}
 						}
 					}
@@ -79,19 +100,5 @@
 		A.Lang.emptyFnTrue
 	);
 
-	frame.on(
-		'load',
-		function() {
-			A.postMessage(
-				{
-					message: 'success',
-					clientURL: '<%= themeDisplay.getURLPortal() %>'
-				},
-				'<%= iFrameURL %>',
-				frame
-			);
-		}
-	);
-
-	frame.attr('src', '<%= iFrameURL %>');
+	A.one('#<portlet:namespace />fm').submit();
 </aui:script>

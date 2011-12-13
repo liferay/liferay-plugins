@@ -17,6 +17,7 @@ package com.liferay.microblogs.microblogs.portlet;
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.service.MicroblogsEntryServiceUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
@@ -86,7 +87,7 @@ public class MicroblogsPortlet extends MVCPortlet {
 	protected String[] getAssetTagNames(String content) {
 		List<String> assetTagNames = new ArrayList<String>();
 
-		Matcher matcher = _pattern.matcher(content);
+		Matcher matcher = _assetTagPattern.matcher(content);
 
 		while (matcher.find()) {
 			String assetTagName = matcher.group();
@@ -96,9 +97,21 @@ public class MicroblogsPortlet extends MVCPortlet {
 			assetTagNames.add(assetTagName);
 		}
 
+		matcher = _userTagPattern.matcher(content);
+
+		while (matcher.find()) {
+			String assetTagName = matcher.group();
+
+			assetTagName = assetTagName.replace("[@", StringPool.BLANK);
+			assetTagName = assetTagName.replace("]", StringPool.BLANK);
+
+			assetTagNames.add(assetTagName);
+		}
+
 		return assetTagNames.toArray(new String[assetTagNames.size()]);
 	}
 
-	private Pattern _pattern = Pattern.compile("[#|@]\\S*");
+	private Pattern _assetTagPattern = Pattern.compile("\\#\\S*");
+	private Pattern _userTagPattern = Pattern.compile("\\[\\@\\S*\\]");
 
 }

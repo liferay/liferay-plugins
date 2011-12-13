@@ -283,27 +283,10 @@ public class CalendarResourceLocalServiceImpl
 
 		// Resources
 
-		if ((serviceContext.getCommunityPermissions() != null) ||
-			(serviceContext.getGuestPermissions() != null)) {
-
-			updateCalendarResourceResources(
-				calendarResource, serviceContext.getCommunityPermissions(),
-				serviceContext.getGuestPermissions());
-		}
+		resourceLocalService.updateModelResources(
+			calendarResource, serviceContext);
 
 		return calendarResource;
-	}
-
-	public void updateCalendarResourceResources(
-			CalendarResource calendarResource, String[] communityPermissions,
-			String[] guestPermissions)
-		throws PortalException, SystemException {
-
-		resourceLocalService.updateResources(
-			calendarResource.getCompanyId(), calendarResource.getGroupId(),
-			CalendarResource.class.getName(),
-			calendarResource.getCalendarResourceId(), communityPermissions,
-			guestPermissions);
 	}
 
 	protected DynamicQuery buildDynamicQuery(

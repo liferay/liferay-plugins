@@ -188,7 +188,7 @@ public class WSRPProducerLocalServiceImpl
 		layoutLocalService.addLayout(
 			user.getUserId(), group.getGroupId(), false,
 			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Portlets", null, null,
-			LayoutConstants.TYPE_PORTLET, false, "/portlets", false,
+			LayoutConstants.TYPE_PORTLET, false, "/portlets",
 			new ServiceContext());
 
 		return group;
@@ -237,8 +237,7 @@ public class WSRPProducerLocalServiceImpl
 	protected void updateGroup(WSRPProducer wsrpProducer, String name)
 		throws PortalException, SystemException {
 
-		Group group = groupLocalService.getGroup(
-			wsrpProducer.getGroupId());
+		Group group = groupLocalService.getGroup(wsrpProducer.getGroupId());
 
 		group.setName(getGroupName(name));
 

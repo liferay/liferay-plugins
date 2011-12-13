@@ -138,43 +138,43 @@
 	width: 16px;
 }
 
-.aui-icon-gadgeteditor-addfile {
+.aui-toolbar-item .aui-icon-gadgeteditor-addfile {
 	background-image: url(../images/add_file.png);
 }
 
-.aui-icon-gadgeteditor-addfolder {
+.aui-toolbar-item .aui-icon-gadgeteditor-addfolder {
 	background-image: url(../images/add_folder.png);
 }
 
-.aui-icon-gadgeteditor-close {
+.aui-toolbar-item .aui-icon-gadgeteditor-close {
 	background-image: url(../images/close.png);
 }
 
-.aui-icon-gadgeteditor-delete {
+.aui-toolbar-item .aui-icon-gadgeteditor-delete {
 	background-image: url(../images/delete.png);
 }
 
-.aui-icon-gadgeteditor-disk {
+.aui-toolbar-item .aui-icon-gadgeteditor-disk {
 	background-image: url(../images/disk.png);
 }
 
-.aui-icon-gadgeteditor-publish {
+.aui-toolbar-item .aui-icon-gadgeteditor-publish {
 	background-image: url(../images/publish.png);
 }
 
-.aui-icon-gadgeteditor-refresh {
+.aui-toolbar-item .aui-icon-gadgeteditor-refresh {
 	background-image: url(../images/refresh.png);
 }
 
-.aui-icon-gadgeteditor-rename {
+.aui-toolbar-item .aui-icon-gadgeteditor-rename {
 	background-image: url(../images/rename.png);
 }
 
-.aui-icon-gadgeteditor-tool {
+.aui-toolbar-item .aui-icon-gadgeteditor-tool {
 	background-image: url(../images/disk_dirty.png);
 }
 
-.aui-icon-gadgeteditor-url {
+.aui-toolbar-item .aui-icon-gadgeteditor-url {
 	background-image: url(../images/url.png);
 }
 

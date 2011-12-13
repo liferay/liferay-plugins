@@ -95,14 +95,6 @@ public class AttachmentUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static Attachment remove(Attachment attachment)
-		throws SystemException {
-		return getPersistence().remove(attachment);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static Attachment update(Attachment attachment, boolean merge)

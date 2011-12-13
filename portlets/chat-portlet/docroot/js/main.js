@@ -9,7 +9,17 @@ AUI().use(
 
 		var now = Lang.now;
 
+		var NOTIFICATIONS = A.config.win.webkitNotifications;
+
+		var NOTIFICATIONS_ALLOWED = 0;
+		var NOTIFICATIONS_NOT_ALLOWED = 1;
+		var NOTIFICATIONS_DENIED = 2;
+
+		var STR_NEW_MESSAGE = Liferay.Language.get('new-message-from-x');
+
 		Liferay.namespace('Chat');
+
+		A.one(A.config.doc.documentElement).toggleClass('desktop-notifications', !!NOTIFICATIONS);
 
 		Liferay.Chat.Util = {
 			formatTime: function(time) {
@@ -30,7 +40,7 @@ AUI().use(
 					hour -= 12;
 				}
 
-				if (hour == 0) {
+				if (hour === 0) {
 					hour += 12;
 				}
 
@@ -347,6 +357,12 @@ AUI().use(
 								if (lastRead < entry.createDate) {
 									instance._unreadMessages++;
 								}
+
+								Liferay.Chat.Manager.notify(
+									Liferay.Chat.Util.getUserImagePath(instance._panelIcon),
+									Lang.sub(STR_NEW_MESSAGE, [instance._panelTitle]),
+									entry.content.replace(/\n/g, ' ')
+								);
 							}
 
 							instance.setAsUnread();
@@ -568,6 +584,8 @@ AUI().use(
 				instance._sound = new SWFObject('/chat-portlet/alert.swf', 'alertsound', '0', '0', '8');
 				instance._soundContainer = instance._chatContainer.one('.chat-sound');
 
+				instance._notificationTimeout = 8000;
+
 				instance._updatePresenceTask = A.debounce(instance._updatePresence, 30000, instance);
 
 				instance._updatePresenceTask.delay(0);
@@ -603,6 +621,23 @@ AUI().use(
 				var instance = this;
 
 				return instance._tabsContainer;
+			},
+
+			notify: function(iconUrl, title, body) {
+				var instance = this;
+
+				if (NOTIFICATIONS.checkPermission() === NOTIFICATIONS_ALLOWED) {
+					var notification = NOTIFICATIONS.createNotification(iconUrl, title, body);
+
+					notification.show();
+
+					setTimeout(
+						function() {
+							notification.cancel();
+						},
+						instance._notificationTimeout
+					);
+				}
 			},
 
 			registerBuddyService: function(options) {
@@ -839,10 +874,27 @@ AUI().use(
 				instance._statusMessageObj = settingsPanel.one('#statusMessage');
 				instance._onlineObj = settingsPanel.one('#onlineStatus');
 				instance._playSoundObj = settingsPanel.one('#playSound');
+				instance._showNotificationsObj = settingsPanel.one('#showNotifications');
 
 				instance._statusMessage = instance._statusMessageObj.val() || '';
 				instance._online = instance._onlineObj.get('checked') ? 1 : 0;
 				instance._playSound = instance._playSoundObj.get('checked') ? 1 : 0;
+
+				if (NOTIFICATIONS) {
+					var showNotificationsObj = instance._showNotificationsObj;
+
+					var notifyPermission = NOTIFICATIONS.checkPermission();
+
+					var attrs = {
+						checked: (notifyPermission === NOTIFICATIONS_ALLOWED),
+					};
+
+					if (notifyPermission === NOTIFICATIONS_NOT_ALLOWED) {
+						attrs.disabled = false;
+					}
+
+					showNotificationsObj.attr(attrs);
+				}
 
 				saveSettings.on('click', instance._updateSettings, instance);
 			},
@@ -1138,6 +1190,23 @@ AUI().use(
 				instance._statusMessage = instance._statusMessageObj.val();
 				instance._online = instance._onlineObj.get('checked') ? 1 : 0;
 				instance._playSound = instance._playSoundObj.get('checked') ? 1 : 0;
+
+				var showNotificationsObj = instance._showNotificationsObj;
+
+				if (showNotificationsObj.attr('checked') && NOTIFICATIONS.checkPermission() === NOTIFICATIONS_NOT_ALLOWED) {
+					NOTIFICATIONS.requestPermission(
+						function() {
+							var allowed = NOTIFICATIONS.checkPermission() == NOTIFICATIONS_ALLOWED;
+
+							showNotificationsObj.attr(
+								{
+									checked: allowed,
+									disabled: allowed
+								}
+							);
+						}
+					);
+				}
 
 				instance._activePanelId = '';
 

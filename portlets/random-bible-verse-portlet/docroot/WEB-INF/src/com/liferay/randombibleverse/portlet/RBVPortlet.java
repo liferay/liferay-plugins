@@ -23,6 +23,7 @@ import java.io.IOException;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
+import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
 import javax.portlet.PortletMode;
 import javax.portlet.PortletPreferences;
@@ -37,24 +38,32 @@ public class RBVPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
 
-		if (actionRequest.getPortletMode().equals(PortletMode.EDIT)) {
-			String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+		PortletMode portletMode = actionRequest.getPortletMode();
 
-			if (cmd.equals(Constants.UPDATE)) {
-				String language = ParamUtil.getString(
-					actionRequest, "language");
-
-				PortletPreferences preferences = actionRequest.getPreferences();
-
-				preferences.setValue("language", language);
-
-				preferences.store();
-
-				SessionMessages.add(
-					actionRequest,
-					getPortletConfig().getPortletName() + ".doEdit");
-			}
+		if (!portletMode.equals(PortletMode.EDIT)) {
+			return;
 		}
+
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+
+		if (!cmd.equals(Constants.UPDATE)) {
+			return;
+		}
+
+		String language = ParamUtil.getString(actionRequest, "language");
+
+		PortletPreferences preferences = actionRequest.getPreferences();
+
+		preferences.setValue("language", language);
+
+		preferences.store();
+
+		PortletConfig portletConfig = getPortletConfig();
+
+		SessionMessages.add(
+			actionRequest,
+			portletConfig.getPortletName() +
+				SessionMessages.KEY_SUFFIX_UPDATED_PREFERENCES);
 	}
 
 }

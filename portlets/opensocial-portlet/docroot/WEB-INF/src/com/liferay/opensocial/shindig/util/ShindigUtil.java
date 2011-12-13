@@ -21,6 +21,7 @@ import com.liferay.opensocial.model.impl.GadgetImpl;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.service.OAuthConsumerLocalServiceUtil;
 import com.liferay.opensocial.util.PortletPropsValues;
+import com.liferay.portal.kernel.concurrent.ConcurrentHashSet;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -30,6 +31,7 @@ import com.liferay.portal.kernel.util.AutoResetThreadLocal;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -44,8 +46,8 @@ import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
 
 import java.io.File;
 
-import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -75,6 +77,10 @@ import org.json.JSONObject;
  * @author Dennis Ju
  */
 public class ShindigUtil {
+
+	public static void clearGadgetSpecCache(String url) {
+		_ignoreGadgetSpecCache.add(url);
+	}
 
 	public static String createSecurityToken(
 			String ownerId, long viewerId, String appId, String domain,
@@ -122,8 +128,19 @@ public class ShindigUtil {
 		return securityToken;
 	}
 
-	public static String getColumnUserPrefs(String namespace) {
-		return _COLUMN_USER_PREFS.concat(namespace);
+	public static String getColumnUserPrefs(
+		String namespace, ThemeDisplay themeDisplay) {
+
+		StringBundler sb = new StringBundler(3);
+
+		sb.append(_COLUMN_USER_PREFS);
+		sb.append(namespace);
+
+		Layout layout = themeDisplay.getLayout();
+
+		sb.append(layout.getPlid());
+
+		return sb.toString();
 	}
 
 	public static String getFileEntryURL(String portalURL, long fileEntryId)
@@ -131,7 +148,7 @@ public class ShindigUtil {
 
 		FileEntry fileEntry = DLAppServiceUtil.getFileEntry(fileEntryId);
 
-		StringBuilder sb = new StringBuilder(6);
+		StringBundler sb = new StringBundler(6);
 
 		sb.append(portalURL);
 		sb.append(PortalUtil.getPathContext());
@@ -235,7 +252,7 @@ public class ShindigUtil {
 
 		gadgetContextJSONObject.put("debug", debug);
 
-		if (!ignoreCache && _gadgetSpecErrorCache.contains(url)) {
+		if (!ignoreCache && _ignoreGadgetSpecCache.contains(url)) {
 			ignoreCache = true;
 		}
 
@@ -253,10 +270,10 @@ public class ShindigUtil {
 		try {
 			gadget = _processor.process(jsonRpcGadgetContext);
 
-			_gadgetSpecErrorCache.remove(url);
+			_ignoreGadgetSpecCache.remove(url);
 		}
 		catch (ProcessingException pe) {
-			_gadgetSpecErrorCache.add(url);
+			_ignoreGadgetSpecCache.add(url);
 
 			throw pe;
 		}
@@ -272,8 +289,7 @@ public class ShindigUtil {
 		return namespace.hashCode();
 	}
 
-	public static Map<String, OAuthService> getOAuthServices(
-			String url)
+	public static Map<String, OAuthService> getOAuthServices(String url)
 		throws Exception {
 
 		GadgetSpec gadgetSpec = getGadgetSpec(url);
@@ -384,8 +400,7 @@ public class ShindigUtil {
 			actionRequest, "keyType");
 
 		for (int i = 0; i < serviceNames.length; i++) {
-			String consumerKey = (String)ArrayUtil.getValue(
-				consumerKeys, i);
+			String consumerKey = (String)ArrayUtil.getValue(consumerKeys, i);
 
 			String consumerSecret = (String)ArrayUtil.getValue(
 				consumerSecrets, i);
@@ -420,13 +435,16 @@ public class ShindigUtil {
 
 	@Inject
 	private static BasicSecurityTokenCodec _basicSecurityTokenCodec;
+
 	@Inject
 	private static ContainerConfig _containerConfig;
-	private static HashSet<String> _gadgetSpecErrorCache =
-		new HashSet<String>();
+
 	private static AutoResetThreadLocal<String> _host =
 		new AutoResetThreadLocal<String>(
 			ShindigUtil.class + "._host", StringPool.BLANK);
+	private static Set<String> _ignoreGadgetSpecCache =
+		new ConcurrentHashSet<String>();
+
 	@Inject
 	private static Processor _processor;
 

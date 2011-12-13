@@ -14,7 +14,6 @@
 
 package com.liferay.so.service.persistence;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 import com.liferay.so.model.ProjectsEntry;
@@ -281,7 +280,4 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public ProjectsEntry remove(ProjectsEntry projectsEntry)
-		throws SystemException;
 }

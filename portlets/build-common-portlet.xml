@@ -5,4 +5,22 @@
 	<property name="project.dir" value="../.." />
 
 	<import file="../build-common-plugin.xml" />
+
+	<target name="build-css">
+		<java
+			classname="com.liferay.portal.tools.SassToCssBuilder"
+			classpathref="portal.classpath"
+			fork="true"
+			newenvironment="true"
+		>
+			<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
+			<arg value="sass.dir=${basedir}/docroot" />
+		</java>
+	</target>
+
+	<target name="war" depends="compile">
+		<antcall target="build-css" />
+
+		<antcall target="build-common-plugin.war" />
+	</target>
 </project>

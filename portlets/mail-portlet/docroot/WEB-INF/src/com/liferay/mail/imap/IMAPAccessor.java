@@ -38,8 +38,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.util.mail.InternetAddressUtil;
 
-import com.sun.mail.imap.IMAPFolder;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -92,23 +90,22 @@ public class IMAPAccessor {
 			if (Validator.isNotNull(_account.getFolderPrefix())) {
 				Store store = _imapConnection.getStore(true);
 
-				IMAPFolder defaultIMAPFolder =
-					(IMAPFolder)store.getDefaultFolder();
+				Folder jxFolder = store.getDefaultFolder();
 
 				fullName =
-					_account.getFolderPrefix() +
-						defaultIMAPFolder.getSeparator() + displayName;
+					_account.getFolderPrefix() + jxFolder.getSeparator() +
+						displayName;
 			}
 
-			IMAPFolder imapFolder = getFolder(fullName);
+			Folder jxFolder = getFolder(fullName);
 
-			if (imapFolder.exists()) {
+			if (jxFolder.exists()) {
 				throw new MailException(MailException.FOLDER_ALREADY_EXISTS);
 			}
 			else {
-				if (imapFolder.create(IMAPFolder.HOLDS_MESSAGES)) {
+				if (jxFolder.create(Folder.HOLDS_MESSAGES)) {
 					return new String[] {
-						imapFolder.getFullName(), imapFolder.getName()
+						jxFolder.getFullName(), jxFolder.getName()
 					};
 				}
 
@@ -120,19 +117,19 @@ public class IMAPAccessor {
 		}
 	}
 
-	public void closeFolder(IMAPFolder imapFolder, boolean expunge)
+	public void closeFolder(Folder jxFolder, boolean expunge)
 		throws MailException {
 
 		try {
-			if ((imapFolder == null) || !imapFolder.isOpen()) {
+			if ((jxFolder == null) || !jxFolder.isOpen()) {
 				return;
 			}
 
 			if (expunge) {
-				imapFolder.expunge();
+				jxFolder.expunge();
 			}
 
-			imapFolder.close(expunge);
+			jxFolder.close(expunge);
 		}
 		catch (MessagingException me) {
 			throw new MailException(me);
@@ -143,15 +140,15 @@ public class IMAPAccessor {
 		throws PortalException, SystemException {
 
 		try {
-			IMAPFolder imapFolder = getFolder(folderId);
+			Folder jxFolder = getFolder(folderId);
 
-			if (!imapFolder.exists()) {
+			if (!jxFolder.exists()) {
 				throw new MailException(MailException.FOLDER_DOES_NOT_EXIST);
 			}
 
-			imapFolder.delete(true);
+			jxFolder.delete(true);
 
-			if (imapFolder.exists()) {
+			if (jxFolder.exists()) {
 				throw new MailException(MailException.FOLDER_DELETE_FAILED);
 			}
 		}
@@ -163,16 +160,15 @@ public class IMAPAccessor {
 	public void deleteMessages(long folderId, long[] messageIds)
 		throws PortalException, SystemException {
 
-		IMAPFolder imapFolder = null;
+		Folder jxFolder = null;
 
 		try {
-			imapFolder = openFolder(folderId);
+			jxFolder = openFolder(folderId);
 
-			imapFolder.addMessageCountListener(
+			jxFolder.addMessageCountListener(
 				new IMAPMessageCountListener(_user, _account, _password));
 
-			List<Message> jxMessages = getMessages(
-				imapFolder, messageIds, true);
+			List<Message> jxMessages = getMessages(jxFolder, messageIds, true);
 
 			for (Message jxMessage : jxMessages) {
 				jxMessage.setFlag(Flags.Flag.DELETED, true);
@@ -182,7 +178,7 @@ public class IMAPAccessor {
 			throw new MailException(me);
 		}
 		finally {
-			closeFolder(imapFolder, true);
+			closeFolder(jxFolder, true);
 		}
 	}
 
@@ -190,12 +186,12 @@ public class IMAPAccessor {
 			long folderId, long messageId, String contentPath)
 		throws IOException, PortalException, SystemException {
 
-		IMAPFolder imapFolder = null;
+		Folder jxFolder = null;
 
 		try {
-			imapFolder = openFolder(folderId);
+			jxFolder = openFolder(folderId);
 
-			Message jxMessage = getMessage(imapFolder, messageId);
+			Message jxMessage = getMessage(jxFolder, messageId);
 
 			if (jxMessage == null) {
 				throw new MailException(
@@ -205,7 +201,7 @@ public class IMAPAccessor {
 			Part part = getPart(jxMessage, contentPath);
 
 			AttachmentHandler attachmentHandler = new IMAPAttachmentHandler(
-				part.getInputStream(), imapFolder);
+				part.getInputStream(), jxFolder);
 
 			return attachmentHandler;
 		}
@@ -231,7 +227,7 @@ public class IMAPAccessor {
 		}
 	}
 
-	public long[] getMessageUIDs(IMAPFolder imapFolder, Message[] jxMessages)
+	public long[] getMessageUIDs(Folder jxFolder, Message[] jxMessages)
 		throws MailException {
 
 		try {
@@ -239,14 +235,14 @@ public class IMAPAccessor {
 
 			fetchProfile.add(UIDFolder.FetchProfileItem.UID);
 
-			imapFolder.fetch(jxMessages, fetchProfile);
+			jxFolder.fetch(jxMessages, fetchProfile);
 
 			long[] remoteMessageIds = new long[jxMessages.length];
 
 			for (int i = 0; i < jxMessages.length; i++) {
 				Message jxMessage = jxMessages[i];
 
-				remoteMessageIds[i] = imapFolder.getUID(jxMessage);
+				remoteMessageIds[i] = getUID(jxFolder, jxMessage);
 			}
 
 			return remoteMessageIds;
@@ -260,42 +256,42 @@ public class IMAPAccessor {
 			long folderId, int pageNumber, int messagesPerPage)
 		throws PortalException, SystemException {
 
-		IMAPFolder imapFolder = null;
+		Folder jxFolder = null;
 
 		try {
-			imapFolder = openFolder(folderId);
+			jxFolder = openFolder(folderId);
 
 			int[] messageIndexes = getMessageIndexes(
-				imapFolder.getMessageCount(), pageNumber, messagesPerPage);
+				jxFolder.getMessageCount(), pageNumber, messagesPerPage);
 
 			if (messageIndexes[0] == 0) {
 				return new long[0];
 			}
 
-			Message[] jxMessages = imapFolder.getMessages(
+			Message[] jxMessages = jxFolder.getMessages(
 				messageIndexes[0], messageIndexes[1]);
 
-			return getMessageUIDs(imapFolder, jxMessages);
+			return getMessageUIDs(jxFolder, jxMessages);
 		}
 		catch (MessagingException me) {
 			throw new MailException(me);
 		}
 		finally {
-			closeFolder(imapFolder, false);
+			closeFolder(jxFolder, false);
 		}
 	}
 
 	public boolean hasNewMessages(long folderId)
 		throws PortalException, SystemException {
 
-		IMAPFolder imapFolder = null;
+		Folder jxFolder = null;
 
 		try {
-			imapFolder = openFolder(folderId);
+			jxFolder = openFolder(folderId);
 
-			int messageCount = imapFolder.getMessageCount();
+			int messageCount = jxFolder.getMessageCount();
 
-			Message jxMessage = getMessage(folderId, imapFolder, false);
+			Message jxMessage = getMessage(folderId, jxFolder, false);
 
 			if (jxMessage == null) {
 				if (messageCount <= 0) {
@@ -315,7 +311,7 @@ public class IMAPAccessor {
 			throw new MailException(me);
 		}
 		finally {
-			closeFolder(imapFolder, false);
+			closeFolder(jxFolder, false);
 		}
 	}
 
@@ -324,25 +320,25 @@ public class IMAPAccessor {
 			boolean deleteMissingMessages)
 		throws PortalException, SystemException {
 
-		IMAPFolder sourceIMAPFolder = null;
-		IMAPFolder destinationIMAPFolder = null;
+		Folder sourceJxFolder = null;
+		Folder destinationJxFolder = null;
 
 		try {
-			sourceIMAPFolder = openFolder(sourceFolderId);
+			sourceJxFolder = openFolder(sourceFolderId);
 
-			sourceIMAPFolder.addMessageCountListener(
+			sourceJxFolder.addMessageCountListener(
 				new IMAPMessageCountListener(_user, _account, _password));
 
-			destinationIMAPFolder = openFolder(destinationFolderId);
+			destinationJxFolder = openFolder(destinationFolderId);
 
-			destinationIMAPFolder.addMessageCountListener(
+			destinationJxFolder.addMessageCountListener(
 				new IMAPMessageCountListener(_user, _account, _password));
 
 			List<Message> jxMessages = getMessages(
-				sourceIMAPFolder, messageIds, deleteMissingMessages);
+				sourceJxFolder, messageIds, deleteMissingMessages);
 
 			for (Message jxMessage : jxMessages) {
-				destinationIMAPFolder.appendMessages(new Message[] {jxMessage});
+				destinationJxFolder.appendMessages(new Message[] {jxMessage});
 
 				jxMessage.setFlag(Flags.Flag.DELETED, true);
 			}
@@ -351,20 +347,20 @@ public class IMAPAccessor {
 			throw new MailException(me);
 		}
 		finally {
-			closeFolder(sourceIMAPFolder, true);
-			closeFolder(destinationIMAPFolder, false);
+			closeFolder(sourceJxFolder, true);
+			closeFolder(destinationJxFolder, false);
 		}
 	}
 
-	public IMAPFolder openFolder(IMAPFolder imapFolder) throws MailException {
+	public Folder openFolder(Folder jxFolder) throws MailException {
 		try {
-			if (imapFolder.isOpen()) {
-				return imapFolder;
+			if (jxFolder.isOpen()) {
+				return jxFolder;
 			}
 
-			imapFolder.open(IMAPFolder.READ_WRITE);
+			jxFolder.open(Folder.READ_WRITE);
 
-			return imapFolder;
+			return jxFolder;
 		}
 		catch (MessagingException me) {
 			throw new MailException(me);
@@ -375,28 +371,27 @@ public class IMAPAccessor {
 		throws PortalException, SystemException {
 
 		try {
-			IMAPFolder imapFolder = getFolder(folderId);
+			Folder jxFolder = getFolder(folderId);
 
 			String newFullName = StringPool.BLANK;
 
 			if (Validator.isNotNull(_account.getFolderPrefix())) {
 				Store store = _imapConnection.getStore(true);
 
-				IMAPFolder defaultIMAPFolder =
-					(IMAPFolder)store.getDefaultFolder();
+				Folder defaultJxFolder = store.getDefaultFolder();
 
 				newFullName =
 					_account.getFolderPrefix() +
-						defaultIMAPFolder.getSeparator() + newDisplayName;
+						defaultJxFolder.getSeparator() + newDisplayName;
 			}
 
-			if (!imapFolder.exists()) {
+			if (!jxFolder.exists()) {
 				throw new MailException(MailException.FOLDER_DOES_NOT_EXIST);
 			}
 
-			if (imapFolder.renameTo(getFolder(newFullName))) {
+			if (jxFolder.renameTo(getFolder(newFullName))) {
 				return new String[] {
-					imapFolder.getFullName(), imapFolder.getName()
+					jxFolder.getFullName(), jxFolder.getName()
 				};
 			}
 			else {
@@ -414,10 +409,10 @@ public class IMAPAccessor {
 			List<MailFile> mailFiles)
 		throws PortalException, SystemException {
 
-		IMAPFolder imapFolder = null;
+		Folder jxFolder = null;
 
 		try {
-			imapFolder = openFolder(_account.getSentFolderId());
+			jxFolder = openFolder(_account.getSentFolderId());
 
 			Message jxMessage = createMessage(
 				personalName, sender, to, cc, bcc, subject, body, mailFiles);
@@ -428,10 +423,10 @@ public class IMAPAccessor {
 
 			transport.close();
 
-			imapFolder.addMessageCountListener(
+			jxFolder.addMessageCountListener(
 				new IMAPMessageCountListener(_user, _account, _password));
 
-			imapFolder.appendMessages(new Message[] {jxMessage});
+			jxFolder.appendMessages(new Message[] {jxMessage});
 		}
 		catch (MessagingException me) {
 			throw new MailException(me);
@@ -440,20 +435,19 @@ public class IMAPAccessor {
 			throw new MailException(uee);
 		}
 		finally {
-			closeFolder(imapFolder, false);
+			closeFolder(jxFolder, false);
 		}
 	}
 
 	public void storeContents(long folderId, long[] remoteMessageIds)
 		throws IOException, PortalException, SystemException {
 
-		IMAPFolder imapFolder = null;
+		Folder jxFolder = null;
 
 		try {
-			imapFolder = openFolder(folderId);
+			jxFolder = openFolder(folderId);
 
-			Message[] jxMessages = imapFolder.getMessagesByUID(
-				remoteMessageIds);
+			Message[] jxMessages = getMessagesByUID(jxFolder, remoteMessageIds);
 
 			FetchProfile fetchProfile = new FetchProfile();
 
@@ -461,12 +455,12 @@ public class IMAPAccessor {
 			fetchProfile.add(UIDFolder.FetchProfileItem.FLAGS);
 			fetchProfile.add(UIDFolder.FetchProfileItem.UID);
 
-			imapFolder.fetch(jxMessages, fetchProfile);
+			jxFolder.fetch(jxMessages, fetchProfile);
 
 			for (Message jxMessage : jxMessages) {
 				String flags = getFlags(jxMessage);
 
-				long remoteMessageId = imapFolder.getUID(jxMessage);
+				long remoteMessageId = getUID(jxFolder, jxMessage);
 
 				com.liferay.mail.model.Message message =
 					MessageLocalServiceUtil.getMessage(
@@ -511,14 +505,14 @@ public class IMAPAccessor {
 			throw new MailException(me);
 		}
 		finally {
-			closeFolder(imapFolder, false);
+			closeFolder(jxFolder, false);
 		}
 	}
 
 	public void storeEnvelopes(long folderId, boolean allMessages)
 		throws PortalException, SystemException {
 
-		IMAPFolder imapFolder = null;
+		Folder jxFolder = null;
 
 		try {
 			com.liferay.mail.model.Folder folder =
@@ -528,9 +522,9 @@ public class IMAPAccessor {
 				return;
 			}
 
-			imapFolder = openFolder(folderId);
+			jxFolder = openFolder(folderId);
 
-			int messageCount = imapFolder.getMessageCount();
+			int messageCount = jxFolder.getMessageCount();
 
 			FolderLocalServiceUtil.updateFolder(
 				folderId, folder.getFullName(), folder.getDisplayName(),
@@ -540,8 +534,8 @@ public class IMAPAccessor {
 				return;
 			}
 
-			Message oldestJxMessage = getMessage(folderId, imapFolder, true);
-			Message newestJxMessage = getMessage(folderId, imapFolder, false);
+			Message oldestJxMessage = getMessage(folderId, jxFolder, true);
+			Message newestJxMessage = getMessage(folderId, jxFolder, false);
 
 			Message[] jxMessages = new Message[0];
 
@@ -549,16 +543,16 @@ public class IMAPAccessor {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						"Downloading all messages from folder " +
-							imapFolder.getFullName());
+							jxFolder.getFullName());
 				}
 
-				jxMessages = imapFolder.getMessages();
+				jxMessages = jxFolder.getMessages();
 			}
 			else if ((oldestJxMessage == null) && (newestJxMessage == null)) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						"Downloading messages from folder " +
-							imapFolder.getFullName() + " for the first time");
+							jxFolder.getFullName() + " for the first time");
 				}
 
 				int startingMessageNumber =
@@ -568,7 +562,7 @@ public class IMAPAccessor {
 					startingMessageNumber = 1;
 				}
 
-				jxMessages = imapFolder.getMessages(
+				jxMessages = jxFolder.getMessages(
 					startingMessageNumber, messageCount);
 			}
 			else {
@@ -579,17 +573,17 @@ public class IMAPAccessor {
 					if (_log.isDebugEnabled()) {
 						_log.debug(
 							"Downloading new messages from folder " +
-								imapFolder.getFullName());
+								jxFolder.getFullName());
 					}
 
-					jxMessages = imapFolder.getMessages(
+					jxMessages = jxFolder.getMessages(
 						newestMessageNumber + 1, messageCount);
 				}
 				else if (oldestMessageNumber != 1) {
 					if (_log.isDebugEnabled()) {
 						_log.debug(
 							"Downloading old messages from folder " +
-								imapFolder.getFullName());
+								jxFolder.getFullName());
 					}
 
 					int startingMessageNumber =
@@ -600,23 +594,23 @@ public class IMAPAccessor {
 						startingMessageNumber = 1;
 					}
 
-					jxMessages = imapFolder.getMessages(
+					jxMessages = jxFolder.getMessages(
 						startingMessageNumber, oldestMessageNumber - 1);
 				}
 			}
 
-			storeEnvelopes(folderId, imapFolder, jxMessages);
+			storeEnvelopes(folderId, jxFolder, jxMessages);
 		}
 		catch (MessagingException me) {
 			throw new MailException(me);
 		}
 		finally {
-			closeFolder(imapFolder, false);
+			closeFolder(jxFolder, false);
 		}
 	}
 
 	public void storeEnvelopes(
-			long folderId, IMAPFolder imapFolder, Message[] jxMessages)
+			long folderId, Folder jxFolder, Message[] jxMessages)
 		throws PortalException, SystemException {
 
 		StopWatch stopWatch = null;
@@ -634,7 +628,7 @@ public class IMAPAccessor {
 			fetchProfile.add(UIDFolder.FetchProfileItem.FLAGS);
 			fetchProfile.add(UIDFolder.FetchProfileItem.UID);
 
-			imapFolder.fetch(jxMessages, fetchProfile);
+			jxFolder.fetch(jxMessages, fetchProfile);
 
 			for (Message jxMessage : jxMessages) {
 				String sender = InternetAddressUtil.toString(
@@ -648,7 +642,7 @@ public class IMAPAccessor {
 				Date sentDate = jxMessage.getSentDate();
 				String subject = jxMessage.getSubject();
 				String flags = getFlags(jxMessage);
-				long remoteMessageId = imapFolder.getUID(jxMessage);
+				long remoteMessageId = getUID(jxFolder, jxMessage);
 
 				try {
 					MessageLocalServiceUtil.getMessage(
@@ -667,7 +661,7 @@ public class IMAPAccessor {
 
 			FolderLocalServiceUtil.updateFolder(
 				folderId, folder.getFullName(), folder.getDisplayName(),
-				imapFolder.getMessageCount());
+				jxFolder.getMessageCount());
 		}
 		catch (MessagingException me) {
 			throw new MailException(me);
@@ -678,7 +672,7 @@ public class IMAPAccessor {
 
 			_log.debug(
 				"Downloaded " + jxMessages.length + " messages from folder " +
-					imapFolder.getFullName() + " completed in " +
+					jxFolder.getFullName() + " completed in " +
 						stopWatch.getTime() + " ms");
 		}
 	}
@@ -686,21 +680,20 @@ public class IMAPAccessor {
 	public void storeEnvelopes(long folderId, long[] remoteMessageIds)
 		throws PortalException, SystemException {
 
-		IMAPFolder imapFolder = null;
+		Folder jxFolder = null;
 
 		try {
-			imapFolder = openFolder(folderId);
+			jxFolder = openFolder(folderId);
 
-			Message[] jxMessages = imapFolder.getMessagesByUID(
-				remoteMessageIds);
+			Message[] jxMessages = getMessagesByUID(jxFolder, remoteMessageIds);
 
-			storeEnvelopes(folderId, imapFolder, jxMessages);
+			storeEnvelopes(folderId, jxFolder, jxMessages);
 		}
 		catch (MessagingException me) {
 			throw new MailException(me);
 		}
 		finally {
-			closeFolder(imapFolder, false);
+			closeFolder(jxFolder, false);
 		}
 	}
 
@@ -709,13 +702,13 @@ public class IMAPAccessor {
 			boolean deleteMissingMessages)
 		throws PortalException, SystemException {
 
-		IMAPFolder imapFolder = null;
+		Folder jxFolder = null;
 
 		try {
-			imapFolder = openFolder(folderId);
+			jxFolder = openFolder(folderId);
 
 			List<Message> jxMessages = getMessages(
-				imapFolder, messageIds, deleteMissingMessages);
+				jxFolder, messageIds, deleteMissingMessages);
 
 			for (Message jxMessage : jxMessages) {
 				if (flag == MailConstants.FLAG_FLAGGED) {
@@ -733,7 +726,7 @@ public class IMAPAccessor {
 			throw new MailException(me);
 		}
 		finally {
-			closeFolder(imapFolder, true);
+			closeFolder(jxFolder, true);
 		}
 	}
 
@@ -772,8 +765,7 @@ public class IMAPAccessor {
 
 				BodyPart attachmentBodyPart = new MimeBodyPart();
 
-				attachmentBodyPart.setDataHandler(
-					new DataHandler(dataSource));
+				attachmentBodyPart.setDataHandler(new DataHandler(dataSource));
 				attachmentBodyPart.setFileName(mailFile.getFileName());
 
 				multipart.addBodyPart(attachmentBodyPart);
@@ -801,7 +793,7 @@ public class IMAPAccessor {
 		return sb.toString();
 	}
 
-	protected IMAPFolder getFolder(long folderId)
+	protected Folder getFolder(long folderId)
 		throws MessagingException, PortalException, SystemException {
 
 		Store store = _imapConnection.getStore(true);
@@ -809,15 +801,15 @@ public class IMAPAccessor {
 		com.liferay.mail.model.Folder folder = FolderLocalServiceUtil.getFolder(
 			folderId);
 
-		return (IMAPFolder)store.getFolder(folder.getFullName());
+		return store.getFolder(folder.getFullName());
 	}
 
-	protected IMAPFolder getFolder(String fullName)
+	protected Folder getFolder(String fullName)
 		throws MailException, MessagingException {
 
 		Store store = _imapConnection.getStore(true);
 
-		return (IMAPFolder)store.getFolder(fullName);
+		return store.getFolder(fullName);
 	}
 
 	protected void getFolders(List<Folder> allJxFolders, Folder[] jxFolders) {
@@ -840,14 +832,15 @@ public class IMAPAccessor {
 		}
 	}
 
-	protected Message getMessage(IMAPFolder imapFolder, long remoteMessageId)
+	protected Message getMessage(Folder jxFolder, long remoteMessageId)
 		throws MessagingException {
 
-		return imapFolder.getMessageByUID(remoteMessageId);
+		UIDFolder uidFolder = (UIDFolder)jxFolder;
+
+		return uidFolder.getMessageByUID(remoteMessageId);
 	}
 
-	protected Message getMessage(
-			long folderId, IMAPFolder imapFolder, boolean oldest)
+	protected Message getMessage(long folderId, Folder jxFolder, boolean oldest)
 		throws MessagingException, PortalException, SystemException {
 
 		com.liferay.mail.model.Message message = null;
@@ -862,12 +855,12 @@ public class IMAPAccessor {
 
 		long remoteMessageId = message.getRemoteMessageId();
 
-		Message jxMessage = getMessage(imapFolder, remoteMessageId);
+		Message jxMessage = getMessage(jxFolder, remoteMessageId);
 
 		if (jxMessage == null) {
 			MessageLocalServiceUtil.deleteMessage(message);
 
-			return getMessage(folderId, imapFolder, oldest);
+			return getMessage(folderId, jxFolder, oldest);
 		}
 		else {
 			return jxMessage;
@@ -903,8 +896,7 @@ public class IMAPAccessor {
 	}
 
 	protected List<Message> getMessages(
-			IMAPFolder imapFolder, long[] messageIds,
-			boolean deleteMissingMessages)
+			Folder jxFolder, long[] messageIds, boolean deleteMissingMessages)
 		throws MessagingException, PortalException, SystemException {
 
 		long[] remoteMessageIds = new long[messageIds.length];
@@ -918,8 +910,8 @@ public class IMAPAccessor {
 
 		List<Message> jxMessages = new ArrayList<Message>();
 
-		Message[] jxMessagesArray = imapFolder.getMessagesByUID(
-			remoteMessageIds);
+		Message[] jxMessagesArray = getMessagesByUID(
+			jxFolder, remoteMessageIds);
 
 		for (int i = 0; i < jxMessagesArray.length; i++) {
 			Message jxMessage = jxMessagesArray[i];
@@ -933,6 +925,15 @@ public class IMAPAccessor {
 		}
 
 		return jxMessages;
+	}
+
+	protected Message[] getMessagesByUID(
+			Folder jxFolder, long[] remoteMessageIds)
+		throws MessagingException {
+
+		UIDFolder uidFolder = (UIDFolder)jxFolder;
+
+		return uidFolder.getMessagesByUID(remoteMessageIds);
 	}
 
 	protected Part getPart(Part part, String contentPath)
@@ -1056,7 +1057,15 @@ public class IMAPAccessor {
 		}
 	}
 
-	protected IMAPFolder openFolder(long folderId)
+	protected long getUID(Folder jxFolder, Message jxMessage)
+		throws MessagingException {
+
+		UIDFolder uidFolder = (UIDFolder)jxFolder;
+
+		return uidFolder.getUID(jxMessage);
+	}
+
+	protected Folder openFolder(long folderId)
 		throws MessagingException, PortalException, SystemException {
 
 		return openFolder(getFolder(folderId));

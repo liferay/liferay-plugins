@@ -20,11 +20,11 @@ int end = SearchContainer.DEFAULT_DELTA;
 
 List<SocialActivity> activities = null;
 
-if (group.isCommunity()) {
-	activities = SocialActivityLocalServiceUtil.getGroupUsersActivities(group.getGroupId(), start, end);
-}
-else if (group.isOrganization()) {
+if (group.isOrganization()) {
 	activities = SocialActivityLocalServiceUtil.getOrganizationUsersActivities(group.getClassPK(), start, end);
+}
+else if (group.isRegularSite()) {
+	activities = SocialActivityLocalServiceUtil.getGroupUsersActivities(group.getGroupId(), start, end);
 }
 
 PortletURL rssURL = renderResponse.createRenderURL();

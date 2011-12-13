@@ -14,48 +14,81 @@
 
 package com.liferay.portal.search.solr.server;
 
+import com.liferay.portal.search.solr.servlet.SolrServletContextListener;
+
 import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.response.SolrPingResponse;
 
 /**
  * @author Bruno Farache
+ * @author Zsigmond Rab
  */
-public class LiveServerChecker {
+public class LiveServerChecker implements Runnable {
 
 	public LiveServerChecker(
 		final SolrServerFactory solrServerFactory, Long delay) {
 
-		ScheduledExecutorService scheduledExecutorService =
+		_solrServerFactory = solrServerFactory;
+
+		_scheduledExecutorService =
 			Executors.newSingleThreadScheduledExecutor();
 
-		Runnable runnable = new Runnable() {
+		_scheduledExecutorService.scheduleWithFixedDelay(
+			this, 0, delay, TimeUnit.SECONDS);
 
-			public void run() {
-				Collection<SolrServerWrapper> solrServerWrappers =
-					solrServerFactory.getDeadServers();
+		SolrServletContextListener.registerLiveServerChecker(this);
+	}
 
-				for (SolrServerWrapper solrServerWrapper : solrServerWrappers) {
-					try {
-						SolrPingResponse solrPingResponse =
-							solrServerWrapper.ping();
+	public void run() {
+		Collection<SolrServerWrapper> solrServerWrappers =
+			_solrServerFactory.getDeadServers();
 
-						if (solrPingResponse.getStatus() == 0) {
-							solrServerFactory.startServer(solrServerWrapper);
-						}
-					}
-					catch (Exception e) {
-					}
-				}
+		solrServerWrappers.addAll(_solrServerFactory.getLiveServers());
+
+		for (SolrServerWrapper solrServerWrapper : solrServerWrappers) {
+			SolrServer solrServer = solrServerWrapper.getServer();
+
+			if (solrServer == null) {
+				continue;
 			}
 
-		};
+			try {
+				SolrPingResponse solrPingResponse = solrServerWrapper.ping();
 
-		scheduledExecutorService.scheduleWithFixedDelay(
-			runnable, 0, delay, TimeUnit.SECONDS);
+				if (solrPingResponse.getStatus() == 0) {
+					_solrServerFactory.startServer(solrServerWrapper);
+				}
+				else {
+					_solrServerFactory.killServer(solrServerWrapper);
+				}
+			}
+			catch (Exception e) {
+				_solrServerFactory.killServer(solrServerWrapper);
+			}
+		}
 	}
+
+	public void shutdown() {
+		List<SolrServerWrapper> deadSolrServerWrappers =
+			_solrServerFactory.getDeadServers();
+
+		deadSolrServerWrappers.clear();
+
+		List<SolrServerWrapper> liveSolrServerWrappers =
+			_solrServerFactory.getLiveServers();
+
+		liveSolrServerWrappers.clear();
+
+		_scheduledExecutorService.shutdownNow();
+	}
+
+	private ScheduledExecutorService _scheduledExecutorService;
+	private SolrServerFactory _solrServerFactory;
 
 }

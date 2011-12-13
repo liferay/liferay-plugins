@@ -18,6 +18,7 @@ import com.liferay.counter.service.CounterLocalService;
 
 import com.liferay.marketplace.model.App;
 import com.liferay.marketplace.service.AppLocalService;
+import com.liferay.marketplace.service.AppService;
 import com.liferay.marketplace.service.ModuleLocalService;
 import com.liferay.marketplace.service.persistence.AppPersistence;
 import com.liferay.marketplace.service.persistence.ModulePersistence;
@@ -326,6 +327,24 @@ public abstract class AppLocalServiceBaseImpl implements AppLocalService,
 	}
 
 	/**
+	 * Returns the app remote service.
+	 *
+	 * @return the app remote service
+	 */
+	public AppService getAppService() {
+		return appService;
+	}
+
+	/**
+	 * Sets the app remote service.
+	 *
+	 * @param appService the app remote service
+	 */
+	public void setAppService(AppService appService) {
+		this.appService = appService;
+	}
+
+	/**
 	 * Returns the app persistence.
 	 *
 	 * @return the app persistence
@@ -563,6 +582,8 @@ public abstract class AppLocalServiceBaseImpl implements AppLocalService,
 
 	@BeanReference(type = AppLocalService.class)
 	protected AppLocalService appLocalService;
+	@BeanReference(type = AppService.class)
+	protected AppService appService;
 	@BeanReference(type = AppPersistence.class)
 	protected AppPersistence appPersistence;
 	@BeanReference(type = ModuleLocalService.class)

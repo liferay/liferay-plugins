@@ -222,7 +222,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 					roleAssignment.setAutoCreate(autoCreate);
 				}
 				else {
-					roleAssignment = new RoleAssignment(roleId, roleType);
+					roleAssignment = new RoleAssignment(roleId);
 				}
 
 				assignments.add(roleAssignment);
@@ -536,8 +536,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 
 		parseNotificationElements(timerNotificationElements, timer);
 
-		Element reassignmentsElement = timersElement.element(
-			"reassignments");
+		Element reassignmentsElement = timersElement.element("reassignments");
 
 		if (reassignmentsElement != null) {
 			Set<Assignment> assignments = parseAssignments(
@@ -600,17 +599,10 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		node.setTimers(timers);
 	}
 
-	protected void parseTransition(Definition definition, Element nodeElement)
-		throws WorkflowException {
-
+	protected void parseTransition(Definition definition, Element nodeElement) {
 		String sourceName = nodeElement.elementText("name");
 
 		Node sourceNode = definition.getNode(sourceName);
-
-		if (sourceNode == null) {
-			throw new WorkflowException(
-				"Unable to find source node " + sourceName);
-		}
 
 		Element transitionsElement = nodeElement.element("transitions");
 
@@ -627,11 +619,6 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			String targetName = transitionElement.elementText("target");
 
 			Node targetNode = definition.getNode(targetName);
-
-			if (targetNode == null) {
-				throw new WorkflowException(
-					"Unable to find target node " + targetName);
-			}
 
 			boolean defaultValue = GetterUtil.getBoolean(
 				transitionElement.elementText("default"), true);
@@ -652,10 +639,9 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 	}
 
 	protected void parseTransitions(
-			Definition definition, List<Element> conditionElements,
-			List<Element> forkElements, List<Element> joinElements,
-			List<Element> stateElements, List<Element> taskElements)
-		throws WorkflowException {
+		Definition definition, List<Element> conditionElements,
+		List<Element> forkElements, List<Element> joinElements,
+		List<Element> stateElements, List<Element> taskElements) {
 
 		for (Element conditionElement : conditionElements) {
 			parseTransition(definition, conditionElement);

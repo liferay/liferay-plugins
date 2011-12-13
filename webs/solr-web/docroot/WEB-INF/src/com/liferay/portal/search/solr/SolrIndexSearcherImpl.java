@@ -308,8 +308,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 			documents[j] = document;
 
 			if (queryConfig.isHighlightEnabled()) {
-				snippets[j] = getSnippet(
-					solrDocument, queryTerms, highlights);
+				snippets[j] = getSnippet(solrDocument, queryTerms, highlights);
 			}
 			else {
 				snippets[j] = StringPool.BLANK;
@@ -348,10 +347,8 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		SolrQuery solrQuery = new SolrQuery();
 
 		solrQuery.setHighlight(queryConfig.isHighlightEnabled());
-		solrQuery.setHighlightFragsize(
-			queryConfig.getHighlightFragmentSize());
-		solrQuery.setHighlightSnippets(
-			queryConfig.getHighlightSnippetSize());
+		solrQuery.setHighlightFragsize(queryConfig.getHighlightFragmentSize());
+		solrQuery.setHighlightSnippets(queryConfig.getHighlightSnippetSize());
 		solrQuery.setIncludeScore(queryConfig.isScoreEnabled());
 		solrQuery.setQuery(queryString);
 

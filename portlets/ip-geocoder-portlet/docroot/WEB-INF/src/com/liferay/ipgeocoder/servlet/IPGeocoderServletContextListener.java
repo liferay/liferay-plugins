@@ -43,8 +43,7 @@ public class IPGeocoderServletContextListener
 	protected void doPortalDestroy() {
 		_ipGeocoderDestination.unregister(_ipGeocoderMessageListener);
 
-		MessageBusUtil.removeDestination(
-			_ipGeocoderDestination.getName());
+		MessageBusUtil.removeDestination(_ipGeocoderDestination.getName());
 
 		MessageBusUtil.removeDestination(DestinationNames.IP_GEOCODER_RESPONSE);
 	}

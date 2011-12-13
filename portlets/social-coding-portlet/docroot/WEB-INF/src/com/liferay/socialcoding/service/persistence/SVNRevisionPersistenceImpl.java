@@ -214,6 +214,17 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<SVNRevision> svnRevisions) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (SVNRevision svnRevision : svnRevisions) {
+			EntityCacheUtil.removeResult(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
+				SVNRevisionImpl.class, svnRevision.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new s v n revision with the primary key. Does not add the s v n revision to the database.
 	 *
@@ -232,20 +243,6 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	/**
 	 * Removes the s v n revision with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the s v n revision
-	 * @return the s v n revision that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a s v n revision with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public SVNRevision remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the s v n revision with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param svnRevisionId the primary key of the s v n revision
 	 * @return the s v n revision that was removed
 	 * @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a s v n revision with the primary key could not be found
@@ -253,24 +250,38 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 */
 	public SVNRevision remove(long svnRevisionId)
 		throws NoSuchSVNRevisionException, SystemException {
+		return remove(Long.valueOf(svnRevisionId));
+	}
+
+	/**
+	 * Removes the s v n revision with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the s v n revision
+	 * @return the s v n revision that was removed
+	 * @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a s v n revision with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public SVNRevision remove(Serializable primaryKey)
+		throws NoSuchSVNRevisionException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			SVNRevision svnRevision = (SVNRevision)session.get(SVNRevisionImpl.class,
-					Long.valueOf(svnRevisionId));
+					primaryKey);
 
 			if (svnRevision == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + svnRevisionId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchSVNRevisionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					svnRevisionId);
+					primaryKey);
 			}
 
-			return svnRevisionPersistence.remove(svnRevision);
+			return remove(svnRevision);
 		}
 		catch (NoSuchSVNRevisionException nsee) {
 			throw nsee;
@@ -281,19 +292,6 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the s v n revision from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param svnRevision the s v n revision
-	 * @return the s v n revision that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public SVNRevision remove(SVNRevision svnRevision)
-		throws SystemException {
-		return super.remove(svnRevision);
 	}
 
 	@Override
@@ -315,11 +313,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
-			SVNRevisionImpl.class, svnRevision.getPrimaryKey());
+		clearCache(svnRevision);
 
 		return svnRevision;
 	}
@@ -1789,7 +1783,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 */
 	public void removeBySVNUserId(String svnUserId) throws SystemException {
 		for (SVNRevision svnRevision : findBySVNUserId(svnUserId)) {
-			svnRevisionPersistence.remove(svnRevision);
+			remove(svnRevision);
 		}
 	}
 
@@ -1802,7 +1796,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	public void removeBySVNRepositoryId(long svnRepositoryId)
 		throws SystemException {
 		for (SVNRevision svnRevision : findBySVNRepositoryId(svnRepositoryId)) {
-			svnRevisionPersistence.remove(svnRevision);
+			remove(svnRevision);
 		}
 	}
 
@@ -1817,7 +1811,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		throws SystemException {
 		for (SVNRevision svnRevision : findBySVNU_SVNR(svnUserId,
 				svnRepositoryId)) {
-			svnRevisionPersistence.remove(svnRevision);
+			remove(svnRevision);
 		}
 	}
 
@@ -1828,7 +1822,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 */
 	public void removeAll() throws SystemException {
 		for (SVNRevision svnRevision : findAll()) {
-			svnRevisionPersistence.remove(svnRevision);
+			remove(svnRevision);
 		}
 	}
 

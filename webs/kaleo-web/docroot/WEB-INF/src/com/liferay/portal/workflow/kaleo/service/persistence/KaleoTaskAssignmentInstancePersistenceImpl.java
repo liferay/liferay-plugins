@@ -255,6 +255,19 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(
+		List<KaleoTaskAssignmentInstance> kaleoTaskAssignmentInstances) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance : kaleoTaskAssignmentInstances) {
+			EntityCacheUtil.removeResult(KaleoTaskAssignmentInstanceModelImpl.ENTITY_CACHE_ENABLED,
+				KaleoTaskAssignmentInstanceImpl.class,
+				kaleoTaskAssignmentInstance.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new kaleo task assignment instance with the primary key. Does not add the kaleo task assignment instance to the database.
 	 *
@@ -274,20 +287,6 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	/**
 	 * Removes the kaleo task assignment instance with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the kaleo task assignment instance
-	 * @return the kaleo task assignment instance that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a kaleo task assignment instance with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public KaleoTaskAssignmentInstance remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the kaleo task assignment instance with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param kaleoTaskAssignmentInstanceId the primary key of the kaleo task assignment instance
 	 * @return the kaleo task assignment instance that was removed
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException if a kaleo task assignment instance with the primary key could not be found
@@ -296,25 +295,38 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	public KaleoTaskAssignmentInstance remove(
 		long kaleoTaskAssignmentInstanceId)
 		throws NoSuchTaskAssignmentInstanceException, SystemException {
+		return remove(Long.valueOf(kaleoTaskAssignmentInstanceId));
+	}
+
+	/**
+	 * Removes the kaleo task assignment instance with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the kaleo task assignment instance
+	 * @return the kaleo task assignment instance that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException if a kaleo task assignment instance with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KaleoTaskAssignmentInstance remove(Serializable primaryKey)
+		throws NoSuchTaskAssignmentInstanceException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance = (KaleoTaskAssignmentInstance)session.get(KaleoTaskAssignmentInstanceImpl.class,
-					Long.valueOf(kaleoTaskAssignmentInstanceId));
+					primaryKey);
 
 			if (kaleoTaskAssignmentInstance == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-						kaleoTaskAssignmentInstanceId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchTaskAssignmentInstanceException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					kaleoTaskAssignmentInstanceId);
+					primaryKey);
 			}
 
-			return kaleoTaskAssignmentInstancePersistence.remove(kaleoTaskAssignmentInstance);
+			return remove(kaleoTaskAssignmentInstance);
 		}
 		catch (NoSuchTaskAssignmentInstanceException nsee) {
 			throw nsee;
@@ -325,20 +337,6 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the kaleo task assignment instance from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoTaskAssignmentInstance the kaleo task assignment instance
-	 * @return the kaleo task assignment instance that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public KaleoTaskAssignmentInstance remove(
-		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance)
-		throws SystemException {
-		return super.remove(kaleoTaskAssignmentInstance);
 	}
 
 	@Override
@@ -361,12 +359,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(KaleoTaskAssignmentInstanceModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTaskAssignmentInstanceImpl.class,
-			kaleoTaskAssignmentInstance.getPrimaryKey());
+		clearCache(kaleoTaskAssignmentInstance);
 
 		return kaleoTaskAssignmentInstance;
 	}
@@ -2185,7 +2178,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance : findByCompanyId(
 				companyId)) {
-			kaleoTaskAssignmentInstancePersistence.remove(kaleoTaskAssignmentInstance);
+			remove(kaleoTaskAssignmentInstance);
 		}
 	}
 
@@ -2199,7 +2192,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 		throws SystemException {
 		for (KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance : findByKaleoDefinitionId(
 				kaleoDefinitionId)) {
-			kaleoTaskAssignmentInstancePersistence.remove(kaleoTaskAssignmentInstance);
+			remove(kaleoTaskAssignmentInstance);
 		}
 	}
 
@@ -2213,7 +2206,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 		throws SystemException {
 		for (KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance : findByKaleoInstanceId(
 				kaleoInstanceId)) {
-			kaleoTaskAssignmentInstancePersistence.remove(kaleoTaskAssignmentInstance);
+			remove(kaleoTaskAssignmentInstance);
 		}
 	}
 
@@ -2227,7 +2220,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 		throws SystemException {
 		for (KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance : findBykaleoTaskInstanceTokenId(
 				kaleoTaskInstanceTokenId)) {
-			kaleoTaskAssignmentInstancePersistence.remove(kaleoTaskAssignmentInstance);
+			remove(kaleoTaskAssignmentInstance);
 		}
 	}
 
@@ -2238,7 +2231,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	 */
 	public void removeAll() throws SystemException {
 		for (KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance : findAll()) {
-			kaleoTaskAssignmentInstancePersistence.remove(kaleoTaskAssignmentInstance);
+			remove(kaleoTaskAssignmentInstance);
 		}
 	}
 

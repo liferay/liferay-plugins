@@ -353,8 +353,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		throws SystemException {
 
 		if ((logTypes == null) || logTypes.isEmpty()) {
-			return kaleoLogPersistence.countByKaleoInstanceId(
-				kaleoInstanceId);
+			return kaleoLogPersistence.countByKaleoInstanceId(kaleoInstanceId);
 		}
 		else {
 			DynamicQuery dynamicQuery = buildKaleoInstanceDynamicQuery(
@@ -421,8 +420,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 			KaleoLog.class, getClass().getClassLoader());
 
 		dynamicQuery.add(
-			PropertyFactoryUtil.forName("kaleoInstanceId").eq(
-				kaleoInstanceId));
+			PropertyFactoryUtil.forName("kaleoInstanceId").eq(kaleoInstanceId));
 
 		addLogTypesJunction(dynamicQuery, logTypes);
 

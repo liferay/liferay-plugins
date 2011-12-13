@@ -185,6 +185,23 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(account);
+	}
+
+	@Override
+	public void clearCache(List<Account> accounts) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (Account account : accounts) {
+			EntityCacheUtil.removeResult(AccountModelImpl.ENTITY_CACHE_ENABLED,
+				AccountImpl.class, account.getPrimaryKey());
+
+			clearUniqueFindersCache(account);
+		}
+	}
+
+	protected void clearUniqueFindersCache(Account account) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_A,
 			new Object[] { Long.valueOf(account.getUserId()), account.getAddress() });
 	}
@@ -207,20 +224,6 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	/**
 	 * Removes the account with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the account
-	 * @return the account that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a account with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Account remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the account with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param accountId the primary key of the account
 	 * @return the account that was removed
 	 * @throws com.liferay.mail.NoSuchAccountException if a account with the primary key could not be found
@@ -228,24 +231,37 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	 */
 	public Account remove(long accountId)
 		throws NoSuchAccountException, SystemException {
+		return remove(Long.valueOf(accountId));
+	}
+
+	/**
+	 * Removes the account with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the account
+	 * @return the account that was removed
+	 * @throws com.liferay.mail.NoSuchAccountException if a account with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Account remove(Serializable primaryKey)
+		throws NoSuchAccountException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			Account account = (Account)session.get(AccountImpl.class,
-					Long.valueOf(accountId));
+			Account account = (Account)session.get(AccountImpl.class, primaryKey);
 
 			if (account == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + accountId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchAccountException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					accountId);
+					primaryKey);
 			}
 
-			return accountPersistence.remove(account);
+			return remove(account);
 		}
 		catch (NoSuchAccountException nsee) {
 			throw nsee;
@@ -256,18 +272,6 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the account from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param account the account
-	 * @return the account that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Account remove(Account account) throws SystemException {
-		return super.remove(account);
 	}
 
 	@Override
@@ -288,20 +292,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		AccountModelImpl accountModelImpl = (AccountModelImpl)account;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_A,
-			new Object[] {
-				Long.valueOf(accountModelImpl.getUserId()),
-				
-			accountModelImpl.getAddress()
-			});
-
-		EntityCacheUtil.removeResult(AccountModelImpl.ENTITY_CACHE_ENABLED,
-			AccountImpl.class, account.getPrimaryKey());
+		clearCache(account);
 
 		return account;
 	}
@@ -1147,7 +1138,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	 */
 	public void removeByUserId(long userId) throws SystemException {
 		for (Account account : findByUserId(userId)) {
-			accountPersistence.remove(account);
+			remove(account);
 		}
 	}
 
@@ -1162,7 +1153,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		throws NoSuchAccountException, SystemException {
 		Account account = findByU_A(userId, address);
 
-		accountPersistence.remove(account);
+		remove(account);
 	}
 
 	/**
@@ -1172,7 +1163,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	 */
 	public void removeAll() throws SystemException {
 		for (Account account : findAll()) {
-			accountPersistence.remove(account);
+			remove(account);
 		}
 	}
 

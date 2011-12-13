@@ -94,13 +94,6 @@ public class GadgetUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static Gadget remove(Gadget gadget) throws SystemException {
-		return getPersistence().remove(gadget);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static Gadget update(Gadget gadget, boolean merge)

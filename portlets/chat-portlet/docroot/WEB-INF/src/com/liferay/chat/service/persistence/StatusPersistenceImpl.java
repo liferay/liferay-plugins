@@ -222,6 +222,23 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(status);
+	}
+
+	@Override
+	public void clearCache(List<Status> statuses) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (Status status : statuses) {
+			EntityCacheUtil.removeResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
+				StatusImpl.class, status.getPrimaryKey());
+
+			clearUniqueFindersCache(status);
+		}
+	}
+
+	protected void clearUniqueFindersCache(Status status) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID,
 			new Object[] { Long.valueOf(status.getUserId()) });
 	}
@@ -244,20 +261,6 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	/**
 	 * Removes the status with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the status
-	 * @return the status that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a status with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Status remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the status with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param statusId the primary key of the status
 	 * @return the status that was removed
 	 * @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
@@ -265,24 +268,37 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 */
 	public Status remove(long statusId)
 		throws NoSuchStatusException, SystemException {
+		return remove(Long.valueOf(statusId));
+	}
+
+	/**
+	 * Removes the status with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the status
+	 * @return the status that was removed
+	 * @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Status remove(Serializable primaryKey)
+		throws NoSuchStatusException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			Status status = (Status)session.get(StatusImpl.class,
-					Long.valueOf(statusId));
+			Status status = (Status)session.get(StatusImpl.class, primaryKey);
 
 			if (status == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + statusId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchStatusException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					statusId);
+					primaryKey);
 			}
 
-			return statusPersistence.remove(status);
+			return remove(status);
 		}
 		catch (NoSuchStatusException nsee) {
 			throw nsee;
@@ -293,18 +309,6 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the status from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param status the status
-	 * @return the status that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Status remove(Status status) throws SystemException {
-		return super.remove(status);
 	}
 
 	@Override
@@ -325,16 +329,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		StatusModelImpl statusModelImpl = (StatusModelImpl)status;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID,
-			new Object[] { Long.valueOf(statusModelImpl.getUserId()) });
-
-		EntityCacheUtil.removeResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
-			StatusImpl.class, status.getPrimaryKey());
+		clearCache(status);
 
 		return status;
 	}
@@ -1865,7 +1860,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		throws NoSuchStatusException, SystemException {
 		Status status = findByUserId(userId);
 
-		statusPersistence.remove(status);
+		remove(status);
 	}
 
 	/**
@@ -1877,7 +1872,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	public void removeByModifiedDate(long modifiedDate)
 		throws SystemException {
 		for (Status status : findByModifiedDate(modifiedDate)) {
-			statusPersistence.remove(status);
+			remove(status);
 		}
 	}
 
@@ -1889,7 +1884,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 */
 	public void removeByOnline(boolean online) throws SystemException {
 		for (Status status : findByOnline(online)) {
-			statusPersistence.remove(status);
+			remove(status);
 		}
 	}
 
@@ -1903,7 +1898,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	public void removeByM_O(long modifiedDate, boolean online)
 		throws SystemException {
 		for (Status status : findByM_O(modifiedDate, online)) {
-			statusPersistence.remove(status);
+			remove(status);
 		}
 	}
 
@@ -1914,7 +1909,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 */
 	public void removeAll() throws SystemException {
 		for (Status status : findAll()) {
-			statusPersistence.remove(status);
+			remove(status);
 		}
 	}
 

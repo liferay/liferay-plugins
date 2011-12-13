@@ -65,7 +65,7 @@ long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/
 		<liferay-ui:message key="description" />
 	</td>
 	<td>
-		<liferay-ui:input-field model="<%= TasksEntry.class %>" bean="<%= tasksEntry %>" field="title" />
+		<liferay-ui:input-field cssClass="input-task-description" model="<%= TasksEntry.class %>" bean="<%= tasksEntry %>" field="title" />
 	</td>
 </tr>
 <tr>

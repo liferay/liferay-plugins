@@ -14,7 +14,6 @@
 
 package com.liferay.testtransaction.service.persistence;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 import com.liferay.testtransaction.model.Bar;
@@ -282,6 +281,4 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public Bar remove(Bar bar) throws SystemException;
 }

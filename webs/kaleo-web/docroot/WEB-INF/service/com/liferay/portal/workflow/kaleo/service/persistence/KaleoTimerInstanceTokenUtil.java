@@ -95,15 +95,6 @@ public class KaleoTimerInstanceTokenUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static KaleoTimerInstanceToken remove(
-		KaleoTimerInstanceToken kaleoTimerInstanceToken)
-		throws SystemException {
-		return getPersistence().remove(kaleoTimerInstanceToken);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static KaleoTimerInstanceToken update(

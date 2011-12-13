@@ -54,7 +54,7 @@ public class DefaultWorkflowDeployer implements WorkflowDeployer {
 		try {
 			kaleoDefinition =
 				KaleoDefinitionLocalServiceUtil.incrementKaleoDefinition(
-					definition.getName(), title, serviceContext);
+					definition, title, serviceContext);
 		}
 		catch (NoSuchDefinitionException nsde) {
 			kaleoDefinition =

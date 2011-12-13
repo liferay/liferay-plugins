@@ -173,6 +173,17 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<Attachment> attachments) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (Attachment attachment : attachments) {
+			EntityCacheUtil.removeResult(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
+				AttachmentImpl.class, attachment.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new attachment with the primary key. Does not add the attachment to the database.
 	 *
@@ -191,20 +202,6 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	/**
 	 * Removes the attachment with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the attachment
-	 * @return the attachment that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a attachment with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Attachment remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the attachment with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param attachmentId the primary key of the attachment
 	 * @return the attachment that was removed
 	 * @throws com.liferay.mail.NoSuchAttachmentException if a attachment with the primary key could not be found
@@ -212,24 +209,38 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 */
 	public Attachment remove(long attachmentId)
 		throws NoSuchAttachmentException, SystemException {
+		return remove(Long.valueOf(attachmentId));
+	}
+
+	/**
+	 * Removes the attachment with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the attachment
+	 * @return the attachment that was removed
+	 * @throws com.liferay.mail.NoSuchAttachmentException if a attachment with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Attachment remove(Serializable primaryKey)
+		throws NoSuchAttachmentException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			Attachment attachment = (Attachment)session.get(AttachmentImpl.class,
-					Long.valueOf(attachmentId));
+					primaryKey);
 
 			if (attachment == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + attachmentId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchAttachmentException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					attachmentId);
+					primaryKey);
 			}
 
-			return attachmentPersistence.remove(attachment);
+			return remove(attachment);
 		}
 		catch (NoSuchAttachmentException nsee) {
 			throw nsee;
@@ -240,18 +251,6 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the attachment from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param attachment the attachment
-	 * @return the attachment that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Attachment remove(Attachment attachment) throws SystemException {
-		return super.remove(attachment);
 	}
 
 	@Override
@@ -273,11 +272,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
-			AttachmentImpl.class, attachment.getPrimaryKey());
+		clearCache(attachment);
 
 		return attachment;
 	}
@@ -926,7 +921,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 */
 	public void removeByMessageId(long messageId) throws SystemException {
 		for (Attachment attachment : findByMessageId(messageId)) {
-			attachmentPersistence.remove(attachment);
+			remove(attachment);
 		}
 	}
 
@@ -937,7 +932,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 */
 	public void removeAll() throws SystemException {
 		for (Attachment attachment : findAll()) {
-			attachmentPersistence.remove(attachment);
+			remove(attachment);
 		}
 	}
 

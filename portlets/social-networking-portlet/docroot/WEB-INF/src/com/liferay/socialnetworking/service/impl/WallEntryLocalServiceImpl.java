@@ -27,7 +27,6 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.socialnetworking.model.WallEntry;
 import com.liferay.socialnetworking.service.base.WallEntryLocalServiceBaseImpl;
@@ -111,15 +110,12 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void deleteWallEntry(WallEntry wallEntry)
-		throws PortalException, SystemException {
+	public void deleteWallEntry(WallEntry wallEntry) throws SystemException {
 
 		// Social
 
-		AssetEntry assetEntry = assetEntryLocalService.getEntry(
+		SocialActivityLocalServiceUtil.deleteActivities(
 			WallEntry.class.getName(), wallEntry.getWallEntryId());
-
-		SocialActivityLocalServiceUtil.deleteActivities(assetEntry);
 
 		// Entry
 

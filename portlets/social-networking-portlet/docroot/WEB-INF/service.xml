@@ -123,10 +123,6 @@
 			<finder-column name="groupId" />
 			<finder-column name="userId" />
 		</finder>
-
-		<!-- References -->
-
-		<reference package-path="com.liferay.portlet.asset" entity="AssetEntry" />
 	</entity>
 	<exceptions>
 		<exception>MeetupsEntryEndDate</exception>

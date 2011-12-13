@@ -211,6 +211,23 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(kaleoCondition);
+	}
+
+	@Override
+	public void clearCache(List<KaleoCondition> kaleoConditions) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (KaleoCondition kaleoCondition : kaleoConditions) {
+			EntityCacheUtil.removeResult(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
+				KaleoConditionImpl.class, kaleoCondition.getPrimaryKey());
+
+			clearUniqueFindersCache(kaleoCondition);
+		}
+	}
+
+	protected void clearUniqueFindersCache(KaleoCondition kaleoCondition) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID,
 			new Object[] { Long.valueOf(kaleoCondition.getKaleoNodeId()) });
 	}
@@ -233,20 +250,6 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	/**
 	 * Removes the kaleo condition with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the kaleo condition
-	 * @return the kaleo condition that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a kaleo condition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public KaleoCondition remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the kaleo condition with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param kaleoConditionId the primary key of the kaleo condition
 	 * @return the kaleo condition that was removed
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchConditionException if a kaleo condition with the primary key could not be found
@@ -254,25 +257,38 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 */
 	public KaleoCondition remove(long kaleoConditionId)
 		throws NoSuchConditionException, SystemException {
+		return remove(Long.valueOf(kaleoConditionId));
+	}
+
+	/**
+	 * Removes the kaleo condition with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the kaleo condition
+	 * @return the kaleo condition that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchConditionException if a kaleo condition with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KaleoCondition remove(Serializable primaryKey)
+		throws NoSuchConditionException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			KaleoCondition kaleoCondition = (KaleoCondition)session.get(KaleoConditionImpl.class,
-					Long.valueOf(kaleoConditionId));
+					primaryKey);
 
 			if (kaleoCondition == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-						kaleoConditionId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchConditionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					kaleoConditionId);
+					primaryKey);
 			}
 
-			return kaleoConditionPersistence.remove(kaleoCondition);
+			return remove(kaleoCondition);
 		}
 		catch (NoSuchConditionException nsee) {
 			throw nsee;
@@ -283,19 +299,6 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the kaleo condition from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoCondition the kaleo condition
-	 * @return the kaleo condition that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public KaleoCondition remove(KaleoCondition kaleoCondition)
-		throws SystemException {
-		return super.remove(kaleoCondition);
 	}
 
 	@Override
@@ -317,17 +320,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		KaleoConditionModelImpl kaleoConditionModelImpl = (KaleoConditionModelImpl)kaleoCondition;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID,
-			new Object[] { Long.valueOf(
-					kaleoConditionModelImpl.getKaleoNodeId()) });
-
-		EntityCacheUtil.removeResult(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoConditionImpl.class, kaleoCondition.getPrimaryKey());
+		clearCache(kaleoCondition);
 
 		return kaleoCondition;
 	}
@@ -1516,7 +1509,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoCondition kaleoCondition : findByCompanyId(companyId)) {
-			kaleoConditionPersistence.remove(kaleoCondition);
+			remove(kaleoCondition);
 		}
 	}
 
@@ -1530,7 +1523,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		throws SystemException {
 		for (KaleoCondition kaleoCondition : findByKaleoDefinitionId(
 				kaleoDefinitionId)) {
-			kaleoConditionPersistence.remove(kaleoCondition);
+			remove(kaleoCondition);
 		}
 	}
 
@@ -1544,7 +1537,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		throws NoSuchConditionException, SystemException {
 		KaleoCondition kaleoCondition = findByKaleoNodeId(kaleoNodeId);
 
-		kaleoConditionPersistence.remove(kaleoCondition);
+		remove(kaleoCondition);
 	}
 
 	/**
@@ -1554,7 +1547,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 */
 	public void removeAll() throws SystemException {
 		for (KaleoCondition kaleoCondition : findAll()) {
-			kaleoConditionPersistence.remove(kaleoCondition);
+			remove(kaleoCondition);
 		}
 	}
 

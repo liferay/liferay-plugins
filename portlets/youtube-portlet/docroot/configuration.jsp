@@ -55,6 +55,8 @@
 
 					<aui:input cssClass="show-thicker-border" inlineField="true" label="show-thicker-border" name="preferences--showThickerBorder--" value="<%= showThickerBorder %>" type="checkbox" />
 
+					<aui:input cssClass="show-thumbnail" inlineField="true" label="show-thumbnail" name="preferences--showThumbnail--" value="<%= showThumbnail %>" type="checkbox" />
+
 					<div class="aui-field-row">
 						<aui:input cssClass="hd" inlineField="true" label="hd-video" name="preferences--hd--" value="<%= hd %>" type="checkbox" />
 

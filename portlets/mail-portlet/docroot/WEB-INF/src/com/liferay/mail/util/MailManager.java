@@ -276,8 +276,7 @@ public class MailManager {
 				return createJSONResult("failure", "no-messages-selected");
 			}
 
-			Message message = MessageLocalServiceUtil.getMessage(
-				messageIds[0]);
+			Message message = MessageLocalServiceUtil.getMessage(messageIds[0]);
 
 			Account account = AccountLocalServiceUtil.getAccount(
 				message.getAccountId());
@@ -316,15 +315,13 @@ public class MailManager {
 				return createJSONResult("failure", "no-messages-selected");
 			}
 
-			Message message = MessageLocalServiceUtil.getMessage(
-				messageIds[0]);
+			Message message = MessageLocalServiceUtil.getMessage(messageIds[0]);
 
 			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
 				_user.getUserId(), message.getAccountId(),
 				_passwordRetriever.getPassword(message.getAccountId()));
 
-			mailbox.updateFlags(
-				message.getFolderId(), messageIds, flag, value);
+			mailbox.updateFlags(message.getFolderId(), messageIds, flag, value);
 
 			return createJSONResult("success", "messages-have-been-flagged");
 		}
@@ -531,8 +528,7 @@ public class MailManager {
 					MailException.FOLDER_INVALID_DESTINATION);
 			}
 
-			Message message = MessageLocalServiceUtil.getMessage(
-				messageIds[0]);
+			Message message = MessageLocalServiceUtil.getMessage(messageIds[0]);
 
 			Mailbox mailbox = MailboxFactoryUtil.getMailbox(
 				_user.getUserId(), message.getAccountId(),
@@ -746,8 +742,7 @@ public class MailManager {
 			}
 
 			if (Validator.isNull(password)) {
-				String oldPassword = _passwordRetriever.getPassword(
-					accountId);
+				String oldPassword = _passwordRetriever.getPassword(accountId);
 
 				if (Validator.isNull(oldPassword)) {
 					throw new MailException("no password");

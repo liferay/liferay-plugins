@@ -60,7 +60,7 @@ AUI().use(
 				return instance._popup;
 			},
 
-			updateMicroblogs: function(form) {
+			updateMicroblogs: function(form, url, updateContainer) {
 				var instance = this;
 
 				A.io.request(
@@ -71,17 +71,17 @@ AUI().use(
 						},
 						on: {
 							success: function() {
-								instance.updateMicroblogsList();
+								instance.updateMicroblogsList(url, updateContainer);
 							}
 						}
 					}
 				);
 			},
 
-			updateMicroblogsList: function(url) {
+			updateMicroblogsList: function(url, updateContainer) {
 				var instance = this;
 
-				instance._micrblogsEntries = A.one('.microblogs-portlet .portlet-body');
+				instance._micrblogsEntries = updateContainer;
 
 				if (!instance._micrblogsEntries.io) {
 					instance._micrblogsEntries.plug(

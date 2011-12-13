@@ -58,7 +58,7 @@ if (PortalPermissionUtil.contains(permissionChecker, ActionKeys.VIEW_CONTROL_PAN
 
 			boolean lastSite = false;
 
-			if (starredSites.size()	== (starredSites.indexOf(starredSite) + 1)) {
+			if (starredSites.size() == (starredSites.indexOf(starredSite) + 1)) {
 				lastSite = true;
 			}
 
