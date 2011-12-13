@@ -16,7 +16,6 @@ package com.liferay.ams.service.persistence;
 
 import com.liferay.ams.model.Checkout;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
@@ -157,6 +156,4 @@ public interface CheckoutPersistence extends BasePersistence<Checkout> {
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public Checkout remove(Checkout checkout) throws SystemException;
 }
