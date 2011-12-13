@@ -12,34 +12,60 @@
  * details.
  */
 
+.so-portlet-notifications {
+	.lfr-user-action-item a {
+		padding: 0 10px 0 20px;
+	}
 
-.so-portlet-notifications .lfr-user-action-confirm a {
-	background: url(/so-theme/images/common/activate.png) no-repeat;
+	.lfr-user-action-confirm a {
+		background: url(/so-theme/images/common/activate.png) no-repeat;
+	}
+
+	.lfr-user-action-ignore a {
+		background: url(/so-theme/images/common/deactivate.png) no-repeat;
+	}
+
+	.user-notification-event-content {
+		cursor: pointer;
+
+		&:after {
+			clear: both;
+			content: "";
+			display: block;
+			width: 100%;
+		}
+	}
+
+	.user-notification-event-sender {
+		float: left;
+		position: relative;
+
+		.thumbnail {
+			height: 45px;
+			overflow: hidden;
+			width: 45px;
+
+			img {
+				width: 45px;
+			}
+		}
+
+		.portlet-icon {
+			bottom: -4px;
+			left: -4px;
+			position: absolute;
+		}
+	}
+
+	.notification-entry {
+		margin-left: 55px;
+	}
 }
 
-.so-portlet-notifications .lfr-user-action-ignore a {
-	background: url(/so-theme/images/common/deactivate.png) no-repeat;
-}
+.portlet-column-only .so-portlet-notifications .portlet-content {
+	padding: 0;
 
-.so-portlet-notifications .thumbnail img {
-	border: 1px solid #CCC;
-	padding: 1px;
-	width: 40px;
-}
-
-.so-portlet-notifications .thumbnail {
-	float: left;
-}
-
-.so-portlet-notifications .lfr-user-action-item a {
-	padding: 0 10px 0 20px;
-}
-
-.so-portlet-notifications .notification-entry {
-	clear: both;
-	margin-bottom: 1.5em;
-}
-
-.so-portlet-notifications .notification-content {
-	margin-left: 50px;
+	.aui-button-holder, .taglib-search-iterator-page-iterator-bottom {
+		padding: 5px 10px;
+	}
 }

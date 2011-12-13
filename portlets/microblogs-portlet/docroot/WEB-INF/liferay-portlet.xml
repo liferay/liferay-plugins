@@ -9,6 +9,7 @@
 		<header-portlet-css>/microblogs/css/main.css</header-portlet-css>
 		<footer-portlet-javascript>/microblogs/js/main.js</footer-portlet-javascript>
 		<css-class-wrapper>microblogs-portlet</css-class-wrapper>
+		<add-default-resource>true</add-default-resource>
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>

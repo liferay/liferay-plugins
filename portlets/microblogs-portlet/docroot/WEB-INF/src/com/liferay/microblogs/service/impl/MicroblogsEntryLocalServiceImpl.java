@@ -21,12 +21,18 @@ import com.liferay.microblogs.model.MicroblogsEntryConstants;
 import com.liferay.microblogs.service.base.MicroblogsEntryLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
+import com.liferay.portal.kernel.notifications.NotificationEvent;
+import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 
@@ -99,6 +105,12 @@ public class MicroblogsEntryLocalServiceImpl
 		SocialActivityLocalServiceUtil.addActivity(
 			userId, 0, MicroblogsEntry.class.getName(), microblogsEntryId,
 			actitivtyKey, StringPool.BLANK, receiverUserId);
+
+		// Notification
+
+		if (type == MicroblogsEntryConstants.TYPE_REPLY) {
+			sendNotificationEvent(microblogsEntry);
+		}
 
 		return microblogsEntry;
 	}
@@ -262,6 +274,35 @@ public class MicroblogsEntryLocalServiceImpl
 			serviceContext.getAssetTagNames());
 
 		return microblogsEntry;
+	}
+
+	protected void sendNotificationEvent(MicroblogsEntry microblogsEntry)
+		throws PortalException, SystemException {
+
+		User receiverUser = UserLocalServiceUtil.getUserById(
+			microblogsEntry.getReceiverUserId());
+
+		JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject();
+
+		notificationEventJSON.put("body", microblogsEntry.getContent());
+		notificationEventJSON.put("entryKeyName", "receiverMicroblogsEntryId");
+		notificationEventJSON.put("jspPage", "/microblogs/view.jsp");
+		notificationEventJSON.put(
+			"microblogsEntryId", microblogsEntry.getMicroblogsEntryId());
+		notificationEventJSON.put("portletId", "1_WAR_microblogsportlet");
+		notificationEventJSON.put("senderUserId", microblogsEntry.getUserId());
+		notificationEventJSON.put("title", "commented-on-your-post");
+
+		NotificationEvent notificationEvent =
+			NotificationEventFactoryUtil.createNotificationEvent(
+				System.currentTimeMillis(), "6_WAR_soportlet",
+				notificationEventJSON);
+
+		notificationEvent.setDeliveryRequired(0);
+
+		ChannelHubManagerUtil.sendNotificationEvent(
+			receiverUser.getCompanyId(), receiverUser.getUserId(),
+			notificationEvent);
 	}
 
 	protected void validate(int type, long receiverMicroblogsEntryId)

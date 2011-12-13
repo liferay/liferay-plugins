@@ -18,7 +18,12 @@ import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.mail.MailMessage;
+import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
+import com.liferay.portal.kernel.notifications.NotificationEvent;
+import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
@@ -297,6 +302,10 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 			throw new SystemException(e);
 		}
 
+		// NotificationEvent
+
+		sendNotificationEvent(mbMessage);
+
 		return mbMessage;
 	}
 
@@ -433,6 +442,46 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 				from, to, subject, body, true);
 
 			MailServiceUtil.sendEmail(mailMessage);
+		}
+	}
+
+	protected void sendNotificationEvent(MBMessage mbMessage)
+		throws PortalException, SystemException {
+
+		User senderUser = UserLocalServiceUtil.getUser(mbMessage.getUserId());
+
+		JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject();
+
+		notificationEventJSON.put("body", mbMessage.getBody());
+		notificationEventJSON.put("entryKeyName", "mbThreadId");
+		notificationEventJSON.put("jspPage", "/view.jsp");
+		notificationEventJSON.put("mbThreadId", mbMessage.getThreadId());
+		notificationEventJSON.put("portletId", "1_WAR_privatemessagingportlet");
+		notificationEventJSON.put("senderUserId", senderUser.getUserId());
+		notificationEventJSON.put("title", "sent-you-a-message");
+
+		List<UserThread> userThreads =
+			UserThreadLocalServiceUtil.getMBThreadUserThreads(
+				mbMessage.getThreadId());
+
+		for (UserThread userThread : userThreads) {
+			if (userThread.getUserId() == mbMessage.getUserId()) {
+				continue;
+			}
+
+			User receiverUser = UserLocalServiceUtil.getUserById(
+				userThread.getUserId());
+
+			NotificationEvent notificationEvent =
+				NotificationEventFactoryUtil.createNotificationEvent(
+					System.currentTimeMillis(), "6_WAR_soportlet",
+					notificationEventJSON);
+
+			notificationEvent.setDeliveryRequired(0);
+
+			ChannelHubManagerUtil.sendNotificationEvent(
+				receiverUser.getCompanyId(), receiverUser.getUserId(),
+				notificationEvent);
 		}
 	}
 

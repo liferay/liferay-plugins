@@ -37,6 +37,15 @@
 		<portlet-name>6</portlet-name>
 		<header-portlet-css>/notifications/css/main.css</header-portlet-css>
 		<css-class-wrapper>so-portlet-notifications</css-class-wrapper>
+		<add-default-resource>true</add-default-resource>
+		<system>true</system>
+	</portlet>
+	<portlet>
+		<portlet-name>7</portlet-name>
+		<use-default-template>false</use-default-template>
+		<header-portlet-css>/dockbar_notifications/css/main.css</header-portlet-css>
+		<css-class-wrapper>so-portlet-dockbar-notifications</css-class-wrapper>
+		<add-default-resource>true</add-default-resource>
 		<system>true</system>
 	</portlet>
 	<role-mapper>
