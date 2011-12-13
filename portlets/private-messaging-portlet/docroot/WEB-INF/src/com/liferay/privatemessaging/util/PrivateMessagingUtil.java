@@ -71,7 +71,7 @@ public class PrivateMessagingUtil {
 		else {
 			users.addAll(
 				UserLocalServiceUtil.getSocialUsers(
-					userId, SocialRelationConstants.TYPE_BI_FRIEND,
+					userId, SocialRelationConstants.TYPE_BI_CONNECTION,
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					new UserFirstNameComparator(true)));
 		}
