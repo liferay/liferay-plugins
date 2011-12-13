@@ -48,7 +48,12 @@ catch (Exception e) {
 					<portlet:param name="privateLayout" value="<%= String.valueOf(!invitedGroup.hasPublicLayouts()) %>" />
 				</liferay-portlet:actionURL>
 
-				<b><%= userFullName %></b> <liferay-ui:message key='<%= notificationEventJSON.getString("title") %>' /> <a href="<%= siteURL %>"><%= invitedGroup.getDescriptiveName() %></a>
+				<%
+				String siteDescriptiveName = "<a href='" + siteURL + "'>" + invitedGroup.getDescriptiveName() + "</a>";
+				String userFullName = "<a href=\"" + userDisplayURL + "\">" + userFullName + "</a>";
+				%>
+
+				<liferay-ui:message arguments="<%= new Object[] {userFullNameHTML, siteDescriptiveName} %>" key='<%= notificationEventJSON.getString("title") %>' />
 			</div>
 
 			<div class="request">

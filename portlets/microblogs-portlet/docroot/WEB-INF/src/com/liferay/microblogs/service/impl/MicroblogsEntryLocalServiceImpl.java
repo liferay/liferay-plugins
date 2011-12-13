@@ -286,7 +286,7 @@ public class MicroblogsEntryLocalServiceImpl
 		notificationEventJSON.put("entryKeyName", "receiverMicroblogsEntryId");
 		notificationEventJSON.put("jspPage", "/microblogs/view.jsp");
 		notificationEventJSON.put("portletId", "1_WAR_microblogsportlet");
-		notificationEventJSON.put("title", "commented-on-your-post");
+		notificationEventJSON.put("title", "x-commented-on-your-post");
 		notificationEventJSON.put("userId", microblogsEntry.getUserId());
 
 		NotificationEvent notificationEvent =

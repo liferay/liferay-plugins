@@ -365,7 +365,7 @@ public class MemberRequestLocalServiceImpl
 		notificationEventJSON.put(
 			"memberRequestId", memberRequest.getMemberRequestId());
 		notificationEventJSON.put("portletId", "2_WAR_soportlet");
-		notificationEventJSON.put("title", "invited-you-to-join");
+		notificationEventJSON.put("title", "x-invited-you-to-join-x");
 		notificationEventJSON.put("userId", memberRequest.getUserId());
 
 		NotificationEvent notificationEvent =

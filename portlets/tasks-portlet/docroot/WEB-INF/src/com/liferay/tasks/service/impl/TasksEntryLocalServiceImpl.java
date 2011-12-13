@@ -415,22 +415,25 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 		for (long receiverUserId : receiverUserIds) {
 			String title = StringPool.BLANK;
 
-			if (tasksEntry.getAssigneeUserId() != previousAssigneeUserId) {
+			if (previousStatus == TasksEntryConstants.STATUS_ALL) {
+				title = "x-assigned-you-a-task";
+			}
+			else if (tasksEntry.getAssigneeUserId() != previousAssigneeUserId) {
 				if (receiverUserId == previousAssigneeUserId) {
-					title = "reassigned-your-task";
+					title = "x-reassigned-your-task";
 				}
 				else {
-					title = "assigned-you-a-task";
+					title = "x-assigned-you-a-task";
 				}
 			}
 			else if (status != previousStatus) {
 				String statusLabel = TasksEntryConstants.getStatusLabel(
 					tasksEntry.getStatus());
 
-				title = statusLabel + "-the-task";
+				title = "x-" + statusLabel + "-the-task";
 			}
 			else {
-				title = "modified-the-task";
+				title = "x-modified-the-task";
 			}
 
 			notificationEventJSON.put("title", title);

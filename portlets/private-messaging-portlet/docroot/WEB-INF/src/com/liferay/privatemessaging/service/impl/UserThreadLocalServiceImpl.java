@@ -456,7 +456,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		notificationEventJSON.put("entryKeyName", "mbThreadId");
 		notificationEventJSON.put("jspPage", "/view.jsp");
 		notificationEventJSON.put("portletId", "1_WAR_privatemessagingportlet");
-		notificationEventJSON.put("title", "sent-you-a-message");
+		notificationEventJSON.put("title", "x-sent-you-a-message");
 		notificationEventJSON.put("userId", mbMessage.getUserId());
 
 		List<UserThread> userThreads =

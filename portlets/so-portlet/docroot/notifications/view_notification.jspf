@@ -57,7 +57,12 @@ int curDaysBetween = DateUtil.getDaysBetween(new Date(notificationEvent.getTimes
 
 	<div class="notification-entry">
 		<div class="title">
-			<b><%= userFullName %></b> <liferay-ui:message key='<%= notificationEventJSON.getString("title") %>' />
+
+			<%
+			String userFullName = "<a href=\"" + userDisplayURL + "\">" + userFullName + "</a>";
+			%>
+
+			<liferay-ui:message arguments="<%= userFullName %>" key='<%= notificationEventJSON.getString("title") %>' />
 		</div>
 
 		<div class="body">
