@@ -60,11 +60,11 @@
 						JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject(notificationEvent.getPayload());
 
 						String userDisplayURL = StringPool.BLANK;
-						String userFullName = PortalUtil.getUserName(notificationEventJSON.getLong("senderUserId"), StringPool.BLANK);
+						String userFullName = PortalUtil.getUserName(notificationEventJSON.getLong("userId"), StringPool.BLANK);
 						String userPortaitURL = StringPool.BLANK;
 
 						try {
-							User curUser = UserLocalServiceUtil.getUserById(notificationEventJSON.getLong("senderUserId"));
+							User curUser = UserLocalServiceUtil.getUserById(notificationEventJSON.getLong("userId"));
 
 							userDisplayURL = curUser.getDisplayURL(themeDisplay);
 							userPortaitURL = curUser.getPortraitURL(themeDisplay);

@@ -62,6 +62,7 @@ import javax.mail.internet.InternetAddress;
 
 /**
  * @author Scott Lee
+ * @author Jonathan Lee
  */
 public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 
@@ -448,8 +449,6 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 	protected void sendNotificationEvent(MBMessage mbMessage)
 		throws PortalException, SystemException {
 
-		User senderUser = UserLocalServiceUtil.getUser(mbMessage.getUserId());
-
 		JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject();
 
 		notificationEventJSON.put("body", mbMessage.getBody());
@@ -457,8 +456,8 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		notificationEventJSON.put("entryKeyName", "mbThreadId");
 		notificationEventJSON.put("jspPage", "/view.jsp");
 		notificationEventJSON.put("portletId", "1_WAR_privatemessagingportlet");
-		notificationEventJSON.put("senderUserId", senderUser.getUserId());
 		notificationEventJSON.put("title", "sent-you-a-message");
+		notificationEventJSON.put("userId", mbMessage.getUserId());
 
 		List<UserThread> userThreads =
 			UserThreadLocalServiceUtil.getMBThreadUserThreads(
@@ -469,9 +468,6 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 				continue;
 			}
 
-			User receiverUser = UserLocalServiceUtil.getUserById(
-				userThread.getUserId());
-
 			NotificationEvent notificationEvent =
 				NotificationEventFactoryUtil.createNotificationEvent(
 					System.currentTimeMillis(), "6_WAR_soportlet",
@@ -480,7 +476,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 			notificationEvent.setDeliveryRequired(0);
 
 			ChannelHubManagerUtil.sendNotificationEvent(
-				receiverUser.getCompanyId(), receiverUser.getUserId(),
+				mbMessage.getCompanyId(), userThread.getUserId(),
 				notificationEvent);
 		}
 	}

@@ -42,6 +42,7 @@ import java.util.List;
 
 /**
  * @author Ryan Park
+ * @author Jonathan Lee
  */
 public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 
@@ -395,24 +396,24 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 			return;
 		}
 
-		long senderUserId = serviceContext.getUserId();
+		long userId = serviceContext.getUserId();
 		long assigneeUserId = tasksEntry.getAssigneeUserId();
 		long creatorUserId = tasksEntry.getUserId();
 
 		List<Long> receiverUserIds = new ArrayList<Long>();
 
-		if (creatorUserId != senderUserId ) {
+		if (creatorUserId != userId ) {
 			receiverUserIds.add(creatorUserId);
 		}
 
-		if (assigneeUserId != senderUserId &&
+		if (assigneeUserId != userId &&
 			!receiverUserIds.contains(assigneeUserId)) {
 
 			receiverUserIds.add(assigneeUserId);
 		}
 
 		if (previousAssigneeUserId != 0 &&
-			previousAssigneeUserId != senderUserId &&
+			previousAssigneeUserId != userId &&
 			!receiverUserIds.contains(assigneeUserId)) {
 
 			receiverUserIds.add(previousAssigneeUserId);
@@ -423,12 +424,9 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 		notificationEventJSON.put("body", tasksEntry.getTitle());
 		notificationEventJSON.put("entryId", tasksEntry.getTasksEntryId());
 		notificationEventJSON.put("portletId", "1_WAR_tasksportlet");
-		notificationEventJSON.put("senderUserId", senderUserId);
+		notificationEventJSON.put("userId", userId);
 
 		for (long receiverUserId : receiverUserIds) {
-			User receiverUser = UserLocalServiceUtil.getUserById(
-				receiverUserId);
-
 			String title = StringPool.BLANK;
 
 			if (assigneeUserId != previousAssigneeUserId) {
@@ -459,7 +457,7 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 			notificationEvent.setDeliveryRequired(0);
 
 			ChannelHubManagerUtil.sendNotificationEvent(
-				receiverUser.getCompanyId(), receiverUserId, notificationEvent);
+				tasksEntry.getCompanyId(), receiverUserId, notificationEvent);
 		}
 	}
 
