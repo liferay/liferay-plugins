@@ -150,6 +150,17 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<Asset> assets) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (Asset asset : assets) {
+			EntityCacheUtil.removeResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
+				AssetImpl.class, asset.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new asset with the primary key. Does not add the asset to the database.
 	 *
@@ -168,20 +179,6 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	/**
 	 * Removes the asset with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the asset
-	 * @return the asset that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a asset with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Asset remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the asset with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param assetId the primary key of the asset
 	 * @return the asset that was removed
 	 * @throws com.liferay.ams.NoSuchAssetException if a asset with the primary key could not be found
@@ -189,24 +186,37 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 */
 	public Asset remove(long assetId)
 		throws NoSuchAssetException, SystemException {
+		return remove(Long.valueOf(assetId));
+	}
+
+	/**
+	 * Removes the asset with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the asset
+	 * @return the asset that was removed
+	 * @throws com.liferay.ams.NoSuchAssetException if a asset with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Asset remove(Serializable primaryKey)
+		throws NoSuchAssetException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			Asset asset = (Asset)session.get(AssetImpl.class,
-					Long.valueOf(assetId));
+			Asset asset = (Asset)session.get(AssetImpl.class, primaryKey);
 
 			if (asset == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + assetId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchAssetException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					assetId);
+					primaryKey);
 			}
 
-			return assetPersistence.remove(asset);
+			return remove(asset);
 		}
 		catch (NoSuchAssetException nsee) {
 			throw nsee;
@@ -217,18 +227,6 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the asset from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param asset the asset
-	 * @return the asset that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Asset remove(Asset asset) throws SystemException {
-		return super.remove(asset);
 	}
 
 	@Override
@@ -249,11 +247,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
-			AssetImpl.class, asset.getPrimaryKey());
+		clearCache(asset);
 
 		return asset;
 	}
@@ -530,7 +524,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 */
 	public void removeAll() throws SystemException {
 		for (Asset asset : findAll()) {
-			assetPersistence.remove(asset);
+			remove(asset);
 		}
 	}
 
