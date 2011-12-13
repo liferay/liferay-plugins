@@ -151,17 +151,6 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
-	@Override
-	public void clearCache(List<Definition> definitions) {
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		for (Definition definition : definitions) {
-			EntityCacheUtil.removeResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
-				DefinitionImpl.class, definition.getPrimaryKey());
-		}
-	}
-
 	/**
 	 * Creates a new definition with the primary key. Does not add the definition to the database.
 	 *
@@ -180,6 +169,20 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	/**
 	 * Removes the definition with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * @param primaryKey the primary key of the definition
+	 * @return the definition that was removed
+	 * @throws com.liferay.portal.NoSuchModelException if a definition with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Definition remove(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return remove(((Long)primaryKey).longValue());
+	}
+
+	/**
+	 * Removes the definition with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
 	 * @param definitionId the primary key of the definition
 	 * @return the definition that was removed
 	 * @throws com.liferay.ams.NoSuchDefinitionException if a definition with the primary key could not be found
@@ -187,38 +190,24 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	public Definition remove(long definitionId)
 		throws NoSuchDefinitionException, SystemException {
-		return remove(Long.valueOf(definitionId));
-	}
-
-	/**
-	 * Removes the definition with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param primaryKey the primary key of the definition
-	 * @return the definition that was removed
-	 * @throws com.liferay.ams.NoSuchDefinitionException if a definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Definition remove(Serializable primaryKey)
-		throws NoSuchDefinitionException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			Definition definition = (Definition)session.get(DefinitionImpl.class,
-					primaryKey);
+					Long.valueOf(definitionId));
 
 			if (definition == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + definitionId);
 				}
 
 				throw new NoSuchDefinitionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					primaryKey);
+					definitionId);
 			}
 
-			return remove(definition);
+			return definitionPersistence.remove(definition);
 		}
 		catch (NoSuchDefinitionException nsee) {
 			throw nsee;
@@ -229,6 +218,18 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 		finally {
 			closeSession(session);
 		}
+	}
+
+	/**
+	 * Removes the definition from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param definition the definition
+	 * @return the definition that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Definition remove(Definition definition) throws SystemException {
+		return super.remove(definition);
 	}
 
 	@Override
@@ -250,7 +251,11 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 			closeSession(session);
 		}
 
-		clearCache(definition);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		EntityCacheUtil.removeResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
+			DefinitionImpl.class, definition.getPrimaryKey());
 
 		return definition;
 	}
@@ -532,7 +537,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	public void removeAll() throws SystemException {
 		for (Definition definition : findAll()) {
-			remove(definition);
+			definitionPersistence.remove(definition);
 		}
 	}
 

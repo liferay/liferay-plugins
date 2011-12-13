@@ -16,6 +16,7 @@ package com.liferay.ams.service.persistence;
 
 import com.liferay.ams.model.Asset;
 
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
@@ -155,4 +156,6 @@ public interface AssetPersistence extends BasePersistence<Asset> {
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public Asset remove(Asset asset) throws SystemException;
 }
