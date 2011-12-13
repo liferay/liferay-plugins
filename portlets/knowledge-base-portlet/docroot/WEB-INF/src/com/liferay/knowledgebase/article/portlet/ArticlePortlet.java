@@ -436,6 +436,7 @@ public class ArticlePortlet extends MVCPortlet {
 
 		if (actionName.equals("deleteKBArticle") ||
 			actionName.equals("updateAttachments")) {
+
 			return;
 		}
 
