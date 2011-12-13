@@ -987,7 +987,8 @@ public class IMAPAccessor {
 						String.valueOf(i)),
 					curPart, mailFiles);
 			}
-		} else if (Validator.isNull(fileName)) {
+		}
+		else if (Validator.isNull(fileName)) {
 			String contentType = part.getContentType().toLowerCase();
 
 			if (contentType.startsWith(ContentTypes.TEXT_PLAIN)) {
