@@ -31,6 +31,7 @@ import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.NoSuchSubscriptionException;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
@@ -61,6 +62,7 @@ import java.io.InputStream;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
+import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
 import javax.portlet.PortletPreferences;
 import javax.portlet.RenderRequest;
@@ -193,6 +195,13 @@ public class ArticlePortlet extends MVCPortlet {
 				e instanceof PrincipalException) {
 
 				SessionErrors.add(renderRequest, e.getClass().getName());
+
+				PortletConfig portletConfig = getPortletConfig();
+
+				SessionMessages.add(
+					renderRequest,
+					portletConfig.getPortletName() +
+						SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_ERROR_MESSAGE);
 			}
 			else {
 				throw new PortletException(e);
@@ -425,7 +434,8 @@ public class ArticlePortlet extends MVCPortlet {
 		String actionName = ParamUtil.getString(
 			actionRequest, ActionRequest.ACTION_NAME);
 
-		if (actionName.equals("updateAttachments")) {
+		if (actionName.equals("deleteKBArticle") ||
+			actionName.equals("updateAttachments")) {
 			return;
 		}
 
