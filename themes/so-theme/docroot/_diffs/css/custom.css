@@ -1470,3 +1470,34 @@ table.calendar {
 		border-bottom: 1px solid #AAA;
 	}
 }
+
+/* Social Office Notifications */
+
+.so-portlet-notifications {
+	.results-grid {
+		border-width: 0 0 0 1px;
+	}
+
+	.results-row, .results-grid .results-row td, .results-grid .results-row.alt td {
+		background: transparent;
+		border-width: 1px 0;
+		padding: 10px;
+	}
+
+	.resuls-row .first {
+		vertical-align: top;
+	}
+
+	.results-row:hover td, .results-row.alt:hover td {
+		background: #EEE;
+	}
+
+	.user-notification-event-content {
+		margin: -10px;
+		padding: 10px;
+	}
+}
+
+.page-maximized .so-portlet-notifications .taglib-search-iterator {
+	
+}
