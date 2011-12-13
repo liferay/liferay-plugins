@@ -29,7 +29,6 @@
 	<aui:fieldset>
 		<div class="view-all-user-notifications">
 			<div class="user-notification-events">
-
 				<liferay-portlet:renderURL varImpl="iteratorURL" />
 
 				<liferay-ui:search-container
@@ -41,6 +40,7 @@
 
 					<%
 					List<UserNotificationEvent> userNotificationEvents = UserNotificationEventLocalServiceUtil.getUserNotificationEvents(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
+
 					int notificationCount = userNotificationEvents.size();
 					%>
 
@@ -63,13 +63,11 @@
 						String userFullName = PortalUtil.getUserName(notificationEventJSON.getLong("userId"), StringPool.BLANK);
 						String userPortaitURL = StringPool.BLANK;
 
-						try {
-							User curUser = UserLocalServiceUtil.getUserById(notificationEventJSON.getLong("userId"));
+						User curUser = UserLocalServiceUtil.fetchUserById(notificationEventJSON.getLong("userId"));
 
+						if (curUser != null) {
 							userDisplayURL = curUser.getDisplayURL(themeDisplay);
 							userPortaitURL = curUser.getPortraitURL(themeDisplay);
-						}
-						catch (NoSuchUserException nsue) {
 						}
 						%>
 

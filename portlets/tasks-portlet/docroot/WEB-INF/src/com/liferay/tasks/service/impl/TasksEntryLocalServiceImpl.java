@@ -36,8 +36,8 @@ import com.liferay.tasks.model.TasksEntryConstants;
 import com.liferay.tasks.service.base.TasksEntryLocalServiceBaseImpl;
 import com.liferay.tasks.social.TasksActivityKeys;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -104,7 +104,8 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 		// Notification
 
 		sendNotificationEvent(
-			tasksEntry, TasksEntryConstants.STATUS_ALL, 0, serviceContext);
+			tasksEntry, TasksEntryConstants.STATUS_ALL, assigneeUserId,
+			serviceContext);
 
 		return tasksEntry;
 	}
@@ -396,40 +397,25 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 			return;
 		}
 
-		long userId = serviceContext.getUserId();
-		long assigneeUserId = tasksEntry.getAssigneeUserId();
-		long creatorUserId = tasksEntry.getUserId();
+		HashSet<Long> receiverUserIds = new HashSet<Long>(3);
 
-		List<Long> receiverUserIds = new ArrayList<Long>();
+		receiverUserIds.add(tasksEntry.getUserId());
+		receiverUserIds.add(previousAssigneeUserId);
+		receiverUserIds.add(tasksEntry.getAssigneeUserId());
 
-		if (creatorUserId != userId ) {
-			receiverUserIds.add(creatorUserId);
-		}
-
-		if (assigneeUserId != userId &&
-			!receiverUserIds.contains(assigneeUserId)) {
-
-			receiverUserIds.add(assigneeUserId);
-		}
-
-		if (previousAssigneeUserId != 0 &&
-			previousAssigneeUserId != userId &&
-			!receiverUserIds.contains(assigneeUserId)) {
-
-			receiverUserIds.add(previousAssigneeUserId);
-		}
+		receiverUserIds.remove(serviceContext.getUserId());
 
 		JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject();
 
 		notificationEventJSON.put("body", tasksEntry.getTitle());
 		notificationEventJSON.put("entryId", tasksEntry.getTasksEntryId());
 		notificationEventJSON.put("portletId", "1_WAR_tasksportlet");
-		notificationEventJSON.put("userId", userId);
+		notificationEventJSON.put("userId", serviceContext.getUserId());
 
 		for (long receiverUserId : receiverUserIds) {
 			String title = StringPool.BLANK;
 
-			if (assigneeUserId != previousAssigneeUserId) {
+			if (tasksEntry.getAssigneeUserId() != previousAssigneeUserId) {
 				if (receiverUserId == previousAssigneeUserId) {
 					title = "reassigned-your-task";
 				}

@@ -47,13 +47,11 @@ int notificationCount = notificationEvents.size();
 				String userFullName = PortalUtil.getUserName(notificationEventJSON.getLong("userId"), StringPool.BLANK);
 				String userPortaitURL = StringPool.BLANK;
 
-				try {
-					User curUser = UserLocalServiceUtil.getUserById(notificationEventJSON.getLong("userId"));
+				User curUser = UserLocalServiceUtil.fetchUserById(notificationEventJSON.getLong("userId"));
 
+				if (curUser != null) {
 					userDisplayURL = curUser.getDisplayURL(themeDisplay);
 					userPortaitURL = curUser.getPortraitURL(themeDisplay);
-				}
-				catch (NoSuchUserException nsue) {
 				}
 			%>
 
