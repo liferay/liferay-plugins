@@ -1385,8 +1385,8 @@ table.calendar {
 	}
 
 	.messages .taglib-search-iterator .col-1 {
-		vertical-align: top;
 		padding-right: 0;
+		vertical-align: top;
 	}
 
 	.messages .results-grid .results-row.alt td, .messages .results-grid .results-row td {
