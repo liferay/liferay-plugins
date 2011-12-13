@@ -1,6 +1,12 @@
 @import "compass";
 
 .private-messaging-portlet {
+	.header-title {
+		font-weight: normal;
+		margin: 0;
+		padding: 10px;
+	}
+
 	img.avatar {
 		width: 50px;
 	}
@@ -8,13 +14,18 @@
 	.controls {
 		@include border-radius(4px);
 		background-color: #EEE;
+		border: 1px solid #CCC;
 		border-radius: 4px;
-		margin-bottom: 10px;
+		margin-bottom: -1px;
 		padding: 5px;
 		width: auto;
 
 		.controls-content {
 			line-height: 2em;
+		}
+
+		.aui-column-content {
+			padding: 0 0;
 		}
 
 		.col-1 {
@@ -35,16 +46,35 @@
 	}
 
 	.message-body {
-		height: 70px;
-		width: 450px;
+		width: 90%;
 	}
 
-	.message-body-container {
-		margin-top: 10px;
+	.message-body-container .message-body-container-content {
+		padding: 10px;
+
+		form {
+			margin-left: 60px;
+		}
 	}
 
-	.profile-link {
-		text-transform: capitalize;
+	.author-sender {
+		font-weight: bold;
+	}
+
+	.message-link {
+		display: block;
+		margin: -10px -10px -10px -60px;
+		padding: 10px 10px 10px 60px;
+		position: relative;
+		z-index: 1;
+
+		.body {
+			color: #666;	
+		}
+
+		.subject {
+			color: #333;
+		}
 	}
 
 	.results-header, .taglib-user-display.display-style-2 .user-name, .taglib-user-display.display-style-2 .user-details, .thread .taglib-search-iterator-page-iterator-bottom {
@@ -53,19 +83,16 @@
 
 	/* Messages */
 
-	.messages {
-		.taglib-search-iterator .col-1 {
-			width: 25px;
-		}
+	.unread {
+		font-weight: bold;
 
-		.subject {
-			font-size: 16px;
+		.body {
+			font-weight: normal;
 		}
+	}
 
-		.date {
-			color: #777;
-			font-size: 11px;
-		}
+	.messages .taglib-search-iterator .col-1 {
+		width: 10px;
 	}
 
 	/* Results */
@@ -79,12 +106,11 @@
 
 		.results-row td, .results-row.alt td {
 			background: #FFF;
-			padding: 5px 10px;
+			padding: 10px;
 		}
 
 		.results-row.unread td {
 			background: #F0F5F7;
-			font-weight: bold;
 		}
 	}
 
@@ -92,21 +118,15 @@
 
 	.thread {
 		.body {
-			padding-top: 5px;
+			padding: 5px 60px 0 0;
 		}
 
 		.thread-info {
-			margin-bottom: 5px;
-			padding: 5px;
+			padding: 0 10px 10px;
 		}
 
 		.results-row {
 			border: 1px solid #CFCFCF;
-		}
-
-		.date {
-			color: #777;
-			font-size: 11px;
 		}
 
 		.name {
@@ -114,15 +134,18 @@
 		}
 	}
 
-	.messages .subject, .messages .date, .thread .date {
-		margin-bottom: 4px;
+	.date {
+		color: #777;
+		float: right;
+		font-size: 11px;
 	}
 
-	.messages .taglib-user-display, .thread .taglib-user-display  {
+	.messages .taglib-user-display, .thread .taglib-user-display {
 		float: left;
+		padding: 0;
 	}
 
 	.messages .last-thread, .thread .message {
-		margin-left: 65px;
+		margin-left: 60px;
 	}
 }
