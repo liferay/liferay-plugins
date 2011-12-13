@@ -111,7 +111,7 @@ public class UpgradeGroup extends UpgradeProcess {
 				sourceLayout.getName(LocaleUtil.getDefault().toString()),
 				StringPool.BLANK, StringPool.BLANK,
 				LayoutConstants.TYPE_PORTLET, false,
-				sourceLayout.getFriendlyURL(), false, serviceContext);
+				sourceLayout.getFriendlyURL(), serviceContext);
 
 			LayoutLocalServiceUtil.updateLayout(
 				targetLayout.getGroupId(), targetLayout.isPrivateLayout(),
