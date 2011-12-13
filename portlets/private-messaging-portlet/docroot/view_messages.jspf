@@ -94,7 +94,7 @@
 						User curUser = users.get(i);
 					%>
 
-						<span class="author-sender"><%= HtmlUtil.escape(curUser.getFullName())  %></span>
+						<span class="author-sender"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
 
 						<c:if test="<%= i != users.size() - 1 %>">
 							,
