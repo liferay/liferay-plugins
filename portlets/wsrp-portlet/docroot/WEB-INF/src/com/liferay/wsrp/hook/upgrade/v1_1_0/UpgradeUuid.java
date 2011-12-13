@@ -180,7 +180,7 @@ public class UpgradeUuid extends UpgradeProcess {
 			con = DataAccess.getConnection();
 
 			ps = con.prepareStatement(
-				"select resoucePermissionId, primKey from ResourcePermission " +
+				"select resourcePermissionId, primKey from ResourcePermission " +
 					"where name = ?");
 
 			ps.setString(1, oldPortletId);
