@@ -25,8 +25,7 @@ import java.util.List;
  */
 public class ModuleLocalServiceImpl extends ModuleLocalServiceBaseImpl {
 
-	public Module addModule(
-			long userId, long appId, String contextName)
+	public Module addModule(long userId, long appId, String contextName)
 		throws SystemException {
 
 		long moduleId = counterLocalService.increment();

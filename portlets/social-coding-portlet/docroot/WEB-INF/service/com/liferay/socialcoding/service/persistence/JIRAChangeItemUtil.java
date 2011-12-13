@@ -95,14 +95,6 @@ public class JIRAChangeItemUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static JIRAChangeItem remove(JIRAChangeItem jiraChangeItem)
-		throws SystemException {
-		return getPersistence().remove(jiraChangeItem);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static JIRAChangeItem update(JIRAChangeItem jiraChangeItem,

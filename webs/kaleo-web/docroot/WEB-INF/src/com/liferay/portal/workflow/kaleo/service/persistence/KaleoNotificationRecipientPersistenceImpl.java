@@ -231,6 +231,19 @@ public class KaleoNotificationRecipientPersistenceImpl
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(
+		List<KaleoNotificationRecipient> kaleoNotificationRecipients) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (KaleoNotificationRecipient kaleoNotificationRecipient : kaleoNotificationRecipients) {
+			EntityCacheUtil.removeResult(KaleoNotificationRecipientModelImpl.ENTITY_CACHE_ENABLED,
+				KaleoNotificationRecipientImpl.class,
+				kaleoNotificationRecipient.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new kaleo notification recipient with the primary key. Does not add the kaleo notification recipient to the database.
 	 *
@@ -249,20 +262,6 @@ public class KaleoNotificationRecipientPersistenceImpl
 	/**
 	 * Removes the kaleo notification recipient with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the kaleo notification recipient
-	 * @return the kaleo notification recipient that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a kaleo notification recipient with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public KaleoNotificationRecipient remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the kaleo notification recipient with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param kaleoNotificationRecipientId the primary key of the kaleo notification recipient
 	 * @return the kaleo notification recipient that was removed
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a kaleo notification recipient with the primary key could not be found
@@ -270,25 +269,38 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 */
 	public KaleoNotificationRecipient remove(long kaleoNotificationRecipientId)
 		throws NoSuchNotificationRecipientException, SystemException {
+		return remove(Long.valueOf(kaleoNotificationRecipientId));
+	}
+
+	/**
+	 * Removes the kaleo notification recipient with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the kaleo notification recipient
+	 * @return the kaleo notification recipient that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a kaleo notification recipient with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KaleoNotificationRecipient remove(Serializable primaryKey)
+		throws NoSuchNotificationRecipientException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			KaleoNotificationRecipient kaleoNotificationRecipient = (KaleoNotificationRecipient)session.get(KaleoNotificationRecipientImpl.class,
-					Long.valueOf(kaleoNotificationRecipientId));
+					primaryKey);
 
 			if (kaleoNotificationRecipient == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-						kaleoNotificationRecipientId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchNotificationRecipientException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					kaleoNotificationRecipientId);
+					primaryKey);
 			}
 
-			return kaleoNotificationRecipientPersistence.remove(kaleoNotificationRecipient);
+			return remove(kaleoNotificationRecipient);
 		}
 		catch (NoSuchNotificationRecipientException nsee) {
 			throw nsee;
@@ -299,20 +311,6 @@ public class KaleoNotificationRecipientPersistenceImpl
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the kaleo notification recipient from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoNotificationRecipient the kaleo notification recipient
-	 * @return the kaleo notification recipient that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public KaleoNotificationRecipient remove(
-		KaleoNotificationRecipient kaleoNotificationRecipient)
-		throws SystemException {
-		return super.remove(kaleoNotificationRecipient);
 	}
 
 	@Override
@@ -335,12 +333,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(KaleoNotificationRecipientModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoNotificationRecipientImpl.class,
-			kaleoNotificationRecipient.getPrimaryKey());
+		clearCache(kaleoNotificationRecipient);
 
 		return kaleoNotificationRecipient;
 	}
@@ -1770,7 +1763,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoNotificationRecipient kaleoNotificationRecipient : findByCompanyId(
 				companyId)) {
-			kaleoNotificationRecipientPersistence.remove(kaleoNotificationRecipient);
+			remove(kaleoNotificationRecipient);
 		}
 	}
 
@@ -1784,7 +1777,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 		throws SystemException {
 		for (KaleoNotificationRecipient kaleoNotificationRecipient : findByKaleoDefinitionId(
 				kaleoDefinitionId)) {
-			kaleoNotificationRecipientPersistence.remove(kaleoNotificationRecipient);
+			remove(kaleoNotificationRecipient);
 		}
 	}
 
@@ -1798,7 +1791,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 		throws SystemException {
 		for (KaleoNotificationRecipient kaleoNotificationRecipient : findByKaleoNotificationId(
 				kaleoNotificationId)) {
-			kaleoNotificationRecipientPersistence.remove(kaleoNotificationRecipient);
+			remove(kaleoNotificationRecipient);
 		}
 	}
 
@@ -1809,7 +1802,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 */
 	public void removeAll() throws SystemException {
 		for (KaleoNotificationRecipient kaleoNotificationRecipient : findAll()) {
-			kaleoNotificationRecipientPersistence.remove(kaleoNotificationRecipient);
+			remove(kaleoNotificationRecipient);
 		}
 	}
 

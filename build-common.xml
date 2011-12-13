@@ -11,7 +11,7 @@
 	<property file="${project.dir}/build.properties" />
 
 	<property name="app.server.classes.portal.dir" value="${app.server.portal.dir}/WEB-INF/classes" />
-	<property name="app.server.lib.portal.dir" value="${app.server.portal.dir}/WEB-INF/lib" />
+	<property name="app.server.lib.portal.dir" location="${app.server.portal.dir}/WEB-INF/lib" />
 
 	<path id="lib.classpath">
 		<fileset dir="${project.dir}/lib" includes="*.jar" />

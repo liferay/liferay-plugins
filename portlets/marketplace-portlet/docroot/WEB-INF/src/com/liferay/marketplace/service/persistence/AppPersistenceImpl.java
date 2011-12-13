@@ -203,6 +203,23 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(app);
+	}
+
+	@Override
+	public void clearCache(List<App> apps) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (App app : apps) {
+			EntityCacheUtil.removeResult(AppModelImpl.ENTITY_CACHE_ENABLED,
+				AppImpl.class, app.getPrimaryKey());
+
+			clearUniqueFindersCache(app);
+		}
+	}
+
+	protected void clearUniqueFindersCache(App app) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
 			new Object[] { Long.valueOf(app.getRemoteAppId()) });
 	}
@@ -229,43 +246,43 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	/**
 	 * Removes the app with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the app
-	 * @return the app that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a app with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public App remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the app with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param appId the primary key of the app
 	 * @return the app that was removed
 	 * @throws com.liferay.marketplace.NoSuchAppException if a app with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public App remove(long appId) throws NoSuchAppException, SystemException {
+		return remove(Long.valueOf(appId));
+	}
+
+	/**
+	 * Removes the app with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the app
+	 * @return the app that was removed
+	 * @throws com.liferay.marketplace.NoSuchAppException if a app with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public App remove(Serializable primaryKey)
+		throws NoSuchAppException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			App app = (App)session.get(AppImpl.class, Long.valueOf(appId));
+			App app = (App)session.get(AppImpl.class, primaryKey);
 
 			if (app == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + appId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchAppException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					appId);
+					primaryKey);
 			}
 
-			return appPersistence.remove(app);
+			return remove(app);
 		}
 		catch (NoSuchAppException nsee) {
 			throw nsee;
@@ -276,18 +293,6 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the app from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param app the app
-	 * @return the app that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public App remove(App app) throws SystemException {
-		return super.remove(app);
 	}
 
 	@Override
@@ -308,16 +313,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		AppModelImpl appModelImpl = (AppModelImpl)app;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
-			new Object[] { Long.valueOf(appModelImpl.getRemoteAppId()) });
-
-		EntityCacheUtil.removeResult(AppModelImpl.ENTITY_CACHE_ENABLED,
-			AppImpl.class, app.getPrimaryKey());
+		clearCache(app);
 
 		return app;
 	}
@@ -1480,7 +1476,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	 */
 	public void removeByUuid(String uuid) throws SystemException {
 		for (App app : findByUuid(uuid)) {
-			appPersistence.remove(app);
+			remove(app);
 		}
 	}
 
@@ -1492,7 +1488,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (App app : findByCompanyId(companyId)) {
-			appPersistence.remove(app);
+			remove(app);
 		}
 	}
 
@@ -1506,7 +1502,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		throws NoSuchAppException, SystemException {
 		App app = findByRemoteAppId(remoteAppId);
 
-		appPersistence.remove(app);
+		remove(app);
 	}
 
 	/**
@@ -1516,7 +1512,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	 */
 	public void removeAll() throws SystemException {
 		for (App app : findAll()) {
-			appPersistence.remove(app);
+			remove(app);
 		}
 	}
 

@@ -215,6 +215,17 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<KaleoNode> kaleoNodes) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (KaleoNode kaleoNode : kaleoNodes) {
+			EntityCacheUtil.removeResult(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
+				KaleoNodeImpl.class, kaleoNode.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new kaleo node with the primary key. Does not add the kaleo node to the database.
 	 *
@@ -233,20 +244,6 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	/**
 	 * Removes the kaleo node with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the kaleo node
-	 * @return the kaleo node that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a kaleo node with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public KaleoNode remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the kaleo node with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param kaleoNodeId the primary key of the kaleo node
 	 * @return the kaleo node that was removed
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a kaleo node with the primary key could not be found
@@ -254,24 +251,38 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 */
 	public KaleoNode remove(long kaleoNodeId)
 		throws NoSuchNodeException, SystemException {
+		return remove(Long.valueOf(kaleoNodeId));
+	}
+
+	/**
+	 * Removes the kaleo node with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the kaleo node
+	 * @return the kaleo node that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a kaleo node with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KaleoNode remove(Serializable primaryKey)
+		throws NoSuchNodeException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			KaleoNode kaleoNode = (KaleoNode)session.get(KaleoNodeImpl.class,
-					Long.valueOf(kaleoNodeId));
+					primaryKey);
 
 			if (kaleoNode == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + kaleoNodeId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchNodeException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					kaleoNodeId);
+					primaryKey);
 			}
 
-			return kaleoNodePersistence.remove(kaleoNode);
+			return remove(kaleoNode);
 		}
 		catch (NoSuchNodeException nsee) {
 			throw nsee;
@@ -282,18 +293,6 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the kaleo node from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoNode the kaleo node
-	 * @return the kaleo node that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public KaleoNode remove(KaleoNode kaleoNode) throws SystemException {
-		return super.remove(kaleoNode);
 	}
 
 	@Override
@@ -315,11 +314,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoNodeImpl.class, kaleoNode.getPrimaryKey());
+		clearCache(kaleoNode);
 
 		return kaleoNode;
 	}
@@ -1749,7 +1744,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoNode kaleoNode : findByCompanyId(companyId)) {
-			kaleoNodePersistence.remove(kaleoNode);
+			remove(kaleoNode);
 		}
 	}
 
@@ -1762,7 +1757,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	public void removeByKaleoDefinitionId(long kaleoDefinitionId)
 		throws SystemException {
 		for (KaleoNode kaleoNode : findByKaleoDefinitionId(kaleoDefinitionId)) {
-			kaleoNodePersistence.remove(kaleoNode);
+			remove(kaleoNode);
 		}
 	}
 
@@ -1776,7 +1771,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	public void removeByC_KDI(long companyId, long kaleoDefinitionId)
 		throws SystemException {
 		for (KaleoNode kaleoNode : findByC_KDI(companyId, kaleoDefinitionId)) {
-			kaleoNodePersistence.remove(kaleoNode);
+			remove(kaleoNode);
 		}
 	}
 
@@ -1787,7 +1782,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 */
 	public void removeAll() throws SystemException {
 		for (KaleoNode kaleoNode : findAll()) {
-			kaleoNodePersistence.remove(kaleoNode);
+			remove(kaleoNode);
 		}
 	}
 
@@ -2469,9 +2464,9 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 			}
 		}
 
-		containsKaleoAction = new ContainsKaleoAction(this);
+		containsKaleoAction = new ContainsKaleoAction();
 
-		containsKaleoTransition = new ContainsKaleoTransition(this);
+		containsKaleoTransition = new ContainsKaleoTransition();
 	}
 
 	public void destroy() {
@@ -2520,9 +2515,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	protected ContainsKaleoTransition containsKaleoTransition;
 
 	protected class ContainsKaleoAction {
-		protected ContainsKaleoAction(KaleoNodePersistenceImpl persistenceImpl) {
-			super();
-
+		protected ContainsKaleoAction() {
 			_mappingSqlQuery = MappingSqlQueryFactoryUtil.getMappingSqlQuery(getDataSource(),
 					_SQL_CONTAINSKALEOACTION,
 					new int[] { java.sql.Types.BIGINT, java.sql.Types.BIGINT },
@@ -2549,10 +2542,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	}
 
 	protected class ContainsKaleoTransition {
-		protected ContainsKaleoTransition(
-			KaleoNodePersistenceImpl persistenceImpl) {
-			super();
-
+		protected ContainsKaleoTransition() {
 			_mappingSqlQuery = MappingSqlQueryFactoryUtil.getMappingSqlQuery(getDataSource(),
 					_SQL_CONTAINSKALEOTRANSITION,
 					new int[] { java.sql.Types.BIGINT, java.sql.Types.BIGINT },

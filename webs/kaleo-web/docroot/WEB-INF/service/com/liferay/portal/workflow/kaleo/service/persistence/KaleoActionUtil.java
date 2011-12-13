@@ -94,14 +94,6 @@ public class KaleoActionUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static KaleoAction remove(KaleoAction kaleoAction)
-		throws SystemException {
-		return getPersistence().remove(kaleoAction);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static KaleoAction update(KaleoAction kaleoAction, boolean merge)

@@ -19,6 +19,9 @@ package com.liferay.opensocial.util;
  */
 public class PortletPropsKeys {
 
+	public static final String PUBSUB_URI_LOAD_TIMEOUT =
+		"pubsub.uri.load.timeout";
+
 	public static final String SHINDIG_JS_DEBUG = "shindig.js.debug";
 
 	public static final String SHINDIG_NO_CACHE = "shindig.no.cache";

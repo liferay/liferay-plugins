@@ -218,6 +218,25 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(wsrpConsumerPortlet);
+	}
+
+	@Override
+	public void clearCache(List<WSRPConsumerPortlet> wsrpConsumerPortlets) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (WSRPConsumerPortlet wsrpConsumerPortlet : wsrpConsumerPortlets) {
+			EntityCacheUtil.removeResult(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
+				WSRPConsumerPortletImpl.class,
+				wsrpConsumerPortlet.getPrimaryKey());
+
+			clearUniqueFindersCache(wsrpConsumerPortlet);
+		}
+	}
+
+	protected void clearUniqueFindersCache(
+		WSRPConsumerPortlet wsrpConsumerPortlet) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_W_P,
 			new Object[] {
 				Long.valueOf(wsrpConsumerPortlet.getWsrpConsumerId()),
@@ -248,20 +267,6 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	/**
 	 * Removes the w s r p consumer portlet with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the w s r p consumer portlet
-	 * @return the w s r p consumer portlet that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a w s r p consumer portlet with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public WSRPConsumerPortlet remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the w s r p consumer portlet with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param wsrpConsumerPortletId the primary key of the w s r p consumer portlet
 	 * @return the w s r p consumer portlet that was removed
 	 * @throws com.liferay.wsrp.NoSuchConsumerPortletException if a w s r p consumer portlet with the primary key could not be found
@@ -269,25 +274,38 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 */
 	public WSRPConsumerPortlet remove(long wsrpConsumerPortletId)
 		throws NoSuchConsumerPortletException, SystemException {
+		return remove(Long.valueOf(wsrpConsumerPortletId));
+	}
+
+	/**
+	 * Removes the w s r p consumer portlet with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the w s r p consumer portlet
+	 * @return the w s r p consumer portlet that was removed
+	 * @throws com.liferay.wsrp.NoSuchConsumerPortletException if a w s r p consumer portlet with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public WSRPConsumerPortlet remove(Serializable primaryKey)
+		throws NoSuchConsumerPortletException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			WSRPConsumerPortlet wsrpConsumerPortlet = (WSRPConsumerPortlet)session.get(WSRPConsumerPortletImpl.class,
-					Long.valueOf(wsrpConsumerPortletId));
+					primaryKey);
 
 			if (wsrpConsumerPortlet == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-						wsrpConsumerPortletId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchConsumerPortletException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					wsrpConsumerPortletId);
+					primaryKey);
 			}
 
-			return wsrpConsumerPortletPersistence.remove(wsrpConsumerPortlet);
+			return remove(wsrpConsumerPortlet);
 		}
 		catch (NoSuchConsumerPortletException nsee) {
 			throw nsee;
@@ -298,19 +316,6 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the w s r p consumer portlet from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param wsrpConsumerPortlet the w s r p consumer portlet
-	 * @return the w s r p consumer portlet that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public WSRPConsumerPortlet remove(WSRPConsumerPortlet wsrpConsumerPortlet)
-		throws SystemException {
-		return super.remove(wsrpConsumerPortlet);
 	}
 
 	@Override
@@ -332,20 +337,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		WSRPConsumerPortletModelImpl wsrpConsumerPortletModelImpl = (WSRPConsumerPortletModelImpl)wsrpConsumerPortlet;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_W_P,
-			new Object[] {
-				Long.valueOf(wsrpConsumerPortletModelImpl.getWsrpConsumerId()),
-				
-			wsrpConsumerPortletModelImpl.getPortletHandle()
-			});
-
-		EntityCacheUtil.removeResult(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerPortletImpl.class, wsrpConsumerPortlet.getPrimaryKey());
+		clearCache(wsrpConsumerPortlet);
 
 		return wsrpConsumerPortlet;
 	}
@@ -1595,7 +1587,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 */
 	public void removeByUuid(String uuid) throws SystemException {
 		for (WSRPConsumerPortlet wsrpConsumerPortlet : findByUuid(uuid)) {
-			wsrpConsumerPortletPersistence.remove(wsrpConsumerPortlet);
+			remove(wsrpConsumerPortlet);
 		}
 	}
 
@@ -1609,7 +1601,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		throws SystemException {
 		for (WSRPConsumerPortlet wsrpConsumerPortlet : findByWsrpConsumerId(
 				wsrpConsumerId)) {
-			wsrpConsumerPortletPersistence.remove(wsrpConsumerPortlet);
+			remove(wsrpConsumerPortlet);
 		}
 	}
 
@@ -1625,7 +1617,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		WSRPConsumerPortlet wsrpConsumerPortlet = findByW_P(wsrpConsumerId,
 				portletHandle);
 
-		wsrpConsumerPortletPersistence.remove(wsrpConsumerPortlet);
+		remove(wsrpConsumerPortlet);
 	}
 
 	/**
@@ -1635,7 +1627,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 */
 	public void removeAll() throws SystemException {
 		for (WSRPConsumerPortlet wsrpConsumerPortlet : findAll()) {
-			wsrpConsumerPortletPersistence.remove(wsrpConsumerPortlet);
+			remove(wsrpConsumerPortlet);
 		}
 	}
 

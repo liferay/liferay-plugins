@@ -16,7 +16,6 @@ package com.liferay.knowledgebase.service.persistence;
 
 import com.liferay.knowledgebase.model.KBTemplate;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
@@ -543,6 +542,4 @@ public interface KBTemplatePersistence extends BasePersistence<KBTemplate> {
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public KBTemplate remove(KBTemplate kbTemplate) throws SystemException;
 }

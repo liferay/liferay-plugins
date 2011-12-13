@@ -16,15 +16,13 @@ package com.liferay.mail.imap;
 
 import com.liferay.mail.MailException;
 import com.liferay.mail.model.Account;
-import com.liferay.mail.model.Folder;
 import com.liferay.mail.service.FolderLocalServiceUtil;
 import com.liferay.mail.service.MessageLocalServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.model.User;
 
-import com.sun.mail.imap.IMAPFolder;
-
+import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.event.MessageCountEvent;
 import javax.mail.event.MessageCountListener;
@@ -44,24 +42,24 @@ public class IMAPMessageCountListener implements MessageCountListener {
 	public void messagesAdded(MessageCountEvent messageCountEvent) {
 		Message[] jxMessages = messageCountEvent.getMessages();
 
-		IMAPFolder imapFolder = null;
+		Folder jxFolder = null;
 
 		try {
-			imapFolder = _imapAccessor.openFolder(
-				(IMAPFolder)jxMessages[0].getFolder());
+			jxFolder = _imapAccessor.openFolder(jxMessages[0].getFolder());
 
-			Folder folder = FolderLocalServiceUtil.getFolder(
-				_account.getAccountId(), imapFolder.getFullName());
+			com.liferay.mail.model.Folder folder =
+				FolderLocalServiceUtil.getFolder(
+					_account.getAccountId(), jxFolder.getFullName());
 
 			_imapAccessor.storeEnvelopes(
-				folder.getFolderId(), imapFolder, jxMessages);
+				folder.getFolderId(), jxFolder, jxMessages);
 		}
 		catch (Exception e) {
 			_log.error("Unable to add messages", e);
 		}
 		finally {
 			try {
-				_imapAccessor.closeFolder(imapFolder, false);
+				_imapAccessor.closeFolder(jxFolder, false);
 			}
 			catch (MailException me) {
 				_log.error(me, me);
@@ -72,17 +70,17 @@ public class IMAPMessageCountListener implements MessageCountListener {
 	public void messagesRemoved(MessageCountEvent messageCountEvent) {
 		Message[] jxMessages = messageCountEvent.getMessages();
 
-		IMAPFolder imapFolder = null;
+		Folder jxFolder = null;
 
 		try {
-			imapFolder = _imapAccessor.openFolder(
-				(IMAPFolder)jxMessages[0].getFolder());
+			jxFolder = _imapAccessor.openFolder(jxMessages[0].getFolder());
 
-			Folder folder = FolderLocalServiceUtil.getFolder(
-				_account.getAccountId(), imapFolder.getFullName());
+			com.liferay.mail.model.Folder folder =
+				FolderLocalServiceUtil.getFolder(
+					_account.getAccountId(), jxFolder.getFullName());
 
 			long[] remoteMessageIds = _imapAccessor.getMessageUIDs(
-				imapFolder, jxMessages);
+				jxFolder, jxMessages);
 
 			for (long remoteMessageId : remoteMessageIds) {
 				com.liferay.mail.model.Message message =
@@ -97,7 +95,7 @@ public class IMAPMessageCountListener implements MessageCountListener {
 		}
 		finally {
 			try {
-				_imapAccessor.closeFolder(imapFolder, false);
+				_imapAccessor.closeFolder(jxFolder, false);
 			}
 			catch (MailException me) {
 				_log.error(me);

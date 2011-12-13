@@ -26,11 +26,14 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.Role;
+import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.permission.UserPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -104,7 +107,7 @@ public class SummaryPortlet extends MVCPortlet {
 		}
 		else {
 			Role role = RoleLocalServiceUtil.getRole(
-				themeDisplay.getCompanyId(), "Community Administrator");
+				themeDisplay.getCompanyId(), RoleConstants.SITE_ADMINISTRATOR);
 
 			LinkedHashMap<String, Object> userParams =
 				new LinkedHashMap<String, Object>();
@@ -172,9 +175,12 @@ public class SummaryPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			actionRequest);
+
 		UserLocalServiceUtil.unsetGroupUsers(
 			themeDisplay.getScopeGroupId(),
-			new long[] {themeDisplay.getUserId()});
+			new long[] {themeDisplay.getUserId()}, serviceContext);
 	}
 
 	public void leaveOrganization(

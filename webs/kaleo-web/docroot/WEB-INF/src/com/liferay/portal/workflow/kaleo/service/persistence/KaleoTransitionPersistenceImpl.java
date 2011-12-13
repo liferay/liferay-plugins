@@ -256,6 +256,23 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(kaleoTransition);
+	}
+
+	@Override
+	public void clearCache(List<KaleoTransition> kaleoTransitions) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (KaleoTransition kaleoTransition : kaleoTransitions) {
+			EntityCacheUtil.removeResult(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
+				KaleoTransitionImpl.class, kaleoTransition.getPrimaryKey());
+
+			clearUniqueFindersCache(kaleoTransition);
+		}
+	}
+
+	protected void clearUniqueFindersCache(KaleoTransition kaleoTransition) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KNI_N,
 			new Object[] {
 				Long.valueOf(kaleoTransition.getKaleoNodeId()),
@@ -288,20 +305,6 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	/**
 	 * Removes the kaleo transition with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the kaleo transition
-	 * @return the kaleo transition that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a kaleo transition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public KaleoTransition remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the kaleo transition with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param kaleoTransitionId the primary key of the kaleo transition
 	 * @return the kaleo transition that was removed
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a kaleo transition with the primary key could not be found
@@ -309,25 +312,38 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 */
 	public KaleoTransition remove(long kaleoTransitionId)
 		throws NoSuchTransitionException, SystemException {
+		return remove(Long.valueOf(kaleoTransitionId));
+	}
+
+	/**
+	 * Removes the kaleo transition with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the kaleo transition
+	 * @return the kaleo transition that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a kaleo transition with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KaleoTransition remove(Serializable primaryKey)
+		throws NoSuchTransitionException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			KaleoTransition kaleoTransition = (KaleoTransition)session.get(KaleoTransitionImpl.class,
-					Long.valueOf(kaleoTransitionId));
+					primaryKey);
 
 			if (kaleoTransition == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-						kaleoTransitionId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchTransitionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					kaleoTransitionId);
+					primaryKey);
 			}
 
-			return kaleoTransitionPersistence.remove(kaleoTransition);
+			return remove(kaleoTransition);
 		}
 		catch (NoSuchTransitionException nsee) {
 			throw nsee;
@@ -338,19 +354,6 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the kaleo transition from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoTransition the kaleo transition
-	 * @return the kaleo transition that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public KaleoTransition remove(KaleoTransition kaleoTransition)
-		throws SystemException {
-		return super.remove(kaleoTransition);
 	}
 
 	@Override
@@ -372,26 +375,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		KaleoTransitionModelImpl kaleoTransitionModelImpl = (KaleoTransitionModelImpl)kaleoTransition;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KNI_N,
-			new Object[] {
-				Long.valueOf(kaleoTransitionModelImpl.getKaleoNodeId()),
-				
-			kaleoTransitionModelImpl.getName()
-			});
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KNI_DT,
-			new Object[] {
-				Long.valueOf(kaleoTransitionModelImpl.getKaleoNodeId()),
-				Boolean.valueOf(kaleoTransitionModelImpl.getDefaultTransition())
-			});
-
-		EntityCacheUtil.removeResult(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTransitionImpl.class, kaleoTransition.getPrimaryKey());
+		clearCache(kaleoTransition);
 
 		return kaleoTransition;
 	}
@@ -2153,7 +2137,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoTransition kaleoTransition : findByCompanyId(companyId)) {
-			kaleoTransitionPersistence.remove(kaleoTransition);
+			remove(kaleoTransition);
 		}
 	}
 
@@ -2167,7 +2151,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		throws SystemException {
 		for (KaleoTransition kaleoTransition : findByKaleoDefinitionId(
 				kaleoDefinitionId)) {
-			kaleoTransitionPersistence.remove(kaleoTransition);
+			remove(kaleoTransition);
 		}
 	}
 
@@ -2179,7 +2163,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 */
 	public void removeByKaleoNodeId(long kaleoNodeId) throws SystemException {
 		for (KaleoTransition kaleoTransition : findByKaleoNodeId(kaleoNodeId)) {
-			kaleoTransitionPersistence.remove(kaleoTransition);
+			remove(kaleoTransition);
 		}
 	}
 
@@ -2194,7 +2178,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		throws NoSuchTransitionException, SystemException {
 		KaleoTransition kaleoTransition = findByKNI_N(kaleoNodeId, name);
 
-		kaleoTransitionPersistence.remove(kaleoTransition);
+		remove(kaleoTransition);
 	}
 
 	/**
@@ -2209,7 +2193,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		KaleoTransition kaleoTransition = findByKNI_DT(kaleoNodeId,
 				defaultTransition);
 
-		kaleoTransitionPersistence.remove(kaleoTransition);
+		remove(kaleoTransition);
 	}
 
 	/**
@@ -2219,7 +2203,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 */
 	public void removeAll() throws SystemException {
 		for (KaleoTransition kaleoTransition : findAll()) {
-			kaleoTransitionPersistence.remove(kaleoTransition);
+			remove(kaleoTransition);
 		}
 	}
 

@@ -96,8 +96,7 @@ public class VelocityNotificationMessageGenerator
 
 			velocityContext.put("taskName", kaleoTask.getName());
 
-			velocityContext.put(
-				"userId", kaleoTaskInstanceToken.getUserId());
+			velocityContext.put("userId", kaleoTaskInstanceToken.getUserId());
 
 			List<WorkflowTaskAssignee> workflowTaskAssignees =
 				KaleoTaskAssignmentInstanceUtil.getWorkflowTaskAssignees(

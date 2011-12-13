@@ -193,6 +193,17 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<WSRPConsumer> wsrpConsumers) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (WSRPConsumer wsrpConsumer : wsrpConsumers) {
+			EntityCacheUtil.removeResult(WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
+				WSRPConsumerImpl.class, wsrpConsumer.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new w s r p consumer with the primary key. Does not add the w s r p consumer to the database.
 	 *
@@ -215,20 +226,6 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 	/**
 	 * Removes the w s r p consumer with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the w s r p consumer
-	 * @return the w s r p consumer that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a w s r p consumer with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public WSRPConsumer remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the w s r p consumer with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param wsrpConsumerId the primary key of the w s r p consumer
 	 * @return the w s r p consumer that was removed
 	 * @throws com.liferay.wsrp.NoSuchConsumerException if a w s r p consumer with the primary key could not be found
@@ -236,25 +233,38 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 	 */
 	public WSRPConsumer remove(long wsrpConsumerId)
 		throws NoSuchConsumerException, SystemException {
+		return remove(Long.valueOf(wsrpConsumerId));
+	}
+
+	/**
+	 * Removes the w s r p consumer with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the w s r p consumer
+	 * @return the w s r p consumer that was removed
+	 * @throws com.liferay.wsrp.NoSuchConsumerException if a w s r p consumer with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public WSRPConsumer remove(Serializable primaryKey)
+		throws NoSuchConsumerException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			WSRPConsumer wsrpConsumer = (WSRPConsumer)session.get(WSRPConsumerImpl.class,
-					Long.valueOf(wsrpConsumerId));
+					primaryKey);
 
 			if (wsrpConsumer == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-						wsrpConsumerId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchConsumerException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					wsrpConsumerId);
+					primaryKey);
 			}
 
-			return wsrpConsumerPersistence.remove(wsrpConsumer);
+			return remove(wsrpConsumer);
 		}
 		catch (NoSuchConsumerException nsee) {
 			throw nsee;
@@ -265,19 +275,6 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the w s r p consumer from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param wsrpConsumer the w s r p consumer
-	 * @return the w s r p consumer that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public WSRPConsumer remove(WSRPConsumer wsrpConsumer)
-		throws SystemException {
-		return super.remove(wsrpConsumer);
 	}
 
 	@Override
@@ -299,11 +296,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerImpl.class, wsrpConsumer.getPrimaryKey());
+		clearCache(wsrpConsumer);
 
 		return wsrpConsumer;
 	}
@@ -1355,7 +1348,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 	 */
 	public void removeByUuid(String uuid) throws SystemException {
 		for (WSRPConsumer wsrpConsumer : findByUuid(uuid)) {
-			wsrpConsumerPersistence.remove(wsrpConsumer);
+			remove(wsrpConsumer);
 		}
 	}
 
@@ -1367,7 +1360,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (WSRPConsumer wsrpConsumer : findByCompanyId(companyId)) {
-			wsrpConsumerPersistence.remove(wsrpConsumer);
+			remove(wsrpConsumer);
 		}
 	}
 
@@ -1378,7 +1371,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 	 */
 	public void removeAll() throws SystemException {
 		for (WSRPConsumer wsrpConsumer : findAll()) {
-			wsrpConsumerPersistence.remove(wsrpConsumer);
+			remove(wsrpConsumer);
 		}
 	}
 

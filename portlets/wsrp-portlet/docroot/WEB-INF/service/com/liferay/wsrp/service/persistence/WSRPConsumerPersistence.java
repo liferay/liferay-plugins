@@ -14,7 +14,6 @@
 
 package com.liferay.wsrp.service.persistence;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 import com.liferay.wsrp.model.WSRPConsumer;
@@ -408,7 +407,4 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public WSRPConsumer remove(WSRPConsumer wsrpConsumer)
-		throws SystemException;
 }

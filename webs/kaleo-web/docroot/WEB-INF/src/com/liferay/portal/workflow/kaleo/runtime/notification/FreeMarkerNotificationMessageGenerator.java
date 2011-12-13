@@ -98,8 +98,7 @@ public class FreeMarkerNotificationMessageGenerator
 
 			freeMarkerContext.put("taskName", kaleoTask.getName());
 
-			freeMarkerContext.put(
-				"userId", kaleoTaskInstanceToken.getUserId());
+			freeMarkerContext.put("userId", kaleoTaskInstanceToken.getUserId());
 
 			List<WorkflowTaskAssignee> workflowTaskAssignees =
 				KaleoTaskAssignmentInstanceUtil.getWorkflowTaskAssignees(

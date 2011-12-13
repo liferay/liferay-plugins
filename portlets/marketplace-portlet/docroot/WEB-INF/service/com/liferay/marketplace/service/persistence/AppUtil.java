@@ -94,13 +94,6 @@ public class AppUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static App remove(App app) throws SystemException {
-		return getPersistence().remove(app);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static App update(App app, boolean merge) throws SystemException {

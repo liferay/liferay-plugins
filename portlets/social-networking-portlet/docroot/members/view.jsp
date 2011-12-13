@@ -19,7 +19,7 @@
 <c:choose>
 	<c:when test="<%= user2 != null %>">
 		<div class="portlet-msg-error">
-			<liferay-ui:message key="this-application-will-only-function-when-placed-on-a-community-or-organization-page" />
+			<liferay-ui:message key="this-application-will-only-function-when-placed-on-a-site-page" />
 		</div>
 	</c:when>
 	<c:otherwise>

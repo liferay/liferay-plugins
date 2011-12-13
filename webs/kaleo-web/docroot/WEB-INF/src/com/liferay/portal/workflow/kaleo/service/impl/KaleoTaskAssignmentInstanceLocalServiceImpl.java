@@ -171,8 +171,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 	public void deleteCompanyKaleoTaskAssignmentInstances(long companyId)
 		throws SystemException {
 
-		kaleoTaskAssignmentInstancePersistence.removeByCompanyId(
-			companyId);
+		kaleoTaskAssignmentInstancePersistence.removeByCompanyId(companyId);
 	}
 
 	public void deleteKaleoDefinitionKaleoTaskAssignmentInstances(

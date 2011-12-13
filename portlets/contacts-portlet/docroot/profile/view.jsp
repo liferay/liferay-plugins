@@ -29,7 +29,9 @@ Group group = themeDisplay.getScopeGroup();
 		request.setAttribute(WebKeys.CONTACTS_USER, user2);
 		%>
 
-		<liferay-util:include page="/contacts_center/view_user.jsp" servletContext="<%= application %>" />
+		<aui:layout cssClass="contacts-container">
+			<liferay-util:include page="/contacts_center/view_user.jsp" servletContext="<%= application %>" />
+		</aui:layout>
 	</c:when>
 	<c:otherwise>
 		<div class="lfr-message-info">

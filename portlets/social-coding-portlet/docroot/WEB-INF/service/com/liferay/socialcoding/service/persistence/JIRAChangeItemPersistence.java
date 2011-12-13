@@ -14,7 +14,6 @@
 
 package com.liferay.socialcoding.service.persistence;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 import com.liferay.socialcoding.model.JIRAChangeItem;
@@ -288,7 +287,4 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public JIRAChangeItem remove(JIRAChangeItem jiraChangeItem)
-		throws SystemException;
 }

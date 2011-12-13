@@ -14,14 +14,60 @@
 
 package com.liferay.portal.workflow.kaleo.parser;
 
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.workflow.kaleo.definition.Definition;
+import com.liferay.portal.workflow.kaleo.definition.Node;
+import com.liferay.portal.workflow.kaleo.definition.State;
+import com.liferay.portal.workflow.kaleo.definition.Transition;
+
+import java.util.Collection;
+import java.util.Map;
 
 /**
  * @author Michael C. Han
+ * @author Marcellus Tavares
  */
 public class DefaultWorkflowValidator implements WorkflowValidator {
 
-	public void validate(Definition definition) {
+	public void validate(Definition definition) throws WorkflowException {
+		Collection<Node> nodes = definition.getNodes();
+
+		for (Node node : nodes) {
+			validateNode(definition, node);
+		}
+	}
+
+	protected void validateNode(Definition definition, Node node)
+		throws WorkflowException {
+
+		if (node instanceof State) {
+			validateState(definition, (State)node);
+		}
+
+		validateTransitions(node.getTransitions());
+	}
+
+	protected void validateState(Definition definition, State state)
+		throws WorkflowException {
+
+		if (state.isInitial() &&
+			!Validator.equals(definition.getInitialState(), state)) {
+
+			throw new WorkflowException(
+				"Multiple initial states defined " + state.getName());
+		}
+	}
+
+	protected void validateTransitions(Map<String, Transition> transitions)
+		throws WorkflowException {
+
+		for (Transition transition : transitions.values()) {
+			if (transition.getTargetNode() == null) {
+				throw new WorkflowException(
+					"Unable to find target node " + transition.getName());
+			}
+		}
 	}
 
 }

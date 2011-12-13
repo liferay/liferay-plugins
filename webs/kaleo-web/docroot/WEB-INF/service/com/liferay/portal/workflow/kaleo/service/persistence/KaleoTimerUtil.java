@@ -94,14 +94,6 @@ public class KaleoTimerUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static KaleoTimer remove(KaleoTimer kaleoTimer)
-		throws SystemException {
-		return getPersistence().remove(kaleoTimer);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static KaleoTimer update(KaleoTimer kaleoTimer, boolean merge)

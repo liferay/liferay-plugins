@@ -153,7 +153,7 @@ public class UpgradeGroup extends UpgradeProcess {
 		Filter filter = new Filter(layout.getFriendlyURL());
 
 		if (group.isUser()) {
-			prefix = PortletPropsKeys.USER_LAYOUT_PORTLETS;
+			prefix = PortletPropsKeys.USER_PRIVATE_LAYOUT_PORTLETS;
 		}
 
 		LayoutTypePortlet layoutTypePortlet =

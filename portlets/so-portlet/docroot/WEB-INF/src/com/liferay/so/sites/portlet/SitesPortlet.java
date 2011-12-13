@@ -343,8 +343,7 @@ public class SitesPortlet extends MVCPortlet {
 				deletePortletURL.setParameter(
 					"groupId", String.valueOf(group.getGroupId()));
 
-				groupJSONObject.put(
-					"deleteURL", deletePortletURL.toString());
+				groupJSONObject.put("deleteURL", deletePortletURL.toString());
 			}
 
 			PortletURL starPortletURL = resourceResponse.createActionURL();

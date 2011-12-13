@@ -118,8 +118,7 @@ public class OAuthConsumerLocalServiceImpl
 			String gadgetKey, int start, int end)
 		throws SystemException {
 
-		return oAuthConsumerPersistence.findByGadgetKey(
-			gadgetKey, start, end);
+		return oAuthConsumerPersistence.findByGadgetKey(gadgetKey, start, end);
 	}
 
 	public int getOAuthConsumersCount(String gadgetKey) throws SystemException {

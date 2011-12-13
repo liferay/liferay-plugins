@@ -16,12 +16,22 @@
 
 <%@ include file="/admin/init.jsp" %>
 
-<liferay-ui:header
-	backURL="javascript:history.go(-1);"
-	title="error"
-/>
+<c:if test="<%= !rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ARTICLE) %>">
+	<liferay-ui:header
+		backURL="javascript:history.go(-1);"
+		title="error"
+	/>
+</c:if>
 
-<liferay-ui:error exception="<%= NoSuchArticleException.class %>" message="the-article-could-not-be-found" />
+<c:choose>
+	<c:when test="<%= rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ARTICLE) %>">
+		<liferay-ui:error exception="<%= NoSuchArticleException.class %>" message="the-selected-article-no-longer-exists" />
+	</c:when>
+	<c:otherwise>
+		<liferay-ui:error exception="<%= NoSuchArticleException.class %>" message="the-article-could-not-be-found" />
+	</c:otherwise>
+</c:choose>
+
 <liferay-ui:error exception="<%= NoSuchCommentException.class %>" message="the-comment-could-not-be-found" />
 <liferay-ui:error exception="<%= NoSuchSubscriptionException.class %>" message="the-subscription-could-not-be-found" />
 <liferay-ui:error exception="<%= NoSuchTemplateException.class %>" message="the-template-could-not-be-found" />

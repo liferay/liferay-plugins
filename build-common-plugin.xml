@@ -255,7 +255,8 @@
 		<delete dir="tmp" />
 		<delete file="${plugin.file}" />
 
-		<delete>
+		<delete includeemptydirs="true">
+			<fileset dir="docroot" includes="**/.sass-cache/**" />
 			<fileset dir="docroot" includes="**/.sprite.png" />
 			<fileset dir="docroot" includes="**/.sprite.properties" />
 			<fileset dir="docroot" includes="**/Thumbs.db" />
@@ -552,7 +553,7 @@ Please find a solution that does not require portal-impl.jar.
 						<jvmarg value="-Ddeployer.base.dir=${project.dir}/dist" />
 						<jvmarg value="-Ddeployer.dest.dir=${app.server.deploy.dir}" />
 						<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
-						<jvmarg value="-Ddeployer.aui.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-aui.tld" />
+						<jvmarg value="-Ddeployer.aui.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/aui.tld" />
 						<jvmarg value="-Ddeployer.portlet.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-portlet.tld" />
 						<jvmarg value="-Ddeployer.portlet-ext.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-portlet-ext.tld" />
 						<jvmarg value="-Ddeployer.security.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-security.tld" />

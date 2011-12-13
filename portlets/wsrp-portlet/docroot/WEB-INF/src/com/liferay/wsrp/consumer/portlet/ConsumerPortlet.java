@@ -1927,8 +1927,7 @@ public class ConsumerPortlet extends GenericPortlet {
 			String extensionURL1 = rewriteMatcher.group(3);
 			String extensionURL2 = rewriteMatcher.group(4);
 
-			Map<String, String> parameterMap =
-				new HashMap<String, String>();
+			Map<String, String> parameterMap = new HashMap<String, String>();
 
 			if (Validator.isNotNull(namespace)) {
 				rewriteMatcher.appendReplacement(
@@ -2033,8 +2032,7 @@ public class ConsumerPortlet extends GenericPortlet {
 			return;
 		}
 
-		portletSession.setAttribute(
-			WebKeys.SESSION_CONTEXT, sessionContext);
+		portletSession.setAttribute(WebKeys.SESSION_CONTEXT, sessionContext);
 
 		serviceHolder.setSessionContext(sessionContext);
 

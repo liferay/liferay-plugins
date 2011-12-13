@@ -148,8 +148,7 @@ public class ServiceHandler implements InvocationHandler {
 		clazz = contextClassLoader.loadClass(sb.toString());
 
 		InvocationHandler invocationHandler =
-			(InvocationHandler)ConstructorUtils.invokeConstructor(
-				clazz, stub);
+			(InvocationHandler)ConstructorUtils.invokeConstructor(clazz, stub);
 
 		return Proxy.newProxyInstance(
 			ServiceHandler.class.getClassLoader(), new Class[] {proxyInterface},

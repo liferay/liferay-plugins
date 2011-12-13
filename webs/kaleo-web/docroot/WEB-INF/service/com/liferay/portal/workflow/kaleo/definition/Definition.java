@@ -14,8 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.definition;
 
-import com.liferay.portal.kernel.workflow.WorkflowException;
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -35,7 +33,7 @@ public class Definition {
 		_version = version;
 	}
 
-	public void addNode(Node node) throws WorkflowException {
+	public void addNode(Node node) {
 		if (_nodesMap.containsKey(node.getName())) {
 			throw new IllegalArgumentException(
 				"Duplicate node " + node.getName());
@@ -47,11 +45,6 @@ public class Definition {
 			State state = (State)node;
 
 			if (state.isInitial()) {
-				if (_initialState != null) {
-					throw new WorkflowException(
-						"Duplicate initial state " + state.getName());
-				}
-
 				_initialState = state;
 			}
 		}

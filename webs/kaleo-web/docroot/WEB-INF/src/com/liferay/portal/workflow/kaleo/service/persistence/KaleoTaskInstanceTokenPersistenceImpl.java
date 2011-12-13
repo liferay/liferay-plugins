@@ -244,6 +244,25 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(kaleoTaskInstanceToken);
+	}
+
+	@Override
+	public void clearCache(List<KaleoTaskInstanceToken> kaleoTaskInstanceTokens) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (KaleoTaskInstanceToken kaleoTaskInstanceToken : kaleoTaskInstanceTokens) {
+			EntityCacheUtil.removeResult(KaleoTaskInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
+				KaleoTaskInstanceTokenImpl.class,
+				kaleoTaskInstanceToken.getPrimaryKey());
+
+			clearUniqueFindersCache(kaleoTaskInstanceToken);
+		}
+	}
+
+	protected void clearUniqueFindersCache(
+		KaleoTaskInstanceToken kaleoTaskInstanceToken) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KII_KTI,
 			new Object[] {
 				Long.valueOf(kaleoTaskInstanceToken.getKaleoInstanceId()),
@@ -269,20 +288,6 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 	/**
 	 * Removes the kaleo task instance token with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the kaleo task instance token
-	 * @return the kaleo task instance token that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a kaleo task instance token with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public KaleoTaskInstanceToken remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the kaleo task instance token with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param kaleoTaskInstanceTokenId the primary key of the kaleo task instance token
 	 * @return the kaleo task instance token that was removed
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a kaleo task instance token with the primary key could not be found
@@ -290,25 +295,38 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 	 */
 	public KaleoTaskInstanceToken remove(long kaleoTaskInstanceTokenId)
 		throws NoSuchTaskInstanceTokenException, SystemException {
+		return remove(Long.valueOf(kaleoTaskInstanceTokenId));
+	}
+
+	/**
+	 * Removes the kaleo task instance token with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the kaleo task instance token
+	 * @return the kaleo task instance token that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a kaleo task instance token with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KaleoTaskInstanceToken remove(Serializable primaryKey)
+		throws NoSuchTaskInstanceTokenException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			KaleoTaskInstanceToken kaleoTaskInstanceToken = (KaleoTaskInstanceToken)session.get(KaleoTaskInstanceTokenImpl.class,
-					Long.valueOf(kaleoTaskInstanceTokenId));
+					primaryKey);
 
 			if (kaleoTaskInstanceToken == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-						kaleoTaskInstanceTokenId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchTaskInstanceTokenException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					kaleoTaskInstanceTokenId);
+					primaryKey);
 			}
 
-			return kaleoTaskInstanceTokenPersistence.remove(kaleoTaskInstanceToken);
+			return remove(kaleoTaskInstanceToken);
 		}
 		catch (NoSuchTaskInstanceTokenException nsee) {
 			throw nsee;
@@ -319,20 +337,6 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the kaleo task instance token from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoTaskInstanceToken the kaleo task instance token
-	 * @return the kaleo task instance token that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public KaleoTaskInstanceToken remove(
-		KaleoTaskInstanceToken kaleoTaskInstanceToken)
-		throws SystemException {
-		return super.remove(kaleoTaskInstanceToken);
 	}
 
 	@Override
@@ -355,21 +359,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		KaleoTaskInstanceTokenModelImpl kaleoTaskInstanceTokenModelImpl = (KaleoTaskInstanceTokenModelImpl)kaleoTaskInstanceToken;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KII_KTI,
-			new Object[] {
-				Long.valueOf(
-					kaleoTaskInstanceTokenModelImpl.getKaleoInstanceId()),
-				Long.valueOf(kaleoTaskInstanceTokenModelImpl.getKaleoTaskId())
-			});
-
-		EntityCacheUtil.removeResult(KaleoTaskInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTaskInstanceTokenImpl.class,
-			kaleoTaskInstanceToken.getPrimaryKey());
+		clearCache(kaleoTaskInstanceToken);
 
 		return kaleoTaskInstanceToken;
 	}
@@ -1969,7 +1959,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoTaskInstanceToken kaleoTaskInstanceToken : findByCompanyId(
 				companyId)) {
-			kaleoTaskInstanceTokenPersistence.remove(kaleoTaskInstanceToken);
+			remove(kaleoTaskInstanceToken);
 		}
 	}
 
@@ -1983,7 +1973,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 		throws SystemException {
 		for (KaleoTaskInstanceToken kaleoTaskInstanceToken : findByKaleoDefinitionId(
 				kaleoDefinitionId)) {
-			kaleoTaskInstanceTokenPersistence.remove(kaleoTaskInstanceToken);
+			remove(kaleoTaskInstanceToken);
 		}
 	}
 
@@ -1997,7 +1987,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 		throws SystemException {
 		for (KaleoTaskInstanceToken kaleoTaskInstanceToken : findByKaleoInstanceId(
 				kaleoInstanceId)) {
-			kaleoTaskInstanceTokenPersistence.remove(kaleoTaskInstanceToken);
+			remove(kaleoTaskInstanceToken);
 		}
 	}
 
@@ -2013,7 +2003,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 		KaleoTaskInstanceToken kaleoTaskInstanceToken = findByKII_KTI(kaleoInstanceId,
 				kaleoTaskId);
 
-		kaleoTaskInstanceTokenPersistence.remove(kaleoTaskInstanceToken);
+		remove(kaleoTaskInstanceToken);
 	}
 
 	/**
@@ -2023,7 +2013,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 	 */
 	public void removeAll() throws SystemException {
 		for (KaleoTaskInstanceToken kaleoTaskInstanceToken : findAll()) {
-			kaleoTaskInstanceTokenPersistence.remove(kaleoTaskInstanceToken);
+			remove(kaleoTaskInstanceToken);
 		}
 	}
 
@@ -2541,7 +2531,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 			}
 		}
 
-		containsKaleoTaskAssignmentInstance = new ContainsKaleoTaskAssignmentInstance(this);
+		containsKaleoTaskAssignmentInstance = new ContainsKaleoTaskAssignmentInstance();
 	}
 
 	public void destroy() {
@@ -2589,10 +2579,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 	protected ContainsKaleoTaskAssignmentInstance containsKaleoTaskAssignmentInstance;
 
 	protected class ContainsKaleoTaskAssignmentInstance {
-		protected ContainsKaleoTaskAssignmentInstance(
-			KaleoTaskInstanceTokenPersistenceImpl persistenceImpl) {
-			super();
-
+		protected ContainsKaleoTaskAssignmentInstance() {
 			_mappingSqlQuery = MappingSqlQueryFactoryUtil.getMappingSqlQuery(getDataSource(),
 					_SQL_CONTAINSKALEOTASKASSIGNMENTINSTANCE,
 					new int[] { java.sql.Types.BIGINT, java.sql.Types.BIGINT },

@@ -22,6 +22,9 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
+	public static final int PUBSUB_URI_LOAD_TIMEOUT = GetterUtil.getInteger(
+		PortletProps.get(PortletPropsKeys.PUBSUB_URI_LOAD_TIMEOUT));
+
 	public static final boolean SHINDIG_JS_DEBUG = GetterUtil.getBoolean(
 		PortletProps.get(PortletPropsKeys.SHINDIG_JS_DEBUG));
 

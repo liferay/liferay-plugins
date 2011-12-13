@@ -33,8 +33,7 @@ public class KaleoTaskImpl extends KaleoTaskBaseImpl {
 	}
 
 	public KaleoNode getKaleoNode() throws PortalException, SystemException {
-		return KaleoNodeLocalServiceUtil.getKaleoNode(
-			getKaleoNodeId());
+		return KaleoNodeLocalServiceUtil.getKaleoNode(getKaleoNodeId());
 	}
 
 	public List<KaleoTaskAssignment> getKaleoTaskAssignments()

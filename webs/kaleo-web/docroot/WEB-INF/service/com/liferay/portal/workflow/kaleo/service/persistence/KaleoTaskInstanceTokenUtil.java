@@ -94,15 +94,6 @@ public class KaleoTaskInstanceTokenUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static KaleoTaskInstanceToken remove(
-		KaleoTaskInstanceToken kaleoTaskInstanceToken)
-		throws SystemException {
-		return getPersistence().remove(kaleoTaskInstanceToken);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static KaleoTaskInstanceToken update(

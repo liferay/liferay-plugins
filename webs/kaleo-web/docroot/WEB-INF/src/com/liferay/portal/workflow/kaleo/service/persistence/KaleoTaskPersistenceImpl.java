@@ -203,6 +203,23 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(kaleoTask);
+	}
+
+	@Override
+	public void clearCache(List<KaleoTask> kaleoTasks) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (KaleoTask kaleoTask : kaleoTasks) {
+			EntityCacheUtil.removeResult(KaleoTaskModelImpl.ENTITY_CACHE_ENABLED,
+				KaleoTaskImpl.class, kaleoTask.getPrimaryKey());
+
+			clearUniqueFindersCache(kaleoTask);
+		}
+	}
+
+	protected void clearUniqueFindersCache(KaleoTask kaleoTask) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID,
 			new Object[] { Long.valueOf(kaleoTask.getKaleoNodeId()) });
 	}
@@ -225,20 +242,6 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	/**
 	 * Removes the kaleo task with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the kaleo task
-	 * @return the kaleo task that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a kaleo task with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public KaleoTask remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the kaleo task with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param kaleoTaskId the primary key of the kaleo task
 	 * @return the kaleo task that was removed
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a kaleo task with the primary key could not be found
@@ -246,24 +249,38 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 */
 	public KaleoTask remove(long kaleoTaskId)
 		throws NoSuchTaskException, SystemException {
+		return remove(Long.valueOf(kaleoTaskId));
+	}
+
+	/**
+	 * Removes the kaleo task with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the kaleo task
+	 * @return the kaleo task that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a kaleo task with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KaleoTask remove(Serializable primaryKey)
+		throws NoSuchTaskException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			KaleoTask kaleoTask = (KaleoTask)session.get(KaleoTaskImpl.class,
-					Long.valueOf(kaleoTaskId));
+					primaryKey);
 
 			if (kaleoTask == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + kaleoTaskId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchTaskException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					kaleoTaskId);
+					primaryKey);
 			}
 
-			return kaleoTaskPersistence.remove(kaleoTask);
+			return remove(kaleoTask);
 		}
 		catch (NoSuchTaskException nsee) {
 			throw nsee;
@@ -274,18 +291,6 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the kaleo task from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoTask the kaleo task
-	 * @return the kaleo task that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public KaleoTask remove(KaleoTask kaleoTask) throws SystemException {
-		return super.remove(kaleoTask);
 	}
 
 	@Override
@@ -307,16 +312,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		KaleoTaskModelImpl kaleoTaskModelImpl = (KaleoTaskModelImpl)kaleoTask;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID,
-			new Object[] { Long.valueOf(kaleoTaskModelImpl.getKaleoNodeId()) });
-
-		EntityCacheUtil.removeResult(KaleoTaskModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTaskImpl.class, kaleoTask.getPrimaryKey());
+		clearCache(kaleoTask);
 
 		return kaleoTask;
 	}
@@ -1502,7 +1498,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoTask kaleoTask : findByCompanyId(companyId)) {
-			kaleoTaskPersistence.remove(kaleoTask);
+			remove(kaleoTask);
 		}
 	}
 
@@ -1515,7 +1511,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	public void removeByKaleoDefinitionId(long kaleoDefinitionId)
 		throws SystemException {
 		for (KaleoTask kaleoTask : findByKaleoDefinitionId(kaleoDefinitionId)) {
-			kaleoTaskPersistence.remove(kaleoTask);
+			remove(kaleoTask);
 		}
 	}
 
@@ -1529,7 +1525,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		throws NoSuchTaskException, SystemException {
 		KaleoTask kaleoTask = findByKaleoNodeId(kaleoNodeId);
 
-		kaleoTaskPersistence.remove(kaleoTask);
+		remove(kaleoTask);
 	}
 
 	/**
@@ -1539,7 +1535,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 */
 	public void removeAll() throws SystemException {
 		for (KaleoTask kaleoTask : findAll()) {
-			kaleoTaskPersistence.remove(kaleoTask);
+			remove(kaleoTask);
 		}
 	}
 

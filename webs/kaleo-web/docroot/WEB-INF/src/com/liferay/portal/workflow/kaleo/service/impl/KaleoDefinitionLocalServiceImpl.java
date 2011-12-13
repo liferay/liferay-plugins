@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
+import com.liferay.portal.workflow.kaleo.definition.Definition;
 import com.liferay.portal.workflow.kaleo.model.KaleoDefinition;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoDefinitionLocalServiceBaseImpl;
 
@@ -302,15 +303,15 @@ public class KaleoDefinitionLocalServiceImpl
 	}
 
 	public KaleoDefinition incrementKaleoDefinition(
-			String name, String title, ServiceContext serviceContext)
+			Definition definition, String title, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		KaleoDefinition kaleoDefinition = getLatestKaleoDefinition(
-			name, serviceContext);
+			definition.getName(), serviceContext);
 
 		return addKaleoDefinition(
-			kaleoDefinition.getName(), title, kaleoDefinition.getDescription(),
-			kaleoDefinition.getContent(), kaleoDefinition.getVersion() + 1,
+			definition.getName(), title, definition.getDescription(),
+			definition.getContent(), kaleoDefinition.getVersion() + 1,
 			serviceContext);
 	}
 

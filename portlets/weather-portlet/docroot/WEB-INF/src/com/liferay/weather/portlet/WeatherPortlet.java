@@ -76,7 +76,9 @@ public class WeatherPortlet extends MVCPortlet {
 		PortletConfig portletConfig = getPortletConfig();
 
 		SessionMessages.add(
-			actionRequest, portletConfig.getPortletName() + ".doEdit");
+			actionRequest,
+			portletConfig.getPortletName() +
+				SessionMessages.KEY_SUFFIX_UPDATED_PREFERENCES);
 	}
 
 }

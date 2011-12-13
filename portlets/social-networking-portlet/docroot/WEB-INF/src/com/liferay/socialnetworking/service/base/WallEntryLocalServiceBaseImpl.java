@@ -38,10 +38,6 @@ import com.liferay.portal.service.UserService;
 import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 
-import com.liferay.portlet.asset.service.AssetEntryLocalService;
-import com.liferay.portlet.asset.service.AssetEntryService;
-import com.liferay.portlet.asset.service.persistence.AssetEntryPersistence;
-
 import com.liferay.socialnetworking.model.WallEntry;
 import com.liferay.socialnetworking.service.MeetupsEntryLocalService;
 import com.liferay.socialnetworking.service.MeetupsRegistrationLocalService;
@@ -145,11 +141,9 @@ public abstract class WallEntryLocalServiceBaseImpl
 	 * Deletes the wall entry from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param wallEntry the wall entry
-	 * @throws PortalException
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteWallEntry(WallEntry wallEntry)
-		throws PortalException, SystemException {
+	public void deleteWallEntry(WallEntry wallEntry) throws SystemException {
 		wallEntryPersistence.remove(wallEntry);
 
 		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
@@ -582,62 +576,6 @@ public abstract class WallEntryLocalServiceBaseImpl
 		this.userPersistence = userPersistence;
 	}
 
-	/**
-	 * Returns the asset entry local service.
-	 *
-	 * @return the asset entry local service
-	 */
-	public AssetEntryLocalService getAssetEntryLocalService() {
-		return assetEntryLocalService;
-	}
-
-	/**
-	 * Sets the asset entry local service.
-	 *
-	 * @param assetEntryLocalService the asset entry local service
-	 */
-	public void setAssetEntryLocalService(
-		AssetEntryLocalService assetEntryLocalService) {
-		this.assetEntryLocalService = assetEntryLocalService;
-	}
-
-	/**
-	 * Returns the asset entry remote service.
-	 *
-	 * @return the asset entry remote service
-	 */
-	public AssetEntryService getAssetEntryService() {
-		return assetEntryService;
-	}
-
-	/**
-	 * Sets the asset entry remote service.
-	 *
-	 * @param assetEntryService the asset entry remote service
-	 */
-	public void setAssetEntryService(AssetEntryService assetEntryService) {
-		this.assetEntryService = assetEntryService;
-	}
-
-	/**
-	 * Returns the asset entry persistence.
-	 *
-	 * @return the asset entry persistence
-	 */
-	public AssetEntryPersistence getAssetEntryPersistence() {
-		return assetEntryPersistence;
-	}
-
-	/**
-	 * Sets the asset entry persistence.
-	 *
-	 * @param assetEntryPersistence the asset entry persistence
-	 */
-	public void setAssetEntryPersistence(
-		AssetEntryPersistence assetEntryPersistence) {
-		this.assetEntryPersistence = assetEntryPersistence;
-	}
-
 	public void afterPropertiesSet() {
 		PersistedModelLocalServiceRegistryUtil.register("com.liferay.socialnetworking.model.WallEntry",
 			wallEntryLocalService);
@@ -721,12 +659,6 @@ public abstract class WallEntryLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	@BeanReference(type = AssetEntryLocalService.class)
-	protected AssetEntryLocalService assetEntryLocalService;
-	@BeanReference(type = AssetEntryService.class)
-	protected AssetEntryService assetEntryService;
-	@BeanReference(type = AssetEntryPersistence.class)
-	protected AssetEntryPersistence assetEntryPersistence;
 	private static Log _log = LogFactoryUtil.getLog(WallEntryLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

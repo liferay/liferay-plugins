@@ -94,14 +94,6 @@ public class KaleoNodeUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static KaleoNode remove(KaleoNode kaleoNode)
-		throws SystemException {
-		return getPersistence().remove(kaleoNode);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static KaleoNode update(KaleoNode kaleoNode, boolean merge)

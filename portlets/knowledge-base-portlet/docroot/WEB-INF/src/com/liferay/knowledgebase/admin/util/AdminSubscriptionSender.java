@@ -98,7 +98,7 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 	protected boolean hasPermission(Subscription subscription, User user)
 		throws Exception {
 
-		String contextName = PrincipalThreadLocal.getName();
+		String name = PrincipalThreadLocal.getName();
 
 		PermissionChecker contextPermissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
@@ -115,7 +115,7 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 				permissionChecker, _kbArticle, ActionKeys.VIEW);
 		}
 		finally {
-			PrincipalThreadLocal.setName(contextName);
+			PrincipalThreadLocal.setName(name);
 
 			PermissionThreadLocal.setPermissionChecker(
 				contextPermissionChecker);

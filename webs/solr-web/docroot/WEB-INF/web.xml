@@ -8,4 +8,7 @@
 	<listener>
 		<listener-class>com.liferay.portal.kernel.spring.context.PortletContextLoaderListener</listener-class>
 	</listener>
+	<listener>
+		<listener-class>com.liferay.portal.search.solr.servlet.SolrServletContextListener</listener-class>
+	</listener>
 </web-app>

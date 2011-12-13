@@ -208,6 +208,23 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(gadget);
+	}
+
+	@Override
+	public void clearCache(List<Gadget> gadgets) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (Gadget gadget : gadgets) {
+			EntityCacheUtil.removeResult(GadgetModelImpl.ENTITY_CACHE_ENABLED,
+				GadgetImpl.class, gadget.getPrimaryKey());
+
+			clearUniqueFindersCache(gadget);
+		}
+	}
+
+	protected void clearUniqueFindersCache(Gadget gadget) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_U,
 			new Object[] { Long.valueOf(gadget.getCompanyId()), gadget.getUrl() });
 	}
@@ -234,20 +251,6 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	/**
 	 * Removes the gadget with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the gadget
-	 * @return the gadget that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a gadget with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Gadget remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the gadget with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param gadgetId the primary key of the gadget
 	 * @return the gadget that was removed
 	 * @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
@@ -255,24 +258,37 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 */
 	public Gadget remove(long gadgetId)
 		throws NoSuchGadgetException, SystemException {
+		return remove(Long.valueOf(gadgetId));
+	}
+
+	/**
+	 * Removes the gadget with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the gadget
+	 * @return the gadget that was removed
+	 * @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Gadget remove(Serializable primaryKey)
+		throws NoSuchGadgetException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			Gadget gadget = (Gadget)session.get(GadgetImpl.class,
-					Long.valueOf(gadgetId));
+			Gadget gadget = (Gadget)session.get(GadgetImpl.class, primaryKey);
 
 			if (gadget == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + gadgetId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchGadgetException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					gadgetId);
+					primaryKey);
 			}
 
-			return gadgetPersistence.remove(gadget);
+			return remove(gadget);
 		}
 		catch (NoSuchGadgetException nsee) {
 			throw nsee;
@@ -283,18 +299,6 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the gadget from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param gadget the gadget
-	 * @return the gadget that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Gadget remove(Gadget gadget) throws SystemException {
-		return super.remove(gadget);
 	}
 
 	@Override
@@ -315,20 +319,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		GadgetModelImpl gadgetModelImpl = (GadgetModelImpl)gadget;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_U,
-			new Object[] {
-				Long.valueOf(gadgetModelImpl.getCompanyId()),
-				
-			gadgetModelImpl.getUrl()
-			});
-
-		EntityCacheUtil.removeResult(GadgetModelImpl.ENTITY_CACHE_ENABLED,
-			GadgetImpl.class, gadget.getPrimaryKey());
+		clearCache(gadget);
 
 		return gadget;
 	}
@@ -2187,7 +2178,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 */
 	public void removeByUuid(String uuid) throws SystemException {
 		for (Gadget gadget : findByUuid(uuid)) {
-			gadgetPersistence.remove(gadget);
+			remove(gadget);
 		}
 	}
 
@@ -2199,7 +2190,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (Gadget gadget : findByCompanyId(companyId)) {
-			gadgetPersistence.remove(gadget);
+			remove(gadget);
 		}
 	}
 
@@ -2214,7 +2205,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		throws NoSuchGadgetException, SystemException {
 		Gadget gadget = findByC_U(companyId, url);
 
-		gadgetPersistence.remove(gadget);
+		remove(gadget);
 	}
 
 	/**
@@ -2224,7 +2215,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 */
 	public void removeAll() throws SystemException {
 		for (Gadget gadget : findAll()) {
-			gadgetPersistence.remove(gadget);
+			remove(gadget);
 		}
 	}
 

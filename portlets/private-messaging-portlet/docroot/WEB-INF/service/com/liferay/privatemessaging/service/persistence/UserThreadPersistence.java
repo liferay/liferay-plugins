@@ -14,7 +14,6 @@
 
 package com.liferay.privatemessaging.service.persistence;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 import com.liferay.privatemessaging.model.UserThread;
@@ -743,6 +742,4 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public UserThread remove(UserThread userThread) throws SystemException;
 }

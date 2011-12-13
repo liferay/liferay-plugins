@@ -10,10 +10,6 @@
 	$theme.include($top_head_include)
 </head>
 
-#if ($page_group.isUser())
-	#set($css_class = $css_class + " user-group")
-#end
-
 <body class="$css_class">
 
 $theme.include($body_top_include)
@@ -27,56 +23,70 @@ $theme.include($body_top_include)
 
 	<header id="banner" role="banner">
 		<hgroup id="heading">
-			<h1 class="company-title">
-				<a class="$logo_css_class" href="$company_url" title="#language("go-to") $company_name">
+			<div class="company-title">
+				<a class="$logo" href="$company_url" title="#language("go-to") $company_name">
 					<span>$company_name</span>
 				</a>
-			</h1>
+			</div>
 
-			<h2 class="community-title">
-				<a href="$community_default_url" title="#language("go-to") $community_name">
-					<span>$community_name</span>
-				</a>
-			</h2>
+			#if (!$page_group.isUser())
+				<div class="community-title">
+					<a href="$community_default_url" title="#language("go-to") $community_name">
+						<span>$community_name</span>
+					</a>
+				</div>
+			#end
 
 			<h3 class="page-title">
 				<span>$the_title</span>
 			</h3>
+
+			#if ($is_signed_in)
+				<div id="page-search">
+					$theme.search()
+				</div>
+			#end
 		</hgroup>
 
 		#if (!$is_signed_in)
 			<a href="$sign_in_url" id="sign-in" rel="nofollow">$sign_in_text</a>
 		#end
-
-		#if ($is_signed_in)
-			<div id="page-search">
-				$theme.search()
-			</div>
-		#end
-
-		#if ($has_navigation || ($page_group.isUser() && ($page_group.getClassPK() == $user_id)))
-			#parse ("$full_templates_path/navigation.vm")
-		#end
 	</header>
 
 	<div id="content">
-		<nav class="site-breadcrumbs" id="breadcrumbs">
-			<h1>
-				<span>#language("breadcrumbs")</span>
-			</h1>
+		<div id="so-sidebar">
+			#if ($page_group.isUser())
+				<div class="$user_detail_class">
+					<div class="profile-image">
+						<a href="$current_user_profile_url"><img src="$current_user_profile_portrait_url" alt="$current_user_name"></a>
+					</div>
 
-			#breadcrumbs()
-		</nav>
+					#if ($page_group.isUser() && !$layout.isPublicLayout())
+						<a href="$current_user_profile_url" class="profile-name">$current_user_name</a>
+					#end
+				</div>
+			#end
 
-		#if ($selectable)
-			$theme.include($content_include)
-		#else
-			$portletDisplay.recycle()
+			#if ($has_navigation)
+				#parse ("$full_templates_path/navigation.vm")
+			#end
 
-			$portletDisplay.setTitle($the_title)
+			#if ($page_group.isUser())
+				#parse ("$full_templates_path/sidebar_portlets.vm")
+			#end
+		</div>
 
-			$theme.wrapPortlet("portlet.vm", $content_include)
-		#end
+		<div id="so-context">
+			#if ($selectable)
+				$theme.include($content_include)
+			#else
+				$portletDisplay.recycle()
+
+				$portletDisplay.setTitle($the_title)
+
+				$theme.wrapPortlet("portlet.vm", $content_include)
+			#end
+		</div>
 	</div>
 
 	<footer id="footer" role="contentinfo">

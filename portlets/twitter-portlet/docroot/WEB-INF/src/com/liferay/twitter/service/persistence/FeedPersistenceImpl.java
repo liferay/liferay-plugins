@@ -184,6 +184,23 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(feed);
+	}
+
+	@Override
+	public void clearCache(List<Feed> feeds) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (Feed feed : feeds) {
+			EntityCacheUtil.removeResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
+				FeedImpl.class, feed.getPrimaryKey());
+
+			clearUniqueFindersCache(feed);
+		}
+	}
+
+	protected void clearUniqueFindersCache(Feed feed) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TWUI,
 			new Object[] {
 				Long.valueOf(feed.getCompanyId()),
@@ -216,43 +233,43 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	/**
 	 * Removes the feed with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the feed
-	 * @return the feed that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a feed with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Feed remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the feed with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param feedId the primary key of the feed
 	 * @return the feed that was removed
 	 * @throws com.liferay.twitter.NoSuchFeedException if a feed with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Feed remove(long feedId) throws NoSuchFeedException, SystemException {
+		return remove(Long.valueOf(feedId));
+	}
+
+	/**
+	 * Removes the feed with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the feed
+	 * @return the feed that was removed
+	 * @throws com.liferay.twitter.NoSuchFeedException if a feed with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Feed remove(Serializable primaryKey)
+		throws NoSuchFeedException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			Feed feed = (Feed)session.get(FeedImpl.class, Long.valueOf(feedId));
+			Feed feed = (Feed)session.get(FeedImpl.class, primaryKey);
 
 			if (feed == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + feedId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchFeedException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					feedId);
+					primaryKey);
 			}
 
-			return feedPersistence.remove(feed);
+			return remove(feed);
 		}
 		catch (NoSuchFeedException nsee) {
 			throw nsee;
@@ -263,18 +280,6 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the feed from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param feed the feed
-	 * @return the feed that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Feed remove(Feed feed) throws SystemException {
-		return super.remove(feed);
 	}
 
 	@Override
@@ -295,26 +300,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		FeedModelImpl feedModelImpl = (FeedModelImpl)feed;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TWUI,
-			new Object[] {
-				Long.valueOf(feedModelImpl.getCompanyId()),
-				Long.valueOf(feedModelImpl.getTwitterUserId())
-			});
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TSN,
-			new Object[] {
-				Long.valueOf(feedModelImpl.getCompanyId()),
-				
-			feedModelImpl.getTwitterScreenName()
-			});
-
-		EntityCacheUtil.removeResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
-			FeedImpl.class, feed.getPrimaryKey());
+		clearCache(feed);
 
 		return feed;
 	}
@@ -945,7 +931,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		throws NoSuchFeedException, SystemException {
 		Feed feed = findByC_TWUI(companyId, twitterUserId);
 
-		feedPersistence.remove(feed);
+		remove(feed);
 	}
 
 	/**
@@ -959,7 +945,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		throws NoSuchFeedException, SystemException {
 		Feed feed = findByC_TSN(companyId, twitterScreenName);
 
-		feedPersistence.remove(feed);
+		remove(feed);
 	}
 
 	/**
@@ -969,7 +955,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 */
 	public void removeAll() throws SystemException {
 		for (Feed feed : findAll()) {
-			feedPersistence.remove(feed);
+			remove(feed);
 		}
 	}
 

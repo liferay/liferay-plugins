@@ -95,14 +95,6 @@ public class CalendarResourceUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static CalendarResource remove(CalendarResource calendarResource)
-		throws SystemException {
-		return getPersistence().remove(calendarResource);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static CalendarResource update(CalendarResource calendarResource,

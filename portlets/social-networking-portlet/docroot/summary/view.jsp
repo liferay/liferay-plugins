@@ -24,6 +24,6 @@
 		<%@ include file="/summary/view_user.jspf" %>
 	</c:when>
 	<c:otherwise>
-		<%@ include file="/summary/view_community.jspf" %>
+		<%@ include file="/summary/view_site.jspf" %>
 	</c:otherwise>
 </c:choose>

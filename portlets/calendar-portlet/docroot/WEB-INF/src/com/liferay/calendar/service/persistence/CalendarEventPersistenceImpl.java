@@ -194,6 +194,23 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(calendarEvent);
+	}
+
+	@Override
+	public void clearCache(List<CalendarEvent> calendarEvents) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (CalendarEvent calendarEvent : calendarEvents) {
+			EntityCacheUtil.removeResult(CalendarEventModelImpl.ENTITY_CACHE_ENABLED,
+				CalendarEventImpl.class, calendarEvent.getPrimaryKey());
+
+			clearUniqueFindersCache(calendarEvent);
+		}
+	}
+
+	protected void clearUniqueFindersCache(CalendarEvent calendarEvent) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] {
 				calendarEvent.getUuid(),
@@ -223,20 +240,6 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 	/**
 	 * Removes the calendar event with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the calendar event
-	 * @return the calendar event that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a calendar event with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public CalendarEvent remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the calendar event with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param calendarEventId the primary key of the calendar event
 	 * @return the calendar event that was removed
 	 * @throws com.liferay.calendar.NoSuchEventException if a calendar event with the primary key could not be found
@@ -244,25 +247,38 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 	 */
 	public CalendarEvent remove(long calendarEventId)
 		throws NoSuchEventException, SystemException {
+		return remove(Long.valueOf(calendarEventId));
+	}
+
+	/**
+	 * Removes the calendar event with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the calendar event
+	 * @return the calendar event that was removed
+	 * @throws com.liferay.calendar.NoSuchEventException if a calendar event with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public CalendarEvent remove(Serializable primaryKey)
+		throws NoSuchEventException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			CalendarEvent calendarEvent = (CalendarEvent)session.get(CalendarEventImpl.class,
-					Long.valueOf(calendarEventId));
+					primaryKey);
 
 			if (calendarEvent == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-						calendarEventId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchEventException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					calendarEventId);
+					primaryKey);
 			}
 
-			return calendarEventPersistence.remove(calendarEvent);
+			return remove(calendarEvent);
 		}
 		catch (NoSuchEventException nsee) {
 			throw nsee;
@@ -273,19 +289,6 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the calendar event from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param calendarEvent the calendar event
-	 * @return the calendar event that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public CalendarEvent remove(CalendarEvent calendarEvent)
-		throws SystemException {
-		return super.remove(calendarEvent);
 	}
 
 	@Override
@@ -307,19 +310,7 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		CalendarEventModelImpl calendarEventModelImpl = (CalendarEventModelImpl)calendarEvent;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
-			new Object[] {
-				calendarEventModelImpl.getUuid(),
-				Long.valueOf(calendarEventModelImpl.getGroupId())
-			});
-
-		EntityCacheUtil.removeResult(CalendarEventModelImpl.ENTITY_CACHE_ENABLED,
-			CalendarEventImpl.class, calendarEvent.getPrimaryKey());
+		clearCache(calendarEvent);
 
 		return calendarEvent;
 	}
@@ -1195,7 +1186,7 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 	 */
 	public void removeByUuid(String uuid) throws SystemException {
 		for (CalendarEvent calendarEvent : findByUuid(uuid)) {
-			calendarEventPersistence.remove(calendarEvent);
+			remove(calendarEvent);
 		}
 	}
 
@@ -1210,7 +1201,7 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 		throws NoSuchEventException, SystemException {
 		CalendarEvent calendarEvent = findByUUID_G(uuid, groupId);
 
-		calendarEventPersistence.remove(calendarEvent);
+		remove(calendarEvent);
 	}
 
 	/**
@@ -1220,7 +1211,7 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 	 */
 	public void removeAll() throws SystemException {
 		for (CalendarEvent calendarEvent : findAll()) {
-			calendarEventPersistence.remove(calendarEvent);
+			remove(calendarEvent);
 		}
 	}
 

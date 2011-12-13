@@ -151,6 +151,17 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<Checkout> checkouts) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (Checkout checkout : checkouts) {
+			EntityCacheUtil.removeResult(CheckoutModelImpl.ENTITY_CACHE_ENABLED,
+				CheckoutImpl.class, checkout.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new checkout with the primary key. Does not add the checkout to the database.
 	 *
@@ -169,20 +180,6 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	/**
 	 * Removes the checkout with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the checkout
-	 * @return the checkout that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a checkout with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Checkout remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the checkout with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param checkoutId the primary key of the checkout
 	 * @return the checkout that was removed
 	 * @throws com.liferay.ams.NoSuchCheckoutException if a checkout with the primary key could not be found
@@ -190,24 +187,38 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	 */
 	public Checkout remove(long checkoutId)
 		throws NoSuchCheckoutException, SystemException {
+		return remove(Long.valueOf(checkoutId));
+	}
+
+	/**
+	 * Removes the checkout with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the checkout
+	 * @return the checkout that was removed
+	 * @throws com.liferay.ams.NoSuchCheckoutException if a checkout with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Checkout remove(Serializable primaryKey)
+		throws NoSuchCheckoutException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			Checkout checkout = (Checkout)session.get(CheckoutImpl.class,
-					Long.valueOf(checkoutId));
+					primaryKey);
 
 			if (checkout == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + checkoutId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchCheckoutException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					checkoutId);
+					primaryKey);
 			}
 
-			return checkoutPersistence.remove(checkout);
+			return remove(checkout);
 		}
 		catch (NoSuchCheckoutException nsee) {
 			throw nsee;
@@ -218,18 +229,6 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the checkout from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param checkout the checkout
-	 * @return the checkout that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Checkout remove(Checkout checkout) throws SystemException {
-		return super.remove(checkout);
 	}
 
 	@Override
@@ -250,11 +249,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(CheckoutModelImpl.ENTITY_CACHE_ENABLED,
-			CheckoutImpl.class, checkout.getPrimaryKey());
+		clearCache(checkout);
 
 		return checkout;
 	}
@@ -532,7 +527,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	 */
 	public void removeAll() throws SystemException {
 		for (Checkout checkout : findAll()) {
-			checkoutPersistence.remove(checkout);
+			remove(checkout);
 		}
 	}
 

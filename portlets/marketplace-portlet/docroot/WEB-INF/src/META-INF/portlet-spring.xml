@@ -5,6 +5,10 @@
 	<bean id="com.liferay.marketplace.service.AppLocalServiceUtil" class="com.liferay.marketplace.service.AppLocalServiceUtil">
 		<property name="service" ref="com.liferay.marketplace.service.AppLocalService" />
 	</bean>
+	<bean id="com.liferay.marketplace.service.AppService" class="com.liferay.marketplace.service.impl.AppServiceImpl" />
+	<bean id="com.liferay.marketplace.service.AppServiceUtil" class="com.liferay.marketplace.service.AppServiceUtil">
+		<property name="service" ref="com.liferay.marketplace.service.AppService" />
+	</bean>
 	<bean id="com.liferay.marketplace.service.persistence.AppPersistence" class="com.liferay.marketplace.service.persistence.AppPersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.marketplace.service.ModuleLocalService" class="com.liferay.marketplace.service.impl.ModuleLocalServiceImpl" />
 	<bean id="com.liferay.marketplace.service.ModuleLocalServiceUtil" class="com.liferay.marketplace.service.ModuleLocalServiceUtil">

@@ -94,13 +94,6 @@ public class FeedUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static Feed remove(Feed feed) throws SystemException {
-		return getPersistence().remove(feed);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static Feed update(Feed feed, boolean merge)

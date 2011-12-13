@@ -28,9 +28,7 @@ import java.util.Map;
  */
 public class WorkflowContextUtil {
 
-	public static String convert(
-		Map<String, Serializable> workflowContext) {
-
+	public static String convert(Map<String, Serializable> workflowContext) {
 		if (workflowContext == null) {
 			return StringPool.BLANK;
 		}
