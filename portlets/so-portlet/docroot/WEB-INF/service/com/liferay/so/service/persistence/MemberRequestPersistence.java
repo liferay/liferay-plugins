@@ -14,7 +14,6 @@
 
 package com.liferay.so.service.persistence;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 import com.liferay.so.model.MemberRequest;
@@ -536,7 +535,4 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public MemberRequest remove(MemberRequest memberRequest)
-		throws SystemException;
 }

@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.staging.StagingUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
@@ -32,7 +33,6 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.NoSuchInstanceException;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoInstanceLocalServiceBaseImpl;
-import com.liferay.portal.workflow.kaleo.util.GroupUtil;
 import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
@@ -70,7 +70,8 @@ public class KaleoInstanceLocalServiceImpl
 		KaleoInstance kaleoInstance =
 			kaleoInstancePersistence.create(kaleoInstanceId);
 
-		long groupId = GroupUtil.getGroupId(serviceContext);
+		long groupId = StagingUtil.getLiveGroupId(
+			serviceContext.getScopeGroupId());
 
 		kaleoInstance.setGroupId(groupId);
 

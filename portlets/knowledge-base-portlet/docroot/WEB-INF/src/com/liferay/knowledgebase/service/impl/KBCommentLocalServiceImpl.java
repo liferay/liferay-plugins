@@ -26,7 +26,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.asset.model.AssetEntry;
 
 import java.util.Date;
 import java.util.List;
@@ -77,8 +76,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void deleteKBComment (KBComment kbComment)
-		throws PortalException, SystemException {
+	public void deleteKBComment(KBComment kbComment) throws SystemException {
 
 		// KB comment
 
@@ -86,14 +84,12 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 
 		// Social
 
-		AssetEntry assetEntry = assetEntryLocalService.getEntry(
+		socialActivityLocalService.deleteActivities(
 			KBComment.class.getName(), kbComment.getKbCommentId());
-
-		socialActivityLocalService.deleteActivities(assetEntry);
 	}
 
 	@Override
-	public void deleteKBComment (long kbCommentId)
+	public void deleteKBComment(long kbCommentId)
 		throws PortalException, SystemException {
 
 		KBComment kbComment = kbCommentPersistence.findByPrimaryKey(
@@ -102,7 +98,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		deleteKBComment(kbComment);
 	}
 
-	public void deleteKBComments (String className, long classPK)
+	public void deleteKBComments(String className, long classPK)
 		throws PortalException, SystemException {
 
 		long classNameId = PortalUtil.getClassNameId(className);

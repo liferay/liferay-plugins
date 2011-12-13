@@ -28,7 +28,13 @@ public class ErrorLogExecutor extends OutputLogExecutor {
 	protected File getLogFile() {
 		File logFile = null;
 
-		if (ServerDetector.isJBoss()) {
+		if (ServerDetector.isGlassfish()) {
+			File logDirectory = new File(
+				System.getProperty("catalina.home"), "logs");
+
+			logFile = new File(logDirectory, "server.log");
+		}
+		else if (ServerDetector.isJBoss()) {
 			File logDirectory = new File(
 				System.getProperty("jboss.server.log.dir"));
 

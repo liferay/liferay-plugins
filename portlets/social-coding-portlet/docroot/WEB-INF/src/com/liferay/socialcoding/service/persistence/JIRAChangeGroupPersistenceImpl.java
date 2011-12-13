@@ -201,6 +201,17 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<JIRAChangeGroup> jiraChangeGroups) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (JIRAChangeGroup jiraChangeGroup : jiraChangeGroups) {
+			EntityCacheUtil.removeResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
+				JIRAChangeGroupImpl.class, jiraChangeGroup.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new j i r a change group with the primary key. Does not add the j i r a change group to the database.
 	 *
@@ -219,20 +230,6 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	/**
 	 * Removes the j i r a change group with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the j i r a change group
-	 * @return the j i r a change group that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a j i r a change group with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public JIRAChangeGroup remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the j i r a change group with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param jiraChangeGroupId the primary key of the j i r a change group
 	 * @return the j i r a change group that was removed
 	 * @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a j i r a change group with the primary key could not be found
@@ -240,25 +237,38 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 */
 	public JIRAChangeGroup remove(long jiraChangeGroupId)
 		throws NoSuchJIRAChangeGroupException, SystemException {
+		return remove(Long.valueOf(jiraChangeGroupId));
+	}
+
+	/**
+	 * Removes the j i r a change group with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the j i r a change group
+	 * @return the j i r a change group that was removed
+	 * @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a j i r a change group with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public JIRAChangeGroup remove(Serializable primaryKey)
+		throws NoSuchJIRAChangeGroupException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			JIRAChangeGroup jiraChangeGroup = (JIRAChangeGroup)session.get(JIRAChangeGroupImpl.class,
-					Long.valueOf(jiraChangeGroupId));
+					primaryKey);
 
 			if (jiraChangeGroup == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-						jiraChangeGroupId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchJIRAChangeGroupException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					jiraChangeGroupId);
+					primaryKey);
 			}
 
-			return jiraChangeGroupPersistence.remove(jiraChangeGroup);
+			return remove(jiraChangeGroup);
 		}
 		catch (NoSuchJIRAChangeGroupException nsee) {
 			throw nsee;
@@ -269,19 +279,6 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the j i r a change group from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param jiraChangeGroup the j i r a change group
-	 * @return the j i r a change group that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public JIRAChangeGroup remove(JIRAChangeGroup jiraChangeGroup)
-		throws SystemException {
-		return super.remove(jiraChangeGroup);
 	}
 
 	@Override
@@ -303,11 +300,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
-			JIRAChangeGroupImpl.class, jiraChangeGroup.getPrimaryKey());
+		clearCache(jiraChangeGroup);
 
 		return jiraChangeGroup;
 	}
@@ -1354,7 +1347,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 */
 	public void removeByJiraUserId(String jiraUserId) throws SystemException {
 		for (JIRAChangeGroup jiraChangeGroup : findByJiraUserId(jiraUserId)) {
-			jiraChangeGroupPersistence.remove(jiraChangeGroup);
+			remove(jiraChangeGroup);
 		}
 	}
 
@@ -1366,7 +1359,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 */
 	public void removeByJiraIssueId(long jiraIssueId) throws SystemException {
 		for (JIRAChangeGroup jiraChangeGroup : findByJiraIssueId(jiraIssueId)) {
-			jiraChangeGroupPersistence.remove(jiraChangeGroup);
+			remove(jiraChangeGroup);
 		}
 	}
 
@@ -1377,7 +1370,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 */
 	public void removeAll() throws SystemException {
 		for (JIRAChangeGroup jiraChangeGroup : findAll()) {
-			jiraChangeGroupPersistence.remove(jiraChangeGroup);
+			remove(jiraChangeGroup);
 		}
 	}
 

@@ -94,13 +94,6 @@ public class FooUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static Foo remove(Foo foo) throws SystemException {
-		return getPersistence().remove(foo);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static Foo update(Foo foo, boolean merge) throws SystemException {

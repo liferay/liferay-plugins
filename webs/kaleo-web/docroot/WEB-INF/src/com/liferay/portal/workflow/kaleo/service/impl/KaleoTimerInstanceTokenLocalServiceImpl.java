@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.scheduler.SchedulerEngineUtil;
 import com.liferay.portal.kernel.scheduler.StorageType;
 import com.liferay.portal.kernel.scheduler.Trigger;
 import com.liferay.portal.kernel.scheduler.messaging.SchedulerEventMessageListenerWrapper;
+import com.liferay.portal.kernel.staging.StagingUtil;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
@@ -42,7 +43,6 @@ import com.liferay.portal.workflow.kaleo.runtime.calendar.DefaultDueDateCalculat
 import com.liferay.portal.workflow.kaleo.runtime.calendar.DueDateCalculator;
 import com.liferay.portal.workflow.kaleo.runtime.timer.messaging.TimerMessageListener;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoTimerInstanceTokenLocalServiceBaseImpl;
-import com.liferay.portal.workflow.kaleo.util.GroupUtil;
 import com.liferay.portal.workflow.kaleo.util.SchedulerUtil;
 import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
@@ -83,7 +83,8 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 			kaleoTimerInstanceTokenPersistence.create(
 				kaleoTimerInstanceTokenId);
 
-		long groupId = GroupUtil.getGroupId(serviceContext);
+		long groupId = StagingUtil.getLiveGroupId(
+			serviceContext.getScopeGroupId());
 
 		kaleoTimerInstanceToken.setGroupId(groupId);
 

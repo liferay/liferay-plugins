@@ -12,26 +12,29 @@
 		<social-request-interpreter-class>com.liferay.contacts.contactscenter.social.ContactsCenterRequestInterpreter</social-request-interpreter-class>
 		<control-panel-entry-category>my</control-panel-entry-category>
 		<control-panel-entry-weight>3.0</control-panel-entry-weight>
-		<header-portlet-css>/contacts_center/css/main.jsp</header-portlet-css>
+		<header-portlet-css>/contacts_center/css/main.css</header-portlet-css>
+		<header-portlet-javascript>/contacts_center/js/main.js</header-portlet-javascript>
 		<css-class-wrapper>contacts-portlet</css-class-wrapper>
 		<add-default-resource>true</add-default-resource>
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
 		<icon>/contacts_center/icon.png</icon>
-		<header-portlet-css>/contacts_center/css/main.jsp</header-portlet-css>
+		<configuration-action-class>com.liferay.portal.kernel.portlet.DefaultConfigurationAction</configuration-action-class>
+		<instanceable>true</instanceable>
+		<header-portlet-css>/contacts_center/css/main.css</header-portlet-css>
 		<css-class-wrapper>contacts-portlet</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>3</portlet-name>
-		<icon>/my_contacts/icon.png</icon>
-		<header-portlet-css>/contacts_center/css/main.jsp</header-portlet-css>
+		<icon>/contacts_center/icon.png</icon>
+		<header-portlet-css>/contacts_center/css/main.css</header-portlet-css>
 		<css-class-wrapper>contacts-portlet</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>4</portlet-name>
-		<icon>/members/icon.png</icon>
-		<header-portlet-css>/contacts_center/css/main.jsp</header-portlet-css>
+		<icon>/contacts_center/icon.png</icon>
+		<header-portlet-css>/contacts_center/css/main.css</header-portlet-css>
 		<css-class-wrapper>contacts-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>

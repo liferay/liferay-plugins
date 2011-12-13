@@ -94,14 +94,6 @@ public class KaleoInstanceUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static KaleoInstance remove(KaleoInstance kaleoInstance)
-		throws SystemException {
-		return getPersistence().remove(kaleoInstance);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static KaleoInstance update(KaleoInstance kaleoInstance,

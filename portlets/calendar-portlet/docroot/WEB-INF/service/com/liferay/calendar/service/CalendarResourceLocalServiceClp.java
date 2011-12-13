@@ -150,11 +150,6 @@ public class CalendarResourceLocalServiceClp
 				"updateCalendarResource", long.class, java.util.Map.class,
 				java.util.Map.class, boolean.class,
 				com.liferay.portal.service.ServiceContext.class);
-
-		_updateCalendarResourceResourcesMethodKey31 = new MethodKey(_classLoaderProxy.getClassName(),
-				"updateCalendarResourceResources",
-				com.liferay.calendar.model.CalendarResource.class,
-				java.lang.String[].class, java.lang.String[].class);
 	}
 
 	public com.liferay.calendar.model.CalendarResource addCalendarResource(
@@ -1073,39 +1068,6 @@ public class CalendarResourceLocalServiceClp
 		return (com.liferay.calendar.model.CalendarResource)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void updateCalendarResourceResources(
-		com.liferay.calendar.model.CalendarResource calendarResource,
-		java.lang.String[] communityPermissions,
-		java.lang.String[] guestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateCalendarResourceResourcesMethodKey31,
-				ClpSerializer.translateInput(calendarResource),
-				ClpSerializer.translateInput(communityPermissions),
-				ClpSerializer.translateInput(guestPermissions));
-
-		try {
-			_classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
 	public ClassLoaderProxy getClassLoaderProxy() {
 		return _classLoaderProxy;
 	}
@@ -1142,5 +1104,4 @@ public class CalendarResourceLocalServiceClp
 	private MethodKey _searchMethodKey28;
 	private MethodKey _searchCountMethodKey29;
 	private MethodKey _updateCalendarResourceMethodKey30;
-	private MethodKey _updateCalendarResourceResourcesMethodKey31;
 }

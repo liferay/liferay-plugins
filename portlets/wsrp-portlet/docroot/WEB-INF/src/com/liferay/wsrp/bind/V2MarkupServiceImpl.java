@@ -239,8 +239,7 @@ public class V2MarkupServiceImpl
 
 		String rawContent = getRawContent(httpOptions);
 
-		String windowState = getWindowState(
-			getMarkup.getMarkupParams());
+		String windowState = getWindowState(getMarkup.getMarkupParams());
 
 		String content = getContent(rawContent, windowState);
 
@@ -270,7 +269,7 @@ public class V2MarkupServiceImpl
 
 		ResourceParams resourceParams = getResource.getResourceParams();
 
-		NamedString[] formParameters  = resourceParams.getFormParameters();
+		NamedString[] formParameters = resourceParams.getFormParameters();
 
 		if (formParameters != null) {
 			NavigationalContext navigationalContext =
@@ -445,7 +444,7 @@ public class V2MarkupServiceImpl
 		String namespace = PortalUtil.getPortletNamespace(
 			getPortletId(portletContext, navigationalContext));
 
-		NamedString[] formParameters  = interactionParams.getFormParameters();
+		NamedString[] formParameters = interactionParams.getFormParameters();
 
 		if (formParameters != null) {
 			for (NamedString formParameter : formParameters) {

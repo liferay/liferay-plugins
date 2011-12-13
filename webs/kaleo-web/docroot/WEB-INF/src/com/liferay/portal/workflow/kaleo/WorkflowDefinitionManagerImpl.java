@@ -306,6 +306,12 @@ public class WorkflowDefinitionManagerImpl
 		}
 	}
 
+	public void validateWorkflowDefinition(InputStream inputStream)
+		throws WorkflowException {
+
+		_workflowEngine.validateWorkflowDefinition(inputStream);
+	}
+
 	protected List<WorkflowDefinition> toWorkflowDefinitions(
 		List<KaleoDefinition> kaleoDefinitions) {
 

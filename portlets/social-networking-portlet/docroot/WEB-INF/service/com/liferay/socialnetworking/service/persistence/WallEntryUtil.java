@@ -95,14 +95,6 @@ public class WallEntryUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static WallEntry remove(WallEntry wallEntry)
-		throws SystemException {
-		return getPersistence().remove(wallEntry);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static WallEntry update(WallEntry wallEntry, boolean merge)

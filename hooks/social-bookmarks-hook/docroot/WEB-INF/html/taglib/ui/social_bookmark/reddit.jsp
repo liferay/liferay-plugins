@@ -31,7 +31,7 @@ if (displayStyle.equals("vertical")) {
 	<c:otherwise>
 		<script type="text/javascript">
 			reddit_newwindow = '1';
-			reddit_title = '<%= title %>';
+			reddit_title = '<%= HtmlUtil.escapeJS(title) %>';
 			reddit_url = '<%= url %>';
 		</script>
 

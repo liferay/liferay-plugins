@@ -244,7 +244,7 @@
 
 		<c:if test="<%= message.isAttachments() %>">
 
-			<div class="separator" /><!--  --></div>
+			<div class="separator" /><!-- --></div>
 
 			<%
 			String[] attachmentsFiles = message.getAttachmentsFiles();

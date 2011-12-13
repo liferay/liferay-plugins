@@ -22,7 +22,7 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.portlet.DefaultConfigurationAction;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.model.User;
+import com.liferay.portal.model.Layout;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.expando.service.ExpandoValueServiceUtil;
 
@@ -52,6 +52,8 @@ public abstract class BaseConfigurationAction
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
+		Layout layout = themeDisplay.getLayout();
+
 		JSONObject userPrefsJSONObject = JSONFactoryUtil.createJSONObject();
 
 		Map<String, UserPref> userPrefs = getUserPrefs(
@@ -68,15 +70,27 @@ public abstract class BaseConfigurationAction
 		String namespace = ShindigUtil.getPortletResourceNamespace(
 			actionRequest, themeDisplay);
 
-		String columnName = ShindigUtil.getColumnUserPrefs(namespace);
+		String columnName = ShindigUtil.getColumnUserPrefs(
+			namespace, themeDisplay);
 
 		ExpandoValueServiceUtil.addValue(
-			themeDisplay.getCompanyId(), User.class.getName(),
-			ShindigUtil.getTableOpenSocial(), columnName,
-			themeDisplay.getUserId(), userPrefsJSONObject.toString());
+			themeDisplay.getCompanyId(), Layout.class.getName(),
+			ShindigUtil.getTableOpenSocial(), columnName, layout.getPlid(),
+			userPrefsJSONObject.toString());
+
+		String portletResource = ParamUtil.getString(
+			actionRequest, "portletResource");
 
 		SessionMessages.add(
-			actionRequest, portletConfig.getPortletName() + ".doConfigure");
+			actionRequest,
+			portletConfig.getPortletName() +
+				SessionMessages.KEY_SUFFIX_REFRESH_PORTLET,
+			portletResource);
+
+		SessionMessages.add(
+			actionRequest,
+			portletConfig.getPortletName() +
+				SessionMessages.KEY_SUFFIX_UPDATED_CONFIGURATION);
 	}
 
 	protected void doRender(PortletConfig portletConfig,

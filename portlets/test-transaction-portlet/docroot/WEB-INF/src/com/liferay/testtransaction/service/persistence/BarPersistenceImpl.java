@@ -171,6 +171,17 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<Bar> bars) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (Bar bar : bars) {
+			EntityCacheUtil.removeResult(BarModelImpl.ENTITY_CACHE_ENABLED,
+				BarImpl.class, bar.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new bar with the primary key. Does not add the bar to the database.
 	 *
@@ -189,43 +200,43 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	/**
 	 * Removes the bar with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the bar
-	 * @return the bar that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a bar with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Bar remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the bar with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param barId the primary key of the bar
 	 * @return the bar that was removed
 	 * @throws com.liferay.testtransaction.NoSuchBarException if a bar with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Bar remove(long barId) throws NoSuchBarException, SystemException {
+		return remove(Long.valueOf(barId));
+	}
+
+	/**
+	 * Removes the bar with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the bar
+	 * @return the bar that was removed
+	 * @throws com.liferay.testtransaction.NoSuchBarException if a bar with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Bar remove(Serializable primaryKey)
+		throws NoSuchBarException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			Bar bar = (Bar)session.get(BarImpl.class, Long.valueOf(barId));
+			Bar bar = (Bar)session.get(BarImpl.class, primaryKey);
 
 			if (bar == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + barId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchBarException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					barId);
+					primaryKey);
 			}
 
-			return barPersistence.remove(bar);
+			return remove(bar);
 		}
 		catch (NoSuchBarException nsee) {
 			throw nsee;
@@ -236,18 +247,6 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the bar from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param bar the bar
-	 * @return the bar that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Bar remove(Bar bar) throws SystemException {
-		return super.remove(bar);
 	}
 
 	@Override
@@ -268,11 +267,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(BarModelImpl.ENTITY_CACHE_ENABLED,
-			BarImpl.class, bar.getPrimaryKey());
+		clearCache(bar);
 
 		return bar;
 	}
@@ -928,7 +923,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	 */
 	public void removeByText(String text) throws SystemException {
 		for (Bar bar : findByText(text)) {
-			barPersistence.remove(bar);
+			remove(bar);
 		}
 	}
 
@@ -939,7 +934,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	 */
 	public void removeAll() throws SystemException {
 		for (Bar bar : findAll()) {
-			barPersistence.remove(bar);
+			remove(bar);
 		}
 	}
 

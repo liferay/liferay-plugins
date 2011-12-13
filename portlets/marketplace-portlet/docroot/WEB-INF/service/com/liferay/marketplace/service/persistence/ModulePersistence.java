@@ -16,7 +16,6 @@ package com.liferay.marketplace.service.persistence;
 
 import com.liferay.marketplace.model.Module;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
@@ -588,6 +587,4 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public Module remove(Module module) throws SystemException;
 }

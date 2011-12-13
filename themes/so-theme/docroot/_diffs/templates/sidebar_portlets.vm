@@ -1,0 +1,26 @@
+#set ($instance_id = "")
+#set ($sidebar_portlet = "")
+#set ($sidebar_portlet_title = "")
+
+#if (!$layout.isPublicLayout())
+	#set ($instance_id = "s1po")
+	#set ($sidebar_portlet = "5_WAR_soportlet")
+	#set ($sidebar_portlet_title = $languageUtil.get($locale, "javax.portlet.title.134"))
+#else
+	#set ($instance_id = "cona")
+	#set ($sidebar_portlet = "3_WAR_contactsportlet")
+	#set ($sidebar_portlet_title = $languageUtil.format($locale, "x's-contacts", $current_user.getFirstName()))
+#end
+
+<hr />
+
+<h3>$sidebar_portlet_title</h3>
+
+$velocityPortletPreferences.setValue("displayStyle", "0")
+$velocityPortletPreferences.setValue("portletSetupShowBorders", "false")
+
+$theme.runtime($sidebar_portlet, "", $velocityPortletPreferences.toString())
+
+#set ($queryString = "param1=value1&param2=value2")
+
+$velocityPortletPreferences.reset()

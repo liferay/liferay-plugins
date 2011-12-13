@@ -78,13 +78,11 @@ public interface KBCommentLocalService extends PersistedModelLocalService {
 	* Deletes the k b comment from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kbComment the k b comment
-	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
 	public void deleteKBComment(
 		com.liferay.knowledgebase.model.KBComment kbComment)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.

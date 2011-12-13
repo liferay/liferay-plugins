@@ -16,9 +16,11 @@ package com.liferay.marketplace.model.impl;
 
 import com.liferay.marketplace.model.App;
 import com.liferay.marketplace.model.AppModel;
+import com.liferay.marketplace.model.AppSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -35,7 +37,9 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * The base model implementation for the App service. Represents a row in the &quot;Marketplace_App&quot; database table, with each column mapped to a property of this class.
@@ -50,6 +54,7 @@ import java.util.Date;
  * @see com.liferay.marketplace.model.AppModel
  * @generated
  */
+@JSON(strict = true)
 public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -85,6 +90,45 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 	public static long COMPANYID_COLUMN_BITMASK = 1L;
 	public static long REMOTEAPPID_COLUMN_BITMASK = 2L;
 	public static long UUID_COLUMN_BITMASK = 4L;
+
+	/**
+	 * Converts the soap model instance into a normal model instance.
+	 *
+	 * @param soapModel the soap model instance to convert
+	 * @return the normal model instance
+	 */
+	public static App toModel(AppSoap soapModel) {
+		App model = new AppImpl();
+
+		model.setUuid(soapModel.getUuid());
+		model.setAppId(soapModel.getAppId());
+		model.setCompanyId(soapModel.getCompanyId());
+		model.setUserId(soapModel.getUserId());
+		model.setUserName(soapModel.getUserName());
+		model.setCreateDate(soapModel.getCreateDate());
+		model.setModifiedDate(soapModel.getModifiedDate());
+		model.setRemoteAppId(soapModel.getRemoteAppId());
+		model.setVersion(soapModel.getVersion());
+
+		return model;
+	}
+
+	/**
+	 * Converts the soap model instances into normal model instances.
+	 *
+	 * @param soapModels the soap model instances to convert
+	 * @return the normal model instances
+	 */
+	public static List<App> toModels(AppSoap[] soapModels) {
+		List<App> models = new ArrayList<App>(soapModels.length);
+
+		for (AppSoap soapModel : soapModels) {
+			models.add(toModel(soapModel));
+		}
+
+		return models;
+	}
+
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.marketplace.model.App"));
 
@@ -115,6 +159,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		return App.class.getName();
 	}
 
+	@JSON
 	public String getUuid() {
 		if (_uuid == null) {
 			return StringPool.BLANK;
@@ -136,6 +181,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		return GetterUtil.getString(_originalUuid);
 	}
 
+	@JSON
 	public long getAppId() {
 		return _appId;
 	}
@@ -144,6 +190,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		_appId = appId;
 	}
 
+	@JSON
 	public long getCompanyId() {
 		return _companyId;
 	}
@@ -164,6 +211,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		return _originalCompanyId;
 	}
 
+	@JSON
 	public long getUserId() {
 		return _userId;
 	}
@@ -180,6 +228,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		_userUuid = userUuid;
 	}
 
+	@JSON
 	public String getUserName() {
 		if (_userName == null) {
 			return StringPool.BLANK;
@@ -193,6 +242,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		_userName = userName;
 	}
 
+	@JSON
 	public Date getCreateDate() {
 		return _createDate;
 	}
@@ -201,6 +251,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		_createDate = createDate;
 	}
 
+	@JSON
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
@@ -209,6 +260,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		_modifiedDate = modifiedDate;
 	}
 
+	@JSON
 	public long getRemoteAppId() {
 		return _remoteAppId;
 	}
@@ -229,6 +281,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		return _originalRemoteAppId;
 	}
 
+	@JSON
 	public String getVersion() {
 		if (_version == null) {
 			return StringPool.BLANK;

@@ -42,8 +42,6 @@ import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import com.liferay.portlet.asset.service.persistence.AssetEntryPersistence;
-
 import com.liferay.socialnetworking.NoSuchWallEntryException;
 import com.liferay.socialnetworking.model.WallEntry;
 import com.liferay.socialnetworking.model.impl.WallEntryImpl;
@@ -212,6 +210,17 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<WallEntry> wallEntries) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (WallEntry wallEntry : wallEntries) {
+			EntityCacheUtil.removeResult(WallEntryModelImpl.ENTITY_CACHE_ENABLED,
+				WallEntryImpl.class, wallEntry.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new wall entry with the primary key. Does not add the wall entry to the database.
 	 *
@@ -230,20 +239,6 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	/**
 	 * Removes the wall entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the wall entry
-	 * @return the wall entry that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a wall entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public WallEntry remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the wall entry with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param wallEntryId the primary key of the wall entry
 	 * @return the wall entry that was removed
 	 * @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
@@ -251,24 +246,38 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 */
 	public WallEntry remove(long wallEntryId)
 		throws NoSuchWallEntryException, SystemException {
+		return remove(Long.valueOf(wallEntryId));
+	}
+
+	/**
+	 * Removes the wall entry with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the wall entry
+	 * @return the wall entry that was removed
+	 * @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public WallEntry remove(Serializable primaryKey)
+		throws NoSuchWallEntryException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			WallEntry wallEntry = (WallEntry)session.get(WallEntryImpl.class,
-					Long.valueOf(wallEntryId));
+					primaryKey);
 
 			if (wallEntry == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + wallEntryId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchWallEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					wallEntryId);
+					primaryKey);
 			}
 
-			return wallEntryPersistence.remove(wallEntry);
+			return remove(wallEntry);
 		}
 		catch (NoSuchWallEntryException nsee) {
 			throw nsee;
@@ -279,18 +288,6 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the wall entry from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param wallEntry the wall entry
-	 * @return the wall entry that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public WallEntry remove(WallEntry wallEntry) throws SystemException {
-		return super.remove(wallEntry);
 	}
 
 	@Override
@@ -312,11 +309,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(WallEntryModelImpl.ENTITY_CACHE_ENABLED,
-			WallEntryImpl.class, wallEntry.getPrimaryKey());
+		clearCache(wallEntry);
 
 		return wallEntry;
 	}
@@ -1722,7 +1715,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 */
 	public void removeByGroupId(long groupId) throws SystemException {
 		for (WallEntry wallEntry : findByGroupId(groupId)) {
-			wallEntryPersistence.remove(wallEntry);
+			remove(wallEntry);
 		}
 	}
 
@@ -1734,7 +1727,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 */
 	public void removeByUserId(long userId) throws SystemException {
 		for (WallEntry wallEntry : findByUserId(userId)) {
-			wallEntryPersistence.remove(wallEntry);
+			remove(wallEntry);
 		}
 	}
 
@@ -1748,7 +1741,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	public void removeByG_U(long groupId, long userId)
 		throws SystemException {
 		for (WallEntry wallEntry : findByG_U(groupId, userId)) {
-			wallEntryPersistence.remove(wallEntry);
+			remove(wallEntry);
 		}
 	}
 
@@ -1759,7 +1752,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 */
 	public void removeAll() throws SystemException {
 		for (WallEntry wallEntry : findAll()) {
-			wallEntryPersistence.remove(wallEntry);
+			remove(wallEntry);
 		}
 	}
 
@@ -2006,8 +1999,6 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	@BeanReference(type = AssetEntryPersistence.class)
-	protected AssetEntryPersistence assetEntryPersistence;
 	private static final String _SQL_SELECT_WALLENTRY = "SELECT wallEntry FROM WallEntry wallEntry";
 	private static final String _SQL_SELECT_WALLENTRY_WHERE = "SELECT wallEntry FROM WallEntry wallEntry WHERE ";
 	private static final String _SQL_COUNT_WALLENTRY = "SELECT COUNT(wallEntry) FROM WallEntry wallEntry";

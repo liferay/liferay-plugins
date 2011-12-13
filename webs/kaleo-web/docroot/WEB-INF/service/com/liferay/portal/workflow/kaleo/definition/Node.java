@@ -50,8 +50,8 @@ public abstract class Node implements ActionAware, NotificationAware {
 
 		Node node = (Node)obj;
 
-		if (Validator.equals(_name, node._name)) {
-			return true;
+		if (!Validator.equals(_name, node._name)) {
+			return false;
 		}
 
 		return true;

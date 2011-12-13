@@ -17,9 +17,9 @@
 <%@ include file="/init.jsp" %>
 
 <%
-boolean communityProfileMap = false;
 boolean friendsProfileMap = false;
 boolean organizationProfileMap = false;
+boolean siteProfileMap = false;
 boolean userProfileMap = false;
 
 if ((user2 != null) && layout.getFriendlyURL().equals("/friends")) {
@@ -32,10 +32,10 @@ else if (user2 != null) {
 	userProfileMap = true;
 }
 else {
-	communityProfileMap = true;
+	siteProfileMap = true;
 }
 
-if (communityProfileMap || organizationProfileMap) {
+if (organizationProfileMap || siteProfileMap) {
 	renderResponse.setTitle(LanguageUtil.format(pageContext, "where-are-the-x-members", group.getDescriptiveName()));
 }
 else if (friendsProfileMap) {
@@ -97,7 +97,7 @@ boolean ipGeocoderConfigured = ipGeocoderInstalled && (IPGeocoderUtil.getIPInfo(
 					<%
 					List<User> users = null;
 
-					if (communityProfileMap) {
+					if (siteProfileMap) {
 						LinkedHashMap<String, Object> userParams = new LinkedHashMap<String, Object>();
 
 						userParams.put("usersGroups", new Long(group.getGroupId()));

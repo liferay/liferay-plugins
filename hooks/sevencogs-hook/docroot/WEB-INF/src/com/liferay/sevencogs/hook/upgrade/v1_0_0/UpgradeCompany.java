@@ -41,6 +41,7 @@ import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
+import com.liferay.portal.security.auth.PrincipalThreadLocal;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
@@ -297,7 +298,7 @@ public class UpgradeCompany extends UpgradeProcess {
 			group.getCreatorUserId(), group.getGroupId(), privateLayout,
 			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, name, StringPool.BLANK,
 			StringPool.BLANK, LayoutConstants.TYPE_PORTLET, false, friendlyURL,
-			false, serviceContext);
+			serviceContext);
 
 		LayoutTypePortlet layoutTypePortlet =
 			(LayoutTypePortlet)layout.getLayoutType();
@@ -446,6 +447,11 @@ public class UpgradeCompany extends UpgradeProcess {
 			locale, firstName, middleName, lastName, prefixId, suffixId, male,
 			birthdayMonth, birthdayDay, birthdayYear, jobTitle, groupIds,
 			organizationIds, roleIds, userGroupIds, sendEmail, serviceContext);
+
+		UserLocalServiceUtil.updateLastLogin(
+			user.getUserId(), user.getLoginIP());
+
+		UserLocalServiceUtil.updatePasswordReset(user.getUserId(), false);
 
 		byte[] portrait = getBytes(
 			"/users/images/" + screenName + "_portrait.jpg");
@@ -613,6 +619,11 @@ public class UpgradeCompany extends UpgradeProcess {
 			UserLocalServiceUtil.deleteUser(user.getUserId());
 		}
 
+		// Organizations
+
+		deleteOrganizations(
+			companyId, OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID);
+
 		// Groups
 
 		List<Group> groups = GroupLocalServiceUtil.search(
@@ -640,11 +651,6 @@ public class UpgradeCompany extends UpgradeProcess {
 					group.getGroupId(), true, serviceContext);
 			}
 		}
-
-		// Organizations
-
-		deleteOrganizations(
-			companyId, OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID);
 	}
 
 	protected void configureJournalContent(
@@ -700,16 +706,26 @@ public class UpgradeCompany extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		long companyId = PortalUtil.getDefaultCompanyId();
+		String name = PrincipalThreadLocal.getName();
 
-		long defaultUserId = UserLocalServiceUtil.getDefaultUserId(companyId);
+		try {
+			long companyId = PortalUtil.getDefaultCompanyId();
 
-		clearData(companyId);
-		setupCommunities(companyId, defaultUserId);
-		setupOrganizations(companyId, defaultUserId);
-		setupRoles(companyId, defaultUserId);
-		setupUsers(companyId);
-		setupWorkflow(companyId, defaultUserId);
+			long defaultUserId = UserLocalServiceUtil.getDefaultUserId(
+				companyId);
+
+			PrincipalThreadLocal.setName(defaultUserId);
+
+			clearData(companyId);
+			setupCommunities(companyId, defaultUserId);
+			setupOrganizations(companyId, defaultUserId);
+			setupRoles(companyId, defaultUserId);
+			setupUsers(companyId);
+			setupWorkflow(companyId, defaultUserId);
+		}
+		finally {
+			PrincipalThreadLocal.setName(name);
+		}
 	}
 
 	protected byte[] getBytes(String path) throws Exception {
@@ -1174,8 +1190,7 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		// Home layout
 
-		Layout layout = addLayout(
-			group, "Home", false, "/home", "home");
+		Layout layout = addLayout(group, "Home", false, "/home", "home");
 
 		// Home Page Banner content portlet
 
@@ -1718,8 +1733,7 @@ public class UpgradeCompany extends UpgradeProcess {
 			LocaleUtil.getDefault(),
 			"Writers are responsible for creating content.");
 
-		Role writerRole = RoleLocalServiceUtil.fetchRole(
-			companyId, "Writer");
+		Role writerRole = RoleLocalServiceUtil.fetchRole(companyId, "Writer");
 
 		if (writerRole == null) {
 			writerRole = RoleLocalServiceUtil.addRole(
@@ -1759,8 +1773,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		Role publisherRole = RoleLocalServiceUtil.getRole(
 			companyId, "Publisher");
 
-		Role writerRole = RoleLocalServiceUtil.getRole(
-			companyId, "Writer");
+		Role writerRole = RoleLocalServiceUtil.getRole(companyId, "Writer");
 
 		// Users
 
@@ -1804,8 +1817,7 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		serviceContext.setAssetTagNames(
 			new String[] {"new", "features", "control panel"});
-		serviceContext.setAssetCategoryIds(
-			new long[] {
+		serviceContext.setAssetCategoryIds(new long[] {
 				learningAssetCategory.getCategoryId(),
 				liferayAssetCategory.getCategoryId()
 			});
@@ -1815,13 +1827,11 @@ public class UpgradeCompany extends UpgradeProcess {
 			brunoUser.getUserId(), "New Control Panel!!",
 			"/users/blogs/controlpanel.xml", serviceContext);
 
-		serviceContext.setAssetCategoryIds(
-			new long[] {
+		serviceContext.setAssetCategoryIds(new long[] {
 				learningAssetCategory.getCategoryId(),
 				liferayAssetCategory.getCategoryId()
 			});
-		serviceContext.setAssetTagNames(
-			new String[] {
+		serviceContext.setAssetTagNames(new String[] {
 				"configuration", "portal.properties", "customization"
 			});
 
@@ -1830,8 +1840,7 @@ public class UpgradeCompany extends UpgradeProcess {
 			"Configuration of the portal: portal.properties",
 			"/users/blogs/portalproperties.xml", serviceContext);
 
-		serviceContext.setAssetCategoryIds(
-			new long[] {
+		serviceContext.setAssetCategoryIds(new long[] {
 				learningAssetCategory.getCategoryId(),
 				liferayAssetCategory.getCategoryId()
 			});
@@ -1843,8 +1852,7 @@ public class UpgradeCompany extends UpgradeProcess {
 			kendraUser.getUserId(), "Using the wiki", "/users/blogs/wiki.xml",
 			serviceContext);
 
-		serviceContext.setAssetCategoryIds(
-			new long[] {
+		serviceContext.setAssetCategoryIds(new long[] {
 				learningAssetCategory.getCategoryId(),
 				liferayAssetCategory.getCategoryId()
 			});

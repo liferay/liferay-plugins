@@ -56,6 +56,14 @@ public class GadgetServiceUtil {
 		getService().deleteGadget(gadgetId, serviceContext);
 	}
 
+	public static void updateGadget(long gadgetId,
+		java.lang.String portletCategoryNames,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().updateGadget(gadgetId, portletCategoryNames, serviceContext);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

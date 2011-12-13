@@ -32,6 +32,7 @@ import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.util.CookieUtil;
 import com.liferay.util.Encryptor;
+import com.liferay.util.EncryptorException;
 
 import java.io.IOException;
 
@@ -86,14 +87,20 @@ public class ShindigFilter extends InjectedFilter {
 		String userUUID = StringPool.BLANK;
 
 		try {
-			Company company = CompanyLocalServiceUtil.getCompany(
-				companyId);
+			Company company = CompanyLocalServiceUtil.getCompany(companyId);
 
 			String userUUIDString = CookieUtil.get(
 				(HttpServletRequest)servletRequest, CookieKeys.USER_UUID);
 
+			if (Validator.isNull(userUUIDString)) {
+				return false;
+			}
+
 			userUUID = GetterUtil.getString(
 				Encryptor.decrypt(company.getKeyObj(), userUUIDString));
+		}
+		catch (EncryptorException ee) {
+			return false;
 		}
 		catch (Exception e) {
 			_log.error(e, e);

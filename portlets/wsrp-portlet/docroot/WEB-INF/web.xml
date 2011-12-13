@@ -9,10 +9,6 @@
 		<param-name>portalContextConfigLocation</param-name>
 		<param-value>/WEB-INF/classes/META-INF/management-spring.xml</param-value>
 	</context-param>
-	<context-param>
-		<param-name>portlets-ready-by-default</param-name>
-		<param-value>false</param-value>
-	</context-param>
 	<filter>
 		<filter-name>Axis Clean Up Filter</filter-name>
 		<filter-class>com.liferay.util.axis.AxisCleanUpFilter</filter-class>

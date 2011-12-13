@@ -317,16 +317,6 @@ public class CalendarEventLocalServiceWrapper
 			secondReminder, serviceContext);
 	}
 
-	public void updateCalendarEventResources(
-		com.liferay.calendar.model.CalendarEvent calendarEvent,
-		java.lang.String[] communityPermissions,
-		java.lang.String[] guestPermissions)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		_calendarEventLocalService.updateCalendarEventResources(calendarEvent,
-			communityPermissions, guestPermissions);
-	}
-
 	/**
 	 * @deprecated Renamed to {@link #getWrappedService}
 	 */

@@ -16,12 +16,14 @@ package com.liferay.marketplace.store.portlet;
 
 import com.liferay.marketplace.model.App;
 import com.liferay.marketplace.service.AppLocalServiceUtil;
+import com.liferay.marketplace.service.AppServiceUtil;
 import com.liferay.marketplace.util.MarketplaceUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -51,23 +53,33 @@ public class StorePortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
+		String token = ParamUtil.getString(actionRequest, "token");
 		long remoteAppId = ParamUtil.getLong(actionRequest, "appId");
-		String version = ParamUtil.getString(actionRequest, "version");
 		String url = ParamUtil.getString(actionRequest, "url");
+		String version = ParamUtil.getString(actionRequest, "version");
 
-		URL urlObj = new URL(url);
+		String encodedClientId = MarketplaceUtil.encodeClientId(
+			themeDisplay.getCompanyId(), themeDisplay.getUserId(), token);
+
+		StringBundler sb = new StringBundler(5);
+
+		sb.append(url);
+		sb.append(StringPool.SLASH);
+		sb.append(encodedClientId);
+		sb.append(StringPool.SLASH);
+		sb.append(token);
+
+		URL urlObj = new URL(sb.toString());
 
 		InputStream inputStream = urlObj.openStream();
 
 		App app = AppLocalServiceUtil.fetchRemoteApp(remoteAppId);
 
 		if (app == null) {
-			app = AppLocalServiceUtil.addApp(
-				themeDisplay.getUserId(), remoteAppId, version,
-				inputStream);
+			app = AppServiceUtil.addApp(remoteAppId, version, inputStream);
 		}
 		else {
-			app = AppLocalServiceUtil.updateApp(
+			app = AppServiceUtil.updateApp(
 				app.getAppId(), version, inputStream);
 		}
 
@@ -100,12 +112,8 @@ public class StorePortlet extends MVCPortlet {
 
 		String token = ParamUtil.getString(actionRequest, "token");
 
-		String clientId = ExpandoValueLocalServiceUtil.getData(
-			themeDisplay.getCompanyId(), User.class.getName(), "MP",
-			"client-id", themeDisplay.getUserId(), "default-client-id");
-
 		String encodedClientId = MarketplaceUtil.encodeClientId(
-			clientId, token);
+			themeDisplay.getCompanyId(), themeDisplay.getUserId(), token);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
@@ -121,7 +129,7 @@ public class StorePortlet extends MVCPortlet {
 
 		long remoteAppId = ParamUtil.getLong(actionRequest, "appId");
 
-		AppLocalServiceUtil.installApp(remoteAppId);
+		AppServiceUtil.installApp(remoteAppId);
 
 		JSONObject jsonObject = getAppJSONObject(remoteAppId);
 
@@ -170,9 +178,9 @@ public class StorePortlet extends MVCPortlet {
 
 			App app = AppLocalServiceUtil.fetchRemoteApp(remoteAppId);
 
-			AppLocalServiceUtil.updateApp(app.getAppId(), version, inputStream);
+			AppServiceUtil.updateApp(app.getAppId(), version, inputStream);
 
-			AppLocalServiceUtil.installApp(remoteAppId);
+			AppServiceUtil.installApp(remoteAppId);
 
 			JSONObject jsonObject = getAppJSONObject(remoteAppId);
 
@@ -189,7 +197,7 @@ public class StorePortlet extends MVCPortlet {
 
 		long remoteAppId = ParamUtil.getLong(actionRequest, "appId");
 
-		AppLocalServiceUtil.uninstallApp(remoteAppId);
+		AppServiceUtil.uninstallApp(remoteAppId);
 
 		JSONObject jsonObject = getAppJSONObject(remoteAppId);
 

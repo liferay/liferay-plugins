@@ -76,7 +76,7 @@ public class AnnouncementsEntryServiceImpl
 					permissionChecker, plid, PortletKeys.ANNOUNCEMENTS,
 					ActionKeys.ADD_ENTRY);
 
-				announcementEntry =	AnnouncementsEntryLocalServiceUtil.addEntry(
+				announcementEntry = AnnouncementsEntryLocalServiceUtil.addEntry(
 					permissionChecker.getUserId(), classNameId, classPK, title,
 					content, url, type, displayDateMonth, displayDateDay,
 					displayDateYear, displayDateHour, displayDateMinute,

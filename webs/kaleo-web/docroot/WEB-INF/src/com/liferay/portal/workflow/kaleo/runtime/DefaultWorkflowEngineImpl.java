@@ -426,6 +426,21 @@ public class DefaultWorkflowEngineImpl
 		}
 	}
 
+	public void validateWorkflowDefinition(InputStream inputStream)
+		throws WorkflowException {
+
+		try {
+			Definition definition = _workflowModelParser.parse(inputStream);
+
+			if (_workflowValidator != null) {
+				_workflowValidator.validate(definition);
+			}
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+	}
+
 	protected KaleoInstance doUpdateContext(
 			long workflowInstanceId, Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)

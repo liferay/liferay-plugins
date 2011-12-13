@@ -165,7 +165,8 @@ public class KaleoDefinitionLocalServiceClp
 				com.liferay.portal.service.ServiceContext.class);
 
 		_incrementKaleoDefinitionMethodKey34 = new MethodKey(_classLoaderProxy.getClassName(),
-				"incrementKaleoDefinition", java.lang.String.class,
+				"incrementKaleoDefinition",
+				com.liferay.portal.workflow.kaleo.definition.Definition.class,
 				java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
@@ -1164,14 +1165,15 @@ public class KaleoDefinitionLocalServiceClp
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition incrementKaleoDefinition(
-		java.lang.String name, java.lang.String title,
+		com.liferay.portal.workflow.kaleo.definition.Definition definition,
+		java.lang.String title,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_incrementKaleoDefinitionMethodKey34,
-				ClpSerializer.translateInput(name),
+				ClpSerializer.translateInput(definition),
 				ClpSerializer.translateInput(title),
 				ClpSerializer.translateInput(serviceContext));
 

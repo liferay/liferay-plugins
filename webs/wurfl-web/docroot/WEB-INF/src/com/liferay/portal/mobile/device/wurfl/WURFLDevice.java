@@ -115,8 +115,7 @@ public class WURFLDevice extends AbstractDevice {
 	}
 
 	public boolean isTablet() {
-		Capability capability = _capabilities.get(
-			WURFLConstants.IS_TABLET);
+		Capability capability = _capabilities.get(WURFLConstants.IS_TABLET);
 
 		return GetterUtil.getBoolean(capability.getValue(), false);
 	}

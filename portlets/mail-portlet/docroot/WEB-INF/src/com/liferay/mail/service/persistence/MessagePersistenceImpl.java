@@ -207,6 +207,23 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(message);
+	}
+
+	@Override
+	public void clearCache(List<Message> messages) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (Message message : messages) {
+			EntityCacheUtil.removeResult(MessageModelImpl.ENTITY_CACHE_ENABLED,
+				MessageImpl.class, message.getPrimaryKey());
+
+			clearUniqueFindersCache(message);
+		}
+	}
+
+	protected void clearUniqueFindersCache(Message message) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_F_R,
 			new Object[] {
 				Long.valueOf(message.getFolderId()),
@@ -232,20 +249,6 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	/**
 	 * Removes the message with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the message
-	 * @return the message that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a message with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Message remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the message with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param messageId the primary key of the message
 	 * @return the message that was removed
 	 * @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
@@ -253,24 +256,37 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 */
 	public Message remove(long messageId)
 		throws NoSuchMessageException, SystemException {
+		return remove(Long.valueOf(messageId));
+	}
+
+	/**
+	 * Removes the message with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the message
+	 * @return the message that was removed
+	 * @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Message remove(Serializable primaryKey)
+		throws NoSuchMessageException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			Message message = (Message)session.get(MessageImpl.class,
-					Long.valueOf(messageId));
+			Message message = (Message)session.get(MessageImpl.class, primaryKey);
 
 			if (message == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + messageId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchMessageException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					messageId);
+					primaryKey);
 			}
 
-			return messagePersistence.remove(message);
+			return remove(message);
 		}
 		catch (NoSuchMessageException nsee) {
 			throw nsee;
@@ -281,18 +297,6 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the message from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param message the message
-	 * @return the message that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Message remove(Message message) throws SystemException {
-		return super.remove(message);
 	}
 
 	@Override
@@ -313,19 +317,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		MessageModelImpl messageModelImpl = (MessageModelImpl)message;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_F_R,
-			new Object[] {
-				Long.valueOf(messageModelImpl.getFolderId()),
-				Long.valueOf(messageModelImpl.getRemoteMessageId())
-			});
-
-		EntityCacheUtil.removeResult(MessageModelImpl.ENTITY_CACHE_ENABLED,
-			MessageImpl.class, message.getPrimaryKey());
+		clearCache(message);
 
 		return message;
 	}
@@ -1517,7 +1509,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (Message message : findByCompanyId(companyId)) {
-			messagePersistence.remove(message);
+			remove(message);
 		}
 	}
 
@@ -1529,7 +1521,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 */
 	public void removeByFolderId(long folderId) throws SystemException {
 		for (Message message : findByFolderId(folderId)) {
-			messagePersistence.remove(message);
+			remove(message);
 		}
 	}
 
@@ -1544,7 +1536,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		throws NoSuchMessageException, SystemException {
 		Message message = findByF_R(folderId, remoteMessageId);
 
-		messagePersistence.remove(message);
+		remove(message);
 	}
 
 	/**
@@ -1554,7 +1546,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 */
 	public void removeAll() throws SystemException {
 		for (Message message : findAll()) {
-			messagePersistence.remove(message);
+			remove(message);
 		}
 	}
 

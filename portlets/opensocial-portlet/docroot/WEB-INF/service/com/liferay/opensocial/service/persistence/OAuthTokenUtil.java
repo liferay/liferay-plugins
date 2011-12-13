@@ -95,14 +95,6 @@ public class OAuthTokenUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static OAuthToken remove(OAuthToken oAuthToken)
-		throws SystemException {
-		return getPersistence().remove(oAuthToken);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static OAuthToken update(OAuthToken oAuthToken, boolean merge)

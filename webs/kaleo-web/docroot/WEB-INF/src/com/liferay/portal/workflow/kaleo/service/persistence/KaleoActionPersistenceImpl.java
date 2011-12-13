@@ -221,6 +221,17 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<KaleoAction> kaleoActions) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (KaleoAction kaleoAction : kaleoActions) {
+			EntityCacheUtil.removeResult(KaleoActionModelImpl.ENTITY_CACHE_ENABLED,
+				KaleoActionImpl.class, kaleoAction.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new kaleo action with the primary key. Does not add the kaleo action to the database.
 	 *
@@ -239,20 +250,6 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	/**
 	 * Removes the kaleo action with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the kaleo action
-	 * @return the kaleo action that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a kaleo action with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public KaleoAction remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the kaleo action with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param kaleoActionId the primary key of the kaleo action
 	 * @return the kaleo action that was removed
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchActionException if a kaleo action with the primary key could not be found
@@ -260,24 +257,38 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	 */
 	public KaleoAction remove(long kaleoActionId)
 		throws NoSuchActionException, SystemException {
+		return remove(Long.valueOf(kaleoActionId));
+	}
+
+	/**
+	 * Removes the kaleo action with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the kaleo action
+	 * @return the kaleo action that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchActionException if a kaleo action with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public KaleoAction remove(Serializable primaryKey)
+		throws NoSuchActionException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			KaleoAction kaleoAction = (KaleoAction)session.get(KaleoActionImpl.class,
-					Long.valueOf(kaleoActionId));
+					primaryKey);
 
 			if (kaleoAction == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + kaleoActionId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchActionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					kaleoActionId);
+					primaryKey);
 			}
 
-			return kaleoActionPersistence.remove(kaleoAction);
+			return remove(kaleoAction);
 		}
 		catch (NoSuchActionException nsee) {
 			throw nsee;
@@ -288,19 +299,6 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the kaleo action from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param kaleoAction the kaleo action
-	 * @return the kaleo action that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public KaleoAction remove(KaleoAction kaleoAction)
-		throws SystemException {
-		return super.remove(kaleoAction);
 	}
 
 	@Override
@@ -322,11 +320,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(KaleoActionModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoActionImpl.class, kaleoAction.getPrimaryKey());
+		clearCache(kaleoAction);
 
 		return kaleoAction;
 	}
@@ -1844,7 +1838,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoAction kaleoAction : findByCompanyId(companyId)) {
-			kaleoActionPersistence.remove(kaleoAction);
+			remove(kaleoAction);
 		}
 	}
 
@@ -1858,7 +1852,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 		throws SystemException {
 		for (KaleoAction kaleoAction : findByKaleoDefinitionId(
 				kaleoDefinitionId)) {
-			kaleoActionPersistence.remove(kaleoAction);
+			remove(kaleoAction);
 		}
 	}
 
@@ -1874,7 +1868,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 		String executionType) throws SystemException {
 		for (KaleoAction kaleoAction : findByKCN_KCPK_ET(kaleoClassName,
 				kaleoClassPK, executionType)) {
-			kaleoActionPersistence.remove(kaleoAction);
+			remove(kaleoAction);
 		}
 	}
 
@@ -1885,7 +1879,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	 */
 	public void removeAll() throws SystemException {
 		for (KaleoAction kaleoAction : findAll()) {
-			kaleoActionPersistence.remove(kaleoAction);
+			remove(kaleoAction);
 		}
 	}
 

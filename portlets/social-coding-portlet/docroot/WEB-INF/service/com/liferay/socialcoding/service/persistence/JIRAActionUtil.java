@@ -95,14 +95,6 @@ public class JIRAActionUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static JIRAAction remove(JIRAAction jiraAction)
-		throws SystemException {
-		return getPersistence().remove(jiraAction);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static JIRAAction update(JIRAAction jiraAction, boolean merge)

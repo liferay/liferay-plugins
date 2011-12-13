@@ -94,13 +94,6 @@ public class EntryUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static Entry remove(Entry entry) throws SystemException {
-		return getPersistence().remove(entry);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static Entry update(Entry entry, boolean merge)

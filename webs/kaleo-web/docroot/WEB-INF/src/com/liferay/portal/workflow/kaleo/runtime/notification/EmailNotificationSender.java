@@ -233,8 +233,7 @@ public class EmailNotificationSender implements NotificationSender {
 			KaleoInstanceToken kaleoInstanceToken =
 				executionContext.getKaleoInstanceToken();
 
-			KaleoInstance kaleoInstance =
-				kaleoInstanceToken.getKaleoInstance();
+			KaleoInstance kaleoInstance = kaleoInstanceToken.getKaleoInstance();
 
 			userId = kaleoInstance.getUserId();
 		}

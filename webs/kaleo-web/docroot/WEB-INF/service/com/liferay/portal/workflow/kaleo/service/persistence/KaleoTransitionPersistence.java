@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
 
@@ -657,7 +656,4 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public KaleoTransition remove(KaleoTransition kaleoTransition)
-		throws SystemException;
 }

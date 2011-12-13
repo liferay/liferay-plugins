@@ -145,8 +145,7 @@ public class ServerManagerServlet extends HttpServlet {
 		if (format.equals("raw")) {
 			response.setContentType(ContentTypes.TEXT_PLAIN);
 
-			String outputStream = responseJSONObject.getString(
-				JSONKeys.OUTPUT);
+			String outputStream = responseJSONObject.getString(JSONKeys.OUTPUT);
 
 			ServletResponseUtil.write(response, outputStream);
 		}

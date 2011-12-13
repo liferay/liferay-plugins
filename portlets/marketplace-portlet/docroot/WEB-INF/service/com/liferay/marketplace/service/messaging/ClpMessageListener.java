@@ -15,6 +15,7 @@
 package com.liferay.marketplace.service.messaging;
 
 import com.liferay.marketplace.service.AppLocalServiceUtil;
+import com.liferay.marketplace.service.AppServiceUtil;
 import com.liferay.marketplace.service.ClpSerializer;
 import com.liferay.marketplace.service.ModuleLocalServiceUtil;
 
@@ -38,6 +39,7 @@ public class ClpMessageListener extends BaseMessageListener {
 				servletContextName.equals(getServletContextName())) {
 			AppLocalServiceUtil.clearService();
 
+			AppServiceUtil.clearService();
 			ModuleLocalServiceUtil.clearService();
 		}
 	}

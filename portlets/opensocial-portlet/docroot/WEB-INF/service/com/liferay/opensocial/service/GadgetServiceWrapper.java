@@ -47,6 +47,15 @@ public class GadgetServiceWrapper implements GadgetService,
 		_gadgetService.deleteGadget(gadgetId, serviceContext);
 	}
 
+	public void updateGadget(long gadgetId,
+		java.lang.String portletCategoryNames,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_gadgetService.updateGadget(gadgetId, portletCategoryNames,
+			serviceContext);
+	}
+
 	/**
 	 * @deprecated Renamed to {@link #getWrappedService}
 	 */

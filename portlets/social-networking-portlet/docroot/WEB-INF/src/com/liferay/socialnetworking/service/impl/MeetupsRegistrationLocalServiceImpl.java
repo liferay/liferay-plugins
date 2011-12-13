@@ -60,8 +60,7 @@ public class MeetupsRegistrationLocalServiceImpl
 		Date now = new Date();
 
 		MeetupsRegistration meetupsRegistration =
-			meetupsRegistrationPersistence.fetchByU_ME(
-				userId, meetupsEntryId);
+			meetupsRegistrationPersistence.fetchByU_ME(userId, meetupsEntryId);
 
 		if (meetupsRegistration == null) {
 			long meetupsRegistrationId = counterLocalService.increment();

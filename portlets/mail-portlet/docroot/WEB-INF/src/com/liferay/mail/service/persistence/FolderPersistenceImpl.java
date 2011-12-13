@@ -189,6 +189,23 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
+		clearUniqueFindersCache(folder);
+	}
+
+	@Override
+	public void clearCache(List<Folder> folders) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (Folder folder : folders) {
+			EntityCacheUtil.removeResult(FolderModelImpl.ENTITY_CACHE_ENABLED,
+				FolderImpl.class, folder.getPrimaryKey());
+
+			clearUniqueFindersCache(folder);
+		}
+	}
+
+	protected void clearUniqueFindersCache(Folder folder) {
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_F,
 			new Object[] {
 				Long.valueOf(folder.getAccountId()),
@@ -215,20 +232,6 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	/**
 	 * Removes the folder with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the folder
-	 * @return the folder that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a folder with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Folder remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the folder with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param folderId the primary key of the folder
 	 * @return the folder that was removed
 	 * @throws com.liferay.mail.NoSuchFolderException if a folder with the primary key could not be found
@@ -236,24 +239,37 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 */
 	public Folder remove(long folderId)
 		throws NoSuchFolderException, SystemException {
+		return remove(Long.valueOf(folderId));
+	}
+
+	/**
+	 * Removes the folder with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the folder
+	 * @return the folder that was removed
+	 * @throws com.liferay.mail.NoSuchFolderException if a folder with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public Folder remove(Serializable primaryKey)
+		throws NoSuchFolderException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			Folder folder = (Folder)session.get(FolderImpl.class,
-					Long.valueOf(folderId));
+			Folder folder = (Folder)session.get(FolderImpl.class, primaryKey);
 
 			if (folder == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + folderId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchFolderException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					folderId);
+					primaryKey);
 			}
 
-			return folderPersistence.remove(folder);
+			return remove(folder);
 		}
 		catch (NoSuchFolderException nsee) {
 			throw nsee;
@@ -264,18 +280,6 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the folder from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param folder the folder
-	 * @return the folder that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public Folder remove(Folder folder) throws SystemException {
-		return super.remove(folder);
 	}
 
 	@Override
@@ -296,20 +300,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		FolderModelImpl folderModelImpl = (FolderModelImpl)folder;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_F,
-			new Object[] {
-				Long.valueOf(folderModelImpl.getAccountId()),
-				
-			folderModelImpl.getFullName()
-			});
-
-		EntityCacheUtil.removeResult(FolderModelImpl.ENTITY_CACHE_ENABLED,
-			FolderImpl.class, folder.getPrimaryKey());
+		clearCache(folder);
 
 		return folder;
 	}
@@ -1143,7 +1134,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 */
 	public void removeByAccountId(long accountId) throws SystemException {
 		for (Folder folder : findByAccountId(accountId)) {
-			folderPersistence.remove(folder);
+			remove(folder);
 		}
 	}
 
@@ -1158,7 +1149,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		throws NoSuchFolderException, SystemException {
 		Folder folder = findByA_F(accountId, fullName);
 
-		folderPersistence.remove(folder);
+		remove(folder);
 	}
 
 	/**
@@ -1168,7 +1159,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 */
 	public void removeAll() throws SystemException {
 		for (Folder folder : findAll()) {
-			folderPersistence.remove(folder);
+			remove(folder);
 		}
 	}
 

@@ -79,8 +79,7 @@ public class ExtensionUtil {
 		return getExtensions(messageElements);
 	}
 
-	public static MessageElement[] getMessageElements(
-		Extension[] extensions) {
+	public static MessageElement[] getMessageElements(Extension[] extensions) {
 
 		if ((extensions == null) || (extensions.length <= 0)) {
 			return null;

@@ -220,13 +220,8 @@ public class CalendarEventLocalServiceImpl
 
 		// Resources
 
-		if ((serviceContext.getCommunityPermissions() != null) ||
-			(serviceContext.getGuestPermissions() != null)) {
-
-			updateCalendarEventResources(
-				calendarEvent, serviceContext.getCommunityPermissions(),
-				serviceContext.getGuestPermissions());
-		}
+		resourceLocalService.updateModelResources(
+			calendarEvent, serviceContext);
 
 		// Calendar bookings
 
@@ -234,17 +229,6 @@ public class CalendarEventLocalServiceImpl
 			calendarEventId, serviceContext);
 
 		return calendarEvent;
-	}
-
-	public void updateCalendarEventResources(
-			CalendarEvent calendarEvent, String[] communityPermissions,
-			String[] guestPermissions)
-		throws PortalException, SystemException {
-
-		resourceLocalService.updateResources(
-			calendarEvent.getCompanyId(), calendarEvent.getGroupId(),
-			CalendarEvent.class.getName(), calendarEvent.getCalendarEventId(),
-			communityPermissions, guestPermissions);
 	}
 
 	protected void validate(

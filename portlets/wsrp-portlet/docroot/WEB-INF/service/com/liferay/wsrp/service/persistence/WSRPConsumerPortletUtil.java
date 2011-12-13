@@ -95,14 +95,6 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static WSRPConsumerPortlet remove(
-		WSRPConsumerPortlet wsrpConsumerPortlet) throws SystemException {
-		return getPersistence().remove(wsrpConsumerPortlet);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static WSRPConsumerPortlet update(

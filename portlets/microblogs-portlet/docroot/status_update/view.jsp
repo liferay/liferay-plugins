@@ -34,11 +34,11 @@ portletURL.setWindowState(WindowState.NORMAL);
 portletURL.setParameter("jspPage", "/status_update/view.jsp");
 %>
 
-<c:if test="<%= MicroblogsPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ENTRY) && (microblogsEntryUserId == themeDisplay.getUserId()) %>">
+<c:if test="<%= MicroblogsPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ENTRY) && (group.isUser() && !layout.isPublicLayout()) %>">
 	<liferay-util:include page="/microblogs/edit_microblogs_entry.jsp" servletContext="<%= application %>" />
 </c:if>
 
-<div class="microblogs-container">
+<div class="microblogs-container microblogs-status-container">
 
 	<%
 	List<MicroblogsEntry> microblogsEntries = null;

@@ -73,8 +73,7 @@ public class UpgradeJournal extends UpgradeProcess {
 			"This is a simple carousel structure designed to handle other " +
 				"necessary carousel configurations.");
 
-		xsd = getFileAsString(
-			"/structures/multiple_item_carousel.xml");
+		xsd = getFileAsString("/structures/multiple_item_carousel.xml");
 
 		JournalStructureLocalServiceUtil.addStructure(
 			userId, groupId, "MULTIPLE-ITEM-CAROUSEL", false, StringPool.BLANK,
@@ -112,8 +111,7 @@ public class UpgradeJournal extends UpgradeProcess {
 			LocaleUtil.getDefault(),
 			"This template only displays brief descriptions of web content");
 
-		String xsl = getFileAsString(
-			"/templates/article_description.vm");
+		String xsl = getFileAsString("/templates/article_description.vm");
 
 		ServiceContext serviceContext = new ServiceContext();
 

@@ -94,13 +94,6 @@ public class StatusUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#remove(com.liferay.portal.model.BaseModel)
-	 */
-	public static Status remove(Status status) throws SystemException {
-		return getPersistence().remove(status);
-	}
-
-	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
 	 */
 	public static Status update(Status status, boolean merge)

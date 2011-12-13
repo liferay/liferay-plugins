@@ -50,6 +50,13 @@ catch (Exception e) {
 
 			<liferay-ui:icon image="portlet" message="manage-oauth" url="<%= configureOAuthURL %>" />
 		</c:if>
+
+		<portlet:actionURL name="refreshGadgets" var="refreshGadgetsURL">
+			<portlet:param name="redirect" value="<%= currentURL %>" />
+			<portlet:param name="gadgetId" value="<%= String.valueOf(gadget.getGadgetId()) %>" />
+		</portlet:actionURL>
+
+		<liferay-ui:icon image="page" message="refresh" url="<%= refreshGadgetsURL %>" />
 	</c:if>
 
 	<c:if test="<%= GadgetPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), gadget.getGadgetId(), ActionKeys.PERMISSIONS) %>">

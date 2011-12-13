@@ -69,14 +69,13 @@ public class LiferayMediaItemService implements MediaItemService {
 		throws ProtocolException {
 
 		try {
-			doCreateMediaItem(
-				userId, appId, albumId, mediaItem, securityToken);
+			doCreateMediaItem(userId, appId, albumId, mediaItem, securityToken);
 
 			return ImmediateFuture.newInstance(null);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(e,e);
+				_log.debug(e, e);
 			}
 
 			throw new ProtocolException(
@@ -213,7 +212,7 @@ public class LiferayMediaItemService implements MediaItemService {
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(e,e);
+				_log.debug(e, e);
 			}
 
 			throw new ProtocolException(

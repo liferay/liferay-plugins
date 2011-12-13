@@ -16,21 +16,24 @@ package com.liferay.opensocial.admin.portlet;
 
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
-import com.liferay.opensocial.service.OAuthConsumerLocalServiceUtil;
+import com.liferay.opensocial.service.GadgetServiceUtil;
+import com.liferay.opensocial.service.permission.GadgetPermission;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
+import com.liferay.opensocial.util.ActionKeys;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
+import java.util.List;
+
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-import javax.portlet.PortletRequest;
 
 /**
  * @author Michael Young
@@ -42,30 +45,40 @@ public class AdminPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		checkPermissions(actionRequest);
-
 		long gadgetId = ParamUtil.getLong(actionRequest, "gadgetId");
 
-		GadgetLocalServiceUtil.deleteGadget(gadgetId);
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			Gadget.class.getName(), actionRequest);
+
+		GadgetServiceUtil.deleteGadget(gadgetId, serviceContext);
 	}
 
-	public void deleteOAuthConsumer(
+	public void refreshGadgets(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		checkPermissions(actionRequest);
+		long[] gadgetIds = ParamUtil.getLongValues(actionRequest, "gadgetId");
 
-		long oAuthConsumerId = ParamUtil.getLong(
-			actionRequest, "oAuthConsumerId");
+		if (gadgetIds.length == 0) {
+			List<Gadget> gadgets = GadgetLocalServiceUtil.getGadgets(
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		OAuthConsumerLocalServiceUtil.deleteOAuthConsumer(oAuthConsumerId);
+			for (Gadget gadget : gadgets) {
+				ShindigUtil.clearGadgetSpecCache(gadget.getUrl());
+			}
+		}
+		else {
+			for (long gadgetId : gadgetIds) {
+				Gadget gadget = GadgetLocalServiceUtil.getGadget(gadgetId);
+
+				ShindigUtil.clearGadgetSpecCache(gadget.getUrl());
+			}
+		}
 	}
 
 	public void updateGadget(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
-
-		checkPermissions(actionRequest);
 
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
@@ -81,23 +94,19 @@ public class AdminPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		checkPermissions(actionRequest);
-
-		ShindigUtil.updateOAuthConsumers(actionRequest, actionResponse);
-	}
-
-	protected void checkPermissions(PortletRequest portletRequest)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
 		PermissionChecker permissionChecker =
 			themeDisplay.getPermissionChecker();
 
-		if (!permissionChecker.isCompanyAdmin()) {
-			throw new PrincipalException();
-		}
+		long gadgetId = ParamUtil.getLong(actionRequest, "gadgetId");
+
+		GadgetPermission.check(
+			permissionChecker, themeDisplay.getScopeGroupId(), gadgetId,
+			ActionKeys.UPDATE);
+
+		ShindigUtil.updateOAuthConsumers(actionRequest, actionResponse);
 	}
 
 	protected Gadget doAddGadget(
@@ -114,9 +123,11 @@ public class AdminPortlet extends MVCPortlet {
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			Gadget.class.getName(), actionRequest);
 
-		return GadgetLocalServiceUtil.addGadget(
+		Gadget gadget = GadgetServiceUtil.addGadget(
 			themeDisplay.getCompanyId(), url, portletCategoryNames,
 			serviceContext);
+
+		return gadget;
 	}
 
 	protected void doUpdateGadget(
@@ -128,7 +139,11 @@ public class AdminPortlet extends MVCPortlet {
 		String portletCategoryNames = ParamUtil.getString(
 			actionRequest, "portletCategoryNames");
 
-		GadgetLocalServiceUtil.updateGadget(gadgetId, portletCategoryNames);
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			Gadget.class.getName(), actionRequest);
+
+		GadgetServiceUtil.updateGadget(
+			gadgetId, portletCategoryNames, serviceContext);
 	}
 
 }

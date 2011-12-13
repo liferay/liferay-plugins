@@ -23,9 +23,7 @@ import com.liferay.portal.kernel.util.Validator;
  */
 public class UserAssignment extends Assignment {
 
-	public UserAssignment(
-		long userId, String screenName, String emailAddress) {
-
+	public UserAssignment(long userId, String screenName, String emailAddress) {
 		super(AssignmentType.USER);
 
 		_userId = userId;

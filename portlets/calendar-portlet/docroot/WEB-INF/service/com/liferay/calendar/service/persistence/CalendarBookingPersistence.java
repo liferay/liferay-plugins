@@ -16,7 +16,6 @@ package com.liferay.calendar.service.persistence;
 
 import com.liferay.calendar.model.CalendarBooking;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
@@ -729,7 +728,4 @@ public interface CalendarBookingPersistence extends BasePersistence<CalendarBook
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public CalendarBooking remove(CalendarBooking calendarBooking)
-		throws SystemException;
 }

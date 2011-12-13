@@ -178,6 +178,17 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<JIRAChangeItem> jiraChangeItems) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (JIRAChangeItem jiraChangeItem : jiraChangeItems) {
+			EntityCacheUtil.removeResult(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
+				JIRAChangeItemImpl.class, jiraChangeItem.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new j i r a change item with the primary key. Does not add the j i r a change item to the database.
 	 *
@@ -196,20 +207,6 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	/**
 	 * Removes the j i r a change item with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the j i r a change item
-	 * @return the j i r a change item that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a j i r a change item with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public JIRAChangeItem remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the j i r a change item with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param jiraChangeItemId the primary key of the j i r a change item
 	 * @return the j i r a change item that was removed
 	 * @throws com.liferay.socialcoding.NoSuchJIRAChangeItemException if a j i r a change item with the primary key could not be found
@@ -217,25 +214,38 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	 */
 	public JIRAChangeItem remove(long jiraChangeItemId)
 		throws NoSuchJIRAChangeItemException, SystemException {
+		return remove(Long.valueOf(jiraChangeItemId));
+	}
+
+	/**
+	 * Removes the j i r a change item with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the j i r a change item
+	 * @return the j i r a change item that was removed
+	 * @throws com.liferay.socialcoding.NoSuchJIRAChangeItemException if a j i r a change item with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public JIRAChangeItem remove(Serializable primaryKey)
+		throws NoSuchJIRAChangeItemException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			JIRAChangeItem jiraChangeItem = (JIRAChangeItem)session.get(JIRAChangeItemImpl.class,
-					Long.valueOf(jiraChangeItemId));
+					primaryKey);
 
 			if (jiraChangeItem == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-						jiraChangeItemId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchJIRAChangeItemException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					jiraChangeItemId);
+					primaryKey);
 			}
 
-			return jiraChangeItemPersistence.remove(jiraChangeItem);
+			return remove(jiraChangeItem);
 		}
 		catch (NoSuchJIRAChangeItemException nsee) {
 			throw nsee;
@@ -246,19 +256,6 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the j i r a change item from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param jiraChangeItem the j i r a change item
-	 * @return the j i r a change item that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public JIRAChangeItem remove(JIRAChangeItem jiraChangeItem)
-		throws SystemException {
-		return super.remove(jiraChangeItem);
 	}
 
 	@Override
@@ -280,11 +277,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
-			JIRAChangeItemImpl.class, jiraChangeItem.getPrimaryKey());
+		clearCache(jiraChangeItem);
 
 		return jiraChangeItem;
 	}
@@ -942,7 +935,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 		throws SystemException {
 		for (JIRAChangeItem jiraChangeItem : findByJiraChangeGroupId(
 				jiraChangeGroupId)) {
-			jiraChangeItemPersistence.remove(jiraChangeItem);
+			remove(jiraChangeItem);
 		}
 	}
 
@@ -953,7 +946,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	 */
 	public void removeAll() throws SystemException {
 		for (JIRAChangeItem jiraChangeItem : findAll()) {
-			jiraChangeItemPersistence.remove(jiraChangeItem);
+			remove(jiraChangeItem);
 		}
 	}
 

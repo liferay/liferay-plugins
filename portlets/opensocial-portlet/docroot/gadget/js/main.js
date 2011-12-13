@@ -32,6 +32,7 @@ AUI().add(
 				ATTRS: {
 					additionalParams: {},
 					appId: {},
+					checksum: {},
 					content: {},
 					country: {
 						value: 'ALL'
@@ -61,14 +62,22 @@ AUI().add(
 							return Gadget._id++;
 						}
 					},
-					nocache: {
-						value: 1
-					},
+					nocache: {},
 					parentUrl: {
 						value: document.location.protocol + '://' + document.location.host,
 						setter: '_setParentUrl'
 					},
 					portletId:{},
+					pubsubURILoadTimeout: {
+						setter: function(v) {
+							if (v > 0) {
+								return v;
+							}
+							else {
+								return null;
+							}
+						}
+					},
 					requiresPubsub:{},
 					rpcRelay: {},
 					rpcToken: {
@@ -169,6 +178,7 @@ AUI().add(
 									IframeContainer: {
 										iframeAttrs: iframeAttrs,
 										parent: instance.get('contentBox'),
+										timeout: instance.get('pubsubURILoadTimeout'),
 										tunnelURI: shindig.uri(instance.get('serverBase') + instance.get('rpcRelay')).resolve(shindig.uri(window.location.href)),
 										uri: instance.get('iframeUrl')
 									}
@@ -373,23 +383,27 @@ AUI().add(
 
 						var urlData = {
 							aid: instance.get('appId'),
+							checksum: instance.get('checksum'),
 							container: instance._CONTAINER,
 							mid: instance.get('moduleId'),
-							nocache: instance.get('nocache'),
 							country: instance.get('country'),
 							lang: instance.get('language'),
 							view: instance.get('view'),
 							url: instance.get('specUrl')
 						};
 
+						if (instance.get('debug')) {
+							urlData.debug = 1;
+						}
+
+						if (instance.get('nocache')) {
+							urlData.nocache = 1;
+						}
+
 						var parentUrl = instance.get('parentUrl');
 
 						if (parentUrl) {
 							urlData.parent = parentUrl;
-						}
-
-						if (instance.get('debug')) {
-							urlData.debug = 1;
 						}
 
 						url = instance.get('serverBase') + 'ifr?' + A.QueryString.stringify(urlData);
@@ -574,7 +588,7 @@ AUI().add(
 								className: instance._CLASS_NAME,
 								tableName: instance._TABLE_NAME,
 								columnName: instance.get('userPrefsKey'),
-								classPK: themeDisplay.getUserId()
+								classPK: themeDisplay.getPlid()
 							},
 							function(userPrefs) {
 								if (Lang.isFunction(callback)) {
@@ -604,14 +618,14 @@ AUI().add(
 								className: instance._CLASS_NAME,
 								tableName: instance._TABLE_NAME,
 								columnName: instance.get('userPrefsKey'),
-								classPK: themeDisplay.getUserId(),
+								classPK: themeDisplay.getPlid(),
 								data: A.JSON.stringify(gadget.get('userPrefs')),
 								serviceParameterTypes: A.JSON.stringify(serviceParameterTypes)
 							}
 						);
 					},
 
-					_CLASS_NAME: 'com.liferay.portal.model.User',
+					_CLASS_NAME: 'com.liferay.portal.model.Layout',
 					_TABLE_NAME: 'OPEN_SOCIAL_DATA_'
 				}
 			}

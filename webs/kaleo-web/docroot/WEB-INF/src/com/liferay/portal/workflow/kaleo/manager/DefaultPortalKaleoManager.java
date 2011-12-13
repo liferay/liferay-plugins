@@ -141,8 +141,7 @@ public class DefaultPortalKaleoManager
 
 			ClassLoader classLoader = getClass().getClassLoader();
 
-			InputStream inputStream = classLoader.getResourceAsStream(
-				fileName);
+			InputStream inputStream = classLoader.getResourceAsStream(fileName);
 
 			if (inputStream == null) {
 				if (_log.isWarnEnabled()) {

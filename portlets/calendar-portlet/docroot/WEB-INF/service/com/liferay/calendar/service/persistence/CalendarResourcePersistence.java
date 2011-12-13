@@ -16,7 +16,6 @@ package com.liferay.calendar.service.persistence;
 
 import com.liferay.calendar.model.CalendarResource;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
@@ -1255,7 +1254,4 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public CalendarResource remove(CalendarResource calendarResource)
-		throws SystemException;
 }

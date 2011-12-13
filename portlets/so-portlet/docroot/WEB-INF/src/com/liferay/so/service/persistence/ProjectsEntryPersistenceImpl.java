@@ -176,6 +176,17 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	@Override
+	public void clearCache(List<ProjectsEntry> projectsEntries) {
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		for (ProjectsEntry projectsEntry : projectsEntries) {
+			EntityCacheUtil.removeResult(ProjectsEntryModelImpl.ENTITY_CACHE_ENABLED,
+				ProjectsEntryImpl.class, projectsEntry.getPrimaryKey());
+		}
+	}
+
 	/**
 	 * Creates a new projects entry with the primary key. Does not add the projects entry to the database.
 	 *
@@ -194,20 +205,6 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	/**
 	 * Removes the projects entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param primaryKey the primary key of the projects entry
-	 * @return the projects entry that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a projects entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public ProjectsEntry remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Long)primaryKey).longValue());
-	}
-
-	/**
-	 * Removes the projects entry with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
 	 * @param projectsEntryId the primary key of the projects entry
 	 * @return the projects entry that was removed
 	 * @throws com.liferay.so.NoSuchProjectsEntryException if a projects entry with the primary key could not be found
@@ -215,25 +212,38 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 */
 	public ProjectsEntry remove(long projectsEntryId)
 		throws NoSuchProjectsEntryException, SystemException {
+		return remove(Long.valueOf(projectsEntryId));
+	}
+
+	/**
+	 * Removes the projects entry with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the projects entry
+	 * @return the projects entry that was removed
+	 * @throws com.liferay.so.NoSuchProjectsEntryException if a projects entry with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public ProjectsEntry remove(Serializable primaryKey)
+		throws NoSuchProjectsEntryException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			ProjectsEntry projectsEntry = (ProjectsEntry)session.get(ProjectsEntryImpl.class,
-					Long.valueOf(projectsEntryId));
+					primaryKey);
 
 			if (projectsEntry == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-						projectsEntryId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchProjectsEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					projectsEntryId);
+					primaryKey);
 			}
 
-			return projectsEntryPersistence.remove(projectsEntry);
+			return remove(projectsEntry);
 		}
 		catch (NoSuchProjectsEntryException nsee) {
 			throw nsee;
@@ -244,19 +254,6 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 		finally {
 			closeSession(session);
 		}
-	}
-
-	/**
-	 * Removes the projects entry from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param projectsEntry the projects entry
-	 * @return the projects entry that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public ProjectsEntry remove(ProjectsEntry projectsEntry)
-		throws SystemException {
-		return super.remove(projectsEntry);
 	}
 
 	@Override
@@ -278,11 +275,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
-
-		EntityCacheUtil.removeResult(ProjectsEntryModelImpl.ENTITY_CACHE_ENABLED,
-			ProjectsEntryImpl.class, projectsEntry.getPrimaryKey());
+		clearCache(projectsEntry);
 
 		return projectsEntry;
 	}
@@ -940,7 +933,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 */
 	public void removeByUserId(long userId) throws SystemException {
 		for (ProjectsEntry projectsEntry : findByUserId(userId)) {
-			projectsEntryPersistence.remove(projectsEntry);
+			remove(projectsEntry);
 		}
 	}
 
@@ -951,7 +944,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 */
 	public void removeAll() throws SystemException {
 		for (ProjectsEntry projectsEntry : findAll()) {
-			projectsEntryPersistence.remove(projectsEntry);
+			remove(projectsEntry);
 		}
 	}
 
