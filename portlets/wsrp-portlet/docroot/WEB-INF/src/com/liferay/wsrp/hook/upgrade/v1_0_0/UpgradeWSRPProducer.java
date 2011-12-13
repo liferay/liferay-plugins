@@ -30,7 +30,7 @@ public class UpgradeWSRPProducer extends UpgradeProcess {
 	protected void doUpgrade() throws Exception {
 		runSQL(
 			"update WSRP_WSRPProducer set version = '2.0' where version is " +
-				"null");
+				"null or version = ''");
 
 		List<WSRPProducer> wsrpProducers =
 			WSRPProducerLocalServiceUtil.getWSRPProducers(
