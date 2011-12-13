@@ -65,13 +65,13 @@
 		<liferay-ui:search-container-column-text valign="top">
 
 			<%
-			long threadRepresentativeUserId = PrivateMessagingUtil.getThreadRepresentativeUserId(user.getUserId(), userThread.getMbThreadId());
+			long userId = PrivateMessagingUtil.getThreadRepresentativeUserId(user.getUserId(), userThread.getMbThreadId());
 
-			MBMessage lastMBMessage = PrivateMessagingUtil.getLastThreadMessage(user.getUserId(), userThread.getMbThreadId());
+			MBMessage mbMessage = PrivateMessagingUtil.getLastThreadMessage(user.getUserId(), userThread.getMbThreadId());
 			%>
 
 			<liferay-ui:user-display
-				userId="<%= threadRepresentativeUserId %>"
+				userId="<%= userId %>"
 				displayStyle="<%= 2 %>"
 			/>
 
@@ -105,21 +105,21 @@
 					%>
 
 					<span class="date">
-						<%= dateFormatDateTime.format(lastMBMessage.getCreateDate()) %>
+						<%= dateFormatDateTime.format(mbMessage.getCreateDate()) %>
 					</span>
 
 					<div class="subject">
-						<%= HtmlUtil.escape(StringUtil.shorten(lastMBMessage.getSubject(), 50)) %>
+						<%= HtmlUtil.escape(StringUtil.shorten(mbMessage.getSubject(), 50)) %>
 					</div>
 
 					<div class="body">
-						<c:if test="<%= user.getUserId() == lastMBMessage.getUserId() %>">
+						<c:if test="<%= user.getUserId() == mbMessage.getUserId() %>">
 							<liferay-ui:icon
 								src="/html/themes/classic/images/mail/replied.png"
 							/>
 						</c:if>
 
-						<%= HtmlUtil.escape(StringUtil.shorten(lastMBMessage.getBody(), 100)) %>
+						<%= HtmlUtil.escape(StringUtil.shorten(mbMessage.getBody(), 100)) %>
 					</div>
 				</a>
 			</div>
