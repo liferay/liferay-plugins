@@ -13,7 +13,12 @@
  */
 @import "compass";
 
-.so-portlet-dockbar-notifications .no-new-notification .menu-button .notification-count {
+.so-portlet-dockbar-notifications .menu-button {
+	background-image: none;
+	padding: 5px;
+}
+
+.so-portlet-dockbar-notifications .menu-button .notification-count {
 	@include border-radius(4px);
 	background-color: #2C2F34;
 	color: #FFF;
@@ -26,16 +31,12 @@
 	background-color: transparent;
 }
 
-.user-notification-events {
+.dockbar .user-notification-events {
 	.user-notification-event-content {
+		color: #2C2F34;
+		cursor: pointer;
+		min-height: 40px;
 		padding: 5px;
-
-		&:after {
-			clear: both;
-			content: "";
-			display: block;
-			width: 100%;
-		}
 
 		.notification-entry {
 			margin-left: 50px;
@@ -52,13 +53,13 @@
 
 	.user-notification-event-sender {
 		float: left;
-		height: 45px;
+		height: 40px;
 		overflow: hidden;
 		position: relative;
-		width: 45px;
+		width: 40px;
 
 		.thumbnail img {
-			max-width: 45px;
+			max-width: 40px;
 		}
 
 		.portlet-icon {
@@ -69,7 +70,8 @@
 	}
 
 	.no-new-notification, .user-notification-event-content, .user-notification-event-footer, .user-notification-event-header {
-		border-bottom: 1px solid #C0C2C5;
+		border-bottom: 1px solid #BCBBBB;
+		border-top: 1px solid #EEE;
 		font-size: 12px;
 		padding: 5px;
 	}
@@ -85,20 +87,55 @@
 		}
 	}
 
-	.user-notification-event-content {
-		min-height: 40px;
+	.user-notification-event-footer, .user-notification-event-content {
+		&:after {
+			clear: both;
+			content: "";
+			display: block;
+			width: 100%;
+		}
 	}
 
 	.user-notification-event-footer {
 		font-weight: bold;
 		min-height: 20px;
+		padding: 0;
+
+		.dismiss-notifications, .view-all {
+			float: left;
+			display: block;
+			width: 50%;
+
+			a {
+				display: block;
+				padding: 5px 0;
+				text-align: center;
+				width: 100%;
+			}
+		}
 	}
 
-	.user-notification-event-content .request .lfr-user-action-confirm a {
-		background: url(@theme_image_path@/common/activate.png) no-repeat;
+	.user-notification-event-content.aui-focus, .user-notification-event-content.aui-focus a, .user-notification-event-content.aui-focus a:hover, .user-notification-event-footer .dismiss-notifications a:hover, .user-notification-event-footer .view-all a:hover {
+		background: #5B677D;
+		color: #FFF;
+		text-shadow: none;
 	}
 
-	.user-notification-event-content .request .lfr-user-action-ignore a {
-		background: url(@theme_image_path@/common/deactivate.png) no-repeat;
+	.user-notification-event-content .request {
+		.lfr-user-action-item a {
+			background-position: center left;
+			background-repeat: no-repeat;
+			display: inline-block;
+			margin-right: 5px;
+			padding: 4px 4px 4px 20px;
+		}
+
+		.lfr-user-action-confirm a {
+			background-image: url(@theme_image_path@/common/activate.png);
+		}
+
+		.lfr-user-action-ignore a {
+			background-image: url(@theme_image_path@/common/deactivate.png);
+		}
 	}
 }
