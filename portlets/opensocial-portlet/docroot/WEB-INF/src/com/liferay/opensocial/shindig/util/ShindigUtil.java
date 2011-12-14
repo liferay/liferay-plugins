@@ -399,6 +399,10 @@ public class ShindigUtil {
 		String[] keyTypes = ParamUtil.getParameterValues(
 			actionRequest, "keyType");
 
+		if (serviceNames.length == 0 && keyTypes.length != 0) {
+			serviceNames = new String[] {StringPool.BLANK};
+		}
+
 		for (int i = 0; i < serviceNames.length; i++) {
 			String consumerKey = (String)ArrayUtil.getValue(consumerKeys, i);
 
