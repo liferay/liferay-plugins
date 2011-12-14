@@ -53,6 +53,8 @@
 
 					<aui:input label="show-sites" name="preferences--showSites--" type="checkbox" value="<%= showSites %>" />
 
+					<aui:input label="show-tags" name="preferences--showTags--" type="checkbox" value="<%= showTags %>" />
+
 					<aui:input name="preferences--showUsersInformation--" type="checkbox" value="<%= showUsersInformation %>" />
 
 					<aui:input name="preferences--showWebsites--" type="checkbox" value="<%= showWebsites %>" />
