@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="coolclock-portlet">
+        <wb-resource deploy-path="/" source-path="/docroot"/>
+        <property name="context-root" value="coolclock-portlet"/>
+        <property name="java-output-path" value="/coolclock-portlet/docroot/WEB-INF/classes"/>
+    </wb-module>
+</project-modules>

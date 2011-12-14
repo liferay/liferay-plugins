@@ -11,8 +11,12 @@
 		<display-name>Cool Clock Portlet</display-name>
 		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
 		<init-param>
+			<name>edit-jsp</name>
+			<value>/html/coolclock/edit.jsp</value>
+		</init-param>
+		<init-param>
 			<name>view-jsp</name>
-			<value>/view.jsp</value>
+			<value>/html/coolclock/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>

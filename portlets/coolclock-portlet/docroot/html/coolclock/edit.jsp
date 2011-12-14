@@ -24,16 +24,16 @@
 </script>
 
 <aui:fieldset>
-	<aui:column columnWidth="70" first="true">
-		<aui:fieldset>
-		<aui:form>
-			<aui:input name="clockTheme" />
-			
-		</aui:form>
-		</aui:fieldset>
-	</aui:column>
-
-	<aui:column columnWidth="30" last="true">
-		<canvas id="clk1" class="CoolClock:fancy myClock"></canvas>
-	</aui:column>
+<aui:form>
+<aui:field-wrapper name="skins">
+	<aui:input name="themes" type="radio" label="Swiss Rail" value="swissRail" />
+	<aui:input name="themes" type="radio" label="Chunky Swiss" value="chunkySwiss" />
+	<aui:input name="themes" type="radio" label="Fancy" value="fancy" />
+	<aui:input name="themes" type="radio" label="Machine" value="machine" />
+	<aui:input name="themes" type="radio" label="Classic" value="classic" />
+	<aui:input name="themes" type="radio" label="Modern" value="modern" />
+	<aui:input name="themes" type="radio" label="Simple" value="simple" />
+</aui:field-wrapper>
+<aui:input name="secondHand" label="secondHand" type="checkbox" inlineLabel="left" />
+</aui:form>
 </aui:fieldset>
