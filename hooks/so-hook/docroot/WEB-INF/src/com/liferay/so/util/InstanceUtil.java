@@ -93,7 +93,7 @@ public class InstanceUtil {
 		// Communities
 
 		Portlet portlet = PortletLocalServiceUtil.getPortletById(
-			PortletKeys.COMMUNITIES);
+			PortletKeys.MY_SITES);
 
 		portlet.setAddDefaultResource(true);
 
@@ -143,7 +143,7 @@ public class InstanceUtil {
 		LayoutSetPrototype layoutSetPrototype =
 			LayoutSetPrototypeLocalServiceUtil.addLayoutSetPrototype(
 				defaultUserId, companyId, localeNamesMap, description, active,
-				true, true, serviceContext);
+				true, serviceContext);
 
 		UnicodeProperties settingsProperties =
 			layoutSetPrototype.getSettingsProperties();
