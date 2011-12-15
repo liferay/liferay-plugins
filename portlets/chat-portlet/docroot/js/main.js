@@ -1193,7 +1193,7 @@ AUI().use(
 
 				var showNotificationsObj = instance._showNotificationsObj;
 
-				if (showNotificationsObj.attr('checked') && NOTIFICATIONS.checkPermission() === NOTIFICATIONS_NOT_ALLOWED) {
+				if (showNotificationsObj.attr('checked') && NOTIFICATIONS && NOTIFICATIONS.checkPermission() === NOTIFICATIONS_NOT_ALLOWED) {
 					NOTIFICATIONS.requestPermission(
 						function() {
 							var allowed = NOTIFICATIONS.checkPermission() == NOTIFICATIONS_ALLOWED;
