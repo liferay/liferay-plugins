@@ -399,7 +399,7 @@ public class ShindigUtil {
 		String[] keyTypes = ParamUtil.getParameterValues(
 			actionRequest, "keyType");
 
-		if (serviceNames.length == 0 && keyTypes.length != 0) {
+		if ((serviceNames.length == 0) && (keyTypes.length != 0)) {
 			serviceNames = new String[] {StringPool.BLANK};
 		}
 
