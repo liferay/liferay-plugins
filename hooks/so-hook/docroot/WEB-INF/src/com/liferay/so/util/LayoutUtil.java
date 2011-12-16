@@ -205,6 +205,7 @@ public class LayoutUtil {
 			portletSetup.setValue("displayStyle", "2");
 			portletSetup.setValue("showRecentActivity", "false");
 			portletSetup.setValue("showSites", "true");
+			portletSetup.setValue("showTags", "true");
 			portletSetup.setValue("showUsersInformation", "false");
 		}
 
