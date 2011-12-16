@@ -626,7 +626,7 @@ AUI().use(
 			notify: function(iconUrl, title, body) {
 				var instance = this;
 
-				if (NOTIFICATIONS.checkPermission() === NOTIFICATIONS_ALLOWED) {
+				if (NOTIFICATIONS && NOTIFICATIONS.checkPermission() === NOTIFICATIONS_ALLOWED) {
 					var notification = NOTIFICATIONS.createNotification(iconUrl, title, body);
 
 					notification.show();
@@ -886,7 +886,7 @@ AUI().use(
 					var notifyPermission = NOTIFICATIONS.checkPermission();
 
 					var attrs = {
-						checked: (notifyPermission === NOTIFICATIONS_ALLOWED),
+						checked: (notifyPermission === NOTIFICATIONS_ALLOWED)
 					};
 
 					if (notifyPermission === NOTIFICATIONS_NOT_ALLOWED) {
