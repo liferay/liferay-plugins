@@ -115,7 +115,7 @@ boolean ipGeocoderConfigured = ipGeocoderInstalled && (IPGeocoderUtil.getIPInfo(
 						users = UserLocalServiceUtil.search(company.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED, userParams, 0, 50, new UserLoginDateComparator());
 					}
 					else if (userProfileMap) {
-						users = new ArrayList();
+						users = new ArrayList<User>();
 
 						users.add(user2);
 					}
