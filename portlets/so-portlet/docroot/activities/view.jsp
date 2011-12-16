@@ -33,7 +33,7 @@ int total = 0;
 %>
 
 <c:choose>
-	<c:when test="<%= group.isUser() && (themeDisplay.getUserId() == group.getClassPK() && !layout.isPublicLayout()) %>">
+	<c:when test="<%= group.isUser() && (themeDisplay.getUserId() == group.getClassPK()) && !layout.isPublicLayout() %>">
 		<liferay-ui:tabs
 			names="friends,coworkers,following,my-sites,me"
 			url="<%= portletURL.toString() %>"
