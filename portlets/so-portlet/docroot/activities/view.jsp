@@ -33,7 +33,7 @@ int total = 0;
 %>
 
 <c:choose>
-	<c:when test="<%= group.isUser() && (themeDisplay.getUserId() == group.getClassPK()) %>">
+	<c:when test="<%= group.isUser() && (themeDisplay.getUserId() == group.getClassPK() && !layout.isPublicLayout()) %>">
 		<liferay-ui:tabs
 			names="friends,coworkers,following,my-sites,me"
 			url="<%= portletURL.toString() %>"
@@ -82,10 +82,7 @@ int total = 0;
 		searchContainer.setTotal(total);
 		%>
 
-		<liferay-ui:social-activities
-			activities="<%= activities %>"
-			feedEnabled="<%= false %>"
-		/>
+		<%@ include file="/activities/view_activities.jspf" %>
 	</c:otherwise>
 </c:choose>
 
