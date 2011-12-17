@@ -60,7 +60,7 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 			String fieldValidationErrorMessage = preferences.getValue("fieldValidationErrorMessage" + i, StringPool.BLANK);
 		%>
 
-			<c:if test='<%= PortletPropsValues.VALIDATION_SCRIPT_ENABLED %>'>
+			<c:if test="<%= PortletPropsValues.VALIDATION_SCRIPT_ENABLED %>">
 				<liferay-ui:error key='<%= "error" + fieldLabel %>' message="<%= fieldValidationErrorMessage %>" />
 
 				<c:if test='<%= Validator.isNotNull(fieldValidationScript) %>'>
