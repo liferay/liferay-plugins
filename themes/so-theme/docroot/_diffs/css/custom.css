@@ -1169,7 +1169,7 @@ table.calendar {
 		border-width: 1px 0 0;
 		margin-left: 1px;
 	}
-	
+
 	.social-relations a {
 		border: 1px solid transparent;
 		color: #34404F;
@@ -1366,8 +1366,49 @@ table.calendar {
 /*  Private Messaging  */
 
 .private-messaging-portlet {
+	margin-left: 1px;
+
+	.results-grid table.taglib-search-iterator {
+		border-width: 1px 0;
+	}
+
 	.controls {
 		@include border-radius(0);
+		background: #F4F4F4;
+		border-width: 0 0 1px;
+	}
+
+	.message-link:hover {
+		text-decoration: none;
+	}
+
+	.messages .taglib-search-iterator .col-1 {
+		padding-right: 0;
+		vertical-align: top;
+	}
+
+	.messages .results-grid .results-row.alt td, .messages .results-grid .results-row td {
+		background: #F6F6F6;
+	}
+
+	.thread .results-row, .results-row, .results-grid .results-row td, .results-grid .results-row.alt td {
+		border-width: 1px 0;
+	}
+
+	.results-grid .results-row.unread {
+		.first {
+			border-left: 2px solid #00B4FF;
+		}
+
+		td, &.alt td {
+			background: #FFF;
+		}
+	}
+
+	.portlet-msg, .portlet-msg-info, .portlet-msg-error, .portlet-msg-alert, .portlet-msg-success {
+		@include border-radius(0px);
+		border-width: 0 0 1px;
+		margin: 0;
 	}
 }
 

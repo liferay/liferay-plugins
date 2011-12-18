@@ -461,6 +461,11 @@ AUI().add(
 				instance.messageContainer.plug(
 					A.Plugin.IO,
 					{
+						after: {
+							success: function() {
+								instance.loadFolders(instance.accountId);
+							}
+						},
 						autoLoad: false,
 						method: 'POST',
 						uri: themeDisplay.getLayoutURL() + '/-/mail/view_message'

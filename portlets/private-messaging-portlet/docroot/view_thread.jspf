@@ -20,12 +20,6 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 
 <portlet:renderURL var="backURL" windowState="<%= WindowState.NORMAL.toString() %>" />
 
-<liferay-ui:header
-	backLabel="messages"
-	backURL="<%= backURL.toString() %>"
-	title="<%= HtmlUtil.escape(PrivateMessagingUtil.getThreadSubject(mbThreadId)) %>"
-/>
-
 <aui:layout cssClass="controls">
 	<liferay-portlet:actionURL name="markMessagesAsUnread" var="markAsUnreadURL">
 		<portlet:param name="mbThreadIds" value="<%= String.valueOf(mbThreadId) %>" />
@@ -40,8 +34,14 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 	<aui:button href="<%= deleteMessageURL %>" name="deleteMessage" value="delete" />
 </aui:layout>
 
+<liferay-ui:header
+	backLabel="messages"
+	backURL="<%= backURL.toString() %>"
+	title="<%= HtmlUtil.escape(PrivateMessagingUtil.getThreadSubject(mbThreadId)) %>"
+/>
+
 <aui:layout cssClass="thread-info">
-	Between
+	<liferay-ui:message key="between" />
 
 	<%
 	List<User> users = PrivateMessagingUtil.getThreadUsers(user.getUserId(), mbThreadId);
@@ -81,10 +81,10 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 				<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
 			</liferay-portlet:actionURL>
 
-			and <a class="profile-link" href="<%= selfPublicPagesURL %>"><liferay-ui:message key="you" /></a>
+			<liferay-ui:message key="and" /> <a class="profile-link" href="<%= selfPublicPagesURL %>"><liferay-ui:message key="you" /></a>
 		</c:when>
 		<c:otherwise>
-			and <span class="profile-link"><liferay-ui:message key="you" /></span>
+			<liferay-ui:message key="and" /> <span class="profile-link"><liferay-ui:message key="you" /></span>
 		</c:otherwise>
 	</c:choose>
 </aui:layout>
@@ -106,7 +106,6 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 		className="com.liferay.portlet.messageboards.model.MBMessage"
 		modelVar="mbMessage"
 	>
-
 		<liferay-ui:search-container-column-text valign="top">
 			<liferay-ui:user-display
 				userId="<%= mbMessage.getUserId() %>"
@@ -143,7 +142,7 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 				</span>
 
 				<div class="body">
-					<%= HtmlUtil.escape(mbMessage.getBody()) %>
+					<%= StringUtil.replace(HtmlUtil.escape(mbMessage.getBody()), "\n", "<br />") %>
 
 					<c:if test="<%= mbMessage.isAttachments() %>">
 						<hr />
