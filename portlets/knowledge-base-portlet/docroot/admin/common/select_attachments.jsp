@@ -28,14 +28,6 @@ String[] fileNames = new String[0];
 if (DLStoreUtil.hasDirectory(company.getCompanyId(), CompanyConstants.SYSTEM, dirName)) {
 	fileNames = DLStoreUtil.getFileNames(company.getCompanyId(), CompanyConstants.SYSTEM, dirName);
 }
-
-long fileMaxSize = GetterUtil.getLong(PrefsPropsUtil.getString(company.getCompanyId(), PropsKeys.DL_FILE_MAX_SIZE));
-
-if (fileMaxSize == 0) {
-	fileMaxSize = GetterUtil.getLong(PrefsPropsUtil.getString(PropsKeys.UPLOAD_SERVLET_REQUEST_IMPL_MAX_SIZE));
-}
-
-fileMaxSize /= 1024;
 %>
 
 <liferay-ui:header
@@ -50,17 +42,19 @@ fileMaxSize /= 1024;
 	<liferay-ui:error exception="<%= NoSuchFileException.class %>" message="the-document-could-not-be-found" />
 
 	<liferay-ui:error exception="<%= FileSizeException.class %>">
+
+		<%
+		long fileMaxSize = PrefsPropsUtil.getLong(PropsKeys.DL_FILE_MAX_SIZE);
+
+		if (fileMaxSize == 0) {
+			fileMaxSize = PrefsPropsUtil.getLong(PropsKeys.UPLOAD_SERVLET_REQUEST_IMPL_MAX_SIZE);
+		}
+
+		fileMaxSize /= 1024;
+		%>
+
 		<liferay-ui:message arguments="<%= fileMaxSize %>" key="please-enter-a-file-with-a-valid-file-size-no-larger-than-x" />
 	</liferay-ui:error>
-
-
-	<c:if test="<%= SessionErrors.contains(renderRequest, FileSizeException.class.getName()) %>">
-		<c:if test="<%= fileMaxSize != 0 %>">
-			<div class="portlet-msg-info">
-				<%= LanguageUtil.format(pageContext, "upload-documents-no-larger-than-x-k", String.valueOf(fileMaxSize), false) %>
-			</div>
-		</c:if>
-	</c:if>
 
 	<aui:fieldset>
 		<liferay-ui:search-container
