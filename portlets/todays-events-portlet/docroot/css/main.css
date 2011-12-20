@@ -1,23 +1,23 @@
-.todays-events-portlet h2 {
+.events-display-portlet h2 {
 	margin: 0.5em 0;
 }
 
-.todays-events-portlet .event-name {
+.events-display-portlet .event-name {
 	font-weight: bold;
 }
 
-.todays-events-portlet .event-time {
+.events-display-portlet .event-time {
 	float: right;
 }
 
-.todays-events-portlet .event-type {
+.events-display-portlet .event-type {
 	float: right;
 }
 
-.todays-events-portlet .results-header {
+.events-display-portlet .results-header {
 	display: none;
 }
 
-.todays-events-portlet .taglib-search-iterator-page-iterator-bottom {
+.events-display-portlet .taglib-search-iterator-page-iterator-bottom {
 	display: none;
 }
