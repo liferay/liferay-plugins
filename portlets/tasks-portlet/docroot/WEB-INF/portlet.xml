@@ -7,7 +7,7 @@
 		<portlet-class>com.liferay.tasks.portlet.TasksPortlet</portlet-class>
 		<init-param>
 			<name>view-template</name>
-			<value>/view.jsp</value>
+			<value>/tasks/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>

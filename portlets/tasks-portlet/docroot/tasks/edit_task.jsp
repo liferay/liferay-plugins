@@ -228,7 +228,7 @@ long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/
 	<input id="<portlet:namespace />submit" type="submit" value="<liferay-ui:message key="save" />" />
 
 	<c:if test="<%= tasksEntryId > 0 %>">
-		<input type="button" value="<liferay-ui:message key="cancel" />" onClick="Liferay.Tasks.openTask('<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/view_task.jsp" /><portlet:param name="tasksEntryId" value="<%= String.valueOf(tasksEntry.getTasksEntryId()) %>" /></portlet:renderURL>');" />
+		<input type="button" value="<liferay-ui:message key="cancel" />" onClick="Liferay.Tasks.openTask('<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/tasks/view_task.jsp" /><portlet:param name="tasksEntryId" value="<%= String.valueOf(tasksEntry.getTasksEntryId()) %>" /></portlet:renderURL>');" />
 	</c:if>
 
 	<div class="task-action-right">
