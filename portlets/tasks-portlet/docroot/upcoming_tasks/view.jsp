@@ -37,9 +37,21 @@ List<TasksEntry> TasksEntriess = TasksEntryLocalServiceUtil.getTasksEntries(0, 0
 
 				taskHREF = portletURL.toString();
 			}
+
+			String cssClass = "tasks-title";
+
+			if (tasksEntry.getPriority() == 1) {
+				cssClass = cssClass.concat(" high");
+			}
+			else if (tasksEntry.getPriority() == 2) {
+				cssClass = cssClass.concat(" normal");
+			}
+			else {
+				cssClass = cssClass.concat(" low");
+			}
 		%>
 
-			<li class="task-title">
+			<li class="<%= cssClass %>">
 				<c:choose>
 					<c:when test="<%= Validator.isNotNull(taskHREF) %>">
 						<a href="javascript:;" onClick="Liferay.Tasks.openTask('<%= taskHREF %>');"><%= tasksEntry.getTitle() %></a>
@@ -63,12 +75,9 @@ List<TasksEntry> TasksEntriess = TasksEntryLocalServiceUtil.getTasksEntries(0, 0
 
 		PortletURL portletURL = null;
 
-		System.out.println(tasksPlid);
-
 		if (tasksPlid != 0) {
 			portletURL = PortletURLFactoryUtil.create(request, "1_WAR_tasksportlet", tasksPlid, PortletRequest.RENDER_PHASE);
 		}
-		System.out.println(portletURL.toString());
 		%>
 
 		<c:if test="<%= portletURL != null %>">
