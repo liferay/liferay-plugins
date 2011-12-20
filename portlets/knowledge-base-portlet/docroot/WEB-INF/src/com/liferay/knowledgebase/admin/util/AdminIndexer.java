@@ -80,6 +80,11 @@ public class AdminIndexer extends BaseIndexer {
 	}
 
 	@Override
+	public boolean isPermissionAware() {
+		return _PERMISSION_AWARE;
+	}
+
+	@Override
 	public void postProcessSearchQuery(
 			BooleanQuery searchQuery, SearchContext searchContext)
 		throws Exception {
@@ -235,5 +240,6 @@ public class AdminIndexer extends BaseIndexer {
 	}
 
 	private static final boolean _FILTER_SEARCH = true;
+	private static final boolean _PERMISSION_AWARE = true;
 
 }
