@@ -6,8 +6,8 @@
 		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
 		<social-activity-interpreter-class>com.liferay.tasks.social.TasksActivityInterpreter</social-activity-interpreter-class>
-		<header-portlet-css>/css/main.css</header-portlet-css>
-		<header-portlet-javascript>/js/main.js</header-portlet-javascript>
+		<header-portlet-css>/tasks/css/main.css</header-portlet-css>
+		<header-portlet-javascript>/tasks/js/main.js</header-portlet-javascript>
 		<css-class-wrapper>tasks-portlet</css-class-wrapper>
 		<add-default-resource>true</add-default-resource>
 	</portlet>
