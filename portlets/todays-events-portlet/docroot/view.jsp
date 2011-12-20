@@ -33,8 +33,14 @@ else {
 
 List<CalEvent> events = new ArrayList<CalEvent>();
 
-for (Group curGroup : groups) {
-	events.addAll(CalEventLocalServiceUtil.getEvents(curGroup.getGroupId(), cal));
+Calendar tempCal = (Calendar)cal.clone();
+
+for (int i = 0; i < maxDaysDisplayed; i++) {
+	for (Group curGroup : groups) {
+		events.addAll(CalEventLocalServiceUtil.getEvents(curGroup.getGroupId(), tempCal));
+	}
+
+	tempCal.add(Calendar.DATE, 1);
 }
 
 if (events.size() > 1) {
@@ -47,8 +53,8 @@ if (events.size() > 1) {
 	ListUtil.sort(events, (Comparator)constructor.newInstance(timeZone, locale));
 }
 
-List<CalEvent> allDayEvents = new ArrayList<CalEvent>();
-List<CalEvent> partDayEvents = new ArrayList<CalEvent>();
+List<CalEvent> todayEvents = new ArrayList<CalEvent>();
+List<CalEvent> upcomingEvents = new ArrayList<CalEvent>();
 
 for (CalEvent event : events) {
 	Date endDate = new Date(event.getStartDate().getTime() + (Time.HOUR * event.getDurationHour()) + (Time.MINUTE * event.getDurationMinute()));
@@ -61,40 +67,40 @@ for (CalEvent event : events) {
 		continue;
 	}
 
-	if (event.isAllDay()) {
-		allDayEvents.add(event);
+	if (endDate.getDate() == cal.get(Calendar.DAY_OF_MONTH)) {
+		todayEvents.add(event);
 	}
 	else {
-		partDayEvents.add(event);
+		upcomingEvents.add(event);
 	}
 }
 %>
 
 <c:choose>
-	<c:when test="<%= allDayEvents.isEmpty() && partDayEvents.isEmpty() %>">
+	<c:when test="<%= todayEvents.isEmpty() && upcomingEvents.isEmpty() %>">
 		<liferay-ui:message key="there-are-no-more-events-today" />
 	</c:when>
 	<c:otherwise>
-		<c:if test="<%= !allDayEvents.isEmpty() %>">
-			<h2><liferay-ui:message key="all-day" /></h2>
+		<c:if test="<%= !todayEvents.isEmpty() %>">
+			<h2><liferay-ui:message key="todays-events" /></h2>
 
-			<div class="all-day-events">
+			<div class="today-events">
 
 				<%
-				request.setAttribute("view.jsp-events", allDayEvents);
+				request.setAttribute("view.jsp-events", todayEvents);
 				%>
 
 				<liferay-util:include page="/view_events.jsp" servletContext="<%= application %>" />
 			</div>
 		</c:if>
 
-		<c:if test="<%= !partDayEvents.isEmpty() %>">
-			<h2><liferay-ui:message key="upcoming" /></h2>
+		<c:if test="<%= !upcomingEvents.isEmpty() %>">
+			<h2><liferay-ui:message key="upcoming-events" /></h2>
 
-			<div class="part-day-events">
+			<div class="upcoming-events">
 
 				<%
-				request.setAttribute("view.jsp-events", partDayEvents);
+				request.setAttribute("view.jsp-events", upcomingEvents);
 				%>
 
 				<liferay-util:include page="/view_events.jsp" servletContext="<%= application %>" />
