@@ -240,6 +240,7 @@ public class AdminIndexer extends BaseIndexer {
 	}
 
 	private static final boolean _FILTER_SEARCH = true;
+
 	private static final boolean _PERMISSION_AWARE = true;
 
 }
