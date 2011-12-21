@@ -11,7 +11,6 @@ $content-width: ($fixed-width - $navigation-width) - 2px;
 /* ---------- Base ---------- */
 
 body {
-	background: #FFF;
 	color: #666;
 	font: 12px/1.5em 'Helvetica', Arial, sans-serif;
 }
@@ -53,6 +52,12 @@ a:hover {
 
 #banner {
 	border-bottom: 1px solid $border-color;
+
+	.logo {
+		display: block;
+		font-size: 0;
+		text-indent: -9999em;
+	}
 
 	.company-title {
 		float: left;
@@ -1060,7 +1065,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		padding-right: 0;
 	}
 
-	.taglib-page-iterator {
+	.aui-form, .taglib-page-iterator {
 		padding: 5px;
 	}
 
@@ -1294,6 +1299,10 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		content: "";
 		display: block;
 	}
+}
+
+.upcoming-tasks-portlet .task-title a:hover {
+	background-color: #EEE;
 }
 
 .ie .tasks-portlet {
@@ -1545,12 +1554,13 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		font-size: 1em;
 	}
 
-	.results-grid, .results-row td {
+	.results-grid, .results-row td, .results-row.alt td {
+		background-color: transparent;
 		border-width: 0;
 		padding: 0;
 	}
 
-	.results-row td {
+	.results-row td, .results-row.alt td {
 		border-bottom: 1px solid #EEE;
 	}
 
