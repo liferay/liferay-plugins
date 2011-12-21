@@ -28,11 +28,11 @@ int notificationCount = notificationEvents.size();
 
 <div class="aui-menu aui-overlaycontext-hidden user-notification-events" id="<portlet:namespace />notificationsMenuContainer">
 	<div class="aui-menu-content user-notification-events-container" id="<portlet:namespace />notificationsMenuContent">
-		<c:if test="<%= !notificationEvents.isEmpty() %>">
 
-			<%
+		<%
+		if (!notificationEvents.isEmpty()) {
 			for (NotificationEvent notificationEvent : notificationEvents) {
-				if (notificationEvent.getType().equals("6_WAR_soportlet")) {
+				if (notificationEvent.getType().equals(PortletKey.SO_NOTIFICATION)) {
 					userNotificationEventUuids = StringUtil.add(userNotificationEventUuids, notificationEvent.getUuid());
 				}
 				else {
@@ -43,8 +43,9 @@ int notificationCount = notificationEvents.size();
 
 				JSONObject notificationEventJSON = notificationEvent.getPayload();
 
-				String userDisplayURL = StringPool.BLANK;
 				String userFullName = PortalUtil.getUserName(notificationEventJSON.getLong("userId"), StringPool.BLANK);
+
+				String userDisplayURL = StringPool.BLANK;
 				String userPortaitURL = StringPool.BLANK;
 
 				User curUser = UserLocalServiceUtil.fetchUserById(notificationEventJSON.getLong("userId"));
@@ -56,7 +57,7 @@ int notificationCount = notificationEvents.size();
 			%>
 
 				<c:choose>
-					<c:when test='<%= notificationEventJSON.getString("portletId").equals("2_WAR_soportlet") %>'>
+					<c:when test='<%= notificationEventJSON.getString("portletId").equals("<%= PortletKeys.SO_INVITE_MEMBERS %>") %>'>
 						<%@ include file="/notifications/view_member_request.jspf" %>
 					</c:when>
 					<c:when test='<%= notificationEventJSON.getString("portletId").equals("1_WAR_contactsportlet") %>'>
@@ -67,11 +68,10 @@ int notificationCount = notificationEvents.size();
 					</c:otherwise>
 				</c:choose>
 
-			<%
+		<%
 			}
-			%>
-
-		</c:if>
+		}
+		%>
 
 		<c:if test="<%= notificationCount <= 0 %>">
 			<div class="user-notification-event-header">
@@ -87,7 +87,7 @@ int notificationCount = notificationEvents.size();
 			</span>
 
 			<span class="view-all">
-				<liferay-portlet:renderURL portletName="6_WAR_soportlet" var="viewAllNotifications" windowState="<%= LiferayWindowState.MAXIMIZED.toString() %>">
+				<liferay-portlet:renderURL portletName="<%= PortletKeys.SO_NOTIFICATION %>" var="viewAllNotifications" windowState="<%= LiferayWindowState.MAXIMIZED.toString() %>">
 					<portlet:param name="jspPage" value="/notifications/view.jsp" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 				</liferay-portlet:renderURL>
@@ -126,7 +126,7 @@ int notificationCount = notificationEvents.size();
 				'click',
 				function(event) {
 					A.io.request(
-						'<liferay-portlet:actionURL name="dismissUserNotificationEvents" portletName="6_WAR_soportlet" windowState="<%= LiferayWindowState.NORMAL.toString() %>"><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="userNotificationEventUuids" value="<%= userNotificationEventUuids %>" /></liferay-portlet:actionURL>',
+						'<liferay-portlet:actionURL name="dismissUserNotificationEvents" portletName="<%= PortletKeys.SO_NOTIFICATION %>" windowState="<%= LiferayWindowState.NORMAL.toString() %>"><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="userNotificationEventUuids" value="<%= userNotificationEventUuids %>" /></liferay-portlet:actionURL>',
 						{
 							after: {
 								success: function(event, id, obj) {

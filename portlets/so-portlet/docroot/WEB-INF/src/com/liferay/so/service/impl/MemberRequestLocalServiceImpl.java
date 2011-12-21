@@ -364,13 +364,13 @@ public class MemberRequestLocalServiceImpl
 		notificationEventJSON.put("groupId", memberRequest.getGroupId());
 		notificationEventJSON.put(
 			"memberRequestId", memberRequest.getMemberRequestId());
-		notificationEventJSON.put("portletId", "2_WAR_soportlet");
+		notificationEventJSON.put("portletId", PortletKeys.SO_INVITE_MEMBERS);
 		notificationEventJSON.put("title", "x-invited-you-to-join-x");
 		notificationEventJSON.put("userId", memberRequest.getUserId());
 
 		NotificationEvent notificationEvent =
 			NotificationEventFactoryUtil.createNotificationEvent(
-				System.currentTimeMillis(), "6_WAR_soportlet",
+				System.currentTimeMillis(), PortletKeys.SO_NOTIFICATION,
 				notificationEventJSON);
 
 		notificationEvent.setDeliveryRequired(0);

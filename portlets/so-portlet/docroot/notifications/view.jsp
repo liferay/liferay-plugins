@@ -19,7 +19,7 @@
 
 <%@ include file="/init.jsp" %>
 
-<liferay-portlet:actionURL name="deleteUserNotificationEvents" portletName="6_WAR_soportlet" var="deleteURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>">
+<liferay-portlet:actionURL name="deleteUserNotificationEvents" portletName="<%= PortletKeys.SO_NOTIFICATION %>" var="deleteURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>">
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </liferay-portlet:actionURL>
 
@@ -59,8 +59,9 @@
 						<%
 						JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject(notificationEvent.getPayload());
 
-						String userDisplayURL = StringPool.BLANK;
 						String userFullName = PortalUtil.getUserName(notificationEventJSON.getLong("userId"), StringPool.BLANK);
+
+						String userDisplayURL = StringPool.BLANK;
 						String userPortaitURL = StringPool.BLANK;
 
 						User curUser = UserLocalServiceUtil.fetchUserById(notificationEventJSON.getLong("userId"));
@@ -73,7 +74,7 @@
 
 						<liferay-ui:search-container-column-text name="notifications" valign="top">
 							<c:choose>
-								<c:when test='<%= notificationEventJSON.getString("portletId").equals("2_WAR_soportlet") %>'>
+								<c:when test='<%= notificationEventJSON.getString("portletId").equals("<%= PortletKeys.SO_INVITE_MEMBERS %>") %>'>
 									<%@ include file="/notifications/view_member_request.jspf" %>
 								</c:when>
 								<c:when test='<%= notificationEventJSON.getString("portletId").equals("1_WAR_contactsportlet") %>'>
