@@ -126,6 +126,8 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 	}
 
 	public void setKaleoNodeId(long kaleoNodeId) {
+		_columnBitmask = -1L;
+
 		_kaleoNodeId = kaleoNodeId;
 	}
 

@@ -131,6 +131,8 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 	}
 
 	public void setKaleoInstanceTokenId(long kaleoInstanceTokenId) {
+		_columnBitmask = -1L;
+
 		_kaleoInstanceTokenId = kaleoInstanceTokenId;
 	}
 

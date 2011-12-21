@@ -132,6 +132,8 @@ public class KaleoTaskAssignmentInstanceModelImpl extends BaseModelImpl<KaleoTas
 
 	public void setKaleoTaskAssignmentInstanceId(
 		long kaleoTaskAssignmentInstanceId) {
+		_columnBitmask = -1L;
+
 		_kaleoTaskAssignmentInstanceId = kaleoTaskAssignmentInstanceId;
 	}
 

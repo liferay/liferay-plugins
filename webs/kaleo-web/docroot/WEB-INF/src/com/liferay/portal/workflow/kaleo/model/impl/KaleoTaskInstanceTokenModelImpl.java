@@ -133,6 +133,8 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 	}
 
 	public void setKaleoTaskInstanceTokenId(long kaleoTaskInstanceTokenId) {
+		_columnBitmask = -1L;
+
 		_kaleoTaskInstanceTokenId = kaleoTaskInstanceTokenId;
 	}
 

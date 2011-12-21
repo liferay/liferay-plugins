@@ -135,6 +135,8 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 	}
 
 	public void setKaleoTimerInstanceTokenId(long kaleoTimerInstanceTokenId) {
+		_columnBitmask = -1L;
+
 		_kaleoTimerInstanceTokenId = kaleoTimerInstanceTokenId;
 	}
 

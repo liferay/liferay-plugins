@@ -193,6 +193,8 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	}
 
 	public void setCreateDate(Date createDate) {
+		_columnBitmask = -1L;
+
 		_createDate = createDate;
 	}
 

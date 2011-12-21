@@ -130,6 +130,8 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 	}
 
 	public void setKaleoTimerId(long kaleoTimerId) {
+		_columnBitmask = -1L;
+
 		_kaleoTimerId = kaleoTimerId;
 	}
 

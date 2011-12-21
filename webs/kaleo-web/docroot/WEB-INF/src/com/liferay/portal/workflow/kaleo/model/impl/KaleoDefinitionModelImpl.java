@@ -354,13 +354,7 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 	}
 
 	public void setVersion(int version) {
-		_columnBitmask |= VERSION_COLUMN_BITMASK;
-
-		if (!_setOriginalVersion) {
-			_setOriginalVersion = true;
-
-			_originalVersion = _version;
-		}
+		_columnBitmask = -1L;
 
 		_version = version;
 	}

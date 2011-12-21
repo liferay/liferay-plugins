@@ -132,6 +132,8 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 	}
 
 	public void setKaleoInstanceId(long kaleoInstanceId) {
+		_columnBitmask = -1L;
+
 		_kaleoInstanceId = kaleoInstanceId;
 	}
 

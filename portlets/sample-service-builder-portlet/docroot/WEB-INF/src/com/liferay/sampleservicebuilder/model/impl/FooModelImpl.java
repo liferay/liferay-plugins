@@ -290,6 +290,8 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	}
 
 	public void setField1(String field1) {
+		_columnBitmask = -1L;
+
 		_field1 = field1;
 	}
 

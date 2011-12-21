@@ -239,6 +239,8 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 	}
 
 	public void setStartDate(Date startDate) {
+		_columnBitmask = -1L;
+
 		_startDate = startDate;
 	}
 

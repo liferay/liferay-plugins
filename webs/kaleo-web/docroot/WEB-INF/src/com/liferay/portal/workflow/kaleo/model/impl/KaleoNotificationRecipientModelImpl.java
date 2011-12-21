@@ -127,6 +127,8 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 
 	public void setKaleoNotificationRecipientId(
 		long kaleoNotificationRecipientId) {
+		_columnBitmask = -1L;
+
 		_kaleoNotificationRecipientId = kaleoNotificationRecipientId;
 	}
 

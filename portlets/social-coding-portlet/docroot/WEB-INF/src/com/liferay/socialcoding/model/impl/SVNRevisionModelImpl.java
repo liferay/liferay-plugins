@@ -176,6 +176,8 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 	}
 
 	public void setRevisionNumber(long revisionNumber) {
+		_columnBitmask = -1L;
+
 		_revisionNumber = revisionNumber;
 	}
 

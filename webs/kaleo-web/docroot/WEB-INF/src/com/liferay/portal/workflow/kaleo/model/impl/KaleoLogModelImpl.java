@@ -148,6 +148,8 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	}
 
 	public void setKaleoLogId(long kaleoLogId) {
+		_columnBitmask = -1L;
+
 		_kaleoLogId = kaleoLogId;
 	}
 

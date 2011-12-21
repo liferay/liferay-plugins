@@ -199,6 +199,8 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 	}
 
 	public void setCreateDate(Date createDate) {
+		_columnBitmask = -1L;
+
 		_createDate = createDate;
 	}
 

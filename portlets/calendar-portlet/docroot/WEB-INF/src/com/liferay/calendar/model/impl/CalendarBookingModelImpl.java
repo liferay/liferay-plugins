@@ -458,6 +458,8 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	}
 
 	public void setTitle(String title) {
+		_columnBitmask = -1L;
+
 		_title = title;
 	}
 
