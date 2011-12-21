@@ -11,6 +11,7 @@ $content-width: ($fixed-width - $navigation-width) - 2px;
 /* ---------- Base ---------- */
 
 body {
+	background: #FFF;
 	color: #666;
 	font: 12px/1.5em 'Helvetica', Arial, sans-serif;
 }
@@ -1059,7 +1060,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		padding-right: 0;
 	}
 
-	.aui-form, .taglib-page-iterator {
+	.taglib-page-iterator {
 		padding: 5px;
 	}
 
@@ -1533,5 +1534,27 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 	&:hover {
 		text-decoration: none;
+	}
+}
+
+/* Events Display Portlet */
+
+.events-display-portlet {
+	h2 {
+		color: $header;
+		font-size: 1em;
+	}
+
+	.results-grid, .results-row td {
+		border-width: 0;
+		padding: 0;
+	}
+
+	.results-row td {
+		border-bottom: 1px solid #EEE;
+	}
+
+	.results-row.hover td {
+		background: #EEE;
 	}
 }
