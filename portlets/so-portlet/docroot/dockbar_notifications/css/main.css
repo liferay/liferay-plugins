@@ -11,6 +11,7 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
+
 @import "compass";
 
 .so-portlet-dockbar-notifications .menu-button {
@@ -76,14 +77,12 @@
 		padding: 5px;
 	}
 
-	.user-notification-event-header {
-		.dismiss-notifications {
-			font-size: 12px;
-			text-shadow: none;
+	.user-notification-event-header .dismiss-notifications {
+		font-size: 12px;
+		text-shadow: none;
 
-			&:hover {
-				text-decoration: underline;
-			}
+		&:hover {
+			text-decoration: underline;
 		}
 	}
 
