@@ -350,3 +350,34 @@
 		}
 	}
 }
+
+.upcoming-tasks-portlet {
+	.tasksentries-container {
+		ul, li, {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		.tasks-title a {
+			display: block;
+			padding: 1px 0 1px 20px;
+		}
+
+		.high a {
+			background: url(../images/priority_high.png) no-repeat 0 50%;
+		}
+
+		.normal a {
+			background: url(../images/priority_normal.png) no-repeat 0 50%;
+		}
+
+		.low a {
+			background: url(../images/priority_low.png) no-repeat 0 50%;
+		}
+
+		.due-date a {
+			background: url(@theme_image_path@/common/date.png) no-repeat 0 50%;
+		}
+	}
+}
