@@ -43,5 +43,16 @@
 					width: '300px'
 				}
 			);
-	});
+
+			var notificationsMenuItems = notificationsMenuVars.container.all('.user-notification-event-content');
+
+			notificationsMenuItems.on(
+				['mouseover', 'mouseout'],
+				function(event) {
+					console.log(event);
+					event.currentTarget.toggleClass('aui-focus');
+				}
+			);
+		}
+	);
 </aui:script>

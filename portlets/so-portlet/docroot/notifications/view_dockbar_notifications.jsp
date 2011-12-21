@@ -26,10 +26,6 @@ List<NotificationEvent> notificationEvents = ChannelHubManagerUtil.getNotificati
 int notificationCount = notificationEvents.size();
 %>
 
-<a class="menu-button user-notification-events-icon" href="javascript:;">
-	<span class="notification-count"><%= notificationCount %></span>
-</a>
-
 <div class="aui-menu aui-overlaycontext-hidden user-notification-events" id="<portlet:namespace />notificationsMenuContainer">
 	<div class="aui-menu-content user-notification-events-container" id="<portlet:namespace />notificationsMenuContent">
 		<c:if test="<%= !notificationEvents.isEmpty() %>">
@@ -85,7 +81,7 @@ int notificationCount = notificationEvents.size();
 			</div>
 		</c:if>
 
-		<div class="user-notification-event-content user-notification-event-footer">
+		<div class="user-notification-event-footer">
 			<span class="dismiss-notifications">
 				<c:if test="<%= notificationCount > 0 %>">
 					<a class="dismiss-notifications" href="javascript:;"><liferay-ui:message key="dismiss-notifications" /></a>
@@ -103,6 +99,10 @@ int notificationCount = notificationEvents.size();
 		</div>
 	</div>
 </div>
+
+<a class="menu-button user-notification-events-icon" href="javascript:;">
+	<span class="notification-count"><%= notificationCount %></span>
+</a>
 
 <aui:script use="aui-base">
 	var userNotificationEvents = A.one('.dockbar .user-notification-events');
