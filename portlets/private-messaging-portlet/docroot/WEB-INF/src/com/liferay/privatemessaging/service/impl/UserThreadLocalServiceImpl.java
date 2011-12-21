@@ -303,7 +303,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 			throw new SystemException(e);
 		}
 
-		// NotificationEvent
+		// Notifications
 
 		sendNotificationEvent(mbMessage);
 

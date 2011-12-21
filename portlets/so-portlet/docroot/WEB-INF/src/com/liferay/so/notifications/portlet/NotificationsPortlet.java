@@ -64,12 +64,12 @@ public class NotificationsPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		String userNotificationUuid = ParamUtil.getString(
+		String userNotificationEventUuid = ParamUtil.getString(
 			actionRequest, "userNotificationEventUuid");
 
 		ChannelHubManagerUtil.deleteUserNotificiationEvent(
 			themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-			userNotificationUuid);
+			userNotificationEventUuid);
 	}
 
 	public void deleteUserNotificationEvents(
@@ -166,8 +166,6 @@ public class NotificationsPortlet extends MVCPortlet {
 
 		long memberRequestId = ParamUtil.getLong(
 			actionRequest, "memberRequestId");
-		String notificationUuid = ParamUtil.getString(
-			actionRequest, "notificationUuid");
 		int status = ParamUtil.getInteger(actionRequest, "status");
 
 		try {
@@ -185,9 +183,12 @@ public class NotificationsPortlet extends MVCPortlet {
 			}
 		}
 
+		String notificationEventUuid = ParamUtil.getString(
+			actionRequest, "notificationEventUuid");
+
 		ChannelHubManagerUtil.confirmDelivery(
 			themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-			notificationUuid, false);
+			notificationEventUuid, false);
 	}
 
 	public void updateSocialRequest(
@@ -197,8 +198,6 @@ public class NotificationsPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		String notificationUuid = ParamUtil.getString(
-			actionRequest, "notificationUuid");
 		long requestId = ParamUtil.getLong(actionRequest, "requestId");
 		int status = ParamUtil.getInteger(actionRequest, "status");
 
@@ -215,9 +214,12 @@ public class NotificationsPortlet extends MVCPortlet {
 		SocialRequestLocalServiceUtil.updateRequest(
 			requestId, status, themeDisplay);
 
+		String notificationEventUuid = ParamUtil.getString(
+			actionRequest, "notificationEventUuid");
+
 		ChannelHubManagerUtil.confirmDelivery(
 			themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-			notificationUuid, false);
+			notificationEventUuid, false);
 	}
 
 }
