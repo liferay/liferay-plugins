@@ -36,7 +36,6 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
@@ -53,6 +52,7 @@ import javax.mail.internet.InternetAddress;
 
 /**
  * @author Ryan	Park
+ * @author Jonathan Lee
  */
 public class MemberRequestLocalServiceImpl
 	extends MemberRequestLocalServiceBaseImpl {
@@ -359,17 +359,14 @@ public class MemberRequestLocalServiceImpl
 	protected void sendNotificationEvent(MemberRequest memberRequest)
 		throws PortalException, SystemException {
 
-		User receiverUser = UserLocalServiceUtil.getUserById(
-				memberRequest.getReceiverUserId());
-
 		JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject();
 
 		notificationEventJSON.put("groupId", memberRequest.getGroupId());
 		notificationEventJSON.put(
 			"memberRequestId", memberRequest.getMemberRequestId());
 		notificationEventJSON.put("portletId", "2_WAR_soportlet");
-		notificationEventJSON.put("senderUserId", memberRequest.getUserId());
 		notificationEventJSON.put("title", "invited-you-to-join");
+		notificationEventJSON.put("userId", memberRequest.getUserId());
 
 		NotificationEvent notificationEvent =
 			NotificationEventFactoryUtil.createNotificationEvent(

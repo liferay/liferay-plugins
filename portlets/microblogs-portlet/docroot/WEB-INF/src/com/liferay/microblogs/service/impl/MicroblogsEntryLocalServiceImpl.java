@@ -32,7 +32,6 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 
@@ -279,9 +278,6 @@ public class MicroblogsEntryLocalServiceImpl
 	protected void sendNotificationEvent(MicroblogsEntry microblogsEntry)
 		throws PortalException, SystemException {
 
-		User receiverUser = UserLocalServiceUtil.getUserById(
-			microblogsEntry.getReceiverUserId());
-
 		JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject();
 
 		notificationEventJSON.put("body", microblogsEntry.getContent());
@@ -290,8 +286,8 @@ public class MicroblogsEntryLocalServiceImpl
 		notificationEventJSON.put("entryKeyName", "receiverMicroblogsEntryId");
 		notificationEventJSON.put("jspPage", "/microblogs/view.jsp");
 		notificationEventJSON.put("portletId", "1_WAR_microblogsportlet");
-		notificationEventJSON.put("senderUserId", microblogsEntry.getUserId());
 		notificationEventJSON.put("title", "commented-on-your-post");
+		notificationEventJSON.put("userId", microblogsEntry.getUserId());
 
 		NotificationEvent notificationEvent =
 			NotificationEventFactoryUtil.createNotificationEvent(
@@ -301,7 +297,7 @@ public class MicroblogsEntryLocalServiceImpl
 		notificationEvent.setDeliveryRequired(0);
 
 		ChannelHubManagerUtil.sendNotificationEvent(
-			receiverUser.getCompanyId(), receiverUser.getUserId(),
+			microblogsEntry.getCompanyId(), microblogsEntry.getReceiverUserId(),
 			notificationEvent);
 	}
 

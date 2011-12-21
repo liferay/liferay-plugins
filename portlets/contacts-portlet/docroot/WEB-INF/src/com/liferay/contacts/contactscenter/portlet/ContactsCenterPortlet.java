@@ -301,10 +301,10 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long requestId = ParamUtil.getLong(actionRequest, "requestId");
-		int status = ParamUtil.getInteger(actionRequest, "status");
 		String notificationUuid = ParamUtil.getString(
 			actionRequest, "notificationUuid");
+		long requestId = ParamUtil.getLong(actionRequest, "requestId");
+		int status = ParamUtil.getInteger(actionRequest, "status");
 
 		SocialRequest socialRequest =
 			SocialRequestLocalServiceUtil.getSocialRequest(requestId);
@@ -330,16 +330,16 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			SocialRequest socialRequest, ThemeDisplay themeDisplay)
 		throws Exception {
 
+		JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject();
+
 		SocialRequestFeedEntry requestFeedEntry =
 			SocialRequestInterpreterLocalServiceUtil.interpret(
 				socialRequest, themeDisplay);
 
-		JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject();
-
 		notificationEventJSON.put("portletId", "1_WAR_contactsportlet");
 		notificationEventJSON.put("requestId", socialRequest.getRequestId());
-		notificationEventJSON.put("senderUserId", socialRequest.getUserId());
 		notificationEventJSON.put("title", requestFeedEntry.getTitle());
+		notificationEventJSON.put("userId", socialRequest.getUserId());
 
 		NotificationEvent notificationEvent =
 			NotificationEventFactoryUtil.createNotificationEvent(
