@@ -9,6 +9,7 @@
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<header-portlet-javascript>/js/main.js</header-portlet-javascript>
 		<css-class-wrapper>tasks-portlet</css-class-wrapper>
+		<add-default-resource>true</add-default-resource>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

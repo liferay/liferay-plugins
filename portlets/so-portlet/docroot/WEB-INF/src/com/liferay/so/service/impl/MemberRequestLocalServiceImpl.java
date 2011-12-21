@@ -20,7 +20,13 @@ package com.liferay.so.service.impl;
 import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.mail.MailMessage;
+import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
+import com.liferay.portal.kernel.notifications.NotificationEvent;
+import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StringPool;
@@ -31,6 +37,7 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
@@ -88,6 +95,10 @@ public class MemberRequestLocalServiceImpl
 		catch (Exception e) {
 			throw new SystemException(e);
 		}
+
+		// Notification
+
+		sendNotificationEvent(memberRequest);
 
 		return memberRequest;
 	}
@@ -344,6 +355,33 @@ public class MemberRequestLocalServiceImpl
 			from, to, subject, body, true);
 
 		MailServiceUtil.sendEmail(mailMessage);
+	}
+
+	protected void sendNotificationEvent(MemberRequest memberRequest)
+		throws PortalException, SystemException {
+
+		User receiverUser = UserLocalServiceUtil.getUserById(
+				memberRequest.getReceiverUserId());
+
+		JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject();
+
+		notificationEventJSON.put("portletId", "2_WAR_soportlet");
+		notificationEventJSON.put("senderUserId", memberRequest.getUserId());
+		notificationEventJSON.put(
+			"memberRequestId", memberRequest.getMemberRequestId());
+		notificationEventJSON.put("groupId", memberRequest.getGroupId());
+		notificationEventJSON.put("title", "invited-you-to-join");
+
+		NotificationEvent notificationEvent =
+			NotificationEventFactoryUtil.createNotificationEvent(
+				System.currentTimeMillis(), "6_WAR_soportlet",
+				notificationEventJSON);
+
+		notificationEvent.setDeliveryRequired(0);
+
+		ChannelHubManagerUtil.sendNotificationEvent(
+			memberRequest.getCompanyId(), memberRequest.getReceiverUserId(),
+			notificationEvent);
 	}
 
 	protected void validate(MemberRequest memberRequest, long userId)
