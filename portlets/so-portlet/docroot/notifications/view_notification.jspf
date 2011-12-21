@@ -27,7 +27,7 @@ long portletPlid = PortalUtil.getPlidFromPortletId(mySite.getGroupId(), true, no
 if (portletPlid != 0) {
 	portletURL = PortletURLFactoryUtil.create(request, notificationEventJSON.getString("portletId"), portletPlid, PortletRequest.RENDER_PHASE);
 
-	portletURL.setParameter(notificationEventJSON.getString("entryId"), String.valueOf(notificationEventJSON.getLong("microblogsEntryId")));
+	portletURL.setParameter(notificationEventJSON.getString("entryKeyName"), String.valueOf(notificationEventJSON.getLong("entryId")));
 }
 else {
 	portletURL = liferayPortletResponse.createRenderURL(notificationEventJSON.getString("portletId"));

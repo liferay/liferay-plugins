@@ -38,10 +38,6 @@ catch (Exception e) {
 			<span class="thumbnail">
 				<img alt="<%= userFullName %>" src="<%= userPortaitURL %>" />
 			</span>
-
-			<span class="portlet-icon">
-				<liferay-portlet:icon-portlet portlet='<%= PortletLocalServiceUtil.getPortletById(company.getCompanyId(), notificationEventJSON.getString("portletId")) %>' />
-			</span>
 		</div>
 
 		<div class="notification-entry">

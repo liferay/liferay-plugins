@@ -40,7 +40,7 @@
 				>
 
 					<%
-					List<UserNotificationEvent> userNotificationEvents = UserNotificationEventLocalServiceUtil.getUserNotificationEvents(themeDisplay.getUserId(), true, searchContainer.getStart(), searchContainer.getEnd());
+					List<UserNotificationEvent> userNotificationEvents = UserNotificationEventLocalServiceUtil.getUserNotificationEvents(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
 					int notificationCount = userNotificationEvents.size();
 					%>
 
@@ -59,14 +59,12 @@
 						<%
 						JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject(notificationEvent.getPayload());
 
-						long senderUserId = notificationEventJSON.getLong("senderUserId", 0);
-
 						String userDisplayURL = StringPool.BLANK;
-						String userFullName = PortalUtil.getUserName(senderUserId, StringPool.BLANK);
+						String userFullName = PortalUtil.getUserName(notificationEventJSON.getLong("senderUserId"), StringPool.BLANK);
 						String userPortaitURL = StringPool.BLANK;
 
 						try {
-							User curUser = UserLocalServiceUtil.getUserById(senderUserId);
+							User curUser = UserLocalServiceUtil.getUserById(notificationEventJSON.getLong("senderUserId"));
 
 							userDisplayURL = curUser.getDisplayURL(themeDisplay);
 							userPortaitURL = curUser.getPortraitURL(themeDisplay);

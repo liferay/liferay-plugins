@@ -84,7 +84,7 @@ int notificationCount = notificationEvents.size();
 		<div class="user-notification-event-footer">
 			<span class="dismiss-notifications">
 				<c:if test="<%= notificationCount > 0 %>">
-					<a class="dismiss-notifications" href="javascript:;"><liferay-ui:message key="dismiss-notifications" /></a>
+					<a class="dismiss-notifications" href="javascript:;"><liferay-ui:message key="mark-as-read" /></a>
 				</c:if>
 			</span>
 
