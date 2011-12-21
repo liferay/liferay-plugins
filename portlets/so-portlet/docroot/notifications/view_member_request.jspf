@@ -28,7 +28,7 @@ catch (Exception e) {
 
 	ChannelHubManagerUtil.confirmDelivery(user.getCompanyId(), user.getUserId(), notificationEvent.getUuid(), false);
 
-	notificationCount--;
+	notificationEventsCount--;
 }
 %>
 
@@ -61,7 +61,7 @@ catch (Exception e) {
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="memberRequestId" value='<%= String.valueOf(notificationEventJSON.getLong("memberRequestId")) %>' />
 					<portlet:param name="status" value="<%= String.valueOf(InviteMembersConstants.STATUS_ACCEPTED) %>" />
-					<portlet:param name="notificationUuid" value="<%= String.valueOf(notificationEvent.getUuid()) %>" />
+					<portlet:param name="notificationEventUuid" value="<%= String.valueOf(notificationEvent.getUuid()) %>" />
 				</liferay-portlet:actionURL>
 
 				<span class="lfr-user-action-item lfr-user-action-confirm">
@@ -72,7 +72,7 @@ catch (Exception e) {
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="memberRequestId" value='<%= String.valueOf(notificationEventJSON.getLong("memberRequestId")) %>' />
 					<portlet:param name="status" value="<%= String.valueOf(InviteMembersConstants.STATUS_DECLINED) %>" />
-					<portlet:param name="notificationUuid" value="<%= String.valueOf(notificationEvent.getUuid()) %>" />
+					<portlet:param name="notificationEventUuid" value="<%= String.valueOf(notificationEvent.getUuid()) %>" />
 				</liferay-portlet:actionURL>
 
 				<span class="lfr-user-action-item lfr-user-action-ignore">

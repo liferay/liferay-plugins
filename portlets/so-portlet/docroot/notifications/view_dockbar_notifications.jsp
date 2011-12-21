@@ -23,7 +23,8 @@
 String userNotificationEventUuids = StringPool.BLANK;
 
 List<NotificationEvent> notificationEvents = ChannelHubManagerUtil.getNotificationEvents(user.getCompanyId(), user.getUserId(), true);
-int notificationCount = notificationEvents.size();
+
+int notificationEventsCount = notificationEvents.size();
 %>
 
 <div class="aui-menu aui-overlaycontext-hidden user-notification-events" id="<portlet:namespace />notificationsMenuContainer">
@@ -36,19 +37,23 @@ int notificationCount = notificationEvents.size();
 					userNotificationEventUuids = StringUtil.add(userNotificationEventUuids, notificationEvent.getUuid());
 				}
 				else {
-					notificationCount--;
+					notificationEventsCount--;
 
 					continue;
 				}
 
 				JSONObject notificationEventJSON = notificationEvent.getPayload();
 
-				String userFullName = PortalUtil.getUserName(notificationEventJSON.getLong("userId"), StringPool.BLANK);
+				String portletId = notificationEventJSON.getString("portletId");
+
+				long userId = notificationEventJSON.getLong("userId");
+
+				String userFullName = PortalUtil.getUserName(userId, StringPool.BLANK);
 
 				String userDisplayURL = StringPool.BLANK;
 				String userPortaitURL = StringPool.BLANK;
 
-				User curUser = UserLocalServiceUtil.fetchUserById(notificationEventJSON.getLong("userId"));
+				User curUser = UserLocalServiceUtil.fetchUserById(userId);
 
 				if (curUser != null) {
 					userDisplayURL = curUser.getDisplayURL(themeDisplay);
@@ -57,10 +62,10 @@ int notificationCount = notificationEvents.size();
 			%>
 
 				<c:choose>
-					<c:when test='<%= notificationEventJSON.getString("portletId").equals("<%= PortletKeys.SO_INVITE_MEMBERS %>") %>'>
+					<c:when test='<%= portletId.equals("<%= PortletKeys.SO_INVITE_MEMBERS %>") %>'>
 						<%@ include file="/notifications/view_member_request.jspf" %>
 					</c:when>
-					<c:when test='<%= notificationEventJSON.getString("portletId").equals("1_WAR_contactsportlet") %>'>
+					<c:when test='<%= portletId.equals("1_WAR_contactsportlet") %>'>
 						<%@ include file="/notifications/view_social_request.jspf" %>
 					</c:when>
 					<c:otherwise>
@@ -73,15 +78,15 @@ int notificationCount = notificationEvents.size();
 		}
 		%>
 
-		<c:if test="<%= notificationCount <= 0 %>">
+		<c:if test="<%= notificationEventsCount <= 0 %>">
 			<div class="user-notification-event-header">
-				<liferay-ui:message key="you-have-no-new-notification" />
+				<liferay-ui:message key="you-have-no-new-notifications" />
 			</div>
 		</c:if>
 
 		<div class="user-notification-event-footer">
 			<span class="dismiss-notifications">
-				<c:if test="<%= notificationCount > 0 %>">
+				<c:if test="<%= notificationEventsCount > 0 %>">
 					<a class="dismiss-notifications" href="javascript:;"><liferay-ui:message key="mark-as-read" /></a>
 				</c:if>
 			</span>
@@ -99,14 +104,14 @@ int notificationCount = notificationEvents.size();
 </div>
 
 <a class="menu-button user-notification-events-icon" href="javascript:;">
-	<span class="notification-count"><%= notificationCount %></span>
+	<span class="notification-count"><%= notificationEventsCount %></span>
 </a>
 
 <aui:script use="aui-base">
 	var userNotificationEvents = A.one('.dockbar .user-notification-events');
 	var userNotificationsContainer = userNotificationEvents.one('.user-notification-events-container');
 
-	<c:if test="<%= notificationCount > 0 %>">
+	<c:if test="<%= notificationEventsCount > 0 %>">
 		userNotificationEvents.delegate(
 			'click',
 			function(event) {

@@ -33,7 +33,7 @@
 
 				<liferay-ui:search-container
 					deltaConfigurable="<%= true %>"
-					emptyResultsMessage="you-have-no-notification"
+					emptyResultsMessage="you-have-no-notifications"
 					iteratorURL="<%= iteratorURL %>"
 					rowChecker="<%= new RowChecker(renderResponse) %>"
 				>
@@ -41,12 +41,12 @@
 					<%
 					List<UserNotificationEvent> userNotificationEvents = UserNotificationEventLocalServiceUtil.getUserNotificationEvents(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
 
-					int notificationCount = userNotificationEvents.size();
+					int notificationEventsCount = userNotificationEvents.size();
 					%>
 
 					<liferay-ui:search-container-results
 						results="<%= userNotificationEvents %>"
-						total="<%= notificationCount %>"
+						total="<%= notificationEventsCount %>"
 					/>
 
 					<liferay-ui:search-container-row
@@ -59,12 +59,16 @@
 						<%
 						JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject(notificationEvent.getPayload());
 
-						String userFullName = PortalUtil.getUserName(notificationEventJSON.getLong("userId"), StringPool.BLANK);
+						String portletId = notificationEventJSON.getString("portletId");
+
+						long userId = notificationEventJSON.getLong("userId");
+
+						String userFullName = PortalUtil.getUserName(userId, StringPool.BLANK);
 
 						String userDisplayURL = StringPool.BLANK;
 						String userPortaitURL = StringPool.BLANK;
 
-						User curUser = UserLocalServiceUtil.fetchUserById(notificationEventJSON.getLong("userId"));
+						User curUser = UserLocalServiceUtil.fetchUserById(userId);
 
 						if (curUser != null) {
 							userDisplayURL = curUser.getDisplayURL(themeDisplay);
@@ -74,10 +78,10 @@
 
 						<liferay-ui:search-container-column-text name="notifications" valign="top">
 							<c:choose>
-								<c:when test='<%= notificationEventJSON.getString("portletId").equals("<%= PortletKeys.SO_INVITE_MEMBERS %>") %>'>
+								<c:when test='<%= portletId.equals("<%= PortletKeys.SO_INVITE_MEMBERS %>") %>'>
 									<%@ include file="/notifications/view_member_request.jspf" %>
 								</c:when>
-								<c:when test='<%= notificationEventJSON.getString("portletId").equals("1_WAR_contactsportlet") %>'>
+								<c:when test='<%= portletId.equals("1_WAR_contactsportlet") %>'>
 									<%@ include file="/notifications/view_social_request.jspf" %>
 								</c:when>
 								<c:otherwise>

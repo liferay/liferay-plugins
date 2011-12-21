@@ -101,7 +101,7 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 			userId, groupId, TasksEntry.class.getName(), tasksEntryId,
 			TasksActivityKeys.ADD_ENTRY, StringPool.BLANK, assigneeUserId);
 
-		// Notification
+		// Notifications
 
 		sendNotificationEvent(
 			tasksEntry, TasksEntryConstants.STATUS_ALL, assigneeUserId,
@@ -293,8 +293,8 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 				new TasksEntryDueDateException());
 		}
 
-		long previousAssigneeUserId = tasksEntry.getAssigneeUserId();
-		int previousStatus = tasksEntry.getStatus();
+		long oldAssigneeUserId = tasksEntry.getAssigneeUserId();
+		int oldStatus = tasksEntry.getStatus();
 
 		tasksEntry.setModifiedDate(now);
 		tasksEntry.setTitle(title);
@@ -338,10 +338,10 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 			TasksEntry.class.getName(), tasksEntryId, activity,
 			StringPool.BLANK, assigneeUserId);
 
-		// Notification
+		// Notifications
 
 		sendNotificationEvent(
-			tasksEntry, previousStatus, previousAssigneeUserId, serviceContext);
+			tasksEntry, oldStatus, oldAssigneeUserId, serviceContext);
 
 		return tasksEntry;
 	}
@@ -367,24 +367,24 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 			tasksEntry.setFinishDate(null);
 		}
 
-		int previousStatus = tasksEntry.getStatus();
+		int oldStatus = tasksEntry.getStatus();
 
 		tasksEntry.setStatus(status);
 
 		tasksEntryPersistence.update(tasksEntry, false);
 
-		// Notification
+		// Notifications
 
 		sendNotificationEvent(
-			tasksEntry, previousStatus, tasksEntry.getAssigneeUserId(),
+			tasksEntry, oldStatus, tasksEntry.getAssigneeUserId(),
 			serviceContext);
 
 		return tasksEntry;
 	}
 
 	protected void sendNotificationEvent(
-			TasksEntry tasksEntry, int previousStatus,
-			long previousAssigneeUserId, ServiceContext serviceContext)
+			TasksEntry tasksEntry, int oldStatus, long oldAssigneeUserId,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		int status = tasksEntry.getStatus();
@@ -398,8 +398,8 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 
 		HashSet<Long> receiverUserIds = new HashSet<Long>(3);
 
+		receiverUserIds.add(oldAssigneeUserId);
 		receiverUserIds.add(tasksEntry.getUserId());
-		receiverUserIds.add(previousAssigneeUserId);
 		receiverUserIds.add(tasksEntry.getAssigneeUserId());
 
 		receiverUserIds.remove(serviceContext.getUserId());
@@ -414,18 +414,18 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 		for (long receiverUserId : receiverUserIds) {
 			String title = StringPool.BLANK;
 
-			if (previousStatus == TasksEntryConstants.STATUS_ALL) {
+			if (oldStatus == TasksEntryConstants.STATUS_ALL) {
 				title = "x-assigned-you-a-task";
 			}
-			else if (tasksEntry.getAssigneeUserId() != previousAssigneeUserId) {
-				if (receiverUserId == previousAssigneeUserId) {
+			else if (tasksEntry.getAssigneeUserId() != oldAssigneeUserId) {
+				if (receiverUserId == oldAssigneeUserId) {
 					title = "x-reassigned-your-task";
 				}
 				else {
 					title = "x-assigned-you-a-task";
 				}
 			}
-			else if (status != previousStatus) {
+			else if (status != oldStatus) {
 				String statusLabel = TasksEntryConstants.getStatusLabel(
 					tasksEntry.getStatus());
 

@@ -63,6 +63,8 @@ public class MemberRequestLocalServiceImpl
 			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
+		// Member request
+
 		User user = userLocalService.getUserById(userId);
 
 		Date now = new Date();
@@ -95,7 +97,7 @@ public class MemberRequestLocalServiceImpl
 			throw new SystemException(e);
 		}
 
-		// Notification
+		// Notifications
 
 		sendNotificationEvent(memberRequest);
 

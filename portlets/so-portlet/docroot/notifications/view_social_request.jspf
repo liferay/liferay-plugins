@@ -36,9 +36,9 @@
 		<div class="request">
 			<liferay-portlet:actionURL name="updateSocialRequest" portletName="6_WAR_soportlet" var="confirmURL">
 				<portlet:param name="redirect" value="<%= currentURL %>" />
-				<portlet:param name="requestId" value='<%= String.valueOf(notificationEventJSON.getLong("requestId", 0)) %>' />
+				<portlet:param name="requestId" value='<%= String.valueOf(notificationEventJSON.getLong("requestId")) %>' />
 				<portlet:param name="status" value="<%= String.valueOf(SocialRequestConstants.STATUS_CONFIRM) %>" />
-				<portlet:param name="notificationUuid" value="<%= String.valueOf(notificationEvent.getUuid()) %>" />
+				<portlet:param name="notificationEventUuid" value="<%= String.valueOf(notificationEvent.getUuid()) %>" />
 			</liferay-portlet:actionURL>
 
 			<span class="lfr-user-action-item lfr-user-action-confirm">
@@ -47,9 +47,9 @@
 
 			<liferay-portlet:actionURL name="updateSocialRequest" portletName="6_WAR_soportlet" var="ignoreURL">
 				<portlet:param name="redirect" value="<%= currentURL %>" />
-				<portlet:param name="requestId" value='<%= String.valueOf(notificationEventJSON.getLong("requestId", 0)) %>' />
+				<portlet:param name="requestId" value='<%= String.valueOf(notificationEventJSON.getLong("requestId")) %>' />
 				<portlet:param name="status" value="<%= String.valueOf(SocialRequestConstants.STATUS_IGNORE) %>" />
-				<portlet:param name="notificationUuid" value="<%= String.valueOf(notificationEvent.getUuid()) %>" />
+				<portlet:param name="notificationEventUuid" value="<%= String.valueOf(notificationEvent.getUuid()) %>" />
 			</liferay-portlet:actionURL>
 
 			<span class="lfr-user-action-item lfr-user-action-ignore">

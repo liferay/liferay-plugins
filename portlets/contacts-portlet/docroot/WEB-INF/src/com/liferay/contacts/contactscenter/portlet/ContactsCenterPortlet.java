@@ -299,8 +299,6 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		String notificationUuid = ParamUtil.getString(
-			actionRequest, "notificationUuid");
 		long requestId = ParamUtil.getLong(actionRequest, "requestId");
 		int status = ParamUtil.getInteger(actionRequest, "status");
 
@@ -317,9 +315,12 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		SocialRequestLocalServiceUtil.updateRequest(
 			requestId, status, themeDisplay);
 
+		String notificationEventUuid = ParamUtil.getString(
+			actionRequest, "notificationEventUuid");
+
 		ChannelHubManagerUtil.confirmDelivery(
 			themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-			notificationUuid, false);
+			notificationEventUuid, false);
 	}
 
 	protected void sendNotificationEvent(
@@ -328,13 +329,13 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject();
 
-		SocialRequestFeedEntry requestFeedEntry =
+		SocialRequestFeedEntry socialRequestFeedEntry =
 			SocialRequestInterpreterLocalServiceUtil.interpret(
 				socialRequest, themeDisplay);
 
 		notificationEventJSON.put("portletId", "1_WAR_contactsportlet");
 		notificationEventJSON.put("requestId", socialRequest.getRequestId());
-		notificationEventJSON.put("title", requestFeedEntry.getTitle());
+		notificationEventJSON.put("title", socialRequestFeedEntry.getTitle());
 		notificationEventJSON.put("userId", socialRequest.getUserId());
 
 		NotificationEvent notificationEvent =
