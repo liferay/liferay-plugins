@@ -18,15 +18,13 @@
 --%>
 
 <%
-Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), "2_WAR_soportlet");
-
 Group invitedGroup = null;
 
 try {
-	invitedGroup = GroupLocalServiceUtil.getGroup(notificationEventJSON.getLong("groupId", 0));
+	invitedGroup = GroupLocalServiceUtil.getGroup(notificationEventJSON.getLong("groupId"));
 }
 catch (Exception e) {
-	MemberRequestLocalServiceUtil.deleteMemberRequest(notificationEventJSON.getLong("memberRequestId", 0));
+	MemberRequestLocalServiceUtil.deleteMemberRequest(notificationEventJSON.getLong("memberRequestId"));
 
 	ChannelHubManagerUtil.confirmDelivery(user.getCompanyId(), user.getUserId(), notificationEvent.getUuid(), false);
 
@@ -42,7 +40,7 @@ catch (Exception e) {
 			</span>
 
 			<span class="portlet-icon">
-				<liferay-portlet:icon-portlet portlet="<%= portlet %>" />
+				<liferay-portlet:icon-portlet portlet='<%= PortletLocalServiceUtil.getPortletById(company.getCompanyId(), notificationEventJSON.getString("portletId")) %>' />
 			</span>
 		</div>
 
@@ -54,13 +52,13 @@ catch (Exception e) {
 					<portlet:param name="privateLayout" value="<%= String.valueOf(!invitedGroup.hasPublicLayouts()) %>" />
 				</liferay-portlet:actionURL>
 
-				<b><%= userFullName %></b> <liferay-ui:message key='<%= notificationEventJSON.getString("title", StringPool.BLANK) %>' /> <a href="<%= siteURL %>"><%= invitedGroup.getDescriptiveName() %></a>
+				<b><%= userFullName %></b> <liferay-ui:message key='<%= notificationEventJSON.getString("title") %>' /> <a href="<%= siteURL %>"><%= invitedGroup.getDescriptiveName() %></a>
 			</div>
 
 			<div class="request">
 				<liferay-portlet:actionURL name="updateMemberRequest" portletName="6_WAR_soportlet" var="confirmURL">
 					<portlet:param name="redirect" value="<%= currentURL %>" />
-					<portlet:param name="memberRequestId" value='<%= String.valueOf(notificationEventJSON.getLong("memberRequestId", 0)) %>' />
+					<portlet:param name="memberRequestId" value='<%= String.valueOf(notificationEventJSON.getLong("memberRequestId")) %>' />
 					<portlet:param name="status" value="<%= String.valueOf(InviteMembersConstants.STATUS_ACCEPTED) %>" />
 					<portlet:param name="notificationUuid" value="<%= String.valueOf(notificationEvent.getUuid()) %>" />
 				</liferay-portlet:actionURL>
@@ -71,7 +69,7 @@ catch (Exception e) {
 
 				<liferay-portlet:actionURL name="updateMemberRequest" portletName="6_WAR_soportlet" var="ignoreURL">
 					<portlet:param name="redirect" value="<%= currentURL %>" />
-					<portlet:param name="memberRequestId" value='<%= String.valueOf(notificationEventJSON.getLong("memberRequestId", 0)) %>' />
+					<portlet:param name="memberRequestId" value='<%= String.valueOf(notificationEventJSON.getLong("memberRequestId")) %>' />
 					<portlet:param name="status" value="<%= String.valueOf(InviteMembersConstants.STATUS_DECLINED) %>" />
 					<portlet:param name="notificationUuid" value="<%= String.valueOf(notificationEvent.getUuid()) %>" />
 				</liferay-portlet:actionURL>

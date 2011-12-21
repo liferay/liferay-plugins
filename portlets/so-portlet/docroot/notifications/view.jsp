@@ -76,7 +76,6 @@
 						%>
 
 						<liferay-ui:search-container-column-text name="notifications" valign="top">
-
 							<c:choose>
 								<c:when test='<%= notificationEventJSON.getString("portletId", StringPool.BLANK).equals("1_WAR_privatemessagingportlet") %>'>
 									<%@ include file="/notifications/view_private_message.jspf" %>
@@ -94,7 +93,6 @@
 									<%@ include file="/notifications/view_microblogs.jspf" %>
 								</c:when>
 							</c:choose>
-
 						</liferay-ui:search-container-column-text>
 					</liferay-ui:search-container-row>
 
@@ -105,7 +103,6 @@
 							<aui:button type="submit" value="delete" />
 						</aui:button-row>
 					</c:if>
-
 				</liferay-ui:search-container>
 			</div>
 		</div>
@@ -118,7 +115,7 @@
 	userNotificationEvents.delegate(
 		'click',
 		function(event) {
-			var portletURL = event.currentTarget.getAttribute('data-portlet-url');
+			var portletURL = event.currentTarget.getAttribute('data-portletUrl');
 
 			if (portletURL) {
 				window.location = portletURL;
@@ -126,8 +123,6 @@
 		},
 		'.user-notification-event-content'
 	);
-
-	var deleteUserNotificationEvents = A.one('.view-all-user-notifications .user-notification-events');
 
 	Liferay.provide(
 		window,
