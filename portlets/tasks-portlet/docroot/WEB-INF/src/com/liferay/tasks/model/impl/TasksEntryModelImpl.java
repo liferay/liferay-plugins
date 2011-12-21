@@ -262,6 +262,8 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	}
 
 	public void setCreateDate(Date createDate) {
+		_columnBitmask = -1L;
+
 		_createDate = createDate;
 	}
 
@@ -294,6 +296,8 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	}
 
 	public void setPriority(int priority) {
+		_columnBitmask = -1L;
+
 		_priority = priority;
 	}
 
@@ -363,6 +367,8 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	}
 
 	public void setDueDate(Date dueDate) {
+		_columnBitmask = -1L;
+
 		_dueDate = dueDate;
 	}
 

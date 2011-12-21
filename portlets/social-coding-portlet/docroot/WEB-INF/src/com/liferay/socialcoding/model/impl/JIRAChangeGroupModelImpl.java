@@ -147,6 +147,8 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 	}
 
 	public void setCreateDate(Date createDate) {
+		_columnBitmask = -1L;
+
 		_createDate = createDate;
 	}
 

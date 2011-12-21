@@ -249,6 +249,8 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 	}
 
 	public void setCreateDate(Date createDate) {
+		_columnBitmask = -1L;
+
 		_createDate = createDate;
 	}
 

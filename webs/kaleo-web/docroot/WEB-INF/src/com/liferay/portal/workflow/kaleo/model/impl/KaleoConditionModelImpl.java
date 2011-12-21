@@ -124,6 +124,8 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 	}
 
 	public void setKaleoConditionId(long kaleoConditionId) {
+		_columnBitmask = -1L;
+
 		_kaleoConditionId = kaleoConditionId;
 	}
 

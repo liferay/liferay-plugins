@@ -124,6 +124,8 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 	}
 
 	public void setKaleoTaskId(long kaleoTaskId) {
+		_columnBitmask = -1L;
+
 		_kaleoTaskId = kaleoTaskId;
 	}
 

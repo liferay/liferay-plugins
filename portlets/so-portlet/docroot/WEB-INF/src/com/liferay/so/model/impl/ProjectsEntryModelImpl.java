@@ -231,6 +231,8 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 	}
 
 	public void setEndDate(Date endDate) {
+		_columnBitmask = -1L;
+
 		_endDate = endDate;
 	}
 

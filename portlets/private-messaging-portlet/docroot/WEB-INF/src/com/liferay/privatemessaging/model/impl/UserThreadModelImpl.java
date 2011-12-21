@@ -176,6 +176,8 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	}
 
 	public void setModifiedDate(Date modifiedDate) {
+		_columnBitmask = -1L;
+
 		_modifiedDate = modifiedDate;
 	}
 

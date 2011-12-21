@@ -271,6 +271,8 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 	}
 
 	public void setModifiedDate(Date modifiedDate) {
+		_columnBitmask = -1L;
+
 		_modifiedDate = modifiedDate;
 	}
 

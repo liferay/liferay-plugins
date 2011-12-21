@@ -235,6 +235,8 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 	}
 
 	public void setModifiedDate(Date modifiedDate) {
+		_columnBitmask = -1L;
+
 		_modifiedDate = modifiedDate;
 	}
 

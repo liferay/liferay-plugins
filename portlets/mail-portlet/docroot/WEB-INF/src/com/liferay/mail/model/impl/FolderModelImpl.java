@@ -209,11 +209,7 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 	}
 
 	public void setFullName(String fullName) {
-		_columnBitmask |= FULLNAME_COLUMN_BITMASK;
-
-		if (_originalFullName == null) {
-			_originalFullName = _fullName;
-		}
+		_columnBitmask = -1L;
 
 		_fullName = fullName;
 	}

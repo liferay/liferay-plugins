@@ -198,6 +198,8 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 	}
 
 	public void setName(String name) {
+		_columnBitmask = -1L;
+
 		_name = name;
 	}
 

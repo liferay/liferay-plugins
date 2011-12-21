@@ -287,6 +287,8 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 	}
 
 	public void setSentDate(Date sentDate) {
+		_columnBitmask = -1L;
+
 		_sentDate = sentDate;
 	}
 
