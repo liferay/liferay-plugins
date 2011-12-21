@@ -73,36 +73,32 @@ List<CalEvent> events = (List<CalEvent>)request.getAttribute("view.jsp-events");
 			%>
 
 			<div class="event">
-				<div>
-					<span class="event-name">
-						<a href="<%= eventHREF %>"><%= StringUtil.shorten(event.getTitle(), 40) %></a>
+				<span class="event-name">
+					<a href="<%= eventHREF %>"><%= StringUtil.shorten(event.getTitle(), 40) %></a>
+				</span>
+
+				<c:if test="<%= !event.isAllDay() %>">
+					<span class="event-time">
+						<c:choose>
+							<c:when test="<%= event.isTimeZoneSensitive() %>">
+								<%= dateFormatTime.format(Time.getDate(event.getStartDate(), timeZone)) %>
+							</c:when>
+							<c:otherwise>
+								<%= dateFormatTime.format(event.getStartDate()) %>
+							</c:otherwise>
+						</c:choose>
 					</span>
+				</c:if>
 
-					<c:if test="<%= !event.isAllDay() %>">
-						<span class="event-time">
-							<c:choose>
-								<c:when test="<%= event.isTimeZoneSensitive() %>">
-									<%= dateFormatTime.format(Time.getDate(event.getStartDate(), timeZone)) %>
-								</c:when>
-								<c:otherwise>
-									<%= dateFormatTime.format(event.getStartDate()) %>
-								</c:otherwise>
-							</c:choose>
-						</span>
-					</c:if>
-				</div>
-
-				<div>
-					<c:if test="<%= group.isUser() %>">
-						<span class="event-site">
-							<a href="<%= groupURL.toString() %>"><%= group.getDescriptiveName(locale) %></a>
-						</span>
-					</c:if>
-
-					<span class="event-type">
-						<%= LanguageUtil.get(pageContext, event.getType()) %>
+				<c:if test="<%= group.isUser() %>">
+					<span class="event-site">
+						<a href="<%= groupURL.toString() %>"><%= group.getDescriptiveName(locale) %></a>
 					</span>
-				</div>
+				</c:if>
+
+				<span class="event-type">
+					<%= LanguageUtil.get(pageContext, event.getType()) %>
+				</span>
 			</div>
 		</liferay-ui:search-container-column-text>
 	</liferay-ui:search-container-row>
