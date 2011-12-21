@@ -7,11 +7,11 @@
 		font-weight: bold;
 	}
 
-	.event-time, .event-type {
+	.event-time {
 		float: right;
 	}
 
-	.results-header, .taglib-search-iterator-page-iterator-bottom {
+	.event-type, .results-header, .taglib-search-iterator-page-iterator-bottom {
 		display: none;
 	}
 }
