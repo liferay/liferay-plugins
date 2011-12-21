@@ -284,12 +284,14 @@ public class MicroblogsEntryLocalServiceImpl
 
 		JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject();
 
-		notificationEventJSON.put("portletId", "1_WAR_microblogsportlet");
-		notificationEventJSON.put("senderUserId", microblogsEntry.getUserId());
+		notificationEventJSON.put("body", microblogsEntry.getContent());
+		notificationEventJSON.put("entryKeyName", "receiverMicroblogsEntryId");
+		notificationEventJSON.put("jspPage", "/microblogs/view.jsp");
 		notificationEventJSON.put(
 			"microblogsEntryId", microblogsEntry.getMicroblogsEntryId());
+		notificationEventJSON.put("portletId", "1_WAR_microblogsportlet");
+		notificationEventJSON.put("senderUserId", microblogsEntry.getUserId());
 		notificationEventJSON.put("title", "commented-on-your-post");
-		notificationEventJSON.put("body", microblogsEntry.getContent());
 
 		NotificationEvent notificationEvent =
 			NotificationEventFactoryUtil.createNotificationEvent(

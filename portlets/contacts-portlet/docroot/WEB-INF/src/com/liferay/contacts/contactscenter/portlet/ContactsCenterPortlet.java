@@ -337,8 +337,8 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject();
 
 		notificationEventJSON.put("portletId", "1_WAR_contactsportlet");
-		notificationEventJSON.put("senderUserId", socialRequest.getUserId());
 		notificationEventJSON.put("requestId", socialRequest.getRequestId());
+		notificationEventJSON.put("senderUserId", socialRequest.getUserId());
 		notificationEventJSON.put("title", requestFeedEntry.getTitle());
 
 		NotificationEvent notificationEvent =

@@ -364,11 +364,11 @@ public class MemberRequestLocalServiceImpl
 
 		JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject();
 
-		notificationEventJSON.put("portletId", "2_WAR_soportlet");
-		notificationEventJSON.put("senderUserId", memberRequest.getUserId());
+		notificationEventJSON.put("groupId", memberRequest.getGroupId());
 		notificationEventJSON.put(
 			"memberRequestId", memberRequest.getMemberRequestId());
-		notificationEventJSON.put("groupId", memberRequest.getGroupId());
+		notificationEventJSON.put("portletId", "2_WAR_soportlet");
+		notificationEventJSON.put("senderUserId", memberRequest.getUserId());
 		notificationEventJSON.put("title", "invited-you-to-join");
 
 		NotificationEvent notificationEvent =
