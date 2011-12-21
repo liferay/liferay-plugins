@@ -19,7 +19,7 @@
 
 <%@ include file="/init.jsp" %>
 
-<liferay-util:include page="/notifications/view_dockbar_notifications.jsp" portletId="6_WAR_soportlet" />
+<liferay-util:include page="/notifications/view_dockbar_notifications.jsp" servletContext="<%= application %>" />
 
 <aui:script use="liferay-dockbar">
 	Liferay.once(

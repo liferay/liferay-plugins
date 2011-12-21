@@ -263,8 +263,6 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			themeDisplay.getUserId(), 0, User.class.getName(),
 			themeDisplay.getUserId(), type, StringPool.BLANK, userId);
 
-		// Notification
-
 		sendNotificationEvent(socialRequest, themeDisplay);
 	}
 
@@ -318,8 +316,6 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		SocialRequestLocalServiceUtil.updateRequest(
 			requestId, status, themeDisplay);
-
-		// Notification
 
 		ChannelHubManagerUtil.confirmDelivery(
 			themeDisplay.getCompanyId(), themeDisplay.getUserId(),

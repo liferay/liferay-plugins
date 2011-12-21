@@ -57,7 +57,7 @@ catch (Exception e) {
 			</div>
 
 			<div class="request">
-				<liferay-portlet:actionURL name="updateMemberRequest" portletName="6_WAR_soportlet" var="confirmURL">
+				<liferay-portlet:actionURL name="updateMemberRequest" portletName="<%= PortletKeys.SO_NOTIFICATION %>" var="confirmURL">
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="memberRequestId" value='<%= String.valueOf(notificationEventJSON.getLong("memberRequestId")) %>' />
 					<portlet:param name="status" value="<%= String.valueOf(InviteMembersConstants.STATUS_ACCEPTED) %>" />
@@ -68,7 +68,7 @@ catch (Exception e) {
 					<a href="<%= confirmURL %>"><liferay-ui:message key="confirm" /></a>
 				</span>
 
-				<liferay-portlet:actionURL name="updateMemberRequest" portletName="6_WAR_soportlet" var="ignoreURL">
+				<liferay-portlet:actionURL name="updateMemberRequest" portletName="<%= PortletKeys.SO_NOTIFICATION %>" var="ignoreURL">
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="memberRequestId" value='<%= String.valueOf(notificationEventJSON.getLong("memberRequestId")) %>' />
 					<portlet:param name="status" value="<%= String.valueOf(InviteMembersConstants.STATUS_DECLINED) %>" />

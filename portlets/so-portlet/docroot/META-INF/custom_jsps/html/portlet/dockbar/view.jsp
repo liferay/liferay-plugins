@@ -58,7 +58,7 @@ int x = html.indexOf("<li class=\"user-avatar \" id=\"_145_userAvatar\">");
 		</li>
 
 		<li class="notifications-menu has-submenu" id="<portlet:namespace />notificationsMenu">
-			<liferay-portlet:runtime portletName="7_WAR_soportlet" />
+			<liferay-portlet:runtime portletName="<%= PortletKeys.SO_DOCKBAR_NOTIFICATION %>" />
 		</li>
 
 		<%= html.substring(x) %>

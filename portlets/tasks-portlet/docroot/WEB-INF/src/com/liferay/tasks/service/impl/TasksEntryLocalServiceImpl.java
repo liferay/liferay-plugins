@@ -294,14 +294,13 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 		}
 
 		long previousAssigneeUserId = tasksEntry.getAssigneeUserId();
+		int previousStatus = tasksEntry.getStatus();
 
 		tasksEntry.setModifiedDate(now);
 		tasksEntry.setTitle(title);
 		tasksEntry.setPriority(priority);
 		tasksEntry.setAssigneeUserId(assigneeUserId);
 		tasksEntry.setDueDate(dueDate);
-
-		int previousStatus = tasksEntry.getStatus();
 
 		if (status == TasksEntryConstants.STATUS_RESOLVED) {
 			tasksEntry.setResolverUserId(resolverUserId);
