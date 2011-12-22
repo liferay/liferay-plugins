@@ -128,8 +128,6 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 	}
 
 	public void setName(String name) {
-		_columnBitmask = -1L;
-
 		_name = name;
 	}
 

@@ -126,6 +126,10 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository>
 	public void setUrl(String url) {
 		_columnBitmask = -1L;
 
+		if (_originalUrl == null) {
+			_originalUrl = _url;
+		}
+
 		_url = url;
 	}
 

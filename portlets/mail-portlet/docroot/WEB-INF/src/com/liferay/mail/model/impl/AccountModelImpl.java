@@ -219,6 +219,10 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 	public void setAddress(String address) {
 		_columnBitmask = -1L;
 
+		if (_originalAddress == null) {
+			_originalAddress = _address;
+		}
+
 		_address = address;
 	}
 
