@@ -275,7 +275,7 @@ public class ShindigUtil {
 		catch (ProcessingException pe) {
 			_ignoreGadgetSpecCache.add(url);
 
-			throw pe;
+			throw new GadgetURLException(pe);
 		}
 
 		return gadget.getSpec();
