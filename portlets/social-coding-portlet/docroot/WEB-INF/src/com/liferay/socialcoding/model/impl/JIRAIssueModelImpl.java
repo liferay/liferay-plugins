@@ -145,6 +145,10 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 	public void setModifiedDate(Date modifiedDate) {
 		_columnBitmask = -1L;
 
+		if (_originalModifiedDate == null) {
+			_originalModifiedDate = _modifiedDate;
+		}
+
 		_modifiedDate = modifiedDate;
 	}
 

@@ -124,6 +124,10 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 	public void setText(String text) {
 		_columnBitmask = -1L;
 
+		if (_originalText == null) {
+			_originalText = _text;
+		}
+
 		_text = text;
 	}
 

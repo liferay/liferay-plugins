@@ -127,6 +127,12 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 	public void setCreateDate(long createDate) {
 		_columnBitmask = -1L;
 
+		if (!_setOriginalCreateDate) {
+			_setOriginalCreateDate = true;
+
+			_originalCreateDate = _createDate;
+		}
+
 		_createDate = createDate;
 	}
 

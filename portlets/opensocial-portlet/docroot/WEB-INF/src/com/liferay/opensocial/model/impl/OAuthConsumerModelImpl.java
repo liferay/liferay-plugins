@@ -182,6 +182,10 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	public void setServiceName(String serviceName) {
 		_columnBitmask = -1L;
 
+		if (_originalServiceName == null) {
+			_originalServiceName = _serviceName;
+		}
+
 		_serviceName = serviceName;
 	}
 
