@@ -92,7 +92,7 @@ public class MembersRequestInterpreter extends BaseSocialRequestInterpreter {
 			sb.append(themeDisplay.getPathFriendlyURLPublic());
 			sb.append(group.getFriendlyURL());
 			sb.append("/profile\">");
-			sb.append(group.getDescriptiveName());
+			sb.append(group.getDescriptiveName(themeDisplay.getLocale()));
 			sb.append("</a>");
 
 			String organizationNameURL = sb.toString();

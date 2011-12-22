@@ -263,7 +263,8 @@ public class SitesPortlet extends MVCPortlet {
 			JSONObject groupJSONObject = JSONFactoryUtil.createJSONObject();
 
 			groupJSONObject.put("description", group.getDescription());
-			groupJSONObject.put("name", group.getDescriptiveName());
+			groupJSONObject.put(
+				"name", group.getDescriptiveName(themeDisplay.getLocale()));
 
 			if (group.hasPrivateLayouts() || group.hasPublicLayouts()) {
 				Layout layout = themeDisplay.getLayout();

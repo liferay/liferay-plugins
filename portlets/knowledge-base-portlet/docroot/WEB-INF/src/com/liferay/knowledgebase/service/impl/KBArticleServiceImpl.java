@@ -198,7 +198,8 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 		Group group = themeDisplay.getScopeGroup();
 
-		String descriptiveName = HtmlUtil.escape(group.getDescriptiveName());
+		String descriptiveName = HtmlUtil.escape(
+			group.getDescriptiveName(themeDisplay.getLocale()));
 
 		String name = descriptiveName;
 		String description = descriptiveName;
