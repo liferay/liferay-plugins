@@ -136,7 +136,7 @@ taskListURL.setParameter("tabs2", tabs2);
 					%>
 
 					<c:if test="<%= (curGroup != null) && curGroup.isRegularSite() %>">
-						<span><liferay-ui:message key="site" />: <%= HtmlUtil.escape(curGroup.getDescriptiveName()) %></span>
+						<span><liferay-ui:message key="site" />: <%= HtmlUtil.escape(curGroup.getDescriptiveName(locale)) %></span>
 					</c:if>
 				</c:if>
 

@@ -50,7 +50,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 	<c:when test="<%= userPublicPage && (usersCount <= 0) %>">
 		<aui:layout cssClass="contacts-center-home">
 			<h3 class="header-title">
-				<liferay-ui:message arguments="<%= new Object[] {group.getDescriptiveName(), String.valueOf(usersCount)} %>" key="x-has-no-contacts" />
+				<liferay-ui:message arguments="<%= new Object[] {group.getDescriptiveName(locale), String.valueOf(usersCount)} %>" key="x-has-no-contacts" />
 			</h3>
 		</aui:layout>
 	</c:when>

@@ -90,7 +90,7 @@ List<Group> groups = user.getGroups();
 			for (Group curGroup : groups) {
 			%>
 
-				<option value="<%= curGroup.getGroupId() %>"><%= HtmlUtil.escape(curGroup.getDescriptiveName()) %></option>
+				<option value="<%= curGroup.getGroupId() %>"><%= HtmlUtil.escape(curGroup.getDescriptiveName(locale)) %></option>
 
 			<%
 			}
