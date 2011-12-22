@@ -20,7 +20,7 @@ create table WSRP_WSRPConsumerPortlet (
 	modifiedDate DATE null,
 	wsrpConsumerId LONG,
 	name VARCHAR(75) null,
-	portletHandle STRING null
+	portletHandle VARCHAR(255) null
 );
 
 create table WSRP_WSRPProducer (
