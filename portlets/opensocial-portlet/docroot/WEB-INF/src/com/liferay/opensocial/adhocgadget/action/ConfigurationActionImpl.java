@@ -18,6 +18,7 @@ import com.liferay.opensocial.gadget.action.BaseConfigurationAction;
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.opensocial.util.WebKeys;
+import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
@@ -71,7 +72,12 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		else {
 			String url = getParameter(actionRequest, "url");
 
-			ShindigUtil.clearGadgetSpecCache(url);
+			try {
+				ShindigUtil.getGadgetSpec(url, false, true);
+			}
+			catch (Exception e) {
+				SessionErrors.add(actionRequest, "gadgetURL");
+			}
 
 			setPreference(actionRequest, "url", url);
 
