@@ -325,7 +325,7 @@ public class MemberRequestLocalServiceImpl
 				"[$MEMBER_REQUEST_USER$]"
 			},
 			new String[] {
-				group.getDescriptiveName(),
+				group.getDescriptiveName(themeDisplay.getLocale()),
 				user.getFullName()
 			});
 
@@ -343,7 +343,7 @@ public class MemberRequestLocalServiceImpl
 				fromAddress,
 				fromName,
 				createAccountURL,
-				group.getDescriptiveName(),
+				group.getDescriptiveName(themeDisplay.getLocale()),
 				loginURL,
 				user.getFullName()
 			});
