@@ -36,7 +36,7 @@ else {
 }
 
 if (organizationProfileMap || siteProfileMap) {
-	renderResponse.setTitle(LanguageUtil.format(pageContext, "where-are-the-x-members", group.getDescriptiveName()));
+	renderResponse.setTitle(LanguageUtil.format(pageContext, "where-are-the-x-members", group.getDescriptiveName(locale)));
 }
 else if (friendsProfileMap) {
 	renderResponse.setTitle(LanguageUtil.format(pageContext, "where-are-x's-friends", user2.getFirstName()));

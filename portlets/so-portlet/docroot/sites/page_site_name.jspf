@@ -28,10 +28,10 @@
 
 		<c:choose>
 			<c:when test="<%= socialOfficeEnabled %>">
-				<liferay-ui:icon message="<%= starredSite.getDescriptiveName() %>" src='<%= themeDisplay.getPathContext() + "/html/icons/social_office.png" %>' />
+				<liferay-ui:icon message="<%= starredSite.getDescriptiveName(locale) %>" src='<%= themeDisplay.getPathContext() + "/html/icons/social_office.png" %>' />
 			</c:when>
 			<c:otherwise>
-				<liferay-ui:icon message="<%= starredSite.getDescriptiveName() %>" src='<%= themeDisplay.getPathContext() + "/html/icons/sites_admin.png" %>' />
+				<liferay-ui:icon message="<%= starredSite.getDescriptiveName(locale) %>" src='<%= themeDisplay.getPathContext() + "/html/icons/sites_admin.png" %>' />
 			</c:otherwise>
 		</c:choose>
 	</c:if>

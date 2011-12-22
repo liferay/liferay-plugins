@@ -158,10 +158,10 @@ pageContext.setAttribute("portletURL", portletURL);
 										<portlet:param name="privateLayout" value="<%= String.valueOf(!group.hasPublicLayouts()) %>" />
 									</liferay-portlet:actionURL>
 
-									<a href="<%= siteURL %>"><%= group.getDescriptiveName() %></a>
+									<a href="<%= siteURL %>"><%= group.getDescriptiveName(locale) %></a>
 								</c:when>
 								<c:otherwise>
-									<%= group.getDescriptiveName() %>
+									<%= group.getDescriptiveName(locale) %>
 								</c:otherwise>
 							</c:choose>
 						</span>

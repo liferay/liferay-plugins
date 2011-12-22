@@ -87,7 +87,7 @@ if (PortalPermissionUtil.contains(permissionChecker, ActionKeys.VIEW_CONTROL_PAN
 						<a href="<%= themeDisplay.getURLControlPanel() %>">
 
 							<%
-							String siteName = starredSite.getDescriptiveName();
+							String siteName = starredSite.getDescriptiveName(locale);
 							%>
 
 							<%@ include file="/sites/page_site_name.jspf" %>
