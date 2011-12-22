@@ -72,7 +72,7 @@ Map<String, OAuthService> oAuthServices = (Map<String, OAuthService>)renderReque
 		/>
 	</c:if>
 
-	<liferay-ui:error key="gadgetURL" message="url-does-not-point-to-a-valid-gadget" />
+	<liferay-ui:error exception="<%= GadgetURLException.class %>" message="url-does-not-point-to-a-valid-gadget" />
 
 	<c:choose>
 		<c:when test='<%= tabs2.equals("gadget") || tabs2Names.equals("gadget") %>'>

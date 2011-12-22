@@ -76,7 +76,7 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 				ShindigUtil.getGadgetSpec(url, false, true);
 			}
 			catch (Exception e) {
-				SessionErrors.add(actionRequest, "gadgetURL");
+				SessionErrors.add(actionRequest, e.getClass().getName());
 			}
 
 			setPreference(actionRequest, "url", url);
