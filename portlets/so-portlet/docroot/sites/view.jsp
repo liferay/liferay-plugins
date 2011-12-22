@@ -29,7 +29,7 @@ List<Group> groups = null;
 int groupsCount = 0;
 
 if (tabs1.equals("my-favorites")) {
-	groups = SitesUtil.getStarredSites(themeDisplay.getUserId(), name);
+	groups = SitesUtil.getStarredSites(themeDisplay, name);
 	groupsCount = groups.size();
 }
 else if (tabs1.equals("my-sites")) {

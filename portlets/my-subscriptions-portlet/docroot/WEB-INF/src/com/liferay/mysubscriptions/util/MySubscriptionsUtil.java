@@ -30,6 +30,8 @@ import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.model.MBThread;
 import com.liferay.portlet.messageboards.service.MBThreadLocalServiceUtil;
 
+import java.util.Locale;
+
 /**
  * @author Peter Shin
  * @author Jonathan Lee
@@ -65,7 +67,7 @@ public class MySubscriptionsUtil {
 	}
 
 	public static String getTitleText(
-		String className, long classPK, String title) {
+		Locale locale, String className, long classPK, String title) {
 
 		if (Validator.isNotNull(title)) {
 			return title;
@@ -82,7 +84,7 @@ public class MySubscriptionsUtil {
 		try {
 			Group group = GroupLocalServiceUtil.getGroup(classPK);
 
-			title += group.getDescriptiveName();
+			title += group.getDescriptiveName(locale);
 		}
 		catch (Exception e) {
 		}
