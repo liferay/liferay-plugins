@@ -245,7 +245,7 @@ public class ShindigUtil {
 		throws Exception {
 
 		if (Validator.isNull(url)) {
-			return null;
+			throw new GadgetURLException();
 		}
 
 		JSONObject gadgetContextJSONObject = new JSONObject();
