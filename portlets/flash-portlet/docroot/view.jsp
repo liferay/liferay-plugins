@@ -41,7 +41,7 @@
 		String width = GetterUtil.getString(flashAttributesProps.getProperty("width"), "100%");
 		String wmode = GetterUtil.getString(flashAttributesProps.getProperty("wmode"), "opaque");
 
-		flashVariables = StringUtil.replace(flashVariables, "\n", ";");
+		flashVariables = StringUtil.replace(flashVariables, "\n", "&");
 		%>
 
 		<liferay-ui:flash
