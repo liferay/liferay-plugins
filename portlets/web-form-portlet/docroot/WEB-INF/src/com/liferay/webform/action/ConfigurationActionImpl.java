@@ -122,12 +122,11 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 						actionRequest, "invalidValidationDefinition" + i);
 				}
 
-				updateFieldLocales("fieldLabel", fieldLabelMap, i,
-					preferences);
+				updateFieldLocales("fieldLabel", fieldLabelMap, i, preferences);
 
-				updateFieldLocales("fieldOptions", fieldOptionsMap, i,
-					preferences);				
-				
+				updateFieldLocales(
+					"fieldOptions", fieldOptionsMap, i, preferences);
+
 				preferences.setValue("fieldType" + i, fieldType);
 				preferences.setValue(
 					"fieldOptional" + i, String.valueOf(fieldOptional));
@@ -186,7 +185,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 
 		super.processAction(portletConfig, actionRequest, actionResponse);
 	}
-	
+
 	@Override
 	public String render(
 			PortletConfig portletConfig, RenderRequest renderRequest,
@@ -202,27 +201,26 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			return "/configuration.jsp";
 		}
 	}
-	
+
 	protected void updateFieldLocales(
-			String formFieldName, Map<Locale, String> newFormFieldMap,
-			int newFormFieldIndex, PortletPreferences preferences)
-		throws Exception{
-		
-		Map<Locale, String> oldFieldLabelMap = 
+			String formFieldName, Map<Locale, String> formFieldMap,
+			int formFieldIndex, PortletPreferences preferences)
+		throws Exception {
+
+		Map<Locale, String> oldFieldLabelMap =
 			LocalizationUtil.getLocalizationMap(
-				preferences, formFieldName + newFormFieldIndex);
-		
-		List<Locale> labelMapModifiedLocales = 
-			LocalizationUtil.getModifiedLocales(
-					oldFieldLabelMap, newFormFieldMap);
-		
+				preferences, formFieldName + formFieldIndex);
+
+		List<Locale> labelMapModifiedLocales =
+			LocalizationUtil.getModifiedLocales(oldFieldLabelMap, formFieldMap);
+
 		for (Locale locale : labelMapModifiedLocales) {
 			String languageId = LocaleUtil.toLanguageId(locale);
-			String fieldLabelValue = newFormFieldMap.get(locale);
+			String fieldLabelValue = formFieldMap.get(locale);
 
 			LocalizationUtil.setPreferencesValue(
-				preferences, formFieldName + newFormFieldIndex, languageId,
-					fieldLabelValue);
+				preferences, formFieldName + formFieldIndex, languageId,
+				fieldLabelValue);
 		}
 	}
 
@@ -356,5 +354,5 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 
 		return true;
 	}
-	
+
 }
