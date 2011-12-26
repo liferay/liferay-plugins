@@ -122,10 +122,10 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 						actionRequest, "invalidValidationDefinition" + i);
 				}
 
-				updateFieldLocales("fieldLabel", fieldLabelMap, i, preferences);
-
-				updateFieldLocales(
-					"fieldOptions", fieldOptionsMap, i, preferences);
+				updateModifiedLocales(
+					"fieldLabel" + i, fieldLabelMap, preferences);
+				updateModifiedLocales(
+					"fieldOptions" + i, fieldOptionsMap, preferences);
 
 				preferences.setValue("fieldType" + i, fieldType);
 				preferences.setValue(
@@ -202,25 +202,23 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		}
 	}
 
-	protected void updateFieldLocales(
-			String formFieldName, Map<Locale, String> formFieldMap,
-			int formFieldIndex, PortletPreferences preferences)
+	protected void updateModifiedLocales(
+			String parameter, Map<Locale, String> newLocalizationMap,
+			PortletPreferences preferences)
 		throws Exception {
 
-		Map<Locale, String> oldFieldLabelMap =
-			LocalizationUtil.getLocalizationMap(
-				preferences, formFieldName + formFieldIndex);
+		Map<Locale, String> oldLocalizationMap =
+			LocalizationUtil.getLocalizationMap(preferences, parameter);
 
-		List<Locale> labelMapModifiedLocales =
-			LocalizationUtil.getModifiedLocales(oldFieldLabelMap, formFieldMap);
+		List<Locale> modifiedLocales = LocalizationUtil.getModifiedLocales(
+			oldLocalizationMap, newLocalizationMap);
 
-		for (Locale locale : labelMapModifiedLocales) {
+		for (Locale locale : modifiedLocales) {
 			String languageId = LocaleUtil.toLanguageId(locale);
-			String fieldLabelValue = formFieldMap.get(locale);
+			String value = newLocalizationMap.get(locale);
 
 			LocalizationUtil.setPreferencesValue(
-				preferences, formFieldName + formFieldIndex, languageId,
-				fieldLabelValue);
+				preferences, parameter, languageId, value);
 		}
 	}
 
