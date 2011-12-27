@@ -11,7 +11,7 @@
 		<display-name>Sample WAP Photo Gallery</display-name>
 		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/photo_gallery/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
@@ -44,7 +44,7 @@
 		<display-name>Sample WAP Video</display-name>
 		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/video/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>

@@ -11,11 +11,11 @@
 		<display-name>Contacts Center</display-name>
 		<portlet-class>com.liferay.contacts.contactscenter.portlet.ContactsCenterPortlet</portlet-class>
 		<init-param>
-			<name>config-jsp</name>
+			<name>config-template</name>
 			<value>/contacts_center/configuration.jsp</value>
 		</init-param>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/contacts_center/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
@@ -46,11 +46,11 @@
 		<display-name>Profile</display-name>
 		<portlet-class>com.liferay.contacts.contactscenter.portlet.ContactsCenterPortlet</portlet-class>
 		<init-param>
-			<name>config-jsp</name>
+			<name>config-template</name>
 			<value>/contacts_center/configuration.jsp</value>
 		</init-param>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/profile/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
@@ -81,7 +81,7 @@
 		<display-name>My Contacts</display-name>
 		<portlet-class>com.liferay.contacts.contactscenter.portlet.ContactsCenterPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/my_contacts/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
@@ -112,7 +112,7 @@
 		<display-name>Members</display-name>
 		<portlet-class>com.liferay.contacts.contactscenter.portlet.ContactsCenterPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/members/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>

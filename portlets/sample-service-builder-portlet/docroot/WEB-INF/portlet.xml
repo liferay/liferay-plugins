@@ -11,7 +11,7 @@
 		<display-name>Sample Service Builder</display-name>
 		<portlet-class>com.liferay.sampleservicebuilder.portlet.ServiceBuilderPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/view.jsp</value>
 		</init-param>
 		<init-param>

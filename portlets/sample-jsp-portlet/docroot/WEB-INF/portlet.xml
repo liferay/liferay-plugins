@@ -11,7 +11,7 @@
 		<display-name>Sample JSP</display-name>
 		<portlet-class>com.liferay.samplejsp.portlet.JSPPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>

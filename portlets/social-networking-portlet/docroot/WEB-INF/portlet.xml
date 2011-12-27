@@ -11,7 +11,7 @@
 		<display-name>Summary</display-name>
 		<portlet-class>com.liferay.socialnetworking.summary.portlet.SummaryPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/summary/view.jsp</value>
 		</init-param>
 		<init-param>
@@ -46,7 +46,7 @@
 		<display-name>Friends</display-name>
 		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/friends/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
@@ -76,7 +76,7 @@
 		<display-name>Wall</display-name>
 		<portlet-class>com.liferay.socialnetworking.wall.portlet.WallPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/wall/view.jsp</value>
 		</init-param>
 		<init-param>
@@ -110,7 +110,7 @@
 		<display-name>Friends' Activities</display-name>
 		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/friends_activities/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
@@ -140,7 +140,7 @@
 		<display-name>Members</display-name>
 		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/members/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
@@ -170,7 +170,7 @@
 		<display-name>Map</display-name>
 		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/map/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
@@ -200,7 +200,7 @@
 		<display-name>Meetups</display-name>
 		<portlet-class>com.liferay.socialnetworking.meetups.portlet.MeetupsPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/meetups/view.jsp</value>
 		</init-param>
 		<init-param>
@@ -235,7 +235,7 @@
 		<display-name>Members' Activities</display-name>
 		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/members_activities/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
