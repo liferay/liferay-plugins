@@ -11,7 +11,7 @@
 		<display-name>Calendar</display-name>
 		<portlet-class>com.liferay.calendar.portlet.CalendarPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/view.jsp</value>
 		</init-param>
 		<init-param>

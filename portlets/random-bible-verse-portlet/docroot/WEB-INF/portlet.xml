@@ -11,15 +11,15 @@
 		<display-name>Random Bible Verse</display-name>
 		<portlet-class>com.liferay.randombibleverse.portlet.RBVPortlet</portlet-class>
 		<init-param>
-			<name>edit-jsp</name>
+			<name>edit-template</name>
 			<value>/edit.jsp</value>
 		</init-param>
 		<init-param>
-			<name>edit-guest-jsp</name>
+			<name>edit-guest-template</name>
 			<value>/edit.jsp</value>
 		</init-param>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>

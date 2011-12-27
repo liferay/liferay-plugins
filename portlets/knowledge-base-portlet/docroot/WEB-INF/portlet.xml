@@ -11,7 +11,7 @@
 		<display-name>Knowledge Base (Admin)</display-name>
 		<portlet-class>com.liferay.knowledgebase.admin.portlet.AdminPortlet</portlet-class>
 		<init-param>
-			<name>config-jsp</name>
+			<name>config-template</name>
 			<value>/admin/configuration.jsp</value>
 		</init-param>
 		<init-param>
@@ -19,7 +19,7 @@
 			<value>/admin/</value>
 		</init-param>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/admin/view.jsp</value>
 		</init-param>
 		<init-param>
@@ -96,7 +96,7 @@
 		<display-name>Knowledge Base (Display)</display-name>
 		<portlet-class>com.liferay.knowledgebase.display.portlet.DisplayPortlet</portlet-class>
 		<init-param>
-			<name>config-jsp</name>
+			<name>config-template</name>
 			<value>/display/configuration.jsp</value>
 		</init-param>
 		<init-param>
@@ -104,7 +104,7 @@
 			<value>/display/</value>
 		</init-param>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/display/view.jsp</value>
 		</init-param>
 		<init-param>
@@ -219,7 +219,7 @@
 		<display-name>Knowledge Base Article</display-name>
 		<portlet-class>com.liferay.knowledgebase.article.portlet.ArticlePortlet</portlet-class>
 		<init-param>
-			<name>config-jsp</name>
+			<name>config-template</name>
 			<value>/article/configuration.jsp</value>
 		</init-param>
 		<init-param>
@@ -227,7 +227,7 @@
 			<value>/article/</value>
 		</init-param>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/article/view.jsp</value>
 		</init-param>
 		<init-param>
@@ -304,7 +304,7 @@
 		<display-name>Knowledge Base Section</display-name>
 		<portlet-class>com.liferay.knowledgebase.section.portlet.SectionPortlet</portlet-class>
 		<init-param>
-			<name>config-jsp</name>
+			<name>config-template</name>
 			<value>/section/configuration.jsp</value>
 		</init-param>
 		<init-param>
@@ -312,7 +312,7 @@
 			<value>/section/</value>
 		</init-param>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/section/view.jsp</value>
 		</init-param>
 		<init-param>
@@ -417,7 +417,7 @@
 		<display-name>Knowledge Base Search</display-name>
 		<portlet-class>com.liferay.knowledgebase.search.portlet.SearchPortlet</portlet-class>
 		<init-param>
-			<name>config-jsp</name>
+			<name>config-template</name>
 			<value>/search/configuration.jsp</value>
 		</init-param>
 		<init-param>
@@ -425,7 +425,7 @@
 			<value>/search/</value>
 		</init-param>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/search/view.jsp</value>
 		</init-param>
 		<init-param>

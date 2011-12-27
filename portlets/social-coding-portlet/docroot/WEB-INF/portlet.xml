@@ -11,7 +11,7 @@
 		<display-name>SVN</display-name>
 		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/svn/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
@@ -41,7 +41,7 @@
 		<display-name>JIRA</display-name>
 		<portlet-class>com.liferay.socialcoding.jira.portlet.JIRAPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/jira/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>

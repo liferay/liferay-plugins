@@ -11,7 +11,7 @@
 		<display-name>Web Form</display-name>
 		<portlet-class>com.liferay.webform.portlet.WebFormPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/view.jsp</value>
 		</init-param>
 		<init-param>

@@ -11,7 +11,7 @@
 		<display-name>Admin</display-name>
 		<portlet-class>com.liferay.wsrp.admin.portlet.AdminPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/admin/view.jsp</value>
 		</init-param>
 		<init-param>

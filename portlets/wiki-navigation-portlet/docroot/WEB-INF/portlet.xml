@@ -11,11 +11,11 @@
 		<display-name>Tree Menu</display-name>
 		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/tree_menu/view.jsp</value>
 		</init-param>
 		<init-param>
-			<name>config-jsp</name>
+			<name>config-template</name>
 			<value>/tree_menu/configuration.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
@@ -48,11 +48,11 @@
 		<display-name>Page Menu</display-name>
 		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/page_menu/view.jsp</value>
 		</init-param>
 		<init-param>
-			<name>config-jsp</name>
+			<name>config-template</name>
 			<value>/page_menu/configuration.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>

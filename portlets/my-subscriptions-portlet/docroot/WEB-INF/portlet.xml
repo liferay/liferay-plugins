@@ -6,7 +6,7 @@
 		<display-name>My Subscriptions</display-name>
 		<portlet-class>com.liferay.mysubscriptions.portlet.MySubscriptionsPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/view.jsp</value>
 		</init-param>
 		<init-param>

@@ -11,7 +11,7 @@
 		<display-name>Microblogs</display-name>
 		<portlet-class>com.liferay.microblogs.microblogs.portlet.MicroblogsPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/microblogs/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
@@ -42,7 +42,7 @@
 		<display-name>Microblogs Status Update</display-name>
 		<portlet-class>com.liferay.microblogs.microblogs.portlet.MicroblogsPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/status_update/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
