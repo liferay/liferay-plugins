@@ -19,7 +19,7 @@
 <strong><liferay-ui:message key="welcome-to-the-sample-service-builder-portlet" /></strong>
 
 <portlet:renderURL var="editFooURL">
-	<portlet:param name="jspPage" value="/edit_foo.jsp" />
+	<portlet:param name="mvcPath" value="/edit_foo.jsp" />
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </portlet:renderURL>
 

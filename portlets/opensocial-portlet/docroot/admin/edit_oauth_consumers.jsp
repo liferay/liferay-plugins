@@ -65,7 +65,7 @@ int oAuthServiceCount = 0;
 </c:if>
 
 <portlet:actionURL name="updateOAuthConsumers" var="updateOAuthConsumersURL">
-	<portlet:param name="jspPage" value="/admin/edit_oauth_consumers.jsp" />
+	<portlet:param name="mvcPath" value="/admin/edit_oauth_consumers.jsp" />
 	<portlet:param name="redirect" value="<%= redirect %>" />
 </portlet:actionURL>
 

@@ -51,7 +51,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				modelVar="kbArticle"
 			>
 				<liferay-portlet:renderURL varImpl="rowURL">
-					<portlet:param name="jspPage" value="/display/view_article.jsp" />
+					<portlet:param name="mvcPath" value="/display/view_article.jsp" />
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 				</liferay-portlet:renderURL>
 

@@ -44,10 +44,10 @@ public class JSPPortlet extends GenericPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		String jspPage = renderRequest.getParameter("jspPage");
+		String mvcPath = renderRequest.getParameter("mvcPath");
 
-		if (jspPage != null) {
-			include(jspPage, renderRequest, renderResponse);
+		if (mvcPath != null) {
+			include(mvcPath, renderRequest, renderResponse);
 		}
 		else {
 			super.doDispatch(renderRequest, renderResponse);

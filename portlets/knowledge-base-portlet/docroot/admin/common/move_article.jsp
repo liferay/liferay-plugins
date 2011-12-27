@@ -33,7 +33,7 @@ double priority = BeanParamUtil.getDouble(kbArticle, request, "priority");
 />
 
 <liferay-portlet:actionURL name="moveKBArticle" var="moveKBArticleURL">
-	<portlet:param name="jspPage" value='<%= jspPath + "move_article.jsp" %>' />
+	<portlet:param name="mvcPath" value='<%= jspPath + "move_article.jsp" %>' />
 	<portlet:param name="redirect" value="<%= redirect %>" />
 	<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 	<portlet:param name="status" value="<%= String.valueOf(status) %>" />

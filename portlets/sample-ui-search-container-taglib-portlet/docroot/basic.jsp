@@ -19,7 +19,7 @@
 <%
 PortletURL portletURL = renderResponse.createRenderURL();
 
-portletURL.setParameter("jspPage", "/basic.jsp");
+portletURL.setParameter("mvcPath", "/basic.jsp");
 %>
 
 <liferay-ui:search-container

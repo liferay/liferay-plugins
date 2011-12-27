@@ -58,7 +58,7 @@ String tabs2 = ParamUtil.getString(request, "tabs2", Validator.equals(portletRes
 						</div>
 
 						<liferay-portlet:renderURL portletName="<%= portletResource %>" var="selectConfigurationKBArticleURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-							<portlet:param name="jspPage" value="/article/select_configuration_article.jsp" />
+							<portlet:param name="mvcPath" value="/article/select_configuration_article.jsp" />
 						</liferay-portlet:renderURL>
 
 						<%

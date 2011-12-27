@@ -17,7 +17,7 @@
 <%@ include file="/display/init.jsp" %>
 
 <%
-String jspPage = ParamUtil.getString(request, "jspPage");
+String mvcPath = ParamUtil.getString(request, "mvcPath");
 
 int status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
 
@@ -29,7 +29,7 @@ KBArticle kbArticle = (KBArticle)row.getObject();
 <liferay-ui:icon-menu cssClass="kb-article-action">
 	<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) && KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.UPDATE) %>">
 		<liferay-portlet:renderURL var="editURL">
-			<portlet:param name="jspPage" value="/display/edit_article.jsp" />
+			<portlet:param name="mvcPath" value="/display/edit_article.jsp" />
 			<portlet:param name="redirect" value="<%= redirect %>" />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 			<portlet:param name="status" value="<%= String.valueOf(WorkflowConstants.STATUS_ANY) %>" />
@@ -102,7 +102,7 @@ KBArticle kbArticle = (KBArticle)row.getObject();
 
 	<c:if test="<%= KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.MOVE_KB_ARTICLE) %>">
 		<liferay-portlet:renderURL var="moveKBArticleURL">
-			<portlet:param name="jspPage" value="/display/move_article.jsp" />
+			<portlet:param name="mvcPath" value="/display/move_article.jsp" />
 			<portlet:param name="redirect" value="<%= redirect %>" />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 			<portlet:param name="status" value="<%= String.valueOf(status) %>" />
@@ -118,7 +118,7 @@ KBArticle kbArticle = (KBArticle)row.getObject();
 
 	<c:if test="<%= KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.DELETE) %>">
 		<liferay-portlet:actionURL name="deleteKBArticle" var="deleteURL">
-			<portlet:param name="jspPage" value="<%= jspPage %>" />
+			<portlet:param name="mvcPath" value="<%= mvcPath %>" />
 			<portlet:param name="redirect" value="<%= redirect %>" />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 			<portlet:param name="status" value="<%= String.valueOf(status) %>" />

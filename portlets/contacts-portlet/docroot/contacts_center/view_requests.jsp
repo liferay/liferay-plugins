@@ -38,7 +38,7 @@
 		%>
 
 		<liferay-portlet:renderURL varImpl="rowURL">
-			<portlet:param name="jspPage" value="/contacts_center/view_user.jsp" />
+			<portlet:param name="mvcPath" value="/contacts_center/view_user.jsp" />
 			<portlet:param name="backURL" value="<%= currentURL %>" />
 			<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
 		</liferay-portlet:renderURL>

@@ -17,7 +17,7 @@
 <%@ include file="/search/init.jsp" %>
 
 <liferay-portlet:renderURL varImpl="searchURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
-	<portlet:param name="jspPage" value="/search/search.jsp" />
+	<portlet:param name="mvcPath" value="/search/search.jsp" />
 </liferay-portlet:renderURL>
 
 <aui:form action="<%= searchURL %>" method="get" name="searchFm">

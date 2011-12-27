@@ -94,7 +94,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 							</c:if>
 
 							<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="viewSummaryURL">
-								<portlet:param name="jspPage" value="/contacts_center/view_user.jsp" />
+								<portlet:param name="mvcPath" value="/contacts_center/view_user.jsp" />
 								<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
 							</liferay-portlet:renderURL>
 

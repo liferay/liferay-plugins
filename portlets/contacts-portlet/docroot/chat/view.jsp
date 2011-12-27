@@ -21,7 +21,7 @@ Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(),
 %>
 
 <liferay-portlet:renderURL portletName="1_WAR_contactsportlet" windowState="<%= WindowState.MAXIMIZED.toString() %>" varImpl="profileURL">
-	<portlet:param name="jspPage" value="/contacts_center/view_user.jsp" />
+	<portlet:param name="mvcPath" value="/contacts_center/view_user.jsp" />
 	<portlet:param name="backURL" value="<%= PortalUtil.getCurrentURL(request) %>" />
 </liferay-portlet:renderURL>
 

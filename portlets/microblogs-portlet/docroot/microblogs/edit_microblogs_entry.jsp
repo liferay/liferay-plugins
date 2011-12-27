@@ -113,7 +113,7 @@ if (comment) {
 <portlet:actionURL name="updateMicroblogsEntry" var="updateMicroblogsEntryURL" />
 
 <portlet:renderURL var="commentsURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
-	<portlet:param name="jspPage" value="/microblogs/view_comments.jsp" />
+	<portlet:param name="mvcPath" value="/microblogs/view_comments.jsp" />
 	<portlet:param name="receiverMicroblogsEntryId" value="<%= String.valueOf(microblogsEntryId) %>" />
 </portlet:renderURL>
 

@@ -170,24 +170,24 @@ public class FindKBArticleAction extends BaseStrutsAction {
 
 		long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 
-		String jspPage = null;
+		String mvcPath = null;
 
 		String rootPortletId = PortletConstants.getRootPortletId(portletId);
 
 		if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ARTICLE)) {
-			jspPage = "/article/view_article.jsp";
+			mvcPath = "/article/view_article.jsp";
 		}
 		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
-			jspPage = "/display/view_article.jsp";
+			mvcPath = "/display/view_article.jsp";
 		}
 		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_SECTION)) {
-			jspPage = "/section/view_article.jsp";
+			mvcPath = "/section/view_article.jsp";
 		}
 
 		PortletURL portletURL = PortletURLFactoryUtil.create(
 			request, portletId, plid, PortletRequest.RENDER_PHASE);
 
-		portletURL.setParameter("jspPage", jspPage);
+		portletURL.setParameter("mvcPath", mvcPath);
 		portletURL.setParameter(
 			"resourcePrimKey", String.valueOf(resourcePrimKey));
 

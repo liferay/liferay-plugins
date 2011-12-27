@@ -61,7 +61,7 @@ if (meetupsRegistration != null) {
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
-portletURL.setParameter("jspPage", "/meetups/view_entry.jsp");
+portletURL.setParameter("mvcPath", "/meetups/view_entry.jsp");
 portletURL.setParameter("tabs1", tabs1);
 portletURL.setParameter("redirect", redirect);
 portletURL.setParameter("meetupsEntryId", String.valueOf(meetupsEntryId));

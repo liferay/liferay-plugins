@@ -23,7 +23,7 @@
 	<liferay-util:include page="/sites/view_starred_sites.jsp" portletId="5_WAR_soportlet" />
 
 	<liferay-portlet:renderURL portletName="5_WAR_soportlet" varImpl="viewSitesURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-		<portlet:param name="jspPage" value="/sites/view_sites.jsp" />
+		<portlet:param name="mvcPath" value="/sites/view_sites.jsp" />
 	</liferay-portlet:renderURL>
 
 	<li>

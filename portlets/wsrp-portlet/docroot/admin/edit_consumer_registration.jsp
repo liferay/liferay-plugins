@@ -47,7 +47,7 @@ if (supportsInbandRegistration) {
 	title='<%= (wsrpConsumer != null) ? wsrpConsumer.getName() : "new-consumer-registration" %>'
 />
 
-<form action="<portlet:actionURL name="updateWSRPConsumerRegistration"><portlet:param name="jspPage" value="/admin/edit_consumer_registration.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveConsumerRegistration(); return false;">
+<form action="<portlet:actionURL name="updateWSRPConsumerRegistration"><portlet:param name="mvcPath" value="/admin/edit_consumer_registration.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveConsumerRegistration(); return false;">
 <input name="<portlet:namespace />wsrpConsumerId" type="hidden" value="<%= wsrpConsumerId %>" />
 
 <table class="lfr-table">

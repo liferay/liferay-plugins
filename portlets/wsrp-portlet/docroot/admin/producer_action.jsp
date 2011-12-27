@@ -24,7 +24,7 @@ WSRPProducer wsrpProducer = (WSRPProducer)row.getObject();
 
 <liferay-ui:icon-menu>
 	<portlet:renderURL var="editURL">
-		<portlet:param name="jspPage" value="/admin/edit_producer.jsp" />
+		<portlet:param name="mvcPath" value="/admin/edit_producer.jsp" />
 		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="wsrpProducerId" value="<%= String.valueOf(wsrpProducer.getWsrpProducerId()) %>" />
 	</portlet:renderURL>

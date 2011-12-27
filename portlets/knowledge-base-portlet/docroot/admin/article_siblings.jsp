@@ -34,7 +34,7 @@ List<KBArticle> siblingKBArticles = KBArticleServiceUtil.getSiblingKBArticles(sc
 
 				<div class="kb-element-header">
 					<liferay-portlet:renderURL var="viewKBArticleURL">
-						<portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' />
+						<portlet:param name="mvcPath" value='<%= jspPath + "view_article.jsp" %>' />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(siblingKBArticle.getResourcePrimKey()) %>" />
 						<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 					</liferay-portlet:renderURL>

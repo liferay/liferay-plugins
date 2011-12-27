@@ -29,7 +29,7 @@ long kbTemplateId = ParamUtil.getLong(request, "kbTemplateId");
 			<c:if test="<%= (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) || (DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) && rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) %>">
 				<td>
 					<liferay-portlet:renderURL var="useThisKBTemplateURL">
-						<portlet:param name="jspPage" value='<%= jspPath + "edit_article.jsp" %>' />
+						<portlet:param name="mvcPath" value='<%= jspPath + "edit_article.jsp" %>' />
 						<portlet:param name="redirect" value="<%= redirect %>" />
 						<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
 					</liferay-portlet:renderURL>
@@ -47,7 +47,7 @@ long kbTemplateId = ParamUtil.getLong(request, "kbTemplateId");
 			<c:if test="<%= KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.UPDATE) %>">
 				<td>
 					<liferay-portlet:renderURL var="editURL">
-						<portlet:param name="jspPage" value='<%= jspPath + "edit_template.jsp" %>' />
+						<portlet:param name="mvcPath" value='<%= jspPath + "edit_template.jsp" %>' />
 						<portlet:param name="redirect" value="<%= redirect %>" />
 						<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
 					</liferay-portlet:renderURL>
@@ -82,11 +82,11 @@ long kbTemplateId = ParamUtil.getLong(request, "kbTemplateId");
 			<c:if test="<%= KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.DELETE) %>">
 				<td>
 					<liferay-portlet:renderURL var="homeURL">
-						<portlet:param name="jspPage" value='<%= jspPath + "view.jsp" %>' />
+						<portlet:param name="mvcPath" value='<%= jspPath + "view.jsp" %>' />
 					</liferay-portlet:renderURL>
 
 					<liferay-portlet:actionURL name="deleteKBTemplate" var="deleteURL">
-						<portlet:param name="jspPage" value='<%= jspPath + "view_template.jsp" %>' />
+						<portlet:param name="mvcPath" value='<%= jspPath + "view_template.jsp" %>' />
 						<portlet:param name="redirect" value="<%= (kbTemplate.getKbTemplateId() == kbTemplateId) ? homeURL : currentURL %>" />
 						<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
 					</liferay-portlet:actionURL>

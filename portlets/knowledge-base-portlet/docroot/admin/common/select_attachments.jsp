@@ -121,12 +121,12 @@ if (DLStoreUtil.hasDirectory(company.getCompanyId(), CompanyConstants.SYSTEM, di
 <aui:script>
 	function <portlet:namespace />addAttachment() {
 		document.<portlet:namespace />fm.encoding = "<%= ContentTypes.MULTIPART_FORM_DATA %>";
-		submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="addAttachment"><portlet:param name="jspPage" value='<%= jspPath + "select_attachments.jsp" %>' /><portlet:param name="redirect" value="<%= redirect %>" /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" /><portlet:param name="status" value="<%= String.valueOf(WorkflowConstants.STATUS_ANY) %>" /><portlet:param name="dirName" value="<%= dirName %>" /></liferay-portlet:actionURL>');
+		submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="addAttachment"><portlet:param name="mvcPath" value='<%= jspPath + "select_attachments.jsp" %>' /><portlet:param name="redirect" value="<%= redirect %>" /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" /><portlet:param name="status" value="<%= String.valueOf(WorkflowConstants.STATUS_ANY) %>" /><portlet:param name="dirName" value="<%= dirName %>" /></liferay-portlet:actionURL>');
 	}
 
 	function <portlet:namespace />deleteAttachment(fileName) {
 		document.<portlet:namespace />fm.<portlet:namespace />fileName.value = fileName;
-		submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="deleteAttachment"><portlet:param name="jspPage" value='<%= jspPath + "select_attachments.jsp" %>' /><portlet:param name="redirect" value="<%= redirect %>" /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" /><portlet:param name="status" value="<%= String.valueOf(WorkflowConstants.STATUS_ANY) %>" /><portlet:param name="dirName" value="<%= dirName %>" /></liferay-portlet:actionURL>');
+		submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="deleteAttachment"><portlet:param name="mvcPath" value='<%= jspPath + "select_attachments.jsp" %>' /><portlet:param name="redirect" value="<%= redirect %>" /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" /><portlet:param name="status" value="<%= String.valueOf(WorkflowConstants.STATUS_ANY) %>" /><portlet:param name="dirName" value="<%= dirName %>" /></liferay-portlet:actionURL>');
 	}
 
 	opener.<portlet:namespace />updateAttachments("<%= UnicodeFormatter.toString(dirName) %>", "<%= UnicodeFormatter.toString(html) %>");

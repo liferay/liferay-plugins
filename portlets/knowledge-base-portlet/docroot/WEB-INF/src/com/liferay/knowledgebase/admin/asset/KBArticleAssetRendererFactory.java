@@ -101,7 +101,7 @@ public class KBArticleAssetRendererFactory extends BaseAssetRendererFactory {
 			request, PortletKeys.KNOWLEDGE_BASE_ADMIN,
 			getControlPanelPlid(themeDisplay), PortletRequest.RENDER_PHASE);
 
-		portletURL.setParameter("jspPage", "/admin/edit_article.jsp");
+		portletURL.setParameter("mvcPath", "/admin/edit_article.jsp");
 
 		return portletURL;
 	}

@@ -206,7 +206,7 @@ public class TasksPortlet extends MVCPortlet {
 
 		portletURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 
-		portletURL.setParameter("jspPage", "/view_task.jsp");
+		portletURL.setParameter("mvcPath", "/view_task.jsp");
 		portletURL.setParameter(
 			"tasksEntryId", String.valueOf(taskEntry.getTasksEntryId()));
 

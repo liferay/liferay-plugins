@@ -53,7 +53,7 @@ catch (Exception e) {
 	<c:otherwise>
 		<liferay-ui:icon-menu>
 			<portlet:renderURL var="editURL">
-				<portlet:param name="jspPage" value="/admin/edit_consumer.jsp" />
+				<portlet:param name="mvcPath" value="/admin/edit_consumer.jsp" />
 				<portlet:param name="redirect" value="<%= currentURL %>" />
 				<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
 			</portlet:renderURL>
@@ -65,7 +65,7 @@ catch (Exception e) {
 
 			<c:if test="<%= serviceDescription.isRequiresRegistration() %>">
 				<portlet:renderURL var="editRegistrationURL">
-					<portlet:param name="jspPage" value="/admin/edit_consumer_registration.jsp" />
+					<portlet:param name="mvcPath" value="/admin/edit_consumer_registration.jsp" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
 				</portlet:renderURL>
@@ -79,7 +79,7 @@ catch (Exception e) {
 
 			<c:if test="<%= !serviceDescription.isRequiresRegistration() || (wsrpConsumer.getRegistrationContext() != null) %>">
 				<portlet:renderURL var="managePortletsURL">
-					<portlet:param name="jspPage" value="/admin/view_consumer_portlets.jsp" />
+					<portlet:param name="mvcPath" value="/admin/view_consumer_portlets.jsp" />
 					<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
 				</portlet:renderURL>
 

@@ -45,7 +45,7 @@ ServletContext portalServletContext = ServletContextPool.get(portalServletContex
 	title='<%= (wsrpProducer != null) ? wsrpProducer.getName() : "new-producer" %>'
 />
 
-<form action="<portlet:actionURL name="updateWSRPProducer"><portlet:param name="jspPage" value="/admin/edit_producer.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveProducer(); return false;">
+<form action="<portlet:actionURL name="updateWSRPProducer"><portlet:param name="mvcPath" value="/admin/edit_producer.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveProducer(); return false;">
 <input name="<portlet:namespace />wsrpProducerId" type="hidden" value="<%= wsrpProducerId %>" />
 <input name="<portlet:namespace />portletIds" type="hidden" value="" />
 

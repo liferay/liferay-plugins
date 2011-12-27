@@ -17,7 +17,7 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-String jspPage = ParamUtil.getString(request, "jspPage");
+String mvcPath = ParamUtil.getString(request, "mvcPath");
 %>
 
 <c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.VIEW_KB_TEMPLATES) %>">
@@ -30,7 +30,7 @@ String jspPage = ParamUtil.getString(request, "jspPage");
 	if (PortletPermissionUtil.contains(permissionChecker, plid, portletDisplay.getId(), ActionKeys.VIEW)) {
 		PortletURL kbArticlesURL = renderResponse.createRenderURL();
 
-		kbArticlesURL.setParameter("jspPage", "/admin/view.jsp");
+		kbArticlesURL.setParameter("mvcPath", "/admin/view.jsp");
 
 		names.add("articles");
 		urls.add(kbArticlesURL.toString());
@@ -40,11 +40,11 @@ String jspPage = ParamUtil.getString(request, "jspPage");
 	if (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.VIEW_KB_TEMPLATES)) {
 		PortletURL kbTemplatesURL = renderResponse.createRenderURL();
 
-		kbTemplatesURL.setParameter("jspPage", "/admin/view_templates.jsp");
+		kbTemplatesURL.setParameter("mvcPath", "/admin/view_templates.jsp");
 
 		names.add("templates");
 		urls.add(kbTemplatesURL.toString());
-		value = jspPage.contains("template") ? names.get(names.size() - 1) : value;
+		value = mvcPath.contains("template") ? names.get(names.size() - 1) : value;
 	}
 	%>
 

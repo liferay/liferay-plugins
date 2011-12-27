@@ -46,7 +46,7 @@ if (Validator.isNotNull(editorGadgetURL)) {
 
 	PortletURL publishGadgetRedirectURL = renderResponse.createRenderURL();
 
-	publishGadgetRedirectURL.setParameter("jspPage", "/editor/publish_gadget_redirect.jsp");
+	publishGadgetRedirectURL.setParameter("mvcPath", "/editor/publish_gadget_redirect.jsp");
 
 	publishGadgetRedirectURL.setWindowState(LiferayWindowState.POP_UP);
 
@@ -60,7 +60,7 @@ if (Validator.isNotNull(editorGadgetURL)) {
 />
 
 <portlet:actionURL name="updateGadget" var="updateGadgetURL">
-	<portlet:param name="jspPage" value="/admin/edit_gadget.jsp" />
+	<portlet:param name="mvcPath" value="/admin/edit_gadget.jsp" />
 	<portlet:param name="redirect" value="<%= redirect %>" />
 	<portlet:param name="editorGadgetURL" value="<%= editorGadgetURL %>" />
 </portlet:actionURL>
