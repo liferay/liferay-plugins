@@ -151,7 +151,7 @@ public class KBArticleAssetEntriesUtil {
 				request, PortletKeys.KNOWLEDGE_BASE_ARTICLE_DEFAULT_INSTANCE,
 				themeDisplay.getPlid(), PortletRequest.RENDER_PHASE);
 
-			portletURL.setParameter("jspPage", "/article/view_article.jsp");
+			portletURL.setParameter("mvcPath", "/article/view_article.jsp");
 			portletURL.setParameter("resourcePrimKey", String.valueOf(classPK));
 		}
 		else if (className.equals(MBMessage.class.getName())) {

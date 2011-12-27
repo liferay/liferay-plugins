@@ -30,7 +30,7 @@ String content = BeanParamUtil.getString(kbTemplate, request, "content");
 />
 
 <liferay-portlet:actionURL name="updateKBTemplate" var="updateKBTemplateURL">
-	<portlet:param name="jspPage" value='<%= jspPath + "edit_template.jsp" %>' />
+	<portlet:param name="mvcPath" value='<%= jspPath + "edit_template.jsp" %>' />
 	<portlet:param name="redirect" value="<%= redirect %>" />
 	<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplateId) %>" />
 </liferay-portlet:actionURL>

@@ -24,7 +24,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 <liferay-util:include page="/display/top_links.jsp" servletContext="<%= application %>" />
 
 <liferay-portlet:renderURL varImpl="iteratorURL">
-	<portlet:param name="jspPage" value="/display/view_recent_articles.jsp" />
+	<portlet:param name="mvcPath" value="/display/view_recent_articles.jsp" />
 </liferay-portlet:renderURL>
 
 <liferay-ui:search-container
@@ -45,7 +45,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		modelVar="kbArticle"
 	>
 		<liferay-portlet:renderURL varImpl="rowURL">
-			<portlet:param name="jspPage" value="/display/view_article.jsp" />
+			<portlet:param name="mvcPath" value="/display/view_article.jsp" />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 		</liferay-portlet:renderURL>
 
@@ -115,7 +115,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 	<aui:button-row cssClass="float-container">
 		<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) %>">
 			<liferay-portlet:renderURL var="addKBArticleURL">
-				<portlet:param name="jspPage" value="/display/edit_article.jsp" />
+				<portlet:param name="mvcPath" value="/display/edit_article.jsp" />
 				<portlet:param name="redirect" value="<%= redirect %>" />
 			</liferay-portlet:renderURL>
 

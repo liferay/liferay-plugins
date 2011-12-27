@@ -18,6 +18,6 @@
 
 This is the <strong>Sample UI Search Container Taglib Portlet</strong>. This was made to showcase Liferay's liferay-ui:search-container taglib.<br /><br />
 
-<a href="<portlet:renderURL><portlet:param name="jspPage" value="/basic.jsp" /></portlet:renderURL>">Basic Example</a><br /><br />
+<a href="<portlet:renderURL><portlet:param name="mvcPath" value="/basic.jsp" /></portlet:renderURL>">Basic Example</a><br /><br />
 
-<a href="<portlet:renderURL><portlet:param name="jspPage" value="/advanced.jsp" /></portlet:renderURL>">Advanced Example</a>
+<a href="<portlet:renderURL><portlet:param name="mvcPath" value="/advanced.jsp" /></portlet:renderURL>">Advanced Example</a>

@@ -34,7 +34,7 @@ else {
 
 	portletURL.setWindowState(WindowState.MAXIMIZED);
 
-	portletURL.setParameter("jspPage", notificationEventJSON.getString("jspPage"));
+	portletURL.setParameter("mvcPath", notificationEventJSON.getString("mvcPath"));
 
 	if (Validator.isNull(notificationEventJSON.getString("entryKeyName"))) {
 		portletURL.setParameter(notificationEventJSON.getString("entryKeyName"), String.valueOf(notificationEventJSON.getLong("microblogsEntryId")));

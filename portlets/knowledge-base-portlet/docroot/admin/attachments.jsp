@@ -56,7 +56,7 @@ if (Validator.isNotNull(dirName) && DLStoreUtil.hasDirectory(company.getCompanyI
 	%>
 
 	<liferay-portlet:renderURL var="selectAttachmentsURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-		<portlet:param name="jspPage" value='<%= jspPath + "select_attachments.jsp" %>' />
+		<portlet:param name="mvcPath" value='<%= jspPath + "select_attachments.jsp" %>' />
 		<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 		<portlet:param name="status" value="<%= String.valueOf(WorkflowConstants.STATUS_ANY) %>" />
 	</liferay-portlet:renderURL>

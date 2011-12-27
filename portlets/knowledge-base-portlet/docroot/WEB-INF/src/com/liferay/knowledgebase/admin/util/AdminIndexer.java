@@ -154,7 +154,7 @@ public class AdminIndexer extends BaseIndexer {
 
 		String resourcePrimKey = document.get(Field.ENTRY_CLASS_PK);
 
-		portletURL.setParameter("jspPage", "/admin/view_article.jsp");
+		portletURL.setParameter("mvcPath", "/admin/view_article.jsp");
 		portletURL.setParameter("resourcePrimKey", resourcePrimKey);
 
 		return new Summary(title, content, portletURL);

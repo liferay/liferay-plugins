@@ -42,7 +42,7 @@ List<User> users = UserLocalServiceUtil.getSocialUsers(userId, 0, 30, new UserLo
 
 				PortletURL viewUserURL = renderResponse.createRenderURL();
 
-				viewUserURL.setParameter("jspPage", "/members/view_user.jsp");
+				viewUserURL.setParameter("mvcPath", "/members/view_user.jsp");
 				viewUserURL.setParameter("backURL", backURL);
 
 				request.setAttribute(WebKeys.CONTACTS_URL, viewUserURL);

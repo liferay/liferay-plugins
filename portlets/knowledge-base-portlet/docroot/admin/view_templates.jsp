@@ -19,7 +19,7 @@
 <liferay-util:include page="/admin/top_tabs.jsp" servletContext="<%= application %>" />
 
 <liferay-portlet:renderURL varImpl="searchURL">
-	<portlet:param name="jspPage" value="/admin/view_templates.jsp" />
+	<portlet:param name="mvcPath" value="/admin/view_templates.jsp" />
 </liferay-portlet:renderURL>
 
 <aui:form action="<%= searchURL %>" method="get" name="fm">
@@ -28,7 +28,7 @@
 
 	<aui:fieldset>
 		<liferay-portlet:renderURL varImpl="iteratorURL">
-			<portlet:param name="jspPage" value="/admin/view_templates.jsp" />
+			<portlet:param name="mvcPath" value="/admin/view_templates.jsp" />
 		</liferay-portlet:renderURL>
 
 		<liferay-ui:search-container
@@ -89,7 +89,7 @@
 				<aui:button-row>
 					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_TEMPLATE) %>">
 						<liferay-portlet:renderURL var="addKBTemplateURL">
-							<portlet:param name="jspPage" value='<%= jspPath + "edit_template.jsp" %>' />
+							<portlet:param name="mvcPath" value='<%= jspPath + "edit_template.jsp" %>' />
 							<portlet:param name="redirect" value="<%= redirect %>" />
 						</liferay-portlet:renderURL>
 
@@ -130,7 +130,7 @@
 			if (confirm('<%= UnicodeLanguageUtil.get(pageContext, "are-you-sure-you-want-to-delete-the-selected-templates") %>')) {
 				document.<portlet:namespace />fm.method = "post";
 				document.<portlet:namespace />fm.<portlet:namespace />kbTemplateIds.value = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
-				submitForm(document.<portlet:namespace />fm, "<liferay-portlet:actionURL name="deleteKBTemplates"><portlet:param name="jspPage" value="/admin/view_templates.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></liferay-portlet:actionURL>");
+				submitForm(document.<portlet:namespace />fm, "<liferay-portlet:actionURL name="deleteKBTemplates"><portlet:param name="mvcPath" value="/admin/view_templates.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></liferay-portlet:actionURL>");
 			}
 		},
 		['liferay-util-list-fields']

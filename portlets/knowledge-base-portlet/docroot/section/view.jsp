@@ -19,7 +19,7 @@
 <c:choose>
 	<c:when test="<%= Validator.isNotNull(PortletPropsValues.ADMIN_KB_ARTICLE_SECTIONS) %>">
 		<liferay-portlet:renderURL varImpl="iteratorURL">
-			<portlet:param name="jspPage" value="/section/view.jsp" />
+			<portlet:param name="mvcPath" value="/section/view.jsp" />
 		</liferay-portlet:renderURL>
 
 		<liferay-ui:search-container
@@ -60,7 +60,7 @@
 
 					<div class="<%= (i == 0) ? "kb-article-title kb-article-title-first" : "kb-article-title" %>">
 						<portlet:renderURL var="viewKBArticleURL" windowState="<%= kbArticleWindowState %>">
-							<portlet:param name="jspPage" value="/section/view_article.jsp" />
+							<portlet:param name="mvcPath" value="/section/view_article.jsp" />
 							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 						</portlet:renderURL>
 

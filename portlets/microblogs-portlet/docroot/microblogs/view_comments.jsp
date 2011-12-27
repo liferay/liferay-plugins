@@ -31,7 +31,7 @@ PortletURL microblogsEntriesURL = renderResponse.createRenderURL();
 
 microblogsEntriesURL.setWindowState(WindowState.NORMAL);
 
-microblogsEntriesURL.setParameter("jspPage", "/microblogs/view.jsp");
+microblogsEntriesURL.setParameter("mvcPath", "/microblogs/view.jsp");
 microblogsEntriesURL.setParameter("tabs1", tabs1);
 microblogsEntriesURL.setParameter("cur", String.valueOf(cur));
 

@@ -53,14 +53,14 @@ public class TestPortlet extends LiferayPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		String jspPage = ParamUtil.getString(
-			renderRequest, "jspPage", "/view.jsp");
+		String mvcPath = ParamUtil.getString(
+			renderRequest, "mvcPath", "/view.jsp");
 
-		if (jspPage.equals("/renderResponseponse/buffer_size.jsp")) {
+		if (mvcPath.equals("/renderResponseponse/buffer_size.jsp")) {
 			testResponseBufferSize(renderResponse);
 		}
 
-		include(jspPage, renderRequest, renderResponse);
+		include(mvcPath, renderRequest, renderResponse);
 	}
 
 	@Override

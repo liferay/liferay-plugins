@@ -29,7 +29,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 	</c:when>
 	<c:when test="<%= GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.UPDATE) %>">
 		<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="inviteURL">
-			<portlet:param name="jspPage" value="/invite_members/view_invite.jsp" />
+			<portlet:param name="mvcPath" value="/invite_members/view_invite.jsp" />
 		</portlet:renderURL>
 
 		<a class="invite-members" href="javascript:;" onClick="<portlet:namespace />openInviteMembers('<%= inviteURL %>');"><liferay-ui:message key="invite-members-to-this-site" /></a>

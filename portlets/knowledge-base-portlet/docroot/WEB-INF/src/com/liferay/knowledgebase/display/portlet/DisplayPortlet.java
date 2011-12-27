@@ -448,7 +448,7 @@ public class DisplayPortlet extends MVCPortlet {
 			editURL = HttpUtil.setParameter(
 				editURL, "p_p_id", PortletKeys.KNOWLEDGE_BASE_DISPLAY);
 			editURL = HttpUtil.setParameter(
-				editURL, namespace + "jspPage",
+				editURL, namespace + "mvcPath",
 				templatePath + "edit_article.jsp");
 			editURL = HttpUtil.setParameter(
 				editURL, namespace + "redirect", redirect);
@@ -542,14 +542,14 @@ public class DisplayPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		String jspPage = ParamUtil.getString(
-			renderRequest, "jspPage", viewTemplate);
+		String mvcPath = ParamUtil.getString(
+			renderRequest, "mvcPath", viewTemplate);
 
 		long assetCategoryId = ParamUtil.getLong(renderRequest, "categoryId");
 		String assetTagName = ParamUtil.getString(renderRequest, "tag");
 
-		if ((jspPage.equals(viewTemplate) && (assetCategoryId > 0)) ||
-			(jspPage.equals(viewTemplate) &&
+		if ((mvcPath.equals(viewTemplate) && (assetCategoryId > 0)) ||
+			(mvcPath.equals(viewTemplate) &&
 			 Validator.isNotNull(assetTagName))) {
 
 			String path = templatePath + "view_prp_articles.jsp";

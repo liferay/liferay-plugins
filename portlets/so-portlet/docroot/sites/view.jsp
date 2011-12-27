@@ -224,7 +224,7 @@ pageContext.setAttribute("portletURL", portletURL);
 						on: {
 							click: function(event) {
 								<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="addSiteURL">
-									<portlet:param name="jspPage" value="/sites/edit_site.jsp" />
+									<portlet:param name="mvcPath" value="/sites/edit_site.jsp" />
 								</liferay-portlet:renderURL>
 
 								Liferay.SO.Sites.displayPopup('<%= addSiteURL %>', '<liferay-ui:message key="add-site" />');
@@ -237,7 +237,7 @@ pageContext.setAttribute("portletURL", portletURL);
 					on: {
 						click: function(event) {
 							<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="viewSitesURL">
-								<portlet:param name="jspPage" value="/sites/view_sites.jsp" />
+								<portlet:param name="mvcPath" value="/sites/view_sites.jsp" />
 							</liferay-portlet:renderURL>
 
 							Liferay.SO.Sites.displayPopup('<%= viewSitesURL %>', '<liferay-ui:message key="sites" />');
@@ -285,7 +285,7 @@ pageContext.setAttribute("portletURL", portletURL);
 			};
 
 			<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="viewSitesURL">
-				<portlet:param name="jspPage" value="/sites/view_sites.jsp" />
+				<portlet:param name="mvcPath" value="/sites/view_sites.jsp" />
 			</liferay-portlet:renderURL>
 
 			Liferay.SO.Sites.displayPopup('<%= viewSitesURL %>', '<liferay-ui:message key="sites" />', data);

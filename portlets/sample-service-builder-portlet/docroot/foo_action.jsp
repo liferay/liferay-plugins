@@ -36,7 +36,7 @@ else {
 <liferay-ui:icon-menu showExpanded="<%= view %>" showWhenSingleIcon="<%= view %>">
 	<c:if test="<%= !view %>">
 		<portlet:renderURL var="editURL">
-			<portlet:param name="jspPage" value="/edit_foo.jsp" />
+			<portlet:param name="mvcPath" value="/edit_foo.jsp" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="fooId" value="<%= String.valueOf(foo.getFooId()) %>" />
 		</portlet:renderURL>
@@ -48,7 +48,7 @@ else {
 	</c:if>
 
 	<portlet:renderURL var="redirectURL">
-		<portlet:param name="jspPage" value="/view.jsp" />
+		<portlet:param name="mvcPath" value="/view.jsp" />
 	</portlet:renderURL>
 
 	<portlet:actionURL var="deleteURL">

@@ -17,7 +17,7 @@
 <%@ include file="/display/init.jsp" %>
 
 <%
-String jspPage = ParamUtil.getString(request, "jspPage", "/display/view.jsp");
+String mvcPath = ParamUtil.getString(request, "mvcPath", "/display/view.jsp");
 
 long assetCategoryId = ParamUtil.getLong(request, "categoryId");
 String assetTagName = ParamUtil.getString(request, "tag");
@@ -30,10 +30,10 @@ String assetTagName = ParamUtil.getString(request, "tag");
 			<%
 			String viewURL = StringPool.BLANK;
 
-			if (!jspPage.equals("/display/view.jsp") || (assetCategoryId > 0) || Validator.isNotNull(assetTagName)) {
+			if (!mvcPath.equals("/display/view.jsp") || (assetCategoryId > 0) || Validator.isNotNull(assetTagName)) {
 				PortletURL portletURL = renderResponse.createRenderURL();
 
-				portletURL.setParameter("jspPage", "/display/view.jsp");
+				portletURL.setParameter("mvcPath", "/display/view.jsp");
 
 				if ((assetCategoryId > 0) || Validator.isNotNull(assetTagName)) {
 					portletURL.setParameter("categoryId", StringPool.BLANK);
@@ -56,10 +56,10 @@ String assetTagName = ParamUtil.getString(request, "tag");
 			<%
 			String viewRecentKBArticlesURL = StringPool.BLANK;
 
-			if (!jspPage.equals("/display/view_recent_articles.jsp")) {
+			if (!mvcPath.equals("/display/view_recent_articles.jsp")) {
 				PortletURL portletURL = renderResponse.createRenderURL();
 
-				portletURL.setParameter("jspPage", "/display/view_recent_articles.jsp");
+				portletURL.setParameter("mvcPath", "/display/view_recent_articles.jsp");
 
 				viewRecentKBArticlesURL = portletURL.toString();
 			}
@@ -79,10 +79,10 @@ String assetTagName = ParamUtil.getString(request, "tag");
 				<%
 				String viewAdminPanelURL = StringPool.BLANK;
 
-				if (!jspPage.equals("/display/view_admin_panel.jsp")) {
+				if (!mvcPath.equals("/display/view_admin_panel.jsp")) {
 					PortletURL portletURL = renderResponse.createRenderURL();
 
-					portletURL.setParameter("jspPage", "/display/view_admin_panel.jsp");
+					portletURL.setParameter("mvcPath", "/display/view_admin_panel.jsp");
 					portletURL.setParameter("status", String.valueOf(WorkflowConstants.STATUS_ANY));
 
 					viewAdminPanelURL = portletURL.toString();
@@ -104,10 +104,10 @@ String assetTagName = ParamUtil.getString(request, "tag");
 				<%
 				String viewSubscribedKBArticlesURL = StringPool.BLANK;
 
-				if (!jspPage.equals("/display/view_subscribed_articles.jsp")) {
+				if (!mvcPath.equals("/display/view_subscribed_articles.jsp")) {
 					PortletURL portletURL = renderResponse.createRenderURL();
 
-					portletURL.setParameter("jspPage", "/display/view_subscribed_articles.jsp");
+					portletURL.setParameter("mvcPath", "/display/view_subscribed_articles.jsp");
 
 					viewSubscribedKBArticlesURL = portletURL.toString();
 				}
@@ -126,7 +126,7 @@ String assetTagName = ParamUtil.getString(request, "tag");
 
 		<div class="article-search">
 			<liferay-portlet:renderURL varImpl="searchURL">
-				<portlet:param name="jspPage" value="/display/search.jsp" />
+				<portlet:param name="mvcPath" value="/display/search.jsp" />
 			</liferay-portlet:renderURL>
 
 			<aui:form action="<%= searchURL %>" method="get" name="searchFm">
@@ -144,10 +144,10 @@ String assetTagName = ParamUtil.getString(request, "tag");
 	</div>
 </div>
 
-<c:if test='<%= !jspPage.equals("/display/view.jsp") && ((assetCategoryId > 0) || Validator.isNotNull(assetTagName)) %>'>
+<c:if test='<%= !mvcPath.equals("/display/view.jsp") && ((assetCategoryId > 0) || Validator.isNotNull(assetTagName)) %>'>
 	<div class="portlet-msg-info">
 		<liferay-portlet:renderURL var="viewPRPKBArticlesURL">
-			<portlet:param name="jspPage" value="/display/view.jsp" />
+			<portlet:param name="mvcPath" value="/display/view.jsp" />
 		</liferay-portlet:renderURL>
 
 		<aui:a href="<%= viewPRPKBArticlesURL %>">

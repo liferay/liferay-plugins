@@ -29,7 +29,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 %>
 
 <liferay-portlet:renderURL varImpl="compareVersionsURL">
-	<portlet:param name="jspPage" value='<%= jspPath + "history.jsp" %>' />
+	<portlet:param name="mvcPath" value='<%= jspPath + "history.jsp" %>' />
 	<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 	<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 </liferay-portlet:renderURL>
@@ -41,7 +41,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 	<aui:fieldset>
 		<liferay-portlet:renderURL varImpl="iteratorURL">
-			<portlet:param name="jspPage" value='<%= jspPath + "history.jsp" %>' />
+			<portlet:param name="mvcPath" value='<%= jspPath + "history.jsp" %>' />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 			<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 		</liferay-portlet:renderURL>
@@ -77,7 +77,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				modelVar="curKBArticle"
 			>
 				<liferay-portlet:renderURL var="rowURL">
-					<portlet:param name="jspPage" value='<%= jspPath + "history.jsp" %>' />
+					<portlet:param name="mvcPath" value='<%= jspPath + "history.jsp" %>' />
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(curKBArticle.getResourcePrimKey()) %>" />
 					<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 					<portlet:param name="sourceVersion" value="<%= String.valueOf(curKBArticle.getVersion()) %>" />
@@ -146,7 +146,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 						align="right"
 					>
 						<liferay-portlet:actionURL name="updateKBArticle" varImpl="revertURL">
-							<portlet:param name="jspPage" value='<%= jspPath + "history.jsp" %>' />
+							<portlet:param name="mvcPath" value='<%= jspPath + "history.jsp" %>' />
 							<portlet:param name="redirect" value="<%= redirect %>" />
 							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 							<portlet:param name="status" value="<%= String.valueOf(status) %>" />
@@ -179,7 +179,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 				<div class="kb-tools">
 					<liferay-portlet:renderURL var="viewKBArticleURL">
-						<portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' />
+						<portlet:param name="mvcPath" value='<%= jspPath + "view_article.jsp" %>' />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 					</liferay-portlet:renderURL>
 

@@ -93,7 +93,7 @@ int notificationEventsCount = notificationEvents.size();
 
 			<span class="view-all">
 				<liferay-portlet:renderURL portletName="<%= PortletKeys.SO_NOTIFICATION %>" var="viewAllNotifications" windowState="<%= LiferayWindowState.MAXIMIZED.toString() %>">
-					<portlet:param name="jspPage" value="/notifications/view.jsp" />
+					<portlet:param name="mvcPath" value="/notifications/view.jsp" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 				</liferay-portlet:renderURL>
 

@@ -28,7 +28,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 </div>
 
 <liferay-portlet:renderURL varImpl="iteratorURL">
-	<portlet:param name="jspPage" value="/search/search.jsp" />
+	<portlet:param name="mvcPath" value="/search/search.jsp" />
 	<portlet:param name="keywords" value="<%= keywords %>" />
 </liferay-portlet:renderURL>
 
@@ -78,7 +78,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		modelVar="tuple"
 	>
 		<liferay-portlet:renderURL varImpl="rowURL">
-			<portlet:param name="jspPage" value="/search/view_article.jsp" />
+			<portlet:param name="mvcPath" value="/search/view_article.jsp" />
 			<portlet:param name="resourcePrimKey" value="<%= (String)tuple.getObject(0) %>" />
 		</liferay-portlet:renderURL>
 

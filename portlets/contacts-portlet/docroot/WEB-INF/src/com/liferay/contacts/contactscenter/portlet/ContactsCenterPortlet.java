@@ -228,7 +228,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			viewSummaryURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 
 			viewSummaryURL.setParameter(
-				"jspPage", "/contacts_center/view_user.jsp");
+				"mvcPath", "/contacts_center/view_user.jsp");
 			viewSummaryURL.setParameter(
 				"userId", String.valueOf(user.getUserId()));
 

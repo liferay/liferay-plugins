@@ -24,7 +24,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 
-portletURL.setParameter("jspPage", "/sites/edit_site.jsp");
+portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 %>
 
 <portlet:actionURL name="addSite" var="addSiteURL" />

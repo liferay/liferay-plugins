@@ -370,7 +370,7 @@ public class SectionPortlet extends MVCPortlet {
 			editURL = HttpUtil.setParameter(
 				editURL, "p_p_id", PortletKeys.KNOWLEDGE_BASE_SECTION);
 			editURL = HttpUtil.setParameter(
-				editURL, namespace + "jspPage",
+				editURL, namespace + "mvcPath",
 				templatePath + "edit_article.jsp");
 			editURL = HttpUtil.setParameter(
 				editURL, namespace + "redirect", redirect);

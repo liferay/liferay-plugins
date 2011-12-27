@@ -19,8 +19,8 @@
 <h3>Portlet Request</h3>
 
 <p>
-	<a href="<portlet:renderURL><portlet:param name="jspPage" value="/portlet_request/attribute_sharing.jsp" /></portlet:renderURL>">Attribute Sharing</a><br />
-	<a href="<portlet:renderURL><portlet:param name="jspPage" value="/portlet_request/remote_user.jsp" /></portlet:renderURL>">Remote User</a>
+	<a href="<portlet:renderURL><portlet:param name="mvcPath" value="/portlet_request/attribute_sharing.jsp" /></portlet:renderURL>">Attribute Sharing</a><br />
+	<a href="<portlet:renderURL><portlet:param name="mvcPath" value="/portlet_request/remote_user.jsp" /></portlet:renderURL>">Remote User</a>
 </p>
 
 <h3>Portlet Response (ActionResponse, Normal State)</h3>
@@ -38,14 +38,14 @@
 <h3>Portlet Response (ResourceResponse)</h3>
 
 <p>
-	<a href="<portlet:renderURL><portlet:param name="jspPage" value="/portlet_response/buffer_size.jsp" /></portlet:renderURL>">Buffer Size</a><br />
+	<a href="<portlet:renderURL><portlet:param name="mvcPath" value="/portlet_response/buffer_size.jsp" /></portlet:renderURL>">Buffer Size</a><br />
 	<a href="<portlet:resourceURL id="logo.png" />">Download File</a>
 </p>
 
 <h3>Portlet Session</h3>
 
 <p>
-	<a href="<portlet:renderURL><portlet:param name="jspPage" value="/portlet_session/attribute_sharing.jsp" /></portlet:renderURL>">Attribute Sharing</a>
+	<a href="<portlet:renderURL><portlet:param name="mvcPath" value="/portlet_session/attribute_sharing.jsp" /></portlet:renderURL>">Attribute Sharing</a>
 </p>
 
 <h3>Scheduler</h3>
@@ -65,9 +65,9 @@
 <h3>Upload</h3>
 
 <p>
-	<a href="<portlet:renderURL><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="uploadForm1" /><portlet:param name="jspPage" value="/upload/form.jsp" /></portlet:renderURL>">Form 1</a><br />
-	<a href="<portlet:renderURL><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="uploadForm2" /><portlet:param name="jspPage" value="/upload/form.jsp" /></portlet:renderURL>">Form 2</a><br />
-	<a href="<portlet:renderURL><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="uploadForm3" /><portlet:param name="jspPage" value="/upload/form.jsp" /></portlet:renderURL>">Form 3</a>
+	<a href="<portlet:renderURL><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="uploadForm1" /><portlet:param name="mvcPath" value="/upload/form.jsp" /></portlet:renderURL>">Form 1</a><br />
+	<a href="<portlet:renderURL><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="uploadForm2" /><portlet:param name="mvcPath" value="/upload/form.jsp" /></portlet:renderURL>">Form 2</a><br />
+	<a href="<portlet:renderURL><portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="uploadForm3" /><portlet:param name="mvcPath" value="/upload/form.jsp" /></portlet:renderURL>">Form 3</a>
 </p>
 
 <%!

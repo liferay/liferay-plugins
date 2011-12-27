@@ -69,7 +69,7 @@ public class KBArticleAssetRenderer extends BaseAssetRenderer {
 			getControlPanelPlid(liferayPortletRequest),
 			PortletKeys.KNOWLEDGE_BASE_ADMIN, PortletRequest.RENDER_PHASE);
 
-		portletURL.setParameter("jspPage", "/admin/edit_article.jsp");
+		portletURL.setParameter("mvcPath", "/admin/edit_article.jsp");
 		portletURL.setParameter(
 			"resourcePrimKey", String.valueOf(_kbArticle.getResourcePrimKey()));
 
