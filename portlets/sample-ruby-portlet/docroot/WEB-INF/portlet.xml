@@ -1,19 +1,10 @@
 <?xml version="1.0"?>
 
-<portlet-app
-	version="2.0"
-	xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
->
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" version="2.0">
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Sample Ruby</display-name>
 		<portlet-class>com.liferay.util.bridges.ruby.RubyPortlet</portlet-class>
-		<init-param>
-			<name>view-file</name>
-			<value>/WEB-INF/ruby/view.rb</value>
-		</init-param>
 		<init-param>
 			<name>action-file</name>
 			<value>/WEB-INF/ruby/action.rb</value>
@@ -21,6 +12,10 @@
 		<init-param>
 			<name>global-files</name>
 			<value>/WEB-INF/ruby/global/liferay_portlet.rb,/WEB-INF/ruby/global/custom.rb</value>
+		</init-param>
+		<init-param>
+			<name>view-file</name>
+			<value>/WEB-INF/ruby/view.rb</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
