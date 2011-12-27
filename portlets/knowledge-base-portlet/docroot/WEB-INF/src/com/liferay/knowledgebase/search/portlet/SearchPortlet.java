@@ -370,7 +370,8 @@ public class SearchPortlet extends MVCPortlet {
 			editURL = HttpUtil.setParameter(
 				editURL, "p_p_id", PortletKeys.KNOWLEDGE_BASE_SEARCH);
 			editURL = HttpUtil.setParameter(
-				editURL, namespace + "jspPage", jspPath + "edit_article.jsp");
+				editURL, namespace + "jspPage",
+				templatePath + "edit_article.jsp");
 			editURL = HttpUtil.setParameter(
 				editURL, namespace + "redirect", redirect);
 			editURL = HttpUtil.setParameter(
@@ -446,7 +447,7 @@ public class SearchPortlet extends MVCPortlet {
 			SessionErrors.contains(
 				renderRequest, PrincipalException.class.getName())) {
 
-			include(jspPath + "error.jsp", renderRequest, renderResponse);
+			include(templatePath + "error.jsp", renderRequest, renderResponse);
 		}
 		else {
 			super.doDispatch(renderRequest, renderResponse);

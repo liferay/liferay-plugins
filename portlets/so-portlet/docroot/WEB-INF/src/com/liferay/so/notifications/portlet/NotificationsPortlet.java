@@ -150,7 +150,7 @@ public class NotificationsPortlet extends MVCPortlet {
 					WebKeys.PORTLET_DECORATE, Boolean.FALSE);
 			}
 
-			include(viewJSP, renderRequest, renderResponse);
+			include(viewTemplate, renderRequest, renderResponse);
 		}
 		catch (Exception e) {
 			super.doView(renderRequest, renderResponse);
