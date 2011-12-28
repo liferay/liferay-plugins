@@ -1,4 +1,4 @@
-AUI().add(
+AUI.add(
 	'liferay-marketplace-messenger',
 	function(A) {
 		var NATIVE_MSG = !!(window.postMessage);
