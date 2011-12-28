@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -29,8 +29,8 @@ public class UpgradeWSRPProducer extends UpgradeProcess {
 	@Override
 	protected void doUpgrade() throws Exception {
 		runSQL(
-			"update WSRP_WSRPProducer set version = '2.0' where verion is " +
-				"null");
+			"update WSRP_WSRPProducer set version = '2.0' where version is " +
+				"null or version = ''");
 
 		List<WSRPProducer> wsrpProducers =
 			WSRPProducerLocalServiceUtil.getWSRPProducers(

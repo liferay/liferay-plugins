@@ -1,0 +1,140 @@
+/**
+ * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+@import "compass";
+
+.so-portlet-dockbar-notifications .menu-button {
+	background-image: none;
+	padding: 5px;
+}
+
+.so-portlet-dockbar-notifications .menu-button .notification-count {
+	@include border-radius(4px);
+	background-color: #2C2F34;
+	color: #FFF;
+	display: block;
+	padding: 0 5px;
+	text-shadow: none;
+}
+
+.menu-button-active .so-portlet-dockbar-notifications .menu-button .notification-count {
+	background-color: transparent;
+}
+
+.dockbar .user-notification-events {
+	.user-notification-event-content {
+		color: #2C2F34;
+		cursor: pointer;
+		min-height: 40px;
+		padding: 5px;
+
+		.notification-entry {
+			margin-left: 50px;
+		}
+
+		.body, .subject {
+			font-size: 11px;
+		}
+
+		.datetime {
+			font-size: 10px;
+		}
+	}
+
+	.user-notification-event-sender {
+		float: left;
+		height: 40px;
+		overflow: hidden;
+		position: relative;
+		width: 40px;
+
+		.thumbnail img {
+			max-width: 40px;
+		}
+
+		.portlet-icon {
+			bottom: 0;
+			left: 0;
+			position: absolute;
+		}
+	}
+
+	.no-new-notification, .user-notification-event-content, .user-notification-event-footer, .user-notification-event-header {
+		border-bottom: 1px solid #BCBBBB;
+		border-top: 1px solid #EEE;
+		font-size: 12px;
+		padding: 5px;
+	}
+
+	.user-notification-event-header .dismiss-notifications {
+		font-size: 12px;
+		text-shadow: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	.user-notification-event-footer, .user-notification-event-content {
+		&:after {
+			clear: both;
+			content: "";
+			display: block;
+			width: 100%;
+		}
+	}
+
+	.user-notification-event-footer {
+		font-weight: bold;
+		min-height: 20px;
+		padding: 0;
+
+		.dismiss-notifications, .view-all {
+			float: left;
+			display: block;
+			width: 50%;
+
+			a {
+				display: block;
+				padding: 5px 0;
+				text-align: center;
+				width: 100%;
+			}
+		}
+	}
+
+	.user-notification-event-content.aui-focus, .user-notification-event-content.aui-focus a, .user-notification-event-content.aui-focus a:hover, .user-notification-event-footer .dismiss-notifications a:hover, .user-notification-event-footer .view-all a:hover {
+		background: #5B677D;
+		color: #FFF;
+		text-shadow: none;
+	}
+
+	.user-notification-event-content .request {
+		.lfr-user-action-item a {
+			background-position: center left;
+			background-repeat: no-repeat;
+			display: inline-block;
+			margin-right: 5px;
+			padding: 4px 4px 4px 20px;
+		}
+
+		.lfr-user-action-confirm a {
+			background-image: url(@theme_image_path@/common/activate.png);
+		}
+
+		.lfr-user-action-ignore a {
+			background-image: url(@theme_image_path@/common/deactivate.png);
+		}
+	}
+}

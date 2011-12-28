@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -52,6 +52,8 @@
 					<aui:input name="preferences--showRecentActivity--" type="checkbox" value="<%= showRecentActivity %>" />
 
 					<aui:input label="show-sites" name="preferences--showSites--" type="checkbox" value="<%= showSites %>" />
+
+					<aui:input label="show-tags" name="preferences--showTags--" type="checkbox" value="<%= showTags %>" />
 
 					<aui:input name="preferences--showUsersInformation--" type="checkbox" value="<%= showUsersInformation %>" />
 

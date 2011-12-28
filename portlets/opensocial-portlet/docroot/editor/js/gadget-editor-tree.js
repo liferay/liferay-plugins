@@ -1,4 +1,4 @@
-AUI().add(
+AUI.add(
 	'gadget-editor-tree',
 	function(A) {
 		var Lang = A.Lang;

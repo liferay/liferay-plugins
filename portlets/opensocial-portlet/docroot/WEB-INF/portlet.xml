@@ -1,22 +1,17 @@
 <?xml version="1.0"?>
 
-<portlet-app
-	version="2.0"
-	xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
->
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" version="2.0">
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Admin</display-name>
 		<portlet-class>com.liferay.opensocial.admin.portlet.AdminPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
-			<value>/admin/view.jsp</value>
-		</init-param>
-		<init-param>
 			<name>copy-request-parameters</name>
 			<value>true</value>
+		</init-param>
+		<init-param>
+			<name>view-template</name>
+			<value>/admin/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
@@ -36,12 +31,12 @@
 		<portlet-name>2</portlet-name>
 		<portlet-class>com.liferay.opensocial.gadget.portlet.GadgetPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
-			<value>/gadget/view.jsp</value>
-		</init-param>
-		<init-param>
 			<name>copy-request-parameters</name>
 			<value>true</value>
+		</init-param>
+		<init-param>
+			<name>view-template</name>
+			<value>/gadget/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
@@ -71,12 +66,12 @@
 		<display-name>OpenSocial Gadget</display-name>
 		<portlet-class>com.liferay.opensocial.adhocgadget.portlet.AdhocGadgetPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
-			<value>/adhoc_gadget/view.jsp</value>
-		</init-param>
-		<init-param>
 			<name>copy-request-parameters</name>
 			<value>true</value>
+		</init-param>
+		<init-param>
+			<name>view-template</name>
+			<value>/adhoc_gadget/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
@@ -106,12 +101,12 @@
 		<display-name>OpenSocial Gadget Editor</display-name>
 		<portlet-class>com.liferay.opensocial.editor.portlet.EditorPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
-			<value>/editor/view.jsp</value>
-		</init-param>
-		<init-param>
 			<name>copy-request-parameters</name>
 			<value>true</value>
+		</init-param>
+		<init-param>
+			<name>view-template</name>
+			<value>/editor/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>

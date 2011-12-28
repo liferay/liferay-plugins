@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -58,7 +58,7 @@ MailManager mailManager = MailManager.getInstance(request);
 			%>
 
 				<liferay-portlet:resourceURL var="attachmentURL">
-					<portlet:param name="jspPage" value="/attachment.jsp" />
+					<portlet:param name="mvcPath" value="/attachment.jsp" />
 					<portlet:param name="attachmentId" value="<%= String.valueOf(attachment.getAttachmentId()) %>" />
 				</liferay-portlet:resourceURL>
 

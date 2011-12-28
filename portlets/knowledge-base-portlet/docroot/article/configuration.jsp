@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -58,7 +58,7 @@ String tabs2 = ParamUtil.getString(request, "tabs2", Validator.equals(portletRes
 						</div>
 
 						<liferay-portlet:renderURL portletName="<%= portletResource %>" var="selectConfigurationKBArticleURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-							<portlet:param name="jspPage" value="/article/select_configuration_article.jsp" />
+							<portlet:param name="mvcPath" value="/article/select_configuration_article.jsp" />
 						</liferay-portlet:renderURL>
 
 						<%

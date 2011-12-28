@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -34,7 +34,7 @@ PortletURL taskListURL = renderResponse.createRenderURL();
 
 taskListURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 
-taskListURL.setParameter("jspPage", "/view_tasks.jsp");
+taskListURL.setParameter("mvcPath", "/view_tasks.jsp");
 taskListURL.setParameter("tabs1", tabs1);
 taskListURL.setParameter("tabs2", tabs2);
 %>
@@ -87,7 +87,7 @@ taskListURL.setParameter("tabs2", tabs2);
 
 			rowURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 
-			rowURL.setParameter("jspPage", "/view_task.jsp");
+			rowURL.setParameter("mvcPath", "/view_task.jsp");
 			rowURL.setParameter("tasksEntryId", String.valueOf(tasksEntry.getTasksEntryId()));
 
 			rowHREF = rowURL.toString();
@@ -136,7 +136,7 @@ taskListURL.setParameter("tabs2", tabs2);
 					%>
 
 					<c:if test="<%= (curGroup != null) && curGroup.isRegularSite() %>">
-						<span><liferay-ui:message key="site" />: <%= HtmlUtil.escape(curGroup.getDescriptiveName()) %></span>
+						<span><liferay-ui:message key="site" />: <%= HtmlUtil.escape(curGroup.getDescriptiveName(locale)) %></span>
 					</c:if>
 				</c:if>
 

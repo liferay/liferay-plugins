@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -40,7 +40,7 @@ double priority = BeanParamUtil.getDouble(kbArticle, request, "priority");
 	<aui:input cssClass="kb-priority" inlineField="<%= true %>" label="" name="priority" size="5" type="text" value="<%= BigDecimal.valueOf(priority).toPlainString() %>" />
 
 	<liferay-portlet:renderURL var="selectKBArticleURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-		<portlet:param name="jspPage" value='<%= jspPath + "select_article.jsp" %>' />
+		<portlet:param name="mvcPath" value='<%= jspPath + "select_article.jsp" %>' />
 		<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 		<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>" />
 		<portlet:param name="status" value="<%= String.valueOf(status) %>" />

@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -60,12 +60,14 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 			String fieldValidationErrorMessage = preferences.getValue("fieldValidationErrorMessage" + i, StringPool.BLANK);
 		%>
 
-			<liferay-ui:error key='<%= "error" + fieldLabel %>' message="<%= fieldValidationErrorMessage %>" />
+			<c:if test="<%= PortletPropsValues.VALIDATION_SCRIPT_ENABLED %>">
+				<liferay-ui:error key='<%= "error" + fieldLabel %>' message="<%= fieldValidationErrorMessage %>" />
 
-			<c:if test='<%= Validator.isNotNull(fieldValidationScript) %>'>
-				<div class="aui-helper-hidden" id="<portlet:namespace/>validationError<%= fieldName %>">
-					<span class="portlet-msg-error"><%= fieldValidationErrorMessage %></span>
-				</div>
+				<c:if test='<%= Validator.isNotNull(fieldValidationScript) %>'>
+					<div class="aui-helper-hidden" id="<portlet:namespace/>validationError<%= fieldName %>">
+						<span class="portlet-msg-error"><%= fieldValidationErrorMessage %></span>
+					</div>
+				</c:if>
 			</c:if>
 
 			<c:if test="<%= !fieldOptional %>">

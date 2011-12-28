@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -23,7 +23,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 <liferay-util:include page="/admin/top_tabs.jsp" servletContext="<%= application %>" />
 
 <liferay-portlet:renderURL varImpl="searchURL">
-	<portlet:param name="jspPage" value="/admin/view.jsp" />
+	<portlet:param name="mvcPath" value="/admin/view.jsp" />
 </liferay-portlet:renderURL>
 
 <aui:form action="<%= searchURL %>" method="get" name="fm">
@@ -34,7 +34,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 
 	<aui:fieldset>
 		<liferay-portlet:renderURL varImpl="iteratorURL">
-			<portlet:param name="jspPage" value="/admin/view.jsp" />
+			<portlet:param name="mvcPath" value="/admin/view.jsp" />
 			<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
 		</liferay-portlet:renderURL>
 
@@ -65,7 +65,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 				modelVar="kbArticle"
 			>
 				<liferay-portlet:renderURL varImpl="rowURL">
-					<portlet:param name="jspPage" value="/admin/view.jsp" />
+					<portlet:param name="mvcPath" value="/admin/view.jsp" />
 					<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 				</liferay-portlet:renderURL>
 
@@ -146,7 +146,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 				<aui:button-row cssClass="float-container">
 					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) %>">
 						<liferay-portlet:renderURL var="addKBArticleURL">
-							<portlet:param name="jspPage" value='<%= jspPath + "edit_article.jsp" %>' />
+							<portlet:param name="mvcPath" value='<%= jspPath + "edit_article.jsp" %>' />
 							<portlet:param name="redirect" value="<%= redirect %>" />
 						</liferay-portlet:renderURL>
 
@@ -205,7 +205,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 
 				<div class="portlet-msg-info">
 					<liferay-portlet:renderURL var="viewKBArticleURL">
-						<portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' />
+						<portlet:param name="mvcPath" value='<%= jspPath + "view_article.jsp" %>' />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
 					</liferay-portlet:renderURL>
 
@@ -250,7 +250,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 <aui:script>
 	function <portlet:namespace />updateKBArticlesPriorities() {
 		document.<portlet:namespace />fm.method = "post";
-		submitForm(document.<portlet:namespace />fm, "<liferay-portlet:actionURL name="updateKBArticlesPriorities"><portlet:param name="jspPage" value="/admin/view.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></liferay-portlet:actionURL>");
+		submitForm(document.<portlet:namespace />fm, "<liferay-portlet:actionURL name="updateKBArticlesPriorities"><portlet:param name="mvcPath" value="/admin/view.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></liferay-portlet:actionURL>");
 	}
 
 	Liferay.provide(
@@ -260,7 +260,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 			if (confirm('<%= UnicodeLanguageUtil.get(pageContext, "are-you-sure-you-want-to-delete-the-selected-articles") %>')) {
 				document.<portlet:namespace />fm.method = "post";
 				document.<portlet:namespace />fm.<portlet:namespace />resourcePrimKeys.value = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
-				submitForm(document.<portlet:namespace />fm, "<liferay-portlet:actionURL name="deleteKBArticles"><portlet:param name="jspPage" value="/admin/view.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></liferay-portlet:actionURL>");
+				submitForm(document.<portlet:namespace />fm, "<liferay-portlet:actionURL name="deleteKBArticles"><portlet:param name="mvcPath" value="/admin/view.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></liferay-portlet:actionURL>");
 			}
 		},
 		['liferay-util-list-fields']

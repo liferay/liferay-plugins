@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This file is part of Liferay Social Office. Liferay Social Office is free
  * software: you can redistribute it and/or modify it under the terms of the GNU
@@ -230,8 +230,7 @@ public class SitesPortlet extends MVCPortlet {
 		}
 		else {
 			if (searchTab.equals("my-favorites")) {
-				groups = SitesUtil.getStarredSites(
-					themeDisplay.getUserId(), name);
+				groups = SitesUtil.getStarredSites(themeDisplay, name);
 				groupsCount = groups.size();
 			}
 			else if (searchTab.equals("my-sites")) {
@@ -263,7 +262,8 @@ public class SitesPortlet extends MVCPortlet {
 			JSONObject groupJSONObject = JSONFactoryUtil.createJSONObject();
 
 			groupJSONObject.put("description", group.getDescription());
-			groupJSONObject.put("name", group.getDescriptiveName());
+			groupJSONObject.put(
+				"name", group.getDescriptiveName(themeDisplay.getLocale()));
 
 			if (group.hasPrivateLayouts() || group.hasPublicLayouts()) {
 				Layout layout = themeDisplay.getLayout();

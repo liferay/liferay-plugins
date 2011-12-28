@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -50,7 +50,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 	<c:when test="<%= userPublicPage && (usersCount <= 0) %>">
 		<aui:layout cssClass="contacts-center-home">
 			<h3 class="header-title">
-				<liferay-ui:message arguments="<%= new Object[] {group.getDescriptiveName(), String.valueOf(usersCount)} %>" key="x-has-no-contacts" />
+				<liferay-ui:message arguments="<%= new Object[] {group.getDescriptiveName(locale), String.valueOf(usersCount)} %>" key="x-has-no-contacts" />
 			</h3>
 		</aui:layout>
 	</c:when>
@@ -94,7 +94,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 							</c:if>
 
 							<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="viewSummaryURL">
-								<portlet:param name="jspPage" value="/contacts_center/view_user.jsp" />
+								<portlet:param name="mvcPath" value="/contacts_center/view_user.jsp" />
 								<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
 							</liferay-portlet:renderURL>
 

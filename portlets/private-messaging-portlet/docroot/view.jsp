@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -26,12 +26,12 @@ long mbThreadId = ParamUtil.getLong(request, "mbThreadId");
 	</c:when>
 	<c:when test="<%= (mbThreadId != 0) && PrivateMessagingUtil.isUserPartOfThread(user.getUserId(), mbThreadId) %>">
 		<aui:layout cssClass="thread">
-			<%@ include file="/view_thread.jsp" %>
+			<%@ include file="/view_thread.jspf" %>
 		</aui:layout>
 	</c:when>
 	<c:otherwise>
 		<aui:layout cssClass="messages">
-			<%@ include file="/view_messages.jsp" %>
+			<%@ include file="/view_messages.jspf" %>
 		</aui:layout>
 	</c:otherwise>
 </c:choose>

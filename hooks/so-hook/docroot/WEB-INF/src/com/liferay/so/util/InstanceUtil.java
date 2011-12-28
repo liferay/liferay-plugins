@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This file is part of Liferay Social Office. Liferay Social Office is free
  * software: you can redistribute it and/or modify it under the terms of the GNU
@@ -93,7 +93,7 @@ public class InstanceUtil {
 		// Communities
 
 		Portlet portlet = PortletLocalServiceUtil.getPortletById(
-			PortletKeys.COMMUNITIES);
+			PortletKeys.MY_SITES);
 
 		portlet.setAddDefaultResource(true);
 
@@ -143,7 +143,7 @@ public class InstanceUtil {
 		LayoutSetPrototype layoutSetPrototype =
 			LayoutSetPrototypeLocalServiceUtil.addLayoutSetPrototype(
 				defaultUserId, companyId, localeNamesMap, description, active,
-				true, true, serviceContext);
+				true, serviceContext);
 
 		UnicodeProperties settingsProperties =
 			layoutSetPrototype.getSettingsProperties();

@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -145,69 +145,106 @@ request.setAttribute("view_user.jsp-user", user2);
 					</aui:column>
 				</c:if>
 
-				<c:if test="<%= showSites %>">
+				<c:if test="<%= showSites || showTags %>">
 					<aui:column cssClass="user-information-column-2" columnWidth="<%= showUsersInformation ? 20 : 100 %>">
+						<c:if test="<%= showSites %>">
 
-						<%
-						LinkedHashMap groupParams = new LinkedHashMap();
+							<%
+							LinkedHashMap groupParams = new LinkedHashMap();
 
-						groupParams.put("site", Boolean.TRUE);
+							groupParams.put("site", Boolean.TRUE);
 
-						Group group = themeDisplay.getScopeGroup();
+							Group group = themeDisplay.getScopeGroup();
 
-						if (group.isUser()) {
-							groupParams.put("usersGroups", new Long(group.getClassPK()));
-						}
-						else {
-							groupParams.put("usersGroups", new Long(themeDisplay.getUserId()));
-						}
+							if (group.isUser()) {
+								groupParams.put("usersGroups", new Long(group.getClassPK()));
+							}
+							else {
+								groupParams.put("usersGroups", new Long(themeDisplay.getUserId()));
+							}
 
-						groupParams.put("active", Boolean.TRUE);
+							groupParams.put("active", Boolean.TRUE);
 
-						if (group.isUser() && (themeDisplay.getUserId() != group.getClassPK())) {
-							List<Integer> types = new ArrayList<Integer>();
+							if (group.isUser() && (themeDisplay.getUserId() != group.getClassPK())) {
+								List<Integer> types = new ArrayList<Integer>();
 
-							types.add(GroupConstants.TYPE_SITE_OPEN);
-							types.add(GroupConstants.TYPE_SITE_RESTRICTED);
+								types.add(GroupConstants.TYPE_SITE_OPEN);
+								types.add(GroupConstants.TYPE_SITE_RESTRICTED);
 
-							groupParams.put("types", types);
-						}
+								groupParams.put("types", types);
+							}
 
-						List<Group> results = GroupLocalServiceUtil.search(company.getCompanyId(), null, null, groupParams, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-						%>
+							List<Group> results = GroupLocalServiceUtil.search(company.getCompanyId(), null, null, groupParams, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+							%>
 
-						<div class="user-sites-title">
-							<liferay-ui:message key="sites" />
-						</div>
+							<div class="user-sites-title">
+								<liferay-ui:message key="sites" />
+							</div>
 
-						<c:choose>
-							<c:when test="<%= !results.isEmpty() %>">
+							<ul class="user-sites">
+								<c:choose>
+									<c:when test="<%= !results.isEmpty() %>">
+
+										<%
+										for (Group currGroup : results) {
+											PortletURL groupURL = renderResponse.createActionURL();
+
+											groupURL.setWindowState(WindowState.NORMAL);
+
+											groupURL.setParameter("struts_action", "/sites_admin/page");
+											groupURL.setParameter("redirect", currentURL);
+											groupURL.setParameter("groupId", String.valueOf(group.getGroupId()));
+											groupURL.setParameter("privateLayout", Boolean.FALSE.toString());
+										%>
+
+											<li class="user-information-sites"><a href="<%= groupURL %>"><%= currGroup.getDescriptiveName(locale) %></a></li>
+
+										<%
+										}
+										%>
+
+									</c:when>
+									<c:otherwise>
+										<div class="empty">
+											<liferay-ui:message arguments="<%= PortalUtil.getUserName((group.isUser() ? group.getClassPK() : themeDisplay.getUserId()), group.getDescriptiveName(locale)) %>" key="x-does-not-belong-to-any-sites" />
+										</div>
+									</c:otherwise>
+								</c:choose>
+							</ul>
+						</c:if>
+
+						<c:if test="<%= showTags %>">
+							<div class="user-tags-title">
+								<liferay-ui:message key="tags" />
+							</div>
+
+							<ul class="user-tags">
 
 								<%
-								for (Group currGroup : results) {
-									PortletURL groupURL = renderResponse.createActionURL();
+								StringBuilder sb = new StringBuilder();
 
-									groupURL.setWindowState(WindowState.NORMAL);
+								List<AssetTag> tags = AssetTagLocalServiceUtil.getTags(User.class.getName(), user2.getUserId());
 
-									groupURL.setParameter("struts_action", "/sites_admin/page");
-									groupURL.setParameter("redirect", currentURL);
-									groupURL.setParameter("groupId", String.valueOf(group.getGroupId()));
-									groupURL.setParameter("privateLayout", Boolean.FALSE.toString());
-								%>
+								for (AssetTag tag : tags) {
+									PortletURL searchURL = ((LiferayPortletResponse)renderResponse).createRenderURL("3");
 
-									<div class="user-information-sites"><a href="<%= groupURL %>"><%= currGroup.getDescriptiveName() %></a></div>
+									searchURL.setWindowState(WindowState.MAXIMIZED);
 
-								<%
+									searchURL.setParameter("groupId", "0");
+									searchURL.setParameter("keywords", tag.getName());
+									searchURL.setParameter("struts_action", "/search/search");
+
+									sb.append("<li><a href=\"");
+									sb.append(searchURL);
+									sb.append("\">");
+									sb.append(tag.getName());
+									sb.append("</a></li>");
 								}
 								%>
 
-							</c:when>
-							<c:otherwise>
-								<div class="empty">
-									<liferay-ui:message arguments="<%= PortalUtil.getUserName((group.isUser() ? group.getClassPK() : themeDisplay.getUserId()), group.getDescriptiveName()) %>" key="x-does-not-belong-to-any-sites" />
-								</div>
-							</c:otherwise>
-						</c:choose>
+								<%= sb.toString() %>
+							</ul>
+						</c:if>
 					</aui:column>
 				</c:if>
 			</aui:layout>

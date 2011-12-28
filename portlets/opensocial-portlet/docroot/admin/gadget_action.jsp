@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -34,7 +34,7 @@ catch (Exception e) {
 <liferay-ui:icon-menu>
 	<c:if test="<%= GadgetPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), gadget.getGadgetId(), ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="updateGadgetURL">
-			<portlet:param name="jspPage" value="/admin/edit_gadget.jsp" />
+			<portlet:param name="mvcPath" value="/admin/edit_gadget.jsp" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="gadgetId" value="<%= String.valueOf(gadget.getGadgetId()) %>" />
 		</portlet:renderURL>
@@ -43,7 +43,7 @@ catch (Exception e) {
 
 		<c:if test="<%= (oAuthServices != null) && (oAuthServices.size() > 0) %>">
 			<portlet:renderURL var="configureOAuthURL">
-				<portlet:param name="jspPage" value="/admin/edit_oauth_consumers.jsp" />
+				<portlet:param name="mvcPath" value="/admin/edit_oauth_consumers.jsp" />
 				<portlet:param name="redirect" value="<%= currentURL %>" />
 				<portlet:param name="gadgetId" value="<%= String.valueOf(gadget.getGadgetId()) %>" />
 			</portlet:renderURL>

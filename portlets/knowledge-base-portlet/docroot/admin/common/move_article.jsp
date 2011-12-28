@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -33,7 +33,7 @@ double priority = BeanParamUtil.getDouble(kbArticle, request, "priority");
 />
 
 <liferay-portlet:actionURL name="moveKBArticle" var="moveKBArticleURL">
-	<portlet:param name="jspPage" value='<%= jspPath + "move_article.jsp" %>' />
+	<portlet:param name="mvcPath" value='<%= jspPath + "move_article.jsp" %>' />
 	<portlet:param name="redirect" value="<%= redirect %>" />
 	<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 	<portlet:param name="status" value="<%= String.valueOf(status) %>" />

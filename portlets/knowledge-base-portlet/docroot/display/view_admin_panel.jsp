@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -30,7 +30,7 @@ String orderByType2 = ParamUtil.getString(request, "orderByType2", "desc");
 	<aui:button-row>
 		<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) %>">
 			<liferay-portlet:renderURL var="addKBArticleURL">
-				<portlet:param name="jspPage" value="/display/edit_article.jsp" />
+				<portlet:param name="mvcPath" value="/display/edit_article.jsp" />
 				<portlet:param name="redirect" value="<%= redirect %>" />
 			</liferay-portlet:renderURL>
 
@@ -39,7 +39,7 @@ String orderByType2 = ParamUtil.getString(request, "orderByType2", "desc");
 
 		<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_TEMPLATE) %>">
 			<liferay-portlet:renderURL var="addKBTemplateURL">
-				<portlet:param name="jspPage" value="/display/edit_template.jsp" />
+				<portlet:param name="mvcPath" value="/display/edit_template.jsp" />
 				<portlet:param name="redirect" value="<%= redirect %>" />
 			</liferay-portlet:renderURL>
 
@@ -60,7 +60,7 @@ String orderByType2 = ParamUtil.getString(request, "orderByType2", "desc");
 </c:if>
 
 <liferay-portlet:renderURL varImpl="iteratorURL">
-	<portlet:param name="jspPage" value="/display/view_admin_panel.jsp" />
+	<portlet:param name="mvcPath" value="/display/view_admin_panel.jsp" />
 </liferay-portlet:renderURL>
 
 <liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "AdministratorPanelContainer" %>' persistState="<%= true %>">
@@ -87,7 +87,7 @@ String orderByType2 = ParamUtil.getString(request, "orderByType2", "desc");
 				modelVar="kbArticle"
 			>
 				<liferay-portlet:renderURL varImpl="rowURL">
-					<portlet:param name="jspPage" value="/display/view_article.jsp" />
+					<portlet:param name="mvcPath" value="/display/view_article.jsp" />
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 					<portlet:param name="status" value="<%= String.valueOf(WorkflowConstants.STATUS_ANY) %>" />
 				</liferay-portlet:renderURL>
@@ -173,7 +173,7 @@ String orderByType2 = ParamUtil.getString(request, "orderByType2", "desc");
 					modelVar="kbTemplate"
 				>
 					<liferay-portlet:renderURL varImpl="rowURL">
-						<portlet:param name="jspPage" value="/display/view_template.jsp" />
+						<portlet:param name="mvcPath" value="/display/view_template.jsp" />
 						<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
 					</liferay-portlet:renderURL>
 

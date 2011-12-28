@@ -50,10 +50,10 @@
 		<dispatcher>INCLUDE</dispatcher>
 	</filter-mapping>
 	<listener>
-		<listener-class>com.liferay.portal.kernel.servlet.PortletContextListener</listener-class>
+		<listener-class>com.liferay.portal.kernel.spring.context.PortletContextLoaderListener</listener-class>
 	</listener>
 	<listener>
-		<listener-class>com.liferay.portal.kernel.spring.context.PortletContextLoaderListener</listener-class>
+		<listener-class>com.liferay.portal.kernel.servlet.PortletContextListener</listener-class>
 	</listener>
 	<listener>
 		<listener-class>com.liferay.wsrp.servlet.WSRPServletContextListener</listener-class>

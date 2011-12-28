@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -58,11 +58,11 @@ MailManager mailManager = MailManager.getInstance(request);
 			<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber %>" href="javascript:;" label='<%= LanguageUtil.format(pageContext, "back-to-x", folderName) %>' />
 		</aui:column>
 		<aui:column cssClass="compose-message-container">
-			<aui:button cssClass="compose-message" data-messageType="reply" data-replyMessageId="<%= message.getMessageId() %>" href="javascript:;" value="reply" />
+			<aui:button cssClass="compose-message" data-messageType="reply" data-replyMessageId="<%= message.getMessageId() %>" value="reply" />
 
-			<aui:button cssClass="compose-message" data-messageType="reply-all" data-replyMessageId="<%= message.getMessageId() %>" href="javascript:;" value="reply-all" />
+			<aui:button cssClass="compose-message" data-messageType="reply-all" data-replyMessageId="<%= message.getMessageId() %>" value="reply-all" />
 
-			<aui:button cssClass="compose-message" data-messageType="forward" data-replyMessageId="<%= message.getMessageId() %>" href="javascript:;" value="forward" />
+			<aui:button cssClass="compose-message" data-messageType="forward" data-replyMessageId="<%= message.getMessageId() %>" value="forward" />
 		</aui:column>
 		<aui:column>
 			<aui:button cssClass="delete-message" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber %>" value="delete" />

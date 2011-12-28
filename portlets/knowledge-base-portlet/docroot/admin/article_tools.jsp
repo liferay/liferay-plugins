@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -78,7 +78,7 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 		<c:if test="<%= kbArticle.isApproved() || !kbArticle.isFirstVersion() %>">
 			<td>
 				<liferay-portlet:renderURL var="historyURL">
-					<portlet:param name="jspPage" value='<%= jspPath + "history.jsp" %>' />
+					<portlet:param name="mvcPath" value='<%= jspPath + "history.jsp" %>' />
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 					<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 				</liferay-portlet:renderURL>
@@ -95,7 +95,7 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 
 		<td>
 			<liferay-portlet:renderURL var="printURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-				<portlet:param name="jspPage" value='<%= jspPath + "print_article.jsp" %>' />
+				<portlet:param name="mvcPath" value='<%= jspPath + "print_article.jsp" %>' />
 				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 				<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 			</liferay-portlet:renderURL>

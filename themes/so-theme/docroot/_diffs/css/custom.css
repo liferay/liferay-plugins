@@ -936,6 +936,19 @@ table.calendar {
 
 /* Dockbar */
 
+.dockbar {
+	background-image: url(../images/custom/dockbar_bg.png);
+	border-bottom-color: #CDCDCD;
+
+	.so-portlet-dockbar-notifications .menu-button .notification-count {
+		background: #0070BA;
+	}
+}
+
+.lfr-dockbar-pinned .dockbar {
+	@include box-shadow(0 -8px 9px 4px black, 0 3px 10px -6px rgba(0, 0, 0, .5));
+}
+
 .user-group .add-content-menu .add-page {
 	display: none;
 }
@@ -1169,7 +1182,7 @@ table.calendar {
 		border-width: 1px 0 0;
 		margin-left: 1px;
 	}
-	
+
 	.social-relations a {
 		border: 1px solid transparent;
 		color: #34404F;
@@ -1366,8 +1379,49 @@ table.calendar {
 /*  Private Messaging  */
 
 .private-messaging-portlet {
+	margin-left: 1px;
+
+	.results-grid table.taglib-search-iterator {
+		border-width: 1px 0;
+	}
+
 	.controls {
 		@include border-radius(0);
+		background: #F4F4F4;
+		border-width: 0 0 1px;
+	}
+
+	.message-link:hover {
+		text-decoration: none;
+	}
+
+	.messages .taglib-search-iterator .col-1 {
+		padding-right: 0;
+		vertical-align: top;
+	}
+
+	.messages .results-grid .results-row.alt td, .messages .results-grid .results-row td {
+		background: #F6F6F6;
+	}
+
+	.thread .results-row, .results-row, .results-grid .results-row td, .results-grid .results-row.alt td {
+		border-width: 1px 0;
+	}
+
+	.results-grid .results-row.unread {
+		.first {
+			border-left: 2px solid #00B4FF;
+		}
+
+		td, &.alt td {
+			background: #FFF;
+		}
+	}
+
+	.portlet-msg, .portlet-msg-info, .portlet-msg-error, .portlet-msg-alert, .portlet-msg-success {
+		@include border-radius(0px);
+		border-width: 0 0 1px;
+		margin: 0;
 	}
 }
 
@@ -1414,5 +1468,32 @@ table.calendar {
 	.lfr-header-row {
 		background: #EEE;
 		border-bottom: 1px solid #AAA;
+	}
+}
+
+/* Social Office Notifications */
+
+.so-portlet-notifications {
+	.results-grid {
+		border-width: 0 0 0 1px;
+	}
+
+	.results-row, .results-grid .results-row td, .results-grid .results-row.alt td {
+		background: transparent;
+		border-width: 1px 0;
+		padding: 10px;
+	}
+
+	.resuls-row .first {
+		vertical-align: top;
+	}
+
+	.results-row:hover td, .results-row.alt:hover td {
+		background: #EEE;
+	}
+
+	.user-notification-event-content {
+		margin: -10px;
+		padding: 10px;
 	}
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -32,6 +32,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
@@ -121,23 +122,10 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 						actionRequest, "invalidValidationDefinition" + i);
 				}
 
-				for (Locale locale : fieldLabelMap.keySet()) {
-					String languageId = LocaleUtil.toLanguageId(locale);
-					String fieldLabelValue = fieldLabelMap.get(locale);
-					String fieldOptionsValue = fieldOptionsMap.get(locale);
-
-					if (Validator.isNotNull(fieldLabelValue)) {
-						LocalizationUtil.setPreferencesValue(
-							preferences, "fieldLabel" + i, languageId,
-							fieldLabelValue);
-					}
-
-					if (Validator.isNotNull(fieldOptionsValue)) {
-						LocalizationUtil.setPreferencesValue(
-							preferences, "fieldOptions" + i, languageId,
-							fieldOptionsValue);
-					}
-				}
+				updateModifiedLocales(
+					"fieldLabel" + i, fieldLabelMap, preferences);
+				updateModifiedLocales(
+					"fieldOptions" + i, fieldOptionsMap, preferences);
 
 				preferences.setValue("fieldType" + i, fieldType);
 				preferences.setValue(
@@ -211,6 +199,26 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		}
 		else {
 			return "/configuration.jsp";
+		}
+	}
+
+	protected void updateModifiedLocales(
+			String parameter, Map<Locale, String> newLocalizationMap,
+			PortletPreferences preferences)
+		throws Exception {
+
+		Map<Locale, String> oldLocalizationMap =
+			LocalizationUtil.getLocalizationMap(preferences, parameter);
+
+		List<Locale> modifiedLocales = LocalizationUtil.getModifiedLocales(
+			oldLocalizationMap, newLocalizationMap);
+
+		for (Locale locale : modifiedLocales) {
+			String languageId = LocaleUtil.toLanguageId(locale);
+			String value = newLocalizationMap.get(locale);
+
+			LocalizationUtil.setPreferencesValue(
+				preferences, parameter, languageId, value);
 		}
 	}
 

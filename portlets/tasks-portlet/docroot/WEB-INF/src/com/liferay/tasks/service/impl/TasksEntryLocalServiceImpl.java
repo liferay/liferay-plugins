@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -17,6 +17,11 @@ package com.liferay.tasks.service.impl;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
+import com.liferay.portal.kernel.notifications.NotificationEvent;
+import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
@@ -32,10 +37,12 @@ import com.liferay.tasks.service.base.TasksEntryLocalServiceBaseImpl;
 import com.liferay.tasks.social.TasksActivityKeys;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 /**
  * @author Ryan Park
+ * @author Jonathan Lee
  */
 public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 
@@ -93,6 +100,12 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 		SocialActivityLocalServiceUtil.addActivity(
 			userId, groupId, TasksEntry.class.getName(), tasksEntryId,
 			TasksActivityKeys.ADD_ENTRY, StringPool.BLANK, assigneeUserId);
+
+		// Notifications
+
+		sendNotificationEvent(
+			tasksEntry, TasksEntryConstants.STATUS_ALL, assigneeUserId,
+			serviceContext);
 
 		return tasksEntry;
 	}
@@ -280,6 +293,9 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 				new TasksEntryDueDateException());
 		}
 
+		long oldAssigneeUserId = tasksEntry.getAssigneeUserId();
+		int oldStatus = tasksEntry.getStatus();
+
 		tasksEntry.setModifiedDate(now);
 		tasksEntry.setTitle(title);
 		tasksEntry.setPriority(priority);
@@ -322,6 +338,11 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 			TasksEntry.class.getName(), tasksEntryId, activity,
 			StringPool.BLANK, assigneeUserId);
 
+		// Notifications
+
+		sendNotificationEvent(
+			tasksEntry, oldStatus, oldAssigneeUserId, serviceContext);
+
 		return tasksEntry;
 	}
 
@@ -346,11 +367,86 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 			tasksEntry.setFinishDate(null);
 		}
 
+		int oldStatus = tasksEntry.getStatus();
+
 		tasksEntry.setStatus(status);
 
 		tasksEntryPersistence.update(tasksEntry, false);
 
+		// Notifications
+
+		sendNotificationEvent(
+			tasksEntry, oldStatus, tasksEntry.getAssigneeUserId(),
+			serviceContext);
+
 		return tasksEntry;
+	}
+
+	protected void sendNotificationEvent(
+			TasksEntry tasksEntry, int oldStatus, long oldAssigneeUserId,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		int status = tasksEntry.getStatus();
+
+		if ((status != TasksEntryConstants.STATUS_OPEN) &&
+			(status != TasksEntryConstants.STATUS_RESOLVED) &&
+			(status != TasksEntryConstants.STATUS_REOPENED)) {
+
+			return;
+		}
+
+		HashSet<Long> receiverUserIds = new HashSet<Long>(3);
+
+		receiverUserIds.add(oldAssigneeUserId);
+		receiverUserIds.add(tasksEntry.getUserId());
+		receiverUserIds.add(tasksEntry.getAssigneeUserId());
+
+		receiverUserIds.remove(serviceContext.getUserId());
+
+		JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject();
+
+		notificationEventJSON.put("body", tasksEntry.getTitle());
+		notificationEventJSON.put("entryId", tasksEntry.getTasksEntryId());
+		notificationEventJSON.put("portletId", "1_WAR_tasksportlet");
+		notificationEventJSON.put("userId", serviceContext.getUserId());
+
+		for (long receiverUserId : receiverUserIds) {
+			String title = StringPool.BLANK;
+
+			if (oldStatus == TasksEntryConstants.STATUS_ALL) {
+				title = "x-assigned-you-a-task";
+			}
+			else if (tasksEntry.getAssigneeUserId() != oldAssigneeUserId) {
+				if (receiverUserId == oldAssigneeUserId) {
+					title = "x-reassigned-your-task";
+				}
+				else {
+					title = "x-assigned-you-a-task";
+				}
+			}
+			else if (status != oldStatus) {
+				String statusLabel = TasksEntryConstants.getStatusLabel(
+					tasksEntry.getStatus());
+
+				title = "x-" + statusLabel + "-the-task";
+			}
+			else {
+				title = "x-modified-the-task";
+			}
+
+			notificationEventJSON.put("title", title);
+
+			NotificationEvent notificationEvent =
+				NotificationEventFactoryUtil.createNotificationEvent(
+					System.currentTimeMillis(), "6_WAR_soportlet",
+					notificationEventJSON);
+
+			notificationEvent.setDeliveryRequired(0);
+
+			ChannelHubManagerUtil.sendNotificationEvent(
+				tasksEntry.getCompanyId(), receiverUserId, notificationEvent);
+		}
 	}
 
 }

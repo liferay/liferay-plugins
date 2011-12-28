@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -71,6 +71,8 @@ Map<String, OAuthService> oAuthServices = (Map<String, OAuthService>)renderReque
 			url="<%= portletURL %>"
 		/>
 	</c:if>
+
+	<liferay-ui:error exception="<%= GadgetURLException.class %>" message="url-does-not-point-to-a-valid-gadget" />
 
 	<c:choose>
 		<c:when test='<%= tabs2.equals("gadget") || tabs2Names.equals("gadget") %>'>

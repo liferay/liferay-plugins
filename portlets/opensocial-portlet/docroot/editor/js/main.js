@@ -1,4 +1,4 @@
-AUI().add(
+AUI.add(
 	'opensocial-editor',
 	function (A) {
 		var Lang = A.Lang;

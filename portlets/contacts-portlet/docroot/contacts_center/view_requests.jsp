@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -38,7 +38,7 @@
 		%>
 
 		<liferay-portlet:renderURL varImpl="rowURL">
-			<portlet:param name="jspPage" value="/contacts_center/view_user.jsp" />
+			<portlet:param name="mvcPath" value="/contacts_center/view_user.jsp" />
 			<portlet:param name="backURL" value="<%= currentURL %>" />
 			<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
 		</liferay-portlet:renderURL>

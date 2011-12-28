@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This file is part of Liferay Social Office. Liferay Social Office is free
  * software: you can redistribute it and/or modify it under the terms of the GNU
@@ -24,7 +24,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 
-portletURL.setParameter("jspPage", "/sites/edit_site.jsp");
+portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 %>
 
 <portlet:actionURL name="addSite" var="addSiteURL" />
