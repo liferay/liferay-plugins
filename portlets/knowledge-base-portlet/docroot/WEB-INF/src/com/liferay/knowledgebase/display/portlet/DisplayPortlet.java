@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -448,7 +448,8 @@ public class DisplayPortlet extends MVCPortlet {
 			editURL = HttpUtil.setParameter(
 				editURL, "p_p_id", PortletKeys.KNOWLEDGE_BASE_DISPLAY);
 			editURL = HttpUtil.setParameter(
-				editURL, namespace + "jspPage", jspPath + "edit_article.jsp");
+				editURL, namespace + "mvcPath",
+				templatePath + "edit_article.jsp");
 			editURL = HttpUtil.setParameter(
 				editURL, namespace + "redirect", redirect);
 			editURL = HttpUtil.setParameter(
@@ -541,15 +542,17 @@ public class DisplayPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		String jspPage = ParamUtil.getString(renderRequest, "jspPage", viewJSP);
+		String mvcPath = ParamUtil.getString(
+			renderRequest, "mvcPath", viewTemplate);
 
 		long assetCategoryId = ParamUtil.getLong(renderRequest, "categoryId");
 		String assetTagName = ParamUtil.getString(renderRequest, "tag");
 
-		if ((jspPage.equals(viewJSP) && (assetCategoryId > 0)) ||
-			(jspPage.equals(viewJSP) && Validator.isNotNull(assetTagName))) {
+		if ((mvcPath.equals(viewTemplate) && (assetCategoryId > 0)) ||
+			(mvcPath.equals(viewTemplate) &&
+			 Validator.isNotNull(assetTagName))) {
 
-			String path = jspPath + "view_prp_articles.jsp";
+			String path = templatePath + "view_prp_articles.jsp";
 
 			include(path, renderRequest, renderResponse);
 		}
@@ -564,7 +567,7 @@ public class DisplayPortlet extends MVCPortlet {
 			SessionErrors.contains(
 				renderRequest, PrincipalException.class.getName())) {
 
-			include(jspPath + "error.jsp", renderRequest, renderResponse);
+			include(templatePath + "error.jsp", renderRequest, renderResponse);
 		}
 		else {
 			super.doDispatch(renderRequest, renderResponse);

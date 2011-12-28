@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -17,7 +17,7 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-String jspPage = ParamUtil.getString(request, "jspPage");
+String mvcPath = ParamUtil.getString(request, "mvcPath");
 
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
@@ -26,7 +26,7 @@ KBArticle kbArticle = (KBArticle)row.getObject();
 
 <liferay-ui:icon-menu cssClass="kb-article-action">
 	<liferay-portlet:renderURL var="viewURL">
-		<portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' />
+		<portlet:param name="mvcPath" value='<%= jspPath + "view_article.jsp" %>' />
 		<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 	</liferay-portlet:renderURL>
 
@@ -38,7 +38,7 @@ KBArticle kbArticle = (KBArticle)row.getObject();
 
 	<c:if test="<%= KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.UPDATE) %>">
 		<liferay-portlet:renderURL var="editURL">
-			<portlet:param name="jspPage" value='<%= jspPath + "edit_article.jsp" %>' />
+			<portlet:param name="mvcPath" value='<%= jspPath + "edit_article.jsp" %>' />
 			<portlet:param name="redirect" value="<%= redirect %>" />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 		</liferay-portlet:renderURL>
@@ -94,7 +94,7 @@ KBArticle kbArticle = (KBArticle)row.getObject();
 
 	<c:if test="<%= KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.MOVE_KB_ARTICLE) %>">
 		<liferay-portlet:renderURL var="moveKBArticleURL">
-			<portlet:param name="jspPage" value='<%= jspPath + "move_article.jsp" %>' />
+			<portlet:param name="mvcPath" value='<%= jspPath + "move_article.jsp" %>' />
 			<portlet:param name="redirect" value="<%= redirect %>" />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 		</liferay-portlet:renderURL>
@@ -109,7 +109,7 @@ KBArticle kbArticle = (KBArticle)row.getObject();
 
 	<c:if test="<%= KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.DELETE) %>">
 		<liferay-portlet:actionURL name="deleteKBArticle" var="deleteURL">
-			<portlet:param name="jspPage" value="<%= jspPage %>" />
+			<portlet:param name="mvcPath" value="<%= mvcPath %>" />
 			<portlet:param name="redirect" value="<%= redirect %>" />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 		</liferay-portlet:actionURL>

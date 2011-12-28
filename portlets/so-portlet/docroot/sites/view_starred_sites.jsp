@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This file is part of Liferay Social Office. Liferay Social Office is free
  * software: you can redistribute it and/or modify it under the terms of the GNU
@@ -22,7 +22,7 @@
 <%
 String searchName = DAOParamUtil.getLike(request, "name");
 
-List<Group> starredSites = SitesUtil.getStarredSites(themeDisplay.getUserId(), null);
+List<Group> starredSites = SitesUtil.getStarredSites(themeDisplay, null);
 
 if (PortalPermissionUtil.contains(permissionChecker, ActionKeys.VIEW_CONTROL_PANEL)) {
 	Group controlPanelGroup = GroupLocalServiceUtil.getGroup(user.getCompanyId(), GroupConstants.CONTROL_PANEL);
@@ -87,7 +87,7 @@ if (PortalPermissionUtil.contains(permissionChecker, ActionKeys.VIEW_CONTROL_PAN
 						<a href="<%= themeDisplay.getURLControlPanel() %>">
 
 							<%
-							String siteName = starredSite.getDescriptiveName();
+							String siteName = starredSite.getDescriptiveName(locale);
 							%>
 
 							<%@ include file="/sites/page_site_name.jspf" %>

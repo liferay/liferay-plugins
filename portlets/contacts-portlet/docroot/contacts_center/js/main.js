@@ -1,4 +1,4 @@
-AUI().add(
+AUI.add(
 	'liferay-contacts-result',
 	function(A) {
 		var ContactsResult = A.Base.create(

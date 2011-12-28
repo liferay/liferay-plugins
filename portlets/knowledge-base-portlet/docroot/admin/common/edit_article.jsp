@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -36,7 +36,7 @@ String dirName = ParamUtil.getString(request, "dirName");
 />
 
 <liferay-portlet:actionURL name="updateKBArticle" var="updateKBArticleURL">
-	<portlet:param name="jspPage" value='<%= jspPath + "edit_article.jsp" %>' />
+	<portlet:param name="mvcPath" value='<%= jspPath + "edit_article.jsp" %>' />
 	<portlet:param name="redirect" value="<%= redirect %>" />
 	<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 	<portlet:param name="status" value="<%= String.valueOf(WorkflowConstants.STATUS_ANY) %>" />

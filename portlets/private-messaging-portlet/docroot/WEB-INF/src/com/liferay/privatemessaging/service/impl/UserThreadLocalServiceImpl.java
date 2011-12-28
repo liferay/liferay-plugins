@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -18,7 +18,12 @@ import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.mail.MailMessage;
+import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
+import com.liferay.portal.kernel.notifications.NotificationEvent;
+import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
@@ -57,6 +62,7 @@ import javax.mail.internet.InternetAddress;
 
 /**
  * @author Scott Lee
+ * @author Jonathan Lee
  */
 public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 
@@ -297,6 +303,10 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 			throw new SystemException(e);
 		}
 
+		// Notifications
+
+		sendNotificationEvent(mbMessage);
+
 		return mbMessage;
 	}
 
@@ -433,6 +443,41 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 				from, to, subject, body, true);
 
 			MailServiceUtil.sendEmail(mailMessage);
+		}
+	}
+
+	protected void sendNotificationEvent(MBMessage mbMessage)
+		throws PortalException, SystemException {
+
+		JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject();
+
+		notificationEventJSON.put("body", mbMessage.getBody());
+		notificationEventJSON.put("entryId", mbMessage.getThreadId());
+		notificationEventJSON.put("entryKeyName", "mbThreadId");
+		notificationEventJSON.put("mvcPath", "/view.jsp");
+		notificationEventJSON.put("portletId", "1_WAR_privatemessagingportlet");
+		notificationEventJSON.put("title", "x-sent-you-a-message");
+		notificationEventJSON.put("userId", mbMessage.getUserId());
+
+		List<UserThread> userThreads =
+			UserThreadLocalServiceUtil.getMBThreadUserThreads(
+				mbMessage.getThreadId());
+
+		for (UserThread userThread : userThreads) {
+			if (userThread.getUserId() == mbMessage.getUserId()) {
+				continue;
+			}
+
+			NotificationEvent notificationEvent =
+				NotificationEventFactoryUtil.createNotificationEvent(
+					System.currentTimeMillis(), "6_WAR_soportlet",
+					notificationEventJSON);
+
+			notificationEvent.setDeliveryRequired(0);
+
+			ChannelHubManagerUtil.sendNotificationEvent(
+				mbMessage.getCompanyId(), userThread.getUserId(),
+				notificationEvent);
 		}
 	}
 

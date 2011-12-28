@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -42,7 +42,7 @@ List<User> users = UserLocalServiceUtil.getSocialUsers(userId, 0, 30, new UserLo
 
 				PortletURL viewUserURL = renderResponse.createRenderURL();
 
-				viewUserURL.setParameter("jspPage", "/members/view_user.jsp");
+				viewUserURL.setParameter("mvcPath", "/members/view_user.jsp");
 				viewUserURL.setParameter("backURL", backURL);
 
 				request.setAttribute(WebKeys.CONTACTS_URL, viewUserURL);

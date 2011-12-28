@@ -1,4 +1,4 @@
-AUI().add(
+AUI.add(
 	'liferay-plugin-privatemessaging',
 	function(A) {
 		Liferay.PrivateMessaging = {
@@ -77,7 +77,7 @@ AUI().add(
 
 				var portletURL = new Liferay.PortletURL.createResourceURL();
 
-				portletURL.setParameter('jspPage', '/new_message.jsp');
+				portletURL.setParameter('mvcPath', '/new_message.jsp');
 				portletURL.setPortletId('1_WAR_privatemessagingportlet');
 				portletURL.setWindowState('EXCLUSIVE');
 

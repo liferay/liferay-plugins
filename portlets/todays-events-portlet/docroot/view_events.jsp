@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -95,7 +95,7 @@ List<CalEvent> events = (List<CalEvent>)request.getAttribute("view.jsp-events");
 				<div>
 					<c:if test="<%= group.isUser() %>">
 						<span class="event-site">
-							<a href="<%= groupURL.toString() %>"><%= group.getDescriptiveName() %></a>
+							<a href="<%= groupURL.toString() %>"><%= group.getDescriptiveName(locale) %></a>
 						</span>
 					</c:if>
 

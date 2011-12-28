@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This file is part of Liferay Social Office. Liferay Social Office is free
  * software: you can redistribute it and/or modify it under the terms of the GNU
@@ -55,6 +55,10 @@ int x = html.indexOf("<li class=\"user-avatar \" id=\"_145_userAvatar\">");
 
 		<li class="aui-toolbar-separator">
 			<span></span>
+		</li>
+
+		<li class="notifications-menu has-submenu" id="<portlet:namespace />notificationsMenu">
+			<liferay-portlet:runtime portletName="<%= PortletKeys.SO_DOCKBAR_NOTIFICATION %>" />
 		</li>
 
 		<%= html.substring(x) %>

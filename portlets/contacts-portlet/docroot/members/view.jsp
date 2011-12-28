@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -21,7 +21,7 @@ Group group = themeDisplay.getScopeGroup();
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
-portletURL.setParameter("jspPage", "/members/view.jsp");
+portletURL.setParameter("mvcPath", "/members/view.jsp");
 %>
 
 <c:choose>
@@ -36,7 +36,7 @@ portletURL.setParameter("jspPage", "/members/view.jsp");
 		%>
 
 		<liferay-portlet:renderURL varImpl="searchURL">
-			<portlet:param name="jspPage" value="/members/view.jsp" />
+			<portlet:param name="mvcPath" value="/members/view.jsp" />
 		</liferay-portlet:renderURL>
 
 		<aui:form action="<%= searchURL %>" method="get" name="fm">
@@ -64,7 +64,7 @@ portletURL.setParameter("jspPage", "/members/view.jsp");
 		for (User user2 : users) {
 			PortletURL viewUserURL = renderResponse.createRenderURL();
 
-			viewUserURL.setParameter("jspPage", "/members/view_user.jsp");
+			viewUserURL.setParameter("mvcPath", "/members/view_user.jsp");
 			viewUserURL.setParameter("backURL", currentURL);
 			viewUserURL.setParameter("userId", String.valueOf(user2.getUserId()));
 		%>

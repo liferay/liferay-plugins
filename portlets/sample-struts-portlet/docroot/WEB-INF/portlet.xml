@@ -1,19 +1,10 @@
 <?xml version="1.0"?>
 
-<portlet-app
-	version="2.0"
-	xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
->
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" version="2.0">
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Sample Struts</display-name>
 		<portlet-class>org.apache.portals.bridges.struts.StrutsPortlet</portlet-class>
-		<init-param>
-			<name>ServletContextProvider</name>
-			<value>com.liferay.util.bridges.struts.LiferayServletContextProviderWrapper</value>
-		</init-param>
 		<init-param>
 			<name>EditPage</name>
 			<value>/portlet_action/sample_struts_portlet/edit</value>
@@ -21,6 +12,10 @@
 		<init-param>
 			<name>HelpPage</name>
 			<value>/portlet_action/sample_struts_portlet/help</value>
+		</init-param>
+		<init-param>
+			<name>ServletContextProvider</name>
+			<value>com.liferay.util.bridges.struts.LiferayServletContextProviderWrapper</value>
 		</init-param>
 		<init-param>
 			<name>ViewPage</name>

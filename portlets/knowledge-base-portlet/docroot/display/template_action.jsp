@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -17,7 +17,7 @@
 <%@ include file="/display/init.jsp" %>
 
 <%
-String jspPage = ParamUtil.getString(request, "jspPage");
+String mvcPath = ParamUtil.getString(request, "mvcPath");
 
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
@@ -27,7 +27,7 @@ KBTemplate kbTemplate = (KBTemplate)row.getObject();
 <liferay-ui:icon-menu cssClass="kb-template-action">
 	<c:if test="<%= KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.UPDATE) %>">
 		<liferay-portlet:renderURL var="editURL">
-			<portlet:param name="jspPage" value="/display/edit_template.jsp" />
+			<portlet:param name="mvcPath" value="/display/edit_template.jsp" />
 			<portlet:param name="redirect" value="<%= redirect %>" />
 			<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
 		</liferay-portlet:renderURL>
@@ -56,7 +56,7 @@ KBTemplate kbTemplate = (KBTemplate)row.getObject();
 
 	<c:if test="<%= KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.DELETE) %>">
 		<liferay-portlet:actionURL name="deleteKBTemplate" var="deleteURL">
-			<portlet:param name="jspPage" value="<%= jspPage %>" />
+			<portlet:param name="mvcPath" value="<%= mvcPath %>" />
 			<portlet:param name="redirect" value="<%= redirect %>" />
 			<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
 		</liferay-portlet:actionURL>

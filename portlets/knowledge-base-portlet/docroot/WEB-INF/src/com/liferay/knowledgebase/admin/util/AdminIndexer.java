@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -80,6 +80,11 @@ public class AdminIndexer extends BaseIndexer {
 	}
 
 	@Override
+	public boolean isPermissionAware() {
+		return _PERMISSION_AWARE;
+	}
+
+	@Override
 	public void postProcessSearchQuery(
 			BooleanQuery searchQuery, SearchContext searchContext)
 		throws Exception {
@@ -149,7 +154,7 @@ public class AdminIndexer extends BaseIndexer {
 
 		String resourcePrimKey = document.get(Field.ENTRY_CLASS_PK);
 
-		portletURL.setParameter("jspPage", "/admin/view_article.jsp");
+		portletURL.setParameter("mvcPath", "/admin/view_article.jsp");
 		portletURL.setParameter("resourcePrimKey", resourcePrimKey);
 
 		return new Summary(title, content, portletURL);
@@ -235,5 +240,7 @@ public class AdminIndexer extends BaseIndexer {
 	}
 
 	private static final boolean _FILTER_SEARCH = true;
+
+	private static final boolean _PERMISSION_AWARE = true;
 
 }

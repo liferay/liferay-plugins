@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -197,7 +197,7 @@ request.setAttribute("view_user.jsp-user", user2);
 											groupURL.setParameter("privateLayout", Boolean.FALSE.toString());
 										%>
 
-											<li class="user-information-sites"><a href="<%= groupURL %>"><%= currGroup.getDescriptiveName() %></a></li>
+											<li class="user-information-sites"><a href="<%= groupURL %>"><%= currGroup.getDescriptiveName(locale) %></a></li>
 
 										<%
 										}
@@ -206,7 +206,7 @@ request.setAttribute("view_user.jsp-user", user2);
 									</c:when>
 									<c:otherwise>
 										<div class="empty">
-											<liferay-ui:message arguments="<%= PortalUtil.getUserName((group.isUser() ? group.getClassPK() : themeDisplay.getUserId()), group.getDescriptiveName()) %>" key="x-does-not-belong-to-any-sites" />
+											<liferay-ui:message arguments="<%= PortalUtil.getUserName((group.isUser() ? group.getClassPK() : themeDisplay.getUserId()), group.getDescriptiveName(locale)) %>" key="x-does-not-belong-to-any-sites" />
 										</div>
 									</c:otherwise>
 								</c:choose>

@@ -1,21 +1,16 @@
 <?xml version="1.0"?>
 
-<portlet-app
-	version="2.0"
-	xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
->
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" version="2.0">
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Contacts Center</display-name>
 		<portlet-class>com.liferay.contacts.contactscenter.portlet.ContactsCenterPortlet</portlet-class>
 		<init-param>
-			<name>config-jsp</name>
+			<name>config-template</name>
 			<value>/contacts_center/configuration.jsp</value>
 		</init-param>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/contacts_center/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
@@ -46,11 +41,11 @@
 		<display-name>Profile</display-name>
 		<portlet-class>com.liferay.contacts.contactscenter.portlet.ContactsCenterPortlet</portlet-class>
 		<init-param>
-			<name>config-jsp</name>
+			<name>config-template</name>
 			<value>/contacts_center/configuration.jsp</value>
 		</init-param>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/profile/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
@@ -81,7 +76,7 @@
 		<display-name>My Contacts</display-name>
 		<portlet-class>com.liferay.contacts.contactscenter.portlet.ContactsCenterPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/my_contacts/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
@@ -112,7 +107,7 @@
 		<display-name>Members</display-name>
 		<portlet-class>com.liferay.contacts.contactscenter.portlet.ContactsCenterPortlet</portlet-class>
 		<init-param>
-			<name>view-jsp</name>
+			<name>view-template</name>
 			<value>/members/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>

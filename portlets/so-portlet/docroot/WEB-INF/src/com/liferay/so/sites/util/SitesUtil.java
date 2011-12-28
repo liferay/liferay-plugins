@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This file is part of Liferay Social Office. Liferay Social Office is free
  * software: you can redistribute it and/or modify it under the terms of the GNU
@@ -29,6 +29,7 @@ import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.GroupServiceUtil;
 import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portal.util.comparator.GroupNameComparator;
 
@@ -70,12 +71,13 @@ public class SitesUtil {
 		return starredGroupIds;
 	}
 
-	public static List<Group> getStarredSites(long userId, String name)
+	public static List<Group> getStarredSites(
+			ThemeDisplay themeDisplay, String name)
 		throws Exception {
 
 		String starredGroupIds = StringPool.BLANK;
 
-		User user = UserLocalServiceUtil.getUser(userId);
+		User user = themeDisplay.getUser();
 
 		Group group = user.getGroup();
 
@@ -101,7 +103,8 @@ public class SitesUtil {
 					groups.add(curGroup);
 				}
 				else {
-					String groupDescriptiveName = curGroup.getDescriptiveName();
+					String groupDescriptiveName = curGroup.getDescriptiveName(
+						themeDisplay.getLocale());
 
 					groupDescriptiveName = groupDescriptiveName.toLowerCase();
 

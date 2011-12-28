@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -38,7 +38,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 <aui:form method="post" name="fm">
 	<aui:fieldset>
 		<liferay-portlet:renderURL varImpl="iteratorURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-			<portlet:param name="jspPage" value='<%= jspPath + "select_article.jsp" %>' />
+			<portlet:param name="mvcPath" value='<%= jspPath + "select_article.jsp" %>' />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 			<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
 			<portlet:param name="oldParentResourcePrimKey" value="<%= String.valueOf(oldParentResourcePrimKey) %>" />
@@ -63,7 +63,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				modelVar="curKBArticle"
 			>
 				<liferay-portlet:renderURL var="rowURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-					<portlet:param name="jspPage" value='<%= jspPath + "select_article.jsp" %>' />
+					<portlet:param name="mvcPath" value='<%= jspPath + "select_article.jsp" %>' />
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 					<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(curKBArticle.getResourcePrimKey()) %>" />
 					<portlet:param name="oldParentResourcePrimKey" value="<%= String.valueOf(oldParentResourcePrimKey) %>" />
@@ -137,7 +137,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 			<div class="kb-select-article-breadcrumbs">
 				<liferay-portlet:renderURL var="breadcrumbURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-					<portlet:param name="jspPage" value='<%= jspPath + "select_article.jsp" %>' />
+					<portlet:param name="mvcPath" value='<%= jspPath + "select_article.jsp" %>' />
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 					<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>" />
 					<portlet:param name="oldParentResourcePrimKey" value="<%= String.valueOf(oldParentResourcePrimKey) %>" />

@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -19,7 +19,7 @@
 <%
 PortletURL portletURL = renderResponse.createRenderURL();
 
-portletURL.setParameter("jspPage", "/advanced.jsp");
+portletURL.setParameter("mvcPath", "/advanced.jsp");
 %>
 
 <liferay-ui:search-container
@@ -46,7 +46,7 @@ portletURL.setParameter("jspPage", "/advanced.jsp");
 		modelVar="curUser"
 	>
 		<liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" varImpl="rowURL">
-			<portlet:param name="jspPage" value="/advanced_user_display.jsp" />
+			<portlet:param name="mvcPath" value="/advanced_user_display.jsp" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="userId" value="<%= String.valueOf(curUser.getUserId()) %>" />
 		</liferay-portlet:renderURL>

@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -31,7 +31,7 @@ PortletURL microblogsEntriesURL = renderResponse.createRenderURL();
 
 microblogsEntriesURL.setWindowState(WindowState.NORMAL);
 
-microblogsEntriesURL.setParameter("jspPage", "/microblogs/view.jsp");
+microblogsEntriesURL.setParameter("mvcPath", "/microblogs/view.jsp");
 microblogsEntriesURL.setParameter("tabs1", tabs1);
 microblogsEntriesURL.setParameter("cur", String.valueOf(cur));
 

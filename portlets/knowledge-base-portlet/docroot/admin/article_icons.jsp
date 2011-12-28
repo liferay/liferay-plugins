@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -31,7 +31,7 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 			<c:if test="<%= (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) || (DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) && rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) %>">
 				<td>
 					<liferay-portlet:renderURL var="addKBArticleURL">
-						<portlet:param name="jspPage" value='<%= jspPath + "edit_article.jsp" %>' />
+						<portlet:param name="mvcPath" value='<%= jspPath + "edit_article.jsp" %>' />
 						<portlet:param name="redirect" value="<%= redirect %>" />
 						<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 					</liferay-portlet:renderURL>
@@ -49,7 +49,7 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 			<c:if test="<%= (!rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY) || DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR)) && KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.UPDATE) %>">
 				<td>
 					<liferay-portlet:renderURL var="editURL">
-						<portlet:param name="jspPage" value='<%= jspPath + "edit_article.jsp" %>' />
+						<portlet:param name="mvcPath" value='<%= jspPath + "edit_article.jsp" %>' />
 						<portlet:param name="redirect" value="<%= redirect %>" />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 						<portlet:param name="status" value="<%= String.valueOf(WorkflowConstants.STATUS_ANY) %>" />
@@ -85,7 +85,7 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 			<c:if test="<%= KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.MOVE_KB_ARTICLE) %>">
 				<td>
 					<liferay-portlet:renderURL var="moveKBArticleURL">
-						<portlet:param name="jspPage" value='<%= jspPath + "move_article.jsp" %>' />
+						<portlet:param name="mvcPath" value='<%= jspPath + "move_article.jsp" %>' />
 						<portlet:param name="redirect" value="<%= redirect %>" />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 						<portlet:param name="status" value="<%= String.valueOf(status) %>" />
@@ -104,11 +104,11 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 			<c:if test="<%= KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.DELETE) %>">
 				<td>
 					<liferay-portlet:renderURL var="homeURL">
-						<portlet:param name="jspPage" value='<%= jspPath + "view.jsp" %>' />
+						<portlet:param name="mvcPath" value='<%= jspPath + "view.jsp" %>' />
 					</liferay-portlet:renderURL>
 
 					<liferay-portlet:actionURL name="deleteKBArticle" var="deleteURL">
-						<portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' />
+						<portlet:param name="mvcPath" value='<%= jspPath + "view_article.jsp" %>' />
 						<portlet:param name="redirect" value="<%= (kbArticle.getResourcePrimKey() == resourcePrimKey) ? homeURL : currentURL %>" />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 						<portlet:param name="status" value="<%= String.valueOf(status) %>" />

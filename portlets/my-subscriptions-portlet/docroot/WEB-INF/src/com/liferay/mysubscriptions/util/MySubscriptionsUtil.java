@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -29,6 +29,8 @@ import com.liferay.portlet.messageboards.model.MBCategory;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.model.MBThread;
 import com.liferay.portlet.messageboards.service.MBThreadLocalServiceUtil;
+
+import java.util.Locale;
 
 /**
  * @author Peter Shin
@@ -65,7 +67,7 @@ public class MySubscriptionsUtil {
 	}
 
 	public static String getTitleText(
-		String className, long classPK, String title) {
+		Locale locale, String className, long classPK, String title) {
 
 		if (Validator.isNotNull(title)) {
 			return title;
@@ -82,7 +84,7 @@ public class MySubscriptionsUtil {
 		try {
 			Group group = GroupLocalServiceUtil.getGroup(classPK);
 
-			title += group.getDescriptiveName();
+			title += group.getDescriptiveName(locale);
 		}
 		catch (Exception e) {
 		}

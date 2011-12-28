@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -24,7 +24,7 @@ WSRPConsumerPortlet wsrpConsumerPortlet = (WSRPConsumerPortlet)row.getObject();
 
 <liferay-ui:icon-menu>
 	<%--<portlet:renderURL var="editURL">
-		<portlet:param name="jspPage" value="/admin/edit_consumer_portlet.jsp" />
+		<portlet:param name="mvcPath" value="/admin/edit_consumer_portlet.jsp" />
 		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="wsrpConsumerPortletId" value="<%= String.valueOf(wsrpConsumerPortlet.getWsrpConsumerPortletId()) %>" />
 	</portlet:renderURL>

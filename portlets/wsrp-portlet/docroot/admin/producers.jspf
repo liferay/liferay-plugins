@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -30,7 +30,7 @@
 		modelVar="producer"
 	>
 		<portlet:renderURL var="rowURL">
-			<portlet:param name="jspPage" value="/admin/edit_producer.jsp" />
+			<portlet:param name="mvcPath" value="/admin/edit_producer.jsp" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="wsrpProducerId" value="<%= String.valueOf(producer.getWsrpProducerId()) %>" />
 		</portlet:renderURL>
@@ -63,7 +63,7 @@
 	</liferay-ui:search-container-row>
 
 	<div>
-		<input type="button" value="<liferay-ui:message key="add-producer" />" onClick="location.href = '<portlet:renderURL><portlet:param name="jspPage" value="/admin/edit_producer.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';" />
+		<input type="button" value="<liferay-ui:message key="add-producer" />" onClick="location.href = '<portlet:renderURL><portlet:param name="mvcPath" value="/admin/edit_producer.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';" />
 	</div>
 
 	<br />

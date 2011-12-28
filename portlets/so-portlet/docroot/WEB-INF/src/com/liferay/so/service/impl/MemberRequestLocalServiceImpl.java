@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This file is part of Liferay Social Office. Liferay Social Office is free
  * software: you can redistribute it and/or modify it under the terms of the GNU
@@ -20,7 +20,12 @@ package com.liferay.so.service.impl;
 import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.mail.MailMessage;
+import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
+import com.liferay.portal.kernel.notifications.NotificationEvent;
+import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StringPool;
@@ -47,6 +52,7 @@ import javax.mail.internet.InternetAddress;
 
 /**
  * @author Ryan	Park
+ * @author Jonathan Lee
  */
 public class MemberRequestLocalServiceImpl
 	extends MemberRequestLocalServiceBaseImpl {
@@ -56,6 +62,8 @@ public class MemberRequestLocalServiceImpl
 			String receiverEmailAddress, long invitedRoleId, long invitedTeamId,
 			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
+
+		// Member request
 
 		User user = userLocalService.getUserById(userId);
 
@@ -88,6 +96,10 @@ public class MemberRequestLocalServiceImpl
 		catch (Exception e) {
 			throw new SystemException(e);
 		}
+
+		// Notifications
+
+		sendNotificationEvent(memberRequest);
 
 		return memberRequest;
 	}
@@ -313,7 +325,7 @@ public class MemberRequestLocalServiceImpl
 				"[$MEMBER_REQUEST_USER$]"
 			},
 			new String[] {
-				group.getDescriptiveName(),
+				group.getDescriptiveName(themeDisplay.getLocale()),
 				user.getFullName()
 			});
 
@@ -331,7 +343,7 @@ public class MemberRequestLocalServiceImpl
 				fromAddress,
 				fromName,
 				createAccountURL,
-				group.getDescriptiveName(),
+				group.getDescriptiveName(themeDisplay.getLocale()),
 				loginURL,
 				user.getFullName()
 			});
@@ -344,6 +356,30 @@ public class MemberRequestLocalServiceImpl
 			from, to, subject, body, true);
 
 		MailServiceUtil.sendEmail(mailMessage);
+	}
+
+	protected void sendNotificationEvent(MemberRequest memberRequest)
+		throws PortalException, SystemException {
+
+		JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject();
+
+		notificationEventJSON.put("groupId", memberRequest.getGroupId());
+		notificationEventJSON.put(
+			"memberRequestId", memberRequest.getMemberRequestId());
+		notificationEventJSON.put("portletId", PortletKeys.SO_INVITE_MEMBERS);
+		notificationEventJSON.put("title", "x-invited-you-to-join-x");
+		notificationEventJSON.put("userId", memberRequest.getUserId());
+
+		NotificationEvent notificationEvent =
+			NotificationEventFactoryUtil.createNotificationEvent(
+				System.currentTimeMillis(), PortletKeys.SO_NOTIFICATION,
+				notificationEventJSON);
+
+		notificationEvent.setDeliveryRequired(0);
+
+		ChannelHubManagerUtil.sendNotificationEvent(
+			memberRequest.getCompanyId(), memberRequest.getReceiverUserId(),
+			notificationEvent);
 	}
 
 	protected void validate(MemberRequest memberRequest, long userId)

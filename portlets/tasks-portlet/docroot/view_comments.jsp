@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -77,7 +77,7 @@ List<MBMessage> messages = treeWalker.getMessages();
 
 </div>
 
-<form action="<portlet:actionURL name="updateMessage"><portlet:param name="jspPage" value="/view_task.jsp" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm2">
+<form action="<portlet:actionURL name="updateMessage"><portlet:param name="mvcPath" value="/view_task.jsp" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm2">
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(currentURL) %>" />
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
 <input name="<portlet:namespace />className" type="hidden" value="<%= TasksEntry.class.getName() %>" />

@@ -1,0 +1,60 @@
+<%--
+/**
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ *
+ * This file is part of Liferay Social Office. Liferay Social Office is free
+ * software: you can redistribute it and/or modify it under the terms of the GNU
+ * Affero General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ *
+ * Liferay Social Office is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License
+ * for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
+ */
+--%>
+
+<div class="aui-menu-item user-notification-event-content">
+	<div class="user-notification-event-sender">
+		<span class="thumbnail">
+			<img alt="<%= userFullName %>" src="<%= userPortaitURL %>" />
+		</span>
+
+		<span class="portlet-icon">
+			<liferay-portlet:icon-portlet portlet='<%= PortletLocalServiceUtil.getPortletById(company.getCompanyId(), notificationEventJSON.getString("portletId")) %>' />
+		</span>
+	</div>
+
+	<div class="notification-entry">
+		<div class="title">
+			<span><%= notificationEventJSON.getString("title", StringPool.BLANK) %></span>
+		</div>
+
+		<div class="request">
+			<liferay-portlet:actionURL name="updateSocialRequest" portletName="6_WAR_soportlet" var="confirmURL">
+				<portlet:param name="redirect" value="<%= currentURL %>" />
+				<portlet:param name="requestId" value='<%= String.valueOf(notificationEventJSON.getLong("requestId")) %>' />
+				<portlet:param name="status" value="<%= String.valueOf(SocialRequestConstants.STATUS_CONFIRM) %>" />
+				<portlet:param name="notificationEventUuid" value="<%= String.valueOf(notificationEvent.getUuid()) %>" />
+			</liferay-portlet:actionURL>
+
+			<span class="lfr-user-action-item lfr-user-action-confirm">
+				<a href="<%= confirmURL %>"><liferay-ui:message key="confirm" /></a>
+			</span>
+
+			<liferay-portlet:actionURL name="updateSocialRequest" portletName="6_WAR_soportlet" var="ignoreURL">
+				<portlet:param name="redirect" value="<%= currentURL %>" />
+				<portlet:param name="requestId" value='<%= String.valueOf(notificationEventJSON.getLong("requestId")) %>' />
+				<portlet:param name="status" value="<%= String.valueOf(SocialRequestConstants.STATUS_IGNORE) %>" />
+				<portlet:param name="notificationEventUuid" value="<%= String.valueOf(notificationEvent.getUuid()) %>" />
+			</liferay-portlet:actionURL>
+
+			<span class="lfr-user-action-item lfr-user-action-ignore">
+				<a href="<%= ignoreURL %>"><liferay-ui:message key="ignore" /></a>
+			</span>
+		</div>
+	</div>
+</div>

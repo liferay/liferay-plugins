@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -19,6 +19,9 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
+import com.liferay.portal.kernel.notifications.NotificationEvent;
+import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
@@ -36,7 +39,9 @@ import com.liferay.portal.util.comparator.UserLastNameComparator;
 import com.liferay.portlet.social.model.SocialRelationConstants;
 import com.liferay.portlet.social.model.SocialRequest;
 import com.liferay.portlet.social.model.SocialRequestConstants;
+import com.liferay.portlet.social.model.SocialRequestFeedEntry;
 import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
+import com.liferay.portlet.social.service.SocialRequestInterpreterLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialRequestLocalServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
@@ -223,7 +228,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			viewSummaryURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 
 			viewSummaryURL.setParameter(
-				"jspPage", "/contacts_center/view_user.jsp");
+				"mvcPath", "/contacts_center/view_user.jsp");
 			viewSummaryURL.setParameter(
 				"userId", String.valueOf(user.getUserId()));
 
@@ -254,9 +259,11 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			return;
 		}
 
-		SocialRequestLocalServiceUtil.addRequest(
+		SocialRequest socialRequest = SocialRequestLocalServiceUtil.addRequest(
 			themeDisplay.getUserId(), 0, User.class.getName(),
 			themeDisplay.getUserId(), type, StringPool.BLANK, userId);
+
+		sendNotificationEvent(socialRequest, themeDisplay);
 	}
 
 	@Override
@@ -307,6 +314,40 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		SocialRequestLocalServiceUtil.updateRequest(
 			requestId, status, themeDisplay);
+
+		String notificationEventUuid = ParamUtil.getString(
+			actionRequest, "notificationEventUuid");
+
+		ChannelHubManagerUtil.confirmDelivery(
+			themeDisplay.getCompanyId(), themeDisplay.getUserId(),
+			notificationEventUuid, false);
+	}
+
+	protected void sendNotificationEvent(
+			SocialRequest socialRequest, ThemeDisplay themeDisplay)
+		throws Exception {
+
+		JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject();
+
+		SocialRequestFeedEntry socialRequestFeedEntry =
+			SocialRequestInterpreterLocalServiceUtil.interpret(
+				socialRequest, themeDisplay);
+
+		notificationEventJSON.put("portletId", "1_WAR_contactsportlet");
+		notificationEventJSON.put("requestId", socialRequest.getRequestId());
+		notificationEventJSON.put("title", socialRequestFeedEntry.getTitle());
+		notificationEventJSON.put("userId", socialRequest.getUserId());
+
+		NotificationEvent notificationEvent =
+			NotificationEventFactoryUtil.createNotificationEvent(
+				System.currentTimeMillis(), "6_WAR_soportlet",
+				notificationEventJSON);
+
+		notificationEvent.setDeliveryRequired(0);
+
+		ChannelHubManagerUtil.sendNotificationEvent(
+			socialRequest.getCompanyId(), socialRequest.getReceiverUserId(),
+			notificationEvent);
 	}
 
 }

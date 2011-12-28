@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -370,7 +370,8 @@ public class SectionPortlet extends MVCPortlet {
 			editURL = HttpUtil.setParameter(
 				editURL, "p_p_id", PortletKeys.KNOWLEDGE_BASE_SECTION);
 			editURL = HttpUtil.setParameter(
-				editURL, namespace + "jspPage", jspPath + "edit_article.jsp");
+				editURL, namespace + "mvcPath",
+				templatePath + "edit_article.jsp");
 			editURL = HttpUtil.setParameter(
 				editURL, namespace + "redirect", redirect);
 			editURL = HttpUtil.setParameter(
@@ -446,7 +447,7 @@ public class SectionPortlet extends MVCPortlet {
 			SessionErrors.contains(
 				renderRequest, PrincipalException.class.getName())) {
 
-			include(jspPath + "error.jsp", renderRequest, renderResponse);
+			include(templatePath + "error.jsp", renderRequest, renderResponse);
 		}
 		else {
 			super.doDispatch(renderRequest, renderResponse);

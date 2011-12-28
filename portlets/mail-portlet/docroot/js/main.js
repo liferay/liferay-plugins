@@ -1,4 +1,4 @@
-AUI().add(
+AUI.add(
 	'liferay-plugin-mail',
 	function(A) {
 		Liferay.Mail = {
