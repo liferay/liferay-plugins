@@ -1,4 +1,4 @@
-AUI().add(
+AUI.add(
 	'liferay-plugin-privatemessaging',
 	function(A) {
 		Liferay.PrivateMessaging = {

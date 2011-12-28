@@ -1,4 +1,4 @@
-AUI().add(
+AUI.add(
 	'liferay-soffice-invitemembers',
 	function(A) {
 		var InviteMembers = function() {

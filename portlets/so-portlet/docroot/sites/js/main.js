@@ -1,4 +1,4 @@
-AUI().add(
+AUI.add(
 	'liferay-so-site-list',
 	function(A) {
 		var SiteList = A.Base.create(

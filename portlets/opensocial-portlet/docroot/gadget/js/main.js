@@ -1,4 +1,4 @@
-AUI().add(
+AUI.add(
 	'liferay-open-social-gadget',
 	function(A) {
 		var Lang = A.Lang;

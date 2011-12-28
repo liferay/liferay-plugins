@@ -1,4 +1,4 @@
-AUI().add(
+AUI.add(
 	'gadget-editor-tabs',
 	function(A) {
 		var Lang = A.Lang;
