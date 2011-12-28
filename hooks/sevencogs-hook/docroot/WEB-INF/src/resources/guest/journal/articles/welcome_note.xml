@@ -4,23 +4,23 @@
 	<static-content language-id="en_US">
 		<![CDATA[
 			<p>
-				<img alt="" src="/html/js/editor/fckeditor/editor/images/smiley/msn/lightbulb.gif" /> These sample sites highlight features of Liferay 6.0
+				<img alt="" src="/html/js/editor/fckeditor/editor/images/smiley/msn/lightbulb.gif" /> These sample sites highlight features of Liferay 6.1
 			</p>
 
 			<p>
-				The current page is the default page each user first sees when he gets to your portal. By default, unauthenticated users are Guest users, so they are redirected to the guest community: <a href="/web/guest/">@portal_url@/web/guest/</a>
+				The current page is the default page each user first sees when he gets to your portal. By default, unauthenticated users are Guest users, so they are redirected to the guest site: <a href="/web/guest/">@portal_url@/web/guest/</a>
 			</p>
 
 			<p>
-				You can create any number of organizations or communities within the portal which will have their own public and private pages. One organization called <a href="/web/7cogs">7cogs</a> has already been created.
+				You can create any number of sites within the portal which will have their own public and private pages. One site for the <a href="/web/7cogs">7cogs</a> organization has already been created.
 			</p>
 
 			<p>
-				<a target="_blank" href="http://www.liferay.com/web/guest/community/wiki/-/wiki/Main/New+Features+in+Liferay+Portal+6.0">What is new in Liferay 6.0?</a>
+				<a target="_blank" href="http://www.liferay.com/web/guest/community/wiki/-/wiki/Main/New+Features+in+Liferay+Portal+6.1">What is new in Liferay 6.1?</a>
 			</p>
 
 			<p>
-				<a target="_blank" href="http://www.liferay.com/web/guest/community/wiki/-/wiki/Main/Upgrade+Instructions+(disambiguation)">How can I upgrade to Liferay 6.0?</a>
+				<a target="_blank" href="http://www.liferay.com/web/guest/community/wiki/-/wiki/Main/Upgrade+Instructions+(disambiguation)">How can I upgrade to Liferay 6.1?</a>
 			</p>
 		]]>
 	</static-content>
