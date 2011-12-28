@@ -612,7 +612,12 @@ public class UpgradeCompany extends UpgradeProcess {
 		for (User user : users) {
 			String screenName = user.getScreenName();
 
-			if (screenName.equals("joebloggs") || screenName.equals("test")) {
+			String defaultAdminScreenName = PropsUtil.get(
+				PropsKeys.DEFAULT_ADMIN_SCREEN_NAME);
+			
+			if (screenName.equals("joebloggs") || screenName.equals("test") ||
+				screenName.equals(defaultAdminScreenName)) {
+
 				continue;
 			}
 
