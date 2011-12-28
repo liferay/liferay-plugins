@@ -614,7 +614,7 @@ public class UpgradeCompany extends UpgradeProcess {
 
 			String defaultAdminScreenName = PropsUtil.get(
 				PropsKeys.DEFAULT_ADMIN_SCREEN_NAME);
-			
+
 			if (screenName.equals("joebloggs") || screenName.equals("test") ||
 				screenName.equals(defaultAdminScreenName)) {
 
