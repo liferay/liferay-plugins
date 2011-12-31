@@ -16,15 +16,15 @@
 					Social Space - Shows my friends and their activities.
 				</li>
 				<li>
-					Work Space - Has my calendar, documents, images...
+					Work Space - Has my calendar, documents, images, and other work related content.
 				</li>
 				<li>
-					Email - I can configure this page to view my emails.
+					Email - I can configure this page to view my email.
 				</li>
 			</ul>
 
 			<p>
-				To add more applications just go to the <a href="http://www.liferay.com/community/wiki/-/wiki/1071674/Dockbar/maximized" target="_blank"><em>Dockbar</em></a> and click on the <strong>&quot;+ Add&quot;</strong> button. It should bring out a menu, from there, you'll be able to add a pages and applications.
+				To add more applications just go to the <a href="http://www.liferay.com/community/wiki/-/wiki/1071674/Dockbar/maximized" target="_blank"><em>Dockbar</em></a> and click on the <strong>&quot;+ Add&quot;</strong> button. It should bring out a menu, from there, you'll be able to add pages and applications.
 			</p>
 
 			<h3>
@@ -40,7 +40,7 @@
 					On the Dockbar, click on the &quot;+ Add&quot; button then the &rarr; <strong>&quot;More...&quot;</strong> selection, from there you can search for the &quot;iframe&quot; portlet
 				</li>
 				<li>
-					After adding the application, go to the Configuration menu (Cog shaped of the portlet when borders are hidden, or the wrench icon) and set the Url to the third party widget, in our case, we used: <a href="http://iphone.facebook.com">http://iphone.facebook.com</a>
+					After adding the application, go to the Configuration menu (Cog shaped icon of the portlet when borders are hidden, or the wrench icon) and set the Url to the third party widget, in our case, we used: <a href="http://iphone.facebook.com">http://iphone.facebook.com</a>
 				</li>
 				<li>
 					Click on &quot;Save,&quot; then refresh the page
