@@ -19,10 +19,13 @@ package com.liferay.marketplace.util;
  */
 public class MarketplaceConstants {
 
-	public static final String MARKETPLACE_PATH_PURCHASED = "";
+	public static final String MARKETPLACE_PATH_PURCHASED =
+		"/widget/web/guest/mpserver/-/mp_server/purchased/6100";
 
-	public static final String MARKETPLACE_PATH_STORE = "";
+	public static final String MARKETPLACE_PATH_STORE =
+		"/widget/web/guest/mpserver/-/mp_server/store/6100";
 
-	public static final String MARKETPLACE_URL_LOGOUT = "";
+	public static final String MARKETPLACE_URL_LOGOUT =
+		"http://mp.liferay.com/c/portal/logout";
 
 }
