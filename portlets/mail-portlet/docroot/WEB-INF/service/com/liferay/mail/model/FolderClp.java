@@ -148,7 +148,12 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 	}
 
 	public void persist() throws SystemException {
-		FolderLocalServiceUtil.updateFolder(this);
+		if (this.isNew()) {
+			FolderLocalServiceUtil.addFolder(this);
+		}
+		else {
+			FolderLocalServiceUtil.updateFolder(this);
+		}
 	}
 
 	@Override

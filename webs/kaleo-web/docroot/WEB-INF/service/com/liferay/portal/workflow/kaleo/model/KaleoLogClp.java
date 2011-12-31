@@ -311,7 +311,12 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 	}
 
 	public void persist() throws SystemException {
-		KaleoLogLocalServiceUtil.updateKaleoLog(this);
+		if (this.isNew()) {
+			KaleoLogLocalServiceUtil.addKaleoLog(this);
+		}
+		else {
+			KaleoLogLocalServiceUtil.updateKaleoLog(this);
+		}
 	}
 
 	@Override

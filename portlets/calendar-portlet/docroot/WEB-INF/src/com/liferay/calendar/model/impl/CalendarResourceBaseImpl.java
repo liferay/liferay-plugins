@@ -39,6 +39,11 @@ public abstract class CalendarResourceBaseImpl extends CalendarResourceModelImpl
 	 * Never modify or reference this class directly. All methods that expect a calendar resource model instance should use the {@link CalendarResource} interface instead.
 	 */
 	public void persist() throws SystemException {
-		CalendarResourceLocalServiceUtil.updateCalendarResource(this);
+		if (this.isNew()) {
+			CalendarResourceLocalServiceUtil.addCalendarResource(this);
+		}
+		else {
+			CalendarResourceLocalServiceUtil.updateCalendarResource(this);
+		}
 	}
 }

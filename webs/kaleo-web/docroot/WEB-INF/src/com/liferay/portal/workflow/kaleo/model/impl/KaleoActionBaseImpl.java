@@ -38,6 +38,11 @@ public abstract class KaleoActionBaseImpl extends KaleoActionModelImpl
 	 * Never modify or reference this class directly. All methods that expect a kaleo action model instance should use the {@link KaleoAction} interface instead.
 	 */
 	public void persist() throws SystemException {
-		KaleoActionLocalServiceUtil.updateKaleoAction(this);
+		if (this.isNew()) {
+			KaleoActionLocalServiceUtil.addKaleoAction(this);
+		}
+		else {
+			KaleoActionLocalServiceUtil.updateKaleoAction(this);
+		}
 	}
 }

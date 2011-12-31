@@ -38,6 +38,11 @@ public abstract class KaleoTaskBaseImpl extends KaleoTaskModelImpl
 	 * Never modify or reference this class directly. All methods that expect a kaleo task model instance should use the {@link KaleoTask} interface instead.
 	 */
 	public void persist() throws SystemException {
-		KaleoTaskLocalServiceUtil.updateKaleoTask(this);
+		if (this.isNew()) {
+			KaleoTaskLocalServiceUtil.addKaleoTask(this);
+		}
+		else {
+			KaleoTaskLocalServiceUtil.updateKaleoTask(this);
+		}
 	}
 }

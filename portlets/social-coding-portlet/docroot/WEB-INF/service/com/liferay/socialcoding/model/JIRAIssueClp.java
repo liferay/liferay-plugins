@@ -148,7 +148,12 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 	}
 
 	public void persist() throws SystemException {
-		JIRAIssueLocalServiceUtil.updateJIRAIssue(this);
+		if (this.isNew()) {
+			JIRAIssueLocalServiceUtil.addJIRAIssue(this);
+		}
+		else {
+			JIRAIssueLocalServiceUtil.updateJIRAIssue(this);
+		}
 	}
 
 	@Override

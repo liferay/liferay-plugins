@@ -123,7 +123,12 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 	}
 
 	public void persist() throws SystemException {
-		GadgetLocalServiceUtil.updateGadget(this);
+		if (this.isNew()) {
+			GadgetLocalServiceUtil.addGadget(this);
+		}
+		else {
+			GadgetLocalServiceUtil.updateGadget(this);
+		}
 	}
 
 	@Override

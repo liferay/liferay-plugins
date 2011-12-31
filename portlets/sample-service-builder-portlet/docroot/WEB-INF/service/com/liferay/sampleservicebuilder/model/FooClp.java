@@ -176,7 +176,12 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 	}
 
 	public void persist() throws SystemException {
-		FooLocalServiceUtil.updateFoo(this);
+		if (this.isNew()) {
+			FooLocalServiceUtil.addFoo(this);
+		}
+		else {
+			FooLocalServiceUtil.updateFoo(this);
+		}
 	}
 
 	@Override

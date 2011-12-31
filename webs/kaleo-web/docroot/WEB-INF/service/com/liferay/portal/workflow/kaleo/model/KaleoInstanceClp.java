@@ -215,7 +215,12 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 	}
 
 	public void persist() throws SystemException {
-		KaleoInstanceLocalServiceUtil.updateKaleoInstance(this);
+		if (this.isNew()) {
+			KaleoInstanceLocalServiceUtil.addKaleoInstance(this);
+		}
+		else {
+			KaleoInstanceLocalServiceUtil.updateKaleoInstance(this);
+		}
 	}
 
 	@Override

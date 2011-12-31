@@ -90,7 +90,12 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 	}
 
 	public void persist() throws SystemException {
-		SVNRepositoryLocalServiceUtil.updateSVNRepository(this);
+		if (this.isNew()) {
+			SVNRepositoryLocalServiceUtil.addSVNRepository(this);
+		}
+		else {
+			SVNRepositoryLocalServiceUtil.updateSVNRepository(this);
+		}
 	}
 
 	@Override

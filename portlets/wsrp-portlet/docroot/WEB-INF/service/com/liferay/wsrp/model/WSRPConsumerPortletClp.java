@@ -124,7 +124,12 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 	}
 
 	public void persist() throws SystemException {
-		WSRPConsumerPortletLocalServiceUtil.updateWSRPConsumerPortlet(this);
+		if (this.isNew()) {
+			WSRPConsumerPortletLocalServiceUtil.addWSRPConsumerPortlet(this);
+		}
+		else {
+			WSRPConsumerPortletLocalServiceUtil.updateWSRPConsumerPortlet(this);
+		}
 	}
 
 	@Override

@@ -38,6 +38,11 @@ public abstract class FeedBaseImpl extends FeedModelImpl implements Feed {
 	 * Never modify or reference this class directly. All methods that expect a feed model instance should use the {@link Feed} interface instead.
 	 */
 	public void persist() throws SystemException {
-		FeedLocalServiceUtil.updateFeed(this);
+		if (this.isNew()) {
+			FeedLocalServiceUtil.addFeed(this);
+		}
+		else {
+			FeedLocalServiceUtil.updateFeed(this);
+		}
 	}
 }

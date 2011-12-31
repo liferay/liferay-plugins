@@ -158,7 +158,12 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 	}
 
 	public void persist() throws SystemException {
-		ProjectsEntryLocalServiceUtil.updateProjectsEntry(this);
+		if (this.isNew()) {
+			ProjectsEntryLocalServiceUtil.addProjectsEntry(this);
+		}
+		else {
+			ProjectsEntryLocalServiceUtil.updateProjectsEntry(this);
+		}
 	}
 
 	@Override

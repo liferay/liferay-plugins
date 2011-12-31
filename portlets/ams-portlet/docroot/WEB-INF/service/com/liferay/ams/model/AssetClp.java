@@ -152,7 +152,12 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 	}
 
 	public void persist() throws SystemException {
-		AssetLocalServiceUtil.updateAsset(this);
+		if (this.isNew()) {
+			AssetLocalServiceUtil.addAsset(this);
+		}
+		else {
+			AssetLocalServiceUtil.updateAsset(this);
+		}
 	}
 
 	@Override

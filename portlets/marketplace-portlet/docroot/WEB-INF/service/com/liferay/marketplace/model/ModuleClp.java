@@ -89,7 +89,12 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 	}
 
 	public void persist() throws SystemException {
-		ModuleLocalServiceUtil.updateModule(this);
+		if (this.isNew()) {
+			ModuleLocalServiceUtil.addModule(this);
+		}
+		else {
+			ModuleLocalServiceUtil.updateModule(this);
+		}
 	}
 
 	@Override

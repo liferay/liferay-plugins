@@ -229,7 +229,12 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 	}
 
 	public void persist() throws SystemException {
-		MessageLocalServiceUtil.updateMessage(this);
+		if (this.isNew()) {
+			MessageLocalServiceUtil.addMessage(this);
+		}
+		else {
+			MessageLocalServiceUtil.updateMessage(this);
+		}
 	}
 
 	@Override
