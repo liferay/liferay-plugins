@@ -73,7 +73,12 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 	}
 
 	public void persist() throws SystemException {
-		BarLocalServiceUtil.updateBar(this);
+		if (this.isNew()) {
+			BarLocalServiceUtil.addBar(this);
+		}
+		else {
+			BarLocalServiceUtil.updateBar(this);
+		}
 	}
 
 	@Override

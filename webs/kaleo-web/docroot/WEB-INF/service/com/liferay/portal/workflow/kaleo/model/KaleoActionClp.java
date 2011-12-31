@@ -204,7 +204,12 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 	}
 
 	public void persist() throws SystemException {
-		KaleoActionLocalServiceUtil.updateKaleoAction(this);
+		if (this.isNew()) {
+			KaleoActionLocalServiceUtil.addKaleoAction(this);
+		}
+		else {
+			KaleoActionLocalServiceUtil.updateKaleoAction(this);
+		}
 	}
 
 	@Override

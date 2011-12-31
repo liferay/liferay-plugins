@@ -178,7 +178,12 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 	}
 
 	public void persist() throws SystemException {
-		KBCommentLocalServiceUtil.updateKBComment(this);
+		if (this.isNew()) {
+			KBCommentLocalServiceUtil.addKBComment(this);
+		}
+		else {
+			KBCommentLocalServiceUtil.updateKBComment(this);
+		}
 	}
 
 	@Override

@@ -120,7 +120,12 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 	}
 
 	public void persist() throws SystemException {
-		SVNRevisionLocalServiceUtil.updateSVNRevision(this);
+		if (this.isNew()) {
+			SVNRevisionLocalServiceUtil.addSVNRevision(this);
+		}
+		else {
+			SVNRevisionLocalServiceUtil.updateSVNRevision(this);
+		}
 	}
 
 	@Override

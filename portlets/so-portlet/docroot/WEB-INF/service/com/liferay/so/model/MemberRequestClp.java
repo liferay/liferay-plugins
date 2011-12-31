@@ -175,7 +175,12 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 	}
 
 	public void persist() throws SystemException {
-		MemberRequestLocalServiceUtil.updateMemberRequest(this);
+		if (this.isNew()) {
+			MemberRequestLocalServiceUtil.addMemberRequest(this);
+		}
+		else {
+			MemberRequestLocalServiceUtil.updateMemberRequest(this);
+		}
 	}
 
 	@Override

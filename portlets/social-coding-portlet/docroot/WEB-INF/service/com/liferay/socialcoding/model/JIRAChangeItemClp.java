@@ -114,7 +114,12 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 	}
 
 	public void persist() throws SystemException {
-		JIRAChangeItemLocalServiceUtil.updateJIRAChangeItem(this);
+		if (this.isNew()) {
+			JIRAChangeItemLocalServiceUtil.addJIRAChangeItem(this);
+		}
+		else {
+			JIRAChangeItemLocalServiceUtil.updateJIRAChangeItem(this);
+		}
 	}
 
 	@Override

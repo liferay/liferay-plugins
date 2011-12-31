@@ -38,6 +38,11 @@ public abstract class TypeBaseImpl extends TypeModelImpl implements Type {
 	 * Never modify or reference this class directly. All methods that expect a type model instance should use the {@link Type} interface instead.
 	 */
 	public void persist() throws SystemException {
-		TypeLocalServiceUtil.updateType(this);
+		if (this.isNew()) {
+			TypeLocalServiceUtil.addType(this);
+		}
+		else {
+			TypeLocalServiceUtil.updateType(this);
+		}
 	}
 }

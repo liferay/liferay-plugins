@@ -114,7 +114,12 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 	}
 
 	public void persist() throws SystemException {
-		EntryLocalServiceUtil.updateEntry(this);
+		if (this.isNew()) {
+			EntryLocalServiceUtil.addEntry(this);
+		}
+		else {
+			EntryLocalServiceUtil.updateEntry(this);
+		}
 	}
 
 	@Override

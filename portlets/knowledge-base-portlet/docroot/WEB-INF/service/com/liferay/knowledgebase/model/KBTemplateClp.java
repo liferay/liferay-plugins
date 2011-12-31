@@ -150,7 +150,12 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 	}
 
 	public void persist() throws SystemException {
-		KBTemplateLocalServiceUtil.updateKBTemplate(this);
+		if (this.isNew()) {
+			KBTemplateLocalServiceUtil.addKBTemplate(this);
+		}
+		else {
+			KBTemplateLocalServiceUtil.updateKBTemplate(this);
+		}
 	}
 
 	@Override
