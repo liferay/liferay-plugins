@@ -205,7 +205,6 @@ public class UpgradeCompany extends UpgradeProcess {
 		return DLAppLocalServiceUtil.addFolder(
 			userId, groupId, 0, name, description, serviceContext);
 	}
-
 	protected JournalArticle addJournalArticle(
 			long userId, long groupId, String title, String fileName,
 			ServiceContext serviceContext)
@@ -271,6 +270,7 @@ public class UpgradeCompany extends UpgradeProcess {
 			userId, groupId, "SINGLE-IMAGE", false, StringPool.BLANK,
 			nameMap, descriptionMap, xsd, serviceContext);
 	}
+
 	protected JournalTemplate addJournalTemplate(
 			long userId, long groupId, String fileName)
 		throws Exception {
@@ -391,22 +391,6 @@ public class UpgradeCompany extends UpgradeProcess {
 		ResourceLocalServiceUtil.addResources(
 			layout.getCompanyId(), layout.getGroupId(), 0, rootPortletId,
 			portletPrimaryKey, true, true, true);
-	}
-
-	protected void addSocialRequest(
-			User user, User receiverUser, boolean confirm)
-		throws Exception {
-
-		SocialRequest socialRequest = SocialRequestLocalServiceUtil.addRequest(
-			user.getUserId(), 0, User.class.getName(), user.getUserId(),
-			_SN_FRIENDS_REQUEST_KEYS_ADD_FRIEND, StringPool.BLANK,
-			receiverUser.getUserId());
-
-		if (confirm) {
-			SocialRequestLocalServiceUtil.updateRequest(
-				socialRequest.getRequestId(),
-				SocialRequestConstants.STATUS_CONFIRM, new ThemeDisplay());
-		}
 	}
 
 	protected void addSocialActivityCounter(
@@ -544,6 +528,22 @@ public class UpgradeCompany extends UpgradeProcess {
 		for (String line : lines) {
 			addSocialActivityCounter(
 				group, users, socialActivityCounterName, line);
+		}
+	}
+
+	protected void addSocialRequest(
+			User user, User receiverUser, boolean confirm)
+		throws Exception {
+
+		SocialRequest socialRequest = SocialRequestLocalServiceUtil.addRequest(
+			user.getUserId(), 0, User.class.getName(), user.getUserId(),
+			_SN_FRIENDS_REQUEST_KEYS_ADD_FRIEND, StringPool.BLANK,
+			receiverUser.getUserId());
+
+		if (confirm) {
+			SocialRequestLocalServiceUtil.updateRequest(
+				socialRequest.getRequestId(),
+				SocialRequestConstants.STATUS_CONFIRM, new ThemeDisplay());
 		}
 	}
 
@@ -1017,232 +1017,6 @@ public class UpgradeCompany extends UpgradeProcess {
 			PermissionLocalServiceUtil.setRolePermissions(
 				roleId, companyId, name, scope, primKey, actionIds);
 		}
-	}
-
-	protected void setupSites(long companyId, long defaultUserId)
-		throws Exception {
-
-		// Guest site
-
-		Group group = GroupLocalServiceUtil.getGroup(
-			companyId, GroupConstants.GUEST);
-
-		// Journal
-
-		addJournalStructure(
-			defaultUserId, group.getGroupId(),
-			"/guest/journal/structures/single_image.xml");
-		addJournalTemplate(
-			defaultUserId, group.getGroupId(),
-			"/guest/journal/templates/single_image.xml");
-
-		// Image gallery
-
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setAddGroupPermissions(true);
-		serviceContext.setAddGuestPermissions(true);
-		serviceContext.setScopeGroupId(group.getGroupId());
-
-		Folder folder = DLAppLocalServiceUtil.addFolder(
-			defaultUserId, group.getGroupId(), 0, "Web Content",
-			"Images used for content", serviceContext);
-
-		FileEntry cellBgFileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(), "/guest/images/cell_bg.png",
-			serviceContext);
-
-		FileEntry customer1FileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(), "/guest/images/customer_1.png",
-			serviceContext);
-
-		FileEntry customer2FileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(), "/guest/images/customer_2.png",
-			serviceContext);
-
-		FileEntry customer3FileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(), "/guest/images/customer_3.png",
-			serviceContext);
-
-		FileEntry customer4FileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(), "/guest/images/customer_4.png",
-			serviceContext);
-
-		FileEntry customer5FileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(), "/guest/images/customer_5.png",
-			serviceContext);
-
-		FileEntry customer6FileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(), "/guest/images/customer_6.png",
-			serviceContext);
-
-		FileEntry customer7FileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(), "/guest/images/customer_7.png",
-			serviceContext);
-
-		FileEntry portalMashupFileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(),
-			"/guest/images/portal_mashup.png", serviceContext);
-
-		FileEntry sevenCogsAdFileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(),
-			"/guest/images/sevencogs_ad.png", serviceContext);
-
-		FileEntry sharedWorkspacesFileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(),
-			"/guest/images/shared_workspaces.png", serviceContext);
-
-		FileEntry socialNetworkingFileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(),
-			"/guest/images/social_network.png", serviceContext);
-
-		FileEntry webPublishingFileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(),
-			"/guest/images/web_publishing.png", serviceContext);
-
-		// Site theme settings
-
-		String noPortletBorders =
-			"lfr-theme:regular:portlet-setup-show-borders-default=false";
-
-		LayoutSetLocalServiceUtil.updateSettings(
-			group.getGroupId(), false, noPortletBorders);
-
-		// Welcome layout
-
-		Layout layout = addLayout(
-			group, "Welcome", false, "/home", "2_columns_iii");
-
-		// Welcome content portlet
-
-		String portletId = addPortletId(
-			layout, PortletKeys.JOURNAL_CONTENT, "column-1");
-
-		removePortletBorder(layout, portletId);
-
-		serviceContext.setAssetTagNames(new String[] {"liferay", "welcome"});
-
-		JournalArticle journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "Welcome",
-			"/guest/journal/articles/welcome.xml", serviceContext);
-
-		String content = StringUtil.replace(
-			journalArticle.getContent(),
-			new String[] {
-				"[$CELL_BG_R_FE_UUID$]",
-				"[$CUSTOMER_1_R_FE_UUID$]",
-				"[$CUSTOMER_2_R_FE_UUID$]",
-				"[$CUSTOMER_3_R_FE_UUID$]",
-				"[$CUSTOMER_4_R_FE_UUID$]",
-				"[$CUSTOMER_5_R_FE_UUID$]",
-				"[$CUSTOMER_6_R_FE_UUID$]",
-				"[$CUSTOMER_7_R_FE_UUID$]",
-				"[$GROUP_ID$]",
-				"[$PORTAL_MASHUPS_R_FE_UUID$]",
-				"[$SHARED_WORKSPACES_R_FE_UUID$]",
-				"[$SOCIAL_NETWORKING_R_FE_UUID$]",
-				"[$WEB_PUBLISHING_R_FE_UUID$]"
-			},
-			new String[] {
-				String.valueOf(cellBgFileEntry.getUuid()),
-				String.valueOf(customer1FileEntry.getUuid()),
-				String.valueOf(customer2FileEntry.getUuid()),
-				String.valueOf(customer3FileEntry.getUuid()),
-				String.valueOf(customer4FileEntry.getUuid()),
-				String.valueOf(customer5FileEntry.getUuid()),
-				String.valueOf(customer6FileEntry.getUuid()),
-				String.valueOf(customer7FileEntry.getUuid()),
-				String.valueOf(group.getGroupId()),
-				String.valueOf(portalMashupFileEntry.getUuid()),
-				String.valueOf(sharedWorkspacesFileEntry.getUuid()),
-				String.valueOf(socialNetworkingFileEntry.getUuid()),
-				String.valueOf(webPublishingFileEntry.getUuid())
-			});
-
-		JournalArticleLocalServiceUtil.updateContent(
-			group.getGroupId(), journalArticle.getArticleId(),
-			journalArticle.getVersion(), content);
-
-		configureJournalContent(
-			layout, portletId, journalArticle.getArticleId());
-
-		// 7Cogs Ad content portlet
-
-		portletId = addPortletId(
-			layout, PortletKeys.JOURNAL_CONTENT, "column-2");
-
-		removePortletBorder(layout, portletId);
-
-		serviceContext.setAssetTagNames(new String[] {"liferay", "7cogs"});
-
-		journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "7Cogs Ad",
-			"/guest/journal/articles/sample_site_ad.xml", serviceContext);
-
-		content = StringUtil.replace(
-			journalArticle.getContent(),
-			new String[] {
-				"[$GROUP_ID$]",
-				"[$GROUP_URL$]",
-				"[$R_FE_UUID$]"
-			},
-			new String[] {
-				String.valueOf(group.getGroupId()),
-				"/web/7cogs/home",
-				String.valueOf(sevenCogsAdFileEntry.getUuid())
-			});
-
-		JournalArticleLocalServiceUtil.updateContent(
-			group.getGroupId(), journalArticle.getArticleId(),
-			journalArticle.getVersion(), content);
-
-		configureJournalContent(
-			layout, portletId, journalArticle.getArticleId());
-
-		// Welcome Note content portlet
-
-		portletId = addPortletId(
-			layout, PortletKeys.JOURNAL_CONTENT, "column-2");
-
-		removePortletBorder(layout, portletId);
-
-		serviceContext.setAssetTagNames(new String[] {"welcome"});
-
-		journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "Welcome Note",
-			"/guest/journal/articles/welcome_note.xml", serviceContext);
-
-		configureJournalContent(
-			layout, portletId, journalArticle.getArticleId());
-
-		// Welcome Login content portlet
-
-		portletId = addPortletId(
-			layout, PortletKeys.JOURNAL_CONTENT, "column-2");
-
-		serviceContext.setAssetTagNames(
-			new String[] {"login", "users", "welcome"});
-
-		journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "Welcome Login",
-			"/guest/journal/articles/welcome_login.xml", serviceContext);
-
-		content = StringUtil.replace(
-			journalArticle.getContent(), "[$COMPANY_ID$]",
-			String.valueOf(companyId));
-
-		JournalArticleLocalServiceUtil.updateContent(
-			group.getGroupId(), journalArticle.getArticleId(),
-			journalArticle.getVersion(), content);
-
-		configureJournalContent(
-			layout, portletId, journalArticle.getArticleId());
-
-		configurePortletTitle(layout, portletId, "Current Users");
-
-		// Login portlet
-
-		addPortletId(layout, PortletKeys.LOGIN, "column-2");
 	}
 
 	protected Organization setupOrganizations(
@@ -2022,6 +1796,232 @@ public class UpgradeCompany extends UpgradeProcess {
 		setRolePermissions(
 			writerRole, JournalArticle.class.getName(),
 			new String[] {ActionKeys.UPDATE, ActionKeys.VIEW});
+	}
+
+	protected void setupSites(long companyId, long defaultUserId)
+		throws Exception {
+
+		// Guest site
+
+		Group group = GroupLocalServiceUtil.getGroup(
+			companyId, GroupConstants.GUEST);
+
+		// Journal
+
+		addJournalStructure(
+			defaultUserId, group.getGroupId(),
+			"/guest/journal/structures/single_image.xml");
+		addJournalTemplate(
+			defaultUserId, group.getGroupId(),
+			"/guest/journal/templates/single_image.xml");
+
+		// Image gallery
+
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setAddGroupPermissions(true);
+		serviceContext.setAddGuestPermissions(true);
+		serviceContext.setScopeGroupId(group.getGroupId());
+
+		Folder folder = DLAppLocalServiceUtil.addFolder(
+			defaultUserId, group.getGroupId(), 0, "Web Content",
+			"Images used for content", serviceContext);
+
+		FileEntry cellBgFileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(), "/guest/images/cell_bg.png",
+			serviceContext);
+
+		FileEntry customer1FileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(), "/guest/images/customer_1.png",
+			serviceContext);
+
+		FileEntry customer2FileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(), "/guest/images/customer_2.png",
+			serviceContext);
+
+		FileEntry customer3FileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(), "/guest/images/customer_3.png",
+			serviceContext);
+
+		FileEntry customer4FileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(), "/guest/images/customer_4.png",
+			serviceContext);
+
+		FileEntry customer5FileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(), "/guest/images/customer_5.png",
+			serviceContext);
+
+		FileEntry customer6FileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(), "/guest/images/customer_6.png",
+			serviceContext);
+
+		FileEntry customer7FileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(), "/guest/images/customer_7.png",
+			serviceContext);
+
+		FileEntry portalMashupFileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(),
+			"/guest/images/portal_mashup.png", serviceContext);
+
+		FileEntry sevenCogsAdFileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(),
+			"/guest/images/sevencogs_ad.png", serviceContext);
+
+		FileEntry sharedWorkspacesFileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(),
+			"/guest/images/shared_workspaces.png", serviceContext);
+
+		FileEntry socialNetworkingFileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(),
+			"/guest/images/social_network.png", serviceContext);
+
+		FileEntry webPublishingFileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(),
+			"/guest/images/web_publishing.png", serviceContext);
+
+		// Site theme settings
+
+		String noPortletBorders =
+			"lfr-theme:regular:portlet-setup-show-borders-default=false";
+
+		LayoutSetLocalServiceUtil.updateSettings(
+			group.getGroupId(), false, noPortletBorders);
+
+		// Welcome layout
+
+		Layout layout = addLayout(
+			group, "Welcome", false, "/home", "2_columns_iii");
+
+		// Welcome content portlet
+
+		String portletId = addPortletId(
+			layout, PortletKeys.JOURNAL_CONTENT, "column-1");
+
+		removePortletBorder(layout, portletId);
+
+		serviceContext.setAssetTagNames(new String[] {"liferay", "welcome"});
+
+		JournalArticle journalArticle = addJournalArticle(
+			defaultUserId, group.getGroupId(), "Welcome",
+			"/guest/journal/articles/welcome.xml", serviceContext);
+
+		String content = StringUtil.replace(
+			journalArticle.getContent(),
+			new String[] {
+				"[$CELL_BG_R_FE_UUID$]",
+				"[$CUSTOMER_1_R_FE_UUID$]",
+				"[$CUSTOMER_2_R_FE_UUID$]",
+				"[$CUSTOMER_3_R_FE_UUID$]",
+				"[$CUSTOMER_4_R_FE_UUID$]",
+				"[$CUSTOMER_5_R_FE_UUID$]",
+				"[$CUSTOMER_6_R_FE_UUID$]",
+				"[$CUSTOMER_7_R_FE_UUID$]",
+				"[$GROUP_ID$]",
+				"[$PORTAL_MASHUPS_R_FE_UUID$]",
+				"[$SHARED_WORKSPACES_R_FE_UUID$]",
+				"[$SOCIAL_NETWORKING_R_FE_UUID$]",
+				"[$WEB_PUBLISHING_R_FE_UUID$]"
+			},
+			new String[] {
+				String.valueOf(cellBgFileEntry.getUuid()),
+				String.valueOf(customer1FileEntry.getUuid()),
+				String.valueOf(customer2FileEntry.getUuid()),
+				String.valueOf(customer3FileEntry.getUuid()),
+				String.valueOf(customer4FileEntry.getUuid()),
+				String.valueOf(customer5FileEntry.getUuid()),
+				String.valueOf(customer6FileEntry.getUuid()),
+				String.valueOf(customer7FileEntry.getUuid()),
+				String.valueOf(group.getGroupId()),
+				String.valueOf(portalMashupFileEntry.getUuid()),
+				String.valueOf(sharedWorkspacesFileEntry.getUuid()),
+				String.valueOf(socialNetworkingFileEntry.getUuid()),
+				String.valueOf(webPublishingFileEntry.getUuid())
+			});
+
+		JournalArticleLocalServiceUtil.updateContent(
+			group.getGroupId(), journalArticle.getArticleId(),
+			journalArticle.getVersion(), content);
+
+		configureJournalContent(
+			layout, portletId, journalArticle.getArticleId());
+
+		// 7Cogs Ad content portlet
+
+		portletId = addPortletId(
+			layout, PortletKeys.JOURNAL_CONTENT, "column-2");
+
+		removePortletBorder(layout, portletId);
+
+		serviceContext.setAssetTagNames(new String[] {"liferay", "7cogs"});
+
+		journalArticle = addJournalArticle(
+			defaultUserId, group.getGroupId(), "7Cogs Ad",
+			"/guest/journal/articles/sample_site_ad.xml", serviceContext);
+
+		content = StringUtil.replace(
+			journalArticle.getContent(),
+			new String[] {
+				"[$GROUP_ID$]",
+				"[$GROUP_URL$]",
+				"[$R_FE_UUID$]"
+			},
+			new String[] {
+				String.valueOf(group.getGroupId()),
+				"/web/7cogs/home",
+				String.valueOf(sevenCogsAdFileEntry.getUuid())
+			});
+
+		JournalArticleLocalServiceUtil.updateContent(
+			group.getGroupId(), journalArticle.getArticleId(),
+			journalArticle.getVersion(), content);
+
+		configureJournalContent(
+			layout, portletId, journalArticle.getArticleId());
+
+		// Welcome Note content portlet
+
+		portletId = addPortletId(
+			layout, PortletKeys.JOURNAL_CONTENT, "column-2");
+
+		removePortletBorder(layout, portletId);
+
+		serviceContext.setAssetTagNames(new String[] {"welcome"});
+
+		journalArticle = addJournalArticle(
+			defaultUserId, group.getGroupId(), "Welcome Note",
+			"/guest/journal/articles/welcome_note.xml", serviceContext);
+
+		configureJournalContent(
+			layout, portletId, journalArticle.getArticleId());
+
+		// Welcome Login content portlet
+
+		portletId = addPortletId(
+			layout, PortletKeys.JOURNAL_CONTENT, "column-2");
+
+		serviceContext.setAssetTagNames(
+			new String[] {"login", "users", "welcome"});
+
+		journalArticle = addJournalArticle(
+			defaultUserId, group.getGroupId(), "Welcome Login",
+			"/guest/journal/articles/welcome_login.xml", serviceContext);
+
+		content = StringUtil.replace(
+			journalArticle.getContent(), "[$COMPANY_ID$]",
+			String.valueOf(companyId));
+
+		JournalArticleLocalServiceUtil.updateContent(
+			group.getGroupId(), journalArticle.getArticleId(),
+			journalArticle.getVersion(), content);
+
+		configureJournalContent(
+			layout, portletId, journalArticle.getArticleId());
+
+		configurePortletTitle(layout, portletId, "Current Users");
+
+		// Login portlet
+
+		addPortletId(layout, PortletKeys.LOGIN, "column-2");
 	}
 
 	protected void setupSocialActivityCounters(Group group, List<User> users)
