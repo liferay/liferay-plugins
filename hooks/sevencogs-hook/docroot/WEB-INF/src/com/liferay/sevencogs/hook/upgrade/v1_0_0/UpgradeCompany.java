@@ -409,143 +409,141 @@ public class UpgradeCompany extends UpgradeProcess {
 		}
 	}
 
-	protected void addSocialActivityCounters(
-			long companyId, Group group, List<User> users, String fileName)
+	protected void addSocialActivityCounter(
+			Group group, List<User> users, String socialActivityCounterName,
+			String line)
 		throws Exception {
 
-		String userMessagePosts = getString(fileName);
+		String[] lineParts = StringUtil.split(line);
 
-		String[] counters = StringUtil.splitLines(userMessagePosts);
+		int endPeriodOffset = GetterUtil.getInteger(lineParts[3]);
 
-		int totalValue = 0;
+		int endPeriod = SocialCounterPeriodUtil.getEndPeriod(endPeriodOffset);
 
-		for (String counter : counters) {
-			String[] array = StringUtil.split(counter);
+		if (endPeriod < 0) {
+			return;
+		}
 
-			int endPeriod = SocialCounterPeriodUtil.getEndPeriod(
-				GetterUtil.getInteger(array[5]));
+		String className = lineParts[0];
 
-			if (endPeriod < 0) {
-				continue;
-			}
+		long classNameId = PortalUtil.getClassNameId(className);
 
-			long classNameId = PortalUtil.getClassNameId(array[1]);
+		String classPKString = lineParts[1];
 
-			long classPK = 0;
+		long classPK = 12345;
 
-			if (array[2].equals("$RND_USER$")) {
-				int rndUser = getRandomNumber(0, 3);
+		if (className.equals(User.class.getName())) {
+			if (classPKString.equals("0")) {
+				int index = getRandomNumber(0, 3);
 
-				User user = users.get(rndUser);
+				User user = users.get(index);
 
 				classPK = user.getUserId();
 			}
-			else if (array[2].startsWith("$USER_")) {
-				String screenName = StringUtil.replace(
-					array[2],
-					new String[] {"$", "USER_"},
-					new String[] {"", ""});
-
+			else {
 				for (User user : users) {
-					if (screenName.equalsIgnoreCase(user.getScreenName())) {
+					if (classPKString.equalsIgnoreCase(user.getScreenName())) {
 						classPK = user.getUserId();
 					}
 				}
 			}
-			else if (array[2].equals("$RND_ASSET$")) {
-				AssetEntryQuery query = new AssetEntryQuery();
-				query.setClassName(array[1]);
-				query.setGroupIds(new long[] {group.getGroupId()});
+		}
+		else {
+			AssetEntryQuery assetEntryQuery = new AssetEntryQuery();
 
-				List<AssetEntry> assetEntries =
-					AssetEntryLocalServiceUtil.getEntries(query);
+			assetEntryQuery.setClassName(className);
+			assetEntryQuery.setGroupIds(new long[] {group.getGroupId()});
 
-				if (assetEntries.size() > 0) {
-					int index = getRandomNumber(0, assetEntries.size() - 1);
+			List<AssetEntry> assetEntries =
+				AssetEntryLocalServiceUtil.getEntries(assetEntryQuery);
 
-					AssetEntry assetEntry = assetEntries.get(index);
+			if (!assetEntries.isEmpty()) {
+				int index = getRandomNumber(0, assetEntries.size() - 1);
 
-					classPK = assetEntry.getClassPK();
-				}
-				else {
-					classPK = 12345;
-				}
+				AssetEntry assetEntry = assetEntries.get(index);
+
+				classPK = assetEntry.getClassPK();
 			}
-			else {
-				classPK = GetterUtil.getLong(array[2]);
-			}
+		}
 
-			int ownerType = SocialActivityCounterConstants.TYPE_ACTOR;
+		int ownerType = SocialActivityCounterConstants.TYPE_ACTOR;
 
-			if (array[0].startsWith("asset.") ||
-				array[0].equals("popularity")) {
+		if (socialActivityCounterName.startsWith("asset.")) {
+			ownerType = SocialActivityCounterConstants.TYPE_ASSET;
+		}
+		else if (socialActivityCounterName.equals("contribution")) {
+			ownerType = SocialActivityCounterConstants.TYPE_CREATOR;
+		}
 
-				ownerType = SocialActivityCounterConstants.TYPE_ASSET;
-			}
-			else if (array[0].startsWith("creator.") ||
-					 array[0].equals("contribution")) {
+		SocialActivityCounter latestSocialActivityCounter =
+			SocialActivityCounterLocalServiceUtil.fetchLatestActivityCounter(
+				group.getGroupId(), classNameId, classPK,
+				socialActivityCounterName, ownerType);
 
-				ownerType = SocialActivityCounterConstants.TYPE_CREATOR;
-			}
+		SocialActivityCounter socialActivityCounter =
+			latestSocialActivityCounter;
 
-			int currentValue = 0;
+		int currentValue = getRandomNumber(0, 100);
 
-			if (array[3].equals("$RND$")) {
-				currentValue = getRandomNumber(0, 100);
-			}
-			else {
-				currentValue = GetterUtil.getInteger(array[3]);
-			}
+		int totalValue = 0;
 
-			SocialActivityCounter latestActivityCounter =
+		if (latestSocialActivityCounter != null) {
+			totalValue =
+				latestSocialActivityCounter.getTotalValue() + currentValue;
+		}
+
+		int startPeriodOffset = GetterUtil.getInteger(lineParts[2]);
+
+		int startPeriod = SocialCounterPeriodUtil.getStartPeriod(
+			startPeriodOffset);
+
+		if ((latestSocialActivityCounter == null) ||
+			(latestSocialActivityCounter.getStartPeriod() != startPeriod)) {
+
+			long socialActivityCounterId = CounterLocalServiceUtil.increment();
+
+			socialActivityCounter =
 				SocialActivityCounterLocalServiceUtil.
-					fetchLatestActivityCounter(
-						group.getGroupId(), classNameId, classPK, array[0],
-						ownerType);
+					createSocialActivityCounter(socialActivityCounterId);
 
-			if (latestActivityCounter != null) {
-				totalValue =
-					latestActivityCounter.getTotalValue() + currentValue;
+			socialActivityCounter.setGroupId(group.getGroupId());
+			socialActivityCounter.setCompanyId(group.getCompanyId());
+			socialActivityCounter.setClassNameId(classNameId);
+			socialActivityCounter.setClassPK(classPK);
+			socialActivityCounter.setName(socialActivityCounterName);
+			socialActivityCounter.setOwnerType(ownerType);
+			socialActivityCounter.setCurrentValue(currentValue);
+			socialActivityCounter.setTotalValue(totalValue);
+			socialActivityCounter.setStartPeriod(startPeriod);
+
+			if (endPeriodOffset == 0) {
+				endPeriod = -1;
 			}
 
-			SocialActivityCounter activityCounter = latestActivityCounter;
+			socialActivityCounter.setEndPeriod(endPeriod);
+		}
+		else {
+			socialActivityCounter.setCurrentValue(
+				socialActivityCounter.getCurrentValue() + currentValue);
+			socialActivityCounter.setTotalValue(totalValue);
+		}
 
-			int startPeriod = SocialCounterPeriodUtil.getStartPeriod(
-				GetterUtil.getInteger(array[4]));
+		SocialActivityCounterLocalServiceUtil.updateSocialActivityCounter(
+			socialActivityCounter);
+	}
 
-			if ((latestActivityCounter == null) ||
-				(latestActivityCounter.getStartPeriod() != startPeriod)) {
+	protected void addSocialActivityCounters(
+			Group group, List<User> users, String socialActivityCounterName)
+		throws Exception {
 
-				long activityCounterId = CounterLocalServiceUtil.increment();
+		String content = getString(
+			"/sample/activity/counters/" + socialActivityCounterName + ".csv");
 
-				activityCounter =
-					SocialActivityCounterLocalServiceUtil.
-						createSocialActivityCounter(activityCounterId);
+		String[] lines = StringUtil.splitLines(content);
 
-				activityCounter.setCompanyId(group.getCompanyId());
-				activityCounter.setGroupId(group.getGroupId());
-				activityCounter.setClassNameId(classNameId);
-				activityCounter.setClassPK(classPK);
-				activityCounter.setName(array[0]);
-				activityCounter.setOwnerType(ownerType);
-				activityCounter.setCurrentValue(currentValue);
-				activityCounter.setTotalValue(totalValue);
-				activityCounter.setStartPeriod(startPeriod);
-
-				if (array[5].equals("0")) {
-					endPeriod = -1;
-				}
-
-				activityCounter.setEndPeriod(endPeriod);
-			}
-			else {
-				activityCounter.setCurrentValue(
-					activityCounter.getCurrentValue() + currentValue);
-				activityCounter.setTotalValue(totalValue);
-			}
-
-			SocialActivityCounterLocalServiceUtil.updateSocialActivityCounter(
-				activityCounter);
+		for (String line : lines) {
+			addSocialActivityCounter(
+				group, users, socialActivityCounterName, line);
 		}
 	}
 
@@ -808,23 +806,23 @@ public class UpgradeCompany extends UpgradeProcess {
 	}
 
 	protected void configureGroupStatistics(
-			Layout layout, String portletId, String[][] chartBlocks)
+			Layout layout, String portletId, String[][] chartData)
 		throws Exception {
 
 		PortletPreferences portletSetup =
 			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
 				layout, portletId);
 
-		String[] indexes = new String[chartBlocks.length];
+		String[] indexes = new String[chartData.length];
 
-		for (int i=0; i < chartBlocks.length; i++) {
+		for (int i=0; i < chartData.length; i++) {
 			indexes[i] = String.valueOf(i);
 
-			portletSetup.setValue("chartType" + (i), chartBlocks[i][1]);
-			portletSetup.setValue("chartWidth" + (i), chartBlocks[i][3]);
-			portletSetup.setValue("dataRange" + (i), chartBlocks[i][2]);
+			portletSetup.setValue("chartType" + (i), chartData[i][1]);
+			portletSetup.setValue("chartWidth" + (i), chartData[i][3]);
+			portletSetup.setValue("dataRange" + (i), chartData[i][2]);
 			portletSetup.setValue(
-				"displayActivityCounterName" + (i), chartBlocks[i][0]);
+				"displayActivityCounterName" + (i), chartData[i][0]);
 		}
 
 		portletSetup.setValue(
@@ -861,23 +859,24 @@ public class UpgradeCompany extends UpgradeProcess {
 	}
 
 	protected void configureUserStatistics(
-			Layout layout, String portletId, String[] activityCounterNames)
+			Layout layout, String portletId,
+			String[] socialActivityCounterNames)
 		throws Exception {
 
 		PortletPreferences portletSetup =
 			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
 				layout, portletId);
 
-		String[] indexes = new String[activityCounterNames.length + 1];
+		String[] indexes = new String[socialActivityCounterNames.length + 1];
 
 		indexes[0] = "0";
 
-		for (int i=0; i < activityCounterNames.length; i++) {
+		for (int i=0; i < socialActivityCounterNames.length; i++) {
 			indexes[i + 1] = String.valueOf(i + 1);
 
 			portletSetup.setValue(
 				"displayActivityCounterName" + (i + 1),
-				activityCounterNames[i]);
+				socialActivityCounterNames[i]);
 		}
 
 		portletSetup.setValue(
@@ -887,6 +886,7 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		portletSetup.store();
 	}
+
 	protected void deleteOrganizations(
 			long companyId, long parentOrganizationId)
 		throws Exception {
@@ -924,14 +924,17 @@ public class UpgradeCompany extends UpgradeProcess {
 			PrincipalThreadLocal.setName(defaultUserId);
 
 			clearData(companyId);
-			setupCommunities(companyId, defaultUserId);
-			Organization organization =
-				setupOrganizations(companyId, defaultUserId);
+			setupSites(companyId, defaultUserId);
+
+			Organization organization = setupOrganizations(
+				companyId, defaultUserId);
+
 			setupRoles(companyId, defaultUserId);
+
 			List<User> users = setupUsers(companyId);
+
+			setupSocialActivityCounters(organization.getGroup(), users);
 			setupWorkflow(companyId, defaultUserId);
-			setupSocialActivityCounters(
-				companyId, organization.getGroup(), users);
 		}
 		finally {
 			PrincipalThreadLocal.setName(name);
@@ -1016,10 +1019,10 @@ public class UpgradeCompany extends UpgradeProcess {
 		}
 	}
 
-	protected void setupCommunities(long companyId, long defaultUserId)
+	protected void setupSites(long companyId, long defaultUserId)
 		throws Exception {
 
-		// Guest community
+		// Guest site
 
 		Group group = GroupLocalServiceUtil.getGroup(
 			companyId, GroupConstants.GUEST);
@@ -1097,7 +1100,7 @@ public class UpgradeCompany extends UpgradeProcess {
 			defaultUserId, folder.getFolderId(),
 			"/guest/images/web_publishing.png", serviceContext);
 
-		// Site Theme Settings
+		// Site theme settings
 
 		String noPortletBorders =
 			"lfr-theme:regular:portlet-setup-show-borders-default=false";
@@ -1278,7 +1281,7 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		serviceContext.setScopeGroupId(group.getGroupId());
 
-		// Enable Social Activities
+		// Social activities
 
 		enableSocialActivities(companyId, organization.getGroup());
 
@@ -1711,7 +1714,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
 
-		// Blogs
+		// Blogs layout
 
 		layout = addLayout(group, "Blogs", false, "/blogs", "1_2_columns_i");
 
@@ -1758,7 +1761,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
 
-		// Wiki
+		// Wiki portlet
 
 		portletId = addPortletId(layout, PortletKeys.WIKI, "column-1");
 
@@ -1801,7 +1804,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
 
-		// Message Boards
+		// Message Boards portlet
 
 		portletId = addPortletId(
 			layout, PortletKeys.MESSAGE_BOARDS, "column-1");
@@ -1813,32 +1816,28 @@ public class UpgradeCompany extends UpgradeProcess {
 		layout = addLayout(
 			group, "Dashboard", false, "/dashboard", "2_columns_ii");
 
-		// User Statistics portlet
-
 		portletId = addPortletId(
 			layout, PortletKeys.USER_STATISTICS, "column-1");
 
-		String[] activityCounterNames = new String[] {
-			"user.message-posts", "user.blogs", "user.wikis"
-		};
-
-		configureUserStatistics(layout, portletId, activityCounterNames);
+		configureUserStatistics(
+			layout, portletId,
+			new String[] {"user.message-posts", "user.blogs", "user.wikis"});
 
 		// Group Statistics portlet
 
 		portletId = addPortletId(
 			layout, PortletKeys.GROUP_STATISTICS, "column-2");
 
-		String[][] chartBlocks = new String[3][4];
+		String[][] chartData = new String[3][4];
 
-		chartBlocks[0] =
+		chartData[0] =
 			new String[] {"user.message-posts", "area", "12months", "40"};
-		chartBlocks[1] =
+		chartData[1] =
 			new String[] {"asset.activities", "pie", "12months", "50"};
-		chartBlocks[2] =
+		chartData[2] =
 			new String[] {"asset.activities", "tag-cloud", "12months", "40"};
 
-		configureGroupStatistics(layout, portletId, chartBlocks);
+		configureGroupStatistics(layout, portletId, chartData);
 
 		// Activities portlet
 
@@ -2025,21 +2024,13 @@ public class UpgradeCompany extends UpgradeProcess {
 			new String[] {ActionKeys.UPDATE, ActionKeys.VIEW});
 	}
 
-	protected void setupSocialActivityCounters(
-			long companyId, Group group, List<User> users)
+	protected void setupSocialActivityCounters(Group group, List<User> users)
 		throws Exception {
 
-		addSocialActivityCounters(
-			companyId, group, users,
-			"/sample/activity/counters/usermessageposts.xml");
-
-		addSocialActivityCounters(
-			companyId, group, users,
-			"/sample/activity/counters/equitycounters.xml");
-
-		addSocialActivityCounters(
-			companyId, group, users,
-			"/sample/activity/counters/assetcounters.xml");
+		addSocialActivityCounters(group, users, "asset.activities");
+		addSocialActivityCounters(group, users, "contribution");
+		addSocialActivityCounters(group, users, "participation");
+		addSocialActivityCounters(group, users, "user.message-posts");
 	}
 
 	protected List<User> setupUsers(long companyId) throws Exception {
@@ -2068,11 +2059,17 @@ public class UpgradeCompany extends UpgradeProcess {
 			companyId, "bruno", "Bruno", "Admin", true, "Administrator",
 			roleIds);
 
+		List<User> users = new ArrayList<User>();
+
+		users.add(brunoUser);
+
 		roleIds = new long[] {powerUserRole.getRoleId()};
 
 		User kendraUser = addUser(
 			companyId, "kendra", "Kendra", "Regular", true, "Employee",
 			roleIds);
+
+		users.add(kendraUser);
 
 		roleIds = new long[] {
 			powerUserRole.getRoleId(), writerRole.getRoleId()
@@ -2082,6 +2079,8 @@ public class UpgradeCompany extends UpgradeProcess {
 			companyId, "michelle", "Michelle", "Writer", false, "Writer",
 			roleIds);
 
+		users.add(michelleUser);
+
 		roleIds = new long[] {
 			powerUserRole.getRoleId(), publisherRole.getRoleId(),
 			portalContentReviewer.getRoleId()
@@ -2090,6 +2089,8 @@ public class UpgradeCompany extends UpgradeProcess {
 		User richardUser = addUser(
 			companyId, "richard", "Richard", "Publisher", true, "Publisher",
 			roleIds);
+
+		users.add(richardUser);
 
 		// Asset
 
@@ -2257,13 +2258,6 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		addSocialRequest(kendraUser, brunoUser, false);
 		addSocialRequest(kendraUser, richardUser, false);
-
-		List<User> users = new ArrayList<User>();
-
-		users.add(brunoUser);
-		users.add(michelleUser);
-		users.add(richardUser);
-		users.add(kendraUser);
 
 		return users;
 	}
