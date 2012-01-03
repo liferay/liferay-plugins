@@ -14,7 +14,6 @@
 
 package com.liferay.sevencogs.hook.upgrade.v1_0_0;
 
-import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
@@ -459,58 +458,23 @@ public class UpgradeCompany extends UpgradeProcess {
 			ownerType = SocialActivityCounterConstants.TYPE_CREATOR;
 		}
 
-		SocialActivityCounter latestSocialActivityCounter =
-			SocialActivityCounterLocalServiceUtil.fetchLatestActivityCounter(
-				group.getGroupId(), classNameId, classPK,
-				socialActivityCounterName, ownerType);
-
 		SocialActivityCounter socialActivityCounter =
-			latestSocialActivityCounter;
+			SocialActivityCounterLocalServiceUtil.addActivityCounter(
+				group.getGroupId(), classNameId, classPK,
+				socialActivityCounterName, ownerType, -1, -1);
 
 		int currentValue = getRandomNumber(0, 100);
+		int totalValue = currentValue;
 
-		int totalValue = 0;
+		if ((socialActivityCounter.getCurrentValue() != -1) &&
+			(socialActivityCounter.getTotalValue() != -1)) {
 
-		if (latestSocialActivityCounter != null) {
-			totalValue =
-				latestSocialActivityCounter.getTotalValue() + currentValue;
+			currentValue += socialActivityCounter.getCurrentValue();
+			totalValue += socialActivityCounter.getTotalValue();
 		}
 
-		int startPeriodOffset = GetterUtil.getInteger(lineParts[2]);
-
-		int startPeriod = SocialCounterPeriodUtil.getStartPeriod(
-			startPeriodOffset);
-
-		if ((latestSocialActivityCounter == null) ||
-			(latestSocialActivityCounter.getStartPeriod() != startPeriod)) {
-
-			long socialActivityCounterId = CounterLocalServiceUtil.increment();
-
-			socialActivityCounter =
-				SocialActivityCounterLocalServiceUtil.
-					createSocialActivityCounter(socialActivityCounterId);
-
-			socialActivityCounter.setGroupId(group.getGroupId());
-			socialActivityCounter.setCompanyId(group.getCompanyId());
-			socialActivityCounter.setClassNameId(classNameId);
-			socialActivityCounter.setClassPK(classPK);
-			socialActivityCounter.setName(socialActivityCounterName);
-			socialActivityCounter.setOwnerType(ownerType);
-			socialActivityCounter.setCurrentValue(currentValue);
-			socialActivityCounter.setTotalValue(totalValue);
-			socialActivityCounter.setStartPeriod(startPeriod);
-
-			if (endPeriodOffset == 0) {
-				endPeriod = -1;
-			}
-
-			socialActivityCounter.setEndPeriod(endPeriod);
-		}
-		else {
-			socialActivityCounter.setCurrentValue(
-				socialActivityCounter.getCurrentValue() + currentValue);
-			socialActivityCounter.setTotalValue(totalValue);
-		}
+		socialActivityCounter.setCurrentValue(currentValue);
+		socialActivityCounter.setTotalValue(totalValue);
 
 		SocialActivityCounterLocalServiceUtil.updateSocialActivityCounter(
 			socialActivityCounter);
