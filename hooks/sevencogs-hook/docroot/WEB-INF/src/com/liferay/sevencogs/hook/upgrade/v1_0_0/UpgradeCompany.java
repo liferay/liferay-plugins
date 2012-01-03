@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -394,7 +395,7 @@ public class UpgradeCompany extends UpgradeProcess {
 
 	protected void addSocialActivityCounter(
 			Group group, List<User> users, String socialActivityCounterName,
-			String line)
+			String line, Map<String, SocialActivityCounter> map)
 		throws Exception {
 
 		String[] lineParts = StringUtil.split(line);
@@ -458,26 +459,58 @@ public class UpgradeCompany extends UpgradeProcess {
 			ownerType = SocialActivityCounterConstants.TYPE_CREATOR;
 		}
 
-		SocialActivityCounter socialActivityCounter =
-			SocialActivityCounterLocalServiceUtil.addActivityCounter(
-				group.getGroupId(), classNameId, classPK,
-				socialActivityCounterName, ownerType, -1, -1);
+		int startPeriodOffset = GetterUtil.getInteger(lineParts[2]);
+
+		int startPeriod = SocialCounterPeriodUtil.getStartPeriod(
+			startPeriodOffset);
 
 		int currentValue = getRandomNumber(0, 100);
+
 		int totalValue = currentValue;
 
-		if ((socialActivityCounter.getCurrentValue() != -1) &&
-			(socialActivityCounter.getTotalValue() != -1)) {
+		SocialActivityCounter socialActivityCounter =
+			SocialActivityCounterLocalServiceUtil.
+				fetchActivityCounterByStartPeriod(
+					group.getGroupId(), classNameId, classPK,
+					socialActivityCounterName, ownerType, startPeriod);
 
-			currentValue += socialActivityCounter.getCurrentValue();
-			totalValue += socialActivityCounter.getTotalValue();
+		if (socialActivityCounter != null) {
+			totalValue = totalValue + socialActivityCounter.getTotalValue();
 		}
 
-		socialActivityCounter.setCurrentValue(currentValue);
+		String key = encodeKey(
+			group.getGroupId(), classNameId, classPK,
+			socialActivityCounterName);
+
+		SocialActivityCounter latestSocialActivityCounter = map.get(key);
+
+		if (latestSocialActivityCounter != null) {
+			totalValue =
+				totalValue + latestSocialActivityCounter.getTotalValue();
+		}
+
+		if ((socialActivityCounter == null) ||
+			(socialActivityCounter.getStartPeriod() != startPeriod)) {
+
+			if (endPeriodOffset == 0) {
+				endPeriod = -1;
+			}
+
+			socialActivityCounter =
+				SocialActivityCounterLocalServiceUtil.addActivityCounter(
+					group.getGroupId(), classNameId, classPK,
+					socialActivityCounterName, ownerType, 0, 0, startPeriod,
+					endPeriod);
+		}
+
+		socialActivityCounter.setCurrentValue(
+			socialActivityCounter.getCurrentValue() + currentValue);
 		socialActivityCounter.setTotalValue(totalValue);
 
 		SocialActivityCounterLocalServiceUtil.updateSocialActivityCounter(
 			socialActivityCounter);
+
+		map.put(key, socialActivityCounter);
 	}
 
 	protected void addSocialActivityCounters(
@@ -489,9 +522,12 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		String[] lines = StringUtil.splitLines(content);
 
+		Map<String, SocialActivityCounter> map =
+			new HashMap<String, SocialActivityCounter>();
+
 		for (String line : lines) {
 			addSocialActivityCounter(
-				group, users, socialActivityCounterName, line);
+				group, users, socialActivityCounterName, line, map);
 		}
 	}
 
@@ -905,15 +941,31 @@ public class UpgradeCompany extends UpgradeProcess {
 		}
 	}
 
-	protected void enableSocialActivities(long companyId, Group group)
+	protected void enableSocialActivities(long groupId)
 		throws Exception {
 
 		SocialActivitySettingLocalServiceUtil.updateActivitySetting(
-			group.getGroupId(), BlogsEntry.class.getName(), true);
+			groupId, BlogsEntry.class.getName(), true);
 		SocialActivitySettingLocalServiceUtil.updateActivitySetting(
-			group.getGroupId(), MBMessage.class.getName(), true);
+			groupId, MBMessage.class.getName(), true);
 		SocialActivitySettingLocalServiceUtil.updateActivitySetting(
-			group.getGroupId(), WikiPage.class.getName(), true);
+			groupId, WikiPage.class.getName(), true);
+	}
+
+	protected String encodeKey(
+		long groupId, long classNameId, long classPK, String name) {
+
+		StringBundler sb = new StringBundler();
+
+		sb.append(StringUtil.toHexString(groupId));
+		sb.append(StringPool.POUND);
+		sb.append(StringUtil.toHexString(classNameId));
+		sb.append(StringPool.POUND);
+		sb.append(StringUtil.toHexString(classPK));
+		sb.append(StringPool.POUND);
+		sb.append(StringUtil.toHexString(name));
+
+		return sb.toString();
 	}
 
 	protected byte[] getBytes(String path) throws Exception {
@@ -1018,10 +1070,6 @@ public class UpgradeCompany extends UpgradeProcess {
 		GroupLocalServiceUtil.updateFriendlyURL(group.getGroupId(), "/7cogs");
 
 		serviceContext.setScopeGroupId(group.getGroupId());
-
-		// Social activities
-
-		enableSocialActivities(companyId, organization.getGroup());
 
 		// Layout set
 
@@ -1990,6 +2038,8 @@ public class UpgradeCompany extends UpgradeProcess {
 
 	protected void setupSocialActivityCounters(Group group, List<User> users)
 		throws Exception {
+
+		enableSocialActivities(group.getGroupId());
 
 		addSocialActivityCounters(group, users, "asset.activities");
 		addSocialActivityCounters(group, users, "contribution");
