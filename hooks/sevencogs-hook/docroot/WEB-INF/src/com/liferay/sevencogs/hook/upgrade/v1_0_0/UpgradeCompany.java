@@ -395,7 +395,8 @@ public class UpgradeCompany extends UpgradeProcess {
 
 	protected void addSocialActivityCounter(
 			Group group, List<User> users, String socialActivityCounterName,
-			String line, Map<String, SocialActivityCounter> map)
+			String line,
+			Map<String, SocialActivityCounter> socialActivityCounters)
 		throws Exception {
 
 		String[] lineParts = StringUtil.split(line);
@@ -464,25 +465,33 @@ public class UpgradeCompany extends UpgradeProcess {
 		int startPeriod = SocialCounterPeriodUtil.getStartPeriod(
 			startPeriodOffset);
 
-		int currentValue = getRandomNumber(0, 100);
-
-		int totalValue = currentValue;
-
 		SocialActivityCounter socialActivityCounter =
 			SocialActivityCounterLocalServiceUtil.
 				fetchActivityCounterByStartPeriod(
 					group.getGroupId(), classNameId, classPK,
 					socialActivityCounterName, ownerType, startPeriod);
 
+		int currentValue = getRandomNumber(0, 100);
+		int totalValue = currentValue;
+
 		if (socialActivityCounter != null) {
 			totalValue = totalValue + socialActivityCounter.getTotalValue();
 		}
 
-		String key = encodeKey(
-			group.getGroupId(), classNameId, classPK,
-			socialActivityCounterName);
+		StringBundler sb = new StringBundler(7);
 
-		SocialActivityCounter latestSocialActivityCounter = map.get(key);
+		sb.append(StringUtil.toHexString(group.getGroupId()));
+		sb.append(StringPool.POUND);
+		sb.append(StringUtil.toHexString(classNameId));
+		sb.append(StringPool.POUND);
+		sb.append(StringUtil.toHexString(classPK));
+		sb.append(StringPool.POUND);
+		sb.append(StringUtil.toHexString(socialActivityCounterName));
+
+		String key = sb.toString();
+
+		SocialActivityCounter latestSocialActivityCounter =
+			socialActivityCounters.get(key);
 
 		if (latestSocialActivityCounter != null) {
 			totalValue =
@@ -510,7 +519,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		SocialActivityCounterLocalServiceUtil.updateSocialActivityCounter(
 			socialActivityCounter);
 
-		map.put(key, socialActivityCounter);
+		socialActivityCounters.put(key, socialActivityCounter);
 	}
 
 	protected void addSocialActivityCounters(
@@ -522,12 +531,13 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		String[] lines = StringUtil.splitLines(content);
 
-		Map<String, SocialActivityCounter> map =
+		Map<String, SocialActivityCounter> socialActivityCounters =
 			new HashMap<String, SocialActivityCounter>();
 
 		for (String line : lines) {
 			addSocialActivityCounter(
-				group, users, socialActivityCounterName, line, map);
+				group, users, socialActivityCounterName, line,
+				socialActivityCounters);
 		}
 	}
 
@@ -950,22 +960,6 @@ public class UpgradeCompany extends UpgradeProcess {
 			groupId, MBMessage.class.getName(), true);
 		SocialActivitySettingLocalServiceUtil.updateActivitySetting(
 			groupId, WikiPage.class.getName(), true);
-	}
-
-	protected String encodeKey(
-		long groupId, long classNameId, long classPK, String name) {
-
-		StringBundler sb = new StringBundler();
-
-		sb.append(StringUtil.toHexString(groupId));
-		sb.append(StringPool.POUND);
-		sb.append(StringUtil.toHexString(classNameId));
-		sb.append(StringPool.POUND);
-		sb.append(StringUtil.toHexString(classPK));
-		sb.append(StringPool.POUND);
-		sb.append(StringUtil.toHexString(name));
-
-		return sb.toString();
 	}
 
 	protected byte[] getBytes(String path) throws Exception {
