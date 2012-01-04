@@ -23,7 +23,6 @@
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/saaj-api.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/saaj-impl.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/slf4j-api.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/portal/slf4j-log4j12.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/wsdl4j.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/xmlsec.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/portal-service/portal-service.jar" />
