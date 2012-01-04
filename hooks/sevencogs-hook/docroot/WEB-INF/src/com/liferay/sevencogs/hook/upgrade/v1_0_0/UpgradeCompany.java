@@ -121,7 +121,7 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		Map<Locale, String> titleMap = new HashMap<Locale, String>();
 
-		titleMap.put(getLocale(), title);
+		setLocalizedValue(titleMap, title);
 
 		return AssetCategoryLocalServiceUtil.addCategory(
 			userId, parentCategoryId, titleMap, null, vocabularyId, null,
@@ -134,7 +134,7 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		Map<Locale, String> titleMap = new HashMap<Locale, String>();
 
-		titleMap.put(getLocale(), title);
+		setLocalizedValue(titleMap, title);
 
 		return AssetVocabularyLocalServiceUtil.addVocabulary(
 			userId, StringPool.BLANK, titleMap, null, null, serviceContext);
@@ -228,7 +228,7 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		Map<Locale, String> titleMap = new HashMap<Locale, String>();
 
-		titleMap.put(getLocale(), title);
+		setLocalizedValue(titleMap, title);
 
 		JournalArticle journalArticle =
 			JournalArticleLocalServiceUtil.addArticle(
@@ -253,11 +253,11 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		Map<Locale, String> nameMap = new HashMap<Locale, String>();
 
-		nameMap.put(getLocale(), "Single Image");
+		setLocalizedValue(nameMap, "Single Image");
 
 		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
 
-		descriptionMap.put(getLocale(), "A single image, optional link");
+		setLocalizedValue(descriptionMap, "A single image, optional link");
 
 		String xsd = getString(fileName);
 
@@ -277,11 +277,11 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
 
-		descriptionMap.put(getLocale(), "A single image, optional URL");
+		setLocalizedValue(descriptionMap, "A single image, optional URL");
 
 		Map<Locale, String> nameMap = new HashMap<Locale, String>();
 
-		nameMap.put(getLocale(), "Single Image");
+		setLocalizedValue(nameMap, "Single Image");
 
 		String xsl = getString(fileName);
 
@@ -570,7 +570,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		String emailAddress = screenName + "@7cogs.com";
 		long facebookId = 0;
 		String openId = StringPool.BLANK;
-		Locale locale = getLocale();
+		Locale locale = LocaleUtil.getDefault();
 		String middleName = StringPool.BLANK;
 		int prefixId = 0;
 		int suffixId = 0;
@@ -974,10 +974,6 @@ public class UpgradeCompany extends UpgradeProcess {
 		return classLoader.getResourceAsStream("/resources" + path);
 	}
 
-	protected Locale getLocale() {
-		return LocaleUtil.getDefault();
-	}
-
 	protected int getRandomNumber(int min, int max) {
 		return (int)(Math.round(min + Math.random() * (max-min)));
 	}
@@ -1012,6 +1008,16 @@ public class UpgradeCompany extends UpgradeProcess {
 			"portletSetupShowBorders", String.valueOf(Boolean.FALSE));
 
 		portletSetup.store();
+	}
+
+	protected void setLocalizedValue(Map<Locale, String> map, String value) {
+		Locale locale = LocaleUtil.getDefault();
+
+		map.put(locale, value);
+
+		if (!locale.equals(Locale.US)) {
+			map.put(Locale.US, value);
+		}
 	}
 
 	protected void setRolePermissions(
@@ -1747,8 +1753,9 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
 
-		descriptionMap.put(
-			getLocale(), "Publishers are responsible for publishing content.");
+		setLocalizedValue(
+			descriptionMap,
+			"Publishers are responsible for publishing content.");
 
 		Role publisherRole = RoleLocalServiceUtil.fetchRole(
 			companyId, "Publisher");
@@ -1779,8 +1786,8 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		descriptionMap.clear();
 
-		descriptionMap.put(
-			getLocale(), "Writers are responsible for creating content.");
+		setLocalizedValue(
+			descriptionMap, "Writers are responsible for creating content.");
 
 		Role writerRole = RoleLocalServiceUtil.fetchRole(companyId, "Writer");
 
