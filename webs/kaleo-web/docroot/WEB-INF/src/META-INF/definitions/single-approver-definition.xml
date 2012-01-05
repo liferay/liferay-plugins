@@ -10,6 +10,9 @@
 	<version>1</version>
 	<state>
 		<name>created</name>
+		<metadata>
+			<![CDATA[{"xy":[78,53]}]]>
+		</metadata>
 		<initial>true</initial>
 		<transitions>
 			<transition>
@@ -20,6 +23,9 @@
 	</state>
 	<task>
 		<name>update</name>
+		<metadata>
+			<![CDATA[{"xy":[397,191]}]]>
+		</metadata>
 		<actions>
 			<notification>
 				<name>Creator Modification Notification</name>
@@ -41,6 +47,9 @@
 	</task>
 	<task>
 		<name>review</name>
+		<metadata>
+			<![CDATA[{"xy":[225,45]}]]>
+		</metadata>
 		<actions>
 			<notification>
 				<name>Review Notification</name>
@@ -111,6 +120,9 @@
 	</task>
 	<state>
 		<name>approved</name>
+		<metadata>
+			<![CDATA[{"xy":[422,56]}]]>
+		</metadata>
 		<actions>
 			<action>
 				<name>approve</name>

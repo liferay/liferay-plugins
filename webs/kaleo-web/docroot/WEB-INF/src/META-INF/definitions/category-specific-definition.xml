@@ -10,6 +10,9 @@
 	<version>1</version>
 	<state>
 		<name>created</name>
+		<metadata>
+			<![CDATA[{"xy":[58,39]}]]>
+		</metadata>
 		<initial>true</initial>
 		<transitions>
 			<transition>
@@ -21,6 +24,9 @@
 	</state>
 	<condition>
 		<name>determine-branch</name>
+		<metadata>
+			<![CDATA[{"xy":[228,32]}]]>
+		</metadata>
 		<script>
 			<![CDATA[
 				import com.liferay.portal.kernel.util.GetterUtil;
@@ -78,6 +84,9 @@
 	</condition>
 	<task>
 		<name>update</name>
+		<metadata>
+			<![CDATA[{"xy":[673,33]}]]>
+		</metadata>
 		<actions>
 			<notification>
 				<name>Creator Modification Notification</name>
@@ -100,6 +109,9 @@
 	</task>
 	<task>
 		<name>content-review</name>
+		<metadata>
+			<![CDATA[{"xy":[447,119]}]]>
+		</metadata>
 		<actions>
 			<notification>
 				<name>Review Notification</name>
@@ -178,6 +190,9 @@
 	</task>
 	<task>
 		<name>legal-review</name>
+		<metadata>
+			<![CDATA[{"xy":[218,281]}]]>
+		</metadata>
 		<actions>
 			<notification>
 				<name>Review Notification</name>
@@ -238,6 +253,9 @@
 	</task>
 	<state>
 		<name>approved</name>
+		<metadata>
+			<![CDATA[{"xy":[697,316]}]]>
+		</metadata>
 		<actions>
 			<action>
 				<name>approve</name>
