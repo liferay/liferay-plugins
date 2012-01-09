@@ -3,6 +3,10 @@
 
 <routes>
 	<route>
+		<pattern></pattern>
+		<implicit-parameter name="jspPage">/view.jsp</implicit-parameter>
+	</route>
+	<route>
 		<pattern>/thread/{mbThreadId:\d+}</pattern>
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
 	</route>
