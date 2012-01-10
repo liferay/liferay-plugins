@@ -32,13 +32,19 @@ a:hover {
 	position: static;
 }
 
-#skip-to-content, #navigation h1 {
+#skip-to-content, #navigation h1, .opens-new-window-accessible {
 	clip: rect(0 0 0 0);
 	position: absolute;
 	text-indent: -9999em;
 }
 
-#banner:after, #footer, .contacts-portlet .members-container:after, .portlet-msg-info:after, .portlet-toolbar:after, .so-portlet-activities .activity-item:after {
+a:focus .opens-new-window-accessible {
+	clip: none;
+	position: fixed;
+	text-indent: 0;
+}
+
+#banner:after, #footer, .contacts-portlet .members-container:after, .portlet-msg-info:after, .portlet-toolbar:after, .so-portlet-activities .activity-item:after, .taglib-header:after {
 	clear: both;
 	content: "";
 	display: block;
@@ -52,12 +58,6 @@ a:hover {
 
 #banner {
 	border-bottom: 1px solid $border-color;
-
-	.logo {
-		display: block;
-		font-size: 0;
-		text-indent: -9999em;
-	}
 
 	.company-title {
 		float: left;
@@ -314,6 +314,7 @@ a:hover {
 	.portlet-layout {
 		.portlet-column-only {
 			background: #FFF;
+			border-right: 1px solid $border-color;
 			position: relative;
 			z-index: 2;
 
@@ -446,11 +447,11 @@ input[type=text], textarea, input[type=password], .aui-field-select select, .aui
 	vertical-align: top;
 }
 
-button, input[type=submit], input[type=button], input[type=reset], .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .aui-dialog-hd, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .aui-button-input, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .results-header th, .contacts-portlet .social-relations a:hover, .top-links-navigation a:hover, .lfr-actions.lfr-extended, .invite-members, .thread-controls a:hover, .edit-controls a:hover {
+button, input[type=submit], input[type=button], input[type=reset], .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .aui-dialog-hd, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .aui-button-input, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .results-header th, .contacts-portlet .social-relations a:hover, .top-links-navigation a:hover, .lfr-actions.lfr-extended, .invite-members, .thread-controls a:hover, .edit-controls a:hover, .portlet-document-library .select-documents, .portlet-document-library-display .select-documents, .tasks-dialog .control a.taglib-icon {
 	@include border-radius(3px);
 	@include box-shadow(0 1px 0 #F4F3F3 inset, 0 -1px 0 #D9D8D8 inset);
 	background: #E9E8E8;
-	border-color: #CECECE;
+	border: 1px solid #CECECE;
 	text-shadow: none;
 }
 
@@ -480,7 +481,7 @@ button, input[type=submit], input[type=button], input[type=reset], .aui-panel-hd
 	padding-right: 30px;
 }
 
-input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .contacts-portlet .social-relations a:hover, .top-links-navigation a:hover, .lfr-actions.lfr-extended:hover, .invite-members:hover, .thread-controls a:hover, .edit-controls a:hover {
+input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .contacts-portlet .social-relations a:hover, .top-links-navigation a:hover, .lfr-actions.lfr-extended:hover, .invite-members:hover, .thread-controls a:hover, .edit-controls a:hover, .tasks-dialog .control a.taglib-icon:hover {
 	&:hover {
 		background: #EEE;
 		border-color: #AAA;
@@ -490,6 +491,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 .aui-toolbar {
 	.aui-toolbar-item {
+		@include border-radius(0);
 		border-width: 1px 0 1px 1px;
 	}
 
@@ -992,6 +994,64 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	#_33_fm .aui-fieldset {
 		width: 100%;
 	}
+
+	.lfr-discussion-details {
+		margin-right: auto;
+		padding-left: 55px;
+		width: auto;
+	}
+
+	.lfr-discussion-form-reply {
+		background-color: #EEE;
+	}
+
+	.lfr-discussion-form-reply, .lfr-discussion-details-content {
+		padding: 0;
+		position: relative;
+
+		.user-name {
+			text-align: left;
+			text-decoration: none;
+		}
+
+		.user-profile-image, .user-name {
+			display: inline-block;
+		}
+
+		.user-profile-image {
+			float: none;
+			position: relative;
+
+			img {
+				left: -56px;
+				position: absolute;
+			}
+		}
+	}
+
+	.lfr-discussion-form-reply .user-profile-image img {
+		left: 0;
+		position: relative;
+	}
+
+	.lfr-discussion-body-content {
+		margin-left: 55px;
+	}
+
+	.lfr-discussion-body {
+		clear: both;
+		float: none;
+	}
+
+	.aui-thumbrating-content {
+		position: absolute;
+		right: 0;
+		top: 2px;
+	}
+
+	.user-details {
+		display: none;
+	}
 }
 
 /* Recent Bloggers  */
@@ -1065,7 +1125,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		padding-right: 0;
 	}
 
-	.aui-form, .taglib-page-iterator {
+	#_4_WAR_contactsportlet_fm, .taglib-page-iterator {
 		padding: 5px;
 	}
 
@@ -1301,9 +1361,47 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 }
 
-.upcoming-tasks-portlet .task-title a:hover {
-	background-color: #EEE;
+.upcoming-tasks-portlet .tasksentries-container .tasks-title a {
+	padding: 3px 0 3px 20px;
+
+	&:hover {
+		background-color: #EEE;
+		text-decoration: none;
+	}
 }
+
+.tasks-dialog {
+	.comment-wrapper {
+		border: 1px solid #EEE;
+
+		.comment-body {
+			background: #FFF;
+			padding: 10px;
+		}
+
+		.comment-info {
+			background: #EEE;
+			padding: 5px;
+		}
+
+		.user-name {
+			font-weight: bold;
+		}
+	}
+	
+	.control a.taglib-icon {
+		border: 1px solid auto;
+		color: #34404F;
+		display: inline-block;
+		font-weight: bold;
+		padding: 5px;
+
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}
+
 
 .ie .tasks-portlet {
 	zoom: 1;
@@ -1318,19 +1416,82 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 /* Documents and Images Library */
 
+
 .portlet-document-library {
+	border-left: 1px solid $border-color;
+
 	.lfr-app-column-view {
-		border-width: 0 1px;
+		border-width: 0;
+
+		.results-row td {
+			border-width: 0;
+		}
+
+		.results-row.alt td {
+			background: transparent;
+		}
+
+		.results-row.hover td {
+			background-color: #D3E8F1;
+		}
+	}
+
+	.search-button-container {
+
+		.aui-column-content, .aui-column-content-center {
+			border-width: 0;
+			padding: 0;
+		}
+
+		.lfr-search-combobox .lfr-search-combobox-item, .lfr-search-combobox .aui-button {
+			margin: 0;
+		}
 	}
 
 	.aui-column-content-first, .aui-column-content-last {
 		padding: 0;
 	}
 
+	.aui-w65 {
+		width: 70%;
+	}
+
+	.aui-w35 {
+		width: 30%;
+	}
+
 	.lfr-header-row {
 		background: #EEE;
 		border-bottom: 1px solid #AAA;
 	}
+
+	.lfr-header-row-content .parent-folder-title, .portlet-document-library-display .lfr-header-row-content .parent-folder-title {
+		color: #34404F;
+		text-shadow: none;
+	}
+
+	.context-pane .context-pane-content, .portlet-document-library-display .context-pane .context-pane-content {
+		border-left-width: 0;
+	}
+
+	.header-title {
+		display: none;
+	}
+
+	.taglib-header {
+		position: relative;
+	}
+
+	.header-back-to {
+		position: absolute;
+		top: 0;
+		right: 0;
+		z-index: 1;
+	}
+}
+
+.portlet-document-library .folder, .portlet-document-library-display .folder {
+	margin-top: 0;
 }
 
 /* Social Office Notifications */
@@ -1458,6 +1619,13 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		.thread-top {
 			border-bottom-width: 0;
 			padding: 1.75em 0 0;
+			position: relative;
+
+			.edit-controls {
+				position: absolute;
+				right: 0;
+				top: 0;
+			}
 		}
 
 		.results-row {
@@ -1566,5 +1734,35 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 	.results-row.hover td {
 		background: #EEE;
+	}
+}
+
+/* Search */
+
+.portlet-search {
+	.portlet-topper {
+		display: none;
+	}
+
+	.aui-form fieldset.aui-fieldset {
+		border-bottom: 1px solid $border-color;
+		margin: 0;
+		padding: 5px;
+	}
+
+	.portlet-content, .menu-content {
+		padding: 0;
+	}
+
+	.search-layout .search-layout-content .menu .search-facet {
+		padding: 0 10px;
+	}
+
+	.menu {
+		border-right: 1px solid $border-color;
+	}
+	
+	.result-content {
+		margin-right: 0 -6px 0 -7px;
 	}
 }
