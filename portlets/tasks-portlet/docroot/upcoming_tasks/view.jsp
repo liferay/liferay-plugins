@@ -1,6 +1,6 @@
 <%--
 /**
- * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -32,7 +32,7 @@ List<TasksEntry> TasksEntriess = TasksEntryLocalServiceUtil.getTasksEntries(0, 0
 
 				portletURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 
-				portletURL.setParameter("jspPage", "/tasks/view_task.jsp");
+				portletURL.setParameter("mvcPath", "/tasks/view_task.jsp");
 				portletURL.setParameter("tasksEntryId", String.valueOf(tasksEntry.getTasksEntryId()));
 
 				taskHREF = portletURL.toString();
