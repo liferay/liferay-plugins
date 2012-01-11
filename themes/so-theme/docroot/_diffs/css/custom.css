@@ -59,6 +59,10 @@ a:focus .opens-new-window-accessible {
 #banner {
 	border-bottom: 1px solid $border-color;
 
+	.logo {
+		text-indent: -9999em;
+	}
+
 	.company-title {
 		float: left;
 		padding: 5px 0 10px;
