@@ -33,14 +33,14 @@ else {
 
 List<CalEvent> events = new ArrayList<CalEvent>();
 
-Calendar tempCal = (Calendar)cal.clone();
+Calendar curCal = (Calendar)cal.clone();
 
 for (int i = 0; i < maxDaysDisplayed; i++) {
 	for (Group curGroup : groups) {
-		events.addAll(CalEventLocalServiceUtil.getEvents(curGroup.getGroupId(), tempCal));
+		events.addAll(CalEventLocalServiceUtil.getEvents(curGroup.getGroupId(), curCal));
 	}
 
-	tempCal.add(Calendar.DATE, 1);
+	curCal.add(Calendar.DATE, 1);
 }
 
 if (events.size() > 1) {
