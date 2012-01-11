@@ -54,7 +54,7 @@ boolean ignoreRequestValue = (index != formFieldsIndex);
 			<aui:input type="hidden" name='<%= "_field" + index %>' />
 
 			<aui:field-wrapper cssClass="label-name" label="name">
-				<liferay-ui:input-localized ignoreRequestValue="<%= ignoreRequestValue %>" name='<%= "fieldLabel" + index %>' xml="<%= fieldLabelXml %>"/>
+				<liferay-ui:input-localized ignoreRequestValue="<%= ignoreRequestValue %>" name='<%= "fieldLabel" + index %>' xml="<%= fieldLabelXml %>" />
 			</aui:field-wrapper>
 		</c:when>
 		<c:otherwise>
