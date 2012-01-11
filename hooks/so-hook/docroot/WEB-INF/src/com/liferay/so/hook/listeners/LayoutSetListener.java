@@ -72,7 +72,7 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		Layout layout = LayoutUtil.addLayout(
 			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Home",
-			"1_column");
+			"2_columns_iii");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/home",

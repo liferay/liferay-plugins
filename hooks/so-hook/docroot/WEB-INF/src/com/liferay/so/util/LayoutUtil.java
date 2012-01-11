@@ -119,6 +119,12 @@ public class LayoutUtil {
 			if (portletId.startsWith("1_WAR_wysiwygportlet")) {
 				updatePortletTitle(layout, portletId, "Welcome");
 			}
+			else if (portletId.startsWith("1_WAR_eventsdisplayportlet")) {
+				updatePortletTitle(layout, portletId, "Events");
+			}
+			else if (portletId.startsWith("101")) {
+				updatePortletTitle(layout, portletId, "Related Content");
+			}
 			else if (portletId.contains("_WAR_contactsportlet")) {
 				configureProfile(layout, portletId);
 				removePortletBorder(layout, portletId);
