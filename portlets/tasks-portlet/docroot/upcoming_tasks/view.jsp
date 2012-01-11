@@ -71,12 +71,12 @@ List<TasksEntry> TasksEntriess = TasksEntryLocalServiceUtil.getTasksEntries(0, 0
 	<div class="view-all-tasks">
 
 		<%
-		long tasksPlid = PortalUtil.getPlidFromPortletId(group.getGroupId(), "1_WAR_tasksportlet");
+		long tasksPlid = PortalUtil.getPlidFromPortletId(group.getGroupId(), PortletKeys.TASKS);
 
 		PortletURL portletURL = null;
 
 		if (tasksPlid != 0) {
-			portletURL = PortletURLFactoryUtil.create(request, "1_WAR_tasksportlet", tasksPlid, PortletRequest.RENDER_PHASE);
+			portletURL = PortletURLFactoryUtil.create(request, PortletKeys.TASKS, tasksPlid, PortletRequest.RENDER_PHASE);
 		}
 		%>
 
