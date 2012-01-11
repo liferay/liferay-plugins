@@ -373,6 +373,36 @@ a:focus .opens-new-window-accessible {
 
 /* ---------- Profile ---------- */
 
+.user-sites-title, .user-tags-title {
+	color: #929292;
+	font-weight: bold;
+	padding: 6px 0 0;
+}
+
+.user-sites, .user-sites li, .user-tags, .user-tags li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.user-sites, .user-tags {
+	border-bottom: 1px solid $border-color;
+	margin: 0 -10px;
+	padding: 0 10px 6px;
+}
+.user-tags li {
+	display: inline;
+
+	a {
+		@include border-radius(4px);
+		background: $link;
+		color: #EEE;
+		display: inline-block;
+		margin: 4px;
+		padding: 3px 6px;
+	}
+}
+
 .profile-header {
 	padding: 10px;
 	border: 1px solid $border-color;
