@@ -4,7 +4,6 @@
 <service-builder package-path="com.liferay.calendar" auto-namespace-tables="false">
 	<author>Eduardo Lundgren</author>
 	<namespace>Calendar</namespace>
-
 	<entity name="Calendar" uuid="true" local-service="true" remote-service="true">
 
 		<!-- PK fields -->
@@ -31,8 +30,8 @@
 
 		<column name="calendarResourceId" type="long" />
 		<column name="name" type="String" localized="true" />
+		<column name="description" type="String" localized="true" />
 		<column name="color" type="int" />
-		<column name="description" type="String"  localized="true" />
 		<column name="defaultCalendar" type="boolean" />
 
 		<!-- Order -->
@@ -59,7 +58,6 @@
 		<reference package-path="com.liferay.portal" entity="User" />
 		<reference package-path="com.liferay.portlet.expando" entity="ExpandoValue" />
 	</entity>
-
 	<entity name="CalendarBooking" uuid="true" local-service="true" remote-service="true">
 
 		<!-- PK fields -->
@@ -118,17 +116,16 @@
 		<finder name="CalendarId" return-type="Collection">
 			<finder-column name="calendarId" />
 		</finder>
-
 		<finder name="CalendarResourceId" return-type="Collection">
 			<finder-column name="calendarResourceId" />
-		</finder>
-		<finder name="C_S" return-type="Collection">
-			<finder-column name="calendarResourceId" />
-			<finder-column name="status" />
 		</finder>
 		<finder name="C_R" return-type="Collection">
 			<finder-column name="calendarId" />
 			<finder-column name="remindBy" comparator="!=" />
+		</finder>
+		<finder name="C_S" return-type="Collection">
+			<finder-column name="calendarResourceId" />
+			<finder-column name="status" />
 		</finder>
 
 		<!-- References -->
@@ -167,8 +164,8 @@
 		<column name="classNameId" type="long" />
 		<column name="classPK" type="long" />
 		<column name="classUuid" type="String" />
-		<column name="name" type="String" localized="true" />
 		<column name="code" type="String" />
+		<column name="name" type="String" localized="true" />
 		<column name="description" type="String" localized="true" />
 		<column name="type" type="String" />
 		<column name="active" type="boolean" />
