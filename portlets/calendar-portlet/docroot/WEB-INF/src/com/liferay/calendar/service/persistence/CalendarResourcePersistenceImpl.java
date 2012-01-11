@@ -195,6 +195,13 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 				Long.class.getName(), String.class.getName(),
 				Boolean.class.getName()
 			});
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_COUNT_BY_G_N_A = new FinderPath(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
+			CalendarResourceModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByG_N_A",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
+				Boolean.class.getName()
+			});
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_C_N_A = new FinderPath(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarResourceModelImpl.FINDER_CACHE_ENABLED,
 			CalendarResourceImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
@@ -2960,16 +2967,14 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	public List<CalendarResource> findByG_N_A(long[] groupIds, String name,
 		boolean active, int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
-		FinderPath finderPath = null;
+		FinderPath finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_G_N_A;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_N_A;
 			finderArgs = new Object[] { StringUtil.merge(groupIds), name, active };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_G_N_A;
 			finderArgs = new Object[] {
 					StringUtil.merge(groupIds), name, active,
 					
@@ -4725,7 +4730,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 				StringUtil.merge(groupIds), name, active
 			};
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_N_A,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_WITH_PAGINATION_COUNT_BY_G_N_A,
 				finderArgs, this);
 
 		if (count == null) {
@@ -4812,7 +4817,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_N_A,
+				FinderCacheUtil.putResult(FINDER_PATH_WITH_PAGINATION_COUNT_BY_G_N_A,
 					finderArgs, count);
 
 				closeSession(session);
