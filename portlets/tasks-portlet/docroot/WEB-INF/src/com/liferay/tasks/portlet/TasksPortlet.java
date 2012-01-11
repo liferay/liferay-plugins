@@ -34,6 +34,7 @@ import com.liferay.portlet.messageboards.service.MBMessageServiceUtil;
 import com.liferay.tasks.model.TasksEntry;
 import com.liferay.tasks.service.TasksEntryLocalServiceUtil;
 import com.liferay.tasks.service.TasksEntryServiceUtil;
+import com.liferay.tasks.util.PortletKeys;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
@@ -201,7 +202,7 @@ public class TasksPortlet extends MVCPortlet {
 
 		PortletURL portletURL = PortletURLFactoryUtil.create(
 			PortalUtil.getHttpServletRequest(actionRequest),
-			"1_WAR_tasksportlet", themeDisplay.getLayout().getPlid(),
+			PortletKeys.TASKS, themeDisplay.getLayout().getPlid(),
 			PortletRequest.RENDER_PHASE);
 
 		portletURL.setWindowState(LiferayWindowState.EXCLUSIVE);
