@@ -80,11 +80,13 @@
 
 	<c:if test="<%= Validator.isNotNull(jobTitle) %>">
 		<div class="user-job-title">
-			<span class="title">
-				<liferay-ui:message key="job-title" />
-			</span>
+			<p>
+				<span class="title">
+					<liferay-ui:message key="job-title" />
+				</span>
 
-			<%= HtmlUtil.escape(jobTitle) %>
+				<%= HtmlUtil.escape(jobTitle) %>
+			</p>
 		</div>
 	</c:if>
 
@@ -94,11 +96,13 @@
 
 	<c:if test="<%= Validator.isNotNull(twitterSn) %>">
 		<div class="user-twitter">
-			<span class="title">
-				<liferay-ui:message key="twitter" />
-			</span>
+			<p>
+				<span class="title">
+					<liferay-ui:message key="twitter" />
+				</span>
 
-			<a class="user-twitter-link" href="http://twitter.com/<%= HtmlUtil.escapeAttribute(twitterSn) %>"><%= HtmlUtil.escape(twitterSn) %></a>
+				<a class="user-twitter-link" href="http://twitter.com/<%= HtmlUtil.escapeAttribute(twitterSn) %>"><%= HtmlUtil.escape(twitterSn) %></a>
+			</p>
 		</div>
 	</c:if>
 
@@ -108,11 +112,13 @@
 
 	<c:if test="<%= Validator.isNotNull(aboutMe) %>">
 		<div class="user-about">
-			<span class="title">
-				<liferay-ui:message key="about-me" />
-			</span>
+			<p>
+				<span class="title">
+					<liferay-ui:message key="about-me" />
+				</span>
 
-			<%= aboutMe %>
+				<%= aboutMe %>
+			</p>
 		</div>
 	</c:if>
 
@@ -128,7 +134,7 @@
 			</span>
 
 			<c:if test="<%= mbMessagesCount > 0 %>">
-				<div class="user-mb-message-post-count">
+				<div class="user-mb-message-post-count aui-helper-clearfix">
 					<c:choose>
 						<c:when test="<%= mbPlid != LayoutConstants.DEFAULT_PLID %>">
 							<span class="view-icon">
@@ -163,7 +169,7 @@
 			</c:if>
 
 			<c:if test="<%= blogsEntriesCount > 0 %>">
-				<div class="user-blog-entry-count">
+				<div class="user-blog-entry-count aui-helper-clearfix">
 					<c:choose>
 						<c:when test="<%= blogsPlid != LayoutConstants.DEFAULT_PLID %>">
 							<span class="view-icon">
