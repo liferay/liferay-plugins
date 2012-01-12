@@ -37,6 +37,10 @@
 	text-transform: uppercase;
 }
 
+.ie .social-networking-portlet-summary .aui-helper-clearfix {
+	-ie-exp: expression(!this.x?(this.innerHTML+='<br\ style=clear:both;font:0/0;>',this.x=1):void 0);
+}
+
 .social-networking-portlet-summary .summary-container .user-profile-image {
 	max-width: 180px;
 }
@@ -88,4 +92,16 @@
 
 .social-networking-portlet-summary .summary-container .remove-friend {
 	margin: 0.7em auto 1em;
+}
+
+.social-networking-portlet-summary .summary-container .view-icon {
+	float: left;
+}
+
+.social-networking-portlet-summary .summary-container .rss-icon {
+	float: right;
+}
+
+.social-networking-portlet-summary .summary-container .comma {
+	display: none;
 }
