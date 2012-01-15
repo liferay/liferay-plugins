@@ -3,6 +3,10 @@
 
 <routes>
 	<route>
+		<pattern></pattern>
+		<implicit-parameter name="p_p_id">1_WAR_contactsportlet</implicit-parameter>
+	</route>
+	<route>
 		<pattern>/search</pattern>
 		<implicit-parameter name="jspPage">/contacts_center/view.jsp</implicit-parameter>
 		<implicit-parameter name="p_p_id">1_WAR_contactsportlet</implicit-parameter>

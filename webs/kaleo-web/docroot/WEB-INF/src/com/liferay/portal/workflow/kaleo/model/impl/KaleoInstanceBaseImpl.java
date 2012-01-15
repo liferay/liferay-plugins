@@ -38,6 +38,11 @@ public abstract class KaleoInstanceBaseImpl extends KaleoInstanceModelImpl
 	 * Never modify or reference this class directly. All methods that expect a kaleo instance model instance should use the {@link KaleoInstance} interface instead.
 	 */
 	public void persist() throws SystemException {
-		KaleoInstanceLocalServiceUtil.updateKaleoInstance(this);
+		if (this.isNew()) {
+			KaleoInstanceLocalServiceUtil.addKaleoInstance(this);
+		}
+		else {
+			KaleoInstanceLocalServiceUtil.updateKaleoInstance(this);
+		}
 	}
 }

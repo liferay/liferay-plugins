@@ -133,7 +133,12 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 	}
 
 	public void persist() throws SystemException {
-		WallEntryLocalServiceUtil.updateWallEntry(this);
+		if (this.isNew()) {
+			WallEntryLocalServiceUtil.addWallEntry(this);
+		}
+		else {
+			WallEntryLocalServiceUtil.updateWallEntry(this);
+		}
 	}
 
 	@Override

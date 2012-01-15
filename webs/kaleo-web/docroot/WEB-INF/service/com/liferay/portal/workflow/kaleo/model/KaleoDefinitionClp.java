@@ -291,7 +291,12 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 	}
 
 	public void persist() throws SystemException {
-		KaleoDefinitionLocalServiceUtil.updateKaleoDefinition(this);
+		if (this.isNew()) {
+			KaleoDefinitionLocalServiceUtil.addKaleoDefinition(this);
+		}
+		else {
+			KaleoDefinitionLocalServiceUtil.updateKaleoDefinition(this);
+		}
 	}
 
 	@Override

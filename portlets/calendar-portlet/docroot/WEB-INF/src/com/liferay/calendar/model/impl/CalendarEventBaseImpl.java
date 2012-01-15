@@ -39,6 +39,11 @@ public abstract class CalendarEventBaseImpl extends CalendarEventModelImpl
 	 * Never modify or reference this class directly. All methods that expect a calendar event model instance should use the {@link CalendarEvent} interface instead.
 	 */
 	public void persist() throws SystemException {
-		CalendarEventLocalServiceUtil.updateCalendarEvent(this);
+		if (this.isNew()) {
+			CalendarEventLocalServiceUtil.addCalendarEvent(this);
+		}
+		else {
+			CalendarEventLocalServiceUtil.updateCalendarEvent(this);
+		}
 	}
 }

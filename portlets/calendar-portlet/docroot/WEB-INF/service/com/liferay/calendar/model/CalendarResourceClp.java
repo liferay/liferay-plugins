@@ -388,7 +388,12 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 	}
 
 	public void persist() throws SystemException {
-		CalendarResourceLocalServiceUtil.updateCalendarResource(this);
+		if (this.isNew()) {
+			CalendarResourceLocalServiceUtil.addCalendarResource(this);
+		}
+		else {
+			CalendarResourceLocalServiceUtil.updateCalendarResource(this);
+		}
 	}
 
 	@Override

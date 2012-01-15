@@ -3,6 +3,10 @@
 
 <routes>
 	<route>
+		<pattern></pattern>
+		<implicit-parameter name="jspPage">/search/view.jsp</implicit-parameter>
+	</route>
+	<route>
 		<pattern>/rss</pattern>
 		<ignored-parameter name="jspPage" />
 		<ignored-parameter name="p_p_state" />

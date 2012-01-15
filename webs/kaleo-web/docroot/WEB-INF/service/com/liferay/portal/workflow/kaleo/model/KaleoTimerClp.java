@@ -216,7 +216,12 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 	}
 
 	public void persist() throws SystemException {
-		KaleoTimerLocalServiceUtil.updateKaleoTimer(this);
+		if (this.isNew()) {
+			KaleoTimerLocalServiceUtil.addKaleoTimer(this);
+		}
+		else {
+			KaleoTimerLocalServiceUtil.updateKaleoTimer(this);
+		}
 	}
 
 	@Override

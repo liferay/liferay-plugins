@@ -3,6 +3,10 @@
 
 <routes>
 	<route>
+		<pattern></pattern>
+		<implicit-parameter name="jspPage">/meetups/view.jsp</implicit-parameter>
+	</route>
+	<route>
 		<pattern>/entry/{meetupsEntryId:\d+}</pattern>
 		<implicit-parameter name="jspPage">/meetups/view_entry.jsp</implicit-parameter>
 		<implicit-parameter name="p_p_state">maximized</implicit-parameter>

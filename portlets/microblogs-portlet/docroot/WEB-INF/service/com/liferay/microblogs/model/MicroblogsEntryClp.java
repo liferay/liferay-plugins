@@ -167,7 +167,12 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 	}
 
 	public void persist() throws SystemException {
-		MicroblogsEntryLocalServiceUtil.updateMicroblogsEntry(this);
+		if (this.isNew()) {
+			MicroblogsEntryLocalServiceUtil.addMicroblogsEntry(this);
+		}
+		else {
+			MicroblogsEntryLocalServiceUtil.updateMicroblogsEntry(this);
+		}
 	}
 
 	@Override

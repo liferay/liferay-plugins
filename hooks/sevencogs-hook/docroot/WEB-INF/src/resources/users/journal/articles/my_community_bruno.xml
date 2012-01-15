@@ -8,12 +8,12 @@
 			</h2>
 
 			<p>
-				My name is Bruno Admin. My Role in 7Cogs Inc. is the portal <strong>administrator</strong>. I have all the priveleges you'd expext from an Administrator, like:
+				My name is Bruno Admin. My Role in 7Cogs Inc. is the Portal <strong>Administrator</strong>. I have all the privileges you'd expect from an Administrator, like:
 			</p>
 
 			<ul>
 				<li>
-					The ability to add and delete pages, articles, portlets ect..
+					The ability to add and delete pages, articles, portlets, etc..
 				</li>
 				<li>
 					I can assign roles for editors, contributors, staff members and give them the most appropriate privileges
@@ -28,7 +28,7 @@
 			</p>
 
 			<p>
-				I also have a few <strong>private pages</strong> that only I can see (my socialSpace, my workSpace and my email). When I'm logged in, I'm able to access the pages using the <a href="http://www.liferay.com/community/wiki/-/wiki/1071674/Dockbar/maximized" target="_blank"><em>Dockbar</em></a> then clicking on the <strong>&quot;Go to&quot;</strong> button, and selecting the &rarr; <strong>&quot;My Private Pages&quot;</strong>.
+				I also have a few <strong>private pages</strong> that only I can see (my socialSpace, my workSpace, and my email). When I'm logged in, I'm able to access the pages using the <a href="http://www.liferay.com/community/wiki/-/wiki/1071674/Dockbar/maximized" target="_blank"><em>Dockbar</em></a> by clicking on the <strong>&quot;Go to&quot;</strong> button, and selecting &rarr; <strong>&quot;My Private Pages&quot;</strong>.
 			</p>
 		]]>
 	</static-content>

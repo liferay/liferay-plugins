@@ -136,7 +136,12 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 	}
 
 	public void persist() throws SystemException {
-		WSRPProducerLocalServiceUtil.updateWSRPProducer(this);
+		if (this.isNew()) {
+			WSRPProducerLocalServiceUtil.addWSRPProducer(this);
+		}
+		else {
+			WSRPProducerLocalServiceUtil.updateWSRPProducer(this);
+		}
 	}
 
 	@Override

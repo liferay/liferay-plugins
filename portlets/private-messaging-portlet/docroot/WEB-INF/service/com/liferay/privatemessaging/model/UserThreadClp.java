@@ -150,7 +150,12 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 	}
 
 	public void persist() throws SystemException {
-		UserThreadLocalServiceUtil.updateUserThread(this);
+		if (this.isNew()) {
+			UserThreadLocalServiceUtil.addUserThread(this);
+		}
+		else {
+			UserThreadLocalServiceUtil.updateUserThread(this);
+		}
 	}
 
 	@Override

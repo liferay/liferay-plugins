@@ -125,7 +125,12 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 	}
 
 	public void persist() throws SystemException {
-		JIRAActionLocalServiceUtil.updateJIRAAction(this);
+		if (this.isNew()) {
+			JIRAActionLocalServiceUtil.addJIRAAction(this);
+		}
+		else {
+			JIRAActionLocalServiceUtil.updateJIRAAction(this);
+		}
 	}
 
 	@Override

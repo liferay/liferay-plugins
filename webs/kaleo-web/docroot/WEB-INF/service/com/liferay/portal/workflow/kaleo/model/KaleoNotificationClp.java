@@ -204,7 +204,12 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 	}
 
 	public void persist() throws SystemException {
-		KaleoNotificationLocalServiceUtil.updateKaleoNotification(this);
+		if (this.isNew()) {
+			KaleoNotificationLocalServiceUtil.addKaleoNotification(this);
+		}
+		else {
+			KaleoNotificationLocalServiceUtil.updateKaleoNotification(this);
+		}
 	}
 
 	@Override

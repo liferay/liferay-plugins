@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -60,9 +61,12 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portlet.asset.model.AssetCategory;
+import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.model.AssetVocabulary;
 import com.liferay.portlet.asset.service.AssetCategoryLocalServiceUtil;
+import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.asset.service.AssetVocabularyLocalServiceUtil;
+import com.liferay.portlet.asset.service.persistence.AssetEntryQuery;
 import com.liferay.portlet.blogs.model.BlogsEntry;
 import com.liferay.portlet.blogs.service.BlogsEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.DuplicateFileException;
@@ -79,9 +83,14 @@ import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.model.MBMessageConstants;
 import com.liferay.portlet.messageboards.service.MBCategoryLocalServiceUtil;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
+import com.liferay.portlet.social.model.SocialActivityCounter;
+import com.liferay.portlet.social.model.SocialActivityCounterConstants;
 import com.liferay.portlet.social.model.SocialRequest;
 import com.liferay.portlet.social.model.SocialRequestConstants;
+import com.liferay.portlet.social.service.SocialActivityCounterLocalServiceUtil;
+import com.liferay.portlet.social.service.SocialActivitySettingLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialRequestLocalServiceUtil;
+import com.liferay.portlet.social.util.SocialCounterPeriodUtil;
 import com.liferay.portlet.wiki.model.WikiNode;
 import com.liferay.portlet.wiki.model.WikiPage;
 import com.liferay.portlet.wiki.service.WikiNodeLocalServiceUtil;
@@ -112,7 +121,7 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		Map<Locale, String> titleMap = new HashMap<Locale, String>();
 
-		titleMap.put(Locale.US, title);
+		setLocalizedValue(titleMap, title);
 
 		return AssetCategoryLocalServiceUtil.addCategory(
 			userId, parentCategoryId, titleMap, null, vocabularyId, null,
@@ -125,7 +134,7 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		Map<Locale, String> titleMap = new HashMap<Locale, String>();
 
-		titleMap.put(Locale.US, title);
+		setLocalizedValue(titleMap, title);
 
 		return AssetVocabularyLocalServiceUtil.addVocabulary(
 			userId, StringPool.BLANK, titleMap, null, null, serviceContext);
@@ -196,7 +205,6 @@ public class UpgradeCompany extends UpgradeProcess {
 		return DLAppLocalServiceUtil.addFolder(
 			userId, groupId, 0, name, description, serviceContext);
 	}
-
 	protected JournalArticle addJournalArticle(
 			long userId, long groupId, String title, String fileName,
 			ServiceContext serviceContext)
@@ -220,7 +228,7 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		Map<Locale, String> titleMap = new HashMap<Locale, String>();
 
-		titleMap.put(Locale.US, title);
+		setLocalizedValue(titleMap, title);
 
 		JournalArticle journalArticle =
 			JournalArticleLocalServiceUtil.addArticle(
@@ -245,11 +253,11 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		Map<Locale, String> nameMap = new HashMap<Locale, String>();
 
-		nameMap.put(Locale.US, "Single Image");
+		setLocalizedValue(nameMap, "Single Image");
 
 		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
 
-		descriptionMap.put(Locale.US, "A single image, optional link");
+		setLocalizedValue(descriptionMap, "A single image, optional link");
 
 		String xsd = getString(fileName);
 
@@ -262,17 +270,18 @@ public class UpgradeCompany extends UpgradeProcess {
 			userId, groupId, "SINGLE-IMAGE", false, StringPool.BLANK,
 			nameMap, descriptionMap, xsd, serviceContext);
 	}
+
 	protected JournalTemplate addJournalTemplate(
 			long userId, long groupId, String fileName)
 		throws Exception {
 
 		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
 
-		descriptionMap.put(Locale.US, "A single image, optional URL");
+		setLocalizedValue(descriptionMap, "A single image, optional URL");
 
 		Map<Locale, String> nameMap = new HashMap<Locale, String>();
 
-		nameMap.put(Locale.US, "Single Image");
+		setLocalizedValue(nameMap, "Single Image");
 
 		String xsl = getString(fileName);
 
@@ -384,6 +393,154 @@ public class UpgradeCompany extends UpgradeProcess {
 			portletPrimaryKey, true, true, true);
 	}
 
+	protected void addSocialActivityCounter(
+			Group group, List<User> users, String socialActivityCounterName,
+			String line,
+			Map<String, SocialActivityCounter> socialActivityCounters)
+		throws Exception {
+
+		String[] lineParts = StringUtil.split(line);
+
+		int endPeriodOffset = GetterUtil.getInteger(lineParts[3]);
+
+		int endPeriod = SocialCounterPeriodUtil.getEndPeriod(endPeriodOffset);
+
+		if (endPeriod < 0) {
+			return;
+		}
+
+		String className = lineParts[0];
+
+		long classNameId = PortalUtil.getClassNameId(className);
+
+		String classPKString = lineParts[1];
+
+		long classPK = 12345;
+
+		if (className.equals(User.class.getName())) {
+			if (classPKString.equals("0")) {
+				int index = getRandomNumber(0, 3);
+
+				User user = users.get(index);
+
+				classPK = user.getUserId();
+			}
+			else {
+				for (User user : users) {
+					if (classPKString.equalsIgnoreCase(user.getScreenName())) {
+						classPK = user.getUserId();
+					}
+				}
+			}
+		}
+		else {
+			AssetEntryQuery assetEntryQuery = new AssetEntryQuery();
+
+			assetEntryQuery.setClassName(className);
+			assetEntryQuery.setGroupIds(new long[] {group.getGroupId()});
+
+			List<AssetEntry> assetEntries =
+				AssetEntryLocalServiceUtil.getEntries(assetEntryQuery);
+
+			if (!assetEntries.isEmpty()) {
+				int index = getRandomNumber(0, assetEntries.size() - 1);
+
+				AssetEntry assetEntry = assetEntries.get(index);
+
+				classPK = assetEntry.getClassPK();
+			}
+		}
+
+		int ownerType = SocialActivityCounterConstants.TYPE_ACTOR;
+
+		if (socialActivityCounterName.startsWith("asset.")) {
+			ownerType = SocialActivityCounterConstants.TYPE_ASSET;
+		}
+		else if (socialActivityCounterName.equals("contribution")) {
+			ownerType = SocialActivityCounterConstants.TYPE_CREATOR;
+		}
+
+		int startPeriodOffset = GetterUtil.getInteger(lineParts[2]);
+
+		int startPeriod = SocialCounterPeriodUtil.getStartPeriod(
+			startPeriodOffset);
+
+		SocialActivityCounter socialActivityCounter =
+			SocialActivityCounterLocalServiceUtil.
+				fetchActivityCounterByStartPeriod(
+					group.getGroupId(), classNameId, classPK,
+					socialActivityCounterName, ownerType, startPeriod);
+
+		int currentValue = getRandomNumber(0, 100);
+		int totalValue = currentValue;
+
+		if (socialActivityCounter != null) {
+			totalValue = totalValue + socialActivityCounter.getTotalValue();
+		}
+
+		StringBundler sb = new StringBundler(7);
+
+		sb.append(StringUtil.toHexString(group.getGroupId()));
+		sb.append(StringPool.POUND);
+		sb.append(StringUtil.toHexString(classNameId));
+		sb.append(StringPool.POUND);
+		sb.append(StringUtil.toHexString(classPK));
+		sb.append(StringPool.POUND);
+		sb.append(StringUtil.toHexString(socialActivityCounterName));
+
+		String key = sb.toString();
+
+		SocialActivityCounter latestSocialActivityCounter =
+			socialActivityCounters.get(key);
+
+		if (latestSocialActivityCounter != null) {
+			totalValue =
+				totalValue + latestSocialActivityCounter.getTotalValue();
+		}
+
+		if ((socialActivityCounter == null) ||
+			(socialActivityCounter.getStartPeriod() != startPeriod)) {
+
+			if (endPeriodOffset == 0) {
+				endPeriod = -1;
+			}
+
+			socialActivityCounter =
+				SocialActivityCounterLocalServiceUtil.addActivityCounter(
+					group.getGroupId(), classNameId, classPK,
+					socialActivityCounterName, ownerType, 0, 0, startPeriod,
+					endPeriod);
+		}
+
+		socialActivityCounter.setCurrentValue(
+			socialActivityCounter.getCurrentValue() + currentValue);
+		socialActivityCounter.setTotalValue(totalValue);
+
+		SocialActivityCounterLocalServiceUtil.updateSocialActivityCounter(
+			socialActivityCounter);
+
+		socialActivityCounters.put(key, socialActivityCounter);
+	}
+
+	protected void addSocialActivityCounters(
+			Group group, List<User> users, String socialActivityCounterName)
+		throws Exception {
+
+		String content = getString(
+			"/sample/activity/counters/" + socialActivityCounterName + ".csv");
+
+		String[] lines = StringUtil.splitLines(content);
+
+		Map<String, SocialActivityCounter> socialActivityCounters =
+			new HashMap<String, SocialActivityCounter>();
+
+		for (String line : lines) {
+			addSocialActivityCounter(
+				group, users, socialActivityCounterName, line,
+				socialActivityCounters);
+		}
+	}
+
 	protected void addSocialRequest(
 			User user, User receiverUser, boolean confirm)
 		throws Exception {
@@ -413,7 +570,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		String emailAddress = screenName + "@7cogs.com";
 		long facebookId = 0;
 		String openId = StringPool.BLANK;
-		Locale locale = Locale.US;
+		Locale locale = LocaleUtil.getDefault();
 		String middleName = StringPool.BLANK;
 		int prefixId = 0;
 		int suffixId = 0;
@@ -612,7 +769,12 @@ public class UpgradeCompany extends UpgradeProcess {
 		for (User user : users) {
 			String screenName = user.getScreenName();
 
-			if (screenName.equals("joebloggs") || screenName.equals("test")) {
+			String defaultAdminScreenName = PropsUtil.get(
+				PropsKeys.DEFAULT_ADMIN_SCREEN_NAME);
+
+			if (screenName.equals("joebloggs") || screenName.equals("test") ||
+				screenName.equals(defaultAdminScreenName)) {
+
 				continue;
 			}
 
@@ -653,6 +815,32 @@ public class UpgradeCompany extends UpgradeProcess {
 		}
 	}
 
+	protected void configureGroupStatistics(
+			Layout layout, String portletId, String[][] chartData)
+		throws Exception {
+
+		PortletPreferences portletSetup =
+			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
+				layout, portletId);
+
+		String[] indexes = new String[chartData.length];
+
+		for (int i=0; i < chartData.length; i++) {
+			indexes[i] = String.valueOf(i);
+
+			portletSetup.setValue("chartType" + (i), chartData[i][1]);
+			portletSetup.setValue("chartWidth" + (i), chartData[i][3]);
+			portletSetup.setValue("dataRange" + (i), chartData[i][2]);
+			portletSetup.setValue(
+				"displayActivityCounterName" + (i), chartData[i][0]);
+		}
+
+		portletSetup.setValue(
+			"displayActivityCounterNameIndexes", StringUtil.merge(indexes));
+
+		portletSetup.store();
+	}
+
 	protected void configureJournalContent(
 			Layout layout, String portletId, String articleId)
 		throws Exception {
@@ -676,6 +864,35 @@ public class UpgradeCompany extends UpgradeProcess {
 				layout, portletId);
 
 		portletSetup.setValue("portletSetupTitle", title);
+
+		portletSetup.store();
+	}
+
+	protected void configureUserStatistics(
+			Layout layout, String portletId,
+			String[] socialActivityCounterNames)
+		throws Exception {
+
+		PortletPreferences portletSetup =
+			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
+				layout, portletId);
+
+		String[] indexes = new String[socialActivityCounterNames.length + 1];
+
+		indexes[0] = "0";
+
+		for (int i=0; i < socialActivityCounterNames.length; i++) {
+			indexes[i + 1] = String.valueOf(i + 1);
+
+			portletSetup.setValue(
+				"displayActivityCounterName" + (i + 1),
+				socialActivityCounterNames[i]);
+		}
+
+		portletSetup.setValue(
+			"displayActivityCounterNameIndexes", StringUtil.merge(indexes));
+		portletSetup.setValue("showHeaderText", "false");
+		portletSetup.setValue("showTotals", "false");
 
 		portletSetup.store();
 	}
@@ -717,15 +934,32 @@ public class UpgradeCompany extends UpgradeProcess {
 			PrincipalThreadLocal.setName(defaultUserId);
 
 			clearData(companyId);
-			setupCommunities(companyId, defaultUserId);
-			setupOrganizations(companyId, defaultUserId);
+			setupSites(companyId, defaultUserId);
+
+			Organization organization = setupOrganizations(
+				companyId, defaultUserId);
+
 			setupRoles(companyId, defaultUserId);
-			setupUsers(companyId);
+
+			List<User> users = setupUsers(companyId);
+
+			setupSocialActivityCounters(organization.getGroup(), users);
 			setupWorkflow(companyId, defaultUserId);
 		}
 		finally {
 			PrincipalThreadLocal.setName(name);
 		}
+	}
+
+	protected void enableSocialActivities(long groupId)
+		throws Exception {
+
+		SocialActivitySettingLocalServiceUtil.updateActivitySetting(
+			groupId, BlogsEntry.class.getName(), true);
+		SocialActivitySettingLocalServiceUtil.updateActivitySetting(
+			groupId, MBMessage.class.getName(), true);
+		SocialActivitySettingLocalServiceUtil.updateActivitySetting(
+			groupId, WikiPage.class.getName(), true);
 	}
 
 	protected byte[] getBytes(String path) throws Exception {
@@ -738,6 +972,10 @@ public class UpgradeCompany extends UpgradeProcess {
 		ClassLoader classLoader = clazz.getClassLoader();
 
 		return classLoader.getResourceAsStream("/resources" + path);
+	}
+
+	protected int getRandomNumber(int min, int max) {
+		return (int)(Math.round(min + Math.random() * (max-min)));
 	}
 
 	protected String getString(String path) throws Exception {
@@ -772,6 +1010,16 @@ public class UpgradeCompany extends UpgradeProcess {
 		portletSetup.store();
 	}
 
+	protected void setLocalizedValue(Map<Locale, String> map, String value) {
+		Locale locale = LocaleUtil.getDefault();
+
+		map.put(locale, value);
+
+		if (!locale.equals(Locale.US)) {
+			map.put(Locale.US, value);
+		}
+	}
+
 	protected void setRolePermissions(
 			Role role, String name, String[] actionIds)
 		throws Exception {
@@ -791,233 +1039,8 @@ public class UpgradeCompany extends UpgradeProcess {
 		}
 	}
 
-	protected void setupCommunities(long companyId, long defaultUserId)
-		throws Exception {
-
-		// Guest community
-
-		Group group = GroupLocalServiceUtil.getGroup(
-			companyId, GroupConstants.GUEST);
-
-		// Journal
-
-		addJournalStructure(
-			defaultUserId, group.getGroupId(),
-			"/guest/journal/structures/single_image.xml");
-		addJournalTemplate(
-			defaultUserId, group.getGroupId(),
-			"/guest/journal/templates/single_image.xml");
-
-		// Image gallery
-
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setAddGroupPermissions(true);
-		serviceContext.setAddGuestPermissions(true);
-		serviceContext.setScopeGroupId(group.getGroupId());
-
-		Folder folder = DLAppLocalServiceUtil.addFolder(
-			defaultUserId, group.getGroupId(), 0, "Web Content",
-			"Images used for content", serviceContext);
-
-		FileEntry cellBgFileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(), "/guest/images/cell_bg.png",
-			serviceContext);
-
-		FileEntry customer1FileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(), "/guest/images/customer_1.png",
-			serviceContext);
-
-		FileEntry customer2FileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(), "/guest/images/customer_2.png",
-			serviceContext);
-
-		FileEntry customer3FileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(), "/guest/images/customer_3.png",
-			serviceContext);
-
-		FileEntry customer4FileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(), "/guest/images/customer_4.png",
-			serviceContext);
-
-		FileEntry customer5FileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(), "/guest/images/customer_5.png",
-			serviceContext);
-
-		FileEntry customer6FileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(), "/guest/images/customer_6.png",
-			serviceContext);
-
-		FileEntry customer7FileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(), "/guest/images/customer_7.png",
-			serviceContext);
-
-		FileEntry portalMashupFileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(),
-			"/guest/images/portal_mashup.png", serviceContext);
-
-		FileEntry sevenCogsAdFileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(),
-			"/guest/images/sevencogs_ad.png", serviceContext);
-
-		FileEntry sharedWorkspacesFileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(),
-			"/guest/images/shared_workspaces.png", serviceContext);
-
-		FileEntry socialNetworkingFileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(),
-			"/guest/images/social_network.png", serviceContext);
-
-		FileEntry webPublishingFileEntry = addDLFileEntry(
-			defaultUserId, folder.getFolderId(),
-			"/guest/images/web_publishing.png", serviceContext);
-
-		// Site Theme Settings
-
-		String noPortletBorders =
-			"lfr-theme:regular:portlet-setup-show-borders-default=false";
-
-		LayoutSetLocalServiceUtil.updateSettings(
-			group.getGroupId(), false, noPortletBorders);
-
-		// Welcome layout
-
-		Layout layout = addLayout(
-			group, "Welcome", false, "/home", "2_columns_iii");
-
-		// Welcome content portlet
-
-		String portletId = addPortletId(
-			layout, PortletKeys.JOURNAL_CONTENT, "column-1");
-
-		removePortletBorder(layout, portletId);
-
-		serviceContext.setAssetTagNames(new String[] {"liferay", "welcome"});
-
-		JournalArticle journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "Welcome",
-			"/guest/journal/articles/welcome.xml", serviceContext);
-
-		String content = StringUtil.replace(
-			journalArticle.getContent(),
-			new String[] {
-				"[$CELL_BG_R_FE_UUID$]",
-				"[$CUSTOMER_1_R_FE_UUID$]",
-				"[$CUSTOMER_2_R_FE_UUID$]",
-				"[$CUSTOMER_3_R_FE_UUID$]",
-				"[$CUSTOMER_4_R_FE_UUID$]",
-				"[$CUSTOMER_5_R_FE_UUID$]",
-				"[$CUSTOMER_6_R_FE_UUID$]",
-				"[$CUSTOMER_7_R_FE_UUID$]",
-				"[$GROUP_ID$]",
-				"[$PORTAL_MASHUPS_R_FE_UUID$]",
-				"[$SHARED_WORKSPACES_R_FE_UUID$]",
-				"[$SOCIAL_NETWORKING_R_FE_UUID$]",
-				"[$WEB_PUBLISHING_R_FE_UUID$]"
-			},
-			new String[] {
-				String.valueOf(cellBgFileEntry.getUuid()),
-				String.valueOf(customer1FileEntry.getUuid()),
-				String.valueOf(customer2FileEntry.getUuid()),
-				String.valueOf(customer3FileEntry.getUuid()),
-				String.valueOf(customer4FileEntry.getUuid()),
-				String.valueOf(customer5FileEntry.getUuid()),
-				String.valueOf(customer6FileEntry.getUuid()),
-				String.valueOf(customer7FileEntry.getUuid()),
-				String.valueOf(group.getGroupId()),
-				String.valueOf(portalMashupFileEntry.getUuid()),
-				String.valueOf(sharedWorkspacesFileEntry.getUuid()),
-				String.valueOf(socialNetworkingFileEntry.getUuid()),
-				String.valueOf(webPublishingFileEntry.getUuid())
-			});
-
-		JournalArticleLocalServiceUtil.updateContent(
-			group.getGroupId(), journalArticle.getArticleId(),
-			journalArticle.getVersion(), content);
-
-		configureJournalContent(
-			layout, portletId, journalArticle.getArticleId());
-
-		// 7Cogs Ad content portlet
-
-		portletId = addPortletId(
-			layout, PortletKeys.JOURNAL_CONTENT, "column-2");
-
-		removePortletBorder(layout, portletId);
-
-		serviceContext.setAssetTagNames(new String[] {"liferay", "7cogs"});
-
-		journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "7Cogs Ad",
-			"/guest/journal/articles/sample_site_ad.xml", serviceContext);
-
-		content = StringUtil.replace(
-			journalArticle.getContent(),
-			new String[] {
-				"[$GROUP_ID$]",
-				"[$GROUP_URL$]",
-				"[$R_FE_UUID$]"
-			},
-			new String[] {
-				String.valueOf(group.getGroupId()),
-				"/web/7cogs/home",
-				String.valueOf(sevenCogsAdFileEntry.getUuid())
-			});
-
-		JournalArticleLocalServiceUtil.updateContent(
-			group.getGroupId(), journalArticle.getArticleId(),
-			journalArticle.getVersion(), content);
-
-		configureJournalContent(
-			layout, portletId, journalArticle.getArticleId());
-
-		// Welcome Note content portlet
-
-		portletId = addPortletId(
-			layout, PortletKeys.JOURNAL_CONTENT, "column-2");
-
-		removePortletBorder(layout, portletId);
-
-		serviceContext.setAssetTagNames(new String[] {"welcome"});
-
-		journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "Welcome Note",
-			"/guest/journal/articles/welcome_note.xml", serviceContext);
-
-		configureJournalContent(
-			layout, portletId, journalArticle.getArticleId());
-
-		// Welcome Login content portlet
-
-		portletId = addPortletId(
-			layout, PortletKeys.JOURNAL_CONTENT, "column-2");
-
-		serviceContext.setAssetTagNames(
-			new String[] {"login", "users", "welcome"});
-
-		journalArticle = addJournalArticle(
-			defaultUserId, group.getGroupId(), "Welcome Login",
-			"/guest/journal/articles/welcome_login.xml", serviceContext);
-
-		content = StringUtil.replace(
-			journalArticle.getContent(), "[$COMPANY_ID$]",
-			String.valueOf(companyId));
-
-		JournalArticleLocalServiceUtil.updateContent(
-			group.getGroupId(), journalArticle.getArticleId(),
-			journalArticle.getVersion(), content);
-
-		configureJournalContent(
-			layout, portletId, journalArticle.getArticleId());
-
-		configurePortletTitle(layout, portletId, "Current Users");
-
-		// Login portlet
-
-		addPortletId(layout, PortletKeys.LOGIN, "column-2");
-	}
-
-	protected void setupOrganizations(long companyId, long defaultUserId)
+	protected Organization setupOrganizations(
+			long companyId, long defaultUserId)
 		throws Exception {
 
 		// 7Cogs, Inc. organization
@@ -1481,7 +1504,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
 
-		// Blogs
+		// Blogs layout
 
 		layout = addLayout(group, "Blogs", false, "/blogs", "1_2_columns_i");
 
@@ -1528,7 +1551,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
 
-		// Wiki
+		// Wiki portlet
 
 		portletId = addPortletId(layout, PortletKeys.WIKI, "column-1");
 
@@ -1571,12 +1594,44 @@ public class UpgradeCompany extends UpgradeProcess {
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
 
-		// Message Boards
+		// Message Boards portlet
 
 		portletId = addPortletId(
 			layout, PortletKeys.MESSAGE_BOARDS, "column-1");
 
 		removePortletBorder(layout, portletId);
+
+		// Dashboard layout
+
+		layout = addLayout(
+			group, "Dashboard", false, "/dashboard", "2_columns_ii");
+
+		portletId = addPortletId(
+			layout, PortletKeys.USER_STATISTICS, "column-1");
+
+		configureUserStatistics(
+			layout, portletId,
+			new String[] {"user.message-posts", "user.blogs", "user.wikis"});
+
+		// Group Statistics portlet
+
+		portletId = addPortletId(
+			layout, PortletKeys.GROUP_STATISTICS, "column-2");
+
+		String[][] chartData = new String[3][4];
+
+		chartData[0] =
+			new String[] {"user.message-posts", "area", "12months", "40"};
+		chartData[1] =
+			new String[] {"asset.activities", "pie", "12months", "50"};
+		chartData[2] =
+			new String[] {"asset.activities", "tag-cloud", "12months", "40"};
+
+		configureGroupStatistics(layout, portletId, chartData);
+
+		// Activities portlet
+
+		portletId = addPortletId(layout, PortletKeys.ACTIVITIES, "column-2");
 
 		// About Us layout
 
@@ -1689,6 +1744,8 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		configureJournalContent(
 			layout, portletId, journalArticle.getArticleId());
+
+		return organization;
 	}
 
 	protected void setupRoles(long companyId, long defaultUserId)
@@ -1696,8 +1753,8 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
 
-		descriptionMap.put(
-			LocaleUtil.getDefault(),
+		setLocalizedValue(
+			descriptionMap,
 			"Publishers are responsible for publishing content.");
 
 		Role publisherRole = RoleLocalServiceUtil.fetchRole(
@@ -1729,9 +1786,8 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		descriptionMap.clear();
 
-		descriptionMap.put(
-			LocaleUtil.getDefault(),
-			"Writers are responsible for creating content.");
+		setLocalizedValue(
+			descriptionMap, "Writers are responsible for creating content.");
 
 		Role writerRole = RoleLocalServiceUtil.fetchRole(companyId, "Writer");
 
@@ -1757,7 +1813,244 @@ public class UpgradeCompany extends UpgradeProcess {
 			new String[] {ActionKeys.UPDATE, ActionKeys.VIEW});
 	}
 
-	protected void setupUsers(long companyId) throws Exception {
+	protected void setupSites(long companyId, long defaultUserId)
+		throws Exception {
+
+		// Guest site
+
+		Group group = GroupLocalServiceUtil.getGroup(
+			companyId, GroupConstants.GUEST);
+
+		// Journal
+
+		addJournalStructure(
+			defaultUserId, group.getGroupId(),
+			"/guest/journal/structures/single_image.xml");
+		addJournalTemplate(
+			defaultUserId, group.getGroupId(),
+			"/guest/journal/templates/single_image.xml");
+
+		// Image gallery
+
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setAddGroupPermissions(true);
+		serviceContext.setAddGuestPermissions(true);
+		serviceContext.setScopeGroupId(group.getGroupId());
+
+		Folder folder = DLAppLocalServiceUtil.addFolder(
+			defaultUserId, group.getGroupId(), 0, "Web Content",
+			"Images used for content", serviceContext);
+
+		FileEntry cellBgFileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(), "/guest/images/cell_bg.png",
+			serviceContext);
+
+		FileEntry customer1FileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(), "/guest/images/customer_1.png",
+			serviceContext);
+
+		FileEntry customer2FileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(), "/guest/images/customer_2.png",
+			serviceContext);
+
+		FileEntry customer3FileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(), "/guest/images/customer_3.png",
+			serviceContext);
+
+		FileEntry customer4FileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(), "/guest/images/customer_4.png",
+			serviceContext);
+
+		FileEntry customer5FileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(), "/guest/images/customer_5.png",
+			serviceContext);
+
+		FileEntry customer6FileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(), "/guest/images/customer_6.png",
+			serviceContext);
+
+		FileEntry customer7FileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(), "/guest/images/customer_7.png",
+			serviceContext);
+
+		FileEntry portalMashupFileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(),
+			"/guest/images/portal_mashup.png", serviceContext);
+
+		FileEntry sevenCogsAdFileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(),
+			"/guest/images/sevencogs_ad.png", serviceContext);
+
+		FileEntry sharedWorkspacesFileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(),
+			"/guest/images/shared_workspaces.png", serviceContext);
+
+		FileEntry socialNetworkingFileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(),
+			"/guest/images/social_network.png", serviceContext);
+
+		FileEntry webPublishingFileEntry = addDLFileEntry(
+			defaultUserId, folder.getFolderId(),
+			"/guest/images/web_publishing.png", serviceContext);
+
+		// Site theme settings
+
+		String noPortletBorders =
+			"lfr-theme:regular:portlet-setup-show-borders-default=false";
+
+		LayoutSetLocalServiceUtil.updateSettings(
+			group.getGroupId(), false, noPortletBorders);
+
+		// Welcome layout
+
+		Layout layout = addLayout(
+			group, "Welcome", false, "/home", "2_columns_iii");
+
+		// Welcome content portlet
+
+		String portletId = addPortletId(
+			layout, PortletKeys.JOURNAL_CONTENT, "column-1");
+
+		removePortletBorder(layout, portletId);
+
+		serviceContext.setAssetTagNames(new String[] {"liferay", "welcome"});
+
+		JournalArticle journalArticle = addJournalArticle(
+			defaultUserId, group.getGroupId(), "Welcome",
+			"/guest/journal/articles/welcome.xml", serviceContext);
+
+		String content = StringUtil.replace(
+			journalArticle.getContent(),
+			new String[] {
+				"[$CELL_BG_R_FE_UUID$]",
+				"[$CUSTOMER_1_R_FE_UUID$]",
+				"[$CUSTOMER_2_R_FE_UUID$]",
+				"[$CUSTOMER_3_R_FE_UUID$]",
+				"[$CUSTOMER_4_R_FE_UUID$]",
+				"[$CUSTOMER_5_R_FE_UUID$]",
+				"[$CUSTOMER_6_R_FE_UUID$]",
+				"[$CUSTOMER_7_R_FE_UUID$]",
+				"[$GROUP_ID$]",
+				"[$PORTAL_MASHUPS_R_FE_UUID$]",
+				"[$SHARED_WORKSPACES_R_FE_UUID$]",
+				"[$SOCIAL_NETWORKING_R_FE_UUID$]",
+				"[$WEB_PUBLISHING_R_FE_UUID$]"
+			},
+			new String[] {
+				String.valueOf(cellBgFileEntry.getUuid()),
+				String.valueOf(customer1FileEntry.getUuid()),
+				String.valueOf(customer2FileEntry.getUuid()),
+				String.valueOf(customer3FileEntry.getUuid()),
+				String.valueOf(customer4FileEntry.getUuid()),
+				String.valueOf(customer5FileEntry.getUuid()),
+				String.valueOf(customer6FileEntry.getUuid()),
+				String.valueOf(customer7FileEntry.getUuid()),
+				String.valueOf(group.getGroupId()),
+				String.valueOf(portalMashupFileEntry.getUuid()),
+				String.valueOf(sharedWorkspacesFileEntry.getUuid()),
+				String.valueOf(socialNetworkingFileEntry.getUuid()),
+				String.valueOf(webPublishingFileEntry.getUuid())
+			});
+
+		JournalArticleLocalServiceUtil.updateContent(
+			group.getGroupId(), journalArticle.getArticleId(),
+			journalArticle.getVersion(), content);
+
+		configureJournalContent(
+			layout, portletId, journalArticle.getArticleId());
+
+		// 7Cogs Ad content portlet
+
+		portletId = addPortletId(
+			layout, PortletKeys.JOURNAL_CONTENT, "column-2");
+
+		removePortletBorder(layout, portletId);
+
+		serviceContext.setAssetTagNames(new String[] {"liferay", "7cogs"});
+
+		journalArticle = addJournalArticle(
+			defaultUserId, group.getGroupId(), "7Cogs Ad",
+			"/guest/journal/articles/sample_site_ad.xml", serviceContext);
+
+		content = StringUtil.replace(
+			journalArticle.getContent(),
+			new String[] {
+				"[$GROUP_ID$]",
+				"[$GROUP_URL$]",
+				"[$R_FE_UUID$]"
+			},
+			new String[] {
+				String.valueOf(group.getGroupId()),
+				"/web/7cogs/home",
+				String.valueOf(sevenCogsAdFileEntry.getUuid())
+			});
+
+		JournalArticleLocalServiceUtil.updateContent(
+			group.getGroupId(), journalArticle.getArticleId(),
+			journalArticle.getVersion(), content);
+
+		configureJournalContent(
+			layout, portletId, journalArticle.getArticleId());
+
+		// Welcome Note content portlet
+
+		portletId = addPortletId(
+			layout, PortletKeys.JOURNAL_CONTENT, "column-2");
+
+		removePortletBorder(layout, portletId);
+
+		serviceContext.setAssetTagNames(new String[] {"welcome"});
+
+		journalArticle = addJournalArticle(
+			defaultUserId, group.getGroupId(), "Welcome Note",
+			"/guest/journal/articles/welcome_note.xml", serviceContext);
+
+		configureJournalContent(
+			layout, portletId, journalArticle.getArticleId());
+
+		// Welcome Login content portlet
+
+		portletId = addPortletId(
+			layout, PortletKeys.JOURNAL_CONTENT, "column-2");
+
+		serviceContext.setAssetTagNames(
+			new String[] {"login", "users", "welcome"});
+
+		journalArticle = addJournalArticle(
+			defaultUserId, group.getGroupId(), "Welcome Login",
+			"/guest/journal/articles/welcome_login.xml", serviceContext);
+
+		content = StringUtil.replace(
+			journalArticle.getContent(), "[$COMPANY_ID$]",
+			String.valueOf(companyId));
+
+		JournalArticleLocalServiceUtil.updateContent(
+			group.getGroupId(), journalArticle.getArticleId(),
+			journalArticle.getVersion(), content);
+
+		configureJournalContent(
+			layout, portletId, journalArticle.getArticleId());
+
+		configurePortletTitle(layout, portletId, "Current Users");
+
+		// Login portlet
+
+		addPortletId(layout, PortletKeys.LOGIN, "column-2");
+	}
+
+	protected void setupSocialActivityCounters(Group group, List<User> users)
+		throws Exception {
+
+		enableSocialActivities(group.getGroupId());
+
+		addSocialActivityCounters(group, users, "asset.activities");
+		addSocialActivityCounters(group, users, "contribution");
+		addSocialActivityCounters(group, users, "participation");
+		addSocialActivityCounters(group, users, "user.message-posts");
+	}
+
+	protected List<User> setupUsers(long companyId) throws Exception {
 
 		// Roles
 
@@ -1783,11 +2076,17 @@ public class UpgradeCompany extends UpgradeProcess {
 			companyId, "bruno", "Bruno", "Admin", true, "Administrator",
 			roleIds);
 
+		List<User> users = new ArrayList<User>();
+
+		users.add(brunoUser);
+
 		roleIds = new long[] {powerUserRole.getRoleId()};
 
 		User kendraUser = addUser(
 			companyId, "kendra", "Kendra", "Regular", true, "Employee",
 			roleIds);
+
+		users.add(kendraUser);
 
 		roleIds = new long[] {
 			powerUserRole.getRoleId(), writerRole.getRoleId()
@@ -1797,6 +2096,8 @@ public class UpgradeCompany extends UpgradeProcess {
 			companyId, "michelle", "Michelle", "Writer", false, "Writer",
 			roleIds);
 
+		users.add(michelleUser);
+
 		roleIds = new long[] {
 			powerUserRole.getRoleId(), publisherRole.getRoleId(),
 			portalContentReviewer.getRoleId()
@@ -1805,6 +2106,8 @@ public class UpgradeCompany extends UpgradeProcess {
 		User richardUser = addUser(
 			companyId, "richard", "Richard", "Publisher", true, "Publisher",
 			roleIds);
+
+		users.add(richardUser);
 
 		// Asset
 
@@ -1972,6 +2275,8 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		addSocialRequest(kendraUser, brunoUser, false);
 		addSocialRequest(kendraUser, richardUser, false);
+
+		return users;
 	}
 
 	protected void setupWorkflow(long companyId, long defaultUserId)

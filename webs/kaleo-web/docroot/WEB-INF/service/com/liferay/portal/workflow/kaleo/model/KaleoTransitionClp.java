@@ -208,7 +208,12 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 	}
 
 	public void persist() throws SystemException {
-		KaleoTransitionLocalServiceUtil.updateKaleoTransition(this);
+		if (this.isNew()) {
+			KaleoTransitionLocalServiceUtil.addKaleoTransition(this);
+		}
+		else {
+			KaleoTransitionLocalServiceUtil.updateKaleoTransition(this);
+		}
 	}
 
 	@Override

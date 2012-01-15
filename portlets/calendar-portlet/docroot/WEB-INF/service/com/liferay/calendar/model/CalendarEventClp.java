@@ -436,7 +436,12 @@ public class CalendarEventClp extends BaseModelImpl<CalendarEvent>
 	}
 
 	public void persist() throws SystemException {
-		CalendarEventLocalServiceUtil.updateCalendarEvent(this);
+		if (this.isNew()) {
+			CalendarEventLocalServiceUtil.addCalendarEvent(this);
+		}
+		else {
+			CalendarEventLocalServiceUtil.updateCalendarEvent(this);
+		}
 	}
 
 	@Override

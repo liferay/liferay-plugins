@@ -74,7 +74,6 @@ page import="com.liferay.portal.service.UserNotificationEventLocalServiceUtil" %
 page import="com.liferay.portal.service.permission.GroupPermissionUtil" %><%@
 page import="com.liferay.portal.service.permission.PortalPermissionUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
-page import="com.liferay.portal.util.PortletKeys" %><%@
 page import="com.liferay.portal.util.comparator.ContactFirstNameComparator" %><%@
 page import="com.liferay.portal.util.comparator.GroupNameComparator" %><%@
 page import="com.liferay.portal.util.comparator.RoleNameComparator" %><%@
