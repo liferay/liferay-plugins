@@ -75,7 +75,9 @@
 	</c:choose>
 
 	<%
-	String jobTitle = user2.getContact().getJobTitle();
+	Contact contact2 = user2.getContact();
+
+	String jobTitle = contact2.getJobTitle();
 	%>
 
 	<c:if test="<%= Validator.isNotNull(jobTitle) %>">
@@ -91,7 +93,7 @@
 	</c:if>
 
 	<%
-	String twitterSn = user2.getContact().getTwitterSn();
+	String twitterSn = contact2.getTwitterSn();
 	%>
 
 	<c:if test="<%= Validator.isNotNull(twitterSn) %>">
