@@ -80,16 +80,22 @@ portletURL.setWindowState(WindowState.NORMAL);
 						String lastNameAnchor = StringPool.SPACE;
 
 						for (User user2 : users) {
+							String lastName = user2.getLastName();
+							String nameAnchor = LanguageUtil.get(pageContext, "no-last-name");
+
+							if (Validator.isNotNull(lastName)) {
+								nameAnchor = StringUtil.upperCase(lastName.substring(0, 1));
+							} 
 						%>
 
-							<c:if test="<%= !StringUtil.startsWith(user2.getLastName(), lastNameAnchor) %>">
+							<c:if test="<%= !nameAnchor.equals(lastNameAnchor) %>">
 
 								<%
-								lastNameAnchor = user2.getLastName().substring(0, 1);
+								lastNameAnchor = nameAnchor;
 								%>
 
 								<div class="lastNameAnchor">
-									<a><%= StringUtil.upperCase(lastNameAnchor) %></a>
+									<a><liferay-ui:message key="<%= lastNameAnchor %>" /></a>
 								</div>
 							</c:if>
 
@@ -105,7 +111,12 @@ portletURL.setWindowState(WindowState.NORMAL);
 
 								<div class="lfr-contact-info">
 									<div class="lfr-contact-name">
-										<a><%= HtmlUtil.escape(user2.getLastName()) %>, <%= HtmlUtil.escape(user2.getFirstName()) %></a>
+										<a>
+											<c:if test="<%= Validator.isNotNull(user2.getLastName()) %>">
+												<%= HtmlUtil.escape(user2.getLastName()) %>, 
+											</c:if>
+											<%= HtmlUtil.escape(user2.getFirstName()) %>
+										</a>
 									</div>
 
 									<div class="lfr-contact-extra">
