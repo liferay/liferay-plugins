@@ -18,20 +18,19 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
 
+import java.util.Hashtable;
 import java.util.Iterator;
-import java.util.List;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.upload.FormFile;
 
 /**
  * @author Brian Wing Shun Chan
@@ -44,32 +43,30 @@ public class UploadAction extends Action {
 			HttpServletResponse response)
 		throws Exception {
 
-		FileItemFactory factory = new DiskFileItemFactory();
+		Hashtable<String, FormFile> fileElements =
+			form.getMultipartRequestHandler().getFileElements();
 
-		ServletFileUpload upload = new ServletFileUpload(factory);
+		Set<Entry<String,FormFile>> entrySet = fileElements.entrySet();
 
-		List<FileItem> items = upload.parseRequest(request);
-
-		Iterator<FileItem> itr = items.iterator();
+		Iterator<Entry<String, FormFile>> itr = entrySet.iterator();
 
 		String itemName = StringPool.BLANK;
 
 		while (itr.hasNext()) {
-			FileItem item = itr.next();
+			Entry<String,FormFile> entry = itr.next();
 
-			if (!item.isFormField()) {
-				if (_log.isInfoEnabled()) {
-					_log.info("Field name " + item.getFieldName());
-				}
+			if (_log.isInfoEnabled()) {
+				_log.info("Field name " + entry.getKey());
+			}
 
-				itemName = item.getName();
+			FormFile item = entry.getValue();
 
-				if (_log.isInfoEnabled()) {
-					_log.info("Name " + itemName);
-					_log.info("Content type " + item.getContentType());
-					_log.info("In memory " + item.isInMemory());
-					_log.info("Size " + item.getSize());
-				}
+			itemName = item.getFileName();
+
+			if (_log.isInfoEnabled()) {
+				_log.info("Name " + itemName);
+				_log.info("Content type " + item.getContentType());
+				_log.info("Size " + item.getFileSize());
 			}
 		}
 
