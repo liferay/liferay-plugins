@@ -171,10 +171,9 @@ AUI().use(
 						A.Array.map(
 							results,
 							function(result) {
-
 								var displayLastNameAnchor = false;
 
-								var nameAnchor; 
+								var nameAnchor;
 
 								if (result.lastName) {
 									nameAnchor = result.lastName.substring(0, 1).toUpperCase();

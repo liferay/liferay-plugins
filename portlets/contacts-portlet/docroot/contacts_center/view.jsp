@@ -85,7 +85,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 
 							if (Validator.isNotNull(lastName)) {
 								nameAnchor = StringUtil.upperCase(lastName.substring(0, 1));
-							} 
+							}
 						%>
 
 							<c:if test="<%= !nameAnchor.equals(lastNameAnchor) %>">
@@ -113,8 +113,9 @@ portletURL.setWindowState(WindowState.NORMAL);
 									<div class="lfr-contact-name">
 										<a>
 											<c:if test="<%= Validator.isNotNull(user2.getLastName()) %>">
-												<%= HtmlUtil.escape(user2.getLastName()) %>, 
+												<%= HtmlUtil.escape(user2.getLastName()) %>,
 											</c:if>
+
 											<%= HtmlUtil.escape(user2.getFirstName()) %>
 										</a>
 									</div>
