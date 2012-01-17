@@ -352,7 +352,7 @@
 }
 
 .upcoming-tasks-portlet {
-	.tasksentries-container {
+	.tasks-entries-container {
 		ul, li, {
 			list-style: none;
 			margin: 0;
