@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.InstanceFactory;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -1766,6 +1767,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if (!Validator.equals(uuid, kbArticle.getUuid())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -2142,6 +2153,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 					finderArgs, this);
 		}
 
+		if (result instanceof KBArticle) {
+			KBArticle kbArticle = (KBArticle)result;
+
+			if (!Validator.equals(uuid, kbArticle.getUuid()) ||
+					(groupId != kbArticle.getGroupId())) {
+				result = null;
+			}
+		}
+
 		if (result == null) {
 			StringBundler query = new StringBundler(4);
 
@@ -2294,6 +2314,16 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((resourcePrimKey != kbArticle.getResourcePrimKey())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2649,6 +2679,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((resourcePrimKey != kbArticle.getResourcePrimKey()) ||
+						(groupId != kbArticle.getGroupId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -3346,6 +3387,15 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 					finderArgs, this);
 		}
 
+		if (result instanceof KBArticle) {
+			KBArticle kbArticle = (KBArticle)result;
+
+			if ((resourcePrimKey != kbArticle.getResourcePrimKey()) ||
+					(version != kbArticle.getVersion())) {
+				result = null;
+			}
+		}
+
 		if (result == null) {
 			StringBundler query = new StringBundler(4);
 
@@ -3488,6 +3538,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((resourcePrimKey != kbArticle.getResourcePrimKey()) ||
+						(latest != kbArticle.getLatest())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -3866,6 +3927,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if (!ArrayUtil.contains(resourcePrimKeies,
+							kbArticle.getResourcePrimKey()) ||
+						(latest != kbArticle.getLatest())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = new StringBundler();
 
@@ -4020,6 +4093,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((resourcePrimKey != kbArticle.getResourcePrimKey()) ||
+						(main != kbArticle.getMain())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -4395,6 +4479,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if (!ArrayUtil.contains(resourcePrimKeies,
+							kbArticle.getResourcePrimKey()) ||
+						(main != kbArticle.getMain())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = new StringBundler();
 
@@ -4549,6 +4645,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((resourcePrimKey != kbArticle.getResourcePrimKey()) ||
+						(status != kbArticle.getStatus())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -4926,6 +5033,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if (!ArrayUtil.contains(resourcePrimKeies,
+							kbArticle.getResourcePrimKey()) ||
+						(status != kbArticle.getStatus())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = new StringBundler();
 
@@ -5079,6 +5198,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+						(latest != kbArticle.getLatest())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -5776,6 +5906,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+						(main != kbArticle.getMain())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -6470,6 +6611,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+						(status != kbArticle.getStatus())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -7166,6 +7318,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((companyId != kbArticle.getCompanyId()) ||
+						(latest != kbArticle.getLatest())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -7536,6 +7699,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((companyId != kbArticle.getCompanyId()) ||
+						(main != kbArticle.getMain())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -7908,6 +8082,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((companyId != kbArticle.getCompanyId()) ||
+						(status != kbArticle.getStatus())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -8279,6 +8464,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((parentResourcePrimKey != kbArticle.getParentResourcePrimKey()) ||
+						(latest != kbArticle.getLatest())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -8657,6 +8853,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if (!ArrayUtil.contains(parentResourcePrimKeies,
+							kbArticle.getParentResourcePrimKey()) ||
+						(latest != kbArticle.getLatest())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = new StringBundler();
 
@@ -8812,6 +9020,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((parentResourcePrimKey != kbArticle.getParentResourcePrimKey()) ||
+						(main != kbArticle.getMain())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -9190,6 +9409,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if (!ArrayUtil.contains(parentResourcePrimKeies,
+							kbArticle.getParentResourcePrimKey()) ||
+						(main != kbArticle.getMain())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = new StringBundler();
 
@@ -9345,6 +9576,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((parentResourcePrimKey != kbArticle.getParentResourcePrimKey()) ||
+						(status != kbArticle.getStatus())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -9723,6 +9965,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if (!ArrayUtil.contains(parentResourcePrimKeies,
+							kbArticle.getParentResourcePrimKey()) ||
+						(status != kbArticle.getStatus())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = new StringBundler();
 
@@ -9881,6 +10135,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((resourcePrimKey != kbArticle.getResourcePrimKey()) ||
+						(groupId != kbArticle.getGroupId()) ||
+						(latest != kbArticle.getLatest())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -10278,6 +10544,19 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if (!ArrayUtil.contains(resourcePrimKeies,
+							kbArticle.getResourcePrimKey()) ||
+						(groupId != kbArticle.getGroupId()) ||
+						(latest != kbArticle.getLatest())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = new StringBundler();
@@ -10958,6 +11237,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((resourcePrimKey != kbArticle.getResourcePrimKey()) ||
+						(groupId != kbArticle.getGroupId()) ||
+						(main != kbArticle.getMain())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -11354,6 +11645,19 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if (!ArrayUtil.contains(resourcePrimKeies,
+							kbArticle.getResourcePrimKey()) ||
+						(groupId != kbArticle.getGroupId()) ||
+						(main != kbArticle.getMain())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = new StringBundler();
@@ -12034,6 +12338,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((resourcePrimKey != kbArticle.getResourcePrimKey()) ||
+						(groupId != kbArticle.getGroupId()) ||
+						(status != kbArticle.getStatus())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -12430,6 +12746,19 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if (!ArrayUtil.contains(resourcePrimKeies,
+							kbArticle.getResourcePrimKey()) ||
+						(groupId != kbArticle.getGroupId()) ||
+						(status != kbArticle.getStatus())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = new StringBundler();
@@ -13110,6 +13439,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+						(parentResourcePrimKey != kbArticle.getParentResourcePrimKey()) ||
+						(latest != kbArticle.getLatest())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -13510,6 +13851,19 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+						!ArrayUtil.contains(parentResourcePrimKeies,
+							kbArticle.getParentResourcePrimKey()) ||
+						(latest != kbArticle.getLatest())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = new StringBundler();
@@ -14197,6 +14551,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+						(parentResourcePrimKey != kbArticle.getParentResourcePrimKey()) ||
+						(main != kbArticle.getMain())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -14596,6 +14962,19 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+						!ArrayUtil.contains(parentResourcePrimKeies,
+							kbArticle.getParentResourcePrimKey()) ||
+						(main != kbArticle.getMain())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = new StringBundler();
@@ -15282,6 +15661,18 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+						(parentResourcePrimKey != kbArticle.getParentResourcePrimKey()) ||
+						(status != kbArticle.getStatus())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -15681,6 +16072,19 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+						!ArrayUtil.contains(parentResourcePrimKeies,
+							kbArticle.getParentResourcePrimKey()) ||
+						(status != kbArticle.getStatus())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = new StringBundler();
@@ -16373,6 +16777,19 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+						(parentResourcePrimKey != kbArticle.getParentResourcePrimKey()) ||
+						!Validator.equals(sections, kbArticle.getSections()) ||
+						(latest != kbArticle.getLatest())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -16825,6 +17242,19 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+						(parentResourcePrimKey != kbArticle.getParentResourcePrimKey()) ||
+						!ArrayUtil.contains(sectionses, kbArticle.getSections()) ||
+						(latest != kbArticle.getLatest())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = new StringBundler();
@@ -17602,6 +18032,19 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+						(parentResourcePrimKey != kbArticle.getParentResourcePrimKey()) ||
+						!Validator.equals(sections, kbArticle.getSections()) ||
+						(main != kbArticle.getMain())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -18054,6 +18497,19 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+						(parentResourcePrimKey != kbArticle.getParentResourcePrimKey()) ||
+						!ArrayUtil.contains(sectionses, kbArticle.getSections()) ||
+						(main != kbArticle.getMain())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = new StringBundler();
@@ -18831,6 +19287,19 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+						(parentResourcePrimKey != kbArticle.getParentResourcePrimKey()) ||
+						!Validator.equals(sections, kbArticle.getSections()) ||
+						(status != kbArticle.getStatus())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -19282,6 +19751,19 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		List<KBArticle> list = (List<KBArticle>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KBArticle kbArticle : list) {
+				if ((groupId != kbArticle.getGroupId()) ||
+						(parentResourcePrimKey != kbArticle.getParentResourcePrimKey()) ||
+						!ArrayUtil.contains(sectionses, kbArticle.getSections()) ||
+						(status != kbArticle.getStatus())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = new StringBundler();

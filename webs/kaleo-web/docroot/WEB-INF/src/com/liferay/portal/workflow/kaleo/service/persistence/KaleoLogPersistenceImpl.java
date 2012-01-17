@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -772,6 +773,16 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		List<KaleoLog> list = (List<KaleoLog>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoLog kaleoLog : list) {
+				if ((companyId != kaleoLog.getCompanyId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1122,6 +1133,16 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 
 		List<KaleoLog> list = (List<KaleoLog>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoLog kaleoLog : list) {
+				if ((kaleoDefinitionId != kaleoLog.getKaleoDefinitionId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1474,6 +1495,16 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 
 		List<KaleoLog> list = (List<KaleoLog>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoLog kaleoLog : list) {
+				if ((kaleoInstanceId != kaleoLog.getKaleoInstanceId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1828,6 +1859,16 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 
 		List<KaleoLog> list = (List<KaleoLog>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoLog kaleoLog : list) {
+				if ((kaleoTaskInstanceTokenId != kaleoLog.getKaleoTaskInstanceTokenId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2184,6 +2225,17 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 
 		List<KaleoLog> list = (List<KaleoLog>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoLog kaleoLog : list) {
+				if ((kaleoInstanceTokenId != kaleoLog.getKaleoInstanceTokenId()) ||
+						!Validator.equals(type, kaleoLog.getType())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2593,6 +2645,20 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 
 		List<KaleoLog> list = (List<KaleoLog>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoLog kaleoLog : list) {
+				if (!Validator.equals(kaleoClassName,
+							kaleoLog.getKaleoClassName()) ||
+						(kaleoClassPK != kaleoLog.getKaleoClassPK()) ||
+						(kaleoInstanceTokenId != kaleoLog.getKaleoInstanceTokenId()) ||
+						!Validator.equals(type, kaleoLog.getType())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;

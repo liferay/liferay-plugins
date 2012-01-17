@@ -622,6 +622,16 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		List<KBTemplate> list = (List<KBTemplate>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KBTemplate kbTemplate : list) {
+				if (!Validator.equals(uuid, kbTemplate.getUuid())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -998,6 +1008,15 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 					finderArgs, this);
 		}
 
+		if (result instanceof KBTemplate) {
+			KBTemplate kbTemplate = (KBTemplate)result;
+
+			if (!Validator.equals(uuid, kbTemplate.getUuid()) ||
+					(groupId != kbTemplate.getGroupId())) {
+				result = null;
+			}
+		}
+
 		if (result == null) {
 			StringBundler query = new StringBundler(4);
 
@@ -1144,6 +1163,16 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 
 		List<KBTemplate> list = (List<KBTemplate>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KBTemplate kbTemplate : list) {
+				if ((groupId != kbTemplate.getGroupId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;

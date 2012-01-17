@@ -40,6 +40,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -577,6 +578,16 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		List<Folder> list = (List<Folder>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (Folder folder : list) {
+				if ((accountId != folder.getAccountId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -925,6 +936,15 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		if (retrieveFromCache) {
 			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_A_F,
 					finderArgs, this);
+		}
+
+		if (result instanceof Folder) {
+			Folder folder = (Folder)result;
+
+			if ((accountId != folder.getAccountId()) ||
+					!Validator.equals(fullName, folder.getFullName())) {
+				result = null;
+			}
 		}
 
 		if (result == null) {

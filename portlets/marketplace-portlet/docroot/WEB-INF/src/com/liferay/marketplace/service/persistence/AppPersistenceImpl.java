@@ -599,6 +599,16 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		List<App> list = (List<App>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (App app : list) {
+				if (!Validator.equals(uuid, app.getUuid())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -955,6 +965,16 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		List<App> list = (List<App>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (App app : list) {
+				if ((companyId != app.getCompanyId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1288,6 +1308,14 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		if (retrieveFromCache) {
 			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_REMOTEAPPID,
 					finderArgs, this);
+		}
+
+		if (result instanceof App) {
+			App app = (App)result;
+
+			if ((remoteAppId != app.getRemoteAppId())) {
+				result = null;
+			}
 		}
 
 		if (result == null) {

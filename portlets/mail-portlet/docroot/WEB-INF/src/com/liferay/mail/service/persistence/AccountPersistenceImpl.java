@@ -40,6 +40,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -581,6 +582,16 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		List<Account> list = (List<Account>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (Account account : list) {
+				if ((userId != account.getUserId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -929,6 +940,15 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		if (retrieveFromCache) {
 			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_U_A,
 					finderArgs, this);
+		}
+
+		if (result instanceof Account) {
+			Account account = (Account)result;
+
+			if ((userId != account.getUserId()) ||
+					!Validator.equals(address, account.getAddress())) {
+				result = null;
+			}
 		}
 
 		if (result == null) {
