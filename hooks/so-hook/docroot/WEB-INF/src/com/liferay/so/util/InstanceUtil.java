@@ -288,7 +288,7 @@ public class InstanceUtil {
 
 		layout = LayoutUtil.addLayout(
 			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Forums",
-			"1_column");
+			"2_columns_iii");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/forums", PortletPropsKeys.SITE_PROTOTYPE_PORTLETS);
