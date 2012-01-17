@@ -633,6 +633,14 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 					finderArgs, this);
 		}
 
+		if (result instanceof Status) {
+			Status status = (Status)result;
+
+			if ((userId != status.getUserId())) {
+				result = null;
+			}
+		}
+
 		if (result == null) {
 			StringBundler query = new StringBundler(2);
 
@@ -764,6 +772,16 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 		List<Status> list = (List<Status>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Status status : list) {
+				if ((modifiedDate != status.getModifiedDate())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1100,6 +1118,16 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 		List<Status> list = (List<Status>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Status status : list) {
+				if ((online != status.getOnline())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1443,6 +1471,17 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 		List<Status> list = (List<Status>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Status status : list) {
+				if ((modifiedDate != status.getModifiedDate()) ||
+						(online != status.getOnline())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;

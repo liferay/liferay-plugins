@@ -613,6 +613,16 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		List<Gadget> list = (List<Gadget>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (Gadget gadget : list) {
+				if (!Validator.equals(uuid, gadget.getUuid())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1311,6 +1321,16 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		List<Gadget> list = (List<Gadget>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (Gadget gadget : list) {
+				if ((companyId != gadget.getCompanyId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1969,6 +1989,15 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		if (retrieveFromCache) {
 			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_C_U,
 					finderArgs, this);
+		}
+
+		if (result instanceof Gadget) {
+			Gadget gadget = (Gadget)result;
+
+			if ((companyId != gadget.getCompanyId()) ||
+					!Validator.equals(url, gadget.getUrl())) {
+				result = null;
+			}
 		}
 
 		if (result == null) {

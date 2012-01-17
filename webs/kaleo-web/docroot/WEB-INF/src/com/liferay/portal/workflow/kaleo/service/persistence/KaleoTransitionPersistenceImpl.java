@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -729,6 +730,16 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		List<KaleoTransition> list = (List<KaleoTransition>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoTransition kaleoTransition : list) {
+				if ((companyId != kaleoTransition.getCompanyId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1082,6 +1093,16 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		List<KaleoTransition> list = (List<KaleoTransition>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoTransition kaleoTransition : list) {
+				if ((kaleoDefinitionId != kaleoTransition.getKaleoDefinitionId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1430,6 +1451,16 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 
 		List<KaleoTransition> list = (List<KaleoTransition>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoTransition kaleoTransition : list) {
+				if ((kaleoNodeId != kaleoTransition.getKaleoNodeId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1785,6 +1816,15 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 					finderArgs, this);
 		}
 
+		if (result instanceof KaleoTransition) {
+			KaleoTransition kaleoTransition = (KaleoTransition)result;
+
+			if ((kaleoNodeId != kaleoTransition.getKaleoNodeId()) ||
+					!Validator.equals(name, kaleoTransition.getName())) {
+				result = null;
+			}
+		}
+
 		if (result == null) {
 			StringBundler query = new StringBundler(4);
 
@@ -1940,6 +1980,15 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		if (retrieveFromCache) {
 			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_KNI_DT,
 					finderArgs, this);
+		}
+
+		if (result instanceof KaleoTransition) {
+			KaleoTransition kaleoTransition = (KaleoTransition)result;
+
+			if ((kaleoNodeId != kaleoTransition.getKaleoNodeId()) ||
+					(defaultTransition != kaleoTransition.getDefaultTransition())) {
+				result = null;
+			}
 		}
 
 		if (result == null) {

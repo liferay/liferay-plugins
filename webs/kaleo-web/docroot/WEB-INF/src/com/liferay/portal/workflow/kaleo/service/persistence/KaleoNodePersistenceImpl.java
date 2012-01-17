@@ -612,6 +612,16 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		List<KaleoNode> list = (List<KaleoNode>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoNode kaleoNode : list) {
+				if ((companyId != kaleoNode.getCompanyId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -963,6 +973,16 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 
 		List<KaleoNode> list = (List<KaleoNode>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoNode kaleoNode : list) {
+				if ((kaleoDefinitionId != kaleoNode.getKaleoDefinitionId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1318,6 +1338,17 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 
 		List<KaleoNode> list = (List<KaleoNode>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoNode kaleoNode : list) {
+				if ((companyId != kaleoNode.getCompanyId()) ||
+						(kaleoDefinitionId != kaleoNode.getKaleoDefinitionId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2030,6 +2061,10 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 
+	static {
+		FINDER_PATH_GET_KALEOACTIONS.setCacheKeyGeneratorCacheName(null);
+	}
+
 	/**
 	 * Returns an ordered range of all the kaleo actions associated with the kaleo node.
 	 *
@@ -2107,6 +2142,10 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 			com.liferay.portal.workflow.kaleo.model.impl.KaleoActionImpl.class,
 			com.liferay.portal.workflow.kaleo.service.persistence.KaleoActionPersistenceImpl.FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
 			"getKaleoActionsSize", new String[] { Long.class.getName() });
+
+	static {
+		FINDER_PATH_GET_KALEOACTIONS_SIZE.setCacheKeyGeneratorCacheName(null);
+	}
 
 	/**
 	 * Returns the number of kaleo actions associated with the kaleo node.
@@ -2255,6 +2294,10 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 
+	static {
+		FINDER_PATH_GET_KALEOTRANSITIONS.setCacheKeyGeneratorCacheName(null);
+	}
+
 	/**
 	 * Returns an ordered range of all the kaleo transitions associated with the kaleo node.
 	 *
@@ -2332,6 +2375,10 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 			com.liferay.portal.workflow.kaleo.model.impl.KaleoTransitionImpl.class,
 			com.liferay.portal.workflow.kaleo.service.persistence.KaleoTransitionPersistenceImpl.FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
 			"getKaleoTransitionsSize", new String[] { Long.class.getName() });
+
+	static {
+		FINDER_PATH_GET_KALEOTRANSITIONS_SIZE.setCacheKeyGeneratorCacheName(null);
+	}
 
 	/**
 	 * Returns the number of kaleo transitions associated with the kaleo node.

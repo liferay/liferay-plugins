@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -645,6 +646,16 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		List<KaleoNotification> list = (List<KaleoNotification>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoNotification kaleoNotification : list) {
+				if ((companyId != kaleoNotification.getCompanyId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -997,6 +1008,16 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 		List<KaleoNotification> list = (List<KaleoNotification>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoNotification kaleoNotification : list) {
+				if ((kaleoDefinitionId != kaleoNotification.getKaleoDefinitionId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1363,6 +1384,20 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 		List<KaleoNotification> list = (List<KaleoNotification>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoNotification kaleoNotification : list) {
+				if (!Validator.equals(kaleoClassName,
+							kaleoNotification.getKaleoClassName()) ||
+						(kaleoClassPK != kaleoNotification.getKaleoClassPK()) ||
+						!Validator.equals(executionType,
+							kaleoNotification.getExecutionType())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2181,6 +2216,10 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 
+	static {
+		FINDER_PATH_GET_KALEONOTIFICATIONRECIPIENTS.setCacheKeyGeneratorCacheName(null);
+	}
+
 	/**
 	 * Returns an ordered range of all the kaleo notification recipients associated with the kaleo notification.
 	 *
@@ -2261,6 +2300,10 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 			com.liferay.portal.workflow.kaleo.service.persistence.KaleoNotificationRecipientPersistenceImpl.FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
 			"getKaleoNotificationRecipientsSize",
 			new String[] { Long.class.getName() });
+
+	static {
+		FINDER_PATH_GET_KALEONOTIFICATIONRECIPIENTS_SIZE.setCacheKeyGeneratorCacheName(null);
+	}
 
 	/**
 	 * Returns the number of kaleo notification recipients associated with the kaleo notification.

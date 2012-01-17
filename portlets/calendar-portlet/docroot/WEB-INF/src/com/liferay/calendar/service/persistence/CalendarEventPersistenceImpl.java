@@ -602,6 +602,16 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 		List<CalendarEvent> list = (List<CalendarEvent>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (CalendarEvent calendarEvent : list) {
+				if (!Validator.equals(uuid, calendarEvent.getUuid())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -976,6 +986,15 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 		if (retrieveFromCache) {
 			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_UUID_G,
 					finderArgs, this);
+		}
+
+		if (result instanceof CalendarEvent) {
+			CalendarEvent calendarEvent = (CalendarEvent)result;
+
+			if (!Validator.equals(uuid, calendarEvent.getUuid()) ||
+					(groupId != calendarEvent.getGroupId())) {
+				result = null;
+			}
 		}
 
 		if (result == null) {

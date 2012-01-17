@@ -1130,7 +1130,8 @@ public class CalendarBookingWrapper implements CalendarBooking,
 		return new CalendarBookingWrapper((CalendarBooking)_calendarBooking.clone());
 	}
 
-	public int compareTo(CalendarBooking calendarBooking) {
+	public int compareTo(
+		com.liferay.calendar.model.CalendarBooking calendarBooking) {
 		return _calendarBooking.compareTo(calendarBooking);
 	}
 
@@ -1139,11 +1140,11 @@ public class CalendarBookingWrapper implements CalendarBooking,
 		return _calendarBooking.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<CalendarBooking> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<com.liferay.calendar.model.CalendarBooking> toCacheModel() {
 		return _calendarBooking.toCacheModel();
 	}
 
-	public CalendarBooking toEscapedModel() {
+	public com.liferay.calendar.model.CalendarBooking toEscapedModel() {
 		return new CalendarBookingWrapper(_calendarBooking.toEscapedModel());
 	}
 

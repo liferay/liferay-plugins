@@ -705,6 +705,16 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		List<UserThread> list = (List<UserThread>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (UserThread userThread : list) {
+				if ((mbThreadId != userThread.getMbThreadId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1049,6 +1059,16 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 		List<UserThread> list = (List<UserThread>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (UserThread userThread : list) {
+				if ((userId != userThread.getUserId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1402,6 +1422,15 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 					finderArgs, this);
 		}
 
+		if (result instanceof UserThread) {
+			UserThread userThread = (UserThread)result;
+
+			if ((userId != userThread.getUserId()) ||
+					(mbThreadId != userThread.getMbThreadId())) {
+				result = null;
+			}
+		}
+
 		if (result == null) {
 			StringBundler query = new StringBundler(4);
 
@@ -1543,6 +1572,17 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 		List<UserThread> list = (List<UserThread>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (UserThread userThread : list) {
+				if ((userId != userThread.getUserId()) ||
+						(deleted != userThread.getDeleted())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1918,6 +1958,18 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 		List<UserThread> list = (List<UserThread>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (UserThread userThread : list) {
+				if ((userId != userThread.getUserId()) ||
+						(read != userThread.getRead()) ||
+						(deleted != userThread.getDeleted())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;

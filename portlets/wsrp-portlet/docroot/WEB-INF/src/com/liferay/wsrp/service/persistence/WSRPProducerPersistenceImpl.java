@@ -623,6 +623,16 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 		List<WSRPProducer> list = (List<WSRPProducer>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (WSRPProducer wsrpProducer : list) {
+				if (!Validator.equals(uuid, wsrpProducer.getUuid())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -999,6 +1009,15 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 					finderArgs, this);
 		}
 
+		if (result instanceof WSRPProducer) {
+			WSRPProducer wsrpProducer = (WSRPProducer)result;
+
+			if (!Validator.equals(uuid, wsrpProducer.getUuid()) ||
+					(groupId != wsrpProducer.getGroupId())) {
+				result = null;
+			}
+		}
+
 		if (result == null) {
 			StringBundler query = new StringBundler(4);
 
@@ -1146,6 +1165,16 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 
 		List<WSRPProducer> list = (List<WSRPProducer>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (WSRPProducer wsrpProducer : list) {
+				if ((companyId != wsrpProducer.getCompanyId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;

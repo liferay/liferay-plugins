@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -627,6 +628,16 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 		List<KaleoAction> list = (List<KaleoAction>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoAction kaleoAction : list) {
+				if ((companyId != kaleoAction.getCompanyId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -978,6 +989,16 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 
 		List<KaleoAction> list = (List<KaleoAction>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoAction kaleoAction : list) {
+				if ((kaleoDefinitionId != kaleoAction.getKaleoDefinitionId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1341,6 +1362,20 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 
 		List<KaleoAction> list = (List<KaleoAction>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoAction kaleoAction : list) {
+				if (!Validator.equals(kaleoClassName,
+							kaleoAction.getKaleoClassName()) ||
+						(kaleoClassPK != kaleoAction.getKaleoClassPK()) ||
+						!Validator.equals(executionType,
+							kaleoAction.getExecutionType())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
