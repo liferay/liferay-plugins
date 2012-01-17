@@ -1797,6 +1797,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 	
 	.result-content {
-		margin-right: 0 -6px 0 -7px;
+		margin: 0 -6px 0 -7px;
 	}
 }
