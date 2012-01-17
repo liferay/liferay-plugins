@@ -77,9 +77,9 @@ if (Validator.isNotNull(portletResource)) {
 	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
+int maxDaysDisplayed = PrefsParamUtil.getInteger(preferences, request, "maxDaysDisplayed", 1);
+
 Calendar cal = CalendarFactoryUtil.getCalendar(timeZone, locale);
 
 Format dateFormatTime = FastDateFormatFactoryUtil.getTime(locale);
-
-int maxDaysDisplayed = PrefsParamUtil.getInteger(preferences, request, "maxDaysDisplayed", 1);
 %>
