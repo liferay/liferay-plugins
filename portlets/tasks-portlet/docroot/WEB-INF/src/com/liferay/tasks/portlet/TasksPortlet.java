@@ -200,9 +200,10 @@ public class TasksPortlet extends MVCPortlet {
 				dueDateMinute, neverDue, status, serviceContext);
 		}
 
+		Layout layout = themeDisplay.getLayout();
+
 		PortletURL portletURL = PortletURLFactoryUtil.create(
-			PortalUtil.getHttpServletRequest(actionRequest),
-			PortletKeys.TASKS, themeDisplay.getLayout().getPlid(),
+			actionRequest, PortletKeys.TASKS, layout.getPlid(),
 			PortletRequest.RENDER_PHASE);
 
 		portletURL.setWindowState(LiferayWindowState.EXCLUSIVE);

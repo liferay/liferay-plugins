@@ -16,8 +16,8 @@
 
 <%@ include file="/init.jsp" %>
 
-<div class="tasksentries-container">
-	<ul class="tasksentries">
+<div class="tasks-entries-container">
+	<ul class="tasks-entries">
 
 		<%
 		List<TasksEntry> taskEntries = TasksEntryLocalServiceUtil.getTasksEntries(0, 0, user.getUserId(), 0, TasksEntryConstants.STATUS_ALL, new long[0], new long[0], 0, 10);
