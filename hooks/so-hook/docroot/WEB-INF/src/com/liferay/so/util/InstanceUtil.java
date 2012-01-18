@@ -17,14 +17,11 @@
 
 package com.liferay.so.util;
 
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
-import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.UnicodeProperties;
-import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
@@ -32,8 +29,6 @@ import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Role;
-import com.liferay.portal.model.RoleConstants;
-import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
@@ -55,7 +50,6 @@ import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -71,8 +65,8 @@ public class InstanceUtil {
 			PortletPreferencesThreadLocal.setStrict(false);
 
 			setupExpando(companyId);
+			setupRole(companyId);
 			setupLayoutSetPrototype(companyId);
-			setupUsers(companyId);
 
 			setInitialized(companyId);
 		}
@@ -235,6 +229,17 @@ public class InstanceUtil {
 			ExpandoTableConstants.DEFAULT_TABLE_NAME, "socialOfficeDefault",
 			layoutSetPrototype.getLayoutSetPrototypeId(), true);
 
+		Role role = RoleLocalServiceUtil.getRole(
+			layoutSetPrototype.getCompanyId(),
+			RoleConstants.SOCIAL_OFFICE_USER);
+
+		ResourcePermissionLocalServiceUtil.setResourcePermissions(
+			layoutSetPrototype.getCompanyId(),
+			LayoutSetPrototype.class.getName(),
+			ResourceConstants.SCOPE_INDIVIDUAL,
+			String.valueOf(layoutSetPrototype.getPrimaryKey()),
+			role.getRoleId(), new String[] {ActionKeys.VIEW});
+
 		Group group = layoutSetPrototype.getGroup();
 
 		ServiceContext serviceContext = new ServiceContext();
@@ -339,24 +344,18 @@ public class InstanceUtil {
 		LayoutUtil.updatePermissions(layout, true);
 	}
 
-	protected static void setupUsers(long companyId) throws Exception {
-		List<User> users = UserLocalServiceUtil.search(
-			companyId, null, WorkflowConstants.STATUS_ANY, null,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, (OrderByComparator)null);
+	protected static void setupRole(long companyId) throws Exception {
+		long defaultUserId = UserLocalServiceUtil.getDefaultUserId(companyId);
 
-		for (User user : users) {
-			Group group = user.getGroup();
+		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
 
-			ServiceContext serviceContext = new ServiceContext();
+		descriptionMap.put(
+			LocaleUtil.getDefault(),
+			"Social Office Users have right to access the Social Office Suite");
 
-			LayoutSetLocalServiceUtil.deleteLayoutSet(
-				group.getGroupId(), true, serviceContext);
-			LayoutSetLocalServiceUtil.deleteLayoutSet(
-				group.getGroupId(), false, serviceContext);
-
-			LayoutSetLocalServiceUtil.addLayoutSet(group.getGroupId(), true);
-			LayoutSetLocalServiceUtil.addLayoutSet(group.getGroupId(), false);
-		}
+		RoleLocalServiceUtil.addRole(
+			defaultUserId, companyId, RoleConstants.SOCIAL_OFFICE_USER, null,
+			descriptionMap, RoleConstants.TYPE_REGULAR);
 	}
 
 	protected static void updatePermissions(ExpandoColumn expandoColumn)

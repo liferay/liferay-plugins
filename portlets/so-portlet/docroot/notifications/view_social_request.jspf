@@ -30,7 +30,7 @@
 
 	<div class="notification-entry">
 		<div class="title">
-			<span><%= notificationEventJSON.getString("title", StringPool.BLANK) %></span>
+			<span><liferay-ui:message arguments="<%= userFullName %>" key='<%= notificationEventJSON.getString("title") %>' /></span>
 		</div>
 
 		<div class="request">
