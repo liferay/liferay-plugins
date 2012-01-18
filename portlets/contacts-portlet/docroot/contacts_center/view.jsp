@@ -81,17 +81,18 @@ portletURL.setWindowState(WindowState.NORMAL);
 
 						for (User user2 : users) {
 							String lastName = user2.getLastName();
-							String nameAnchor = LanguageUtil.get(pageContext, "no-last-name");
+
+							String curLastNameAnchor = LanguageUtil.get(pageContext, "no-last-name");
 
 							if (Validator.isNotNull(lastName)) {
-								nameAnchor = StringUtil.upperCase(lastName.substring(0, 1));
+								curLastNameAnchor = StringUtil.upperCase(lastName.substring(0, 1));
 							}
 						%>
 
-							<c:if test="<%= !nameAnchor.equals(lastNameAnchor) %>">
+							<c:if test="<%= !curLastNameAnchor.equals(lastNameAnchor) %>">
 
 								<%
-								lastNameAnchor = nameAnchor;
+								lastNameAnchor = curLastNameAnchor;
 								%>
 
 								<div class="lastNameAnchor">
