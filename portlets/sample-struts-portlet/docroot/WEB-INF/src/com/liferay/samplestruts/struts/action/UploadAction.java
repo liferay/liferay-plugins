@@ -19,9 +19,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
 
 import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.Map.Entry;
-import java.util.Set;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,6 +29,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.upload.FormFile;
+import org.apache.struts.upload.MultipartRequestHandler;
 
 /**
  * @author Brian Wing Shun Chan
@@ -43,34 +42,31 @@ public class UploadAction extends Action {
 			HttpServletResponse response)
 		throws Exception {
 
+		MultipartRequestHandler multipartRequestHandler =
+			form.getMultipartRequestHandler();
+
 		Hashtable<String, FormFile> fileElements =
-			form.getMultipartRequestHandler().getFileElements();
+			multipartRequestHandler.getFileElements();
 
-		Set<Entry<String,FormFile>> entrySet = fileElements.entrySet();
+		String fileName = StringPool.BLANK;
 
-		Iterator<Entry<String, FormFile>> itr = entrySet.iterator();
-
-		String itemName = StringPool.BLANK;
-
-		while (itr.hasNext()) {
-			Entry<String,FormFile> entry = itr.next();
-
+		for (Map.Entry<String, FormFile> entry : fileElements.entrySet()) {
 			if (_log.isInfoEnabled()) {
 				_log.info("Field name " + entry.getKey());
 			}
 
-			FormFile item = entry.getValue();
+			FormFile formFile = entry.getValue();
 
-			itemName = item.getFileName();
+			fileName = formFile.getFileName();
 
 			if (_log.isInfoEnabled()) {
-				_log.info("Name " + itemName);
-				_log.info("Content type " + item.getContentType());
-				_log.info("Size " + item.getFileSize());
+				_log.info("Name " + fileName);
+				_log.info("Content type " + formFile.getContentType());
+				_log.info("Size " + formFile.getFileSize());
 			}
 		}
 
-		request.setAttribute("file_name", itemName);
+		request.setAttribute("file_name", fileName);
 
 		return mapping.findForward("/sample_struts_portlet/upload_success");
 	}
