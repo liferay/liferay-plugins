@@ -19,53 +19,64 @@
 
 <%@ include file="/html/taglib/init.jsp" %>
 
-<ul class="taglib-my-places">
-	<liferay-util:include page="/sites/view_starred_sites.jsp" portletId="5_WAR_soportlet" />
+<%
+Role role = RoleLocalServiceUtil.fetchRole(themeDisplay.getCompanyId(), "Social Office User");
+%>
 
-	<liferay-portlet:renderURL portletName="5_WAR_soportlet" varImpl="viewSitesURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-		<portlet:param name="mvcPath" value="/sites/view_sites.jsp" />
-	</liferay-portlet:renderURL>
+<c:choose>
+	<c:when test="<%= Validator.isNull(role) || !UserLocalServiceUtil.hasRoleUser(role.getRoleId(), themeDisplay.getUserId()) %>">
+		<liferay-util:include page="/html/taglib/ui/my_sites/page.portal.jsp" />
+	</c:when>
+	<c:otherwise>
+		<ul class="taglib-my-places">
+			<liferay-util:include page="/sites/view_starred_sites.jsp" portletId="5_WAR_soportlet" />
 
-	<li>
-		<a class="open-sites-directory" href="javascript:;" onClick="<portlet:namespace />displayDirectoryPopup('<%= viewSitesURL %>', '<liferay-ui:message key="more-sites" />');">
-			<span class="site-name">
-				<liferay-ui:icon
-					message="more-sites"
-					src='<%= themeDisplay.getPathContext() + "/html/icons/more_sites.png" %>'
-				/>
+			<liferay-portlet:renderURL portletName="5_WAR_soportlet" varImpl="viewSitesURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+				<portlet:param name="mvcPath" value="/sites/view_sites.jsp" />
+			</liferay-portlet:renderURL>
 
-				<liferay-ui:message key="more-sites" />
-			</span>
-		</a>
-	</li>
-</ul>
+			<li>
+				<a class="open-sites-directory" href="javascript:;" onClick="<portlet:namespace />displayDirectoryPopup('<%= viewSitesURL %>', '<liferay-ui:message key="more-sites" />');">
+					<span class="site-name">
+						<liferay-ui:icon
+							message="more-sites"
+							src='<%= themeDisplay.getPathContext() + "/html/icons/more_sites.png" %>'
+						/>
 
-<aui:script>
-	Liferay.provide(
-		window,
-		'<portlet:namespace />displayDirectoryPopup',
-		function(url, title) {
-			var A = AUI();
+						<liferay-ui:message key="more-sites" />
+					</span>
+				</a>
+			</li>
+		</ul>
 
-			var dialog = new A.Dialog(
-				{
-					align: {
-						node: null,
-						points: ['tc', 'tc']
-					},
-					constrain2view: true,
-					cssClass: 'so-portlet-sites-dialog',
-					resizable: true,
-					title: title,
-					width: 650
-				}
-			).plug(
-				A.Plugin.IO,
-				{
-					uri: url
-				}
-			).render();
-		},
-		['aui-base', 'aui-dialog', 'aui-io']
-	);
-</aui:script>
+		<aui:script>
+			Liferay.provide(
+				window,
+				'<portlet:namespace />displayDirectoryPopup',
+				function(url, title) {
+					var A = AUI();
+
+					var dialog = new A.Dialog(
+						{
+							align: {
+								node: null,
+								points: ['tc', 'tc']
+							},
+							constrain2view: true,
+							cssClass: 'so-portlet-sites-dialog',
+							resizable: true,
+							title: title,
+							width: 650
+						}
+					).plug(
+						A.Plugin.IO,
+						{
+							uri: url
+						}
+					).render();
+				},
+				['aui-base', 'aui-dialog', 'aui-io']
+			);
+		</aui:script>
+	</c:otherwise>
+</c:choose>

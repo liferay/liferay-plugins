@@ -58,7 +58,6 @@ page import="com.liferay.portal.model.Layout" %><%@
 page import="com.liferay.portal.model.LayoutSetPrototype" %><%@
 page import="com.liferay.portal.model.Portlet" %><%@
 page import="com.liferay.portal.model.Role" %><%@
-page import="com.liferay.portal.model.RoleConstants" %><%@
 page import="com.liferay.portal.model.Team" %><%@
 page import="com.liferay.portal.model.User" %><%@
 page import="com.liferay.portal.model.UserNotificationEvent" %><%@
@@ -93,7 +92,8 @@ page import="com.liferay.so.model.impl.ProjectsEntryImpl" %><%@
 page import="com.liferay.so.service.MemberRequestLocalServiceUtil" %><%@
 page import="com.liferay.so.service.ProjectsEntryLocalServiceUtil" %><%@
 page import="com.liferay.so.sites.util.SitesUtil" %><%@
-page import="com.liferay.so.util.PortletKeys" %>
+page import="com.liferay.so.util.PortletKeys" %><%@
+page import="com.liferay.so.util.RoleConstants" %>
 
 <%@ page import="java.text.Format" %>
 

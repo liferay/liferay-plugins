@@ -19,51 +19,62 @@
 
 <%@ include file="/html/portlet/dockbar/init.jsp" %>
 
-<liferay-util:buffer var="html">
-	<liferay-util:include page="/html/portlet/dockbar/view.portal.jsp" />
-</liferay-util:buffer>
-
 <%
-int x = html.indexOf("<li class=\"user-avatar \" id=\"_145_userAvatar\">");
+Role role = RoleLocalServiceUtil.fetchRole(themeDisplay.getCompanyId(), "Social Office User");
 %>
 
 <c:choose>
-	<c:when test="<%= x > 0 %>">
-		<%= html.substring(0, x) %>
-
-		<%
-		Group mySite = user.getGroup();
-
-		PortletURL portletURL = new PortletURLImpl(request, PortletKeys.MY_SITES, plid, PortletRequest.ACTION_PHASE);
-
-		portletURL.setWindowState(WindowState.NORMAL);
-		portletURL.setPortletMode(PortletMode.VIEW);
-
-		portletURL.setParameter("struts_action", "/my_sites/view");
-		portletURL.setParameter("groupId", String.valueOf(mySite.getGroupId()));
-		portletURL.setParameter("privateLayout", Boolean.TRUE.toString());
-		%>
-
-		<li>
-			<liferay-ui:icon
-				message="my-private-pages"
-				src='<%= themeDisplay.getPathContext() + "/html/icons/social_office.png" %>'
-			/>
-
-			<a href="<%= portletURL %>"><liferay-ui:message key="my-private-pages" /></a>
-		</li>
-
-		<li class="aui-toolbar-separator">
-			<span></span>
-		</li>
-
-		<li class="notifications-menu has-submenu" id="<portlet:namespace />notificationsMenu">
-			<liferay-portlet:runtime portletName="7_WAR_soportlet" />
-		</li>
-
-		<%= html.substring(x) %>
+	<c:when test="<%= Validator.isNull(role) || !UserLocalServiceUtil.hasRoleUser(role.getRoleId(), themeDisplay.getUserId()) %>">
+		<liferay-util:include page="/html/portlet/dockbar/view.portal.jsp" />
 	</c:when>
 	<c:otherwise>
-		<%= html %>
+		<liferay-util:buffer var="html">
+			<liferay-util:include page="/html/portlet/dockbar/view.portal.jsp" />
+		</liferay-util:buffer>
+
+		<%
+		int x = html.indexOf("<li class=\"user-avatar \" id=\"_145_userAvatar\">");
+		%>
+
+		<c:choose>
+			<c:when test="<%= x > 0 %>">
+				<%= html.substring(0, x) %>
+
+				<%
+				Group mySite = user.getGroup();
+
+				PortletURL portletURL = new PortletURLImpl(request, PortletKeys.MY_SITES, plid, PortletRequest.ACTION_PHASE);
+
+				portletURL.setWindowState(WindowState.NORMAL);
+				portletURL.setPortletMode(PortletMode.VIEW);
+
+				portletURL.setParameter("struts_action", "/my_sites/view");
+				portletURL.setParameter("groupId", String.valueOf(mySite.getGroupId()));
+				portletURL.setParameter("privateLayout", Boolean.TRUE.toString());
+				%>
+
+				<li>
+					<liferay-ui:icon
+						message="my-private-pages"
+						src='<%= themeDisplay.getPathContext() + "/html/icons/social_office.png" %>'
+					/>
+
+					<a href="<%= portletURL %>"><liferay-ui:message key="dashboard" /></a>
+				</li>
+
+				<li class="aui-toolbar-separator">
+					<span></span>
+				</li>
+
+				<li class="notifications-menu has-submenu" id="<portlet:namespace />notificationsMenu">
+					<liferay-portlet:runtime portletName="7_WAR_soportlet" />
+				</li>
+
+				<%= html.substring(x) %>
+			</c:when>
+			<c:otherwise>
+				<%= html %>
+			</c:otherwise>
+		</c:choose>
 	</c:otherwise>
 </c:choose>
