@@ -175,7 +175,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 		String url) {
 
 		try {
-			Portlet portlet = _portletsPool.get(wsrpConsumerPortletUuid);
+			Portlet portlet = _portletsPool.remove(wsrpConsumerPortletUuid);
 
 			if (portlet == null) {
 				return;
@@ -186,8 +186,6 @@ public class WSRPConsumerPortletLocalServiceImpl
 			PortletInstanceFactoryUtil.destroy(portlet);
 
 			_failedWSRPConsumerPortlets.remove(wsrpConsumerPortletId);
-
-			_portletsPool.remove(wsrpConsumerPortletUuid);
 		}
 		catch (Exception e) {
 			_log.error(
