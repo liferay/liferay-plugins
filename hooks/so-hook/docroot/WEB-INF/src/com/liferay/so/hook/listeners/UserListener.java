@@ -48,7 +48,9 @@ public class UserListener extends BaseModelListener<User> {
 
 			Role role = RoleLocalServiceUtil.getRole((Long)associationClassPK);
 
-			if (role.getName().equals(RoleConstants.SOCIAL_OFFICE_USER)) {
+			String name = role.getName();
+
+			if (name.equals(RoleConstants.SOCIAL_OFFICE_USER)) {
 				updateUserLayoutSets((Long)classPK);
 			}
 		}
