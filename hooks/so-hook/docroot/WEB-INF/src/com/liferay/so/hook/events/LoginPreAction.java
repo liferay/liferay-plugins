@@ -17,7 +17,6 @@
 
 package com.liferay.so.hook.events;
 
-import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.events.Action;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -79,64 +78,58 @@ public class LoginPreAction extends Action {
 			HttpServletRequest request, HttpServletResponse response)
 		throws Exception {
 
-		User user = null;
+		User user = PortalUtil.getUser(request);
 
-		try {
-			user = PortalUtil.getUser(request);
-		}
-		catch (NoSuchUserException nsue) {
+		if (user == null) {
+			return;
 		}
 
-		if (user != null) {
-			Role role = RoleLocalServiceUtil.fetchRole(
-				user.getCompanyId(), RoleConstants.SOCIAL_OFFICE_USER);
+		Role role = RoleLocalServiceUtil.fetchRole(
+			user.getCompanyId(), RoleConstants.SOCIAL_OFFICE_USER);
 
-			if (!UserLocalServiceUtil.hasRoleUser(
-					role.getRoleId(), user.getUserId())) {
+		if (!UserLocalServiceUtil.hasRoleUser(
+				role.getRoleId(), user.getUserId())) {
 
-				return;
-			}
-
-			Group group = user.getGroup();
-
-			String customJspServletContextName = GetterUtil.getString(
-				group.getTypeSettingsProperty("customJspServletContextName"));
-
-			if (customJspServletContextName.equals("so-hook")) {
-				return;
-			}
-
-			if (!LayoutLocalServiceUtil.hasLayouts(user, false)) {
-				LayoutSetLocalServiceUtil.addLayoutSet(
-					group.getGroupId(), false);
-			}
-			else {
-				List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
-					group.getGroupId(), false);
-
-				ServiceContext serviceContext = new ServiceContext();
-
-				for (Layout layout : layouts) {
-					LayoutLocalServiceUtil.updateLayout(
-						layout.getGroupId(), layout.isPrivateLayout(),
-						layout.getLayoutId(), layout.getParentLayoutId(),
-						layout.getNameMap(), layout.getTitleMap(),
-						layout.getDescriptionMap(), layout.getKeywordsMap(),
-						layout.getRobotsMap(), layout.getType(), true,
-						layout.getFriendlyURL(), null, null, serviceContext);
-				}
-			}
-
-			if (!LayoutLocalServiceUtil.hasLayouts(user, true)) {
-				LayoutSetLocalServiceUtil.addLayoutSet(
-					group.getGroupId(), true);
-			}
-
-			updatePrivateUserLayouts(group);
-			updatePublicUserLayouts(group);
-
-			setCustomJspServletContextName(group);
+			return;
 		}
+
+		Group group = user.getGroup();
+
+		String customJspServletContextName = GetterUtil.getString(
+			group.getTypeSettingsProperty("customJspServletContextName"));
+
+		if (customJspServletContextName.equals("so-hook")) {
+			return;
+		}
+
+		if (!LayoutLocalServiceUtil.hasLayouts(user, false)) {
+			LayoutSetLocalServiceUtil.addLayoutSet(group.getGroupId(), false);
+		}
+		else {
+			List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
+				group.getGroupId(), false);
+
+			ServiceContext serviceContext = new ServiceContext();
+
+			for (Layout layout : layouts) {
+				LayoutLocalServiceUtil.updateLayout(
+					layout.getGroupId(), layout.isPrivateLayout(),
+					layout.getLayoutId(), layout.getParentLayoutId(),
+					layout.getNameMap(), layout.getTitleMap(),
+					layout.getDescriptionMap(), layout.getKeywordsMap(),
+					layout.getRobotsMap(), layout.getType(), true,
+					layout.getFriendlyURL(), null, null, serviceContext);
+			}
+		}
+
+		if (!LayoutLocalServiceUtil.hasLayouts(user, true)) {
+			LayoutSetLocalServiceUtil.addLayoutSet(group.getGroupId(), true);
+		}
+
+		updatePrivateUserLayouts(group);
+		updatePublicUserLayouts(group);
+
+		setCustomJspServletContextName(group);
 	}
 
 	protected void updatePrivateUserLayouts(Group group) throws Exception {
@@ -261,6 +254,6 @@ public class LoginPreAction extends Action {
 		LayoutLocalServiceUtil.updatePriority(layout, 2);
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(ServicePreAction.class);
+	private static Log _log = LogFactoryUtil.getLog(LoginPreAction.class);
 
 }

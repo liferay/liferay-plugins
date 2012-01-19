@@ -24,7 +24,7 @@ Role role = RoleLocalServiceUtil.fetchRole(themeDisplay.getCompanyId(), "Social 
 %>
 
 <c:choose>
-	<c:when test="<%= Validator.isNull(role) || !UserLocalServiceUtil.hasRoleUser(role.getRoleId(), themeDisplay.getUserId()) %>">
+	<c:when test="<%= (role == null) || !UserLocalServiceUtil.hasRoleUser(role.getRoleId(), themeDisplay.getUserId()) %>">
 		<liferay-util:include page="/html/portlet/dockbar/view.portal.jsp" />
 	</c:when>
 	<c:otherwise>
