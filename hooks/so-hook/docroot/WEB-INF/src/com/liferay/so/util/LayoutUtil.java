@@ -116,11 +116,11 @@ public class LayoutUtil {
 		for (String portletId : portletIds) {
 			addResources(layout, portletId);
 
-			if (portletId.startsWith("1_WAR_wysiwygportlet")) {
-				updatePortletTitle(layout, portletId, "Welcome");
-			}
-			else if (portletId.startsWith("1_WAR_eventsdisplayportlet")) {
+			if (portletId.startsWith("1_WAR_eventsdisplayportlet")) {
 				updatePortletTitle(layout, portletId, "Events");
+			}
+			else if (portletId.startsWith("1_WAR_wysiwygportlet")) {
+				updatePortletTitle(layout, portletId, "Welcome");
 			}
 			else if (portletId.startsWith("101")) {
 				updatePortletTitle(layout, portletId, "Related Content");

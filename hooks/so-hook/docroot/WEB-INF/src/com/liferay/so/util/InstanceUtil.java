@@ -64,8 +64,9 @@ public class InstanceUtil {
 		try {
 			PortletPreferencesThreadLocal.setStrict(false);
 
-			setupExpando(companyId);
 			setupRole(companyId);
+
+			setupExpando(companyId);
 			setupLayoutSetPrototype(companyId);
 
 			setInitialized(companyId);
