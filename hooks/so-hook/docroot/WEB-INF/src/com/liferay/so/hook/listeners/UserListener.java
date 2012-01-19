@@ -49,34 +49,36 @@ public class UserListener extends BaseModelListener<User> {
 			Role role = RoleLocalServiceUtil.getRole((Long)associationClassPK);
 
 			if (role.getName().equals(RoleConstants.SOCIAL_OFFICE_USER)) {
-				User user = UserLocalServiceUtil.getUser((Long)classPK);
-
-				Group group = user.getGroup();
-
-				ServiceContext serviceContext = new ServiceContext();
-
-				LayoutSetLocalServiceUtil.deleteLayoutSet(
-					group.getGroupId(), false, serviceContext);
-				LayoutSetLocalServiceUtil.deleteLayoutSet(
-					group.getGroupId(), true, serviceContext);
-
-				LayoutSetLocalServiceUtil.addLayoutSet(
-					group.getGroupId(), false);
-				LayoutSetLocalServiceUtil.addLayoutSet(
-					group.getGroupId(), true);
-
-				UnicodeProperties typeSettingsProperties =
-					group.getTypeSettingsProperties();
-
-				typeSettingsProperties.remove("customJspServletContextName");
-
-				GroupLocalServiceUtil.updateGroup(
-					group.getGroupId(), typeSettingsProperties.toString());
+				updateUserLayoutSets((Long)classPK);
 			}
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
 		}
+	}
+
+	protected void updateUserLayoutSets(long userId) throws Exception {
+		User user = UserLocalServiceUtil.getUser(userId);
+
+		Group group = user.getGroup();
+
+		ServiceContext serviceContext = new ServiceContext();
+
+		LayoutSetLocalServiceUtil.deleteLayoutSet(
+			group.getGroupId(), false, serviceContext);
+		LayoutSetLocalServiceUtil.deleteLayoutSet(
+			group.getGroupId(), true, serviceContext);
+
+		LayoutSetLocalServiceUtil.addLayoutSet(group.getGroupId(), false);
+		LayoutSetLocalServiceUtil.addLayoutSet(group.getGroupId(), true);
+
+		UnicodeProperties typeSettingsProperties =
+			group.getTypeSettingsProperties();
+
+		typeSettingsProperties.remove("customJspServletContextName");
+
+		GroupLocalServiceUtil.updateGroup(
+			group.getGroupId(), typeSettingsProperties.toString());
 	}
 
 }

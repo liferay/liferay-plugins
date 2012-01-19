@@ -351,7 +351,7 @@ public class InstanceUtil {
 
 		descriptionMap.put(
 			LocaleUtil.getDefault(),
-			"Social Office Users have right to access the Social Office Suite");
+			"Social Office Users have access to the Social Office Suite.");
 
 		RoleLocalServiceUtil.addRole(
 			defaultUserId, companyId, RoleConstants.SOCIAL_OFFICE_USER, null,
