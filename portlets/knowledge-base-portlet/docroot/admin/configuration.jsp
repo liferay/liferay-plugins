@@ -148,10 +148,10 @@ else if (tabs2.equals("article-updated-email")) {
 			<c:when test='<%= tabs2.startsWith("article-") %>'>
 				<c:choose>
 					<c:when test='<%= tabs2.equals("article-added-email") %>'>
-						<aui:input inlineLabel="left" label="enabled" name="preferences--emailKBArticleAddedEnabled--" type="checkbox" value="<%= emailKBArticleAddedEnabled %>" />
+						<aui:input inlineLabel="right" label="enabled" name="preferences--emailKBArticleAddedEnabled--" type="checkbox" value="<%= emailKBArticleAddedEnabled %>" />
 					</c:when>
 					<c:when test='<%= tabs2.equals("article-updated-email") %>'>
-						<aui:input inlineLabel="left" label="enabled" name="preferences--emailKBArticleUpdatedEnabled--" type="checkbox" value="<%= emailKBArticleUpdatedEnabled %>" />
+						<aui:input inlineLabel="right" label="enabled" name="preferences--emailKBArticleUpdatedEnabled--" type="checkbox" value="<%= emailKBArticleUpdatedEnabled %>" />
 					</c:when>
 				</c:choose>
 

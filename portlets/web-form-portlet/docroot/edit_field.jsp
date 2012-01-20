@@ -91,7 +91,7 @@ boolean ignoreRequestValue = (index != formFieldsIndex);
 
 	<c:choose>
 		<c:when test="<%= !fieldsEditingDisabled %>">
-			<aui:input cssClass="optional-control" ignoreRequestValue="<%= ignoreRequestValue %>" inlineLabel="left" label="optional" name='<%= "fieldOptional" + index %>' type="checkbox" value="<%= fieldOptional %>" />
+			<aui:input cssClass="optional-control" ignoreRequestValue="<%= ignoreRequestValue %>" inlineLabel="right" label="optional" name='<%= "fieldOptional" + index %>' type="checkbox" value="<%= fieldOptional %>" />
 		</c:when>
 		<c:otherwise>
 				<dt>

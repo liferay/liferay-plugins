@@ -162,7 +162,7 @@ long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/
 			String taglibNeverReviewOnClick = renderResponse.getNamespace() + "disableInputDate('dueDate', this.checked);";
 			%>
 
-			<aui:input inlineLabel="left" label="never-due" name="neverDue" value="<%= neverDue %>" onClick="<%= taglibNeverReviewOnClick %>" type="checkbox" />
+			<aui:input inlineLabel="right" label="never-due" name="neverDue" value="<%= neverDue %>" onClick="<%= taglibNeverReviewOnClick %>" type="checkbox" />
 		</div>
 	</td>
 </tr>
