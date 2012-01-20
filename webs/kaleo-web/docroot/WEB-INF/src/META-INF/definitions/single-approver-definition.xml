@@ -27,6 +27,16 @@
 			<![CDATA[{"xy":[397,191]}]]>
 		</metadata>
 		<actions>
+			<action>
+				<name>reject</name>
+				<script>
+					<![CDATA[
+						Packages.com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil.updateStatus(Packages.com.liferay.portal.kernel.workflow.WorkflowConstants.toStatus("denied"), workflowContext);
+					]]>
+				</script>
+				<script-language>javascript</script-language>
+				<execution-type>onAssignment</execution-type>
+			</action>
 			<notification>
 				<name>Creator Modification Notification</name>
 				<template>Your submission was rejected by a reviewer, please modify and resubmit.</template>
