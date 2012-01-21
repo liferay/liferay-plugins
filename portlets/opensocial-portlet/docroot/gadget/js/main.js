@@ -233,25 +233,6 @@ AUI.add(
 						);
 					},
 
-					syncUI: function() {
-						var instance = this;
-
-						instance.get('store').getPrefs(instance, A.bind(instance._syncPrefs, instance));
-					},
-
-					getUserPrefParams: function() {
-						var instance = this;
-
-						var userPrefs = instance.get('userPrefs');
-						var buffer = [];
-
-						for (var i in userPrefs) {
-							buffer.push('&up_' + encodeURIComponent(i) + '=' + encodeURIComponent(userPrefs[i]));
-						}
-
-						return buffer.join(STR_EMPTY);
-					},
-
 					_afterAdditionalParamsChange: function(event) {
 						var instance = this;
 
@@ -352,6 +333,8 @@ AUI.add(
 						if (!event.SYNC) {
 							instance.get('store').savePrefs(instance);
 						}
+
+						instance._refreshUserPrefs();
 					},
 
 					_afterViewChange: function(event) {
@@ -418,7 +401,7 @@ AUI.add(
 
 						url += instance.get('additionalParams');
 
-						url += instance.getUserPrefParams();
+						url += instance._getUserPrefParams();
 
 						if (secureToken) {
 							url += '&st=' + secureToken;
@@ -435,6 +418,18 @@ AUI.add(
 						}
 
 						return url;
+					},
+
+					_getUserPrefParams: function() {
+						var instance = this;
+						var userPrefs = instance.get('userPrefs');
+						var buffer = [];
+
+						for (var i in userPrefs) {
+							buffer.push('&up_' + encodeURIComponent(i) + '=' + encodeURIComponent(userPrefs[i]));
+						}
+
+						return buffer.join(STR_EMPTY);
 					},
 
 					_refreshSrcParameter: function(key, value) {
@@ -501,20 +496,6 @@ AUI.add(
 						return parameters.join('&');
 					},
 
-					_syncPrefs: function(prefs) {
-						var instance = this;
-
-						instance.set(
-							'userPrefs',
-							prefs,
-							{
-								SYNC: true
-							}
-						);
-
-						instance._refreshUserPrefs();
-					},
-
 					_uiSetIframeHeight: function(value) {
 						var instance = this;
 
@@ -546,7 +527,6 @@ AUI.add(
 				EXTENDS: A.Base,
 				NAME: 'gadgetstoredefault',
 				prototype: {
-					getPrefs: Lang.emptyFn,
 					savePrefs: Lang.emptyFn
 				}
 			}
@@ -557,14 +537,6 @@ AUI.add(
 				EXTENDS: DefaultStore,
 				NAME: 'gadgetstorecookie',
 				prototype: {
-					getPrefs: function(gadget, callback) {
-						var instance = this;
-
-						if (Lang.isFunction(callback)) {
-							callback(A.Cookie.getSubs(instance.get('userPrefsKey')) || {});
-						}
-					},
-
 					savePrefs: function(gadget) {
 						var instance = this;
 
@@ -579,27 +551,6 @@ AUI.add(
 				EXTENDS: DefaultStore,
 				NAME: 'gadgetstoreexpando',
 				prototype: {
-					getPrefs: function(gadget, callback) {
-						var instance = this;
-
-						Liferay.Service.Expando.ExpandoValue.getJSONData(
-							{
-								companyId: themeDisplay.getCompanyId(),
-								className: instance._CLASS_NAME,
-								tableName: instance._TABLE_NAME,
-								columnName: instance.get('userPrefsKey'),
-								classPK: themeDisplay.getPlid()
-							},
-							function(userPrefs) {
-								if (Lang.isFunction(callback)) {
-									if (!userPrefs.exception) {
-										callback(userPrefs || {});
-									}
-								}
-							}
-						);
-					},
-
 					savePrefs: function(gadget) {
 						var instance = this;
 
