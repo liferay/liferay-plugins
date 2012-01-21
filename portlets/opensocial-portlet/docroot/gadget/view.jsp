@@ -43,6 +43,10 @@ Map<String, Feature> features = modulePrefs.getFeatures();
 boolean requiresPubsub = features.containsKey("pubsub-2");
 
 String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUserId(), gadgetKey, PortalUtil.getPortalURL(themeDisplay), gadget.getUrl(), moduleId, currentURL);
+
+String userPrefsKey = ShindigUtil.getColumnUserPrefs(renderResponse.getNamespace(), themeDisplay);
+
+JSONObject userPrefs = ExpandoValueServiceUtil.getJSONData(themeDisplay.getCompanyId(), Layout.class.getName(), ShindigUtil.getTableOpenSocial(), userPrefsKey, themeDisplay.getPlid());
 %>
 
 <div class="gadgets-gadget-chrome" id="<portlet:namespace />gadget"></div>
@@ -65,9 +69,10 @@ String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUs
 			specUrl: '<%= gadget.getUrl() %>',
 			store: new Liferay.OpenSocial.Store.Expando(
 				{
-					userPrefsKey: '<%= ShindigUtil.getColumnUserPrefs(renderResponse.getNamespace(), themeDisplay) %>'
+					userPrefsKey: '<%= userPrefsKey %>'
 				}
 			),
+			userPrefs: A.JSON.parse('<%= userPrefs %>'),
 			view: '<%= view %>',
 			viewParams: '<%= ParamUtil.getString(renderRequest, "viewParams") %>'
 		}
