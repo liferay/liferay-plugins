@@ -31,16 +31,19 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
+import com.liferay.portal.model.LayoutSet;
 import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.GroupServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
+import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetPrototypeServiceUtil;
 import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
@@ -516,9 +519,15 @@ public class SitesPortlet extends MVCPortlet {
 		}
 
 		PortalClassInvoker.invoke(
-			true, _applyLayoutSetPrototypesMethodKey, group,
+			true, _updateLayoutSetPrototypesMethodKey, group,
 			publicLayoutSetPrototypeId, privateLayoutSetPrototypeId,
-			serviceContext);
+			!privateLayout, privateLayout);
+
+		LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
+				group.getGroupId(), privateLayout);
+
+		PortalClassInvoker.invoke(
+			true, _mergeLayoutSetProtypeLayoutsMethodKey, group, layoutSet);
 
 		long[] deleteLayoutIds = getLongArray(actionRequest, "deleteLayoutIds");
 
@@ -534,6 +543,8 @@ public class SitesPortlet extends MVCPortlet {
 		for (Layout layout : layouts) {
 			LayoutLocalServiceUtil.deleteLayout(layout, true, serviceContext);
 		}
+
+		setCustomJspServletContextName(group);
 	}
 
 	protected long[] getLongArray(PortletRequest portletRequest, String name) {
@@ -546,11 +557,30 @@ public class SitesPortlet extends MVCPortlet {
 		return StringUtil.split(GetterUtil.getString(value), 0L);
 	}
 
+	protected void setCustomJspServletContextName(Group group)
+		throws Exception {
+
+		UnicodeProperties typeSettingsProperties =
+			group.getTypeSettingsProperties();
+
+		typeSettingsProperties.setProperty(
+			"customJspServletContextName", "so-hook");
+
+		GroupLocalServiceUtil.updateGroup(
+			group.getGroupId(), typeSettingsProperties.toString());
+	}
+
 	private static final String _CLASS_NAME =
 		"com.liferay.portlet.sites.util.SitesUtil";
 
-	private static MethodKey _applyLayoutSetPrototypesMethodKey = new MethodKey(
-		_CLASS_NAME, "applyLayoutSetPrototypes", Group.class, long.class,
-		long.class, ServiceContext.class);
+	private static MethodKey _mergeLayoutSetProtypeLayoutsMethodKey =
+		new MethodKey(
+			_CLASS_NAME, "mergeLayoutSetProtypeLayouts", Group.class,
+			LayoutSet.class);
+
+	private static MethodKey _updateLayoutSetPrototypesMethodKey =
+		new MethodKey(
+			_CLASS_NAME, "updateLayoutSetPrototypesLinks", Group.class,
+			long.class, long.class, boolean.class, boolean.class);
 
 }
