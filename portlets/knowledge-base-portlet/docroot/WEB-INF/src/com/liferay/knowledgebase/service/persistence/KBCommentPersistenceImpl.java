@@ -756,6 +756,16 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 		List<KBComment> list = (List<KBComment>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KBComment kbComment : list) {
+				if (!Validator.equals(uuid, kbComment.getUuid())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1132,6 +1142,15 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 					finderArgs, this);
 		}
 
+		if (result instanceof KBComment) {
+			KBComment kbComment = (KBComment)result;
+
+			if (!Validator.equals(uuid, kbComment.getUuid()) ||
+					(groupId != kbComment.getGroupId())) {
+				result = null;
+			}
+		}
+
 		if (result == null) {
 			StringBundler query = new StringBundler(4);
 
@@ -1278,6 +1297,16 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 
 		List<KBComment> list = (List<KBComment>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KBComment kbComment : list) {
+				if ((groupId != kbComment.getGroupId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1631,6 +1660,17 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 
 		List<KBComment> list = (List<KBComment>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KBComment kbComment : list) {
+				if ((groupId != kbComment.getGroupId()) ||
+						(classNameId != kbComment.getClassNameId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2002,6 +2042,17 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 
 		List<KBComment> list = (List<KBComment>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KBComment kbComment : list) {
+				if ((classNameId != kbComment.getClassNameId()) ||
+						(classPK != kbComment.getClassPK())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2377,6 +2428,16 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 		if (retrieveFromCache) {
 			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_U_C_C,
 					finderArgs, this);
+		}
+
+		if (result instanceof KBComment) {
+			KBComment kbComment = (KBComment)result;
+
+			if ((userId != kbComment.getUserId()) ||
+					(classNameId != kbComment.getClassNameId()) ||
+					(classPK != kbComment.getClassPK())) {
+				result = null;
+			}
 		}
 
 		if (result == null) {

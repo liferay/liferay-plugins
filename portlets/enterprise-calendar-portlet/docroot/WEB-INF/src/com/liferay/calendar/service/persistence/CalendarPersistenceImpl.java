@@ -716,6 +716,16 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 		List<Calendar> list = (List<Calendar>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (Calendar calendar : list) {
+				if ((resourceBlockId != calendar.getResourceBlockId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1060,6 +1070,16 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 
 		List<Calendar> list = (List<Calendar>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Calendar calendar : list) {
+				if (!Validator.equals(uuid, calendar.getUuid())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1437,6 +1457,15 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 					finderArgs, this);
 		}
 
+		if (result instanceof Calendar) {
+			Calendar calendar = (Calendar)result;
+
+			if (!Validator.equals(uuid, calendar.getUuid()) ||
+					(groupId != calendar.getGroupId())) {
+				result = null;
+			}
+		}
+
 		if (result == null) {
 			StringBundler query = new StringBundler(4);
 
@@ -1592,6 +1621,17 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 
 		List<Calendar> list = (List<Calendar>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Calendar calendar : list) {
+				if ((groupId != calendar.getGroupId()) ||
+						(calendarResourceId != calendar.getCalendarResourceId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1970,6 +2010,18 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 
 		List<Calendar> list = (List<Calendar>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Calendar calendar : list) {
+				if ((groupId != calendar.getGroupId()) ||
+						(calendarResourceId != calendar.getCalendarResourceId()) ||
+						(defaultCalendar != calendar.getDefaultCalendar())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;

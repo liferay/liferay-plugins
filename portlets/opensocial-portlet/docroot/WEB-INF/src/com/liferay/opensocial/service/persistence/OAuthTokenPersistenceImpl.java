@@ -40,6 +40,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -632,6 +633,18 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		List<OAuthToken> list = (List<OAuthToken>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (OAuthToken oAuthToken : list) {
+				if (!Validator.equals(gadgetKey, oAuthToken.getGadgetKey()) ||
+						!Validator.equals(serviceName,
+							oAuthToken.getServiceName())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1066,6 +1079,18 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		if (retrieveFromCache) {
 			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
 					finderArgs, this);
+		}
+
+		if (result instanceof OAuthToken) {
+			OAuthToken oAuthToken = (OAuthToken)result;
+
+			if ((userId != oAuthToken.getUserId()) ||
+					!Validator.equals(gadgetKey, oAuthToken.getGadgetKey()) ||
+					!Validator.equals(serviceName, oAuthToken.getServiceName()) ||
+					(moduleId != oAuthToken.getModuleId()) ||
+					!Validator.equals(tokenName, oAuthToken.getTokenName())) {
+				result = null;
+			}
 		}
 
 		if (result == null) {

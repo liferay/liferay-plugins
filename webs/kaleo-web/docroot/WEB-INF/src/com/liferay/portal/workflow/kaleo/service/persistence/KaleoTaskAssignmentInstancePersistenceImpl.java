@@ -692,6 +692,16 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 		List<KaleoTaskAssignmentInstance> list = (List<KaleoTaskAssignmentInstance>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance : list) {
+				if ((companyId != kaleoTaskAssignmentInstance.getCompanyId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1047,6 +1057,16 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 
 		List<KaleoTaskAssignmentInstance> list = (List<KaleoTaskAssignmentInstance>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance : list) {
+				if ((kaleoDefinitionId != kaleoTaskAssignmentInstance.getKaleoDefinitionId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1404,6 +1424,16 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 
 		List<KaleoTaskAssignmentInstance> list = (List<KaleoTaskAssignmentInstance>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance : list) {
+				if ((kaleoInstanceId != kaleoTaskAssignmentInstance.getKaleoInstanceId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1763,6 +1793,16 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 
 		List<KaleoTaskAssignmentInstance> list = (List<KaleoTaskAssignmentInstance>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance : list) {
+				if ((kaleoTaskInstanceTokenId != kaleoTaskAssignmentInstance.getKaleoTaskInstanceTokenId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;

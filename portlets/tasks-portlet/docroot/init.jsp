@@ -48,6 +48,7 @@ page import="com.liferay.portal.service.GroupLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.UserLocalServiceUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
 page import="com.liferay.portal.util.comparator.ContactFirstNameComparator" %><%@
+page import="com.liferay.portlet.PortletURLFactoryUtil" %><%@
 page import="com.liferay.portlet.asset.NoSuchTagException" %><%@
 page import="com.liferay.portlet.asset.model.AssetTag" %><%@
 page import="com.liferay.portlet.asset.model.AssetTagStats" %><%@
@@ -64,7 +65,8 @@ page import="com.liferay.tasks.model.TasksEntry" %><%@
 page import="com.liferay.tasks.model.TasksEntryConstants" %><%@
 page import="com.liferay.tasks.service.TasksEntryLocalServiceUtil" %><%@
 page import="com.liferay.tasks.service.permission.TasksEntryPermission" %><%@
-page import="com.liferay.tasks.service.permission.TasksPermission" %>
+page import="com.liferay.tasks.service.permission.TasksPermission" %><%@
+page import="com.liferay.tasks.util.PortletKeys" %>
 
 <%@ page import="java.text.Format" %>
 
@@ -75,7 +77,8 @@ page import="java.util.Iterator" %><%@
 page import="java.util.LinkedHashMap" %><%@
 page import="java.util.List" %>
 
-<%@ page import="javax.portlet.PortletURL" %><%@
+<%@ page import="javax.portlet.PortletRequest" %><%@
+page import="javax.portlet.PortletURL" %><%@
 page import="javax.portlet.WindowState" %>
 
 <portlet:defineObjects />

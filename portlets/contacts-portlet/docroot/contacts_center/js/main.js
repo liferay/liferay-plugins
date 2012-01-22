@@ -158,7 +158,7 @@ AUI().use(
 							'</div>' +
 							'<div class="lfr-contact-info">' +
 								'<div class="lfr-contact-name">' +
-									'<a>{lastName}, {firstName}</a>' +
+									'<a>{lastName} {firstName}</a>' +
 								'</div>' +
 								'<div class="lfr-contact-extra">' +
 									'{emailAddress}' +
@@ -171,22 +171,30 @@ AUI().use(
 						A.Array.map(
 							results,
 							function(result) {
-
 								var displayLastNameAnchor = false;
 
-								if (result.lastName && result.lastName.indexOf(lastNameAnchor.toLowerCase())) {
+								var nameAnchor;
+
+								if (result.lastName) {
+									nameAnchor = result.lastName.substring(0, 1).toUpperCase();
+								}
+								else {
+									nameAnchor = Liferay.Language.get('no-last-name');
+								}
+
+								if (nameAnchor != lastNameAnchor) {
 									displayLastNameAnchor = true;
 
-									lastNameAnchor = result.lastName.substring(0, 1);
+									lastNameAnchor = nameAnchor;
 								}
 
 								return A.Lang.sub(
 									userTemplate,
 									{
 										emailAddress: (result.emailAddress ? result.emailAddress : ''),
-										lastNameAnchor: (displayLastNameAnchor ? '<div class="lastNameAnchor"><a>' + lastNameAnchor.toUpperCase() + '</a></div>' : ''),
+										lastNameAnchor: (displayLastNameAnchor ? '<div class="lastNameAnchor"><a>' + lastNameAnchor + '</a></div>' : ''),
 										firstName: (result.firstName ? result.firstName : ''),
-										lastName: (result.lastName ? result.lastName : ''),
+										lastName: (result.lastName ? result.lastName + ',' : ''),
 										portraitURL: (result.portraitURL ? result.portraitURL : ''),
 										viewSummaryURL: (result.viewSummaryURL ? result.viewSummaryURL : '')
 									}

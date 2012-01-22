@@ -702,6 +702,16 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		List<MicroblogsEntry> list = (List<MicroblogsEntry>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (MicroblogsEntry microblogsEntry : list) {
+				if ((companyId != microblogsEntry.getCompanyId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1363,6 +1373,16 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 		List<MicroblogsEntry> list = (List<MicroblogsEntry>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (MicroblogsEntry microblogsEntry : list) {
+				if ((userId != microblogsEntry.getUserId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2030,6 +2050,17 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 		List<MicroblogsEntry> list = (List<MicroblogsEntry>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (MicroblogsEntry microblogsEntry : list) {
+				if ((userId != microblogsEntry.getUserId()) ||
+						(type != microblogsEntry.getType())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2730,6 +2761,17 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		List<MicroblogsEntry> list = (List<MicroblogsEntry>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (MicroblogsEntry microblogsEntry : list) {
+				if ((type != microblogsEntry.getType()) ||
+						(receiverUserId != microblogsEntry.getReceiverUserId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -3429,6 +3471,17 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 		List<MicroblogsEntry> list = (List<MicroblogsEntry>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (MicroblogsEntry microblogsEntry : list) {
+				if ((type != microblogsEntry.getType()) ||
+						(receiverMicroblogsEntryId != microblogsEntry.getReceiverMicroblogsEntryId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;

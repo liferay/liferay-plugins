@@ -789,6 +789,16 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 		List<CalendarBooking> list = (List<CalendarBooking>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (CalendarBooking calendarBooking : list) {
+				if (!Validator.equals(uuid, calendarBooking.getUuid())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1165,6 +1175,15 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 					finderArgs, this);
 		}
 
+		if (result instanceof CalendarBooking) {
+			CalendarBooking calendarBooking = (CalendarBooking)result;
+
+			if (!Validator.equals(uuid, calendarBooking.getUuid()) ||
+					(groupId != calendarBooking.getGroupId())) {
+				result = null;
+			}
+		}
+
 		if (result == null) {
 			StringBundler query = new StringBundler(4);
 
@@ -1312,6 +1331,16 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 
 		List<CalendarBooking> list = (List<CalendarBooking>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (CalendarBooking calendarBooking : list) {
+				if ((calendarId != calendarBooking.getCalendarId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1665,6 +1694,16 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 
 		List<CalendarBooking> list = (List<CalendarBooking>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (CalendarBooking calendarBooking : list) {
+				if ((calendarResourceId != calendarBooking.getCalendarResourceId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2023,6 +2062,17 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 
 		List<CalendarBooking> list = (List<CalendarBooking>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (CalendarBooking calendarBooking : list) {
+				if ((calendarId != calendarBooking.getCalendarId()) ||
+						(remindBy != calendarBooking.getRemindBy())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2395,6 +2445,17 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 
 		List<CalendarBooking> list = (List<CalendarBooking>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (CalendarBooking calendarBooking : list) {
+				if ((calendarResourceId != calendarBooking.getCalendarResourceId()) ||
+						(status != calendarBooking.getStatus())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;

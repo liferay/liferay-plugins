@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -673,6 +674,14 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 					finderArgs, this);
 		}
 
+		if (result instanceof MemberRequest) {
+			MemberRequest memberRequest = (MemberRequest)result;
+
+			if (!Validator.equals(key, memberRequest.getKey())) {
+				result = null;
+			}
+		}
+
 		if (result == null) {
 			StringBundler query = new StringBundler(3);
 
@@ -820,6 +829,16 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 		List<MemberRequest> list = (List<MemberRequest>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (MemberRequest memberRequest : list) {
+				if ((receiverUserId != memberRequest.getReceiverUserId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1176,6 +1195,17 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 		List<MemberRequest> list = (List<MemberRequest>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (MemberRequest memberRequest : list) {
+				if ((receiverUserId != memberRequest.getReceiverUserId()) ||
+						(status != memberRequest.getStatus())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1552,6 +1582,16 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		if (retrieveFromCache) {
 			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_G_R_S,
 					finderArgs, this);
+		}
+
+		if (result instanceof MemberRequest) {
+			MemberRequest memberRequest = (MemberRequest)result;
+
+			if ((groupId != memberRequest.getGroupId()) ||
+					(receiverUserId != memberRequest.getReceiverUserId()) ||
+					(status != memberRequest.getStatus())) {
+				result = null;
+			}
 		}
 
 		if (result == null) {

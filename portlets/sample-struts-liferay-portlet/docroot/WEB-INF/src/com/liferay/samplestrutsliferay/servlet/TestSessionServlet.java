@@ -20,7 +20,6 @@ import java.io.IOException;
 
 import java.util.Enumeration;
 
-import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +34,7 @@ public class TestSessionServlet extends HttpServlet {
 	@Override
 	public void service(
 			HttpServletRequest request, HttpServletResponse response)
-		throws IOException, ServletException {
+		throws IOException {
 
 		HttpSession session = request.getSession();
 
@@ -57,10 +56,10 @@ public class TestSessionServlet extends HttpServlet {
 
 		sb.append("<b>Servlet Session Attributes:</b><br /><br />");
 
-		Enumeration enu = session.getAttributeNames();
+		Enumeration<String> enu = session.getAttributeNames();
 
 		while (enu.hasMoreElements()) {
-			String attrName = (String)enu.nextElement();
+			String attrName = enu.nextElement();
 
 			Object attrValue = session.getAttribute(attrName);
 

@@ -7,7 +7,7 @@
 		<portlet-class>com.liferay.tasks.portlet.TasksPortlet</portlet-class>
 		<init-param>
 			<name>view-template</name>
-			<value>/view.jsp</value>
+			<value>/tasks/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
@@ -18,6 +18,37 @@
 			<title>Tasks</title>
 			<short-title>Tasks</short-title>
 			<keywords>Tasks</keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<portlet>
+		<portlet-name>2</portlet-name>
+		<display-name>Upcoming Tasks</display-name>
+		<portlet-class>com.liferay.tasks.portlet.TasksPortlet</portlet-class>
+		<init-param>
+			<name>view-template</name>
+			<value>/upcoming_tasks/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+		</supports>
+		<resource-bundle>content.Language</resource-bundle>
+		<portlet-info>
+			<title>Upcoming Tasks</title>
+			<short-title>Upcoming Tasks</short-title>
+			<keywords>Upcoming Tasks</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

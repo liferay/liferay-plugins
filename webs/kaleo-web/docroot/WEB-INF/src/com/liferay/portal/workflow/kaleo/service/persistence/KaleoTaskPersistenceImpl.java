@@ -609,6 +609,16 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		List<KaleoTask> list = (List<KaleoTask>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoTask kaleoTask : list) {
+				if ((companyId != kaleoTask.getCompanyId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -961,6 +971,16 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		List<KaleoTask> list = (List<KaleoTask>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoTask kaleoTask : list) {
+				if ((kaleoDefinitionId != kaleoTask.getKaleoDefinitionId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1306,6 +1326,14 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		if (retrieveFromCache) {
 			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_KALEONODEID,
 					finderArgs, this);
+		}
+
+		if (result instanceof KaleoTask) {
+			KaleoTask kaleoTask = (KaleoTask)result;
+
+			if ((kaleoNodeId != kaleoTask.getKaleoNodeId())) {
+				result = null;
+			}
 		}
 
 		if (result == null) {

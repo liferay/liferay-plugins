@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.InstanceFactory;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -844,6 +845,16 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		List<CalendarResource> list = (List<CalendarResource>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (CalendarResource calendarResource : list) {
+				if (!Validator.equals(uuid, calendarResource.getUuid())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1220,6 +1231,15 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 					finderArgs, this);
 		}
 
+		if (result instanceof CalendarResource) {
+			CalendarResource calendarResource = (CalendarResource)result;
+
+			if (!Validator.equals(uuid, calendarResource.getUuid()) ||
+					(groupId != calendarResource.getGroupId())) {
+				result = null;
+			}
+		}
+
 		if (result == null) {
 			StringBundler query = new StringBundler(4);
 
@@ -1366,6 +1386,16 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 		List<CalendarResource> list = (List<CalendarResource>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (CalendarResource calendarResource : list) {
+				if ((active != calendarResource.getActive())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1722,6 +1752,17 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 		List<CalendarResource> list = (List<CalendarResource>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (CalendarResource calendarResource : list) {
+				if ((groupId != calendarResource.getGroupId()) ||
+						(active != calendarResource.getActive())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2420,6 +2461,15 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 					finderArgs, this);
 		}
 
+		if (result instanceof CalendarResource) {
+			CalendarResource calendarResource = (CalendarResource)result;
+
+			if ((classNameId != calendarResource.getClassNameId()) ||
+					(classPK != calendarResource.getClassPK())) {
+				result = null;
+			}
+		}
+
 		if (result == null) {
 			StringBundler query = new StringBundler(4);
 
@@ -2565,6 +2615,18 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 		List<CalendarResource> list = (List<CalendarResource>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (CalendarResource calendarResource : list) {
+				if ((groupId != calendarResource.getGroupId()) ||
+						!Validator.equals(name, calendarResource.getName()) ||
+						(active != calendarResource.getActive())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2984,6 +3046,18 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 		List<CalendarResource> list = (List<CalendarResource>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (CalendarResource calendarResource : list) {
+				if (!ArrayUtil.contains(groupIds, calendarResource.getGroupId()) ||
+						!Validator.equals(name, calendarResource.getName()) ||
+						(active != calendarResource.getActive())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = new StringBundler();
@@ -3710,6 +3784,18 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 		List<CalendarResource> list = (List<CalendarResource>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (CalendarResource calendarResource : list) {
+				if ((companyId != calendarResource.getCompanyId()) ||
+						!Validator.equals(name, calendarResource.getName()) ||
+						(active != calendarResource.getActive())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;

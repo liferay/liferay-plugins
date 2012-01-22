@@ -619,6 +619,16 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		List<KaleoCondition> list = (List<KaleoCondition>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoCondition kaleoCondition : list) {
+				if ((companyId != kaleoCondition.getCompanyId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -971,6 +981,16 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		List<KaleoCondition> list = (List<KaleoCondition>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoCondition kaleoCondition : list) {
+				if ((kaleoDefinitionId != kaleoCondition.getKaleoDefinitionId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1317,6 +1337,14 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		if (retrieveFromCache) {
 			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_KALEONODEID,
 					finderArgs, this);
+		}
+
+		if (result instanceof KaleoCondition) {
+			KaleoCondition kaleoCondition = (KaleoCondition)result;
+
+			if ((kaleoNodeId != kaleoCondition.getKaleoNodeId())) {
+				result = null;
+			}
 		}
 
 		if (result == null) {

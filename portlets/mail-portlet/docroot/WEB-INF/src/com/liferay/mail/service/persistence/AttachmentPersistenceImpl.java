@@ -522,6 +522,16 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 		List<Attachment> list = (List<Attachment>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (Attachment attachment : list) {
+				if ((messageId != attachment.getMessageId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 

@@ -597,7 +597,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 		return new CalendarWrapper((Calendar)_calendar.clone());
 	}
 
-	public int compareTo(Calendar calendar) {
+	public int compareTo(com.liferay.calendar.model.Calendar calendar) {
 		return _calendar.compareTo(calendar);
 	}
 
@@ -606,11 +606,11 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 		return _calendar.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<Calendar> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<com.liferay.calendar.model.Calendar> toCacheModel() {
 		return _calendar.toCacheModel();
 	}
 
-	public Calendar toEscapedModel() {
+	public com.liferay.calendar.model.Calendar toEscapedModel() {
 		return new CalendarWrapper(_calendar.toEscapedModel());
 	}
 
