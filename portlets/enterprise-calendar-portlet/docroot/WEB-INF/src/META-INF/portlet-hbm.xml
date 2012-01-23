@@ -44,7 +44,7 @@
 		<property name="location" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="type" type="com.liferay.portal.dao.orm.hibernate.StringType" column="type_" />
 		<property name="startDate" type="org.hibernate.type.TimestampType" />
-		<property name="startTimeZone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="startDateTimeZone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="endDate" type="org.hibernate.type.TimestampType" />
 		<property name="endDateTimeZone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="allDay" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />

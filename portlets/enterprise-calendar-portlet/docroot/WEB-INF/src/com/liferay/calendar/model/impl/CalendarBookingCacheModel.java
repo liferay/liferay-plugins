@@ -69,8 +69,8 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 		sb.append(type);
 		sb.append(", startDate=");
 		sb.append(startDate);
-		sb.append(", startTimeZone=");
-		sb.append(startTimeZone);
+		sb.append(", startDateTimeZone=");
+		sb.append(startDateTimeZone);
 		sb.append(", endDate=");
 		sb.append(endDate);
 		sb.append(", endDateTimeZone=");
@@ -183,11 +183,11 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 			calendarBookingImpl.setStartDate(new Date(startDate));
 		}
 
-		if (startTimeZone == null) {
-			calendarBookingImpl.setStartTimeZone(StringPool.BLANK);
+		if (startDateTimeZone == null) {
+			calendarBookingImpl.setStartDateTimeZone(StringPool.BLANK);
 		}
 		else {
-			calendarBookingImpl.setStartTimeZone(startTimeZone);
+			calendarBookingImpl.setStartDateTimeZone(startDateTimeZone);
 		}
 
 		if (endDate == Long.MIN_VALUE) {
@@ -272,7 +272,7 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 	public String location;
 	public String type;
 	public long startDate;
-	public String startTimeZone;
+	public String startDateTimeZone;
 	public long endDate;
 	public String endDateTimeZone;
 	public boolean allDay;

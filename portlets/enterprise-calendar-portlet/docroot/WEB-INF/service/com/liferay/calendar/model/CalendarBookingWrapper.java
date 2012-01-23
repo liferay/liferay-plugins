@@ -693,21 +693,21 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	}
 
 	/**
-	* Returns the start time zone of this calendar booking.
+	* Returns the start date time zone of this calendar booking.
 	*
-	* @return the start time zone of this calendar booking
+	* @return the start date time zone of this calendar booking
 	*/
-	public java.lang.String getStartTimeZone() {
-		return _calendarBooking.getStartTimeZone();
+	public java.lang.String getStartDateTimeZone() {
+		return _calendarBooking.getStartDateTimeZone();
 	}
 
 	/**
-	* Sets the start time zone of this calendar booking.
+	* Sets the start date time zone of this calendar booking.
 	*
-	* @param startTimeZone the start time zone of this calendar booking
+	* @param startDateTimeZone the start date time zone of this calendar booking
 	*/
-	public void setStartTimeZone(java.lang.String startTimeZone) {
-		_calendarBooking.setStartTimeZone(startTimeZone);
+	public void setStartDateTimeZone(java.lang.String startDateTimeZone) {
+		_calendarBooking.setStartDateTimeZone(startDateTimeZone);
 	}
 
 	/**
