@@ -52,11 +52,6 @@
 			<finder-column name="calendarResourceId" />
 			<finder-column name="defaultCalendar" />
 		</finder>
-
-		<!-- References -->
-
-		<reference package-path="com.liferay.portal" entity="User" />
-		<reference package-path="com.liferay.portlet.expando" entity="ExpandoValue" />
 	</entity>
 	<entity name="CalendarBooking" uuid="true" local-service="true" remote-service="true">
 
@@ -131,10 +126,6 @@
 		<!-- References -->
 
 		<reference package-path="com.liferay.mail" entity="Mail" />
-		<reference package-path="com.liferay.portal" entity="Company" />
-		<reference package-path="com.liferay.portal" entity="Group" />
-		<reference package-path="com.liferay.portal" entity="User" />
-		<reference package-path="com.liferay.portlet.expando" entity="ExpandoValue" />
 	</entity>
 
 	<entity name="CalendarResource" uuid="true" local-service="true" remote-service="true">
@@ -209,10 +200,6 @@
 			<finder-column name="name" comparator="LIKE" />
 			<finder-column name="active" />
 		</finder>
-
-		<!-- References -->
-
-		<reference package-path="com.liferay.portlet.expando" entity="ExpandoValue" />
 	</entity>
 	<exceptions>
 		<exception>CalendarBookingDuration</exception>
