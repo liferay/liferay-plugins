@@ -485,12 +485,12 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		_startDate = startDate;
 	}
 
-	public String getStartTimeZone() {
-		return _startTimeZone;
+	public String getStartDateTimeZone() {
+		return _startDateTimeZone;
 	}
 
-	public void setStartTimeZone(String startTimeZone) {
-		_startTimeZone = startTimeZone;
+	public void setStartDateTimeZone(String startDateTimeZone) {
+		_startDateTimeZone = startDateTimeZone;
 	}
 
 	public Date getEndDate() {
@@ -721,7 +721,7 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		clone.setLocation(getLocation());
 		clone.setType(getType());
 		clone.setStartDate(getStartDate());
-		clone.setStartTimeZone(getStartTimeZone());
+		clone.setStartDateTimeZone(getStartDateTimeZone());
 		clone.setEndDate(getEndDate());
 		clone.setEndDateTimeZone(getEndDateTimeZone());
 		clone.setAllDay(getAllDay());
@@ -828,8 +828,8 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		sb.append(getType());
 		sb.append(", startDate=");
 		sb.append(getStartDate());
-		sb.append(", startTimeZone=");
-		sb.append(getStartTimeZone());
+		sb.append(", startDateTimeZone=");
+		sb.append(getStartDateTimeZone());
 		sb.append(", endDate=");
 		sb.append(getEndDate());
 		sb.append(", endDateTimeZone=");
@@ -939,8 +939,8 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		sb.append(getStartDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>startTimeZone</column-name><column-value><![CDATA[");
-		sb.append(getStartTimeZone());
+			"<column><column-name>startDateTimeZone</column-name><column-value><![CDATA[");
+		sb.append(getStartDateTimeZone());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>endDate</column-name><column-value><![CDATA[");
@@ -1032,7 +1032,7 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 	private String _locationCurrentLanguageId;
 	private String _type;
 	private Date _startDate;
-	private String _startTimeZone;
+	private String _startDateTimeZone;
 	private Date _endDate;
 	private String _endDateTimeZone;
 	private boolean _allDay;

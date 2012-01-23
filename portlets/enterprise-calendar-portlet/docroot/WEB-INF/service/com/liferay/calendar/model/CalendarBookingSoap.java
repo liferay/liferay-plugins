@@ -47,7 +47,7 @@ public class CalendarBookingSoap implements Serializable {
 		soapModel.setLocation(model.getLocation());
 		soapModel.setType(model.getType());
 		soapModel.setStartDate(model.getStartDate());
-		soapModel.setStartTimeZone(model.getStartTimeZone());
+		soapModel.setStartDateTimeZone(model.getStartDateTimeZone());
 		soapModel.setEndDate(model.getEndDate());
 		soapModel.setEndDateTimeZone(model.getEndDateTimeZone());
 		soapModel.setAllDay(model.getAllDay());
@@ -246,12 +246,12 @@ public class CalendarBookingSoap implements Serializable {
 		_startDate = startDate;
 	}
 
-	public String getStartTimeZone() {
-		return _startTimeZone;
+	public String getStartDateTimeZone() {
+		return _startDateTimeZone;
 	}
 
-	public void setStartTimeZone(String startTimeZone) {
-		_startTimeZone = startTimeZone;
+	public void setStartDateTimeZone(String startDateTimeZone) {
+		_startDateTimeZone = startDateTimeZone;
 	}
 
 	public Date getEndDate() {
@@ -410,7 +410,7 @@ public class CalendarBookingSoap implements Serializable {
 	private String _location;
 	private String _type;
 	private Date _startDate;
-	private String _startTimeZone;
+	private String _startDateTimeZone;
 	private Date _endDate;
 	private String _endDateTimeZone;
 	private boolean _allDay;

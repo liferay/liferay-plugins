@@ -32,7 +32,7 @@ create table CalendarBooking (
 	location STRING null,
 	type_ VARCHAR(75) null,
 	startDate DATE null,
-	startTimeZone VARCHAR(75) null,
+	startDateTimeZone VARCHAR(75) null,
 	endDate DATE null,
 	endDateTimeZone VARCHAR(75) null,
 	allDay BOOLEAN,

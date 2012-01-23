@@ -383,10 +383,10 @@ public class ClpSerializer {
 
 				method15.invoke(newModel, value15);
 
-				Method method16 = newModelClass.getMethod("setStartTimeZone",
+				Method method16 = newModelClass.getMethod("setStartDateTimeZone",
 						new Class[] { String.class });
 
-				String value16 = oldCplModel.getStartTimeZone();
+				String value16 = oldCplModel.getStartDateTimeZone();
 
 				method16.invoke(newModel, value16);
 
@@ -992,12 +992,13 @@ public class ClpSerializer {
 
 				newModel.setStartDate(value15);
 
-				Method method16 = oldModelClass.getMethod("getStartTimeZone");
+				Method method16 = oldModelClass.getMethod(
+						"getStartDateTimeZone");
 
 				String value16 = (String)method16.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setStartTimeZone(value16);
+				newModel.setStartDateTimeZone(value16);
 
 				Method method17 = oldModelClass.getMethod("getEndDate");
 
