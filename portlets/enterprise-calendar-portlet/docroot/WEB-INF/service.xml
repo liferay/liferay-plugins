@@ -86,7 +86,7 @@
 		<column name="location" type="String" localized="true" />
 		<column name="type" type="String" />
 		<column name="startDate" type="Date" />
-		<column name="startTimeZone" type="String" />
+		<column name="startDateTimeZone" type="String" />
 		<column name="endDate" type="Date" />
 		<column name="endDateTimeZone" type="String" />
 		<column name="allDay" type="boolean" />
