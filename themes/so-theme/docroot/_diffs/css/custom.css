@@ -392,6 +392,7 @@ a:focus .opens-new-window-accessible {
 	margin: 0 -10px;
 	padding: 0 10px 6px;
 }
+
 .user-tags li {
 	display: inline;
 
@@ -1155,7 +1156,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		border-width: 1px 0 0;
 		margin-left: 1px;
 	}
-	
+
 	.social-relations a {
 		border: 1px solid transparent;
 		color: #34404F;
@@ -1542,8 +1543,8 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 	.header-back-to {
 		position: absolute;
-		top: 0;
 		right: 0;
+		top: 0;
 		z-index: 1;
 	}
 }
@@ -1630,12 +1631,12 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 .portlet-boundary {
 	.top-links, .top-links .top-links-navigation, .top-links .page-search {
 		float: none;
-	}	
+	}
 
 	.top-links .top-link {
 		border-right: 0;
-		padding: 0;
 		margin: 0;
+		padding: 0;
 	}
 }
 
@@ -1645,8 +1646,8 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 
 	.message-container {
-		border-width: 0 0 1px;
 		border-color: #CECECE;
+		border-width: 0 0 1px;
 		margin: 0;
 
 		&.reply {
@@ -1656,9 +1657,9 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		}
 
 		.user-info {
-			width: 75px;
 			border-width: 0;
 			padding: 0;
+			width: 75px;
 
 			.taglib-user-display {
 				position: relative;
@@ -1698,9 +1699,9 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 			}
 
 			td, &.alt td {
-				padding-top: 10px;
 				background: transparent;
 				border-width: 0;
+				padding-top: 10px;
 			}
 
 			td.thread-bottom {
