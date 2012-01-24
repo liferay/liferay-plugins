@@ -44,9 +44,7 @@
 		<property name="location" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="type" type="com.liferay.portal.dao.orm.hibernate.StringType" column="type_" />
 		<property name="startDate" type="org.hibernate.type.TimestampType" />
-		<property name="startDateTimeZone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="endDate" type="org.hibernate.type.TimestampType" />
-		<property name="endDateTimeZone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="allDay" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="recurrence" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="priority" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
@@ -75,9 +73,10 @@
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 		<property name="resourceBlockId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="classNameId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="className" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="classPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="classUuid" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="defaultCalendarId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="code" type="com.liferay.portal.dao.orm.hibernate.StringType" column="code_" />
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />

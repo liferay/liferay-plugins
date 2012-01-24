@@ -485,28 +485,12 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		_startDate = startDate;
 	}
 
-	public String getStartDateTimeZone() {
-		return _startDateTimeZone;
-	}
-
-	public void setStartDateTimeZone(String startDateTimeZone) {
-		_startDateTimeZone = startDateTimeZone;
-	}
-
 	public Date getEndDate() {
 		return _endDate;
 	}
 
 	public void setEndDate(Date endDate) {
 		_endDate = endDate;
-	}
-
-	public String getEndDateTimeZone() {
-		return _endDateTimeZone;
-	}
-
-	public void setEndDateTimeZone(String endDateTimeZone) {
-		_endDateTimeZone = endDateTimeZone;
 	}
 
 	public boolean getAllDay() {
@@ -721,9 +705,7 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		clone.setLocation(getLocation());
 		clone.setType(getType());
 		clone.setStartDate(getStartDate());
-		clone.setStartDateTimeZone(getStartDateTimeZone());
 		clone.setEndDate(getEndDate());
-		clone.setEndDateTimeZone(getEndDateTimeZone());
 		clone.setAllDay(getAllDay());
 		clone.setRecurrence(getRecurrence());
 		clone.setPriority(getPriority());
@@ -794,7 +776,7 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(67);
+		StringBundler sb = new StringBundler(63);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -828,12 +810,8 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		sb.append(getType());
 		sb.append(", startDate=");
 		sb.append(getStartDate());
-		sb.append(", startDateTimeZone=");
-		sb.append(getStartDateTimeZone());
 		sb.append(", endDate=");
 		sb.append(getEndDate());
-		sb.append(", endDateTimeZone=");
-		sb.append(getEndDateTimeZone());
 		sb.append(", allDay=");
 		sb.append(getAllDay());
 		sb.append(", recurrence=");
@@ -868,7 +846,7 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(103);
+		StringBundler sb = new StringBundler(97);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.calendar.model.CalendarBooking");
@@ -939,16 +917,8 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		sb.append(getStartDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>startDateTimeZone</column-name><column-value><![CDATA[");
-		sb.append(getStartDateTimeZone());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>endDate</column-name><column-value><![CDATA[");
 		sb.append(getEndDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>endDateTimeZone</column-name><column-value><![CDATA[");
-		sb.append(getEndDateTimeZone());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>allDay</column-name><column-value><![CDATA[");
@@ -1032,9 +1002,7 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 	private String _locationCurrentLanguageId;
 	private String _type;
 	private Date _startDate;
-	private String _startDateTimeZone;
 	private Date _endDate;
-	private String _endDateTimeZone;
 	private boolean _allDay;
 	private String _recurrence;
 	private int _priority;

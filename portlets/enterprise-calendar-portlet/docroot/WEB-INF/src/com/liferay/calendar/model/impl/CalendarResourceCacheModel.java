@@ -35,7 +35,7 @@ public class CalendarResourceCacheModel implements CacheModel<CalendarResource>,
 	Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(35);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -55,12 +55,14 @@ public class CalendarResourceCacheModel implements CacheModel<CalendarResource>,
 		sb.append(modifiedDate);
 		sb.append(", resourceBlockId=");
 		sb.append(resourceBlockId);
-		sb.append(", classNameId=");
-		sb.append(classNameId);
+		sb.append(", className=");
+		sb.append(className);
 		sb.append(", classPK=");
 		sb.append(classPK);
 		sb.append(", classUuid=");
 		sb.append(classUuid);
+		sb.append(", defaultCalendarId=");
+		sb.append(defaultCalendarId);
 		sb.append(", code=");
 		sb.append(code);
 		sb.append(", name=");
@@ -113,7 +115,14 @@ public class CalendarResourceCacheModel implements CacheModel<CalendarResource>,
 		}
 
 		calendarResourceImpl.setResourceBlockId(resourceBlockId);
-		calendarResourceImpl.setClassNameId(classNameId);
+
+		if (className == null) {
+			calendarResourceImpl.setClassName(StringPool.BLANK);
+		}
+		else {
+			calendarResourceImpl.setClassName(className);
+		}
+
 		calendarResourceImpl.setClassPK(classPK);
 
 		if (classUuid == null) {
@@ -122,6 +131,8 @@ public class CalendarResourceCacheModel implements CacheModel<CalendarResource>,
 		else {
 			calendarResourceImpl.setClassUuid(classUuid);
 		}
+
+		calendarResourceImpl.setDefaultCalendarId(defaultCalendarId);
 
 		if (code == null) {
 			calendarResourceImpl.setCode(StringPool.BLANK);
@@ -167,9 +178,10 @@ public class CalendarResourceCacheModel implements CacheModel<CalendarResource>,
 	public long createDate;
 	public long modifiedDate;
 	public long resourceBlockId;
-	public long classNameId;
+	public String className;
 	public long classPK;
 	public String classUuid;
+	public long defaultCalendarId;
 	public String code;
 	public String name;
 	public String description;

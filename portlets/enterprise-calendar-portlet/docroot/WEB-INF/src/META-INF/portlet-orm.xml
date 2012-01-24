@@ -66,11 +66,9 @@
 			<basic name="startDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
-			<basic name="startDateTimeZone" />
 			<basic name="endDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
-			<basic name="endDateTimeZone" />
 			<basic name="allDay" />
 			<basic name="recurrence" />
 			<basic name="priority" />
@@ -116,9 +114,10 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="resourceBlockId" />
-			<basic name="classNameId" />
+			<basic name="className" />
 			<basic name="classPK" />
 			<basic name="classUuid" />
+			<basic name="defaultCalendarId" />
 			<basic name="code">
 				<column name="CODE_" />
 			</basic>

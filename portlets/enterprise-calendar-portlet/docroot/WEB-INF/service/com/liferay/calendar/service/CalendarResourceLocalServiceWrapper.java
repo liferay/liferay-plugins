@@ -74,11 +74,13 @@ public class CalendarResourceLocalServiceWrapper
 	* Deletes the calendar resource from the database. Also notifies the appropriate model listeners.
 	*
 	* @param calendarResource the calendar resource
+	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
 	public void deleteCalendarResource(
 		com.liferay.calendar.model.CalendarResource calendarResource)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		_calendarResourceLocalService.deleteCalendarResource(calendarResource);
 	}
 
@@ -273,6 +275,75 @@ public class CalendarResourceLocalServiceWrapper
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_calendarResourceLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public com.liferay.calendar.model.CalendarResource addCalendarResource(
+		long userId, long groupId, java.lang.String className, long classPK,
+		java.lang.String classUuid, java.lang.String code,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		java.lang.String type, boolean active,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResourceLocalService.addCalendarResource(userId,
+			groupId, className, classPK, classUuid, code, nameMap,
+			descriptionMap, type, active, serviceContext);
+	}
+
+	public void addCalendarResourceResources(
+		com.liferay.calendar.model.CalendarResource calendarResource,
+		boolean addGroupPermissions, boolean addGuestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_calendarResourceLocalService.addCalendarResourceResources(calendarResource,
+			addGroupPermissions, addGuestPermissions);
+	}
+
+	public void addCalendarResourceResources(
+		com.liferay.calendar.model.CalendarResource calendarResource,
+		java.lang.String[] groupPermissions, java.lang.String[] guestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_calendarResourceLocalService.addCalendarResourceResources(calendarResource,
+			groupPermissions, guestPermissions);
+	}
+
+	public void addCalendarResourceResources(long calendarResourceId,
+		boolean addGroupPermissions, boolean addGuestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_calendarResourceLocalService.addCalendarResourceResources(calendarResourceId,
+			addGroupPermissions, addGuestPermissions);
+	}
+
+	public void addCalendarResourceResources(long calendarResourceId,
+		java.lang.String[] groupPermissions, java.lang.String[] guestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_calendarResourceLocalService.addCalendarResourceResources(calendarResourceId,
+			groupPermissions, guestPermissions);
+	}
+
+	public com.liferay.calendar.model.CalendarResource updateCalendarResource(
+		long calendarResourceId, java.lang.String code,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		java.lang.String type, boolean active,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResourceLocalService.updateCalendarResource(calendarResourceId,
+			code, nameMap, descriptionMap, type, active, serviceContext);
+	}
+
+	public void updateCalendarResourceResources(
+		com.liferay.calendar.model.CalendarResource calendarResource,
+		java.lang.String[] groupPermissions, java.lang.String[] guestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_calendarResourceLocalService.updateCalendarResourceResources(calendarResource,
+			groupPermissions, guestPermissions);
 	}
 
 	/**

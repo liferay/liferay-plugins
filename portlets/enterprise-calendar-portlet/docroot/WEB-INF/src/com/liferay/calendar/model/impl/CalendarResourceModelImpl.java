@@ -79,16 +79,17 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 			{ "createDate", Types.TIMESTAMP },
 			{ "modifiedDate", Types.TIMESTAMP },
 			{ "resourceBlockId", Types.BIGINT },
-			{ "classNameId", Types.BIGINT },
+			{ "className", Types.VARCHAR },
 			{ "classPK", Types.BIGINT },
 			{ "classUuid", Types.VARCHAR },
+			{ "defaultCalendarId", Types.BIGINT },
 			{ "code_", Types.VARCHAR },
 			{ "name", Types.VARCHAR },
 			{ "description", Types.VARCHAR },
 			{ "type_", Types.VARCHAR },
 			{ "active_", Types.BOOLEAN }
 		};
-	public static final String TABLE_SQL_CREATE = "create table CalendarResource (uuid_ VARCHAR(75) null,calendarResourceId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,resourceBlockId LONG,classNameId LONG,classPK LONG,classUuid VARCHAR(75) null,code_ VARCHAR(75) null,name STRING null,description STRING null,type_ VARCHAR(75) null,active_ BOOLEAN)";
+	public static final String TABLE_SQL_CREATE = "create table CalendarResource (uuid_ VARCHAR(75) null,calendarResourceId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,resourceBlockId LONG,className VARCHAR(75) null,classPK LONG,classUuid VARCHAR(75) null,defaultCalendarId LONG,code_ VARCHAR(75) null,name STRING null,description STRING null,type_ VARCHAR(75) null,active_ BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table CalendarResource";
 	public static final String ORDER_BY_JPQL = " ORDER BY calendarResource.code ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY CalendarResource.code_ ASC";
@@ -105,7 +106,7 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 				"value.object.column.bitmask.enabled.com.liferay.calendar.model.CalendarResource"),
 			true);
 	public static long ACTIVE_COLUMN_BITMASK = 1L;
-	public static long CLASSNAMEID_COLUMN_BITMASK = 2L;
+	public static long CLASSNAME_COLUMN_BITMASK = 2L;
 	public static long CLASSPK_COLUMN_BITMASK = 4L;
 	public static long CODE_COLUMN_BITMASK = 8L;
 	public static long COMPANYID_COLUMN_BITMASK = 16L;
@@ -132,9 +133,10 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		model.setCreateDate(soapModel.getCreateDate());
 		model.setModifiedDate(soapModel.getModifiedDate());
 		model.setResourceBlockId(soapModel.getResourceBlockId());
-		model.setClassNameId(soapModel.getClassNameId());
+		model.setClassName(soapModel.getClassName());
 		model.setClassPK(soapModel.getClassPK());
 		model.setClassUuid(soapModel.getClassUuid());
+		model.setDefaultCalendarId(soapModel.getDefaultCalendarId());
 		model.setCode(soapModel.getCode());
 		model.setName(soapModel.getName());
 		model.setDescription(soapModel.getDescription());
@@ -334,33 +336,28 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		return _originalResourceBlockId;
 	}
 
+	@JSON
 	public String getClassName() {
-		if (getClassNameId() <= 0) {
+		if (_className == null) {
 			return StringPool.BLANK;
 		}
-
-		return PortalUtil.getClassName(getClassNameId());
+		else {
+			return _className;
+		}
 	}
 
-	@JSON
-	public long getClassNameId() {
-		return _classNameId;
-	}
+	public void setClassName(String className) {
+		_columnBitmask |= CLASSNAME_COLUMN_BITMASK;
 
-	public void setClassNameId(long classNameId) {
-		_columnBitmask |= CLASSNAMEID_COLUMN_BITMASK;
-
-		if (!_setOriginalClassNameId) {
-			_setOriginalClassNameId = true;
-
-			_originalClassNameId = _classNameId;
+		if (_originalClassName == null) {
+			_originalClassName = _className;
 		}
 
-		_classNameId = classNameId;
+		_className = className;
 	}
 
-	public long getOriginalClassNameId() {
-		return _originalClassNameId;
+	public String getOriginalClassName() {
+		return GetterUtil.getString(_originalClassName);
 	}
 
 	@JSON
@@ -396,6 +393,15 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 
 	public void setClassUuid(String classUuid) {
 		_classUuid = classUuid;
+	}
+
+	@JSON
+	public long getDefaultCalendarId() {
+		return _defaultCalendarId;
+	}
+
+	public void setDefaultCalendarId(long defaultCalendarId) {
+		_defaultCalendarId = defaultCalendarId;
 	}
 
 	@JSON
@@ -697,9 +703,10 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		calendarResourceImpl.setCreateDate(getCreateDate());
 		calendarResourceImpl.setModifiedDate(getModifiedDate());
 		calendarResourceImpl.setResourceBlockId(getResourceBlockId());
-		calendarResourceImpl.setClassNameId(getClassNameId());
+		calendarResourceImpl.setClassName(getClassName());
 		calendarResourceImpl.setClassPK(getClassPK());
 		calendarResourceImpl.setClassUuid(getClassUuid());
+		calendarResourceImpl.setDefaultCalendarId(getDefaultCalendarId());
 		calendarResourceImpl.setCode(getCode());
 		calendarResourceImpl.setName(getName());
 		calendarResourceImpl.setDescription(getDescription());
@@ -772,9 +779,7 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 
 		calendarResourceModelImpl._setOriginalResourceBlockId = false;
 
-		calendarResourceModelImpl._originalClassNameId = calendarResourceModelImpl._classNameId;
-
-		calendarResourceModelImpl._setOriginalClassNameId = false;
+		calendarResourceModelImpl._originalClassName = calendarResourceModelImpl._className;
 
 		calendarResourceModelImpl._originalClassPK = calendarResourceModelImpl._classPK;
 
@@ -839,7 +844,13 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 
 		calendarResourceCacheModel.resourceBlockId = getResourceBlockId();
 
-		calendarResourceCacheModel.classNameId = getClassNameId();
+		calendarResourceCacheModel.className = getClassName();
+
+		String className = calendarResourceCacheModel.className;
+
+		if ((className != null) && (className.length() == 0)) {
+			calendarResourceCacheModel.className = null;
+		}
 
 		calendarResourceCacheModel.classPK = getClassPK();
 
@@ -850,6 +861,8 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		if ((classUuid != null) && (classUuid.length() == 0)) {
 			calendarResourceCacheModel.classUuid = null;
 		}
+
+		calendarResourceCacheModel.defaultCalendarId = getDefaultCalendarId();
 
 		calendarResourceCacheModel.code = getCode();
 
@@ -890,7 +903,7 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(35);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -910,12 +923,14 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		sb.append(getModifiedDate());
 		sb.append(", resourceBlockId=");
 		sb.append(getResourceBlockId());
-		sb.append(", classNameId=");
-		sb.append(getClassNameId());
+		sb.append(", className=");
+		sb.append(getClassName());
 		sb.append(", classPK=");
 		sb.append(getClassPK());
 		sb.append(", classUuid=");
 		sb.append(getClassUuid());
+		sb.append(", defaultCalendarId=");
+		sb.append(getDefaultCalendarId());
 		sb.append(", code=");
 		sb.append(getCode());
 		sb.append(", name=");
@@ -932,7 +947,7 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(55);
+		StringBundler sb = new StringBundler(58);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.calendar.model.CalendarResource");
@@ -975,8 +990,8 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		sb.append(getResourceBlockId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>classNameId</column-name><column-value><![CDATA[");
-		sb.append(getClassNameId());
+			"<column><column-name>className</column-name><column-value><![CDATA[");
+		sb.append(getClassName());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>classPK</column-name><column-value><![CDATA[");
@@ -985,6 +1000,10 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		sb.append(
 			"<column><column-name>classUuid</column-name><column-value><![CDATA[");
 		sb.append(getClassUuid());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>defaultCalendarId</column-name><column-value><![CDATA[");
+		sb.append(getDefaultCalendarId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>code</column-name><column-value><![CDATA[");
@@ -1033,13 +1052,13 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 	private long _resourceBlockId;
 	private long _originalResourceBlockId;
 	private boolean _setOriginalResourceBlockId;
-	private long _classNameId;
-	private long _originalClassNameId;
-	private boolean _setOriginalClassNameId;
+	private String _className;
+	private String _originalClassName;
 	private long _classPK;
 	private long _originalClassPK;
 	private boolean _setOriginalClassPK;
 	private String _classUuid;
+	private long _defaultCalendarId;
 	private String _code;
 	private String _originalCode;
 	private String _name;
