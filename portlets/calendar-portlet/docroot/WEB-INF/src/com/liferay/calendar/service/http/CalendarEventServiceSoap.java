@@ -18,8 +18,12 @@ import com.liferay.calendar.service.CalendarEventServiceUtil;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.LocalizationUtil;
 
 import java.rmi.RemoteException;
+
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * <p>
@@ -65,6 +69,42 @@ import java.rmi.RemoteException;
  * @generated
  */
 public class CalendarEventServiceSoap {
+	public static com.liferay.calendar.model.CalendarEventSoap addCaledarEvent(
+		java.lang.String[] titleMapLanguageIds,
+		java.lang.String[] titleMapValues,
+		java.lang.String[] descriptionMapLanguageIds,
+		java.lang.String[] descriptionMapValues, java.lang.String location,
+		int startDateMonth, int startDateDay, int startDateYear,
+		int startDateHour, int startDateMinute, int endDateMonth,
+		int endDateDay, int endDateYear, int endDateHour, int endDateMinute,
+		int durationHour, int durationMinute, boolean allDay,
+		java.lang.String recurrence, java.lang.String type, int remindBy,
+		int firstReminder, int secondReminder,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws RemoteException {
+		try {
+			Map<Locale, String> titleMap = LocalizationUtil.getLocalizationMap(titleMapLanguageIds,
+					titleMapValues);
+			Map<Locale, String> descriptionMap = LocalizationUtil.getLocalizationMap(descriptionMapLanguageIds,
+					descriptionMapValues);
+
+			com.liferay.calendar.model.CalendarEvent returnValue = CalendarEventServiceUtil.addCaledarEvent(titleMap,
+					descriptionMap, location, startDateMonth, startDateDay,
+					startDateYear, startDateHour, startDateMinute,
+					endDateMonth, endDateDay, endDateYear, endDateHour,
+					endDateMinute, durationHour, durationMinute, allDay,
+					recurrence, type, remindBy, firstReminder, secondReminder,
+					serviceContext);
+
+			return com.liferay.calendar.model.CalendarEventSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static void deleteCalendarEvent(long calendarEventId)
 		throws RemoteException {
 		try {
@@ -81,6 +121,42 @@ public class CalendarEventServiceSoap {
 		long calendarEventId) throws RemoteException {
 		try {
 			com.liferay.calendar.model.CalendarEvent returnValue = CalendarEventServiceUtil.getCalendarEvent(calendarEventId);
+
+			return com.liferay.calendar.model.CalendarEventSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.calendar.model.CalendarEventSoap updateCalendarEvent(
+		long calendarEventId, java.lang.String[] titleMapLanguageIds,
+		java.lang.String[] titleMapValues,
+		java.lang.String[] descriptionMapLanguageIds,
+		java.lang.String[] descriptionMapValues, java.lang.String location,
+		int startDateMonth, int startDateDay, int startDateYear,
+		int startDateHour, int startDateMinute, int endDateMonth,
+		int endDateDay, int endDateYear, int endDateHour, int endDateMinute,
+		int durationHour, int durationMinute, boolean allDay,
+		java.lang.String recurrence, java.lang.String type, int remindBy,
+		int firstReminder, int secondReminder,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws RemoteException {
+		try {
+			Map<Locale, String> titleMap = LocalizationUtil.getLocalizationMap(titleMapLanguageIds,
+					titleMapValues);
+			Map<Locale, String> descriptionMap = LocalizationUtil.getLocalizationMap(descriptionMapLanguageIds,
+					descriptionMapValues);
+
+			com.liferay.calendar.model.CalendarEvent returnValue = CalendarEventServiceUtil.updateCalendarEvent(calendarEventId,
+					titleMap, descriptionMap, location, startDateMonth,
+					startDateDay, startDateYear, startDateHour,
+					startDateMinute, endDateMonth, endDateDay, endDateYear,
+					endDateHour, endDateMinute, durationHour, durationMinute,
+					allDay, recurrence, type, remindBy, firstReminder,
+					secondReminder, serviceContext);
 
 			return com.liferay.calendar.model.CalendarEventSoap.toSoapModel(returnValue);
 		}
