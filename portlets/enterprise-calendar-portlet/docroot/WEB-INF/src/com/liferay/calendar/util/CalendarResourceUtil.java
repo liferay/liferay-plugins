@@ -12,10 +12,6 @@
  * details.
  */
 
-/**
- * @author Eduardo Lundgren
- * @author Fabio Pezzutto
- */
 package com.liferay.calendar.util;
 
 import com.liferay.portal.kernel.exception.PortalException;
