@@ -81,9 +81,7 @@
 		<column name="location" type="String" localized="true" />
 		<column name="type" type="String" />
 		<column name="startDate" type="Date" />
-		<column name="startDateTimeZone" type="String" />
 		<column name="endDate" type="Date" />
-		<column name="endDateTimeZone" type="String" />
 		<column name="allDay" type="boolean" />
 		<column name="recurrence" type="String" />
 		<column name="priority" type="int" />
@@ -152,9 +150,10 @@
 
 		<!-- Other fields -->
 
-		<column name="classNameId" type="long" />
+		<column name="className" type="String" />
 		<column name="classPK" type="long" />
 		<column name="classUuid" type="String" />
+		<column name="defaultCalendarId" type="long" />
 		<column name="code" type="String" />
 		<column name="name" type="String" localized="true" />
 		<column name="description" type="String" localized="true" />
@@ -177,7 +176,7 @@
 			<finder-column name="active" />
 		</finder>
 		<finder name="C_C" return-type="CalendarResource" unique="true">
-			<finder-column name="classNameId" />
+			<finder-column name="className" />
 			<finder-column name="classPK" />
 		</finder>
 		<finder name="G_C_A" return-type="Collection">
