@@ -58,6 +58,18 @@ public class CalendarBookingLocalServiceWrapper
 	}
 
 	/**
+	* Deletes the calendar booking from the database. Also notifies the appropriate model listeners.
+	*
+	* @param calendarBooking the calendar booking
+	* @throws SystemException if a system exception occurred
+	*/
+	public void deleteCalendarBooking(
+		com.liferay.calendar.model.CalendarBooking calendarBooking)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_calendarBookingLocalService.deleteCalendarBooking(calendarBooking);
+	}
+
+	/**
 	* Deletes the calendar booking with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param calendarBookingId the primary key of the calendar booking
@@ -68,18 +80,6 @@ public class CalendarBookingLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_calendarBookingLocalService.deleteCalendarBooking(calendarBookingId);
-	}
-
-	/**
-	* Deletes the calendar booking from the database. Also notifies the appropriate model listeners.
-	*
-	* @param calendarBooking the calendar booking
-	* @throws SystemException if a system exception occurred
-	*/
-	public void deleteCalendarBooking(
-		com.liferay.calendar.model.CalendarBooking calendarBooking)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		_calendarBookingLocalService.deleteCalendarBooking(calendarBooking);
 	}
 
 	/**
@@ -161,6 +161,15 @@ public class CalendarBookingLocalServiceWrapper
 	}
 
 	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _calendarBookingLocalService.getBeanIdentifier();
+	}
+
+	/**
 	* Returns the calendar booking with the primary key.
 	*
 	* @param calendarBookingId the primary key of the calendar booking
@@ -173,13 +182,6 @@ public class CalendarBookingLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _calendarBookingLocalService.getCalendarBooking(calendarBookingId);
-	}
-
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _calendarBookingLocalService.getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -228,6 +230,46 @@ public class CalendarBookingLocalServiceWrapper
 		return _calendarBookingLocalService.getCalendarBookingsCount();
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarBookingLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
+	public CalendarBookingLocalService getWrappedCalendarBookingLocalService() {
+		return _calendarBookingLocalService;
+	}
+
+	public CalendarBookingLocalService getWrappedService() {
+		return _calendarBookingLocalService;
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_calendarBookingLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
+	public void setWrappedCalendarBookingLocalService(
+		CalendarBookingLocalService calendarBookingLocalService) {
+		_calendarBookingLocalService = calendarBookingLocalService;
+	}
+
+	public void setWrappedService(
+		CalendarBookingLocalService calendarBookingLocalService) {
+		_calendarBookingLocalService = calendarBookingLocalService;
+	}
+
 	/**
 	* Updates the calendar booking in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
@@ -255,48 +297,6 @@ public class CalendarBookingLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _calendarBookingLocalService.updateCalendarBooking(calendarBooking,
 			merge);
-	}
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public java.lang.String getBeanIdentifier() {
-		return _calendarBookingLocalService.getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_calendarBookingLocalService.setBeanIdentifier(beanIdentifier);
-	}
-
-	/**
-	 * @deprecated Renamed to {@link #getWrappedService}
-	 */
-	public CalendarBookingLocalService getWrappedCalendarBookingLocalService() {
-		return _calendarBookingLocalService;
-	}
-
-	/**
-	 * @deprecated Renamed to {@link #setWrappedService}
-	 */
-	public void setWrappedCalendarBookingLocalService(
-		CalendarBookingLocalService calendarBookingLocalService) {
-		_calendarBookingLocalService = calendarBookingLocalService;
-	}
-
-	public CalendarBookingLocalService getWrappedService() {
-		return _calendarBookingLocalService;
-	}
-
-	public void setWrappedService(
-		CalendarBookingLocalService calendarBookingLocalService) {
-		_calendarBookingLocalService = calendarBookingLocalService;
 	}
 
 	private CalendarBookingLocalService _calendarBookingLocalService;

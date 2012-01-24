@@ -45,72 +45,6 @@ public class CalendarBookingUtil {
 	 */
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache()
-	 */
-	public static void clearCache() {
-		getPersistence().clearCache();
-	}
-
-	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(com.liferay.portal.model.BaseModel)
-	 */
-	public static void clearCache(CalendarBooking calendarBooking) {
-		getPersistence().clearCache(calendarBooking);
-	}
-
-	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
-	 */
-	public long countWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
-		return getPersistence().countWithDynamicQuery(dynamicQuery);
-	}
-
-	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
-	 */
-	public static List<CalendarBooking> findWithDynamicQuery(
-		DynamicQuery dynamicQuery) throws SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery);
-	}
-
-	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
-	 */
-	public static List<CalendarBooking> findWithDynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
-		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
-	}
-
-	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int, OrderByComparator)
-	 */
-	public static List<CalendarBooking> findWithDynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
-		return getPersistence()
-				   .findWithDynamicQuery(dynamicQuery, start, end,
-			orderByComparator);
-	}
-
-	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
-	 */
-	public static CalendarBooking update(CalendarBooking calendarBooking,
-		boolean merge) throws SystemException {
-		return getPersistence().update(calendarBooking, merge);
-	}
-
-	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
-	 */
-	public static CalendarBooking update(CalendarBooking calendarBooking,
-		boolean merge, ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(calendarBooking, merge, serviceContext);
-	}
-
-	/**
 	* Caches the calendar booking in the entity cache if it is enabled.
 	*
 	* @param calendarBooking the calendar booking
@@ -131,6 +65,106 @@ public class CalendarBookingUtil {
 	}
 
 	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache()
+	 */
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(com.liferay.portal.model.BaseModel)
+	 */
+	public static void clearCache(CalendarBooking calendarBooking) {
+		getPersistence().clearCache(calendarBooking);
+	}
+
+	/**
+	* Returns the number of calendar bookings.
+	*
+	* @return the number of calendar bookings
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countAll();
+	}
+
+	/**
+	* Returns the number of calendar bookings where calendarId = &#63; and remindBy &ne; &#63;.
+	*
+	* @param calendarId the calendar ID
+	* @param remindBy the remind by
+	* @return the number of matching calendar bookings
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByC_R(long calendarId, int remindBy)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByC_R(calendarId, remindBy);
+	}
+
+	/**
+	* Returns the number of calendar bookings where calendarResourceId = &#63; and status = &#63;.
+	*
+	* @param calendarResourceId the calendar resource ID
+	* @param status the status
+	* @return the number of matching calendar bookings
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByC_S(long calendarResourceId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByC_S(calendarResourceId, status);
+	}
+
+	/**
+	* Returns the number of calendar bookings where calendarId = &#63;.
+	*
+	* @param calendarId the calendar ID
+	* @return the number of matching calendar bookings
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByCalendarId(long calendarId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByCalendarId(calendarId);
+	}
+
+	/**
+	* Returns the number of calendar bookings where calendarResourceId = &#63;.
+	*
+	* @param calendarResourceId the calendar resource ID
+	* @return the number of matching calendar bookings
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByCalendarResourceId(long calendarResourceId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByCalendarResourceId(calendarResourceId);
+	}
+
+	/**
+	* Returns the number of calendar bookings where uuid = &#63;.
+	*
+	* @param uuid the uuid
+	* @return the number of matching calendar bookings
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByUuid(java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByUuid(uuid);
+	}
+
+	/**
+	* Returns the number of calendar bookings where uuid = &#63; and groupId = &#63;.
+	*
+	* @param uuid the uuid
+	* @param groupId the group ID
+	* @return the number of matching calendar bookings
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByUUID_G(java.lang.String uuid, long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByUUID_G(uuid, groupId);
+	}
+
+	/**
 	* Creates a new calendar booking with the primary key. Does not add the calendar booking to the database.
 	*
 	* @param calendarBookingId the primary key for the new calendar booking
@@ -139,43 +173,6 @@ public class CalendarBookingUtil {
 	public static com.liferay.calendar.model.CalendarBooking create(
 		long calendarBookingId) {
 		return getPersistence().create(calendarBookingId);
-	}
-
-	/**
-	* Removes the calendar booking with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param calendarBookingId the primary key of the calendar booking
-	* @return the calendar booking that was removed
-	* @throws com.liferay.calendar.NoSuchBookingException if a calendar booking with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.calendar.model.CalendarBooking remove(
-		long calendarBookingId)
-		throws com.liferay.calendar.NoSuchBookingException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().remove(calendarBookingId);
-	}
-
-	public static com.liferay.calendar.model.CalendarBooking updateImpl(
-		com.liferay.calendar.model.CalendarBooking calendarBooking,
-		boolean merge)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(calendarBooking, merge);
-	}
-
-	/**
-	* Returns the calendar booking with the primary key or throws a {@link com.liferay.calendar.NoSuchBookingException} if it could not be found.
-	*
-	* @param calendarBookingId the primary key of the calendar booking
-	* @return the calendar booking
-	* @throws com.liferay.calendar.NoSuchBookingException if a calendar booking with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.calendar.model.CalendarBooking findByPrimaryKey(
-		long calendarBookingId)
-		throws com.liferay.calendar.NoSuchBookingException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByPrimaryKey(calendarBookingId);
 	}
 
 	/**
@@ -189,141 +186,6 @@ public class CalendarBookingUtil {
 		long calendarBookingId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(calendarBookingId);
-	}
-
-	/**
-	* Returns all the calendar bookings where uuid = &#63;.
-	*
-	* @param uuid the uuid
-	* @return the matching calendar bookings
-	* @throws SystemException if a system exception occurred
-	*/
-	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByUuid(
-		java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByUuid(uuid);
-	}
-
-	/**
-	* Returns a range of all the calendar bookings where uuid = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
-	* @param uuid the uuid
-	* @param start the lower bound of the range of calendar bookings
-	* @param end the upper bound of the range of calendar bookings (not inclusive)
-	* @return the range of matching calendar bookings
-	* @throws SystemException if a system exception occurred
-	*/
-	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByUuid(
-		java.lang.String uuid, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByUuid(uuid, start, end);
-	}
-
-	/**
-	* Returns an ordered range of all the calendar bookings where uuid = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
-	* @param uuid the uuid
-	* @param start the lower bound of the range of calendar bookings
-	* @param end the upper bound of the range of calendar bookings (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the ordered range of matching calendar bookings
-	* @throws SystemException if a system exception occurred
-	*/
-	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByUuid(
-		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
-	}
-
-	/**
-	* Returns the first calendar booking in the ordered set where uuid = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
-	* @param uuid the uuid
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the first matching calendar booking
-	* @throws com.liferay.calendar.NoSuchBookingException if a matching calendar booking could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.calendar.model.CalendarBooking findByUuid_First(
-		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.calendar.NoSuchBookingException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByUuid_First(uuid, orderByComparator);
-	}
-
-	/**
-	* Returns the last calendar booking in the ordered set where uuid = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
-	* @param uuid the uuid
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the last matching calendar booking
-	* @throws com.liferay.calendar.NoSuchBookingException if a matching calendar booking could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.calendar.model.CalendarBooking findByUuid_Last(
-		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.calendar.NoSuchBookingException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByUuid_Last(uuid, orderByComparator);
-	}
-
-	/**
-	* Returns the calendar bookings before and after the current calendar booking in the ordered set where uuid = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
-	* @param calendarBookingId the primary key of the current calendar booking
-	* @param uuid the uuid
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the previous, current, and next calendar booking
-	* @throws com.liferay.calendar.NoSuchBookingException if a calendar booking with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.calendar.model.CalendarBooking[] findByUuid_PrevAndNext(
-		long calendarBookingId, java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.calendar.NoSuchBookingException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .findByUuid_PrevAndNext(calendarBookingId, uuid,
-			orderByComparator);
-	}
-
-	/**
-	* Returns the calendar booking where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.calendar.NoSuchBookingException} if it could not be found.
-	*
-	* @param uuid the uuid
-	* @param groupId the group ID
-	* @return the matching calendar booking
-	* @throws com.liferay.calendar.NoSuchBookingException if a matching calendar booking could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.calendar.model.CalendarBooking findByUUID_G(
-		java.lang.String uuid, long groupId)
-		throws com.liferay.calendar.NoSuchBookingException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByUUID_G(uuid, groupId);
 	}
 
 	/**
@@ -356,251 +218,52 @@ public class CalendarBookingUtil {
 	}
 
 	/**
-	* Returns all the calendar bookings where calendarId = &#63;.
+	* Returns all the calendar bookings.
 	*
-	* @param calendarId the calendar ID
-	* @return the matching calendar bookings
+	* @return the calendar bookings
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByCalendarId(
-		long calendarId)
+	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByCalendarId(calendarId);
+		return getPersistence().findAll();
 	}
 
 	/**
-	* Returns a range of all the calendar bookings where calendarId = &#63;.
+	* Returns a range of all the calendar bookings.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param calendarId the calendar ID
 	* @param start the lower bound of the range of calendar bookings
 	* @param end the upper bound of the range of calendar bookings (not inclusive)
-	* @return the range of matching calendar bookings
+	* @return the range of calendar bookings
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByCalendarId(
-		long calendarId, int start, int end)
+	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findAll(
+		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByCalendarId(calendarId, start, end);
+		return getPersistence().findAll(start, end);
 	}
 
 	/**
-	* Returns an ordered range of all the calendar bookings where calendarId = &#63;.
+	* Returns an ordered range of all the calendar bookings.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param calendarId the calendar ID
 	* @param start the lower bound of the range of calendar bookings
 	* @param end the upper bound of the range of calendar bookings (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the ordered range of matching calendar bookings
+	* @return the ordered range of calendar bookings
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByCalendarId(
-		long calendarId, int start, int end,
+	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findAll(
+		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .findByCalendarId(calendarId, start, end, orderByComparator);
-	}
-
-	/**
-	* Returns the first calendar booking in the ordered set where calendarId = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
-	* @param calendarId the calendar ID
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the first matching calendar booking
-	* @throws com.liferay.calendar.NoSuchBookingException if a matching calendar booking could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.calendar.model.CalendarBooking findByCalendarId_First(
-		long calendarId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.calendar.NoSuchBookingException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .findByCalendarId_First(calendarId, orderByComparator);
-	}
-
-	/**
-	* Returns the last calendar booking in the ordered set where calendarId = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
-	* @param calendarId the calendar ID
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the last matching calendar booking
-	* @throws com.liferay.calendar.NoSuchBookingException if a matching calendar booking could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.calendar.model.CalendarBooking findByCalendarId_Last(
-		long calendarId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.calendar.NoSuchBookingException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .findByCalendarId_Last(calendarId, orderByComparator);
-	}
-
-	/**
-	* Returns the calendar bookings before and after the current calendar booking in the ordered set where calendarId = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
-	* @param calendarBookingId the primary key of the current calendar booking
-	* @param calendarId the calendar ID
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the previous, current, and next calendar booking
-	* @throws com.liferay.calendar.NoSuchBookingException if a calendar booking with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.calendar.model.CalendarBooking[] findByCalendarId_PrevAndNext(
-		long calendarBookingId, long calendarId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.calendar.NoSuchBookingException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .findByCalendarId_PrevAndNext(calendarBookingId, calendarId,
-			orderByComparator);
-	}
-
-	/**
-	* Returns all the calendar bookings where calendarResourceId = &#63;.
-	*
-	* @param calendarResourceId the calendar resource ID
-	* @return the matching calendar bookings
-	* @throws SystemException if a system exception occurred
-	*/
-	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByCalendarResourceId(
-		long calendarResourceId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByCalendarResourceId(calendarResourceId);
-	}
-
-	/**
-	* Returns a range of all the calendar bookings where calendarResourceId = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
-	* @param calendarResourceId the calendar resource ID
-	* @param start the lower bound of the range of calendar bookings
-	* @param end the upper bound of the range of calendar bookings (not inclusive)
-	* @return the range of matching calendar bookings
-	* @throws SystemException if a system exception occurred
-	*/
-	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByCalendarResourceId(
-		long calendarResourceId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .findByCalendarResourceId(calendarResourceId, start, end);
-	}
-
-	/**
-	* Returns an ordered range of all the calendar bookings where calendarResourceId = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
-	* @param calendarResourceId the calendar resource ID
-	* @param start the lower bound of the range of calendar bookings
-	* @param end the upper bound of the range of calendar bookings (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the ordered range of matching calendar bookings
-	* @throws SystemException if a system exception occurred
-	*/
-	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByCalendarResourceId(
-		long calendarResourceId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .findByCalendarResourceId(calendarResourceId, start, end,
-			orderByComparator);
-	}
-
-	/**
-	* Returns the first calendar booking in the ordered set where calendarResourceId = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
-	* @param calendarResourceId the calendar resource ID
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the first matching calendar booking
-	* @throws com.liferay.calendar.NoSuchBookingException if a matching calendar booking could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.calendar.model.CalendarBooking findByCalendarResourceId_First(
-		long calendarResourceId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.calendar.NoSuchBookingException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .findByCalendarResourceId_First(calendarResourceId,
-			orderByComparator);
-	}
-
-	/**
-	* Returns the last calendar booking in the ordered set where calendarResourceId = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
-	* @param calendarResourceId the calendar resource ID
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the last matching calendar booking
-	* @throws com.liferay.calendar.NoSuchBookingException if a matching calendar booking could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.calendar.model.CalendarBooking findByCalendarResourceId_Last(
-		long calendarResourceId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.calendar.NoSuchBookingException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .findByCalendarResourceId_Last(calendarResourceId,
-			orderByComparator);
-	}
-
-	/**
-	* Returns the calendar bookings before and after the current calendar booking in the ordered set where calendarResourceId = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
-	* @param calendarBookingId the primary key of the current calendar booking
-	* @param calendarResourceId the calendar resource ID
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the previous, current, and next calendar booking
-	* @throws com.liferay.calendar.NoSuchBookingException if a calendar booking with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.calendar.model.CalendarBooking[] findByCalendarResourceId_PrevAndNext(
-		long calendarBookingId, long calendarResourceId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.calendar.NoSuchBookingException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .findByCalendarResourceId_PrevAndNext(calendarBookingId,
-			calendarResourceId, orderByComparator);
+		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
@@ -863,98 +526,466 @@ public class CalendarBookingUtil {
 	}
 
 	/**
-	* Returns all the calendar bookings.
+	* Returns all the calendar bookings where calendarId = &#63;.
 	*
-	* @return the calendar bookings
+	* @param calendarId the calendar ID
+	* @return the matching calendar bookings
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findAll()
+	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByCalendarId(
+		long calendarId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findAll();
+		return getPersistence().findByCalendarId(calendarId);
 	}
 
 	/**
-	* Returns a range of all the calendar bookings.
+	* Returns a range of all the calendar bookings where calendarId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
+	* @param calendarId the calendar ID
 	* @param start the lower bound of the range of calendar bookings
 	* @param end the upper bound of the range of calendar bookings (not inclusive)
-	* @return the range of calendar bookings
+	* @return the range of matching calendar bookings
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findAll(
-		int start, int end)
+	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByCalendarId(
+		long calendarId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findAll(start, end);
+		return getPersistence().findByCalendarId(calendarId, start, end);
 	}
 
 	/**
-	* Returns an ordered range of all the calendar bookings.
+	* Returns an ordered range of all the calendar bookings where calendarId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
+	* @param calendarId the calendar ID
 	* @param start the lower bound of the range of calendar bookings
 	* @param end the upper bound of the range of calendar bookings (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the ordered range of calendar bookings
+	* @return the ordered range of matching calendar bookings
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findAll(
-		int start, int end,
+	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByCalendarId(
+		long calendarId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findAll(start, end, orderByComparator);
+		return getPersistence()
+				   .findByCalendarId(calendarId, start, end, orderByComparator);
 	}
 
 	/**
-	* Removes all the calendar bookings where uuid = &#63; from the database.
+	* Returns the first calendar booking in the ordered set where calendarId = &#63;.
 	*
-	* @param uuid the uuid
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param calendarId the calendar ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching calendar booking
+	* @throws com.liferay.calendar.NoSuchBookingException if a matching calendar booking could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByUuid(uuid);
+	public static com.liferay.calendar.model.CalendarBooking findByCalendarId_First(
+		long calendarId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.calendar.NoSuchBookingException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByCalendarId_First(calendarId, orderByComparator);
 	}
 
 	/**
-	* Removes the calendar booking where uuid = &#63; and groupId = &#63; from the database.
+	* Returns the last calendar booking in the ordered set where calendarId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param calendarId the calendar ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching calendar booking
+	* @throws com.liferay.calendar.NoSuchBookingException if a matching calendar booking could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarBooking findByCalendarId_Last(
+		long calendarId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.calendar.NoSuchBookingException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByCalendarId_Last(calendarId, orderByComparator);
+	}
+
+	/**
+	* Returns the calendar bookings before and after the current calendar booking in the ordered set where calendarId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param calendarBookingId the primary key of the current calendar booking
+	* @param calendarId the calendar ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next calendar booking
+	* @throws com.liferay.calendar.NoSuchBookingException if a calendar booking with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarBooking[] findByCalendarId_PrevAndNext(
+		long calendarBookingId, long calendarId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.calendar.NoSuchBookingException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByCalendarId_PrevAndNext(calendarBookingId, calendarId,
+			orderByComparator);
+	}
+
+	/**
+	* Returns all the calendar bookings where calendarResourceId = &#63;.
+	*
+	* @param calendarResourceId the calendar resource ID
+	* @return the matching calendar bookings
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByCalendarResourceId(
+		long calendarResourceId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByCalendarResourceId(calendarResourceId);
+	}
+
+	/**
+	* Returns a range of all the calendar bookings where calendarResourceId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param calendarResourceId the calendar resource ID
+	* @param start the lower bound of the range of calendar bookings
+	* @param end the upper bound of the range of calendar bookings (not inclusive)
+	* @return the range of matching calendar bookings
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByCalendarResourceId(
+		long calendarResourceId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByCalendarResourceId(calendarResourceId, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the calendar bookings where calendarResourceId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param calendarResourceId the calendar resource ID
+	* @param start the lower bound of the range of calendar bookings
+	* @param end the upper bound of the range of calendar bookings (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching calendar bookings
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByCalendarResourceId(
+		long calendarResourceId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByCalendarResourceId(calendarResourceId, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the first calendar booking in the ordered set where calendarResourceId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param calendarResourceId the calendar resource ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching calendar booking
+	* @throws com.liferay.calendar.NoSuchBookingException if a matching calendar booking could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarBooking findByCalendarResourceId_First(
+		long calendarResourceId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.calendar.NoSuchBookingException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByCalendarResourceId_First(calendarResourceId,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the last calendar booking in the ordered set where calendarResourceId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param calendarResourceId the calendar resource ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching calendar booking
+	* @throws com.liferay.calendar.NoSuchBookingException if a matching calendar booking could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarBooking findByCalendarResourceId_Last(
+		long calendarResourceId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.calendar.NoSuchBookingException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByCalendarResourceId_Last(calendarResourceId,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the calendar bookings before and after the current calendar booking in the ordered set where calendarResourceId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param calendarBookingId the primary key of the current calendar booking
+	* @param calendarResourceId the calendar resource ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next calendar booking
+	* @throws com.liferay.calendar.NoSuchBookingException if a calendar booking with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarBooking[] findByCalendarResourceId_PrevAndNext(
+		long calendarBookingId, long calendarResourceId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.calendar.NoSuchBookingException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByCalendarResourceId_PrevAndNext(calendarBookingId,
+			calendarResourceId, orderByComparator);
+	}
+
+	/**
+	* Returns the calendar booking with the primary key or throws a {@link com.liferay.calendar.NoSuchBookingException} if it could not be found.
+	*
+	* @param calendarBookingId the primary key of the calendar booking
+	* @return the calendar booking
+	* @throws com.liferay.calendar.NoSuchBookingException if a calendar booking with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarBooking findByPrimaryKey(
+		long calendarBookingId)
+		throws com.liferay.calendar.NoSuchBookingException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByPrimaryKey(calendarBookingId);
+	}
+
+	/**
+	* Returns all the calendar bookings where uuid = &#63;.
+	*
+	* @param uuid the uuid
+	* @return the matching calendar bookings
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByUuid(
+		java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByUuid(uuid);
+	}
+
+	/**
+	* Returns a range of all the calendar bookings where uuid = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param uuid the uuid
+	* @param start the lower bound of the range of calendar bookings
+	* @param end the upper bound of the range of calendar bookings (not inclusive)
+	* @return the range of matching calendar bookings
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByUuid(
+		java.lang.String uuid, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByUuid(uuid, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the calendar bookings where uuid = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param uuid the uuid
+	* @param start the lower bound of the range of calendar bookings
+	* @param end the upper bound of the range of calendar bookings (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching calendar bookings
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByUuid(
+		java.lang.String uuid, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns the first calendar booking in the ordered set where uuid = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param uuid the uuid
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching calendar booking
+	* @throws com.liferay.calendar.NoSuchBookingException if a matching calendar booking could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarBooking findByUuid_First(
+		java.lang.String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.calendar.NoSuchBookingException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByUuid_First(uuid, orderByComparator);
+	}
+
+	/**
+	* Returns the calendar booking where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.calendar.NoSuchBookingException} if it could not be found.
 	*
 	* @param uuid the uuid
 	* @param groupId the group ID
+	* @return the matching calendar booking
+	* @throws com.liferay.calendar.NoSuchBookingException if a matching calendar booking could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByUUID_G(java.lang.String uuid, long groupId)
+	public static com.liferay.calendar.model.CalendarBooking findByUUID_G(
+		java.lang.String uuid, long groupId)
 		throws com.liferay.calendar.NoSuchBookingException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByUUID_G(uuid, groupId);
+		return getPersistence().findByUUID_G(uuid, groupId);
 	}
 
 	/**
-	* Removes all the calendar bookings where calendarId = &#63; from the database.
+	* Returns the last calendar booking in the ordered set where uuid = &#63;.
 	*
-	* @param calendarId the calendar ID
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param uuid the uuid
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching calendar booking
+	* @throws com.liferay.calendar.NoSuchBookingException if a matching calendar booking could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByCalendarId(long calendarId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByCalendarId(calendarId);
+	public static com.liferay.calendar.model.CalendarBooking findByUuid_Last(
+		java.lang.String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.calendar.NoSuchBookingException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
 
 	/**
-	* Removes all the calendar bookings where calendarResourceId = &#63; from the database.
+	* Returns the calendar bookings before and after the current calendar booking in the ordered set where uuid = &#63;.
 	*
-	* @param calendarResourceId the calendar resource ID
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param calendarBookingId the primary key of the current calendar booking
+	* @param uuid the uuid
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next calendar booking
+	* @throws com.liferay.calendar.NoSuchBookingException if a calendar booking with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByCalendarResourceId(long calendarResourceId)
+	public static com.liferay.calendar.model.CalendarBooking[] findByUuid_PrevAndNext(
+		long calendarBookingId, java.lang.String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.calendar.NoSuchBookingException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByUuid_PrevAndNext(calendarBookingId, uuid,
+			orderByComparator);
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
+	 */
+	public static List<CalendarBooking> findWithDynamicQuery(
+		DynamicQuery dynamicQuery) throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery);
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
+	 */
+	public static List<CalendarBooking> findWithDynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end)
+		throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int, OrderByComparator)
+	 */
+	public static List<CalendarBooking> findWithDynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		return getPersistence()
+				   .findWithDynamicQuery(dynamicQuery, start, end,
+			orderByComparator);
+	}
+
+	public static CalendarBookingPersistence getPersistence() {
+		if (_persistence == null) {
+			_persistence = (CalendarBookingPersistence)PortletBeanLocatorUtil.locate(com.liferay.calendar.service.ClpSerializer.getServletContextName(),
+					CalendarBookingPersistence.class.getName());
+
+			ReferenceRegistry.registerReference(CalendarBookingUtil.class,
+				"_persistence");
+		}
+
+		return _persistence;
+	}
+
+	/**
+	* Removes the calendar booking with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param calendarBookingId the primary key of the calendar booking
+	* @return the calendar booking that was removed
+	* @throws com.liferay.calendar.NoSuchBookingException if a calendar booking with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarBooking remove(
+		long calendarBookingId)
+		throws com.liferay.calendar.NoSuchBookingException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().remove(calendarBookingId);
+	}
+
+	/**
+	* Removes all the calendar bookings from the database.
+	*
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByCalendarResourceId(calendarResourceId);
+		getPersistence().removeAll();
 	}
 
 	/**
@@ -982,111 +1013,80 @@ public class CalendarBookingUtil {
 	}
 
 	/**
-	* Removes all the calendar bookings from the database.
+	* Removes all the calendar bookings where calendarId = &#63; from the database.
 	*
+	* @param calendarId the calendar ID
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeAll()
+	public static void removeByCalendarId(long calendarId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeAll();
+		getPersistence().removeByCalendarId(calendarId);
 	}
 
 	/**
-	* Returns the number of calendar bookings where uuid = &#63;.
+	* Removes all the calendar bookings where calendarResourceId = &#63; from the database.
+	*
+	* @param calendarResourceId the calendar resource ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByCalendarResourceId(long calendarResourceId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByCalendarResourceId(calendarResourceId);
+	}
+
+	/**
+	* Removes all the calendar bookings where uuid = &#63; from the database.
 	*
 	* @param uuid the uuid
-	* @return the number of matching calendar bookings
 	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByUuid(java.lang.String uuid)
+	public static void removeByUuid(java.lang.String uuid)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByUuid(uuid);
+		getPersistence().removeByUuid(uuid);
 	}
 
 	/**
-	* Returns the number of calendar bookings where uuid = &#63; and groupId = &#63;.
+	* Removes the calendar booking where uuid = &#63; and groupId = &#63; from the database.
 	*
 	* @param uuid the uuid
 	* @param groupId the group ID
-	* @return the number of matching calendar bookings
 	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByUUID_G(java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByUUID_G(uuid, groupId);
+	public static void removeByUUID_G(java.lang.String uuid, long groupId)
+		throws com.liferay.calendar.NoSuchBookingException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByUUID_G(uuid, groupId);
 	}
 
 	/**
-	* Returns the number of calendar bookings where calendarId = &#63;.
-	*
-	* @param calendarId the calendar ID
-	* @return the number of matching calendar bookings
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByCalendarId(long calendarId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByCalendarId(calendarId);
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 */
+	public static CalendarBooking update(CalendarBooking calendarBooking,
+		boolean merge) throws SystemException {
+		return getPersistence().update(calendarBooking, merge);
 	}
 
 	/**
-	* Returns the number of calendar bookings where calendarResourceId = &#63;.
-	*
-	* @param calendarResourceId the calendar resource ID
-	* @return the number of matching calendar bookings
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByCalendarResourceId(long calendarResourceId)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 */
+	public static CalendarBooking update(CalendarBooking calendarBooking,
+		boolean merge, ServiceContext serviceContext) throws SystemException {
+		return getPersistence().update(calendarBooking, merge, serviceContext);
+	}
+
+	public static com.liferay.calendar.model.CalendarBooking updateImpl(
+		com.liferay.calendar.model.CalendarBooking calendarBooking,
+		boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByCalendarResourceId(calendarResourceId);
+		return getPersistence().updateImpl(calendarBooking, merge);
 	}
 
 	/**
-	* Returns the number of calendar bookings where calendarId = &#63; and remindBy &ne; &#63;.
-	*
-	* @param calendarId the calendar ID
-	* @param remindBy the remind by
-	* @return the number of matching calendar bookings
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByC_R(long calendarId, int remindBy)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByC_R(calendarId, remindBy);
-	}
-
-	/**
-	* Returns the number of calendar bookings where calendarResourceId = &#63; and status = &#63;.
-	*
-	* @param calendarResourceId the calendar resource ID
-	* @param status the status
-	* @return the number of matching calendar bookings
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByC_S(long calendarResourceId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByC_S(calendarResourceId, status);
-	}
-
-	/**
-	* Returns the number of calendar bookings.
-	*
-	* @return the number of calendar bookings
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countAll();
-	}
-
-	public static CalendarBookingPersistence getPersistence() {
-		if (_persistence == null) {
-			_persistence = (CalendarBookingPersistence)PortletBeanLocatorUtil.locate(com.liferay.calendar.service.ClpSerializer.getServletContextName(),
-					CalendarBookingPersistence.class.getName());
-
-			ReferenceRegistry.registerReference(CalendarBookingUtil.class,
-				"_persistence");
-		}
-
-		return _persistence;
+	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
+	 */
+	public long countWithDynamicQuery(DynamicQuery dynamicQuery)
+		throws SystemException {
+		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
 
 	public void setPersistence(CalendarBookingPersistence persistence) {

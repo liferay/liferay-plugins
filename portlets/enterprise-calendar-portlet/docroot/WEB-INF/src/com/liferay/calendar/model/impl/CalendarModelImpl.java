@@ -63,50 +63,8 @@ import java.util.Map;
 @JSON(strict = true)
 public class CalendarModelImpl extends BaseModelImpl<Calendar>
 	implements CalendarModel {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never modify or reference this class directly. All methods that expect a calendar model instance should use the {@link com.liferay.calendar.model.Calendar} interface instead.
-	 */
-	public static final String TABLE_NAME = "Calendar";
-	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "calendarId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "resourceBlockId", Types.BIGINT },
-			{ "calendarResourceId", Types.BIGINT },
-			{ "name", Types.VARCHAR },
-			{ "description", Types.VARCHAR },
-			{ "color", Types.INTEGER },
-			{ "defaultCalendar", Types.BOOLEAN }
-		};
-	public static final String TABLE_SQL_CREATE = "create table Calendar (uuid_ VARCHAR(75) null,calendarId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,resourceBlockId LONG,calendarResourceId LONG,name STRING null,description STRING null,color INTEGER,defaultCalendar BOOLEAN)";
-	public static final String TABLE_SQL_DROP = "drop table Calendar";
-	public static final String ORDER_BY_JPQL = " ORDER BY calendar.name ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Calendar.name ASC";
-	public static final String DATA_SOURCE = "liferayDataSource";
-	public static final String SESSION_FACTORY = "liferaySessionFactory";
-	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.calendar.model.Calendar"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.calendar.model.Calendar"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.calendar.model.Calendar"),
-			true);
-	public static long CALENDARRESOURCEID_COLUMN_BITMASK = 1L;
-	public static long DEFAULTCALENDAR_COLUMN_BITMASK = 2L;
-	public static long GROUPID_COLUMN_BITMASK = 4L;
-	public static long RESOURCEBLOCKID_COLUMN_BITMASK = 8L;
-	public static long UUID_COLUMN_BITMASK = 16L;
-
+	public CalendarModelImpl() {
+	}
 	/**
 	 * Converts the soap model instance into a normal model instance.
 	 *
@@ -133,7 +91,6 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 
 		return model;
 	}
-
 	/**
 	 * Converts the soap model instances into normal model instances.
 	 *
@@ -149,27 +106,147 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 
 		return models;
 	}
+	@Override
+	public Object clone() {
+		CalendarImpl calendarImpl = new CalendarImpl();
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
-				"lock.expiration.time.com.liferay.calendar.model.Calendar"));
+		calendarImpl.setUuid(getUuid());
+		calendarImpl.setCalendarId(getCalendarId());
+		calendarImpl.setGroupId(getGroupId());
+		calendarImpl.setCompanyId(getCompanyId());
+		calendarImpl.setUserId(getUserId());
+		calendarImpl.setUserName(getUserName());
+		calendarImpl.setCreateDate(getCreateDate());
+		calendarImpl.setModifiedDate(getModifiedDate());
+		calendarImpl.setResourceBlockId(getResourceBlockId());
+		calendarImpl.setCalendarResourceId(getCalendarResourceId());
+		calendarImpl.setName(getName());
+		calendarImpl.setDescription(getDescription());
+		calendarImpl.setColor(getColor());
+		calendarImpl.setDefaultCalendar(getDefaultCalendar());
 
-	public CalendarModelImpl() {
+		calendarImpl.resetOriginalValues();
+
+		return calendarImpl;
 	}
+	public int compareTo(Calendar calendar) {
+		int value = 0;
 
-	public long getPrimaryKey() {
+		value = getName().compareTo(calendar.getName());
+
+		if (value != 0) {
+			return value;
+		}
+
+		return 0;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+
+		Calendar calendar = null;
+
+		try {
+			calendar = (Calendar)obj;
+		}
+		catch (ClassCastException cce) {
+			return false;
+		}
+
+		long primaryKey = calendar.getPrimaryKey();
+
+		if (getPrimaryKey() == primaryKey) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	@JSON
+	public long getCalendarId() {
 		return _calendarId;
 	}
+	@JSON
+	public long getCalendarResourceId() {
+		return _calendarResourceId;
+	}
+	@JSON
+	public int getColor() {
+		return _color;
+	}
+	public long getColumnBitmask() {
+		return _columnBitmask;
+	}
+	@JSON
+	public long getCompanyId() {
+		return _companyId;
+	}
+	@JSON
+	public Date getCreateDate() {
+		return _createDate;
+	}
+	@JSON
+	public boolean getDefaultCalendar() {
+		return _defaultCalendar;
+	}
+	@JSON
+	public String getDescription() {
+		if (_description == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _description;
+		}
+	}
+	public String getDescription(Locale locale) {
+		String languageId = LocaleUtil.toLanguageId(locale);
 
-	public void setPrimaryKey(long primaryKey) {
-		setCalendarId(primaryKey);
+		return getDescription(languageId);
+	}
+	public String getDescription(Locale locale, boolean useDefault) {
+		String languageId = LocaleUtil.toLanguageId(locale);
+
+		return getDescription(languageId, useDefault);
+	}
+	public String getDescription(String languageId) {
+		return LocalizationUtil.getLocalization(getDescription(), languageId);
 	}
 
-	public Serializable getPrimaryKeyObj() {
-		return new Long(_calendarId);
+	public String getDescription(String languageId, boolean useDefault) {
+		return LocalizationUtil.getLocalization(getDescription(), languageId,
+			useDefault);
 	}
 
-	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	public String getDescriptionCurrentLanguageId() {
+		return _descriptionCurrentLanguageId;
+	}
+
+	@JSON
+	public String getDescriptionCurrentValue() {
+		Locale locale = getLocale(_descriptionCurrentLanguageId);
+
+		return getDescription(locale);
+	}
+
+	public Map<Locale, String> getDescriptionMap() {
+		return LocalizationUtil.getLocalizationMap(getDescription());
+	}
+
+	@Override
+	public ExpandoBridge getExpandoBridge() {
+		if (_expandoBridge == null) {
+			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
+					Calendar.class.getName(), getPrimaryKey());
+		}
+
+		return _expandoBridge;
+	}
+
+	@JSON
+	public long getGroupId() {
+		return _groupId;
 	}
 
 	public Class<?> getModelClass() {
@@ -181,155 +258,8 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 	}
 
 	@JSON
-	public String getUuid() {
-		if (_uuid == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _uuid;
-		}
-	}
-
-	public void setUuid(String uuid) {
-		if (_originalUuid == null) {
-			_originalUuid = _uuid;
-		}
-
-		_uuid = uuid;
-	}
-
-	public String getOriginalUuid() {
-		return GetterUtil.getString(_originalUuid);
-	}
-
-	@JSON
-	public long getCalendarId() {
-		return _calendarId;
-	}
-
-	public void setCalendarId(long calendarId) {
-		_calendarId = calendarId;
-	}
-
-	@JSON
-	public long getGroupId() {
-		return _groupId;
-	}
-
-	public void setGroupId(long groupId) {
-		_columnBitmask |= GROUPID_COLUMN_BITMASK;
-
-		if (!_setOriginalGroupId) {
-			_setOriginalGroupId = true;
-
-			_originalGroupId = _groupId;
-		}
-
-		_groupId = groupId;
-	}
-
-	public long getOriginalGroupId() {
-		return _originalGroupId;
-	}
-
-	@JSON
-	public long getCompanyId() {
-		return _companyId;
-	}
-
-	public void setCompanyId(long companyId) {
-		_companyId = companyId;
-	}
-
-	@JSON
-	public long getUserId() {
-		return _userId;
-	}
-
-	public void setUserId(long userId) {
-		_userId = userId;
-	}
-
-	public String getUserUuid() throws SystemException {
-		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
-	}
-
-	public void setUserUuid(String userUuid) {
-		_userUuid = userUuid;
-	}
-
-	@JSON
-	public String getUserName() {
-		if (_userName == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _userName;
-		}
-	}
-
-	public void setUserName(String userName) {
-		_userName = userName;
-	}
-
-	@JSON
-	public Date getCreateDate() {
-		return _createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
-		_createDate = createDate;
-	}
-
-	@JSON
 	public Date getModifiedDate() {
 		return _modifiedDate;
-	}
-
-	public void setModifiedDate(Date modifiedDate) {
-		_modifiedDate = modifiedDate;
-	}
-
-	@JSON
-	public long getResourceBlockId() {
-		return _resourceBlockId;
-	}
-
-	public void setResourceBlockId(long resourceBlockId) {
-		_columnBitmask |= RESOURCEBLOCKID_COLUMN_BITMASK;
-
-		if (!_setOriginalResourceBlockId) {
-			_setOriginalResourceBlockId = true;
-
-			_originalResourceBlockId = _resourceBlockId;
-		}
-
-		_resourceBlockId = resourceBlockId;
-	}
-
-	public long getOriginalResourceBlockId() {
-		return _originalResourceBlockId;
-	}
-
-	@JSON
-	public long getCalendarResourceId() {
-		return _calendarResourceId;
-	}
-
-	public void setCalendarResourceId(long calendarResourceId) {
-		_columnBitmask |= CALENDARRESOURCEID_COLUMN_BITMASK;
-
-		if (!_setOriginalCalendarResourceId) {
-			_setOriginalCalendarResourceId = true;
-
-			_originalCalendarResourceId = _calendarResourceId;
-		}
-
-		_calendarResourceId = calendarResourceId;
-	}
-
-	public long getOriginalCalendarResourceId() {
-		return _originalCalendarResourceId;
 	}
 
 	@JSON
@@ -378,96 +308,140 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 		return LocalizationUtil.getLocalizationMap(getName());
 	}
 
-	public void setName(String name) {
-		_columnBitmask = -1L;
-
-		_name = name;
+	public long getOriginalCalendarResourceId() {
+		return _originalCalendarResourceId;
 	}
 
-	public void setName(String name, Locale locale) {
-		setName(name, locale, LocaleUtil.getDefault());
+	public boolean getOriginalDefaultCalendar() {
+		return _originalDefaultCalendar;
 	}
 
-	public void setName(String name, Locale locale, Locale defaultLocale) {
-		String languageId = LocaleUtil.toLanguageId(locale);
-		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
-
-		if (Validator.isNotNull(name)) {
-			setName(LocalizationUtil.updateLocalization(getName(), "Name",
-					name, languageId, defaultLanguageId));
-		}
-		else {
-			setName(LocalizationUtil.removeLocalization(getName(), "Name",
-					languageId));
-		}
+	public long getOriginalGroupId() {
+		return _originalGroupId;
 	}
 
-	public void setNameCurrentLanguageId(String languageId) {
-		_nameCurrentLanguageId = languageId;
+	public long getOriginalResourceBlockId() {
+		return _originalResourceBlockId;
 	}
 
-	public void setNameMap(Map<Locale, String> nameMap) {
-		setNameMap(nameMap, LocaleUtil.getDefault());
+	public String getOriginalUuid() {
+		return GetterUtil.getString(_originalUuid);
 	}
 
-	public void setNameMap(Map<Locale, String> nameMap, Locale defaultLocale) {
-		if (nameMap == null) {
-			return;
-		}
+	public long getPrimaryKey() {
+		return _calendarId;
+	}
 
-		Locale[] locales = LanguageUtil.getAvailableLocales();
-
-		for (Locale locale : locales) {
-			String name = nameMap.get(locale);
-
-			setName(name, locale, defaultLocale);
-		}
+	public Serializable getPrimaryKeyObj() {
+		return new Long(_calendarId);
 	}
 
 	@JSON
-	public String getDescription() {
-		if (_description == null) {
+	public long getResourceBlockId() {
+		return _resourceBlockId;
+	}
+
+	@JSON
+	public long getUserId() {
+		return _userId;
+	}
+
+	@JSON
+	public String getUserName() {
+		if (_userName == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _description;
+			return _userName;
 		}
 	}
 
-	public String getDescription(Locale locale) {
-		String languageId = LocaleUtil.toLanguageId(locale);
-
-		return getDescription(languageId);
-	}
-
-	public String getDescription(Locale locale, boolean useDefault) {
-		String languageId = LocaleUtil.toLanguageId(locale);
-
-		return getDescription(languageId, useDefault);
-	}
-
-	public String getDescription(String languageId) {
-		return LocalizationUtil.getLocalization(getDescription(), languageId);
-	}
-
-	public String getDescription(String languageId, boolean useDefault) {
-		return LocalizationUtil.getLocalization(getDescription(), languageId,
-			useDefault);
-	}
-
-	public String getDescriptionCurrentLanguageId() {
-		return _descriptionCurrentLanguageId;
+	public String getUserUuid() throws SystemException {
+		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
 	@JSON
-	public String getDescriptionCurrentValue() {
-		Locale locale = getLocale(_descriptionCurrentLanguageId);
-
-		return getDescription(locale);
+	public String getUuid() {
+		if (_uuid == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _uuid;
+		}
 	}
 
-	public Map<Locale, String> getDescriptionMap() {
-		return LocalizationUtil.getLocalizationMap(getDescription());
+	@Override
+	public int hashCode() {
+		return (int)getPrimaryKey();
+	}
+
+	public boolean isDefaultCalendar() {
+		return _defaultCalendar;
+	}
+
+	@Override
+	public void resetOriginalValues() {
+		CalendarModelImpl calendarModelImpl = this;
+
+		calendarModelImpl._originalUuid = calendarModelImpl._uuid;
+
+		calendarModelImpl._originalGroupId = calendarModelImpl._groupId;
+
+		calendarModelImpl._setOriginalGroupId = false;
+
+		calendarModelImpl._originalResourceBlockId = calendarModelImpl._resourceBlockId;
+
+		calendarModelImpl._setOriginalResourceBlockId = false;
+
+		calendarModelImpl._originalCalendarResourceId = calendarModelImpl._calendarResourceId;
+
+		calendarModelImpl._setOriginalCalendarResourceId = false;
+
+		calendarModelImpl._originalDefaultCalendar = calendarModelImpl._defaultCalendar;
+
+		calendarModelImpl._setOriginalDefaultCalendar = false;
+
+		calendarModelImpl._columnBitmask = 0;
+	}
+
+	public void setCalendarId(long calendarId) {
+		_calendarId = calendarId;
+	}
+
+	public void setCalendarResourceId(long calendarResourceId) {
+		_columnBitmask |= CALENDARRESOURCEID_COLUMN_BITMASK;
+
+		if (!_setOriginalCalendarResourceId) {
+			_setOriginalCalendarResourceId = true;
+
+			_originalCalendarResourceId = _calendarResourceId;
+		}
+
+		_calendarResourceId = calendarResourceId;
+	}
+
+	public void setColor(int color) {
+		_color = color;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
+	}
+
+	public void setCreateDate(Date createDate) {
+		_createDate = createDate;
+	}
+
+	public void setDefaultCalendar(boolean defaultCalendar) {
+		_columnBitmask |= DEFAULTCALENDAR_COLUMN_BITMASK;
+
+		if (!_setOriginalDefaultCalendar) {
+			_setOriginalDefaultCalendar = true;
+
+			_originalDefaultCalendar = _defaultCalendar;
+		}
+
+		_defaultCalendar = defaultCalendar;
 	}
 
 	public void setDescription(String description) {
@@ -517,159 +491,111 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 		}
 	}
 
-	@JSON
-	public int getColor() {
-		return _color;
-	}
-
-	public void setColor(int color) {
-		_color = color;
-	}
-
-	@JSON
-	public boolean getDefaultCalendar() {
-		return _defaultCalendar;
-	}
-
-	public boolean isDefaultCalendar() {
-		return _defaultCalendar;
-	}
-
-	public void setDefaultCalendar(boolean defaultCalendar) {
-		_columnBitmask |= DEFAULTCALENDAR_COLUMN_BITMASK;
-
-		if (!_setOriginalDefaultCalendar) {
-			_setOriginalDefaultCalendar = true;
-
-			_originalDefaultCalendar = _defaultCalendar;
-		}
-
-		_defaultCalendar = defaultCalendar;
-	}
-
-	public boolean getOriginalDefaultCalendar() {
-		return _originalDefaultCalendar;
-	}
-
-	public long getColumnBitmask() {
-		return _columnBitmask;
-	}
-
-	@Override
-	public Calendar toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (Calendar)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
-		}
-
-		return _escapedModelProxy;
-	}
-
-	@Override
-	public ExpandoBridge getExpandoBridge() {
-		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-					Calendar.class.getName(), getPrimaryKey());
-		}
-
-		return _expandoBridge;
-	}
-
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		getExpandoBridge().setAttributes(serviceContext);
 	}
 
-	@Override
-	public Object clone() {
-		CalendarImpl calendarImpl = new CalendarImpl();
+	public void setGroupId(long groupId) {
+		_columnBitmask |= GROUPID_COLUMN_BITMASK;
 
-		calendarImpl.setUuid(getUuid());
-		calendarImpl.setCalendarId(getCalendarId());
-		calendarImpl.setGroupId(getGroupId());
-		calendarImpl.setCompanyId(getCompanyId());
-		calendarImpl.setUserId(getUserId());
-		calendarImpl.setUserName(getUserName());
-		calendarImpl.setCreateDate(getCreateDate());
-		calendarImpl.setModifiedDate(getModifiedDate());
-		calendarImpl.setResourceBlockId(getResourceBlockId());
-		calendarImpl.setCalendarResourceId(getCalendarResourceId());
-		calendarImpl.setName(getName());
-		calendarImpl.setDescription(getDescription());
-		calendarImpl.setColor(getColor());
-		calendarImpl.setDefaultCalendar(getDefaultCalendar());
+		if (!_setOriginalGroupId) {
+			_setOriginalGroupId = true;
 
-		calendarImpl.resetOriginalValues();
+			_originalGroupId = _groupId;
+		}
 
-		return calendarImpl;
+		_groupId = groupId;
 	}
 
-	public int compareTo(Calendar calendar) {
-		int value = 0;
-
-		value = getName().compareTo(calendar.getName());
-
-		if (value != 0) {
-			return value;
-		}
-
-		return 0;
+	public void setModifiedDate(Date modifiedDate) {
+		_modifiedDate = modifiedDate;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (obj == null) {
-			return false;
-		}
+	public void setName(String name) {
+		_columnBitmask = -1L;
 
-		Calendar calendar = null;
+		_name = name;
+	}
 
-		try {
-			calendar = (Calendar)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
+	public void setName(String name, Locale locale) {
+		setName(name, locale, LocaleUtil.getDefault());
+	}
 
-		long primaryKey = calendar.getPrimaryKey();
+	public void setName(String name, Locale locale, Locale defaultLocale) {
+		String languageId = LocaleUtil.toLanguageId(locale);
+		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 
-		if (getPrimaryKey() == primaryKey) {
-			return true;
+		if (Validator.isNotNull(name)) {
+			setName(LocalizationUtil.updateLocalization(getName(), "Name",
+					name, languageId, defaultLanguageId));
 		}
 		else {
-			return false;
+			setName(LocalizationUtil.removeLocalization(getName(), "Name",
+					languageId));
 		}
 	}
 
-	@Override
-	public int hashCode() {
-		return (int)getPrimaryKey();
+	public void setNameCurrentLanguageId(String languageId) {
+		_nameCurrentLanguageId = languageId;
 	}
 
-	@Override
-	public void resetOriginalValues() {
-		CalendarModelImpl calendarModelImpl = this;
+	public void setNameMap(Map<Locale, String> nameMap) {
+		setNameMap(nameMap, LocaleUtil.getDefault());
+	}
 
-		calendarModelImpl._originalUuid = calendarModelImpl._uuid;
+	public void setNameMap(Map<Locale, String> nameMap, Locale defaultLocale) {
+		if (nameMap == null) {
+			return;
+		}
 
-		calendarModelImpl._originalGroupId = calendarModelImpl._groupId;
+		Locale[] locales = LanguageUtil.getAvailableLocales();
 
-		calendarModelImpl._setOriginalGroupId = false;
+		for (Locale locale : locales) {
+			String name = nameMap.get(locale);
 
-		calendarModelImpl._originalResourceBlockId = calendarModelImpl._resourceBlockId;
+			setName(name, locale, defaultLocale);
+		}
+	}
 
-		calendarModelImpl._setOriginalResourceBlockId = false;
+	public void setPrimaryKey(long primaryKey) {
+		setCalendarId(primaryKey);
+	}
 
-		calendarModelImpl._originalCalendarResourceId = calendarModelImpl._calendarResourceId;
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
 
-		calendarModelImpl._setOriginalCalendarResourceId = false;
+	public void setResourceBlockId(long resourceBlockId) {
+		_columnBitmask |= RESOURCEBLOCKID_COLUMN_BITMASK;
 
-		calendarModelImpl._originalDefaultCalendar = calendarModelImpl._defaultCalendar;
+		if (!_setOriginalResourceBlockId) {
+			_setOriginalResourceBlockId = true;
 
-		calendarModelImpl._setOriginalDefaultCalendar = false;
+			_originalResourceBlockId = _resourceBlockId;
+		}
 
-		calendarModelImpl._columnBitmask = 0;
+		_resourceBlockId = resourceBlockId;
+	}
+
+	public void setUserId(long userId) {
+		_userId = userId;
+	}
+
+	public void setUserName(String userName) {
+		_userName = userName;
+	}
+
+	public void setUserUuid(String userUuid) {
+		_userUuid = userUuid;
+	}
+
+	public void setUuid(String uuid) {
+		if (_originalUuid == null) {
+			_originalUuid = _uuid;
+		}
+
+		_uuid = uuid;
 	}
 
 	@Override
@@ -743,6 +669,17 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 		calendarCacheModel.defaultCalendar = getDefaultCalendar();
 
 		return calendarCacheModel;
+	}
+
+	@Override
+	public Calendar toEscapedModel() {
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (Calendar)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
+		}
+
+		return _escapedModelProxy;
 	}
 
 	@Override
@@ -850,6 +787,69 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 
 		return sb.toString();
 	}
+
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this class directly. All methods that expect a calendar model instance should use the {@link com.liferay.calendar.model.Calendar} interface instead.
+	 */
+	public static final String TABLE_NAME = "Calendar";
+
+	public static final Object[][] TABLE_COLUMNS = {
+			{ "uuid_", Types.VARCHAR },
+			{ "calendarId", Types.BIGINT },
+			{ "groupId", Types.BIGINT },
+			{ "companyId", Types.BIGINT },
+			{ "userId", Types.BIGINT },
+			{ "userName", Types.VARCHAR },
+			{ "createDate", Types.TIMESTAMP },
+			{ "modifiedDate", Types.TIMESTAMP },
+			{ "resourceBlockId", Types.BIGINT },
+			{ "calendarResourceId", Types.BIGINT },
+			{ "name", Types.VARCHAR },
+			{ "description", Types.VARCHAR },
+			{ "color", Types.INTEGER },
+			{ "defaultCalendar", Types.BOOLEAN }
+		};
+
+	public static final String TABLE_SQL_CREATE = "create table Calendar (uuid_ VARCHAR(75) null,calendarId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,resourceBlockId LONG,calendarResourceId LONG,name STRING null,description STRING null,color INTEGER,defaultCalendar BOOLEAN)";
+
+	public static final String TABLE_SQL_DROP = "drop table Calendar";
+
+	public static final String ORDER_BY_JPQL = " ORDER BY calendar.name ASC";
+
+	public static final String ORDER_BY_SQL = " ORDER BY Calendar.name ASC";
+
+	public static final String DATA_SOURCE = "liferayDataSource";
+
+	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
+	public static final String TX_MANAGER = "liferayTransactionManager";
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.entity.cache.enabled.com.liferay.calendar.model.Calendar"),
+			true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.finder.cache.enabled.com.liferay.calendar.model.Calendar"),
+			true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.calendar.model.Calendar"),
+			true);
+
+	public static long CALENDARRESOURCEID_COLUMN_BITMASK = 1L;
+
+	public static long DEFAULTCALENDAR_COLUMN_BITMASK = 2L;
+
+	public static long GROUPID_COLUMN_BITMASK = 4L;
+
+	public static long RESOURCEBLOCKID_COLUMN_BITMASK = 8L;
+
+	public static long UUID_COLUMN_BITMASK = 16L;
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
+				"lock.expiration.time.com.liferay.calendar.model.Calendar"));
 
 	private static ClassLoader _classLoader = Calendar.class.getClassLoader();
 	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {

@@ -63,6 +63,15 @@ public interface CalendarLocalService extends PermissionedModelLocalService {
 	public com.liferay.calendar.model.Calendar createCalendar(long calendarId);
 
 	/**
+	* Deletes the calendar from the database. Also notifies the appropriate model listeners.
+	*
+	* @param calendar the calendar
+	* @throws SystemException if a system exception occurred
+	*/
+	public void deleteCalendar(com.liferay.calendar.model.Calendar calendar)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Deletes the calendar with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param calendarId the primary key of the calendar
@@ -72,15 +81,6 @@ public interface CalendarLocalService extends PermissionedModelLocalService {
 	public void deleteCalendar(long calendarId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Deletes the calendar from the database. Also notifies the appropriate model listeners.
-	*
-	* @param calendar the calendar
-	* @throws SystemException if a system exception occurred
-	*/
-	public void deleteCalendar(com.liferay.calendar.model.Calendar calendar)
-		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -149,6 +149,13 @@ public interface CalendarLocalService extends PermissionedModelLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier();
+
+	/**
 	* Returns the calendar with the primary key.
 	*
 	* @param calendarId the primary key of the calendar
@@ -158,12 +165,6 @@ public interface CalendarLocalService extends PermissionedModelLocalService {
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.calendar.model.Calendar getCalendar(long calendarId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -209,6 +210,19 @@ public interface CalendarLocalService extends PermissionedModelLocalService {
 	public int getCalendarsCount()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier);
+
 	/**
 	* Updates the calendar in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
@@ -231,18 +245,4 @@ public interface CalendarLocalService extends PermissionedModelLocalService {
 	public com.liferay.calendar.model.Calendar updateCalendar(
 		com.liferay.calendar.model.Calendar calendar, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public java.lang.String getBeanIdentifier();
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public void setBeanIdentifier(java.lang.String beanIdentifier);
 }

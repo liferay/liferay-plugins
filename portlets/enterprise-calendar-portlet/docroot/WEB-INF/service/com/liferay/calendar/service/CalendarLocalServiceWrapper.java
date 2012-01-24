@@ -56,6 +56,17 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 	}
 
 	/**
+	* Deletes the calendar from the database. Also notifies the appropriate model listeners.
+	*
+	* @param calendar the calendar
+	* @throws SystemException if a system exception occurred
+	*/
+	public void deleteCalendar(com.liferay.calendar.model.Calendar calendar)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_calendarLocalService.deleteCalendar(calendar);
+	}
+
+	/**
 	* Deletes the calendar with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param calendarId the primary key of the calendar
@@ -66,17 +77,6 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_calendarLocalService.deleteCalendar(calendarId);
-	}
-
-	/**
-	* Deletes the calendar from the database. Also notifies the appropriate model listeners.
-	*
-	* @param calendar the calendar
-	* @throws SystemException if a system exception occurred
-	*/
-	public void deleteCalendar(com.liferay.calendar.model.Calendar calendar)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		_calendarLocalService.deleteCalendar(calendar);
 	}
 
 	/**
@@ -156,6 +156,15 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 	}
 
 	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _calendarLocalService.getBeanIdentifier();
+	}
+
+	/**
 	* Returns the calendar with the primary key.
 	*
 	* @param calendarId the primary key of the calendar
@@ -167,13 +176,6 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _calendarLocalService.getCalendar(calendarId);
-	}
-
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _calendarLocalService.getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -221,6 +223,45 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 		return _calendarLocalService.getCalendarsCount();
 	}
 
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
+	public CalendarLocalService getWrappedCalendarLocalService() {
+		return _calendarLocalService;
+	}
+
+	public CalendarLocalService getWrappedService() {
+		return _calendarLocalService;
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_calendarLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
+	public void setWrappedCalendarLocalService(
+		CalendarLocalService calendarLocalService) {
+		_calendarLocalService = calendarLocalService;
+	}
+
+	public void setWrappedService(CalendarLocalService calendarLocalService) {
+		_calendarLocalService = calendarLocalService;
+	}
+
 	/**
 	* Updates the calendar in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
@@ -246,47 +287,6 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 		com.liferay.calendar.model.Calendar calendar, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _calendarLocalService.updateCalendar(calendar, merge);
-	}
-
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public java.lang.String getBeanIdentifier() {
-		return _calendarLocalService.getBeanIdentifier();
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_calendarLocalService.setBeanIdentifier(beanIdentifier);
-	}
-
-	/**
-	 * @deprecated Renamed to {@link #getWrappedService}
-	 */
-	public CalendarLocalService getWrappedCalendarLocalService() {
-		return _calendarLocalService;
-	}
-
-	/**
-	 * @deprecated Renamed to {@link #setWrappedService}
-	 */
-	public void setWrappedCalendarLocalService(
-		CalendarLocalService calendarLocalService) {
-		_calendarLocalService = calendarLocalService;
-	}
-
-	public CalendarLocalService getWrappedService() {
-		return _calendarLocalService;
-	}
-
-	public void setWrappedService(CalendarLocalService calendarLocalService) {
-		_calendarLocalService = calendarLocalService;
 	}
 
 	private CalendarLocalService _calendarLocalService;
