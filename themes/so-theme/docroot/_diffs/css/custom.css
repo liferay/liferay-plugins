@@ -24,10 +24,6 @@ a:hover {
 	text-decoration: underline;
 }
 
-#wrapper {
-	min-width: 1024px;
-}
-
 .ie6 img {
 	position: static;
 }
@@ -44,7 +40,7 @@ a:focus .opens-new-window-accessible {
 	text-indent: 0;
 }
 
-#banner:after, #footer, .contacts-portlet .members-container:after, .portlet-msg-info:after, .portlet-toolbar:after, .so-portlet-activities .activity-item:after, .taglib-header:after {
+#content:after, #banner:after, #footer, .contacts-portlet .members-container:after, .portlet-msg-info:after, .portlet-toolbar:after, .so-portlet-activities .activity-item:after, .taglib-header:after {
 	clear: both;
 	content: "";
 	display: block;
@@ -65,7 +61,7 @@ a:focus .opens-new-window-accessible {
 
 	.company-title {
 		float: left;
-		padding: 5px 0 10px;
+		padding: 5px 10px 10px;
 
 		.theme-logo {
 			background-image: url(../images/custom/so_logo.png);
@@ -94,7 +90,6 @@ a:focus .opens-new-window-accessible {
 #heading, #footer {
 	margin: 0 auto;
 	position: relative;
-	width: $fixed-width;
 }
 
 #page-search, #sign-in {
@@ -129,16 +124,24 @@ a:focus .opens-new-window-accessible {
 	}
 
 	li {
-		margin-bottom: 1px;
-
 		a {
+			border: 1px solid transparent;
+			border-width: 1px 0;
 			display: block;
-			padding: 3px 7px;
+			padding: 7px 14px;
 		}
 
 		a:hover, &.selected {
 			background: #F4F4F4;
 			text-decoration: none;
+		}
+
+		a:hover {
+			border-color: #F4F3F3 transparent #D9D8D8;
+		}
+
+		&.selected {
+			border-left: 2px solid $header;
 		}
 
 		&.selected a {
@@ -157,7 +160,7 @@ a:focus .opens-new-window-accessible {
 .so-user-detail {
 	display: table-cell;
 	line-height: 0;
-	padding: 10px 0;
+	padding: 10px;
 
 	.profile-image, .profile-name {
 		display: inline-block;
@@ -183,9 +186,10 @@ a:focus .opens-new-window-accessible {
 
 #so-sidebar {
 	border-right: 1px solid $border-color;
-	float: left;
-	margin-right: -1px;
-	width: $navigation-width;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 200px;
 
 	.portlet-msg, .portlet-msg-info, .portlet-msg-error, .portlet-msg-alert, .portlet-msg-success {
 		margin: 0;
@@ -193,7 +197,7 @@ a:focus .opens-new-window-accessible {
 
 	.user-profile-detail .profile-image {
 		line-height: 0;
-		padding: 10px 0;
+		padding: 0 0 10px;
 
 		img {
 			max-width: 200px;
@@ -204,7 +208,7 @@ a:focus .opens-new-window-accessible {
 	hr {
 		border-top: 1px solid $border-color;
 		border-width: 1px 0 0;
-		margin: 3px 0;
+		margin: 10px 0 3px;
 	}
 
 	h3 {
@@ -266,7 +270,7 @@ a:focus .opens-new-window-accessible {
 
 		ul.site-list li {
 			@include border-radius(0);
-			background-position:  5px 3px;
+			background-position: 5px 3px;
 			position: relative;
 
 			.name, .name a, .star {
@@ -304,15 +308,13 @@ a:focus .opens-new-window-accessible {
 /* ---------- Layout ---------- */
 
 #content {
-	margin: 0 auto;
-	width: $fixed-width;
+	padding-left: 200px;
+	position: relative;
 
 	#so-context {
 		border: 1px solid $border-color;
-		border-width: 0 1px 1px 0;
-		float: left;
+		border-width: 0 0 1px 0;
 		position: relative;
-		width: $content-width;
 	}
 
 	.portlet-layout {
@@ -390,7 +392,6 @@ a:focus .opens-new-window-accessible {
 	margin: 0 -10px;
 	padding: 0 10px 6px;
 }
-
 .user-tags li {
 	display: inline;
 
@@ -405,9 +406,9 @@ a:focus .opens-new-window-accessible {
 }
 
 .profile-header {
-	padding: 10px;
 	border: 1px solid $border-color;
 	border-width: 0 0 1px 1px;
+	padding: 10px;
 
 	h1 {
 		color: $header;
@@ -444,7 +445,8 @@ a:focus .opens-new-window-accessible {
 /* ---------- Footer ---------- */
 
 #footer {
-	padding: 30px 0;
+	margin-left: 200px;
+	padding: 30px 10px;
 }
 
 /* ---------- Forms ---------- */
@@ -730,7 +732,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	padding: 0;
 }
 
-
 /* ---------- Taglib ---------- */
 
 .taglib-icon .taglib-text {
@@ -747,24 +748,26 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 /* Bookmarks */
 
-.portlet-bookmarks .control-wrapper {
-	text-align: right;
-}
+.portlet-bookmarks {
+	.control-wrapper {
+		text-align: right;
 
-.portlet-bookmarks .results-header {
-	display: none;
-}
+		a {
+			background: url(../images/arrows/01_plus.png) no-repeat scroll 100% 50%;
+			font-size: 11px;
+			padding-right: 16px;
+		}
+	}
 
-.portlet-bookmarks .control-wrapper a {
-	background: url(../images/arrows/01_plus.png) no-repeat scroll 100% 50%;
-	font-size: 11px;
-	padding-right: 16px;
+	.results-header {
+		display: none;
+	}
 }
 
 /* Calendar */
 
 .portlet-calendar {
-	.calendar-container, .calendar-day, .calendar-container .taglib-calendar {
+	.calendar-container, .calendar-container .taglib-calendar, .calendar-day {
 		float: none;
 	}
 
@@ -781,6 +784,10 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	.calendar-container, .calendar-container .day-text {
 		background: transparent none;
 		border: none;
+	}
+
+	.aui-field-wrapper, .aui-field .aui-field-content {
+		padding: 0 10px;
 	}
 
 	.calendar-container {
@@ -1005,6 +1012,8 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 
 	.entry {
+		margin: 0 auto;
+		max-width: 640px;
 		position: relative;
 	}
 
@@ -1146,7 +1155,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		border-width: 1px 0 0;
 		margin-left: 1px;
 	}
-
+	
 	.social-relations a {
 		border: 1px solid transparent;
 		color: #34404F;
@@ -1319,8 +1328,11 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 	.activity-item {
 		border-bottom: 1px solid #E7E7E7;
-		margin: 0;
 		padding: 1em;
+	}
+
+	.activity-body {
+		font-size: .95em;
 	}
 
 	.user-portrait .icon {
@@ -1339,6 +1351,10 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 	.activity-data {
 		padding-left: 10px;
+	}
+
+	a.group {
+		color: $header;
 	}
 }
 
@@ -1469,6 +1485,16 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		}
 	}
 
+	.lfr-header-row {
+		min-height: 33px;
+	}
+
+	.portlet-msg, .portlet-msg-info, .portlet-msg-error, .portlet-msg-alert, .portlet-msg-success {
+		@include border-radius(0);
+		border-width: 0;
+		margin: 0;
+	}
+
 	.search-button-container {
 		.aui-column-content, .aui-column-content-center {
 			border-width: 0;
@@ -1516,14 +1542,20 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 	.header-back-to {
 		position: absolute;
-		right: 0;
 		top: 0;
+		right: 0;
 		z-index: 1;
 	}
 }
 
-.portlet-document-library .folder, .portlet-document-library-display .folder {
-	margin-top: 0;
+.portlet-document-library, .portlet-document-library-display {
+	.folder {
+		margin-top: 0;
+	}
+
+	.document-info {
+		background-color: #EEE;
+	}
 }
 
 /* Social Office Notifications */
@@ -1598,12 +1630,12 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 .portlet-boundary {
 	.top-links, .top-links .top-links-navigation, .top-links .page-search {
 		float: none;
-	}
+	}	
 
 	.top-links .top-link {
 		border-right: 0;
-		margin: 0;
 		padding: 0;
+		margin: 0;
 	}
 }
 
@@ -1613,8 +1645,8 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 
 	.message-container {
-		border-color: #CECECE;
 		border-width: 0 0 1px;
+		border-color: #CECECE;
 		margin: 0;
 
 		&.reply {
@@ -1624,9 +1656,9 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		}
 
 		.user-info {
+			width: 75px;
 			border-width: 0;
 			padding: 0;
-			width: 75px;
 
 			.taglib-user-display {
 				position: relative;
@@ -1661,10 +1693,14 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		}
 
 		.results-row {
+			img {
+				max-width: 100%;
+			}
+
 			td, &.alt td {
+				padding-top: 10px;
 				background: transparent;
 				border-width: 0;
-				padding-top: 10px;
 			}
 
 			td.thread-bottom {
@@ -1716,15 +1752,10 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	.edit-controls {
 		position: relative;
 		top: -.5em;
-		visibility: hidden;
 
 		li {
 			margin: 0;
 		}
-	}
-
-	.message-container.hover .edit-controls {
-		visibility: visible;
 	}
 }
 
@@ -1795,6 +1826,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 
 	.result-content {
-		margin: 0 -6px 0 -7px;
+		margin-right: 0 -6px 0 -7px;
 	}
 }
