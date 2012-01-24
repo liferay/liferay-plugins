@@ -145,6 +145,7 @@ import oasis.names.tc.wsrp.v2.types.UploadContext;
 import oasis.names.tc.wsrp.v2.types.UserContext;
 import oasis.names.tc.wsrp.v2.types.UserProfile;
 
+import org.apache.axis.client.Stub;
 import org.apache.axis.message.MessageElement;
 
 /**
@@ -564,6 +565,13 @@ public class ConsumerPortlet extends GenericPortlet {
 			markupResponse = markupService.getMarkup(getMarkup);
 		}
 
+		// There is a memory leak in Axis that caches the entire response
+		// after each call
+
+		Stub stub = (Stub)markupService;
+
+		stub._createCall();
+
 		processMarkupResponse(
 			portletRequest, portletResponse, serviceHolder, markupResponse);
 
@@ -818,9 +826,7 @@ public class ConsumerPortlet extends GenericPortlet {
 			CookieProtocol cookieProtocol =
 				serviceDescription.getRequiresInitCookie();
 
-			if ((cookie == null) &&
-				(cookieProtocol != null)) {
-
+			if ((cookie == null) && (cookieProtocol != null)) {
 				String cookieProtocolValue = cookieProtocol.getValue();
 
 				if (cookieProtocolValue.equals(CookieProtocol._perGroup) ||
