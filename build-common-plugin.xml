@@ -703,11 +703,14 @@ Please find a solution that does not require portal-impl.jar.
 				<isset property="test.suite.classes.available" />
 			</not>
 			<then>
-				<junit dir="${project.dir}" fork="on" forkmode="once" printsummary="on">
+				<junit dir="${project.dir}" fork="on" forkmode="once" haltonfailure="${junit.halt.on.failure}" printsummary="on">
+					<sysproperty key="net.sourceforge.cobertura.datafile" file="test-coverage/cobertura.ser" />
 					<jvmarg line="${junit.debug.jpda}" />
-					<jvmarg value="-Xmx256m" />
+					<jvmarg value="-Xmx1024m" />
+                    <jvmarg value="-XX:MaxPermSize=256m" />
 					<jvmarg value="-Duser.timezone=GMT" />
 					<jvmarg value="-Dexternal-properties=${test.properties}" />
+					<classpath location="test-coverage" />
 					<classpath refid="test.classpath" />
 					<formatter type="brief" usefile="false" />
 					<formatter type="xml" />
@@ -717,11 +720,14 @@ Please find a solution that does not require portal-impl.jar.
 				</junit>
 			</then>
 			<else>
-				<junit dir="${project.dir}" fork="on" forkmode="once" printsummary="on">
+				<junit dir="${project.dir}" fork="on" forkmode="once" haltonfailure="${junit.halt.on.failure}" printsummary="on">
+					<sysproperty key="net.sourceforge.cobertura.datafile" file="test-coverage/cobertura.ser" />
 					<jvmarg line="${junit.debug.jpda}" />
-					<jvmarg value="-Xmx256m" />
+					<jvmarg value="-Xmx1024m" />
+                    <jvmarg value="-XX:MaxPermSize=256m" />
 					<jvmarg value="-Duser.timezone=GMT" />
 					<jvmarg value="-Dexternal-properties=${test.properties}" />
+					<classpath location="test-coverage" />
 					<classpath refid="test.classpath" />
 					<formatter type="brief" usefile="false" />
 					<formatter type="xml" />
@@ -735,11 +741,13 @@ Please find a solution that does not require portal-impl.jar.
 
 	<target name="test-class" depends="compile,compile-test" if="class">
 		<junit dir="${project.dir}" fork="on" forkmode="once" outputtoformatters="false" printsummary="on" showoutput="true">
+			<sysproperty key="net.sourceforge.cobertura.datafile" file="test-coverage/cobertura.ser" />
 			<jvmarg line="${junit.debug.jpda}" />
-			<jvmarg value="-Xmx512m" />
-			<jvmarg value="-XX:MaxPermSize=128m" />
+			<jvmarg value="-Xmx1024m" />
+			<jvmarg value="-XX:MaxPermSize=256m" />
 			<jvmarg value="-Duser.timezone=GMT" />
 			<jvmarg value="-Dexternal-properties=${test.properties}" />
+			<classpath location="test-coverage" />
 			<classpath refid="test.classpath" />
 			<formatter type="brief" usefile="false" />
 			<formatter type="xml" />
