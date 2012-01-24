@@ -577,7 +577,6 @@ public class SitesPortlet extends MVCPortlet {
 		new MethodKey(
 			_CLASS_NAME, "mergeLayoutSetProtypeLayouts", Group.class,
 			LayoutSet.class);
-
 	private static MethodKey _updateLayoutSetPrototypesMethodKey =
 		new MethodKey(
 			_CLASS_NAME, "updateLayoutSetPrototypesLinks", Group.class,
