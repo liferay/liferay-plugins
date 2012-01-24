@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
-<!DOCTYPE plugin-package PUBLIC "-//Liferay//DTD Plugin Package 6.1.0//EN" "http://www.liferay.com/dtd/liferay-plugin-package_6_1_0.dtd">
+<!DOCTYPE plugin-package PUBLIC "-//Liferay//DTD Plugin Package 6.2.0//EN" "http://www.liferay.com/dtd/liferay-plugin-package_6_2_0.dtd">
 
 <plugin-package>
 	<name>Sample Styled Advanced</name>
-	<module-id>liferay/sample-styled-advanced-theme/6.1.0.1/war</module-id>
+	<module-id>liferay/sample-styled-advanced-theme/6.2.0.1/war</module-id>
 	<types>
 		<type>theme</type>
 	</types>
@@ -18,6 +18,6 @@
 		<license osi-approved="true">LGPL</license>
 	</licenses>
 	<liferay-versions>
-		<liferay-version>6.1.0+</liferay-version>
+		<liferay-version>6.2.0+</liferay-version>
 	</liferay-versions>
 </plugin-package>
