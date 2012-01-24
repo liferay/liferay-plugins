@@ -730,49 +730,48 @@ public class CalendarResourceUtil {
 	}
 
 	/**
-	* Returns the calendar resource where classNameId = &#63; and classPK = &#63; or throws a {@link com.liferay.calendar.NoSuchResourceException} if it could not be found.
+	* Returns the calendar resource where className = &#63; and classPK = &#63; or throws a {@link com.liferay.calendar.NoSuchResourceException} if it could not be found.
 	*
-	* @param classNameId the class name ID
+	* @param className the class name
 	* @param classPK the class p k
 	* @return the matching calendar resource
 	* @throws com.liferay.calendar.NoSuchResourceException if a matching calendar resource could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.calendar.model.CalendarResource findByC_C(
-		long classNameId, long classPK)
+		java.lang.String className, long classPK)
 		throws com.liferay.calendar.NoSuchResourceException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByC_C(classNameId, classPK);
+		return getPersistence().findByC_C(className, classPK);
 	}
 
 	/**
-	* Returns the calendar resource where classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns the calendar resource where className = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param classNameId the class name ID
+	* @param className the class name
 	* @param classPK the class p k
 	* @return the matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.calendar.model.CalendarResource fetchByC_C(
-		long classNameId, long classPK)
+		java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByC_C(classNameId, classPK);
+		return getPersistence().fetchByC_C(className, classPK);
 	}
 
 	/**
-	* Returns the calendar resource where classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Returns the calendar resource where className = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param classNameId the class name ID
+	* @param className the class name
 	* @param classPK the class p k
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.calendar.model.CalendarResource fetchByC_C(
-		long classNameId, long classPK, boolean retrieveFromCache)
+		java.lang.String className, long classPK, boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .fetchByC_C(classNameId, classPK, retrieveFromCache);
+		return getPersistence().fetchByC_C(className, classPK, retrieveFromCache);
 	}
 
 	/**
@@ -1563,16 +1562,16 @@ public class CalendarResourceUtil {
 	}
 
 	/**
-	* Removes the calendar resource where classNameId = &#63; and classPK = &#63; from the database.
+	* Removes the calendar resource where className = &#63; and classPK = &#63; from the database.
 	*
-	* @param classNameId the class name ID
+	* @param className the class name
 	* @param classPK the class p k
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByC_C(long classNameId, long classPK)
+	public static void removeByC_C(java.lang.String className, long classPK)
 		throws com.liferay.calendar.NoSuchResourceException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByC_C(classNameId, classPK);
+		getPersistence().removeByC_C(className, classPK);
 	}
 
 	/**
@@ -1704,16 +1703,16 @@ public class CalendarResourceUtil {
 	}
 
 	/**
-	* Returns the number of calendar resources where classNameId = &#63; and classPK = &#63;.
+	* Returns the number of calendar resources where className = &#63; and classPK = &#63;.
 	*
-	* @param classNameId the class name ID
+	* @param className the class name
 	* @param classPK the class p k
 	* @return the number of matching calendar resources
 	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByC_C(long classNameId, long classPK)
+	public static int countByC_C(java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByC_C(classNameId, classPK);
+		return getPersistence().countByC_C(className, classPK);
 	}
 
 	/**

@@ -178,13 +178,13 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	public static final FinderPath FINDER_PATH_FETCH_BY_C_C = new FinderPath(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarResourceModelImpl.FINDER_CACHE_ENABLED,
 			CalendarResourceImpl.class, FINDER_CLASS_NAME_ENTITY, "fetchByC_C",
-			new String[] { Long.class.getName(), Long.class.getName() },
-			CalendarResourceModelImpl.CLASSNAMEID_COLUMN_BITMASK |
+			new String[] { String.class.getName(), Long.class.getName() },
+			CalendarResourceModelImpl.CLASSNAME_COLUMN_BITMASK |
 			CalendarResourceModelImpl.CLASSPK_COLUMN_BITMASK);
 	public static final FinderPath FINDER_PATH_COUNT_BY_C_C = new FinderPath(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarResourceModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_C",
-			new String[] { Long.class.getName(), Long.class.getName() });
+			new String[] { String.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_G_C_A = new FinderPath(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarResourceModelImpl.FINDER_CACHE_ENABLED,
 			CalendarResourceImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
@@ -345,7 +345,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C,
 			new Object[] {
-				Long.valueOf(calendarResource.getClassNameId()),
+				calendarResource.getClassName(),
 				Long.valueOf(calendarResource.getClassPK())
 			}, calendarResource);
 
@@ -431,7 +431,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_C,
 			new Object[] {
-				Long.valueOf(calendarResource.getClassNameId()),
+				calendarResource.getClassName(),
 				Long.valueOf(calendarResource.getClassPK())
 			});
 	}
@@ -764,7 +764,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C,
 				new Object[] {
-					Long.valueOf(calendarResource.getClassNameId()),
+					calendarResource.getClassName(),
 					Long.valueOf(calendarResource.getClassPK())
 				}, calendarResource);
 		}
@@ -789,7 +789,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 			if ((calendarResourceModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_C_C.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(calendarResourceModelImpl.getOriginalClassNameId()),
+						calendarResourceModelImpl.getOriginalClassName(),
 						Long.valueOf(calendarResourceModelImpl.getOriginalClassPK())
 					};
 
@@ -798,7 +798,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C,
 					new Object[] {
-						Long.valueOf(calendarResource.getClassNameId()),
+						calendarResource.getClassName(),
 						Long.valueOf(calendarResource.getClassPK())
 					}, calendarResource);
 			}
@@ -827,9 +827,10 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		calendarResourceImpl.setCreateDate(calendarResource.getCreateDate());
 		calendarResourceImpl.setModifiedDate(calendarResource.getModifiedDate());
 		calendarResourceImpl.setResourceBlockId(calendarResource.getResourceBlockId());
-		calendarResourceImpl.setClassNameId(calendarResource.getClassNameId());
+		calendarResourceImpl.setClassName(calendarResource.getClassName());
 		calendarResourceImpl.setClassPK(calendarResource.getClassPK());
 		calendarResourceImpl.setClassUuid(calendarResource.getClassUuid());
+		calendarResourceImpl.setDefaultCalendarId(calendarResource.getDefaultCalendarId());
 		calendarResourceImpl.setCode(calendarResource.getCode());
 		calendarResourceImpl.setName(calendarResource.getName());
 		calendarResourceImpl.setDescription(calendarResource.getDescription());
@@ -2587,25 +2588,25 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	}
 
 	/**
-	 * Returns the calendar resource where classNameId = &#63; and classPK = &#63; or throws a {@link com.liferay.calendar.NoSuchResourceException} if it could not be found.
+	 * Returns the calendar resource where className = &#63; and classPK = &#63; or throws a {@link com.liferay.calendar.NoSuchResourceException} if it could not be found.
 	 *
-	 * @param classNameId the class name ID
+	 * @param className the class name
 	 * @param classPK the class p k
 	 * @return the matching calendar resource
 	 * @throws com.liferay.calendar.NoSuchResourceException if a matching calendar resource could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public CalendarResource findByC_C(long classNameId, long classPK)
+	public CalendarResource findByC_C(String className, long classPK)
 		throws NoSuchResourceException, SystemException {
-		CalendarResource calendarResource = fetchByC_C(classNameId, classPK);
+		CalendarResource calendarResource = fetchByC_C(className, classPK);
 
 		if (calendarResource == null) {
 			StringBundler msg = new StringBundler(6);
 
 			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("classNameId=");
-			msg.append(classNameId);
+			msg.append("className=");
+			msg.append(className);
 
 			msg.append(", classPK=");
 			msg.append(classPK);
@@ -2623,30 +2624,30 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	}
 
 	/**
-	 * Returns the calendar resource where classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the calendar resource where className = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @param classNameId the class name ID
+	 * @param className the class name
 	 * @param classPK the class p k
 	 * @return the matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public CalendarResource fetchByC_C(long classNameId, long classPK)
+	public CalendarResource fetchByC_C(String className, long classPK)
 		throws SystemException {
-		return fetchByC_C(classNameId, classPK, true);
+		return fetchByC_C(className, classPK, true);
 	}
 
 	/**
-	 * Returns the calendar resource where classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the calendar resource where className = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
-	 * @param classNameId the class name ID
+	 * @param className the class name
 	 * @param classPK the class p k
 	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public CalendarResource fetchByC_C(long classNameId, long classPK,
+	public CalendarResource fetchByC_C(String className, long classPK,
 		boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] { classNameId, classPK };
+		Object[] finderArgs = new Object[] { className, classPK };
 
 		Object result = null;
 
@@ -2658,7 +2659,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		if (result instanceof CalendarResource) {
 			CalendarResource calendarResource = (CalendarResource)result;
 
-			if ((classNameId != calendarResource.getClassNameId()) ||
+			if (!Validator.equals(className, calendarResource.getClassName()) ||
 					(classPK != calendarResource.getClassPK())) {
 				result = null;
 			}
@@ -2669,7 +2670,17 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 			query.append(_SQL_SELECT_CALENDARRESOURCE_WHERE);
 
-			query.append(_FINDER_COLUMN_C_C_CLASSNAMEID_2);
+			if (className == null) {
+				query.append(_FINDER_COLUMN_C_C_CLASSNAME_1);
+			}
+			else {
+				if (className.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_C_C_CLASSNAME_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_C_C_CLASSNAME_2);
+				}
+			}
 
 			query.append(_FINDER_COLUMN_C_C_CLASSPK_2);
 
@@ -2686,7 +2697,9 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(classNameId);
+				if (className != null) {
+					qPos.add(className);
+				}
 
 				qPos.add(classPK);
 
@@ -2705,7 +2718,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 					cacheResult(calendarResource);
 
-					if ((calendarResource.getClassNameId() != classNameId) ||
+					if ((calendarResource.getClassName() == null) ||
+							!calendarResource.getClassName().equals(className) ||
 							(calendarResource.getClassPK() != classPK)) {
 						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C,
 							finderArgs, calendarResource);
@@ -5022,15 +5036,15 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	}
 
 	/**
-	 * Removes the calendar resource where classNameId = &#63; and classPK = &#63; from the database.
+	 * Removes the calendar resource where className = &#63; and classPK = &#63; from the database.
 	 *
-	 * @param classNameId the class name ID
+	 * @param className the class name
 	 * @param classPK the class p k
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByC_C(long classNameId, long classPK)
+	public void removeByC_C(String className, long classPK)
 		throws NoSuchResourceException, SystemException {
-		CalendarResource calendarResource = findByC_C(classNameId, classPK);
+		CalendarResource calendarResource = findByC_C(className, classPK);
 
 		remove(calendarResource);
 	}
@@ -5413,16 +5427,16 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	}
 
 	/**
-	 * Returns the number of calendar resources where classNameId = &#63; and classPK = &#63;.
+	 * Returns the number of calendar resources where className = &#63; and classPK = &#63;.
 	 *
-	 * @param classNameId the class name ID
+	 * @param className the class name
 	 * @param classPK the class p k
 	 * @return the number of matching calendar resources
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByC_C(long classNameId, long classPK)
+	public int countByC_C(String className, long classPK)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { classNameId, classPK };
+		Object[] finderArgs = new Object[] { className, classPK };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_C_C,
 				finderArgs, this);
@@ -5432,7 +5446,17 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 			query.append(_SQL_COUNT_CALENDARRESOURCE_WHERE);
 
-			query.append(_FINDER_COLUMN_C_C_CLASSNAMEID_2);
+			if (className == null) {
+				query.append(_FINDER_COLUMN_C_C_CLASSNAME_1);
+			}
+			else {
+				if (className.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_C_C_CLASSNAME_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_C_C_CLASSNAME_2);
+				}
+			}
 
 			query.append(_FINDER_COLUMN_C_C_CLASSPK_2);
 
@@ -5447,7 +5471,9 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(classNameId);
+				if (className != null) {
+					qPos.add(className);
+				}
 
 				qPos.add(classPK);
 
@@ -6094,7 +6120,9 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	private static final String _FINDER_COLUMN_ACTIVE_ACTIVE_2 = "calendarResource.active = ?";
 	private static final String _FINDER_COLUMN_G_A_GROUPID_2 = "calendarResource.groupId = ? AND ";
 	private static final String _FINDER_COLUMN_G_A_ACTIVE_2 = "calendarResource.active = ?";
-	private static final String _FINDER_COLUMN_C_C_CLASSNAMEID_2 = "calendarResource.classNameId = ? AND ";
+	private static final String _FINDER_COLUMN_C_C_CLASSNAME_1 = "calendarResource.className IS NULL AND ";
+	private static final String _FINDER_COLUMN_C_C_CLASSNAME_2 = "calendarResource.className = ? AND ";
+	private static final String _FINDER_COLUMN_C_C_CLASSNAME_3 = "(calendarResource.className IS NULL OR calendarResource.className = ?) AND ";
 	private static final String _FINDER_COLUMN_C_C_CLASSPK_2 = "calendarResource.classPK = ?";
 	private static final String _FINDER_COLUMN_G_C_A_GROUPID_2 = "calendarResource.groupId = ? AND ";
 	private static final String _FINDER_COLUMN_G_C_A_GROUPID_5 = "(" +

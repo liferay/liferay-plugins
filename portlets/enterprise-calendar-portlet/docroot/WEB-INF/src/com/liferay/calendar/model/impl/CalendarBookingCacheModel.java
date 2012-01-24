@@ -35,7 +35,7 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 	Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(67);
+		StringBundler sb = new StringBundler(63);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -69,12 +69,8 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 		sb.append(type);
 		sb.append(", startDate=");
 		sb.append(startDate);
-		sb.append(", startDateTimeZone=");
-		sb.append(startDateTimeZone);
 		sb.append(", endDate=");
 		sb.append(endDate);
-		sb.append(", endDateTimeZone=");
-		sb.append(endDateTimeZone);
 		sb.append(", allDay=");
 		sb.append(allDay);
 		sb.append(", recurrence=");
@@ -183,25 +179,11 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 			calendarBookingImpl.setStartDate(new Date(startDate));
 		}
 
-		if (startDateTimeZone == null) {
-			calendarBookingImpl.setStartDateTimeZone(StringPool.BLANK);
-		}
-		else {
-			calendarBookingImpl.setStartDateTimeZone(startDateTimeZone);
-		}
-
 		if (endDate == Long.MIN_VALUE) {
 			calendarBookingImpl.setEndDate(null);
 		}
 		else {
 			calendarBookingImpl.setEndDate(new Date(endDate));
-		}
-
-		if (endDateTimeZone == null) {
-			calendarBookingImpl.setEndDateTimeZone(StringPool.BLANK);
-		}
-		else {
-			calendarBookingImpl.setEndDateTimeZone(endDateTimeZone);
 		}
 
 		calendarBookingImpl.setAllDay(allDay);
@@ -272,9 +254,7 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 	public String location;
 	public String type;
 	public long startDate;
-	public String startDateTimeZone;
 	public long endDate;
-	public String endDateTimeZone;
 	public boolean allDay;
 	public String recurrence;
 	public int priority;

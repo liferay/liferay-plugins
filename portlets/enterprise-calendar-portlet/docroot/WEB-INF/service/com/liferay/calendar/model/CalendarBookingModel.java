@@ -566,21 +566,6 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	public void setStartDate(Date startDate);
 
 	/**
-	 * Returns the start date time zone of this calendar booking.
-	 *
-	 * @return the start date time zone of this calendar booking
-	 */
-	@AutoEscape
-	public String getStartDateTimeZone();
-
-	/**
-	 * Sets the start date time zone of this calendar booking.
-	 *
-	 * @param startDateTimeZone the start date time zone of this calendar booking
-	 */
-	public void setStartDateTimeZone(String startDateTimeZone);
-
-	/**
 	 * Returns the end date of this calendar booking.
 	 *
 	 * @return the end date of this calendar booking
@@ -593,21 +578,6 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 * @param endDate the end date of this calendar booking
 	 */
 	public void setEndDate(Date endDate);
-
-	/**
-	 * Returns the end date time zone of this calendar booking.
-	 *
-	 * @return the end date time zone of this calendar booking
-	 */
-	@AutoEscape
-	public String getEndDateTimeZone();
-
-	/**
-	 * Sets the end date time zone of this calendar booking.
-	 *
-	 * @param endDateTimeZone the end date time zone of this calendar booking
-	 */
-	public void setEndDateTimeZone(String endDateTimeZone);
 
 	/**
 	 * Returns the all day of this calendar booking.

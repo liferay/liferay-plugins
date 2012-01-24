@@ -40,9 +40,10 @@ public class CalendarResourceSoap implements Serializable {
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
 		soapModel.setResourceBlockId(model.getResourceBlockId());
-		soapModel.setClassNameId(model.getClassNameId());
+		soapModel.setClassName(model.getClassName());
 		soapModel.setClassPK(model.getClassPK());
 		soapModel.setClassUuid(model.getClassUuid());
+		soapModel.setDefaultCalendarId(model.getDefaultCalendarId());
 		soapModel.setCode(model.getCode());
 		soapModel.setName(model.getName());
 		soapModel.setDescription(model.getDescription());
@@ -174,12 +175,12 @@ public class CalendarResourceSoap implements Serializable {
 		_resourceBlockId = resourceBlockId;
 	}
 
-	public long getClassNameId() {
-		return _classNameId;
+	public String getClassName() {
+		return _className;
 	}
 
-	public void setClassNameId(long classNameId) {
-		_classNameId = classNameId;
+	public void setClassName(String className) {
+		_className = className;
 	}
 
 	public long getClassPK() {
@@ -196,6 +197,14 @@ public class CalendarResourceSoap implements Serializable {
 
 	public void setClassUuid(String classUuid) {
 		_classUuid = classUuid;
+	}
+
+	public long getDefaultCalendarId() {
+		return _defaultCalendarId;
+	}
+
+	public void setDefaultCalendarId(long defaultCalendarId) {
+		_defaultCalendarId = defaultCalendarId;
 	}
 
 	public String getCode() {
@@ -251,9 +260,10 @@ public class CalendarResourceSoap implements Serializable {
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _resourceBlockId;
-	private long _classNameId;
+	private String _className;
 	private long _classPK;
 	private String _classUuid;
+	private long _defaultCalendarId;
 	private String _code;
 	private String _name;
 	private String _description;

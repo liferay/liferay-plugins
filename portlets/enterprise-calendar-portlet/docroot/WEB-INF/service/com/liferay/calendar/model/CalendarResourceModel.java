@@ -16,7 +16,6 @@ package com.liferay.calendar.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.model.AttachedModel;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.GroupedModel;
@@ -43,8 +42,8 @@ import java.util.Map;
  * @see com.liferay.calendar.model.impl.CalendarResourceModelImpl
  * @generated
  */
-public interface CalendarResourceModel extends AttachedModel,
-	BaseModel<CalendarResource>, GroupedModel {
+public interface CalendarResourceModel extends BaseModel<CalendarResource>,
+	GroupedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -209,25 +208,19 @@ public interface CalendarResourceModel extends AttachedModel,
 	public void setResourceBlockId(long resourceBlockId);
 
 	/**
-	 * Returns the fully qualified class name of this calendar resource.
+	 * Returns the class name of this calendar resource.
 	 *
-	 * @return the fully qualified class name of this calendar resource
+	 * @return the class name of this calendar resource
 	 */
+	@AutoEscape
 	public String getClassName();
 
 	/**
-	 * Returns the class name ID of this calendar resource.
+	 * Sets the class name of this calendar resource.
 	 *
-	 * @return the class name ID of this calendar resource
+	 * @param className the class name of this calendar resource
 	 */
-	public long getClassNameId();
-
-	/**
-	 * Sets the class name ID of this calendar resource.
-	 *
-	 * @param classNameId the class name ID of this calendar resource
-	 */
-	public void setClassNameId(long classNameId);
+	public void setClassName(String className);
 
 	/**
 	 * Returns the class p k of this calendar resource.
@@ -257,6 +250,20 @@ public interface CalendarResourceModel extends AttachedModel,
 	 * @param classUuid the class uuid of this calendar resource
 	 */
 	public void setClassUuid(String classUuid);
+
+	/**
+	 * Returns the default calendar ID of this calendar resource.
+	 *
+	 * @return the default calendar ID of this calendar resource
+	 */
+	public long getDefaultCalendarId();
+
+	/**
+	 * Sets the default calendar ID of this calendar resource.
+	 *
+	 * @param defaultCalendarId the default calendar ID of this calendar resource
+	 */
+	public void setDefaultCalendarId(long defaultCalendarId);
 
 	/**
 	 * Returns the code of this calendar resource.

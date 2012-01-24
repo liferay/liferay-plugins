@@ -34,9 +34,7 @@
 		<field name="location" type="String" localized="true" />
 		<field name="type" type="String" />
 		<field name="startDate" type="Date" />
-		<field name="startDateTimeZone" type="String" />
 		<field name="endDate" type="Date" />
-		<field name="endDateTimeZone" type="String" />
 		<field name="allDay" type="boolean" />
 		<field name="recurrence" type="String" />
 		<field name="priority" type="int" />
@@ -62,9 +60,10 @@
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="resourceBlockId" type="long" />
-		<field name="classNameId" type="long" />
+		<field name="className" type="String" />
 		<field name="classPK" type="long" />
 		<field name="classUuid" type="String" />
+		<field name="defaultCalendarId" type="long" />
 		<field name="code" type="String" />
 		<field name="name" type="String" localized="true" />
 		<field name="description" type="String" localized="true" />

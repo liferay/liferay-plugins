@@ -240,30 +240,21 @@ public class CalendarResourceWrapper implements CalendarResource,
 	}
 
 	/**
-	* Returns the fully qualified class name of this calendar resource.
+	* Returns the class name of this calendar resource.
 	*
-	* @return the fully qualified class name of this calendar resource
+	* @return the class name of this calendar resource
 	*/
 	public java.lang.String getClassName() {
 		return _calendarResource.getClassName();
 	}
 
 	/**
-	* Returns the class name ID of this calendar resource.
+	* Sets the class name of this calendar resource.
 	*
-	* @return the class name ID of this calendar resource
+	* @param className the class name of this calendar resource
 	*/
-	public long getClassNameId() {
-		return _calendarResource.getClassNameId();
-	}
-
-	/**
-	* Sets the class name ID of this calendar resource.
-	*
-	* @param classNameId the class name ID of this calendar resource
-	*/
-	public void setClassNameId(long classNameId) {
-		_calendarResource.setClassNameId(classNameId);
+	public void setClassName(java.lang.String className) {
+		_calendarResource.setClassName(className);
 	}
 
 	/**
@@ -300,6 +291,24 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*/
 	public void setClassUuid(java.lang.String classUuid) {
 		_calendarResource.setClassUuid(classUuid);
+	}
+
+	/**
+	* Returns the default calendar ID of this calendar resource.
+	*
+	* @return the default calendar ID of this calendar resource
+	*/
+	public long getDefaultCalendarId() {
+		return _calendarResource.getDefaultCalendarId();
+	}
+
+	/**
+	* Sets the default calendar ID of this calendar resource.
+	*
+	* @param defaultCalendarId the default calendar ID of this calendar resource
+	*/
+	public void setDefaultCalendarId(long defaultCalendarId) {
+		_calendarResource.setDefaultCalendarId(defaultCalendarId);
 	}
 
 	/**
