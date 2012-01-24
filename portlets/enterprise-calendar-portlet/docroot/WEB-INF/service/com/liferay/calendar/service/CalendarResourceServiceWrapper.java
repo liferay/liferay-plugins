@@ -39,16 +39,16 @@ public class CalendarResourceServiceWrapper implements CalendarResourceService,
 		return _calendarResourceService;
 	}
 
+	public CalendarResourceService getWrappedService() {
+		return _calendarResourceService;
+	}
+
 	/**
 	 * @deprecated Renamed to {@link #setWrappedService}
 	 */
 	public void setWrappedCalendarResourceService(
 		CalendarResourceService calendarResourceService) {
 		_calendarResourceService = calendarResourceService;
-	}
-
-	public CalendarResourceService getWrappedService() {
-		return _calendarResourceService;
 	}
 
 	public void setWrappedService(

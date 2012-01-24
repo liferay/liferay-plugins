@@ -39,16 +39,16 @@ public class CalendarBookingServiceWrapper implements CalendarBookingService,
 		return _calendarBookingService;
 	}
 
+	public CalendarBookingService getWrappedService() {
+		return _calendarBookingService;
+	}
+
 	/**
 	 * @deprecated Renamed to {@link #setWrappedService}
 	 */
 	public void setWrappedCalendarBookingService(
 		CalendarBookingService calendarBookingService) {
 		_calendarBookingService = calendarBookingService;
-	}
-
-	public CalendarBookingService getWrappedService() {
-		return _calendarBookingService;
 	}
 
 	public void setWrappedService(CalendarBookingService calendarBookingService) {

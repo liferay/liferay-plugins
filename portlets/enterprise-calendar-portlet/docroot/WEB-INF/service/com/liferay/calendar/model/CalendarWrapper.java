@@ -30,48 +30,13 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 		_calendar = calendar;
 	}
 
-	public Class<?> getModelClass() {
-		return Calendar.class;
+	@Override
+	public java.lang.Object clone() {
+		return new CalendarWrapper((Calendar)_calendar.clone());
 	}
 
-	public String getModelClassName() {
-		return Calendar.class.getName();
-	}
-
-	/**
-	* Returns the primary key of this calendar.
-	*
-	* @return the primary key of this calendar
-	*/
-	public long getPrimaryKey() {
-		return _calendar.getPrimaryKey();
-	}
-
-	/**
-	* Sets the primary key of this calendar.
-	*
-	* @param primaryKey the primary key of this calendar
-	*/
-	public void setPrimaryKey(long primaryKey) {
-		_calendar.setPrimaryKey(primaryKey);
-	}
-
-	/**
-	* Returns the uuid of this calendar.
-	*
-	* @return the uuid of this calendar
-	*/
-	public java.lang.String getUuid() {
-		return _calendar.getUuid();
-	}
-
-	/**
-	* Sets the uuid of this calendar.
-	*
-	* @param uuid the uuid of this calendar
-	*/
-	public void setUuid(java.lang.String uuid) {
-		_calendar.setUuid(uuid);
+	public int compareTo(com.liferay.calendar.model.Calendar calendar) {
+		return _calendar.compareTo(calendar);
 	}
 
 	/**
@@ -84,30 +49,21 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	}
 
 	/**
-	* Sets the calendar ID of this calendar.
+	* Returns the calendar resource ID of this calendar.
 	*
-	* @param calendarId the calendar ID of this calendar
+	* @return the calendar resource ID of this calendar
 	*/
-	public void setCalendarId(long calendarId) {
-		_calendar.setCalendarId(calendarId);
+	public long getCalendarResourceId() {
+		return _calendar.getCalendarResourceId();
 	}
 
 	/**
-	* Returns the group ID of this calendar.
+	* Returns the color of this calendar.
 	*
-	* @return the group ID of this calendar
+	* @return the color of this calendar
 	*/
-	public long getGroupId() {
-		return _calendar.getGroupId();
-	}
-
-	/**
-	* Sets the group ID of this calendar.
-	*
-	* @param groupId the group ID of this calendar
-	*/
-	public void setGroupId(long groupId) {
-		_calendar.setGroupId(groupId);
+	public int getColor() {
+		return _calendar.getColor();
 	}
 
 	/**
@@ -120,71 +76,6 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	}
 
 	/**
-	* Sets the company ID of this calendar.
-	*
-	* @param companyId the company ID of this calendar
-	*/
-	public void setCompanyId(long companyId) {
-		_calendar.setCompanyId(companyId);
-	}
-
-	/**
-	* Returns the user ID of this calendar.
-	*
-	* @return the user ID of this calendar
-	*/
-	public long getUserId() {
-		return _calendar.getUserId();
-	}
-
-	/**
-	* Sets the user ID of this calendar.
-	*
-	* @param userId the user ID of this calendar
-	*/
-	public void setUserId(long userId) {
-		_calendar.setUserId(userId);
-	}
-
-	/**
-	* Returns the user uuid of this calendar.
-	*
-	* @return the user uuid of this calendar
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _calendar.getUserUuid();
-	}
-
-	/**
-	* Sets the user uuid of this calendar.
-	*
-	* @param userUuid the user uuid of this calendar
-	*/
-	public void setUserUuid(java.lang.String userUuid) {
-		_calendar.setUserUuid(userUuid);
-	}
-
-	/**
-	* Returns the user name of this calendar.
-	*
-	* @return the user name of this calendar
-	*/
-	public java.lang.String getUserName() {
-		return _calendar.getUserName();
-	}
-
-	/**
-	* Sets the user name of this calendar.
-	*
-	* @param userName the user name of this calendar
-	*/
-	public void setUserName(java.lang.String userName) {
-		_calendar.setUserName(userName);
-	}
-
-	/**
 	* Returns the create date of this calendar.
 	*
 	* @return the create date of this calendar
@@ -194,192 +85,12 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	}
 
 	/**
-	* Sets the create date of this calendar.
+	* Returns the default calendar of this calendar.
 	*
-	* @param createDate the create date of this calendar
+	* @return the default calendar of this calendar
 	*/
-	public void setCreateDate(java.util.Date createDate) {
-		_calendar.setCreateDate(createDate);
-	}
-
-	/**
-	* Returns the modified date of this calendar.
-	*
-	* @return the modified date of this calendar
-	*/
-	public java.util.Date getModifiedDate() {
-		return _calendar.getModifiedDate();
-	}
-
-	/**
-	* Sets the modified date of this calendar.
-	*
-	* @param modifiedDate the modified date of this calendar
-	*/
-	public void setModifiedDate(java.util.Date modifiedDate) {
-		_calendar.setModifiedDate(modifiedDate);
-	}
-
-	/**
-	* Returns the resource block ID of this calendar.
-	*
-	* @return the resource block ID of this calendar
-	*/
-	public long getResourceBlockId() {
-		return _calendar.getResourceBlockId();
-	}
-
-	/**
-	* Sets the resource block ID of this calendar.
-	*
-	* @param resourceBlockId the resource block ID of this calendar
-	*/
-	public void setResourceBlockId(long resourceBlockId) {
-		_calendar.setResourceBlockId(resourceBlockId);
-	}
-
-	/**
-	* Returns the calendar resource ID of this calendar.
-	*
-	* @return the calendar resource ID of this calendar
-	*/
-	public long getCalendarResourceId() {
-		return _calendar.getCalendarResourceId();
-	}
-
-	/**
-	* Sets the calendar resource ID of this calendar.
-	*
-	* @param calendarResourceId the calendar resource ID of this calendar
-	*/
-	public void setCalendarResourceId(long calendarResourceId) {
-		_calendar.setCalendarResourceId(calendarResourceId);
-	}
-
-	/**
-	* Returns the name of this calendar.
-	*
-	* @return the name of this calendar
-	*/
-	public java.lang.String getName() {
-		return _calendar.getName();
-	}
-
-	/**
-	* Returns the localized name of this calendar in the language. Uses the default language if no localization exists for the requested language.
-	*
-	* @param locale the locale of the language
-	* @return the localized name of this calendar
-	*/
-	public java.lang.String getName(java.util.Locale locale) {
-		return _calendar.getName(locale);
-	}
-
-	/**
-	* Returns the localized name of this calendar in the language, optionally using the default language if no localization exists for the requested language.
-	*
-	* @param locale the local of the language
-	* @param useDefault whether to use the default language if no localization exists for the requested language
-	* @return the localized name of this calendar. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
-	*/
-	public java.lang.String getName(java.util.Locale locale, boolean useDefault) {
-		return _calendar.getName(locale, useDefault);
-	}
-
-	/**
-	* Returns the localized name of this calendar in the language. Uses the default language if no localization exists for the requested language.
-	*
-	* @param languageId the ID of the language
-	* @return the localized name of this calendar
-	*/
-	public java.lang.String getName(java.lang.String languageId) {
-		return _calendar.getName(languageId);
-	}
-
-	/**
-	* Returns the localized name of this calendar in the language, optionally using the default language if no localization exists for the requested language.
-	*
-	* @param languageId the ID of the language
-	* @param useDefault whether to use the default language if no localization exists for the requested language
-	* @return the localized name of this calendar
-	*/
-	public java.lang.String getName(java.lang.String languageId,
-		boolean useDefault) {
-		return _calendar.getName(languageId, useDefault);
-	}
-
-	public java.lang.String getNameCurrentLanguageId() {
-		return _calendar.getNameCurrentLanguageId();
-	}
-
-	public java.lang.String getNameCurrentValue() {
-		return _calendar.getNameCurrentValue();
-	}
-
-	/**
-	* Returns a map of the locales and localized names of this calendar.
-	*
-	* @return the locales and localized names of this calendar
-	*/
-	public java.util.Map<java.util.Locale, java.lang.String> getNameMap() {
-		return _calendar.getNameMap();
-	}
-
-	/**
-	* Sets the name of this calendar.
-	*
-	* @param name the name of this calendar
-	*/
-	public void setName(java.lang.String name) {
-		_calendar.setName(name);
-	}
-
-	/**
-	* Sets the localized name of this calendar in the language.
-	*
-	* @param name the localized name of this calendar
-	* @param locale the locale of the language
-	*/
-	public void setName(java.lang.String name, java.util.Locale locale) {
-		_calendar.setName(name, locale);
-	}
-
-	/**
-	* Sets the localized name of this calendar in the language, and sets the default locale.
-	*
-	* @param name the localized name of this calendar
-	* @param locale the locale of the language
-	* @param defaultLocale the default locale
-	*/
-	public void setName(java.lang.String name, java.util.Locale locale,
-		java.util.Locale defaultLocale) {
-		_calendar.setName(name, locale, defaultLocale);
-	}
-
-	public void setNameCurrentLanguageId(java.lang.String languageId) {
-		_calendar.setNameCurrentLanguageId(languageId);
-	}
-
-	/**
-	* Sets the localized names of this calendar from the map of locales and localized names.
-	*
-	* @param nameMap the locales and localized names of this calendar
-	*/
-	public void setNameMap(
-		java.util.Map<java.util.Locale, java.lang.String> nameMap) {
-		_calendar.setNameMap(nameMap);
-	}
-
-	/**
-	* Sets the localized names of this calendar from the map of locales and localized names, and sets the default locale.
-	*
-	* @param nameMap the locales and localized names of this calendar
-	* @param defaultLocale the default locale
-	*/
-	public void setNameMap(
-		java.util.Map<java.util.Locale, java.lang.String> nameMap,
-		java.util.Locale defaultLocale) {
-		_calendar.setNameMap(nameMap, defaultLocale);
+	public boolean getDefaultCalendar() {
+		return _calendar.getDefaultCalendar();
 	}
 
 	/**
@@ -389,28 +100,6 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	*/
 	public java.lang.String getDescription() {
 		return _calendar.getDescription();
-	}
-
-	/**
-	* Returns the localized description of this calendar in the language. Uses the default language if no localization exists for the requested language.
-	*
-	* @param locale the locale of the language
-	* @return the localized description of this calendar
-	*/
-	public java.lang.String getDescription(java.util.Locale locale) {
-		return _calendar.getDescription(locale);
-	}
-
-	/**
-	* Returns the localized description of this calendar in the language, optionally using the default language if no localization exists for the requested language.
-	*
-	* @param locale the local of the language
-	* @param useDefault whether to use the default language if no localization exists for the requested language
-	* @return the localized description of this calendar. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
-	*/
-	public java.lang.String getDescription(java.util.Locale locale,
-		boolean useDefault) {
-		return _calendar.getDescription(locale, useDefault);
 	}
 
 	/**
@@ -435,6 +124,28 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 		return _calendar.getDescription(languageId, useDefault);
 	}
 
+	/**
+	* Returns the localized description of this calendar in the language. Uses the default language if no localization exists for the requested language.
+	*
+	* @param locale the locale of the language
+	* @return the localized description of this calendar
+	*/
+	public java.lang.String getDescription(java.util.Locale locale) {
+		return _calendar.getDescription(locale);
+	}
+
+	/**
+	* Returns the localized description of this calendar in the language, optionally using the default language if no localization exists for the requested language.
+	*
+	* @param locale the local of the language
+	* @param useDefault whether to use the default language if no localization exists for the requested language
+	* @return the localized description of this calendar. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
+	*/
+	public java.lang.String getDescription(java.util.Locale locale,
+		boolean useDefault) {
+		return _calendar.getDescription(locale, useDefault);
+	}
+
 	public java.lang.String getDescriptionCurrentLanguageId() {
 		return _calendar.getDescriptionCurrentLanguageId();
 	}
@@ -450,6 +161,269 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	*/
 	public java.util.Map<java.util.Locale, java.lang.String> getDescriptionMap() {
 		return _calendar.getDescriptionMap();
+	}
+
+	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
+		return _calendar.getExpandoBridge();
+	}
+
+	/**
+	* Returns the group ID of this calendar.
+	*
+	* @return the group ID of this calendar
+	*/
+	public long getGroupId() {
+		return _calendar.getGroupId();
+	}
+
+	public Class<?> getModelClass() {
+		return Calendar.class;
+	}
+
+	public String getModelClassName() {
+		return Calendar.class.getName();
+	}
+
+	/**
+	* Returns the modified date of this calendar.
+	*
+	* @return the modified date of this calendar
+	*/
+	public java.util.Date getModifiedDate() {
+		return _calendar.getModifiedDate();
+	}
+
+	/**
+	* Returns the name of this calendar.
+	*
+	* @return the name of this calendar
+	*/
+	public java.lang.String getName() {
+		return _calendar.getName();
+	}
+
+	/**
+	* Returns the localized name of this calendar in the language. Uses the default language if no localization exists for the requested language.
+	*
+	* @param languageId the ID of the language
+	* @return the localized name of this calendar
+	*/
+	public java.lang.String getName(java.lang.String languageId) {
+		return _calendar.getName(languageId);
+	}
+
+	/**
+	* Returns the localized name of this calendar in the language, optionally using the default language if no localization exists for the requested language.
+	*
+	* @param languageId the ID of the language
+	* @param useDefault whether to use the default language if no localization exists for the requested language
+	* @return the localized name of this calendar
+	*/
+	public java.lang.String getName(java.lang.String languageId,
+		boolean useDefault) {
+		return _calendar.getName(languageId, useDefault);
+	}
+
+	/**
+	* Returns the localized name of this calendar in the language. Uses the default language if no localization exists for the requested language.
+	*
+	* @param locale the locale of the language
+	* @return the localized name of this calendar
+	*/
+	public java.lang.String getName(java.util.Locale locale) {
+		return _calendar.getName(locale);
+	}
+
+	/**
+	* Returns the localized name of this calendar in the language, optionally using the default language if no localization exists for the requested language.
+	*
+	* @param locale the local of the language
+	* @param useDefault whether to use the default language if no localization exists for the requested language
+	* @return the localized name of this calendar. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
+	*/
+	public java.lang.String getName(java.util.Locale locale, boolean useDefault) {
+		return _calendar.getName(locale, useDefault);
+	}
+
+	public java.lang.String getNameCurrentLanguageId() {
+		return _calendar.getNameCurrentLanguageId();
+	}
+
+	public java.lang.String getNameCurrentValue() {
+		return _calendar.getNameCurrentValue();
+	}
+
+	/**
+	* Returns a map of the locales and localized names of this calendar.
+	*
+	* @return the locales and localized names of this calendar
+	*/
+	public java.util.Map<java.util.Locale, java.lang.String> getNameMap() {
+		return _calendar.getNameMap();
+	}
+
+	/**
+	* Returns the primary key of this calendar.
+	*
+	* @return the primary key of this calendar
+	*/
+	public long getPrimaryKey() {
+		return _calendar.getPrimaryKey();
+	}
+
+	public java.io.Serializable getPrimaryKeyObj() {
+		return _calendar.getPrimaryKeyObj();
+	}
+
+	/**
+	* Returns the resource block ID of this calendar.
+	*
+	* @return the resource block ID of this calendar
+	*/
+	public long getResourceBlockId() {
+		return _calendar.getResourceBlockId();
+	}
+
+	/**
+	* Returns the user ID of this calendar.
+	*
+	* @return the user ID of this calendar
+	*/
+	public long getUserId() {
+		return _calendar.getUserId();
+	}
+
+	/**
+	* Returns the user name of this calendar.
+	*
+	* @return the user name of this calendar
+	*/
+	public java.lang.String getUserName() {
+		return _calendar.getUserName();
+	}
+
+	/**
+	* Returns the user uuid of this calendar.
+	*
+	* @return the user uuid of this calendar
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.lang.String getUserUuid()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendar.getUserUuid();
+	}
+
+	/**
+	* Returns the uuid of this calendar.
+	*
+	* @return the uuid of this calendar
+	*/
+	public java.lang.String getUuid() {
+		return _calendar.getUuid();
+	}
+
+	/**
+	 * @deprecated Renamed to {@link #getWrappedModel}
+	 */
+	public Calendar getWrappedCalendar() {
+		return _calendar;
+	}
+
+	public Calendar getWrappedModel() {
+		return _calendar;
+	}
+
+	@Override
+	public int hashCode() {
+		return _calendar.hashCode();
+	}
+
+	public boolean isCachedModel() {
+		return _calendar.isCachedModel();
+	}
+
+	/**
+	* Returns <code>true</code> if this calendar is default calendar.
+	*
+	* @return <code>true</code> if this calendar is default calendar; <code>false</code> otherwise
+	*/
+	public boolean isDefaultCalendar() {
+		return _calendar.isDefaultCalendar();
+	}
+
+	public boolean isEscapedModel() {
+		return _calendar.isEscapedModel();
+	}
+
+	public boolean isNew() {
+		return _calendar.isNew();
+	}
+
+	public void persist()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_calendar.persist();
+	}
+
+	public void resetOriginalValues() {
+		_calendar.resetOriginalValues();
+	}
+
+	public void setCachedModel(boolean cachedModel) {
+		_calendar.setCachedModel(cachedModel);
+	}
+
+	/**
+	* Sets the calendar ID of this calendar.
+	*
+	* @param calendarId the calendar ID of this calendar
+	*/
+	public void setCalendarId(long calendarId) {
+		_calendar.setCalendarId(calendarId);
+	}
+
+	/**
+	* Sets the calendar resource ID of this calendar.
+	*
+	* @param calendarResourceId the calendar resource ID of this calendar
+	*/
+	public void setCalendarResourceId(long calendarResourceId) {
+		_calendar.setCalendarResourceId(calendarResourceId);
+	}
+
+	/**
+	* Sets the color of this calendar.
+	*
+	* @param color the color of this calendar
+	*/
+	public void setColor(int color) {
+		_calendar.setColor(color);
+	}
+
+	/**
+	* Sets the company ID of this calendar.
+	*
+	* @param companyId the company ID of this calendar
+	*/
+	public void setCompanyId(long companyId) {
+		_calendar.setCompanyId(companyId);
+	}
+
+	/**
+	* Sets the create date of this calendar.
+	*
+	* @param createDate the create date of this calendar
+	*/
+	public void setCreateDate(java.util.Date createDate) {
+		_calendar.setCreateDate(createDate);
+	}
+
+	/**
+	* Sets whether this calendar is default calendar.
+	*
+	* @param defaultCalendar the default calendar of this calendar
+	*/
+	public void setDefaultCalendar(boolean defaultCalendar) {
+		_calendar.setDefaultCalendar(defaultCalendar);
 	}
 
 	/**
@@ -510,100 +484,146 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 		_calendar.setDescriptionMap(descriptionMap, defaultLocale);
 	}
 
-	/**
-	* Returns the color of this calendar.
-	*
-	* @return the color of this calendar
-	*/
-	public int getColor() {
-		return _calendar.getColor();
+	public void setExpandoBridgeAttributes(
+		com.liferay.portal.service.ServiceContext serviceContext) {
+		_calendar.setExpandoBridgeAttributes(serviceContext);
 	}
 
 	/**
-	* Sets the color of this calendar.
+	* Sets the group ID of this calendar.
 	*
-	* @param color the color of this calendar
+	* @param groupId the group ID of this calendar
 	*/
-	public void setColor(int color) {
-		_calendar.setColor(color);
+	public void setGroupId(long groupId) {
+		_calendar.setGroupId(groupId);
 	}
 
 	/**
-	* Returns the default calendar of this calendar.
+	* Sets the modified date of this calendar.
 	*
-	* @return the default calendar of this calendar
+	* @param modifiedDate the modified date of this calendar
 	*/
-	public boolean getDefaultCalendar() {
-		return _calendar.getDefaultCalendar();
+	public void setModifiedDate(java.util.Date modifiedDate) {
+		_calendar.setModifiedDate(modifiedDate);
 	}
 
 	/**
-	* Returns <code>true</code> if this calendar is default calendar.
+	* Sets the name of this calendar.
 	*
-	* @return <code>true</code> if this calendar is default calendar; <code>false</code> otherwise
+	* @param name the name of this calendar
 	*/
-	public boolean isDefaultCalendar() {
-		return _calendar.isDefaultCalendar();
+	public void setName(java.lang.String name) {
+		_calendar.setName(name);
 	}
 
 	/**
-	* Sets whether this calendar is default calendar.
+	* Sets the localized name of this calendar in the language.
 	*
-	* @param defaultCalendar the default calendar of this calendar
+	* @param name the localized name of this calendar
+	* @param locale the locale of the language
 	*/
-	public void setDefaultCalendar(boolean defaultCalendar) {
-		_calendar.setDefaultCalendar(defaultCalendar);
+	public void setName(java.lang.String name, java.util.Locale locale) {
+		_calendar.setName(name, locale);
 	}
 
-	public boolean isNew() {
-		return _calendar.isNew();
+	/**
+	* Sets the localized name of this calendar in the language, and sets the default locale.
+	*
+	* @param name the localized name of this calendar
+	* @param locale the locale of the language
+	* @param defaultLocale the default locale
+	*/
+	public void setName(java.lang.String name, java.util.Locale locale,
+		java.util.Locale defaultLocale) {
+		_calendar.setName(name, locale, defaultLocale);
+	}
+
+	public void setNameCurrentLanguageId(java.lang.String languageId) {
+		_calendar.setNameCurrentLanguageId(languageId);
+	}
+
+	/**
+	* Sets the localized names of this calendar from the map of locales and localized names.
+	*
+	* @param nameMap the locales and localized names of this calendar
+	*/
+	public void setNameMap(
+		java.util.Map<java.util.Locale, java.lang.String> nameMap) {
+		_calendar.setNameMap(nameMap);
+	}
+
+	/**
+	* Sets the localized names of this calendar from the map of locales and localized names, and sets the default locale.
+	*
+	* @param nameMap the locales and localized names of this calendar
+	* @param defaultLocale the default locale
+	*/
+	public void setNameMap(
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Locale defaultLocale) {
+		_calendar.setNameMap(nameMap, defaultLocale);
 	}
 
 	public void setNew(boolean n) {
 		_calendar.setNew(n);
 	}
 
-	public boolean isCachedModel() {
-		return _calendar.isCachedModel();
-	}
-
-	public void setCachedModel(boolean cachedModel) {
-		_calendar.setCachedModel(cachedModel);
-	}
-
-	public boolean isEscapedModel() {
-		return _calendar.isEscapedModel();
-	}
-
-	public java.io.Serializable getPrimaryKeyObj() {
-		return _calendar.getPrimaryKeyObj();
+	/**
+	* Sets the primary key of this calendar.
+	*
+	* @param primaryKey the primary key of this calendar
+	*/
+	public void setPrimaryKey(long primaryKey) {
+		_calendar.setPrimaryKey(primaryKey);
 	}
 
 	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
 		_calendar.setPrimaryKeyObj(primaryKeyObj);
 	}
 
-	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
-		return _calendar.getExpandoBridge();
+	/**
+	* Sets the resource block ID of this calendar.
+	*
+	* @param resourceBlockId the resource block ID of this calendar
+	*/
+	public void setResourceBlockId(long resourceBlockId) {
+		_calendar.setResourceBlockId(resourceBlockId);
 	}
 
-	public void setExpandoBridgeAttributes(
-		com.liferay.portal.service.ServiceContext serviceContext) {
-		_calendar.setExpandoBridgeAttributes(serviceContext);
+	/**
+	* Sets the user ID of this calendar.
+	*
+	* @param userId the user ID of this calendar
+	*/
+	public void setUserId(long userId) {
+		_calendar.setUserId(userId);
 	}
 
-	@Override
-	public java.lang.Object clone() {
-		return new CalendarWrapper((Calendar)_calendar.clone());
+	/**
+	* Sets the user name of this calendar.
+	*
+	* @param userName the user name of this calendar
+	*/
+	public void setUserName(java.lang.String userName) {
+		_calendar.setUserName(userName);
 	}
 
-	public int compareTo(com.liferay.calendar.model.Calendar calendar) {
-		return _calendar.compareTo(calendar);
+	/**
+	* Sets the user uuid of this calendar.
+	*
+	* @param userUuid the user uuid of this calendar
+	*/
+	public void setUserUuid(java.lang.String userUuid) {
+		_calendar.setUserUuid(userUuid);
 	}
 
-	@Override
-	public int hashCode() {
-		return _calendar.hashCode();
+	/**
+	* Sets the uuid of this calendar.
+	*
+	* @param uuid the uuid of this calendar
+	*/
+	public void setUuid(java.lang.String uuid) {
+		_calendar.setUuid(uuid);
 	}
 
 	public com.liferay.portal.model.CacheModel<com.liferay.calendar.model.Calendar> toCacheModel() {
@@ -621,26 +641,6 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 
 	public java.lang.String toXmlString() {
 		return _calendar.toXmlString();
-	}
-
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
-		_calendar.persist();
-	}
-
-	/**
-	 * @deprecated Renamed to {@link #getWrappedModel}
-	 */
-	public Calendar getWrappedCalendar() {
-		return _calendar;
-	}
-
-	public Calendar getWrappedModel() {
-		return _calendar;
-	}
-
-	public void resetOriginalValues() {
-		_calendar.resetOriginalValues();
 	}
 
 	private Calendar _calendar;

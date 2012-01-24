@@ -128,6 +128,18 @@ public class ClpSerializer {
 		return newList;
 	}
 
+	public static Object translateInput(Object obj) {
+		if (obj instanceof BaseModel<?>) {
+			return translateInput((BaseModel<?>)obj);
+		}
+		else if (obj instanceof List<?>) {
+			return translateInput((List<Object>)obj);
+		}
+		else {
+			return obj;
+		}
+	}
+
 	public static Object translateInputCalendar(BaseModel<?> oldModel) {
 		CalendarClp oldCplModel = (CalendarClp)oldModel;
 
@@ -654,18 +666,6 @@ public class ClpSerializer {
 		}
 
 		return oldModel;
-	}
-
-	public static Object translateInput(Object obj) {
-		if (obj instanceof BaseModel<?>) {
-			return translateInput((BaseModel<?>)obj);
-		}
-		else if (obj instanceof List<?>) {
-			return translateInput((List<Object>)obj);
-		}
-		else {
-			return obj;
-		}
 	}
 
 	public static Object translateOutput(BaseModel<?> oldModel) {
