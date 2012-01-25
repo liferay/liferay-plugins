@@ -51,21 +51,34 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 * Never modify or reference this interface directly. All methods that expect a calendar booking model instance should use the {@link CalendarBooking} interface instead.
 	 */
 
-	public Object clone();
-
-	public int compareTo(CalendarBooking calendarBooking);
-
 	/**
-	 * Returns the all day of this calendar booking.
+	 * Returns the primary key of this calendar booking.
 	 *
-	 * @return the all day of this calendar booking
+	 * @return the primary key of this calendar booking
 	 */
-	public boolean getAllDay();
+	public long getPrimaryKey();
 
 	/**
-	 * @deprecated Renamed to {@link #isApproved()}
+	 * Sets the primary key of this calendar booking.
+	 *
+	 * @param primaryKey the primary key of this calendar booking
 	 */
-	public boolean getApproved();
+	public void setPrimaryKey(long primaryKey);
+
+	/**
+	 * Returns the uuid of this calendar booking.
+	 *
+	 * @return the uuid of this calendar booking
+	 */
+	@AutoEscape
+	public String getUuid();
+
+	/**
+	 * Sets the uuid of this calendar booking.
+	 *
+	 * @param uuid the uuid of this calendar booking
+	 */
+	public void setUuid(String uuid);
 
 	/**
 	 * Returns the calendar booking ID of this calendar booking.
@@ -75,106 +88,11 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	public long getCalendarBookingId();
 
 	/**
-	 * Returns the calendar ID of this calendar booking.
+	 * Sets the calendar booking ID of this calendar booking.
 	 *
-	 * @return the calendar ID of this calendar booking
+	 * @param calendarBookingId the calendar booking ID of this calendar booking
 	 */
-	public long getCalendarId();
-
-	/**
-	 * Returns the calendar resource ID of this calendar booking.
-	 *
-	 * @return the calendar resource ID of this calendar booking
-	 */
-	public long getCalendarResourceId();
-
-	/**
-	 * Returns the company ID of this calendar booking.
-	 *
-	 * @return the company ID of this calendar booking
-	 */
-	public long getCompanyId();
-
-	/**
-	 * Returns the create date of this calendar booking.
-	 *
-	 * @return the create date of this calendar booking
-	 */
-	public Date getCreateDate();
-
-	/**
-	 * Returns the description of this calendar booking.
-	 *
-	 * @return the description of this calendar booking
-	 */
-	public String getDescription();
-
-	/**
-	 * Returns the localized description of this calendar booking in the language. Uses the default language if no localization exists for the requested language.
-	 *
-	 * @param locale the locale of the language
-	 * @return the localized description of this calendar booking
-	 */
-	@AutoEscape
-	public String getDescription(Locale locale);
-
-	/**
-	 * Returns the localized description of this calendar booking in the language, optionally using the default language if no localization exists for the requested language.
-	 *
-	 * @param locale the local of the language
-	 * @param useDefault whether to use the default language if no localization exists for the requested language
-	 * @return the localized description of this calendar booking. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
-	 */
-	@AutoEscape
-	public String getDescription(Locale locale, boolean useDefault);
-
-	/**
-	 * Returns the localized description of this calendar booking in the language. Uses the default language if no localization exists for the requested language.
-	 *
-	 * @param languageId the ID of the language
-	 * @return the localized description of this calendar booking
-	 */
-	@AutoEscape
-	public String getDescription(String languageId);
-
-	/**
-	 * Returns the localized description of this calendar booking in the language, optionally using the default language if no localization exists for the requested language.
-	 *
-	 * @param languageId the ID of the language
-	 * @param useDefault whether to use the default language if no localization exists for the requested language
-	 * @return the localized description of this calendar booking
-	 */
-	@AutoEscape
-	public String getDescription(String languageId, boolean useDefault);
-
-	@AutoEscape
-	public String getDescriptionCurrentLanguageId();
-
-	@AutoEscape
-	public String getDescriptionCurrentValue();
-
-	/**
-	 * Returns a map of the locales and localized descriptions of this calendar booking.
-	 *
-	 * @return the locales and localized descriptions of this calendar booking
-	 */
-	public Map<Locale, String> getDescriptionMap();
-
-	/**
-	 * Returns the end date of this calendar booking.
-	 *
-	 * @return the end date of this calendar booking
-	 */
-	public Date getEndDate();
-
-	public ExpandoBridge getExpandoBridge();
-
-	/**
-	 * Returns the first reminder of this calendar booking.
-	 *
-	 * @return the first reminder of this calendar booking
-	 */
-	public int getFirstReminder();
+	public void setCalendarBookingId(long calendarBookingId);
 
 	/**
 	 * Returns the group ID of this calendar booking.
@@ -184,62 +102,83 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	public long getGroupId();
 
 	/**
-	 * Returns the location of this calendar booking.
+	 * Sets the group ID of this calendar booking.
 	 *
-	 * @return the location of this calendar booking
+	 * @param groupId the group ID of this calendar booking
 	 */
-	public String getLocation();
+	public void setGroupId(long groupId);
 
 	/**
-	 * Returns the localized location of this calendar booking in the language. Uses the default language if no localization exists for the requested language.
+	 * Returns the company ID of this calendar booking.
 	 *
-	 * @param locale the locale of the language
-	 * @return the localized location of this calendar booking
+	 * @return the company ID of this calendar booking
 	 */
-	@AutoEscape
-	public String getLocation(Locale locale);
+	public long getCompanyId();
 
 	/**
-	 * Returns the localized location of this calendar booking in the language, optionally using the default language if no localization exists for the requested language.
+	 * Sets the company ID of this calendar booking.
 	 *
-	 * @param locale the local of the language
-	 * @param useDefault whether to use the default language if no localization exists for the requested language
-	 * @return the localized location of this calendar booking. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
+	 * @param companyId the company ID of this calendar booking
 	 */
-	@AutoEscape
-	public String getLocation(Locale locale, boolean useDefault);
+	public void setCompanyId(long companyId);
 
 	/**
-	 * Returns the localized location of this calendar booking in the language. Uses the default language if no localization exists for the requested language.
+	 * Returns the user ID of this calendar booking.
 	 *
-	 * @param languageId the ID of the language
-	 * @return the localized location of this calendar booking
+	 * @return the user ID of this calendar booking
 	 */
-	@AutoEscape
-	public String getLocation(String languageId);
+	public long getUserId();
 
 	/**
-	 * Returns the localized location of this calendar booking in the language, optionally using the default language if no localization exists for the requested language.
+	 * Sets the user ID of this calendar booking.
 	 *
-	 * @param languageId the ID of the language
-	 * @param useDefault whether to use the default language if no localization exists for the requested language
-	 * @return the localized location of this calendar booking
+	 * @param userId the user ID of this calendar booking
 	 */
-	@AutoEscape
-	public String getLocation(String languageId, boolean useDefault);
-
-	@AutoEscape
-	public String getLocationCurrentLanguageId();
-
-	@AutoEscape
-	public String getLocationCurrentValue();
+	public void setUserId(long userId);
 
 	/**
-	 * Returns a map of the locales and localized locations of this calendar booking.
+	 * Returns the user uuid of this calendar booking.
 	 *
-	 * @return the locales and localized locations of this calendar booking
+	 * @return the user uuid of this calendar booking
+	 * @throws SystemException if a system exception occurred
 	 */
-	public Map<Locale, String> getLocationMap();
+	public String getUserUuid() throws SystemException;
+
+	/**
+	 * Sets the user uuid of this calendar booking.
+	 *
+	 * @param userUuid the user uuid of this calendar booking
+	 */
+	public void setUserUuid(String userUuid);
+
+	/**
+	 * Returns the user name of this calendar booking.
+	 *
+	 * @return the user name of this calendar booking
+	 */
+	@AutoEscape
+	public String getUserName();
+
+	/**
+	 * Sets the user name of this calendar booking.
+	 *
+	 * @param userName the user name of this calendar booking
+	 */
+	public void setUserName(String userName);
+
+	/**
+	 * Returns the create date of this calendar booking.
+	 *
+	 * @return the create date of this calendar booking
+	 */
+	public Date getCreateDate();
+
+	/**
+	 * Sets the create date of this calendar booking.
+	 *
+	 * @param createDate the create date of this calendar booking
+	 */
+	public void setCreateDate(Date createDate);
 
 	/**
 	 * Returns the modified date of this calendar booking.
@@ -249,11 +188,39 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	public Date getModifiedDate();
 
 	/**
-	 * Returns the out of office of this calendar booking.
+	 * Sets the modified date of this calendar booking.
 	 *
-	 * @return the out of office of this calendar booking
+	 * @param modifiedDate the modified date of this calendar booking
 	 */
-	public boolean getOutOfOffice();
+	public void setModifiedDate(Date modifiedDate);
+
+	/**
+	 * Returns the calendar ID of this calendar booking.
+	 *
+	 * @return the calendar ID of this calendar booking
+	 */
+	public long getCalendarId();
+
+	/**
+	 * Sets the calendar ID of this calendar booking.
+	 *
+	 * @param calendarId the calendar ID of this calendar booking
+	 */
+	public void setCalendarId(long calendarId);
+
+	/**
+	 * Returns the calendar resource ID of this calendar booking.
+	 *
+	 * @return the calendar resource ID of this calendar booking
+	 */
+	public long getCalendarResourceId();
+
+	/**
+	 * Sets the calendar resource ID of this calendar booking.
+	 *
+	 * @param calendarResourceId the calendar resource ID of this calendar booking
+	 */
+	public void setCalendarResourceId(long calendarResourceId);
 
 	/**
 	 * Returns the parent calendar booking ID of this calendar booking.
@@ -263,109 +230,11 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	public long getParentCalendarBookingId();
 
 	/**
-	 * Returns the primary key of this calendar booking.
+	 * Sets the parent calendar booking ID of this calendar booking.
 	 *
-	 * @return the primary key of this calendar booking
+	 * @param parentCalendarBookingId the parent calendar booking ID of this calendar booking
 	 */
-	public long getPrimaryKey();
-
-	public Serializable getPrimaryKeyObj();
-
-	/**
-	 * Returns the priority of this calendar booking.
-	 *
-	 * @return the priority of this calendar booking
-	 */
-	public int getPriority();
-
-	/**
-	 * Returns the recurrence of this calendar booking.
-	 *
-	 * @return the recurrence of this calendar booking
-	 */
-	@AutoEscape
-	public String getRecurrence();
-
-	/**
-	 * Returns the remind by of this calendar booking.
-	 *
-	 * @return the remind by of this calendar booking
-	 */
-	public int getRemindBy();
-
-	/**
-	 * Returns the request message of this calendar booking.
-	 *
-	 * @return the request message of this calendar booking
-	 */
-	@AutoEscape
-	public String getRequestMessage();
-
-	/**
-	 * Returns the required of this calendar booking.
-	 *
-	 * @return the required of this calendar booking
-	 */
-	public boolean getRequired();
-
-	/**
-	 * Returns the response message of this calendar booking.
-	 *
-	 * @return the response message of this calendar booking
-	 */
-	@AutoEscape
-	public String getResponseMessage();
-
-	/**
-	 * Returns the second reminder of this calendar booking.
-	 *
-	 * @return the second reminder of this calendar booking
-	 */
-	public int getSecondReminder();
-
-	/**
-	 * Returns the start date of this calendar booking.
-	 *
-	 * @return the start date of this calendar booking
-	 */
-	public Date getStartDate();
-
-	/**
-	 * Returns the status of this calendar booking.
-	 *
-	 * @return the status of this calendar booking
-	 */
-	public int getStatus();
-
-	/**
-	 * Returns the status by user ID of this calendar booking.
-	 *
-	 * @return the status by user ID of this calendar booking
-	 */
-	public long getStatusByUserId();
-
-	/**
-	 * Returns the status by user name of this calendar booking.
-	 *
-	 * @return the status by user name of this calendar booking
-	 */
-	@AutoEscape
-	public String getStatusByUserName();
-
-	/**
-	 * Returns the status by user uuid of this calendar booking.
-	 *
-	 * @return the status by user uuid of this calendar booking
-	 * @throws SystemException if a system exception occurred
-	 */
-	public String getStatusByUserUuid() throws SystemException;
-
-	/**
-	 * Returns the status date of this calendar booking.
-	 *
-	 * @return the status date of this calendar booking
-	 */
-	public Date getStatusDate();
+	public void setParentCalendarBookingId(long parentCalendarBookingId);
 
 	/**
 	 * Returns the title of this calendar booking.
@@ -426,144 +295,103 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	public Map<Locale, String> getTitleMap();
 
 	/**
-	 * Returns the type of this calendar booking.
+	 * Sets the title of this calendar booking.
 	 *
-	 * @return the type of this calendar booking
+	 * @param title the title of this calendar booking
+	 */
+	public void setTitle(String title);
+
+	/**
+	 * Sets the localized title of this calendar booking in the language.
+	 *
+	 * @param title the localized title of this calendar booking
+	 * @param locale the locale of the language
+	 */
+	public void setTitle(String title, Locale locale);
+
+	/**
+	 * Sets the localized title of this calendar booking in the language, and sets the default locale.
+	 *
+	 * @param title the localized title of this calendar booking
+	 * @param locale the locale of the language
+	 * @param defaultLocale the default locale
+	 */
+	public void setTitle(String title, Locale locale, Locale defaultLocale);
+
+	public void setTitleCurrentLanguageId(String languageId);
+
+	/**
+	 * Sets the localized titles of this calendar booking from the map of locales and localized titles.
+	 *
+	 * @param titleMap the locales and localized titles of this calendar booking
+	 */
+	public void setTitleMap(Map<Locale, String> titleMap);
+
+	/**
+	 * Sets the localized titles of this calendar booking from the map of locales and localized titles, and sets the default locale.
+	 *
+	 * @param titleMap the locales and localized titles of this calendar booking
+	 * @param defaultLocale the default locale
+	 */
+	public void setTitleMap(Map<Locale, String> titleMap, Locale defaultLocale);
+
+	/**
+	 * Returns the description of this calendar booking.
+	 *
+	 * @return the description of this calendar booking
+	 */
+	public String getDescription();
+
+	/**
+	 * Returns the localized description of this calendar booking in the language. Uses the default language if no localization exists for the requested language.
+	 *
+	 * @param locale the locale of the language
+	 * @return the localized description of this calendar booking
 	 */
 	@AutoEscape
-	public String getType();
+	public String getDescription(Locale locale);
 
 	/**
-	 * Returns the user ID of this calendar booking.
+	 * Returns the localized description of this calendar booking in the language, optionally using the default language if no localization exists for the requested language.
 	 *
-	 * @return the user ID of this calendar booking
-	 */
-	public long getUserId();
-
-	/**
-	 * Returns the user name of this calendar booking.
-	 *
-	 * @return the user name of this calendar booking
+	 * @param locale the local of the language
+	 * @param useDefault whether to use the default language if no localization exists for the requested language
+	 * @return the localized description of this calendar booking. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
 	 */
 	@AutoEscape
-	public String getUserName();
+	public String getDescription(Locale locale, boolean useDefault);
 
 	/**
-	 * Returns the user uuid of this calendar booking.
+	 * Returns the localized description of this calendar booking in the language. Uses the default language if no localization exists for the requested language.
 	 *
-	 * @return the user uuid of this calendar booking
-	 * @throws SystemException if a system exception occurred
-	 */
-	public String getUserUuid() throws SystemException;
-
-	/**
-	 * Returns the uuid of this calendar booking.
-	 *
-	 * @return the uuid of this calendar booking
+	 * @param languageId the ID of the language
+	 * @return the localized description of this calendar booking
 	 */
 	@AutoEscape
-	public String getUuid();
-
-	public int hashCode();
+	public String getDescription(String languageId);
 
 	/**
-	 * Returns <code>true</code> if this calendar booking is all day.
+	 * Returns the localized description of this calendar booking in the language, optionally using the default language if no localization exists for the requested language.
 	 *
-	 * @return <code>true</code> if this calendar booking is all day; <code>false</code> otherwise
+	 * @param languageId the ID of the language
+	 * @param useDefault whether to use the default language if no localization exists for the requested language
+	 * @return the localized description of this calendar booking
 	 */
-	public boolean isAllDay();
+	@AutoEscape
+	public String getDescription(String languageId, boolean useDefault);
+
+	@AutoEscape
+	public String getDescriptionCurrentLanguageId();
+
+	@AutoEscape
+	public String getDescriptionCurrentValue();
 
 	/**
-	 * Returns <code>true</code> if this calendar booking is approved.
+	 * Returns a map of the locales and localized descriptions of this calendar booking.
 	 *
-	 * @return <code>true</code> if this calendar booking is approved; <code>false</code> otherwise
+	 * @return the locales and localized descriptions of this calendar booking
 	 */
-	public boolean isApproved();
-
-	public boolean isCachedModel();
-
-	/**
-	 * Returns <code>true</code> if this calendar booking is a draft.
-	 *
-	 * @return <code>true</code> if this calendar booking is a draft; <code>false</code> otherwise
-	 */
-	public boolean isDraft();
-
-	public boolean isEscapedModel();
-
-	/**
-	 * Returns <code>true</code> if this calendar booking is expired.
-	 *
-	 * @return <code>true</code> if this calendar booking is expired; <code>false</code> otherwise
-	 */
-	public boolean isExpired();
-
-	public boolean isNew();
-
-	/**
-	 * Returns <code>true</code> if this calendar booking is out of office.
-	 *
-	 * @return <code>true</code> if this calendar booking is out of office; <code>false</code> otherwise
-	 */
-	public boolean isOutOfOffice();
-
-	/**
-	 * Returns <code>true</code> if this calendar booking is pending.
-	 *
-	 * @return <code>true</code> if this calendar booking is pending; <code>false</code> otherwise
-	 */
-	public boolean isPending();
-
-	/**
-	 * Returns <code>true</code> if this calendar booking is required.
-	 *
-	 * @return <code>true</code> if this calendar booking is required; <code>false</code> otherwise
-	 */
-	public boolean isRequired();
-
-	/**
-	 * Sets whether this calendar booking is all day.
-	 *
-	 * @param allDay the all day of this calendar booking
-	 */
-	public void setAllDay(boolean allDay);
-
-	public void setCachedModel(boolean cachedModel);
-
-	/**
-	 * Sets the calendar booking ID of this calendar booking.
-	 *
-	 * @param calendarBookingId the calendar booking ID of this calendar booking
-	 */
-	public void setCalendarBookingId(long calendarBookingId);
-
-	/**
-	 * Sets the calendar ID of this calendar booking.
-	 *
-	 * @param calendarId the calendar ID of this calendar booking
-	 */
-	public void setCalendarId(long calendarId);
-
-	/**
-	 * Sets the calendar resource ID of this calendar booking.
-	 *
-	 * @param calendarResourceId the calendar resource ID of this calendar booking
-	 */
-	public void setCalendarResourceId(long calendarResourceId);
-
-	/**
-	 * Sets the company ID of this calendar booking.
-	 *
-	 * @param companyId the company ID of this calendar booking
-	 */
-	public void setCompanyId(long companyId);
-
-	/**
-	 * Sets the create date of this calendar booking.
-	 *
-	 * @param createDate the create date of this calendar booking
-	 */
-	public void setCreateDate(Date createDate);
+	public Map<Locale, String> getDescriptionMap();
 
 	/**
 	 * Sets the description of this calendar booking.
@@ -609,27 +437,62 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 		Locale defaultLocale);
 
 	/**
-	 * Sets the end date of this calendar booking.
+	 * Returns the location of this calendar booking.
 	 *
-	 * @param endDate the end date of this calendar booking
+	 * @return the location of this calendar booking
 	 */
-	public void setEndDate(Date endDate);
-
-	public void setExpandoBridgeAttributes(ServiceContext serviceContext);
+	public String getLocation();
 
 	/**
-	 * Sets the first reminder of this calendar booking.
+	 * Returns the localized location of this calendar booking in the language. Uses the default language if no localization exists for the requested language.
 	 *
-	 * @param firstReminder the first reminder of this calendar booking
+	 * @param locale the locale of the language
+	 * @return the localized location of this calendar booking
 	 */
-	public void setFirstReminder(int firstReminder);
+	@AutoEscape
+	public String getLocation(Locale locale);
 
 	/**
-	 * Sets the group ID of this calendar booking.
+	 * Returns the localized location of this calendar booking in the language, optionally using the default language if no localization exists for the requested language.
 	 *
-	 * @param groupId the group ID of this calendar booking
+	 * @param locale the local of the language
+	 * @param useDefault whether to use the default language if no localization exists for the requested language
+	 * @return the localized location of this calendar booking. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
 	 */
-	public void setGroupId(long groupId);
+	@AutoEscape
+	public String getLocation(Locale locale, boolean useDefault);
+
+	/**
+	 * Returns the localized location of this calendar booking in the language. Uses the default language if no localization exists for the requested language.
+	 *
+	 * @param languageId the ID of the language
+	 * @return the localized location of this calendar booking
+	 */
+	@AutoEscape
+	public String getLocation(String languageId);
+
+	/**
+	 * Returns the localized location of this calendar booking in the language, optionally using the default language if no localization exists for the requested language.
+	 *
+	 * @param languageId the ID of the language
+	 * @param useDefault whether to use the default language if no localization exists for the requested language
+	 * @return the localized location of this calendar booking
+	 */
+	@AutoEscape
+	public String getLocation(String languageId, boolean useDefault);
+
+	@AutoEscape
+	public String getLocationCurrentLanguageId();
+
+	@AutoEscape
+	public String getLocationCurrentValue();
+
+	/**
+	 * Returns a map of the locales and localized locations of this calendar booking.
+	 *
+	 * @return the locales and localized locations of this calendar booking
+	 */
+	public Map<Locale, String> getLocationMap();
 
 	/**
 	 * Sets the location of this calendar booking.
@@ -674,168 +537,12 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 		Locale defaultLocale);
 
 	/**
-	 * Sets the modified date of this calendar booking.
+	 * Returns the type of this calendar booking.
 	 *
-	 * @param modifiedDate the modified date of this calendar booking
+	 * @return the type of this calendar booking
 	 */
-	public void setModifiedDate(Date modifiedDate);
-
-	public void setNew(boolean n);
-
-	/**
-	 * Sets whether this calendar booking is out of office.
-	 *
-	 * @param outOfOffice the out of office of this calendar booking
-	 */
-	public void setOutOfOffice(boolean outOfOffice);
-
-	/**
-	 * Sets the parent calendar booking ID of this calendar booking.
-	 *
-	 * @param parentCalendarBookingId the parent calendar booking ID of this calendar booking
-	 */
-	public void setParentCalendarBookingId(long parentCalendarBookingId);
-
-	/**
-	 * Sets the primary key of this calendar booking.
-	 *
-	 * @param primaryKey the primary key of this calendar booking
-	 */
-	public void setPrimaryKey(long primaryKey);
-
-	public void setPrimaryKeyObj(Serializable primaryKeyObj);
-
-	/**
-	 * Sets the priority of this calendar booking.
-	 *
-	 * @param priority the priority of this calendar booking
-	 */
-	public void setPriority(int priority);
-
-	/**
-	 * Sets the recurrence of this calendar booking.
-	 *
-	 * @param recurrence the recurrence of this calendar booking
-	 */
-	public void setRecurrence(String recurrence);
-
-	/**
-	 * Sets the remind by of this calendar booking.
-	 *
-	 * @param remindBy the remind by of this calendar booking
-	 */
-	public void setRemindBy(int remindBy);
-
-	/**
-	 * Sets the request message of this calendar booking.
-	 *
-	 * @param requestMessage the request message of this calendar booking
-	 */
-	public void setRequestMessage(String requestMessage);
-
-	/**
-	 * Sets whether this calendar booking is required.
-	 *
-	 * @param required the required of this calendar booking
-	 */
-	public void setRequired(boolean required);
-
-	/**
-	 * Sets the response message of this calendar booking.
-	 *
-	 * @param responseMessage the response message of this calendar booking
-	 */
-	public void setResponseMessage(String responseMessage);
-
-	/**
-	 * Sets the second reminder of this calendar booking.
-	 *
-	 * @param secondReminder the second reminder of this calendar booking
-	 */
-	public void setSecondReminder(int secondReminder);
-
-	/**
-	 * Sets the start date of this calendar booking.
-	 *
-	 * @param startDate the start date of this calendar booking
-	 */
-	public void setStartDate(Date startDate);
-
-	/**
-	 * Sets the status of this calendar booking.
-	 *
-	 * @param status the status of this calendar booking
-	 */
-	public void setStatus(int status);
-
-	/**
-	 * Sets the status by user ID of this calendar booking.
-	 *
-	 * @param statusByUserId the status by user ID of this calendar booking
-	 */
-	public void setStatusByUserId(long statusByUserId);
-
-	/**
-	 * Sets the status by user name of this calendar booking.
-	 *
-	 * @param statusByUserName the status by user name of this calendar booking
-	 */
-	public void setStatusByUserName(String statusByUserName);
-
-	/**
-	 * Sets the status by user uuid of this calendar booking.
-	 *
-	 * @param statusByUserUuid the status by user uuid of this calendar booking
-	 */
-	public void setStatusByUserUuid(String statusByUserUuid);
-
-	/**
-	 * Sets the status date of this calendar booking.
-	 *
-	 * @param statusDate the status date of this calendar booking
-	 */
-	public void setStatusDate(Date statusDate);
-
-	/**
-	 * Sets the title of this calendar booking.
-	 *
-	 * @param title the title of this calendar booking
-	 */
-	public void setTitle(String title);
-
-	/**
-	 * Sets the localized title of this calendar booking in the language.
-	 *
-	 * @param title the localized title of this calendar booking
-	 * @param locale the locale of the language
-	 */
-	public void setTitle(String title, Locale locale);
-
-	/**
-	 * Sets the localized title of this calendar booking in the language, and sets the default locale.
-	 *
-	 * @param title the localized title of this calendar booking
-	 * @param locale the locale of the language
-	 * @param defaultLocale the default locale
-	 */
-	public void setTitle(String title, Locale locale, Locale defaultLocale);
-
-	public void setTitleCurrentLanguageId(String languageId);
-
-	/**
-	 * Sets the localized titles of this calendar booking from the map of locales and localized titles.
-	 *
-	 * @param titleMap the locales and localized titles of this calendar booking
-	 */
-	public void setTitleMap(Map<Locale, String> titleMap);
-
-	/**
-	 * Sets the localized titles of this calendar booking from the map of locales and localized titles, and sets the default locale.
-	 *
-	 * @param titleMap the locales and localized titles of this calendar booking
-	 * @param defaultLocale the default locale
-	 */
-	public void setTitleMap(Map<Locale, String> titleMap, Locale defaultLocale);
+	@AutoEscape
+	public String getType();
 
 	/**
 	 * Sets the type of this calendar booking.
@@ -845,32 +552,325 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	public void setType(String type);
 
 	/**
-	 * Sets the user ID of this calendar booking.
+	 * Returns the start date of this calendar booking.
 	 *
-	 * @param userId the user ID of this calendar booking
+	 * @return the start date of this calendar booking
 	 */
-	public void setUserId(long userId);
+	public Date getStartDate();
 
 	/**
-	 * Sets the user name of this calendar booking.
+	 * Sets the start date of this calendar booking.
 	 *
-	 * @param userName the user name of this calendar booking
+	 * @param startDate the start date of this calendar booking
 	 */
-	public void setUserName(String userName);
+	public void setStartDate(Date startDate);
 
 	/**
-	 * Sets the user uuid of this calendar booking.
+	 * Returns the end date of this calendar booking.
 	 *
-	 * @param userUuid the user uuid of this calendar booking
+	 * @return the end date of this calendar booking
 	 */
-	public void setUserUuid(String userUuid);
+	public Date getEndDate();
 
 	/**
-	 * Sets the uuid of this calendar booking.
+	 * Sets the end date of this calendar booking.
 	 *
-	 * @param uuid the uuid of this calendar booking
+	 * @param endDate the end date of this calendar booking
 	 */
-	public void setUuid(String uuid);
+	public void setEndDate(Date endDate);
+
+	/**
+	 * Returns the all day of this calendar booking.
+	 *
+	 * @return the all day of this calendar booking
+	 */
+	public boolean getAllDay();
+
+	/**
+	 * Returns <code>true</code> if this calendar booking is all day.
+	 *
+	 * @return <code>true</code> if this calendar booking is all day; <code>false</code> otherwise
+	 */
+	public boolean isAllDay();
+
+	/**
+	 * Sets whether this calendar booking is all day.
+	 *
+	 * @param allDay the all day of this calendar booking
+	 */
+	public void setAllDay(boolean allDay);
+
+	/**
+	 * Returns the recurrence of this calendar booking.
+	 *
+	 * @return the recurrence of this calendar booking
+	 */
+	@AutoEscape
+	public String getRecurrence();
+
+	/**
+	 * Sets the recurrence of this calendar booking.
+	 *
+	 * @param recurrence the recurrence of this calendar booking
+	 */
+	public void setRecurrence(String recurrence);
+
+	/**
+	 * Returns the priority of this calendar booking.
+	 *
+	 * @return the priority of this calendar booking
+	 */
+	public int getPriority();
+
+	/**
+	 * Sets the priority of this calendar booking.
+	 *
+	 * @param priority the priority of this calendar booking
+	 */
+	public void setPriority(int priority);
+
+	/**
+	 * Returns the out of office of this calendar booking.
+	 *
+	 * @return the out of office of this calendar booking
+	 */
+	public boolean getOutOfOffice();
+
+	/**
+	 * Returns <code>true</code> if this calendar booking is out of office.
+	 *
+	 * @return <code>true</code> if this calendar booking is out of office; <code>false</code> otherwise
+	 */
+	public boolean isOutOfOffice();
+
+	/**
+	 * Sets whether this calendar booking is out of office.
+	 *
+	 * @param outOfOffice the out of office of this calendar booking
+	 */
+	public void setOutOfOffice(boolean outOfOffice);
+
+	/**
+	 * Returns the remind by of this calendar booking.
+	 *
+	 * @return the remind by of this calendar booking
+	 */
+	public int getRemindBy();
+
+	/**
+	 * Sets the remind by of this calendar booking.
+	 *
+	 * @param remindBy the remind by of this calendar booking
+	 */
+	public void setRemindBy(int remindBy);
+
+	/**
+	 * Returns the first reminder of this calendar booking.
+	 *
+	 * @return the first reminder of this calendar booking
+	 */
+	public int getFirstReminder();
+
+	/**
+	 * Sets the first reminder of this calendar booking.
+	 *
+	 * @param firstReminder the first reminder of this calendar booking
+	 */
+	public void setFirstReminder(int firstReminder);
+
+	/**
+	 * Returns the second reminder of this calendar booking.
+	 *
+	 * @return the second reminder of this calendar booking
+	 */
+	public int getSecondReminder();
+
+	/**
+	 * Sets the second reminder of this calendar booking.
+	 *
+	 * @param secondReminder the second reminder of this calendar booking
+	 */
+	public void setSecondReminder(int secondReminder);
+
+	/**
+	 * Returns the required of this calendar booking.
+	 *
+	 * @return the required of this calendar booking
+	 */
+	public boolean getRequired();
+
+	/**
+	 * Returns <code>true</code> if this calendar booking is required.
+	 *
+	 * @return <code>true</code> if this calendar booking is required; <code>false</code> otherwise
+	 */
+	public boolean isRequired();
+
+	/**
+	 * Sets whether this calendar booking is required.
+	 *
+	 * @param required the required of this calendar booking
+	 */
+	public void setRequired(boolean required);
+
+	/**
+	 * Returns the request message of this calendar booking.
+	 *
+	 * @return the request message of this calendar booking
+	 */
+	@AutoEscape
+	public String getRequestMessage();
+
+	/**
+	 * Sets the request message of this calendar booking.
+	 *
+	 * @param requestMessage the request message of this calendar booking
+	 */
+	public void setRequestMessage(String requestMessage);
+
+	/**
+	 * Returns the response message of this calendar booking.
+	 *
+	 * @return the response message of this calendar booking
+	 */
+	@AutoEscape
+	public String getResponseMessage();
+
+	/**
+	 * Sets the response message of this calendar booking.
+	 *
+	 * @param responseMessage the response message of this calendar booking
+	 */
+	public void setResponseMessage(String responseMessage);
+
+	/**
+	 * Returns the status of this calendar booking.
+	 *
+	 * @return the status of this calendar booking
+	 */
+	public int getStatus();
+
+	/**
+	 * Sets the status of this calendar booking.
+	 *
+	 * @param status the status of this calendar booking
+	 */
+	public void setStatus(int status);
+
+	/**
+	 * Returns the status by user ID of this calendar booking.
+	 *
+	 * @return the status by user ID of this calendar booking
+	 */
+	public long getStatusByUserId();
+
+	/**
+	 * Sets the status by user ID of this calendar booking.
+	 *
+	 * @param statusByUserId the status by user ID of this calendar booking
+	 */
+	public void setStatusByUserId(long statusByUserId);
+
+	/**
+	 * Returns the status by user uuid of this calendar booking.
+	 *
+	 * @return the status by user uuid of this calendar booking
+	 * @throws SystemException if a system exception occurred
+	 */
+	public String getStatusByUserUuid() throws SystemException;
+
+	/**
+	 * Sets the status by user uuid of this calendar booking.
+	 *
+	 * @param statusByUserUuid the status by user uuid of this calendar booking
+	 */
+	public void setStatusByUserUuid(String statusByUserUuid);
+
+	/**
+	 * Returns the status by user name of this calendar booking.
+	 *
+	 * @return the status by user name of this calendar booking
+	 */
+	@AutoEscape
+	public String getStatusByUserName();
+
+	/**
+	 * Sets the status by user name of this calendar booking.
+	 *
+	 * @param statusByUserName the status by user name of this calendar booking
+	 */
+	public void setStatusByUserName(String statusByUserName);
+
+	/**
+	 * Returns the status date of this calendar booking.
+	 *
+	 * @return the status date of this calendar booking
+	 */
+	public Date getStatusDate();
+
+	/**
+	 * Sets the status date of this calendar booking.
+	 *
+	 * @param statusDate the status date of this calendar booking
+	 */
+	public void setStatusDate(Date statusDate);
+
+	/**
+	 * @deprecated Renamed to {@link #isApproved()}
+	 */
+	public boolean getApproved();
+
+	/**
+	 * Returns <code>true</code> if this calendar booking is approved.
+	 *
+	 * @return <code>true</code> if this calendar booking is approved; <code>false</code> otherwise
+	 */
+	public boolean isApproved();
+
+	/**
+	 * Returns <code>true</code> if this calendar booking is a draft.
+	 *
+	 * @return <code>true</code> if this calendar booking is a draft; <code>false</code> otherwise
+	 */
+	public boolean isDraft();
+
+	/**
+	 * Returns <code>true</code> if this calendar booking is expired.
+	 *
+	 * @return <code>true</code> if this calendar booking is expired; <code>false</code> otherwise
+	 */
+	public boolean isExpired();
+
+	/**
+	 * Returns <code>true</code> if this calendar booking is pending.
+	 *
+	 * @return <code>true</code> if this calendar booking is pending; <code>false</code> otherwise
+	 */
+	public boolean isPending();
+
+	public boolean isNew();
+
+	public void setNew(boolean n);
+
+	public boolean isCachedModel();
+
+	public void setCachedModel(boolean cachedModel);
+
+	public boolean isEscapedModel();
+
+	public Serializable getPrimaryKeyObj();
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj);
+
+	public ExpandoBridge getExpandoBridge();
+
+	public void setExpandoBridgeAttributes(ServiceContext serviceContext);
+
+	public Object clone();
+
+	public int compareTo(CalendarBooking calendarBooking);
+
+	public int hashCode();
 
 	public CacheModel<CalendarBooking> toCacheModel();
 

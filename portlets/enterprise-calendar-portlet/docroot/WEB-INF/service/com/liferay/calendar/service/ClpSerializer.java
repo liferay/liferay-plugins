@@ -128,18 +128,6 @@ public class ClpSerializer {
 		return newList;
 	}
 
-	public static Object translateInput(Object obj) {
-		if (obj instanceof BaseModel<?>) {
-			return translateInput((BaseModel<?>)obj);
-		}
-		else if (obj instanceof List<?>) {
-			return translateInput((List<Object>)obj);
-		}
-		else {
-			return obj;
-		}
-	}
-
 	public static Object translateInputCalendar(BaseModel<?> oldModel) {
 		CalendarClp oldCplModel = (CalendarClp)oldModel;
 
@@ -592,10 +580,10 @@ public class ClpSerializer {
 
 				method8.invoke(newModel, value8);
 
-				Method method9 = newModelClass.getMethod("setClassName",
-						new Class[] { String.class });
+				Method method9 = newModelClass.getMethod("setClassNameId",
+						new Class[] { Long.TYPE });
 
-				String value9 = oldCplModel.getClassName();
+				Long value9 = new Long(oldCplModel.getClassNameId());
 
 				method9.invoke(newModel, value9);
 
@@ -666,6 +654,18 @@ public class ClpSerializer {
 		}
 
 		return oldModel;
+	}
+
+	public static Object translateInput(Object obj) {
+		if (obj instanceof BaseModel<?>) {
+			return translateInput((BaseModel<?>)obj);
+		}
+		else if (obj instanceof List<?>) {
+			return translateInput((List<Object>)obj);
+		}
+		else {
+			return obj;
+		}
 	}
 
 	public static Object translateOutput(BaseModel<?> oldModel) {
@@ -1168,11 +1168,11 @@ public class ClpSerializer {
 
 				newModel.setResourceBlockId(value8);
 
-				Method method9 = oldModelClass.getMethod("getClassName");
+				Method method9 = oldModelClass.getMethod("getClassNameId");
 
-				String value9 = (String)method9.invoke(oldModel, (Object[])null);
+				Long value9 = (Long)method9.invoke(oldModel, (Object[])null);
 
-				newModel.setClassName(value9);
+				newModel.setClassNameId(value9);
 
 				Method method10 = oldModelClass.getMethod("getClassPK");
 

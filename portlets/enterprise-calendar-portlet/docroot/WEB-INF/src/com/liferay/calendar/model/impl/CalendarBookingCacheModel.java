@@ -33,6 +33,77 @@ import java.util.Date;
  */
 public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 	Serializable {
+	@Override
+	public String toString() {
+		StringBundler sb = new StringBundler(63);
+
+		sb.append("{uuid=");
+		sb.append(uuid);
+		sb.append(", calendarBookingId=");
+		sb.append(calendarBookingId);
+		sb.append(", groupId=");
+		sb.append(groupId);
+		sb.append(", companyId=");
+		sb.append(companyId);
+		sb.append(", userId=");
+		sb.append(userId);
+		sb.append(", userName=");
+		sb.append(userName);
+		sb.append(", createDate=");
+		sb.append(createDate);
+		sb.append(", modifiedDate=");
+		sb.append(modifiedDate);
+		sb.append(", calendarId=");
+		sb.append(calendarId);
+		sb.append(", calendarResourceId=");
+		sb.append(calendarResourceId);
+		sb.append(", parentCalendarBookingId=");
+		sb.append(parentCalendarBookingId);
+		sb.append(", title=");
+		sb.append(title);
+		sb.append(", description=");
+		sb.append(description);
+		sb.append(", location=");
+		sb.append(location);
+		sb.append(", type=");
+		sb.append(type);
+		sb.append(", startDate=");
+		sb.append(startDate);
+		sb.append(", endDate=");
+		sb.append(endDate);
+		sb.append(", allDay=");
+		sb.append(allDay);
+		sb.append(", recurrence=");
+		sb.append(recurrence);
+		sb.append(", priority=");
+		sb.append(priority);
+		sb.append(", outOfOffice=");
+		sb.append(outOfOffice);
+		sb.append(", remindBy=");
+		sb.append(remindBy);
+		sb.append(", firstReminder=");
+		sb.append(firstReminder);
+		sb.append(", secondReminder=");
+		sb.append(secondReminder);
+		sb.append(", required=");
+		sb.append(required);
+		sb.append(", requestMessage=");
+		sb.append(requestMessage);
+		sb.append(", responseMessage=");
+		sb.append(responseMessage);
+		sb.append(", status=");
+		sb.append(status);
+		sb.append(", statusByUserId=");
+		sb.append(statusByUserId);
+		sb.append(", statusByUserName=");
+		sb.append(statusByUserName);
+		sb.append(", statusDate=");
+		sb.append(statusDate);
+		sb.append("}");
+
+		return sb.toString();
+	}
+
 	public CalendarBooking toEntityModel() {
 		CalendarBookingImpl calendarBookingImpl = new CalendarBookingImpl();
 
@@ -165,77 +236,6 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 		calendarBookingImpl.resetOriginalValues();
 
 		return calendarBookingImpl;
-	}
-
-	@Override
-	public String toString() {
-		StringBundler sb = new StringBundler(63);
-
-		sb.append("{uuid=");
-		sb.append(uuid);
-		sb.append(", calendarBookingId=");
-		sb.append(calendarBookingId);
-		sb.append(", groupId=");
-		sb.append(groupId);
-		sb.append(", companyId=");
-		sb.append(companyId);
-		sb.append(", userId=");
-		sb.append(userId);
-		sb.append(", userName=");
-		sb.append(userName);
-		sb.append(", createDate=");
-		sb.append(createDate);
-		sb.append(", modifiedDate=");
-		sb.append(modifiedDate);
-		sb.append(", calendarId=");
-		sb.append(calendarId);
-		sb.append(", calendarResourceId=");
-		sb.append(calendarResourceId);
-		sb.append(", parentCalendarBookingId=");
-		sb.append(parentCalendarBookingId);
-		sb.append(", title=");
-		sb.append(title);
-		sb.append(", description=");
-		sb.append(description);
-		sb.append(", location=");
-		sb.append(location);
-		sb.append(", type=");
-		sb.append(type);
-		sb.append(", startDate=");
-		sb.append(startDate);
-		sb.append(", endDate=");
-		sb.append(endDate);
-		sb.append(", allDay=");
-		sb.append(allDay);
-		sb.append(", recurrence=");
-		sb.append(recurrence);
-		sb.append(", priority=");
-		sb.append(priority);
-		sb.append(", outOfOffice=");
-		sb.append(outOfOffice);
-		sb.append(", remindBy=");
-		sb.append(remindBy);
-		sb.append(", firstReminder=");
-		sb.append(firstReminder);
-		sb.append(", secondReminder=");
-		sb.append(secondReminder);
-		sb.append(", required=");
-		sb.append(required);
-		sb.append(", requestMessage=");
-		sb.append(requestMessage);
-		sb.append(", responseMessage=");
-		sb.append(responseMessage);
-		sb.append(", status=");
-		sb.append(status);
-		sb.append(", statusByUserId=");
-		sb.append(statusByUserId);
-		sb.append(", statusByUserName=");
-		sb.append(statusByUserName);
-		sb.append(", statusDate=");
-		sb.append(statusDate);
-		sb.append("}");
-
-		return sb.toString();
 	}
 
 	public String uuid;

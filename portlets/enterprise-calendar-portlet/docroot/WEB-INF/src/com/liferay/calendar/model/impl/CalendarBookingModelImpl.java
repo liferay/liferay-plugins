@@ -65,8 +65,68 @@ import java.util.Map;
 @JSON(strict = true)
 public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	implements CalendarBookingModel {
-	public CalendarBookingModelImpl() {
-	}
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this class directly. All methods that expect a calendar booking model instance should use the {@link com.liferay.calendar.model.CalendarBooking} interface instead.
+	 */
+	public static final String TABLE_NAME = "CalendarBooking";
+	public static final Object[][] TABLE_COLUMNS = {
+			{ "uuid_", Types.VARCHAR },
+			{ "calendarBookingId", Types.BIGINT },
+			{ "groupId", Types.BIGINT },
+			{ "companyId", Types.BIGINT },
+			{ "userId", Types.BIGINT },
+			{ "userName", Types.VARCHAR },
+			{ "createDate", Types.TIMESTAMP },
+			{ "modifiedDate", Types.TIMESTAMP },
+			{ "calendarId", Types.BIGINT },
+			{ "calendarResourceId", Types.BIGINT },
+			{ "parentCalendarBookingId", Types.BIGINT },
+			{ "title", Types.VARCHAR },
+			{ "description", Types.VARCHAR },
+			{ "location", Types.VARCHAR },
+			{ "type_", Types.VARCHAR },
+			{ "startDate", Types.TIMESTAMP },
+			{ "endDate", Types.TIMESTAMP },
+			{ "allDay", Types.BOOLEAN },
+			{ "recurrence", Types.VARCHAR },
+			{ "priority", Types.INTEGER },
+			{ "outOfOffice", Types.BOOLEAN },
+			{ "remindBy", Types.INTEGER },
+			{ "firstReminder", Types.INTEGER },
+			{ "secondReminder", Types.INTEGER },
+			{ "required", Types.BOOLEAN },
+			{ "requestMessage", Types.VARCHAR },
+			{ "responseMessage", Types.VARCHAR },
+			{ "status", Types.INTEGER },
+			{ "statusByUserId", Types.BIGINT },
+			{ "statusByUserName", Types.VARCHAR },
+			{ "statusDate", Types.TIMESTAMP }
+		};
+	public static final String TABLE_SQL_CREATE = "create table CalendarBooking (uuid_ VARCHAR(75) null,calendarBookingId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,calendarId LONG,calendarResourceId LONG,parentCalendarBookingId LONG,title STRING null,description STRING null,location STRING null,type_ VARCHAR(75) null,startDate DATE null,endDate DATE null,allDay BOOLEAN,recurrence VARCHAR(75) null,priority INTEGER,outOfOffice BOOLEAN,remindBy INTEGER,firstReminder INTEGER,secondReminder INTEGER,required BOOLEAN,requestMessage VARCHAR(75) null,responseMessage VARCHAR(75) null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+	public static final String TABLE_SQL_DROP = "drop table CalendarBooking";
+	public static final String ORDER_BY_JPQL = " ORDER BY calendarBooking.startDate ASC, calendarBooking.title ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY CalendarBooking.startDate ASC, CalendarBooking.title ASC";
+	public static final String DATA_SOURCE = "liferayDataSource";
+	public static final String SESSION_FACTORY = "liferaySessionFactory";
+	public static final String TX_MANAGER = "liferayTransactionManager";
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.entity.cache.enabled.com.liferay.calendar.model.CalendarBooking"),
+			true);
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.finder.cache.enabled.com.liferay.calendar.model.CalendarBooking"),
+			true);
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.liferay.calendar.model.CalendarBooking"),
+			true);
+	public static long CALENDARID_COLUMN_BITMASK = 1L;
+	public static long CALENDARRESOURCEID_COLUMN_BITMASK = 2L;
+	public static long GROUPID_COLUMN_BITMASK = 4L;
+	public static long REMINDBY_COLUMN_BITMASK = 8L;
+	public static long STATUS_COLUMN_BITMASK = 16L;
+	public static long UUID_COLUMN_BITMASK = 32L;
+
 	/**
 	 * Converts the soap model instance into a normal model instance.
 	 *
@@ -110,6 +170,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 
 		return model;
 	}
+
 	/**
 	 * Converts the soap model instances into normal model instances.
 	 *
@@ -126,234 +187,27 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 
 		return models;
 	}
-	@Override
-	public Object clone() {
-		CalendarBookingImpl calendarBookingImpl = new CalendarBookingImpl();
 
-		calendarBookingImpl.setUuid(getUuid());
-		calendarBookingImpl.setCalendarBookingId(getCalendarBookingId());
-		calendarBookingImpl.setGroupId(getGroupId());
-		calendarBookingImpl.setCompanyId(getCompanyId());
-		calendarBookingImpl.setUserId(getUserId());
-		calendarBookingImpl.setUserName(getUserName());
-		calendarBookingImpl.setCreateDate(getCreateDate());
-		calendarBookingImpl.setModifiedDate(getModifiedDate());
-		calendarBookingImpl.setCalendarId(getCalendarId());
-		calendarBookingImpl.setCalendarResourceId(getCalendarResourceId());
-		calendarBookingImpl.setParentCalendarBookingId(getParentCalendarBookingId());
-		calendarBookingImpl.setTitle(getTitle());
-		calendarBookingImpl.setDescription(getDescription());
-		calendarBookingImpl.setLocation(getLocation());
-		calendarBookingImpl.setType(getType());
-		calendarBookingImpl.setStartDate(getStartDate());
-		calendarBookingImpl.setEndDate(getEndDate());
-		calendarBookingImpl.setAllDay(getAllDay());
-		calendarBookingImpl.setRecurrence(getRecurrence());
-		calendarBookingImpl.setPriority(getPriority());
-		calendarBookingImpl.setOutOfOffice(getOutOfOffice());
-		calendarBookingImpl.setRemindBy(getRemindBy());
-		calendarBookingImpl.setFirstReminder(getFirstReminder());
-		calendarBookingImpl.setSecondReminder(getSecondReminder());
-		calendarBookingImpl.setRequired(getRequired());
-		calendarBookingImpl.setRequestMessage(getRequestMessage());
-		calendarBookingImpl.setResponseMessage(getResponseMessage());
-		calendarBookingImpl.setStatus(getStatus());
-		calendarBookingImpl.setStatusByUserId(getStatusByUserId());
-		calendarBookingImpl.setStatusByUserName(getStatusByUserName());
-		calendarBookingImpl.setStatusDate(getStatusDate());
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
+				"lock.expiration.time.com.liferay.calendar.model.CalendarBooking"));
 
-		calendarBookingImpl.resetOriginalValues();
-
-		return calendarBookingImpl;
+	public CalendarBookingModelImpl() {
 	}
-	public int compareTo(CalendarBooking calendarBooking) {
-		int value = 0;
 
-		value = DateUtil.compareTo(getStartDate(),
-				calendarBooking.getStartDate());
-
-		if (value != 0) {
-			return value;
-		}
-
-		value = getTitle().toLowerCase()
-					.compareTo(calendarBooking.getTitle().toLowerCase());
-
-		if (value != 0) {
-			return value;
-		}
-
-		return 0;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (obj == null) {
-			return false;
-		}
-
-		CalendarBooking calendarBooking = null;
-
-		try {
-			calendarBooking = (CalendarBooking)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
-
-		long primaryKey = calendarBooking.getPrimaryKey();
-
-		if (getPrimaryKey() == primaryKey) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-	@JSON
-	public boolean getAllDay() {
-		return _allDay;
-	}
-	/**
-	 * @deprecated {@link #isApproved}
-	 */
-	public boolean getApproved() {
-		return isApproved();
-	}
-	@JSON
-	public long getCalendarBookingId() {
+	public long getPrimaryKey() {
 		return _calendarBookingId;
 	}
-	@JSON
-	public long getCalendarId() {
-		return _calendarId;
-	}
-	@JSON
-	public long getCalendarResourceId() {
-		return _calendarResourceId;
-	}
-	public long getColumnBitmask() {
-		return _columnBitmask;
-	}
-	@JSON
-	public long getCompanyId() {
-		return _companyId;
-	}
-	@JSON
-	public Date getCreateDate() {
-		return _createDate;
-	}
-	@JSON
-	public String getDescription() {
-		if (_description == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _description;
-		}
-	}
-	public String getDescription(Locale locale) {
-		String languageId = LocaleUtil.toLanguageId(locale);
 
-		return getDescription(languageId);
-	}
-	public String getDescription(Locale locale, boolean useDefault) {
-		String languageId = LocaleUtil.toLanguageId(locale);
-
-		return getDescription(languageId, useDefault);
-	}
-	public String getDescription(String languageId) {
-		return LocalizationUtil.getLocalization(getDescription(), languageId);
+	public void setPrimaryKey(long primaryKey) {
+		setCalendarBookingId(primaryKey);
 	}
 
-	public String getDescription(String languageId, boolean useDefault) {
-		return LocalizationUtil.getLocalization(getDescription(), languageId,
-			useDefault);
+	public Serializable getPrimaryKeyObj() {
+		return new Long(_calendarBookingId);
 	}
 
-	public String getDescriptionCurrentLanguageId() {
-		return _descriptionCurrentLanguageId;
-	}
-
-	@JSON
-	public String getDescriptionCurrentValue() {
-		Locale locale = getLocale(_descriptionCurrentLanguageId);
-
-		return getDescription(locale);
-	}
-
-	public Map<Locale, String> getDescriptionMap() {
-		return LocalizationUtil.getLocalizationMap(getDescription());
-	}
-
-	@JSON
-	public Date getEndDate() {
-		return _endDate;
-	}
-
-	@Override
-	public ExpandoBridge getExpandoBridge() {
-		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-					CalendarBooking.class.getName(), getPrimaryKey());
-		}
-
-		return _expandoBridge;
-	}
-
-	@JSON
-	public int getFirstReminder() {
-		return _firstReminder;
-	}
-
-	@JSON
-	public long getGroupId() {
-		return _groupId;
-	}
-
-	@JSON
-	public String getLocation() {
-		if (_location == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _location;
-		}
-	}
-
-	public String getLocation(Locale locale) {
-		String languageId = LocaleUtil.toLanguageId(locale);
-
-		return getLocation(languageId);
-	}
-
-	public String getLocation(Locale locale, boolean useDefault) {
-		String languageId = LocaleUtil.toLanguageId(locale);
-
-		return getLocation(languageId, useDefault);
-	}
-
-	public String getLocation(String languageId) {
-		return LocalizationUtil.getLocalization(getLocation(), languageId);
-	}
-
-	public String getLocation(String languageId, boolean useDefault) {
-		return LocalizationUtil.getLocalization(getLocation(), languageId,
-			useDefault);
-	}
-
-	public String getLocationCurrentLanguageId() {
-		return _locationCurrentLanguageId;
-	}
-
-	@JSON
-	public String getLocationCurrentValue() {
-		Locale locale = getLocale(_locationCurrentLanguageId);
-
-		return getLocation(locale);
-	}
-
-	public Map<Locale, String> getLocationMap() {
-		return LocalizationUtil.getLocalizationMap(getLocation());
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	public Class<?> getModelClass() {
@@ -365,28 +219,21 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	}
 
 	@JSON
-	public Date getModifiedDate() {
-		return _modifiedDate;
+	public String getUuid() {
+		if (_uuid == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _uuid;
+		}
 	}
 
-	public long getOriginalCalendarId() {
-		return _originalCalendarId;
-	}
+	public void setUuid(String uuid) {
+		if (_originalUuid == null) {
+			_originalUuid = _uuid;
+		}
 
-	public long getOriginalCalendarResourceId() {
-		return _originalCalendarResourceId;
-	}
-
-	public long getOriginalGroupId() {
-		return _originalGroupId;
-	}
-
-	public int getOriginalRemindBy() {
-		return _originalRemindBy;
-	}
-
-	public int getOriginalStatus() {
-		return _originalStatus;
+		_uuid = uuid;
 	}
 
 	public String getOriginalUuid() {
@@ -394,8 +241,133 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	}
 
 	@JSON
-	public boolean getOutOfOffice() {
-		return _outOfOffice;
+	public long getCalendarBookingId() {
+		return _calendarBookingId;
+	}
+
+	public void setCalendarBookingId(long calendarBookingId) {
+		_calendarBookingId = calendarBookingId;
+	}
+
+	@JSON
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_columnBitmask |= GROUPID_COLUMN_BITMASK;
+
+		if (!_setOriginalGroupId) {
+			_setOriginalGroupId = true;
+
+			_originalGroupId = _groupId;
+		}
+
+		_groupId = groupId;
+	}
+
+	public long getOriginalGroupId() {
+		return _originalGroupId;
+	}
+
+	@JSON
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
+	}
+
+	@JSON
+	public long getUserId() {
+		return _userId;
+	}
+
+	public void setUserId(long userId) {
+		_userId = userId;
+	}
+
+	public String getUserUuid() throws SystemException {
+		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
+	}
+
+	public void setUserUuid(String userUuid) {
+		_userUuid = userUuid;
+	}
+
+	@JSON
+	public String getUserName() {
+		if (_userName == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _userName;
+		}
+	}
+
+	public void setUserName(String userName) {
+		_userName = userName;
+	}
+
+	@JSON
+	public Date getCreateDate() {
+		return _createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		_createDate = createDate;
+	}
+
+	@JSON
+	public Date getModifiedDate() {
+		return _modifiedDate;
+	}
+
+	public void setModifiedDate(Date modifiedDate) {
+		_modifiedDate = modifiedDate;
+	}
+
+	@JSON
+	public long getCalendarId() {
+		return _calendarId;
+	}
+
+	public void setCalendarId(long calendarId) {
+		_columnBitmask |= CALENDARID_COLUMN_BITMASK;
+
+		if (!_setOriginalCalendarId) {
+			_setOriginalCalendarId = true;
+
+			_originalCalendarId = _calendarId;
+		}
+
+		_calendarId = calendarId;
+	}
+
+	public long getOriginalCalendarId() {
+		return _originalCalendarId;
+	}
+
+	@JSON
+	public long getCalendarResourceId() {
+		return _calendarResourceId;
+	}
+
+	public void setCalendarResourceId(long calendarResourceId) {
+		_columnBitmask |= CALENDARRESOURCEID_COLUMN_BITMASK;
+
+		if (!_setOriginalCalendarResourceId) {
+			_setOriginalCalendarResourceId = true;
+
+			_originalCalendarResourceId = _calendarResourceId;
+		}
+
+		_calendarResourceId = calendarResourceId;
+	}
+
+	public long getOriginalCalendarResourceId() {
+		return _originalCalendarResourceId;
 	}
 
 	@JSON
@@ -403,97 +375,8 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		return _parentCalendarBookingId;
 	}
 
-	public long getPrimaryKey() {
-		return _calendarBookingId;
-	}
-
-	public Serializable getPrimaryKeyObj() {
-		return new Long(_calendarBookingId);
-	}
-
-	@JSON
-	public int getPriority() {
-		return _priority;
-	}
-
-	@JSON
-	public String getRecurrence() {
-		if (_recurrence == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _recurrence;
-		}
-	}
-
-	@JSON
-	public int getRemindBy() {
-		return _remindBy;
-	}
-
-	@JSON
-	public String getRequestMessage() {
-		if (_requestMessage == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _requestMessage;
-		}
-	}
-
-	@JSON
-	public boolean getRequired() {
-		return _required;
-	}
-
-	@JSON
-	public String getResponseMessage() {
-		if (_responseMessage == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _responseMessage;
-		}
-	}
-
-	@JSON
-	public int getSecondReminder() {
-		return _secondReminder;
-	}
-
-	@JSON
-	public Date getStartDate() {
-		return _startDate;
-	}
-
-	@JSON
-	public int getStatus() {
-		return _status;
-	}
-
-	@JSON
-	public long getStatusByUserId() {
-		return _statusByUserId;
-	}
-
-	@JSON
-	public String getStatusByUserName() {
-		if (_statusByUserName == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _statusByUserName;
-		}
-	}
-
-	public String getStatusByUserUuid() throws SystemException {
-		return PortalUtil.getUserValue(getStatusByUserId(), "uuid",
-			_statusByUserUuid);
-	}
-
-	@JSON
-	public Date getStatusDate() {
-		return _statusDate;
+	public void setParentCalendarBookingId(long parentCalendarBookingId) {
+		_parentCalendarBookingId = parentCalendarBookingId;
 	}
 
 	@JSON
@@ -542,165 +425,96 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		return LocalizationUtil.getLocalizationMap(getTitle());
 	}
 
+	public void setTitle(String title) {
+		_columnBitmask = -1L;
+
+		_title = title;
+	}
+
+	public void setTitle(String title, Locale locale) {
+		setTitle(title, locale, LocaleUtil.getDefault());
+	}
+
+	public void setTitle(String title, Locale locale, Locale defaultLocale) {
+		String languageId = LocaleUtil.toLanguageId(locale);
+		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
+
+		if (Validator.isNotNull(title)) {
+			setTitle(LocalizationUtil.updateLocalization(getTitle(), "Title",
+					title, languageId, defaultLanguageId));
+		}
+		else {
+			setTitle(LocalizationUtil.removeLocalization(getTitle(), "Title",
+					languageId));
+		}
+	}
+
+	public void setTitleCurrentLanguageId(String languageId) {
+		_titleCurrentLanguageId = languageId;
+	}
+
+	public void setTitleMap(Map<Locale, String> titleMap) {
+		setTitleMap(titleMap, LocaleUtil.getDefault());
+	}
+
+	public void setTitleMap(Map<Locale, String> titleMap, Locale defaultLocale) {
+		if (titleMap == null) {
+			return;
+		}
+
+		Locale[] locales = LanguageUtil.getAvailableLocales();
+
+		for (Locale locale : locales) {
+			String title = titleMap.get(locale);
+
+			setTitle(title, locale, defaultLocale);
+		}
+	}
+
 	@JSON
-	public String getType() {
-		if (_type == null) {
+	public String getDescription() {
+		if (_description == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _type;
+			return _description;
 		}
+	}
+
+	public String getDescription(Locale locale) {
+		String languageId = LocaleUtil.toLanguageId(locale);
+
+		return getDescription(languageId);
+	}
+
+	public String getDescription(Locale locale, boolean useDefault) {
+		String languageId = LocaleUtil.toLanguageId(locale);
+
+		return getDescription(languageId, useDefault);
+	}
+
+	public String getDescription(String languageId) {
+		return LocalizationUtil.getLocalization(getDescription(), languageId);
+	}
+
+	public String getDescription(String languageId, boolean useDefault) {
+		return LocalizationUtil.getLocalization(getDescription(), languageId,
+			useDefault);
+	}
+
+	public String getDescriptionCurrentLanguageId() {
+		return _descriptionCurrentLanguageId;
 	}
 
 	@JSON
-	public long getUserId() {
-		return _userId;
+	public String getDescriptionCurrentValue() {
+		Locale locale = getLocale(_descriptionCurrentLanguageId);
+
+		return getDescription(locale);
 	}
 
-	@JSON
-	public String getUserName() {
-		if (_userName == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _userName;
-		}
-	}
-
-	public String getUserUuid() throws SystemException {
-		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
-	}
-
-	@JSON
-	public String getUuid() {
-		if (_uuid == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _uuid;
-		}
-	}
-
-	@Override
-	public int hashCode() {
-		return (int)getPrimaryKey();
-	}
-
-	public boolean isAllDay() {
-		return _allDay;
-	}
-
-	public boolean isApproved() {
-		if (getStatus() == WorkflowConstants.STATUS_APPROVED) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-
-	public boolean isDraft() {
-		if (getStatus() == WorkflowConstants.STATUS_DRAFT) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-
-	public boolean isExpired() {
-		if (getStatus() == WorkflowConstants.STATUS_EXPIRED) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-
-	public boolean isOutOfOffice() {
-		return _outOfOffice;
-	}
-
-	public boolean isPending() {
-		if (getStatus() == WorkflowConstants.STATUS_PENDING) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-
-	public boolean isRequired() {
-		return _required;
-	}
-
-	@Override
-	public void resetOriginalValues() {
-		CalendarBookingModelImpl calendarBookingModelImpl = this;
-
-		calendarBookingModelImpl._originalUuid = calendarBookingModelImpl._uuid;
-
-		calendarBookingModelImpl._originalGroupId = calendarBookingModelImpl._groupId;
-
-		calendarBookingModelImpl._setOriginalGroupId = false;
-
-		calendarBookingModelImpl._originalCalendarId = calendarBookingModelImpl._calendarId;
-
-		calendarBookingModelImpl._setOriginalCalendarId = false;
-
-		calendarBookingModelImpl._originalCalendarResourceId = calendarBookingModelImpl._calendarResourceId;
-
-		calendarBookingModelImpl._setOriginalCalendarResourceId = false;
-
-		calendarBookingModelImpl._originalRemindBy = calendarBookingModelImpl._remindBy;
-
-		calendarBookingModelImpl._setOriginalRemindBy = false;
-
-		calendarBookingModelImpl._originalStatus = calendarBookingModelImpl._status;
-
-		calendarBookingModelImpl._setOriginalStatus = false;
-
-		calendarBookingModelImpl._columnBitmask = 0;
-	}
-
-	public void setAllDay(boolean allDay) {
-		_allDay = allDay;
-	}
-
-	public void setCalendarBookingId(long calendarBookingId) {
-		_calendarBookingId = calendarBookingId;
-	}
-
-	public void setCalendarId(long calendarId) {
-		_columnBitmask |= CALENDARID_COLUMN_BITMASK;
-
-		if (!_setOriginalCalendarId) {
-			_setOriginalCalendarId = true;
-
-			_originalCalendarId = _calendarId;
-		}
-
-		_calendarId = calendarId;
-	}
-
-	public void setCalendarResourceId(long calendarResourceId) {
-		_columnBitmask |= CALENDARRESOURCEID_COLUMN_BITMASK;
-
-		if (!_setOriginalCalendarResourceId) {
-			_setOriginalCalendarResourceId = true;
-
-			_originalCalendarResourceId = _calendarResourceId;
-		}
-
-		_calendarResourceId = calendarResourceId;
-	}
-
-	public void setCompanyId(long companyId) {
-		_companyId = companyId;
-	}
-
-	public void setCreateDate(Date createDate) {
-		_createDate = createDate;
+	public Map<Locale, String> getDescriptionMap() {
+		return LocalizationUtil.getLocalizationMap(getDescription());
 	}
 
 	public void setDescription(String description) {
@@ -750,29 +564,50 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
-	public void setEndDate(Date endDate) {
-		_endDate = endDate;
-	}
-
-	@Override
-	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		getExpandoBridge().setAttributes(serviceContext);
-	}
-
-	public void setFirstReminder(int firstReminder) {
-		_firstReminder = firstReminder;
-	}
-
-	public void setGroupId(long groupId) {
-		_columnBitmask |= GROUPID_COLUMN_BITMASK;
-
-		if (!_setOriginalGroupId) {
-			_setOriginalGroupId = true;
-
-			_originalGroupId = _groupId;
+	@JSON
+	public String getLocation() {
+		if (_location == null) {
+			return StringPool.BLANK;
 		}
+		else {
+			return _location;
+		}
+	}
 
-		_groupId = groupId;
+	public String getLocation(Locale locale) {
+		String languageId = LocaleUtil.toLanguageId(locale);
+
+		return getLocation(languageId);
+	}
+
+	public String getLocation(Locale locale, boolean useDefault) {
+		String languageId = LocaleUtil.toLanguageId(locale);
+
+		return getLocation(languageId, useDefault);
+	}
+
+	public String getLocation(String languageId) {
+		return LocalizationUtil.getLocalization(getLocation(), languageId);
+	}
+
+	public String getLocation(String languageId, boolean useDefault) {
+		return LocalizationUtil.getLocalization(getLocation(), languageId,
+			useDefault);
+	}
+
+	public String getLocationCurrentLanguageId() {
+		return _locationCurrentLanguageId;
+	}
+
+	@JSON
+	public String getLocationCurrentValue() {
+		Locale locale = getLocale(_locationCurrentLanguageId);
+
+		return getLocation(locale);
+	}
+
+	public Map<Locale, String> getLocationMap() {
+		return LocalizationUtil.getLocalizationMap(getLocation());
 	}
 
 	public void setLocation(String location) {
@@ -820,32 +655,92 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 	}
 
-	public void setModifiedDate(Date modifiedDate) {
-		_modifiedDate = modifiedDate;
+	@JSON
+	public String getType() {
+		if (_type == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _type;
+		}
 	}
 
-	public void setOutOfOffice(boolean outOfOffice) {
-		_outOfOffice = outOfOffice;
+	public void setType(String type) {
+		_type = type;
 	}
 
-	public void setParentCalendarBookingId(long parentCalendarBookingId) {
-		_parentCalendarBookingId = parentCalendarBookingId;
+	@JSON
+	public Date getStartDate() {
+		return _startDate;
 	}
 
-	public void setPrimaryKey(long primaryKey) {
-		setCalendarBookingId(primaryKey);
+	public void setStartDate(Date startDate) {
+		_columnBitmask = -1L;
+
+		_startDate = startDate;
 	}
 
-	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	@JSON
+	public Date getEndDate() {
+		return _endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		_endDate = endDate;
+	}
+
+	@JSON
+	public boolean getAllDay() {
+		return _allDay;
+	}
+
+	public boolean isAllDay() {
+		return _allDay;
+	}
+
+	public void setAllDay(boolean allDay) {
+		_allDay = allDay;
+	}
+
+	@JSON
+	public String getRecurrence() {
+		if (_recurrence == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _recurrence;
+		}
+	}
+
+	public void setRecurrence(String recurrence) {
+		_recurrence = recurrence;
+	}
+
+	@JSON
+	public int getPriority() {
+		return _priority;
 	}
 
 	public void setPriority(int priority) {
 		_priority = priority;
 	}
 
-	public void setRecurrence(String recurrence) {
-		_recurrence = recurrence;
+	@JSON
+	public boolean getOutOfOffice() {
+		return _outOfOffice;
+	}
+
+	public boolean isOutOfOffice() {
+		return _outOfOffice;
+	}
+
+	public void setOutOfOffice(boolean outOfOffice) {
+		_outOfOffice = outOfOffice;
+	}
+
+	@JSON
+	public int getRemindBy() {
+		return _remindBy;
 	}
 
 	public void setRemindBy(int remindBy) {
@@ -860,26 +755,72 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		_remindBy = remindBy;
 	}
 
-	public void setRequestMessage(String requestMessage) {
-		_requestMessage = requestMessage;
+	public int getOriginalRemindBy() {
+		return _originalRemindBy;
 	}
 
-	public void setRequired(boolean required) {
-		_required = required;
+	@JSON
+	public int getFirstReminder() {
+		return _firstReminder;
 	}
 
-	public void setResponseMessage(String responseMessage) {
-		_responseMessage = responseMessage;
+	public void setFirstReminder(int firstReminder) {
+		_firstReminder = firstReminder;
+	}
+
+	@JSON
+	public int getSecondReminder() {
+		return _secondReminder;
 	}
 
 	public void setSecondReminder(int secondReminder) {
 		_secondReminder = secondReminder;
 	}
 
-	public void setStartDate(Date startDate) {
-		_columnBitmask = -1L;
+	@JSON
+	public boolean getRequired() {
+		return _required;
+	}
 
-		_startDate = startDate;
+	public boolean isRequired() {
+		return _required;
+	}
+
+	public void setRequired(boolean required) {
+		_required = required;
+	}
+
+	@JSON
+	public String getRequestMessage() {
+		if (_requestMessage == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _requestMessage;
+		}
+	}
+
+	public void setRequestMessage(String requestMessage) {
+		_requestMessage = requestMessage;
+	}
+
+	@JSON
+	public String getResponseMessage() {
+		if (_responseMessage == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _responseMessage;
+		}
+	}
+
+	public void setResponseMessage(String responseMessage) {
+		_responseMessage = responseMessage;
+	}
+
+	@JSON
+	public int getStatus() {
+		return _status;
 	}
 
 	public void setStatus(int status) {
@@ -894,90 +835,242 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		_status = status;
 	}
 
+	public int getOriginalStatus() {
+		return _originalStatus;
+	}
+
+	@JSON
+	public long getStatusByUserId() {
+		return _statusByUserId;
+	}
+
 	public void setStatusByUserId(long statusByUserId) {
 		_statusByUserId = statusByUserId;
 	}
 
-	public void setStatusByUserName(String statusByUserName) {
-		_statusByUserName = statusByUserName;
+	public String getStatusByUserUuid() throws SystemException {
+		return PortalUtil.getUserValue(getStatusByUserId(), "uuid",
+			_statusByUserUuid);
 	}
 
 	public void setStatusByUserUuid(String statusByUserUuid) {
 		_statusByUserUuid = statusByUserUuid;
 	}
 
+	@JSON
+	public String getStatusByUserName() {
+		if (_statusByUserName == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _statusByUserName;
+		}
+	}
+
+	public void setStatusByUserName(String statusByUserName) {
+		_statusByUserName = statusByUserName;
+	}
+
+	@JSON
+	public Date getStatusDate() {
+		return _statusDate;
+	}
+
 	public void setStatusDate(Date statusDate) {
 		_statusDate = statusDate;
 	}
 
-	public void setTitle(String title) {
-		_columnBitmask = -1L;
-
-		_title = title;
+	/**
+	 * @deprecated {@link #isApproved}
+	 */
+	public boolean getApproved() {
+		return isApproved();
 	}
 
-	public void setTitle(String title, Locale locale) {
-		setTitle(title, locale, LocaleUtil.getDefault());
-	}
-
-	public void setTitle(String title, Locale locale, Locale defaultLocale) {
-		String languageId = LocaleUtil.toLanguageId(locale);
-		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
-
-		if (Validator.isNotNull(title)) {
-			setTitle(LocalizationUtil.updateLocalization(getTitle(), "Title",
-					title, languageId, defaultLanguageId));
+	public boolean isApproved() {
+		if (getStatus() == WorkflowConstants.STATUS_APPROVED) {
+			return true;
 		}
 		else {
-			setTitle(LocalizationUtil.removeLocalization(getTitle(), "Title",
-					languageId));
+			return false;
 		}
 	}
 
-	public void setTitleCurrentLanguageId(String languageId) {
-		_titleCurrentLanguageId = languageId;
-	}
-
-	public void setTitleMap(Map<Locale, String> titleMap) {
-		setTitleMap(titleMap, LocaleUtil.getDefault());
-	}
-
-	public void setTitleMap(Map<Locale, String> titleMap, Locale defaultLocale) {
-		if (titleMap == null) {
-			return;
+	public boolean isDraft() {
+		if (getStatus() == WorkflowConstants.STATUS_DRAFT) {
+			return true;
 		}
-
-		Locale[] locales = LanguageUtil.getAvailableLocales();
-
-		for (Locale locale : locales) {
-			String title = titleMap.get(locale);
-
-			setTitle(title, locale, defaultLocale);
+		else {
+			return false;
 		}
 	}
 
-	public void setType(String type) {
-		_type = type;
+	public boolean isExpired() {
+		if (getStatus() == WorkflowConstants.STATUS_EXPIRED) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
-	public void setUserId(long userId) {
-		_userId = userId;
+	public boolean isPending() {
+		if (getStatus() == WorkflowConstants.STATUS_PENDING) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
-	public void setUserName(String userName) {
-		_userName = userName;
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
-	public void setUserUuid(String userUuid) {
-		_userUuid = userUuid;
-	}
-
-	public void setUuid(String uuid) {
-		if (_originalUuid == null) {
-			_originalUuid = _uuid;
+	@Override
+	public CalendarBooking toEscapedModel() {
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (CalendarBooking)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
 		}
 
-		_uuid = uuid;
+		return _escapedModelProxy;
+	}
+
+	@Override
+	public ExpandoBridge getExpandoBridge() {
+		if (_expandoBridge == null) {
+			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
+					CalendarBooking.class.getName(), getPrimaryKey());
+		}
+
+		return _expandoBridge;
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
+		getExpandoBridge().setAttributes(serviceContext);
+	}
+
+	@Override
+	public Object clone() {
+		CalendarBookingImpl calendarBookingImpl = new CalendarBookingImpl();
+
+		calendarBookingImpl.setUuid(getUuid());
+		calendarBookingImpl.setCalendarBookingId(getCalendarBookingId());
+		calendarBookingImpl.setGroupId(getGroupId());
+		calendarBookingImpl.setCompanyId(getCompanyId());
+		calendarBookingImpl.setUserId(getUserId());
+		calendarBookingImpl.setUserName(getUserName());
+		calendarBookingImpl.setCreateDate(getCreateDate());
+		calendarBookingImpl.setModifiedDate(getModifiedDate());
+		calendarBookingImpl.setCalendarId(getCalendarId());
+		calendarBookingImpl.setCalendarResourceId(getCalendarResourceId());
+		calendarBookingImpl.setParentCalendarBookingId(getParentCalendarBookingId());
+		calendarBookingImpl.setTitle(getTitle());
+		calendarBookingImpl.setDescription(getDescription());
+		calendarBookingImpl.setLocation(getLocation());
+		calendarBookingImpl.setType(getType());
+		calendarBookingImpl.setStartDate(getStartDate());
+		calendarBookingImpl.setEndDate(getEndDate());
+		calendarBookingImpl.setAllDay(getAllDay());
+		calendarBookingImpl.setRecurrence(getRecurrence());
+		calendarBookingImpl.setPriority(getPriority());
+		calendarBookingImpl.setOutOfOffice(getOutOfOffice());
+		calendarBookingImpl.setRemindBy(getRemindBy());
+		calendarBookingImpl.setFirstReminder(getFirstReminder());
+		calendarBookingImpl.setSecondReminder(getSecondReminder());
+		calendarBookingImpl.setRequired(getRequired());
+		calendarBookingImpl.setRequestMessage(getRequestMessage());
+		calendarBookingImpl.setResponseMessage(getResponseMessage());
+		calendarBookingImpl.setStatus(getStatus());
+		calendarBookingImpl.setStatusByUserId(getStatusByUserId());
+		calendarBookingImpl.setStatusByUserName(getStatusByUserName());
+		calendarBookingImpl.setStatusDate(getStatusDate());
+
+		calendarBookingImpl.resetOriginalValues();
+
+		return calendarBookingImpl;
+	}
+
+	public int compareTo(CalendarBooking calendarBooking) {
+		int value = 0;
+
+		value = DateUtil.compareTo(getStartDate(),
+				calendarBooking.getStartDate());
+
+		if (value != 0) {
+			return value;
+		}
+
+		value = getTitle().toLowerCase()
+					.compareTo(calendarBooking.getTitle().toLowerCase());
+
+		if (value != 0) {
+			return value;
+		}
+
+		return 0;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+
+		CalendarBooking calendarBooking = null;
+
+		try {
+			calendarBooking = (CalendarBooking)obj;
+		}
+		catch (ClassCastException cce) {
+			return false;
+		}
+
+		long primaryKey = calendarBooking.getPrimaryKey();
+
+		if (getPrimaryKey() == primaryKey) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	@Override
+	public int hashCode() {
+		return (int)getPrimaryKey();
+	}
+
+	@Override
+	public void resetOriginalValues() {
+		CalendarBookingModelImpl calendarBookingModelImpl = this;
+
+		calendarBookingModelImpl._originalUuid = calendarBookingModelImpl._uuid;
+
+		calendarBookingModelImpl._originalGroupId = calendarBookingModelImpl._groupId;
+
+		calendarBookingModelImpl._setOriginalGroupId = false;
+
+		calendarBookingModelImpl._originalCalendarId = calendarBookingModelImpl._calendarId;
+
+		calendarBookingModelImpl._setOriginalCalendarId = false;
+
+		calendarBookingModelImpl._originalCalendarResourceId = calendarBookingModelImpl._calendarResourceId;
+
+		calendarBookingModelImpl._setOriginalCalendarResourceId = false;
+
+		calendarBookingModelImpl._originalRemindBy = calendarBookingModelImpl._remindBy;
+
+		calendarBookingModelImpl._setOriginalRemindBy = false;
+
+		calendarBookingModelImpl._originalStatus = calendarBookingModelImpl._status;
+
+		calendarBookingModelImpl._setOriginalStatus = false;
+
+		calendarBookingModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -1142,17 +1235,6 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 
 		return calendarBookingCacheModel;
-	}
-
-	@Override
-	public CalendarBooking toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (CalendarBooking)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
-		}
-
-		return _escapedModelProxy;
 	}
 
 	@Override
@@ -1362,88 +1444,6 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 
 		return sb.toString();
 	}
-
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never modify or reference this class directly. All methods that expect a calendar booking model instance should use the {@link com.liferay.calendar.model.CalendarBooking} interface instead.
-	 */
-	public static final String TABLE_NAME = "CalendarBooking";
-
-	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "calendarBookingId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "calendarId", Types.BIGINT },
-			{ "calendarResourceId", Types.BIGINT },
-			{ "parentCalendarBookingId", Types.BIGINT },
-			{ "title", Types.VARCHAR },
-			{ "description", Types.VARCHAR },
-			{ "location", Types.VARCHAR },
-			{ "type_", Types.VARCHAR },
-			{ "startDate", Types.TIMESTAMP },
-			{ "endDate", Types.TIMESTAMP },
-			{ "allDay", Types.BOOLEAN },
-			{ "recurrence", Types.VARCHAR },
-			{ "priority", Types.INTEGER },
-			{ "outOfOffice", Types.BOOLEAN },
-			{ "remindBy", Types.INTEGER },
-			{ "firstReminder", Types.INTEGER },
-			{ "secondReminder", Types.INTEGER },
-			{ "required", Types.BOOLEAN },
-			{ "requestMessage", Types.VARCHAR },
-			{ "responseMessage", Types.VARCHAR },
-			{ "status", Types.INTEGER },
-			{ "statusByUserId", Types.BIGINT },
-			{ "statusByUserName", Types.VARCHAR },
-			{ "statusDate", Types.TIMESTAMP }
-		};
-
-	public static final String TABLE_SQL_CREATE = "create table CalendarBooking (uuid_ VARCHAR(75) null,calendarBookingId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,calendarId LONG,calendarResourceId LONG,parentCalendarBookingId LONG,title STRING null,description STRING null,location STRING null,type_ VARCHAR(75) null,startDate DATE null,endDate DATE null,allDay BOOLEAN,recurrence VARCHAR(75) null,priority INTEGER,outOfOffice BOOLEAN,remindBy INTEGER,firstReminder INTEGER,secondReminder INTEGER,required BOOLEAN,requestMessage VARCHAR(75) null,responseMessage VARCHAR(75) null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
-
-	public static final String TABLE_SQL_DROP = "drop table CalendarBooking";
-
-	public static final String ORDER_BY_JPQL = " ORDER BY calendarBooking.startDate ASC, calendarBooking.title ASC";
-
-	public static final String ORDER_BY_SQL = " ORDER BY CalendarBooking.startDate ASC, CalendarBooking.title ASC";
-
-	public static final String DATA_SOURCE = "liferayDataSource";
-
-	public static final String SESSION_FACTORY = "liferaySessionFactory";
-
-	public static final String TX_MANAGER = "liferayTransactionManager";
-
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.calendar.model.CalendarBooking"),
-			true);
-
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.calendar.model.CalendarBooking"),
-			true);
-
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.calendar.model.CalendarBooking"),
-			true);
-
-	public static long CALENDARID_COLUMN_BITMASK = 1L;
-
-	public static long CALENDARRESOURCEID_COLUMN_BITMASK = 2L;
-
-	public static long GROUPID_COLUMN_BITMASK = 4L;
-
-	public static long REMINDBY_COLUMN_BITMASK = 8L;
-
-	public static long STATUS_COLUMN_BITMASK = 16L;
-
-	public static long UUID_COLUMN_BITMASK = 32L;
-
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
-				"lock.expiration.time.com.liferay.calendar.model.CalendarBooking"));
 
 	private static ClassLoader _classLoader = CalendarBooking.class.getClassLoader();
 	private static Class<?>[] _escapedModelProxyInterfaces = new Class[] {

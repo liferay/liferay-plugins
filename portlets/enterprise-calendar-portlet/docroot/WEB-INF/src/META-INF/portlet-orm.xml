@@ -114,7 +114,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="resourceBlockId" />
-			<basic name="className" />
+			<basic name="classNameId" />
 			<basic name="classPK" />
 			<basic name="classUuid" />
 			<basic name="defaultCalendarId" />

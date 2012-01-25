@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
@@ -43,149 +44,6 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 	public CalendarResourceClp() {
 	}
 
-	@Override
-	public Object clone() {
-		CalendarResourceClp clone = new CalendarResourceClp();
-
-		clone.setUuid(getUuid());
-		clone.setCalendarResourceId(getCalendarResourceId());
-		clone.setGroupId(getGroupId());
-		clone.setCompanyId(getCompanyId());
-		clone.setUserId(getUserId());
-		clone.setUserName(getUserName());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setResourceBlockId(getResourceBlockId());
-		clone.setClassName(getClassName());
-		clone.setClassPK(getClassPK());
-		clone.setClassUuid(getClassUuid());
-		clone.setDefaultCalendarId(getDefaultCalendarId());
-		clone.setCode(getCode());
-		clone.setName(getName());
-		clone.setDescription(getDescription());
-		clone.setType(getType());
-		clone.setActive(getActive());
-
-		return clone;
-	}
-
-	public int compareTo(CalendarResource calendarResource) {
-		int value = 0;
-
-		value = getCode().toLowerCase()
-					.compareTo(calendarResource.getCode().toLowerCase());
-
-		if (value != 0) {
-			return value;
-		}
-
-		return 0;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (obj == null) {
-			return false;
-		}
-
-		CalendarResourceClp calendarResource = null;
-
-		try {
-			calendarResource = (CalendarResourceClp)obj;
-		}
-		catch (ClassCastException cce) {
-			return false;
-		}
-
-		long primaryKey = calendarResource.getPrimaryKey();
-
-		if (getPrimaryKey() == primaryKey) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-
-	public boolean getActive() {
-		return _active;
-	}
-
-	public long getCalendarResourceId() {
-		return _calendarResourceId;
-	}
-
-	public String getClassName() {
-		return _className;
-	}
-
-	public long getClassPK() {
-		return _classPK;
-	}
-
-	public String getClassUuid() {
-		return _classUuid;
-	}
-
-	public String getCode() {
-		return _code;
-	}
-
-	public long getCompanyId() {
-		return _companyId;
-	}
-
-	public Date getCreateDate() {
-		return _createDate;
-	}
-
-	public long getDefaultCalendarId() {
-		return _defaultCalendarId;
-	}
-
-	public String getDescription() {
-		return _description;
-	}
-
-	public String getDescription(Locale locale) {
-		String languageId = LocaleUtil.toLanguageId(locale);
-
-		return getDescription(languageId);
-	}
-
-	public String getDescription(Locale locale, boolean useDefault) {
-		String languageId = LocaleUtil.toLanguageId(locale);
-
-		return getDescription(languageId, useDefault);
-	}
-
-	public String getDescription(String languageId) {
-		return LocalizationUtil.getLocalization(getDescription(), languageId);
-	}
-
-	public String getDescription(String languageId, boolean useDefault) {
-		return LocalizationUtil.getLocalization(getDescription(), languageId,
-			useDefault);
-	}
-
-	public String getDescriptionCurrentLanguageId() {
-		return _descriptionCurrentLanguageId;
-	}
-
-	public String getDescriptionCurrentValue() {
-		Locale locale = getLocale(_descriptionCurrentLanguageId);
-
-		return getDescription(locale);
-	}
-
-	public Map<Locale, String> getDescriptionMap() {
-		return LocalizationUtil.getLocalizationMap(getDescription());
-	}
-
-	public long getGroupId() {
-		return _groupId;
-	}
-
 	public Class<?> getModelClass() {
 		return CalendarResource.class;
 	}
@@ -194,8 +52,148 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 		return CalendarResource.class.getName();
 	}
 
+	public long getPrimaryKey() {
+		return _calendarResourceId;
+	}
+
+	public void setPrimaryKey(long primaryKey) {
+		setCalendarResourceId(primaryKey);
+	}
+
+	public Serializable getPrimaryKeyObj() {
+		return new Long(_calendarResourceId);
+	}
+
+	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public String getUuid() {
+		return _uuid;
+	}
+
+	public void setUuid(String uuid) {
+		_uuid = uuid;
+	}
+
+	public long getCalendarResourceId() {
+		return _calendarResourceId;
+	}
+
+	public void setCalendarResourceId(long calendarResourceId) {
+		_calendarResourceId = calendarResourceId;
+	}
+
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
+	}
+
+	public long getUserId() {
+		return _userId;
+	}
+
+	public void setUserId(long userId) {
+		_userId = userId;
+	}
+
+	public String getUserUuid() throws SystemException {
+		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
+	}
+
+	public void setUserUuid(String userUuid) {
+		_userUuid = userUuid;
+	}
+
+	public String getUserName() {
+		return _userName;
+	}
+
+	public void setUserName(String userName) {
+		_userName = userName;
+	}
+
+	public Date getCreateDate() {
+		return _createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		_createDate = createDate;
+	}
+
 	public Date getModifiedDate() {
 		return _modifiedDate;
+	}
+
+	public void setModifiedDate(Date modifiedDate) {
+		_modifiedDate = modifiedDate;
+	}
+
+	public long getResourceBlockId() {
+		return _resourceBlockId;
+	}
+
+	public void setResourceBlockId(long resourceBlockId) {
+		_resourceBlockId = resourceBlockId;
+	}
+
+	public String getClassName() {
+		if (getClassNameId() <= 0) {
+			return StringPool.BLANK;
+		}
+
+		return PortalUtil.getClassName(getClassNameId());
+	}
+
+	public long getClassNameId() {
+		return _classNameId;
+	}
+
+	public void setClassNameId(long classNameId) {
+		_classNameId = classNameId;
+	}
+
+	public long getClassPK() {
+		return _classPK;
+	}
+
+	public void setClassPK(long classPK) {
+		_classPK = classPK;
+	}
+
+	public String getClassUuid() {
+		return _classUuid;
+	}
+
+	public void setClassUuid(String classUuid) {
+		_classUuid = classUuid;
+	}
+
+	public long getDefaultCalendarId() {
+		return _defaultCalendarId;
+	}
+
+	public void setDefaultCalendarId(long defaultCalendarId) {
+		_defaultCalendarId = defaultCalendarId;
+	}
+
+	public String getCode() {
+		return _code;
+	}
+
+	public void setCode(String code) {
+		_code = code;
 	}
 
 	public String getName() {
@@ -237,90 +235,104 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 		return LocalizationUtil.getLocalizationMap(getName());
 	}
 
-	public long getPrimaryKey() {
-		return _calendarResourceId;
+	public void setName(String name) {
+		_name = name;
 	}
 
-	public Serializable getPrimaryKeyObj() {
-		return new Long(_calendarResourceId);
+	public void setName(String name, Locale locale) {
+		setName(name, locale, LocaleUtil.getDefault());
 	}
 
-	public long getResourceBlockId() {
-		return _resourceBlockId;
-	}
+	public void setName(String name, Locale locale, Locale defaultLocale) {
+		String languageId = LocaleUtil.toLanguageId(locale);
+		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 
-	public String getType() {
-		return _type;
-	}
-
-	public long getUserId() {
-		return _userId;
-	}
-
-	public String getUserName() {
-		return _userName;
-	}
-
-	public String getUserUuid() throws SystemException {
-		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
-	}
-
-	public String getUuid() {
-		return _uuid;
-	}
-
-	@Override
-	public int hashCode() {
-		return (int)getPrimaryKey();
-	}
-
-	public boolean isActive() {
-		return _active;
-	}
-
-	public void persist() throws SystemException {
-		if (this.isNew()) {
-			CalendarResourceLocalServiceUtil.addCalendarResource(this);
+		if (Validator.isNotNull(name)) {
+			setName(LocalizationUtil.updateLocalization(getName(), "Name",
+					name, languageId, defaultLanguageId));
 		}
 		else {
-			CalendarResourceLocalServiceUtil.updateCalendarResource(this);
+			setName(LocalizationUtil.removeLocalization(getName(), "Name",
+					languageId));
 		}
 	}
 
-	public void setActive(boolean active) {
-		_active = active;
+	public void setNameCurrentLanguageId(String languageId) {
+		_nameCurrentLanguageId = languageId;
 	}
 
-	public void setCalendarResourceId(long calendarResourceId) {
-		_calendarResourceId = calendarResourceId;
+	public void setNameMap(Map<Locale, String> nameMap) {
+		setNameMap(nameMap, LocaleUtil.getDefault());
 	}
 
-	public void setClassName(String className) {
-		_className = className;
+	public void setNameMap(Map<Locale, String> nameMap, Locale defaultLocale) {
+		if (nameMap == null) {
+			return;
+		}
+
+		ClassLoader portalClassLoader = PortalClassLoaderUtil.getClassLoader();
+
+		Thread currentThread = Thread.currentThread();
+
+		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+
+		try {
+			if (contextClassLoader != portalClassLoader) {
+				currentThread.setContextClassLoader(portalClassLoader);
+			}
+
+			Locale[] locales = LanguageUtil.getAvailableLocales();
+
+			for (Locale locale : locales) {
+				String name = nameMap.get(locale);
+
+				setName(name, locale, defaultLocale);
+			}
+		}
+		finally {
+			if (contextClassLoader != portalClassLoader) {
+				currentThread.setContextClassLoader(contextClassLoader);
+			}
+		}
 	}
 
-	public void setClassPK(long classPK) {
-		_classPK = classPK;
+	public String getDescription() {
+		return _description;
 	}
 
-	public void setClassUuid(String classUuid) {
-		_classUuid = classUuid;
+	public String getDescription(Locale locale) {
+		String languageId = LocaleUtil.toLanguageId(locale);
+
+		return getDescription(languageId);
 	}
 
-	public void setCode(String code) {
-		_code = code;
+	public String getDescription(Locale locale, boolean useDefault) {
+		String languageId = LocaleUtil.toLanguageId(locale);
+
+		return getDescription(languageId, useDefault);
 	}
 
-	public void setCompanyId(long companyId) {
-		_companyId = companyId;
+	public String getDescription(String languageId) {
+		return LocalizationUtil.getLocalization(getDescription(), languageId);
 	}
 
-	public void setCreateDate(Date createDate) {
-		_createDate = createDate;
+	public String getDescription(String languageId, boolean useDefault) {
+		return LocalizationUtil.getLocalization(getDescription(), languageId,
+			useDefault);
 	}
 
-	public void setDefaultCalendarId(long defaultCalendarId) {
-		_defaultCalendarId = defaultCalendarId;
+	public String getDescriptionCurrentLanguageId() {
+		return _descriptionCurrentLanguageId;
+	}
+
+	public String getDescriptionCurrentValue() {
+		Locale locale = getLocale(_descriptionCurrentLanguageId);
+
+		return getDescription(locale);
+	}
+
+	public Map<Locale, String> getDescriptionMap() {
+		return LocalizationUtil.getLocalizationMap(getDescription());
 	}
 
 	public void setDescription(String description) {
@@ -387,105 +399,33 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 		}
 	}
 
-	public void setGroupId(long groupId) {
-		_groupId = groupId;
-	}
-
-	public void setModifiedDate(Date modifiedDate) {
-		_modifiedDate = modifiedDate;
-	}
-
-	public void setName(String name) {
-		_name = name;
-	}
-
-	public void setName(String name, Locale locale) {
-		setName(name, locale, LocaleUtil.getDefault());
-	}
-
-	public void setName(String name, Locale locale, Locale defaultLocale) {
-		String languageId = LocaleUtil.toLanguageId(locale);
-		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
-
-		if (Validator.isNotNull(name)) {
-			setName(LocalizationUtil.updateLocalization(getName(), "Name",
-					name, languageId, defaultLanguageId));
-		}
-		else {
-			setName(LocalizationUtil.removeLocalization(getName(), "Name",
-					languageId));
-		}
-	}
-
-	public void setNameCurrentLanguageId(String languageId) {
-		_nameCurrentLanguageId = languageId;
-	}
-
-	public void setNameMap(Map<Locale, String> nameMap) {
-		setNameMap(nameMap, LocaleUtil.getDefault());
-	}
-
-	public void setNameMap(Map<Locale, String> nameMap, Locale defaultLocale) {
-		if (nameMap == null) {
-			return;
-		}
-
-		ClassLoader portalClassLoader = PortalClassLoaderUtil.getClassLoader();
-
-		Thread currentThread = Thread.currentThread();
-
-		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
-
-		try {
-			if (contextClassLoader != portalClassLoader) {
-				currentThread.setContextClassLoader(portalClassLoader);
-			}
-
-			Locale[] locales = LanguageUtil.getAvailableLocales();
-
-			for (Locale locale : locales) {
-				String name = nameMap.get(locale);
-
-				setName(name, locale, defaultLocale);
-			}
-		}
-		finally {
-			if (contextClassLoader != portalClassLoader) {
-				currentThread.setContextClassLoader(contextClassLoader);
-			}
-		}
-	}
-
-	public void setPrimaryKey(long primaryKey) {
-		setCalendarResourceId(primaryKey);
-	}
-
-	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey(((Long)primaryKeyObj).longValue());
-	}
-
-	public void setResourceBlockId(long resourceBlockId) {
-		_resourceBlockId = resourceBlockId;
+	public String getType() {
+		return _type;
 	}
 
 	public void setType(String type) {
 		_type = type;
 	}
 
-	public void setUserId(long userId) {
-		_userId = userId;
+	public boolean getActive() {
+		return _active;
 	}
 
-	public void setUserName(String userName) {
-		_userName = userName;
+	public boolean isActive() {
+		return _active;
 	}
 
-	public void setUserUuid(String userUuid) {
-		_userUuid = userUuid;
+	public void setActive(boolean active) {
+		_active = active;
 	}
 
-	public void setUuid(String uuid) {
-		_uuid = uuid;
+	public void persist() throws SystemException {
+		if (this.isNew()) {
+			CalendarResourceLocalServiceUtil.addCalendarResource(this);
+		}
+		else {
+			CalendarResourceLocalServiceUtil.updateCalendarResource(this);
+		}
 	}
 
 	@Override
@@ -493,6 +433,75 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 		return (CalendarResource)Proxy.newProxyInstance(CalendarResource.class.getClassLoader(),
 			new Class[] { CalendarResource.class },
 			new AutoEscapeBeanHandler(this));
+	}
+
+	@Override
+	public Object clone() {
+		CalendarResourceClp clone = new CalendarResourceClp();
+
+		clone.setUuid(getUuid());
+		clone.setCalendarResourceId(getCalendarResourceId());
+		clone.setGroupId(getGroupId());
+		clone.setCompanyId(getCompanyId());
+		clone.setUserId(getUserId());
+		clone.setUserName(getUserName());
+		clone.setCreateDate(getCreateDate());
+		clone.setModifiedDate(getModifiedDate());
+		clone.setResourceBlockId(getResourceBlockId());
+		clone.setClassNameId(getClassNameId());
+		clone.setClassPK(getClassPK());
+		clone.setClassUuid(getClassUuid());
+		clone.setDefaultCalendarId(getDefaultCalendarId());
+		clone.setCode(getCode());
+		clone.setName(getName());
+		clone.setDescription(getDescription());
+		clone.setType(getType());
+		clone.setActive(getActive());
+
+		return clone;
+	}
+
+	public int compareTo(CalendarResource calendarResource) {
+		int value = 0;
+
+		value = getCode().toLowerCase()
+					.compareTo(calendarResource.getCode().toLowerCase());
+
+		if (value != 0) {
+			return value;
+		}
+
+		return 0;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+
+		CalendarResourceClp calendarResource = null;
+
+		try {
+			calendarResource = (CalendarResourceClp)obj;
+		}
+		catch (ClassCastException cce) {
+			return false;
+		}
+
+		long primaryKey = calendarResource.getPrimaryKey();
+
+		if (getPrimaryKey() == primaryKey) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	@Override
+	public int hashCode() {
+		return (int)getPrimaryKey();
 	}
 
 	@Override
@@ -517,8 +526,8 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 		sb.append(getModifiedDate());
 		sb.append(", resourceBlockId=");
 		sb.append(getResourceBlockId());
-		sb.append(", className=");
-		sb.append(getClassName());
+		sb.append(", classNameId=");
+		sb.append(getClassNameId());
 		sb.append(", classPK=");
 		sb.append(getClassPK());
 		sb.append(", classUuid=");
@@ -584,8 +593,8 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 		sb.append(getResourceBlockId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>className</column-name><column-value><![CDATA[");
-		sb.append(getClassName());
+			"<column><column-name>classNameId</column-name><column-value><![CDATA[");
+		sb.append(getClassNameId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>classPK</column-name><column-value><![CDATA[");
@@ -635,7 +644,7 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _resourceBlockId;
-	private String _className;
+	private long _classNameId;
 	private long _classPK;
 	private String _classUuid;
 	private long _defaultCalendarId;

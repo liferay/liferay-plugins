@@ -46,20 +46,6 @@ public class CalendarResourceLocalServiceWrapper
 		return _calendarResourceLocalService.addCalendarResource(calendarResource);
 	}
 
-	public com.liferay.calendar.model.CalendarResource addCalendarResource(
-		long userId, long groupId, java.lang.String className, long classPK,
-		java.lang.String classUuid, java.lang.String code,
-		java.util.Map<java.util.Locale, java.lang.String> nameMap,
-		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		java.lang.String type, boolean active,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _calendarResourceLocalService.addCalendarResource(userId,
-			groupId, className, classPK, classUuid, code, nameMap,
-			descriptionMap, type, active, serviceContext);
-	}
-
 	/**
 	* Creates a new calendar resource with the primary key. Does not add the calendar resource to the database.
 	*
@@ -69,6 +55,19 @@ public class CalendarResourceLocalServiceWrapper
 	public com.liferay.calendar.model.CalendarResource createCalendarResource(
 		long calendarResourceId) {
 		return _calendarResourceLocalService.createCalendarResource(calendarResourceId);
+	}
+
+	/**
+	* Deletes the calendar resource with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param calendarResourceId the primary key of the calendar resource
+	* @throws PortalException if a calendar resource with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public void deleteCalendarResource(long calendarResourceId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_calendarResourceLocalService.deleteCalendarResource(calendarResourceId);
 	}
 
 	/**
@@ -83,19 +82,6 @@ public class CalendarResourceLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_calendarResourceLocalService.deleteCalendarResource(calendarResource);
-	}
-
-	/**
-	* Deletes the calendar resource with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param calendarResourceId the primary key of the calendar resource
-	* @throws PortalException if a calendar resource with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public void deleteCalendarResource(long calendarResourceId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		_calendarResourceLocalService.deleteCalendarResource(calendarResourceId);
 	}
 
 	/**
@@ -177,15 +163,6 @@ public class CalendarResourceLocalServiceWrapper
 	}
 
 	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public java.lang.String getBeanIdentifier() {
-		return _calendarResourceLocalService.getBeanIdentifier();
-	}
-
-	/**
 	* Returns the calendar resource with the primary key.
 	*
 	* @param calendarResourceId the primary key of the calendar resource
@@ -198,6 +175,13 @@ public class CalendarResourceLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _calendarResourceLocalService.getCalendarResource(calendarResourceId);
+	}
+
+	public com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResourceLocalService.getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -246,46 +230,6 @@ public class CalendarResourceLocalServiceWrapper
 		return _calendarResourceLocalService.getCalendarResourcesCount();
 	}
 
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _calendarResourceLocalService.getPersistedModel(primaryKeyObj);
-	}
-
-	/**
-	 * @deprecated Renamed to {@link #getWrappedService}
-	 */
-	public CalendarResourceLocalService getWrappedCalendarResourceLocalService() {
-		return _calendarResourceLocalService;
-	}
-
-	public CalendarResourceLocalService getWrappedService() {
-		return _calendarResourceLocalService;
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_calendarResourceLocalService.setBeanIdentifier(beanIdentifier);
-	}
-
-	/**
-	 * @deprecated Renamed to {@link #setWrappedService}
-	 */
-	public void setWrappedCalendarResourceLocalService(
-		CalendarResourceLocalService calendarResourceLocalService) {
-		_calendarResourceLocalService = calendarResourceLocalService;
-	}
-
-	public void setWrappedService(
-		CalendarResourceLocalService calendarResourceLocalService) {
-		_calendarResourceLocalService = calendarResourceLocalService;
-	}
-
 	/**
 	* Updates the calendar resource in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
@@ -315,6 +259,38 @@ public class CalendarResourceLocalServiceWrapper
 			merge);
 	}
 
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _calendarResourceLocalService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_calendarResourceLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public com.liferay.calendar.model.CalendarResource addCalendarResource(
+		long userId, long groupId, java.lang.String className, long classPK,
+		java.lang.String classUuid, java.lang.String code,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		java.lang.String type, boolean active,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResourceLocalService.addCalendarResource(userId,
+			groupId, className, classPK, classUuid, code, nameMap,
+			descriptionMap, type, active, serviceContext);
+	}
+
 	public com.liferay.calendar.model.CalendarResource updateCalendarResource(
 		long calendarResourceId, java.lang.String code,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
@@ -325,6 +301,30 @@ public class CalendarResourceLocalServiceWrapper
 			com.liferay.portal.kernel.exception.SystemException {
 		return _calendarResourceLocalService.updateCalendarResource(calendarResourceId,
 			code, nameMap, descriptionMap, type, active, serviceContext);
+	}
+
+	/**
+	 * @deprecated Renamed to {@link #getWrappedService}
+	 */
+	public CalendarResourceLocalService getWrappedCalendarResourceLocalService() {
+		return _calendarResourceLocalService;
+	}
+
+	/**
+	 * @deprecated Renamed to {@link #setWrappedService}
+	 */
+	public void setWrappedCalendarResourceLocalService(
+		CalendarResourceLocalService calendarResourceLocalService) {
+		_calendarResourceLocalService = calendarResourceLocalService;
+	}
+
+	public CalendarResourceLocalService getWrappedService() {
+		return _calendarResourceLocalService;
+	}
+
+	public void setWrappedService(
+		CalendarResourceLocalService calendarResourceLocalService) {
+		_calendarResourceLocalService = calendarResourceLocalService;
 	}
 
 	private CalendarResourceLocalService _calendarResourceLocalService;

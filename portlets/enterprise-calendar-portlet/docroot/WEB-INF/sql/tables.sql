@@ -59,7 +59,7 @@ create table CalendarResource (
 	createDate DATE null,
 	modifiedDate DATE null,
 	resourceBlockId LONG,
-	className VARCHAR(75) null,
+	classNameId LONG,
 	classPK LONG,
 	classUuid VARCHAR(75) null,
 	defaultCalendarId LONG,

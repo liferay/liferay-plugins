@@ -52,10 +52,6 @@ public class CalendarBookingLocalServiceUtil {
 		return getService().addCalendarBooking(calendarBooking);
 	}
 
-	public static void clearService() {
-		_service = null;
-	}
-
 	/**
 	* Creates a new calendar booking with the primary key. Does not add the calendar booking to the database.
 	*
@@ -65,18 +61,6 @@ public class CalendarBookingLocalServiceUtil {
 	public static com.liferay.calendar.model.CalendarBooking createCalendarBooking(
 		long calendarBookingId) {
 		return getService().createCalendarBooking(calendarBookingId);
-	}
-
-	/**
-	* Deletes the calendar booking from the database. Also notifies the appropriate model listeners.
-	*
-	* @param calendarBooking the calendar booking
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void deleteCalendarBooking(
-		com.liferay.calendar.model.CalendarBooking calendarBooking)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteCalendarBooking(calendarBooking);
 	}
 
 	/**
@@ -90,6 +74,18 @@ public class CalendarBookingLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteCalendarBooking(calendarBookingId);
+	}
+
+	/**
+	* Deletes the calendar booking from the database. Also notifies the appropriate model listeners.
+	*
+	* @param calendarBooking the calendar booking
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void deleteCalendarBooking(
+		com.liferay.calendar.model.CalendarBooking calendarBooking)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getService().deleteCalendarBooking(calendarBooking);
 	}
 
 	/**
@@ -170,15 +166,6 @@ public class CalendarBookingLocalServiceUtil {
 	}
 
 	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
-	}
-
-	/**
 	* Returns the calendar booking with the primary key.
 	*
 	* @param calendarBookingId the primary key of the calendar booking
@@ -191,6 +178,13 @@ public class CalendarBookingLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getCalendarBooking(calendarBookingId);
+	}
+
+	public static com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -238,45 +232,6 @@ public class CalendarBookingLocalServiceUtil {
 		return getService().getCalendarBookingsCount();
 	}
 
-	public static com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getPersistedModel(primaryKeyObj);
-	}
-
-	public static CalendarBookingLocalService getService() {
-		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					CalendarBookingLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
-
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					CalendarBookingLocalService.class.getName(),
-					portletClassLoader);
-
-			_service = new CalendarBookingLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
-
-			ReferenceRegistry.registerReference(CalendarBookingLocalServiceUtil.class,
-				"_service");
-			MethodCache.remove(CalendarBookingLocalService.class);
-		}
-
-		return _service;
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
-		getService().setBeanIdentifier(beanIdentifier);
-	}
-
 	/**
 	* Updates the calendar booking in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
@@ -303,6 +258,51 @@ public class CalendarBookingLocalServiceUtil {
 		boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateCalendarBooking(calendarBooking, merge);
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
+		getService().setBeanIdentifier(beanIdentifier);
+	}
+
+	public static void clearService() {
+		_service = null;
+	}
+
+	public static CalendarBookingLocalService getService() {
+		if (_service == null) {
+			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+					CalendarBookingLocalService.class.getName());
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+					"portletClassLoader");
+
+			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
+					CalendarBookingLocalService.class.getName(),
+					portletClassLoader);
+
+			_service = new CalendarBookingLocalServiceClp(classLoaderProxy);
+
+			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(CalendarBookingLocalServiceUtil.class,
+				"_service");
+			MethodCache.remove(CalendarBookingLocalService.class);
+		}
+
+		return _service;
 	}
 
 	public void setService(CalendarBookingLocalService service) {
