@@ -29,14 +29,6 @@ public class HibernateUtil {
 
 	public static final String COUNT_COLUMN_NAME = "COUNT_VALUE";
 
-	public static String getCountColumnName() {
-		return COUNT_COLUMN_NAME;
-	}
-
-	public static SessionFactory getSessionFactory() {
-		return _instance._sessionFactory;
-	}
-
 	public static void closeSession(Session session) {
 		try {
 			if ((session != null) && (session.isOpen())) {
@@ -46,6 +38,14 @@ public class HibernateUtil {
 		catch (HibernateException he) {
 			_log.error(he.getMessage());
 		}
+	}
+
+	public static String getCountColumnName() {
+		return COUNT_COLUMN_NAME;
+	}
+
+	public static SessionFactory getSessionFactory() {
+		return _instance._sessionFactory;
 	}
 
 	public static Session openSession() throws HibernateException {

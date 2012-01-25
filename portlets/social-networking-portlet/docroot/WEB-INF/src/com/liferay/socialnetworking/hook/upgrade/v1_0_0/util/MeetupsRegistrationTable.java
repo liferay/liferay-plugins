@@ -21,8 +21,6 @@ import java.sql.Types;
  */
 public class MeetupsRegistrationTable {
 
-	public static final String TABLE_NAME = "SN_MeetupsRegistration";
-
 	public static final Object[][] TABLE_COLUMNS = {
 		{"meetupsRegistrationId", new Integer(Types.BIGINT)},
 		{"companyId", new Integer(Types.BIGINT)},
@@ -34,6 +32,8 @@ public class MeetupsRegistrationTable {
 		{"status", new Integer(Types.INTEGER)},
 		{"comments", new Integer(Types.VARCHAR)}
 	};
+
+	public static final String TABLE_NAME = "SN_MeetupsRegistration";
 
 	public static final String TABLE_SQL_CREATE = "create table SN_MeetupsRegistration (meetupsRegistrationId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,meetupsEntryId LONG,status INTEGER,comments STRING null)";
 

@@ -26,11 +26,11 @@ import com.liferay.util.portlet.PortletProps;
 	public static final String DEFAULT_ACCOUNTS = PortletProps.get(
 		PortletPropsKeys.DEFAULT_ACCOUNTS);
 
+	public static final int[] INCOMING_PORTS = StringUtil.split(
+			PortletProps.get(PortletPropsKeys.INCOMING_PORTS), 0);
+
 	public static final boolean JAVAMAIL_DEBUG = GetterUtil.getBoolean(
 		PortletProps.get(PortletPropsKeys.JAVAMAIL_DEBUG));
-
-	public static final int[] INCOMING_PORTS = StringUtil.split(
-		PortletProps.get(PortletPropsKeys.INCOMING_PORTS), 0);
 
 	public static final int MESSAGES_SYNC_COUNT = GetterUtil.getInteger(
 		PortletProps.get(PortletPropsKeys.MESSAGES_SYNC_COUNT));
