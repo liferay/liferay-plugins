@@ -21,8 +21,6 @@ import java.sql.Types;
  */
 public class KBTemplateTable {
 
-	public static final String TABLE_NAME = "KBTemplate";
-
 	public static final Object[][] TABLE_COLUMNS = {
 		{"uuid_", Types.VARCHAR},
 		{"kbTemplateId", Types.BIGINT},
@@ -37,6 +35,8 @@ public class KBTemplateTable {
 		{"engineType", Types.INTEGER},
 		{"cacheable", Types.BOOLEAN}
 	};
+
+	public static final String TABLE_NAME = "KBTemplate";
 
 	public static final String TABLE_SQL_CREATE = "create table KBTemplate (uuid_ VARCHAR(75) null,kbTemplateId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,title STRING null,content TEXT null,engineType INTEGER,cacheable BOOLEAN)";
 

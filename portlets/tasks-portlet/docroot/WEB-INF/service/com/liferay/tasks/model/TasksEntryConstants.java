@@ -19,6 +19,11 @@ package com.liferay.tasks.model;
  */
 public class TasksEntryConstants {
 
+	public static final int[] PRIORITIES = {
+		TasksEntryConstants.PRIORITY_HIGH, TasksEntryConstants.PRIORITY_NORMAL,
+		TasksEntryConstants.PRIORITY_LOW
+	};
+
 	public static final int PRIORITY_HIGH = 1;
 
 	public static final String PRIORITY_HIGH_LABEL = "high";
@@ -30,10 +35,6 @@ public class TasksEntryConstants {
 	public static final int PRIORITY_NORMAL = 2;
 
 	public static final String PRIORITY_NORMAL_LABEL = "normal";
-
-	public static final int[] PRIORITIES = {
-		PRIORITY_HIGH, PRIORITY_NORMAL, PRIORITY_LOW
-	};
 
 	public static final int STATUS_ALL = 0;
 

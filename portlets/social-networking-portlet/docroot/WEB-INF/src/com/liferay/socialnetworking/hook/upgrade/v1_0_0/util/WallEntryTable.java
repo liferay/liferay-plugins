@@ -21,8 +21,6 @@ import java.sql.Types;
  */
 public class WallEntryTable {
 
-	public static final String TABLE_NAME = "SN_WallEntry";
-
 	public static final Object[][] TABLE_COLUMNS = {
 		{"wallEntryId", new Integer(Types.BIGINT)},
 		{"groupId", new Integer(Types.BIGINT)},
@@ -33,6 +31,8 @@ public class WallEntryTable {
 		{"modifiedDate", new Integer(Types.TIMESTAMP)},
 		{"comments", new Integer(Types.VARCHAR)}
 	};
+
+	public static final String TABLE_NAME = "SN_WallEntry";
 
 	public static final String TABLE_SQL_CREATE = "create table SN_WallEntry (wallEntryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,comments STRING null)";
 

@@ -161,22 +161,6 @@ public class ShindigUtil {
 	}
 
 	public static com.liferay.opensocial.model.Gadget getGadget(
-			String portletName)
-		throws Exception {
-
-		int pos = portletName.indexOf(StringPool.UNDERLINE);
-
-		String uuid = GetterUtil.getString(portletName.substring(pos + 1));
-
-		uuid = PortalUUIDUtil.fromJsSafeUuid(uuid);
-
-		com.liferay.opensocial.model.Gadget gadget =
-			GadgetLocalServiceUtil.getGadget(uuid);
-
-		return gadget;
-	}
-
-	public static com.liferay.opensocial.model.Gadget getGadget(
 			PortletPreferences portletPreferences)
 		throws Exception {
 
@@ -201,6 +185,22 @@ public class ShindigUtil {
 
 		gadget.setName(modulePrefs.getTitle());
 		gadget.setUrl(url);
+
+		return gadget;
+	}
+
+	public static com.liferay.opensocial.model.Gadget getGadget(
+			String portletName)
+		throws Exception {
+
+		int pos = portletName.indexOf(StringPool.UNDERLINE);
+
+		String uuid = GetterUtil.getString(portletName.substring(pos + 1));
+
+		uuid = PortalUUIDUtil.fromJsSafeUuid(uuid);
+
+		com.liferay.opensocial.model.Gadget gadget =
+			GadgetLocalServiceUtil.getGadget(uuid);
 
 		return gadget;
 	}
@@ -339,18 +339,6 @@ public class ShindigUtil {
 		return _TABLE_OPEN_SOCIAL;
 	}
 
-	public static boolean isContentValid(String content) {
-		try {
-			new GadgetSpec(null, content);
-
-			return true;
-		}
-		catch (Exception e) {
-		}
-
-		return false;
-	}
-
 	public static boolean hasUserPrefs(GadgetSpec gadgetSpec) throws Exception {
 		if (gadgetSpec == null) {
 			return false;
@@ -370,6 +358,18 @@ public class ShindigUtil {
 			if (userPref.getDataType() != UserPref.DataType.HIDDEN) {
 				return true;
 			}
+		}
+
+		return false;
+	}
+
+	public static boolean isContentValid(String content) {
+		try {
+			new GadgetSpec(null, content);
+
+			return true;
+		}
+		catch (Exception e) {
 		}
 
 		return false;
