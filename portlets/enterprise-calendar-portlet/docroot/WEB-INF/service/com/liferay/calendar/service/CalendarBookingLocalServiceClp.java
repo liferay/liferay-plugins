@@ -91,6 +91,33 @@ public class CalendarBookingLocalServiceClp
 
 		_setBeanIdentifierMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
+
+		_addCalendarBookingMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addCalendarBooking", long.class, long.class, long.class,
+				java.util.Map.class, java.util.Map.class, java.util.Map.class,
+				java.lang.String.class, int.class, int.class, int.class,
+				int.class, int.class, int.class, int.class, int.class,
+				int.class, int.class, boolean.class, java.lang.String.class,
+				int.class, boolean.class, int.class, int.class, int.class,
+				boolean.class, java.lang.String.class, java.lang.String.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_deleteCalendarBookingsMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteCalendarBookings", long.class);
+
+		_updateCalendarBookingMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateCalendarBooking", long.class, long.class, long.class,
+				java.util.Map.class, java.util.Map.class, java.util.Map.class,
+				java.lang.String.class, int.class, int.class, int.class,
+				int.class, int.class, int.class, int.class, int.class,
+				int.class, int.class, boolean.class, java.lang.String.class,
+				int.class, boolean.class, int.class, int.class, int.class,
+				boolean.class, java.lang.String.class, java.lang.String.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_updateStatusMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateStatus", long.class, long.class, int.class,
+				com.liferay.portal.service.ServiceContext.class);
 	}
 
 	public com.liferay.calendar.model.CalendarBooking addCalendarBooking(
@@ -174,7 +201,8 @@ public class CalendarBookingLocalServiceClp
 
 	public void deleteCalendarBooking(
 		com.liferay.calendar.model.CalendarBooking calendarBooking)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteCalendarBookingMethodKey3,
 				ClpSerializer.translateInput(calendarBooking));
 
@@ -182,6 +210,10 @@ public class CalendarBookingLocalServiceClp
 			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -591,6 +623,181 @@ public class CalendarBookingLocalServiceClp
 		}
 	}
 
+	public com.liferay.calendar.model.CalendarBooking addCalendarBooking(
+		long userId, long calendarId, long parentCalendarBookingId,
+		java.util.Map<java.util.Locale, java.lang.String> titleMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		java.util.Map<java.util.Locale, java.lang.String> locationMap,
+		java.lang.String type, int startDateMonth, int startDateDay,
+		int startDateYear, int startDateHour, int startDateMinute,
+		int endDateMonth, int endDateDay, int endDateYear, int endDateHour,
+		int endDateMinute, boolean allDay, java.lang.String recurrence,
+		int priority, boolean outOfOffice, int remindBy, int firstReminder,
+		int secondReminder, boolean required, java.lang.String requestMessage,
+		java.lang.String responseMessage,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_addCalendarBookingMethodKey18,
+				userId, calendarId, parentCalendarBookingId,
+				ClpSerializer.translateInput(titleMap),
+				ClpSerializer.translateInput(descriptionMap),
+				ClpSerializer.translateInput(locationMap),
+				ClpSerializer.translateInput(type), startDateMonth,
+				startDateDay, startDateYear, startDateHour, startDateMinute,
+				endDateMonth, endDateDay, endDateYear, endDateHour,
+				endDateMinute, allDay,
+				ClpSerializer.translateInput(recurrence), priority,
+				outOfOffice, remindBy, firstReminder, secondReminder, required,
+				ClpSerializer.translateInput(requestMessage),
+				ClpSerializer.translateInput(responseMessage),
+				ClpSerializer.translateInput(serviceContext));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.calendar.model.CalendarBooking)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public void deleteCalendarBookings(long calendarId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		MethodHandler methodHandler = new MethodHandler(_deleteCalendarBookingsMethodKey19,
+				calendarId);
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	public com.liferay.calendar.model.CalendarBooking updateCalendarBooking(
+		long userId, long calendarBookingId, long calendarId,
+		java.util.Map<java.util.Locale, java.lang.String> titleMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		java.util.Map<java.util.Locale, java.lang.String> locationMap,
+		java.lang.String type, int startDateMonth, int startDateDay,
+		int startDateYear, int startDateHour, int startDateMinute,
+		int endDateMonth, int endDateDay, int endDateYear, int endDateHour,
+		int endDateMinute, boolean allDay, java.lang.String recurrence,
+		int priority, boolean outOfOffice, int remindBy, int firstReminder,
+		int secondReminder, boolean required, java.lang.String requestMessage,
+		java.lang.String responseMessage,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_updateCalendarBookingMethodKey20,
+				userId, calendarBookingId, calendarId,
+				ClpSerializer.translateInput(titleMap),
+				ClpSerializer.translateInput(descriptionMap),
+				ClpSerializer.translateInput(locationMap),
+				ClpSerializer.translateInput(type), startDateMonth,
+				startDateDay, startDateYear, startDateHour, startDateMinute,
+				endDateMonth, endDateDay, endDateYear, endDateHour,
+				endDateMinute, allDay,
+				ClpSerializer.translateInput(recurrence), priority,
+				outOfOffice, remindBy, firstReminder, secondReminder, required,
+				ClpSerializer.translateInput(requestMessage),
+				ClpSerializer.translateInput(responseMessage),
+				ClpSerializer.translateInput(serviceContext));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.calendar.model.CalendarBooking)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public com.liferay.calendar.model.CalendarBooking updateStatus(
+		long userId, long calendarBookingId, int status,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_updateStatusMethodKey21,
+				userId, calendarBookingId, status,
+				ClpSerializer.translateInput(serviceContext));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.calendar.model.CalendarBooking)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public ClassLoaderProxy getClassLoaderProxy() {
 		return _classLoaderProxy;
 	}
@@ -614,4 +821,8 @@ public class CalendarBookingLocalServiceClp
 	private MethodKey _updateCalendarBookingMethodKey15;
 	private MethodKey _getBeanIdentifierMethodKey16;
 	private MethodKey _setBeanIdentifierMethodKey17;
+	private MethodKey _addCalendarBookingMethodKey18;
+	private MethodKey _deleteCalendarBookingsMethodKey19;
+	private MethodKey _updateCalendarBookingMethodKey20;
+	private MethodKey _updateStatusMethodKey21;
 }
