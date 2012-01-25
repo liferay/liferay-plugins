@@ -78,7 +78,7 @@ public class CustomerListModel implements DisposableBean, Renderable {
 		// http://jira.icefaces.org/browse/ICE-2904
 
 		OnDemandRenderer onDemandRenderer =
-			getRenderManager().getOnDemandRenderer(CUSTOMER_RENDER_GROUP);
+			getRenderManager().getOnDemandRenderer(_CUSTOMER_RENDER_GROUP);
 
 		onDemandRenderer.remove(this);
 	}
@@ -95,7 +95,7 @@ public class CustomerListModel implements DisposableBean, Renderable {
 		_renderManager = renderManager;
 
 		OnDemandRenderer onDemandRenderer =
-			getRenderManager().getOnDemandRenderer(CUSTOMER_RENDER_GROUP);
+			getRenderManager().getOnDemandRenderer(_CUSTOMER_RENDER_GROUP);
 
 		onDemandRenderer.add(this);
 	}
@@ -105,19 +105,20 @@ public class CustomerListModel implements DisposableBean, Renderable {
 			PortletSessionUtil.SELECTED_CUSTOMER, customer);
 
 		OnDemandRenderer onDemandRenderer =
-			getRenderManager().getOnDemandRenderer(CUSTOMER_RENDER_GROUP);
+			getRenderManager().getOnDemandRenderer(_CUSTOMER_RENDER_GROUP);
 
 		onDemandRenderer.requestRender();
 	}
 
 	public void valueChangeListener(ValueChangeEvent valueChangeEvent) {
 		OnDemandRenderer onDemandRenderer =
-			getRenderManager().getOnDemandRenderer(CUSTOMER_RENDER_GROUP);
+			getRenderManager().getOnDemandRenderer(_CUSTOMER_RENDER_GROUP);
 
 		onDemandRenderer.requestRender();
 	}
 
-	private static final String CUSTOMER_RENDER_GROUP = "CUSTOMER_RENDER_GROUP";
+	private static final String _CUSTOMER_RENDER_GROUP =
+		"CUSTOMER_RENDER_GROUP";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		CustomerListModel.class);
