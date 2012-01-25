@@ -24,23 +24,23 @@ public class BookingType {
 		_bookingTypeName = bookingTypeName;
 	}
 
-	public String getBookingTypeName() {
-		return _bookingTypeName;
-	}
-
 	public long getBookingTypeId() {
 		return _bookingTypeId;
 	}
 
-	public void setBookingTypeName(String bookingTypeName) {
-		_bookingTypeName = bookingTypeName;
+	public String getBookingTypeName() {
+		return _bookingTypeName;
 	}
 
 	public void setBookingTypeId(long bookingTypeId) {
 		_bookingTypeId = bookingTypeId;
 	}
 
-	private String _bookingTypeName;
+	public void setBookingTypeName(String bookingTypeName) {
+		_bookingTypeName = bookingTypeName;
+	}
+
 	private long _bookingTypeId;
+	private String _bookingTypeName;
 
 }
