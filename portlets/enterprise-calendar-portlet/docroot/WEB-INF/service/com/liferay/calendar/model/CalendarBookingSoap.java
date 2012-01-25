@@ -28,9 +28,6 @@ import java.util.List;
  * @generated
  */
 public class CalendarBookingSoap implements Serializable {
-	public CalendarBookingSoap() {
-	}
-
 	public static CalendarBookingSoap toSoapModel(CalendarBooking model) {
 		CalendarBookingSoap soapModel = new CalendarBookingSoap();
 
@@ -108,272 +105,275 @@ public class CalendarBookingSoap implements Serializable {
 		return soapModels.toArray(new CalendarBookingSoap[soapModels.size()]);
 	}
 
-	public boolean getAllDay() {
-		return _allDay;
-	}
-
-	public long getCalendarBookingId() {
-		return _calendarBookingId;
-	}
-
-	public long getCalendarId() {
-		return _calendarId;
-	}
-
-	public long getCalendarResourceId() {
-		return _calendarResourceId;
-	}
-
-	public long getCompanyId() {
-		return _companyId;
-	}
-
-	public Date getCreateDate() {
-		return _createDate;
-	}
-
-	public String getDescription() {
-		return _description;
-	}
-
-	public Date getEndDate() {
-		return _endDate;
-	}
-
-	public int getFirstReminder() {
-		return _firstReminder;
-	}
-
-	public long getGroupId() {
-		return _groupId;
-	}
-
-	public String getLocation() {
-		return _location;
-	}
-
-	public Date getModifiedDate() {
-		return _modifiedDate;
-	}
-
-	public boolean getOutOfOffice() {
-		return _outOfOffice;
-	}
-
-	public long getParentCalendarBookingId() {
-		return _parentCalendarBookingId;
+	public CalendarBookingSoap() {
 	}
 
 	public long getPrimaryKey() {
 		return _calendarBookingId;
 	}
 
-	public int getPriority() {
-		return _priority;
-	}
-
-	public String getRecurrence() {
-		return _recurrence;
-	}
-
-	public int getRemindBy() {
-		return _remindBy;
-	}
-
-	public String getRequestMessage() {
-		return _requestMessage;
-	}
-
-	public boolean getRequired() {
-		return _required;
-	}
-
-	public String getResponseMessage() {
-		return _responseMessage;
-	}
-
-	public int getSecondReminder() {
-		return _secondReminder;
-	}
-
-	public Date getStartDate() {
-		return _startDate;
-	}
-
-	public int getStatus() {
-		return _status;
-	}
-
-	public long getStatusByUserId() {
-		return _statusByUserId;
-	}
-
-	public String getStatusByUserName() {
-		return _statusByUserName;
-	}
-
-	public Date getStatusDate() {
-		return _statusDate;
-	}
-
-	public String getTitle() {
-		return _title;
-	}
-
-	public String getType() {
-		return _type;
-	}
-
-	public long getUserId() {
-		return _userId;
-	}
-
-	public String getUserName() {
-		return _userName;
+	public void setPrimaryKey(long pk) {
+		setCalendarBookingId(pk);
 	}
 
 	public String getUuid() {
 		return _uuid;
 	}
 
-	public boolean isAllDay() {
-		return _allDay;
+	public void setUuid(String uuid) {
+		_uuid = uuid;
 	}
 
-	public boolean isOutOfOffice() {
-		return _outOfOffice;
-	}
-
-	public boolean isRequired() {
-		return _required;
-	}
-
-	public void setAllDay(boolean allDay) {
-		_allDay = allDay;
+	public long getCalendarBookingId() {
+		return _calendarBookingId;
 	}
 
 	public void setCalendarBookingId(long calendarBookingId) {
 		_calendarBookingId = calendarBookingId;
 	}
 
-	public void setCalendarId(long calendarId) {
-		_calendarId = calendarId;
-	}
-
-	public void setCalendarResourceId(long calendarResourceId) {
-		_calendarResourceId = calendarResourceId;
-	}
-
-	public void setCompanyId(long companyId) {
-		_companyId = companyId;
-	}
-
-	public void setCreateDate(Date createDate) {
-		_createDate = createDate;
-	}
-
-	public void setDescription(String description) {
-		_description = description;
-	}
-
-	public void setEndDate(Date endDate) {
-		_endDate = endDate;
-	}
-
-	public void setFirstReminder(int firstReminder) {
-		_firstReminder = firstReminder;
+	public long getGroupId() {
+		return _groupId;
 	}
 
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
 	}
 
-	public void setLocation(String location) {
-		_location = location;
+	public long getCompanyId() {
+		return _companyId;
 	}
 
-	public void setModifiedDate(Date modifiedDate) {
-		_modifiedDate = modifiedDate;
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
 	}
 
-	public void setOutOfOffice(boolean outOfOffice) {
-		_outOfOffice = outOfOffice;
-	}
-
-	public void setParentCalendarBookingId(long parentCalendarBookingId) {
-		_parentCalendarBookingId = parentCalendarBookingId;
-	}
-
-	public void setPrimaryKey(long pk) {
-		setCalendarBookingId(pk);
-	}
-
-	public void setPriority(int priority) {
-		_priority = priority;
-	}
-
-	public void setRecurrence(String recurrence) {
-		_recurrence = recurrence;
-	}
-
-	public void setRemindBy(int remindBy) {
-		_remindBy = remindBy;
-	}
-
-	public void setRequestMessage(String requestMessage) {
-		_requestMessage = requestMessage;
-	}
-
-	public void setRequired(boolean required) {
-		_required = required;
-	}
-
-	public void setResponseMessage(String responseMessage) {
-		_responseMessage = responseMessage;
-	}
-
-	public void setSecondReminder(int secondReminder) {
-		_secondReminder = secondReminder;
-	}
-
-	public void setStartDate(Date startDate) {
-		_startDate = startDate;
-	}
-
-	public void setStatus(int status) {
-		_status = status;
-	}
-
-	public void setStatusByUserId(long statusByUserId) {
-		_statusByUserId = statusByUserId;
-	}
-
-	public void setStatusByUserName(String statusByUserName) {
-		_statusByUserName = statusByUserName;
-	}
-
-	public void setStatusDate(Date statusDate) {
-		_statusDate = statusDate;
-	}
-
-	public void setTitle(String title) {
-		_title = title;
-	}
-
-	public void setType(String type) {
-		_type = type;
+	public long getUserId() {
+		return _userId;
 	}
 
 	public void setUserId(long userId) {
 		_userId = userId;
 	}
 
+	public String getUserName() {
+		return _userName;
+	}
+
 	public void setUserName(String userName) {
 		_userName = userName;
 	}
 
-	public void setUuid(String uuid) {
-		_uuid = uuid;
+	public Date getCreateDate() {
+		return _createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		_createDate = createDate;
+	}
+
+	public Date getModifiedDate() {
+		return _modifiedDate;
+	}
+
+	public void setModifiedDate(Date modifiedDate) {
+		_modifiedDate = modifiedDate;
+	}
+
+	public long getCalendarId() {
+		return _calendarId;
+	}
+
+	public void setCalendarId(long calendarId) {
+		_calendarId = calendarId;
+	}
+
+	public long getCalendarResourceId() {
+		return _calendarResourceId;
+	}
+
+	public void setCalendarResourceId(long calendarResourceId) {
+		_calendarResourceId = calendarResourceId;
+	}
+
+	public long getParentCalendarBookingId() {
+		return _parentCalendarBookingId;
+	}
+
+	public void setParentCalendarBookingId(long parentCalendarBookingId) {
+		_parentCalendarBookingId = parentCalendarBookingId;
+	}
+
+	public String getTitle() {
+		return _title;
+	}
+
+	public void setTitle(String title) {
+		_title = title;
+	}
+
+	public String getDescription() {
+		return _description;
+	}
+
+	public void setDescription(String description) {
+		_description = description;
+	}
+
+	public String getLocation() {
+		return _location;
+	}
+
+	public void setLocation(String location) {
+		_location = location;
+	}
+
+	public String getType() {
+		return _type;
+	}
+
+	public void setType(String type) {
+		_type = type;
+	}
+
+	public Date getStartDate() {
+		return _startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		_startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return _endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		_endDate = endDate;
+	}
+
+	public boolean getAllDay() {
+		return _allDay;
+	}
+
+	public boolean isAllDay() {
+		return _allDay;
+	}
+
+	public void setAllDay(boolean allDay) {
+		_allDay = allDay;
+	}
+
+	public String getRecurrence() {
+		return _recurrence;
+	}
+
+	public void setRecurrence(String recurrence) {
+		_recurrence = recurrence;
+	}
+
+	public int getPriority() {
+		return _priority;
+	}
+
+	public void setPriority(int priority) {
+		_priority = priority;
+	}
+
+	public boolean getOutOfOffice() {
+		return _outOfOffice;
+	}
+
+	public boolean isOutOfOffice() {
+		return _outOfOffice;
+	}
+
+	public void setOutOfOffice(boolean outOfOffice) {
+		_outOfOffice = outOfOffice;
+	}
+
+	public int getRemindBy() {
+		return _remindBy;
+	}
+
+	public void setRemindBy(int remindBy) {
+		_remindBy = remindBy;
+	}
+
+	public int getFirstReminder() {
+		return _firstReminder;
+	}
+
+	public void setFirstReminder(int firstReminder) {
+		_firstReminder = firstReminder;
+	}
+
+	public int getSecondReminder() {
+		return _secondReminder;
+	}
+
+	public void setSecondReminder(int secondReminder) {
+		_secondReminder = secondReminder;
+	}
+
+	public boolean getRequired() {
+		return _required;
+	}
+
+	public boolean isRequired() {
+		return _required;
+	}
+
+	public void setRequired(boolean required) {
+		_required = required;
+	}
+
+	public String getRequestMessage() {
+		return _requestMessage;
+	}
+
+	public void setRequestMessage(String requestMessage) {
+		_requestMessage = requestMessage;
+	}
+
+	public String getResponseMessage() {
+		return _responseMessage;
+	}
+
+	public void setResponseMessage(String responseMessage) {
+		_responseMessage = responseMessage;
+	}
+
+	public int getStatus() {
+		return _status;
+	}
+
+	public void setStatus(int status) {
+		_status = status;
+	}
+
+	public long getStatusByUserId() {
+		return _statusByUserId;
+	}
+
+	public void setStatusByUserId(long statusByUserId) {
+		_statusByUserId = statusByUserId;
+	}
+
+	public String getStatusByUserName() {
+		return _statusByUserName;
+	}
+
+	public void setStatusByUserName(String statusByUserName) {
+		_statusByUserName = statusByUserName;
+	}
+
+	public Date getStatusDate() {
+		return _statusDate;
+	}
+
+	public void setStatusDate(Date statusDate) {
+		_statusDate = statusDate;
 	}
 
 	private String _uuid;

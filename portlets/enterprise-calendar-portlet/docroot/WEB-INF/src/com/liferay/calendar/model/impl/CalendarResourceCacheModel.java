@@ -33,6 +33,51 @@ import java.util.Date;
  */
 public class CalendarResourceCacheModel implements CacheModel<CalendarResource>,
 	Serializable {
+	@Override
+	public String toString() {
+		StringBundler sb = new StringBundler(37);
+
+		sb.append("{uuid=");
+		sb.append(uuid);
+		sb.append(", calendarResourceId=");
+		sb.append(calendarResourceId);
+		sb.append(", groupId=");
+		sb.append(groupId);
+		sb.append(", companyId=");
+		sb.append(companyId);
+		sb.append(", userId=");
+		sb.append(userId);
+		sb.append(", userName=");
+		sb.append(userName);
+		sb.append(", createDate=");
+		sb.append(createDate);
+		sb.append(", modifiedDate=");
+		sb.append(modifiedDate);
+		sb.append(", resourceBlockId=");
+		sb.append(resourceBlockId);
+		sb.append(", classNameId=");
+		sb.append(classNameId);
+		sb.append(", classPK=");
+		sb.append(classPK);
+		sb.append(", classUuid=");
+		sb.append(classUuid);
+		sb.append(", defaultCalendarId=");
+		sb.append(defaultCalendarId);
+		sb.append(", code=");
+		sb.append(code);
+		sb.append(", name=");
+		sb.append(name);
+		sb.append(", description=");
+		sb.append(description);
+		sb.append(", type=");
+		sb.append(type);
+		sb.append(", active=");
+		sb.append(active);
+		sb.append("}");
+
+		return sb.toString();
+	}
+
 	public CalendarResource toEntityModel() {
 		CalendarResourceImpl calendarResourceImpl = new CalendarResourceImpl();
 
@@ -70,14 +115,7 @@ public class CalendarResourceCacheModel implements CacheModel<CalendarResource>,
 		}
 
 		calendarResourceImpl.setResourceBlockId(resourceBlockId);
-
-		if (className == null) {
-			calendarResourceImpl.setClassName(StringPool.BLANK);
-		}
-		else {
-			calendarResourceImpl.setClassName(className);
-		}
-
+		calendarResourceImpl.setClassNameId(classNameId);
 		calendarResourceImpl.setClassPK(classPK);
 
 		if (classUuid == null) {
@@ -124,51 +162,6 @@ public class CalendarResourceCacheModel implements CacheModel<CalendarResource>,
 		return calendarResourceImpl;
 	}
 
-	@Override
-	public String toString() {
-		StringBundler sb = new StringBundler(37);
-
-		sb.append("{uuid=");
-		sb.append(uuid);
-		sb.append(", calendarResourceId=");
-		sb.append(calendarResourceId);
-		sb.append(", groupId=");
-		sb.append(groupId);
-		sb.append(", companyId=");
-		sb.append(companyId);
-		sb.append(", userId=");
-		sb.append(userId);
-		sb.append(", userName=");
-		sb.append(userName);
-		sb.append(", createDate=");
-		sb.append(createDate);
-		sb.append(", modifiedDate=");
-		sb.append(modifiedDate);
-		sb.append(", resourceBlockId=");
-		sb.append(resourceBlockId);
-		sb.append(", className=");
-		sb.append(className);
-		sb.append(", classPK=");
-		sb.append(classPK);
-		sb.append(", classUuid=");
-		sb.append(classUuid);
-		sb.append(", defaultCalendarId=");
-		sb.append(defaultCalendarId);
-		sb.append(", code=");
-		sb.append(code);
-		sb.append(", name=");
-		sb.append(name);
-		sb.append(", description=");
-		sb.append(description);
-		sb.append(", type=");
-		sb.append(type);
-		sb.append(", active=");
-		sb.append(active);
-		sb.append("}");
-
-		return sb.toString();
-	}
-
 	public String uuid;
 	public long calendarResourceId;
 	public long groupId;
@@ -178,7 +171,7 @@ public class CalendarResourceCacheModel implements CacheModel<CalendarResource>,
 	public long createDate;
 	public long modifiedDate;
 	public long resourceBlockId;
-	public String className;
+	public long classNameId;
 	public long classPK;
 	public String classUuid;
 	public long defaultCalendarId;

@@ -49,9 +49,34 @@ public interface CalendarModel extends BaseModel<Calendar>, GroupedModel {
 	 * Never modify or reference this interface directly. All methods that expect a calendar model instance should use the {@link Calendar} interface instead.
 	 */
 
-	public Object clone();
+	/**
+	 * Returns the primary key of this calendar.
+	 *
+	 * @return the primary key of this calendar
+	 */
+	public long getPrimaryKey();
 
-	public int compareTo(Calendar calendar);
+	/**
+	 * Sets the primary key of this calendar.
+	 *
+	 * @param primaryKey the primary key of this calendar
+	 */
+	public void setPrimaryKey(long primaryKey);
+
+	/**
+	 * Returns the uuid of this calendar.
+	 *
+	 * @return the uuid of this calendar
+	 */
+	@AutoEscape
+	public String getUuid();
+
+	/**
+	 * Sets the uuid of this calendar.
+	 *
+	 * @param uuid the uuid of this calendar
+	 */
+	public void setUuid(String uuid);
 
 	/**
 	 * Returns the calendar ID of this calendar.
@@ -61,99 +86,11 @@ public interface CalendarModel extends BaseModel<Calendar>, GroupedModel {
 	public long getCalendarId();
 
 	/**
-	 * Returns the calendar resource ID of this calendar.
+	 * Sets the calendar ID of this calendar.
 	 *
-	 * @return the calendar resource ID of this calendar
+	 * @param calendarId the calendar ID of this calendar
 	 */
-	public long getCalendarResourceId();
-
-	/**
-	 * Returns the color of this calendar.
-	 *
-	 * @return the color of this calendar
-	 */
-	public int getColor();
-
-	/**
-	 * Returns the company ID of this calendar.
-	 *
-	 * @return the company ID of this calendar
-	 */
-	public long getCompanyId();
-
-	/**
-	 * Returns the create date of this calendar.
-	 *
-	 * @return the create date of this calendar
-	 */
-	public Date getCreateDate();
-
-	/**
-	 * Returns the default calendar of this calendar.
-	 *
-	 * @return the default calendar of this calendar
-	 */
-	public boolean getDefaultCalendar();
-
-	/**
-	 * Returns the description of this calendar.
-	 *
-	 * @return the description of this calendar
-	 */
-	public String getDescription();
-
-	/**
-	 * Returns the localized description of this calendar in the language. Uses the default language if no localization exists for the requested language.
-	 *
-	 * @param locale the locale of the language
-	 * @return the localized description of this calendar
-	 */
-	@AutoEscape
-	public String getDescription(Locale locale);
-
-	/**
-	 * Returns the localized description of this calendar in the language, optionally using the default language if no localization exists for the requested language.
-	 *
-	 * @param locale the local of the language
-	 * @param useDefault whether to use the default language if no localization exists for the requested language
-	 * @return the localized description of this calendar. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
-	 */
-	@AutoEscape
-	public String getDescription(Locale locale, boolean useDefault);
-
-	/**
-	 * Returns the localized description of this calendar in the language. Uses the default language if no localization exists for the requested language.
-	 *
-	 * @param languageId the ID of the language
-	 * @return the localized description of this calendar
-	 */
-	@AutoEscape
-	public String getDescription(String languageId);
-
-	/**
-	 * Returns the localized description of this calendar in the language, optionally using the default language if no localization exists for the requested language.
-	 *
-	 * @param languageId the ID of the language
-	 * @param useDefault whether to use the default language if no localization exists for the requested language
-	 * @return the localized description of this calendar
-	 */
-	@AutoEscape
-	public String getDescription(String languageId, boolean useDefault);
-
-	@AutoEscape
-	public String getDescriptionCurrentLanguageId();
-
-	@AutoEscape
-	public String getDescriptionCurrentValue();
-
-	/**
-	 * Returns a map of the locales and localized descriptions of this calendar.
-	 *
-	 * @return the locales and localized descriptions of this calendar
-	 */
-	public Map<Locale, String> getDescriptionMap();
-
-	public ExpandoBridge getExpandoBridge();
+	public void setCalendarId(long calendarId);
 
 	/**
 	 * Returns the group ID of this calendar.
@@ -163,11 +100,125 @@ public interface CalendarModel extends BaseModel<Calendar>, GroupedModel {
 	public long getGroupId();
 
 	/**
+	 * Sets the group ID of this calendar.
+	 *
+	 * @param groupId the group ID of this calendar
+	 */
+	public void setGroupId(long groupId);
+
+	/**
+	 * Returns the company ID of this calendar.
+	 *
+	 * @return the company ID of this calendar
+	 */
+	public long getCompanyId();
+
+	/**
+	 * Sets the company ID of this calendar.
+	 *
+	 * @param companyId the company ID of this calendar
+	 */
+	public void setCompanyId(long companyId);
+
+	/**
+	 * Returns the user ID of this calendar.
+	 *
+	 * @return the user ID of this calendar
+	 */
+	public long getUserId();
+
+	/**
+	 * Sets the user ID of this calendar.
+	 *
+	 * @param userId the user ID of this calendar
+	 */
+	public void setUserId(long userId);
+
+	/**
+	 * Returns the user uuid of this calendar.
+	 *
+	 * @return the user uuid of this calendar
+	 * @throws SystemException if a system exception occurred
+	 */
+	public String getUserUuid() throws SystemException;
+
+	/**
+	 * Sets the user uuid of this calendar.
+	 *
+	 * @param userUuid the user uuid of this calendar
+	 */
+	public void setUserUuid(String userUuid);
+
+	/**
+	 * Returns the user name of this calendar.
+	 *
+	 * @return the user name of this calendar
+	 */
+	@AutoEscape
+	public String getUserName();
+
+	/**
+	 * Sets the user name of this calendar.
+	 *
+	 * @param userName the user name of this calendar
+	 */
+	public void setUserName(String userName);
+
+	/**
+	 * Returns the create date of this calendar.
+	 *
+	 * @return the create date of this calendar
+	 */
+	public Date getCreateDate();
+
+	/**
+	 * Sets the create date of this calendar.
+	 *
+	 * @param createDate the create date of this calendar
+	 */
+	public void setCreateDate(Date createDate);
+
+	/**
 	 * Returns the modified date of this calendar.
 	 *
 	 * @return the modified date of this calendar
 	 */
 	public Date getModifiedDate();
+
+	/**
+	 * Sets the modified date of this calendar.
+	 *
+	 * @param modifiedDate the modified date of this calendar
+	 */
+	public void setModifiedDate(Date modifiedDate);
+
+	/**
+	 * Returns the resource block ID of this calendar.
+	 *
+	 * @return the resource block ID of this calendar
+	 */
+	public long getResourceBlockId();
+
+	/**
+	 * Sets the resource block ID of this calendar.
+	 *
+	 * @param resourceBlockId the resource block ID of this calendar
+	 */
+	public void setResourceBlockId(long resourceBlockId);
+
+	/**
+	 * Returns the calendar resource ID of this calendar.
+	 *
+	 * @return the calendar resource ID of this calendar
+	 */
+	public long getCalendarResourceId();
+
+	/**
+	 * Sets the calendar resource ID of this calendar.
+	 *
+	 * @param calendarResourceId the calendar resource ID of this calendar
+	 */
+	public void setCalendarResourceId(long calendarResourceId);
 
 	/**
 	 * Returns the name of this calendar.
@@ -228,110 +279,103 @@ public interface CalendarModel extends BaseModel<Calendar>, GroupedModel {
 	public Map<Locale, String> getNameMap();
 
 	/**
-	 * Returns the primary key of this calendar.
+	 * Sets the name of this calendar.
 	 *
-	 * @return the primary key of this calendar
+	 * @param name the name of this calendar
 	 */
-	public long getPrimaryKey();
-
-	public Serializable getPrimaryKeyObj();
+	public void setName(String name);
 
 	/**
-	 * Returns the resource block ID of this calendar.
+	 * Sets the localized name of this calendar in the language.
 	 *
-	 * @return the resource block ID of this calendar
+	 * @param name the localized name of this calendar
+	 * @param locale the locale of the language
 	 */
-	public long getResourceBlockId();
+	public void setName(String name, Locale locale);
 
 	/**
-	 * Returns the user ID of this calendar.
+	 * Sets the localized name of this calendar in the language, and sets the default locale.
 	 *
-	 * @return the user ID of this calendar
+	 * @param name the localized name of this calendar
+	 * @param locale the locale of the language
+	 * @param defaultLocale the default locale
 	 */
-	public long getUserId();
+	public void setName(String name, Locale locale, Locale defaultLocale);
+
+	public void setNameCurrentLanguageId(String languageId);
 
 	/**
-	 * Returns the user name of this calendar.
+	 * Sets the localized names of this calendar from the map of locales and localized names.
 	 *
-	 * @return the user name of this calendar
+	 * @param nameMap the locales and localized names of this calendar
+	 */
+	public void setNameMap(Map<Locale, String> nameMap);
+
+	/**
+	 * Sets the localized names of this calendar from the map of locales and localized names, and sets the default locale.
+	 *
+	 * @param nameMap the locales and localized names of this calendar
+	 * @param defaultLocale the default locale
+	 */
+	public void setNameMap(Map<Locale, String> nameMap, Locale defaultLocale);
+
+	/**
+	 * Returns the description of this calendar.
+	 *
+	 * @return the description of this calendar
+	 */
+	public String getDescription();
+
+	/**
+	 * Returns the localized description of this calendar in the language. Uses the default language if no localization exists for the requested language.
+	 *
+	 * @param locale the locale of the language
+	 * @return the localized description of this calendar
 	 */
 	@AutoEscape
-	public String getUserName();
+	public String getDescription(Locale locale);
 
 	/**
-	 * Returns the user uuid of this calendar.
+	 * Returns the localized description of this calendar in the language, optionally using the default language if no localization exists for the requested language.
 	 *
-	 * @return the user uuid of this calendar
-	 * @throws SystemException if a system exception occurred
-	 */
-	public String getUserUuid() throws SystemException;
-
-	/**
-	 * Returns the uuid of this calendar.
-	 *
-	 * @return the uuid of this calendar
+	 * @param locale the local of the language
+	 * @param useDefault whether to use the default language if no localization exists for the requested language
+	 * @return the localized description of this calendar. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
 	 */
 	@AutoEscape
-	public String getUuid();
-
-	public int hashCode();
-
-	public boolean isCachedModel();
+	public String getDescription(Locale locale, boolean useDefault);
 
 	/**
-	 * Returns <code>true</code> if this calendar is default calendar.
+	 * Returns the localized description of this calendar in the language. Uses the default language if no localization exists for the requested language.
 	 *
-	 * @return <code>true</code> if this calendar is default calendar; <code>false</code> otherwise
+	 * @param languageId the ID of the language
+	 * @return the localized description of this calendar
 	 */
-	public boolean isDefaultCalendar();
-
-	public boolean isEscapedModel();
-
-	public boolean isNew();
-
-	public void setCachedModel(boolean cachedModel);
+	@AutoEscape
+	public String getDescription(String languageId);
 
 	/**
-	 * Sets the calendar ID of this calendar.
+	 * Returns the localized description of this calendar in the language, optionally using the default language if no localization exists for the requested language.
 	 *
-	 * @param calendarId the calendar ID of this calendar
+	 * @param languageId the ID of the language
+	 * @param useDefault whether to use the default language if no localization exists for the requested language
+	 * @return the localized description of this calendar
 	 */
-	public void setCalendarId(long calendarId);
+	@AutoEscape
+	public String getDescription(String languageId, boolean useDefault);
+
+	@AutoEscape
+	public String getDescriptionCurrentLanguageId();
+
+	@AutoEscape
+	public String getDescriptionCurrentValue();
 
 	/**
-	 * Sets the calendar resource ID of this calendar.
+	 * Returns a map of the locales and localized descriptions of this calendar.
 	 *
-	 * @param calendarResourceId the calendar resource ID of this calendar
+	 * @return the locales and localized descriptions of this calendar
 	 */
-	public void setCalendarResourceId(long calendarResourceId);
-
-	/**
-	 * Sets the color of this calendar.
-	 *
-	 * @param color the color of this calendar
-	 */
-	public void setColor(int color);
-
-	/**
-	 * Sets the company ID of this calendar.
-	 *
-	 * @param companyId the company ID of this calendar
-	 */
-	public void setCompanyId(long companyId);
-
-	/**
-	 * Sets the create date of this calendar.
-	 *
-	 * @param createDate the create date of this calendar
-	 */
-	public void setCreateDate(Date createDate);
-
-	/**
-	 * Sets whether this calendar is default calendar.
-	 *
-	 * @param defaultCalendar the default calendar of this calendar
-	 */
-	public void setDefaultCalendar(boolean defaultCalendar);
+	public Map<Locale, String> getDescriptionMap();
 
 	/**
 	 * Sets the description of this calendar.
@@ -376,108 +420,64 @@ public interface CalendarModel extends BaseModel<Calendar>, GroupedModel {
 	public void setDescriptionMap(Map<Locale, String> descriptionMap,
 		Locale defaultLocale);
 
-	public void setExpandoBridgeAttributes(ServiceContext serviceContext);
+	/**
+	 * Returns the color of this calendar.
+	 *
+	 * @return the color of this calendar
+	 */
+	public int getColor();
 
 	/**
-	 * Sets the group ID of this calendar.
+	 * Sets the color of this calendar.
 	 *
-	 * @param groupId the group ID of this calendar
+	 * @param color the color of this calendar
 	 */
-	public void setGroupId(long groupId);
+	public void setColor(int color);
 
 	/**
-	 * Sets the modified date of this calendar.
+	 * Returns the default calendar of this calendar.
 	 *
-	 * @param modifiedDate the modified date of this calendar
+	 * @return the default calendar of this calendar
 	 */
-	public void setModifiedDate(Date modifiedDate);
+	public boolean getDefaultCalendar();
 
 	/**
-	 * Sets the name of this calendar.
+	 * Returns <code>true</code> if this calendar is default calendar.
 	 *
-	 * @param name the name of this calendar
+	 * @return <code>true</code> if this calendar is default calendar; <code>false</code> otherwise
 	 */
-	public void setName(String name);
+	public boolean isDefaultCalendar();
 
 	/**
-	 * Sets the localized name of this calendar in the language.
+	 * Sets whether this calendar is default calendar.
 	 *
-	 * @param name the localized name of this calendar
-	 * @param locale the locale of the language
+	 * @param defaultCalendar the default calendar of this calendar
 	 */
-	public void setName(String name, Locale locale);
+	public void setDefaultCalendar(boolean defaultCalendar);
 
-	/**
-	 * Sets the localized name of this calendar in the language, and sets the default locale.
-	 *
-	 * @param name the localized name of this calendar
-	 * @param locale the locale of the language
-	 * @param defaultLocale the default locale
-	 */
-	public void setName(String name, Locale locale, Locale defaultLocale);
-
-	public void setNameCurrentLanguageId(String languageId);
-
-	/**
-	 * Sets the localized names of this calendar from the map of locales and localized names.
-	 *
-	 * @param nameMap the locales and localized names of this calendar
-	 */
-	public void setNameMap(Map<Locale, String> nameMap);
-
-	/**
-	 * Sets the localized names of this calendar from the map of locales and localized names, and sets the default locale.
-	 *
-	 * @param nameMap the locales and localized names of this calendar
-	 * @param defaultLocale the default locale
-	 */
-	public void setNameMap(Map<Locale, String> nameMap, Locale defaultLocale);
+	public boolean isNew();
 
 	public void setNew(boolean n);
 
-	/**
-	 * Sets the primary key of this calendar.
-	 *
-	 * @param primaryKey the primary key of this calendar
-	 */
-	public void setPrimaryKey(long primaryKey);
+	public boolean isCachedModel();
+
+	public void setCachedModel(boolean cachedModel);
+
+	public boolean isEscapedModel();
+
+	public Serializable getPrimaryKeyObj();
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
-	/**
-	 * Sets the resource block ID of this calendar.
-	 *
-	 * @param resourceBlockId the resource block ID of this calendar
-	 */
-	public void setResourceBlockId(long resourceBlockId);
+	public ExpandoBridge getExpandoBridge();
 
-	/**
-	 * Sets the user ID of this calendar.
-	 *
-	 * @param userId the user ID of this calendar
-	 */
-	public void setUserId(long userId);
+	public void setExpandoBridgeAttributes(ServiceContext serviceContext);
 
-	/**
-	 * Sets the user name of this calendar.
-	 *
-	 * @param userName the user name of this calendar
-	 */
-	public void setUserName(String userName);
+	public Object clone();
 
-	/**
-	 * Sets the user uuid of this calendar.
-	 *
-	 * @param userUuid the user uuid of this calendar
-	 */
-	public void setUserUuid(String userUuid);
+	public int compareTo(Calendar calendar);
 
-	/**
-	 * Sets the uuid of this calendar.
-	 *
-	 * @param uuid the uuid of this calendar
-	 */
-	public void setUuid(String uuid);
+	public int hashCode();
 
 	public CacheModel<Calendar> toCacheModel();
 

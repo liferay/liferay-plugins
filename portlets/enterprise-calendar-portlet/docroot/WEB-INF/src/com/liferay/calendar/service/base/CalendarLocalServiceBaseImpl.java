@@ -103,11 +103,6 @@ public abstract class CalendarLocalServiceBaseImpl
 		return calendar;
 	}
 
-	public void afterPropertiesSet() {
-		PersistedModelLocalServiceRegistryUtil.register("com.liferay.calendar.model.Calendar",
-			calendarLocalService);
-	}
-
 	/**
 	 * Creates a new calendar with the primary key. Does not add the calendar to the database.
 	 *
@@ -116,29 +111,6 @@ public abstract class CalendarLocalServiceBaseImpl
 	 */
 	public Calendar createCalendar(long calendarId) {
 		return calendarPersistence.create(calendarId);
-	}
-
-	/**
-	 * Deletes the calendar from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param calendar the calendar
-	 * @throws SystemException if a system exception occurred
-	 */
-	public void deleteCalendar(Calendar calendar) throws SystemException {
-		calendarPersistence.remove(calendar);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(calendar);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
 	}
 
 	/**
@@ -166,9 +138,27 @@ public abstract class CalendarLocalServiceBaseImpl
 		}
 	}
 
-	public void destroy() {
-		PersistedModelLocalServiceRegistryUtil.unregister(
-			"com.liferay.calendar.model.Calendar");
+	/**
+	 * Deletes the calendar from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param calendar the calendar
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void deleteCalendar(Calendar calendar) throws SystemException {
+		calendarPersistence.remove(calendar);
+
+		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
+
+		if (indexer != null) {
+			try {
+				indexer.delete(calendar);
+			}
+			catch (SearchException se) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(se, se);
+				}
+			}
+		}
 	}
 
 	/**
@@ -241,15 +231,6 @@ public abstract class CalendarLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the Spring bean ID for this bean.
-	 *
-	 * @return the Spring bean ID for this bean
-	 */
-	public String getBeanIdentifier() {
-		return _beanIdentifier;
-	}
-
-	/**
 	 * Returns the calendar with the primary key.
 	 *
 	 * @param calendarId the primary key of the calendar
@@ -262,31 +243,9 @@ public abstract class CalendarLocalServiceBaseImpl
 		return calendarPersistence.findByPrimaryKey(calendarId);
 	}
 
-	/**
-	 * Returns the calendar booking local service.
-	 *
-	 * @return the calendar booking local service
-	 */
-	public CalendarBookingLocalService getCalendarBookingLocalService() {
-		return calendarBookingLocalService;
-	}
-
-	/**
-	 * Returns the calendar booking persistence.
-	 *
-	 * @return the calendar booking persistence
-	 */
-	public CalendarBookingPersistence getCalendarBookingPersistence() {
-		return calendarBookingPersistence;
-	}
-
-	/**
-	 * Returns the calendar booking remote service.
-	 *
-	 * @return the calendar booking remote service
-	 */
-	public CalendarBookingService getCalendarBookingService() {
-		return calendarBookingService;
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException, SystemException {
+		return calendarPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
 	/**
@@ -301,51 +260,6 @@ public abstract class CalendarLocalServiceBaseImpl
 	public Calendar getCalendarByUuidAndGroupId(String uuid, long groupId)
 		throws PortalException, SystemException {
 		return calendarPersistence.findByUUID_G(uuid, groupId);
-	}
-
-	/**
-	 * Returns the calendar local service.
-	 *
-	 * @return the calendar local service
-	 */
-	public CalendarLocalService getCalendarLocalService() {
-		return calendarLocalService;
-	}
-
-	/**
-	 * Returns the calendar persistence.
-	 *
-	 * @return the calendar persistence
-	 */
-	public CalendarPersistence getCalendarPersistence() {
-		return calendarPersistence;
-	}
-
-	/**
-	 * Returns the calendar resource local service.
-	 *
-	 * @return the calendar resource local service
-	 */
-	public CalendarResourceLocalService getCalendarResourceLocalService() {
-		return calendarResourceLocalService;
-	}
-
-	/**
-	 * Returns the calendar resource persistence.
-	 *
-	 * @return the calendar resource persistence
-	 */
-	public CalendarResourcePersistence getCalendarResourcePersistence() {
-		return calendarResourcePersistence;
-	}
-
-	/**
-	 * Returns the calendar resource remote service.
-	 *
-	 * @return the calendar resource remote service
-	 */
-	public CalendarResourceService getCalendarResourceService() {
-		return calendarResourceService;
 	}
 
 	/**
@@ -373,244 +287,6 @@ public abstract class CalendarLocalServiceBaseImpl
 	 */
 	public int getCalendarsCount() throws SystemException {
 		return calendarPersistence.countAll();
-	}
-
-	/**
-	 * Returns the calendar remote service.
-	 *
-	 * @return the calendar remote service
-	 */
-	public CalendarService getCalendarService() {
-		return calendarService;
-	}
-
-	/**
-	 * Returns the counter local service.
-	 *
-	 * @return the counter local service
-	 */
-	public CounterLocalService getCounterLocalService() {
-		return counterLocalService;
-	}
-
-	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
-		return calendarPersistence.findByPrimaryKey(primaryKeyObj);
-	}
-
-	/**
-	 * Returns the resource local service.
-	 *
-	 * @return the resource local service
-	 */
-	public ResourceLocalService getResourceLocalService() {
-		return resourceLocalService;
-	}
-
-	/**
-	 * Returns the resource persistence.
-	 *
-	 * @return the resource persistence
-	 */
-	public ResourcePersistence getResourcePersistence() {
-		return resourcePersistence;
-	}
-
-	/**
-	 * Returns the resource remote service.
-	 *
-	 * @return the resource remote service
-	 */
-	public ResourceService getResourceService() {
-		return resourceService;
-	}
-
-	/**
-	 * Returns the user local service.
-	 *
-	 * @return the user local service
-	 */
-	public UserLocalService getUserLocalService() {
-		return userLocalService;
-	}
-
-	/**
-	 * Returns the user persistence.
-	 *
-	 * @return the user persistence
-	 */
-	public UserPersistence getUserPersistence() {
-		return userPersistence;
-	}
-
-	/**
-	 * Returns the user remote service.
-	 *
-	 * @return the user remote service
-	 */
-	public UserService getUserService() {
-		return userService;
-	}
-
-	/**
-	 * Sets the Spring bean ID for this bean.
-	 *
-	 * @param beanIdentifier the Spring bean ID for this bean
-	 */
-	public void setBeanIdentifier(String beanIdentifier) {
-		_beanIdentifier = beanIdentifier;
-	}
-
-	/**
-	 * Sets the calendar booking local service.
-	 *
-	 * @param calendarBookingLocalService the calendar booking local service
-	 */
-	public void setCalendarBookingLocalService(
-		CalendarBookingLocalService calendarBookingLocalService) {
-		this.calendarBookingLocalService = calendarBookingLocalService;
-	}
-
-	/**
-	 * Sets the calendar booking persistence.
-	 *
-	 * @param calendarBookingPersistence the calendar booking persistence
-	 */
-	public void setCalendarBookingPersistence(
-		CalendarBookingPersistence calendarBookingPersistence) {
-		this.calendarBookingPersistence = calendarBookingPersistence;
-	}
-
-	/**
-	 * Sets the calendar booking remote service.
-	 *
-	 * @param calendarBookingService the calendar booking remote service
-	 */
-	public void setCalendarBookingService(
-		CalendarBookingService calendarBookingService) {
-		this.calendarBookingService = calendarBookingService;
-	}
-
-	/**
-	 * Sets the calendar local service.
-	 *
-	 * @param calendarLocalService the calendar local service
-	 */
-	public void setCalendarLocalService(
-		CalendarLocalService calendarLocalService) {
-		this.calendarLocalService = calendarLocalService;
-	}
-
-	/**
-	 * Sets the calendar persistence.
-	 *
-	 * @param calendarPersistence the calendar persistence
-	 */
-	public void setCalendarPersistence(CalendarPersistence calendarPersistence) {
-		this.calendarPersistence = calendarPersistence;
-	}
-
-	/**
-	 * Sets the calendar resource local service.
-	 *
-	 * @param calendarResourceLocalService the calendar resource local service
-	 */
-	public void setCalendarResourceLocalService(
-		CalendarResourceLocalService calendarResourceLocalService) {
-		this.calendarResourceLocalService = calendarResourceLocalService;
-	}
-
-	/**
-	 * Sets the calendar resource persistence.
-	 *
-	 * @param calendarResourcePersistence the calendar resource persistence
-	 */
-	public void setCalendarResourcePersistence(
-		CalendarResourcePersistence calendarResourcePersistence) {
-		this.calendarResourcePersistence = calendarResourcePersistence;
-	}
-
-	/**
-	 * Sets the calendar resource remote service.
-	 *
-	 * @param calendarResourceService the calendar resource remote service
-	 */
-	public void setCalendarResourceService(
-		CalendarResourceService calendarResourceService) {
-		this.calendarResourceService = calendarResourceService;
-	}
-
-	/**
-	 * Sets the calendar remote service.
-	 *
-	 * @param calendarService the calendar remote service
-	 */
-	public void setCalendarService(CalendarService calendarService) {
-		this.calendarService = calendarService;
-	}
-
-	/**
-	 * Sets the counter local service.
-	 *
-	 * @param counterLocalService the counter local service
-	 */
-	public void setCounterLocalService(CounterLocalService counterLocalService) {
-		this.counterLocalService = counterLocalService;
-	}
-
-	/**
-	 * Sets the resource local service.
-	 *
-	 * @param resourceLocalService the resource local service
-	 */
-	public void setResourceLocalService(
-		ResourceLocalService resourceLocalService) {
-		this.resourceLocalService = resourceLocalService;
-	}
-
-	/**
-	 * Sets the resource persistence.
-	 *
-	 * @param resourcePersistence the resource persistence
-	 */
-	public void setResourcePersistence(ResourcePersistence resourcePersistence) {
-		this.resourcePersistence = resourcePersistence;
-	}
-
-	/**
-	 * Sets the resource remote service.
-	 *
-	 * @param resourceService the resource remote service
-	 */
-	public void setResourceService(ResourceService resourceService) {
-		this.resourceService = resourceService;
-	}
-
-	/**
-	 * Sets the user local service.
-	 *
-	 * @param userLocalService the user local service
-	 */
-	public void setUserLocalService(UserLocalService userLocalService) {
-		this.userLocalService = userLocalService;
-	}
-
-	/**
-	 * Sets the user persistence.
-	 *
-	 * @param userPersistence the user persistence
-	 */
-	public void setUserPersistence(UserPersistence userPersistence) {
-		this.userPersistence = userPersistence;
-	}
-
-	/**
-	 * Sets the user remote service.
-	 *
-	 * @param userService the user remote service
-	 */
-	public void setUserService(UserService userService) {
-		this.userService = userService;
 	}
 
 	/**
@@ -652,6 +328,330 @@ public abstract class CalendarLocalServiceBaseImpl
 		}
 
 		return calendar;
+	}
+
+	/**
+	 * Returns the calendar local service.
+	 *
+	 * @return the calendar local service
+	 */
+	public CalendarLocalService getCalendarLocalService() {
+		return calendarLocalService;
+	}
+
+	/**
+	 * Sets the calendar local service.
+	 *
+	 * @param calendarLocalService the calendar local service
+	 */
+	public void setCalendarLocalService(
+		CalendarLocalService calendarLocalService) {
+		this.calendarLocalService = calendarLocalService;
+	}
+
+	/**
+	 * Returns the calendar remote service.
+	 *
+	 * @return the calendar remote service
+	 */
+	public CalendarService getCalendarService() {
+		return calendarService;
+	}
+
+	/**
+	 * Sets the calendar remote service.
+	 *
+	 * @param calendarService the calendar remote service
+	 */
+	public void setCalendarService(CalendarService calendarService) {
+		this.calendarService = calendarService;
+	}
+
+	/**
+	 * Returns the calendar persistence.
+	 *
+	 * @return the calendar persistence
+	 */
+	public CalendarPersistence getCalendarPersistence() {
+		return calendarPersistence;
+	}
+
+	/**
+	 * Sets the calendar persistence.
+	 *
+	 * @param calendarPersistence the calendar persistence
+	 */
+	public void setCalendarPersistence(CalendarPersistence calendarPersistence) {
+		this.calendarPersistence = calendarPersistence;
+	}
+
+	/**
+	 * Returns the calendar booking local service.
+	 *
+	 * @return the calendar booking local service
+	 */
+	public CalendarBookingLocalService getCalendarBookingLocalService() {
+		return calendarBookingLocalService;
+	}
+
+	/**
+	 * Sets the calendar booking local service.
+	 *
+	 * @param calendarBookingLocalService the calendar booking local service
+	 */
+	public void setCalendarBookingLocalService(
+		CalendarBookingLocalService calendarBookingLocalService) {
+		this.calendarBookingLocalService = calendarBookingLocalService;
+	}
+
+	/**
+	 * Returns the calendar booking remote service.
+	 *
+	 * @return the calendar booking remote service
+	 */
+	public CalendarBookingService getCalendarBookingService() {
+		return calendarBookingService;
+	}
+
+	/**
+	 * Sets the calendar booking remote service.
+	 *
+	 * @param calendarBookingService the calendar booking remote service
+	 */
+	public void setCalendarBookingService(
+		CalendarBookingService calendarBookingService) {
+		this.calendarBookingService = calendarBookingService;
+	}
+
+	/**
+	 * Returns the calendar booking persistence.
+	 *
+	 * @return the calendar booking persistence
+	 */
+	public CalendarBookingPersistence getCalendarBookingPersistence() {
+		return calendarBookingPersistence;
+	}
+
+	/**
+	 * Sets the calendar booking persistence.
+	 *
+	 * @param calendarBookingPersistence the calendar booking persistence
+	 */
+	public void setCalendarBookingPersistence(
+		CalendarBookingPersistence calendarBookingPersistence) {
+		this.calendarBookingPersistence = calendarBookingPersistence;
+	}
+
+	/**
+	 * Returns the calendar resource local service.
+	 *
+	 * @return the calendar resource local service
+	 */
+	public CalendarResourceLocalService getCalendarResourceLocalService() {
+		return calendarResourceLocalService;
+	}
+
+	/**
+	 * Sets the calendar resource local service.
+	 *
+	 * @param calendarResourceLocalService the calendar resource local service
+	 */
+	public void setCalendarResourceLocalService(
+		CalendarResourceLocalService calendarResourceLocalService) {
+		this.calendarResourceLocalService = calendarResourceLocalService;
+	}
+
+	/**
+	 * Returns the calendar resource remote service.
+	 *
+	 * @return the calendar resource remote service
+	 */
+	public CalendarResourceService getCalendarResourceService() {
+		return calendarResourceService;
+	}
+
+	/**
+	 * Sets the calendar resource remote service.
+	 *
+	 * @param calendarResourceService the calendar resource remote service
+	 */
+	public void setCalendarResourceService(
+		CalendarResourceService calendarResourceService) {
+		this.calendarResourceService = calendarResourceService;
+	}
+
+	/**
+	 * Returns the calendar resource persistence.
+	 *
+	 * @return the calendar resource persistence
+	 */
+	public CalendarResourcePersistence getCalendarResourcePersistence() {
+		return calendarResourcePersistence;
+	}
+
+	/**
+	 * Sets the calendar resource persistence.
+	 *
+	 * @param calendarResourcePersistence the calendar resource persistence
+	 */
+	public void setCalendarResourcePersistence(
+		CalendarResourcePersistence calendarResourcePersistence) {
+		this.calendarResourcePersistence = calendarResourcePersistence;
+	}
+
+	/**
+	 * Returns the counter local service.
+	 *
+	 * @return the counter local service
+	 */
+	public CounterLocalService getCounterLocalService() {
+		return counterLocalService;
+	}
+
+	/**
+	 * Sets the counter local service.
+	 *
+	 * @param counterLocalService the counter local service
+	 */
+	public void setCounterLocalService(CounterLocalService counterLocalService) {
+		this.counterLocalService = counterLocalService;
+	}
+
+	/**
+	 * Returns the resource local service.
+	 *
+	 * @return the resource local service
+	 */
+	public ResourceLocalService getResourceLocalService() {
+		return resourceLocalService;
+	}
+
+	/**
+	 * Sets the resource local service.
+	 *
+	 * @param resourceLocalService the resource local service
+	 */
+	public void setResourceLocalService(
+		ResourceLocalService resourceLocalService) {
+		this.resourceLocalService = resourceLocalService;
+	}
+
+	/**
+	 * Returns the resource remote service.
+	 *
+	 * @return the resource remote service
+	 */
+	public ResourceService getResourceService() {
+		return resourceService;
+	}
+
+	/**
+	 * Sets the resource remote service.
+	 *
+	 * @param resourceService the resource remote service
+	 */
+	public void setResourceService(ResourceService resourceService) {
+		this.resourceService = resourceService;
+	}
+
+	/**
+	 * Returns the resource persistence.
+	 *
+	 * @return the resource persistence
+	 */
+	public ResourcePersistence getResourcePersistence() {
+		return resourcePersistence;
+	}
+
+	/**
+	 * Sets the resource persistence.
+	 *
+	 * @param resourcePersistence the resource persistence
+	 */
+	public void setResourcePersistence(ResourcePersistence resourcePersistence) {
+		this.resourcePersistence = resourcePersistence;
+	}
+
+	/**
+	 * Returns the user local service.
+	 *
+	 * @return the user local service
+	 */
+	public UserLocalService getUserLocalService() {
+		return userLocalService;
+	}
+
+	/**
+	 * Sets the user local service.
+	 *
+	 * @param userLocalService the user local service
+	 */
+	public void setUserLocalService(UserLocalService userLocalService) {
+		this.userLocalService = userLocalService;
+	}
+
+	/**
+	 * Returns the user remote service.
+	 *
+	 * @return the user remote service
+	 */
+	public UserService getUserService() {
+		return userService;
+	}
+
+	/**
+	 * Sets the user remote service.
+	 *
+	 * @param userService the user remote service
+	 */
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
+	/**
+	 * Returns the user persistence.
+	 *
+	 * @return the user persistence
+	 */
+	public UserPersistence getUserPersistence() {
+		return userPersistence;
+	}
+
+	/**
+	 * Sets the user persistence.
+	 *
+	 * @param userPersistence the user persistence
+	 */
+	public void setUserPersistence(UserPersistence userPersistence) {
+		this.userPersistence = userPersistence;
+	}
+
+	public void afterPropertiesSet() {
+		PersistedModelLocalServiceRegistryUtil.register("com.liferay.calendar.model.Calendar",
+			calendarLocalService);
+	}
+
+	public void destroy() {
+		PersistedModelLocalServiceRegistryUtil.unregister(
+			"com.liferay.calendar.model.Calendar");
+	}
+
+	/**
+	 * Returns the Spring bean ID for this bean.
+	 *
+	 * @return the Spring bean ID for this bean
+	 */
+	public String getBeanIdentifier() {
+		return _beanIdentifier;
+	}
+
+	/**
+	 * Sets the Spring bean ID for this bean.
+	 *
+	 * @param beanIdentifier the Spring bean ID for this bean
+	 */
+	public void setBeanIdentifier(String beanIdentifier) {
+		_beanIdentifier = beanIdentifier;
 	}
 
 	protected Class<?> getModelClass() {

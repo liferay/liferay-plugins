@@ -44,9 +44,13 @@ public class CalendarResourceUtil {
 	}
 
 	public static boolean isGlobalResource(String className, long classPK) {
+		if (className.equals(Group.class.getName()) ||
+			className.equals(User.class.getName())) {
 
-		return (className.equals(User.class.getName()) ||
-				className.equals(Group.class.getName()));
+			return true;
+		}
+
+		return false;
 	}
 
 }

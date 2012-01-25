@@ -38,15 +38,15 @@ public class CalendarServiceWrapper implements CalendarService,
 		return _calendarService;
 	}
 
-	public CalendarService getWrappedService() {
-		return _calendarService;
-	}
-
 	/**
 	 * @deprecated Renamed to {@link #setWrappedService}
 	 */
 	public void setWrappedCalendarService(CalendarService calendarService) {
 		_calendarService = calendarService;
+	}
+
+	public CalendarService getWrappedService() {
+		return _calendarService;
 	}
 
 	public void setWrappedService(CalendarService calendarService) {

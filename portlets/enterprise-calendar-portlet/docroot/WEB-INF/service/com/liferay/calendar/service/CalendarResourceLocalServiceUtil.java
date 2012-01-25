@@ -52,25 +52,6 @@ public class CalendarResourceLocalServiceUtil {
 		return getService().addCalendarResource(calendarResource);
 	}
 
-	public static com.liferay.calendar.model.CalendarResource addCalendarResource(
-		long userId, long groupId, java.lang.String className, long classPK,
-		java.lang.String classUuid, java.lang.String code,
-		java.util.Map<java.util.Locale, java.lang.String> nameMap,
-		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		java.lang.String type, boolean active,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .addCalendarResource(userId, groupId, className, classPK,
-			classUuid, code, nameMap, descriptionMap, type, active,
-			serviceContext);
-	}
-
-	public static void clearService() {
-		_service = null;
-	}
-
 	/**
 	* Creates a new calendar resource with the primary key. Does not add the calendar resource to the database.
 	*
@@ -80,6 +61,19 @@ public class CalendarResourceLocalServiceUtil {
 	public static com.liferay.calendar.model.CalendarResource createCalendarResource(
 		long calendarResourceId) {
 		return getService().createCalendarResource(calendarResourceId);
+	}
+
+	/**
+	* Deletes the calendar resource with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param calendarResourceId the primary key of the calendar resource
+	* @throws PortalException if a calendar resource with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void deleteCalendarResource(long calendarResourceId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().deleteCalendarResource(calendarResourceId);
 	}
 
 	/**
@@ -94,19 +88,6 @@ public class CalendarResourceLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteCalendarResource(calendarResource);
-	}
-
-	/**
-	* Deletes the calendar resource with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param calendarResourceId the primary key of the calendar resource
-	* @throws PortalException if a calendar resource with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void deleteCalendarResource(long calendarResourceId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteCalendarResource(calendarResourceId);
 	}
 
 	/**
@@ -187,15 +168,6 @@ public class CalendarResourceLocalServiceUtil {
 	}
 
 	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
-	}
-
-	/**
 	* Returns the calendar resource with the primary key.
 	*
 	* @param calendarResourceId the primary key of the calendar resource
@@ -208,6 +180,13 @@ public class CalendarResourceLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getCalendarResource(calendarResourceId);
+	}
+
+	public static com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -255,45 +234,6 @@ public class CalendarResourceLocalServiceUtil {
 		return getService().getCalendarResourcesCount();
 	}
 
-	public static com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getPersistedModel(primaryKeyObj);
-	}
-
-	public static CalendarResourceLocalService getService() {
-		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					CalendarResourceLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
-
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					CalendarResourceLocalService.class.getName(),
-					portletClassLoader);
-
-			_service = new CalendarResourceLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
-
-			ReferenceRegistry.registerReference(CalendarResourceLocalServiceUtil.class,
-				"_service");
-			MethodCache.remove(CalendarResourceLocalService.class);
-		}
-
-		return _service;
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
-		getService().setBeanIdentifier(beanIdentifier);
-	}
-
 	/**
 	* Updates the calendar resource in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
@@ -322,6 +262,39 @@ public class CalendarResourceLocalServiceUtil {
 		return getService().updateCalendarResource(calendarResource, merge);
 	}
 
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
+		getService().setBeanIdentifier(beanIdentifier);
+	}
+
+	public static com.liferay.calendar.model.CalendarResource addCalendarResource(
+		long userId, long groupId, java.lang.String className, long classPK,
+		java.lang.String classUuid, java.lang.String code,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		java.lang.String type, boolean active,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .addCalendarResource(userId, groupId, className, classPK,
+			classUuid, code, nameMap, descriptionMap, type, active,
+			serviceContext);
+	}
+
 	public static com.liferay.calendar.model.CalendarResource updateCalendarResource(
 		long calendarResourceId, java.lang.String code,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
@@ -333,6 +306,33 @@ public class CalendarResourceLocalServiceUtil {
 		return getService()
 				   .updateCalendarResource(calendarResourceId, code, nameMap,
 			descriptionMap, type, active, serviceContext);
+	}
+
+	public static void clearService() {
+		_service = null;
+	}
+
+	public static CalendarResourceLocalService getService() {
+		if (_service == null) {
+			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+					CalendarResourceLocalService.class.getName());
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+					"portletClassLoader");
+
+			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
+					CalendarResourceLocalService.class.getName(),
+					portletClassLoader);
+
+			_service = new CalendarResourceLocalServiceClp(classLoaderProxy);
+
+			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(CalendarResourceLocalServiceUtil.class,
+				"_service");
+			MethodCache.remove(CalendarResourceLocalService.class);
+		}
+
+		return _service;
 	}
 
 	public void setService(CalendarResourceLocalService service) {

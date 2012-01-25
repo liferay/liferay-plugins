@@ -60,7 +60,7 @@
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="resourceBlockId" type="long" />
-		<field name="className" type="String" />
+		<field name="classNameId" type="long" />
 		<field name="classPK" type="long" />
 		<field name="classUuid" type="String" />
 		<field name="defaultCalendarId" type="long" />

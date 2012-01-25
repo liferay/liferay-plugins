@@ -52,10 +52,6 @@ public class CalendarLocalServiceUtil {
 		return getService().addCalendar(calendar);
 	}
 
-	public static void clearService() {
-		_service = null;
-	}
-
 	/**
 	* Creates a new calendar with the primary key. Does not add the calendar to the database.
 	*
@@ -65,18 +61,6 @@ public class CalendarLocalServiceUtil {
 	public static com.liferay.calendar.model.Calendar createCalendar(
 		long calendarId) {
 		return getService().createCalendar(calendarId);
-	}
-
-	/**
-	* Deletes the calendar from the database. Also notifies the appropriate model listeners.
-	*
-	* @param calendar the calendar
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void deleteCalendar(
-		com.liferay.calendar.model.Calendar calendar)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteCalendar(calendar);
 	}
 
 	/**
@@ -90,6 +74,18 @@ public class CalendarLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteCalendar(calendarId);
+	}
+
+	/**
+	* Deletes the calendar from the database. Also notifies the appropriate model listeners.
+	*
+	* @param calendar the calendar
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void deleteCalendar(
+		com.liferay.calendar.model.Calendar calendar)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getService().deleteCalendar(calendar);
 	}
 
 	/**
@@ -170,15 +166,6 @@ public class CalendarLocalServiceUtil {
 	}
 
 	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
-	}
-
-	/**
 	* Returns the calendar with the primary key.
 	*
 	* @param calendarId the primary key of the calendar
@@ -191,6 +178,13 @@ public class CalendarLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getCalendar(calendarId);
+	}
+
+	public static com.liferay.portal.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getPersistedModel(primaryKeyObj);
 	}
 
 	/**
@@ -238,44 +232,6 @@ public class CalendarLocalServiceUtil {
 		return getService().getCalendarsCount();
 	}
 
-	public static com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getPersistedModel(primaryKeyObj);
-	}
-
-	public static CalendarLocalService getService() {
-		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					CalendarLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
-
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					CalendarLocalService.class.getName(), portletClassLoader);
-
-			_service = new CalendarLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
-
-			ReferenceRegistry.registerReference(CalendarLocalServiceUtil.class,
-				"_service");
-			MethodCache.remove(CalendarLocalService.class);
-		}
-
-		return _service;
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
-		getService().setBeanIdentifier(beanIdentifier);
-	}
-
 	/**
 	* Updates the calendar in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
@@ -301,6 +257,50 @@ public class CalendarLocalServiceUtil {
 		com.liferay.calendar.model.Calendar calendar, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateCalendar(calendar, merge);
+	}
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
+		getService().setBeanIdentifier(beanIdentifier);
+	}
+
+	public static void clearService() {
+		_service = null;
+	}
+
+	public static CalendarLocalService getService() {
+		if (_service == null) {
+			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+					CalendarLocalService.class.getName());
+			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+					"portletClassLoader");
+
+			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
+					CalendarLocalService.class.getName(), portletClassLoader);
+
+			_service = new CalendarLocalServiceClp(classLoaderProxy);
+
+			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(CalendarLocalServiceUtil.class,
+				"_service");
+			MethodCache.remove(CalendarLocalService.class);
+		}
+
+		return _service;
 	}
 
 	public void setService(CalendarLocalService service) {

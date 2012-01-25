@@ -32,6 +32,43 @@ import java.util.Date;
  * @generated
  */
 public class CalendarCacheModel implements CacheModel<Calendar>, Serializable {
+	@Override
+	public String toString() {
+		StringBundler sb = new StringBundler(29);
+
+		sb.append("{uuid=");
+		sb.append(uuid);
+		sb.append(", calendarId=");
+		sb.append(calendarId);
+		sb.append(", groupId=");
+		sb.append(groupId);
+		sb.append(", companyId=");
+		sb.append(companyId);
+		sb.append(", userId=");
+		sb.append(userId);
+		sb.append(", userName=");
+		sb.append(userName);
+		sb.append(", createDate=");
+		sb.append(createDate);
+		sb.append(", modifiedDate=");
+		sb.append(modifiedDate);
+		sb.append(", resourceBlockId=");
+		sb.append(resourceBlockId);
+		sb.append(", calendarResourceId=");
+		sb.append(calendarResourceId);
+		sb.append(", name=");
+		sb.append(name);
+		sb.append(", description=");
+		sb.append(description);
+		sb.append(", color=");
+		sb.append(color);
+		sb.append(", defaultCalendar=");
+		sb.append(defaultCalendar);
+		sb.append("}");
+
+		return sb.toString();
+	}
+
 	public Calendar toEntityModel() {
 		CalendarImpl calendarImpl = new CalendarImpl();
 
@@ -91,43 +128,6 @@ public class CalendarCacheModel implements CacheModel<Calendar>, Serializable {
 		calendarImpl.resetOriginalValues();
 
 		return calendarImpl;
-	}
-
-	@Override
-	public String toString() {
-		StringBundler sb = new StringBundler(29);
-
-		sb.append("{uuid=");
-		sb.append(uuid);
-		sb.append(", calendarId=");
-		sb.append(calendarId);
-		sb.append(", groupId=");
-		sb.append(groupId);
-		sb.append(", companyId=");
-		sb.append(companyId);
-		sb.append(", userId=");
-		sb.append(userId);
-		sb.append(", userName=");
-		sb.append(userName);
-		sb.append(", createDate=");
-		sb.append(createDate);
-		sb.append(", modifiedDate=");
-		sb.append(modifiedDate);
-		sb.append(", resourceBlockId=");
-		sb.append(resourceBlockId);
-		sb.append(", calendarResourceId=");
-		sb.append(calendarResourceId);
-		sb.append(", name=");
-		sb.append(name);
-		sb.append(", description=");
-		sb.append(description);
-		sb.append(", color=");
-		sb.append(color);
-		sb.append(", defaultCalendar=");
-		sb.append(defaultCalendar);
-		sb.append("}");
-
-		return sb.toString();
 	}
 
 	public String uuid;
