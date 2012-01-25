@@ -35,11 +35,13 @@ public class IMAPAttachmentHandler extends DefaultAttachmentHandler {
 	@Override
 	public void cleanUp() {
 		try {
-			if ((_folder == null) || !_folder.isOpen()) {
+			Folder folder = getFolder();
+
+			if ((folder == null) || !folder.isOpen()) {
 				return;
 			}
 
-			_folder.close(false);
+			folder.close(false);
 		}
 		catch (MessagingException me) {
 			_log.error(me, me);

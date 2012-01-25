@@ -31,11 +31,15 @@ public class DefaultAttachmentHandler implements AttachmentHandler {
 	public void cleanUp() {
 	}
 
+	public Folder getFolder() {
+		return _folder;
+	}
+
 	public InputStream getInputStream() {
 		return _inputStream;
 	}
 
-	protected InputStream _inputStream;
-	protected Folder _folder;
+	private Folder _folder;
+	private InputStream _inputStream;
 
 }

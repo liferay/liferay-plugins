@@ -38,7 +38,7 @@ public class ChatExtensionsUtil {
 		_extensions = new ConcurrentHashMap<String, String>();
 	}
 
-	public Map<String, String> _getExtensions() {
+	private Map<String, String> _getExtensions() {
 		return _extensions;
 	}
 

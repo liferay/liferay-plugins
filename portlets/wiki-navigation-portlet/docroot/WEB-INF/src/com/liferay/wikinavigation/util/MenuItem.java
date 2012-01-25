@@ -35,12 +35,6 @@ import javax.portlet.PortletURL;
  */
 public class MenuItem implements Serializable {
 
-	public static List<MenuItem> fromWikiPage(
-		WikiPage wikiPage, PortletURL portletURL) {
-
-		return _fromWikiPage(wikiPage, portletURL);
-	}
-
 	public static List<MenuItem> fromWikiNode(
 		long nodeId, int depth, PortletURL portletURL) {
 
@@ -55,6 +49,12 @@ public class MenuItem implements Serializable {
 		}
 
 		return _fromWikiNode(wikiPages, 1, depth, portletURL);
+	}
+
+	public static List<MenuItem> fromWikiPage(
+		WikiPage wikiPage, PortletURL portletURL) {
+
+		return _fromWikiPage(wikiPage, portletURL);
 	}
 
 	public MenuItem() {
@@ -139,7 +139,7 @@ public class MenuItem implements Serializable {
 		return menuItems;
 	}
 
-	public static List<MenuItem> _fromWikiPage(
+	private static List<MenuItem> _fromWikiPage(
 		WikiPage wikiPage, PortletURL portletURL) {
 
 		List<MenuItem> menuItems = new LinkedList<MenuItem>();

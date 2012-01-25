@@ -44,6 +44,6 @@ public class NotificationSenderFactory {
 		_notificationSenders = notificationSenders;
 	}
 
-	public static Map<String, NotificationSender> _notificationSenders;
+	private static Map<String, NotificationSender> _notificationSenders;
 
 }
