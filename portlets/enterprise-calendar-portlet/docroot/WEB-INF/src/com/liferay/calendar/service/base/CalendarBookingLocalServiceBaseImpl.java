@@ -146,10 +146,11 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	 * Deletes the calendar booking from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param calendarBooking the calendar booking
+	 * @throws PortalException
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteCalendarBooking(CalendarBooking calendarBooking)
-		throws SystemException {
+		throws PortalException, SystemException {
 		calendarBookingPersistence.remove(calendarBooking);
 
 		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
