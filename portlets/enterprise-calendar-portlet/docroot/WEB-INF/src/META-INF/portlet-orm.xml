@@ -73,7 +73,6 @@
 			<basic name="recurrence" />
 			<basic name="priority" />
 			<basic name="outOfOffice" />
-			<basic name="remindBy" />
 			<basic name="firstReminder" />
 			<basic name="secondReminder" />
 			<basic name="required" />

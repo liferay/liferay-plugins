@@ -49,7 +49,6 @@
 		<property name="recurrence" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="priority" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="outOfOffice" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="remindBy" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="firstReminder" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="secondReminder" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="required" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />

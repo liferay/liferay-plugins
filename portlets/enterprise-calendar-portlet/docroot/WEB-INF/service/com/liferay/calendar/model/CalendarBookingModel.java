@@ -651,20 +651,6 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	public void setOutOfOffice(boolean outOfOffice);
 
 	/**
-	 * Returns the remind by of this calendar booking.
-	 *
-	 * @return the remind by of this calendar booking
-	 */
-	public int getRemindBy();
-
-	/**
-	 * Sets the remind by of this calendar booking.
-	 *
-	 * @param remindBy the remind by of this calendar booking
-	 */
-	public void setRemindBy(int remindBy);
-
-	/**
 	 * Returns the first reminder of this calendar booking.
 	 *
 	 * @return the first reminder of this calendar booking

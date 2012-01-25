@@ -93,7 +93,6 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 			{ "recurrence", Types.VARCHAR },
 			{ "priority", Types.INTEGER },
 			{ "outOfOffice", Types.BOOLEAN },
-			{ "remindBy", Types.INTEGER },
 			{ "firstReminder", Types.INTEGER },
 			{ "secondReminder", Types.INTEGER },
 			{ "required", Types.BOOLEAN },
@@ -104,7 +103,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 			{ "statusByUserName", Types.VARCHAR },
 			{ "statusDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table CalendarBooking (uuid_ VARCHAR(75) null,calendarBookingId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,calendarId LONG,calendarResourceId LONG,parentCalendarBookingId LONG,title STRING null,description STRING null,location STRING null,type_ VARCHAR(75) null,startDate DATE null,endDate DATE null,allDay BOOLEAN,recurrence VARCHAR(75) null,priority INTEGER,outOfOffice BOOLEAN,remindBy INTEGER,firstReminder INTEGER,secondReminder INTEGER,required BOOLEAN,requestMessage VARCHAR(75) null,responseMessage VARCHAR(75) null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table CalendarBooking (uuid_ VARCHAR(75) null,calendarBookingId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,calendarId LONG,calendarResourceId LONG,parentCalendarBookingId LONG,title STRING null,description STRING null,location STRING null,type_ VARCHAR(75) null,startDate DATE null,endDate DATE null,allDay BOOLEAN,recurrence VARCHAR(75) null,priority INTEGER,outOfOffice BOOLEAN,firstReminder INTEGER,secondReminder INTEGER,required BOOLEAN,requestMessage VARCHAR(75) null,responseMessage VARCHAR(75) null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table CalendarBooking";
 	public static final String ORDER_BY_JPQL = " ORDER BY calendarBooking.startDate ASC, calendarBooking.title ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY CalendarBooking.startDate ASC, CalendarBooking.title ASC";
@@ -123,9 +122,8 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	public static long CALENDARID_COLUMN_BITMASK = 1L;
 	public static long CALENDARRESOURCEID_COLUMN_BITMASK = 2L;
 	public static long GROUPID_COLUMN_BITMASK = 4L;
-	public static long REMINDBY_COLUMN_BITMASK = 8L;
-	public static long STATUS_COLUMN_BITMASK = 16L;
-	public static long UUID_COLUMN_BITMASK = 32L;
+	public static long STATUS_COLUMN_BITMASK = 8L;
+	public static long UUID_COLUMN_BITMASK = 16L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -157,7 +155,6 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		model.setRecurrence(soapModel.getRecurrence());
 		model.setPriority(soapModel.getPriority());
 		model.setOutOfOffice(soapModel.getOutOfOffice());
-		model.setRemindBy(soapModel.getRemindBy());
 		model.setFirstReminder(soapModel.getFirstReminder());
 		model.setSecondReminder(soapModel.getSecondReminder());
 		model.setRequired(soapModel.getRequired());
@@ -739,27 +736,6 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	}
 
 	@JSON
-	public int getRemindBy() {
-		return _remindBy;
-	}
-
-	public void setRemindBy(int remindBy) {
-		_columnBitmask |= REMINDBY_COLUMN_BITMASK;
-
-		if (!_setOriginalRemindBy) {
-			_setOriginalRemindBy = true;
-
-			_originalRemindBy = _remindBy;
-		}
-
-		_remindBy = remindBy;
-	}
-
-	public int getOriginalRemindBy() {
-		return _originalRemindBy;
-	}
-
-	@JSON
 	public int getFirstReminder() {
 		return _firstReminder;
 	}
@@ -978,7 +954,6 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		calendarBookingImpl.setRecurrence(getRecurrence());
 		calendarBookingImpl.setPriority(getPriority());
 		calendarBookingImpl.setOutOfOffice(getOutOfOffice());
-		calendarBookingImpl.setRemindBy(getRemindBy());
 		calendarBookingImpl.setFirstReminder(getFirstReminder());
 		calendarBookingImpl.setSecondReminder(getSecondReminder());
 		calendarBookingImpl.setRequired(getRequired());
@@ -1061,10 +1036,6 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		calendarBookingModelImpl._originalCalendarResourceId = calendarBookingModelImpl._calendarResourceId;
 
 		calendarBookingModelImpl._setOriginalCalendarResourceId = false;
-
-		calendarBookingModelImpl._originalRemindBy = calendarBookingModelImpl._remindBy;
-
-		calendarBookingModelImpl._setOriginalRemindBy = false;
 
 		calendarBookingModelImpl._originalStatus = calendarBookingModelImpl._status;
 
@@ -1189,8 +1160,6 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 
 		calendarBookingCacheModel.outOfOffice = getOutOfOffice();
 
-		calendarBookingCacheModel.remindBy = getRemindBy();
-
 		calendarBookingCacheModel.firstReminder = getFirstReminder();
 
 		calendarBookingCacheModel.secondReminder = getSecondReminder();
@@ -1239,7 +1208,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(63);
+		StringBundler sb = new StringBundler(61);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -1283,8 +1252,6 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		sb.append(getPriority());
 		sb.append(", outOfOffice=");
 		sb.append(getOutOfOffice());
-		sb.append(", remindBy=");
-		sb.append(getRemindBy());
 		sb.append(", firstReminder=");
 		sb.append(getFirstReminder());
 		sb.append(", secondReminder=");
@@ -1309,7 +1276,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(97);
+		StringBundler sb = new StringBundler(94);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.calendar.model.CalendarBooking");
@@ -1400,10 +1367,6 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		sb.append(getOutOfOffice());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>remindBy</column-name><column-value><![CDATA[");
-		sb.append(getRemindBy());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>firstReminder</column-name><column-value><![CDATA[");
 		sb.append(getFirstReminder());
 		sb.append("]]></column-value></column>");
@@ -1481,9 +1444,6 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	private String _recurrence;
 	private int _priority;
 	private boolean _outOfOffice;
-	private int _remindBy;
-	private int _originalRemindBy;
-	private boolean _setOriginalRemindBy;
 	private int _firstReminder;
 	private int _secondReminder;
 	private boolean _required;

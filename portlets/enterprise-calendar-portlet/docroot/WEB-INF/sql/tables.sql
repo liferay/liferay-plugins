@@ -37,7 +37,6 @@ create table CalendarBooking (
 	recurrence VARCHAR(75) null,
 	priority INTEGER,
 	outOfOffice BOOLEAN,
-	remindBy INTEGER,
 	firstReminder INTEGER,
 	secondReminder INTEGER,
 	required BOOLEAN,
