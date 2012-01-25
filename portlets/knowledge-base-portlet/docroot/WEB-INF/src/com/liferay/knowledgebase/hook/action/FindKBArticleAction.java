@@ -165,44 +165,6 @@ public class FindKBArticleAction extends BaseStrutsAction {
 	}
 
 	protected PortletURL getKBArticleURL(
-			long plid, String portletId, HttpServletRequest request)
-		throws Exception {
-
-		long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
-
-		String mvcPath = null;
-
-		String rootPortletId = PortletConstants.getRootPortletId(portletId);
-
-		if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ARTICLE)) {
-			mvcPath = "/article/view_article.jsp";
-		}
-		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
-			mvcPath = "/display/view_article.jsp";
-		}
-		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_SECTION)) {
-			mvcPath = "/section/view_article.jsp";
-		}
-
-		PortletURL portletURL = PortletURLFactoryUtil.create(
-			request, portletId, plid, PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter("mvcPath", mvcPath);
-		portletURL.setParameter(
-			"resourcePrimKey", String.valueOf(resourcePrimKey));
-
-		portletURL.setPortletMode(PortletMode.VIEW);
-
-		portletURL.setWindowState(LiferayWindowState.NORMAL);
-
-		if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_SECTION)) {
-			portletURL.setWindowState(LiferayWindowState.MAXIMIZED);
-		}
-
-		return portletURL;
-	}
-
-	protected PortletURL getKBArticleURL(
 			long plid, boolean privateLayout, KBArticle kbArticle,
 			HttpServletRequest request)
 		throws Exception {
@@ -304,6 +266,44 @@ public class FindKBArticleAction extends BaseStrutsAction {
 		}
 
 		return null;
+	}
+
+	protected PortletURL getKBArticleURL(
+			long plid, String portletId, HttpServletRequest request)
+		throws Exception {
+
+		long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
+
+		String mvcPath = null;
+
+		String rootPortletId = PortletConstants.getRootPortletId(portletId);
+
+		if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ARTICLE)) {
+			mvcPath = "/article/view_article.jsp";
+		}
+		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
+			mvcPath = "/display/view_article.jsp";
+		}
+		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_SECTION)) {
+			mvcPath = "/section/view_article.jsp";
+		}
+
+		PortletURL portletURL = PortletURLFactoryUtil.create(
+			request, portletId, plid, PortletRequest.RENDER_PHASE);
+
+		portletURL.setParameter("mvcPath", mvcPath);
+		portletURL.setParameter(
+			"resourcePrimKey", String.valueOf(resourcePrimKey));
+
+		portletURL.setPortletMode(PortletMode.VIEW);
+
+		portletURL.setWindowState(LiferayWindowState.NORMAL);
+
+		if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_SECTION)) {
+			portletURL.setWindowState(LiferayWindowState.MAXIMIZED);
+		}
+
+		return portletURL;
 	}
 
 	protected boolean isValidPlid(long plid) throws Exception {

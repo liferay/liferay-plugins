@@ -28,14 +28,6 @@ import java.util.List;
  */
 public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 
-	public Entry addEntry(long fromUserId, long toUserId, String content)
-		throws SystemException {
-
-		long createDate = System.currentTimeMillis();
-
-		return addEntry(createDate, fromUserId, toUserId, content);
-	}
-
 	public Entry addEntry(
 			long createDate, long fromUserId, long toUserId, String content)
 		throws SystemException {
@@ -70,6 +62,14 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 		JabberUtil.sendMessage(fromUserId, toUserId, content);
 
 		return entry;
+	}
+
+	public Entry addEntry(long fromUserId, long toUserId, String content)
+		throws SystemException {
+
+		long createDate = System.currentTimeMillis();
+
+		return addEntry(createDate, fromUserId, toUserId, content);
 	}
 
 	public void deleteEntries(long userId) throws SystemException {

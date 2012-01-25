@@ -213,6 +213,14 @@ public class WSRPConsumerPortletLocalServiceImpl
 	}
 
 	public WSRPConsumerPortlet getWSRPConsumerPortlet(
+			long wsrpConsumerId, String portletHandle)
+		throws PortalException, SystemException {
+
+		return wsrpConsumerPortletPersistence.findByW_P(
+			wsrpConsumerId, portletHandle);
+	}
+
+	public WSRPConsumerPortlet getWSRPConsumerPortlet(
 			String wsrpConsumerPortletUuid)
 		throws PortalException, SystemException {
 
@@ -226,14 +234,6 @@ public class WSRPConsumerPortletLocalServiceImpl
 		}
 
 		return wsrpConsumerPortlets.get(0);
-	}
-
-	public WSRPConsumerPortlet getWSRPConsumerPortlet(
-			long wsrpConsumerId, String portletHandle)
-		throws PortalException, SystemException {
-
-		return wsrpConsumerPortletPersistence.findByW_P(
-			wsrpConsumerId, portletHandle);
 	}
 
 	public List<WSRPConsumerPortlet> getWSRPConsumerPortlets(

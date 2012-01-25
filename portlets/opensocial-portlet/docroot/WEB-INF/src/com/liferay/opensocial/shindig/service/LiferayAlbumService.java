@@ -218,28 +218,6 @@ public class LiferayAlbumService implements AlbumService {
 	}
 
 	protected RestfulCollection<Album> doGetAlbums(
-			UserId userId, String appId, Set<String> fields,
-			CollectionOptions collectionOptions, Set<String> albumIds,
-			SecurityToken securityToken)
-		throws Exception {
-
-		List<Album> albums = new ArrayList<Album>();
-
-		for (String albumId : albumIds) {
-			Folder folder = DLAppServiceUtil.getFolder(
-				GetterUtil.getLong(albumId));
-
-			Album album = toAlbum(folder, fields, securityToken);
-
-			albums.add(album);
-		}
-
-		return new RestfulCollection<Album>(
-			albums, collectionOptions.getFirst(), albums.size(),
-			collectionOptions.getMax());
-	}
-
-	protected RestfulCollection<Album> doGetAlbums(
 			Set<UserId> userIds, GroupId groupId, String appId,
 			Set<String> fields, CollectionOptions collectionOptions,
 			SecurityToken securityToken)
@@ -289,6 +267,28 @@ public class LiferayAlbumService implements AlbumService {
 
 				albums.add(album);
 			}
+		}
+
+		return new RestfulCollection<Album>(
+			albums, collectionOptions.getFirst(), albums.size(),
+			collectionOptions.getMax());
+	}
+
+	protected RestfulCollection<Album> doGetAlbums(
+			UserId userId, String appId, Set<String> fields,
+			CollectionOptions collectionOptions, Set<String> albumIds,
+			SecurityToken securityToken)
+		throws Exception {
+
+		List<Album> albums = new ArrayList<Album>();
+
+		for (String albumId : albumIds) {
+			Folder folder = DLAppServiceUtil.getFolder(
+				GetterUtil.getLong(albumId));
+
+			Album album = toAlbum(folder, fields, securityToken);
+
+			albums.add(album);
 		}
 
 		return new RestfulCollection<Album>(
