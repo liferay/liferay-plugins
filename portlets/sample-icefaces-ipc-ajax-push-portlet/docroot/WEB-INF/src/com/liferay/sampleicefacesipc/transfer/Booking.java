@@ -79,7 +79,7 @@ public class Booking {
 
 	private long _bookingTypeId;
 	private long _customerId;
-	private Date _startDate;
 	private Date _finishDate;
+	private Date _startDate;
 
 }

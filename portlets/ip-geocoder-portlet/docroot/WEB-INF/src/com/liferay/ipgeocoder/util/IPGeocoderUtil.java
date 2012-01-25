@@ -37,19 +37,6 @@ public class IPGeocoderUtil {
 		_init();
 	}
 
-	private void _init() {
-		try {
-			if (_lookupService == null) {
-				_lookupService = new LookupService(
-					PortletProps.get("maxmind.database.file"),
-					LookupService.GEOIP_MEMORY_CACHE);
-			}
-		}
-		catch (IOException ioe) {
-			_log.error(ioe.getMessage());
-		}
-	}
-
 	private IPInfo _getIPInfo(String ipAddress) {
 		_init();
 
@@ -60,6 +47,19 @@ public class IPGeocoderUtil {
 		}
 		else {
 			return null;
+		}
+	}
+
+	private void _init() {
+		try {
+			if (_lookupService == null) {
+				_lookupService = new LookupService(
+					PortletProps.get("maxmind.database.file"),
+					LookupService.GEOIP_MEMORY_CACHE);
+			}
+		}
+		catch (IOException ioe) {
+			_log.error(ioe.getMessage());
 		}
 	}
 

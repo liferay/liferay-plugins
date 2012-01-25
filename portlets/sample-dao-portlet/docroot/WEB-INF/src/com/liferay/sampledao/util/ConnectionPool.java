@@ -169,7 +169,7 @@ public class ConnectionPool {
 
 	private static ConnectionPool _instance = new ConnectionPool();
 
-	private Properties _props;
 	private ComboPooledDataSource _cpds;
+	private Properties _props;
 
 }

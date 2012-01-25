@@ -45,68 +45,68 @@ public class Weather implements Serializable {
 		_barometerDirection = barometerDirection;
 	}
 
-	public String getZip() {
-		return _zip;
-	}
-
-	public void setZip(String zip) {
-		_zip = zip;
-	}
-
-	public String getIconURL() {
-		return _iconURL;
-	}
-
-	public void setIconURL(String iconURL) {
-		_iconURL = iconURL;
-	}
-
-	public String getConditions() {
-		return _conditions;
-	}
-
-	public void setConditions(String conditions) {
-		_conditions = conditions;
-	}
-
-	public float getCurrentTemp() {
-		return _currentTemp;
-	}
-
-	public void setCurrentTemp(float currentTemp) {
-		_currentTemp = currentTemp;
-	}
-
-	public float getHumidity() {
-		return _humidity;
-	}
-
-	public void setHumidity(float humidity) {
-		_humidity = humidity;
-	}
-
 	public float getBarometer() {
 		return _barometer;
-	}
-
-	public void setBarometer(float barometer) {
-		_barometer = barometer;
 	}
 
 	public String getBarometerDirection() {
 		return _barometerDirection;
 	}
 
+	public String getConditions() {
+		return _conditions;
+	}
+
+	public float getCurrentTemp() {
+		return _currentTemp;
+	}
+
+	public float getHumidity() {
+		return _humidity;
+	}
+
+	public String getIconURL() {
+		return _iconURL;
+	}
+
+	public String getZip() {
+		return _zip;
+	}
+
+	public void setBarometer(float barometer) {
+		_barometer = barometer;
+	}
+
 	public void setBarometerDirection(String barometerDirection) {
 		_barometerDirection = barometerDirection;
 	}
 
-	private String _zip;
-	private String _iconURL;
+	public void setConditions(String conditions) {
+		_conditions = conditions;
+	}
+
+	public void setCurrentTemp(float currentTemp) {
+		_currentTemp = currentTemp;
+	}
+
+	public void setHumidity(float humidity) {
+		_humidity = humidity;
+	}
+
+	public void setIconURL(String iconURL) {
+		_iconURL = iconURL;
+	}
+
+	public void setZip(String zip) {
+		_zip = zip;
+	}
+
+	private float _barometer;
+	private String _barometerDirection;
 	private String _conditions;
 	private float _currentTemp;
 	private float _humidity;
-	private float _barometer;
-	private String _barometerDirection;
+	private String _iconURL;
+	private String _zip;
 
 }

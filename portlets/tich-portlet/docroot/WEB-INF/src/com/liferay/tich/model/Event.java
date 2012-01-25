@@ -26,15 +26,15 @@ public class Event implements Serializable {
 		_description = description;
 	}
 
-	public int getYear() {
-		return _year;
-	}
-
 	public String getDescription() {
 		return _description;
 	}
 
-	private int _year;
+	public int getYear() {
+		return _year;
+	}
+
 	private String _description;
+	private int _year;
 
 }
