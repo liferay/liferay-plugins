@@ -19,6 +19,9 @@ import com.liferay.calendar.CalendarBookingTitleException;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.service.base.CalendarBookingLocalServiceBaseImpl;
+import com.liferay.calendar.workflow.CalendarBookingApprovalWorkflow;
+import com.liferay.calendar.workflow.CalendarBookingWorkflowConstants;
+import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
@@ -26,7 +29,6 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.TimeZoneUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
-import com.liferay.portal.kernel.workflow.WorkflowHandlerRegistryUtil;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
@@ -144,7 +146,6 @@ public class CalendarBookingLocalServiceImpl
 		calendarBooking.setResponseMessage(responseMessage);
 		calendarBooking.setStatus(WorkflowConstants.STATUS_DRAFT);
 		calendarBooking.setStatusDate(serviceContext.getModifiedDate(now));
-		calendarBooking.setExpandoBridgeAttributes(serviceContext);
 
 		calendarBookingPersistence.update(calendarBooking, false);
 
@@ -154,10 +155,8 @@ public class CalendarBookingLocalServiceImpl
 
 		// Workflow
 
-		WorkflowHandlerRegistryUtil.startWorkflowInstance(
-			user.getCompanyId(), calendar.getGroupId(), userId,
-			CalendarBooking.class.getName(), calendarBookingId, calendarBooking,
-			serviceContext);
+		calendarBookingApprovalWorkflow.startWorkflow(
+			userId, calendarBookingId, serviceContext);
 
 		return calendarBooking;
 	}
@@ -200,10 +199,10 @@ public class CalendarBookingLocalServiceImpl
 	public CalendarBooking updateCalendarBooking(
 			long userId, long calendarBookingId, long calendarId,
 			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
-			Map<Locale, String> locationMap, String type, int startDateMonth,
-			int startDateDay, int startDateYear, int startDateHour,
-			int startDateMinute, int endDateMonth, int endDateDay,
-			int endDateYear, int endDateHour, int endDateMinute,
+			Map<Locale, String> locationMap, String type, int status,
+			int startDateMonth, int startDateDay, int startDateYear,
+			int startDateHour, int startDateMinute, int endDateMonth,
+			int endDateDay, int endDateYear, int endDateHour, int endDateMinute,
 			boolean allDay, String recurrence, int priority,
 			boolean outOfOffice, int remindBy, int firstReminder,
 			int secondReminder, boolean required, String requestMessage,
@@ -263,6 +262,9 @@ public class CalendarBookingLocalServiceImpl
 			firstReminder = tmp;
 		}
 
+		calendarBooking.setCompanyId(user.getCompanyId());
+		calendarBooking.setUserId(user.getUserId());
+		calendarBooking.setUserName(user.getFullName());
 		calendarBooking.setModifiedDate(serviceContext.getModifiedDate(null));
 		calendarBooking.setCalendarId(calendarId);
 		calendarBooking.setTitleMap(titleMap);
@@ -281,11 +283,6 @@ public class CalendarBookingLocalServiceImpl
 		calendarBooking.setRequired(required);
 		calendarBooking.setRequestMessage(requestMessage);
 		calendarBooking.setResponseMessage(responseMessage);
-		calendarBooking.setExpandoBridgeAttributes(serviceContext);
-
-		if (!calendarBooking.isPending()) {
-			calendarBooking.setStatus(WorkflowConstants.STATUS_DRAFT);
-		}
 
 		calendarBookingPersistence.update(calendarBooking, false);
 
@@ -296,11 +293,9 @@ public class CalendarBookingLocalServiceImpl
 
 		// Workflow
 
-		WorkflowHandlerRegistryUtil.startWorkflowInstance(
-			user.getCompanyId(), calendarBooking.getGroupId(), userId,
-			CalendarBooking.class.getName(),
-			calendarBooking.getCalendarBookingId(), calendarBooking,
-			serviceContext);
+		calendarBookingApprovalWorkflow.invokeTransition(
+			userId, calendarBookingId,
+			CalendarBookingWorkflowConstants.toLabel(status), serviceContext);
 
 		return calendarBooking;
 	}
@@ -375,5 +370,8 @@ public class CalendarBookingLocalServiceImpl
 			throw new CalendarBookingDurationException();
 		}
 	}
+
+	@BeanReference(type = CalendarBookingApprovalWorkflow.class)
+	protected CalendarBookingApprovalWorkflow calendarBookingApprovalWorkflow;
 
 }
