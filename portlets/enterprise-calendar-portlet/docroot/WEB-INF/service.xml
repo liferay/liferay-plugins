@@ -150,7 +150,7 @@
 
 		<!-- Other fields -->
 
-		<column name="className" type="String" />
+		<column name="classNameId" type="long" />
 		<column name="classPK" type="long" />
 		<column name="classUuid" type="String" />
 		<column name="defaultCalendarId" type="long" />
@@ -176,7 +176,7 @@
 			<finder-column name="active" />
 		</finder>
 		<finder name="C_C" return-type="CalendarResource" unique="true">
-			<finder-column name="className" />
+			<finder-column name="classNameId" />
 			<finder-column name="classPK" />
 		</finder>
 		<finder name="G_C_A" return-type="Collection">

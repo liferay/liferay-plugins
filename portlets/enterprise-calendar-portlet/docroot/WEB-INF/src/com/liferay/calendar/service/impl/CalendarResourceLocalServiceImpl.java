@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.util.PortalUtil;
 
 import java.util.Date;
 import java.util.Locale;
@@ -43,10 +44,7 @@ public class CalendarResourceLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		User user = userPersistence.findByPrimaryKey(userId);
-		Date now = new Date();
-
-		validate(className, classPK);
+		// Calendar resource
 
 		long globalUserId = 0;
 
@@ -59,6 +57,13 @@ public class CalendarResourceLocalServiceImpl
 			userId = globalUserId;
 		}
 
+		User user = userPersistence.findByPrimaryKey(userId);
+
+		long classNameId = PortalUtil.getClassNameId(className);
+		Date now = new Date();
+
+		validate(classNameId, classPK);
+
 		long calendarResourceId = counterLocalService.increment();
 
 		CalendarResource calendarResource =
@@ -67,19 +72,18 @@ public class CalendarResourceLocalServiceImpl
 		calendarResource.setUuid(serviceContext.getUuid());
 		calendarResource.setGroupId(groupId);
 		calendarResource.setCompanyId(user.getCompanyId());
-		calendarResource.setResourceBlockId(0);
 		calendarResource.setUserId(user.getUserId());
 		calendarResource.setUserName(user.getFullName());
 		calendarResource.setCreateDate(serviceContext.getCreateDate(now));
 		calendarResource.setModifiedDate(serviceContext.getModifiedDate(now));
-		calendarResource.setClassName(className);
+		calendarResource.setClassNameId(classNameId);
 		calendarResource.setClassPK(classPK);
 		calendarResource.setClassUuid(classUuid);
 		calendarResource.setCode(code);
 		calendarResource.setNameMap(nameMap);
 		calendarResource.setDescriptionMap(descriptionMap);
-		calendarResource.setActive(active);
 		calendarResource.setType(type);
+		calendarResource.setActive(active);
 
 		calendarResourcePersistence.update(calendarResource, false);
 
@@ -91,10 +95,11 @@ public class CalendarResourceLocalServiceImpl
 		return calendarResource;
 	}
 
+	@Override
 	public void deleteCalendarResource(CalendarResource calendarResource)
 		throws PortalException, SystemException {
 
-		// CalendarResource
+		// Calendar resource
 
 		calendarResourcePersistence.remove(calendarResource);
 
@@ -106,6 +111,7 @@ public class CalendarResourceLocalServiceImpl
 			calendarResource.getCalendarResourceId());
 	}
 
+	@Override
 	public void deleteCalendarResource(long calendarResourceId)
 		throws PortalException, SystemException {
 
@@ -120,6 +126,8 @@ public class CalendarResourceLocalServiceImpl
 			Map<Locale, String> descriptionMap, String type, boolean active,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
+
+		// Calendar resource
 
 		CalendarResource calendarResource =
 			calendarResourcePersistence.findByPrimaryKey(calendarResourceId);
@@ -141,11 +149,11 @@ public class CalendarResourceLocalServiceImpl
 		return calendarResource;
 	}
 
-	protected void validate(String className, long classPK)
+	protected void validate(long classNameId, long classPK)
 		throws PortalException, SystemException {
 
 		CalendarResource calendarResource =
-			calendarResourcePersistence.fetchByC_C(className, classPK);
+			calendarResourcePersistence.fetchByC_C(classNameId, classPK);
 
 		if (Validator.isNotNull(calendarResource)) {
 			throw new DuplicateCalendarResourceException();
