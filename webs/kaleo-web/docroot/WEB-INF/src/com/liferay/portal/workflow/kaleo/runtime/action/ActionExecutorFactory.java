@@ -42,6 +42,6 @@ public class ActionExecutorFactory {
 		_actionExecutors = actionExecutors;
 	}
 
-	public static Map<String, ActionExecutor> _actionExecutors;
+	private static Map<String, ActionExecutor> _actionExecutors;
 
 }

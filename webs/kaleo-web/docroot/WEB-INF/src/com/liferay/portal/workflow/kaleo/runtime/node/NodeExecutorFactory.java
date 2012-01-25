@@ -47,6 +47,6 @@ public class NodeExecutorFactory {
 		}
 	}
 
-	public static Map<NodeType, NodeExecutor> _nodeExecutors;
+	private static Map<NodeType, NodeExecutor> _nodeExecutors;
 
 }

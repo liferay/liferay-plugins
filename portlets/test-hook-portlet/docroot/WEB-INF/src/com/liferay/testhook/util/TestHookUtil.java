@@ -35,7 +35,7 @@ public class TestHookUtil {
 			tmpDir + "/liferay/testhook/" + Time.getTimestamp();
 	}
 
-	public File _getStartupActionFile() {
+	private File _getStartupActionFile() {
 		return new File(_startupActionFileName);
 	}
 
