@@ -154,6 +154,19 @@ public class InstanceUtil {
 		return layoutSetPrototype;
 	}
 
+	protected static void setInitialized(long companyId) throws Exception {
+		Group group = GroupLocalServiceUtil.getCompanyGroup(companyId);
+
+		UnicodeProperties typeSettingsProperties =
+			group.getTypeSettingsProperties();
+
+		typeSettingsProperties.setProperty(
+			"social-office-initialized", Boolean.TRUE.toString());
+
+		GroupLocalServiceUtil.updateGroup(
+			group.getGroupId(), typeSettingsProperties.toString());
+	}
+
 	protected static void setupExpando(long companyId) throws Exception {
 		ExpandoTable expandoTable = null;
 
@@ -204,19 +217,6 @@ public class InstanceUtil {
 		}
 		catch (Exception e) {
 		}
-	}
-
-	protected static void setInitialized(long companyId) throws Exception {
-		Group group = GroupLocalServiceUtil.getCompanyGroup(companyId);
-
-		UnicodeProperties typeSettingsProperties =
-			group.getTypeSettingsProperties();
-
-		typeSettingsProperties.setProperty(
-			"social-office-initialized", Boolean.TRUE.toString());
-
-		GroupLocalServiceUtil.updateGroup(
-			group.getGroupId(), typeSettingsProperties.toString());
 	}
 
 	protected static void setupLayoutSetPrototype(long companyId)

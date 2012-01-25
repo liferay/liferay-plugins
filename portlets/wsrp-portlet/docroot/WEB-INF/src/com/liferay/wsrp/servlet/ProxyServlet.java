@@ -60,6 +60,27 @@ public class ProxyServlet extends HttpServlet {
 		}
 	}
 
+	protected boolean isAllowedURL(URL url) throws Exception {
+		if (PortletPropsValues.PROXY_URL_IPS_ALLOWED.length == 0) {
+			return true;
+		}
+		else {
+			String serverIp = PortalUtil.getComputerAddress();
+
+			for (String ip : PortletPropsValues.PROXY_URL_IPS_ALLOWED) {
+				String host = url.getHost();
+
+				if ((ip.equals(_SERVER_IP) && host.equals(serverIp)) ||
+					host.equals(ip)) {
+
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
 	protected void proxyURL(
 			HttpServletRequest request, HttpServletResponse response, URL url)
 		throws Exception {
@@ -80,27 +101,6 @@ public class ProxyServlet extends HttpServlet {
 		response.setContentType(urlConnection.getContentType());
 
 		ServletResponseUtil.write(response, urlConnection.getInputStream());
-	}
-
-	protected boolean isAllowedURL(URL url) throws Exception {
-		if (PortletPropsValues.PROXY_URL_IPS_ALLOWED.length == 0) {
-			return true;
-		}
-		else {
-			String serverIp = PortalUtil.getComputerAddress();
-
-			for (String ip : PortletPropsValues.PROXY_URL_IPS_ALLOWED) {
-				String host = url.getHost();
-
-				if ((ip.equals(_SERVER_IP) && host.equals(serverIp)) ||
-					host.equals(ip)) {
-
-					return true;
-				}
-			}
-		}
-
-		return false;
 	}
 
 	private static final String _SERVER_IP = "SERVER_IP";

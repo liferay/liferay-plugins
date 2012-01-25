@@ -74,64 +74,6 @@ public class LoginPreAction extends Action {
 			group.getGroupId(), typeSettingsProperties.toString());
 	}
 
-	protected void updateUserLayouts(
-			HttpServletRequest request, HttpServletResponse response)
-		throws Exception {
-
-		User user = PortalUtil.getUser(request);
-
-		if (user == null) {
-			return;
-		}
-
-		Role role = RoleLocalServiceUtil.fetchRole(
-			user.getCompanyId(), RoleConstants.SOCIAL_OFFICE_USER);
-
-		if (!UserLocalServiceUtil.hasRoleUser(
-				role.getRoleId(), user.getUserId())) {
-
-			return;
-		}
-
-		Group group = user.getGroup();
-
-		String customJspServletContextName = GetterUtil.getString(
-			group.getTypeSettingsProperty("customJspServletContextName"));
-
-		if (customJspServletContextName.equals("so-hook")) {
-			return;
-		}
-
-		if (!LayoutLocalServiceUtil.hasLayouts(user, false)) {
-			LayoutSetLocalServiceUtil.addLayoutSet(group.getGroupId(), false);
-		}
-		else {
-			List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
-				group.getGroupId(), false);
-
-			ServiceContext serviceContext = new ServiceContext();
-
-			for (Layout layout : layouts) {
-				LayoutLocalServiceUtil.updateLayout(
-					layout.getGroupId(), layout.isPrivateLayout(),
-					layout.getLayoutId(), layout.getParentLayoutId(),
-					layout.getNameMap(), layout.getTitleMap(),
-					layout.getDescriptionMap(), layout.getKeywordsMap(),
-					layout.getRobotsMap(), layout.getType(), true,
-					layout.getFriendlyURL(), null, null, serviceContext);
-			}
-		}
-
-		if (!LayoutLocalServiceUtil.hasLayouts(user, true)) {
-			LayoutSetLocalServiceUtil.addLayoutSet(group.getGroupId(), true);
-		}
-
-		updatePrivateUserLayouts(group);
-		updatePublicUserLayouts(group);
-
-		setCustomJspServletContextName(group);
-	}
-
 	protected void updatePrivateUserLayouts(Group group) throws Exception {
 		LayoutSetLocalServiceUtil.updateLookAndFeel(
 			group.getGroupId(), true, "so_WAR_sotheme", "01", StringPool.BLANK,
@@ -252,6 +194,64 @@ public class LoginPreAction extends Action {
 		LayoutUtil.updatePermissions(layout, true);
 
 		LayoutLocalServiceUtil.updatePriority(layout, 2);
+	}
+
+	protected void updateUserLayouts(
+			HttpServletRequest request, HttpServletResponse response)
+		throws Exception {
+
+		User user = PortalUtil.getUser(request);
+
+		if (user == null) {
+			return;
+		}
+
+		Role role = RoleLocalServiceUtil.fetchRole(
+			user.getCompanyId(), RoleConstants.SOCIAL_OFFICE_USER);
+
+		if (!UserLocalServiceUtil.hasRoleUser(
+				role.getRoleId(), user.getUserId())) {
+
+			return;
+		}
+
+		Group group = user.getGroup();
+
+		String customJspServletContextName = GetterUtil.getString(
+			group.getTypeSettingsProperty("customJspServletContextName"));
+
+		if (customJspServletContextName.equals("so-hook")) {
+			return;
+		}
+
+		if (!LayoutLocalServiceUtil.hasLayouts(user, false)) {
+			LayoutSetLocalServiceUtil.addLayoutSet(group.getGroupId(), false);
+		}
+		else {
+			List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
+				group.getGroupId(), false);
+
+			ServiceContext serviceContext = new ServiceContext();
+
+			for (Layout layout : layouts) {
+				LayoutLocalServiceUtil.updateLayout(
+					layout.getGroupId(), layout.isPrivateLayout(),
+					layout.getLayoutId(), layout.getParentLayoutId(),
+					layout.getNameMap(), layout.getTitleMap(),
+					layout.getDescriptionMap(), layout.getKeywordsMap(),
+					layout.getRobotsMap(), layout.getType(), true,
+					layout.getFriendlyURL(), null, null, serviceContext);
+			}
+		}
+
+		if (!LayoutLocalServiceUtil.hasLayouts(user, true)) {
+			LayoutSetLocalServiceUtil.addLayoutSet(group.getGroupId(), true);
+		}
+
+		updatePrivateUserLayouts(group);
+		updatePublicUserLayouts(group);
+
+		setCustomJspServletContextName(group);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(LoginPreAction.class);

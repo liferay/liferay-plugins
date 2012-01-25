@@ -124,11 +124,6 @@ public class ConsumerFriendlyURLMapper extends BaseFriendlyURLMapper {
 		addParameter(parameterMap, name, friendlyURLPath.substring(pos5 + 1));
 	}
 
-	protected void addPathElement(StringBuilder sb, String value) {
-		sb.append(StringPool.SLASH);
-		sb.append(GetterUtil.get(HttpUtil.encodeURL(value), StringPool.DASH));
-	}
-
 	@Override
 	protected void addParameter(
 		Map<String, String[]> parameterMap, String name, String value) {
@@ -143,6 +138,11 @@ public class ConsumerFriendlyURLMapper extends BaseFriendlyURLMapper {
 		catch (Exception e) {
 			_log.error(e, e);
 		}
+	}
+
+	protected void addPathElement(StringBuilder sb, String value) {
+		sb.append(StringPool.SLASH);
+		sb.append(GetterUtil.get(HttpUtil.encodeURL(value), StringPool.DASH));
 	}
 
 	private static final String _MAPPING = "consumer";

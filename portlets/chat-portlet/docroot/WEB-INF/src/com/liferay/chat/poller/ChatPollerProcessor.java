@@ -53,6 +53,21 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 		}
 	}
 
+	@Override
+	protected void doReceive(
+			PollerRequest pollerRequest, PollerResponse pollerResponse)
+		throws Exception {
+
+		getBuddies(pollerRequest, pollerResponse);
+		getEntries(pollerRequest, pollerResponse);
+	}
+
+	@Override
+	protected void doSend(PollerRequest pollerRequest) throws Exception {
+		addEntry(pollerRequest);
+		updateStatus(pollerRequest);
+	}
+
 	protected void getBuddies(
 			PollerRequest pollerRequest, PollerResponse pollerResponse)
 		throws Exception {
@@ -176,21 +191,6 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 			StatusLocalServiceUtil.updateStatus(
 				pollerRequest.getUserId(), pollerRequest.getTimestamp());
 		}
-	}
-
-	@Override
-	protected void doReceive(
-			PollerRequest pollerRequest, PollerResponse pollerResponse)
-		throws Exception {
-
-		getBuddies(pollerRequest, pollerResponse);
-		getEntries(pollerRequest, pollerResponse);
-	}
-
-	@Override
-	protected void doSend(PollerRequest pollerRequest) throws Exception {
-		addEntry(pollerRequest);
-		updateStatus(pollerRequest);
 	}
 
 	protected void updateStatus(PollerRequest pollerRequest) throws Exception {

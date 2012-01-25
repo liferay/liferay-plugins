@@ -31,9 +31,20 @@ import javax.portlet.PortletPreferences;
 public class UpgradePortletPreferences
 	extends CamelCaseUpgradePortletPreferences {
 
-	@Override
-	protected String[] getPortletIds() {
-		return _PORTLET_IDS;
+	protected Map<String, String> getDefaultPreferencesMap(
+		String rootPortletId) {
+
+		if (rootPortletId.equals("1_WAR_knowledgebaseportlet")) {
+			return _adminDefaultPreferencesMap;
+		}
+		else if (rootPortletId.equals("2_WAR_knowledgebaseportlet")) {
+			return _displayDefaultPreferencesMap;
+		}
+		else if (rootPortletId.equals("3_WAR_knowledgebaseportlet")) {
+			return _articleDefaultPreferencesMap;
+		}
+
+		return Collections.emptyMap();
 	}
 
 	protected String getName(String rootPortletId, String oldName) {
@@ -50,20 +61,9 @@ public class UpgradePortletPreferences
 		return null;
 	}
 
-	protected Map<String, String> getDefaultPreferencesMap(
-		String rootPortletId) {
-
-		if (rootPortletId.equals("1_WAR_knowledgebaseportlet")) {
-			return _adminDefaultPreferencesMap;
-		}
-		else if (rootPortletId.equals("2_WAR_knowledgebaseportlet")) {
-			return _displayDefaultPreferencesMap;
-		}
-		else if (rootPortletId.equals("3_WAR_knowledgebaseportlet")) {
-			return _articleDefaultPreferencesMap;
-		}
-
-		return Collections.emptyMap();
+	@Override
+	protected String[] getPortletIds() {
+		return _PORTLET_IDS;
 	}
 
 	protected String updatePreferences(

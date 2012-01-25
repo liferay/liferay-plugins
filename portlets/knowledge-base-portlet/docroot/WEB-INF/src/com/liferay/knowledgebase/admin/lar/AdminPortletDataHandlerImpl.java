@@ -196,6 +196,29 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 	}
 
+	protected void exportKBArticles(
+			PortletDataContext portletDataContext, Element rootElement)
+		throws Exception {
+
+		for (KBArticle kbArticle : getKBArticles(portletDataContext)) {
+			if (!portletDataContext.isWithinDateRange(
+					kbArticle.getModifiedDate())) {
+
+				continue;
+			}
+
+			String path =
+				getPortletPath(portletDataContext) + "/kbarticles/" +
+					kbArticle.getResourcePrimKey() + ".xml";
+
+			if (!portletDataContext.isPathNotProcessed(path)) {
+				continue;
+			}
+
+			exportKBArticle(portletDataContext, rootElement, path, kbArticle);
+		}
+	}
+
 	protected void exportKBArticleVersions(
 			PortletDataContext portletDataContext, Element kbArticleElement,
 			long resourcePrimKey)
@@ -223,29 +246,6 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			curKBArticleElement.addAttribute("path", path);
 
 			portletDataContext.addZipEntry(path, kbArticle);
-		}
-	}
-
-	protected void exportKBArticles(
-			PortletDataContext portletDataContext, Element rootElement)
-		throws Exception {
-
-		for (KBArticle kbArticle : getKBArticles(portletDataContext)) {
-			if (!portletDataContext.isWithinDateRange(
-					kbArticle.getModifiedDate())) {
-
-				continue;
-			}
-
-			String path =
-				getPortletPath(portletDataContext) + "/kbarticles/" +
-					kbArticle.getResourcePrimKey() + ".xml";
-
-			if (!portletDataContext.isPathNotProcessed(path)) {
-				continue;
-			}
-
-			exportKBArticle(portletDataContext, rootElement, path, kbArticle);
 		}
 	}
 
@@ -472,6 +472,46 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 	}
 
+	protected void importKBArticles(
+			PortletDataContext portletDataContext, Element rootElement)
+		throws Exception {
+
+		long importId = CounterLocalServiceUtil.increment();
+
+		Map<String, String> dirNames = new HashMap<String, String>();
+
+		try {
+			DLStoreUtil.addDirectory(
+				portletDataContext.getCompanyId(), CompanyConstants.SYSTEM,
+				"knowledgebase/temp/import/" + importId);
+
+			importKBArticleAttachments(
+				portletDataContext, importId, dirNames, rootElement);
+
+			List<Element> kbArticleElements = rootElement.elements(
+				"kb-article");
+
+			for (Element kbArticleElement : kbArticleElements) {
+				String path = kbArticleElement.attributeValue("path");
+
+				if (!portletDataContext.isPathNotProcessed(path)) {
+					continue;
+				}
+
+				KBArticle kbArticle =
+					(KBArticle)portletDataContext.getZipEntryAsObject(path);
+
+				importKBArticle(
+					portletDataContext, dirNames, kbArticleElement, kbArticle);
+			}
+		}
+		finally {
+			DLStoreUtil.deleteDirectory(
+				portletDataContext.getCompanyId(), CompanyConstants.SYSTEM,
+				"knowledgebase/temp/import/" + importId);
+		}
+	}
+
 	protected KBArticle importKBArticleVersions(
 			PortletDataContext portletDataContext, String uuid,
 			long parentResourcePrimKey, String dirName,
@@ -522,46 +562,6 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 
 		return importedKBArticle;
-	}
-
-	protected void importKBArticles(
-			PortletDataContext portletDataContext, Element rootElement)
-		throws Exception {
-
-		long importId = CounterLocalServiceUtil.increment();
-
-		Map<String, String> dirNames = new HashMap<String, String>();
-
-		try {
-			DLStoreUtil.addDirectory(
-				portletDataContext.getCompanyId(), CompanyConstants.SYSTEM,
-				"knowledgebase/temp/import/" + importId);
-
-			importKBArticleAttachments(
-				portletDataContext, importId, dirNames, rootElement);
-
-			List<Element> kbArticleElements = rootElement.elements(
-				"kb-article");
-
-			for (Element kbArticleElement : kbArticleElements) {
-				String path = kbArticleElement.attributeValue("path");
-
-				if (!portletDataContext.isPathNotProcessed(path)) {
-					continue;
-				}
-
-				KBArticle kbArticle =
-					(KBArticle)portletDataContext.getZipEntryAsObject(path);
-
-				importKBArticle(
-					portletDataContext, dirNames, kbArticleElement, kbArticle);
-			}
-		}
-		finally {
-			DLStoreUtil.deleteDirectory(
-				portletDataContext.getCompanyId(), CompanyConstants.SYSTEM,
-				"knowledgebase/temp/import/" + importId);
-		}
 	}
 
 	protected void importKBComment(
