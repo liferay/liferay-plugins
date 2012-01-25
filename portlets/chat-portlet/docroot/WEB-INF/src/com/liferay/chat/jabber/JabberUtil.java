@@ -83,12 +83,12 @@ public class JabberUtil {
 		getJabber().updateStatus(userId, online);
 	}
 
-	protected static Jabber getJabber() {
-		return _jabber;
-	}
-
 	public void setJabber(Jabber jabber) {
 		_jabber = jabber;
+	}
+
+	protected static Jabber getJabber() {
+		return _jabber;
 	}
 
 	private static Jabber _jabber;
