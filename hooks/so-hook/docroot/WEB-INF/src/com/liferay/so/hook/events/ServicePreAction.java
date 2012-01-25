@@ -88,48 +88,6 @@ public class ServicePreAction extends Action {
 		}
 	}
 
-	protected boolean isDirectoryView(
-		HttpServletRequest request, String currentURL) throws Exception {
-
-		String action = ParamUtil.getString(request, "_11_struts_action");
-
-		if (!action.equals("/directory/view_user")) {
-			return false;
-		}
-
-		long userId = ParamUtil.getLong(request, "_11_p_u_i_d");
-
-		if (userId <= 0) {
-			return false;
-		}
-
-		return true;
-	}
-
-	protected boolean isMyPlacesView(
-		ThemeDisplay themeDisplay, String currentURL) {
-
-		String urlFragment1 =
-			themeDisplay.getPathMain() + "/my_sites/view?groupId=";
-
-		if (!StringUtil.startsWith(currentURL, urlFragment1)) {
-			return false;
-		}
-
-		String urlFragment2 = "&privateLayout=0";
-
-		if (!StringUtil.endsWith(currentURL, urlFragment2)) {
-			return false;
-		}
-
-		String s = currentURL;
-
-		s = StringUtil.remove(s, urlFragment1, StringPool.BLANK);
-		s = StringUtil.remove(s, urlFragment2, StringPool.BLANK);
-
-		return Validator.isNumber(s);
-	}
-
 	protected String getGroupRedirect(ThemeDisplay themeDisplay, long groupId)
 		throws Exception {
 
@@ -172,6 +130,48 @@ public class ServicePreAction extends Action {
 
 		return themeDisplay.getPathFriendlyURLPublic() + "/" +
 			user.getScreenName() + "/profile";
+	}
+
+	protected boolean isDirectoryView(
+		HttpServletRequest request, String currentURL) throws Exception {
+
+		String action = ParamUtil.getString(request, "_11_struts_action");
+
+		if (!action.equals("/directory/view_user")) {
+			return false;
+		}
+
+		long userId = ParamUtil.getLong(request, "_11_p_u_i_d");
+
+		if (userId <= 0) {
+			return false;
+		}
+
+		return true;
+	}
+
+	protected boolean isMyPlacesView(
+		ThemeDisplay themeDisplay, String currentURL) {
+
+		String urlFragment1 =
+			themeDisplay.getPathMain() + "/my_sites/view?groupId=";
+
+		if (!StringUtil.startsWith(currentURL, urlFragment1)) {
+			return false;
+		}
+
+		String urlFragment2 = "&privateLayout=0";
+
+		if (!StringUtil.endsWith(currentURL, urlFragment2)) {
+			return false;
+		}
+
+		String s = currentURL;
+
+		s = StringUtil.remove(s, urlFragment1, StringPool.BLANK);
+		s = StringUtil.remove(s, urlFragment2, StringPool.BLANK);
+
+		return Validator.isNumber(s);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(ServicePreAction.class);

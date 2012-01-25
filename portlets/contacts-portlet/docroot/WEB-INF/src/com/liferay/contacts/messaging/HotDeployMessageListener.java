@@ -26,18 +26,6 @@ import com.liferay.portal.service.PortletLocalServiceUtil;
  */
 public class HotDeployMessageListener extends BaseMessageListener {
 
-	@Override
-	protected void doReceive(Message message) throws Exception {
-		String command = message.getString("command");
-
-		if (command.equals("deploy")) {
-			deploy(message);
-		}
-		else if (command.equals("undeploy")) {
-			undeploy(message);
-		}
-	}
-
 	protected void deploy(Message message) throws Exception {
 		String servletContextName = message.getString("servletContextName");
 
@@ -55,16 +43,28 @@ public class HotDeployMessageListener extends BaseMessageListener {
 		}
 	}
 
-	protected void undeploy(Message message) throws Exception {
-		String servletContextName = message.getString("servletContextName");
+	@Override
+	protected void doReceive(Message message) throws Exception {
+		String command = message.getString("command");
 
-		ContactsExtensionsUtil.unregister(servletContextName);
+		if (command.equals("deploy")) {
+			deploy(message);
+		}
+		else if (command.equals("undeploy")) {
+			undeploy(message);
+		}
 	}
 
 	protected void registerChatExtension() throws Exception {
 		PortletClassInvoker.invoke(
 			false, "1_WAR_chatportlet", _registerMethodKey, "contacts-portlet",
 			"/chat/view.jsp");
+	}
+
+	protected void undeploy(Message message) throws Exception {
+		String servletContextName = message.getString("servletContextName");
+
+		ContactsExtensionsUtil.unregister(servletContextName);
 	}
 
 	private MethodKey _registerMethodKey = new MethodKey(

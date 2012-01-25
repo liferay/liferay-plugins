@@ -65,20 +65,6 @@ public class MyFacesFaceletsPortlet
 	}
 
 	@Override
-	protected void setDefaultView() throws UnavailableException {
-		defaultView = getPortletConfig().getInitParameter(DEFAULT_VIEW);
-
-		if (defaultView == null) {
-			defaultView = _viewPage;
-		}
-
-		if (defaultView == null) {
-			throw new UnavailableException(
-				"Default JSF view is not specified in portlet.xml");
-		}
-	}
-
-	@Override
 	protected void doEdit(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
@@ -112,6 +98,20 @@ public class MyFacesFaceletsPortlet
 		}
 
 		facesRender(renderRequest, renderResponse);
+	}
+
+	@Override
+	protected void setDefaultView() throws UnavailableException {
+		defaultView = getPortletConfig().getInitParameter(DEFAULT_VIEW);
+
+		if (defaultView == null) {
+			defaultView = _viewPage;
+		}
+
+		if (defaultView == null) {
+			throw new UnavailableException(
+				"Default JSF view is not specified in portlet.xml");
+		}
 	}
 
 	private String _editPage = null;

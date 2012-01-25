@@ -468,6 +468,18 @@ public class ConsumerPortlet extends GenericPortlet {
 		return birthday;
 	}
 
+	protected String getCharSet(String contentType) {
+		if (Validator.isNotNull(contentType)) {
+			int x = contentType.lastIndexOf("charset=");
+
+			if (x >= 0) {
+				return contentType.substring(x + 8).trim();
+			}
+		}
+
+		return StringPool.UTF8;
+	}
+
 	protected Contact getContact(User user, String listTypeName)
 		throws Exception {
 
@@ -1809,18 +1821,6 @@ public class ConsumerPortlet extends GenericPortlet {
 		}
 
 		PortletResponseUtil.write(resourceResponse, bytes);
-	}
-
-	protected String getCharSet(String contentType) {
-		if (Validator.isNotNull(contentType)) {
-			int x = contentType.lastIndexOf("charset=");
-
-			if (x >= 0) {
-				return contentType.substring(x + 8).trim();
-			}
-		}
-
-		return StringPool.UTF8;
 	}
 
 	protected String rewriteURL(
