@@ -35,7 +35,7 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 	Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(63);
+		StringBundler sb = new StringBundler(61);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -79,8 +79,6 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 		sb.append(priority);
 		sb.append(", outOfOffice=");
 		sb.append(outOfOffice);
-		sb.append(", remindBy=");
-		sb.append(remindBy);
 		sb.append(", firstReminder=");
 		sb.append(firstReminder);
 		sb.append(", secondReminder=");
@@ -197,7 +195,6 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 
 		calendarBookingImpl.setPriority(priority);
 		calendarBookingImpl.setOutOfOffice(outOfOffice);
-		calendarBookingImpl.setRemindBy(remindBy);
 		calendarBookingImpl.setFirstReminder(firstReminder);
 		calendarBookingImpl.setSecondReminder(secondReminder);
 		calendarBookingImpl.setRequired(required);
@@ -259,7 +256,6 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 	public String recurrence;
 	public int priority;
 	public boolean outOfOffice;
-	public int remindBy;
 	public int firstReminder;
 	public int secondReminder;
 	public boolean required;

@@ -262,7 +262,7 @@ public interface CalendarBookingLocalService extends PersistedModelLocalService 
 		int startDateYear, int startDateHour, int startDateMinute,
 		int endDateMonth, int endDateDay, int endDateYear, int endDateHour,
 		int endDateMinute, boolean allDay, java.lang.String recurrence,
-		int priority, boolean outOfOffice, int remindBy, int firstReminder,
+		int priority, boolean outOfOffice, int firstReminder,
 		int secondReminder, boolean required, java.lang.String requestMessage,
 		java.lang.String responseMessage,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -283,7 +283,7 @@ public interface CalendarBookingLocalService extends PersistedModelLocalService 
 		int startDateMinute, int endDateMonth, int endDateDay, int endDateYear,
 		int endDateHour, int endDateMinute, boolean allDay,
 		java.lang.String recurrence, int priority, boolean outOfOffice,
-		int remindBy, int firstReminder, int secondReminder, boolean required,
+		int firstReminder, int secondReminder, boolean required,
 		java.lang.String requestMessage, java.lang.String responseMessage,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,

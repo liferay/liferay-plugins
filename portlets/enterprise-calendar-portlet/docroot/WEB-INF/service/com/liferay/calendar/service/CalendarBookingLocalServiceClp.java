@@ -98,8 +98,8 @@ public class CalendarBookingLocalServiceClp
 				java.lang.String.class, int.class, int.class, int.class,
 				int.class, int.class, int.class, int.class, int.class,
 				int.class, int.class, boolean.class, java.lang.String.class,
-				int.class, boolean.class, int.class, int.class, int.class,
-				boolean.class, java.lang.String.class, java.lang.String.class,
+				int.class, boolean.class, int.class, int.class, boolean.class,
+				java.lang.String.class, java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
 		_deleteCalendarBookingsMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
@@ -112,7 +112,7 @@ public class CalendarBookingLocalServiceClp
 				int.class, int.class, int.class, int.class, int.class,
 				int.class, int.class, int.class, boolean.class,
 				java.lang.String.class, int.class, boolean.class, int.class,
-				int.class, int.class, boolean.class, java.lang.String.class,
+				int.class, boolean.class, java.lang.String.class,
 				java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
@@ -633,7 +633,7 @@ public class CalendarBookingLocalServiceClp
 		int startDateYear, int startDateHour, int startDateMinute,
 		int endDateMonth, int endDateDay, int endDateYear, int endDateHour,
 		int endDateMinute, boolean allDay, java.lang.String recurrence,
-		int priority, boolean outOfOffice, int remindBy, int firstReminder,
+		int priority, boolean outOfOffice, int firstReminder,
 		int secondReminder, boolean required, java.lang.String requestMessage,
 		java.lang.String responseMessage,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -651,7 +651,7 @@ public class CalendarBookingLocalServiceClp
 				endDateMonth, endDateDay, endDateYear, endDateHour,
 				endDateMinute, allDay,
 				ClpSerializer.translateInput(recurrence), priority,
-				outOfOffice, remindBy, firstReminder, secondReminder, required,
+				outOfOffice, firstReminder, secondReminder, required,
 				ClpSerializer.translateInput(requestMessage),
 				ClpSerializer.translateInput(responseMessage),
 				ClpSerializer.translateInput(serviceContext));
@@ -718,7 +718,7 @@ public class CalendarBookingLocalServiceClp
 		int startDateMinute, int endDateMonth, int endDateDay, int endDateYear,
 		int endDateHour, int endDateMinute, boolean allDay,
 		java.lang.String recurrence, int priority, boolean outOfOffice,
-		int remindBy, int firstReminder, int secondReminder, boolean required,
+		int firstReminder, int secondReminder, boolean required,
 		java.lang.String requestMessage, java.lang.String responseMessage,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -735,7 +735,7 @@ public class CalendarBookingLocalServiceClp
 				endDateMonth, endDateDay, endDateYear, endDateHour,
 				endDateMinute, allDay,
 				ClpSerializer.translateInput(recurrence), priority,
-				outOfOffice, remindBy, firstReminder, secondReminder, required,
+				outOfOffice, firstReminder, secondReminder, required,
 				ClpSerializer.translateInput(requestMessage),
 				ClpSerializer.translateInput(responseMessage),
 				ClpSerializer.translateInput(serviceContext));

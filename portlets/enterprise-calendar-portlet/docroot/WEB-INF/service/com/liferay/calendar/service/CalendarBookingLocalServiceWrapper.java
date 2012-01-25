@@ -286,7 +286,7 @@ public class CalendarBookingLocalServiceWrapper
 		int startDateYear, int startDateHour, int startDateMinute,
 		int endDateMonth, int endDateDay, int endDateYear, int endDateHour,
 		int endDateMinute, boolean allDay, java.lang.String recurrence,
-		int priority, boolean outOfOffice, int remindBy, int firstReminder,
+		int priority, boolean outOfOffice, int firstReminder,
 		int secondReminder, boolean required, java.lang.String requestMessage,
 		java.lang.String responseMessage,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -297,8 +297,8 @@ public class CalendarBookingLocalServiceWrapper
 			locationMap, type, startDateMonth, startDateDay, startDateYear,
 			startDateHour, startDateMinute, endDateMonth, endDateDay,
 			endDateYear, endDateHour, endDateMinute, allDay, recurrence,
-			priority, outOfOffice, remindBy, firstReminder, secondReminder,
-			required, requestMessage, responseMessage, serviceContext);
+			priority, outOfOffice, firstReminder, secondReminder, required,
+			requestMessage, responseMessage, serviceContext);
 	}
 
 	public void deleteCalendarBookings(long calendarId)
@@ -317,7 +317,7 @@ public class CalendarBookingLocalServiceWrapper
 		int startDateMinute, int endDateMonth, int endDateDay, int endDateYear,
 		int endDateHour, int endDateMinute, boolean allDay,
 		java.lang.String recurrence, int priority, boolean outOfOffice,
-		int remindBy, int firstReminder, int secondReminder, boolean required,
+		int firstReminder, int secondReminder, boolean required,
 		java.lang.String requestMessage, java.lang.String responseMessage,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -327,9 +327,8 @@ public class CalendarBookingLocalServiceWrapper
 			locationMap, type, status, startDateMonth, startDateDay,
 			startDateYear, startDateHour, startDateMinute, endDateMonth,
 			endDateDay, endDateYear, endDateHour, endDateMinute, allDay,
-			recurrence, priority, outOfOffice, remindBy, firstReminder,
-			secondReminder, required, requestMessage, responseMessage,
-			serviceContext);
+			recurrence, priority, outOfOffice, firstReminder, secondReminder,
+			required, requestMessage, responseMessage, serviceContext);
 	}
 
 	public com.liferay.calendar.model.CalendarBooking updateStatus(

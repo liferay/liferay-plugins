@@ -39,7 +39,6 @@
 		<field name="recurrence" type="String" />
 		<field name="priority" type="int" />
 		<field name="outOfOffice" type="boolean" />
-		<field name="remindBy" type="int" />
 		<field name="firstReminder" type="int" />
 		<field name="secondReminder" type="int" />
 		<field name="required" type="boolean" />

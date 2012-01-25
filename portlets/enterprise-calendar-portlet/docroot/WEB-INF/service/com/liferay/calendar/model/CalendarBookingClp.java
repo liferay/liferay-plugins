@@ -533,14 +533,6 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		_outOfOffice = outOfOffice;
 	}
 
-	public int getRemindBy() {
-		return _remindBy;
-	}
-
-	public void setRemindBy(int remindBy) {
-		_remindBy = remindBy;
-	}
-
 	public int getFirstReminder() {
 		return _firstReminder;
 	}
@@ -714,7 +706,6 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		clone.setRecurrence(getRecurrence());
 		clone.setPriority(getPriority());
 		clone.setOutOfOffice(getOutOfOffice());
-		clone.setRemindBy(getRemindBy());
 		clone.setFirstReminder(getFirstReminder());
 		clone.setSecondReminder(getSecondReminder());
 		clone.setRequired(getRequired());
@@ -780,7 +771,7 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(63);
+		StringBundler sb = new StringBundler(61);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -824,8 +815,6 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		sb.append(getPriority());
 		sb.append(", outOfOffice=");
 		sb.append(getOutOfOffice());
-		sb.append(", remindBy=");
-		sb.append(getRemindBy());
 		sb.append(", firstReminder=");
 		sb.append(getFirstReminder());
 		sb.append(", secondReminder=");
@@ -850,7 +839,7 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(97);
+		StringBundler sb = new StringBundler(94);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.calendar.model.CalendarBooking");
@@ -941,10 +930,6 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		sb.append(getOutOfOffice());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>remindBy</column-name><column-value><![CDATA[");
-		sb.append(getRemindBy());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>firstReminder</column-name><column-value><![CDATA[");
 		sb.append(getFirstReminder());
 		sb.append("]]></column-value></column>");
@@ -1011,7 +996,6 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 	private String _recurrence;
 	private int _priority;
 	private boolean _outOfOffice;
-	private int _remindBy;
 	private int _firstReminder;
 	private int _secondReminder;
 	private boolean _required;

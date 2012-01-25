@@ -52,7 +52,6 @@ public class CalendarBookingSoap implements Serializable {
 		soapModel.setRecurrence(model.getRecurrence());
 		soapModel.setPriority(model.getPriority());
 		soapModel.setOutOfOffice(model.getOutOfOffice());
-		soapModel.setRemindBy(model.getRemindBy());
 		soapModel.setFirstReminder(model.getFirstReminder());
 		soapModel.setSecondReminder(model.getSecondReminder());
 		soapModel.setRequired(model.getRequired());
@@ -292,14 +291,6 @@ public class CalendarBookingSoap implements Serializable {
 		_outOfOffice = outOfOffice;
 	}
 
-	public int getRemindBy() {
-		return _remindBy;
-	}
-
-	public void setRemindBy(int remindBy) {
-		_remindBy = remindBy;
-	}
-
 	public int getFirstReminder() {
 		return _firstReminder;
 	}
@@ -397,7 +388,6 @@ public class CalendarBookingSoap implements Serializable {
 	private String _recurrence;
 	private int _priority;
 	private boolean _outOfOffice;
-	private int _remindBy;
 	private int _firstReminder;
 	private int _secondReminder;
 	private boolean _required;

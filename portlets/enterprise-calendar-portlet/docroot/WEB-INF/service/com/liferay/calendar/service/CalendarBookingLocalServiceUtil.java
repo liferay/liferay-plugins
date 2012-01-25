@@ -289,7 +289,7 @@ public class CalendarBookingLocalServiceUtil {
 		int startDateYear, int startDateHour, int startDateMinute,
 		int endDateMonth, int endDateDay, int endDateYear, int endDateHour,
 		int endDateMinute, boolean allDay, java.lang.String recurrence,
-		int priority, boolean outOfOffice, int remindBy, int firstReminder,
+		int priority, boolean outOfOffice, int firstReminder,
 		int secondReminder, boolean required, java.lang.String requestMessage,
 		java.lang.String responseMessage,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -301,7 +301,7 @@ public class CalendarBookingLocalServiceUtil {
 			type, startDateMonth, startDateDay, startDateYear, startDateHour,
 			startDateMinute, endDateMonth, endDateDay, endDateYear,
 			endDateHour, endDateMinute, allDay, recurrence, priority,
-			outOfOffice, remindBy, firstReminder, secondReminder, required,
+			outOfOffice, firstReminder, secondReminder, required,
 			requestMessage, responseMessage, serviceContext);
 	}
 
@@ -321,7 +321,7 @@ public class CalendarBookingLocalServiceUtil {
 		int startDateMinute, int endDateMonth, int endDateDay, int endDateYear,
 		int endDateHour, int endDateMinute, boolean allDay,
 		java.lang.String recurrence, int priority, boolean outOfOffice,
-		int remindBy, int firstReminder, int secondReminder, boolean required,
+		int firstReminder, int secondReminder, boolean required,
 		java.lang.String requestMessage, java.lang.String responseMessage,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -332,7 +332,7 @@ public class CalendarBookingLocalServiceUtil {
 			startDateMonth, startDateDay, startDateYear, startDateHour,
 			startDateMinute, endDateMonth, endDateDay, endDateYear,
 			endDateHour, endDateMinute, allDay, recurrence, priority,
-			outOfOffice, remindBy, firstReminder, secondReminder, required,
+			outOfOffice, firstReminder, secondReminder, required,
 			requestMessage, responseMessage, serviceContext);
 	}
 

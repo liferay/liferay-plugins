@@ -459,117 +459,6 @@ public interface CalendarBookingPersistence extends BasePersistence<CalendarBook
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns all the calendar bookings where calendarId = &#63; and remindBy &ne; &#63;.
-	*
-	* @param calendarId the calendar ID
-	* @param remindBy the remind by
-	* @return the matching calendar bookings
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<com.liferay.calendar.model.CalendarBooking> findByC_R(
-		long calendarId, int remindBy)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns a range of all the calendar bookings where calendarId = &#63; and remindBy &ne; &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
-	* @param calendarId the calendar ID
-	* @param remindBy the remind by
-	* @param start the lower bound of the range of calendar bookings
-	* @param end the upper bound of the range of calendar bookings (not inclusive)
-	* @return the range of matching calendar bookings
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<com.liferay.calendar.model.CalendarBooking> findByC_R(
-		long calendarId, int remindBy, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns an ordered range of all the calendar bookings where calendarId = &#63; and remindBy &ne; &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
-	* @param calendarId the calendar ID
-	* @param remindBy the remind by
-	* @param start the lower bound of the range of calendar bookings
-	* @param end the upper bound of the range of calendar bookings (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the ordered range of matching calendar bookings
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<com.liferay.calendar.model.CalendarBooking> findByC_R(
-		long calendarId, int remindBy, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the first calendar booking in the ordered set where calendarId = &#63; and remindBy &ne; &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
-	* @param calendarId the calendar ID
-	* @param remindBy the remind by
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the first matching calendar booking
-	* @throws com.liferay.calendar.NoSuchBookingException if a matching calendar booking could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.calendar.model.CalendarBooking findByC_R_First(
-		long calendarId, int remindBy,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.calendar.NoSuchBookingException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the last calendar booking in the ordered set where calendarId = &#63; and remindBy &ne; &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
-	* @param calendarId the calendar ID
-	* @param remindBy the remind by
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the last matching calendar booking
-	* @throws com.liferay.calendar.NoSuchBookingException if a matching calendar booking could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.calendar.model.CalendarBooking findByC_R_Last(
-		long calendarId, int remindBy,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.calendar.NoSuchBookingException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the calendar bookings before and after the current calendar booking in the ordered set where calendarId = &#63; and remindBy &ne; &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
-	* @param calendarBookingId the primary key of the current calendar booking
-	* @param calendarId the calendar ID
-	* @param remindBy the remind by
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the previous, current, and next calendar booking
-	* @throws com.liferay.calendar.NoSuchBookingException if a calendar booking with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.calendar.model.CalendarBooking[] findByC_R_PrevAndNext(
-		long calendarBookingId, long calendarId, int remindBy,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.calendar.NoSuchBookingException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Returns all the calendar bookings where calendarResourceId = &#63; and status = &#63;.
 	*
 	* @param calendarResourceId the calendar resource ID
@@ -762,16 +651,6 @@ public interface CalendarBookingPersistence extends BasePersistence<CalendarBook
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes all the calendar bookings where calendarId = &#63; and remindBy &ne; &#63; from the database.
-	*
-	* @param calendarId the calendar ID
-	* @param remindBy the remind by
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByC_R(long calendarId, int remindBy)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
 	* Removes all the calendar bookings where calendarResourceId = &#63; and status = &#63; from the database.
 	*
 	* @param calendarResourceId the calendar resource ID
@@ -828,17 +707,6 @@ public interface CalendarBookingPersistence extends BasePersistence<CalendarBook
 	* @throws SystemException if a system exception occurred
 	*/
 	public int countByCalendarResourceId(long calendarResourceId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of calendar bookings where calendarId = &#63; and remindBy &ne; &#63;.
-	*
-	* @param calendarId the calendar ID
-	* @param remindBy the remind by
-	* @return the number of matching calendar bookings
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByC_R(long calendarId, int remindBy)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
