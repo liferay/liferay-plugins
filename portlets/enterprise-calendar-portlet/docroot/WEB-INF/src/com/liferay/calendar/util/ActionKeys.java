@@ -12,27 +12,21 @@
  * details.
  */
 
-package com.liferay.calendar.model.impl;
-
-import com.liferay.calendar.model.CalendarResource;
-import com.liferay.calendar.service.CalendarResourceLocalServiceUtil;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
+package com.liferay.calendar.util;
 
 /**
  * @author Eduardo Lundgren
+ * @author Peter Shin
  */
-public class CalendarBookingImpl
-	extends CalendarBookingBaseImpl {
+public class ActionKeys
+	extends com.liferay.portal.security.permission.ActionKeys {
 
-	public CalendarBookingImpl() {
-	}
+	public static final String ADD_BOOKING = "ADD_BOOKING";
 
-	public CalendarResource getCalendarResource()
-		throws PortalException, SystemException {
+	public static final String ADD_RESOURCE = "ADD_RESOURCE";
 
-		return CalendarResourceLocalServiceUtil.getCalendarResource(
-			getCalendarResourceId());
-	}
+	public static final String UPDATE_BOOKINGS = "UPDATE_BOOKINGS";
+
+	public static final String VIEW_BOOKINGS = "VIEW_BOOKINGS";
 
 }
