@@ -71,6 +71,19 @@ import org.apache.solr.common.SolrDocumentList;
  */
 public class SolrIndexSearcherImpl implements IndexSearcher {
 
+	public Hits search(SearchContext searchContext, Query query)
+		throws SearchException {
+
+		try {
+			return doSearch(searchContext, query);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new SearchException(e.getMessage());
+		}
+	}
+
 	public Hits search(
 			String searchEngineId, long companyId, Query query, Sort[] sorts,
 			int start, int end)
@@ -100,19 +113,6 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 			}
 
 			return new HitsImpl();
-		}
-	}
-
-	public Hits search(SearchContext searchContext, Query query)
-		throws SearchException {
-
-		try {
-			return doSearch(searchContext, query);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new SearchException(e.getMessage());
 		}
 	}
 

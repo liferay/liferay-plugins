@@ -124,18 +124,18 @@ public class SVNRevisionLocalServiceImpl
 	}
 
 	public List<SVNRevision> getSVNRevisions(
-			String svnUserId, int start, int end)
-		throws SystemException {
-
-		return svnRevisionPersistence.findBySVNUserId(svnUserId, start, end);
-	}
-
-	public List<SVNRevision> getSVNRevisions(
 			long svnRepositoryId, int start, int end)
 		throws SystemException {
 
 		return svnRevisionPersistence.findBySVNRepositoryId(
 			svnRepositoryId, start, end);
+	}
+
+	public List<SVNRevision> getSVNRevisions(
+			String svnUserId, int start, int end)
+		throws SystemException {
+
+		return svnRevisionPersistence.findBySVNUserId(svnUserId, start, end);
 	}
 
 	public List<SVNRevision> getSVNRevisions(
@@ -146,14 +146,14 @@ public class SVNRevisionLocalServiceImpl
 			svnUserId, svnRepositoryId, start, end);
 	}
 
-	public int getSVNRevisionsCount(String svnUserId) throws SystemException {
-		return svnRevisionPersistence.countBySVNUserId(svnUserId);
-	}
-
 	public int getSVNRevisionsCount(long svnRepositoryId)
 		throws SystemException {
 
 		return svnRevisionPersistence.countBySVNRepositoryId(svnRepositoryId);
+	}
+
+	public int getSVNRevisionsCount(String svnUserId) throws SystemException {
+		return svnRevisionPersistence.countBySVNUserId(svnUserId);
 	}
 
 	public int getSVNRevisionsCount(String svnUserId, long svnRepositoryId)

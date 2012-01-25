@@ -45,18 +45,6 @@ public class WSRPProducerLocalServiceImpl
 	extends WSRPProducerLocalServiceBaseImpl {
 
 	public WSRPProducer addWSRPProducer(
-			long userId, String name, String version, String portletIds,
-			ServiceContext serviceContext)
-		throws PortalException, SystemException {
-
-		Group group = addGroup(userId, name);
-
-		return addWSRPProducer(
-			userId, group.getGroupId(), name, version, portletIds,
-			serviceContext);
-	}
-
-	public WSRPProducer addWSRPProducer(
 			long userId, long groupId, String name, String version,
 			String portletIds, ServiceContext serviceContext)
 		throws PortalException, SystemException {
@@ -84,6 +72,18 @@ public class WSRPProducerLocalServiceImpl
 		wsrpProducerPersistence.update(wsrpProducer, false);
 
 		return wsrpProducer;
+	}
+
+	public WSRPProducer addWSRPProducer(
+			long userId, String name, String version, String portletIds,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		Group group = addGroup(userId, name);
+
+		return addWSRPProducer(
+			userId, group.getGroupId(), name, version, portletIds,
+			serviceContext);
 	}
 
 	@Override

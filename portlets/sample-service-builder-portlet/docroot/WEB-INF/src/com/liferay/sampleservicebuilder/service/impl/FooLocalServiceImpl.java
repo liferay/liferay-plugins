@@ -90,14 +90,14 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 		}
 	}
 
-	public List<Foo> getFoos(OrderByComparator obc) throws SystemException {
-		return getFoos(QueryUtil.ALL_POS, QueryUtil.ALL_POS, obc);
-	}
-
 	public List<Foo> getFoos(int start, int end, OrderByComparator obc)
 		throws SystemException {
 
 		return fooPersistence.findAll(start, end, obc);
+	}
+
+	public List<Foo> getFoos(OrderByComparator obc) throws SystemException {
+		return getFoos(QueryUtil.ALL_POS, QueryUtil.ALL_POS, obc);
 	}
 
 	public void updateAsset(

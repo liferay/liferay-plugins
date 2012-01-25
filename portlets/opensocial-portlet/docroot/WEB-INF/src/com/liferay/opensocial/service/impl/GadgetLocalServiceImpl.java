@@ -167,6 +167,12 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		return gadgetPersistence.fetchByC_U(companyId, url);
 	}
 
+	public Gadget getGadget(long companyId, String url)
+		throws PortalException, SystemException {
+
+		return gadgetPersistence.findByC_U(companyId, url);
+	}
+
 	public Gadget getGadget(String uuid)
 		throws PortalException, SystemException {
 
@@ -178,12 +184,6 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		}
 
 		return gadgets.get(0);
-	}
-
-	public Gadget getGadget(long companyId, String url)
-		throws PortalException, SystemException {
-
-		return gadgetPersistence.findByC_U(companyId, url);
 	}
 
 	public List<Gadget> getGadgets(long companyId, int start, int end)

@@ -28,16 +28,6 @@ import com.liferay.portal.security.permission.PermissionChecker;
 public class KBTemplatePermission {
 
 	public static void check(
-			PermissionChecker permissionChecker, long kbTemplateId,
-			String actionId)
-		throws PortalException, SystemException {
-
-		if (!contains(permissionChecker, kbTemplateId, actionId)) {
-			throw new PrincipalException();
-		}
-	}
-
-	public static void check(
 			PermissionChecker permissionChecker, KBTemplate kbTemplate,
 			String actionId)
 		throws PortalException {
@@ -47,15 +37,14 @@ public class KBTemplatePermission {
 		}
 	}
 
-	public static boolean contains(
+	public static void check(
 			PermissionChecker permissionChecker, long kbTemplateId,
 			String actionId)
 		throws PortalException, SystemException {
 
-		KBTemplate kbTemplate = KBTemplateLocalServiceUtil.getKBTemplate(
-			kbTemplateId);
-
-		return contains(permissionChecker, kbTemplate, actionId);
+		if (!contains(permissionChecker, kbTemplateId, actionId)) {
+			throw new PrincipalException();
+		}
 	}
 
 	public static boolean contains(
@@ -73,6 +62,17 @@ public class KBTemplatePermission {
 		return permissionChecker.hasPermission(
 			kbTemplate.getGroupId(), KBTemplate.class.getName(),
 			kbTemplate.getKbTemplateId(), actionId);
+	}
+
+	public static boolean contains(
+			PermissionChecker permissionChecker, long kbTemplateId,
+			String actionId)
+		throws PortalException, SystemException {
+
+		KBTemplate kbTemplate = KBTemplateLocalServiceUtil.getKBTemplate(
+			kbTemplateId);
+
+		return contains(permissionChecker, kbTemplate, actionId);
 	}
 
 }
