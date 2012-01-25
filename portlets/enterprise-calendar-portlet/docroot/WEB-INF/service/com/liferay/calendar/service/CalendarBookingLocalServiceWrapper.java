@@ -312,23 +312,24 @@ public class CalendarBookingLocalServiceWrapper
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.util.Map<java.util.Locale, java.lang.String> locationMap,
-		java.lang.String type, int startDateMonth, int startDateDay,
-		int startDateYear, int startDateHour, int startDateMinute,
-		int endDateMonth, int endDateDay, int endDateYear, int endDateHour,
-		int endDateMinute, boolean allDay, java.lang.String recurrence,
-		int priority, boolean outOfOffice, int remindBy, int firstReminder,
-		int secondReminder, boolean required, java.lang.String requestMessage,
-		java.lang.String responseMessage,
+		java.lang.String type, int status, int startDateMonth,
+		int startDateDay, int startDateYear, int startDateHour,
+		int startDateMinute, int endDateMonth, int endDateDay, int endDateYear,
+		int endDateHour, int endDateMinute, boolean allDay,
+		java.lang.String recurrence, int priority, boolean outOfOffice,
+		int remindBy, int firstReminder, int secondReminder, boolean required,
+		java.lang.String requestMessage, java.lang.String responseMessage,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _calendarBookingLocalService.updateCalendarBooking(userId,
 			calendarBookingId, calendarId, titleMap, descriptionMap,
-			locationMap, type, startDateMonth, startDateDay, startDateYear,
-			startDateHour, startDateMinute, endDateMonth, endDateDay,
-			endDateYear, endDateHour, endDateMinute, allDay, recurrence,
-			priority, outOfOffice, remindBy, firstReminder, secondReminder,
-			required, requestMessage, responseMessage, serviceContext);
+			locationMap, type, status, startDateMonth, startDateDay,
+			startDateYear, startDateHour, startDateMinute, endDateMonth,
+			endDateDay, endDateYear, endDateHour, endDateMinute, allDay,
+			recurrence, priority, outOfOffice, remindBy, firstReminder,
+			secondReminder, required, requestMessage, responseMessage,
+			serviceContext);
 	}
 
 	public com.liferay.calendar.model.CalendarBooking updateStatus(
