@@ -56,9 +56,9 @@ public class CalendarBookingLocalServiceImpl
 			int startDateMinute, int endDateMonth, int endDateDay,
 			int endDateYear, int endDateHour, int endDateMinute,
 			boolean allDay, String recurrence, int priority,
-			boolean outOfOffice, int remindBy, int firstReminder,
-			int secondReminder, boolean required, String requestMessage,
-			String responseMessage, ServiceContext serviceContext)
+			boolean outOfOffice, int firstReminder, int secondReminder,
+			boolean required, String requestMessage, String responseMessage,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// CalendarBooking
@@ -138,7 +138,6 @@ public class CalendarBookingLocalServiceImpl
 		calendarBooking.setRecurrence(recurrence);
 		calendarBooking.setPriority(priority);
 		calendarBooking.setOutOfOffice(outOfOffice);
-		calendarBooking.setRemindBy(remindBy);
 		calendarBooking.setFirstReminder(firstReminder);
 		calendarBooking.setSecondReminder(secondReminder);
 		calendarBooking.setRequired(required);
@@ -204,9 +203,9 @@ public class CalendarBookingLocalServiceImpl
 			int startDateHour, int startDateMinute, int endDateMonth,
 			int endDateDay, int endDateYear, int endDateHour, int endDateMinute,
 			boolean allDay, String recurrence, int priority,
-			boolean outOfOffice, int remindBy, int firstReminder,
-			int secondReminder, boolean required, String requestMessage,
-			String responseMessage, ServiceContext serviceContext)
+			boolean outOfOffice, int firstReminder, int secondReminder,
+			boolean required, String requestMessage, String responseMessage,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// CalendarBooking
@@ -277,7 +276,6 @@ public class CalendarBookingLocalServiceImpl
 		calendarBooking.setRecurrence(recurrence);
 		calendarBooking.setPriority(priority);
 		calendarBooking.setOutOfOffice(outOfOffice);
-		calendarBooking.setRemindBy(remindBy);
 		calendarBooking.setFirstReminder(firstReminder);
 		calendarBooking.setSecondReminder(secondReminder);
 		calendarBooking.setRequired(required);

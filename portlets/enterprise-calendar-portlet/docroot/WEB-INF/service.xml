@@ -86,7 +86,6 @@
 		<column name="recurrence" type="String" />
 		<column name="priority" type="int" />
 		<column name="outOfOffice" type="boolean" />
-		<column name="remindBy" type="int" />
 		<column name="firstReminder" type="int" />
 		<column name="secondReminder" type="int" />
 		<column name="required" type="boolean" />
@@ -111,10 +110,6 @@
 		</finder>
 		<finder name="CalendarResourceId" return-type="Collection">
 			<finder-column name="calendarResourceId" />
-		</finder>
-		<finder name="C_R" return-type="Collection">
-			<finder-column name="calendarId" />
-			<finder-column name="remindBy" comparator="!=" />
 		</finder>
 		<finder name="C_S" return-type="Collection">
 			<finder-column name="calendarResourceId" />
