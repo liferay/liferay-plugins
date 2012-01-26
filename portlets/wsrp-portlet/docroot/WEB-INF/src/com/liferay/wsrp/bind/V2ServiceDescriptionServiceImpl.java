@@ -85,7 +85,7 @@ public class V2ServiceDescriptionServiceImpl
 
 		serviceDescription.setOfferedPortlets(
 			getPortletDescriptions(wsrpProducer));
-		serviceDescription.setRequiresInitCookie(_COOKIE_PROTOCOL);
+		serviceDescription.setRequiresInitCookie(_cookieProtocol);
 
 		return serviceDescription;
 	}
@@ -324,10 +324,10 @@ public class V2ServiceDescriptionServiceImpl
 			ExtensionUtil.getExtensions(messageElements));
 	}
 
-	private static CookieProtocol _COOKIE_PROTOCOL = CookieProtocol.fromString(
-		CookieProtocol._perGroup);
-
 	private static Log _log = LogFactoryUtil.getLog(
 		V2ServiceDescriptionServiceImpl.class);
+
+	private static CookieProtocol _cookieProtocol = CookieProtocol.fromString(
+		CookieProtocol._perGroup);
 
 }
