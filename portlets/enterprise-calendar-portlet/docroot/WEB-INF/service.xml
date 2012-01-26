@@ -200,6 +200,7 @@
 		<exception>CalendarBookingEndDate</exception>
 		<exception>CalendarBookingStartDate</exception>
 		<exception>CalendarBookingTitle</exception>
+		<exception>CalendarName</exception>
 		<exception>DuplicateCalendarResource</exception>
 	</exceptions>
 </service-builder>
