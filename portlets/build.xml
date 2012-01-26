@@ -80,6 +80,19 @@
 
 portal-dependency-jars=commons-beanutils.jar,commons-collections.jar,commons-digester.jar,commons-lang.jar</echo>
 
+						<replace file="${portlet.dir}/docroot/WEB-INF/liferay-portlet.xml">
+							<replacetoken><![CDATA[</instanceable>]]></replacetoken>
+							<replacevalue><![CDATA[</instanceable>
+		<ajaxable>false</ajaxable>]]></replacevalue>
+						</replace>
+
+						<replaceregexp match="&lt;/header-portlet-css&gt;(.*)&lt;/footer-portlet-javascript&gt;" replace="&lt;/header-portlet-css&gt;" flags="s">
+							<fileset
+								dir="${portlet.dir}/docroot/WEB-INF"
+								includes="liferay-portlet.xml"
+							/>
+						</replaceregexp>
+
 						<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
 							<replacetoken><![CDATA[<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>]]></replacetoken>
 							<replacevalue><![CDATA[<portlet-class>org.portletfaces.bridge.GenericFacesPortlet</portlet-class>]]></replacevalue>
@@ -94,19 +107,6 @@ portal-dependency-jars=commons-beanutils.jar,commons-collections.jar,commons-dig
 							<replacetoken><![CDATA[<value>/view.jsp</value>]]></replacetoken>
 							<replacevalue><![CDATA[<value>/xhtml/portletViewMode.xhtml</value>]]></replacevalue>
 						</replace>
-
-						<replace file="${portlet.dir}/docroot/WEB-INF/liferay-portlet.xml">
-							<replacetoken><![CDATA[</instanceable>]]></replacetoken>
-							<replacevalue><![CDATA[</instanceable>
-		<ajaxable>false</ajaxable>]]></replacevalue>
-						</replace>
-
-						<replaceregexp match="&lt;/header-portlet-css&gt;(.*)&lt;/footer-portlet-javascript&gt;" replace="&lt;/header-portlet-css&gt;" flags="s">
-							<fileset
-								dir="${portlet.dir}/docroot/WEB-INF"
-								includes="liferay-portlet.xml"
-							/>
-						</replaceregexp>
 
 						<delete includeemptydirs="true">
 							<fileset
@@ -150,7 +150,7 @@ portal-dependency-jars=vaadin.jar</echo>
 								includes="liferay-portlet.xml"
 							/>
 						</replaceregexp>
-                        
+
 						<replace file="${portlet.dir}/docroot/WEB-INF/liferay-portlet.xml">
 							<replacetoken><![CDATA[</instanceable>]]></replacetoken>
 							<replacevalue><![CDATA[</instanceable>
