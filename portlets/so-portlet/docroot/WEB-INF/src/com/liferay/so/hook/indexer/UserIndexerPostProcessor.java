@@ -53,18 +53,6 @@ public class UserIndexerPostProcessor extends BaseIndexerPostProcessor {
 	}
 
 	@Override
-	public void postProcessSearchQuery(
-			BooleanQuery searchQuery, SearchContext searchContext)
-		throws Exception {
-
-		String keywords = searchContext.getKeywords();
-
-		if (Validator.isNotNull(keywords)) {
-			searchQuery.addTerm("projectTitles", keywords, true);
-		}
-	}
-
-	@Override
 	public void postProcessDocument(Document document, Object obj)
 		throws Exception {
 
@@ -83,6 +71,18 @@ public class UserIndexerPostProcessor extends BaseIndexerPostProcessor {
 		}
 
 		document.addKeyword("projectTitles", projectTitles);
+	}
+
+	@Override
+	public void postProcessSearchQuery(
+			BooleanQuery searchQuery, SearchContext searchContext)
+		throws Exception {
+
+		String keywords = searchContext.getKeywords();
+
+		if (Validator.isNotNull(keywords)) {
+			searchQuery.addTerm("projectTitles", keywords, true);
+		}
 	}
 
 }

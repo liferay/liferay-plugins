@@ -36,19 +36,6 @@ public class ServiceDescriptionServiceHandler implements InvocationHandler {
 		_serviceDescriptionService = serviceDescriptionService;
 	}
 
-	public Object invoke(Object proxy, Method method, Object[] args)
-		throws Throwable {
-
-		try {
-			return doInvoke(proxy, method, args);
-		}
-		catch (Throwable t) {
-			_log.error(t, t);
-
-			throw t;
-		}
-	}
-
 	public Object doInvoke(Object proxy, Method method, Object[] args)
 		throws Exception {
 
@@ -64,6 +51,19 @@ public class ServiceDescriptionServiceHandler implements InvocationHandler {
 		Object v2Bean = TypeConvertorUtil.convert(serviceDescription, 1);
 
 		return v2Bean;
+	}
+
+	public Object invoke(Object proxy, Method method, Object[] args)
+		throws Throwable {
+
+		try {
+			return doInvoke(proxy, method, args);
+		}
+		catch (Throwable t) {
+			_log.error(t, t);
+
+			throw t;
+		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(

@@ -23,20 +23,20 @@ public class FoodItem {
 		return _foodItemId;
 	}
 
-	public void setFoodItemId(long foodItemId) {
-		_foodItemId = foodItemId;
-	}
-
 	public String getName() {
 		return _name;
 	}
 
-	public void setName(String name) {
-		_name = name;
-	}
-
 	public int getPoints() {
 		return _points;
+	}
+
+	public void setFoodItemId(long foodItemId) {
+		_foodItemId = foodItemId;
+	}
+
+	public void setName(String name) {
+		_name = name;
 	}
 
 	public void setPoints(int points) {

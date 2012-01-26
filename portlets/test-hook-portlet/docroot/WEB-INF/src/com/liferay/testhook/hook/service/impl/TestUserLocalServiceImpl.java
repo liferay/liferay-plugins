@@ -31,18 +31,6 @@ public class TestUserLocalServiceImpl extends UserLocalServiceWrapper {
 	}
 
 	@Override
-	public User getUserById(long userId)
-		throws PortalException, SystemException {
-
-		System.out.println(
-			"Called TestUserLocalServiceImpl.getUserById(" + userId + ")");
-
-		User user = super.getUserById(userId);
-
-		return new TestUserImpl(user);
-	}
-
-	@Override
 	public User getUserByEmailAddress(long companyId, String emailAddress)
 		throws PortalException, SystemException {
 
@@ -51,6 +39,18 @@ public class TestUserLocalServiceImpl extends UserLocalServiceWrapper {
 				companyId + ", " + emailAddress + ")");
 
 		User user = super.getUserByEmailAddress(companyId, emailAddress);
+
+		return new TestUserImpl(user);
+	}
+
+	@Override
+	public User getUserById(long userId)
+		throws PortalException, SystemException {
+
+		System.out.println(
+			"Called TestUserLocalServiceImpl.getUserById(" + userId + ")");
+
+		User user = super.getUserById(userId);
 
 		return new TestUserImpl(user);
 	}

@@ -24,6 +24,11 @@ import java.util.Map;
  */
 public class SampleUserAttributes implements CustomUserAttributes {
 
+	@Override
+	public Object clone() {
+		return new SampleUserAttributes();
+	}
+
 	public String getValue(String name, Map userInfo) {
 		if (name == null) {
 			return null;
@@ -39,11 +44,6 @@ public class SampleUserAttributes implements CustomUserAttributes {
 		else {
 			return null;
 		}
-	}
-
-	@Override
-	public Object clone() {
-		return new SampleUserAttributes();
 	}
 
 }

@@ -33,12 +33,12 @@ public class Verse implements Serializable {
 		return _location;
 	}
 
-	public void setLocation(String location) {
-		_location = location;
-	}
-
 	public String getText() {
 		return _text;
+	}
+
+	public void setLocation(String location) {
+		_location = location;
 	}
 
 	public void setText(String text) {

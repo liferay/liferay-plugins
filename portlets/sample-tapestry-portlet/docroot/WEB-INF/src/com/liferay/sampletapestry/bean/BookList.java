@@ -26,16 +26,16 @@ public class BookList {
 		_books = new ArrayList();
 	}
 
+	public void addBook(Book book) {
+		_books.add(book);
+	}
+
 	public List getBooks() {
 		return _books;
 	}
 
 	public void setBooks(List books) {
 		_books = books;
-	}
-
-	public void addBook(Book book) {
-		_books.add(book);
 	}
 
 	private List _books;

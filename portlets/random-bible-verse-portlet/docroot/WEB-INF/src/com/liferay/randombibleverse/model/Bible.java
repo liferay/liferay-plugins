@@ -34,20 +34,20 @@ public class Bible implements Serializable {
 		return _language;
 	}
 
-	public void setLanguage(String language) {
-		_language = language;
-	}
-
 	public String getLanguageName() {
 		return _languageName;
 	}
 
-	public void setLanguageName(String languageName) {
-		_languageName = languageName;
-	}
-
 	public String getVersionId() {
 		return _versionId;
+	}
+
+	public void setLanguage(String language) {
+		_language = language;
+	}
+
+	public void setLanguageName(String languageName) {
+		_languageName = languageName;
 	}
 
 	public void setVersionId(String versionId) {

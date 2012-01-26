@@ -30,10 +30,6 @@ import java.util.List;
  */
 public class PathElementMessageListener extends BaseMessageListener {
 
-	public void setGraphWalker(GraphWalker graphWalker) {
-		_graphWalker = graphWalker;
-	}
-
 	public void setDestinationName(String destinationName) {
 		DefaultSingleDestinationMessageSender singleDestinationMessageSender =
 			new DefaultSingleDestinationMessageSender();
@@ -43,6 +39,10 @@ public class PathElementMessageListener extends BaseMessageListener {
 			MessageBusUtil.getMessageSender());
 
 		_singleDestinationMessageSender = singleDestinationMessageSender ;
+	}
+
+	public void setGraphWalker(GraphWalker graphWalker) {
+		_graphWalker = graphWalker;
 	}
 
 	@Override

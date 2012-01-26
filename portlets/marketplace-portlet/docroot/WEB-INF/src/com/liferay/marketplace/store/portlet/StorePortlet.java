@@ -161,6 +161,21 @@ public class StorePortlet extends MVCPortlet {
 		}
 	}
 
+	public void uninstallApp(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long remoteAppId = ParamUtil.getLong(actionRequest, "appId");
+
+		AppServiceUtil.uninstallApp(remoteAppId);
+
+		JSONObject jsonObject = getAppJSONObject(remoteAppId);
+
+		jsonObject.put("message", "success");
+
+		writeJSON(actionRequest, actionResponse, jsonObject);
+	}
+
 	public void updateApp(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -189,21 +204,6 @@ public class StorePortlet extends MVCPortlet {
 		finally {
 			StreamUtil.cleanUp(inputStream);
 		}
-	}
-
-	public void uninstallApp(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		long remoteAppId = ParamUtil.getLong(actionRequest, "appId");
-
-		AppServiceUtil.uninstallApp(remoteAppId);
-
-		JSONObject jsonObject = getAppJSONObject(remoteAppId);
-
-		jsonObject.put("message", "success");
-
-		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
 
 	public void updateClientId(

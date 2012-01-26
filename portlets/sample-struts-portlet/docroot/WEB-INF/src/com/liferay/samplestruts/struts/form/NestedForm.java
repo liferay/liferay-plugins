@@ -46,17 +46,17 @@ public class NestedForm extends ActionForm {
 	}
 
 	@Override
+	public String toString() {
+		return _books.toString();
+	}
+
+	@Override
 	public ActionErrors validate(
 		ActionMapping mapping, HttpServletRequest req) {
 
 		ActionErrors errors = new ActionErrors();
 
 		return errors;
-	}
-
-	@Override
-	public String toString() {
-		return _books.toString();
 	}
 
 	private Collection _books;
