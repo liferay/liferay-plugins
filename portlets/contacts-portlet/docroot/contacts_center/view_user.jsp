@@ -93,7 +93,60 @@ request.setAttribute("view_user.jsp-user", user2);
 				</c:if>
 
 				<aui:layout cssClass="contacts-action">
-					<liferay-util:include page="/contacts_center/user_toolbar.jsp" servletContext="<%= application %>" />
+					<c:choose>
+						<c:when test='<%= portletName.equals(PortletKeys.CONTACTS_CENTER) %>'>
+							<%
+							boolean viewRelationActions = true;
+
+							if (SocialRelationLocalServiceUtil.hasRelation(user2.getUserId(), themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY)) {
+								viewRelationActions = false;
+							}
+							else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY)) {
+								viewRelationActions = false;
+							}
+							%>
+
+							<c:choose>
+								<c:when test="<%= viewRelationActions && SocialRequestLocalServiceUtil.hasRequest(themeDisplay.getUserId(), User.class.getName(), themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION, user2.getUserId(), SocialRequestConstants.STATUS_PENDING) %>">
+									<liferay-ui:icon
+										cssClass="disabled"
+										label="<%= true %>"
+										image="../social/coworker"
+										message="connection-requested"
+									/>
+								</c:when>
+								<c:when test="<%= viewRelationActions && SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION) %>">
+									<liferay-ui:icon
+										cssClass="connected"
+										label="<%= true %>"
+										image="../social/coworker"
+										message="connected"
+									/>
+								</c:when>
+							</c:choose>
+
+							<c:if test="<%= viewRelationActions && SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER) %>">
+								<liferay-ui:icon
+									cssClass="following"
+									label="<%= true %>"
+									image="../social/following"
+									message="following"
+								/>
+							</c:if>
+
+							<c:if test="<%= SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY) %>">
+								<liferay-ui:icon
+									cssClass="block"
+									label="<%= true %>"
+									image="../social/block"
+									message="block"
+								/>
+							</c:if>
+						</c:when>
+						<c:otherwise>
+							<liferay-util:include page="/contacts_center/user_toolbar.jsp" servletContext="<%= application %>" />
+						</c:otherwise>
+					</c:choose>
 				</aui:layout>
 			</aui:layout>
 		</c:if>
