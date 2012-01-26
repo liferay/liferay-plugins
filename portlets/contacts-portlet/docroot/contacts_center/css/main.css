@@ -15,11 +15,18 @@ $section-header-bg: #CCE6F7;
 	}
 
 	.contact-group-filter {
+		background-color: #DCE3EA;
+		border-bottom: 1px solid #C9C9C9;
+		border-right: 2px solid #C9C9C9;
 		font-size: 14px;
-		padding: 5px 8px;
+		min-height: 31px;
+
+		.contact-group-filter-content {
+			padding: 5px 0 1px 5px;
+		}
 
 		select {
-			height: 24px;
+			height: 26px;
 		}
 	}
 
@@ -44,8 +51,16 @@ $section-header-bg: #CCE6F7;
 		}
 	}
 
+	.lfr-contact {
+		border-bottom: 1px solid #CCC;
+
+		.lfr-contact-checkbox {
+			float: left;
+			padding: 5px;
+		}
+	}
+
 	.lfr-contact-grid-item {
-		border-bottom: 1px solid $border-color;
 		display: block;
 		white-space: nowrap;
 
@@ -63,25 +78,44 @@ $section-header-bg: #CCE6F7;
 			&.no-icon {
 				margin-left: 0;
 			}
+
+			.lfr-contact-name {
+				font-weight: bold;
+			}
+
+			.lfr-contact-extra {
+				color: #777;
+			}
+
+			.lfr-social-relations {
+				margin-top: 5px;
+
+				span {
+			    	margin-right: 10px;
+				}
+			}
 		}
 	}
 
-	.lfr-contact-info {
-		.lfr-contact-name {
-			font-weight: bold;
-		}
+	.contacts-container {
+		.lfr-contact-grid-item {
+			border-bottom: 1px solid #CCC;
+			margin-bottom: 5px;
+			padding-left: 5px;
 
-		.lfr-contact-extra {
-			color: #777;
+			.lfr-contact-thumb img {
+				width: 80px;
+			}
 		}
 	}
 
 	.contacts-result {
+		border-right: 1px solid #C9C9C9;
 		bottom: 0;
-		position: absolute;
-		top: 0;
-		width: 30%;
 		overflow-y: scroll;
+		position: absolute;
+		top: 37px;
+		width: 30%;
 
 		.lfr-contact-grid-item {
 			cursor: pointer;
@@ -94,8 +128,9 @@ $section-header-bg: #CCE6F7;
 			}
 
 			.lfr-contact-info {
-				margin-left: 40px;
+				float: left;
 				font-size: 1em;
+				margin-left: 10px;
 			}
 		}
 
@@ -187,8 +222,11 @@ $section-header-bg: #CCE6F7;
 	}
 
 	.contacts-result-container .contacts-container {
-		margin-left: 30%;
 		min-height: 500px;
+
+		.contacts-container-content {
+			padding: 10px;
+		}
 	}
 
 	.contacts-result-container-content .contacts-profile .lfr-contact-info {
@@ -243,6 +281,85 @@ $section-header-bg: #CCE6F7;
 		ul {
 			margin: 0 0 0 105px;
 			padding: 0;
+		}
+	}
+
+	.toolbar {
+		background-color: #DCE3EA;
+		border-bottom: 1px solid #C9C9C9;
+		min-height: 31px;
+
+		.button-column {
+			float: left;
+			width: 70%;
+
+			.lfr-button-column {
+				padding-left: 10px;
+				padding-top: 5px;
+
+				.aui-toolbar-first {
+					border-bottom-left-radius: 0;
+					border-top-left-radius: 0;
+				}
+
+				.aui-toolbar-last {
+					border-bottom-right-radius: 0;
+					border-top-right-radius: 0;
+				}
+
+				.aui-icon-remove-coworker {
+					background-image: url(@theme_image_path@/social/remove_coworker.png);
+				}
+
+				.aui-icon-add-coworker {
+					background-image: url(@theme_image_path@/social/add_coworker.png);
+				}
+
+				.aui-icon-block {
+					background-image: url(@theme_image_path@/social/block.png);
+				}
+
+				.aui-icon-edit {
+					background-image: url(@theme_image_path@/common/edit.png);
+				}
+
+				.aui-icon-export {
+					background-image: url(@theme_image_path@/common/export.png);
+				}
+
+				.aui-icon-follow {
+					background-image: url(@theme_image_path@/social/follow.png);
+				}
+
+				.aui-icon-unblock {
+					background-image: url(@theme_image_path@/social/unblock.png);
+				}
+
+				.aui-icon-unfollow {
+					background-image: url(@theme_image_path@/social/unfollow.png);
+				}
+
+				.edit-toolbar {
+					margin: 0;
+					overflow: visible;
+				}
+			}
+		}
+
+		.search-column {
+			.lfr-search-column {
+				padding: 5px 0 5px 5px;
+			}
+		}
+	}
+
+	.portlet-content {
+		.portlet-body {
+			border: 1px solid #C9C9C9;
+
+			.lfr-app-column-view {
+				border: 0;
+			}
 		}
 	}
 
