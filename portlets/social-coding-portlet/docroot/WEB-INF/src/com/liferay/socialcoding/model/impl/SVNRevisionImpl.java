@@ -36,32 +36,6 @@ public class SVNRevisionImpl
 	public SVNRevisionImpl() {
 	}
 
-	public SVNRepository getSVNRepository() {
-		SVNRepository svnRepository = null;
-
-		try {
-			svnRepository = SVNRepositoryLocalServiceUtil.getSVNRepository(
-				getSvnRepositoryId());
-		}
-		catch (Exception e) {
-			svnRepository = new SVNRepositoryImpl();
-
-			_log.error(e);
-		}
-
-		return svnRepository;
-	}
-
-	public String getWebRevisionNumberURL() {
-		SVNRepository svnRepository = getSVNRepository();
-
-		return MessageFormat.format(
-			SVNConstants.WEB_REVISION_NUMBER_URL,
-			new Object[] {
-				svnRepository.getName(), String.valueOf(getRevisionNumber())
-			});
-	}
-
 	public Object[] getJIRAIssueAndComments() {
 		JIRAIssue jiraIssue = null;
 		String comments = getComments();
@@ -160,6 +134,32 @@ public class SVNRevisionImpl
 		}
 
 		return null;
+	}
+
+	public SVNRepository getSVNRepository() {
+		SVNRepository svnRepository = null;
+
+		try {
+			svnRepository = SVNRepositoryLocalServiceUtil.getSVNRepository(
+				getSvnRepositoryId());
+		}
+		catch (Exception e) {
+			svnRepository = new SVNRepositoryImpl();
+
+			_log.error(e);
+		}
+
+		return svnRepository;
+	}
+
+	public String getWebRevisionNumberURL() {
+		SVNRepository svnRepository = getSVNRepository();
+
+		return MessageFormat.format(
+			SVNConstants.WEB_REVISION_NUMBER_URL,
+			new Object[] {
+				svnRepository.getName(), String.valueOf(getRevisionNumber())
+			});
 	}
 
 	// LEP

@@ -33,13 +33,6 @@ import javax.portlet.RenderResponse;
 public class JSPPortlet extends GenericPortlet {
 
 	@Override
-	public void init() throws PortletException {
-		editJSP = getInitParameter("edit-jsp");
-		helpJSP = getInitParameter("help-jsp");
-		viewJSP = getInitParameter("view-jsp");
-	}
-
-	@Override
 	public void doDispatch(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
@@ -81,6 +74,13 @@ public class JSPPortlet extends GenericPortlet {
 		throws IOException, PortletException {
 
 		include(viewJSP, renderRequest, renderResponse);
+	}
+
+	@Override
+	public void init() throws PortletException {
+		editJSP = getInitParameter("edit-jsp");
+		helpJSP = getInitParameter("help-jsp");
+		viewJSP = getInitParameter("view-jsp");
 	}
 
 	@Override

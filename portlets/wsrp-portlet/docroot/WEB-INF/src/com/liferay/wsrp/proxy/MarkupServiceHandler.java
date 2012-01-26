@@ -39,19 +39,6 @@ public class MarkupServiceHandler implements InvocationHandler {
 		_markupService = markupService;
 	}
 
-	public Object invoke(Object proxy, Method method, Object[] args)
-		throws Throwable {
-
-		try {
-			return doInvoke(proxy, method, args);
-		}
-		catch (Throwable t) {
-			_log.error(t, t);
-
-			throw t;
-		}
-	}
-
 	public Object doInvoke(Object proxy, Method method, Object[] args)
 		throws Exception {
 
@@ -101,6 +88,19 @@ public class MarkupServiceHandler implements InvocationHandler {
 		}
 
 		return v2Bean;
+	}
+
+	public Object invoke(Object proxy, Method method, Object[] args)
+		throws Throwable {
+
+		try {
+			return doInvoke(proxy, method, args);
+		}
+		catch (Throwable t) {
+			_log.error(t, t);
+
+			throw t;
+		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(MarkupServiceHandler.class);

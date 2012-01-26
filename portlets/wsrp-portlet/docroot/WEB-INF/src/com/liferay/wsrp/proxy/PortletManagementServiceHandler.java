@@ -34,6 +34,14 @@ public class PortletManagementServiceHandler implements InvocationHandler {
 		_portletManagementService = portletManagementService;
 	}
 
+	public Object doInvoke(Object proxy, Method method, Object[] args)
+		throws Exception {
+
+		System.out.println(_portletManagementService.getClass());
+
+		return null;
+	}
+
 	public Object invoke(Object proxy, Method method, Object[] args)
 		throws Throwable {
 
@@ -45,14 +53,6 @@ public class PortletManagementServiceHandler implements InvocationHandler {
 
 			throw t;
 		}
-	}
-
-	public Object doInvoke(Object proxy, Method method, Object[] args)
-		throws Exception {
-
-		System.out.println(_portletManagementService.getClass());
-
-		return null;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(

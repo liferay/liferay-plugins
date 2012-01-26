@@ -34,25 +34,6 @@ import javax.portlet.RenderResponse;
 public class EventConsumer extends GenericPortlet {
 
 	@Override
-	public void processEvent(
-		EventRequest eventRequest, EventResponse eventResponse) {
-
-		Event event = eventRequest.getEvent();
-
-		HashMap<String, String> hashMap =
-			(HashMap<String, String>)event.getValue();
-
-		String value = hashMap.get("hello");
-
-		if (Validator.equals(value, "world")) {
-			_result = true;
-		}
-		else {
-			_result = false;
-		}
-	}
-
-	@Override
 	public void doView(RenderRequest request, RenderResponse response)
 		throws IOException {
 
@@ -70,6 +51,25 @@ public class EventConsumer extends GenericPortlet {
 		}
 
 		printWriter.close();
+	}
+
+	@Override
+	public void processEvent(
+		EventRequest eventRequest, EventResponse eventResponse) {
+
+		Event event = eventRequest.getEvent();
+
+		HashMap<String, String> hashMap =
+			(HashMap<String, String>)event.getValue();
+
+		String value = hashMap.get("hello");
+
+		if (Validator.equals(value, "world")) {
+			_result = true;
+		}
+		else {
+			_result = false;
+		}
 	}
 
 	private Boolean _result;

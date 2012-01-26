@@ -36,29 +36,6 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class FoodItemComponentImpl {
 
-	public String process(HttpServletRequest req) {
-		String result = null;
-
-		try {
-			String cmd = ParamUtil.getString(req, "cmd");
-
-			if (cmd.equals("getFoodItemXml")) {
-				long foodItemId = ParamUtil.getLong(req, "foodItemId", 0);
-
-				result = getFoodItemXml(foodItemId);
-			}
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-		}
-
-		if (Validator.isNull(result)) {
-			result = "<result />";
-		}
-
-		return result;
-	}
-
 	public String getFoodItemXml(long foodItemId) throws Exception {
 		List foodItems = null;
 
@@ -92,6 +69,29 @@ public class FoodItemComponentImpl {
 		}
 
 		return doc.asXML();
+	}
+
+	public String process(HttpServletRequest req) {
+		String result = null;
+
+		try {
+			String cmd = ParamUtil.getString(req, "cmd");
+
+			if (cmd.equals("getFoodItemXml")) {
+				long foodItemId = ParamUtil.getLong(req, "foodItemId", 0);
+
+				result = getFoodItemXml(foodItemId);
+			}
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
+
+		if (Validator.isNull(result)) {
+			result = "<result />";
+		}
+
+		return result;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(

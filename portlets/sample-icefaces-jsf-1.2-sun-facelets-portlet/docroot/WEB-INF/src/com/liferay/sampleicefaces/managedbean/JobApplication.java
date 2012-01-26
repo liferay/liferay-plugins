@@ -71,72 +71,36 @@ public class JobApplication {
 		return _comments;
 	}
 
-	public void setComments(String comments) {
-		_comments = comments;
-	}
-
 	public Date getDateOfBirth() {
 		return _dateOfBirth;
-	}
-
-	public void setDateOfBirth(Date dateOfBirth) {
-		_dateOfBirth = dateOfBirth;
 	}
 
 	public String getEmailAddress() {
 		return _emailAddress;
 	}
 
-	public void setEmailAddress(String emailAddress) {
-		_emailAddress = emailAddress;
-	}
-
 	public String getFaxNumber() {
 		return _faxNumber;
-	}
-
-	public void setFaxNumber(String faxNumber) {
-		_faxNumber = faxNumber;
 	}
 
 	public File getFile() {
 		return _file;
 	}
 
-	public void setFile(File file) {
-		_file = file;
-	}
-
 	public String getFirstName() {
 		return _firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		_firstName = firstName;
 	}
 
 	public String getLastName() {
 		return _lastName;
 	}
 
-	public void setLastName(String lastName) {
-		_lastName = lastName;
-	}
-
 	public String getPhoneNumber() {
 		return _phoneNumber;
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
-		_phoneNumber = phoneNumber;
-	}
-
 	public String getPhoneNumberType() {
 		return _phoneNumberType;
-	}
-
-	public void setPhoneNumberType(String phoneNumberType) {
-		_phoneNumberType = phoneNumberType;
 	}
 
 	public SelectItemList getPhoneNumberTypeSelectItems() {
@@ -162,6 +126,42 @@ public class JobApplication {
 		}
 
 		return _phoneNumberTypeSelectItems;
+	}
+
+	public void setComments(String comments) {
+		_comments = comments;
+	}
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		_dateOfBirth = dateOfBirth;
+	}
+
+	public void setEmailAddress(String emailAddress) {
+		_emailAddress = emailAddress;
+	}
+
+	public void setFaxNumber(String faxNumber) {
+		_faxNumber = faxNumber;
+	}
+
+	public void setFile(File file) {
+		_file = file;
+	}
+
+	public void setFirstName(String firstName) {
+		_firstName = firstName;
+	}
+
+	public void setLastName(String lastName) {
+		_lastName = lastName;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		_phoneNumber = phoneNumber;
+	}
+
+	public void setPhoneNumberType(String phoneNumberType) {
+		_phoneNumberType = phoneNumberType;
 	}
 
 	public String submit() {

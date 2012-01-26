@@ -42,6 +42,54 @@ import javax.portlet.RenderResponse;
 public class DAOPortlet extends GenericPortlet {
 
 	@Override
+	public void destroy() {
+		if (_log.isInfoEnabled()) {
+			_log.info("Destroying portlet");
+		}
+
+		try {
+			ConnectionPool.destroy();
+		}
+		catch (Exception e) {
+			_log.error(e);
+		}
+	}
+
+	@Override
+	public void doView(
+			RenderRequest renderRequest, RenderResponse renderResponse)
+		throws IOException, PortletException {
+
+		PortletContext portletContext = getPortletContext();
+
+		PortletRequestDispatcher portletRequestDispatcher =
+			portletContext.getRequestDispatcher("/view.jsp");
+
+		if (portletRequestDispatcher == null) {
+			_log.error("/view.jsp is not a valid include");
+		}
+		else {
+			try {
+				portletRequestDispatcher.include(renderRequest, renderResponse);
+			}
+			catch (Exception e) {
+				_log.error(e, e);
+
+				portletRequestDispatcher = portletContext.getRequestDispatcher(
+					"/error.jsp");
+
+				if (portletRequestDispatcher == null) {
+					_log.error("/error.jsp is not a valid include");
+				}
+				else {
+					portletRequestDispatcher.include(
+						renderRequest, renderResponse);
+				}
+			}
+		}
+	}
+
+	@Override
 	public void init(PortletConfig portletConfig) throws PortletException {
 		super.init(portletConfig);
 
@@ -85,54 +133,6 @@ public class DAOPortlet extends GenericPortlet {
 		}
 		catch (SQLException sqle) {
 			throw new PortletException(sqle);
-		}
-	}
-
-	@Override
-	public void doView(
-			RenderRequest renderRequest, RenderResponse renderResponse)
-		throws IOException, PortletException {
-
-		PortletContext portletContext = getPortletContext();
-
-		PortletRequestDispatcher portletRequestDispatcher =
-			portletContext.getRequestDispatcher("/view.jsp");
-
-		if (portletRequestDispatcher == null) {
-			_log.error("/view.jsp is not a valid include");
-		}
-		else {
-			try {
-				portletRequestDispatcher.include(renderRequest, renderResponse);
-			}
-			catch (Exception e) {
-				_log.error(e, e);
-
-				portletRequestDispatcher = portletContext.getRequestDispatcher(
-					"/error.jsp");
-
-				if (portletRequestDispatcher == null) {
-					_log.error("/error.jsp is not a valid include");
-				}
-				else {
-					portletRequestDispatcher.include(
-						renderRequest, renderResponse);
-				}
-			}
-		}
-	}
-
-	@Override
-	public void destroy() {
-		if (_log.isInfoEnabled()) {
-			_log.info("Destroying portlet");
-		}
-
-		try {
-			ConnectionPool.destroy();
-		}
-		catch (Exception e) {
-			_log.error(e);
 		}
 	}
 

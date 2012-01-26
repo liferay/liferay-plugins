@@ -29,20 +29,20 @@ import java.util.List;
 public class MeetupsRegistrationLocalServiceImpl
 	extends MeetupsRegistrationLocalServiceBaseImpl {
 
-	public List<MeetupsRegistration> getMeetupsRegistrations(
-			long meetupsEntryId, int status, int start, int end)
-		throws SystemException {
-
-		return meetupsRegistrationPersistence.findByME_S(
-			meetupsEntryId, status, start, end);
-	}
-
 	public MeetupsRegistration getMeetupsRegistration(
 			long userId, long meetupsEntryId)
 		throws PortalException, SystemException {
 
 		return meetupsRegistrationPersistence.findByU_ME(
 			userId, meetupsEntryId);
+	}
+
+	public List<MeetupsRegistration> getMeetupsRegistrations(
+			long meetupsEntryId, int status, int start, int end)
+		throws SystemException {
+
+		return meetupsRegistrationPersistence.findByME_S(
+			meetupsEntryId, status, start, end);
 	}
 
 	public int getMeetupsRegistrationsCount(long meetupsEntryId, int status)

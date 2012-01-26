@@ -43,6 +43,17 @@ import java.util.List;
 public class DefaultKaleoSignaler
 	extends BaseKaleoBean implements KaleoSignaler {
 
+	public void setDestinationName(String destinationName) {
+		DefaultSingleDestinationMessageSender singleDestinationMessageSender =
+			new DefaultSingleDestinationMessageSender();
+
+		singleDestinationMessageSender.setDestinationName(destinationName);
+		singleDestinationMessageSender.setMessageSender(
+			MessageBusUtil.getMessageSender());
+
+		_singleDestinationMessageSender = singleDestinationMessageSender;
+	}
+
 	public void signalEntry(
 			String transitionName, ExecutionContext executionContext)
 		throws PortalException, SystemException {
@@ -96,17 +107,6 @@ public class DefaultKaleoSignaler
 			currentKaleoNode, null, executionContext);
 
 		_singleDestinationMessageSender.send(pathElement);
-	}
-
-	public void setDestinationName(String destinationName) {
-		DefaultSingleDestinationMessageSender singleDestinationMessageSender =
-			new DefaultSingleDestinationMessageSender();
-
-		singleDestinationMessageSender.setDestinationName(destinationName);
-		singleDestinationMessageSender.setMessageSender(
-			MessageBusUtil.getMessageSender());
-
-		_singleDestinationMessageSender = singleDestinationMessageSender;
 	}
 
 	private SingleDestinationMessageSender _singleDestinationMessageSender;

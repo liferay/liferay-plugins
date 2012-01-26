@@ -40,6 +40,17 @@ public class CustomerListModel implements DisposableBean, Renderable {
 		_persistentFacesState = PersistentFacesState.getInstance();
 	}
 
+	public void dispose() throws Exception {
+
+		// http://jira.icefaces.org/browse/ICE-2896
+		// http://jira.icefaces.org/browse/ICE-2904
+
+		OnDemandRenderer onDemandRenderer =
+			getRenderManager().getOnDemandRenderer(_CUSTOMER_RENDER_GROUP);
+
+		onDemandRenderer.remove(this);
+	}
+
 	public List<Customer> getAllCustomers() {
 		List<Customer> allCustomers =
 			(List<Customer>)PortletSessionUtil.getSharedSessionAttribute(
@@ -70,17 +81,6 @@ public class CustomerListModel implements DisposableBean, Renderable {
 
 	public PersistentFacesState getState() {
 		return _persistentFacesState;
-	}
-
-	public void dispose() throws Exception {
-
-		// http://jira.icefaces.org/browse/ICE-2896
-		// http://jira.icefaces.org/browse/ICE-2904
-
-		OnDemandRenderer onDemandRenderer =
-			getRenderManager().getOnDemandRenderer(_CUSTOMER_RENDER_GROUP);
-
-		onDemandRenderer.remove(this);
 	}
 
 	public void renderingException(RenderingException e) {

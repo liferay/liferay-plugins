@@ -292,6 +292,44 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			ListUtil.subList(kbArticles, 0, rssDelta), themeDisplay);
 	}
 
+	public List<KBArticle> getKBArticles(
+			long groupId, long[] resourcePrimKeys, int status,
+			OrderByComparator orderByComparator)
+		throws SystemException {
+
+		List<KBArticle> kbArticles = new ArrayList<KBArticle>();
+
+		Long[][] params = new Long[][] {ArrayUtil.toArray(resourcePrimKeys)};
+
+		while ((params = KnowledgeBaseUtil.getParams(params[0])) != null) {
+			List<KBArticle> curKBArticles = null;
+
+			if (status == WorkflowConstants.STATUS_ANY) {
+				curKBArticles = kbArticlePersistence.filterFindByR_G_L(
+					ArrayUtil.toArray(params[1]), groupId, true);
+			}
+			else if (status == WorkflowConstants.STATUS_APPROVED) {
+				curKBArticles = kbArticlePersistence.filterFindByR_G_M(
+					ArrayUtil.toArray(params[1]), groupId, true);
+			}
+			else {
+				curKBArticles = kbArticlePersistence.filterFindByR_G_S(
+					ArrayUtil.toArray(params[1]), groupId, status);
+			}
+
+			kbArticles.addAll(curKBArticles);
+		}
+
+		if (orderByComparator != null) {
+			kbArticles = ListUtil.sort(kbArticles, orderByComparator);
+		}
+		else {
+			kbArticles = KnowledgeBaseUtil.sort(resourcePrimKeys, kbArticles);
+		}
+
+		return new UnmodifiableList<KBArticle>(kbArticles);
+	}
+
 	public KBArticleSearchDisplay getKBArticleSearchDisplay(
 			long groupId, String title, String content, int status,
 			Date startDate, Date endDate, boolean andOperator,
@@ -390,44 +428,6 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 		return kbArticlePersistence.filterCountByR_G_S(
 			resourcePrimKey, groupId, status);
-	}
-
-	public List<KBArticle> getKBArticles(
-			long groupId, long[] resourcePrimKeys, int status,
-			OrderByComparator orderByComparator)
-		throws SystemException {
-
-		List<KBArticle> kbArticles = new ArrayList<KBArticle>();
-
-		Long[][] params = new Long[][] {ArrayUtil.toArray(resourcePrimKeys)};
-
-		while ((params = KnowledgeBaseUtil.getParams(params[0])) != null) {
-			List<KBArticle> curKBArticles = null;
-
-			if (status == WorkflowConstants.STATUS_ANY) {
-				curKBArticles = kbArticlePersistence.filterFindByR_G_L(
-					ArrayUtil.toArray(params[1]), groupId, true);
-			}
-			else if (status == WorkflowConstants.STATUS_APPROVED) {
-				curKBArticles = kbArticlePersistence.filterFindByR_G_M(
-					ArrayUtil.toArray(params[1]), groupId, true);
-			}
-			else {
-				curKBArticles = kbArticlePersistence.filterFindByR_G_S(
-					ArrayUtil.toArray(params[1]), groupId, status);
-			}
-
-			kbArticles.addAll(curKBArticles);
-		}
-
-		if (orderByComparator != null) {
-			kbArticles = ListUtil.sort(kbArticles, orderByComparator);
-		}
-		else {
-			kbArticles = KnowledgeBaseUtil.sort(resourcePrimKeys, kbArticles);
-		}
-
-		return new UnmodifiableList<KBArticle>(kbArticles);
 	}
 
 	public KBArticle getLatestKBArticle(long resourcePrimKey, int status)
