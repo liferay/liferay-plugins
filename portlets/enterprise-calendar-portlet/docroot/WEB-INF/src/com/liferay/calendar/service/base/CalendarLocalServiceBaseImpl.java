@@ -142,9 +142,11 @@ public abstract class CalendarLocalServiceBaseImpl
 	 * Deletes the calendar from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param calendar the calendar
+	 * @throws PortalException
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteCalendar(Calendar calendar) throws SystemException {
+	public void deleteCalendar(Calendar calendar)
+		throws PortalException, SystemException {
 		calendarPersistence.remove(calendar);
 
 		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
