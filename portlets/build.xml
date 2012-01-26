@@ -86,7 +86,7 @@ portal-dependency-jars=commons-beanutils.jar,commons-collections.jar,commons-dig
 						</replace>
 
 						<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
-							<replacetoken><![CDATA[<name>view-jsp</name>]]></replacetoken>
+							<replacetoken><![CDATA[<name>view-template</name>]]></replacetoken>
 							<replacevalue><![CDATA[<name>javax.portlet.faces.defaultViewId.view</name>]]></replacevalue>
 						</replace>
 
@@ -135,7 +135,7 @@ portal-dependency-jars=vaadin.jar</echo>
 						</replace>
 
 						<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
-							<replacetoken><![CDATA[<name>view-jsp</name>]]></replacetoken>
+							<replacetoken><![CDATA[<name>view-template</name>]]></replacetoken>
 							<replacevalue><![CDATA[<name>application</name>]]></replacevalue>
 						</replace>
 
