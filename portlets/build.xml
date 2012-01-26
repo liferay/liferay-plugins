@@ -150,6 +150,12 @@ portal-dependency-jars=vaadin.jar</echo>
 								includes="liferay-portlet.xml"
 							/>
 						</replaceregexp>
+                        
+						<replace file="${portlet.dir}/docroot/WEB-INF/liferay-portlet.xml">
+							<replacetoken><![CDATA[</instanceable>]]></replacetoken>
+							<replacevalue><![CDATA[</instanceable>
+		<ajaxable>false</ajaxable>]]></replacevalue>
+						</replace>
 
 						<delete includeemptydirs="true">
 							<fileset
