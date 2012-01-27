@@ -61,7 +61,7 @@ if (userId > 0) {
 						}
 					);
 
-					var contactsToolbar = new A.Toolbar(
+					new A.Toolbar(
 						{
 							activeState: false,
 							boundingBox: buttonRow,

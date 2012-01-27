@@ -387,7 +387,7 @@ AUI.add(
 											}
 										);
 									}
-								).join('')
+								).join('');
 							);
 						}
 
@@ -495,10 +495,8 @@ AUI.add(
 						if (blockUserIdIndex >= 0) {
 							Array.remove(instance._buttonBlockUserIds, blockUserIdIndex);
 
-							if (instance._buttonBlockUserIds.length <= 0) {
-								if (instance._blockButton) {
-									instance._blockButton.hide();
-								}
+							if (instance._blockButton && (instance._buttonBlockUserIds.length <= 0)) {
+								instance._blockButton.hide();
 							}
 						}
 
@@ -507,10 +505,8 @@ AUI.add(
 						if (unblockUserIdIndex >= 0) {
 							Array.remove(instance._buttonUnBlockUserIds, unblockUserIdIndex);
 
-							if (instance._buttonUnBlockUserIds.length <= 0) {
-								if (instance._unblockButton) {
-									instance._unblockButton.hide();
-								}
+							if (instance._unblockButton && (instance._buttonUnBlockUserIds.length <= 0)) {
+								instance._unblockButton.hide();
 							}
 						}
 
@@ -519,10 +515,8 @@ AUI.add(
 						if (addConnectionUserIdIndex >= 0) {
 							Array.remove(instance._buttonAddConnectionUserIds, addConnectionUserIdIndex);
 
-							if (instance._buttonAddConnectionUserIds.length <= 0) {
-								if (instance._addConnectionButton) {
-									instance._addConnectionButton.hide();
-								}
+							if (instance._addConnectionButton && (instance._buttonAddConnectionUserIds.length <= 0)) {
+								instance._addConnectionButton.hide();
 							}
 						}
 
@@ -531,10 +525,8 @@ AUI.add(
 						if (removeConnectionUserIdIndex >= 0) {
 							Array.remove(instance._buttonRemoveConnectionUserIds, removeConnectionUserIdIndex);
 
-							if (instance._buttonRemoveConnectionUserIds.length <= 0) {
-								if (instance._removeConnectionButton) {
-									instance._removeConnectionButton.hide();
-								}
+							if (instance._removeConnectionButton && (instance._buttonRemoveConnectionUserIds.length <= 0)) {
+								instance._removeConnectionButton.hide();
 							}
 						}
 
@@ -543,10 +535,8 @@ AUI.add(
 						if (followUserIdIndex >= 0) {
 							Array.remove(instance._buttonFollowUserIds, followUserIdIndex);
 
-							if (instance._buttonFollowUserIds.length <= 0) {
-								if (instance._followButton) {
-									instance._followButton.hide();
-								}
+							if (instance._followButton && (instance._buttonFollowUserIds.length <= 0)) {
+								instance._followButton.hide();
 							}
 						}
 
@@ -555,10 +545,8 @@ AUI.add(
 						if (unFollowUserIdIndex >= 0) {
 							Array.remove(instance._buttonUnFollowUserIds, unFollowUserIdIndex);
 
-							if (instance._buttonUnFollowUserIds.length <= 0) {
-								if (instance._unfollowButton) {
-									instance._unfollowButton.hide();
-								}
+							if (instance._unfollowButton && (instance._buttonUnFollowUserIds.length <= 0)) {
+								instance._unfollowButton.hide();
 							}
 						}
 					}
