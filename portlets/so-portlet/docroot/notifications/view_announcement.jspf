@@ -20,29 +20,14 @@
 <%
 PortletURL portletURL = null;
 
-Group mySite = user.getGroup();
-
-long portletPlid = PortalUtil.getPlidFromPortletId(mySite.getGroupId(), true, notificationEventJSON.getString("portletId"));
+long portletPlid = PortalUtil.getPlidFromPortletId(notificationEventJSON.getLong("groupId"), false, notificationEventJSON.getString("portletId"));
 
 if (portletPlid != 0) {
 	portletURL = PortletURLFactoryUtil.create(request, notificationEventJSON.getString("portletId"), portletPlid, PortletRequest.RENDER_PHASE);
-
-	portletURL.setParameter(notificationEventJSON.getString("entryKeyName"), String.valueOf(notificationEventJSON.getLong("entryId")));
-}
-else {
-	portletURL = liferayPortletResponse.createRenderURL(notificationEventJSON.getString("portletId"));
-
-	portletURL.setWindowState(WindowState.MAXIMIZED);
-
-	portletURL.setParameter("mvcPath", notificationEventJSON.getString("mvcPath"));
-
-	if (Validator.isNull(notificationEventJSON.getString("entryKeyName"))) {
-		portletURL.setParameter(notificationEventJSON.getString("entryKeyName"), String.valueOf(notificationEventJSON.getLong("microblogsEntryId")));
-	}
 }
 %>
 
-<div class="aui-menu-item user-notification-event-content" data-portletUrl="<%= portletURL %>">
+<div class="aui-menu-item user-notification-event-content" data-portletUrl="<%= portletURL != null ? portletURL : StringPool.BLANK %>">
 	<div class="user-notification-event-sender">
 		<span class="thumbnail">
 			<img alt="<%= userFullName %>" src="<%= userPortaitURL %>" />
