@@ -16,19 +16,18 @@
 
 <%@ include file="/init.jsp" %>
 
-<%
-boolean showDetailView = ParamUtil.getBoolean(request, "showDetailView", false);
-
-long userId = ParamUtil.getLong(request, "userId");
-
-User user2 = null;
-
-if (userId > 0) {
-	user2 = UserLocalServiceUtil.getUser(userId);
-}
-%>
-
 <div>
+
+	<%
+	long userId = ParamUtil.getLong(request, "userId");
+
+	User user2 = null;
+
+	if (userId > 0) {
+		user2 = UserLocalServiceUtil.getUser(userId);
+	}
+	%>
+
 	<c:if test="<%= user2 != null %>">
 		<span id="<portlet:namespace />contactSummary">
 			<liferay-util:include page="/contacts_center/view_user.jsp" servletContext="<%= application %>" />
@@ -36,6 +35,11 @@ if (userId > 0) {
 	</c:if>
 
 	<span id="<portlet:namespace />contactsToolbar">
+
+		<%
+		boolean showDetailView = ParamUtil.getBoolean(request, "showDetailView");
+		%>
+
 		<c:choose>
 			<c:when test="<%= showDetailView %>">
 				<div class="lfr-button-column">
