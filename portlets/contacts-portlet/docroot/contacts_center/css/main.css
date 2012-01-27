@@ -99,12 +99,24 @@ $section-header-bg: #CCE6F7;
 
 	.contacts-container {
 		.lfr-contact-grid-item {
-			border-bottom: 1px solid #CCC;
 			margin-bottom: 5px;
 			padding-left: 5px;
+			padding-top: 5px;
 
 			.lfr-contact-thumb img {
 				width: 80px;
+			}
+		}
+
+		.lfr-selected-user {
+			cursor: pointer;
+
+			&.alt {
+				background-color: #F5F8FB;
+			}
+
+			&:hover {
+				background-color: #E8EFF4;
 			}
 		}
 	}
@@ -234,7 +246,6 @@ $section-header-bg: #CCE6F7;
 	}
 
 	.social-relations {
-		background: #EEE;
 		padding: 4px 8px;
 		width: auto;
 
@@ -313,6 +324,10 @@ $section-header-bg: #CCE6F7;
 
 				.aui-icon-add-coworker {
 					background-image: url(@theme_image_path@/social/add_coworker.png);
+				}
+
+				.aui-icon-back {
+					background-image: url(@theme_image_path@/common/back.png);
 				}
 
 				.aui-icon-block {

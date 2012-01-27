@@ -90,7 +90,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 				boolean blocked = SocialRelationLocalServiceUtil.hasRelation(
 					userId, themeDisplay.getUserId(),
 					SocialRelationConstants.TYPE_UNI_ENEMY);
-	
+
 				if (type == SocialRelationConstants.TYPE_UNI_ENEMY) {
 					SocialRelationLocalServiceUtil.deleteRelations(
 						themeDisplay.getUserId(), userId);
@@ -98,10 +98,10 @@ public class ContactsCenterPortlet extends MVCPortlet {
 				else if (blocked) {
 					continue;
 				}
-	
+
 				SocialRelationLocalServiceUtil.addRelation(
 					themeDisplay.getUserId(), userId, type);
-	
+
 				if (blocked) {
 					SocialRelationLocalServiceUtil.addRelation(
 						userId, themeDisplay.getUserId(), type);

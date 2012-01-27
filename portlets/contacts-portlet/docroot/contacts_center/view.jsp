@@ -70,8 +70,8 @@ portletURL.setWindowState(WindowState.NORMAL);
 					</div>
 				</aui:column>
 				<aui:column cssClass="button-column" columnWidth="70">
-					<div id="userToolbarButtons"><!-- User Tool Bar --></div>
-					<div id="contactCenterToolbarButtons" class="aui-helper-hidden">
+					<div id="<portlet:namespace/>userToolbarButtons"><!-- --></div>
+					<div id="<portlet:namespace/>contactCenterToolbarButtons" class="aui-helper-hidden">
 						<liferay-util:include page="/contacts_center/contacts_center_toolbar.jsp" servletContext="<%= application %>" />
 					</div>
 				</aui:column>
@@ -167,53 +167,56 @@ portletURL.setWindowState(WindowState.NORMAL);
 				</aui:column>
 
 				<aui:column columnWidth="70" cssClass="contacts-container">
-					<c:choose>
-						<c:when test="<%= userPublicPage %>">
-
-							<%
-							request.setAttribute(WebKeys.CONTACTS_USER, users.get(0));
-							%>
-
-							<liferay-util:include page="/contacts_center/view_user.jsp" servletContext="<%= application %>" />
-						</c:when>
-						<c:otherwise>
-							<aui:layout cssClass="contacts-center-home">
-								<liferay-ui:header
-									title="contacts-center"
-								/>
+					<div id="<portlet:namespace/>detailUserView">
+						<c:choose>
+							<c:when test="<%= userPublicPage %>">
 
 								<%
-								int allUsersCount = UserLocalServiceUtil.getUsersCount();
-								int connectionUsersCount = UserLocalServiceUtil.getSocialUsersCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION);
-								int followingUsersCount = UserLocalServiceUtil.getSocialUsersCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
+								request.setAttribute(WebKeys.CONTACTS_USER, users.get(0));
 								%>
 
-								<aui:layout cssClass="contacts-count connections">
-									<a href="javascript:;"><liferay-ui:message arguments="<%= String.valueOf(connectionUsersCount) %>" key="you-have-x-connections" /></a>
-								</aui:layout>
+								<liferay-util:include page="/contacts_center/view_user.jsp" servletContext="<%= application %>" />
+							</c:when>
+							<c:otherwise>
+								<aui:layout cssClass="contacts-center-home">
+									<liferay-ui:header
+										title="contacts-center"
+									/>
 
-								<aui:layout cssClass="contacts-count followings">
-									<a href="javascript:;"><liferay-ui:message arguments="<%= String.valueOf(followingUsersCount) %>" key="you-are-following-x-people" /></a>
-								</aui:layout>
+									<%
+									int allUsersCount = UserLocalServiceUtil.getUsersCount();
+									int connectionUsersCount = UserLocalServiceUtil.getSocialUsersCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION);
+									int followingUsersCount = UserLocalServiceUtil.getSocialUsersCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
+									%>
 
-								<aui:layout cssClass="contacts-count all">
-									<a href="javascript:;"><liferay-ui:message arguments="<%= String.valueOf(allUsersCount) %>" key="view-all-x-users" /></a>
-								</aui:layout>
-
-								<c:if test="<%= (connectionUsersCount <= 0) && (followingUsersCount <= 0) %>">
-									<aui:layout cssClass="contacts-center-introduction">
-										<liferay-ui:message key="contacts-center-allows-you-to-search-view-and-establish-social-relations-with-other-users" />
+									<aui:layout cssClass="contacts-count connections">
+										<a href="javascript:;"><liferay-ui:message arguments="<%= String.valueOf(connectionUsersCount) %>" key="you-have-x-connections" /></a>
 									</aui:layout>
-								</c:if>
-							</aui:layout>
-						</c:otherwise>
-					</c:choose>
+
+									<aui:layout cssClass="contacts-count followings">
+										<a href="javascript:;"><liferay-ui:message arguments="<%= String.valueOf(followingUsersCount) %>" key="you-are-following-x-people" /></a>
+									</aui:layout>
+
+									<aui:layout cssClass="contacts-count all">
+										<a href="javascript:;"><liferay-ui:message arguments="<%= String.valueOf(allUsersCount) %>" key="view-all-x-users" /></a>
+									</aui:layout>
+
+									<c:if test="<%= (connectionUsersCount <= 0) && (followingUsersCount <= 0) %>">
+										<aui:layout cssClass="contacts-center-introduction">
+											<liferay-ui:message key="contacts-center-allows-you-to-search-view-and-establish-social-relations-with-other-users" />
+										</aui:layout>
+									</c:if>
+								</aui:layout>
+							</c:otherwise>
+						</c:choose>
+					</div>
+					<div id="<portlet:namespace/>selectedUsersView"><!-- --></div>
 				</aui:column>
 			</aui:layout>
 		</aui:form>
 
-		<aui:script use="aui-base,aui-io,datatype-number">
-			var ContactsCenter = new Liferay.Contacts(
+		<aui:script use="aui-io,datatype-number,liferay-contacts-center">
+			var contactsCenter = new Liferay.ContactsCenter(
 				{
 					contactsResult: '.contacts-portlet .contacts-result-content',
 					contactsResultContainer: '.contacts-portlet .contacts-result',
@@ -222,6 +225,8 @@ portletURL.setWindowState(WindowState.NORMAL);
 					namespace: '<portlet:namespace />'
 				}
 			);
+
+			Liferay.ContactsCenter = contactsCenter;
 
 			var searchInput = A.one('.contacts-portlet #<portlet:namespace />name');
 
@@ -234,7 +239,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 					function(event) {
 						searchInput.set('value', '');
 
-						ContactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
+						contactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
 					}
 				);
 			</c:if>
@@ -244,8 +249,6 @@ portletURL.setWindowState(WindowState.NORMAL);
 			contactsResult.delegate(
 				'click',
 				function(event) {
-					ContactsCenter.clearContactResult();
-
 					var uri = event.currentTarget.getAttribute('data-viewSummaryURL');
 
 					var userId = event.currentTarget.getAttribute('data-userId');
@@ -253,9 +256,6 @@ portletURL.setWindowState(WindowState.NORMAL);
 					var ioRequest = A.io.request(
 						uri,
 						{
-							data: {
-									userId: userId
-							},
 							after: {
 								failure: function(event, id, obj) {
 									var saveMessages = A.one('#<portlet:namespace/>saveMessages');
@@ -265,40 +265,11 @@ portletURL.setWindowState(WindowState.NORMAL);
 									}
 								},
 								success: function(event, id, obj) {
-									var instance = this;
-
-									var responseData = instance.get('responseData');
-
-									var content = A.Node.create(responseData);
-
-									var contactSummary = content.one('#<portlet:namespace />contactSummary');
-
-									if (contactSummary) {
-										var contactSummaryContainer = A.one('.contacts-portlet .contacts-result-container .contacts-container-content');
-
-										contactSummaryContainer.empty();
-
-										var parseContent = A.Plugin.ParseContent;
-
-										contactSummaryContainer.plug(parseContent);
-
-										contactSummaryContainer.setContent(contactSummary);
-									}
-
-									var userToolbar = content.one('#<portlet:namespace />contactsToolbar');
-
-									if (userToolbar) {
-										var userToolbarContainer = A.one('#userToolbarButtons');
-
-										userToolbarContainer.empty();
-
-										var parseContent = A.Plugin.ParseContent;
-
-										userToolbarContainer.plug(parseContent);
-
-										userToolbarContainer.setContent(userToolbar);
-									}
+									contactsCenter.renderContent(this.get('responseData'), true);
 								}
+							},
+							data: {
+								userId: userId
 							}
 						}
 					);
@@ -319,7 +290,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 						{
 							after: {
 								success: function(event, id, obj) {
-									ContactsCenter.showMoreResult(this.get('responseData'), lastNameAnchor);
+									contactsCenter.showMoreResult(this.get('responseData'), lastNameAnchor);
 								}
 							},
 							data: {
@@ -327,7 +298,8 @@ portletURL.setWindowState(WindowState.NORMAL);
 								keywords: searchInput.get('value'),
 								socialRelationType: contactFilterSelect.get('value') || 'all',
 								start: start
-							}
+							},
+							type: 'json'
 						}
 					);
 				},
@@ -357,7 +329,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 										var responseData = this.get('responseData');
 
 										if (responseData.success) {
-			ContactsCenter.addContactResult(responseData, '<portlet:namespace />');
+											contactsCenter.addContactResult(responseData);
 										}
 									}
 								},
@@ -369,10 +341,48 @@ portletURL.setWindowState(WindowState.NORMAL);
 						);
 					}
 					else {
-			ContactsCenter.deleteContactResult(userId, '<portlet:namespace />');
+						contactsCenter.deleteContactResult(userId);
 					}
 				},
 				'.contact-ids'
+			);
+
+			var contactsContainer = A.one('.contacts-container-content');
+
+			contactsContainer.delegate(
+				'click',
+				function(event) {
+					var instance = this;
+
+					var checkbox = instance.one('input');
+
+					var uri = event.currentTarget.getAttribute('data-viewSummaryURL');
+
+					var userId = checkbox.val();
+
+					var ioRequest = A.io.request(
+						uri,
+						{
+							after: {
+								failure: function(event, id, obj) {
+									var saveMessages = A.one('#<portlet:namespace/>saveMessages');
+
+									if (saveMessages) {
+										saveMessages.html('<span class="portlet-msg-error">' + Liferay.Language.get('an-error-occurred-while-retrieving-the-user-information') + '</span>');
+									}
+								},
+								success: function(event, id, obj) {
+									contactsCenter.renderContent(this.get('responseData'));
+								}
+							},
+							data: {
+								showDetailView: true,
+								userId: userId
+							}
+						}
+					);
+				},
+				'.lfr-contact-grid-item'
 			);
 
 			<c:if test="<%= !userPublicPage %>">
@@ -383,7 +393,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 					function(event) {
 						contactFilterSelect.set('value', '<%= SocialRelationConstants.TYPE_BI_CONNECTION %>');
 
-						ContactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
+						contactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
 					},
 					'a'
 				);
@@ -395,7 +405,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 					function(event) {
 						contactFilterSelect.set('value', '<%= SocialRelationConstants.TYPE_UNI_FOLLOWER %>');
 
-						ContactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
+						contactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
 					},
 					'a'
 				);
@@ -407,7 +417,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 					function(event) {
 						contactFilterSelect.set('value', 'all');
 
-						ContactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
+						contactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
 					},
 					'a'
 				);
