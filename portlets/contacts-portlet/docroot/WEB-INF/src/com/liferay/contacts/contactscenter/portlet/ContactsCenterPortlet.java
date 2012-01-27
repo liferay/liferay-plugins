@@ -241,13 +241,13 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
 
 			userJSONObject.put("block", block);
-			userJSONObject.put("connectionRequested", connectionRequested);
 			userJSONObject.put("connected", connected);
+			userJSONObject.put("connectionRequested", connectionRequested);
 			userJSONObject.put("emailAddress", user.getEmailAddress());
-			userJSONObject.put("jobTitle", user.getJobTitle());
 			userJSONObject.put("firstName", user.getFirstName());
 			userJSONObject.put("following", following);
 			userJSONObject.put("fullName", user.getFullName());
+			userJSONObject.put("jobTitle", user.getJobTitle());
 			userJSONObject.put("lastName", user.getLastName());
 			userJSONObject.put(
 				"portraitURL", user.getPortraitURL(themeDisplay));
@@ -273,7 +273,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 			String message = LanguageUtil.get(
 				themeDisplay.getLocale(),
-				"an-error-occurred-while-retrieving-the-user-information");
+				"an-error-occurred-while-retrieving-the-users-information");
 
 			jsonObject.put("message", message);
 		}
@@ -344,9 +344,9 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
 
 			userJSONObject.put("emailAddress", user.getEmailAddress());
-			userJSONObject.put("jobTitle", user.getJobTitle());
 			userJSONObject.put("firstName", user.getFirstName());
 			userJSONObject.put("fullName", user.getFullName());
+			userJSONObject.put("jobTitle", user.getJobTitle());
 			userJSONObject.put("lastName", user.getLastName());
 			userJSONObject.put(
 				"portraitURL", user.getPortraitURL(themeDisplay));

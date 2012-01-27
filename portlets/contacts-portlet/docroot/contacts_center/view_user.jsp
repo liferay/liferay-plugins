@@ -94,42 +94,43 @@ request.setAttribute("view_user.jsp-user", user2);
 
 				<aui:layout cssClass="contacts-action">
 					<c:choose>
-						<c:when test='<%= portletName.equals(PortletKeys.CONTACTS_CENTER) %>'>
+						<c:when test="<%= portletName.equals(PortletKeys.CONTACTS_CENTER) %>">
+
 							<%
-							boolean viewRelationActions = true;
+							boolean blocked = false;
 
 							if (SocialRelationLocalServiceUtil.hasRelation(user2.getUserId(), themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY)) {
-								viewRelationActions = false;
+								blocked = true;
 							}
 							else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY)) {
-								viewRelationActions = false;
+								blocked = true;
 							}
 							%>
 
 							<c:choose>
-								<c:when test="<%= viewRelationActions && SocialRequestLocalServiceUtil.hasRequest(themeDisplay.getUserId(), User.class.getName(), themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION, user2.getUserId(), SocialRequestConstants.STATUS_PENDING) %>">
+								<c:when test="<%= !blocked && SocialRequestLocalServiceUtil.hasRequest(themeDisplay.getUserId(), User.class.getName(), themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION, user2.getUserId(), SocialRequestConstants.STATUS_PENDING) %>">
 									<liferay-ui:icon
 										cssClass="disabled"
-										label="<%= true %>"
 										image="../social/coworker"
+										label="<%= true %>"
 										message="connection-requested"
 									/>
 								</c:when>
-								<c:when test="<%= viewRelationActions && SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION) %>">
+								<c:when test="<%= !blocked && SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION) %>">
 									<liferay-ui:icon
 										cssClass="connected"
-										label="<%= true %>"
 										image="../social/coworker"
+										label="<%= true %>"
 										message="connected"
 									/>
 								</c:when>
 							</c:choose>
 
-							<c:if test="<%= viewRelationActions && SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER) %>">
+							<c:if test="<%= !blocked && SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER) %>">
 								<liferay-ui:icon
 									cssClass="following"
-									label="<%= true %>"
 									image="../social/following"
+									label="<%= true %>"
 									message="following"
 								/>
 							</c:if>
@@ -137,8 +138,8 @@ request.setAttribute("view_user.jsp-user", user2);
 							<c:if test="<%= SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY) %>">
 								<liferay-ui:icon
 									cssClass="block"
-									label="<%= true %>"
 									image="../social/block"
+									label="<%= true %>"
 									message="block"
 								/>
 							</c:if>

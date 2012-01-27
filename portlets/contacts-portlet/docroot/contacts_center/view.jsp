@@ -59,9 +59,9 @@ portletURL.setWindowState(WindowState.NORMAL);
 
 		<aui:form action="<%= portletURL.toString() %>" method="post" name="fm">
 			<aui:input name="<%= Constants.CMD %>" type="hidden" value="" />
-			<aui:input name="type" type="hidden" value="" />
 			<aui:input name="redirect" type="hidden" value="" />
 			<aui:input name="userIds" type="hidden" value="" />
+			<aui:input name="type" type="hidden" value="" />
 
 			<aui:layout cssClass="toolbar">
 				<aui:column cssClass="search-column" columnWidth="30">
@@ -69,8 +69,10 @@ portletURL.setWindowState(WindowState.NORMAL);
 						<aui:input cssClass="search-input" label="" id="name" name="name" size="30" type="text" value="<%= HtmlUtil.escape(name) %>" />
 					</div>
 				</aui:column>
+
 				<aui:column cssClass="button-column" columnWidth="70">
 					<div id="<portlet:namespace/>userToolbarButtons"><!-- --></div>
+
 					<div id="<portlet:namespace/>contactCenterToolbarButtons" class="aui-helper-hidden">
 						<liferay-util:include page="/contacts_center/contacts_center_toolbar.jsp" servletContext="<%= application %>" />
 					</div>
@@ -210,12 +212,15 @@ portletURL.setWindowState(WindowState.NORMAL);
 							</c:otherwise>
 						</c:choose>
 					</div>
+
 					<div id="<portlet:namespace/>selectedUsersView"><!-- --></div>
 				</aui:column>
 			</aui:layout>
 		</aui:form>
 
 		<aui:script use="aui-io,datatype-number,liferay-contacts-center">
+			var searchInput = A.one('.contacts-portlet #<portlet:namespace />name');
+
 			var contactsCenter = new Liferay.ContactsCenter(
 				{
 					contactsResult: '.contacts-portlet .contacts-result-content',
@@ -228,11 +233,8 @@ portletURL.setWindowState(WindowState.NORMAL);
 
 			Liferay.ContactsCenter = contactsCenter;
 
-			var searchInput = A.one('.contacts-portlet #<portlet:namespace />name');
-
 			<c:if test="<%= !userPublicPage %>">
-				var contactFilterContainer = A.one('.contacts-portlet .contact-group-filter');
-				var contactFilterSelect = contactFilterContainer.one('select[name=<portlet:namespace />socialRelationType]');
+				var contactFilterSelect = A.one('.contacts-portlet .contact-group-filter select[name=<portlet:namespace />socialRelationType]');
 
 				contactFilterSelect.on(
 					'change',
@@ -249,19 +251,17 @@ portletURL.setWindowState(WindowState.NORMAL);
 			contactsResult.delegate(
 				'click',
 				function(event) {
-					var uri = event.currentTarget.getAttribute('data-viewSummaryURL');
+					var node = event.currentTarget;
 
-					var userId = event.currentTarget.getAttribute('data-userId');
-
-					var ioRequest = A.io.request(
-						uri,
+					A.io.request(
+						node.getAttribute('data-viewSummaryURL'),
 						{
 							after: {
 								failure: function(event, id, obj) {
 									var saveMessages = A.one('#<portlet:namespace/>saveMessages');
 
 									if (saveMessages) {
-										saveMessages.html('<span class="portlet-msg-error">' + Liferay.Language.get('an-error-occurred-while-retrieving-the-user-information') + '</span>');
+										saveMessages.html('<span class="portlet-msg-error">' + Liferay.Language.get('an-error-occurred-while-retrieving-the-users-information') + '</span>');
 									}
 								},
 								success: function(event, id, obj) {
@@ -269,7 +269,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 								}
 							},
 							data: {
-								userId: userId
+								userId: node.getAttribute('data-userId')
 							}
 						}
 					);
@@ -280,17 +280,21 @@ portletURL.setWindowState(WindowState.NORMAL);
 			contactsResult.delegate(
 				'click',
 				function(event) {
-					var start = A.DataType.Number.parse(event.currentTarget.getAttribute('data-end'));
+					var node = event.currentTarget;
+
+					var start = A.DataType.Number.parse(node.getAttribute('data-end'));
 					var end = start + <%= maxResultCount %>;
 
-					var lastNameAnchor = event.currentTarget.getAttribute('data-lastNameAnchor');
+					var lastNameAnchor = node.getAttribute('data-lastNameAnchor');
 
 					A.io.request(
 						'<portlet:resourceURL id="getContacts"><portlet:param name="portletResource" value="<%= portletResource %>" /></portlet:resourceURL>',
 						{
 							after: {
 								success: function(event, id, obj) {
-									contactsCenter.showMoreResult(this.get('responseData'), lastNameAnchor);
+									var responseData = this.get('responseData');
+
+									contactsCenter.showMoreResult(responseData, lastNameAnchor);
 								}
 							},
 							data: {
@@ -347,28 +351,24 @@ portletURL.setWindowState(WindowState.NORMAL);
 				'.contact-ids'
 			);
 
-			var contactsContainer = A.one('.contacts-container-content');
-
-			contactsContainer.delegate(
+			A.one('.contacts-container-content').delegate(
 				'click',
 				function(event) {
 					var instance = this;
 
-					var checkbox = instance.one('input');
+					var node = event.currentTarget;
 
-					var uri = event.currentTarget.getAttribute('data-viewSummaryURL');
-
-					var userId = checkbox.val();
+					var userId = instance.one('input').val();
 
 					var ioRequest = A.io.request(
-						uri,
+						node.getAttribute('data-viewSummaryURL'),
 						{
 							after: {
 								failure: function(event, id, obj) {
 									var saveMessages = A.one('#<portlet:namespace/>saveMessages');
 
 									if (saveMessages) {
-										saveMessages.html('<span class="portlet-msg-error">' + Liferay.Language.get('an-error-occurred-while-retrieving-the-user-information') + '</span>');
+										saveMessages.html('<span class="portlet-msg-error">' + Liferay.Language.get('an-error-occurred-while-retrieving-the-users-information') + '</span>');
 									}
 								},
 								success: function(event, id, obj) {
@@ -386,9 +386,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 			);
 
 			<c:if test="<%= !userPublicPage %>">
-				var viewConnections = A.one('.contacts-portlet .contacts-center-home .connections');
-
-				viewConnections.on(
+				A.one('.contacts-portlet .contacts-center-home .connections').on(
 					'click',
 					function(event) {
 						contactFilterSelect.set('value', '<%= SocialRelationConstants.TYPE_BI_CONNECTION %>');
@@ -398,9 +396,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 					'a'
 				);
 
-				var viewFollowings = A.one('.contacts-portlet .contacts-center-home .followings');
-
-				viewFollowings.on(
+				A.one('.contacts-portlet .contacts-center-home .followings').on(
 					'click',
 					function(event) {
 						contactFilterSelect.set('value', '<%= SocialRelationConstants.TYPE_UNI_FOLLOWER %>');
@@ -410,9 +406,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 					'a'
 				);
 
-				var viewAll = A.one('.contacts-portlet .contacts-center-home .all');
-
-				viewAll.on(
+				A.one('.contacts-portlet .contacts-center-home .all').on(
 					'click',
 					function(event) {
 						contactFilterSelect.set('value', 'all');

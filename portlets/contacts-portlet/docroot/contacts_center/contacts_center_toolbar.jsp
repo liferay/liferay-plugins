@@ -36,13 +36,13 @@ if (user2 != null) {
 	}
 }
 
-boolean removeConnectionButton = (user2 == null) || (viewRelationActions && SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION));
-boolean connectionRequestedButton = (user2 != null) && SocialRequestLocalServiceUtil.hasRequest(themeDisplay.getUserId(), User.class.getName(), themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION, user2.getUserId(), SocialRequestConstants.STATUS_PENDING);
 boolean addConnectionButton = (user2 == null) || (viewRelationActions && !connectionRequestedButton && SocialRelationLocalServiceUtil.isRelatable(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION));
-boolean unFollowButton = (user2 == null) || (viewRelationActions && SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER));
-boolean followButton = (user2 == null) || (viewRelationActions && SocialRelationLocalServiceUtil.isRelatable(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER));
-boolean unBlockButton = (user2 == null) || SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY);
 boolean blockButton = (user2 == null) || SocialRelationLocalServiceUtil.isRelatable(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY);
+boolean connectionRequestedButton = (user2 != null) && SocialRequestLocalServiceUtil.hasRequest(themeDisplay.getUserId(), User.class.getName(), themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION, user2.getUserId(), SocialRequestConstants.STATUS_PENDING);
+boolean followButton = (user2 == null) || (viewRelationActions && SocialRelationLocalServiceUtil.isRelatable(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER));
+boolean removeConnectionButton = (user2 == null) || (viewRelationActions && SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION));
+boolean unfollowButton = (user2 == null) || (viewRelationActions && SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER));
+boolean unblockButton = (user2 == null) || SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY);
 %>
 
 <div class="lfr-button-column">
@@ -98,7 +98,7 @@ boolean blockButton = (user2 == null) || SocialRelationLocalServiceUtil.isRelata
 		);
 	</c:if>
 
-	<c:if test="<%= unFollowButton %>">
+	<c:if test="<%= unfollowButton %>">
 		contactsToolbarChildren.push(
 			{
 				cssClass: '<%= user2 == null ? "aui-helper-hidden" : "" %>',
@@ -126,7 +126,7 @@ boolean blockButton = (user2 == null) || SocialRelationLocalServiceUtil.isRelata
 		);
 	</c:if>
 
-	<c:if test="<%= unBlockButton %>">
+	<c:if test="<%= unblockButton %>">
 		contactsToolbarChildren.push(
 			{
 				cssClass: '<%= user2 == null ? "aui-helper-hidden" : "" %>',
@@ -140,7 +140,7 @@ boolean blockButton = (user2 == null) || SocialRelationLocalServiceUtil.isRelata
 		);
 	</c:if>
 
-	<c:if test="<%= user2 != null && user.getUserId() == user2.getUserId() %>">
+	<c:if test="<%= (user2 != null) && user.getUserId() == user2.getUserId() %>">
 		contactsToolbarChildren.push(
 			{
 				handler: function(event) {
@@ -174,14 +174,10 @@ boolean blockButton = (user2 == null) || SocialRelationLocalServiceUtil.isRelata
 	</c:if>
 
 	<c:if test="<%= (user2 != null) %>">
-		<portlet:resourceURL id="exportVCard" var="exportURL">
-			<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
-		</portlet:resourceURL>
-
 		contactsToolbarChildren.push(
 			{
 				handler: function(event) {
-					location.href = '<%= exportURL %>'
+					location.href = '<liferay-portlet:resourceURL id="exportVCard"><portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" /></liferay-portlet:resourceURL>'
 				},
 				icon: 'export',
 				label: '<%= UnicodeLanguageUtil.get(pageContext, "export-vcard") %>'
@@ -198,8 +194,6 @@ boolean blockButton = (user2 == null) || SocialRelationLocalServiceUtil.isRelata
 	).render();
 
 	function <portlet:namespace />relationAction(event, action, type) {
-		var url = '<portlet:actionURL />';
-
 		<c:choose>
 			<c:when test="<%= (user2 == null) %>">
 				var selectedUsersNodes = A.all('.lfr-contact-grid-item input');
@@ -208,25 +202,20 @@ boolean blockButton = (user2 == null) || SocialRelationLocalServiceUtil.isRelata
 					var selectedUsersIds = selectedUsersNodes.val();
 
 					if (selectedUsersIds.length > 0) {
-						document.<portlet:namespace />fm.<portlet:namespace />userIds.value = selectedUsersIds.join();
-						document.<portlet:namespace />fm.<portlet:namespace />type.value = type;
 						document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = action;
 						document.<portlet:namespace />fm.<portlet:namespace />redirect.value = location.href;
+						document.<portlet:namespace />fm.<portlet:namespace />userIds.value = selectedUsersIds.join();
+						document.<portlet:namespace />fm.<portlet:namespace />type.value = type;
 
-						submitForm(document.<portlet:namespace />fm, url);
+						submitForm(document.<portlet:namespace />fm, '<portlet:actionURL />');
 					}
 				}
 			</c:when>
 			<c:otherwise>
-				<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="viewSummaryURL">
-					<portlet:param name="mvcPath" value="/contacts_center/view_resources.jsp" />
-					<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
-				</liferay-portlet:renderURL>
-
 				event.preventDefault();
 
 				A.io.request(
-					url,
+					'<portlet:actionURL />',
 					{
 						data: {
 							cmd: action,
@@ -239,7 +228,7 @@ boolean blockButton = (user2 == null) || SocialRelationLocalServiceUtil.isRelata
 								var saveMessages = A.one('#<portlet:namespace/>saveMessages');
 
 								if (saveMessages) {
-									saveMessages.html('<span class="portlet-msg-error">' + Liferay.Language.get('an-error-occurred-while-retrieving-the-user-information') + '</span>');
+									saveMessages.html('<span class="portlet-msg-error">' + Liferay.Language.get('an-error-occurred-while-retrieving-the-users-information') + '</span>');
 								}
 							},
 							success: function(event, id, obj) {
