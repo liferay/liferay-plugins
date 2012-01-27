@@ -243,39 +243,7 @@ boolean blockButton = (user2 == null) || SocialRelationLocalServiceUtil.isRelata
 								}
 							},
 							success: function(event, id, obj) {
-								var instance = this;
-
-								var responseData = instance.get('responseData');
-
-								var content = A.Node.create(responseData);
-
-								var contactSummary = content.one('#<portlet:namespace />contactSummary');
-
-								if (contactSummary) {
-									var contactSummaryContainer = A.one('.contacts-result-container .contacts-container-content');
-
-									contactSummaryContainer.empty();
-
-									var parseContent = A.Plugin.ParseContent;
-
-									contactSummaryContainer.plug(parseContent);
-
-									contactSummaryContainer.setContent(contactSummary);
-								}
-
-								var userToolbar = content.one('#<portlet:namespace />contactsToolbar');
-
-								if (userToolbar) {
-									var userToolbarContainer = A.one('#userToolbarButtons');
-
-									userToolbarContainer.empty();
-
-									var parseContent = A.Plugin.ParseContent;
-
-									userToolbarContainer.plug(parseContent);
-
-									userToolbarContainer.setContent(userToolbar);
-								}
+								Liferay.ContactsCenter.renderContent(this.get('responseData'));
 							}
 						}
 					}

@@ -1,38 +1,11 @@
 AUI.add(
-	'liferay-contacts-result',
-	function(A) {
-		var ContactsResult = A.Base.create(
-			'contactsResult',
-			A.Base,
-			[A.AutoCompleteBase],
-			{
-				initializer: function(config) {
-					this._listNode = A.one(config.listNode);
-
-					this._bindUIACBase();
-					this._syncUIACBase();
-				}
-			}
-		);
-
-		Liferay.namespace('Contacts');
-
-		Liferay.ContactsResult = ContactsResult;
-	},
-	'',
-	{
-		requires: ['aui-base', 'autocomplete-base']
-	}
-);
-
-AUI().use(
-	'aui-dialog',
-	'aui-io-plugin',
-	'datasource-io',
-	'json-parse',
-	'liferay-contacts-result',
+	'liferay-contacts-center',
 	function(A) {
 		var Array = A.Array;
+
+		var Node = A.Node;
+
+		var ParseContent = A.Plugin.ParseContent;
 
 		var TPL_BLOCK_IMG =
 			'<span>' +
@@ -81,7 +54,7 @@ AUI().use(
 			'</div>';
 
 		var TPL_USER_DETAIL_DATA =
-			'<div class="lfr-contact-grid-item" id="user-{userId}">' +
+			'<div class="lfr-contact-grid-item lfr-selected-user {cssClass}" data-viewSummaryURL="{viewSummaryURL}" id="user-{userId}">' +
 				'<input type="hidden" value="{userId}" name="selected-user-{userId}" />' +
 				'<div class="lfr-contact-thumb">' +
 					'<img alt="{fullName}" src="{portraitURL}" />' +
@@ -100,26 +73,32 @@ AUI().use(
 				'<div class="clear"></div>' +
 			'</div>';
 
-		Liferay.namespace('Contacts');
-
 		var ContactsCenter = A.Component.create(
 			{
+				AUGMENTS: [Liferay.PortletBase],
+
 				EXTENDS: A.Base,
 
 				NAME: 'contactscenter',
 
 				prototype: {
-					init: function(config) {
+					initializer: function(config) {
 						var instance = this;
 
 						instance._namespace = config.namespace;
 
-						instance._blockButton = A.one('#' + instance._namespace + 'blockButton');
-						instance._unblockButton = A.one('#' + instance._namespace + 'unblockButton');
-						instance._addConnectionButton = A.one('#' + instance._namespace + 'addConnectionButton');
-						instance._removeConnectionButton = A.one('#' + instance._namespace + 'removeConnectionButton');
-						instance._followButton = A.one('#' + instance._namespace + 'followButton');
-						instance._unfollowButton = A.one('#' + instance._namespace + 'unfollowButton');
+						instance._contactCenterToolbar = instance.byId('contactCenterToolbarButtons');
+						instance._userToolbar = instance.byId('userToolbarButtons');
+
+						instance._detailUserView = instance.byId('detailUserView');
+						instance._selectedUsersView = instance.byId('selectedUsersView');
+
+						instance._blockButton = instance.byId('blockButton');
+						instance._unblockButton = instance.byId('unblockButton');
+						instance._addConnectionButton = instance.byId('addConnectionButton');
+						instance._removeConnectionButton = instance.byId('removeConnectionButton');
+						instance._followButton = instance.byId('followButton');
+						instance._unfollowButton = instance.byId('unfollowButton');
 
 						instance._buttonAddConnectionUserIds = [];
 						instance._buttonBlockUserIds = [];
@@ -133,32 +112,126 @@ AUI().use(
 						instance._createContactList(config);
 					},
 
-					addContactResult: function(data, namespace) {
+					addContactResult: function(data) {
 						var instance = this;
 
-						var contactResultContent = A.one('.contacts-portlet .contacts-container-content');
+						instance._setVisibleSelectedUsersView();
 
-						if (contactResultContent) {
-							var contact = instance._renderContact(data);
+						var contact = instance._renderContact(data);
+
+						if (instance._numSelectedContacts <= 0) {
+							instance._selectedUsersView.html(contact);
+
+							instance._contactCenterToolbar.show();
+
+							instance._userToolbar.empty();
+						}
+						else {
+							instance._selectedUsersView.append(contact);
+						}
+
+						instance._numSelectedContacts++;
+
+						instance._updateToolbarButtonsAdd(data);
+					},
+
+					deleteContactResult: function(userId) {
+						var instance = this;
+
+						instance._setVisibleSelectedUsersView();
+
+						var user = A.one('#user-' + userId);
+
+						if (user) {
+							user.remove(true);
+
+							instance._numSelectedContacts--;
+
+							instance._updateToolbarButtonsRemove(userId);
 
 							if (instance._numSelectedContacts <= 0) {
-								contactResultContent.html(contact);
-
-								A.one('#contactCenterToolbarButtons').show();
-
-								A.one('#userToolbarButtons').empty();
+								instance._clearContactResult();
 							}
-							else {
-								contactResultContent.append(contact);
-							}
-
-							instance._numSelectedContacts++;
-
-							instance._updateToolbarButtonsAdd(data, namespace);
 						}
 					},
 
-					createDataSource: function(url) {
+					renderContent: function(data, clear) {
+						var instance = this;
+
+						if (clear) {
+							instance._clearContactResult();
+						}
+
+						instance._setVisibleDetailUserView();
+
+						var content = Node.create(data);
+
+						var contactSummary = instance.one('#contactSummary', content);
+
+						if (contactSummary) {
+							instance._detailUserView.empty();
+
+							instance._detailUserView.plug(ParseContent);
+
+							instance._detailUserView.setContent(contactSummary);
+						}
+
+						var userToolbar = instance.one('#contactsToolbar', content);
+
+						if (userToolbar) {
+							instance._userToolbar.empty();
+
+							instance._userToolbar.plug(ParseContent);
+
+							instance._userToolbar.setContent(userToolbar);
+						}
+					},
+
+					showMoreResult: function(responseData, lastNameAnchor) {
+						var instance = this;
+
+						var contactUserHTML = instance._renderResult(responseData, false, lastNameAnchor);
+
+						var contactResultContent = A.one('.contacts-portlet .contacts-result-content');
+						var moreResults = A.one('.contacts-portlet .more-results');
+
+						moreResults.empty();
+
+						contactResultContent.append(contactUserHTML.join(''));
+					},
+
+					updateContacts: function(keywords, socialRelationType) {
+						var instance = this;
+
+						if (instance._contactList) {
+							instance._contactList.sendRequest(keywords, instance._getRequestTemplate(socialRelationType));
+						}
+					},
+
+					_clearContactResult: function() {
+						var instance = this;
+
+						instance._detailUserView.empty();
+
+						instance._selectedUsersView.empty();
+
+						A.all('.lfr-contact .lfr-contact-checkbox input').set('checked', false);
+
+						instance._buttonAddConnectionUserIds.length = 0;
+						instance._buttonBlockUserIds.length = 0;
+						instance._buttonFollowUserIds.length = 0;
+						instance._buttonRemoveConnectionUserIds.length = 0;
+						instance._buttonUnBlockUserIds.length = 0;
+						instance._buttonUnFollowUserIds.length = 0;
+
+						A.all('.aui-toolbar-content button').hide();
+
+						instance._contactCenterToolbar.hide();
+
+						instance._numSelectedContacts = 0;
+					},
+
+					_createDataSource: function(url) {
 						return new A.DataSource.IO(
 							{
 								ioConfig: {
@@ -189,80 +262,6 @@ AUI().use(
 						)
 					},
 
-					clearContactResult: function() {
-						var instance = this;
-
-						var contactResultContent = A.one('.contacts-portlet .contacts-container-content');
-
-						contactResultContent.empty();
-
-						A.all('.lfr-contact .lfr-contact-checkbox input').set('checked', false);
-
-						instance._buttonAddConnectionUserIds = [];
-						instance._buttonBlockUserIds = [];
-						instance._buttonFollowUserIds = [];
-						instance._buttonRemoveConnectionUserIds = [];
-						instance._buttonUnBlockUserIds = [];
-						instance._buttonUnFollowUserIds = [];
-
-						A.all('.aui-toolbar-content button').hide();
-						A.one('#contactCenterToolbarButtons').hide();
-
-						instance._numSelectedContacts = 0;
-					},
-
-					deleteContactResult: function(userId) {
-						var instance = this;
-
-						var user = A.one('#user-' + userId);
-
-						if (user) {
-							user.remove(true);
-
-							instance._numSelectedContacts--;
-
-							instance._updateToolbarButtonsRemove(userId);
-
-							if (instance._numSelectedContacts <= 0) {
-								instance.clearContactResult();
-							}
-						}
-					},
-
-					getRequestTemplate: function(socialRelationType) {
-						return function(query) {
-							return {
-								end: 100,
-								keywords: query,
-								socialRelationType: socialRelationType,
-								start: 0
-							}
-						};
-					},
-
-					showMoreResult: function(responseData, lastNameAnchor) {
-						var instance = this;
-
-						var data = A.JSON.parse(responseData);
-
-						var buffer = instance._renderResult(data, false, lastNameAnchor);
-
-						var contactResultContent = A.one('.contacts-portlet .contacts-result-content');
-						var moreResults = A.one('.contacts-portlet .more-results');
-
-						moreResults.remove(true);
-
-						contactResultContent.append(buffer.join(''));
-					},
-
-					updateContacts: function(keywords, socialRelationType) {
-						var instance = this;
-
-						if (instance._contactList) {
-							instance._contactList.sendRequest(keywords, instance.getRequestTemplate(socialRelationType));
-						}
-					},
-
 					_createContactList: function(config) {
 						var instance = this;
 
@@ -272,7 +271,7 @@ AUI().use(
 						var contactsResultURL = config.contactsResultURL;
 						var contactsSearchInput = config.contactsSearchInput;
 
-						var contactsResult = new Liferay.ContactsResult(
+						var contactsResult = new ContactsResult(
 							{
 								requestTemplate: function(query) {
 									return {
@@ -283,7 +282,7 @@ AUI().use(
 								inputNode: contactsSearchInput,
 								listNode: contactsResult,
 								minQueryLength: 0,
-								source: instance.createDataSource(contactsResultURL)
+								source: instance._createDataSource(contactsResultURL)
 							}
 						);
 
@@ -292,16 +291,27 @@ AUI().use(
 						instance._contactList = contactsResult;
 					},
 
+					_getRequestTemplate: function(socialRelationType) {
+						return function(query) {
+							return {
+								end: 100,
+								keywords: query,
+								socialRelationType: socialRelationType,
+								start: 0
+							}
+						};
+					},
+
 					_renderContact: function(data) {
 						var instance = this;
 
 						var user = data.user;
 
-						var buffer =
-							A.Lang.sub(
+						return A.Lang.sub(
 								TPL_USER_DETAIL_DATA,
 								{
 									block: user.block ? TPL_BLOCK_IMG : '',
+									cssClass: (instance._numSelectedContacts % 2 == 0) ? '' : 'alt',
 									connectionRequested: user.connectionRequested ? TPL_CONNECTION_REQUESTED_IMG : '',
 									connected: user.connected ? TPL_CONNECTED_IMG : '',
 									emailAddress: user.emailAddress,
@@ -310,11 +320,10 @@ AUI().use(
 									fullName: user.fullName,
 									lastName: user.lastName,
 									portraitURL: user.portraitURL,
-									userId: user.userId
+									userId: user.userId,
+									viewSummaryURL: user.viewSummaryURL
 								}
 							);
-
-						return buffer;
 					},
 
 					_renderResult: function(data, displayMessage, lastNameAnchor) {
@@ -391,6 +400,28 @@ AUI().use(
 						}
 
 						return buffer;
+					},
+
+					_setVisibleDetailUserView: function() {
+						var instance = this;
+
+						instance._contactCenterToolbar.hide();
+
+						instance._detailUserView.show();
+
+						instance._selectedUsersView.hide();
+					},
+
+					_setVisibleSelectedUsersView: function() {
+						var instance = this;
+
+						instance._userToolbar.empty();
+
+						instance._contactCenterToolbar.show();
+
+						instance._detailUserView.hide();
+
+						instance._selectedUsersView.show();
 					},
 
 					_updateContactsResult: function(event) {
@@ -535,6 +566,24 @@ AUI().use(
 			}
 		);
 
-		Liferay.Contacts = ContactsCenter;
+		Liferay.ContactsCenter = ContactsCenter;
+
+		var ContactsResult = A.Base.create(
+			'contactsResult',
+			A.Base,
+			[A.AutoCompleteBase],
+			{
+				initializer: function(config) {
+					this._listNode = A.one(config.listNode);
+
+					this._bindUIACBase();
+					this._syncUIACBase();
+				}
+			}
+		);
+	},
+	'',
+	{
+		requires: ['aui-dialog','aui-io-plugin','autocomplete-base','datasource-io','json-parse','liferay-portlet-base']
 	}
 );

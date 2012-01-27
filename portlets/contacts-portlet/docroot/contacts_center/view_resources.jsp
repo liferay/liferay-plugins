@@ -17,6 +17,8 @@
 <%@ include file="/init.jsp" %>
 
 <%
+boolean showDetailView = ParamUtil.getBoolean(request, "showDetailView", false);
+
 long userId = ParamUtil.getLong(request, "userId");
 
 User user2 = null;
@@ -34,6 +36,43 @@ if (userId > 0) {
 	</c:if>
 
 	<span id="<portlet:namespace />contactsToolbar">
-		<liferay-util:include page="/contacts_center/contacts_center_toolbar.jsp" servletContext="<%= application %>" />
+		<c:choose>
+			<c:when test="<%= showDetailView %>">
+				<div class="lfr-button-column">
+					<div class="lfr-button-column-content">
+						<aui:button-row cssClass="edit-toolbar" id='<%= renderResponse.getNamespace() + "userToolbar" %>' />
+					</div>
+				</div>
+
+				<aui:script use="aui-base,liferay-contacts-center">
+					var buttonRow = A.one('#<portlet:namespace />userToolbar');
+
+					var contactsToolbarChildren = [];
+
+					contactsToolbarChildren.push(
+						{
+							cssClass: '',
+							handler: function(event) {
+								Liferay.ContactsCenter._setVisibleSelectedUsersView();
+							},
+							icon: 'back',
+							id: '<portlet:namespace />backSelection',
+							label: '<%= UnicodeLanguageUtil.get(pageContext, "back-to-selection") %>'
+						}
+					);
+
+					var contactsToolbar = new A.Toolbar(
+						{
+							activeState: false,
+							boundingBox: buttonRow,
+							children: contactsToolbarChildren
+						}
+					).render();
+				</aui:script>
+			</c:when>
+			<c:otherwise>
+				<liferay-util:include page="/contacts_center/contacts_center_toolbar.jsp" servletContext="<%= application %>" />
+			</c:otherwise>
+		</c:choose>
 	</span>
 </div>
