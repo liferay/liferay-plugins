@@ -16,35 +16,6 @@
 
 <%@ include file="/init.jsp" %>
 
-<%
-long userId = ParamUtil.getLong(request, "userId");
-
-User user2 = null;
-
-if (userId > 0) {
-	user2 = UserLocalServiceUtil.getUser(userId);
-}
-
-boolean viewRelationActions = true;
-
-if (user2 != null) {
-	if (SocialRelationLocalServiceUtil.hasRelation(user2.getUserId(), themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY)) {
-		viewRelationActions = false;
-	}
-	else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY)) {
-		viewRelationActions = false;
-	}
-}
-
-boolean addConnectionButton = (user2 == null) || (viewRelationActions && !connectionRequestedButton && SocialRelationLocalServiceUtil.isRelatable(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION));
-boolean blockButton = (user2 == null) || SocialRelationLocalServiceUtil.isRelatable(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY);
-boolean connectionRequestedButton = (user2 != null) && SocialRequestLocalServiceUtil.hasRequest(themeDisplay.getUserId(), User.class.getName(), themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION, user2.getUserId(), SocialRequestConstants.STATUS_PENDING);
-boolean followButton = (user2 == null) || (viewRelationActions && SocialRelationLocalServiceUtil.isRelatable(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER));
-boolean removeConnectionButton = (user2 == null) || (viewRelationActions && SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION));
-boolean unfollowButton = (user2 == null) || (viewRelationActions && SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER));
-boolean unblockButton = (user2 == null) || SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY);
-%>
-
 <div class="lfr-button-column">
 	<div class="lfr-button-column-content">
 		<aui:button-row cssClass="edit-toolbar" id='<%= renderResponse.getNamespace() + "userToolbar" %>' />
@@ -56,7 +27,28 @@ boolean unblockButton = (user2 == null) || SocialRelationLocalServiceUtil.hasRel
 
 	var contactsToolbarChildren = [];
 
-	<c:if test="<%= addConnectionButton %>">
+	<%
+	long userId = ParamUtil.getLong(request, "userId");
+
+	User user2 = null;
+
+	if (userId > 0) {
+		user2 = UserLocalServiceUtil.getUser(userId);
+	}
+
+	boolean viewRelationActions = true;
+
+	if (user2 != null) {
+		if (SocialRelationLocalServiceUtil.hasRelation(user2.getUserId(), themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY)) {
+			viewRelationActions = false;
+		}
+		else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY)) {
+			viewRelationActions = false;
+		}
+	}
+	%>
+
+	<c:if test="<%= (user2 == null) || (viewRelationActions && !((user2 != null) && SocialRequestLocalServiceUtil.hasRequest(themeDisplay.getUserId(), User.class.getName(), themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION, user2.getUserId(), SocialRequestConstants.STATUS_PENDING)) && SocialRelationLocalServiceUtil.isRelatable(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION)) %>">
 		contactsToolbarChildren.push(
 			{
 				cssClass: '<%= user2 == null ? "aui-helper-hidden" : "" %>',
@@ -70,7 +62,7 @@ boolean unblockButton = (user2 == null) || SocialRelationLocalServiceUtil.hasRel
 		);
 	</c:if>
 
-	<c:if test="<%= removeConnectionButton %>">
+	<c:if test="<%= (user2 == null) || (viewRelationActions && SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION)) %>">
 		contactsToolbarChildren.push(
 			{
 				cssClass: '<%= user2 == null ? "aui-helper-hidden" : "" %>',
@@ -84,7 +76,7 @@ boolean unblockButton = (user2 == null) || SocialRelationLocalServiceUtil.hasRel
 		);
 	</c:if>
 
-	<c:if test="<%= followButton %>">
+	<c:if test="<%= (user2 == null) || (viewRelationActions && SocialRelationLocalServiceUtil.isRelatable(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER)) %>">
 		contactsToolbarChildren.push(
 			{
 				cssClass: '<%= user2 == null ? "aui-helper-hidden" : "" %>',
@@ -98,7 +90,7 @@ boolean unblockButton = (user2 == null) || SocialRelationLocalServiceUtil.hasRel
 		);
 	</c:if>
 
-	<c:if test="<%= unfollowButton %>">
+	<c:if test="<%= (user2 == null) || (viewRelationActions && SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER)) %>">
 		contactsToolbarChildren.push(
 			{
 				cssClass: '<%= user2 == null ? "aui-helper-hidden" : "" %>',
@@ -112,7 +104,7 @@ boolean unblockButton = (user2 == null) || SocialRelationLocalServiceUtil.hasRel
 		);
 	</c:if>
 
-	<c:if test="<%= blockButton %>">
+	<c:if test="<%= (user2 == null) || SocialRelationLocalServiceUtil.isRelatable(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY) %>">
 		contactsToolbarChildren.push(
 			{
 				cssClass: '<%= user2 == null ? "aui-helper-hidden" : "" %>',
@@ -126,7 +118,7 @@ boolean unblockButton = (user2 == null) || SocialRelationLocalServiceUtil.hasRel
 		);
 	</c:if>
 
-	<c:if test="<%= unblockButton %>">
+	<c:if test="<%= (user2 == null) || SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY) %>">
 		contactsToolbarChildren.push(
 			{
 				cssClass: '<%= user2 == null ? "aui-helper-hidden" : "" %>',
