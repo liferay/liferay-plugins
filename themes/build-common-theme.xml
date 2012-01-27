@@ -199,7 +199,7 @@
 		<zip
 			basedir="docroot"
 			destfile="${plugin.file}"
-			excludes="_diffs.*,_diffs/**"
+			excludes="_diffs.*,_diffs/**,${plugins.war.excludes}"
 		/>
 	</target>
 </project>

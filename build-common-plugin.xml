@@ -780,13 +780,14 @@ Please find a solution that does not require portal-impl.jar.
 				<zip
 					basedir="${docroot.dir}"
 					destfile="${plugin.file}"
-					excludes="**/META-INF/context.xml"
+					excludes="**/META-INF/context.xml,${plugins.war.excludes}"
 				/>
 			</then>
 			<else>
 				<zip
 					basedir="${docroot.dir}"
 					destfile="${plugin.file}"
+					excludes="${plugins.war.excludes}"
 				/>
 			</else>
 		</if>
