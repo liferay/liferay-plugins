@@ -54,12 +54,8 @@ private URL _getURL(String remoteUser, String serviceName) throws Exception {
 	String url = "http://localhost:8080/tunnel-web/axis/" + serviceName;
 
 	// Authenticated url
-
-	if (true) {
-		String password = "test";
-
-		url = "http://" + remoteUser + ":" + password + "@localhost:8080/tunnel-web/secure/axis/" + serviceName;
-	}
+    // String password = "test";
+    // String url = "http://" + remoteUser + ":" + password + "@localhost:8080/tunnel-web/secure/axis/" + serviceName;
 
 	return new URL(url);
 }
