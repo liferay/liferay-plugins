@@ -16,7 +16,6 @@ package com.liferay.calendar.service.impl;
 
 import com.liferay.calendar.CalendarNameException;
 import com.liferay.calendar.model.Calendar;
-import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.base.CalendarLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -76,7 +75,6 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		return calendar;
 	}
 
-	@Override
 	public void deleteCalendar(Calendar calendar)
 		throws PortalException, SystemException {
 
@@ -96,7 +94,6 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 			ResourceConstants.SCOPE_INDIVIDUAL, calendar.getCalendarId());
 	}
 
-	@Override
 	public void deleteCalendar(long calendarId)
 		throws PortalException, SystemException {
 
