@@ -16,6 +16,7 @@
 		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
 		<friendly-url-mapping>test_misc</friendly-url-mapping>
 		<friendly-url-routes>com/liferay/testmisc/portlet/test-friendly-url-routes.xml</friendly-url-routes>
+		<remoteable>true</remoteable>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
