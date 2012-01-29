@@ -51,11 +51,15 @@ private URL _getURL(String remoteUser, String serviceName) throws Exception {
 
 	// Unathenticated url
 
-	String url = "http://localhost:8080/tunnel-web/axis/" + serviceName;
+	String url = "http://localhost:8080/api/axis/" + serviceName;
 
 	// Authenticated url
-    // String password = "test";
-    // String url = "http://" + remoteUser + ":" + password + "@localhost:8080/tunnel-web/secure/axis/" + serviceName;
+
+	if (false) {
+		String password = "test";
+
+		url = "http://" + remoteUser + ":" + password + "@localhost:8080/api/secure/axis/" + serviceName;
+	}
 
 	return new URL(url);
 }
