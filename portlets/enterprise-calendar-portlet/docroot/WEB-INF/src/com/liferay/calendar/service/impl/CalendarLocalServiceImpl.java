@@ -75,6 +75,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		return calendar;
 	}
 
+	@Override
 	public void deleteCalendar(Calendar calendar)
 		throws PortalException, SystemException {
 
@@ -82,18 +83,19 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 
 		calendarPersistence.remove(calendar);
 
-		// Calendar bookings
-
-		calendarBookingLocalService.deleteCalendarBookings(
-			calendar.getCalendarId());
-
 		// Resources
 
 		resourceLocalService.deleteResource(
 			calendar.getCompanyId(), Calendar.class.getName(),
 			ResourceConstants.SCOPE_INDIVIDUAL, calendar.getCalendarId());
+
+		// Calendar bookings
+
+		calendarBookingLocalService.deleteCalendarBookings(
+			calendar.getCalendarId());
 	}
 
+	@Override
 	public void deleteCalendar(long calendarId)
 		throws PortalException, SystemException {
 
@@ -130,7 +132,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 	}
 
 	protected void validate(Map<Locale, String> nameMap)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Locale locale = LocaleUtil.getDefault();
 
