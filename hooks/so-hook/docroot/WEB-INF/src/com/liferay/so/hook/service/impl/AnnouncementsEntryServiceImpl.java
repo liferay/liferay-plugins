@@ -17,6 +17,7 @@
 
 package com.liferay.so.hook.service.impl;
 
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -24,8 +25,6 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
 import com.liferay.portal.kernel.notifications.NotificationEvent;
 import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.model.ClassName;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.Role;
@@ -35,7 +34,6 @@ import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
-import com.liferay.portal.service.ClassNameLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.permission.PortletPermissionUtil;
 import com.liferay.portal.util.PortalUtil;
@@ -134,29 +132,25 @@ public class AnnouncementsEntryServiceImpl
 
 		if (announcementEntry.getClassNameId() == 0) {
 			users = UserLocalServiceUtil.getUsers(
-				QueryUtil.ALL_POS,  QueryUtil.ALL_POS);
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 		}
 		else {
-			ClassName className = ClassNameLocalServiceUtil.getClassName(
+			String className = PortalUtil.getClassName(
 				announcementEntry.getClassNameId());
 
-			if (className.getClassName().equals(Group.class.getName())) {
+			if (className.equals(Group.class.getName())) {
 				users = UserLocalServiceUtil.getGroupUsers(
 					announcementEntry.getClassPK());
 			}
-			else if (className.getClassName().equals(
-				Organization.class.getName())) {
-
+			else if (className.equals(Organization.class.getName())) {
 				users = UserLocalServiceUtil.getOrganizationUsers(
 					announcementEntry.getClassPK());
 			}
-			else if (className.getClassName().equals(Role.class.getName())) {
+			else if (className.equals(Role.class.getName())) {
 				users = UserLocalServiceUtil.getRoleUsers(
 					announcementEntry.getClassPK());
 			}
-			else if (className.getClassName().equals(
-				UserGroup.class.getName())) {
-
+			else if (className.equals(UserGroup.class.getName())) {
 				users = UserLocalServiceUtil.getUserGroupUsers(
 					announcementEntry.getClassPK());
 			}
