@@ -449,15 +449,16 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 	protected void sendNotificationEvent(MBMessage mbMessage)
 		throws PortalException, SystemException {
 
-		JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject();
+		JSONObject notificationEventJSONObject =
+			JSONFactoryUtil.createJSONObject();
 
-		notificationEventJSON.put("body", mbMessage.getBody());
-		notificationEventJSON.put("entryId", mbMessage.getThreadId());
-		notificationEventJSON.put("entryKeyName", "mbThreadId");
-		notificationEventJSON.put("mvcPath", "/view.jsp");
-		notificationEventJSON.put("portletId", "1_WAR_privatemessagingportlet");
-		notificationEventJSON.put("title", "x-sent-you-a-message");
-		notificationEventJSON.put("userId", mbMessage.getUserId());
+		notificationEventJSONObject.put("body", mbMessage.getBody());
+		notificationEventJSONObject.put("entryId", mbMessage.getThreadId());
+		notificationEventJSONObject.put("entryKeyName", "mbThreadId");
+		notificationEventJSONObject.put("mvcPath", "/view.jsp");
+		notificationEventJSONObject.put("portletId", "1_WAR_privatemessagingportlet");
+		notificationEventJSONObject.put("title", "x-sent-you-a-message");
+		notificationEventJSONObject.put("userId", mbMessage.getUserId());
 
 		List<UserThread> userThreads =
 			UserThreadLocalServiceUtil.getMBThreadUserThreads(
@@ -471,7 +472,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 			NotificationEvent notificationEvent =
 				NotificationEventFactoryUtil.createNotificationEvent(
 					System.currentTimeMillis(), "6_WAR_soportlet",
-					notificationEventJSON);
+					notificationEventJSONObject);
 
 			notificationEvent.setDeliveryRequired(0);
 

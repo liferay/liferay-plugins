@@ -112,23 +112,24 @@ public class AnnouncementsEntryServiceImpl
 	protected void sendNotificationEvent(AnnouncementsEntry announcementEntry)
 		throws PortalException, SystemException {
 
-		JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject();
+		JSONObject notificationEventJSONObject =
+			JSONFactoryUtil.createJSONObject();
 
-		notificationEventJSON.put("body", announcementEntry.getTitle());
-		notificationEventJSON.put("entryId", announcementEntry.getEntryId());
-		notificationEventJSON.put("groupId", announcementEntry.getClassPK());
-		notificationEventJSON.put("portletId", PortletKeys.ANNOUNCEMENTS);
-		notificationEventJSON.put("title", "x-sent-a-new-announcement");
-		notificationEventJSON.put("userId", announcementEntry.getUserId());
+		notificationEventJSONObject.put("body", announcementEntry.getTitle());
+		notificationEventJSONObject.put("entryId", announcementEntry.getEntryId());
+		notificationEventJSONObject.put("groupId", announcementEntry.getClassPK());
+		notificationEventJSONObject.put("portletId", PortletKeys.ANNOUNCEMENTS);
+		notificationEventJSONObject.put("title", "x-sent-a-new-announcement");
+		notificationEventJSONObject.put("userId", announcementEntry.getUserId());
 
 		NotificationEvent notificationEvent =
 			NotificationEventFactoryUtil.createNotificationEvent(
 				System.currentTimeMillis(), "6_WAR_soportlet",
-				notificationEventJSON);
+				notificationEventJSONObject);
 
 		notificationEvent.setDeliveryRequired(0);
 
-		List<User> users = new ArrayList<User>();
+		List<User> users = Collections.emptyList();
 
 		if (announcementEntry.getClassNameId() == 0) {
 			users = UserLocalServiceUtil.getUsers(

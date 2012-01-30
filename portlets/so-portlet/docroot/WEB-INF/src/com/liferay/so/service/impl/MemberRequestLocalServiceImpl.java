@@ -361,19 +361,21 @@ public class MemberRequestLocalServiceImpl
 	protected void sendNotificationEvent(MemberRequest memberRequest)
 		throws PortalException, SystemException {
 
-		JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject();
+		JSONObject notificationEventJSONObject =
+			JSONFactoryUtil.createJSONObject();
 
-		notificationEventJSON.put("groupId", memberRequest.getGroupId());
-		notificationEventJSON.put(
+		notificationEventJSONObject.put("groupId", memberRequest.getGroupId());
+		notificationEventJSONObject.put(
 			"memberRequestId", memberRequest.getMemberRequestId());
-		notificationEventJSON.put("portletId", PortletKeys.SO_INVITE_MEMBERS);
-		notificationEventJSON.put("title", "x-invited-you-to-join-x");
-		notificationEventJSON.put("userId", memberRequest.getUserId());
+		notificationEventJSONObject.put(
+			"portletId", PortletKeys.SO_INVITE_MEMBERS);
+		notificationEventJSONObject.put("title", "x-invited-you-to-join-x");
+		notificationEventJSONObject.put("userId", memberRequest.getUserId());
 
 		NotificationEvent notificationEvent =
 			NotificationEventFactoryUtil.createNotificationEvent(
 				System.currentTimeMillis(), PortletKeys.SO_NOTIFICATION,
-				notificationEventJSON);
+				notificationEventJSONObject);
 
 		notificationEvent.setDeliveryRequired(0);
 

@@ -69,10 +69,10 @@ else {
 
 		<div class="datetime">
 			<c:choose>
-				<c:when test="<%= curDaysBetween == 0 %>">
+				<c:when test="<%= daysBetween == 0 %>">
 					<liferay-ui:message key="today" />
 				</c:when>
-				<c:when test="<%= curDaysBetween == 1 %>">
+				<c:when test="<%= daysBetween == 1 %>">
 					<liferay-ui:message key="yesterday" />
 				</c:when>
 				<c:otherwise>
