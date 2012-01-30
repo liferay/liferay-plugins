@@ -57,11 +57,11 @@
 					>
 
 						<%
-						JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject(notificationEvent.getPayload());
+						JSONObject notificationEventJSONObject = JSONFactoryUtil.createJSONObject(notificationEvent.getPayload());
 
-						String portletId = notificationEventJSON.getString("portletId");
+						String portletId = notificationEventJSONObject.getString("portletId");
 
-						long userId = notificationEventJSON.getLong("userId");
+						long userId = notificationEventJSONObject.getLong("userId");
 
 						String userFullName = PortalUtil.getUserName(userId, StringPool.BLANK);
 
@@ -75,7 +75,7 @@
 							userPortaitURL = curUser.getPortraitURL(themeDisplay);
 						}
 
-						int curDaysBetween = DateUtil.getDaysBetween(new Date(notificationEvent.getTimestamp()), new Date(), timeZone);
+						int daysBetween = DateUtil.getDaysBetween(new Date(notificationEvent.getTimestamp()), new Date(), timeZone);
 						%>
 
 						<liferay-ui:search-container-column-text name="notifications" valign="top">

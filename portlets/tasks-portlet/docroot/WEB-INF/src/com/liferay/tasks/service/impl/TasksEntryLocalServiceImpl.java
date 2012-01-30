@@ -405,12 +405,13 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 
 		receiverUserIds.remove(serviceContext.getUserId());
 
-		JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject();
+		JSONObject notificationEventJSONObject =
+			JSONFactoryUtil.createJSONObject();
 
-		notificationEventJSON.put("body", tasksEntry.getTitle());
-		notificationEventJSON.put("entryId", tasksEntry.getTasksEntryId());
-		notificationEventJSON.put("portletId", PortletKeys.TASKS);
-		notificationEventJSON.put("userId", serviceContext.getUserId());
+		notificationEventJSONObject.put("body", tasksEntry.getTitle());
+		notificationEventJSONObject.put("entryId", tasksEntry.getTasksEntryId());
+		notificationEventJSONObject.put("portletId", PortletKeys.TASKS);
+		notificationEventJSONObject.put("userId", serviceContext.getUserId());
 
 		for (long receiverUserId : receiverUserIds) {
 			String title = StringPool.BLANK;
@@ -436,12 +437,12 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 				title = "x-modified-the-task";
 			}
 
-			notificationEventJSON.put("title", title);
+			notificationEventJSONObject.put("title", title);
 
 			NotificationEvent notificationEvent =
 				NotificationEventFactoryUtil.createNotificationEvent(
 					System.currentTimeMillis(), "6_WAR_soportlet",
-					notificationEventJSON);
+					notificationEventJSONObject);
 
 			notificationEvent.setDeliveryRequired(0);
 

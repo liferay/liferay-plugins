@@ -278,21 +278,22 @@ public class MicroblogsEntryLocalServiceImpl
 	protected void sendNotificationEvent(MicroblogsEntry microblogsEntry)
 		throws PortalException, SystemException {
 
-		JSONObject notificationEventJSON = JSONFactoryUtil.createJSONObject();
+		JSONObject notificationEventJSONObject =
+			JSONFactoryUtil.createJSONObject();
 
-		notificationEventJSON.put("body", microblogsEntry.getContent());
-		notificationEventJSON.put(
+		notificationEventJSONObject.put("body", microblogsEntry.getContent());
+		notificationEventJSONObject.put(
 			"entryId", microblogsEntry.getMicroblogsEntryId());
-		notificationEventJSON.put("entryKeyName", "receiverMicroblogsEntryId");
-		notificationEventJSON.put("mvcPath", "/microblogs/view.jsp");
-		notificationEventJSON.put("portletId", "1_WAR_microblogsportlet");
-		notificationEventJSON.put("title", "x-commented-on-your-post");
-		notificationEventJSON.put("userId", microblogsEntry.getUserId());
+		notificationEventJSONObject.put("entryKeyName", "receiverMicroblogsEntryId");
+		notificationEventJSONObject.put("mvcPath", "/microblogs/view.jsp");
+		notificationEventJSONObject.put("portletId", "1_WAR_microblogsportlet");
+		notificationEventJSONObject.put("title", "x-commented-on-your-post");
+		notificationEventJSONObject.put("userId", microblogsEntry.getUserId());
 
 		NotificationEvent notificationEvent =
 			NotificationEventFactoryUtil.createNotificationEvent(
 				System.currentTimeMillis(), "6_WAR_soportlet",
-				notificationEventJSON);
+				notificationEventJSONObject);
 
 		notificationEvent.setDeliveryRequired(0);
 
