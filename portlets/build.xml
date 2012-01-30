@@ -78,6 +78,7 @@
 					<then>
 						<echo file="${portlet.dir}/docroot/WEB-INF/liferay-plugin-package.properties" append="true">
 
+speed-filters-enabled=false
 portal-dependency-jars=commons-beanutils.jar,commons-collections.jar,commons-digester.jar,commons-lang.jar</echo>
 
 						<replace file="${portlet.dir}/docroot/WEB-INF/liferay-portlet.xml">
