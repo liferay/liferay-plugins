@@ -43,7 +43,7 @@ import com.liferay.portlet.announcements.service.AnnouncementsEntryLocalServiceU
 import com.liferay.portlet.announcements.service.AnnouncementsEntryService;
 import com.liferay.portlet.announcements.service.AnnouncementsEntryServiceWrapper;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -116,11 +116,14 @@ public class AnnouncementsEntryServiceImpl
 			JSONFactoryUtil.createJSONObject();
 
 		notificationEventJSONObject.put("body", announcementEntry.getTitle());
-		notificationEventJSONObject.put("entryId", announcementEntry.getEntryId());
-		notificationEventJSONObject.put("groupId", announcementEntry.getClassPK());
+		notificationEventJSONObject.put(
+			"entryId", announcementEntry.getEntryId());
+		notificationEventJSONObject.put(
+			"groupId", announcementEntry.getClassPK());
 		notificationEventJSONObject.put("portletId", PortletKeys.ANNOUNCEMENTS);
 		notificationEventJSONObject.put("title", "x-sent-a-new-announcement");
-		notificationEventJSONObject.put("userId", announcementEntry.getUserId());
+		notificationEventJSONObject.put(
+			"userId", announcementEntry.getUserId());
 
 		NotificationEvent notificationEvent =
 			NotificationEventFactoryUtil.createNotificationEvent(
