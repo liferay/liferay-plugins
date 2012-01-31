@@ -20,10 +20,10 @@
 <%
 PortletURL portletURL = null;
 
-long portletPlid = PortalUtil.getPlidFromPortletId(notificationEventJSON.getLong("groupId"), false, notificationEventJSON.getString("portletId"));
+long portletPlid = PortalUtil.getPlidFromPortletId(notificationEventJSONObject.getLong("groupId"), false, portletId);
 
 if (portletPlid != 0) {
-	portletURL = PortletURLFactoryUtil.create(request, notificationEventJSON.getString("portletId"), portletPlid, PortletRequest.RENDER_PHASE);
+	portletURL = PortletURLFactoryUtil.create(request, portletId, portletPlid, PortletRequest.RENDER_PHASE);
 }
 %>
 
@@ -34,7 +34,7 @@ if (portletPlid != 0) {
 		</span>
 
 		<span class="portlet-icon">
-			<liferay-portlet:icon-portlet portlet='<%= PortletLocalServiceUtil.getPortletById(company.getCompanyId(), notificationEventJSON.getString("portletId")) %>' />
+			<liferay-portlet:icon-portlet portlet='<%= PortletLocalServiceUtil.getPortletById(company.getCompanyId(), portletId) %>' />
 		</span>
 	</div>
 
@@ -45,11 +45,11 @@ if (portletPlid != 0) {
 			userFullName = "<a href=\"" + userDisplayURL + "\">" + userFullName + "</a>";
 			%>
 
-			<liferay-ui:message arguments="<%= userFullName %>" key='<%= notificationEventJSON.getString("title") %>' />
+			<liferay-ui:message arguments="<%= userFullName %>" key='<%= notificationEventJSONObject.getString("title") %>' />
 		</div>
 
 		<div class="body">
-			<%= StringUtil.shorten(notificationEventJSON.getString("body"), 50) %>
+			<%= StringUtil.shorten(notificationEventJSONObject.getString("body"), 50) %>
 		</div>
 
 		<div class="datetime">

@@ -24,21 +24,21 @@
 		</span>
 
 		<span class="portlet-icon">
-			<liferay-portlet:icon-portlet portlet='<%= PortletLocalServiceUtil.getPortletById(company.getCompanyId(), notificationEventJSON.getString("portletId")) %>' />
+			<liferay-portlet:icon-portlet portlet='<%= PortletLocalServiceUtil.getPortletById(company.getCompanyId(), portletId) %>' />
 		</span>
 	</div>
 
 	<div class="notification-entry">
 		<div class="title">
 			<span>
-				<liferay-ui:message arguments="<%= userFullName %>" key='<%= notificationEventJSON.getString("title") %>' />
+				<liferay-ui:message arguments="<%= userFullName %>" key='<%= notificationEventJSONObject.getString("title") %>' />
 			</span>
 		</div>
 
 		<div class="request">
 			<liferay-portlet:actionURL name="updateSocialRequest" portletName="6_WAR_soportlet" var="confirmURL">
 				<portlet:param name="redirect" value="<%= currentURL %>" />
-				<portlet:param name="requestId" value='<%= String.valueOf(notificationEventJSON.getLong("requestId")) %>' />
+				<portlet:param name="requestId" value='<%= String.valueOf(notificationEventJSONObject.getLong("requestId")) %>' />
 				<portlet:param name="status" value="<%= String.valueOf(SocialRequestConstants.STATUS_CONFIRM) %>" />
 				<portlet:param name="notificationEventUuid" value="<%= String.valueOf(notificationEvent.getUuid()) %>" />
 			</liferay-portlet:actionURL>
@@ -49,7 +49,7 @@
 
 			<liferay-portlet:actionURL name="updateSocialRequest" portletName="6_WAR_soportlet" var="ignoreURL">
 				<portlet:param name="redirect" value="<%= currentURL %>" />
-				<portlet:param name="requestId" value='<%= String.valueOf(notificationEventJSON.getLong("requestId")) %>' />
+				<portlet:param name="requestId" value='<%= String.valueOf(notificationEventJSONObject.getLong("requestId")) %>' />
 				<portlet:param name="status" value="<%= String.valueOf(SocialRequestConstants.STATUS_IGNORE) %>" />
 				<portlet:param name="notificationEventUuid" value="<%= String.valueOf(notificationEvent.getUuid()) %>" />
 			</liferay-portlet:actionURL>
