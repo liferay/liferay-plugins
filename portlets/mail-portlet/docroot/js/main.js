@@ -28,9 +28,7 @@ AUI.add(
 
 				instance.loadAccount(instance.accountId, instance.folderId);
 
-				Liferay.on('closePortlet', function(event) {
-					instance._pollStopMessages();
-				});
+				Liferay.on('closePortlet', instance._pollStopMessages);
 			},
 
 			addAccount: function() {
