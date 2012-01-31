@@ -339,18 +339,6 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 			long companyId, Query query, Sort[] sorts, int start, int end)
 		throws Exception {
 
-		QueryTranslatorUtil.translateForSolr(query);
-
-		String queryString = query.toString();
-
-		StringBundler sb = new StringBundler(queryString);
-
-		sb.append(StringPool.SPACE);
-		sb.append(StringPool.PLUS);
-		sb.append(Field.COMPANY_ID);
-		sb.append(StringPool.COLON);
-		sb.append(companyId);
-
 		QueryConfig queryConfig = query.getQueryConfig();
 
 		SolrQuery solrQuery = new SolrQuery();
@@ -359,6 +347,20 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		solrQuery.setHighlightFragsize(queryConfig.getHighlightFragmentSize());
 		solrQuery.setHighlightSnippets(queryConfig.getHighlightSnippetSize());
 		solrQuery.setIncludeScore(queryConfig.isScoreEnabled());
+
+		QueryTranslatorUtil.translateForSolr(query);
+
+		String queryString = query.toString();
+
+		StringBundler sb = new StringBundler(6);
+
+		sb.append(queryString);
+		sb.append(StringPool.SPACE);
+		sb.append(StringPool.PLUS);
+		sb.append(Field.COMPANY_ID);
+		sb.append(StringPool.COLON);
+		sb.append(companyId);
+
 		solrQuery.setQuery(sb.toString());
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS)) {
