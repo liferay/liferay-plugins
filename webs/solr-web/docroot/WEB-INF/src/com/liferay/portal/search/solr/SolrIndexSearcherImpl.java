@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.search.facet.collector.FacetCollector;
 import com.liferay.portal.kernel.search.facet.config.FacetConfiguration;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
@@ -342,6 +343,14 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 		String queryString = query.toString();
 
+		StringBundler sb = new StringBundler(queryString);
+
+		sb.append(StringPool.SPACE);
+		sb.append(StringPool.PLUS);
+		sb.append(Field.COMPANY_ID);
+		sb.append(StringPool.COLON);
+		sb.append(companyId);
+
 		QueryConfig queryConfig = query.getQueryConfig();
 
 		SolrQuery solrQuery = new SolrQuery();
@@ -350,7 +359,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		solrQuery.setHighlightFragsize(queryConfig.getHighlightFragmentSize());
 		solrQuery.setHighlightSnippets(queryConfig.getHighlightSnippetSize());
 		solrQuery.setIncludeScore(queryConfig.isScoreEnabled());
-		solrQuery.setQuery(queryString);
+		solrQuery.setQuery(sb.toString());
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS)) {
 			solrQuery.setRows(0);
