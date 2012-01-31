@@ -21,10 +21,10 @@
 Group invitedGroup = null;
 
 try {
-	invitedGroup = GroupLocalServiceUtil.getGroup(notificationEventJSON.getLong("groupId"));
+	invitedGroup = GroupLocalServiceUtil.getGroup(notificationEventJSONObject.getLong("groupId"));
 }
 catch (Exception e) {
-	MemberRequestLocalServiceUtil.deleteMemberRequest(notificationEventJSON.getLong("memberRequestId"));
+	MemberRequestLocalServiceUtil.deleteMemberRequest(notificationEventJSONObject.getLong("memberRequestId"));
 
 	ChannelHubManagerUtil.confirmDelivery(user.getCompanyId(), user.getUserId(), notificationEvent.getUuid(), false);
 
@@ -54,13 +54,13 @@ catch (Exception e) {
 				userFullName = "<a href=\"" + userDisplayURL + "\">" + userFullName + "</a>";
 				%>
 
-				<liferay-ui:message arguments="<%= new Object[] {userFullName, siteDescriptiveName} %>" key='<%= notificationEventJSON.getString("title") %>' />
+				<liferay-ui:message arguments="<%= new Object[] {userFullName, siteDescriptiveName} %>" key='<%= notificationEventJSONObject.getString("title") %>' />
 			</div>
 
 			<div class="request">
 				<liferay-portlet:actionURL name="updateMemberRequest" portletName="<%= PortletKeys.SO_NOTIFICATION %>" var="confirmURL">
 					<portlet:param name="redirect" value="<%= currentURL %>" />
-					<portlet:param name="memberRequestId" value='<%= String.valueOf(notificationEventJSON.getLong("memberRequestId")) %>' />
+					<portlet:param name="memberRequestId" value='<%= String.valueOf(notificationEventJSONObject.getLong("memberRequestId")) %>' />
 					<portlet:param name="status" value="<%= String.valueOf(InviteMembersConstants.STATUS_ACCEPTED) %>" />
 					<portlet:param name="notificationEventUuid" value="<%= String.valueOf(notificationEvent.getUuid()) %>" />
 				</liferay-portlet:actionURL>
@@ -71,7 +71,7 @@ catch (Exception e) {
 
 				<liferay-portlet:actionURL name="updateMemberRequest" portletName="<%= PortletKeys.SO_NOTIFICATION %>" var="ignoreURL">
 					<portlet:param name="redirect" value="<%= currentURL %>" />
-					<portlet:param name="memberRequestId" value='<%= String.valueOf(notificationEventJSON.getLong("memberRequestId")) %>' />
+					<portlet:param name="memberRequestId" value='<%= String.valueOf(notificationEventJSONObject.getLong("memberRequestId")) %>' />
 					<portlet:param name="status" value="<%= String.valueOf(InviteMembersConstants.STATUS_DECLINED) %>" />
 					<portlet:param name="notificationEventUuid" value="<%= String.valueOf(notificationEvent.getUuid()) %>" />
 				</liferay-portlet:actionURL>

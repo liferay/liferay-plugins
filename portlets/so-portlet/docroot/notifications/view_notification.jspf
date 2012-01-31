@@ -22,22 +22,22 @@ PortletURL portletURL = null;
 
 Group mySite = user.getGroup();
 
-long portletPlid = PortalUtil.getPlidFromPortletId(mySite.getGroupId(), true, notificationEventJSON.getString("portletId"));
+long portletPlid = PortalUtil.getPlidFromPortletId(mySite.getGroupId(), true, portletId);
 
 if (portletPlid != 0) {
-	portletURL = PortletURLFactoryUtil.create(request, notificationEventJSON.getString("portletId"), portletPlid, PortletRequest.RENDER_PHASE);
+	portletURL = PortletURLFactoryUtil.create(request, portletId, portletPlid, PortletRequest.RENDER_PHASE);
 
-	portletURL.setParameter(notificationEventJSON.getString("entryKeyName"), String.valueOf(notificationEventJSON.getLong("entryId")));
+	portletURL.setParameter(notificationEventJSONObject.getString("entryKeyName"), String.valueOf(notificationEventJSONObject.getLong("entryId")));
 }
 else {
-	portletURL = liferayPortletResponse.createRenderURL(notificationEventJSON.getString("portletId"));
+	portletURL = liferayPortletResponse.createRenderURL(portletId);
 
 	portletURL.setWindowState(WindowState.MAXIMIZED);
 
-	portletURL.setParameter("mvcPath", notificationEventJSON.getString("mvcPath"));
+	portletURL.setParameter("mvcPath", notificationEventJSONObject.getString("mvcPath"));
 
-	if (Validator.isNull(notificationEventJSON.getString("entryKeyName"))) {
-		portletURL.setParameter(notificationEventJSON.getString("entryKeyName"), String.valueOf(notificationEventJSON.getLong("microblogsEntryId")));
+	if (Validator.isNull(notificationEventJSONObject.getString("entryKeyName"))) {
+		portletURL.setParameter(notificationEventJSONObject.getString("entryKeyName"), String.valueOf(notificationEventJSONObject.getLong("entryId")));
 	}
 }
 %>
@@ -49,7 +49,7 @@ else {
 		</span>
 
 		<span class="portlet-icon">
-			<liferay-portlet:icon-portlet portlet='<%= PortletLocalServiceUtil.getPortletById(company.getCompanyId(), notificationEventJSON.getString("portletId")) %>' />
+			<liferay-portlet:icon-portlet portlet='<%= PortletLocalServiceUtil.getPortletById(company.getCompanyId(), portletId) %>' />
 		</span>
 	</div>
 
@@ -60,11 +60,11 @@ else {
 			userFullName = "<a href=\"" + userDisplayURL + "\">" + userFullName + "</a>";
 			%>
 
-			<liferay-ui:message arguments="<%= userFullName %>" key='<%= notificationEventJSON.getString("title") %>' />
+			<liferay-ui:message arguments="<%= userFullName %>" key='<%= notificationEventJSONObject.getString("title") %>' />
 		</div>
 
 		<div class="body">
-			<%= StringUtil.shorten(notificationEventJSON.getString("body"), 50) %>
+			<%= StringUtil.shorten(notificationEventJSONObject.getString("body"), 50) %>
 		</div>
 
 		<div class="datetime">
