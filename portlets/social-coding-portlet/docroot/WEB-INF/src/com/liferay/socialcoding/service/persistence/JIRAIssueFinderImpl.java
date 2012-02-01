@@ -38,10 +38,10 @@ import java.util.List;
 public class JIRAIssueFinderImpl
 	extends BasePersistenceImpl<JIRAIssue> implements JIRAIssueFinder {
 
-	public static String COUNT_BY_CD_P =
+	public static final String COUNT_BY_CD_P =
 		JIRAIssueFinder.class.getName() + ".countByCD_P";
 
-	public static String FIND_BY_CD_P =
+	public static final String FIND_BY_CD_P =
 		JIRAIssueFinder.class.getName() + ".findByCD_P";
 
 	public int countByCD_P(Date createDate, long projectId)

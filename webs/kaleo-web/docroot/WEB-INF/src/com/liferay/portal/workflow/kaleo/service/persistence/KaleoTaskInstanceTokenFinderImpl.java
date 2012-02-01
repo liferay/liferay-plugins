@@ -51,10 +51,10 @@ public class KaleoTaskInstanceTokenFinderImpl
 	extends BasePersistenceImpl<KaleoTaskInstanceToken>
 	implements KaleoTaskInstanceTokenFinder {
 
-	public static String COUNT_BY_C_KTAI =
+	public static final String COUNT_BY_C_KTAI =
 		KaleoTaskInstanceTokenFinder.class.getName() + ".countByC_KTAI";
 
-	public static String FIND_BY_C_KTAI =
+	public static final String FIND_BY_C_KTAI =
 		KaleoTaskInstanceTokenFinder.class.getName() + ".findByC_KTAI";
 
 	public int countKaleoTaskInstanceTokens(
