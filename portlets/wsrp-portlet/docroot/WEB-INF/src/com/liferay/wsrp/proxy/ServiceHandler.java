@@ -209,9 +209,9 @@ public class ServiceHandler implements InvocationHandler {
 		return service;
 	}
 
-	private static String _OASIS_PACKAGE = "oasis.names.tc.wsrp.";
+	private static final String _OASIS_PACKAGE = "oasis.names.tc.wsrp.";
 
-	private static String _WSRP_PROXY_PACKAGE = "com.liferay.wsrp.proxy.";
+	private static final String _WSRP_PROXY_PACKAGE = "com.liferay.wsrp.proxy.";
 
 	private EngineConfiguration _engineConfiguration;
 	private Service _serviceLocator;
