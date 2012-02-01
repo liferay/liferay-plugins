@@ -46,7 +46,7 @@ String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUs
 
 String userPrefsKey = ShindigUtil.getColumnUserPrefs(renderResponse.getNamespace(), themeDisplay);
 
-JSONObject userPrefs = ExpandoValueServiceUtil.getJSONData(themeDisplay.getCompanyId(), Layout.class.getName(), ShindigUtil.getTableOpenSocial(), userPrefsKey, themeDisplay.getPlid());
+JSONObject userPrefsJSONObject = ExpandoValueServiceUtil.getJSONData(themeDisplay.getCompanyId(), Layout.class.getName(), ShindigUtil.getTableOpenSocial(), userPrefsKey, themeDisplay.getPlid());
 %>
 
 <div class="gadgets-gadget-chrome" id="<portlet:namespace />gadget"></div>
@@ -72,7 +72,7 @@ JSONObject userPrefs = ExpandoValueServiceUtil.getJSONData(themeDisplay.getCompa
 					userPrefsKey: '<%= userPrefsKey %>'
 				}
 			),
-			userPrefs: A.JSON.parse('<%= userPrefs %>'),
+			userPrefs: A.JSON.parse('<%= userPrefsJSONObject %>'),
 			view: '<%= view %>',
 			viewParams: '<%= ParamUtil.getString(renderRequest, "viewParams") %>'
 		}

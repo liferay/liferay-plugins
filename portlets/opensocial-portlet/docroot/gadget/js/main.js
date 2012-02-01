@@ -422,7 +422,9 @@ AUI.add(
 
 					_getUserPrefParams: function() {
 						var instance = this;
+
 						var userPrefs = instance.get('userPrefs');
+
 						var buffer = [];
 
 						for (var i in userPrefs) {
