@@ -26,7 +26,7 @@ public class WorkflowInstanceStartDateComparator
 		"createDate ASC, kaleoInstanceId ASC";
 
 	public static final String ORDER_BY_DESC =
-		"createDateDESC, kaleoInstanceId DESC";
+		"createDate DESC, kaleoInstanceId DESC";
 
 	public static final String[] ORDER_BY_FIELDS =
 		{"createDate", "kaleoInstanceId"};
