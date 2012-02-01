@@ -284,7 +284,8 @@ public class MicroblogsEntryLocalServiceImpl
 		notificationEventJSONObject.put("body", microblogsEntry.getContent());
 		notificationEventJSONObject.put(
 			"entryId", microblogsEntry.getMicroblogsEntryId());
-		notificationEventJSONObject.put("entryKeyName", "receiverMicroblogsEntryId");
+		notificationEventJSONObject.put(
+			"entryKeyName", "receiverMicroblogsEntryId");
 		notificationEventJSONObject.put("mvcPath", "/microblogs/view.jsp");
 		notificationEventJSONObject.put("portletId", "1_WAR_microblogsportlet");
 		notificationEventJSONObject.put("title", "x-commented-on-your-post");
