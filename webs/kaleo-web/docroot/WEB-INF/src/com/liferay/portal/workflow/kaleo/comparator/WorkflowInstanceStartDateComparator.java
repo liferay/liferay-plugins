@@ -23,13 +23,13 @@ public class WorkflowInstanceStartDateComparator
 	extends BaseWorkflowInstanceStartDateComparator {
 
 	public static final String ORDER_BY_ASC =
-		"startDate ASC, kaleoInstanceId ASC";
+		"createDate ASC, kaleoInstanceId ASC";
 
 	public static final String ORDER_BY_DESC =
-		"startDate DESC, kaleoInstanceId DESC";
+		"createDateDESC, kaleoInstanceId DESC";
 
 	public static final String[] ORDER_BY_FIELDS =
-		{"startDate", "kaleoInstanceId"};
+		{"createDate", "kaleoInstanceId"};
 
 	public WorkflowInstanceStartDateComparator() {
 		super();
