@@ -28,9 +28,8 @@ public class WorkflowTaskDueDateComparator
 	public static final String ORDER_BY_DESC =
 		"dueDate DESC, modifiedDate DESC, kaleoTaskId DESC";
 
-	public static final String[] ORDER_BY_FIELDS = {
-		"dueDate", "modifiedDate", "kaleoTaskId"
-	};
+	public static final String[] ORDER_BY_FIELDS =
+		{"dueDate", "modifiedDate", "kaleoTaskId"};
 
 	public WorkflowTaskDueDateComparator() {
 		super();
