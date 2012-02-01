@@ -34,6 +34,7 @@ Role role = RoleLocalServiceUtil.fetchRole(themeDisplay.getCompanyId(), "Social 
 
 		<%
 		int x = html.indexOf("<li class=\"user-avatar \" id=\"_145_userAvatar\">");
+		int y = html.indexOf("<div class=\"dockbar-messages\"");
 		%>
 
 		<c:choose>
@@ -70,7 +71,113 @@ Role role = RoleLocalServiceUtil.fetchRole(themeDisplay.getCompanyId(), "Social 
 					<liferay-portlet:runtime portletName="7_WAR_soportlet" />
 				</li>
 
-				<%= html.substring(x) %>
+				<li class="aui-toolbar-separator">
+					<span></span>
+				</li>
+
+				<li class="user-menu has-submenu" id="<portlet:namespace />userMenu">
+					<a class="menu-button" href="javascript:;">
+						<span class="user-portrait">
+							<img src="<%= HtmlUtil.escape(user.getPortraitURL(themeDisplay)) %>" />
+
+							<%= HtmlUtil.escape(user.getFullName()) %>
+						</span>
+					</a>
+
+					<div class="aui-menu user-menu aui-overlaycontext-hidden" id="<portlet:namespace />userMenuContainer">
+						<div class="aui-menu-content user-menu-content" id="<portlet:namespace />userMenuContent">
+							<ul>
+								<li class="first profile">
+									<aui:a href="<%= user.getDisplayURL(themeDisplay) %>" label="profile" />
+								</li>
+
+								<%
+								String controlPanelCategory = StringPool.BLANK;
+								String useDialog = StringPool.BLANK;
+
+								if (!layout.getGroup().isControlPanel()) {
+									controlPanelCategory = PortletCategoryKeys.MY;
+									useDialog = StringPool.SPACE + "use-dialog full-dialog";
+								}
+								%>
+
+								<li class="my-account" id="<portlet:namespace />userAvatar">
+									<span class="user-links">
+										<aui:a cssClass="<%= useDialog %>" data-controlPanelCategory="<%= controlPanelCategory %>" href="<%= themeDisplay.getURLMyAccount().toString() %>" label="my-account" title="manage-my-account" />
+									</span>
+								</li>
+
+								<li class="last sign-out">
+									<aui:a href="<%= themeDisplay.getURLSignOut().toString() %>" label="sign-out" />
+								</li>
+							</ul>
+						</div>
+					</div>
+				</li>
+
+				<style type="text/css">
+					.dockbar .user-menu .user-portrait {
+						padding-left: 0px;
+					}
+
+					.dockbar .user-menu .user-portrait img {
+						width: 20px;
+					}
+
+					.dockbar .user-menu li a {
+						background-repeat: no-repeat;
+						background-position: 3px;
+						padding-left: 25px;
+					}
+
+					.dockbar .user-menu .my-account a {
+						background-image: url(/html/icons/my_account.png);
+					}
+
+					.dockbar .user-menu .profile a {
+						background-image: url(/html/icons/users_admin.png);
+					}
+
+					.dockbar .user-menu	.sign-out a {
+						background-image: url(<%= themeDisplay.getPathThemeImages() %>/dock/sign_out.png);
+					}
+				</style>
+
+				<aui:script use="liferay-dockbar">
+					Liferay.once(
+						'dockbarLoaded',
+						function() {
+							var userMenuVars = {
+								container: A.one('#<portlet:namespace />userMenuContainer'),
+								contentBox: A.one('#<portlet:namespace />userMenuContent'),
+								trigger: A.one('#<portlet:namespace />userMenu')
+							};
+
+							Liferay.Dockbar.addMenu(
+								{
+									align: {
+										node: userMenuVars.trigger,
+										points: ['tr', 'br']
+									},
+									boundingBox: userMenuVars.container,
+									name: 'userMenu',
+									trigger: userMenuVars.trigger
+								}
+							);
+
+							var userMenuItems = userMenuVars.container.all('li a');
+
+							userMenuItems.on(
+								['mouseover', 'mouseout'],
+								function(event) {
+									event.currentTarget.toggleClass('aui-focus');
+								}
+							);
+						}
+					);
+				</aui:script>
+
+				<%= "</ul>" + html.substring(y) %>
 			</c:when>
 			<c:otherwise>
 				<%= html %>
