@@ -120,8 +120,7 @@ public class CustomerListModel implements DisposableBean, Renderable {
 	private static final String _CUSTOMER_RENDER_GROUP =
 		"CUSTOMER_RENDER_GROUP";
 
-	private static final Log _log = LogFactoryUtil.getLog(
-		CustomerListModel.class);
+	private static Log _log = LogFactoryUtil.getLog(CustomerListModel.class);
 
 	private CustomerService _customerService;
 	private PersistentFacesState _persistentFacesState;
