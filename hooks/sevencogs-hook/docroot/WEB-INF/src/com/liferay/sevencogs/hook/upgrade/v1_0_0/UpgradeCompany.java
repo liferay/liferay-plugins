@@ -2325,7 +2325,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		return portletSetup;
 	}
 
-	private static int _PERMISSIONS_USER_CHECK_ALGORITHM =
+	private static final int _PERMISSIONS_USER_CHECK_ALGORITHM =
 		GetterUtil.getInteger(
 			PropsUtil.get(PropsKeys.PERMISSIONS_USER_CHECK_ALGORITHM));
 
