@@ -38,10 +38,10 @@ import java.util.List;
 public class JIRAActionFinderImpl
 	extends BasePersistenceImpl<JIRAAction> implements JIRAActionFinder {
 
-	public static String COUNT_BY_CD_P =
+	public static final String COUNT_BY_CD_P =
 		JIRAActionFinder.class.getName() + ".countByCD_P";
 
-	public static String FIND_BY_CD_P =
+	public static final String FIND_BY_CD_P =
 		JIRAActionFinder.class.getName() + ".findByCD_P";
 
 	public int countByCD_P(Date createDate, long projectId)

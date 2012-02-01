@@ -38,7 +38,7 @@ import java.util.List;
 public class TasksEntryFinderImpl
 	extends BasePersistenceImpl<TasksEntry> implements TasksEntryFinder {
 
-	public static String FIND_BY_C_T =
+	public static final String FIND_BY_C_T =
 		TasksEntryFinder.class.getName() + ".findByC_T";
 
 	public int countByG_P_A_R_S_T_N(

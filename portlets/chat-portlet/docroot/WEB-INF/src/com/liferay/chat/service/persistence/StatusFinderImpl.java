@@ -32,13 +32,13 @@ import java.util.List;
 public class StatusFinderImpl
 	extends BasePersistenceImpl<Status> implements StatusFinder {
 
-	public static String FIND_BY_MODIFIED_DATE =
+	public static final String FIND_BY_MODIFIED_DATE =
 		StatusFinder.class.getName() + ".findByModifiedDate";
 
-	public static String FIND_BY_SOCIAL_RELATION_TYPE =
+	public static final String FIND_BY_SOCIAL_RELATION_TYPE =
 		StatusFinder.class.getName() + ".findBySocialRelationType";
 
-	public static String FIND_BY_USERS_GROUPS =
+	public static final String FIND_BY_USERS_GROUPS =
 		StatusFinder.class.getName() + ".findByUsersGroups";
 
 	public List<Object[]> findByModifiedDate(

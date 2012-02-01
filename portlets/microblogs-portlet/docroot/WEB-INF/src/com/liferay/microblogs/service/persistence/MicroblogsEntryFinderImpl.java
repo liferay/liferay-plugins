@@ -41,28 +41,28 @@ public class MicroblogsEntryFinderImpl
 	extends BasePersistenceImpl<MicroblogsEntry>
 	implements MicroblogsEntryFinder {
 
-	public static String COUNT_BY_USER_ID =
+	public static final String COUNT_BY_USER_ID =
 		MicroblogsEntryFinder.class.getName() + ".countByUserId";
 
-	public static String COUNT_BY_U_MU =
+	public static final String COUNT_BY_U_MU =
 		MicroblogsEntryFinder.class.getName() + ".countByU_MU";
 
-	public static String COUNT_BY_U_ATN =
+	public static final String COUNT_BY_U_ATN =
 	MicroblogsEntryFinder.class.getName() + ".countByU_ATN";
 
-	public static String COUNT_BY_U_T_MU =
+	public static final String COUNT_BY_U_T_MU =
 		MicroblogsEntryFinder.class.getName() + ".countByU_T_MU";
 
-	public static String FIND_BY_USER_ID =
+	public static final String FIND_BY_USER_ID =
 		MicroblogsEntryFinder.class.getName() + ".findByUserId";
 
-	public static String FIND_BY_U_MU =
+	public static final String FIND_BY_U_MU =
 		MicroblogsEntryFinder.class.getName() + ".findByU_MU";
 
-	public static String FIND_BY_U_ATN =
+	public static final String FIND_BY_U_ATN =
 	MicroblogsEntryFinder.class.getName() + ".findByU_ATN";
 
-	public static String FIND_BY_U_T_MU =
+	public static final String FIND_BY_U_T_MU =
 		MicroblogsEntryFinder.class.getName() + ".findByU_T_MU";
 
 	public MicroblogsEntryFinderImpl() {

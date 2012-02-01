@@ -32,13 +32,13 @@ import java.util.List;
 public class EntryFinderImpl
 	extends BasePersistenceImpl<Entry> implements EntryFinder {
 
-	public static String FIND_BY_EMPTY_CONTENT =
+	public static final String FIND_BY_EMPTY_CONTENT =
 		EntryFinder.class.getName() + ".findByEmptyContent";
 
-	public static String FIND_BY_NEW =
+	public static final String FIND_BY_NEW =
 		EntryFinder.class.getName() + ".findByNew";
 
-	public static String FIND_BY_OLD =
+	public static final String FIND_BY_OLD =
 		EntryFinder.class.getName() + ".findByOld";
 
 	public List<Entry> findByEmptyContent(
