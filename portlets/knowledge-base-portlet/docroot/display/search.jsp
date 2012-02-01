@@ -53,14 +53,13 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		List<Tuple> tuples = new ArrayList<Tuple>();
 
 		for (int i = 0; i < hits.getDocs().length; i++) {
-			Object[] array = new Object[6];
+			Object[] array = new Object[5];
 
 			array[0] = hits.doc(i).get(Field.ENTRY_CLASS_PK);
 			array[1] = hits.doc(i).get(Field.TITLE);
 			array[2] = hits.doc(i).get(Field.USER_NAME);
 			array[3] = hits.doc(i).getDate(Field.CREATE_DATE);
 			array[4] = hits.doc(i).getDate(Field.MODIFIED_DATE);
-			array[5] = hits.score(i);
 
 			tuples.add(new Tuple(array));
 		}
@@ -152,15 +151,6 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 			</liferay-ui:search-container-column-text>
 		</c:if>
-
-		<liferay-ui:search-container-column-text
-			cssClass="kb-column-score"
-			href="<%= rowURL %>"
-			name="score"
-			orderable="<%= true %>"
-		>
-			<liferay-ui:ratings-score score="<%= MathUtils.round(((Float)tuple.getObject(5) * 10) / 2, 1, BigDecimal.ROUND_HALF_UP) %>" />
-		</liferay-ui:search-container-column-text>
 	</liferay-ui:search-container-row>
 
 	<liferay-ui:search-iterator />
