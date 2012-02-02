@@ -34,6 +34,7 @@ import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
+import com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceTokenImpl;
 import com.liferay.portal.workflow.kaleo.util.RoleUtil;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
@@ -101,24 +102,9 @@ public class KaleoTaskInstanceTokenFinderImpl
 			SQLQuery q = buildKaleoTaskInstanceTokenQuerySQL(
 				kaleoTaskInstanceTokenQuery, false, session);
 
-			List<KaleoTaskInstanceToken> kaleoTaskInstanceTokens =
-				new ArrayList<KaleoTaskInstanceToken>();
-
-			Iterator<Long> itr = (Iterator<Long>)QueryUtil.iterate(
+			return (List<KaleoTaskInstanceToken>)QueryUtil.list(
 				q, getDialect(), kaleoTaskInstanceTokenQuery.getStart(),
 				kaleoTaskInstanceTokenQuery.getEnd());
-
-			while (itr.hasNext()) {
-				long kaleoTaskInstanceTokenId = itr.next();
-
-				KaleoTaskInstanceToken kaleoTaskInstanceToken =
-					KaleoTaskInstanceTokenUtil.findByPrimaryKey(
-						kaleoTaskInstanceTokenId);
-
-				kaleoTaskInstanceTokens.add(kaleoTaskInstanceToken);
-			}
-
-			return kaleoTaskInstanceTokens;
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
@@ -260,7 +246,8 @@ public class KaleoTaskInstanceTokenFinderImpl
 			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 		}
 		else {
-			q.addScalar("KaleoTaskInstanceTokenId", Type.LONG);
+			q.addEntity(
+				"KaleoTaskInstanceToken", KaleoTaskInstanceTokenImpl.class);
 		}
 
 		QueryPos qPos = QueryPos.getInstance(q);
