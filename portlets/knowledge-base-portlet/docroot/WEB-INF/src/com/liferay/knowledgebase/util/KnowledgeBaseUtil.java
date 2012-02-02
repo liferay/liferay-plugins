@@ -277,7 +277,7 @@ public class KnowledgeBaseUtil {
 		return kbArticles;
 	}
 
-	private static final int _SQL_DATA_MAX_PARAMETERS =
-		GetterUtil.getInteger(PropsUtil.get(PropsKeys.SQL_DATA_MAX_PARAMETERS));
+	private static final int _SQL_DATA_MAX_PARAMETERS = GetterUtil.getInteger(
+		PropsUtil.get(PropsKeys.SQL_DATA_MAX_PARAMETERS));
 
 }

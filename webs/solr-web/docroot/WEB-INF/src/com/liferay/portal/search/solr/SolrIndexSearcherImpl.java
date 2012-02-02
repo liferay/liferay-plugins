@@ -155,8 +155,8 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 				}
 
 				for (int i = 0; i < rangesJSONArray.length(); i++) {
-					JSONObject rangeJSONObject =
-						rangesJSONArray.getJSONObject(i);
+					JSONObject rangeJSONObject = rangesJSONArray.getJSONObject(
+						i);
 
 					String range = rangeJSONObject.getString("range");
 

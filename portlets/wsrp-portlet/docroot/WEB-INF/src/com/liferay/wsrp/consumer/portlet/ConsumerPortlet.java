@@ -385,8 +385,8 @@ public class ConsumerPortlet extends GenericPortlet {
 		WSRP_v2_Markup_PortType markupService =
 			serviceHolder.getMarkupService();
 
-		HandleEventsResponse handleEventsResponse =
-			markupService.handleEvents(handleEvents);
+		HandleEventsResponse handleEventsResponse = markupService.handleEvents(
+			handleEvents);
 
 		processHandleEventsResponse(
 			eventRequest, eventResponse, wsrpConsumerManager, serviceHolder,
@@ -1265,15 +1265,15 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		resourceParams.setPortletStateChange(StateChange.cloneBeforeWrite);
 
-		String resourceState =
-			ParamUtil.getString(resourceRequest, "wsrp-resourceState");
+		String resourceState = ParamUtil.getString(
+			resourceRequest, "wsrp-resourceState");
 
 		if (Validator.isNotNull(resourceState)) {
 			resourceParams.setResourceState(resourceState);
 		}
 
-		String resourceCacheability =
-			ParamUtil.getString(resourceRequest, "wsrp-resourceCacheability");
+		String resourceCacheability = ParamUtil.getString(
+			resourceRequest, "wsrp-resourceCacheability");
 
 		if (Validator.isNotNull(resourceCacheability)) {
 			resourceParams.setResourceState(resourceCacheability);

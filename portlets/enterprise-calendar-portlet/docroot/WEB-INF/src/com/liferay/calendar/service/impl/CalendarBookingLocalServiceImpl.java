@@ -96,8 +96,8 @@ public class CalendarBookingLocalServiceImpl
 
 		long calendarBookingId = counterLocalService.increment();
 
-		CalendarBooking calendarBooking =
-			calendarBookingPersistence.create(calendarBookingId);
+		CalendarBooking calendarBooking = calendarBookingPersistence.create(
+			calendarBookingId);
 
 		calendarBooking.setUuid(serviceContext.getUuid());
 		calendarBooking.setGroupId(calendar.getGroupId());

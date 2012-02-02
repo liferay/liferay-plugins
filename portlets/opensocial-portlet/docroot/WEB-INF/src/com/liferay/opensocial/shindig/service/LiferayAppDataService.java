@@ -201,8 +201,8 @@ public class LiferayAppDataService implements AppDataService {
 
 			String value = String.valueOf(values.get(key));
 
-			ExpandoColumn expandoColumn =
-				getExpandoColumn(companyId, getColumnName(appId, key));
+			ExpandoColumn expandoColumn = getExpandoColumn(
+				companyId, getColumnName(appId, key));
 
 			ExpandoValueLocalServiceUtil.addValue(
 				companyId, User.class.getName(),

@@ -66,8 +66,8 @@ public class CalendarResourceLocalServiceImpl
 
 		long calendarResourceId = counterLocalService.increment();
 
-		CalendarResource calendarResource =
-			calendarResourcePersistence.create(calendarResourceId);
+		CalendarResource calendarResource = calendarResourcePersistence.create(
+			calendarResourceId);
 
 		calendarResource.setUuid(serviceContext.getUuid());
 		calendarResource.setGroupId(groupId);

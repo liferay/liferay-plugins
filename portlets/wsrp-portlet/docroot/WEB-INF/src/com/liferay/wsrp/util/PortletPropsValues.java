@@ -25,8 +25,8 @@ public class PortletPropsValues {
 	public static final String[] CONSUMER_REQUEST_EXTENSIONS =
 		PortletProps.getArray(PortletPropsKeys.CONSUMER_REQUEST_EXTENSIONS);
 
-	public static final String[] PROXY_URL_IPS_ALLOWED =
-		PortletProps.getArray(PortletPropsKeys.PROXY_URL_IPS_ALLOWED);
+	public static final String[] PROXY_URL_IPS_ALLOWED = PortletProps.getArray(
+		PortletPropsKeys.PROXY_URL_IPS_ALLOWED);
 
 	public static final boolean SECURE_RESOURCE_URLS_ENABLED =
 		GetterUtil.getBoolean(

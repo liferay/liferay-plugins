@@ -67,8 +67,8 @@ public class KaleoInstanceLocalServiceImpl
 
 		long kaleoInstanceId = counterLocalService.increment();
 
-		KaleoInstance kaleoInstance =
-			kaleoInstancePersistence.create(kaleoInstanceId);
+		KaleoInstance kaleoInstance = kaleoInstancePersistence.create(
+			kaleoInstanceId);
 
 		long groupId = StagingUtil.getLiveGroupId(
 			serviceContext.getScopeGroupId());
