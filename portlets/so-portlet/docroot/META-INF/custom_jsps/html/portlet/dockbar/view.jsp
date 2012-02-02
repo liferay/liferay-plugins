@@ -124,31 +124,28 @@ Role role = RoleLocalServiceUtil.fetchRole(themeDisplay.getCompanyId(), "Social 
 					</div>
 				</li>
 
+				<%= "</ul>" + html.substring(y) %>
+
 				<aui:script use="liferay-dockbar">
 					Liferay.once(
 						'dockbarLoaded',
 						function() {
-							var userMenuVars = {
-								container: A.one('#<portlet:namespace />userMenuContainer'),
-								contentBox: A.one('#<portlet:namespace />userMenuContent'),
-								trigger: A.one('#<portlet:namespace />userMenu')
-							};
+							var userMenuContainer = A.one('#<portlet:namespace />userMenuContainer');
+							var userMenuTrigger = A.one('#<portlet:namespace />userMenu');
 
 							Liferay.Dockbar.addMenu(
 								{
 									align: {
-										node: userMenuVars.trigger,
+										node: userMenuTrigger,
 										points: ['tr', 'br']
 									},
-									boundingBox: userMenuVars.container,
+									boundingBox: userMenuContainer,
 									name: 'userMenu',
-									trigger: userMenuVars.trigger
+									trigger: userMenuTrigger
 								}
 							);
 
-							var userMenuItems = userMenuVars.container.all('li a');
-
-							userMenuItems.on(
+							userMenuContainer.all('li a').on(
 								['mouseover', 'mouseout'],
 								function(event) {
 									event.currentTarget.toggleClass('aui-focus');
@@ -157,8 +154,6 @@ Role role = RoleLocalServiceUtil.fetchRole(themeDisplay.getCompanyId(), "Social 
 						}
 					);
 				</aui:script>
-
-				<%= "</ul>" + html.substring(y) %>
 			</c:when>
 			<c:otherwise>
 				<%= html %>
