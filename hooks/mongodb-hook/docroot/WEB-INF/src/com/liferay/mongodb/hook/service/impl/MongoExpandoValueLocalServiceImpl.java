@@ -213,8 +213,8 @@ public class MongoExpandoValueLocalServiceImpl
 	@Override
 	public void deleteTableValues(long tableId) throws SystemException {
 		try {
-			ExpandoTable expandoTable =
-				ExpandoTableLocalServiceUtil.getTable(tableId);
+			ExpandoTable expandoTable = ExpandoTableLocalServiceUtil.getTable(
+				tableId);
 
 			DBCollection dbCollection = MongoDBUtil.getCollection(expandoTable);
 

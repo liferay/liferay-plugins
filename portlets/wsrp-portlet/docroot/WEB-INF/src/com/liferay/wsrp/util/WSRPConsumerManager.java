@@ -323,8 +323,8 @@ public class WSRPConsumerManager {
 		else if (binding.equals(_WSRP_V1_REGISTRATION_BINDING) ||
 				 binding.equals(_WSRP_V2_REGISTRATION_BINDING)) {
 
-			_registrationService =
-				_service.getWSRP_v2_Registration_Service(bindingLocationURL);
+			_registrationService = _service.getWSRP_v2_Registration_Service(
+				bindingLocationURL);
 		}
 		else if (binding.equals(_WSRP_V1_SERVICE_DESCRIPTION_BINDING) ||
 				 binding.equals(_WSRP_V2_SERVICE_DESCRIPTION_BINDING)) {

@@ -81,8 +81,8 @@ public class MarkupServiceHandler implements InvocationHandler {
 
 			ReleaseSessions releaseSessions = (ReleaseSessions)v1Bean;
 
-			Extension[] extensions =
-				_markupService.releaseSessions(releaseSessions);
+			Extension[] extensions = _markupService.releaseSessions(
+				releaseSessions);
 
 			v2Bean = TypeConvertorUtil.convert(extensions, 1);
 		}

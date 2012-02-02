@@ -205,8 +205,8 @@ public class V2MarkupServiceImpl
 
 		Extension[] extensions = clientData.getExtensions();
 
-		MessageElement[] clientAttributes =
-			ExtensionUtil.getMessageElements(extensions);
+		MessageElement[] clientAttributes = ExtensionUtil.getMessageElements(
+			extensions);
 
 		if (clientAttributes == null) {
 			return;

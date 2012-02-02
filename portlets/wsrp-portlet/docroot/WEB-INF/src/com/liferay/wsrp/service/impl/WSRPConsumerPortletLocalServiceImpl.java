@@ -502,8 +502,8 @@ public class WSRPConsumerPortletLocalServiceImpl
 			return portlet;
 		}
 
-		String portletId =
-			ConsumerPortlet.PORTLET_NAME_PREFIX.concat(wsrpConsumerPortletUuid);
+		String portletId = ConsumerPortlet.PORTLET_NAME_PREFIX.concat(
+			wsrpConsumerPortletUuid);
 
 		portletId = PortalUtil.getJsSafePortletId(
 			PortalUUIDUtil.toJsSafeUuid(portletId));
