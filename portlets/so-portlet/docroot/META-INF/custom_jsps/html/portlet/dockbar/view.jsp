@@ -75,73 +75,54 @@ Role role = RoleLocalServiceUtil.fetchRole(themeDisplay.getCompanyId(), "Social 
 					<span></span>
 				</li>
 
-				<li class="user-menu has-submenu" id="<portlet:namespace />userMenu">
-					<a class="menu-button" href="javascript:;">
-						<span class="user-portrait">
-							<img src="<%= HtmlUtil.escape(user.getPortraitURL(themeDisplay)) %>" />
+				<li class="has-submenu user-avatar" id="<portlet:namespace />userMenu">
+					<a class="menu-button user-fullname user-portrait" href="javascript:;">
+						<img style="width: 18px" src="<%= HtmlUtil.escape(user.getPortraitURL(themeDisplay)) %>" />
 
-							<%= HtmlUtil.escape(user.getFullName()) %>
-						</span>
+						<%= HtmlUtil.escape(user.getFullName()) %>
 					</a>
 
-					<div class="aui-menu user-menu aui-overlaycontext-hidden" id="<portlet:namespace />userMenuContainer">
-						<div class="aui-menu-content user-menu-content" id="<portlet:namespace />userMenuContent">
+					<div class="aui-menu aui-overlaycontext-hidden" id="<portlet:namespace />userMenuContainer">
+						<div class="aui-menu-content" id="<portlet:namespace />userMenuContent">
 							<ul>
-								<li class="first profile">
-									<aui:a href="<%= user.getDisplayURL(themeDisplay) %>" label="profile" />
+								<li class="aui-menu-item first profile">
+									<a href="<%= user.getDisplayURL(themeDisplay) %>">
+										<liferay-ui:icon
+											message="my-profile"
+											src='/html/icons/users_admin.png'
+										/>
+
+										<liferay-ui:message key="my-profile" />
+									</a>
 								</li>
 
-								<%
-								String controlPanelCategory = StringPool.BLANK;
-								String useDialog = StringPool.BLANK;
-
-								if (!layout.getGroup().isControlPanel()) {
-									controlPanelCategory = PortletCategoryKeys.MY;
-									useDialog = StringPool.SPACE + "use-dialog full-dialog";
-								}
-								%>
-
-								<li class="my-account" id="<portlet:namespace />userAvatar">
+								<li class="aui-menu-item my-account" id="<portlet:namespace />userAvatar">
 									<span class="user-links">
-										<aui:a cssClass="<%= useDialog %>" data-controlPanelCategory="<%= controlPanelCategory %>" href="<%= themeDisplay.getURLMyAccount().toString() %>" label="my-account" title="manage-my-account" />
+										<a class='<%= !layout.getGroup().isControlPanel() ? "use-dialog full-dialog" : StringPool.BLANK %>' data-controlPanelCategory="<%= !layout.getGroup().isControlPanel() ? PortletCategoryKeys.MY : StringPool.BLANK %>" href="<%= themeDisplay.getURLMyAccount().toString() %>">
+											<liferay-ui:icon
+												message="my-account"
+												src='/html/icons/my_account.png'
+											/>
+
+											<liferay-ui:message key="my-account" />
+										</a>
 									</span>
 								</li>
 
-								<li class="last sign-out">
-									<aui:a href="<%= themeDisplay.getURLSignOut().toString() %>" label="sign-out" />
+								<li class="aui-menu-item last sign-out">
+									<a href="<%= themeDisplay.getURLSignOut().toString() %>">
+										<liferay-ui:icon
+											message="sign-out"
+											src='<%= themeDisplay.getPathThemeImages() + "/dock/sign_out.png" %>'
+										/>
+
+										<liferay-ui:message key="sign-out" />
+									</a>
 								</li>
 							</ul>
 						</div>
 					</div>
 				</li>
-
-				<style type="text/css">
-					.dockbar .user-menu .user-portrait {
-						padding-left: 0px;
-					}
-
-					.dockbar .user-menu .user-portrait img {
-						width: 20px;
-					}
-
-					.dockbar .user-menu li a {
-						background-repeat: no-repeat;
-						background-position: 3px;
-						padding-left: 25px;
-					}
-
-					.dockbar .user-menu .my-account a {
-						background-image: url(/html/icons/my_account.png);
-					}
-
-					.dockbar .user-menu .profile a {
-						background-image: url(/html/icons/users_admin.png);
-					}
-
-					.dockbar .user-menu	.sign-out a {
-						background-image: url(<%= themeDisplay.getPathThemeImages() %>/dock/sign_out.png);
-					}
-				</style>
 
 				<aui:script use="liferay-dockbar">
 					Liferay.once(
