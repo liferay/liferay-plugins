@@ -39,6 +39,14 @@
 					/>
 				</copy>
 
+				<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-impl/src" />
+				<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-lib/global" />
+				<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-lib/portal" />
+				<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-service/src" />
+				<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-util-bridges/src" />
+				<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-util-java/src" />
+				<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-util-taglib/src" />
+
 				<replace dir="${ext.plugin.dir}">
 					<replacefilter token="@ext.name@" value="${ext.name}" />
 					<replacefilter token="@ext.display.name@" value="${ext.display.name}" />
