@@ -50,7 +50,7 @@ int status = BeanParamUtil.getInteger(tasksEntry, request, "status", TasksEntryC
 long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/html/js/", true);
 %>
 
-<script src="<%= HtmlUtil.escape(PortalUtil.getStaticResourceURL(request, themeDisplay.getPathJavaScript() + "/liferay/service.js", javaScriptLastModified)) %>" type="text/javascript"></script>
+<script src="<%= HtmlUtil.escape(PortalUtil.getStaticResourceURL(request, themeDisplay.getCDNHost() + themeDisplay.getPathJavaScript() + "/liferay/service.js", javaScriptLastModified)) %>" type="text/javascript"></script>
 
 <form action="<portlet:actionURL name="updateTasksEntry" />" method="post" name="<portlet:namespace />fm1">
 <input name="<portlet:namespace />tasksEntryId" type="hidden" value="<%= tasksEntryId %>" />
