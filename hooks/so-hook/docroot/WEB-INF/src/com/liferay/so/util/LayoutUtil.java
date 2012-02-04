@@ -125,6 +125,9 @@ public class LayoutUtil {
 			else if (portletId.startsWith("101")) {
 				updatePortletTitle(layout, portletId, "Related Content");
 			}
+			else if (portletId.startsWith("115")) {
+				updatePortletTitle(layout, portletId, "Recent Blogs");
+			}
 			else if (portletId.contains("_WAR_contactsportlet")) {
 				configureProfile(layout, portletId);
 				removePortletBorder(layout, portletId);
