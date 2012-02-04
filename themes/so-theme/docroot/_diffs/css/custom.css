@@ -28,7 +28,7 @@ a:hover {
 	position: static;
 }
 
-#skip-to-content, #navigation h1, .opens-new-window-accessible {
+#skip-to-content, #navigation h1, .opens-new-window-accessible, #toggleFluid span {
 	clip: rect(0 0 0 0);
 	position: absolute;
 	text-indent: -9999em;
@@ -50,10 +50,24 @@ a:focus .opens-new-window-accessible {
 	padding-left: 0;
 }
 
+#banner #heading, #content, #footer {
+	margin: 0 auto;
+	width: 960px;
+}
+
+#content {
+	width: 760px;
+}
+
+#footer p {
+	padding-left: 210px;
+}
+
 /* ---------- Heading ---------- */
 
 #banner {
 	border-bottom: 1px solid $border-color;
+	position: relative;
 
 	.logo {
 		text-indent: -9999em;
@@ -190,6 +204,7 @@ a:focus .opens-new-window-accessible {
 	position: absolute;
 	top: 0;
 	width: 200px;
+	z-index: 1;
 
 	.portlet-msg, .portlet-msg-info, .portlet-msg-error, .portlet-msg-alert, .portlet-msg-success {
 		margin: 0;
@@ -313,7 +328,7 @@ a:focus .opens-new-window-accessible {
 
 	#so-context {
 		border: 1px solid $border-color;
-		border-width: 0 0 1px 0;
+		border-width: 0 1px 1px 0;
 		position: relative;
 	}
 
@@ -446,7 +461,6 @@ a:focus .opens-new-window-accessible {
 /* ---------- Footer ---------- */
 
 #footer {
-	margin-left: 200px;
 	padding: 30px 10px;
 }
 
@@ -485,7 +499,7 @@ input[type=text], textarea, input[type=password], .aui-field-select select, .aui
 	vertical-align: top;
 }
 
-button, input[type=submit], input[type=button], input[type=reset], .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .aui-dialog-hd, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .aui-button-input, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .results-header th, .contacts-portlet .social-relations a:hover, .top-links-navigation a:hover, .lfr-actions.lfr-extended, .invite-members, .thread-controls a:hover, .edit-controls a:hover, .portlet-document-library .select-documents, .portlet-document-library-display .select-documents, .tasks-dialog .control a.taglib-icon {
+button, input[type=submit], input[type=button], input[type=reset], .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .aui-dialog-hd, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .aui-button-input, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .results-header th, .contacts-portlet .social-relations a:hover, .top-links-navigation a:hover, .lfr-actions.lfr-extended, .invite-members, .thread-controls a:hover, .edit-controls a:hover, .portlet-document-library .select-documents, .portlet-document-library-display .select-documents, .tasks-dialog .control a.taglib-icon, #toggleFluid {
 	@include border-radius(3px);
 	@include box-shadow(0 1px 0 #F4F3F3 inset, 0 -1px 0 #D9D8D8 inset);
 	background: #E9E8E8;
@@ -563,6 +577,23 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 .results-row.alt td {
 	border-width: 1px;
+}
+
+#toggleFluid {
+	background-image: url(../images/custom/toggle-button-bg.png);
+	background-repeat: no-repeat;
+	background-position: 8px 50%;
+	height: 25px;
+	width: 60px;
+	display: block;
+	position: absolute;
+	right: 10px;
+	top: 22px;
+	z-index: 1;
+}
+
+.so-layout-fluid #toggleFluid {
+	background-position: -50px 50%;
 }
 
 /* ---------- Tabs ---------- */
@@ -1824,5 +1855,22 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 	.result-content {
 		margin-right: 0 -6px 0 -7px;
+	}
+}
+
+/* Fluid Layout */
+
+body.so-layout-fluid {
+	#content, #footer, #banner #heading {
+		margin: 0 auto;
+		width: auto;
+	}
+
+	#heading #page-search {
+		right: 80px;
+	}
+
+	#content #so-context {
+		border-right-width: 0;
 	}
 }
