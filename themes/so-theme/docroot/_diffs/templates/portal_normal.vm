@@ -45,11 +45,16 @@ $theme.include($body_top_include)
 				<div id="page-search">
 					$theme.search()
 				</div>
+
 			#end
 		</hgroup>
 
 		#if (!$is_signed_in)
 			<a href="$sign_in_url" id="sign-in" rel="nofollow">$sign_in_text</a>
+		#end
+
+		#if ($is_signed_in)
+			<a id="toggleFluid" href="#"><span>Toggle Fluid Layout</span></a>
 		#end
 	</header>
 
