@@ -38,3 +38,9 @@
 		#set ($user_detail_class = "user-profile-detail")
 	#end
 #end
+
+#set ($layoutFluid = $getterUtil.getBoolean($sessionClicks.get($request, "so-layout-fluid", "false")))
+
+#if ($layoutFluid == true)
+	#set ($css_class = "${css_class} so-layout-fluid")
+#end
