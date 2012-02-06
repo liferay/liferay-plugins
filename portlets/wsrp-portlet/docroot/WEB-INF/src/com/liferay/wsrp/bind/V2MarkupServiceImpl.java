@@ -438,12 +438,6 @@ public class V2MarkupServiceImpl
 		MarkupParams markupParams =
 			performBlockingInteraction.getMarkupParams();
 
-		NavigationalContext navigationalContext =
-			markupParams.getNavigationalContext();
-
-		String namespace = PortalUtil.getPortletNamespace(
-			getPortletId(portletContext, navigationalContext));
-
 		NamedString[] formParameters = interactionParams.getFormParameters();
 
 		if (formParameters != null) {
@@ -452,7 +446,7 @@ public class V2MarkupServiceImpl
 					formParameter.getName(),
 					runtimeContext.getNamespacePrefix(), StringPool.BLANK);
 
-				httpOptions.addPart(namespace + name, formParameter.getValue());
+				httpOptions.addPart(name, formParameter.getValue());
 			}
 		}
 
