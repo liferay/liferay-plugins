@@ -23,10 +23,10 @@
 Map<String, String[]> preferencesMap = preferences.getMap();
 
 if (map.isEmpty()) {
-	preferences.setValue("selectionMethod", "scope");
 	preferences.setValue("displayStyle", "title");
-	preferences.setValue("max", "10");
 	preferences.setValue("enableRssSubscription", "false");
+	preferences.setValue("max", "10");
+	preferences.setValue("selectionMethod", "scope");
 	preferences.setValue("showTags", "false");
 
 	preferences.store();
