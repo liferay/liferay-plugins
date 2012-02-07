@@ -22,7 +22,7 @@
 <%
 Map<String, String[]> preferencesMap = preferences.getMap();
 
-if (map.isEmpty()) {
+if (preferencesMap.isEmpty()) {
 	preferences.setValue("displayStyle", "title");
 	preferences.setValue("enableRssSubscription", "false");
 	preferences.setValue("max", "10");
