@@ -53,7 +53,7 @@ $theme.include($body_top_include)
 		#end
 
 		#if ($is_signed_in)
-			<a id="toggleFluid" href="#"><span>$languageUtil.format($locale, "toggle-fluid-layout")</span></a>
+			<a id="toggleFluid" href="javascript:;"><span>$languageUtil.format($locale, "toggle-fluid-layout")</span></a>
 		#end
 	</header>
 
