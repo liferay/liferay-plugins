@@ -581,14 +581,14 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 #toggleFluid {
 	background-image: url(../images/custom/toggle-button-bg.png);
-	background-repeat: no-repeat;
 	background-position: 8px 50%;
-	height: 25px;
-	width: 60px;
+	background-repeat: no-repeat;
 	display: block;
+	height: 25px;
 	position: absolute;
 	right: 10px;
 	top: 22px;
+	width: 60px;
 	z-index: 1;
 }
 

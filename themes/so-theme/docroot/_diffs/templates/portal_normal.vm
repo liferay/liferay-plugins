@@ -45,7 +45,6 @@ $theme.include($body_top_include)
 				<div id="page-search">
 					$theme.search()
 				</div>
-
 			#end
 		</hgroup>
 
@@ -54,7 +53,7 @@ $theme.include($body_top_include)
 		#end
 
 		#if ($is_signed_in)
-			<a id="toggleFluid" href="#"><span>Toggle Fluid Layout</span></a>
+			<a id="toggleFluid" href="#"><span>$languageUtil.format($locale, "toggle-fluid-layout")</span></a>
 		#end
 	</header>
 
