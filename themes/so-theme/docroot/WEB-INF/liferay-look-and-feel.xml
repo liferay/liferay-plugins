@@ -3,7 +3,8 @@
 
 <look-and-feel>
 	<compatibility>
-		<version>6.1.0+</version>
+		<version>6.2.0+</version>
+		<version>6.1.0+</version>		
 	</compatibility>
 	<theme id="so" name="Social Office Theme">
 		<color-scheme id="collaboration" name="Collaboration">
