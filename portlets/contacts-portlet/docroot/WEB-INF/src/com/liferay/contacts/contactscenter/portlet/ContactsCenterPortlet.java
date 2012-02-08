@@ -50,6 +50,7 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -156,13 +157,14 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
-		long userId = ParamUtil.getLong(resourceRequest, "userId");
-		int socialRelationType = ParamUtil.getInteger(
-			resourceRequest, "socialRelationType");
+		long[] userIds = StringUtil.split(
+			ParamUtil.getString(resourceRequest, "userIds"), 0L);
 
-		List<User> users = UserLocalServiceUtil.getSocialUsers(
-			userId, socialRelationType, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			null);
+		List<User> users = new ArrayList<User>();
+
+		for (long userId : userIds) {
+			users.add(UserLocalServiceUtil.getUser(userId));
+		}
 
 		String vCards = ContactsUtil.getVCards(users);
 
