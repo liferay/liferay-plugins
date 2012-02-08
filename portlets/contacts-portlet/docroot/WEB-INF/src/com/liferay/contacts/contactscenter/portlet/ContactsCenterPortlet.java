@@ -15,7 +15,7 @@
 package com.liferay.contacts.contactscenter.portlet;
 
 import com.liferay.contacts.util.ContactsUtil;
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -35,6 +35,7 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.service.UserServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.comparator.UserLastNameComparator;
@@ -139,7 +140,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		long userId = ParamUtil.getLong(resourceRequest, "userId");
 
-		User user = UserLocalServiceUtil.getUserById(userId);
+		User user = UserServiceUtil.getUserById(userId);
 
 		String vCard = ContactsUtil.getVCard(user);
 
@@ -163,7 +164,11 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		List<User> users = new ArrayList<User>();
 
 		for (long userId : userIds) {
-			users.add(UserLocalServiceUtil.getUser(userId));
+			try {
+				users.add(UserServiceUtil.getUserById(userId));
+			}
+			catch (PortalException pe) {
+			}
 		}
 
 		String vCards = ContactsUtil.getVCards(users);
