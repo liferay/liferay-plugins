@@ -165,17 +165,17 @@
 		);
 	</c:if>
 
-	<c:if test="<%= (user2 != null) %>">
-		contactsToolbarChildren.push(
-			{
-				handler: function(event) {
-					location.href = '<liferay-portlet:resourceURL id="exportVCard"><portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" /></liferay-portlet:resourceURL>'
-				},
-				icon: 'export',
-				label: '<%= UnicodeLanguageUtil.get(pageContext, "export-vcard") %>'
-			}
-		);
-	</c:if>
+	contactsToolbarChildren.push(
+		{
+			cssClass: '<%= user2 == null ? "aui-helper-hidden" : "" %>',
+			handler: function(event) {
+				<portlet:namespace />relationAction(event, 'exportVCard');
+			},
+			icon: 'export',
+			id: '<portlet:namespace />exportButton',
+			label: '<%= UnicodeLanguageUtil.get(pageContext, "export-vcard") %>'
+		}
+	);
 
 	var contactsToolbar = new A.Toolbar(
 		{
@@ -199,36 +199,46 @@
 						document.<portlet:namespace />fm.<portlet:namespace />userIds.value = selectedUsersIds.join();
 						document.<portlet:namespace />fm.<portlet:namespace />type.value = type;
 
-						submitForm(document.<portlet:namespace />fm, '<portlet:actionURL />');
+						if (action == 'exportVCard') {
+							submitForm(document.<portlet:namespace />fm, '<liferay-portlet:resourceURL id="exportVCards" />');
+						}
+						else {
+							submitForm(document.<portlet:namespace />fm, '<portlet:actionURL />');
+						}
 					}
 				}
 			</c:when>
 			<c:otherwise>
 				event.preventDefault();
 
-				A.io.request(
-					'<portlet:actionURL />',
-					{
-						data: {
-							cmd: action,
-							redirect: '<%= currentURL %>',
-							type: type,
-							userIds: '<%= user2.getUserId() %>'
-						},
-						after: {
-							failure: function(event, id, obj) {
-								var saveMessages = A.one('#<portlet:namespace/>saveMessages');
-
-								if (saveMessages) {
-									saveMessages.html('<span class="portlet-msg-error">' + Liferay.Language.get('an-error-occurred-while-retrieving-the-users-information') + '</span>');
-								}
+				if (action == 'exportVCard') {
+					location.href = '<liferay-portlet:resourceURL id="exportVCard"><portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" /></liferay-portlet:resourceURL>'
+				}
+				else {
+					A.io.request(
+						'<portlet:actionURL />',
+						{
+							data: {
+								cmd: action,
+								redirect: '<%= currentURL %>',
+								type: type,
+								userIds: '<%= user2.getUserId() %>'
 							},
-							success: function(event, id, obj) {
-								Liferay.ContactsCenter.renderContent(this.get('responseData'));
+							after: {
+								failure: function(event, id, obj) {
+									var saveMessages = A.one('#<portlet:namespace/>saveMessages');
+
+									if (saveMessages) {
+										saveMessages.html('<span class="portlet-msg-error">' + Liferay.Language.get('an-error-occurred-while-retrieving-the-users-information') + '</span>');
+									}
+								},
+								success: function(event, id, obj) {
+									Liferay.ContactsCenter.renderContent(this.get('responseData'));
+								}
 							}
 						}
-					}
-				);
+					);
+				}
 			</c:otherwise>
 		</c:choose>
 	}

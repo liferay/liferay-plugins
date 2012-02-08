@@ -93,15 +93,17 @@ AUI.add(
 						instance._detailUserView = instance.byId('detailUserView');
 						instance._selectedUsersView = instance.byId('selectedUsersView');
 
-						instance._blockButton = instance.byId('blockButton');
-						instance._unblockButton = instance.byId('unblockButton');
 						instance._addConnectionButton = instance.byId('addConnectionButton');
-						instance._removeConnectionButton = instance.byId('removeConnectionButton');
+						instance._blockButton = instance.byId('blockButton');
+						instance._exportButton = instance.byId('exportButton');
 						instance._followButton = instance.byId('followButton');
+						instance._removeConnectionButton = instance.byId('removeConnectionButton');
+						instance._unblockButton = instance.byId('unblockButton');
 						instance._unfollowButton = instance.byId('unfollowButton');
 
 						instance._buttonAddConnectionUserIds = [];
 						instance._buttonBlockUserIds = [];
+						instance._buttonExportUserIds = [];
 						instance._buttonFollowUserIds = [];
 						instance._buttonRemoveConnectionUserIds = [];
 						instance._buttonUnBlockUserIds = [];
@@ -219,6 +221,7 @@ AUI.add(
 
 						instance._buttonAddConnectionUserIds.length = 0;
 						instance._buttonBlockUserIds.length = 0;
+						instance._buttonExportUserIds.length = 0;
 						instance._buttonFollowUserIds.length = 0;
 						instance._buttonRemoveConnectionUserIds.length = 0;
 						instance._buttonUnBlockUserIds.length = 0;
@@ -484,6 +487,12 @@ AUI.add(
 									instance._buttonFollowUserIds.push(user.userId);
 								}
 							}
+
+							if (instance._exportButton) {
+								instance._exportButton.show();
+
+								instance._buttonExportUserIds.push(user.userId);
+							}
 						}
 					},
 
@@ -547,6 +556,16 @@ AUI.add(
 
 							if (instance._unfollowButton && (instance._buttonUnFollowUserIds.length <= 0)) {
 								instance._unfollowButton.hide();
+							}
+						}
+
+						var exportUserIdIndex = instance._buttonExportUserIds.indexOf(userId);
+
+						if (exportUserIdIndex >= 0) {
+							Array.remove(instance._buttonExportUserIds, exportUserIdIndex);
+
+							if (instance._exportButton && (instance._buttonExportUserIds.length <= 0)) {
+								instance._exportButton.hide();
 							}
 						}
 					}
