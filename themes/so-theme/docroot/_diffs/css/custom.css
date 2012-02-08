@@ -1033,10 +1033,18 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		padding: 10px;
 	}
 
+	.portlet-msg-success {
+		@include border-radius(0);
+		border-width: 0;
+	}
+
+	.portlet-msg-success, .search-form {
+		margin: -10px -10px 10px -9px;
+	}
+
 	.search-form {
 		background: #F4F4F4;
 		float: none;
-		margin: -10px -10px 10px -9px;
 		padding: 5px;
 
 		.aui-search-bar {
@@ -1063,9 +1071,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	.lfr-meta-actions {
 		margin: 0;
 		padding: 0;
-		position: absolute;
-		right: 0;
-		top: 0;
 	}
 
 	#_33_fm .aui-fieldset {
@@ -1833,7 +1838,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 }
 
-/* Search */
+/* Faceted Search */
 
 .portlet-search {
 	.portlet-topper {
@@ -1842,8 +1847,15 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 	.aui-form fieldset.aui-fieldset {
 		border-bottom: 1px solid $border-color;
+	}
+
+	.aui-form fieldset.aui-fieldset, .lfr-token-list, .taglib-search-iterator-page-iterator-bottom {
 		margin: 0;
 		padding: 5px;
+	}
+
+	.aui-liferaytokenlist {
+		background-color: #E9E8E8;
 	}
 
 	.portlet-content, .menu-content {
@@ -1851,18 +1863,21 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 
 	.search-layout .search-layout-content .menu .search-facet {
-		padding: 0 10px;
+		padding: 10px;
 	}
 
 	.menu {
 		border-right: 1px solid $border-color;
 	}
 
+	.results-grid {
+		border-width: 0;
+	}
+
 	.result-content {
-		margin-right: 0 -6px 0 -7px;
+		margin: 0 -5px 0 -2px;
 	}
 }
-
 /* Fluid Layout */
 
 body.so-layout-fluid, body.so-layout-fluid-ad {
