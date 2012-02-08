@@ -15,7 +15,6 @@
 package com.liferay.contacts.contactscenter.portlet;
 
 import com.liferay.contacts.util.ContactsUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -164,11 +163,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		List<User> users = new ArrayList<User>();
 
 		for (long userId : userIds) {
-			try {
-				users.add(UserServiceUtil.getUserById(userId));
-			}
-			catch (PortalException pe) {
-			}
+			users.add(UserServiceUtil.getUserById(userId));
 		}
 
 		String vCards = ContactsUtil.getVCards(users);
