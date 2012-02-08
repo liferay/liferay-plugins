@@ -303,7 +303,7 @@ request.setAttribute("view_user.jsp-user", user2);
 				</c:if>
 			</aui:layout>
 
-			<c:if test="<%= showRecentActivity %>">
+			<c:if test="<%= showRecentActivity && UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.VIEW) %>">
 				<div class="user-information-title">
 					<liferay-ui:message key="recent-activity" />
 				</div>
