@@ -14,7 +14,7 @@
  */
 --%>
 
-<%@ include file="/init.jsp" %>
+<%@ include file="/friends_activities/init.jsp" %>
 
 <c:choose>
 	<c:when test="<%= user2 == null %>">
