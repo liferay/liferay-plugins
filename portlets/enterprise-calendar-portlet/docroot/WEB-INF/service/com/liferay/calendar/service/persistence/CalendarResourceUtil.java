@@ -730,6 +730,85 @@ public class CalendarResourceUtil {
 	}
 
 	/**
+	* Returns all the calendar resources that the user has permission to view where groupId = &#63; and active = &#63;.
+	*
+	* @param groupId the group ID
+	* @param active the active
+	* @return the matching calendar resources that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.calendar.model.CalendarResource> filterFindByG_A(
+		long groupId, boolean active)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterFindByG_A(groupId, active);
+	}
+
+	/**
+	* Returns a range of all the calendar resources that the user has permission to view where groupId = &#63; and active = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param active the active
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
+	* @return the range of matching calendar resources that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.calendar.model.CalendarResource> filterFindByG_A(
+		long groupId, boolean active, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterFindByG_A(groupId, active, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the calendar resources that the user has permissions to view where groupId = &#63; and active = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param active the active
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching calendar resources that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.calendar.model.CalendarResource> filterFindByG_A(
+		long groupId, boolean active, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_A(groupId, active, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the calendar resources before and after the current calendar resource in the ordered set of calendar resources that the user has permission to view where groupId = &#63; and active = &#63;.
+	*
+	* @param calendarResourceId the primary key of the current calendar resource
+	* @param groupId the group ID
+	* @param active the active
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next calendar resource
+	* @throws com.liferay.calendar.NoSuchResourceException if a calendar resource with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarResource[] filterFindByG_A_PrevAndNext(
+		long calendarResourceId, long groupId, boolean active,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.calendar.NoSuchResourceException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_A_PrevAndNext(calendarResourceId, groupId,
+			active, orderByComparator);
+	}
+
+	/**
 	* Returns the calendar resource where classNameId = &#63; and classPK = &#63; or throws a {@link com.liferay.calendar.NoSuchResourceException} if it could not be found.
 	*
 	* @param classNameId the class name ID
@@ -979,6 +1058,155 @@ public class CalendarResourceUtil {
 	}
 
 	/**
+	* Returns all the calendar resources that the user has permission to view where groupId = &#63; and code LIKE &#63; and active = &#63;.
+	*
+	* @param groupId the group ID
+	* @param code the code
+	* @param active the active
+	* @return the matching calendar resources that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.calendar.model.CalendarResource> filterFindByG_C_A(
+		long groupId, java.lang.String code, boolean active)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterFindByG_C_A(groupId, code, active);
+	}
+
+	/**
+	* Returns a range of all the calendar resources that the user has permission to view where groupId = &#63; and code LIKE &#63; and active = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param code the code
+	* @param active the active
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
+	* @return the range of matching calendar resources that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.calendar.model.CalendarResource> filterFindByG_C_A(
+		long groupId, java.lang.String code, boolean active, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_C_A(groupId, code, active, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the calendar resources that the user has permissions to view where groupId = &#63; and code LIKE &#63; and active = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param code the code
+	* @param active the active
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching calendar resources that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.calendar.model.CalendarResource> filterFindByG_C_A(
+		long groupId, java.lang.String code, boolean active, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_C_A(groupId, code, active, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the calendar resources before and after the current calendar resource in the ordered set of calendar resources that the user has permission to view where groupId = &#63; and code LIKE &#63; and active = &#63;.
+	*
+	* @param calendarResourceId the primary key of the current calendar resource
+	* @param groupId the group ID
+	* @param code the code
+	* @param active the active
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next calendar resource
+	* @throws com.liferay.calendar.NoSuchResourceException if a calendar resource with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarResource[] filterFindByG_C_A_PrevAndNext(
+		long calendarResourceId, long groupId, java.lang.String code,
+		boolean active,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.calendar.NoSuchResourceException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_C_A_PrevAndNext(calendarResourceId, groupId,
+			code, active, orderByComparator);
+	}
+
+	/**
+	* Returns all the calendar resources that the user has permission to view where groupId = any &#63; and code LIKE &#63; and active = &#63;.
+	*
+	* @param groupIds the group IDs
+	* @param code the code
+	* @param active the active
+	* @return the matching calendar resources that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.calendar.model.CalendarResource> filterFindByG_C_A(
+		long[] groupIds, java.lang.String code, boolean active)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterFindByG_C_A(groupIds, code, active);
+	}
+
+	/**
+	* Returns a range of all the calendar resources that the user has permission to view where groupId = any &#63; and code LIKE &#63; and active = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupIds the group IDs
+	* @param code the code
+	* @param active the active
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
+	* @return the range of matching calendar resources that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.calendar.model.CalendarResource> filterFindByG_C_A(
+		long[] groupIds, java.lang.String code, boolean active, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_C_A(groupIds, code, active, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the calendar resources that the user has permission to view where groupId = any &#63; and code LIKE &#63; and active = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupIds the group IDs
+	* @param code the code
+	* @param active the active
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching calendar resources that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.calendar.model.CalendarResource> filterFindByG_C_A(
+		long[] groupIds, java.lang.String code, boolean active, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_C_A(groupIds, code, active, start, end,
+			orderByComparator);
+	}
+
+	/**
 	* Returns all the calendar resources where groupId = &#63; and name LIKE &#63; and active = &#63;.
 	*
 	* @param groupId the group ID
@@ -1178,6 +1406,155 @@ public class CalendarResourceUtil {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
 				   .findByG_N_A(groupIds, name, active, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Returns all the calendar resources that the user has permission to view where groupId = &#63; and name LIKE &#63; and active = &#63;.
+	*
+	* @param groupId the group ID
+	* @param name the name
+	* @param active the active
+	* @return the matching calendar resources that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.calendar.model.CalendarResource> filterFindByG_N_A(
+		long groupId, java.lang.String name, boolean active)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterFindByG_N_A(groupId, name, active);
+	}
+
+	/**
+	* Returns a range of all the calendar resources that the user has permission to view where groupId = &#63; and name LIKE &#63; and active = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param name the name
+	* @param active the active
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
+	* @return the range of matching calendar resources that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.calendar.model.CalendarResource> filterFindByG_N_A(
+		long groupId, java.lang.String name, boolean active, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_N_A(groupId, name, active, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the calendar resources that the user has permissions to view where groupId = &#63; and name LIKE &#63; and active = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param name the name
+	* @param active the active
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching calendar resources that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.calendar.model.CalendarResource> filterFindByG_N_A(
+		long groupId, java.lang.String name, boolean active, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_N_A(groupId, name, active, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the calendar resources before and after the current calendar resource in the ordered set of calendar resources that the user has permission to view where groupId = &#63; and name LIKE &#63; and active = &#63;.
+	*
+	* @param calendarResourceId the primary key of the current calendar resource
+	* @param groupId the group ID
+	* @param name the name
+	* @param active the active
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next calendar resource
+	* @throws com.liferay.calendar.NoSuchResourceException if a calendar resource with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarResource[] filterFindByG_N_A_PrevAndNext(
+		long calendarResourceId, long groupId, java.lang.String name,
+		boolean active,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.calendar.NoSuchResourceException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_N_A_PrevAndNext(calendarResourceId, groupId,
+			name, active, orderByComparator);
+	}
+
+	/**
+	* Returns all the calendar resources that the user has permission to view where groupId = any &#63; and name LIKE &#63; and active = &#63;.
+	*
+	* @param groupIds the group IDs
+	* @param name the name
+	* @param active the active
+	* @return the matching calendar resources that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.calendar.model.CalendarResource> filterFindByG_N_A(
+		long[] groupIds, java.lang.String name, boolean active)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterFindByG_N_A(groupIds, name, active);
+	}
+
+	/**
+	* Returns a range of all the calendar resources that the user has permission to view where groupId = any &#63; and name LIKE &#63; and active = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupIds the group IDs
+	* @param name the name
+	* @param active the active
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
+	* @return the range of matching calendar resources that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.calendar.model.CalendarResource> filterFindByG_N_A(
+		long[] groupIds, java.lang.String name, boolean active, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_N_A(groupIds, name, active, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the calendar resources that the user has permission to view where groupId = any &#63; and name LIKE &#63; and active = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupIds the group IDs
+	* @param name the name
+	* @param active the active
+	* @param start the lower bound of the range of calendar resources
+	* @param end the upper bound of the range of calendar resources (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching calendar resources that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.calendar.model.CalendarResource> filterFindByG_N_A(
+		long[] groupIds, java.lang.String name, boolean active, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_N_A(groupIds, name, active, start, end,
 			orderByComparator);
 	}
 
@@ -1704,6 +2081,19 @@ public class CalendarResourceUtil {
 	}
 
 	/**
+	* Returns the number of calendar resources that the user has permission to view where groupId = &#63; and active = &#63;.
+	*
+	* @param groupId the group ID
+	* @param active the active
+	* @return the number of matching calendar resources that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByG_A(long groupId, boolean active)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterCountByG_A(groupId, active);
+	}
+
+	/**
 	* Returns the number of calendar resources where classNameId = &#63; and classPK = &#63;.
 	*
 	* @param classNameId the class name ID
@@ -1747,6 +2137,36 @@ public class CalendarResourceUtil {
 	}
 
 	/**
+	* Returns the number of calendar resources that the user has permission to view where groupId = &#63; and code LIKE &#63; and active = &#63;.
+	*
+	* @param groupId the group ID
+	* @param code the code
+	* @param active the active
+	* @return the number of matching calendar resources that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByG_C_A(long groupId, java.lang.String code,
+		boolean active)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterCountByG_C_A(groupId, code, active);
+	}
+
+	/**
+	* Returns the number of calendar resources that the user has permission to view where groupId = any &#63; and code LIKE &#63; and active = &#63;.
+	*
+	* @param groupIds the group IDs
+	* @param code the code
+	* @param active the active
+	* @return the number of matching calendar resources that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByG_C_A(long[] groupIds,
+		java.lang.String code, boolean active)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterCountByG_C_A(groupIds, code, active);
+	}
+
+	/**
 	* Returns the number of calendar resources where groupId = &#63; and name LIKE &#63; and active = &#63;.
 	*
 	* @param groupId the group ID
@@ -1774,6 +2194,36 @@ public class CalendarResourceUtil {
 		boolean active)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByG_N_A(groupIds, name, active);
+	}
+
+	/**
+	* Returns the number of calendar resources that the user has permission to view where groupId = &#63; and name LIKE &#63; and active = &#63;.
+	*
+	* @param groupId the group ID
+	* @param name the name
+	* @param active the active
+	* @return the number of matching calendar resources that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByG_N_A(long groupId, java.lang.String name,
+		boolean active)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterCountByG_N_A(groupId, name, active);
+	}
+
+	/**
+	* Returns the number of calendar resources that the user has permission to view where groupId = any &#63; and name LIKE &#63; and active = &#63;.
+	*
+	* @param groupIds the group IDs
+	* @param name the name
+	* @param active the active
+	* @return the number of matching calendar resources that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByG_N_A(long[] groupIds,
+		java.lang.String name, boolean active)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterCountByG_N_A(groupIds, name, active);
 	}
 
 	/**

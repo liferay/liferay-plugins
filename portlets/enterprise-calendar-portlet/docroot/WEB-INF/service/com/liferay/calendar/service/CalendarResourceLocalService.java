@@ -264,6 +264,22 @@ public interface CalendarResourceLocalService
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.calendar.model.CalendarResource> search(
+		long groupId, long classNameId, long classPK, java.lang.String code,
+		java.lang.String name, java.lang.String description,
+		java.lang.String type, java.lang.Boolean active, boolean andOperator,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public long searchCount(long groupId, long classNameId, long classPK,
+		java.lang.String code, java.lang.String name,
+		java.lang.String description, java.lang.String type,
+		java.lang.Boolean active, boolean andOperator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	public com.liferay.calendar.model.CalendarResource updateCalendarResource(
 		long calendarResourceId, java.lang.String code,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,

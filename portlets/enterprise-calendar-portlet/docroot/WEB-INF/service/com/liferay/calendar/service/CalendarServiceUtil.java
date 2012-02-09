@@ -38,6 +38,45 @@ public class CalendarServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.calendar.service.impl.CalendarServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static com.liferay.calendar.model.Calendar addCalendar(
+		long groupId, long calendarResourceId,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		int color, boolean defaultCalendar,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .addCalendar(groupId, calendarResourceId, nameMap,
+			descriptionMap, color, defaultCalendar, serviceContext);
+	}
+
+	public static void deleteCalendar(long calendarId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().deleteCalendar(calendarId);
+	}
+
+	public static com.liferay.calendar.model.Calendar getCalendar(
+		long calendarId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getCalendar(calendarId);
+	}
+
+	public static com.liferay.calendar.model.Calendar updateCalendar(
+		long calendarId,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		int color, boolean defaultCalendar,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .updateCalendar(calendarId, nameMap, descriptionMap, color,
+			defaultCalendar, serviceContext);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

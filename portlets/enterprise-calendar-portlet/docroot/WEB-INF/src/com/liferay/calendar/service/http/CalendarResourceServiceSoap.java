@@ -14,6 +14,13 @@
 
 package com.liferay.calendar.service.http;
 
+import com.liferay.calendar.service.CalendarResourceServiceUtil;
+
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
+import java.rmi.RemoteException;
+
 /**
  * <p>
  * This class provides a SOAP utility for the
@@ -58,4 +65,31 @@ package com.liferay.calendar.service.http;
  * @generated
  */
 public class CalendarResourceServiceSoap {
+	public static void deleteCalendarResource(long calendarResourceId)
+		throws RemoteException {
+		try {
+			CalendarResourceServiceUtil.deleteCalendarResource(calendarResourceId);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.calendar.model.CalendarResourceSoap getCalendarResource(
+		long calendarResourceId) throws RemoteException {
+		try {
+			com.liferay.calendar.model.CalendarResource returnValue = CalendarResourceServiceUtil.getCalendarResource(calendarResourceId);
+
+			return com.liferay.calendar.model.CalendarResourceSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(CalendarResourceServiceSoap.class);
 }

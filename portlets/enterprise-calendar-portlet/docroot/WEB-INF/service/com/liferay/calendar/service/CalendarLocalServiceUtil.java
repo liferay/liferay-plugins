@@ -292,6 +292,26 @@ public class CalendarLocalServiceUtil {
 			descriptionMap, color, defaultCalendar, serviceContext);
 	}
 
+	public static java.util.List<com.liferay.calendar.model.Calendar> search(
+		long groupId, long calendarResourceId, java.lang.String name,
+		java.lang.String description, java.lang.Boolean defaultCalendar,
+		boolean andOperator, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .search(groupId, calendarResourceId, name, description,
+			defaultCalendar, andOperator, start, end, orderByComparator);
+	}
+
+	public static long searchCount(long groupId, long calendarResourceId,
+		java.lang.String name, java.lang.String description,
+		java.lang.Boolean defaultCalendar, boolean andOperator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .searchCount(groupId, calendarResourceId, name, description,
+			defaultCalendar, andOperator);
+	}
+
 	public static com.liferay.calendar.model.Calendar updateCalendar(
 		long calendarId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,

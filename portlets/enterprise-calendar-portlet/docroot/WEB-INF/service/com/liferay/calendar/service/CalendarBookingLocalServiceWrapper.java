@@ -307,6 +307,40 @@ public class CalendarBookingLocalServiceWrapper
 		_calendarBookingLocalService.deleteCalendarBookings(calendarId);
 	}
 
+	public java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookings(
+		long calendarId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarBookingLocalService.getCalendarBookings(calendarId);
+	}
+
+	public java.util.List<com.liferay.calendar.model.CalendarBooking> search(
+		long calendarId, long calendarResourceId, java.lang.String title,
+		java.lang.String description, java.lang.String location,
+		java.lang.String type, java.util.Date startDate,
+		java.util.Date endDate, java.lang.Boolean allDay, int priority,
+		java.lang.Boolean outOfOffice, java.lang.Boolean required, int status,
+		boolean andOperator, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarBookingLocalService.search(calendarId,
+			calendarResourceId, title, description, location, type, startDate,
+			endDate, allDay, priority, outOfOffice, required, status,
+			andOperator, start, end, orderByComparator);
+	}
+
+	public long searchCount(long calendarId, long calendarResourceId,
+		java.lang.String title, java.lang.String description,
+		java.lang.String location, java.lang.String type,
+		java.util.Date startDate, java.util.Date endDate,
+		java.lang.Boolean allDay, int priority, java.lang.Boolean outOfOffice,
+		java.lang.Boolean required, int status, boolean andOperator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarBookingLocalService.searchCount(calendarId,
+			calendarResourceId, title, description, location, type, startDate,
+			endDate, allDay, priority, outOfOffice, required, status,
+			andOperator);
+	}
+
 	public com.liferay.calendar.model.CalendarBooking updateCalendarBooking(
 		long userId, long calendarBookingId, long calendarId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
