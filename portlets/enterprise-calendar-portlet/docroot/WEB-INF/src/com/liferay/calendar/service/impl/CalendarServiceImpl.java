@@ -14,10 +14,70 @@
 
 package com.liferay.calendar.service.impl;
 
+import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.service.base.CalendarServiceBaseImpl;
+import com.liferay.calendar.service.permission.CalendarPermission;
+import com.liferay.calendar.service.permission.CalendarResourcePermission;
+import com.liferay.calendar.util.ActionKeys;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.service.ServiceContext;
+
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * @author Eduardo Lundgren
+ * @author Fabio Pezzutto
+ * @author Andrea Di Giorgi
  */
 public class CalendarServiceImpl extends CalendarServiceBaseImpl {
+
+	public Calendar addCalendar(
+			long groupId, long calendarResourceId,
+			Map<Locale, String> nameMap, Map<Locale, String> descriptionMap,
+			int color, boolean defaultCalendar, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		CalendarResourcePermission.check(
+			getPermissionChecker(), calendarResourceId,
+			ActionKeys.ADD_CALENDAR);
+
+		return calendarLocalService.addCalendar(
+			getUserId(), groupId, calendarResourceId, nameMap, descriptionMap,
+			color, defaultCalendar, serviceContext);
+	}
+
+	public void deleteCalendar(long calendarId)
+		throws PortalException, SystemException {
+
+		CalendarPermission.check(
+			getPermissionChecker(), calendarId, ActionKeys.DELETE);
+
+		calendarLocalService.deleteCalendar(calendarId);
+	}
+
+	public Calendar getCalendar(long calendarId)
+		throws PortalException, SystemException {
+
+		CalendarPermission.check(
+			getPermissionChecker(), calendarId, ActionKeys.VIEW);
+
+		return calendarLocalService.getCalendar(calendarId);
+	}
+
+	public Calendar updateCalendar(
+			long calendarId, Map<Locale, String> nameMap,
+			Map<Locale, String> descriptionMap, int color,
+			boolean defaultCalendar, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		CalendarPermission.check(
+			getPermissionChecker(), calendarId, ActionKeys.UPDATE);
+
+		return calendarLocalService.updateCalendar(
+			calendarId, nameMap, descriptionMap, color, defaultCalendar,
+			serviceContext);
+	}
+
 }
