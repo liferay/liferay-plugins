@@ -38,6 +38,69 @@ public class CalendarBookingServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.calendar.service.impl.CalendarBookingServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static com.liferay.calendar.model.CalendarBooking addCalendarBooking(
+		long calendarId, long parentCalendarBookingId,
+		java.util.Map<java.util.Locale, java.lang.String> titleMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		java.util.Map<java.util.Locale, java.lang.String> locationMap,
+		java.lang.String type, int startDateMonth, int startDateDay,
+		int startDateYear, int startDateHour, int startDateMinute,
+		int endDateMonth, int endDateDay, int endDateYear, int endDateHour,
+		int endDateMinute, boolean allDay, java.lang.String recurrence,
+		int priority, boolean outOfOffice, int firstReminder,
+		int secondReminder, boolean required, java.lang.String requestMessage,
+		java.lang.String responseMessage,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .addCalendarBooking(calendarId, parentCalendarBookingId,
+			titleMap, descriptionMap, locationMap, type, startDateMonth,
+			startDateDay, startDateYear, startDateHour, startDateMinute,
+			endDateMonth, endDateDay, endDateYear, endDateHour, endDateMinute,
+			allDay, recurrence, priority, outOfOffice, firstReminder,
+			secondReminder, required, requestMessage, responseMessage,
+			serviceContext);
+	}
+
+	public static void deleteCalendarBooking(long calendarBookingId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().deleteCalendarBooking(calendarBookingId);
+	}
+
+	public static com.liferay.calendar.model.CalendarBooking getCalendarBooking(
+		long calendarBookingId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getCalendarBooking(calendarBookingId);
+	}
+
+	public static com.liferay.calendar.model.CalendarBooking updateCalendarBooking(
+		long calendarBookingId, long calendarId,
+		java.util.Map<java.util.Locale, java.lang.String> titleMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		java.util.Map<java.util.Locale, java.lang.String> locationMap,
+		java.lang.String type, int status, int startDateMonth,
+		int startDateDay, int startDateYear, int startDateHour,
+		int startDateMinute, int endDateMonth, int endDateDay, int endDateYear,
+		int endDateHour, int endDateMinute, boolean allDay,
+		java.lang.String recurrence, int priority, boolean outOfOffice,
+		int firstReminder, int secondReminder, boolean required,
+		java.lang.String requestMessage, java.lang.String responseMessage,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .updateCalendarBooking(calendarBookingId, calendarId,
+			titleMap, descriptionMap, locationMap, type, status,
+			startDateMonth, startDateDay, startDateYear, startDateHour,
+			startDateMinute, endDateMonth, endDateDay, endDateYear,
+			endDateHour, endDateMinute, allDay, recurrence, priority,
+			outOfOffice, firstReminder, secondReminder, required,
+			requestMessage, responseMessage, serviceContext);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

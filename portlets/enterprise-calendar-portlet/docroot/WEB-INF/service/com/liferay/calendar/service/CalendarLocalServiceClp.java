@@ -93,7 +93,17 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 				java.util.Map.class, java.util.Map.class, int.class,
 				boolean.class, com.liferay.portal.service.ServiceContext.class);
 
-		_updateCalendarMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+		_searchMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+				"search", long.class, long.class, java.lang.String.class,
+				java.lang.String.class, java.lang.Boolean.class, boolean.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_searchCountMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+				"searchCount", long.class, long.class, java.lang.String.class,
+				java.lang.String.class, java.lang.Boolean.class, boolean.class);
+
+		_updateCalendarMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateCalendar", long.class, java.util.Map.class,
 				java.util.Map.class, int.class, boolean.class,
 				com.liferay.portal.service.ServiceContext.class);
@@ -637,6 +647,73 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 		return (com.liferay.calendar.model.Calendar)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.util.List<com.liferay.calendar.model.Calendar> search(
+		long groupId, long calendarResourceId, java.lang.String name,
+		java.lang.String description, java.lang.Boolean defaultCalendar,
+		boolean andOperator, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_searchMethodKey19,
+				groupId, calendarResourceId,
+				ClpSerializer.translateInput(name),
+				ClpSerializer.translateInput(description),
+				ClpSerializer.translateInput(defaultCalendar), andOperator,
+				start, end, ClpSerializer.translateInput(orderByComparator));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.calendar.model.Calendar>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public long searchCount(long groupId, long calendarResourceId,
+		java.lang.String name, java.lang.String description,
+		java.lang.Boolean defaultCalendar, boolean andOperator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_searchCountMethodKey20,
+				groupId, calendarResourceId,
+				ClpSerializer.translateInput(name),
+				ClpSerializer.translateInput(description),
+				ClpSerializer.translateInput(defaultCalendar), andOperator);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Long)returnObj).longValue();
+	}
+
 	public com.liferay.calendar.model.Calendar updateCalendar(long calendarId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
@@ -646,7 +723,7 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateCalendarMethodKey19,
+		MethodHandler methodHandler = new MethodHandler(_updateCalendarMethodKey21,
 				calendarId, ClpSerializer.translateInput(nameMap),
 				ClpSerializer.translateInput(descriptionMap), color,
 				defaultCalendar, ClpSerializer.translateInput(serviceContext));
@@ -699,5 +776,7 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 	private MethodKey _getBeanIdentifierMethodKey16;
 	private MethodKey _setBeanIdentifierMethodKey17;
 	private MethodKey _addCalendarMethodKey18;
-	private MethodKey _updateCalendarMethodKey19;
+	private MethodKey _searchMethodKey19;
+	private MethodKey _searchCountMethodKey20;
+	private MethodKey _updateCalendarMethodKey21;
 }

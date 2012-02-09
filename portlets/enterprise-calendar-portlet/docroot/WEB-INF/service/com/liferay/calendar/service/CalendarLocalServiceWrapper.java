@@ -281,6 +281,25 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 			defaultCalendar, serviceContext);
 	}
 
+	public java.util.List<com.liferay.calendar.model.Calendar> search(
+		long groupId, long calendarResourceId, java.lang.String name,
+		java.lang.String description, java.lang.Boolean defaultCalendar,
+		boolean andOperator, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarLocalService.search(groupId, calendarResourceId, name,
+			description, defaultCalendar, andOperator, start, end,
+			orderByComparator);
+	}
+
+	public long searchCount(long groupId, long calendarResourceId,
+		java.lang.String name, java.lang.String description,
+		java.lang.Boolean defaultCalendar, boolean andOperator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarLocalService.searchCount(groupId, calendarResourceId,
+			name, description, defaultCalendar, andOperator);
+	}
+
 	public com.liferay.calendar.model.Calendar updateCalendar(long calendarId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
