@@ -15,16 +15,13 @@
 --%>
 
 <%
-int start = 0;
-int end = SearchContainer.DEFAULT_DELTA;
-
 List<SocialActivity> activities = null;
 
 if (group.isOrganization()) {
-	activities = SocialActivityLocalServiceUtil.getOrganizationUsersActivities(group.getClassPK(), start, end);
+	activities = SocialActivityLocalServiceUtil.getOrganizationUsersActivities(group.getClassPK(), 0, max);
 }
 else if (group.isRegularSite()) {
-	activities = SocialActivityLocalServiceUtil.getGroupUsersActivities(group.getGroupId(), start, end);
+	activities = SocialActivityLocalServiceUtil.getGroupUsersActivities(group.getGroupId(), 0, max);
 }
 
 PortletURL rssURL = renderResponse.createRenderURL();

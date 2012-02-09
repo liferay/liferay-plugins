@@ -14,15 +14,16 @@
  */
 --%>
 
-<%@ include file="/members_activities/init.jsp" %>
+<%@ include file="/init.jsp" %>
 
-<c:choose>
-	<c:when test="<%= group.isUser() %>">
-		<div class="portlet-msg-error">
-			<liferay-ui:message key="this-application-will-only-function-when-placed-on-a-site-page" />
-		</div>
-	</c:when>
-	<c:otherwise>
-		<%@ include file="/members_activities/view_members_activities.jspf" %>
-	</c:otherwise>
-</c:choose>
+<%
+PortletPreferences preferences = renderRequest.getPreferences();
+
+String portletResource = ParamUtil.getString(request, "portletResource");
+
+if (Validator.isNotNull(portletResource)) {
+	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
+}
+
+int max = GetterUtil.getInteger(preferences.getValue("max", "10"));
+%>

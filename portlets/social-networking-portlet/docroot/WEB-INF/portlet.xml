@@ -105,6 +105,10 @@
 		<display-name>Friends' Activities</display-name>
 		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
 		<init-param>
+			<name>config-template</name>
+			<value>/friends_activities/configuration.jsp</value>
+		</init-param>
+		<init-param>
 			<name>view-template</name>
 			<value>/friends_activities/view.jsp</value>
 		</init-param>
@@ -229,6 +233,10 @@
 		<portlet-name>8</portlet-name>
 		<display-name>Members' Activities</display-name>
 		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
+		<init-param>
+			<name>config-template</name>
+			<value>/members_activities/configuration.jsp</value>
+		</init-param>
 		<init-param>
 			<name>view-template</name>
 			<value>/members_activities/view.jsp</value>
