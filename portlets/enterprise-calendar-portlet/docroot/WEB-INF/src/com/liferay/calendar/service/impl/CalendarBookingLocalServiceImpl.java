@@ -19,13 +19,26 @@ import com.liferay.calendar.CalendarBookingTitleException;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.service.base.CalendarBookingLocalServiceBaseImpl;
+import com.liferay.calendar.util.CalendarUtil;
 import com.liferay.calendar.workflow.CalendarBookingApprovalWorkflow;
 import com.liferay.calendar.workflow.CalendarBookingWorkflowConstants;
 import com.liferay.portal.kernel.bean.BeanReference;
+import com.liferay.portal.kernel.dao.orm.Conjunction;
+import com.liferay.portal.kernel.dao.orm.Criterion;
+import com.liferay.portal.kernel.dao.orm.Disjunction;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.Junction;
+import com.liferay.portal.kernel.dao.orm.Property;
+import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TimeZoneUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -36,6 +49,7 @@ import com.liferay.portlet.calendar.EventEndDateException;
 import com.liferay.portlet.calendar.EventStartDateException;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -178,6 +192,51 @@ public class CalendarBookingLocalServiceImpl
 		}
 	}
 
+	public CalendarBooking getCalendarBooking(long calendarBookingId)
+		throws PortalException, SystemException {
+
+		return calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
+	}
+
+	public List<CalendarBooking> getCalendarBookings(long calendarId)
+		throws SystemException {
+
+		return calendarBookingPersistence.findByCalendarId(calendarId);
+	}
+
+	public List<CalendarBooking> search(
+			long calendarId, long calendarResourceId, String title,
+			String description, String location, String type,
+			Date startDate, Date endDate, Boolean allDay, int priority,
+			Boolean outOfOffice, Boolean required, int status,
+			boolean andOperator, int start, int end,
+			OrderByComparator orderByComparator)
+		throws SystemException {
+
+		DynamicQuery dynamicQuery = buildDynamicQuery(
+			calendarId, calendarResourceId, title, description, location, type,
+			startDate, endDate, allDay, priority, outOfOffice, required, status,
+			andOperator);
+
+		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
+	}
+
+	public long searchCount(
+			long calendarId, long calendarResourceId, String title,
+			String description, String location, String type,
+			Date startDate, Date endDate, Boolean allDay, int priority,
+			Boolean outOfOffice, Boolean required, int status,
+			boolean andOperator)
+		throws SystemException {
+
+		DynamicQuery dynamicQuery = buildDynamicQuery(
+			calendarId, calendarResourceId, title, description, location, type,
+			startDate, endDate, allDay, priority, outOfOffice, required, status,
+			andOperator);
+
+		return dynamicQueryCount(dynamicQuery);
+	}
+
 	public CalendarBooking updateCalendarBooking(
 			long userId, long calendarBookingId, long calendarId,
 			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
@@ -282,6 +341,119 @@ public class CalendarBookingLocalServiceImpl
 		calendarBookingPersistence.update(calendarBooking, false);
 
 		return calendarBooking;
+	}
+
+	protected DynamicQuery buildDynamicQuery(
+		long calendarId, long calendarResourceId, String title,
+		String description, String location, String type,
+		Date startDate, Date endDate, Boolean allDay, int priority,
+		Boolean outOfOffice, Boolean required, int status,
+		boolean andOperator) {
+
+		Junction junction = null;
+
+		if (andOperator) {
+			junction = RestrictionsFactoryUtil.conjunction();
+		}
+		else {
+			junction = RestrictionsFactoryUtil.disjunction();
+		}
+
+		Map<String, String> terms = new HashMap<String, String>();
+
+		if (Validator.isNotNull(title)) {
+			terms.put("title", title);
+		}
+
+		if (Validator.isNotNull(description)) {
+			terms.put("description", description);
+		}
+
+		if (Validator.isNotNull(location)) {
+			terms.put("location", location);
+		}
+
+		for (Map.Entry<String, String> entry : terms.entrySet()) {
+			String key = entry.getKey();
+			String value = entry.getValue();
+
+			Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
+
+			for (String keyword : CalendarUtil.splitKeywords(value)) {
+				Criterion criterion = RestrictionsFactoryUtil.ilike(
+					key, StringUtil.quote(keyword, StringPool.PERCENT));
+
+				disjunction.add(criterion);
+			}
+
+			junction.add(disjunction);
+		}
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			CalendarBooking.class, getClass().getClassLoader());
+
+		if (calendarId > 0) {
+			Property property = PropertyFactoryUtil.forName("calendarId");
+
+			dynamicQuery.add(property.eq(calendarId));
+		}
+
+		if (calendarResourceId > 0) {
+			Property property = PropertyFactoryUtil.forName(
+				"calendarResourceId");
+
+			dynamicQuery.add(property.eq(calendarResourceId));
+		}
+
+		if (Validator.isNotNull(type)) {
+			Property property = PropertyFactoryUtil.forName("type");
+
+			dynamicQuery.add(property.eq(type));
+		}
+
+		if ((endDate != null) && (startDate != null)) {
+			Conjunction conjunction = RestrictionsFactoryUtil.conjunction();
+
+			Property propertyEnd = PropertyFactoryUtil.forName("endDate");
+			Property propertyStart = PropertyFactoryUtil.forName("startDate");
+
+			conjunction.add(propertyEnd.ge(startDate));
+			conjunction.add(propertyStart.le(endDate));
+
+			dynamicQuery.add(conjunction);
+		}
+
+		if (allDay != null) {
+			Property property = PropertyFactoryUtil.forName("allDay");
+
+			dynamicQuery.add(property.eq(allDay));
+		}
+
+		if (priority >= 0) {
+			Property property = PropertyFactoryUtil.forName("priority");
+
+			dynamicQuery.add(property.eq(priority));
+		}
+
+		if (outOfOffice != null) {
+			Property property = PropertyFactoryUtil.forName("outOfOffice");
+
+			dynamicQuery.add(property.eq(outOfOffice));
+		}
+
+		if (required != null) {
+			Property property = PropertyFactoryUtil.forName("required");
+
+			dynamicQuery.add(property.eq(required));
+		}
+
+		if (status != WorkflowConstants.STATUS_ANY) {
+			Property property = PropertyFactoryUtil.forName("status");
+
+			dynamicQuery.add(property.eq(status));
+		}
+
+		return dynamicQuery.add(junction);
 	}
 
 	protected java.util.Calendar getJCalendar(
