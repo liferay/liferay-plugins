@@ -558,7 +558,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 }
 
 .aui-underlay-content, .aui-dialog-content {
-	@include box-shadow(0 0 9px -3px black, 0 20px 29px -22px rgba(0, 0, 0, 0.6));
+	@include box-shadow(0 0 9px -3px #000, 0 20px 29px -22px rgba(0, 0, 0, 0.6));
 	border-width: 0;
 	background-color: #F9F9F9;
 }
@@ -579,7 +579,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	border-width: 1px;
 }
 
-#toggleFluid {
+#toggleFluid, .so-layout-fluid-ad #toggleFluid {
 	background-image: url(../images/custom/toggle-button-bg.png);
 	background-position: 8px 50%;
 	background-repeat: no-repeat;
@@ -594,6 +594,11 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 .so-layout-fluid #toggleFluid {
 	background-position: -50px 50%;
+}
+
+.so-layout-fluid-ad #toggleFluid {
+	@include box-shadow(0 0 9px -3px #000 inset);
+	background-color: #CCC;
 }
 
 /* ---------- Tabs ---------- */
@@ -1860,7 +1865,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 /* Fluid Layout */
 
-body.so-layout-fluid {
+body.so-layout-fluid, body.so-layout-fluid-ad {
 	#content, #footer, #banner #heading {
 		margin: 0 auto;
 		width: auto;
