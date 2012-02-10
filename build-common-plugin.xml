@@ -153,8 +153,8 @@
 			<not>
 				<isset property="service.input.file" />
 			</not>
-		    	<then>
-		    		<property name="service.input.file" value="${basedir}/docroot/WEB-INF/service.xml" />
+			<then>
+				<property name="service.input.file" value="${basedir}/docroot/WEB-INF/service.xml" />
 			</then>
 		</if>
 
@@ -707,7 +707,7 @@ Please find a solution that does not require portal-impl.jar.
 					<sysproperty key="net.sourceforge.cobertura.datafile" file="test-coverage/cobertura.ser" />
 					<jvmarg line="${junit.debug.jpda}" />
 					<jvmarg value="-Xmx1024m" />
-                    <jvmarg value="-XX:MaxPermSize=256m" />
+					<jvmarg value="-XX:MaxPermSize=256m" />
 					<jvmarg value="-Duser.timezone=GMT" />
 					<jvmarg value="-Dexternal-properties=${test.properties}" />
 					<classpath location="test-coverage" />
@@ -724,7 +724,7 @@ Please find a solution that does not require portal-impl.jar.
 					<sysproperty key="net.sourceforge.cobertura.datafile" file="test-coverage/cobertura.ser" />
 					<jvmarg line="${junit.debug.jpda}" />
 					<jvmarg value="-Xmx1024m" />
-                    <jvmarg value="-XX:MaxPermSize=256m" />
+					<jvmarg value="-XX:MaxPermSize=256m" />
 					<jvmarg value="-Duser.timezone=GMT" />
 					<jvmarg value="-Dexternal-properties=${test.properties}" />
 					<classpath location="test-coverage" />
