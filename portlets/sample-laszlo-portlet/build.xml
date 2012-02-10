@@ -8,5 +8,5 @@
 	The original WAR file was downloaded from http://www.openlaszlo.org.
 	-->
 
-	<property name="original.war.file" value="openlaszlo-4.0.2-servlet.war" />
+	<property name="original.war.file" value="openlaszlo-4.9.0-servlet.war" />
 </project>
