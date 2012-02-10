@@ -141,18 +141,17 @@ $section-header-bg: #CCE6F7;
 
 			.lfr-contact-info {
 				font-size: 1em;
-				overflow-x: hidden;
 				margin-left: 0;
+				overflow-x: hidden;
 				padding-left: 10px;
 			}
 		}
 
-		.lfr-contact-grid-item:hover {
+		.more-results, .lfr-contact-grid-item:hover {
 			background-color: #E8EFF4;
 		}
 
 		.more-results {
-			background-color: #E8EFF4;
 			border: 1px solid #CCC;
 			margin: 5px;
 			padding: 2px;
@@ -308,16 +307,6 @@ $section-header-bg: #CCE6F7;
 			.lfr-button-column {
 				padding-left: 10px;
 				padding-top: 5px;
-
-				.aui-toolbar-first {
-					border-bottom-left-radius: 0;
-					border-top-left-radius: 0;
-				}
-
-				.aui-toolbar-last {
-					border-bottom-right-radius: 0;
-					border-top-right-radius: 0;
-				}
 
 				.aui-icon-remove-coworker {
 					background-image: url(@theme_image_path@/social/remove_coworker.png);
