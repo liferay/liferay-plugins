@@ -140,9 +140,10 @@ $section-header-bg: #CCE6F7;
 			}
 
 			.lfr-contact-info {
-				float: left;
 				font-size: 1em;
-				margin-left: 10px;
+				overflow-x: hidden;
+				margin-left: 0;
+				padding-left: 10px;
 			}
 		}
 
