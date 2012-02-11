@@ -14,7 +14,7 @@
  */
 --%>
 
-<liferay-ui:error key="restartConsumer" message="the-wsrp-consumer-is-not-available" />
+<liferay-ui:error key="restartConsumer" message="the-consumer-is-not-available" />
 <liferay-ui:error key="updateServiceDescription" message="unable-to-update-the-service-description" />
 
 <liferay-ui:search-container
