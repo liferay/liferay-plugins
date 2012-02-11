@@ -85,12 +85,14 @@ public class AdminPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		long wsrpConsumerId = ParamUtil.getLong(
-			actionRequest, "wsrpConsumerId");
+		checkPermissions(actionRequest);
 
-		String userToken = WSRPConsumerManager.getUserToken(actionRequest);
-
-		WSRPConsumerLocalServiceUtil.restartConsumer(wsrpConsumerId, userToken);
+		try {
+			doRestartConsumer(actionRequest, actionResponse);
+		}
+		catch (PortalException pe) {
+			SessionErrors.add(actionRequest, "restartConsumer");
+		}
 	}
 
 	public void updateServiceDescription(
@@ -103,7 +105,7 @@ public class AdminPortlet extends MVCPortlet {
 			doUpdateServiceDescription(actionRequest, actionResponse);
 		}
 		catch (PortalException pe) {
-			SessionErrors.add(actionRequest, pe.getClass().getName());
+			SessionErrors.add(actionRequest, "updateServiceDescription");
 		}
 	}
 
@@ -175,6 +177,18 @@ public class AdminPortlet extends MVCPortlet {
 		if (!permissionChecker.isCompanyAdmin()) {
 			throw new PrincipalException();
 		}
+	}
+
+	protected void doRestartConsumer(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long wsrpConsumerId = ParamUtil.getLong(
+			actionRequest, "wsrpConsumerId");
+
+		String userToken = WSRPConsumerManager.getUserToken(actionRequest);
+
+		WSRPConsumerLocalServiceUtil.restartConsumer(wsrpConsumerId, userToken);
 	}
 
 	protected void doUpdateServiceDescription(
