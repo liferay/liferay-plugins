@@ -87,7 +87,7 @@ public class V2ServiceDescriptionServiceImpl
 		}
 		catch (NoSuchProducerException nspe) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(e.getMessage());
+				_log.warn(nspe.getMessage());
 			}
 
 			return null;
