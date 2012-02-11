@@ -26,6 +26,7 @@ import com.liferay.portal.model.PortletInfo;
 import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.axis.ServletUtil;
+import com.liferay.wsrp.NoSuchProducerException;
 import com.liferay.wsrp.model.WSRPProducer;
 import com.liferay.wsrp.util.ExtensionUtil;
 
@@ -79,7 +80,16 @@ public class V2ServiceDescriptionServiceImpl
 			GetServiceDescription getServiceDescription)
 		throws Exception {
 
-		WSRPProducer wsrpProducer = getWSRPProducer();
+		WSRPProducer wsrpProducer = null;
+
+		try {
+			wsrpProducer = getWSRPProducer();
+		}
+		catch (NoSuchProducerException e) {
+			_log.warn(e.getMessage());
+
+			return null;
+		}
 
 		ServiceDescription serviceDescription = new ServiceDescription();
 

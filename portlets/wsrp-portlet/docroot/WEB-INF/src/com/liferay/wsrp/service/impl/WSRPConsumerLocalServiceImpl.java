@@ -182,6 +182,9 @@ public class WSRPConsumerLocalServiceImpl
 			wsrpConsumerId);
 
 		try {
+			WSRPConsumerManagerFactory.destroyWSRPConsumerManager(
+				wsrpConsumer.getUrl());
+
 			WSRPConsumerManager wsrpConsumerManager =
 				WSRPConsumerManagerFactory.getWSRPConsumerManager(
 					wsrpConsumer, userToken);
@@ -228,6 +231,9 @@ public class WSRPConsumerLocalServiceImpl
 			wsrpConsumerId);
 
 		try {
+			WSRPConsumerManagerFactory.destroyWSRPConsumerManager(
+				wsrpConsumer.getUrl());
+
 			WSRPConsumerManager wsrpConsumerManager =
 				WSRPConsumerManagerFactory.getWSRPConsumerManager(
 					wsrpConsumer, userToken);
