@@ -54,7 +54,9 @@ public class WSDLServlet extends HttpServlet {
 			ServletResponseUtil.write(response, content);
 		}
 		catch (Exception e) {
-			_log.warn(e.getMessage());
+			if (_log.isWarnEnabled()) {
+				_log.warn(e.getMessage());
+			}
 
 			response.sendError(
 				HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());

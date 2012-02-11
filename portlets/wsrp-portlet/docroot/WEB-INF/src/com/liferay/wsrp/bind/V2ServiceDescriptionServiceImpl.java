@@ -85,8 +85,10 @@ public class V2ServiceDescriptionServiceImpl
 		try {
 			wsrpProducer = getWSRPProducer();
 		}
-		catch (NoSuchProducerException e) {
-			_log.warn(e.getMessage());
+		catch (NoSuchProducerException nspe) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(e.getMessage());
+			}
 
 			return null;
 		}
