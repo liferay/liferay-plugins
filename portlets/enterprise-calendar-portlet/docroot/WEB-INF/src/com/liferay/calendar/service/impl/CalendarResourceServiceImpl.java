@@ -17,7 +17,7 @@ package com.liferay.calendar.service.impl;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.base.CalendarResourceServiceBaseImpl;
 import com.liferay.calendar.service.permission.CalendarResourcePermission;
-import com.liferay.calendar.service.permission.CalendarsPermission;
+import com.liferay.calendar.service.permission.EnterpriseCalendarPermission;
 import com.liferay.calendar.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -35,13 +35,13 @@ public class CalendarResourceServiceImpl
 	extends CalendarResourceServiceBaseImpl {
 
 	public CalendarResource addCalendarResource(
-		long groupId, String className, long classPK,
-		String classUuid, String code, Map<Locale, String> nameMap,
-		Map<Locale, String> descriptionMap, String type, boolean active,
-		ServiceContext serviceContext)
-	throws PortalException, SystemException {
+			long groupId, String className, long classPK,
+			String classUuid, String code, Map<Locale, String> nameMap,
+			Map<Locale, String> descriptionMap, String type, boolean active,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
 
-		CalendarsPermission.check(
+		EnterpriseCalendarPermission.check(
 			getPermissionChecker(), groupId, ActionKeys.ADD_RESOURCE);
 
 		return calendarResourceLocalService.addCalendarResource(
@@ -49,9 +49,8 @@ public class CalendarResourceServiceImpl
 			nameMap, descriptionMap, type, active, serviceContext);
 	}
 
-	public void deleteCalendarResource(
-		long calendarResourceId)
-	throws PortalException, SystemException {
+	public void deleteCalendarResource(long calendarResourceId)
+		throws PortalException, SystemException {
 
 		CalendarResourcePermission.check(
 			getPermissionChecker(), calendarResourceId, ActionKeys.DELETE);
@@ -70,10 +69,10 @@ public class CalendarResourceServiceImpl
 	}
 
 	public CalendarResource updateCalendarResource(
-		long calendarResourceId, String code, Map<Locale, String> nameMap,
-		Map<Locale, String> descriptionMap, String type, boolean active,
-		ServiceContext serviceContext)
-	throws PortalException, SystemException {
+			long calendarResourceId, String code, Map<Locale, String> nameMap,
+			Map<Locale, String> descriptionMap, String type, boolean active,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
 
 		CalendarResourcePermission.check(
 			getPermissionChecker(), calendarResourceId, ActionKeys.UPDATE);

@@ -232,8 +232,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		}
 
 		if (defaultCalendar != null) {
-			Property property = PropertyFactoryUtil.forName(
-				"defaultCalendar");
+			Property property = PropertyFactoryUtil.forName("defaultCalendar");
 
 			dynamicQuery.add(property.eq(defaultCalendar));
 		}
