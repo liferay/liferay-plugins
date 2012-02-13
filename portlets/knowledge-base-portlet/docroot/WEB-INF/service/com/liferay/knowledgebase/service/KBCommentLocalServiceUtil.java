@@ -289,8 +289,7 @@ public class KBCommentLocalServiceUtil {
 	}
 
 	public static void deleteKBComments(java.lang.String className, long classPK)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteKBComments(className, classPK);
 	}
 

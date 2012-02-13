@@ -281,8 +281,7 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	}
 
 	public void deleteKBComments(java.lang.String className, long classPK)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		_kbCommentLocalService.deleteKBComments(className, classPK);
 	}
 

@@ -136,6 +136,15 @@ public class KBArticleServiceUtil {
 			rssDisplayStyle, rssFormat, themeDisplay);
 	}
 
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
+		long groupId, long[] resourcePrimKeys, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getKBArticles(groupId, resourcePrimKeys, status,
+			orderByComparator);
+	}
+
 	public static com.liferay.knowledgebase.model.KBArticleSearchDisplay getKBArticleSearchDisplay(
 		long groupId, java.lang.String title, java.lang.String content,
 		int status, java.util.Date startDate, java.util.Date endDate,
@@ -163,15 +172,6 @@ public class KBArticleServiceUtil {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getKBArticleVersionsCount(groupId, resourcePrimKey, status);
-	}
-
-	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
-		long groupId, long[] resourcePrimKeys, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .getKBArticles(groupId, resourcePrimKeys, status,
-			orderByComparator);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle getLatestKBArticle(

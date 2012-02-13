@@ -74,24 +74,24 @@ public class KBArticleServiceClp implements KBArticleService {
 				java.lang.String.class, java.lang.String.class,
 				com.liferay.portal.theme.ThemeDisplay.class);
 
-		_getKBArticleSearchDisplayMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKBArticlesMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKBArticles", long.class, long[].class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_getKBArticleSearchDisplayMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKBArticleSearchDisplay", long.class,
 				java.lang.String.class, java.lang.String.class, int.class,
 				java.util.Date.class, java.util.Date.class, boolean.class,
 				int[].class, int.class, int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
-		_getKBArticleVersionsMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKBArticleVersionsMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKBArticleVersions", long.class, long.class, int.class,
 				int.class, int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
-		_getKBArticleVersionsCountMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKBArticleVersionsCountMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKBArticleVersionsCount", long.class, long.class, int.class);
-
-		_getKBArticlesMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getKBArticles", long.class, long[].class, int.class,
-				com.liferay.portal.kernel.util.OrderByComparator.class);
 
 		_getLatestKBArticleMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getLatestKBArticle", long.class, int.class);
@@ -503,6 +503,36 @@ public class KBArticleServiceClp implements KBArticleService {
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
+		long groupId, long[] resourcePrimKeys, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getKBArticlesMethodKey11,
+				groupId, ClpSerializer.translateInput(resourcePrimKeys),
+				status, ClpSerializer.translateInput(orderByComparator));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.knowledgebase.model.KBArticle>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public com.liferay.knowledgebase.model.KBArticleSearchDisplay getKBArticleSearchDisplay(
 		long groupId, java.lang.String title, java.lang.String content,
 		int status, java.util.Date startDate, java.util.Date endDate,
@@ -512,7 +542,7 @@ public class KBArticleServiceClp implements KBArticleService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKBArticleSearchDisplayMethodKey11,
+		MethodHandler methodHandler = new MethodHandler(_getKBArticleSearchDisplayMethodKey12,
 				groupId, ClpSerializer.translateInput(title),
 				ClpSerializer.translateInput(content), status,
 				ClpSerializer.translateInput(startDate),
@@ -550,7 +580,7 @@ public class KBArticleServiceClp implements KBArticleService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKBArticleVersionsMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_getKBArticleVersionsMethodKey13,
 				groupId, resourcePrimKey, status, start, end,
 				ClpSerializer.translateInput(orderByComparator));
 
@@ -578,7 +608,7 @@ public class KBArticleServiceClp implements KBArticleService {
 		int status) throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKBArticleVersionsCountMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_getKBArticleVersionsCountMethodKey14,
 				groupId, resourcePrimKey, status);
 
 		try {
@@ -599,36 +629,6 @@ public class KBArticleServiceClp implements KBArticleService {
 		}
 
 		return ((Integer)returnObj).intValue();
-	}
-
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
-		long groupId, long[] resourcePrimKeys, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		MethodHandler methodHandler = new MethodHandler(_getKBArticlesMethodKey14,
-				groupId, ClpSerializer.translateInput(resourcePrimKeys),
-				status, ClpSerializer.translateInput(orderByComparator));
-
-		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.util.List<com.liferay.knowledgebase.model.KBArticle>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.knowledgebase.model.KBArticle getLatestKBArticle(
@@ -1048,10 +1048,10 @@ public class KBArticleServiceClp implements KBArticleService {
 	private MethodKey _getKBArticleMethodKey8;
 	private MethodKey _getKBArticleAndAllDescendantsMethodKey9;
 	private MethodKey _getKBArticleRSSMethodKey10;
-	private MethodKey _getKBArticleSearchDisplayMethodKey11;
-	private MethodKey _getKBArticleVersionsMethodKey12;
-	private MethodKey _getKBArticleVersionsCountMethodKey13;
-	private MethodKey _getKBArticlesMethodKey14;
+	private MethodKey _getKBArticlesMethodKey11;
+	private MethodKey _getKBArticleSearchDisplayMethodKey12;
+	private MethodKey _getKBArticleVersionsMethodKey13;
+	private MethodKey _getKBArticleVersionsCountMethodKey14;
 	private MethodKey _getLatestKBArticleMethodKey15;
 	private MethodKey _getSectionsKBArticlesMethodKey16;
 	private MethodKey _getSectionsKBArticlesCountMethodKey17;
