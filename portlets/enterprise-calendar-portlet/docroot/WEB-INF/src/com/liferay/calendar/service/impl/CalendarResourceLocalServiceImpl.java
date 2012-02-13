@@ -135,6 +135,7 @@ public class CalendarResourceLocalServiceImpl
 		deleteCalendarResource(calendarResource);
 	}
 
+	@Override
 	public CalendarResource getCalendarResource(long calendarResourceId)
 		throws PortalException, SystemException {
 
@@ -200,6 +201,39 @@ public class CalendarResourceLocalServiceImpl
 		long groupId, long classNameId, long classPK, String code, String name,
 		String description, String type, Boolean active, boolean andOperator) {
 
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			CalendarResource.class, getClassLoader());
+
+		if (groupId > 0) {
+			Property property = PropertyFactoryUtil.forName("groupId");
+
+			dynamicQuery.add(property.eq(groupId));
+		}
+
+		if (classNameId > 0) {
+			Property property = PropertyFactoryUtil.forName("classNameId");
+
+			dynamicQuery.add(property.eq(classNameId));
+		}
+
+		if (classPK > 0) {
+			Property property = PropertyFactoryUtil.forName("classPK");
+
+			dynamicQuery.add(property.eq(classPK));
+		}
+
+		if (Validator.isNotNull(type)) {
+			Property property = PropertyFactoryUtil.forName("type");
+
+			dynamicQuery.add(property.eq(type));
+		}
+
+		if (active != null) {
+			Property property = PropertyFactoryUtil.forName("active");
+
+			dynamicQuery.add(property.eq(active));
+		}
+
 		Junction junction = null;
 
 		if (andOperator) {
@@ -237,39 +271,6 @@ public class CalendarResourceLocalServiceImpl
 			}
 
 			junction.add(disjunction);
-		}
-
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			CalendarResource.class, getClass().getClassLoader());
-
-		if (groupId > 0) {
-			Property property = PropertyFactoryUtil.forName("groupId");
-
-			dynamicQuery.add(property.eq(groupId));
-		}
-
-		if (classNameId > 0) {
-			Property property = PropertyFactoryUtil.forName("classNameId");
-
-			dynamicQuery.add(property.eq(classNameId));
-		}
-
-		if (classPK > 0) {
-			Property property = PropertyFactoryUtil.forName("classPK");
-
-			dynamicQuery.add(property.eq(classPK));
-		}
-
-		if (Validator.isNotNull(type)) {
-			Property property = PropertyFactoryUtil.forName("type");
-
-			dynamicQuery.add(property.eq(type));
-		}
-
-		if (active != null) {
-			Property property = PropertyFactoryUtil.forName("active");
-
-			dynamicQuery.add(property.eq(active));
 		}
 
 		return dynamicQuery.add(junction);

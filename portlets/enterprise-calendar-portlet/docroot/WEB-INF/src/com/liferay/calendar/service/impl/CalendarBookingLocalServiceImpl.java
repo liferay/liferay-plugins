@@ -192,6 +192,7 @@ public class CalendarBookingLocalServiceImpl
 		}
 	}
 
+	@Override
 	public CalendarBooking getCalendarBooking(long calendarBookingId)
 		throws PortalException, SystemException {
 
@@ -350,47 +351,8 @@ public class CalendarBookingLocalServiceImpl
 		Boolean outOfOffice, Boolean required, int status,
 		boolean andOperator) {
 
-		Junction junction = null;
-
-		if (andOperator) {
-			junction = RestrictionsFactoryUtil.conjunction();
-		}
-		else {
-			junction = RestrictionsFactoryUtil.disjunction();
-		}
-
-		Map<String, String> terms = new HashMap<String, String>();
-
-		if (Validator.isNotNull(title)) {
-			terms.put("title", title);
-		}
-
-		if (Validator.isNotNull(description)) {
-			terms.put("description", description);
-		}
-
-		if (Validator.isNotNull(location)) {
-			terms.put("location", location);
-		}
-
-		for (Map.Entry<String, String> entry : terms.entrySet()) {
-			String key = entry.getKey();
-			String value = entry.getValue();
-
-			Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
-
-			for (String keyword : CalendarUtil.splitKeywords(value)) {
-				Criterion criterion = RestrictionsFactoryUtil.ilike(
-					key, StringUtil.quote(keyword, StringPool.PERCENT));
-
-				disjunction.add(criterion);
-			}
-
-			junction.add(disjunction);
-		}
-
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			CalendarBooking.class, getClass().getClassLoader());
+			CalendarBooking.class, getClassLoader());
 
 		if (calendarId > 0) {
 			Property property = PropertyFactoryUtil.forName("calendarId");
@@ -451,6 +413,45 @@ public class CalendarBookingLocalServiceImpl
 			Property property = PropertyFactoryUtil.forName("status");
 
 			dynamicQuery.add(property.eq(status));
+		}
+
+		Junction junction = null;
+
+		if (andOperator) {
+			junction = RestrictionsFactoryUtil.conjunction();
+		}
+		else {
+			junction = RestrictionsFactoryUtil.disjunction();
+		}
+
+		Map<String, String> terms = new HashMap<String, String>();
+
+		if (Validator.isNotNull(title)) {
+			terms.put("title", title);
+		}
+
+		if (Validator.isNotNull(description)) {
+			terms.put("description", description);
+		}
+
+		if (Validator.isNotNull(location)) {
+			terms.put("location", location);
+		}
+
+		for (Map.Entry<String, String> entry : terms.entrySet()) {
+			String key = entry.getKey();
+			String value = entry.getValue();
+
+			Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
+
+			for (String keyword : CalendarUtil.splitKeywords(value)) {
+				Criterion criterion = RestrictionsFactoryUtil.ilike(
+					key, StringUtil.quote(keyword, StringPool.PERCENT));
+
+				disjunction.add(criterion);
+			}
+
+			junction.add(disjunction);
 		}
 
 		return dynamicQuery.add(junction);

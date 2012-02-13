@@ -118,6 +118,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		deleteCalendar(calendar);
 	}
 
+	@Override
 	public Calendar getCalendar(long calendarId)
 		throws PortalException, SystemException {
 
@@ -180,6 +181,28 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		long groupId, long calendarResourceId, String name, String description,
 		Boolean defaultCalendar, boolean andOperator) {
 
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			Calendar.class, getClassLoader());
+
+		if (groupId > 0) {
+			Property property = PropertyFactoryUtil.forName("groupId");
+
+			dynamicQuery.add(property.eq(groupId));
+		}
+
+		if (calendarResourceId > 0) {
+			Property property = PropertyFactoryUtil.forName(
+				"calendarResourceId");
+
+			dynamicQuery.add(property.eq(calendarResourceId));
+		}
+
+		if (defaultCalendar != null) {
+			Property property = PropertyFactoryUtil.forName("defaultCalendar");
+
+			dynamicQuery.add(property.eq(defaultCalendar));
+		}
+
 		Junction junction = null;
 
 		if (andOperator) {
@@ -213,28 +236,6 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 			}
 
 			junction.add(disjunction);
-		}
-
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Calendar.class, getClass().getClassLoader());
-
-		if (groupId > 0) {
-			Property property = PropertyFactoryUtil.forName("groupId");
-
-			dynamicQuery.add(property.eq(groupId));
-		}
-
-		if (calendarResourceId > 0) {
-			Property property = PropertyFactoryUtil.forName(
-				"calendarResourceId");
-
-			dynamicQuery.add(property.eq(calendarResourceId));
-		}
-
-		if (defaultCalendar != null) {
-			Property property = PropertyFactoryUtil.forName("defaultCalendar");
-
-			dynamicQuery.add(property.eq(defaultCalendar));
 		}
 
 		return dynamicQuery.add(junction);
