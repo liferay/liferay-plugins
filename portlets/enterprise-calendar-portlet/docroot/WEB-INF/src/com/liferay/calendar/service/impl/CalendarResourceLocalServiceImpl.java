@@ -138,8 +138,7 @@ public class CalendarResourceLocalServiceImpl
 	public CalendarResource getCalendarResource(long calendarResourceId)
 		throws PortalException, SystemException {
 
-		return calendarResourcePersistence.findByPrimaryKey(
-			calendarResourceId);
+		return calendarResourcePersistence.findByPrimaryKey(calendarResourceId);
 	}
 
 	public List<CalendarResource> search(

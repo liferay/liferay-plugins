@@ -57,8 +57,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			required, requestMessage, responseMessage, serviceContext);
 	}
 
-	public void deleteCalendarBooking(
-			long calendarBookingId)
+	public void deleteCalendarBooking(long calendarBookingId)
 		throws PortalException, SystemException {
 
 		CalendarBookingPermission.check(

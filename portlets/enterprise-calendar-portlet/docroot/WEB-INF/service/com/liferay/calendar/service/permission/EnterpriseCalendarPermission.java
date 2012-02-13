@@ -19,9 +19,10 @@ import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
 
 /**
+ * @author Eduardo Lundgren
  * @author Andrea Di Giorgi
  */
-public class CalendarsPermission {
+public class EnterpriseCalendarPermission {
 
 	public static void check(
 			PermissionChecker permissionChecker, long groupId, String actionId)
@@ -39,6 +40,6 @@ public class CalendarsPermission {
 			groupId, _NAME, groupId, actionId);
 	}
 
-	private static final String _NAME = "com.liferay.calendars";
+	private static final String _NAME = "com.liferay.calendar";
 
 }

@@ -49,11 +49,13 @@
 		</portlet-ref>
 		<permissions>
 			<supports>
+				<action-key>ACCEPT_BOOKING</action-key>
 				<action-key>ADD_BOOKING</action-key>
 				<action-key>DELETE</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>UPDATE</action-key>
 				<action-key>VIEW</action-key>
+				<action-key>VIEW_BOOKING_DETAILS</action-key>
 			</supports>
 			<site-member-defaults>
 				<action-key>VIEW</action-key>
