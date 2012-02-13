@@ -618,6 +618,12 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected ClassLoader getClassLoader() {
+		Class<?> clazz = getClass();
+
+		return clazz.getClassLoader();
+	}
+
 	protected Class<?> getModelClass() {
 		return Folder.class;
 	}

@@ -98,20 +98,20 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 				"getLastSVNRevision", java.lang.String.class);
 
 		_getSVNRevisionsMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getSVNRevisions", java.lang.String.class, int.class, int.class);
+				"getSVNRevisions", long.class, int.class, int.class);
 
 		_getSVNRevisionsMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getSVNRevisions", long.class, int.class, int.class);
+				"getSVNRevisions", java.lang.String.class, int.class, int.class);
 
 		_getSVNRevisionsMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getSVNRevisions", java.lang.String.class, long.class,
 				int.class, int.class);
 
 		_getSVNRevisionsCountMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getSVNRevisionsCount", java.lang.String.class);
+				"getSVNRevisionsCount", long.class);
 
 		_getSVNRevisionsCountMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getSVNRevisionsCount", long.class);
+				"getSVNRevisionsCount", java.lang.String.class);
 
 		_getSVNRevisionsCountMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getSVNRevisionsCount", java.lang.String.class, long.class);
@@ -684,12 +684,12 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 	}
 
 	public java.util.List<com.liferay.socialcoding.model.SVNRevision> getSVNRevisions(
-		java.lang.String svnUserId, int start, int end)
+		long svnRepositoryId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getSVNRevisionsMethodKey20,
-				ClpSerializer.translateInput(svnUserId), start, end);
+				svnRepositoryId, start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -712,12 +712,12 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 	}
 
 	public java.util.List<com.liferay.socialcoding.model.SVNRevision> getSVNRevisions(
-		long svnRepositoryId, int start, int end)
+		java.lang.String svnUserId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getSVNRevisionsMethodKey21,
-				svnRepositoryId, start, end);
+				ClpSerializer.translateInput(svnUserId), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -768,12 +768,12 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 		return (java.util.List<com.liferay.socialcoding.model.SVNRevision>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public int getSVNRevisionsCount(java.lang.String svnUserId)
+	public int getSVNRevisionsCount(long svnRepositoryId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getSVNRevisionsCountMethodKey23,
-				ClpSerializer.translateInput(svnUserId));
+				svnRepositoryId);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -795,12 +795,12 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
-	public int getSVNRevisionsCount(long svnRepositoryId)
+	public int getSVNRevisionsCount(java.lang.String svnUserId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getSVNRevisionsCountMethodKey24,
-				svnRepositoryId);
+				ClpSerializer.translateInput(svnUserId));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

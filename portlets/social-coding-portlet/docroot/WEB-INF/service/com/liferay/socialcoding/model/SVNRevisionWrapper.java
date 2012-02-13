@@ -238,16 +238,16 @@ public class SVNRevisionWrapper implements SVNRevision,
 		_svnRevision.persist();
 	}
 
+	public java.lang.Object[] getJIRAIssueAndComments() {
+		return _svnRevision.getJIRAIssueAndComments();
+	}
+
 	public com.liferay.socialcoding.model.SVNRepository getSVNRepository() {
 		return _svnRevision.getSVNRepository();
 	}
 
 	public java.lang.String getWebRevisionNumberURL() {
 		return _svnRevision.getWebRevisionNumberURL();
-	}
-
-	public java.lang.Object[] getJIRAIssueAndComments() {
-		return _svnRevision.getJIRAIssueAndComments();
 	}
 
 	/**

@@ -113,10 +113,10 @@ public class WSRPConsumerPortletLocalServiceClp
 				"destroyWSRPConsumerPortlets");
 
 		_getWSRPConsumerPortletMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getWSRPConsumerPortlet", java.lang.String.class);
+				"getWSRPConsumerPortlet", long.class, java.lang.String.class);
 
 		_getWSRPConsumerPortletMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getWSRPConsumerPortlet", long.class, java.lang.String.class);
+				"getWSRPConsumerPortlet", java.lang.String.class);
 
 		_getWSRPConsumerPortletsMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getWSRPConsumerPortlets", long.class, int.class, int.class);
@@ -792,13 +792,13 @@ public class WSRPConsumerPortletLocalServiceClp
 	}
 
 	public com.liferay.wsrp.model.WSRPConsumerPortlet getWSRPConsumerPortlet(
-		java.lang.String wsrpConsumerPortletUuid)
+		long wsrpConsumerId, java.lang.String portletHandle)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getWSRPConsumerPortletMethodKey23,
-				ClpSerializer.translateInput(wsrpConsumerPortletUuid));
+				wsrpConsumerId, ClpSerializer.translateInput(portletHandle));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -825,13 +825,13 @@ public class WSRPConsumerPortletLocalServiceClp
 	}
 
 	public com.liferay.wsrp.model.WSRPConsumerPortlet getWSRPConsumerPortlet(
-		long wsrpConsumerId, java.lang.String portletHandle)
+		java.lang.String wsrpConsumerPortletUuid)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getWSRPConsumerPortletMethodKey24,
-				wsrpConsumerId, ClpSerializer.translateInput(portletHandle));
+				ClpSerializer.translateInput(wsrpConsumerPortletUuid));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

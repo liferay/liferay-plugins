@@ -278,16 +278,16 @@ public class SVNRevisionLocalServiceWrapper implements SVNRevisionLocalService,
 	}
 
 	public java.util.List<com.liferay.socialcoding.model.SVNRevision> getSVNRevisions(
-		java.lang.String svnUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _svnRevisionLocalService.getSVNRevisions(svnUserId, start, end);
-	}
-
-	public java.util.List<com.liferay.socialcoding.model.SVNRevision> getSVNRevisions(
 		long svnRepositoryId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _svnRevisionLocalService.getSVNRevisions(svnRepositoryId, start,
 			end);
+	}
+
+	public java.util.List<com.liferay.socialcoding.model.SVNRevision> getSVNRevisions(
+		java.lang.String svnUserId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _svnRevisionLocalService.getSVNRevisions(svnUserId, start, end);
 	}
 
 	public java.util.List<com.liferay.socialcoding.model.SVNRevision> getSVNRevisions(
@@ -297,14 +297,14 @@ public class SVNRevisionLocalServiceWrapper implements SVNRevisionLocalService,
 			svnRepositoryId, start, end);
 	}
 
-	public int getSVNRevisionsCount(java.lang.String svnUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _svnRevisionLocalService.getSVNRevisionsCount(svnUserId);
-	}
-
 	public int getSVNRevisionsCount(long svnRepositoryId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _svnRevisionLocalService.getSVNRevisionsCount(svnRepositoryId);
+	}
+
+	public int getSVNRevisionsCount(java.lang.String svnUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _svnRevisionLocalService.getSVNRevisionsCount(svnUserId);
 	}
 
 	public int getSVNRevisionsCount(java.lang.String svnUserId,

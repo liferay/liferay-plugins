@@ -255,18 +255,18 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	}
 
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getAssigneeJIRAIssues(
-		long projectId, java.lang.String assigneeJiraUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _jiraIssueLocalService.getAssigneeJIRAIssues(projectId,
-			assigneeJiraUserId, start, end);
-	}
-
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getAssigneeJIRAIssues(
 		java.util.Date modifiedDate, long projectId,
 		java.lang.String assigneeJiraUserId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _jiraIssueLocalService.getAssigneeJIRAIssues(modifiedDate,
 			projectId, assigneeJiraUserId, start, end);
+	}
+
+	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getAssigneeJIRAIssues(
+		long projectId, java.lang.String assigneeJiraUserId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _jiraIssueLocalService.getAssigneeJIRAIssues(projectId,
+			assigneeJiraUserId, start, end);
 	}
 
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getAssigneeJIRAIssues(
@@ -277,18 +277,18 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 			assigneeJiraUserId, status, start, end);
 	}
 
-	public int getAssigneeJIRAIssuesCount(long projectId,
-		java.lang.String assigneeJiraUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _jiraIssueLocalService.getAssigneeJIRAIssuesCount(projectId,
-			assigneeJiraUserId);
-	}
-
 	public int getAssigneeJIRAIssuesCount(java.util.Date modifiedDate,
 		long projectId, java.lang.String assigneeJiraUserId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _jiraIssueLocalService.getAssigneeJIRAIssuesCount(modifiedDate,
 			projectId, assigneeJiraUserId);
+	}
+
+	public int getAssigneeJIRAIssuesCount(long projectId,
+		java.lang.String assigneeJiraUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _jiraIssueLocalService.getAssigneeJIRAIssuesCount(projectId,
+			assigneeJiraUserId);
 	}
 
 	public int getAssigneeJIRAIssuesCount(long projectId,
@@ -338,18 +338,18 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	}
 
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getReporterJIRAIssues(
-		long projectId, java.lang.String reporterJiraUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _jiraIssueLocalService.getReporterJIRAIssues(projectId,
-			reporterJiraUserId, start, end);
-	}
-
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getReporterJIRAIssues(
 		java.util.Date modifiedDate, long projectId,
 		java.lang.String reporterJiraUserId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _jiraIssueLocalService.getReporterJIRAIssues(modifiedDate,
 			projectId, reporterJiraUserId, start, end);
+	}
+
+	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getReporterJIRAIssues(
+		long projectId, java.lang.String reporterJiraUserId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _jiraIssueLocalService.getReporterJIRAIssues(projectId,
+			reporterJiraUserId, start, end);
 	}
 
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getReporterJIRAIssues(
@@ -360,18 +360,18 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 			reporterJiraUserId, status, start, end);
 	}
 
-	public int getReporterJIRAIssuesCount(long projectId,
-		java.lang.String reporterJiraUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _jiraIssueLocalService.getReporterJIRAIssuesCount(projectId,
-			reporterJiraUserId);
-	}
-
 	public int getReporterJIRAIssuesCount(java.util.Date modifiedDate,
 		long projectId, java.lang.String reporterJiraUserId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _jiraIssueLocalService.getReporterJIRAIssuesCount(modifiedDate,
 			projectId, reporterJiraUserId);
+	}
+
+	public int getReporterJIRAIssuesCount(long projectId,
+		java.lang.String reporterJiraUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _jiraIssueLocalService.getReporterJIRAIssuesCount(projectId,
+			reporterJiraUserId);
 	}
 
 	public int getReporterJIRAIssuesCount(long projectId,

@@ -496,6 +496,12 @@ public abstract class FeedLocalServiceBaseImpl implements FeedLocalService,
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected ClassLoader getClassLoader() {
+		Class<?> clazz = getClass();
+
+		return clazz.getClassLoader();
+	}
+
 	protected Class<?> getModelClass() {
 		return Feed.class;
 	}

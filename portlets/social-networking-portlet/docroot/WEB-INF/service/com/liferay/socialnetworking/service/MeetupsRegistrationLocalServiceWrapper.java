@@ -259,19 +259,19 @@ public class MeetupsRegistrationLocalServiceWrapper
 		_meetupsRegistrationLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
-	public java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration> getMeetupsRegistrations(
-		long meetupsEntryId, int status, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _meetupsRegistrationLocalService.getMeetupsRegistrations(meetupsEntryId,
-			status, start, end);
-	}
-
 	public com.liferay.socialnetworking.model.MeetupsRegistration getMeetupsRegistration(
 		long userId, long meetupsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _meetupsRegistrationLocalService.getMeetupsRegistration(userId,
 			meetupsEntryId);
+	}
+
+	public java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration> getMeetupsRegistrations(
+		long meetupsEntryId, int status, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _meetupsRegistrationLocalService.getMeetupsRegistrations(meetupsEntryId,
+			status, start, end);
 	}
 
 	public int getMeetupsRegistrationsCount(long meetupsEntryId, int status)

@@ -574,6 +574,12 @@ public abstract class EntryLocalServiceBaseImpl implements EntryLocalService,
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected ClassLoader getClassLoader() {
+		Class<?> clazz = getClass();
+
+		return clazz.getClassLoader();
+	}
+
 	protected Class<?> getModelClass() {
 		return Entry.class;
 	}

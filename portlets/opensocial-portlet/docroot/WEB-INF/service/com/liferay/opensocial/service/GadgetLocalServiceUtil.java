@@ -291,17 +291,17 @@ public class GadgetLocalServiceUtil {
 	}
 
 	public static com.liferay.opensocial.model.Gadget getGadget(
-		java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getGadget(uuid);
-	}
-
-	public static com.liferay.opensocial.model.Gadget getGadget(
 		long companyId, java.lang.String url)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getGadget(companyId, url);
+	}
+
+	public static com.liferay.opensocial.model.Gadget getGadget(
+		java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getGadget(uuid);
 	}
 
 	public static java.util.List<com.liferay.opensocial.model.Gadget> getGadgets(

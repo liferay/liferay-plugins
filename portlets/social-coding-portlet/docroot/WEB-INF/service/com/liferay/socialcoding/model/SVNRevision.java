@@ -31,9 +31,9 @@ public interface SVNRevision extends SVNRevisionModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.socialcoding.model.impl.SVNRevisionImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public java.lang.Object[] getJIRAIssueAndComments();
+
 	public com.liferay.socialcoding.model.SVNRepository getSVNRepository();
 
 	public java.lang.String getWebRevisionNumberURL();
-
-	public java.lang.Object[] getJIRAIssueAndComments();
 }

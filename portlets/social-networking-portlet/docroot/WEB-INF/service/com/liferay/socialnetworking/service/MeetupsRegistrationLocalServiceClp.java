@@ -89,12 +89,12 @@ public class MeetupsRegistrationLocalServiceClp
 		_setBeanIdentifierMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 
-		_getMeetupsRegistrationsMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getMeetupsRegistrationMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getMeetupsRegistration", long.class, long.class);
+
+		_getMeetupsRegistrationsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getMeetupsRegistrations", long.class, int.class, int.class,
 				int.class);
-
-		_getMeetupsRegistrationMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getMeetupsRegistration", long.class, long.class);
 
 		_getMeetupsRegistrationsCountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getMeetupsRegistrationsCount", long.class, int.class);
@@ -569,41 +569,13 @@ public class MeetupsRegistrationLocalServiceClp
 		}
 	}
 
-	public java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration> getMeetupsRegistrations(
-		long meetupsEntryId, int status, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		MethodHandler methodHandler = new MethodHandler(_getMeetupsRegistrationsMethodKey17,
-				meetupsEntryId, status, start, end);
-
-		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration>)ClpSerializer.translateOutput(returnObj);
-	}
-
 	public com.liferay.socialnetworking.model.MeetupsRegistration getMeetupsRegistration(
 		long userId, long meetupsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getMeetupsRegistrationMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_getMeetupsRegistrationMethodKey17,
 				userId, meetupsEntryId);
 
 		try {
@@ -628,6 +600,34 @@ public class MeetupsRegistrationLocalServiceClp
 		}
 
 		return (com.liferay.socialnetworking.model.MeetupsRegistration)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration> getMeetupsRegistrations(
+		long meetupsEntryId, int status, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getMeetupsRegistrationsMethodKey18,
+				meetupsEntryId, status, start, end);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public int getMeetupsRegistrationsCount(long meetupsEntryId, int status)
@@ -713,8 +713,8 @@ public class MeetupsRegistrationLocalServiceClp
 	private MethodKey _updateMeetupsRegistrationMethodKey14;
 	private MethodKey _getBeanIdentifierMethodKey15;
 	private MethodKey _setBeanIdentifierMethodKey16;
-	private MethodKey _getMeetupsRegistrationsMethodKey17;
-	private MethodKey _getMeetupsRegistrationMethodKey18;
+	private MethodKey _getMeetupsRegistrationMethodKey17;
+	private MethodKey _getMeetupsRegistrationsMethodKey18;
 	private MethodKey _getMeetupsRegistrationsCountMethodKey19;
 	private MethodKey _updateMeetupsRegistrationMethodKey20;
 }

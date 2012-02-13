@@ -557,6 +557,12 @@ public abstract class ModuleLocalServiceBaseImpl implements ModuleLocalService,
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected ClassLoader getClassLoader() {
+		Class<?> clazz = getClass();
+
+		return clazz.getClassLoader();
+	}
+
 	protected Class<?> getModelClass() {
 		return Module.class;
 	}

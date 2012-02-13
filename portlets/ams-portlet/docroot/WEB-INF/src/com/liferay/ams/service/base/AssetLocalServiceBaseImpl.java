@@ -615,6 +615,12 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected ClassLoader getClassLoader() {
+		Class<?> clazz = getClass();
+
+		return clazz.getClassLoader();
+	}
+
 	protected Class<?> getModelClass() {
 		return Asset.class;
 	}

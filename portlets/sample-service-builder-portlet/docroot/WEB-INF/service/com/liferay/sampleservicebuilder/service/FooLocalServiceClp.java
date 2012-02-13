@@ -93,11 +93,11 @@ public class FooLocalServiceClp implements FooLocalService {
 				com.liferay.portal.service.ServiceContext.class);
 
 		_getFoosMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getFoos",
+				"getFoos", int.class, int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
 		_getFoosMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getFoos", int.class, int.class,
+				"getFoos",
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
 		_updateAssetMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
@@ -637,12 +637,12 @@ public class FooLocalServiceClp implements FooLocalService {
 	}
 
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getFoosMethodKey19,
-				ClpSerializer.translateInput(obc));
+				start, end, ClpSerializer.translateInput(obc));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -665,12 +665,12 @@ public class FooLocalServiceClp implements FooLocalService {
 	}
 
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
-		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getFoosMethodKey20,
-				start, end, ClpSerializer.translateInput(obc));
+				ClpSerializer.translateInput(obc));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

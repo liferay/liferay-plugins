@@ -100,10 +100,10 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 				"fetchGadget", long.class, java.lang.String.class);
 
 		_getGadgetMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getGadget", java.lang.String.class);
+				"getGadget", long.class, java.lang.String.class);
 
 		_getGadgetMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getGadget", long.class, java.lang.String.class);
+				"getGadget", java.lang.String.class);
 
 		_getGadgetsMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getGadgets", long.class, int.class, int.class);
@@ -708,13 +708,14 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return (com.liferay.opensocial.model.Gadget)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.liferay.opensocial.model.Gadget getGadget(java.lang.String uuid)
+	public com.liferay.opensocial.model.Gadget getGadget(long companyId,
+		java.lang.String url)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getGadgetMethodKey21,
-				ClpSerializer.translateInput(uuid));
+				companyId, ClpSerializer.translateInput(url));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -740,14 +741,13 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return (com.liferay.opensocial.model.Gadget)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.liferay.opensocial.model.Gadget getGadget(long companyId,
-		java.lang.String url)
+	public com.liferay.opensocial.model.Gadget getGadget(java.lang.String uuid)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getGadgetMethodKey22,
-				companyId, ClpSerializer.translateInput(url));
+				ClpSerializer.translateInput(uuid));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

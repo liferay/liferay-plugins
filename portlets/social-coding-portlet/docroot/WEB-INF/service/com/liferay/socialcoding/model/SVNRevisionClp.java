@@ -107,15 +107,15 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 		_comments = comments;
 	}
 
+	public java.lang.Object[] getJIRAIssueAndComments() {
+		throw new UnsupportedOperationException();
+	}
+
 	public com.liferay.socialcoding.model.SVNRepository getSVNRepository() {
 		throw new UnsupportedOperationException();
 	}
 
 	public java.lang.String getWebRevisionNumberURL() {
-		throw new UnsupportedOperationException();
-	}
-
-	public java.lang.Object[] getJIRAIssueAndComments() {
 		throw new UnsupportedOperationException();
 	}
 

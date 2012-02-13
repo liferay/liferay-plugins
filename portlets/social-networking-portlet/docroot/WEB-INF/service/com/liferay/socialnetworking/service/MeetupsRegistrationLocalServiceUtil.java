@@ -262,18 +262,18 @@ public class MeetupsRegistrationLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
-	public static java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration> getMeetupsRegistrations(
-		long meetupsEntryId, int status, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .getMeetupsRegistrations(meetupsEntryId, status, start, end);
-	}
-
 	public static com.liferay.socialnetworking.model.MeetupsRegistration getMeetupsRegistration(
 		long userId, long meetupsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getMeetupsRegistration(userId, meetupsEntryId);
+	}
+
+	public static java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration> getMeetupsRegistrations(
+		long meetupsEntryId, int status, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getMeetupsRegistrations(meetupsEntryId, status, start, end);
 	}
 
 	public static int getMeetupsRegistrationsCount(long meetupsEntryId,

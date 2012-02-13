@@ -618,6 +618,12 @@ public abstract class MessageLocalServiceBaseImpl implements MessageLocalService
 		_beanIdentifier = beanIdentifier;
 	}
 
+	protected ClassLoader getClassLoader() {
+		Class<?> clazz = getClass();
+
+		return clazz.getClassLoader();
+	}
+
 	protected Class<?> getModelClass() {
 		return Message.class;
 	}
