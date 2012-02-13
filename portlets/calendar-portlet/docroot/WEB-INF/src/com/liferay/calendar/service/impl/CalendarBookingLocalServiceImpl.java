@@ -351,7 +351,7 @@ public class CalendarBookingLocalServiceImpl
 		}
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			CalendarBooking.class, getClass().getClassLoader());
+			CalendarBooking.class, getClassLoader());
 
 		if (calendarResourceId > 0) {
 			Property property = PropertyFactoryUtil.forName(
