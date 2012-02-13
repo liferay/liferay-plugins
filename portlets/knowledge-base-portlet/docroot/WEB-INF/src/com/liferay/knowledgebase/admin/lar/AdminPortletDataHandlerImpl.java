@@ -65,15 +65,35 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	@Override
 	public PortletDataHandlerControl[] getExportControls() {
 		return new PortletDataHandlerControl[] {
-			_kbArticlesKBTemplatesAndKBComments, _categories, _ratings, _tags
+			_kbArticles, _kbTemplatesAndKBComments
+		};
+	}
+
+	@Override
+	public PortletDataHandlerControl[] getExportMetadataControls() {
+		return new PortletDataHandlerControl[] {
+			new PortletDataHandlerBoolean(
+				_NAMESPACE, "kb-articles", true, getMetadataControls())
 		};
 	}
 
 	@Override
 	public PortletDataHandlerControl[] getImportControls() {
 		return new PortletDataHandlerControl[] {
-			_kbArticlesKBTemplatesAndKBComments, _categories, _ratings, _tags
+			_kbArticles, _kbTemplatesAndKBComments
 		};
+	}
+
+	@Override
+	public PortletDataHandlerControl[] getImportMetadataControls() {
+		return new PortletDataHandlerControl[] {
+			new PortletDataHandlerBoolean(
+				_NAMESPACE, "kb-articles", true, getMetadataControls())
+		};
+	}
+
+	public static PortletDataHandlerControl[] getMetadataControls() {
+		return _metadataControls;
 	}
 
 	@Override
@@ -694,14 +714,25 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	private static PortletDataHandlerBoolean _categories =
 		new PortletDataHandlerBoolean(_NAMESPACE, "categories");
 
-	private static PortletDataHandlerBoolean
-		_kbArticlesKBTemplatesAndKBComments = new PortletDataHandlerBoolean(
-			_NAMESPACE, "kb-articles-kb-templates-and-kb-comments", true, true);
+	private static PortletDataHandlerBoolean _kbArticles =
+		new PortletDataHandlerBoolean(_NAMESPACE, "kb-articles", true, true);
+
+	private static PortletDataHandlerBoolean _kbTemplatesAndKBComments =
+		new PortletDataHandlerBoolean(
+			_NAMESPACE, "kb-templates-and-kb-comments", true, true);
+
+	private static PortletDataHandlerControl[] _metadataControls;
 
 	private static PortletDataHandlerBoolean _ratings =
 		new PortletDataHandlerBoolean(_NAMESPACE, "ratings");
 
 	private static PortletDataHandlerBoolean _tags =
 		new PortletDataHandlerBoolean(_NAMESPACE, "tags");
+
+	static {
+		_metadataControls = new PortletDataHandlerControl[] {
+			_categories, _ratings, _tags
+		};
+	}
 
 }
