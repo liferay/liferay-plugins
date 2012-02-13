@@ -137,8 +137,6 @@ page import="java.util.TreeMap" %>
 page import="javax.portlet.PortletURL" %><%@
 page import="javax.portlet.WindowState" %>
 
-<%@ page import="org.apache.commons.math.util.MathUtils" %>
-
 <portlet:defineObjects />
 
 <liferay-theme:defineObjects />

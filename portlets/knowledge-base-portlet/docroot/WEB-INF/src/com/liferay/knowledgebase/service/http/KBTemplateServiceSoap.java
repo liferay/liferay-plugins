@@ -107,7 +107,7 @@ public class KBTemplateServiceSoap {
 		}
 	}
 
-	public static com.liferay.knowledgebase.model.KBTemplate[] getGroupKBTemplates(
+	public static com.liferay.knowledgebase.model.KBTemplateSoap[] getGroupKBTemplates(
 		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws RemoteException {
@@ -116,7 +116,7 @@ public class KBTemplateServiceSoap {
 				KBTemplateServiceUtil.getGroupKBTemplates(groupId, start, end,
 					orderByComparator);
 
-			return returnValue.toArray(new com.liferay.knowledgebase.model.KBTemplate[returnValue.size()]);
+			return com.liferay.knowledgebase.model.KBTemplateSoap.toSoapModels(returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
