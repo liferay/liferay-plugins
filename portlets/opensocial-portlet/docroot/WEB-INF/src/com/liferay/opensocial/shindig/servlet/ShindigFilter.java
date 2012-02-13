@@ -123,7 +123,7 @@ public class ShindigFilter extends InjectedFilter {
 			PrincipalThreadLocal.setName(userIdString);
 
 			PermissionChecker permissionChecker =
-				PermissionCheckerFactoryUtil.create(user, true);
+				PermissionCheckerFactoryUtil.create(user);
 
 			PermissionThreadLocal.setPermissionChecker(permissionChecker);
 		}
