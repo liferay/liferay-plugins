@@ -73,7 +73,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	public PortletDataHandlerControl[] getExportMetadataControls() {
 		return new PortletDataHandlerControl[] {
 			new PortletDataHandlerBoolean(
-				_NAMESPACE, "kb-articles", true, getMetadataControls())
+				_NAMESPACE, "kb-articles", true, _metadataControls)
 		};
 	}
 
@@ -88,12 +88,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	public PortletDataHandlerControl[] getImportMetadataControls() {
 		return new PortletDataHandlerControl[] {
 			new PortletDataHandlerBoolean(
-				_NAMESPACE, "kb-articles", true, getMetadataControls())
+				_NAMESPACE, "kb-articles", true, _metadataControls)
 		};
-	}
-
-	public static PortletDataHandlerControl[] getMetadataControls() {
-		return _metadataControls;
 	}
 
 	@Override
@@ -711,9 +707,6 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 	private static final String _NAMESPACE = "knowledge_base";
 
-	private static PortletDataHandlerBoolean _categories =
-		new PortletDataHandlerBoolean(_NAMESPACE, "categories");
-
 	private static PortletDataHandlerBoolean _kbArticles =
 		new PortletDataHandlerBoolean(_NAMESPACE, "kb-articles", true, true);
 
@@ -721,18 +714,11 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		new PortletDataHandlerBoolean(
 			_NAMESPACE, "kb-templates-and-kb-comments", true, true);
 
-	private static PortletDataHandlerControl[] _metadataControls;
-
-	private static PortletDataHandlerBoolean _ratings =
-		new PortletDataHandlerBoolean(_NAMESPACE, "ratings");
-
-	private static PortletDataHandlerBoolean _tags =
-		new PortletDataHandlerBoolean(_NAMESPACE, "tags");
-
-	static {
-		_metadataControls = new PortletDataHandlerControl[] {
-			_categories, _ratings, _tags
+	private static PortletDataHandlerControl[] _metadataControls =
+		new PortletDataHandlerControl[] {
+			new PortletDataHandlerBoolean(_NAMESPACE, "categories"),
+			new PortletDataHandlerBoolean(_NAMESPACE, "ratings"),
+			new PortletDataHandlerBoolean(_NAMESPACE, "tags")
 		};
-	}
 
 }
