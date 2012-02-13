@@ -1092,7 +1092,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			KBArticle.class, getClass().getClassLoader());
+			KBArticle.class, getClassLoader());
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			Property property = PropertyFactoryUtil.forName("latest");

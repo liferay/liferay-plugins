@@ -311,7 +311,7 @@ public class KaleoInstanceLocalServiceImpl
 		Boolean completed, ServiceContext serviceContext) {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			KaleoInstance.class, getClass().getClassLoader());
+			KaleoInstance.class, getClassLoader());
 
 		Property companyIdProperty = PropertyFactoryUtil.forName("companyId");
 
@@ -354,7 +354,7 @@ public class KaleoInstanceLocalServiceImpl
 		boolean completed, ServiceContext serviceContext) {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			KaleoInstance.class, getClass().getClassLoader());
+			KaleoInstance.class, getClassLoader());
 
 		Property companyIdProperty = PropertyFactoryUtil.forName("companyId");
 

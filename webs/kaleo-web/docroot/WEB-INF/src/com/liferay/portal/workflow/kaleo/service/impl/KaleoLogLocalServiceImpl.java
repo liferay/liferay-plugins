@@ -417,7 +417,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		long kaleoInstanceId, List<Integer> logTypes) {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			KaleoLog.class, getClass().getClassLoader());
+			KaleoLog.class, getClassLoader());
 
 		dynamicQuery.add(
 			PropertyFactoryUtil.forName("kaleoInstanceId").eq(kaleoInstanceId));
@@ -431,7 +431,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		long kaleoTaskId, List<Integer> logTypes) {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			KaleoLog.class, getClass().getClassLoader());
+			KaleoLog.class, getClassLoader());
 
 		dynamicQuery.add(
 			PropertyFactoryUtil.forName("kaleoTaskInstanceTokenId").eq(

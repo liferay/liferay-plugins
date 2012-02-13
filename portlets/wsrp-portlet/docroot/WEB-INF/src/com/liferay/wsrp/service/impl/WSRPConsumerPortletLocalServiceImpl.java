@@ -481,7 +481,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 		throws Exception {
 
 		if (_consumerPortletClass == null) {
-			ClassLoader classLoader = getClass().getClassLoader();
+			ClassLoader classLoader = getClassLoader();
 
 			_consumerPortletClass =
 				(Class<ConsumerPortlet>)classLoader.loadClass(

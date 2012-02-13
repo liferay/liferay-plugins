@@ -290,7 +290,7 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 		}
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			KBTemplate.class, getClass().getClassLoader());
+			KBTemplate.class, getClassLoader());
 
 		if (groupId > 0) {
 			Property property = PropertyFactoryUtil.forName("groupId");

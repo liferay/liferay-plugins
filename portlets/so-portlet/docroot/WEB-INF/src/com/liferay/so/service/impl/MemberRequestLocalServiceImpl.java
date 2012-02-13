@@ -293,23 +293,21 @@ public class MemberRequestLocalServiceImpl
 			toName = receiverUser.getFullName();
 		}
 
-		ClassLoader classLoader = getClass().getClassLoader();
-
 		String subject = StringUtil.read(
-			classLoader,
+			getClassLoader(),
 			"com/liferay/so/invitemembers/dependencies/subject.tmpl");
 
 		String body = StringPool.BLANK;
 
 		if (memberRequest.getReceiverUserId() > 0) {
 			body = StringUtil.read(
-				classLoader,
+				getClassLoader(),
 				"com/liferay/so/invitemembers/dependencies/" +
 					"existing_user_body.tmpl");
 		}
 		else {
 			body = StringUtil.read(
-				classLoader,
+				getClassLoader(),
 				"com/liferay/so/invitemembers/dependencies/" +
 					"new_user_body.tmpl");
 		}
