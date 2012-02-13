@@ -257,16 +257,16 @@ public class EntryLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
-	public static com.liferay.chat.model.Entry addEntry(long fromUserId,
-		long toUserId, java.lang.String content)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().addEntry(fromUserId, toUserId, content);
-	}
-
 	public static com.liferay.chat.model.Entry addEntry(long createDate,
 		long fromUserId, long toUserId, java.lang.String content)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().addEntry(createDate, fromUserId, toUserId, content);
+	}
+
+	public static com.liferay.chat.model.Entry addEntry(long fromUserId,
+		long toUserId, java.lang.String content)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().addEntry(fromUserId, toUserId, content);
 	}
 
 	public static void deleteEntries(long userId)

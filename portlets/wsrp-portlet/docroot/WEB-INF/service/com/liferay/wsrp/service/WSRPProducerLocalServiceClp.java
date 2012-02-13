@@ -89,14 +89,14 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 				"setBeanIdentifier", java.lang.String.class);
 
 		_addWSRPProducerMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-				"addWSRPProducer", long.class, java.lang.String.class,
-				java.lang.String.class, java.lang.String.class,
-				com.liferay.portal.service.ServiceContext.class);
-
-		_addWSRPProducerMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addWSRPProducer", long.class, long.class,
 				java.lang.String.class, java.lang.String.class,
 				java.lang.String.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_addWSRPProducerMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addWSRPProducer", long.class, java.lang.String.class,
+				java.lang.String.class, java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
 		_getWSRPProducerMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
@@ -616,7 +616,7 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 	}
 
 	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(long userId,
-		java.lang.String name, java.lang.String version,
+		long groupId, java.lang.String name, java.lang.String version,
 		java.lang.String portletIds,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -624,7 +624,7 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addWSRPProducerMethodKey18,
-				userId, ClpSerializer.translateInput(name),
+				userId, groupId, ClpSerializer.translateInput(name),
 				ClpSerializer.translateInput(version),
 				ClpSerializer.translateInput(portletIds),
 				ClpSerializer.translateInput(serviceContext));
@@ -654,7 +654,7 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 	}
 
 	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(long userId,
-		long groupId, java.lang.String name, java.lang.String version,
+		java.lang.String name, java.lang.String version,
 		java.lang.String portletIds,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -662,7 +662,7 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addWSRPProducerMethodKey19,
-				userId, groupId, ClpSerializer.translateInput(name),
+				userId, ClpSerializer.translateInput(name),
 				ClpSerializer.translateInput(version),
 				ClpSerializer.translateInput(portletIds),
 				ClpSerializer.translateInput(serviceContext));

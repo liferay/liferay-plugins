@@ -87,23 +87,23 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 				"setBeanIdentifier", java.lang.String.class);
 
 		_getAssigneeJIRAIssuesMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getAssigneeJIRAIssues", long.class, java.lang.String.class,
-				int.class, int.class);
-
-		_getAssigneeJIRAIssuesMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAssigneeJIRAIssues", java.util.Date.class, long.class,
 				java.lang.String.class, int.class, int.class);
+
+		_getAssigneeJIRAIssuesMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getAssigneeJIRAIssues", long.class, java.lang.String.class,
+				int.class, int.class);
 
 		_getAssigneeJIRAIssuesMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAssigneeJIRAIssues", long.class, java.lang.String.class,
 				java.lang.String.class, int.class, int.class);
 
 		_getAssigneeJIRAIssuesCountMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getAssigneeJIRAIssuesCount", long.class, java.lang.String.class);
-
-		_getAssigneeJIRAIssuesCountMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAssigneeJIRAIssuesCount", java.util.Date.class, long.class,
 				java.lang.String.class);
+
+		_getAssigneeJIRAIssuesCountMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getAssigneeJIRAIssuesCount", long.class, java.lang.String.class);
 
 		_getAssigneeJIRAIssuesCountMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getAssigneeJIRAIssuesCount", long.class,
@@ -125,23 +125,23 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 				"getLastreporterJIRAIssue", long.class, java.lang.String.class);
 
 		_getReporterJIRAIssuesMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getReporterJIRAIssues", long.class, java.lang.String.class,
-				int.class, int.class);
-
-		_getReporterJIRAIssuesMethodKey29 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getReporterJIRAIssues", java.util.Date.class, long.class,
 				java.lang.String.class, int.class, int.class);
+
+		_getReporterJIRAIssuesMethodKey29 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getReporterJIRAIssues", long.class, java.lang.String.class,
+				int.class, int.class);
 
 		_getReporterJIRAIssuesMethodKey30 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getReporterJIRAIssues", long.class, java.lang.String.class,
 				java.lang.String.class, int.class, int.class);
 
 		_getReporterJIRAIssuesCountMethodKey31 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getReporterJIRAIssuesCount", long.class, java.lang.String.class);
-
-		_getReporterJIRAIssuesCountMethodKey32 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getReporterJIRAIssuesCount", java.util.Date.class, long.class,
 				java.lang.String.class);
+
+		_getReporterJIRAIssuesCountMethodKey32 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getReporterJIRAIssuesCount", long.class, java.lang.String.class);
 
 		_getReporterJIRAIssuesCountMethodKey33 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getReporterJIRAIssuesCount", long.class,
@@ -616,13 +616,14 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 	}
 
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getAssigneeJIRAIssues(
-		long projectId, java.lang.String assigneeJiraUserId, int start, int end)
+		java.util.Date modifiedDate, long projectId,
+		java.lang.String assigneeJiraUserId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getAssigneeJIRAIssuesMethodKey17,
-				projectId, ClpSerializer.translateInput(assigneeJiraUserId),
-				start, end);
+				ClpSerializer.translateInput(modifiedDate), projectId,
+				ClpSerializer.translateInput(assigneeJiraUserId), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -645,14 +646,13 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 	}
 
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getAssigneeJIRAIssues(
-		java.util.Date modifiedDate, long projectId,
-		java.lang.String assigneeJiraUserId, int start, int end)
+		long projectId, java.lang.String assigneeJiraUserId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getAssigneeJIRAIssuesMethodKey18,
-				ClpSerializer.translateInput(modifiedDate), projectId,
-				ClpSerializer.translateInput(assigneeJiraUserId), start, end);
+				projectId, ClpSerializer.translateInput(assigneeJiraUserId),
+				start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -704,13 +704,14 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		return (java.util.List<com.liferay.socialcoding.model.JIRAIssue>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public int getAssigneeJIRAIssuesCount(long projectId,
-		java.lang.String assigneeJiraUserId)
+	public int getAssigneeJIRAIssuesCount(java.util.Date modifiedDate,
+		long projectId, java.lang.String assigneeJiraUserId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getAssigneeJIRAIssuesCountMethodKey20,
-				projectId, ClpSerializer.translateInput(assigneeJiraUserId));
+				ClpSerializer.translateInput(modifiedDate), projectId,
+				ClpSerializer.translateInput(assigneeJiraUserId));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -732,14 +733,13 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
-	public int getAssigneeJIRAIssuesCount(java.util.Date modifiedDate,
-		long projectId, java.lang.String assigneeJiraUserId)
+	public int getAssigneeJIRAIssuesCount(long projectId,
+		java.lang.String assigneeJiraUserId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getAssigneeJIRAIssuesCountMethodKey21,
-				ClpSerializer.translateInput(modifiedDate), projectId,
-				ClpSerializer.translateInput(assigneeJiraUserId));
+				projectId, ClpSerializer.translateInput(assigneeJiraUserId));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -956,13 +956,14 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 	}
 
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getReporterJIRAIssues(
-		long projectId, java.lang.String reporterJiraUserId, int start, int end)
+		java.util.Date modifiedDate, long projectId,
+		java.lang.String reporterJiraUserId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getReporterJIRAIssuesMethodKey28,
-				projectId, ClpSerializer.translateInput(reporterJiraUserId),
-				start, end);
+				ClpSerializer.translateInput(modifiedDate), projectId,
+				ClpSerializer.translateInput(reporterJiraUserId), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -985,14 +986,13 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 	}
 
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getReporterJIRAIssues(
-		java.util.Date modifiedDate, long projectId,
-		java.lang.String reporterJiraUserId, int start, int end)
+		long projectId, java.lang.String reporterJiraUserId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getReporterJIRAIssuesMethodKey29,
-				ClpSerializer.translateInput(modifiedDate), projectId,
-				ClpSerializer.translateInput(reporterJiraUserId), start, end);
+				projectId, ClpSerializer.translateInput(reporterJiraUserId),
+				start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -1044,13 +1044,14 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		return (java.util.List<com.liferay.socialcoding.model.JIRAIssue>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public int getReporterJIRAIssuesCount(long projectId,
-		java.lang.String reporterJiraUserId)
+	public int getReporterJIRAIssuesCount(java.util.Date modifiedDate,
+		long projectId, java.lang.String reporterJiraUserId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getReporterJIRAIssuesCountMethodKey31,
-				projectId, ClpSerializer.translateInput(reporterJiraUserId));
+				ClpSerializer.translateInput(modifiedDate), projectId,
+				ClpSerializer.translateInput(reporterJiraUserId));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -1072,14 +1073,13 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
-	public int getReporterJIRAIssuesCount(java.util.Date modifiedDate,
-		long projectId, java.lang.String reporterJiraUserId)
+	public int getReporterJIRAIssuesCount(long projectId,
+		java.lang.String reporterJiraUserId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getReporterJIRAIssuesCountMethodKey32,
-				ClpSerializer.translateInput(modifiedDate), projectId,
-				ClpSerializer.translateInput(reporterJiraUserId));
+				projectId, ClpSerializer.translateInput(reporterJiraUserId));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

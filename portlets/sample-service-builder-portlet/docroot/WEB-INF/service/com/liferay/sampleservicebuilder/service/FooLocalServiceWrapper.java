@@ -275,15 +275,15 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	}
 
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
-		com.liferay.portal.kernel.util.OrderByComparator obc)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _fooLocalService.getFoos(obc);
-	}
-
-	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _fooLocalService.getFoos(start, end, obc);
+	}
+
+	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _fooLocalService.getFoos(obc);
 	}
 
 	public void updateAsset(long userId,

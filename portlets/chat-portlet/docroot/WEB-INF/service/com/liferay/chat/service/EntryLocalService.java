@@ -230,12 +230,12 @@ public interface EntryLocalService extends PersistedModelLocalService {
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
-	public com.liferay.chat.model.Entry addEntry(long fromUserId,
-		long toUserId, java.lang.String content)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
 	public com.liferay.chat.model.Entry addEntry(long createDate,
 		long fromUserId, long toUserId, java.lang.String content)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.chat.model.Entry addEntry(long fromUserId,
+		long toUserId, java.lang.String content)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public void deleteEntries(long userId)

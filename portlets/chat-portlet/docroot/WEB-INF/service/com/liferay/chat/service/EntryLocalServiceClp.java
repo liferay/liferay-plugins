@@ -84,11 +84,11 @@ public class EntryLocalServiceClp implements EntryLocalService {
 				"setBeanIdentifier", java.lang.String.class);
 
 		_addEntryMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-				"addEntry", long.class, long.class, java.lang.String.class);
-
-		_addEntryMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addEntry", long.class, long.class, long.class,
 				java.lang.String.class);
+
+		_addEntryMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addEntry", long.class, long.class, java.lang.String.class);
 
 		_deleteEntriesMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteEntries", long.class);
@@ -559,13 +559,14 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		}
 	}
 
-	public com.liferay.chat.model.Entry addEntry(long fromUserId,
-		long toUserId, java.lang.String content)
+	public com.liferay.chat.model.Entry addEntry(long createDate,
+		long fromUserId, long toUserId, java.lang.String content)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addEntryMethodKey17,
-				fromUserId, toUserId, ClpSerializer.translateInput(content));
+				createDate, fromUserId, toUserId,
+				ClpSerializer.translateInput(content));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -587,14 +588,13 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		return (com.liferay.chat.model.Entry)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.liferay.chat.model.Entry addEntry(long createDate,
-		long fromUserId, long toUserId, java.lang.String content)
+	public com.liferay.chat.model.Entry addEntry(long fromUserId,
+		long toUserId, java.lang.String content)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addEntryMethodKey18,
-				createDate, fromUserId, toUserId,
-				ClpSerializer.translateInput(content));
+				fromUserId, toUserId, ClpSerializer.translateInput(content));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

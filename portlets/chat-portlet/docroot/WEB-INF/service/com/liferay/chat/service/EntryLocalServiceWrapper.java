@@ -248,17 +248,17 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 		_entryLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
-	public com.liferay.chat.model.Entry addEntry(long fromUserId,
-		long toUserId, java.lang.String content)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _entryLocalService.addEntry(fromUserId, toUserId, content);
-	}
-
 	public com.liferay.chat.model.Entry addEntry(long createDate,
 		long fromUserId, long toUserId, java.lang.String content)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _entryLocalService.addEntry(createDate, fromUserId, toUserId,
 			content);
+	}
+
+	public com.liferay.chat.model.Entry addEntry(long fromUserId,
+		long toUserId, java.lang.String content)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _entryLocalService.addEntry(fromUserId, toUserId, content);
 	}
 
 	public void deleteEntries(long userId)
