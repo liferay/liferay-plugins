@@ -85,7 +85,7 @@ public class ServerManagerServlet extends HttpServlet {
 			User user = PortalUtil.getUser(request);
 
 			PermissionChecker permissionChecker =
-				PermissionCheckerFactoryUtil.create(user, false);
+				PermissionCheckerFactoryUtil.create(user);
 
 			if (permissionChecker.isOmniadmin()) {
 				return true;
