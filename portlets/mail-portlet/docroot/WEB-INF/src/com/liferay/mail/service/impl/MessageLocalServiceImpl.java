@@ -131,7 +131,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		throws SystemException {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Message.class, getClass().getClassLoader());
+			Message.class, getClassLoader());
 
 		dynamicQuery.add(RestrictionsFactoryUtil.eq("accountId", accountId));
 		dynamicQuery.add(
@@ -166,7 +166,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		throws SystemException {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Message.class, getClass().getClassLoader());
+			Message.class, getClassLoader());
 
 		dynamicQuery.add(RestrictionsFactoryUtil.eq("folderId", folderId));
 		dynamicQuery.add(
@@ -187,7 +187,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Message.class, getClass().getClassLoader());
+			Message.class, getClassLoader());
 
 		dynamicQuery.add(RestrictionsFactoryUtil.eq("folderId", folderId));
 		dynamicQuery.add(
@@ -216,15 +216,16 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 			String orderByType)
 		throws SystemException {
 
-		DynamicQuery countQuery = DynamicQueryFactoryUtil.forClass(
-			Message.class, getClass().getClassLoader());
+		DynamicQuery countDynamicQuery = DynamicQueryFactoryUtil.forClass(
+			Message.class, getClassLoader());
 
-		DynamicQuery messageQuery = DynamicQueryFactoryUtil.forClass(
-			Message.class, getClass().getClassLoader());
+		countDynamicQuery.add(RestrictionsFactoryUtil.eq("folderId", folderId));
 
-		countQuery.add(RestrictionsFactoryUtil.eq("folderId", folderId));
+		DynamicQuery messageDynamicQuery = DynamicQueryFactoryUtil.forClass(
+			Message.class, getClassLoader());
 
-		messageQuery.add(RestrictionsFactoryUtil.eq("folderId", folderId));
+		messageDynamicQuery.add(
+			RestrictionsFactoryUtil.eq("folderId", folderId));
 
 		if (Validator.isNotNull(keywords)) {
 			String value = "%" + keywords + "%";
@@ -234,25 +235,26 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 			disjunction.add(RestrictionsFactoryUtil.ilike("subject", value));
 			disjunction.add(RestrictionsFactoryUtil.ilike("body", value));
 
-			countQuery.add(disjunction);
+			countDynamicQuery.add(disjunction);
 
-			messageQuery.add(disjunction);
+			messageDynamicQuery.add(disjunction);
 		}
 
 		if (orderByType.equals("desc")) {
-			messageQuery.addOrder(OrderFactoryUtil.desc(orderByField));
+			messageDynamicQuery.addOrder(OrderFactoryUtil.desc(orderByField));
 		}
 		else {
-			messageQuery.addOrder(OrderFactoryUtil.asc(orderByField));
+			messageDynamicQuery.addOrder(OrderFactoryUtil.asc(orderByField));
 		}
 
 		int start = messagesPerPage * (pageNumber - 1);
 		int end = messagesPerPage * pageNumber;
 
 		messages.addAll(
-			messagePersistence.findWithDynamicQuery(messageQuery, start, end));
+			messagePersistence.findWithDynamicQuery(
+				messageDynamicQuery, start, end));
 
-		return (int)dynamicQueryCount(countQuery);
+		return (int)dynamicQueryCount(countDynamicQuery);
 	}
 
 	public Message updateContent(long messageId, String body, String flags)

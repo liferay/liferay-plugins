@@ -194,14 +194,12 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 		String toName = user.getFullName();
 		String toAddress = user.getEmailAddress();
 
-		ClassLoader classLoader = getClass().getClassLoader();
-
 		String subject = StringUtil.read(
-			classLoader,
+			getClassLoader(),
 			"com/liferay/socialnetworking/wall/dependencies/" +
 				"wall_entry_added_subject.tmpl");
 		String body = StringUtil.read(
-			classLoader,
+			getClassLoader(),
 			"com/liferay/socialnetworking/wall/dependencies/" +
 				"wall_entry_added_body.tmpl");
 

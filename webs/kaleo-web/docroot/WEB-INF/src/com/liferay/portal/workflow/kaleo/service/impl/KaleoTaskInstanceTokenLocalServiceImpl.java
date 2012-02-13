@@ -397,7 +397,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		throws SystemException {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			KaleoTaskInstanceToken.class, getClass().getClassLoader());
+			KaleoTaskInstanceToken.class, getClassLoader());
 
 		dynamicQuery.add(
 			PropertyFactoryUtil.forName("companyId").eq(
@@ -416,7 +416,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		throws SystemException {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			KaleoTaskInstanceToken.class, getClass().getClassLoader());
+			KaleoTaskInstanceToken.class, getClassLoader());
 
 		dynamicQuery.add(
 			PropertyFactoryUtil.forName("companyId").eq(
@@ -588,7 +588,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		Boolean completed, ServiceContext serviceContext) {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			KaleoTaskInstanceToken.class, getClass().getClassLoader());
+			KaleoTaskInstanceToken.class, getClassLoader());
 
 		dynamicQuery.add(
 			PropertyFactoryUtil.forName("companyId").eq(
@@ -604,7 +604,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		ServiceContext serviceContext) {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			KaleoTaskInstanceToken.class, getClass().getClassLoader());
+			KaleoTaskInstanceToken.class, getClassLoader());
 
 		dynamicQuery.add(
 			PropertyFactoryUtil.forName("companyId").eq(
