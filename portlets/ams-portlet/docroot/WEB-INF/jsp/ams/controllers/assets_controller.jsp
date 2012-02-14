@@ -41,7 +41,9 @@ public class AlloyControllerImpl extends BaseAlloyControllerImpl {
 	}
 
 	public void save() throws Exception {
-		updateModel(AssetLocalServiceUtil.createAsset(0));
+		Asset asset = AssetLocalServiceUtil.createAsset(0);
+
+		updateModel(asset);
 
 		addSuccessMessage();
 
