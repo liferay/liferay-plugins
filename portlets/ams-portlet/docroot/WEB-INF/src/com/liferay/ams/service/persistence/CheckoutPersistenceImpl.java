@@ -259,6 +259,8 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 		boolean merge) throws SystemException {
 		checkout = toUnwrappedModel(checkout);
 
+		boolean isNew = checkout.isNew();
+
 		Session session = null;
 
 		try {
@@ -276,6 +278,10 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 		}
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+
+		if (isNew) {
+			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		}
 
 		EntityCacheUtil.putResult(CheckoutModelImpl.ENTITY_CACHE_ENABLED,
 			CheckoutImpl.class, checkout.getPrimaryKey(), checkout);

@@ -256,6 +256,8 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 		throws SystemException {
 		type = toUnwrappedModel(type);
 
+		boolean isNew = type.isNew();
+
 		Session session = null;
 
 		try {
@@ -273,6 +275,10 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 		}
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+
+		if (isNew) {
+			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		}
 
 		EntityCacheUtil.putResult(TypeModelImpl.ENTITY_CACHE_ENABLED,
 			TypeImpl.class, type.getPrimaryKey(), type);
