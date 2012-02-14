@@ -17,10 +17,7 @@
 <%@ include file="/WEB-INF/jsp/ams/controllers/init.jsp" %>
 
 <%@ page import="com.liferay.ams.model.Asset" %>
-<%@ page import="com.liferay.ams.model.impl.AssetImpl" %>
 <%@ page import="com.liferay.ams.service.AssetLocalServiceUtil" %>
-<%@ page import="com.liferay.counter.service.CounterLocalServiceUtil" %>
-<%@ page import="com.liferay.portal.kernel.bean.BeanPropertiesUtil" %>
 
 <%!
 public class AlloyControllerImpl extends BaseAlloyControllerImpl {
@@ -44,15 +41,7 @@ public class AlloyControllerImpl extends BaseAlloyControllerImpl {
 	}
 
 	public void save() throws Exception {
-		Asset asset = new AssetImpl();
-
-		BeanPropertiesUtil.setProperties(asset, request);
-
-		if (asset.isNew()) {
-			asset.setPrimaryKey(CounterLocalServiceUtil.increment());
-
-			AssetLocalServiceUtil.addAsset(asset);
-		}
+		updateModel(AssetLocalServiceUtil.createAsset(0));
 
 		addSuccessMessage();
 
