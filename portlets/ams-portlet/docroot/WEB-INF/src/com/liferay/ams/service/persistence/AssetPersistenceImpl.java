@@ -257,6 +257,8 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		throws SystemException {
 		asset = toUnwrappedModel(asset);
 
+		boolean isNew = asset.isNew();
+
 		Session session = null;
 
 		try {
@@ -274,6 +276,10 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		}
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+
+		if (isNew) {
+			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		}
 
 		EntityCacheUtil.putResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
 			AssetImpl.class, asset.getPrimaryKey(), asset);

@@ -260,6 +260,8 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 		boolean merge) throws SystemException {
 		definition = toUnwrappedModel(definition);
 
+		boolean isNew = definition.isNew();
+
 		Session session = null;
 
 		try {
@@ -277,6 +279,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 		}
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+
+		if (isNew) {
+			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		}
 
 		EntityCacheUtil.putResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			DefinitionImpl.class, definition.getPrimaryKey(), definition);
