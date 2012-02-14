@@ -36,7 +36,6 @@
 
 <aui:form action='<%= saveAssetURL + "&p_p_state=normal" %>' method="post">
 	<aui:input name="redirect" type="hidden" value="${viewAssetsURL}" />
-	<aui:input name="new" type="hidden" value="1" />
 
 	<aui:input label="serial-number" name="serialNumber" type="text" />
 
