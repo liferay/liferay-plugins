@@ -3,6 +3,32 @@
 
 <service-builder package-path="com.liferay.so">
 	<namespace>SO</namespace>
+	<entity name="FavoriteSite" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="favoriteSiteId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="groupId" type="long" />
+		
+		<!-- Finder methods -->
+
+		<finder name="UserId" return-type="Collection">
+			<finder-column name="userId" />
+		</finder>
+		<finder name="U_G" return-type="Collection" unique="true">
+			<finder-column name="userId" />
+			<finder-column name="groupId" />
+		</finder>
+		
+		<!-- References -->
+
+		<reference package-path="com.liferay.portal" entity="User" />
+	</entity>
 	<entity name="MemberRequest" local-service="true" remote-service="false">
 
 		<!-- PK fields -->

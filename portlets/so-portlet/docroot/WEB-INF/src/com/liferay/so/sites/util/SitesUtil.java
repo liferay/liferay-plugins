@@ -17,28 +17,19 @@
 
 package com.liferay.so.sites.util;
 
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
-import com.liferay.portal.model.User;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.GroupServiceUtil;
-import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
-import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.PortletKeys;
 import com.liferay.portal.util.comparator.GroupNameComparator;
+import com.liferay.so.service.FavoriteSiteLocalServiceUtil;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
-
-import javax.portlet.PortletPreferences;
 
 /**
  * @author Ryan Park
@@ -46,85 +37,42 @@ import javax.portlet.PortletPreferences;
  */
 public class SitesUtil {
 
-	public static String getStarredGroupIds(long userId) {
-		String starredGroupIds = StringPool.BLANK;
-
-		try {
-			User user = UserLocalServiceUtil.getUser(userId);
-
-			Group group = user.getGroup();
-
-			PortletPreferences portletPreferences =
-				PortletPreferencesLocalServiceUtil.getPreferences(
-					user.getCompanyId(), group.getGroupId(),
-					PortletKeys.PREFS_OWNER_TYPE_GROUP, 0, "5_WAR_soportlet");
-
-			if (portletPreferences != null) {
-				starredGroupIds = portletPreferences.getValue(
-					"starredGroupIds", StringPool.BLANK);
-			}
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-		}
-
-		return starredGroupIds;
-	}
-
-	public static List<Group> getStarredSites(
-			ThemeDisplay themeDisplay, String name)
+	public static List<Group> getFavoriteSitesGroups(
+			long userId, String name, int maxResultSize)
 		throws Exception {
 
-		String starredGroupIds = StringPool.BLANK;
+		int start = 0;
 
-		User user = themeDisplay.getUser();
-
-		Group group = user.getGroup();
-
-		PortletPreferences portletPreferences =
-			PortletPreferencesLocalServiceUtil.getPreferences(
-				user.getCompanyId(), group.getGroupId(),
-				PortletKeys.PREFS_OWNER_TYPE_GROUP, 0, "5_WAR_soportlet");
-
-		if (portletPreferences != null) {
-			starredGroupIds = portletPreferences.getValue(
-				"starredGroupIds", StringPool.BLANK);
+		if (maxResultSize == QueryUtil.ALL_POS) {
+			start = QueryUtil.ALL_POS;
 		}
 
-		long[] groupIds = StringUtil.split(starredGroupIds, 0L);
+		List<Object[]> favoriteSites =
+			FavoriteSiteLocalServiceUtil.getFavoriteSites(
+				userId, name, start, maxResultSize);
 
-		List<Group> groups = new ArrayList<Group>(groupIds.length);
+		List<Group> groups = new ArrayList<Group>(favoriteSites.size());
 
-		for (long groupId : groupIds) {
+		for (Object[] favoriteSite : favoriteSites) {
+			long curUserId = (Long)favoriteSite[0];
+			long groupId = (Long)favoriteSite[1];
+
 			try {
-				Group curGroup = GroupServiceUtil.getGroup(groupId);
-
-				if (Validator.isNull(name)) {
-					groups.add(curGroup);
-				}
-				else {
-					String groupDescriptiveName = curGroup.getDescriptiveName(
-						themeDisplay.getLocale());
-
-					groupDescriptiveName = groupDescriptiveName.toLowerCase();
-
-					if (groupDescriptiveName.contains(name.toLowerCase())) {
-						groups.add(curGroup);
-					}
-				}
+				groups.add(GroupServiceUtil.getGroup(groupId));
 			}
 			catch (Exception e) {
-				StringUtil.remove(starredGroupIds, String.valueOf(groupId));
-
-				portletPreferences.setValue("starredGroupIds", starredGroupIds);
-
-				portletPreferences.store();
+				FavoriteSiteLocalServiceUtil.deleteFavoriteSite(
+					curUserId, groupId);
 			}
 		}
 
-		Collections.sort(groups, new GroupNameComparator(true));
-
 		return groups;
+	}
+
+	public static int getFavoriteSitesGroupsCount(long userId, String name)
+		throws Exception {
+
+		return FavoriteSiteLocalServiceUtil.getFavoriteSitesCount(userId, name);
 	}
 
 	public static List<Group> getVisibleSites(

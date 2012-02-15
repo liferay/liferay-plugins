@@ -53,6 +53,7 @@ import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portal.util.comparator.GroupNameComparator;
 import com.liferay.portlet.expando.model.ExpandoBridge;
+import com.liferay.so.service.FavoriteSiteLocalServiceUtil;
 import com.liferay.so.sites.util.SitesUtil;
 import com.liferay.so.util.WebKeys;
 import com.liferay.util.bridges.mvc.MVCPortlet;
@@ -232,17 +233,11 @@ public class SitesPortlet extends MVCPortlet {
 				themeDisplay.getCompanyId(), keywords, null, params);
 		}
 		else {
-			if (searchTab.equals("my-favorites")) {
-				groups = SitesUtil.getStarredSites(themeDisplay, name);
-				groupsCount = groups.size();
-			}
-			else if (searchTab.equals("my-sites")) {
-				groups = SitesUtil.getVisibleSites(
-					themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-					keywords, true, maxResultSize);
-				groupsCount = SitesUtil.getVisibleSitesCount(
-					themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-					keywords, true);
+			if (searchTab.equals("my-sites")) {
+				groups = SitesUtil.getFavoriteSitesGroups(
+					themeDisplay.getUserId(), keywords, maxResultSize);
+				groupsCount = SitesUtil.getFavoriteSitesGroupsCount(
+					themeDisplay.getUserId(), keywords);
 			}
 			else {
 				groups = SitesUtil.getVisibleSites(
@@ -349,31 +344,31 @@ public class SitesPortlet extends MVCPortlet {
 				groupJSONObject.put("deleteURL", deletePortletURL.toString());
 			}
 
-			PortletURL starPortletURL = resourceResponse.createActionURL();
+			PortletURL favoritePortletURL = resourceResponse.createActionURL();
 
-			starPortletURL.setWindowState(WindowState.NORMAL);
+			favoritePortletURL.setWindowState(WindowState.NORMAL);
 
-			starPortletURL.setParameter(
-				ActionRequest.ACTION_NAME, "updateStars");
-			starPortletURL.setParameter(
+			favoritePortletURL.setParameter(
+				ActionRequest.ACTION_NAME, "updateFavorites");
+			favoritePortletURL.setParameter(
 				"redirect", themeDisplay.getURLCurrent());
-			starPortletURL.setParameter(
-				"starredGroupId", String.valueOf(group.getGroupId()));
+			favoritePortletURL.setParameter(
+				"groupId", String.valueOf(group.getGroupId()));
 
-			String starredGroupIds = SitesUtil.getStarredGroupIds(
-				themeDisplay.getUserId());
+			if (!FavoriteSiteLocalServiceUtil.isFavoriteSite(
+					themeDisplay.getUserId(), group.getGroupId())) {
 
-			if (!StringUtil.contains(
-					starredGroupIds, String.valueOf(group.getGroupId()))) {
+				favoritePortletURL.setParameter(Constants.CMD, Constants.ADD);
 
-				starPortletURL.setParameter(Constants.CMD, Constants.ADD);
-
-				groupJSONObject.put("starURL", starPortletURL.toString());
+				groupJSONObject.put(
+					"favoriteURL", favoritePortletURL.toString());
 			}
 			else {
-				starPortletURL.setParameter(Constants.CMD, Constants.DELETE);
+				favoritePortletURL.setParameter(
+					Constants.CMD, Constants.DELETE);
 
-				groupJSONObject.put("unstarURL", starPortletURL.toString());
+				groupJSONObject.put(
+					"unfavoriteURL", favoritePortletURL.toString());
 			}
 
 			jsonArray.put(groupJSONObject);
@@ -429,7 +424,7 @@ public class SitesPortlet extends MVCPortlet {
 		}
 	}
 
-	public void updateStars(
+	public void updateFavorites(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
@@ -438,13 +433,12 @@ public class SitesPortlet extends MVCPortlet {
 
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
-		long starredGroupId = ParamUtil.getLong(
-			actionRequest, "starredGroupId");
+		long groupId = ParamUtil.getLong(actionRequest, "groupId");
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		try {
-			GroupServiceUtil.getGroup(starredGroupId);
+			GroupServiceUtil.getGroup(groupId);
 		}
 		catch (Exception e) {
 			jsonObject.put("result", "failure");
@@ -454,30 +448,14 @@ public class SitesPortlet extends MVCPortlet {
 			return;
 		}
 
-		User user = themeDisplay.getUser();
-
-		Group group = user.getGroup();
-
-		PortletPreferences portletPreferences =
-			PortletPreferencesLocalServiceUtil.getPreferences(
-				user.getCompanyId(), group.getGroupId(),
-				PortletKeys.PREFS_OWNER_TYPE_GROUP, 0, "5_WAR_soportlet");
-
-		String starredGroupIds = portletPreferences.getValue(
-			"starredGroupIds", StringPool.BLANK);
-
 		if (cmd.equals(Constants.ADD)) {
-			starredGroupIds = StringUtil.add(
-				starredGroupIds, String.valueOf(starredGroupId));
+			FavoriteSiteLocalServiceUtil.addFavoriteSite(
+				themeDisplay.getUserId(), groupId);
 		}
 		else if (cmd.equals(Constants.DELETE)) {
-			starredGroupIds = StringUtil.remove(
-				starredGroupIds, String.valueOf(starredGroupId));
+			FavoriteSiteLocalServiceUtil.deleteFavoriteSite(
+				themeDisplay.getUserId(), groupId);
 		}
-
-		portletPreferences.setValue("starredGroupIds", starredGroupIds);
-
-		portletPreferences.store();
 
 		jsonObject.put("result", "success");
 
