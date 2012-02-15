@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.liferay.so.service.persistence.FavoriteSiteFinder.countByU_N">
+		<![CDATA[
+			SELECT COUNT(*) AS COUNT_VALUE
+			FROM
+			(
+				(
+					SELECT
+						DISTINCT SO_FavoriteSite.userId, SO_FavoriteSite.groupId
+					FROM
+						Group_
+					INNER JOIN
+						SO_FavoriteSite ON
+							(Group_.groupId = SO_FavoriteSite.groupId)
+					WHERE
+						(SO_FavoriteSite.userId = ?) AND
+						(lower(Group_.name) LIKE ? OR lower(Group_.name) LIKE ? OR ? IS NULL)
+				)
+				UNION
+				(
+					SELECT
+						DISTINCT Users_Groups.userId, Group_.groupId
+					FROM 
+						Group_ 
+					[$JOIN_BY_USERS_GROUP$] AND
+						(Group_.name != 'Control Panel') AND
+						(lower(Group_.name) LIKE ? OR lower(Group_.name) LIKE ? OR ? IS NULL) AND
+						(Group_.type_ != 4)
+				)
+			) AS MyFavoriteSites
+		]]>
+	</sql>
+	<sql id="com.liferay.so.service.persistence.FavoriteSiteFinder.findByU_N">
+		<![CDATA[
+			(
+				SELECT
+					DISTINCT SO_FavoriteSite.userId, SO_FavoriteSite.groupId
+				FROM
+					Group_
+				INNER JOIN
+					SO_FavoriteSite ON
+						(Group_.groupId = SO_FavoriteSite.groupId)
+				WHERE
+					(SO_FavoriteSite.userId = ?) AND
+					(lower(Group_.name) LIKE ? OR lower(Group_.name) LIKE ? OR ? IS NULL)
+				ORDER BY
+					Group_.name ASC
+			)
+			UNION
+			(
+				SELECT
+					DISTINCT Users_Groups.userId, Group_.groupId
+				FROM 
+					Group_
+				[$JOIN_BY_USERS_GROUP$] AND
+					(Group_.name != 'Control Panel') AND
+					(lower(Group_.name) LIKE ? OR lower(Group_.name) LIKE ? OR ? IS NULL) AND
+					(Group_.type_ != 4)
+				ORDER BY
+					Group_.name ASC
+			)
+		]]>
+	</sql>
+</custom-sql>
