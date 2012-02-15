@@ -137,11 +137,11 @@ MailManager mailManager = MailManager.getInstance(request);
 	</div>
 
 	<aui:button-row>
-		<aui:button cssClass="compose-message" data-messageType="reply" data-replyMessageId="<%= message.getMessageId() %>" href="javascript:;" value="reply" />
+		<aui:button cssClass="compose-message" data-messageType="reply" data-replyMessageId="<%= message.getMessageId() %>" value="reply" />
 
-		<aui:button cssClass="compose-message" data-messageType="reply-all" data-replyMessageId="<%= message.getMessageId() %>" href="javascript:;" value="reply-all" />
+		<aui:button cssClass="compose-message" data-messageType="reply-all" data-replyMessageId="<%= message.getMessageId() %>" value="reply-all" />
 
-		<aui:button cssClass="compose-message" data-messageType="forward" data-replyMessageId="<%= message.getMessageId() %>" href="javascript:;" value="forward" />
+		<aui:button cssClass="compose-message" data-messageType="forward" data-replyMessageId="<%= message.getMessageId() %>" value="forward" />
 	</aui:button-row>
 
 	<c:if test="<%= Validator.isNull(message.getBody()) %>">
