@@ -22,15 +22,15 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
  */
 public class FavoriteSiteFinderUtil {
 	public static int countByU_N(long userId, java.lang.String name,
-		java.lang.String realName)
+		java.lang.String groupRealName)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getFinder().countByU_N(userId, name, realName);
+		return getFinder().countByU_N(userId, name, groupRealName);
 	}
 
 	public static java.util.List<java.lang.Object[]> findByU_N(long userId,
-		java.lang.String name, java.lang.String realName, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getFinder().findByU_N(userId, name, realName, start, end);
+		java.lang.String name, java.lang.String groupRealName, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		return getFinder().findByU_N(userId, name, groupRealName, start, end);
 	}
 
 	public static FavoriteSiteFinder getFinder() {
