@@ -30,12 +30,12 @@
 				width: 16px;
 			}
 
-			.star a {
+			.favorite a {
 				background: url(../images/star_empty.png) no-repeat 0 50%;
 				float: right;
 			}
 
-			.unstar a {
+			.unfavorite a {
 				background: url(../images/star.png) no-repeat 0 50%;
 				float: right;
 			}
@@ -134,12 +134,12 @@
 				width: 16px;
 			}
 
-			.star a {
+			.favorite a {
 				background: url(../images/star_empty.png) no-repeat 0 50%;
 				float: right;
 			}
 
-			.unstar a {
+			.unfavorite a {
 				background: url(../images/star.png) no-repeat 0 50%;
 				float: right;
 			}

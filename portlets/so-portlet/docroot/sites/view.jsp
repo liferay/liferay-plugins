@@ -28,13 +28,9 @@ String searchName = DAOParamUtil.getLike(request, "name");
 List<Group> groups = null;
 int groupsCount = 0;
 
-if (tabs1.equals("my-favorites")) {
-	groups = SitesUtil.getStarredSites(themeDisplay, name);
-	groupsCount = groups.size();
-}
-else if (tabs1.equals("my-sites")) {
-	groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName, true, maxResultSize);
-	groupsCount = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName, true);
+if (tabs1.equals("my-sites")) {
+	groups = SitesUtil.getFavoriteSitesGroups(themeDisplay.getUserId(), searchName, maxResultSize);
+	groupsCount = SitesUtil.getFavoriteSitesGroupsCount(themeDisplay.getUserId(), searchName);
 
 	if (groupsCount == 0) {
 		tabs1 = "all-sites";
@@ -62,7 +58,6 @@ pageContext.setAttribute("portletURL", portletURL);
 	<aui:select label="" name="tabs1">
 		<aui:option label="all-sites" selected='<%= tabs1.equals("all-sites") %>' value="all-sites" />
 		<aui:option label="my-sites" selected='<%= tabs1.equals("my-sites") %>' value="my-sites" />
-		<aui:option label="my-favorites" selected='<%= tabs1.equals("my-favorites") %>' value="my-favorites" />
 	</aui:select>
 </div>
 
@@ -79,8 +74,8 @@ pageContext.setAttribute("portletURL", portletURL);
 	%>
 
 	<c:if test="<%= !hideNotice %>">
-		<div class="portlet-msg-info star-msg-info <%= hideNotice %>">
-			<liferay-ui:message key="star-some-sites-to-customize-your-sites-list" />
+		<div class="portlet-msg-info favorite-msg-info <%= hideNotice %>">
+			<liferay-ui:message key="favorite-some-sites-to-customize-your-sites-list" />
 
 			<span class="hide-notice">
 				<liferay-portlet:actionURL name="hideNotice" var="hideNoticeURL">
@@ -98,8 +93,6 @@ pageContext.setAttribute("portletURL", portletURL);
 
 				<%
 				boolean alternate = false;
-
-				String starredGroupIds = SitesUtil.getStarredGroupIds(themeDisplay.getUserId());
 
 				for (Group group : groups) {
 					String className = StringPool.BLANK;
@@ -125,26 +118,26 @@ pageContext.setAttribute("portletURL", portletURL);
 
 					<li class="<%= className %>">
 						<c:choose>
-							<c:when test="<%= !StringUtil.contains(starredGroupIds, String.valueOf(group.getGroupId())) %>">
-								<span class="action star">
-									<liferay-portlet:actionURL name="updateStars" var="starURL">
+							<c:when test="<%= !FavoriteSiteLocalServiceUtil.isFavoriteSite(themeDisplay.getUserId(), group.getGroupId()) %>">
+								<span class="action favorite">
+									<liferay-portlet:actionURL name="updateFavorites" var="favoriteURL">
 										<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" />
 										<portlet:param name="redirect" value="<%= currentURL %>" />
-										<portlet:param name="starredGroupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+										<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 									</liferay-portlet:actionURL>
 
-									<a href="<%= starURL %>"><liferay-ui:message key="star" /></a>
+									<a href="<%= favoriteURL %>"><liferay-ui:message key="favorite" /></a>
 								</span>
 							</c:when>
 							<c:otherwise>
-								<span class="action unstar">
-									<liferay-portlet:actionURL name="updateStars" var="unstarURL">
+								<span class="action unfavorite">
+									<liferay-portlet:actionURL name="updateFavorites" var="unfavoriteURL">
 										<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 										<portlet:param name="redirect" value="<%= currentURL %>" />
-										<portlet:param name="starredGroupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+										<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 									</liferay-portlet:actionURL>
 
-									<a href="<%= unstarURL %>"><liferay-ui:message key="unstar" /></a>
+									<a href="<%= unfavoriteURL %>"><liferay-ui:message key="unfavorite" /></a>
 								</span>
 							</c:otherwise>
 						</c:choose>
@@ -313,7 +306,7 @@ pageContext.setAttribute("portletURL", portletURL);
 	);
 
 	<c:if test="<%= groups.isEmpty() && !hideNotice %>">
-		A.one('.so-portlet-sites .star-msg-info .hide-notice a').on(
+		A.one('.so-portlet-sites .favorite-msg-info .hide-notice a').on(
 			'click',
 			function(event) {
 				event.preventDefault();
@@ -325,7 +318,7 @@ pageContext.setAttribute("portletURL", portletURL);
 					{
 						after: {
 							success: function(event, id, obj) {
-								link.ancestor('.star-msg-info').hide();
+								link.ancestor('.favorite-msg-info').hide();
 							}
 						}
 					}
