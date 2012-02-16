@@ -1,0 +1,16 @@
+<div class="pod">
+	#if ($image.data != "")
+		<img src='${image.data}' class="pod-image" />
+	#end
+
+	<div class="pod-text">
+		<h5>${title.data}</h5>
+		${description.data}
+	</div>
+
+	<div class="divider"></div>
+</div>
+
+<div class="column-text">
+	${content.data}
+</div>

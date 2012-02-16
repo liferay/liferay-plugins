@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element instance-id="5VaVOybB" name="title" type="text" index-type="">
+		<dynamic-content><![CDATA[What Our Clients Are Saying]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element instance-id="TbPa9hO6" name="quote" type="text_box" index-type="">
+		<dynamic-element instance-id="akO85Ivk" name="author" type="text" index-type="">
+			<dynamic-content><![CDATA[Matthew Designer]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content><![CDATA[Aliquam erat volutpat. Mauris vel neque sit amet nunc gravida congue sed sit amet purus. Quisque lacus.]]></dynamic-content>
+	</dynamic-element>
+</root>

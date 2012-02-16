@@ -1,0 +1,74 @@
+#set($article-id = $reserved-article-id.getData())
+#set($content-id = "carousel-" + $article-id)
+
+<style>
+	#${content-id} {
+	    height: ${height.data}px;
+	}
+</style>
+
+<div id="${content-id}" class="carousel-container">
+	<ul id="tabs">
+		#foreach ($item in $carousel-item.siblings)
+			#set($customClass = "")
+			#if ($velocityCount == 1)
+				#set($customClass = $customClass + " first aui-carousel-menu-active")
+			#end
+
+			#if (!$velocityHasNext)
+				#set($customClass = $customClass + " last")
+			#end
+			
+			<li class="tab-item item-$velocityCount aui-carousel-menu-index $customClass">
+				#if ($item.icon.data!='')
+					<img src="${item.icon.data}" class="icon"/>
+				#end
+
+				<h4 class="title">
+					#if ($item.data)
+						${item.data}
+					#end
+				</h4>
+
+				<span class="tagline">
+					#if ($item.tagline.data)
+						${item.tagline.data}
+					#end
+				</span>
+			</li>
+
+			#if ($velocityHasNext)
+				<div class="divider"></div>
+			#end
+		#end
+	</ul>
+
+	<div id="carousel">
+		#foreach ($item in $carousel-item.siblings)
+			#if($velocityCount == 1)
+				<div style="background: url(${item.image.data}) no-repeat; width: 674px; height: ${height.data}px;" class="aui-carousel-item aui-carousel-item-active">${item.data}</div>
+			#else
+				<div style="background: url(${item.image.data}) no-repeat; width: 674px; height: ${height.data}px;" class="aui-carousel-item">${item.data}</div>
+			#end
+		#end
+	</div>
+</div>
+
+<script type="text/javascript">
+	AUI().ready(
+	'aui-carousel',
+		function(A) {
+			var component = new A.Carousel(
+				{
+					contentBox: '#${content-id} #carousel',
+					nodeMenu: '#${content-id} #tabs',
+					nodeMenuItemSelector: '.tab-item',
+					height: ${height.data},
+					intervalTime: ${duration.data},
+					width: 287
+				}
+			)
+			.render();
+		}
+	);
+</script>

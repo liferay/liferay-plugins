@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+
+<root>
+	<dynamic-element name="title" type="text" index-type="" repeatable="false">
+		<meta-data>
+			<entry name="displayAsTooltip"><![CDATA[true]]></entry>
+			<entry name="required"><![CDATA[false]]></entry>
+			<entry name="instructions"><![CDATA[]]></entry>
+			<entry name="label"><![CDATA[Title]]></entry>
+			<entry name="predefinedValue"><![CDATA[]]></entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element name="link" type="text" index-type="" repeatable="false">
+		<meta-data>
+			<entry name="displayAsTooltip"><![CDATA[true]]></entry>
+			<entry name="required"><![CDATA[false]]></entry>
+			<entry name="instructions"><![CDATA[]]></entry>
+			<entry name="label"><![CDATA[URL Link]]></entry>
+			<entry name="predefinedValue"><![CDATA[]]></entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element name="image" type="document_library" index-type="" repeatable="false">
+		<meta-data>
+			<entry name="displayAsTooltip"><![CDATA[true]]></entry>
+			<entry name="required"><![CDATA[false]]></entry>
+			<entry name="instructions"><![CDATA[]]></entry>
+			<entry name="label"><![CDATA[Select Image]]></entry>
+			<entry name="predefinedValue"><![CDATA[]]></entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element name="description" type="text_box" index-type="" repeatable="false">
+		<meta-data>
+			<entry name="displayAsTooltip"><![CDATA[true]]></entry>
+			<entry name="required"><![CDATA[false]]></entry>
+			<entry name="instructions"><![CDATA[]]></entry>
+			<entry name="label"><![CDATA[Description]]></entry>
+			<entry name="predefinedValue"><![CDATA[]]></entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element name="content" type="text_area" index-type="" repeatable="false">
+		<meta-data>
+			<entry name="displayAsTooltip"><![CDATA[false]]></entry>
+			<entry name="required"><![CDATA[false]]></entry>
+			<entry name="instructions"><![CDATA[]]></entry>
+			<entry name="label"><![CDATA[Content]]></entry>
+			<entry name="predefinedValue"><![CDATA[]]></entry>
+		</meta-data>
+	</dynamic-element>
+</root>

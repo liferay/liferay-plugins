@@ -1,0 +1,61 @@
+{
+	"layoutTemplateId": "1_3_1_columns",
+	"layouts": [
+		{
+			"title": "Home",
+			"name": "Home",
+			"friendlyURL": "/home",
+			"columns": [
+				[
+					"Main Carousel.xml"
+				],
+				[
+					"Our Goal.xml"
+				],
+				[
+					"Exceptional Support.xml"
+				],
+				[
+					"The Experience.xml"
+				],
+				[
+					"What Our Clients Are Saying.xml"
+				]
+			]
+		},
+		{
+			"title": "Clients",
+			"name": "Clients",
+			"friendlyURL": "/clients"
+		},
+		{
+			"title": "Partners",
+			"name": "Partners",
+			"friendlyURL": "/partners"
+		},
+		{
+			"title": "Careers",
+			"name": "Careers",
+			"friendlyURL": "/careers"
+		},
+		{
+			"layoutTemplateId": "2_columns_iii",
+			"title": "About Us",
+			"name": "About Us",
+			"friendlyURL": "/about-us",
+			"columns": [
+				[
+					"Main Content.html"
+				],
+				[
+					"Why Seven Cogs.html"
+				]
+			]
+		},
+		{
+			"title": "Contact Us",
+			"name": "Contact Us",
+			"friendlyURL": "/contact-us"
+		}
+	]
+}
