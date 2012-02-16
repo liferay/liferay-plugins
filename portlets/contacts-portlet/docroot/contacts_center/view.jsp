@@ -186,7 +186,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 									/>
 
 									<%
-									int allUsersCount = UserLocalServiceUtil.getUsersCount();
+									int allUsersCount = UserLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), StringPool.BLANK, WorkflowConstants.STATUS_APPROVED, null);
 									int connectionUsersCount = UserLocalServiceUtil.getSocialUsersCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION);
 									int followingUsersCount = UserLocalServiceUtil.getSocialUsersCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
 									%>
@@ -411,7 +411,9 @@ portletURL.setWindowState(WindowState.NORMAL);
 					function(event) {
 						contactFilterSelect.set('value', 'all');
 
-						contactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
+						searchInput.set('value', '');
+
+						contactsCenter.updateContacts('', contactFilterSelect.get('value'));
 					},
 					'a'
 				);
