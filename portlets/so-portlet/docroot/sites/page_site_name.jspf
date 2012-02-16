@@ -18,20 +18,20 @@
 --%>
 
 <span class="site-name">
-	<c:if test="<%= starredSite.isRegularSite() && !starredSite.isControlPanel() %>">
+	<c:if test="<%= group.isRegularSite() && !group.isControlPanel() %>">
 
 		<%
-		ExpandoBridge expandoBridge = starredSite.getExpandoBridge();
+		ExpandoBridge expandoBridge = group.getExpandoBridge();
 
 		boolean socialOfficeEnabled = GetterUtil.getBoolean(expandoBridge.getAttribute("socialOfficeEnabled"));
 		%>
 
 		<c:choose>
 			<c:when test="<%= socialOfficeEnabled %>">
-				<liferay-ui:icon message="<%= starredSite.getDescriptiveName(locale) %>" src='<%= themeDisplay.getPathContext() + "/html/icons/social_office.png" %>' />
+				<liferay-ui:icon message="<%= group.getDescriptiveName(locale) %>" src='<%= themeDisplay.getPathContext() + "/html/icons/social_office.png" %>' />
 			</c:when>
 			<c:otherwise>
-				<liferay-ui:icon message="<%= starredSite.getDescriptiveName(locale) %>" src='<%= themeDisplay.getPathContext() + "/html/icons/sites_admin.png" %>' />
+				<liferay-ui:icon message="<%= group.getDescriptiveName(locale) %>" src='<%= themeDisplay.getPathContext() + "/html/icons/sites_admin.png" %>' />
 			</c:otherwise>
 		</c:choose>
 	</c:if>

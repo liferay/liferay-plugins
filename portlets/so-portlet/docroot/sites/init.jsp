@@ -19,6 +19,8 @@
 
 <%@ include file="/init.jsp" %>
 
+<%@ page import="com.liferay.so.service.FavoriteSiteLocalServiceUtil" %>
+
 <%
 PortletPreferences preferences = renderRequest.getPreferences();
 

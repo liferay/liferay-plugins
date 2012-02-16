@@ -72,8 +72,6 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 		<%
 		boolean alternate = false;
 
-		String starredGroupIds = SitesUtil.getStarredGroupIds(themeDisplay.getUserId());
-
 		for (Group group : groups) {
 			String classNames = StringPool.BLANK;
 
@@ -98,28 +96,28 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 
 			<li class="<%= classNames %>">
 				<c:choose>
-					<c:when test="<%= !StringUtil.contains(starredGroupIds, String.valueOf(group.getGroupId())) %>">
-						<span class="action star">
-							<liferay-portlet:actionURL name="updateStars" var="starURL">
+					<c:when test="<%= !FavoriteSiteLocalServiceUtil.isFavoriteSite(themeDisplay.getUserId(), group.getGroupId()) %>">
+						<span class="action favorite">
+							<liferay-portlet:actionURL name="updateFavorites" var="favoriteURL">
 								<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" />
 								<portlet:param name="redirect" value="<%= currentURL %>" />
 								<portlet:param name="portletResource" value="<%= portletResource %>" />
-								<portlet:param name="starredGroupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+								<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 							</liferay-portlet:actionURL>
 
-							<a class="star-site" href="<%= starURL %>"><liferay-ui:message key="star" /></a>
+							<a class="favorite-site" href="<%= favoriteURL %>"><liferay-ui:message key="favorite" /></a>
 						</span>
 					</c:when>
 					<c:otherwise>
-						<span class="action unstar">
-							<liferay-portlet:actionURL name="updateStars" var="unstarURL">
+						<span class="action unfavorite">
+							<liferay-portlet:actionURL name="updateFavorites" var="unfavoriteURL">
 								<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 								<portlet:param name="redirect" value="<%= currentURL %>" />
 								<portlet:param name="portletResource" value="<%= portletResource %>" />
-								<portlet:param name="starredGroupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+								<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 							</liferay-portlet:actionURL>
 
-							<a class="unstar-site" href="<%= unstarURL %>"><liferay-ui:message key="unstar" /></a>
+							<a class="unfavorite-site" href="<%= unfavoriteURL %>"><liferay-ui:message key="unfavorite" /></a>
 						</span>
 					</c:otherwise>
 				</c:choose>
@@ -260,7 +258,7 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 		else {
 			var siteTemplate =
 				'<li class="{classNames}">' +
-					'{starHtml}' +
+					'{favoriteHtml}' +
 					'{joinHtml}' +
 					'{leaveHtml}' +
 					'{deleteHtml}' +
@@ -302,7 +300,7 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 								leaveHtml: (result.leaveUrl ? '<span class="action leave"><a class="leave-site" href="' + result.leaveUrl + '"><liferay-ui:message key="leave" /></a></span>' : ''),
 								siteDescription: result.description,
 								siteName: name,
-								starHtml: (result.starURL ? '<span class="action star"><a class="star-site" href="' + result.starURL + '"><liferay-ui:message key="star" /></a></span>' : '<span class="action unstar"><a class="unstar-site" href="' + result.unstarURL + '"><liferay-ui:message key="unstar" /></a></span>')
+								favoriteHtml: (result.favoriteURL ? '<span class="action favorite"><a class="favorite-site" href="' + result.favoriteURL + '"><liferay-ui:message key="favorite" /></a></span>' : '<span class="action unfavorite"><a class="unfavorite-site" href="' + result.unfavoriteURL + '"><liferay-ui:message key="unfavorite" /></a></span>')
 							}
 
 						);
