@@ -1,6 +1,12 @@
 <?xml version="1.0"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.liferay.so.service.FavoriteSiteLocalService" class="com.liferay.so.service.impl.FavoriteSiteLocalServiceImpl" />
+	<bean id="com.liferay.so.service.FavoriteSiteLocalServiceUtil" class="com.liferay.so.service.FavoriteSiteLocalServiceUtil">
+		<property name="service" ref="com.liferay.so.service.FavoriteSiteLocalService" />
+	</bean>
+	<bean id="com.liferay.so.service.persistence.FavoriteSitePersistence" class="com.liferay.so.service.persistence.FavoriteSitePersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.so.service.persistence.FavoriteSiteFinder" class="com.liferay.so.service.persistence.FavoriteSiteFinderImpl" parent="basePersistence" />
 	<bean id="com.liferay.so.service.MemberRequestLocalService" class="com.liferay.so.service.impl.MemberRequestLocalServiceImpl" />
 	<bean id="com.liferay.so.service.MemberRequestLocalServiceUtil" class="com.liferay.so.service.MemberRequestLocalServiceUtil">
 		<property name="service" ref="com.liferay.so.service.MemberRequestLocalService" />
