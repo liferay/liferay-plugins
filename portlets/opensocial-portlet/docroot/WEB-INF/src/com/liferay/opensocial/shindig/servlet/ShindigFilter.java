@@ -87,7 +87,11 @@ public class ShindigFilter extends InjectedFilter {
 		String userUUID = StringPool.BLANK;
 
 		try {
-			Company company = CompanyLocalServiceUtil.getCompany(companyId);
+			Company company = CompanyLocalServiceUtil.fetchCompany(companyId);
+
+			if (Validator.isNull(company)) {
+				return false;
+			}
 
 			String userUUIDString = CookieUtil.get(
 				(HttpServletRequest)servletRequest, CookieKeys.USER_UUID);
