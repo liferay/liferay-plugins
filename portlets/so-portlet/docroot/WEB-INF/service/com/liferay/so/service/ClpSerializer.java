@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
 
+import com.liferay.so.model.FavoriteSiteClp;
 import com.liferay.so.model.MemberRequestClp;
 import com.liferay.so.model.ProjectsEntryClp;
 
@@ -100,6 +101,10 @@ public class ClpSerializer {
 
 		String oldModelClassName = oldModelClass.getName();
 
+		if (oldModelClassName.equals(FavoriteSiteClp.class.getName())) {
+			return translateInputFavoriteSite(oldModel);
+		}
+
 		if (oldModelClassName.equals(MemberRequestClp.class.getName())) {
 			return translateInputMemberRequest(oldModel);
 		}
@@ -121,6 +126,63 @@ public class ClpSerializer {
 		}
 
 		return newList;
+	}
+
+	public static Object translateInputFavoriteSite(BaseModel<?> oldModel) {
+		FavoriteSiteClp oldCplModel = (FavoriteSiteClp)oldModel;
+
+		Thread currentThread = Thread.currentThread();
+
+		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+
+		try {
+			currentThread.setContextClassLoader(_classLoader);
+
+			try {
+				Class<?> newModelClass = Class.forName("com.liferay.so.model.impl.FavoriteSiteImpl",
+						true, _classLoader);
+
+				Object newModel = newModelClass.newInstance();
+
+				Method method0 = newModelClass.getMethod("setFavoriteSiteId",
+						new Class[] { Long.TYPE });
+
+				Long value0 = new Long(oldCplModel.getFavoriteSiteId());
+
+				method0.invoke(newModel, value0);
+
+				Method method1 = newModelClass.getMethod("setCompanyId",
+						new Class[] { Long.TYPE });
+
+				Long value1 = new Long(oldCplModel.getCompanyId());
+
+				method1.invoke(newModel, value1);
+
+				Method method2 = newModelClass.getMethod("setUserId",
+						new Class[] { Long.TYPE });
+
+				Long value2 = new Long(oldCplModel.getUserId());
+
+				method2.invoke(newModel, value2);
+
+				Method method3 = newModelClass.getMethod("setGroupId",
+						new Class[] { Long.TYPE });
+
+				Long value3 = new Long(oldCplModel.getGroupId());
+
+				method3.invoke(newModel, value3);
+
+				return newModel;
+			}
+			catch (Exception e) {
+				_log.error(e, e);
+			}
+		}
+		finally {
+			currentThread.setContextClassLoader(contextClassLoader);
+		}
+
+		return oldModel;
 	}
 
 	public static Object translateInputMemberRequest(BaseModel<?> oldModel) {
@@ -360,6 +422,11 @@ public class ClpSerializer {
 		String oldModelClassName = oldModelClass.getName();
 
 		if (oldModelClassName.equals(
+					"com.liferay.so.model.impl.FavoriteSiteImpl")) {
+			return translateOutputFavoriteSite(oldModel);
+		}
+
+		if (oldModelClassName.equals(
 					"com.liferay.so.model.impl.MemberRequestImpl")) {
 			return translateOutputMemberRequest(oldModel);
 		}
@@ -394,6 +461,56 @@ public class ClpSerializer {
 		else {
 			return obj;
 		}
+	}
+
+	public static Object translateOutputFavoriteSite(BaseModel<?> oldModel) {
+		Thread currentThread = Thread.currentThread();
+
+		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+
+		try {
+			currentThread.setContextClassLoader(_classLoader);
+
+			try {
+				FavoriteSiteClp newModel = new FavoriteSiteClp();
+
+				Class<?> oldModelClass = oldModel.getClass();
+
+				Method method0 = oldModelClass.getMethod("getFavoriteSiteId");
+
+				Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
+
+				newModel.setFavoriteSiteId(value0);
+
+				Method method1 = oldModelClass.getMethod("getCompanyId");
+
+				Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
+
+				newModel.setCompanyId(value1);
+
+				Method method2 = oldModelClass.getMethod("getUserId");
+
+				Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
+
+				newModel.setUserId(value2);
+
+				Method method3 = oldModelClass.getMethod("getGroupId");
+
+				Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
+
+				newModel.setGroupId(value3);
+
+				return newModel;
+			}
+			catch (Exception e) {
+				_log.error(e, e);
+			}
+		}
+		finally {
+			currentThread.setContextClassLoader(contextClassLoader);
+		}
+
+		return oldModel;
 	}
 
 	public static Object translateOutputMemberRequest(BaseModel<?> oldModel) {
