@@ -38,6 +38,8 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
 
+import java.util.HashMap;
+
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -97,14 +99,27 @@ public abstract class BaseGadgetPortlet extends MVCPortlet {
 				expandoTable.getTableId(), columnName,
 				ExpandoColumnConstants.STRING);
 
-			Role role = RoleLocalServiceUtil.getRole(
+			HashMap<Long, String[]> roleIdsToActionIds =
+				new HashMap<Long, String[]>();
+
+			Role userRole = RoleLocalServiceUtil.getRole(
 				expandoColumn.getCompanyId(), RoleConstants.USER);
+
+			roleIdsToActionIds.put(
+				userRole.getRoleId(),
+				new String[] {ActionKeys.UPDATE, ActionKeys.VIEW});
+
+			Role guestRole = RoleLocalServiceUtil.getRole(
+				expandoColumn.getCompanyId(), RoleConstants.GUEST);
+
+			roleIdsToActionIds.put(
+				guestRole.getRoleId(), new String[] {ActionKeys.VIEW});
 
 			ResourcePermissionLocalServiceUtil.setResourcePermissions(
 				expandoColumn.getCompanyId(), ExpandoColumn.class.getName(),
 				ResourceConstants.SCOPE_INDIVIDUAL,
-				String.valueOf(expandoColumn.getColumnId()), role.getRoleId(),
-				new String[] {ActionKeys.UPDATE, ActionKeys.VIEW});
+				String.valueOf(expandoColumn.getColumnId()),
+				roleIdsToActionIds);
 		}
 	}
 
