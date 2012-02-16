@@ -17,26 +17,12 @@
 
 package com.liferay.so.model.impl;
 
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.model.Group;
-import com.liferay.portal.service.GroupLocalServiceUtil;
-import com.liferay.so.service.FavoriteSiteLocalServiceUtil;
-
 /**
  * @author Jonathan Lee
  */
 public class FavoriteSiteImpl extends FavoriteSiteBaseImpl {
 
 	public FavoriteSiteImpl() {
-	}
-
-	public Group getGroup() throws PortalException, SystemException{
-		return GroupLocalServiceUtil.fetchGroup(getGroupId());
-	}
-
-	public boolean isFavoriteSite() throws PortalException, SystemException {
-		return FavoriteSiteLocalServiceUtil.isFavoriteSite(getPrimaryKey());
 	}
 
 }

@@ -23,10 +23,6 @@ import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.MethodKey;
-import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
@@ -50,21 +46,9 @@ public class FavoriteSiteFinderImpl
 		FavoriteSiteFinder.class.getName() + ".findByU_N";
 
 	public FavoriteSiteFinderImpl() {
-		try {
-			MethodKey methodKey = new MethodKey(
-				"com.liferay.util.dao.orm.CustomSQL", "get", String.class);
-
-			_joinByUsersGroupsSQL = (String)PortalClassInvoker.invoke(
-				true, methodKey,
-				"com.liferay.portal.service.persistence." +
-					"GroupFinder.joinByUsersGroups");
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-		}
 	}
 
-	public int countByU_N(long userId, String name, String realName)
+	public int countByU_N(long userId, String name, String groupRealName)
 		throws SystemException {
 
 		Session session = null;
@@ -74,9 +58,6 @@ public class FavoriteSiteFinderImpl
 
 			String sql = CustomSQLUtil.get(COUNT_BY_U_N);
 
-			sql = StringUtil.replace(
-				sql, "[$JOIN_BY_USERS_GROUP$]", _joinByUsersGroupsSQL);
-
 			SQLQuery q = session.createSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
@@ -85,11 +66,11 @@ public class FavoriteSiteFinderImpl
 
 			qPos.add(userId);
 			qPos.add(StringPool.PERCENT + name + StringPool.PERCENT);
-			qPos.add(realName);
+			qPos.add(groupRealName);
 			qPos.add(name);
 			qPos.add(userId);
 			qPos.add(StringPool.PERCENT + name + StringPool.PERCENT);
-			qPos.add(realName);
+			qPos.add(groupRealName);
 			qPos.add(name);
 
 			Iterator<Long> itr = q.iterate();
@@ -113,7 +94,7 @@ public class FavoriteSiteFinderImpl
 	}
 
 	public List<Object[]> findByU_N(
-			long userId, String name, String realName, int start, int end)
+			long userId, String name, String groupRealName, int start, int end)
 		throws SystemException {
 
 		name = StringUtil.lowerCase(name);
@@ -125,9 +106,6 @@ public class FavoriteSiteFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_U_N);
 
-			sql = StringUtil.replace(
-				sql, "[$JOIN_BY_USERS_GROUP$]", _joinByUsersGroupsSQL);
-
 			SQLQuery q = session.createSQLQuery(sql);
 
 			q.addScalar("userId", Type.LONG);
@@ -137,11 +115,11 @@ public class FavoriteSiteFinderImpl
 
 			qPos.add(userId);
 			qPos.add(StringPool.PERCENT + name + StringPool.PERCENT);
-			qPos.add(realName);
+			qPos.add(groupRealName);
 			qPos.add(name);
 			qPos.add(userId);
 			qPos.add(StringPool.PERCENT + name + StringPool.PERCENT);
-			qPos.add(realName);
+			qPos.add(groupRealName);
 			qPos.add(name);
 
 			return (List<Object[]>)QueryUtil.list(q, getDialect(), start, end);
@@ -154,10 +132,5 @@ public class FavoriteSiteFinderImpl
 			closeSession(session);
 		}
 	}
-
-	private static Log _log = LogFactoryUtil.getLog(
-		FavoriteSiteFinderImpl.class);
-
-	private String _joinByUsersGroupsSQL;
 
 }
