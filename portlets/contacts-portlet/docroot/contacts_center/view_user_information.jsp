@@ -177,6 +177,22 @@ List<Address> addresses = AddressServiceUtil.getAddresses(Contact.class.getName(
 				String zipCode = address.getZip();
 				String city = address.getCity();
 
+				Country country = address.getCountry();
+
+				String countryName = StringPool.BLANK;
+
+				if (country != null) {
+					countryName = country.getName();
+				}
+
+				Region region = address.getRegion();
+
+				String regionName = StringPool.BLANK;
+
+				if (region != null) {
+					regionName = region.getName();
+				}
+
 				String mailingName = LanguageUtil.get(pageContext, address.getType().getName());
 			%>
 
@@ -200,7 +216,15 @@ List<Address> addresses = AddressServiceUtil.getAddresses(Contact.class.getName(
 					</c:if>
 
 					<c:if test="<%= Validator.isNotNull(zipCode) %>">
-						<%= zipCode %>
+						<%= zipCode %>,
+					</c:if>
+
+					<c:if test="<%= Validator.isNotNull(regionName) %>">
+						<%= regionName %>,
+					</c:if>
+
+					<c:if test="<%= Validator.isNotNull(countryName) %>">
+						<%= countryName %>
 					</c:if>
 
 					<c:if test="<%= address.isMailing() %>">(<liferay-ui:message key="mailing" />)</c:if>
