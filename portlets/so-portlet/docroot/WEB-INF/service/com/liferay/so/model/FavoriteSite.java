@@ -31,11 +31,4 @@ public interface FavoriteSite extends FavoriteSiteModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.so.model.impl.FavoriteSiteImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public com.liferay.portal.model.Group getGroup()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public boolean isFavoriteSite()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
 }

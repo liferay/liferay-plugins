@@ -98,14 +98,6 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 		_groupId = groupId;
 	}
 
-	public com.liferay.portal.model.Group getGroup() {
-		throw new UnsupportedOperationException();
-	}
-
-	public boolean isFavoriteSite() {
-		throw new UnsupportedOperationException();
-	}
-
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			FavoriteSiteLocalServiceUtil.addFavoriteSite(this);

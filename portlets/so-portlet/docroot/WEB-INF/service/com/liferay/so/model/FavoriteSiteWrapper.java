@@ -222,18 +222,6 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 		_favoriteSite.persist();
 	}
 
-	public com.liferay.portal.model.Group getGroup()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _favoriteSite.getGroup();
-	}
-
-	public boolean isFavoriteSite()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _favoriteSite.isFavoriteSite();
-	}
-
 	/**
 	 * @deprecated Renamed to {@link #getWrappedModel}
 	 */
