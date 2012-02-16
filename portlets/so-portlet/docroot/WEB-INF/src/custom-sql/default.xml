@@ -3,7 +3,8 @@
 <custom-sql>
 	<sql id="com.liferay.so.service.persistence.FavoriteSiteFinder.countByU_N">
 		<![CDATA[
-			SELECT COUNT(*) AS COUNT_VALUE
+			SELECT
+				COUNT(*) AS COUNT_VALUE
 			FROM
 			(
 				(
@@ -22,11 +23,16 @@
 				(
 					SELECT
 						DISTINCT Users_Groups.userId, Group_.groupId
-					FROM 
-						Group_ 
-					[$JOIN_BY_USERS_GROUP$] AND
-						(Group_.name != 'Control Panel') AND
+					FROM
+						Group_
+					INNER JOIN
+						Users_Groups ON
+							(Users_Groups.groupId = Group_.groupId)
+					WHERE
+						(Users_Groups.userId = ?) AND
 						(lower(Group_.name) LIKE ? OR lower(Group_.name) LIKE ? OR ? IS NULL) AND
+						(Group_.liveGroupId = 0) AND
+						(Group_.name != 'Control Panel') AND
 						(Group_.type_ != 4)
 				)
 			) AS MyFavoriteSites
@@ -52,11 +58,16 @@
 			(
 				SELECT
 					DISTINCT Users_Groups.userId, Group_.groupId
-				FROM 
+				FROM
 					Group_
-				[$JOIN_BY_USERS_GROUP$] AND
-					(Group_.name != 'Control Panel') AND
+				INNER JOIN
+					Users_Groups ON
+						(Users_Groups.groupId = Group_.groupId)
+				WHERE
+					(Users_Groups.userId = ?) AND
 					(lower(Group_.name) LIKE ? OR lower(Group_.name) LIKE ? OR ? IS NULL) AND
+					(Group_.name != 'Control Panel') AND
+					(Group_.liveGroupId = 0) AND
 					(Group_.type_ != 4)
 				ORDER BY
 					Group_.name ASC
