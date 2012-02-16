@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element instance-id="Dq2bIXiJ" name="height" type="text" index-type="not-searchable">
+		<dynamic-content><![CDATA[320]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element instance-id="O4aO9a8O" name="duration" type="list" index-type="not-searchable">
+		<dynamic-content><![CDATA[3]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element instance-id="qYyn3lcL" name="carousel-item" type="text" index-type="">
+		<dynamic-element instance-id="SJwKZiO2" name="tagline" type="text" index-type="">
+			<dynamic-content><![CDATA[Lorem ipsum dolor sit amet consect]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element instance-id="1eszlZHw" name="icon" type="document_library" index-type="">
+			<dynamic-content><![CDATA[[$FILE=icon_beaker.png$]]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element instance-id="NKshI0fa" name="image" type="document_library" index-type="">
+			<dynamic-content><![CDATA[[$FILE=carousel_item1.jpg$]]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content><![CDATA[Services]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element instance-id="grOgO2rI" name="carousel-item" type="text" index-type="">
+		<dynamic-element instance-id="UDRDxXc6" name="tagline" type="text" index-type="">
+			<dynamic-content><![CDATA[Lorem ipsum dolor sit amet consect]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element instance-id="l9YsagNO" name="icon" type="document_library" index-type="">
+			<dynamic-content><![CDATA[[$FILE=icon_gears.png$]]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element instance-id="AB6XGWIW" name="image" type="document_library" index-type="">
+			<dynamic-content><![CDATA[[$FILE=carousel_item2.jpg$]]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content><![CDATA[Programming]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element instance-id="qOSRCIBp" name="carousel-item" type="text" index-type="">
+		<dynamic-element instance-id="GaBpYLlY" name="tagline" type="text" index-type="">
+			<dynamic-content><![CDATA[Lorem ipsum dolor sit amet consect]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element instance-id="FbpLAFwr" name="icon" type="document_library" index-type="">
+			<dynamic-content><![CDATA[[$FILE=icon_phone.png$]]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element instance-id="cJiqbcTO" name="image" type="document_library" index-type="">
+			<dynamic-content><![CDATA[[$FILE=carousel_item3.jpg$]]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content><![CDATA[Applications]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element instance-id="PS84bJen" name="carousel-item" type="text" index-type="">
+		<dynamic-element instance-id="GfO1ljb2" name="tagline" type="text" index-type="">
+			<dynamic-content><![CDATA[Lorem ipsum dolor sit amet consect]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element instance-id="MQboRS7t" name="icon" type="document_library" index-type="">
+			<dynamic-content><![CDATA[[$FILE=icon_network.png$]]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element instance-id="old8s3oU" name="image" type="document_library" index-type="">
+			<dynamic-content><![CDATA[[$FILE=carousel_item2.jpg$]]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content><![CDATA[Resources]]></dynamic-content>
+	</dynamic-element>
+</root>

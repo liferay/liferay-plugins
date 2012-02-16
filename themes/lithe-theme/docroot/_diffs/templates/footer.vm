@@ -1,0 +1,120 @@
+<footer id="footer-wrapper" role="contentinfo">
+	<div id="footer-content" class="aui-layout-content">
+		<div id="blurb" class="aui-column aui-w25 aui-column-first">
+			<h2>$!{theme_settings.blurb-title}</h2>
+			<p>$!{theme_settings.blurb-content}</p>
+		</div>
+	
+		<div id="footerNavigation" class="aui-column aui-w25">
+			<h2>
+				<span>$!{theme_settings.footer-nav-title}</span>
+			</h2>
+
+			<ul>
+				#set($parentNavCount = 1)
+
+				#foreach ($nav_item in $nav_items)
+					#if ($parentNavCount == 1)
+						#set($navItemClass = "item-" + $parentNavCount + " first")
+					#elseif ($parentNavCount == $nav_items.size())
+						#set($navItemClass = "item-" + $parentNavCount + " last")
+					#else
+						#set($navItemClass = "item-"+$parentNavCount)
+					#end
+
+					#if ($nav_item.isSelected())
+						<li class="selected $navItemClass">
+					#else
+						<li class="$navItemClass">
+					#end
+						<a href="$nav_item.getURL()" $nav_item.getTarget()><span>$nav_item.icon() $nav_item.getName()</span></a>
+					</li>
+
+					#set($parentNavCount = $parentNavCount + 1)
+				#end
+			</ul>
+		</div>
+	
+		#if($theme_settings.footer-link1 || $theme_settings.footer-link2 || $theme_settings.footer-link3 || $theme_settings.footer-link4 || $theme_settings.display-sign-in == true)
+			<div id="siteMeta" class="aui-column aui-w25">
+				<h2>${theme_settings.footer-links-title}</h2>
+
+				<ul class="hide-bullets">
+					#if(${theme_settings.display-sign-in} == "true")
+						<li id="sign-in"><a href="$sign_in_url" rel="nofollow">#language('sign-in')</a></li>
+						<li id="sign-out"><a href="javascript: logOut();" rel="nofollow">#language('sign-out')</a></li>
+					#end
+			
+					## Set Meta Link variable
+					#set($link1 = $stringUtil.split($theme_settings.footer-link1, "|"))
+					#set($link2 = $stringUtil.split($theme_settings.footer-link2, "|"))
+					#set($link3 = $stringUtil.split($theme_settings.footer-link3, "|"))
+					#set($link4 = $stringUtil.split($theme_settings.footer-link4, "|"))
+			
+					#if($theme_settings.footer-link1 != "")
+						<li><a href="$link1.get(1)">$link1.get(0)</a></li>
+					#end
+
+					#if($theme_settings.footer-link2 != "")
+						<li><a href="$link2.get(1)">$link2.get(0)</a></li>
+					#end
+
+					#if($theme_settings.footer-link3 != "")
+						<li><a href="$link3.get(1)">$link3.get(0)</a></li>
+					#end
+
+					#if($theme_settings.footer-link4 != "")
+						<li><a href="$link4.get(1)">$link4.get(0)</a></li>
+					#end
+				</ul>
+
+				<script>
+				Liferay.provide(window, 'logOut', function(){
+					var A=AUI();
+					A.io.request(themeDisplay.getPathMain() + '/portal/logout', {
+						after: {
+							success: function(){
+								location.reload();
+							}
+						}
+					})
+				}, ['aui-io']);
+				</script>
+			</div>
+		#end
+		
+		#if($theme_settings.rss || $theme_settings.linkedin || $theme_settings.twitter || $theme_settings.facebook)
+			<div id="socialLinks" class="aui-column aui-w25 aui-column-last">
+				<h2>${theme_settings.social-title}</h2>
+
+				<h4>${theme_settings.social-tagline}</h4>
+
+				<ul class="social">
+					#if ($theme_settings.rss)
+						<li>
+							<a href='$theme_settings.rss' title='RSS' alt='RSS' target='new_window'><img src='$images_folder/custom/rss.png' class='png'><span>RSS</span></a>
+						</li>
+					#end
+
+					#if ($theme_settings.linkedin)
+						<li>
+							<a href='$theme_settings.linkedin' title='LinkedIn' alt='LinkedIn' target='new_window'><img src='$images_folder/custom/linkedin.png' class='png'><span>LinkedIn</span></a>
+						</li>
+					#end
+
+					#if ($theme_settings.twitter)
+						<li>
+							<a href='$theme_settings.twitter' title='Twitter' alt='Twitter' target='new_window'><img src='$images_folder/custom/twitter.png' class='png'><span>Twitter</span></a>
+						</li>
+					#end
+			
+					#if ($theme_settings.facebook)
+						<li>
+							<a href='$theme_settings.facebook' title='Facebook' alt='Facebook' target='new_window'><img src='$images_folder/custom/facebook.png' class='png'><span>Facebook</span></a>
+						</li>
+					#end
+				</ul>
+			</div>
+		#end
+	</div>
+</footer>
