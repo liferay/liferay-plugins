@@ -23,9 +23,7 @@ package com.liferay.calendar.util;
 public class ActionKeys
 	extends com.liferay.portal.security.permission.ActionKeys {
 
-	public static final String ACCEPT_BOOKING = "ACCEPT_BOOKING";
-
-	public static final String ADD_BOOKING = "ADD_BOOKING";
+	public static final String MANAGE_BOOKINGS = "MANAGE_BOOKINGS";
 
 	public static final String ADD_CALENDAR = "ADD_CALENDAR";
 

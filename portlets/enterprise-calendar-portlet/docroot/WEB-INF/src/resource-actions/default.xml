@@ -49,9 +49,8 @@
 		</portlet-ref>
 		<permissions>
 			<supports>
-				<action-key>ACCEPT_BOOKING</action-key>
-				<action-key>ADD_BOOKING</action-key>
 				<action-key>DELETE</action-key>
+				<action-key>MANAGE_BOOKINGS</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>UPDATE</action-key>
 				<action-key>VIEW</action-key>
@@ -64,32 +63,9 @@
 				<action-key>VIEW</action-key>
 			</guest-defaults>
 			<guest-unsupported>
-				<action-key>ADD_BOOKING</action-key>
 				<action-key>DELETE</action-key>
+				<action-key>MANAGE_BOOKINGS</action-key>
 				<action-key>PERMISSIONS</action-key>
-				<action-key>UPDATE</action-key>
-			</guest-unsupported>
-		</permissions>
-	</model-resource>
-	<model-resource>
-		<model-name>com.liferay.calendar.model.CalendarBooking</model-name>
-		<portlet-ref>
-			<portlet-name>1</portlet-name>
-		</portlet-ref>
-		<permissions>
-			<supports>
-				<action-key>DELETE</action-key>
-				<action-key>UPDATE</action-key>
-				<action-key>VIEW</action-key>
-			</supports>
-			<site-member-defaults>
-				<action-key>VIEW</action-key>
-			</site-member-defaults>
-			<guest-defaults>
-				<action-key>VIEW</action-key>
-			</guest-defaults>
-			<guest-unsupported>
-				<action-key>DELETE</action-key>
 				<action-key>UPDATE</action-key>
 			</guest-unsupported>
 		</permissions>
