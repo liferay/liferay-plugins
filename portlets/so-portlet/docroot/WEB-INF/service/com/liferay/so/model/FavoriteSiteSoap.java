@@ -30,9 +30,9 @@ public class FavoriteSiteSoap implements Serializable {
 		FavoriteSiteSoap soapModel = new FavoriteSiteSoap();
 
 		soapModel.setFavoriteSiteId(model.getFavoriteSiteId());
+		soapModel.setGroupId(model.getGroupId());
 		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setUserId(model.getUserId());
-		soapModel.setGroupId(model.getGroupId());
 
 		return soapModel;
 	}
@@ -93,6 +93,14 @@ public class FavoriteSiteSoap implements Serializable {
 		_favoriteSiteId = favoriteSiteId;
 	}
 
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
 	public long getCompanyId() {
 		return _companyId;
 	}
@@ -109,16 +117,8 @@ public class FavoriteSiteSoap implements Serializable {
 		_userId = userId;
 	}
 
-	public long getGroupId() {
-		return _groupId;
-	}
-
-	public void setGroupId(long groupId) {
-		_groupId = groupId;
-	}
-
 	private long _favoriteSiteId;
+	private long _groupId;
 	private long _companyId;
 	private long _userId;
-	private long _groupId;
 }

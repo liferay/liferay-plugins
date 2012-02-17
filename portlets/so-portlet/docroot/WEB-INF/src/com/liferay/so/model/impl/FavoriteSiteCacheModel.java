@@ -36,12 +36,12 @@ public class FavoriteSiteCacheModel implements CacheModel<FavoriteSite>,
 
 		sb.append("{favoriteSiteId=");
 		sb.append(favoriteSiteId);
+		sb.append(", groupId=");
+		sb.append(groupId);
 		sb.append(", companyId=");
 		sb.append(companyId);
 		sb.append(", userId=");
 		sb.append(userId);
-		sb.append(", groupId=");
-		sb.append(groupId);
 		sb.append("}");
 
 		return sb.toString();
@@ -51,9 +51,9 @@ public class FavoriteSiteCacheModel implements CacheModel<FavoriteSite>,
 		FavoriteSiteImpl favoriteSiteImpl = new FavoriteSiteImpl();
 
 		favoriteSiteImpl.setFavoriteSiteId(favoriteSiteId);
+		favoriteSiteImpl.setGroupId(groupId);
 		favoriteSiteImpl.setCompanyId(companyId);
 		favoriteSiteImpl.setUserId(userId);
-		favoriteSiteImpl.setGroupId(groupId);
 
 		favoriteSiteImpl.resetOriginalValues();
 
@@ -61,7 +61,7 @@ public class FavoriteSiteCacheModel implements CacheModel<FavoriteSite>,
 	}
 
 	public long favoriteSiteId;
+	public long groupId;
 	public long companyId;
 	public long userId;
-	public long groupId;
 }

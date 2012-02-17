@@ -10,9 +10,9 @@
 	<mapped-superclass class="com.liferay.so.model.impl.FavoriteSiteModelImpl">
 		<attributes>
 			<id name="favoriteSiteId" />
+			<basic name="groupId" />
 			<basic name="companyId" />
 			<basic name="userId" />
-			<basic name="groupId" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />

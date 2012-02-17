@@ -66,6 +66,14 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 		_favoriteSiteId = favoriteSiteId;
 	}
 
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
 	public long getCompanyId() {
 		return _companyId;
 	}
@@ -90,14 +98,6 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 		_userUuid = userUuid;
 	}
 
-	public long getGroupId() {
-		return _groupId;
-	}
-
-	public void setGroupId(long groupId) {
-		_groupId = groupId;
-	}
-
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			FavoriteSiteLocalServiceUtil.addFavoriteSite(this);
@@ -118,9 +118,9 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 		FavoriteSiteClp clone = new FavoriteSiteClp();
 
 		clone.setFavoriteSiteId(getFavoriteSiteId());
+		clone.setGroupId(getGroupId());
 		clone.setCompanyId(getCompanyId());
 		clone.setUserId(getUserId());
-		clone.setGroupId(getGroupId());
 
 		return clone;
 	}
@@ -175,12 +175,12 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 
 		sb.append("{favoriteSiteId=");
 		sb.append(getFavoriteSiteId());
+		sb.append(", groupId=");
+		sb.append(getGroupId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
 		sb.append(", userId=");
 		sb.append(getUserId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
 		sb.append("}");
 
 		return sb.toString();
@@ -198,16 +198,16 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 		sb.append(getFavoriteSiteId());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>groupId</column-name><column-value><![CDATA[");
+		sb.append(getGroupId());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>companyId</column-name><column-value><![CDATA[");
 		sb.append(getCompanyId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>userId</column-name><column-value><![CDATA[");
 		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -216,8 +216,8 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 	}
 
 	private long _favoriteSiteId;
+	private long _groupId;
 	private long _companyId;
 	private long _userId;
 	private String _userUuid;
-	private long _groupId;
 }

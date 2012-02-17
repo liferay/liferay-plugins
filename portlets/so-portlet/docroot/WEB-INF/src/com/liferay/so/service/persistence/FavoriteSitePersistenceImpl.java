@@ -385,9 +385,9 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 		favoriteSiteImpl.setPrimaryKey(favoriteSite.getPrimaryKey());
 
 		favoriteSiteImpl.setFavoriteSiteId(favoriteSite.getFavoriteSiteId());
+		favoriteSiteImpl.setGroupId(favoriteSite.getGroupId());
 		favoriteSiteImpl.setCompanyId(favoriteSite.getCompanyId());
 		favoriteSiteImpl.setUserId(favoriteSite.getUserId());
-		favoriteSiteImpl.setGroupId(favoriteSite.getGroupId());
 
 		return favoriteSiteImpl;
 	}
