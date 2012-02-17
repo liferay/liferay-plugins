@@ -89,7 +89,7 @@ public class ShindigFilter extends InjectedFilter {
 		try {
 			Company company = CompanyLocalServiceUtil.fetchCompany(companyId);
 
-			if (Validator.isNull(company)) {
+			if (company == null) {
 				return false;
 			}
 
