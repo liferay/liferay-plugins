@@ -69,6 +69,14 @@ public class CalendarBookingServiceWrapper implements CalendarBookingService,
 		return _calendarBookingService.getCalendarBooking(calendarBookingId);
 	}
 
+	public java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookings(
+		long calendarId, java.util.Date startDate, java.util.Date endDate)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarBookingService.getCalendarBookings(calendarId,
+			startDate, endDate);
+	}
+
 	public com.liferay.calendar.model.CalendarBooking updateCalendarBooking(
 		long calendarBookingId, long calendarId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
