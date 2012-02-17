@@ -41,7 +41,11 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 		_getCalendarBookingMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getCalendarBooking", long.class);
 
-		_updateCalendarBookingMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getCalendarBookingsMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getCalendarBookings", long.class, java.util.Date.class,
+				java.util.Date.class);
+
+		_updateCalendarBookingMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateCalendarBooking", long.class, long.class,
 				java.util.Map.class, java.util.Map.class, java.util.Map.class,
 				java.lang.String.class, int.class, int.class, int.class,
@@ -170,6 +174,40 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 		return (com.liferay.calendar.model.CalendarBooking)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookings(
+		long calendarId, java.util.Date startDate, java.util.Date endDate)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getCalendarBookingsMethodKey3,
+				calendarId, ClpSerializer.translateInput(startDate),
+				ClpSerializer.translateInput(endDate));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.calendar.model.CalendarBooking>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public com.liferay.calendar.model.CalendarBooking updateCalendarBooking(
 		long calendarBookingId, long calendarId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
@@ -187,7 +225,7 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateCalendarBookingMethodKey3,
+		MethodHandler methodHandler = new MethodHandler(_updateCalendarBookingMethodKey4,
 				calendarBookingId, calendarId,
 				ClpSerializer.translateInput(titleMap),
 				ClpSerializer.translateInput(descriptionMap),
@@ -234,5 +272,6 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 	private MethodKey _addCalendarBookingMethodKey0;
 	private MethodKey _deleteCalendarBookingMethodKey1;
 	private MethodKey _getCalendarBookingMethodKey2;
-	private MethodKey _updateCalendarBookingMethodKey3;
+	private MethodKey _getCalendarBookingsMethodKey3;
+	private MethodKey _updateCalendarBookingMethodKey4;
 }

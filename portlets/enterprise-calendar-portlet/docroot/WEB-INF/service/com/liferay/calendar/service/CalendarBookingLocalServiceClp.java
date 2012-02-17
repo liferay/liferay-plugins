@@ -108,7 +108,11 @@ public class CalendarBookingLocalServiceClp
 		_getCalendarBookingsMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getCalendarBookings", long.class);
 
-		_searchMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getCalendarBookingsMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getCalendarBookings", long.class, java.util.Date.class,
+				java.util.Date.class);
+
+		_searchMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
 				"search", long.class, long.class, java.lang.String.class,
 				java.lang.String.class, java.lang.String.class,
 				java.lang.String.class, java.util.Date.class,
@@ -117,7 +121,7 @@ public class CalendarBookingLocalServiceClp
 				boolean.class, int.class, int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
-		_searchCountMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+		_searchCountMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
 				"searchCount", long.class, long.class, java.lang.String.class,
 				java.lang.String.class, java.lang.String.class,
 				java.lang.String.class, java.util.Date.class,
@@ -125,7 +129,7 @@ public class CalendarBookingLocalServiceClp
 				java.lang.Boolean.class, java.lang.Boolean.class, int.class,
 				boolean.class);
 
-		_updateCalendarBookingMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateCalendarBookingMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateCalendarBooking", long.class, long.class, long.class,
 				java.util.Map.class, java.util.Map.class, java.util.Map.class,
 				java.lang.String.class, int.class, int.class, int.class,
@@ -136,7 +140,7 @@ public class CalendarBookingLocalServiceClp
 				java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_updateStatusMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateStatusMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateStatus", long.class, long.class, int.class,
 				com.liferay.portal.service.ServiceContext.class);
 	}
@@ -756,6 +760,35 @@ public class CalendarBookingLocalServiceClp
 		return (java.util.List<com.liferay.calendar.model.CalendarBooking>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookings(
+		long calendarId, java.util.Date startDate, java.util.Date endDate)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getCalendarBookingsMethodKey21,
+				calendarId, ClpSerializer.translateInput(startDate),
+				ClpSerializer.translateInput(endDate));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.calendar.model.CalendarBooking>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> search(
 		long calendarId, long calendarResourceId, java.lang.String title,
 		java.lang.String description, java.lang.String location,
@@ -767,7 +800,7 @@ public class CalendarBookingLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_searchMethodKey21,
+		MethodHandler methodHandler = new MethodHandler(_searchMethodKey22,
 				calendarId, calendarResourceId,
 				ClpSerializer.translateInput(title),
 				ClpSerializer.translateInput(description),
@@ -809,7 +842,7 @@ public class CalendarBookingLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_searchCountMethodKey22,
+		MethodHandler methodHandler = new MethodHandler(_searchCountMethodKey23,
 				calendarId, calendarResourceId,
 				ClpSerializer.translateInput(title),
 				ClpSerializer.translateInput(description),
@@ -858,7 +891,7 @@ public class CalendarBookingLocalServiceClp
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateCalendarBookingMethodKey23,
+		MethodHandler methodHandler = new MethodHandler(_updateCalendarBookingMethodKey24,
 				userId, calendarBookingId, calendarId,
 				ClpSerializer.translateInput(titleMap),
 				ClpSerializer.translateInput(descriptionMap),
@@ -904,7 +937,7 @@ public class CalendarBookingLocalServiceClp
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateStatusMethodKey24,
+		MethodHandler methodHandler = new MethodHandler(_updateStatusMethodKey25,
 				userId, calendarBookingId, status,
 				ClpSerializer.translateInput(serviceContext));
 
@@ -958,8 +991,9 @@ public class CalendarBookingLocalServiceClp
 	private MethodKey _addCalendarBookingMethodKey18;
 	private MethodKey _deleteCalendarBookingsMethodKey19;
 	private MethodKey _getCalendarBookingsMethodKey20;
-	private MethodKey _searchMethodKey21;
-	private MethodKey _searchCountMethodKey22;
-	private MethodKey _updateCalendarBookingMethodKey23;
-	private MethodKey _updateStatusMethodKey24;
+	private MethodKey _getCalendarBookingsMethodKey21;
+	private MethodKey _searchMethodKey22;
+	private MethodKey _searchCountMethodKey23;
+	private MethodKey _updateCalendarBookingMethodKey24;
+	private MethodKey _updateStatusMethodKey25;
 }

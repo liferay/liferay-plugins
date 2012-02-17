@@ -121,9 +121,11 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 			true);
 	public static long CALENDARID_COLUMN_BITMASK = 1L;
 	public static long CALENDARRESOURCEID_COLUMN_BITMASK = 2L;
-	public static long GROUPID_COLUMN_BITMASK = 4L;
-	public static long STATUS_COLUMN_BITMASK = 8L;
-	public static long UUID_COLUMN_BITMASK = 16L;
+	public static long ENDDATE_COLUMN_BITMASK = 4L;
+	public static long GROUPID_COLUMN_BITMASK = 8L;
+	public static long STARTDATE_COLUMN_BITMASK = 16L;
+	public static long STATUS_COLUMN_BITMASK = 32L;
+	public static long UUID_COLUMN_BITMASK = 64L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -674,7 +676,15 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	public void setStartDate(Date startDate) {
 		_columnBitmask = -1L;
 
+		if (_originalStartDate == null) {
+			_originalStartDate = _startDate;
+		}
+
 		_startDate = startDate;
+	}
+
+	public Date getOriginalStartDate() {
+		return _originalStartDate;
 	}
 
 	@JSON
@@ -683,7 +693,17 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	}
 
 	public void setEndDate(Date endDate) {
+		_columnBitmask |= ENDDATE_COLUMN_BITMASK;
+
+		if (_originalEndDate == null) {
+			_originalEndDate = _endDate;
+		}
+
 		_endDate = endDate;
+	}
+
+	public Date getOriginalEndDate() {
+		return _originalEndDate;
 	}
 
 	@JSON
@@ -1036,6 +1056,10 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		calendarBookingModelImpl._originalCalendarResourceId = calendarBookingModelImpl._calendarResourceId;
 
 		calendarBookingModelImpl._setOriginalCalendarResourceId = false;
+
+		calendarBookingModelImpl._originalStartDate = calendarBookingModelImpl._startDate;
+
+		calendarBookingModelImpl._originalEndDate = calendarBookingModelImpl._endDate;
 
 		calendarBookingModelImpl._originalStatus = calendarBookingModelImpl._status;
 
@@ -1439,7 +1463,9 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	private String _locationCurrentLanguageId;
 	private String _type;
 	private Date _startDate;
+	private Date _originalStartDate;
 	private Date _endDate;
+	private Date _originalEndDate;
 	private boolean _allDay;
 	private String _recurrence;
 	private int _priority;
