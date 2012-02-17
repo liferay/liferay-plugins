@@ -79,7 +79,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 		CalendarBooking calendarBooking =
 			calendarBookingLocalService.getCalendarBooking(calendarBookingId);
 
-		return filterCalendarBookingDetails(calendarBooking);
+		return filterCalendarBooking(calendarBooking);
 	}
 
 	public List<CalendarBooking> getCalendarBookings(
@@ -91,7 +91,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 				calendarId, startDate, endDate);
 
 		for (CalendarBooking calendarBooking : calendarBookings) {
-			filterCalendarBookingDetails(calendarBooking);
+			filterCalendarBooking(calendarBooking);
 		}
 
 		return calendarBookings;
@@ -123,7 +123,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			serviceContext);
 	}
 
-	protected CalendarBooking filterCalendarBookingDetails(
+	protected CalendarBooking filterCalendarBooking(
 			CalendarBooking calendarBooking)
 		throws PortalException, SystemException {
 
