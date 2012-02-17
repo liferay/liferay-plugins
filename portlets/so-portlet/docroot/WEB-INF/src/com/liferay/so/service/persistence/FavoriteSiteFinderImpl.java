@@ -45,9 +45,6 @@ public class FavoriteSiteFinderImpl
 	public static final String FIND_BY_U_N =
 		FavoriteSiteFinder.class.getName() + ".findByU_N";
 
-	public FavoriteSiteFinderImpl() {
-	}
-
 	public int countByU_N(long userId, String name, String groupRealName)
 		throws SystemException {
 

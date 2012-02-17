@@ -66,7 +66,7 @@ public class FavoriteSiteLocalServiceImpl
 	public void deleteFavoriteSite(long userId, long groupId)
 		throws PortalException, SystemException {
 
-		favoriteSitePersistence.removeByU_G(userId, groupId);
+		favoriteSitePersistence.removeByG_U(groupId, userId);
 	}
 
 	public List<FavoriteSite> getFavoriteSites(long userId, int start, int end)
@@ -119,7 +119,7 @@ public class FavoriteSiteLocalServiceImpl
 	public boolean isFavoriteSite(long userId, long groupId)
 		throws SystemException {
 
-		int count = favoriteSitePersistence.countByU_G(userId, groupId);
+		int count = favoriteSitePersistence.countByG_U(groupId, userId);
 
 		if (count > 0) {
 			return true;
@@ -148,8 +148,8 @@ public class FavoriteSiteLocalServiceImpl
 				name, StringPool.PERCENT, StringPool.BLANK);
 
 			if (companyName.indexOf(name) != -1) {
-				groupRealName = StringPool.PERCENT + GroupConstants.GUEST +
-					StringPool.PERCENT;
+				groupRealName = StringUtil.quote(
+					GroupConstants.GUEST, StringPool.PERCENT);
 			}
 		}
 		catch (PortalException pe) {
