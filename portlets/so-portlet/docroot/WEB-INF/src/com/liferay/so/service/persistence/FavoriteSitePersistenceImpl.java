@@ -96,24 +96,24 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 			FavoriteSiteModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUserId",
 			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_U_G = new FinderPath(FavoriteSiteModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_G_U = new FinderPath(FavoriteSiteModelImpl.ENTITY_CACHE_ENABLED,
 			FavoriteSiteModelImpl.FINDER_CACHE_ENABLED, FavoriteSiteImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByU_G",
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_U",
 			new String[] {
 				Long.class.getName(), Long.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_G = new FinderPath(FavoriteSiteModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_U = new FinderPath(FavoriteSiteModelImpl.ENTITY_CACHE_ENABLED,
 			FavoriteSiteModelImpl.FINDER_CACHE_ENABLED, FavoriteSiteImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByU_G",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_U",
 			new String[] { Long.class.getName(), Long.class.getName() },
-			FavoriteSiteModelImpl.USERID_COLUMN_BITMASK |
-			FavoriteSiteModelImpl.GROUPID_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_U_G = new FinderPath(FavoriteSiteModelImpl.ENTITY_CACHE_ENABLED,
+			FavoriteSiteModelImpl.GROUPID_COLUMN_BITMASK |
+			FavoriteSiteModelImpl.USERID_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_G_U = new FinderPath(FavoriteSiteModelImpl.ENTITY_CACHE_ENABLED,
 			FavoriteSiteModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_G",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_U",
 			new String[] { Long.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(FavoriteSiteModelImpl.ENTITY_CACHE_ENABLED,
 			FavoriteSiteModelImpl.FINDER_CACHE_ENABLED, FavoriteSiteImpl.class,
@@ -347,23 +347,23 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 			}
 
 			if ((favoriteSiteModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_G.getColumnBitmask()) != 0) {
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_U.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						Long.valueOf(favoriteSiteModelImpl.getOriginalUserId()),
-						Long.valueOf(favoriteSiteModelImpl.getOriginalGroupId())
+						Long.valueOf(favoriteSiteModelImpl.getOriginalGroupId()),
+						Long.valueOf(favoriteSiteModelImpl.getOriginalUserId())
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_G, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_G,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_U, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_U,
 					args);
 
 				args = new Object[] {
-						Long.valueOf(favoriteSiteModelImpl.getUserId()),
-						Long.valueOf(favoriteSiteModelImpl.getGroupId())
+						Long.valueOf(favoriteSiteModelImpl.getGroupId()),
+						Long.valueOf(favoriteSiteModelImpl.getUserId())
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_G, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_G,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_U, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_U,
 					args);
 			}
 		}
@@ -840,67 +840,67 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	}
 
 	/**
-	 * Returns all the favorite sites where userId = &#63; and groupId = &#63;.
+	 * Returns all the favorite sites where groupId = &#63; and userId = &#63;.
 	 *
-	 * @param userId the user ID
 	 * @param groupId the group ID
+	 * @param userId the user ID
 	 * @return the matching favorite sites
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<FavoriteSite> findByU_G(long userId, long groupId)
+	public List<FavoriteSite> findByG_U(long groupId, long userId)
 		throws SystemException {
-		return findByU_G(userId, groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+		return findByG_U(groupId, userId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			null);
 	}
 
 	/**
-	 * Returns a range of all the favorite sites where userId = &#63; and groupId = &#63;.
+	 * Returns a range of all the favorite sites where groupId = &#63; and userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param userId the user ID
 	 * @param groupId the group ID
+	 * @param userId the user ID
 	 * @param start the lower bound of the range of favorite sites
 	 * @param end the upper bound of the range of favorite sites (not inclusive)
 	 * @return the range of matching favorite sites
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<FavoriteSite> findByU_G(long userId, long groupId, int start,
+	public List<FavoriteSite> findByG_U(long groupId, long userId, int start,
 		int end) throws SystemException {
-		return findByU_G(userId, groupId, start, end, null);
+		return findByG_U(groupId, userId, start, end, null);
 	}
 
 	/**
-	 * Returns an ordered range of all the favorite sites where userId = &#63; and groupId = &#63;.
+	 * Returns an ordered range of all the favorite sites where groupId = &#63; and userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param userId the user ID
 	 * @param groupId the group ID
+	 * @param userId the user ID
 	 * @param start the lower bound of the range of favorite sites
 	 * @param end the upper bound of the range of favorite sites (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching favorite sites
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<FavoriteSite> findByU_G(long userId, long groupId, int start,
+	public List<FavoriteSite> findByG_U(long groupId, long userId, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_G;
-			finderArgs = new Object[] { userId, groupId };
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_U;
+			finderArgs = new Object[] { groupId, userId };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_U_G;
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_G_U;
 			finderArgs = new Object[] {
-					userId, groupId,
+					groupId, userId,
 					
 					start, end, orderByComparator
 				};
@@ -911,8 +911,8 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 
 		if ((list != null) && !list.isEmpty()) {
 			for (FavoriteSite favoriteSite : list) {
-				if ((userId != favoriteSite.getUserId()) ||
-						(groupId != favoriteSite.getGroupId())) {
+				if ((groupId != favoriteSite.getGroupId()) ||
+						(userId != favoriteSite.getUserId())) {
 					list = null;
 
 					break;
@@ -933,9 +933,9 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 
 			query.append(_SQL_SELECT_FAVORITESITE_WHERE);
 
-			query.append(_FINDER_COLUMN_U_G_USERID_2);
+			query.append(_FINDER_COLUMN_G_U_GROUPID_2);
 
-			query.append(_FINDER_COLUMN_U_G_GROUPID_2);
+			query.append(_FINDER_COLUMN_G_U_USERID_2);
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
@@ -953,9 +953,9 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(userId);
-
 				qPos.add(groupId);
+
+				qPos.add(userId);
 
 				list = (List<FavoriteSite>)QueryUtil.list(q, getDialect(),
 						start, end);
@@ -981,23 +981,23 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	}
 
 	/**
-	 * Returns the first favorite site in the ordered set where userId = &#63; and groupId = &#63;.
+	 * Returns the first favorite site in the ordered set where groupId = &#63; and userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param userId the user ID
 	 * @param groupId the group ID
+	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching favorite site
 	 * @throws com.liferay.so.NoSuchFavoriteSiteException if a matching favorite site could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public FavoriteSite findByU_G_First(long userId, long groupId,
+	public FavoriteSite findByG_U_First(long groupId, long userId,
 		OrderByComparator orderByComparator)
 		throws NoSuchFavoriteSiteException, SystemException {
-		List<FavoriteSite> list = findByU_G(userId, groupId, 0, 1,
+		List<FavoriteSite> list = findByG_U(groupId, userId, 0, 1,
 				orderByComparator);
 
 		if (list.isEmpty()) {
@@ -1005,11 +1005,11 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 
 			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("userId=");
-			msg.append(userId);
-
-			msg.append(", groupId=");
+			msg.append("groupId=");
 			msg.append(groupId);
+
+			msg.append(", userId=");
+			msg.append(userId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1021,25 +1021,25 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	}
 
 	/**
-	 * Returns the last favorite site in the ordered set where userId = &#63; and groupId = &#63;.
+	 * Returns the last favorite site in the ordered set where groupId = &#63; and userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param userId the user ID
 	 * @param groupId the group ID
+	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching favorite site
 	 * @throws com.liferay.so.NoSuchFavoriteSiteException if a matching favorite site could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public FavoriteSite findByU_G_Last(long userId, long groupId,
+	public FavoriteSite findByG_U_Last(long groupId, long userId,
 		OrderByComparator orderByComparator)
 		throws NoSuchFavoriteSiteException, SystemException {
-		int count = countByU_G(userId, groupId);
+		int count = countByG_U(groupId, userId);
 
-		List<FavoriteSite> list = findByU_G(userId, groupId, count - 1, count,
+		List<FavoriteSite> list = findByG_U(groupId, userId, count - 1, count,
 				orderByComparator);
 
 		if (list.isEmpty()) {
@@ -1047,11 +1047,11 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 
 			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("userId=");
-			msg.append(userId);
-
-			msg.append(", groupId=");
+			msg.append("groupId=");
 			msg.append(groupId);
+
+			msg.append(", userId=");
+			msg.append(userId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -1063,22 +1063,22 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	}
 
 	/**
-	 * Returns the favorite sites before and after the current favorite site in the ordered set where userId = &#63; and groupId = &#63;.
+	 * Returns the favorite sites before and after the current favorite site in the ordered set where groupId = &#63; and userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param favoriteSiteId the primary key of the current favorite site
-	 * @param userId the user ID
 	 * @param groupId the group ID
+	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next favorite site
 	 * @throws com.liferay.so.NoSuchFavoriteSiteException if a favorite site with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public FavoriteSite[] findByU_G_PrevAndNext(long favoriteSiteId,
-		long userId, long groupId, OrderByComparator orderByComparator)
+	public FavoriteSite[] findByG_U_PrevAndNext(long favoriteSiteId,
+		long groupId, long userId, OrderByComparator orderByComparator)
 		throws NoSuchFavoriteSiteException, SystemException {
 		FavoriteSite favoriteSite = findByPrimaryKey(favoriteSiteId);
 
@@ -1089,13 +1089,13 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 
 			FavoriteSite[] array = new FavoriteSiteImpl[3];
 
-			array[0] = getByU_G_PrevAndNext(session, favoriteSite, userId,
-					groupId, orderByComparator, true);
+			array[0] = getByG_U_PrevAndNext(session, favoriteSite, groupId,
+					userId, orderByComparator, true);
 
 			array[1] = favoriteSite;
 
-			array[2] = getByU_G_PrevAndNext(session, favoriteSite, userId,
-					groupId, orderByComparator, false);
+			array[2] = getByG_U_PrevAndNext(session, favoriteSite, groupId,
+					userId, orderByComparator, false);
 
 			return array;
 		}
@@ -1107,8 +1107,8 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 		}
 	}
 
-	protected FavoriteSite getByU_G_PrevAndNext(Session session,
-		FavoriteSite favoriteSite, long userId, long groupId,
+	protected FavoriteSite getByG_U_PrevAndNext(Session session,
+		FavoriteSite favoriteSite, long groupId, long userId,
 		OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
@@ -1122,9 +1122,9 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 
 		query.append(_SQL_SELECT_FAVORITESITE_WHERE);
 
-		query.append(_FINDER_COLUMN_U_G_USERID_2);
+		query.append(_FINDER_COLUMN_G_U_GROUPID_2);
 
-		query.append(_FINDER_COLUMN_U_G_GROUPID_2);
+		query.append(_FINDER_COLUMN_G_U_USERID_2);
 
 		if (orderByComparator != null) {
 			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
@@ -1191,9 +1191,9 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		qPos.add(userId);
-
 		qPos.add(groupId);
+
+		qPos.add(userId);
 
 		if (orderByComparator != null) {
 			Object[] values = orderByComparator.getOrderByConditionValues(favoriteSite);
@@ -1341,15 +1341,15 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	}
 
 	/**
-	 * Removes all the favorite sites where userId = &#63; and groupId = &#63; from the database.
+	 * Removes all the favorite sites where groupId = &#63; and userId = &#63; from the database.
 	 *
-	 * @param userId the user ID
 	 * @param groupId the group ID
+	 * @param userId the user ID
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByU_G(long userId, long groupId)
+	public void removeByG_U(long groupId, long userId)
 		throws SystemException {
-		for (FavoriteSite favoriteSite : findByU_G(userId, groupId)) {
+		for (FavoriteSite favoriteSite : findByG_U(groupId, userId)) {
 			remove(favoriteSite);
 		}
 	}
@@ -1419,17 +1419,17 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	}
 
 	/**
-	 * Returns the number of favorite sites where userId = &#63; and groupId = &#63;.
+	 * Returns the number of favorite sites where groupId = &#63; and userId = &#63;.
 	 *
-	 * @param userId the user ID
 	 * @param groupId the group ID
+	 * @param userId the user ID
 	 * @return the number of matching favorite sites
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByU_G(long userId, long groupId) throws SystemException {
-		Object[] finderArgs = new Object[] { userId, groupId };
+	public int countByG_U(long groupId, long userId) throws SystemException {
+		Object[] finderArgs = new Object[] { groupId, userId };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_U_G,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_U,
 				finderArgs, this);
 
 		if (count == null) {
@@ -1437,9 +1437,9 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 
 			query.append(_SQL_COUNT_FAVORITESITE_WHERE);
 
-			query.append(_FINDER_COLUMN_U_G_USERID_2);
+			query.append(_FINDER_COLUMN_G_U_GROUPID_2);
 
-			query.append(_FINDER_COLUMN_U_G_GROUPID_2);
+			query.append(_FINDER_COLUMN_G_U_USERID_2);
 
 			String sql = query.toString();
 
@@ -1452,9 +1452,9 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(userId);
-
 				qPos.add(groupId);
+
+				qPos.add(userId);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -1466,7 +1466,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_G, finderArgs,
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_U, finderArgs,
 					count);
 
 				closeSession(session);
@@ -1560,8 +1560,8 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	private static final String _SQL_COUNT_FAVORITESITE = "SELECT COUNT(favoriteSite) FROM FavoriteSite favoriteSite";
 	private static final String _SQL_COUNT_FAVORITESITE_WHERE = "SELECT COUNT(favoriteSite) FROM FavoriteSite favoriteSite WHERE ";
 	private static final String _FINDER_COLUMN_USERID_USERID_2 = "favoriteSite.userId = ?";
-	private static final String _FINDER_COLUMN_U_G_USERID_2 = "favoriteSite.userId = ? AND ";
-	private static final String _FINDER_COLUMN_U_G_GROUPID_2 = "favoriteSite.groupId = ?";
+	private static final String _FINDER_COLUMN_G_U_GROUPID_2 = "favoriteSite.groupId = ? AND ";
+	private static final String _FINDER_COLUMN_G_U_USERID_2 = "favoriteSite.userId = ?";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "favoriteSite.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No FavoriteSite exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No FavoriteSite exists with the key {";
