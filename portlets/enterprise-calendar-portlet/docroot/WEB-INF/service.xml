@@ -115,6 +115,11 @@
 			<finder-column name="calendarResourceId" />
 			<finder-column name="status" />
 		</finder>
+		<finder name="C_S_E" return-type="Collection">
+			<finder-column name="calendarId" />
+			<finder-column name="startDate" />
+			<finder-column name="endDate" />
+		</finder>
 
 		<!-- References -->
 

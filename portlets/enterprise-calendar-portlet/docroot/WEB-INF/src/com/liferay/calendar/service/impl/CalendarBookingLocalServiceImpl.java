@@ -205,6 +205,14 @@ public class CalendarBookingLocalServiceImpl
 		return calendarBookingPersistence.findByCalendarId(calendarId);
 	}
 
+	public List<CalendarBooking> getCalendarBookings(
+			long calendarId, Date startDate, Date endDate)
+		throws SystemException {
+
+		return calendarBookingPersistence.findByC_S_E(
+			calendarId, startDate, endDate);
+	}
+
 	public List<CalendarBooking> search(
 			long calendarId, long calendarResourceId, String title,
 			String description, String location, String type,

@@ -17,12 +17,12 @@ package com.liferay.calendar.workflow;
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
-import com.liferay.calendar.service.permission.CalendarBookingPermission;
 import com.liferay.calendar.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portlet.calendar.service.permission.CalendarPermission;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -50,8 +50,9 @@ public class CalendarBookingApprovalWorkflowImpl
 
 			List<String> transitions = new ArrayList<String>();
 
-			if (CalendarBookingPermission.contains(
-					permissionChecker, calendarBooking, ActionKeys.UPDATE)) {
+			if (CalendarPermission.contains(
+					permissionChecker, calendarBooking.getCalendarId(),
+					ActionKeys.MANAGE_BOOKINGS)) {
 
 				if (calendarBooking.getStatus() !=
 						CalendarBookingWorkflowConstants.STATUS_APPROVED) {
