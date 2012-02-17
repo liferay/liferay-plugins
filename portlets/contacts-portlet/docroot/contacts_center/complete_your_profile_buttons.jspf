@@ -1,0 +1,97 @@
+<%--
+/**
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<div class="profile-actions-title">
+	<liferay-ui:message key="complete-your-profile" />
+</div>
+
+<div class="profile-actions" id="<portlet:namespace />profileActions">
+	<div class="field-actions-toolbar">
+		<ul class="settings-actions">
+			<c:if test="<%= Validator.isNull(user2.getComments()) %>">
+				<li class="action-field aui-component aui-settings-field lfr-token" data-namespaceId="<portlet:namespace />comments" data-title="comments">
+					<div class="aui-settings-field-content">
+						<span class="settings-label"><liferay-ui:message key="add-an-extract" /></span>
+					</div>
+				</li>
+			</c:if>
+
+			<c:if test="<%= ValidatorUtil.isEmpty(phones) %>">
+				<li class="action-field aui-component aui-settings-field lfr-token" data-namespaceId="<portlet:namespace />phoneNumbers" data-title="phone-numbers">
+					<div class="aui-settings-field-content">
+						<span class="settings-label"><liferay-ui:message key="add-a-phone" /></span>
+					</div>
+				</li>
+			</c:if>
+
+			<c:if test="<%= ValidatorUtil.isEmpty(emailAddresses) %>">
+				<li class="action-field aui-component aui-settings-field lfr-token" data-namespaceId="<portlet:namespace />additionalEmailAddresses" data-title="additional-email-addresses">
+					<div class="aui-settings-field-content">
+						<span class="settings-label"><liferay-ui:message key="add-an-email-address" /></span>
+					</div>
+				</li>
+			</c:if>
+
+			<c:if test="<%= !ContactsUtil.hasInstantMessenger(contact2) %>">
+				<li class="action-field aui-component aui-settings-field lfr-token" data-namespaceId="<portlet:namespace />instantMessenger" data-title="instant-messenger">
+					<div class="aui-settings-field-content">
+						<span class="settings-label"><liferay-ui:message key="add-your-instant-messenger" /></span>
+					</div>
+				</li>
+			</c:if>
+
+			<c:if test="<%= ValidatorUtil.isEmpty(addresses) %>">
+				<li class="action-field aui-component aui-settings-field lfr-token" data-namespaceId="<portlet:namespace />addresses" data-title="addresses">
+					<div class="aui-settings-field-content">
+						<span class="settings-label"><liferay-ui:message key="add-an-address" /></span>
+					</div>
+				</li>
+			</c:if>
+
+			<c:if test="<%= ValidatorUtil.isEmpty(websites) %>">
+				<li class="action-field aui-component aui-settings-field lfr-token" data-namespaceId="<portlet:namespace />websites" data-title="websites">
+					<div class="aui-settings-field-content">
+						<span class="settings-label"><liferay-ui:message key="add-a-website" /></span>
+					</div>
+				</li>
+			</c:if>
+
+			<c:if test="<%= !ContactsUtil.hasSocialNetwork(contact2) %>">
+				<li class="action-field aui-component aui-settings-field lfr-token" data-namespaceId="<portlet:namespace />socialNetwork" data-title="social-network">
+					<div class="aui-settings-field-content">
+						<span class="settings-label"><liferay-ui:message key="add-your-social-network" /></span>
+					</div>
+				</li>
+			</c:if>
+
+			<c:if test="<%= Validator.isNull(contact2.getSmsSn()) %>">
+				<li class="action-field aui-component aui-settings-field lfr-token" data-namespaceId="<portlet:namespace />sms" data-title="sms">
+					<div class="aui-settings-field-content">
+						<span class="settings-label"><liferay-ui:message key="add-your-sms" /></span>
+					</div>
+				</li>
+			</c:if>
+
+			<c:if test="<%= ValidatorUtil.isEmpty(projectsEntries) %>">
+				<li class="action-field aui-component aui-settings-field lfr-token" data-namespaceId="<portlet:namespace />expertise" data-title="expertise">
+					<div class="aui-settings-field-content">
+						<span class="settings-label"><liferay-ui:message key="add-an-expertise" /></span>
+					</div>
+				</li>
+			</c:if>
+		</ul>
+	</div>
+</div>

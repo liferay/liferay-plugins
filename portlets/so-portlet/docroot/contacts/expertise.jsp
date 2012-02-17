@@ -31,6 +31,8 @@ if (user2 != null) {
 
 <c:if test="<%= (projectsEntries != null) && !projectsEntries.isEmpty() %>">
 
+	<h3><liferay-ui:message key="projects" />:</h3>
+
 	<%
 	for (ProjectsEntry projectsEntry : projectsEntries) {
 		String startDate = dateFormatDate.format(projectsEntry.getStartDate());

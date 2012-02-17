@@ -1,0 +1,311 @@
+<%--
+/**
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%
+themeDisplay.setIncludeServiceJs(true);
+
+request.setAttribute("user.selContact", contact2);
+request.setAttribute("user.selUser", themeDisplay.getUser());
+request.setAttribute("addresses.className", Contact.class.getName());
+request.setAttribute("emailAddresses.className", Contact.class.getName());
+request.setAttribute("phones.className", Contact.class.getName());
+request.setAttribute("websites.className", Contact.class.getName());
+
+if (contact2 != null) {
+	request.setAttribute("addresses.classPK", contact2.getContactId());
+	request.setAttribute("emailAddresses.classPK", contact2.getContactId());
+	request.setAttribute("phones.classPK", contact2.getContactId());
+	request.setAttribute("websites.classPK", contact2.getContactId());
+}
+else {
+	request.setAttribute("addresses.classPK", 0L);
+	request.setAttribute("emailAddresses.classPK", 0L);
+	request.setAttribute("phones.classPK", 0L);
+	request.setAttribute("websites.classPK", 0L);
+}
+%>
+
+<portlet:actionURL var="updateFieldGroupURL">
+	<portlet:param name="<%= Constants.CMD %>" value="updateFieldGroup" />
+	<portlet:param name="redirect" value="<%= currentURL %>" />
+</portlet:actionURL>'
+
+<c:if test="<%= showAdditionalEmailAddresses && ((showUsersInformation && ValidatorUtil.isNotEmpty(emailAddresses)) || (showCompleteYourProfileButtons && ValidatorUtil.isEmpty(emailAddresses))) %>">
+	<div id="<portlet:namespace />additionalEmailAddressesDialog">
+		<div id="<portlet:namespace />additionalEmailAddressesMessage"></div>
+
+		<%
+		String onSubmit = "event.preventDefault(); " + renderResponse.getNamespace() + "saveForm('additionalEmailAddresses');";
+		%>
+
+		<aui:form action="<%= updateFieldGroupURL %>" method="post" name="additionalEmailAddressesForm" onSubmit="<%= onSubmit %>">
+			<aui:input type="hidden" name="fieldGroup" value="additionalEmailAddresses" />
+
+			<aui:model-context bean="<%= contact2 %>" model="<%= Contact.class %>" />
+
+			<div class="form-section selected" id="<portlet:namespace />additionalEmailAddresses">
+				<liferay-util:include page="/html/portlet/users_admin/common/additional_email_addresses.jsp" />
+			</div>
+
+			<aui:button-row>
+				<aui:button type="submit" />
+			</aui:button-row>
+		</aui:form>
+	</div>
+</c:if>
+
+<c:if test="<%= showAddresses && ((showUsersInformation && ValidatorUtil.isNotEmpty(addresses)) || (showCompleteYourProfileButtons && ValidatorUtil.isEmpty(addresses))) %>">
+	<div id="<portlet:namespace />addressesDialog">
+		<div id="<portlet:namespace />addressesMessage"></div>
+
+		<%
+		String onSubmit = "event.preventDefault(); " + renderResponse.getNamespace() + "saveForm('addresses');";
+		%>
+
+		<aui:form action="<%= updateFieldGroupURL %>" method="post" name="addressesForm" onSubmit="<%= onSubmit %>">
+			<aui:input type="hidden" name="fieldGroup" value="addresses" />
+
+			<aui:model-context bean="<%= contact2 %>" model="<%= Contact.class %>" />
+
+			<div class="form-section selected" id="<portlet:namespace />addresses">
+				<liferay-util:include page="/html/portlet/users_admin/common/addresses.jsp" />
+			</div>
+
+			<aui:button-row>
+				<aui:button type="submit" />
+			</aui:button-row>
+		</aui:form>
+	</div>
+</c:if>
+
+<c:if test="<%= showComments && ((showUsersInformation && Validator.isNotNull(user2.getComments())) || (showCompleteYourProfileButtons && Validator.isNull(user2.getComments()))) %>">
+	<div id="<portlet:namespace />commentsDialog">
+		<div id="<portlet:namespace />commentsMessage"></div>
+
+		<%
+		String onSubmit = "event.preventDefault(); " + renderResponse.getNamespace() + "saveForm('comments');";
+		%>
+
+		<aui:form action="<%= updateFieldGroupURL %>" method="post" name="commentsForm" onSubmit="<%= onSubmit %>">
+			<aui:input type="hidden" name="fieldGroup" value="comments" />
+
+			<aui:model-context bean="<%= contact2 %>" model="<%= Contact.class %>" />
+
+			<div class="form-section selected" id="<portlet:namespace />sms">
+				<liferay-util:include page="/html/portlet/users_admin/user/comments.jsp" />
+			</div>
+
+			<aui:button-row>
+				<aui:button type="submit" />
+			</aui:button-row>
+		</aui:form>
+	</div>
+</c:if>
+
+<%
+ServletContext servletContext = ServletContextPool.get("so-portlet");
+%>
+
+<c:if test="<%= Validator.isNotNull(servletContext) %>">
+	<c:if test="<%= (showUsersInformation && ValidatorUtil.isNotEmpty(projectsEntries)) || (showCompleteYourProfileButtons && ValidatorUtil.isEmpty(projectsEntries)) %>">
+		<div id="<portlet:namespace />expertiseDialog">
+			<div id="<portlet:namespace />expertiseMessage"></div>
+
+			<%
+			String onSubmit = "event.preventDefault(); " + renderResponse.getNamespace() + "saveForm('expertise');";
+			%>
+
+			<aui:form action="<%= updateFieldGroupURL %>" method="post" name="expertiseForm" onSubmit="<%= onSubmit %>">
+				<aui:input type="hidden" name="fieldGroup" value="expertise" />
+
+				<aui:model-context bean="<%= contact2 %>" model="<%= Contact.class %>" />
+
+				<div class="form-section selected" id="<portlet:namespace />expertise">
+					<liferay-util:include page="/expertise/edit_projects.jsp" servletContext='<%= servletContext %>' />
+				</div>
+
+				<aui:button-row>
+					<aui:button type="submit" />
+				</aui:button-row>
+			</aui:form>
+		</div>
+	</c:if>
+</c:if>
+
+<c:if test="<%= showInstantMessenger && ((showUsersInformation && ContactsUtil.hasInstantMessenger(contact2)) || (showCompleteYourProfileButtons && !ContactsUtil.hasInstantMessenger(contact2))) %>">
+	<div id="<portlet:namespace />instantMessengerDialog">
+		<div id="<portlet:namespace />instantMessengerMessage"></div>
+
+		<%
+		String onSubmit = "event.preventDefault(); " + renderResponse.getNamespace() + "saveForm('instantMessenger');";
+		%>
+
+		<aui:form action="<%= updateFieldGroupURL %>" method="post" name="instantMessengerForm" onSubmit="<%= onSubmit %>">
+			<aui:input type="hidden" name="fieldGroup" value="instantMessenger" />
+
+			<aui:model-context bean="<%= contact2 %>" model="<%= Contact.class %>" />
+
+			<div class="form-section selected" id="<portlet:namespace />instantMessenger">
+				<liferay-util:include page="/html/portlet/users_admin/user/instant_messenger.jsp" />
+			</div>
+
+			<aui:button-row>
+				<aui:button type="submit" />
+			</aui:button-row>
+		</aui:form>
+	</div>
+</c:if>
+
+<c:if test="<%= showSMS && ((showUsersInformation && Validator.isNotNull(contact2.getSmsSn())) || (showCompleteYourProfileButtons && Validator.isNull(contact2.getSmsSn()))) %>">
+	<div id="<portlet:namespace />smsDialog">
+		<div id="<portlet:namespace />smsMessage"></div>
+
+		<%
+		String onSubmit = "event.preventDefault(); " + renderResponse.getNamespace() + "saveForm('sms');";
+		%>
+
+		<aui:form action="<%= updateFieldGroupURL %>" method="post" name="smsForm" onSubmit="<%= onSubmit %>">
+			<aui:input type="hidden" name="fieldGroup" value="sms" />
+
+			<aui:model-context bean="<%= contact2 %>" model="<%= Contact.class %>" />
+
+			<div class="form-section selected" id="<portlet:namespace />sms">
+				<liferay-util:include page="/html/portlet/users_admin/user/sms.jsp" />
+			</div>
+
+			<aui:button-row>
+				<aui:button type="submit" />
+			</aui:button-row>
+		</aui:form>
+	</div>
+</c:if>
+
+<c:if test="<%= showSocialNetwork && ((showUsersInformation && ContactsUtil.hasSocialNetwork(contact2)) || (showCompleteYourProfileButtons && !ContactsUtil.hasSocialNetwork(contact2))) %>">
+	<div id="<portlet:namespace />socialNetworkDialog">
+		<div id="<portlet:namespace />socialNetworkMessage"></div>
+
+		<%
+		String onSubmit = "event.preventDefault(); " + renderResponse.getNamespace() + "saveForm('socialNetwork');";
+		%>
+
+		<aui:form action="<%= updateFieldGroupURL %>" method="post" name="socialNetworkForm" onSubmit="<%= onSubmit %>">
+			<aui:input type="hidden" name="fieldGroup" value="socialNetwork" />
+
+			<aui:model-context bean="<%= contact2 %>" model="<%= Contact.class %>" />
+
+			<div class="form-section selected" id="<portlet:namespace />socialNetwork">
+				<liferay-util:include page="/html/portlet/users_admin/user/social_network.jsp" />
+			</div>
+
+			<aui:button-row>
+				<aui:button type="submit" />
+			</aui:button-row>
+		</aui:form>
+	</div>
+</c:if>
+
+<c:if test="<%= showPhones && ((showUsersInformation && ValidatorUtil.isNotEmpty(phones)) || (showCompleteYourProfileButtons && ValidatorUtil.isEmpty(phones))) %>">
+	<div id="<portlet:namespace />phoneNumbersDialog">
+		<div id="<portlet:namespace />phoneNumbersMessage"></div>
+
+		<%
+		String onSubmit = "event.preventDefault(); " + renderResponse.getNamespace() + "saveForm('phoneNumbers');";
+		%>
+
+		<aui:form action="<%= updateFieldGroupURL %>" method="post" name="phoneNumbersForm" onSubmit="<%= onSubmit %>">
+			<aui:input type="hidden" name="fieldGroup" value="phoneNumbers" />
+
+			<aui:model-context bean="<%= contact2 %>" model="<%= Contact.class %>" />
+
+			<div class="form-section selected" id="<portlet:namespace />phoneNumbers">
+				<liferay-util:include page="/html/portlet/users_admin/common/phone_numbers.jsp" />
+			</div>
+
+			<aui:button-row>
+				<aui:button type="submit" />
+			</aui:button-row>
+		</aui:form>
+	</div>
+</c:if>
+
+<c:if test="<%= showWebsites && ((showUsersInformation && ValidatorUtil.isNotEmpty(websites)) || (showCompleteYourProfileButtons && ValidatorUtil.isEmpty(websites))) %>">
+	<div id="<portlet:namespace />websitesDialog">
+		<div id="<portlet:namespace />websitesMessage"></div>
+
+		<%
+		String onSubmit = "event.preventDefault(); " + renderResponse.getNamespace() + "saveForm('websites');";
+		%>
+
+		<aui:form action="<%= updateFieldGroupURL %>" method="post" name="websitesForm" onSubmit="<%= onSubmit %>">
+			<aui:input type="hidden" name="fieldGroup" value="websites" />
+
+			<aui:model-context bean="<%= contact2 %>" model="<%= Contact.class %>" />
+
+			<div class="form-section selected" id="<portlet:namespace />websites">
+				<liferay-util:include page="/html/portlet/users_admin/common/websites.jsp" />
+			</div>
+
+			<aui:button-row>
+				<aui:button type="submit" />
+			</aui:button-row>
+		</aui:form>
+	</div>
+</c:if>
+
+<aui:script>
+	var <portlet:namespace />saveForm = function(name) {
+		var A = AUI();
+
+		var form = A.one('#<portlet:namespace />' + name + 'Form');
+
+		Liferay.fire(
+			'saveAutoFields',
+			{
+				form: form
+			}
+		);
+
+		A.io.request(
+			form.get('action'),
+			{
+				dataType: 'json',
+				form: {
+					id: form
+				},
+				after: {
+					success: function(event, id, obj) {
+						var responseData = this.get('responseData');
+
+						if (!responseData.success) {
+							var message = A.one('#<portlet:namespace />' + name + 'Message');
+
+							if (message) {
+								message.html('<span class="portlet-msg-error">' + responseData.message + '</span>');
+							}
+						}
+						else {
+							var redirect = responseData.redirect;
+
+							if (redirect) {
+								location.href = redirect;
+							}
+						}
+					}
+				}
+			}
+		);
+	}
+</aui:script>

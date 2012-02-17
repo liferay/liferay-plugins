@@ -369,7 +369,14 @@ $section-header-bg: #CCE6F7;
 	}
 
 	.project {
+		float: left;
 		margin-bottom: 1em;
+		padding-top: 10px;
+		width: 100%;
+
+		h3 {
+			color: #666;
+		}
 
 		.project-date {
 			text-indent: 5px;
@@ -401,7 +408,6 @@ $section-header-bg: #CCE6F7;
 
 	.lfr-user-comments {
 		float: none;
-		width: 100%;
 	}
 
 	.contacts-center-home {
@@ -509,5 +515,107 @@ $section-header-bg: #CCE6F7;
 
 	.lfr-search-container {
 		margin-top: 1em;
+	}
+
+	.my-profile .field-group:hover {
+		background-color: #DCE3EA;
+		background-image: url(@theme_image_path@/common/edit.png);
+		background-position: right 5px;
+		background-repeat: no-repeat;
+		cursor: pointer;
+	}
+
+	.profile-actions {
+		border-bottom: 1px solid #C7D0DA;
+		margin: 0 -10px;
+		padding: 0 10px 6px;
+
+		h3 {
+			color: #B4BEC8;
+			float: left;
+			font-size: 1em;
+			margin: 0;
+			text-align: right;
+			width: 100px;
+		}
+
+		.field-actions-toolbar {
+			padding-top: 2px;
+			text-align: right;
+
+			.actions-conjunction {
+				display: inline-block;
+				font-weight: bold;
+				list-style: none;
+				padding: 10px 5px;
+			}
+
+			.settings-actions {
+				display: inline-block;
+				margin: 0px;
+			}
+
+			.settings-header-label {
+				font-weight: bold;
+				padding: 0 5px;
+			}
+
+			.action-field {
+				background-image: url(@theme_image_path@/common/add.png);
+				background-position: 5px 50%;
+				background-repeat: no-repeat;
+				float: left;
+				margin: 2px;
+				padding-left: 25px;
+			}
+		}
+	}
+
+	.profile-actions-title {
+		color: #929292;
+		font-weight: bold;
+		padding: 6px 0 0;
+	}
+}
+
+.profile-dialog {
+	input[type="text"], select {
+		padding: 5px 1px;
+	}
+
+	.addresses .aui-field {
+		float: none;
+		width: auto;
+	}
+
+	.aui-field.primary-ctrl {
+		margin: 1.8em 0;
+	}
+
+	.aui-field-select .aui-field-content {
+		margin: 10px 0;
+	}
+
+	.form-section h3 {
+		display: none;
+	}
+
+	.lfr-textarea {
+		height: 60px !important;
+		width: 350px !important;
+	}
+
+	.social-network {
+		clear: both;
+		overflow: hidden;
+
+		.aui-field {
+			float: left;
+		}
+
+		img {
+			margin-left: 1.5em;
+			margin-top: 2.4em;
+		}
 	}
 }
