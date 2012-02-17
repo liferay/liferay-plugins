@@ -969,9 +969,7 @@ public class UpgradeCompany extends UpgradeProcess {
 	protected InputStream getInputStream(String path) throws Exception {
 		Class<?> clazz = getClass();
 
-		ClassLoader classLoader = clazz.getClassLoader();
-
-		return classLoader.getResourceAsStream("/resources" + path);
+		return clazz.getResourceAsStream("/resources" + path);
 	}
 
 	protected int getRandomNumber(int min, int max) {
