@@ -203,112 +203,112 @@ public interface FavoriteSitePersistence extends BasePersistence<FavoriteSite> {
 			com.liferay.so.NoSuchFavoriteSiteException;
 
 	/**
-	* Returns all the favorite sites where userId = &#63; and groupId = &#63;.
+	* Returns all the favorite sites where groupId = &#63; and userId = &#63;.
 	*
-	* @param userId the user ID
 	* @param groupId the group ID
+	* @param userId the user ID
 	* @return the matching favorite sites
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.so.model.FavoriteSite> findByU_G(
-		long userId, long groupId)
+	public java.util.List<com.liferay.so.model.FavoriteSite> findByG_U(
+		long groupId, long userId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns a range of all the favorite sites where userId = &#63; and groupId = &#63;.
+	* Returns a range of all the favorite sites where groupId = &#63; and userId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user ID
 	* @param groupId the group ID
+	* @param userId the user ID
 	* @param start the lower bound of the range of favorite sites
 	* @param end the upper bound of the range of favorite sites (not inclusive)
 	* @return the range of matching favorite sites
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.so.model.FavoriteSite> findByU_G(
-		long userId, long groupId, int start, int end)
+	public java.util.List<com.liferay.so.model.FavoriteSite> findByG_U(
+		long groupId, long userId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns an ordered range of all the favorite sites where userId = &#63; and groupId = &#63;.
+	* Returns an ordered range of all the favorite sites where groupId = &#63; and userId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user ID
 	* @param groupId the group ID
+	* @param userId the user ID
 	* @param start the lower bound of the range of favorite sites
 	* @param end the upper bound of the range of favorite sites (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching favorite sites
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.so.model.FavoriteSite> findByU_G(
-		long userId, long groupId, int start, int end,
+	public java.util.List<com.liferay.so.model.FavoriteSite> findByG_U(
+		long groupId, long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the first favorite site in the ordered set where userId = &#63; and groupId = &#63;.
+	* Returns the first favorite site in the ordered set where groupId = &#63; and userId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user ID
 	* @param groupId the group ID
+	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching favorite site
 	* @throws com.liferay.so.NoSuchFavoriteSiteException if a matching favorite site could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.so.model.FavoriteSite findByU_G_First(long userId,
-		long groupId,
+	public com.liferay.so.model.FavoriteSite findByG_U_First(long groupId,
+		long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchFavoriteSiteException;
 
 	/**
-	* Returns the last favorite site in the ordered set where userId = &#63; and groupId = &#63;.
+	* Returns the last favorite site in the ordered set where groupId = &#63; and userId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user ID
 	* @param groupId the group ID
+	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching favorite site
 	* @throws com.liferay.so.NoSuchFavoriteSiteException if a matching favorite site could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.so.model.FavoriteSite findByU_G_Last(long userId,
-		long groupId,
+	public com.liferay.so.model.FavoriteSite findByG_U_Last(long groupId,
+		long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchFavoriteSiteException;
 
 	/**
-	* Returns the favorite sites before and after the current favorite site in the ordered set where userId = &#63; and groupId = &#63;.
+	* Returns the favorite sites before and after the current favorite site in the ordered set where groupId = &#63; and userId = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
 	* @param favoriteSiteId the primary key of the current favorite site
-	* @param userId the user ID
 	* @param groupId the group ID
+	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next favorite site
 	* @throws com.liferay.so.NoSuchFavoriteSiteException if a favorite site with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.so.model.FavoriteSite[] findByU_G_PrevAndNext(
-		long favoriteSiteId, long userId, long groupId,
+	public com.liferay.so.model.FavoriteSite[] findByG_U_PrevAndNext(
+		long favoriteSiteId, long groupId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchFavoriteSiteException;
@@ -366,13 +366,13 @@ public interface FavoriteSitePersistence extends BasePersistence<FavoriteSite> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes all the favorite sites where userId = &#63; and groupId = &#63; from the database.
+	* Removes all the favorite sites where groupId = &#63; and userId = &#63; from the database.
 	*
-	* @param userId the user ID
 	* @param groupId the group ID
+	* @param userId the user ID
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByU_G(long userId, long groupId)
+	public void removeByG_U(long groupId, long userId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -394,14 +394,14 @@ public interface FavoriteSitePersistence extends BasePersistence<FavoriteSite> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the number of favorite sites where userId = &#63; and groupId = &#63;.
+	* Returns the number of favorite sites where groupId = &#63; and userId = &#63;.
 	*
-	* @param userId the user ID
 	* @param groupId the group ID
+	* @param userId the user ID
 	* @return the number of matching favorite sites
 	* @throws SystemException if a system exception occurred
 	*/
-	public int countByU_G(long userId, long groupId)
+	public int countByG_U(long groupId, long userId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
