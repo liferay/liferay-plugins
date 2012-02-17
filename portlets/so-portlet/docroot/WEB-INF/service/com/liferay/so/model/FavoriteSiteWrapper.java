@@ -76,6 +76,24 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 	}
 
 	/**
+	* Returns the group ID of this favorite site.
+	*
+	* @return the group ID of this favorite site
+	*/
+	public long getGroupId() {
+		return _favoriteSite.getGroupId();
+	}
+
+	/**
+	* Sets the group ID of this favorite site.
+	*
+	* @param groupId the group ID of this favorite site
+	*/
+	public void setGroupId(long groupId) {
+		_favoriteSite.setGroupId(groupId);
+	}
+
+	/**
 	* Returns the company ID of this favorite site.
 	*
 	* @return the company ID of this favorite site
@@ -129,24 +147,6 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 	*/
 	public void setUserUuid(java.lang.String userUuid) {
 		_favoriteSite.setUserUuid(userUuid);
-	}
-
-	/**
-	* Returns the group ID of this favorite site.
-	*
-	* @return the group ID of this favorite site
-	*/
-	public long getGroupId() {
-		return _favoriteSite.getGroupId();
-	}
-
-	/**
-	* Sets the group ID of this favorite site.
-	*
-	* @param groupId the group ID of this favorite site
-	*/
-	public void setGroupId(long groupId) {
-		_favoriteSite.setGroupId(groupId);
 	}
 
 	public boolean isNew() {

@@ -151,24 +151,24 @@ public class ClpSerializer {
 
 				method0.invoke(newModel, value0);
 
-				Method method1 = newModelClass.getMethod("setCompanyId",
+				Method method1 = newModelClass.getMethod("setGroupId",
 						new Class[] { Long.TYPE });
 
-				Long value1 = new Long(oldCplModel.getCompanyId());
+				Long value1 = new Long(oldCplModel.getGroupId());
 
 				method1.invoke(newModel, value1);
 
-				Method method2 = newModelClass.getMethod("setUserId",
+				Method method2 = newModelClass.getMethod("setCompanyId",
 						new Class[] { Long.TYPE });
 
-				Long value2 = new Long(oldCplModel.getUserId());
+				Long value2 = new Long(oldCplModel.getCompanyId());
 
 				method2.invoke(newModel, value2);
 
-				Method method3 = newModelClass.getMethod("setGroupId",
+				Method method3 = newModelClass.getMethod("setUserId",
 						new Class[] { Long.TYPE });
 
-				Long value3 = new Long(oldCplModel.getGroupId());
+				Long value3 = new Long(oldCplModel.getUserId());
 
 				method3.invoke(newModel, value3);
 
@@ -482,23 +482,23 @@ public class ClpSerializer {
 
 				newModel.setFavoriteSiteId(value0);
 
-				Method method1 = oldModelClass.getMethod("getCompanyId");
+				Method method1 = oldModelClass.getMethod("getGroupId");
 
 				Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-				newModel.setCompanyId(value1);
+				newModel.setGroupId(value1);
 
-				Method method2 = oldModelClass.getMethod("getUserId");
+				Method method2 = oldModelClass.getMethod("getCompanyId");
 
 				Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
 
-				newModel.setUserId(value2);
+				newModel.setCompanyId(value2);
 
-				Method method3 = oldModelClass.getMethod("getGroupId");
+				Method method3 = oldModelClass.getMethod("getUserId");
 
 				Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
 
-				newModel.setGroupId(value3);
+				newModel.setUserId(value3);
 
 				return newModel;
 			}

@@ -72,6 +72,20 @@ public interface FavoriteSiteModel extends BaseModel<FavoriteSite> {
 	public void setFavoriteSiteId(long favoriteSiteId);
 
 	/**
+	 * Returns the group ID of this favorite site.
+	 *
+	 * @return the group ID of this favorite site
+	 */
+	public long getGroupId();
+
+	/**
+	 * Sets the group ID of this favorite site.
+	 *
+	 * @param groupId the group ID of this favorite site
+	 */
+	public void setGroupId(long groupId);
+
+	/**
 	 * Returns the company ID of this favorite site.
 	 *
 	 * @return the company ID of this favorite site
@@ -113,20 +127,6 @@ public interface FavoriteSiteModel extends BaseModel<FavoriteSite> {
 	 * @param userUuid the user uuid of this favorite site
 	 */
 	public void setUserUuid(String userUuid);
-
-	/**
-	 * Returns the group ID of this favorite site.
-	 *
-	 * @return the group ID of this favorite site
-	 */
-	public long getGroupId();
-
-	/**
-	 * Sets the group ID of this favorite site.
-	 *
-	 * @param groupId the group ID of this favorite site
-	 */
-	public void setGroupId(long groupId);
 
 	public boolean isNew();
 

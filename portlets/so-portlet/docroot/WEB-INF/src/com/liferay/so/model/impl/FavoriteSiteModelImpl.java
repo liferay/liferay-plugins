@@ -57,11 +57,11 @@ public class FavoriteSiteModelImpl extends BaseModelImpl<FavoriteSite>
 	public static final String TABLE_NAME = "SO_FavoriteSite";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "favoriteSiteId", Types.BIGINT },
+			{ "groupId", Types.BIGINT },
 			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "groupId", Types.BIGINT }
+			{ "userId", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table SO_FavoriteSite (favoriteSiteId LONG not null primary key,companyId LONG,userId LONG,groupId LONG)";
+	public static final String TABLE_SQL_CREATE = "create table SO_FavoriteSite (favoriteSiteId LONG not null primary key,groupId LONG,companyId LONG,userId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table SO_FavoriteSite";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -115,6 +115,26 @@ public class FavoriteSiteModelImpl extends BaseModelImpl<FavoriteSite>
 		_favoriteSiteId = favoriteSiteId;
 	}
 
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_columnBitmask |= GROUPID_COLUMN_BITMASK;
+
+		if (!_setOriginalGroupId) {
+			_setOriginalGroupId = true;
+
+			_originalGroupId = _groupId;
+		}
+
+		_groupId = groupId;
+	}
+
+	public long getOriginalGroupId() {
+		return _originalGroupId;
+	}
+
 	public long getCompanyId() {
 		return _companyId;
 	}
@@ -149,26 +169,6 @@ public class FavoriteSiteModelImpl extends BaseModelImpl<FavoriteSite>
 
 	public long getOriginalUserId() {
 		return _originalUserId;
-	}
-
-	public long getGroupId() {
-		return _groupId;
-	}
-
-	public void setGroupId(long groupId) {
-		_columnBitmask |= GROUPID_COLUMN_BITMASK;
-
-		if (!_setOriginalGroupId) {
-			_setOriginalGroupId = true;
-
-			_originalGroupId = _groupId;
-		}
-
-		_groupId = groupId;
-	}
-
-	public long getOriginalGroupId() {
-		return _originalGroupId;
 	}
 
 	public long getColumnBitmask() {
@@ -206,9 +206,9 @@ public class FavoriteSiteModelImpl extends BaseModelImpl<FavoriteSite>
 		FavoriteSiteImpl favoriteSiteImpl = new FavoriteSiteImpl();
 
 		favoriteSiteImpl.setFavoriteSiteId(getFavoriteSiteId());
+		favoriteSiteImpl.setGroupId(getGroupId());
 		favoriteSiteImpl.setCompanyId(getCompanyId());
 		favoriteSiteImpl.setUserId(getUserId());
-		favoriteSiteImpl.setGroupId(getGroupId());
 
 		favoriteSiteImpl.resetOriginalValues();
 
@@ -263,13 +263,13 @@ public class FavoriteSiteModelImpl extends BaseModelImpl<FavoriteSite>
 	public void resetOriginalValues() {
 		FavoriteSiteModelImpl favoriteSiteModelImpl = this;
 
-		favoriteSiteModelImpl._originalUserId = favoriteSiteModelImpl._userId;
-
-		favoriteSiteModelImpl._setOriginalUserId = false;
-
 		favoriteSiteModelImpl._originalGroupId = favoriteSiteModelImpl._groupId;
 
 		favoriteSiteModelImpl._setOriginalGroupId = false;
+
+		favoriteSiteModelImpl._originalUserId = favoriteSiteModelImpl._userId;
+
+		favoriteSiteModelImpl._setOriginalUserId = false;
 
 		favoriteSiteModelImpl._columnBitmask = 0;
 	}
@@ -280,11 +280,11 @@ public class FavoriteSiteModelImpl extends BaseModelImpl<FavoriteSite>
 
 		favoriteSiteCacheModel.favoriteSiteId = getFavoriteSiteId();
 
+		favoriteSiteCacheModel.groupId = getGroupId();
+
 		favoriteSiteCacheModel.companyId = getCompanyId();
 
 		favoriteSiteCacheModel.userId = getUserId();
-
-		favoriteSiteCacheModel.groupId = getGroupId();
 
 		return favoriteSiteCacheModel;
 	}
@@ -295,12 +295,12 @@ public class FavoriteSiteModelImpl extends BaseModelImpl<FavoriteSite>
 
 		sb.append("{favoriteSiteId=");
 		sb.append(getFavoriteSiteId());
+		sb.append(", groupId=");
+		sb.append(getGroupId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
 		sb.append(", userId=");
 		sb.append(getUserId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
 		sb.append("}");
 
 		return sb.toString();
@@ -318,16 +318,16 @@ public class FavoriteSiteModelImpl extends BaseModelImpl<FavoriteSite>
 		sb.append(getFavoriteSiteId());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>groupId</column-name><column-value><![CDATA[");
+		sb.append(getGroupId());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>companyId</column-name><column-value><![CDATA[");
 		sb.append(getCompanyId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>userId</column-name><column-value><![CDATA[");
 		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -340,14 +340,14 @@ public class FavoriteSiteModelImpl extends BaseModelImpl<FavoriteSite>
 			FavoriteSite.class
 		};
 	private long _favoriteSiteId;
+	private long _groupId;
+	private long _originalGroupId;
+	private boolean _setOriginalGroupId;
 	private long _companyId;
 	private long _userId;
 	private String _userUuid;
 	private long _originalUserId;
 	private boolean _setOriginalUserId;
-	private long _groupId;
-	private long _originalGroupId;
-	private boolean _setOriginalGroupId;
 	private transient ExpandoBridge _expandoBridge;
 	private long _columnBitmask;
 	private FavoriteSite _escapedModelProxy;
