@@ -9,11 +9,14 @@
 
 		<column name="favoriteSiteId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
 		<!-- Audit fields -->
 
 		<column name="companyId" type="long" />
 		<column name="userId" type="long" />
-		<column name="groupId" type="long" />
 		
 		<!-- Finder methods -->
 
