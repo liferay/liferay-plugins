@@ -23,12 +23,12 @@ Contact contact2 = user2.getContact();
 %>
 
 <c:if test="<%= showComments && Validator.isNotNull(user2.getComments()) %>">
-	<div class="section lfr-user-comments">
+	<div class="section field-group lfr-user-comments" data-namespaceId="<portlet:namespace />comments" data-title="comments">
 		<h3><liferay-ui:message key="Introduction" />:</h3>
 
 		<ul class="property-list">
 			<li>
-				<span class="property"><%= user2.getComments() %></span>
+				<span class="property"><%= HtmlUtil.escape(user2.getComments()) %></span>
 			</li>
 		</ul>
 	</div>
@@ -38,8 +38,8 @@ Contact contact2 = user2.getContact();
 List<Phone> phones = PhoneServiceUtil.getPhones(Contact.class.getName(), contact2.getContactId());
 %>
 
-<c:if test="<%= showPhones && !phones.isEmpty() %>">
-	<div class="section lfr-user-phones">
+<c:if test="<%= showPhones && ValidatorUtil.isNotEmpty(phones) %>">
+	<div class="section field-group lfr-user-phones" data-namespaceId="<portlet:namespace />phoneNumbers" data-title="phone-numbers">
 		<h3><liferay-ui:message key="phones" />:</h3>
 
 		<ul class="property-list">
@@ -65,8 +65,8 @@ List<Phone> phones = PhoneServiceUtil.getPhones(Contact.class.getName(), contact
 List<EmailAddress> emailAddresses = EmailAddressServiceUtil.getEmailAddresses(Contact.class.getName(), contact2.getContactId());
 %>
 
-<c:if test="<%= showAdditionalEmailAddresses && !emailAddresses.isEmpty() %>">
-	<div class="section lfr-user-email-addresses">
+<c:if test="<%= showAdditionalEmailAddresses && ValidatorUtil.isNotEmpty(emailAddresses) %>">
+	<div class="section field-group lfr-user-email-addresses" data-namespaceId="<portlet:namespace />additionalEmailAddresses" data-title="additional-email-addresses">
 		<h3><liferay-ui:message key="additional-email-addresses" />:</h3>
 
 		<ul class="property-list">
@@ -98,8 +98,8 @@ String skype = contact2.getSkypeSn();
 String ym = contact2.getYmSn();
 %>
 
-<c:if test="<%= showInstantMessenger && (Validator.isNotNull(aim) || Validator.isNotNull(icq) || Validator.isNotNull(jabber) || Validator.isNotNull(msn) || Validator.isNotNull(skype) || Validator.isNotNull(ym)) %>">
-	<div class="section lfr-user-instant-messenger">
+<c:if test="<%= showInstantMessenger && ContactsUtil.hasInstantMessenger(contact2) %>">
+	<div class="section field-group" data-namespaceId="<portlet:namespace />instantMessenger" data-title="instant-messenger">
 		<h3><liferay-ui:message key="instant-messenger" />:</h3>
 
 		<ul class="property-list">
@@ -162,8 +162,8 @@ String ym = contact2.getYmSn();
 List<Address> addresses = AddressServiceUtil.getAddresses(Contact.class.getName(), contact2.getContactId());
 %>
 
-<c:if test="<%= showAddresses && !addresses.isEmpty() %>">
-	<div class="section lfr-user-addresses">
+<c:if test="<%= showAddresses && ValidatorUtil.isNotEmpty(addresses) %>">
+	<div class="section field-group lfr-user-addresses" data-namespaceId="<portlet:namespace />addresses" data-title="addresses">
 		<h3><liferay-ui:message key="addresses" />:</h3>
 
 		<ul class="property-list">
@@ -242,17 +242,16 @@ List<Address> addresses = AddressServiceUtil.getAddresses(Contact.class.getName(
 List<Website> websites = WebsiteServiceUtil.getWebsites(Contact.class.getName(), contact2.getContactId());
 %>
 
-<c:if test="<%= showWebsites && !websites.isEmpty() %>">
-	<div class="section lfr-user-websites">
+<c:if test="<%= showWebsites && ValidatorUtil.isNotEmpty(websites) %>">
+	<div class="section field-group lfr-user-websites" data-namespaceId="<portlet:namespace />websites" data-title="websites">
 		<h3><liferay-ui:message key="websites" />:</h3>
 
 		<ul class="property-list">
 
 			<%
-			for (Website website: websites) {
+			for (Website website : websites) {
 				website = website.toEscapedModel();
 			%>
-
 
 				<li class="<%= website.isPrimary() ? "primary" : "" %>">
 					<span class="property-type"><%= LanguageUtil.get(pageContext, website.getType().getName()) %></span>
@@ -274,8 +273,8 @@ String mySpace = contact2.getMySpaceSn();
 String twitter = contact2.getTwitterSn();
 %>
 
-<c:if test="<%= showSocialNetwork && (Validator.isNotNull(facebook) || Validator.isNotNull(mySpace) || Validator.isNotNull(twitter)) %>">
-	<div class="section lfr-user-social-network">
+<c:if test="<%= showSocialNetwork && ContactsUtil.hasSocialNetwork(contact2) %>">
+	<div class="section field-group lfr-user-social-network" data-namespaceId="<portlet:namespace />socialNetwork" data-title="social-network">
 		<h3><liferay-ui:message key="social-network" />:</h3>
 
 		<ul class="property-list">
@@ -302,12 +301,12 @@ String twitter = contact2.getTwitterSn();
 					<span class="property"><%= HtmlUtil.escape(twitter) %></span>
 				</li>
 			</c:if>
-		</dl>
+		</ul>
 	</div>
 </c:if>
 
 <c:if test="<%= showSMS && Validator.isNotNull(contact2.getSmsSn()) %>">
-	<div class="section lfr-user-sms">
+	<div class="section field-group lfr-user-sms" data-namespaceId="<portlet:namespace />sms" data-title="sms">
 		<h3><liferay-ui:message key="sms" />:</h3>
 
 		<ul class="property-list">

@@ -132,39 +132,6 @@
 		);
 	</c:if>
 
-	<c:if test="<%= (user2 != null) && user.getUserId() == user2.getUserId() %>">
-		contactsToolbarChildren.push(
-			{
-				handler: function(event) {
-					event.preventDefault();
-
-					var url = Liferay.Util.addParams('controlPanelCategory=<%= PortletCategoryKeys.MY %>', '<%= themeDisplay.getURLMyAccount().toString() %>');
-
-					var dialog = new A.Dialog(
-						{
-							align: {
-								node: null,
-								points: ['tc', 'tc']
-							},
-							constrain2view: true,
-							modal: true,
-							resizable: false,
-							title: '<liferay-ui:message key="edit-profile" />',
-							width: 950
-						}
-					).plug(
-						A.Plugin.DialogIframe,
-						{
-							uri: url
-						}
-					).render();
-				},
-				icon: 'edit',
-				label: '<%= UnicodeLanguageUtil.get(pageContext, "edit-profile") %>'
-			}
-		);
-	</c:if>
-
 	contactsToolbarChildren.push(
 		{
 			cssClass: '<%= user2 == null ? "aui-helper-hidden" : "" %>',

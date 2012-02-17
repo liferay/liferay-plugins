@@ -70,6 +70,35 @@ public class ContactsUtil {
 		return sb.toString();
 	}
 
+	public static boolean hasInstantMessenger(Contact contact) {
+		if (Validator.isNotNull(contact.getAimSn()) ||
+			Validator.isNotNull(contact.getIcqSn()) ||
+			Validator.isNotNull(contact.getJabberSn()) ||
+			Validator.isNotNull(contact.getMsnSn()) ||
+			Validator.isNotNull(contact.getSkypeSn()) ||
+			Validator.isNotNull(contact.getYmSn())) {
+
+			return true;
+		}
+
+		return false;
+	}
+
+	public static boolean hasSocialNetwork(Contact contact) {
+		if (Validator.isNotNull(contact.getFacebookSn()) ||
+			Validator.isNotNull(contact.getMySpaceSn()) ||
+			Validator.isNotNull(contact.getTwitterSn())) {
+
+			return true;
+		}
+
+		return false;
+	}
+
+	public static boolean isMyProfile(User currentUser, User profileUser) {
+		return currentUser.getUserId() == profileUser.getUserId();
+	}
+
 	private static String _getAddresses(User user) throws Exception {
 		List<Address> addresses = AddressLocalServiceUtil.getAddresses(
 			user.getCompanyId(), Contact.class.getName(), user.getContactId());

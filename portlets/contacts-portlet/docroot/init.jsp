@@ -26,7 +26,9 @@
 
 <%@ page import="com.liferay.contacts.util.ContactsConstants" %><%@
 page import="com.liferay.contacts.util.ContactsExtensionsUtil" %><%@
+page import="com.liferay.contacts.util.ContactsUtil" %><%@
 page import="com.liferay.contacts.util.PortletKeys" %><%@
+page import="com.liferay.contacts.util.ValidatorUtil" %><%@
 page import="com.liferay.contacts.util.WebKeys" %><%@
 page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %><%@
 page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@
@@ -76,7 +78,9 @@ page import="com.liferay.portlet.social.model.SocialRelationConstants" %><%@
 page import="com.liferay.portlet.social.model.SocialRequestConstants" %><%@
 page import="com.liferay.portlet.social.service.SocialActivityLocalServiceUtil" %><%@
 page import="com.liferay.portlet.social.service.SocialRelationLocalServiceUtil" %><%@
-page import="com.liferay.portlet.social.service.SocialRequestLocalServiceUtil" %>
+page import="com.liferay.portlet.social.service.SocialRequestLocalServiceUtil" %><%@
+page import="com.liferay.so.model.ProjectsEntry" %><%@
+page import="com.liferay.so.service.ProjectsEntryLocalServiceUtil" %>
 
 <%@ page import="java.util.ArrayList" %><%@
 page import="java.util.LinkedHashMap" %><%@
@@ -113,6 +117,7 @@ int maxResultCount = 200;
 boolean showAdditionalEmailAddresses = PrefsParamUtil.getBoolean(preferences, request, "showAdditionalEmailAddresses", true);
 boolean showAddresses = PrefsParamUtil.getBoolean(preferences, request, "showAddresses", true);
 boolean showComments = PrefsParamUtil.getBoolean(preferences, request, "showComments", true);
+boolean showCompleteYourProfileButtons = PrefsParamUtil.getBoolean(preferences, request, "showCompleteYourProfileButtons", false);
 boolean showIcon = PrefsParamUtil.getBoolean(preferences, request, "showIcon", true);
 boolean showInstantMessenger = PrefsParamUtil.getBoolean(preferences, request, "showInstantMessenger", true);
 boolean showPhones = PrefsParamUtil.getBoolean(preferences, request, "showPhones", true);

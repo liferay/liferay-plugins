@@ -37,6 +37,8 @@
 
 					<aui:input name="preferences--showComments--" type="checkbox" value="<%= showComments %>" />
 
+					<aui:input name="preferences--showCompleteYourProfileButtons--" type="checkbox" value="<%= showCompleteYourProfileButtons %>" />
+
 					<aui:input name="preferences--showInstantMessenger--" type="checkbox" value="<%= showInstantMessenger %>" />
 
 					<aui:input name="preferences--showPhones--" type="checkbox" value="<%= showPhones %>" />
