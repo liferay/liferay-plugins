@@ -17,7 +17,7 @@
 	<sql id="com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenFinder.findByC_KTAI">
 		<![CDATA[
 			SELECT
-				DISTINCT {KaleoTaskInstanceToken.*}
+				DISTINCT KaleoTaskInstanceToken.kaleoTaskInstanceTokenId
 			FROM
 				KaleoTaskInstanceToken
 			INNER JOIN
