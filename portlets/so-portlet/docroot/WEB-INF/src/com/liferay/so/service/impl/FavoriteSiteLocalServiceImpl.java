@@ -48,9 +48,9 @@ public class FavoriteSiteLocalServiceImpl
 		FavoriteSite favoriteSite = favoriteSitePersistence.create(
 			favoriteSiteId);
 
+		favoriteSite.setGroupId(groupId);
 		favoriteSite.setCompanyId(user.getCompanyId());
 		favoriteSite.setUserId(userId);
-		favoriteSite.setGroupId(groupId);
 
 		favoriteSitePersistence.update(favoriteSite, false);
 
