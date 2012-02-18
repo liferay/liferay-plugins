@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.CalendarUtil;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
@@ -252,6 +253,26 @@ public class KaleoTaskInstanceTokenFinderImpl
 				kaleoTaskInstanceTokenQuery.getOrderByComparator());
 
 			sql = sb.toString();
+
+			OrderByComparator obc =
+				kaleoTaskInstanceTokenQuery.getOrderByComparator();
+
+			String[] orderByFields = obc.getOrderByFields();
+
+			sb = new StringBundler(orderByFields.length * 3 + 1);
+
+			sb.append(
+				"DISTINCT KaleoTaskInstanceToken.kaleoTaskInstanceTokenId");
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				sb.append(", ");
+				sb.append(_ORDER_BY_ENTITY_ALIAS);
+				sb.append(orderByFields[i]);
+			}
+
+			sql = sql.replace(
+				"DISTINCT KaleoTaskInstanceToken.kaleoTaskInstanceTokenId",
+				sb.toString());
 		}
 
 		SQLQuery q = session.createSQLQuery(sql);
