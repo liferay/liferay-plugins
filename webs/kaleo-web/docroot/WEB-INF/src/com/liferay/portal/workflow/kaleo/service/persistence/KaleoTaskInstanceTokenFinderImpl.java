@@ -264,10 +264,10 @@ public class KaleoTaskInstanceTokenFinderImpl
 			sb.append(
 				"DISTINCT KaleoTaskInstanceToken.kaleoTaskInstanceTokenId");
 
-			for (int i = 0; i < orderByFields.length; i++) {
+			for (String orderByField : orderByFields) {
 				sb.append(", ");
 				sb.append(_ORDER_BY_ENTITY_ALIAS);
-				sb.append(orderByFields[i]);
+				sb.append(orderByField);
 			}
 
 			sql = sql.replace(
