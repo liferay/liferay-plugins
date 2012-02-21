@@ -115,36 +115,6 @@ else {
 	</div>
 </c:if>
 
-<%
-ServletContext servletContext = ServletContextPool.get("so-portlet");
-%>
-
-<c:if test="<%= Validator.isNotNull(servletContext) %>">
-	<c:if test="<%= (showUsersInformation && ValidatorUtil.isNotEmpty(projectsEntries)) || (showCompleteYourProfileButtons && ValidatorUtil.isEmpty(projectsEntries)) %>">
-		<div id="<portlet:namespace />expertiseDialog">
-			<div id="<portlet:namespace />expertiseMessage"></div>
-
-			<%
-			String onSubmit = "event.preventDefault(); " + renderResponse.getNamespace() + "saveForm('expertise');";
-			%>
-
-			<aui:form action="<%= updateFieldGroupURL %>" method="post" name="expertiseForm" onSubmit="<%= onSubmit %>">
-				<aui:input type="hidden" name="fieldGroup" value="expertise" />
-
-				<aui:model-context bean="<%= contact2 %>" model="<%= Contact.class %>" />
-
-				<div class="form-section selected" id="<portlet:namespace />expertise">
-					<liferay-util:include page="/expertise/edit_projects.jsp" servletContext='<%= servletContext %>' />
-				</div>
-
-				<aui:button-row>
-					<aui:button type="submit" />
-				</aui:button-row>
-			</aui:form>
-		</div>
-	</c:if>
-</c:if>
-
 <c:if test="<%= showInstantMessenger && ((showUsersInformation && ContactsUtil.hasInstantMessenger(contact2)) || (showCompleteYourProfileButtons && !ContactsUtil.hasInstantMessenger(contact2))) %>">
 	<div id="<portlet:namespace />instantMessengerDialog">
 		<div id="<portlet:namespace />instantMessengerMessage"></div>

@@ -84,14 +84,6 @@
 					</div>
 				</li>
 			</c:if>
-
-			<c:if test="<%= ValidatorUtil.isEmpty(projectsEntries) %>">
-				<li class="action-field aui-component aui-settings-field lfr-token" data-namespaceId="<portlet:namespace />expertise" data-title="expertise">
-					<div class="aui-settings-field-content">
-						<span class="settings-label"><liferay-ui:message key="add-an-expertise" /></span>
-					</div>
-				</li>
-			</c:if>
 		</ul>
 	</div>
 </div>
