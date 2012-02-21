@@ -21,7 +21,7 @@ import com.liferay.util.portlet.PortletProps;
 /**
  * @author Brian Wing Shun Chan
  */
- public class PortletPropsValues {
+public class PortletPropsValues {
 
 	public static final String DEFAULT_ACCOUNTS = PortletProps.get(
 		PortletPropsKeys.DEFAULT_ACCOUNTS);
