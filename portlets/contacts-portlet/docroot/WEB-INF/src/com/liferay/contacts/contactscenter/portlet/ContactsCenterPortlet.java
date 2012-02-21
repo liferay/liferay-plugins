@@ -40,7 +40,6 @@ import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Address;
@@ -71,18 +70,14 @@ import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialRequestInterpreterLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialRequestLocalServiceUtil;
 import com.liferay.portlet.usersadmin.util.UsersAdminUtil;
-import com.liferay.so.model.ProjectsEntry;
-import com.liferay.so.service.ProjectsEntryLocalServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Set;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -608,89 +603,6 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			contact.getSmsSn(), contact.getTwitterSn(), contact.getYmSn());
 	}
 
-	protected void updateExpertise(ActionRequest actionRequest)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		User user = themeDisplay.getUser();
-
-		String projectsEntriesIndexesString = ParamUtil.getString(
-			actionRequest, "projectsEntriesIndexes");
-
-		Set<Long> projectsEntryIds = new HashSet<Long>();
-
-		int[] projectsEntriesIndexes = StringUtil.split(
-			projectsEntriesIndexesString, 0);
-
-		for (int projectsEntriesIndex : projectsEntriesIndexes) {
-			long projectsEntryId = ParamUtil.getLong(
-				actionRequest, "projectsEntryId" + projectsEntriesIndex);
-			String title = ParamUtil.getString(
-				actionRequest, "projectsEntryTitle" + projectsEntriesIndex);
-			String description = ParamUtil.getString(
-				actionRequest,
-				"projectsEntryDescription" + projectsEntriesIndex);
-
-			if (Validator.isNull(title)) {
-				continue;
-			}
-
-			int startDateMonth = ParamUtil.getInteger(
-				actionRequest,
-				"projectsEntryStartDateMonth" + projectsEntriesIndex);
-			int startDateDay = 1;
-			int startDateYear = ParamUtil.getInteger(
-				actionRequest,
-				"projectsEntryStartDateYear" + projectsEntriesIndex);
-			int endDateMonth = ParamUtil.getInteger(
-				actionRequest,
-				"projectsEntryEndDateMonth" + projectsEntriesIndex);
-			int endDateDay = 1;
-			int endDateYear = ParamUtil.getInteger(
-				actionRequest,
-				"projectsEntryEndDateYear" + projectsEntriesIndex);
-
-			boolean current = ParamUtil.getBoolean(
-				actionRequest, "projectsEntryCurrent" + projectsEntriesIndex);
-			String otherMembers = ParamUtil.getString(
-				actionRequest,
-				"projectsEntryOtherMembers" + projectsEntriesIndex);
-
-			if (projectsEntryId <= 0) {
-				ProjectsEntry projectsEntry =
-					ProjectsEntryLocalServiceUtil.addProjectsEntry(
-						user.getUserId(), title, description, startDateMonth,
-						startDateDay, startDateYear, endDateMonth, endDateDay,
-						endDateYear, current, otherMembers);
-
-				projectsEntryId = projectsEntry.getProjectsEntryId();
-			}
-			else {
-				ProjectsEntryLocalServiceUtil.updateProjectsEntry(
-					projectsEntryId, title, description, startDateMonth,
-					startDateDay, startDateYear, endDateMonth, endDateDay,
-					endDateYear, current, otherMembers);
-			}
-
-			projectsEntryIds.add(projectsEntryId);
-		}
-
-		List<ProjectsEntry> projectsEntries =
-			ProjectsEntryLocalServiceUtil.getUserProjectsEntries(
-				user.getUserId());
-
-		for (ProjectsEntry projectsEntry : projectsEntries) {
-			if (!projectsEntryIds.contains(
-				projectsEntry.getProjectsEntryId())) {
-
-				ProjectsEntryLocalServiceUtil.deleteProjectsEntry(
-					projectsEntry.getProjectsEntryId());
-			}
-		}
-	}
-
 	protected void updateFieldGroup(
 		ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -709,9 +621,6 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			}
 			else if (fieldGroup.equals("comments")) {
 				updateComments(actionRequest);
-			}
-			else if (fieldGroup.equals("expertise")) {
-				updateExpertise(actionRequest);
 			}
 			else if (fieldGroup.equals("instantMessenger")) {
 				updateInstantMessenger(actionRequest);

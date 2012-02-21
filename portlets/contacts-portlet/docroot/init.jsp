@@ -78,9 +78,7 @@ page import="com.liferay.portlet.social.model.SocialRelationConstants" %><%@
 page import="com.liferay.portlet.social.model.SocialRequestConstants" %><%@
 page import="com.liferay.portlet.social.service.SocialActivityLocalServiceUtil" %><%@
 page import="com.liferay.portlet.social.service.SocialRelationLocalServiceUtil" %><%@
-page import="com.liferay.portlet.social.service.SocialRequestLocalServiceUtil" %><%@
-page import="com.liferay.so.model.ProjectsEntry" %><%@
-page import="com.liferay.so.service.ProjectsEntryLocalServiceUtil" %>
+page import="com.liferay.portlet.social.service.SocialRequestLocalServiceUtil" %>
 
 <%@ page import="java.util.ArrayList" %><%@
 page import="java.util.LinkedHashMap" %><%@

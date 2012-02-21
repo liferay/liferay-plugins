@@ -161,7 +161,6 @@ request.setAttribute("view_user.jsp-user", user2);
 			List<EmailAddress> emailAddresses = EmailAddressServiceUtil.getEmailAddresses(Contact.class.getName(), contact2.getContactId());
 			List<Address> addresses = AddressServiceUtil.getAddresses(Contact.class.getName(), contact2.getContactId());
 			List<Website> websites = WebsiteServiceUtil.getWebsites(Contact.class.getName(), contact2.getContactId());
-			List<ProjectsEntry> projectsEntries = ProjectsEntryLocalServiceUtil.getUserProjectsEntries(user.getUserId());
 			%>
 
 			<div class="user-information" id="<portlet:namespace />userInformation">
@@ -176,38 +175,36 @@ request.setAttribute("view_user.jsp-user", user2);
 								<liferay-util:include page="/contacts_center/view_user_information.jsp" servletContext="<%= application %>" />
 							</div>
 
-							<c:if test="<%= ValidatorUtil.isNotEmpty(projectsEntries) %>">
-								<%
-								Map<String, String> extensions = ContactsExtensionsUtil.getExtensions();
+							<%
+							Map<String, String> extensions = ContactsExtensionsUtil.getExtensions();
 
-								Set<String> servletContextNames = extensions.keySet();
+							Set<String> servletContextNames = extensions.keySet();
 
-								for (String servletContextName : servletContextNames) {
-									String extensionPath = extensions.get(servletContextName);
+							for (String servletContextName : servletContextNames) {
+								String extensionPath = extensions.get(servletContextName);
 
-									ServletContext extensionServletContext = ServletContextPool.get(servletContextName);
+								ServletContext extensionServletContext = ServletContextPool.get(servletContextName);
 
-									String title = extensionPath.substring(extensionPath.lastIndexOf(StringPool.SLASH) + 1, extensionPath.lastIndexOf(StringPool.PERIOD));
+								String title = extensionPath.substring(extensionPath.lastIndexOf(StringPool.SLASH) + 1, extensionPath.lastIndexOf(StringPool.PERIOD));
 
-									title = title.replace(CharPool.UNDERLINE, CharPool.DASH);
+								title = title.replace(CharPool.UNDERLINE, CharPool.DASH);
 
-									String cssClass = "lfr-" + title + "-container";
-								%>
+								String cssClass = "lfr-" + title + "-container";
+							%>
 
-									<div class="user-information-title">
-										<liferay-ui:message key="<%= title %>" />
+								<div class="user-information-title">
+									<liferay-ui:message key="<%= title %>" />
+								</div>
+
+								<div class="section">
+									<div class="<%= cssClass %>">
+										<liferay-util:include page="<%= extensionPath %>" servletContext="<%= extensionServletContext %>" />
 									</div>
+								</div>
 
-									<div class="section field-group" data-namespaceId="<portlet:namespace />expertise" data-title="expertise">
-										<div class="<%= cssClass %>">
-											<liferay-util:include page="<%= extensionPath %>" servletContext="<%= extensionServletContext %>" />
-										</div>
-									</div>
-
-								<%
-								}
-								%>
-							</c:if>
+							<%
+							}
+							%>
 						</aui:column>
 					</c:if>
 
