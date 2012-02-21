@@ -113,7 +113,7 @@ public class EditorPortlet extends AdminPortlet {
 
 			throw new PortletException(e);
 		}
-  	}
+	}
 
 	@Override
 	public void updateGadget(

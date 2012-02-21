@@ -23,7 +23,7 @@ import com.liferay.util.portlet.PortletProps;
 /**
  * @author Ryan Park
  */
- public class PortletPropsValues {
+public class PortletPropsValues {
 
 	public static final String[] SITE_AUTO_CREATE_TEAM_NAMES =
 		PortletProps.getArray(PortletPropsKeys.SITE_AUTO_CREATE_TEAM_NAMES);
