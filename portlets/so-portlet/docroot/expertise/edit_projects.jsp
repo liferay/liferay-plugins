@@ -20,7 +20,13 @@
 <%@ include file="/init.jsp" %>
 
 <%
-List<ProjectsEntry> projectsEntries = ProjectsEntryLocalServiceUtil.getUserProjectsEntries(user.getUserId());
+User selUser = PortalUtil.getSelectedUser(request);
+
+if (selUser == null) {
+	selUser = user;
+}
+
+List<ProjectsEntry> projectsEntries = ProjectsEntryLocalServiceUtil.getUserProjectsEntries(selUser.getUserId());
 
 Calendar curCal = CalendarFactoryUtil.getCalendar(timeZone, locale);
 
