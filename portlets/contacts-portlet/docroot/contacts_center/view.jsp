@@ -79,8 +79,6 @@ portletURL.setWindowState(WindowState.NORMAL);
 				</aui:column>
 			</aui:layout>
 
-			<div class="clear"><!-- --></div>
-
 			<aui:layout cssClass="contacts-result-container lfr-app-column-view">
 				<aui:column columnWidth="30" first="<%= true %>" cssClass="contacts-list">
 					<c:if test="<%= !userPublicPage %>">
@@ -93,9 +91,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 						</aui:layout>
 					</c:if>
 
-					<div class="clear"><!-- --></div>
-
-					<aui:layout cssClass="contacts-result">
+					<aui:layout cssClass='<%= userPublicPage ? "contacts-result personal-contact-list" : "contacts-result" %>'>
 
 						<%
 						String lastNameAnchor = StringPool.SPACE;

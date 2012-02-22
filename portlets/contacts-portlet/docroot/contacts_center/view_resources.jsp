@@ -29,9 +29,9 @@
 	%>
 
 	<c:if test="<%= user2 != null %>">
-		<span id="<portlet:namespace />contactSummary">
+		<div id="<portlet:namespace />contactSummary">
 			<liferay-util:include page="/contacts_center/view_user.jsp" servletContext="<%= application %>" />
-		</span>
+		</div>
 	</c:if>
 
 	<span id="<portlet:namespace />contactsToolbar">
