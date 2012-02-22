@@ -165,7 +165,8 @@ public class AdminIndexer extends BaseIndexer {
 		KBArticle kbArticle = (KBArticle)obj;
 
 		SearchEngineUtil.updateDocument(
-			kbArticle.getCompanyId(), getDocument(kbArticle));
+			getSearchEngineId(), kbArticle.getCompanyId(),
+			getDocument(kbArticle));
 	}
 
 	@Override
@@ -203,7 +204,8 @@ public class AdminIndexer extends BaseIndexer {
 			documents.add(getDocument(curKBArticle));
 		}
 
-		SearchEngineUtil.updateDocuments(kbArticle.getCompanyId(), documents);
+		SearchEngineUtil.updateDocuments(
+			getSearchEngineId(), kbArticle.getCompanyId(), documents);
 	}
 
 	protected void reindexKBArticles(long companyId) throws Exception {
@@ -236,7 +238,8 @@ public class AdminIndexer extends BaseIndexer {
 			documents.add(document);
 		}
 
-		SearchEngineUtil.updateDocuments(companyId, documents);
+		SearchEngineUtil.updateDocuments(
+			getSearchEngineId(), companyId, documents);
 	}
 
 	private static final boolean _FILTER_SEARCH = true;

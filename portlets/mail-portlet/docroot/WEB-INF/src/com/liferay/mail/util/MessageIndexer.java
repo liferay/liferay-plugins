@@ -64,7 +64,7 @@ public class MessageIndexer extends BaseIndexer {
 	protected void doDelete(Object obj) throws Exception {
 		SearchContext searchContext = new SearchContext();
 
-		searchContext.setSearchEngineId(SearchEngineUtil.SYSTEM_ENGINE_ID);
+		searchContext.setSearchEngineId(getSearchEngineId());
 
 		if (obj instanceof Account) {
 			Account account = (Account)obj;
@@ -77,14 +77,15 @@ public class MessageIndexer extends BaseIndexer {
 			booleanQuery.addRequiredTerm("accountId", account.getAccountId());
 
 			Hits hits = SearchEngineUtil.search(
-				account.getCompanyId(), booleanQuery, QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS);
+				getSearchEngineId(), account.getCompanyId(), booleanQuery,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 			for (int i = 0; i < hits.getLength(); i++) {
 				Document document = hits.doc(i);
 
 				SearchEngineUtil.deleteDocument(
-					account.getCompanyId(), document.get(Field.UID));
+					getSearchEngineId(), account.getCompanyId(),
+					document.get(Field.UID));
 			}
 		}
 		else if (obj instanceof Folder) {
@@ -98,14 +99,15 @@ public class MessageIndexer extends BaseIndexer {
 			booleanQuery.addRequiredTerm("folderId", folder.getFolderId());
 
 			Hits hits = SearchEngineUtil.search(
-				folder.getCompanyId(), booleanQuery, QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS);
+				getSearchEngineId(), folder.getCompanyId(), booleanQuery,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 			for (int i = 0; i < hits.getLength(); i++) {
 				Document document = hits.doc(i);
 
 				SearchEngineUtil.deleteDocument(
-					folder.getCompanyId(), document.get(Field.UID));
+					getSearchEngineId(), folder.getCompanyId(),
+					document.get(Field.UID));
 			}
 		}
 		else if (obj instanceof Message) {
@@ -116,7 +118,8 @@ public class MessageIndexer extends BaseIndexer {
 			document.addUID(PORTLET_ID, message.getMessageId());
 
 			SearchEngineUtil.deleteDocument(
-				message.getCompanyId(), document.get(Field.UID));
+				getSearchEngineId(), message.getCompanyId(),
+				document.get(Field.UID));
 		}
 	}
 
@@ -154,7 +157,8 @@ public class MessageIndexer extends BaseIndexer {
 
 		Document document = getDocument(message);
 
-		SearchEngineUtil.updateDocument(message.getCompanyId(), document);
+		SearchEngineUtil.updateDocument(
+			getSearchEngineId(), message.getCompanyId(), document);
 	}
 
 	@Override
@@ -207,7 +211,8 @@ public class MessageIndexer extends BaseIndexer {
 			documents.add(document);
 		}
 
-		SearchEngineUtil.updateDocuments(companyId, documents);
+		SearchEngineUtil.updateDocuments(
+			getSearchEngineId(), companyId, documents);
 	}
 
 }
