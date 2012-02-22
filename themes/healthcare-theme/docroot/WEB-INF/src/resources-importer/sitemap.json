@@ -1,0 +1,137 @@
+{
+	"layoutTemplateId": "2_columns_ii",
+	"layouts": [
+		{
+			"title": "Home",
+			"name": "Home",
+			"friendlyURL": "/home",
+			"layoutTemplateId": "1-2-3-columns",
+			"columns": [
+				[
+					"Home Banner.html"
+				],
+				[
+					"Welcome to Our Clinics.html"
+				],
+				[
+					"Our Mission.html"
+				],
+				[
+					"Our Team.html"
+				],
+				[
+					"Our Promise.html"
+				],
+				[
+					"Recent News.html"
+				]
+			]
+		},
+		{
+			"title": "About",
+			"layoutTemplateId": "2-1-2-4-columns",
+			"name": "About",
+			"friendlyURL": "/about",
+			"columns": [
+				[
+					"The 7 Cogs Promise.html"
+				],
+				[
+					{
+						"portletId": "71",
+						"portletPreferences": {
+							"displayStyle": "from-level-1-with-title"
+						}
+					}
+				],
+				[
+					"Make an Appointment.html"
+				],
+				[
+					"Make an Appointment Left Image.html"
+				],
+				[
+					{
+						"portletId": "1_WAR_webformportlet_INSTANCE_${groupId}",
+						"portletPreferences": {
+							"portletSetupCss": {
+								"advancedData": {
+									"customCSSClassName": "make-appointment"
+								}
+							},
+							"portletSetupShowBorders": "false",
+							"fieldsEditingDisabled": "true",
+							"fieldType1": "text",
+							"fieldLabel1": "Full Name",
+							"fieldType2": "text",
+							"fieldLabel2": "Email",
+							"fieldType3": "textarea",
+							"fieldValue": "Write your short description here",
+							"title" : "Seeing your Doctor, made easy",
+							"description" : "Lorem ipsum dolor sit amet, lohtil consectetur adipiscing elit. Vivamus feugiat, augue in sollicitudin blandit, magna purus bibendum justo, quisnic scelerisque ipsum turpis eu dui. Nunc lobortis, augue ac viverra convallis."
+						}
+					}
+				],
+				[
+					"Section 1.html"
+				],
+				[
+					"Section 2.html"
+				],
+				[
+					"Section 3.html"
+				],
+				[
+					"Section 4.html"
+				]
+			],
+			"layouts": [
+				{
+					"title": "Category 1",
+					"name": "Category 1",
+					"friendlyURL": "/category-1",
+				},
+				{
+					"title": "Category 2",
+					"name": "Category 2",
+					"friendlyURL": "/category-2",
+				},
+				{
+					"title": "Category 3",
+					"name": "Category 3",
+					"friendlyURL": "/category-3",
+				},
+				{
+					"title": "Category 4",
+					"name": "Category 4",
+					"friendlyURL": "/category-4",
+				}
+			]
+		},
+		{
+			"title": "Clinic",
+			"name": "Clinic",
+			"friendlyURL": "/clinic"
+		},
+		{
+			"title": "Services",
+			"name": "Services",
+			"friendlyURL": "/services"
+		},
+		{
+			"title": "Health Plans",
+			"name": "Health Plans",
+			"friendlyURL": "/health-plans"
+		},
+		{
+			"title": "Location",
+			"name": "Location",
+			"friendlyURL": "/location"
+		},
+		{
+			"title": "Contact Us",
+			"name": "Contact Us",
+			"friendlyURL": "/contact-us"
+		}
+	]
+}
