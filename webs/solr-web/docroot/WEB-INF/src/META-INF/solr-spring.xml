@@ -4,8 +4,9 @@
 	default-destroy-method="destroy"
 	default-init-method="afterPropertiesSet"
 	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
 >
 	<bean class="com.liferay.portal.spring.context.PortletBeanFactoryPostProcessor" />
 
@@ -44,7 +45,6 @@
 		<property name="indexSearcher" ref="com.liferay.portal.search.solr.SolrIndexSearcherImpl" />
 		<property name="indexWriter" ref="com.liferay.portal.search.solr.SolrIndexWriterImpl" />
 		<property name="luceneBased" value="true" />
-		<property name="name" value="SYSTEM_ENGINE" />
 		<property name="vendor" value="SOLR" />
 	</bean>
 
@@ -52,9 +52,9 @@
 
 	<bean id="searchEngineConfigurator.solr" class="com.liferay.portal.kernel.search.PluginSearchEngineConfigurator">
 		<property name="searchEngines">
-			<list>
-				<ref bean="com.liferay.portal.search.solr.SolrSearchEngineImpl" />
-			</list>
+			<util:map>
+				<entry key="SYSTEM_ENGINE" value-ref="com.liferay.portal.search.solr.SolrSearchEngineImpl" />
+			</util:map>
 		</property>
 	</bean>
 </beans>
