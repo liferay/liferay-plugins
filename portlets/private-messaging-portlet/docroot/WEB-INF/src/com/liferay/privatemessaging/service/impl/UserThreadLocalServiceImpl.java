@@ -89,8 +89,8 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		List<User> recipients = parseRecipients(userId, to);
 
 		return addPrivateMessage(
-			userId, mbThreadId, parentMBMessageId, recipients, subject,
-			body, inputStreamOVPs, themeDisplay);
+			userId, mbThreadId, parentMBMessageId, recipients, subject, body,
+			inputStreamOVPs, themeDisplay);
 	}
 
 	public MBMessage addPrivateMessageBranch(
@@ -268,8 +268,8 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 			}
 
 			addUserThread(
-				userId, mbMessage.getThreadId(), mbMessage.getMessageId(),
-				true, false);
+				userId, mbMessage.getThreadId(), mbMessage.getMessageId(), true,
+				false);
 		}
 		else {
 			List<UserThread> userThreads =
@@ -370,12 +370,10 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		subject = StringUtil.replace(
 			subject,
 			new String[] {
-				"[$COMPANY_NAME$]",
-				"[$FROM_NAME$]"
+				"[$COMPANY_NAME$]", "[$FROM_NAME$]"
 			},
 			new String[] {
-				company.getName(),
-				sender.getFullName()
+				company.getName(), sender.getFullName()
 			});
 
 		String body = StringUtil.read(
@@ -397,22 +395,14 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		body = StringUtil.replace(
 			body,
 			new String[] {
-				"[$BODY$]",
-				"[$COMPANY_NAME$]",
-				"[$FROM_AVATAR$]",
-				"[$FROM_NAME$]",
-				"[$FROM_PROFILE_URL$]",
-				"[$SUBJECT$]",
+				"[$BODY$]", "[$COMPANY_NAME$]", "[$FROM_AVATAR$]",
+				"[$FROM_NAME$]", "[$FROM_PROFILE_URL$]", "[$SUBJECT$]",
 				"[$THREAD_URL$]"
 			},
 			new String[] {
-				mbMessage.getBody(),
-				company.getName(),
-				portraitURL,
-				sender.getFullName(),
-				sender.getDisplayURL(themeDisplay),
-				mbMessage.getSubject(),
-				threadURL
+				mbMessage.getBody(), company.getName(), portraitURL,
+				sender.getFullName(), sender.getDisplayURL(themeDisplay),
+				mbMessage.getSubject(), threadURL
 			});
 
 		List<UserThread> userThreads =

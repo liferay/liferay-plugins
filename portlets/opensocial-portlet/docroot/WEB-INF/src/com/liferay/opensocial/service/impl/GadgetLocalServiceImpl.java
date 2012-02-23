@@ -246,8 +246,8 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		gadgetPersistence.update(gadget, false);
 
 		gadgetLocalService.initGadget(
-			gadget.getUuid(), gadget.getCompanyId(), gadgetId,
-			gadget.getName(), gadget.getPortletCategoryNames());
+			gadget.getUuid(), gadget.getCompanyId(), gadgetId, gadget.getName(),
+			gadget.getPortletCategoryNames());
 
 		return gadget;
 	}

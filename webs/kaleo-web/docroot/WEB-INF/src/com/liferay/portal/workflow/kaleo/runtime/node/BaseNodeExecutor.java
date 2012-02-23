@@ -61,8 +61,8 @@ public abstract class BaseNodeExecutor
 
 		kaleoTimerInstanceTokenLocalService.addKaleoTimerInstanceTokens(
 			executionContext.getKaleoInstanceToken(),
-			executionContext.getKaleoTaskInstanceToken(),
-			kaleoTimers, executionContext.getWorkflowContext(),
+			executionContext.getKaleoTaskInstanceToken(), kaleoTimers,
+			executionContext.getWorkflowContext(),
 			executionContext.getServiceContext());
 	}
 
@@ -79,8 +79,7 @@ public abstract class BaseNodeExecutor
 	}
 
 	public void executeTimer(
-			KaleoNode currentKaleoNode,
-			ExecutionContext executionContext)
+			KaleoNode currentKaleoNode, ExecutionContext executionContext)
 		throws PortalException, SystemException {
 
 		ServiceContext serviceContext = executionContext.getServiceContext();

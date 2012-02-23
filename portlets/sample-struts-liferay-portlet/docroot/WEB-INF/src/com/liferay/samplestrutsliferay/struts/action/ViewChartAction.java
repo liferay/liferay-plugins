@@ -82,8 +82,8 @@ public class ViewChartAction extends Action {
 
 			if (chartType.equals("area")) {
 				chart = ChartFactory.createAreaChart(
-					chartName, xName, yName, dataset,
-					PlotOrientation.VERTICAL, true, false, false);
+					chartName, xName, yName, dataset, PlotOrientation.VERTICAL,
+					true, false, false);
 			}
 			else if (chartType.equals("horizontal_bar")) {
 				chart = ChartFactory.createBarChart(
@@ -92,13 +92,13 @@ public class ViewChartAction extends Action {
 			}
 			else if (chartType.equals("line")) {
 				chart = ChartFactory.createLineChart(
-					chartName, xName, yName, dataset,
-					PlotOrientation.VERTICAL, true, false, false);
+					chartName, xName, yName, dataset, PlotOrientation.VERTICAL,
+					true, false, false);
 			}
 			else if (chartType.equals("vertical_bar")) {
 				chart = ChartFactory.createBarChart(
-					chartName, xName, yName, dataset,
-					PlotOrientation.VERTICAL, true, false, false);
+					chartName, xName, yName, dataset, PlotOrientation.VERTICAL,
+					true, false, false);
 			}
 			else {
 				PieDataset pieData = DatasetUtilities.createPieDatasetForRow(

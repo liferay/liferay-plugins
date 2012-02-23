@@ -54,8 +54,8 @@ public abstract class BaseMailbox implements Mailbox {
 			return AccountLocalServiceUtil.addAccount(
 				user.getUserId(), address, personalName, protocol,
 				incomingHostName, incomingPort, incomingSecure,
-				outgoingHostName, outgoingPort, outgoingSecure, login,
-				password, savePassword, signature, useSignature, folderPrefix,
+				outgoingHostName, outgoingPort, outgoingSecure, login, password,
+				savePassword, signature, useSignature, folderPrefix,
 				inboxFolderId, draftFolderId, sentFolderId, trashFolderId,
 				defaultSender);
 		}

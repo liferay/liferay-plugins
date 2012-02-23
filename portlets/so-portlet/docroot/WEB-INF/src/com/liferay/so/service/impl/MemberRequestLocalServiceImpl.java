@@ -319,8 +319,7 @@ public class MemberRequestLocalServiceImpl
 		subject = StringUtil.replace(
 			subject,
 			new String[] {
-				"[$MEMBER_REQUEST_GROUP$]",
-				"[$MEMBER_REQUEST_USER$]"
+				"[$MEMBER_REQUEST_GROUP$]", "[$MEMBER_REQUEST_USER$]"
 			},
 			new String[] {
 				group.getDescriptiveName(themeDisplay.getLocale()),
@@ -330,19 +329,14 @@ public class MemberRequestLocalServiceImpl
 		body = StringUtil.replace(
 			body,
 			new String[] {
-				"[$ADMIN_ADDRESS$]",
-				"[$ADMIN_NAME$]",
+				"[$ADMIN_ADDRESS$]", "[$ADMIN_NAME$]",
 				"[$MEMBER_REQUEST_CREATE_ACCOUNT_URL$]",
-				"[$MEMBER_REQUEST_GROUP$]",
-				"[$MEMBER_REQUEST_LOGIN_URL$]",
+				"[$MEMBER_REQUEST_GROUP$]", "[$MEMBER_REQUEST_LOGIN_URL$]",
 				"[$MEMBER_REQUEST_USER$]"
 			},
 			new String[] {
-				fromAddress,
-				fromName,
-				createAccountURL,
-				group.getDescriptiveName(themeDisplay.getLocale()),
-				loginURL,
+				fromAddress, fromName, createAccountURL,
+				group.getDescriptiveName(themeDisplay.getLocale()), loginURL,
 				user.getFullName()
 			});
 

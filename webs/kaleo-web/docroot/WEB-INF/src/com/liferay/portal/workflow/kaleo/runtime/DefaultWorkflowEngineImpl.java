@@ -122,8 +122,8 @@ public class DefaultWorkflowEngineImpl
 				kaleoTimerInstanceToken.getKaleoInstanceToken();
 
 			ExecutionContext executionContext = new ExecutionContext(
-				kaleoInstanceToken, kaleoTimerInstanceToken,
-				workflowContext, serviceContext);
+				kaleoInstanceToken, kaleoTimerInstanceToken, workflowContext,
+				serviceContext);
 
 			KaleoTaskInstanceToken kaleoTaskInstanceToken =
 				kaleoTimerInstanceToken.getKaleoTaskInstanceToken();

@@ -213,8 +213,7 @@ public class WebFormUtil {
 			sb.append("'] = '");
 
 			String value = StringUtil.replace(
-				fieldsMap.get(key),
-				new String[] {"\r\n", "\r", "\n"},
+				fieldsMap.get(key), new String[] {"\r\n", "\r", "\n"},
 				new String[] {"\\n", "\\n", "\\n"});
 
 			sb.append(HtmlUtil.escapeJS(value));

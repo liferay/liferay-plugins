@@ -72,8 +72,7 @@ public class ContactsUtil {
 
 	private static String _getAddresses(User user) throws Exception {
 		List<Address> addresses = AddressLocalServiceUtil.getAddresses(
-			user.getCompanyId(), Contact.class.getName(),
-			user.getContactId());
+			user.getCompanyId(), Contact.class.getName(), user.getContactId());
 
 		StringBundler sb = new StringBundler(addresses.size() * 19);
 
@@ -268,8 +267,7 @@ public class ContactsUtil {
 
 	private static String _getPhones(User user) throws Exception {
 		List<Phone> phones = PhoneLocalServiceUtil.getPhones(
-			user.getCompanyId(), Contact.class.getName(),
-			user.getContactId());
+			user.getCompanyId(), Contact.class.getName(), user.getContactId());
 
 		StringBundler sb = new StringBundler(phones.size() * 7);
 
@@ -292,8 +290,7 @@ public class ContactsUtil {
 
 	private static String _getWebsites(User user) throws Exception {
 		List<Website> websites = WebsiteLocalServiceUtil.getWebsites(
-			user.getCompanyId(), Contact.class.getName(),
-			user.getContactId());
+			user.getCompanyId(), Contact.class.getName(), user.getContactId());
 
 		StringBundler sb = new StringBundler(websites.size() * 5);
 

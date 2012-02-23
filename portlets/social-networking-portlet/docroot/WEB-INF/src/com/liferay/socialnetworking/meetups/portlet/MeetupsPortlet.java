@@ -136,8 +136,8 @@ public class MeetupsPortlet extends MVCPortlet {
 				themeDisplay.getUserId(), meetupsEntryId, title, description,
 				startDateMonth, startDateDay, startDateYear, startDateHour,
 				startDateMinute, endDateMonth, endDateDay, endDateYear,
-				endDateHour, endDateMinute, totalAttendees, maxAttendees,
-				price, bytes);
+				endDateHour, endDateMinute, totalAttendees, maxAttendees, price,
+				bytes);
 		}
 	}
 

@@ -87,8 +87,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		serviceContext.setCompanyId(companyId);
 
 		return _workflowEngine.getWorkflowInstanceCount(
-			userId, assetClassName, assetClassPK, completed,
-			serviceContext);
+			userId, assetClassName, assetClassPK, completed, serviceContext);
 	}
 
 	public int getWorkflowInstanceCount(
@@ -129,8 +128,8 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		serviceContext.setCompanyId(companyId);
 
 		return _workflowEngine.getWorkflowInstances(
-			userId, assetClassName, assetClassPK, completed, start,
-			end, orderByComparator, serviceContext);
+			userId, assetClassName, assetClassPK, completed, start, end,
+			orderByComparator, serviceContext);
 	}
 
 	public List<WorkflowInstance> getWorkflowInstances(

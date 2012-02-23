@@ -98,8 +98,8 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 			ExecutionContext executionContext,
 			Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext,
-			KaleoInstanceToken kaleoInstanceToken,
-			KaleoTask kaleoTask, Date dueDate)
+			KaleoInstanceToken kaleoInstanceToken, KaleoTask kaleoTask,
+			Date dueDate)
 		throws SystemException, PortalException {
 		Collection<KaleoTaskAssignment> configuredKaleoTaskAssignments =
 			kaleoTask.getKaleoTaskAssignments();

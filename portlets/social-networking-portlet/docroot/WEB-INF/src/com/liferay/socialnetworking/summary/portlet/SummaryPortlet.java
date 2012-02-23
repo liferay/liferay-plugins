@@ -157,8 +157,8 @@ public class SummaryPortlet extends MVCPortlet {
 
 		List<User> users = UserLocalServiceUtil.search(
 			themeDisplay.getCompanyId(), null,
-			WorkflowConstants.STATUS_APPROVED, userParams,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, (OrderByComparator) null);
+			WorkflowConstants.STATUS_APPROVED, userParams, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, (OrderByComparator) null);
 
 		for (User user : users) {
 			SocialRequestLocalServiceUtil.addRequest(

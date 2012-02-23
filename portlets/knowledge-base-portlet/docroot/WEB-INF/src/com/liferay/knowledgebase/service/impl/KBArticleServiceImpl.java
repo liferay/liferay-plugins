@@ -280,8 +280,8 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		String description = HtmlUtil.escape(kbArticle.getTitle());
 
 		String feedURL = KnowledgeBaseUtil.getKBArticleURL(
-			themeDisplay.getPlid(), resourcePrimKey,
-			status, themeDisplay.getPortalURL(), false);
+			themeDisplay.getPlid(), resourcePrimKey, status,
+			themeDisplay.getPortalURL(), false);
 
 		List<KBArticle> kbArticles = getKBArticleAndAllDescendants(
 			kbArticle.getGroupId(), resourcePrimKey, status,
@@ -673,8 +673,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 				value = StringUtil.replace(
 					kbArticle.getContent(),
 					new String[] {
-						"href=\"/",
-						"src=\"/"
+						"href=\"/", "src=\"/"
 					},
 					new String[] {
 						"href=\"" + themeDisplay.getURLPortal() + "/",

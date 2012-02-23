@@ -53,8 +53,8 @@ public class ChatUtil {
 		}
 		else if (PortletPropsValues.BUDDY_LIST_STRATEGY.equals("friends")) {
 			buddies = StatusLocalServiceUtil.getSocialStatuses(
-				userId, SocialRelationConstants.TYPE_BI_FRIEND,
-				modifiedDate, 0, PortletPropsValues.BUDDY_LIST_MAX_BUDDIES);
+				userId, SocialRelationConstants.TYPE_BI_FRIEND, modifiedDate, 0,
+				PortletPropsValues.BUDDY_LIST_MAX_BUDDIES);
 		}
 		else if (PortletPropsValues.BUDDY_LIST_STRATEGY.equals(
 					"communities,friends")) {

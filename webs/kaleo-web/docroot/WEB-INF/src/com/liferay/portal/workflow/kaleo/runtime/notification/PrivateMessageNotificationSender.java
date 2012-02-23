@@ -25,9 +25,8 @@ import java.util.List;
 public class PrivateMessageNotificationSender implements NotificationSender {
 
 	public void sendNotification(
-		List<KaleoNotificationRecipient> notificationRecipients,
-		String subject, String notificationMessage,
-		ExecutionContext executionContext) {
+		List<KaleoNotificationRecipient> notificationRecipients, String subject,
+		String notificationMessage, ExecutionContext executionContext) {
 	}
 
 }

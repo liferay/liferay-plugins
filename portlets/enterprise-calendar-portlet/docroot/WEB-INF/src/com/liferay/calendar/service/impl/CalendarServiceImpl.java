@@ -34,9 +34,9 @@ import java.util.Map;
 public class CalendarServiceImpl extends CalendarServiceBaseImpl {
 
 	public Calendar addCalendar(
-			long groupId, long calendarResourceId,
-			Map<Locale, String> nameMap, Map<Locale, String> descriptionMap,
-			int color, boolean defaultCalendar, ServiceContext serviceContext)
+			long groupId, long calendarResourceId, Map<Locale, String> nameMap,
+			Map<Locale, String> descriptionMap, int color,
+			boolean defaultCalendar, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		CalendarResourcePermission.check(

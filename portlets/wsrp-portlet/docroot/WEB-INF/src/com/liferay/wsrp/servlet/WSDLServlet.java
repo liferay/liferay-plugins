@@ -110,12 +110,10 @@ public class WSDLServlet extends HttpServlet {
 		return StringUtil.replace(
 			content,
 			new String[] {
-				"http://my.service:8080",
-				"${wsrpProducerUuid}"
+				"http://my.service:8080", "${wsrpProducerUuid}"
 			},
 			new String[] {
-				getURL(request),
-				wsrpProducerUuid
+				getURL(request), wsrpProducerUuid
 			});
 	}
 
@@ -147,8 +145,7 @@ public class WSDLServlet extends HttpServlet {
 		return StringUtil.replace(
 			content,
 			new String[] {
-				"location=\"wsrp-",
-				"schemaLocation=\"wsrp-"
+				"location=\"wsrp-", "schemaLocation=\"wsrp-"
 			},
 			new String[] {
 				"location=\"" + url + "/wsrp-",

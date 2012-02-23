@@ -191,8 +191,8 @@ public class DefaultTaskManagerImpl
 			ExecutionType.ON_ASSIGNMENT, executionContext);
 
 		kaleoLogLocalService.addTaskAssignmentKaleoLog(
-			previousTaskAssignmentInstances, kaleoTaskInstanceToken,
-			comment, workflowContext, serviceContext);
+			previousTaskAssignmentInstances, kaleoTaskInstanceToken, comment,
+			workflowContext, serviceContext);
 
 		return new WorkflowTaskAdapter(kaleoTaskInstanceToken, workflowContext);
 	}

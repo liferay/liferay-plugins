@@ -178,10 +178,7 @@ public class LayoutUtil {
 				layout, PortletKeys.MESSAGE_BOARDS);
 
 		String[] ranks = {
-			"Bronze=0",
-			"Silver=25",
-			"Gold=100",
-			"Platinum=250",
+			"Bronze=0", "Silver=25", "Gold=100", "Platinum=250",
 			"Moderator=organization:Message Boards Administrator",
 			"Moderator=organization-role:Message Boards Administrator",
 			"Moderator=regular-role:Message Boards Administrator",

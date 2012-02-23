@@ -35,8 +35,8 @@ public class CalendarResourceServiceImpl
 	extends CalendarResourceServiceBaseImpl {
 
 	public CalendarResource addCalendarResource(
-			long groupId, String className, long classPK,
-			String classUuid, String code, Map<Locale, String> nameMap,
+			long groupId, String className, long classPK, String classUuid,
+			String code, Map<Locale, String> nameMap,
 			Map<Locale, String> descriptionMap, String type, boolean active,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
@@ -45,8 +45,8 @@ public class CalendarResourceServiceImpl
 			getPermissionChecker(), groupId, ActionKeys.ADD_RESOURCE);
 
 		return calendarResourceLocalService.addCalendarResource(
-			getUserId(), groupId, className, classPK, classUuid, code,
-			nameMap, descriptionMap, type, active, serviceContext);
+			getUserId(), groupId, className, classPK, classUuid, code, nameMap,
+			descriptionMap, type, active, serviceContext);
 	}
 
 	public void deleteCalendarResource(long calendarResourceId)

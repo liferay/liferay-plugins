@@ -68,10 +68,10 @@ public class CalendarBookingLocalServiceImpl
 			Map<Locale, String> locationMap, String type, int startDateMonth,
 			int startDateDay, int startDateYear, int startDateHour,
 			int startDateMinute, int endDateMonth, int endDateDay,
-			int endDateYear, int endDateHour, int endDateMinute,
-			boolean allDay, String recurrence, int priority,
-			boolean outOfOffice, int firstReminder, int secondReminder,
-			boolean required, String requestMessage, String responseMessage,
+			int endDateYear, int endDateHour, int endDateMinute, boolean allDay,
+			String recurrence, int priority, boolean outOfOffice,
+			int firstReminder, int secondReminder, boolean required,
+			String requestMessage, String responseMessage,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -97,8 +97,8 @@ public class CalendarBookingLocalServiceImpl
 
 		validate(
 			titleMap, startDateMonth, startDateDay, startDateYear,
-			startDateHour, startDateMinute, startDateJCalendar,
-			endDateMonth, endDateDay, endDateYear, endDateHour, endDateMinute,
+			startDateHour, startDateMinute, startDateJCalendar, endDateMonth,
+			endDateDay, endDateYear, endDateHour, endDateMinute,
 			endDateJCalendar, recurrence);
 
 		if (firstReminder < secondReminder) {
@@ -215,11 +215,10 @@ public class CalendarBookingLocalServiceImpl
 
 	public List<CalendarBooking> search(
 			long calendarId, long calendarResourceId, String title,
-			String description, String location, String type,
-			Date startDate, Date endDate, Boolean allDay, int priority,
-			Boolean outOfOffice, Boolean required, int status,
-			boolean andOperator, int start, int end,
-			OrderByComparator orderByComparator)
+			String description, String location, String type, Date startDate,
+			Date endDate, Boolean allDay, int priority, Boolean outOfOffice,
+			Boolean required, int status, boolean andOperator, int start,
+			int end, OrderByComparator orderByComparator)
 		throws SystemException {
 
 		DynamicQuery dynamicQuery = buildDynamicQuery(
@@ -232,10 +231,9 @@ public class CalendarBookingLocalServiceImpl
 
 	public long searchCount(
 			long calendarId, long calendarResourceId, String title,
-			String description, String location, String type,
-			Date startDate, Date endDate, Boolean allDay, int priority,
-			Boolean outOfOffice, Boolean required, int status,
-			boolean andOperator)
+			String description, String location, String type, Date startDate,
+			Date endDate, Boolean allDay, int priority, Boolean outOfOffice,
+			Boolean required, int status, boolean andOperator)
 		throws SystemException {
 
 		DynamicQuery dynamicQuery = buildDynamicQuery(
@@ -279,8 +277,8 @@ public class CalendarBookingLocalServiceImpl
 
 		validate(
 			titleMap, startDateMonth, startDateDay, startDateYear,
-			startDateHour, startDateMinute, startDateJCalendar,
-			endDateMonth, endDateDay, endDateYear, endDateHour, endDateMinute,
+			startDateHour, startDateMinute, startDateJCalendar, endDateMonth,
+			endDateDay, endDateYear, endDateHour, endDateMinute,
 			endDateJCalendar, recurrence);
 
 		if (firstReminder < secondReminder) {
@@ -354,10 +352,9 @@ public class CalendarBookingLocalServiceImpl
 
 	protected DynamicQuery buildDynamicQuery(
 		long calendarId, long calendarResourceId, String title,
-		String description, String location, String type,
-		Date startDate, Date endDate, Boolean allDay, int priority,
-		Boolean outOfOffice, Boolean required, int status,
-		boolean andOperator) {
+		String description, String location, String type, Date startDate,
+		Date endDate, Boolean allDay, int priority, Boolean outOfOffice,
+		Boolean required, int status, boolean andOperator) {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			CalendarBooking.class, getClassLoader());
@@ -486,12 +483,11 @@ public class CalendarBookingLocalServiceImpl
 	}
 
 	protected void validate(
-			Map<Locale, String> titleMap, int startDateMonth,
-			int startDateDay, int startDateYear, int startDateHour,
-			int startDateMinute, java.util.Calendar startDateJCalendar,
-			int endDateMonth, int endDateDay, int endDateYear, int endDateHour,
-			int endDateMinute, java.util.Calendar endDateJCalendar,
-			String recurrence)
+			Map<Locale, String> titleMap, int startDateMonth, int startDateDay,
+			int startDateYear, int startDateHour, int startDateMinute,
+			java.util.Calendar startDateJCalendar, int endDateMonth,
+			int endDateDay, int endDateYear, int endDateHour, int endDateMinute,
+			java.util.Calendar endDateJCalendar, String recurrence)
 		throws PortalException {
 
 		if (Validator.isNull(titleMap) || titleMap.isEmpty()) {

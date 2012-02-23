@@ -194,8 +194,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 				if (facet instanceof RangeFacet) {
 					facetCollector = new SolrFacetQueryCollector(
-						facetField.getName(),
-						queryResponse.getFacetQuery());
+						facetField.getName(), queryResponse.getFacetQuery());
 				}
 				else {
 					facetCollector = new SolrFacetFieldCollector(

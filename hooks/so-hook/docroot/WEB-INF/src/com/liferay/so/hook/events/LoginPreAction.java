@@ -110,8 +110,8 @@ public class LoginPreAction extends Action {
 		// Microblogs
 
 		layout = LayoutUtil.addLayout(
-			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
-			"Microblogs", "1_column");
+			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Microblogs",
+			"1_column");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/microblogs",
@@ -124,8 +124,8 @@ public class LoginPreAction extends Action {
 		// Messages
 
 		layout = LayoutUtil.addLayout(
-			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
-			"Messages", "1_column");
+			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Messages",
+			"1_column");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/messages",
@@ -138,8 +138,8 @@ public class LoginPreAction extends Action {
 		// Tasks
 
 		layout = LayoutUtil.addLayout(
-			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
-			"Tasks", "1_column");
+			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Tasks",
+			"1_column");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/tasks",
@@ -170,8 +170,8 @@ public class LoginPreAction extends Action {
 		// Contacts
 
 		layout = LayoutUtil.addLayout(
-			group, false, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
-			"Contacts", "1_column");
+			group, false, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Contacts",
+			"1_column");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/contacts",

@@ -162,8 +162,7 @@ public class MailManager {
 		catch (MailException me) {
 			if (me.getType() == MailException.FOLDER_ALREADY_EXISTS) {
 				return createJSONResult(
-					"failure",
-					"a-folder-with-the-same-name-already-exists");
+					"failure", "a-folder-with-the-same-name-already-exists");
 			}
 
 			_log.error(me, me);
