@@ -76,7 +76,7 @@ else {
 					<liferay-ui:message key="yesterday" />
 				</c:when>
 				<c:otherwise>
-					<%= dateFormatDate.format(notificationEvent.getTimestamp()) %>
+					<%= fullDateFormat.format(notificationEvent.getTimestamp()) %>
 				</c:otherwise>
 			</c:choose>
 

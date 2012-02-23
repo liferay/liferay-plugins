@@ -49,7 +49,7 @@
 				message = "yesterday";
 			}
 			else {
-				message = dateFormatDate.format(activity.getCreateDate());
+				message = fullDateFormat.format(activity.getCreateDate());
 			}
 			%>
 
