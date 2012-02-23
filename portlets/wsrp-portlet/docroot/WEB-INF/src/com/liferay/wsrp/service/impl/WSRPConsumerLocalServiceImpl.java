@@ -134,8 +134,8 @@ public class WSRPConsumerLocalServiceImpl
 
 	public WSRPConsumer registerWSRPConsumer(
 			long wsrpConsumerId, String adminPortletId,
-			UnicodeProperties registrationProperties,
-			String registrationHandle, String userToken)
+			UnicodeProperties registrationProperties, String registrationHandle,
+			String userToken)
 		throws PortalException, SystemException {
 
 		WSRPConsumer wsrpConsumer = wsrpConsumerPersistence.findByPrimaryKey(

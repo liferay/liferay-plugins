@@ -206,43 +206,25 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 		subject = StringUtil.replace(
 			subject,
 			new String[] {
-				"[$FROM_ADDRESS$]",
-				"[$FROM_NAME$]",
-				"[$TO_ADDRESS$]",
-				"[$TO_NAME$]",
-				"[$WALL_ENTRY_URL$]",
-				"[$WALL_ENTRY_USER_ADDRESS$]",
-				"[$WALL_ENTRY_USER_NAME$]"
+				"[$FROM_ADDRESS$]", "[$FROM_NAME$]", "[$TO_ADDRESS$]",
+				"[$TO_NAME$]", "[$WALL_ENTRY_URL$]",
+				"[$WALL_ENTRY_USER_ADDRESS$]", "[$WALL_ENTRY_USER_NAME$]"
 			},
 			new String[] {
-				fromAddress,
-				fromName,
-				toAddress,
-				toName,
-				wallEntryURL,
-				wallEntryUser.getEmailAddress(),
-				wallEntryUser.getFullName()
+				fromAddress, fromName, toAddress, toName, wallEntryURL,
+				wallEntryUser.getEmailAddress(), wallEntryUser.getFullName()
 			});
 
 		body = StringUtil.replace(
 			body,
 			new String[] {
-				"[$FROM_ADDRESS$]",
-				"[$FROM_NAME$]",
-				"[$TO_ADDRESS$]",
-				"[$TO_NAME$]",
-				"[$WALL_ENTRY_URL$]",
-				"[$WALL_ENTRY_USER_ADDRESS$]",
-				"[$WALL_ENTRY_USER_NAME$]"
+				"[$FROM_ADDRESS$]", "[$FROM_NAME$]", "[$TO_ADDRESS$]",
+				"[$TO_NAME$]", "[$WALL_ENTRY_URL$]",
+				"[$WALL_ENTRY_USER_ADDRESS$]", "[$WALL_ENTRY_USER_NAME$]"
 			},
 			new String[] {
-				fromAddress,
-				fromName,
-				toAddress,
-				toName,
-				wallEntryURL,
-				wallEntryUser.getEmailAddress(),
-				wallEntryUser.getFullName()
+				fromAddress, fromName, toAddress, toName, wallEntryURL,
+				wallEntryUser.getEmailAddress(), wallEntryUser.getFullName()
 			});
 
 		InternetAddress from = new InternetAddress(fromAddress, fromName);

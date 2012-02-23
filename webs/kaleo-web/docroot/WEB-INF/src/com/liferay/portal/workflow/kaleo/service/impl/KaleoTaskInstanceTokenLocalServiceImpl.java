@@ -137,8 +137,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 
 		kaleoTaskAssignmentInstanceLocalService.
 			assignKaleoTaskAssignmentInstance(
-				kaleoTaskInstanceToken, assigneeClassName,
-				assigneeClassPK, serviceContext);
+				kaleoTaskInstanceToken, assigneeClassName, assigneeClassPK,
+				serviceContext);
 
 		return kaleoTaskInstanceToken;
 	}
@@ -374,8 +374,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 	}
 
 	public int getKaleoTaskInstanceTokensCount(
-			String assigneeClassName, long assigneeClassPK,
-			Boolean completed, ServiceContext serviceContext)
+			String assigneeClassName, long assigneeClassPK, Boolean completed,
+			ServiceContext serviceContext)
 		throws SystemException {
 
 		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery =

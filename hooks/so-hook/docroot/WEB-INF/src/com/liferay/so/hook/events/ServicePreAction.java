@@ -92,8 +92,8 @@ public class ServicePreAction extends Action {
 		throws Exception {
 
 		List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
-			groupId, false, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, false,
-			0, 1);
+			groupId, false, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, false, 0,
+			1);
 
 		if (layouts.size() > 0) {
 			Layout layout = layouts.get(0);

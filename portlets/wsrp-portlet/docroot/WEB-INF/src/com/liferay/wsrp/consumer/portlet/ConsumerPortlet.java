@@ -1030,10 +1030,9 @@ public class ConsumerPortlet extends GenericPortlet {
 	protected void initContexts(
 			EventRequest eventRequest, EventResponse eventResponse,
 			WSRPConsumerPortlet wsrpConsumerPortlet,
-			WSRPConsumerManager wsrpConsumerManager,
-			EventParams eventParams, MarkupParams markupParams,
-			PortletContext portletContext, RuntimeContext runtimeContext,
-			UserContext userContext)
+			WSRPConsumerManager wsrpConsumerManager, EventParams eventParams,
+			MarkupParams markupParams, PortletContext portletContext,
+			RuntimeContext runtimeContext, UserContext userContext)
 		throws Exception {
 
 		initContexts(

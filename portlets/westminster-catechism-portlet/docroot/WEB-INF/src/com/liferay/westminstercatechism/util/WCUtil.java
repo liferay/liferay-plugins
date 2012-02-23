@@ -96,8 +96,7 @@ public class WCUtil {
 
 			_shorter.add(
 				new WCEntry(
-					entry.elementText("question"),
-					entry.elementText("answer"),
+					entry.elementText("question"), entry.elementText("answer"),
 					proofs.toArray(new String[0][0])));
 		}
 
@@ -124,8 +123,7 @@ public class WCUtil {
 
 			_larger.add(
 				new WCEntry(
-					entry.elementText("question"),
-					entry.elementText("answer"),
+					entry.elementText("question"), entry.elementText("answer"),
 					proofs.toArray(new String[0][0])));
 		}
 

@@ -267,8 +267,8 @@ public class UpgradeCompany extends UpgradeProcess {
 		serviceContext.setAddGuestPermissions(true);
 
 		return JournalStructureLocalServiceUtil.addStructure(
-			userId, groupId, "SINGLE-IMAGE", false, StringPool.BLANK,
-			nameMap, descriptionMap, xsd, serviceContext);
+			userId, groupId, "SINGLE-IMAGE", false, StringPool.BLANK, nameMap,
+			descriptionMap, xsd, serviceContext);
 	}
 
 	protected JournalTemplate addJournalTemplate(
@@ -291,9 +291,9 @@ public class UpgradeCompany extends UpgradeProcess {
 		serviceContext.setAddGuestPermissions(true);
 
 		return JournalTemplateLocalServiceUtil.addTemplate(
-			userId, groupId, "SINGLE-IMAGE", false, "SINGLE-IMAGE",
-			nameMap, descriptionMap, xsl, true, "vm",
-			true, false, StringPool.BLANK, null, serviceContext);
+			userId, groupId, "SINGLE-IMAGE", false, "SINGLE-IMAGE", nameMap,
+			descriptionMap, xsl, true, "vm", true, false, StringPool.BLANK,
+			null, serviceContext);
 	}
 
 	protected Layout addLayout(
@@ -1168,8 +1168,7 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		FileEntry cogNetworkAdFileEntry = addDLFileEntry(
 			defaultUserId, folder.getFolderId(),
-			"/sample/images/cog_network_advertisement.png",
-			serviceContext);
+			"/sample/images/cog_network_advertisement.png", serviceContext);
 
 		serviceContext.setAssetTagNames(new String[] {"home page", "forums"});
 		serviceContext.setAssetCategoryIds(
@@ -1231,8 +1230,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		String content = StringUtil.replace(
 			journalArticle.getContent(),
 			new String[] {
-				"[$GROUP_ID$]",
-				"[$HOME_PAGE_BANNER_R_FE_UUID$]"
+				"[$GROUP_ID$]", "[$HOME_PAGE_BANNER_R_FE_UUID$]"
 			},
 			new String[] {
 				String.valueOf(group.getGroupId()),
@@ -1261,8 +1259,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		content = StringUtil.replace(
 			journalArticle.getContent(),
 			new String[] {
-				"[$GROUP_ID$]",
-				"[$HOME_PAGE_PRODUCTS_R_FE_UUID$]"
+				"[$GROUP_ID$]", "[$HOME_PAGE_PRODUCTS_R_FE_UUID$]"
 			},
 			new String[] {
 				String.valueOf(group.getGroupId()),
@@ -1291,8 +1288,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		content = StringUtil.replace(
 			journalArticle.getContent(),
 			new String[] {
-				"[$GROUP_ID$]",
-				"[$HOME_PAGE_BLOGS_R_FE_UUID$]"
+				"[$GROUP_ID$]", "[$HOME_PAGE_BLOGS_R_FE_UUID$]"
 			},
 			new String[] {
 				String.valueOf(group.getGroupId()),
@@ -1321,8 +1317,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		content = StringUtil.replace(
 			journalArticle.getContent(),
 			new String[] {
-				"[$GROUP_ID$]",
-				"[$HOME_PAGE_FORUMS_R_FE_UUID$]"
+				"[$GROUP_ID$]", "[$HOME_PAGE_FORUMS_R_FE_UUID$]"
 			},
 			new String[] {
 				String.valueOf(group.getGroupId()),
@@ -1347,14 +1342,12 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		journalArticle = addJournalArticle(
 			defaultUserId, group.getGroupId(), "Home Page Intro",
-			"/sample/journal/articles/home_page_intro.xml",
-			serviceContext);
+			"/sample/journal/articles/home_page_intro.xml", serviceContext);
 
 		content = StringUtil.replace(
 			journalArticle.getContent(),
 			new String[] {
-				"[$GROUP_ID$]",
-				"[$PRODUCT_LANDING_R_FE_UUID$]"
+				"[$GROUP_ID$]", "[$PRODUCT_LANDING_R_FE_UUID$]"
 			},
 			new String[] {
 				String.valueOf(group.getGroupId()),
@@ -1384,8 +1377,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		content = StringUtil.replace(
 			journalArticle.getContent(),
 			new String[] {
-				"[$GROUP_ID$]",
-				"[$COG_NETWORK_AD_R_FE_UUID$]"
+				"[$GROUP_ID$]", "[$COG_NETWORK_AD_R_FE_UUID$]"
 			},
 			new String[] {
 				String.valueOf(group.getGroupId()),
@@ -1437,8 +1429,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		content = StringUtil.replace(
 			journalArticle.getContent(),
 			new String[] {
-				"[$GROUP_ID$]",
-				"[$PRODUCT_LANDING_R_FE_UUID$]"
+				"[$GROUP_ID$]", "[$PRODUCT_LANDING_R_FE_UUID$]"
 			},
 			new String[] {
 				String.valueOf(group.getGroupId()),
@@ -1485,10 +1476,8 @@ public class UpgradeCompany extends UpgradeProcess {
 		content = StringUtil.replace(
 			journalArticle.getContent(),
 			new String[] {
-				"[$COG_BLUE_R_FE_UUID$]",
-				"[$COG_LIGHT_BLUE_R_FE_UUID$]",
-				"[$COG_ORANGE_R_FE_UUID$]",
-				"[$GROUP_ID$]"
+				"[$COG_BLUE_R_FE_UUID$]", "[$COG_LIGHT_BLUE_R_FE_UUID$]",
+				"[$COG_ORANGE_R_FE_UUID$]", "[$GROUP_ID$]"
 			},
 			new String[] {
 				String.valueOf(cogBlueIconFileEntry.getUuid()),
@@ -1668,8 +1657,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		content = StringUtil.replace(
 			journalArticle.getContent(),
 			new String[] {
-				"[$GROUP_ID$]",
-				"[$LIFERAY_LOGO_R_FE_UUID$]"
+				"[$GROUP_ID$]", "[$LIFERAY_LOGO_R_FE_UUID$]"
 			},
 			new String[] {
 				String.valueOf(group.getGroupId()),
@@ -1923,16 +1911,11 @@ public class UpgradeCompany extends UpgradeProcess {
 		String content = StringUtil.replace(
 			journalArticle.getContent(),
 			new String[] {
-				"[$CELL_BG_R_FE_UUID$]",
-				"[$CUSTOMER_1_R_FE_UUID$]",
-				"[$CUSTOMER_2_R_FE_UUID$]",
-				"[$CUSTOMER_3_R_FE_UUID$]",
-				"[$CUSTOMER_4_R_FE_UUID$]",
-				"[$CUSTOMER_5_R_FE_UUID$]",
-				"[$CUSTOMER_6_R_FE_UUID$]",
-				"[$CUSTOMER_7_R_FE_UUID$]",
-				"[$GROUP_ID$]",
-				"[$PORTAL_MASHUPS_R_FE_UUID$]",
+				"[$CELL_BG_R_FE_UUID$]", "[$CUSTOMER_1_R_FE_UUID$]",
+				"[$CUSTOMER_2_R_FE_UUID$]", "[$CUSTOMER_3_R_FE_UUID$]",
+				"[$CUSTOMER_4_R_FE_UUID$]", "[$CUSTOMER_5_R_FE_UUID$]",
+				"[$CUSTOMER_6_R_FE_UUID$]", "[$CUSTOMER_7_R_FE_UUID$]",
+				"[$GROUP_ID$]", "[$PORTAL_MASHUPS_R_FE_UUID$]",
 				"[$SHARED_WORKSPACES_R_FE_UUID$]",
 				"[$SOCIAL_NETWORKING_R_FE_UUID$]",
 				"[$WEB_PUBLISHING_R_FE_UUID$]"
@@ -1976,13 +1959,10 @@ public class UpgradeCompany extends UpgradeProcess {
 		content = StringUtil.replace(
 			journalArticle.getContent(),
 			new String[] {
-				"[$GROUP_ID$]",
-				"[$GROUP_URL$]",
-				"[$R_FE_UUID$]"
+				"[$GROUP_ID$]", "[$GROUP_URL$]", "[$R_FE_UUID$]"
 			},
 			new String[] {
-				String.valueOf(group.getGroupId()),
-				"/web/7cogs/home",
+				String.valueOf(group.getGroupId()), "/web/7cogs/home",
 				String.valueOf(sevenCogsAdFileEntry.getUuid())
 			});
 

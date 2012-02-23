@@ -187,10 +187,9 @@ public class SerializerUtil {
 	}
 
 	private static final Address.Field[] _ADDRESS_FIELDS = {
-		Address.Field.COUNTRY, Address.Field.FORMATTED,
-		Address.Field.LATITUDE, Address.Field.LOCALITY,
-		Address.Field.LONGITUDE, Address.Field.POSTAL_CODE,
-		Address.Field.PRIMARY, Address.Field.REGION,
+		Address.Field.COUNTRY, Address.Field.FORMATTED, Address.Field.LATITUDE,
+		Address.Field.LOCALITY, Address.Field.LONGITUDE,
+		Address.Field.POSTAL_CODE, Address.Field.PRIMARY, Address.Field.REGION,
 		Address.Field.STREET_ADDRESS, Address.Field.TYPE
 	};
 

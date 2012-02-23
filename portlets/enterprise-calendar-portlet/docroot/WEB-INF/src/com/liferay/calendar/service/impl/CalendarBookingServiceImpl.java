@@ -41,10 +41,10 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			Map<Locale, String> locationMap, String type, int startDateMonth,
 			int startDateDay, int startDateYear, int startDateHour,
 			int startDateMinute, int endDateMonth, int endDateDay,
-			int endDateYear, int endDateHour, int endDateMinute,
-			boolean allDay, String recurrence, int priority,
-			boolean outOfOffice, int firstReminder, int secondReminder,
-			boolean required, String requestMessage, String responseMessage,
+			int endDateYear, int endDateHour, int endDateMinute, boolean allDay,
+			String recurrence, int priority, boolean outOfOffice,
+			int firstReminder, int secondReminder, boolean required,
+			String requestMessage, String responseMessage,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 

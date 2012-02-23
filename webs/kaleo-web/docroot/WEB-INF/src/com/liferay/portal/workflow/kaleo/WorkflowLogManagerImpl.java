@@ -64,8 +64,8 @@ public class WorkflowLogManagerImpl implements WorkflowLogManager {
 		try {
 			List<KaleoLog> kaleoLogs =
 				KaleoLogLocalServiceUtil.getKaleoInstanceKaleoLogs(
-					workflowInstanceId, logTypes,
-					start, end, orderByComparator);
+					workflowInstanceId, logTypes, start, end,
+					orderByComparator);
 
 			return toWorkflowLogs(kaleoLogs);
 		}

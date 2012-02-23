@@ -1028,8 +1028,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	protected DynamicQuery buildDynamicQuery(
-		long groupId, String title, String content, int status,
-		Date startDate, Date endDate, boolean andOperator) {
+		long groupId, String title, String content, int status, Date startDate,
+		Date endDate, boolean andOperator) {
 
 		Junction junction = null;
 
@@ -1288,8 +1288,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		String kbArticleContent = StringUtil.replace(
 			kbArticle.getContent(),
 			new String[] {
-				"href=\"/",
-				"src=\"/"
+				"href=\"/", "src=\"/"
 			},
 			new String[] {
 				"href=\"" + serviceContext.getPortalURL() + "/",
@@ -1302,8 +1301,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			String value = StringUtil.replace(
 				kbArticleDiffs.get(key),
 				new String[] {
-					"href=\"/",
-					"src=\"/"
+					"href=\"/", "src=\"/"
 				},
 				new String[] {
 					"href=\"" + serviceContext.getPortalURL() + "/",

@@ -295,8 +295,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			return KaleoTaskInstanceTokenLocalServiceUtil.
 				getKaleoTaskInstanceTokensCount(
-					User.class.getName(), serviceContext.getUserId(),
-					completed, serviceContext);
+					User.class.getName(), serviceContext.getUserId(), completed,
+					serviceContext);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -437,8 +437,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	public List<WorkflowTask> getWorkflowTasksByUserRoles(
-			long companyId, long userId, Boolean completed, int start,
-			int end, OrderByComparator orderByComparator)
+			long companyId, long userId, Boolean completed, int start, int end,
+			OrderByComparator orderByComparator)
 		throws WorkflowException {
 
 		try {

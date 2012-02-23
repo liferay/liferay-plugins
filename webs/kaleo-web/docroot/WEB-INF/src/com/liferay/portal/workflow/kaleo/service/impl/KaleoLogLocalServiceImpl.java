@@ -190,8 +190,8 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 	}
 
 	public KaleoLog addTaskCompletionKaleoLog(
-			KaleoTaskInstanceToken kaleoTaskInstanceToken,
-			String comment, Map<String, Serializable> workflowContext,
+			KaleoTaskInstanceToken kaleoTaskInstanceToken, String comment,
+			Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 

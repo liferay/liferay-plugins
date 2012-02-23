@@ -174,8 +174,8 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			resourceResponse);
 
 		ServletResponseUtil.sendFile(
-			request, response, "vcards.vcf",
-			vCards.getBytes(StringPool.UTF8), "text/x-vcard; charset=UTF-8");
+			request, response, "vcards.vcf", vCards.getBytes(StringPool.UTF8),
+			"text/x-vcard; charset=UTF-8");
 	}
 
 	public void getContact(
@@ -301,9 +301,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			new LinkedHashMap<String, Object>();
 
 		if (group.isUser() && layout.isPublicLayout()) {
-			params.put(
-				"socialRelation",
-				new Long[] {group.getClassPK()});
+			params.put("socialRelation", new Long[] {group.getClassPK()});
 		}
 		else if (socialRelationType != 0) {
 			params.put(

@@ -71,8 +71,8 @@ public class WallPortlet extends MVCPortlet {
 		String comments = ParamUtil.getString(actionRequest, "comments");
 
 		WallEntryLocalServiceUtil.addWallEntry(
-			themeDisplay.getScopeGroupId(), themeDisplay.getUserId(),
-			comments, themeDisplay);
+			themeDisplay.getScopeGroupId(), themeDisplay.getUserId(), comments,
+			themeDisplay);
 	}
 
 	public void deleteWallEntry(

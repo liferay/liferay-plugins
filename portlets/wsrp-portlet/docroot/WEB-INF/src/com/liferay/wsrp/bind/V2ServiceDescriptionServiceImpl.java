@@ -226,8 +226,7 @@ public class V2ServiceDescriptionServiceImpl
 		List<MessageElement> messageElements = new ArrayList<MessageElement>();
 
 		ExtensionUtil.addMessageElement(
-			messageElements, "css-class-wrapper",
-			portlet.getCssClassWrapper());
+			messageElements, "css-class-wrapper", portlet.getCssClassWrapper());
 
 		HttpServletRequest request = ServletUtil.getRequest();
 

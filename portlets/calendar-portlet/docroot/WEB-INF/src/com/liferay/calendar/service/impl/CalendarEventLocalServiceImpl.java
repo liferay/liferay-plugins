@@ -143,8 +143,7 @@ public class CalendarEventLocalServiceImpl
 		// Expando
 
 		expandoValueLocalService.deleteValues(
-			CalendarEvent.class.getName(),
-			calendarEvent.getCalendarEventId());
+			CalendarEvent.class.getName(), calendarEvent.getCalendarEventId());
 	}
 
 	@Override

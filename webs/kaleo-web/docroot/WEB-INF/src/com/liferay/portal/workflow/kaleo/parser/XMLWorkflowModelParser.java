@@ -124,8 +124,8 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		}
 
 		parseTransitions(
-			definition, conditionElements, forkElements,
-			joinElements, stateElements, taskElements);
+			definition, conditionElements, forkElements, joinElements,
+			stateElements, taskElements);
 
 		return definition;
 	}

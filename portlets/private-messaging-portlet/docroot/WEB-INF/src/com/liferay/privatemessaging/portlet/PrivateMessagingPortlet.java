@@ -184,8 +184,8 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 			}
 
 			UserThreadLocalServiceUtil.addPrivateMessage(
-				userId, mbThreadId, to, subject, body,
-				inputStreamOVPs, themeDisplay);
+				userId, mbThreadId, to, subject, body, inputStreamOVPs,
+				themeDisplay);
 		}
 		catch (IOException ioe) {
 			throw new PortalException("Unable to process attachment", ioe);

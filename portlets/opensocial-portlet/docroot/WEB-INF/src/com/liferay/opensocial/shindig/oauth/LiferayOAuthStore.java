@@ -223,8 +223,7 @@ public class LiferayOAuthStore implements OAuthStore {
 	}
 
 	protected OAuthToken getOAuthToken(
-			SecurityToken securityToken, String serviceName,
-			String tokenName)
+			SecurityToken securityToken, String serviceName, String tokenName)
 		throws GadgetException {
 
 		long userId = GetterUtil.getLong(securityToken.getViewerId());

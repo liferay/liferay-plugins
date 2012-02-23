@@ -100,8 +100,7 @@ public class UpgradeUuid extends UpgradeProcess {
 					"like ?");
 
 			ps.setString(
-				1,
-				StringPool.PERCENT + oldPortletId + StringPool.PERCENT);
+				1, StringPool.PERCENT + oldPortletId + StringPool.PERCENT);
 
 			rs = ps.executeQuery();
 

@@ -102,8 +102,8 @@ public class KaleoNotificationLocalServiceImpl
 		for (Recipient recipient : recipients) {
 			kaleoNotificationRecipientLocalService.
 				addKaleoNotificationRecipient(
-					kaleoDefinitionId, kaleoNotificationId,
-					recipient, serviceContext);
+					kaleoDefinitionId, kaleoNotificationId, recipient,
+					serviceContext);
 		}
 
 		return kaleoNotification;
