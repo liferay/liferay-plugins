@@ -75,6 +75,24 @@ public class LiveServerChecker implements Runnable {
 	}
 
 	public void shutdown() {
+
+		// Pro-actively kill any servers.
+
+		Collection<SolrServerWrapper> solrServerWrappers =
+			_solrServerFactory.getDeadServers();
+
+		solrServerWrappers.addAll(_solrServerFactory.getLiveServers());
+
+		for (SolrServerWrapper solrServerWrapper : solrServerWrappers) {
+			SolrServer solrServer = solrServerWrapper.getServer();
+
+			if (solrServer == null) {
+				continue;
+			}
+
+			_solrServerFactory.killServer(solrServerWrapper);
+		}
+
 		List<SolrServerWrapper> deadSolrServerWrappers =
 			_solrServerFactory.getDeadServers();
 

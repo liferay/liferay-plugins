@@ -14,6 +14,31 @@
 	<bean id="com.liferay.portal.search.solr.server.BasicAuthSolrServer" class="com.liferay.portal.search.solr.server.BasicAuthSolrServer">
 		<constructor-arg type="java.lang.String" value="http://localhost:8080/solr" />
 	</bean>
+
+	<!-- Server Factory - This is a dummy to satisfy the live server checker. -->
+
+	<bean id="solrServerFactory" class="com.liferay.portal.search.solr.server.SolrServerFactoryImpl">
+		<constructor-arg>
+			<map key-type="java.lang.String" value-type="org.apache.solr.client.solrj.SolrServer">
+				<entry key="node1">
+					<ref bean="com.liferay.portal.search.solr.server.BasicAuthSolrServer" />
+				</entry>
+			</map>
+		</constructor-arg>
+		<property name="solrServerSelector">
+			<bean class="com.liferay.portal.search.solr.server.LoadBalancedSolrServerSelector" />
+		</property>
+	</bean>
+
+	<!-- Live Server Checker -->
+
+	<bean id="liveServerChecker" class="com.liferay.portal.search.solr.server.LiveServerChecker">
+		<constructor-arg>
+			<ref bean="solrServerFactory" />
+		</constructor-arg>
+		<constructor-arg type="java.lang.Long" value="10" />
+	</bean>
+
 	<bean id="com.liferay.portal.search.solr.SolrIndexSearcherImpl" class="com.liferay.portal.search.solr.SolrIndexSearcherImpl">
 		<property name="solrServer" ref="com.liferay.portal.search.solr.server.BasicAuthSolrServer" />
 		<property name="swallowException" value="true" />
