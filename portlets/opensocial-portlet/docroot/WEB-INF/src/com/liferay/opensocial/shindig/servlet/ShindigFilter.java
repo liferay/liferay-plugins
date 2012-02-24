@@ -14,6 +14,8 @@
 
 package com.liferay.opensocial.shindig.servlet;
 
+import com.google.inject.Injector;
+
 import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -46,7 +48,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.UnavailableException;
 import javax.servlet.http.HttpServletRequest;
 
-import com.google.inject.Injector;
 import org.apache.shindig.common.servlet.InjectedFilter;
 
 import static org.apache.shindig.common.servlet.GuiceServletContextListener.*;
@@ -89,10 +90,13 @@ public class ShindigFilter extends InjectedFilter {
 	}
 
 	public void init(FilterConfig config) throws ServletException {
+
 		// LPS-23577
+
 		if (ServerDetector.isWebSphere()) {
 			injector = null;
-		} else {
+		}
+		else {
 			super.init(config);
 		}
 	}
@@ -164,19 +168,19 @@ public class ShindigFilter extends InjectedFilter {
 	}
 
 	private void _init(ServletContext context) throws ServletException {
-		
 		injector = (Injector)context.getAttribute(INJECTOR_ATTRIBUTE);
-		
+
 		if (injector == null) {
-			injector = (Injector) context.getAttribute(INJECTOR_NAME);
+			injector = (Injector)context.getAttribute(INJECTOR_NAME);
 
 			if (injector == null) {
 				throw new UnavailableException(
 					"Guice Injector not found! Make sure you registered " +
 						GuiceServletContextListener.class.getName() +
-						" as a listener");
+							" as a listener");
 			}
 		}
+
 		injector.injectMembers(this);
 	}
 
