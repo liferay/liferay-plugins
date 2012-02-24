@@ -93,8 +93,9 @@ public abstract class BaseConfigurationAction
 				SessionMessages.KEY_SUFFIX_UPDATED_CONFIGURATION);
 	}
 
-	protected void doRender(PortletConfig portletConfig,
-			RenderRequest renderRequest, RenderResponse renderResponse)
+	protected void doRender(
+			PortletConfig portletConfig, RenderRequest renderRequest,
+			RenderResponse renderResponse)
 		throws Exception {
 
 		Map<String, UserPref> userPrefs = getUserPrefs(

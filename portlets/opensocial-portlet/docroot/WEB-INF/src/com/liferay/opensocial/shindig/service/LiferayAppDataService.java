@@ -185,9 +185,9 @@ public class LiferayAppDataService implements AppDataService {
 		return new DataCollection(peopleAppData);
 	}
 
-	protected void doUpdatePersonData(UserId userId, GroupId groupId,
-			String appId, Set<String> fields, Map<String, String> values,
-			SecurityToken securityToken)
+	protected void doUpdatePersonData(
+			UserId userId, GroupId groupId, String appId, Set<String> fields,
+			Map<String, String> values, SecurityToken securityToken)
 		throws Exception {
 
 		long companyId = getCompanyId(securityToken);
