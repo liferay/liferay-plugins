@@ -417,37 +417,60 @@ Please find a solution that does not require portal-impl.jar.
 	</target>
 
 	<target name="compile-test">
-		<mkdir dir="test-classes" />
-		<mkdir dir="test-results" />
+		<antcall target="compile-test-integration" inheritall="false" />
+		<antcall target="compile-test-unit" inheritall="false" />
+	</target>
 
-		<copy todir="test-classes">
-			<fileset dir="test" includes="**/*.png,**/*.properties,**/*.xml" />
-		</copy>
-
+	<target name="compile-test-cmd" if="type">
 		<if>
-			<available file="tmp" />
+			<available file="test/${type}" type="dir" />
 			<then>
-				<path id="plugin-lib.classpath">
-					<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
-					<fileset dir="tmp/WEB-INF/lib" includes="*.jar" />
-					<pathelement location="docroot/WEB-INF/classes" />
-					<pathelement location="tmp/WEB-INF/classes" />
-				</path>
-			</then>
-			<else>
-				<path id="plugin-lib.classpath">
-					<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
-					<pathelement location="docroot/WEB-INF/classes" />
-				</path>
-			</else>
-		</if>
+				<mkdir dir="test-classes/${type}" />
+				<mkdir dir="test-results/${type}" />
 
-		<antcall target="compile-java">
-			<param name="javac.classpathref" value="test.classpath" />
-			<param name="javac.destdir" value="test-classes" />
-			<param name="javac.srcdir" value="test" />
-			<reference refid="plugin-lib.classpath" torefid="plugin-lib.classpath" />
-		</antcall>
+				<copy todir="test-classes/${type}">
+					<fileset dir="test" includes="*.properties" />
+					<fileset dir="test/${type}" includes="**/*.png,**/*.properties,**/*.xml" />
+				</copy>
+				
+				<if>
+					<available file="tmp" />
+					<then>
+						<path id="plugin-lib.classpath">
+							<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+							<fileset dir="tmp/WEB-INF/lib" includes="*.jar" />
+							<pathelement location="docroot/WEB-INF/classes" />
+							<pathelement location="tmp/WEB-INF/classes" />
+						</path>
+					</then>
+					<else>
+						<path id="plugin-lib.classpath">
+							<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+							<pathelement location="docroot/WEB-INF/classes" />
+						</path>
+					</else>
+				</if>
+
+				<antcall target="compile-java">
+					<param name="javac.classpathref" value="test.classpath" />
+					<param name="javac.destdir" value="test-classes/${type}" />
+					<param name="javac.srcdir" value="test/${type}" />
+					<reference refid="plugin-lib.classpath" torefid="plugin-lib.classpath" />
+				</antcall>
+			</then>
+		</if>
+	</target>
+
+	<target name="compile-test-integration">
+		<ant target="compile-test-cmd">
+			<property name="type" value="integration" />
+		</ant>
+	</target>
+
+	<target name="compile-test-unit">
+		<ant target="compile-test-cmd">
+			<property name="type" value="unit" />
+		</ant>
 	</target>
 
 	<target name="deploy" depends="war">
@@ -670,16 +693,6 @@ Please find a solution that does not require portal-impl.jar.
 		<antcall target="compile" />
 		<antcall target="compile-test" />
 
-		<fileset dir="test-classes" id="test.suite.classes">
-			<include name="**/*TestSuite.class" />
-		</fileset>
-
-		<pathconvert
-			property="test.suite.classes.available"
-			refid="test.suite.classes"
-			setonempty="false"
-		/>
-
 		<if>
 			<available file="tmp" />
 			<then>
@@ -697,46 +710,29 @@ Please find a solution that does not require portal-impl.jar.
 				</path>
 			</else>
 		</if>
+		
+		<antcall target="test-integration" inheritRefs="true"/>
 
-		<if>
-			<not>
-				<isset property="test.suite.classes.available" />
-			</not>
-			<then>
-				<junit dir="${project.dir}" fork="on" forkmode="once" haltonfailure="${junit.halt.on.failure}" printsummary="on">
-					<sysproperty key="net.sourceforge.cobertura.datafile" file="test-coverage/cobertura.ser" />
-					<jvmarg line="${junit.debug.jpda}" />
-					<jvmarg value="-Xmx1024m" />
-					<jvmarg value="-XX:MaxPermSize=256m" />
-					<jvmarg value="-Duser.timezone=GMT" />
-					<jvmarg value="-Dexternal-properties=${test.properties}" />
-					<classpath location="test-coverage" />
-					<classpath refid="test.classpath" />
-					<formatter type="brief" usefile="false" />
-					<formatter type="xml" />
-					<batchtest todir="test-results">
-						<fileset dir="test-classes" includes="**/*Test.class" />
-					</batchtest>
-				</junit>
-			</then>
-			<else>
-				<junit dir="${project.dir}" fork="on" forkmode="once" haltonfailure="${junit.halt.on.failure}" printsummary="on">
-					<sysproperty key="net.sourceforge.cobertura.datafile" file="test-coverage/cobertura.ser" />
-					<jvmarg line="${junit.debug.jpda}" />
-					<jvmarg value="-Xmx1024m" />
-					<jvmarg value="-XX:MaxPermSize=256m" />
-					<jvmarg value="-Duser.timezone=GMT" />
-					<jvmarg value="-Dexternal-properties=${test.properties}" />
-					<classpath location="test-coverage" />
-					<classpath refid="test.classpath" />
-					<formatter type="brief" usefile="false" />
-					<formatter type="xml" />
-					<batchtest todir="test-results">
-						<fileset dir="test-classes" includes="**/*TestSuite.class" />
-					</batchtest>
-				</junit>
-			</else>
-		</if>
+		<antcall target="test-unit" inheritRefs="true"/>
+
+	</target>
+
+	<target name="test-cmd" if="type">		
+		<junit dir="${project.dir}" fork="on" forkmode="once" outputtoformatters="false" printsummary="on" showoutput="true">
+			<sysproperty key="net.sourceforge.cobertura.datafile" file="test-coverage/cobertura.ser" />
+			<jvmarg line="${junit.debug.jpda}" />
+			<jvmarg value="-Xmx1024m" />
+			<jvmarg value="-XX:MaxPermSize=256m" />
+			<jvmarg value="-Duser.timezone=GMT" />
+			<jvmarg value="-Dexternal-properties=${test.properties}" />
+			<classpath location="test-coverage" />
+			<classpath refid="test.classpath" />
+			<formatter type="brief" usefile="false" />
+			<formatter type="xml" />
+			<batchtest todir="test-results/${type}">
+				<fileset dir="test-classes/${type}" includes="**/${class}.class" />
+			</batchtest>
+		</junit>
 	</target>
 
 	<target name="test-class" depends="compile,compile-test" if="class">
@@ -755,6 +751,31 @@ Please find a solution that does not require portal-impl.jar.
 				<fileset dir="test-classes" includes="**/${class}.class" />
 			</batchtest>
 		</junit>
+	</target>
+
+	<target name="test-integration" depends="compile,compile-test-integration">
+		<property name="class" value="*Test"/>
+		<ant target="test-cmd" inheritRefs="true">
+			<property name="type" value="integration" />
+		</ant>
+		
+		<!--
+		Establish some convention over configuration rule in order to be able
+		to run TestSuites and Single tests
+		-->
+		<!--
+		<property name="class" value="*TestSuite"/>
+		<ant target="test-cmd">
+			<property name="type" value="integration" />
+		</ant>		
+		-->
+	</target>
+
+	<target name="test-unit" depends="compile,compile-test-unit">
+		<property name="class" value="*Test"/>
+		<ant target="test-cmd" inheritRefs="true">
+			<property name="type" value="unit" />
+		</ant>
 	</target>
 
 	<target name="war" depends="compile">

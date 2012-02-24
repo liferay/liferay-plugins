@@ -35,7 +35,8 @@
 		<path refid="plugin.classpath" />
 		<fileset dir="${app.server.lib.portal.dir}" includes="commons-io.jar" />
 		<fileset dir="${project.dir}/lib" includes="junit.jar" />
-		<pathelement location="test-classes" />
+		<pathelement location="test-classes/integration" />
+		<pathelement location="test-classes/unit" />
 	</path>
 
 	<taskdef classpathref="lib.classpath" resource="net/sf/antcontrib/antlib.xml" />
