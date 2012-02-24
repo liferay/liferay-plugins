@@ -157,9 +157,10 @@ public class LARPlugin extends BasePortletDataHandler {
 	}
 
 	@Override
-	public PortletPreferences importData(PortletDataContext context,
-			String portletId, PortletPreferences preferences, String data)
-			throws PortletDataException {
+	public PortletPreferences importData(
+			PortletDataContext context, String portletId,
+			PortletPreferences preferences, String data)
+		throws PortletDataException {
 
 		Map parameterMap = context.getParameterMap();
 

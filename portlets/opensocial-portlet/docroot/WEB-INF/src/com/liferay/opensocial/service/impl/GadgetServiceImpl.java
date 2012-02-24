@@ -51,7 +51,8 @@ public class GadgetServiceImpl extends GadgetServiceBaseImpl {
 		gadgetLocalService.deleteGadget(gadgetId);
 	}
 
-	public void updateGadget(long gadgetId, String portletCategoryNames,
+	public void updateGadget(
+			long gadgetId, String portletCategoryNames,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 

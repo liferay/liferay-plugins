@@ -40,8 +40,9 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 	}
 
 	@Override
-	public String render(PortletConfig portletConfig,
-			RenderRequest renderRequest, RenderResponse renderResponse)
+	public String render(
+			PortletConfig portletConfig, RenderRequest renderRequest,
+			RenderResponse renderResponse)
 		throws Exception {
 
 		doRender(portletConfig, renderRequest, renderResponse);

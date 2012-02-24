@@ -222,8 +222,8 @@ public class TasksPortlet extends MVCPortlet {
 
 		long tasksEntryId = ParamUtil.getLong(actionRequest, "tasksEntryId");
 
-		long resolverUserId = ParamUtil.getLong(actionRequest,
-			"resolverUserId");
+		long resolverUserId = ParamUtil.getLong(
+			actionRequest, "resolverUserId");
 		int status = ParamUtil.getInteger(actionRequest, "status");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
