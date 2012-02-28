@@ -1028,6 +1028,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 /* Blogs */
 
+
 .portlet-blogs {
 	.portlet-borderless-container .portlet-body {
 		padding: 10px;
@@ -1050,16 +1051,21 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		}
 	}
 
-	.entry {
+	.entry, h1.header-title, #blogsCommentsPanelContainer {
 		margin: 0 auto;
 		max-width: 640px;
 		position: relative;
 	}
 
-	.entry-title h2 {
+	.entry-title h2, h1.header-title {
 		font-size: 1.5em;
 		font-weight: normal;
 		line-height: 1em;
+	}
+
+	h1.header-title {
+		font-size: 2em;
+		margin-top: 2em;
 	}
 
 	.entry-title h2, .entry-date {
