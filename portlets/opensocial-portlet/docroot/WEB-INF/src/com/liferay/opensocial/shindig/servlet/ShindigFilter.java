@@ -47,10 +47,10 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.UnavailableException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.apache.shindig.common.servlet.GuiceServletContextListener;
 import org.apache.shindig.common.servlet.InjectedFilter;
-
-import static org.apache.shindig.common.servlet.GuiceServletContextListener.*;
 
 /**
  * @author Michael Young
@@ -67,10 +67,11 @@ public class ShindigFilter extends InjectedFilter {
 		throws IOException, ServletException {
 
 		if (injector == null) {
-			HttpServletRequest httpServletRequest =
-				(HttpServletRequest)servletRequest;
+			HttpServletRequest request = (HttpServletRequest)servletRequest;
 
-			_init(httpServletRequest.getSession().getServletContext());
+			HttpSession session = request.getSession();
+
+			_init(session.getServletContext());
 		}
 
 		PermissionChecker permissionChecker =
@@ -80,16 +81,18 @@ public class ShindigFilter extends InjectedFilter {
 			setPermissionChecker(servletRequest);
 		}
 
-		String host = servletRequest.getServerName().concat(
-			StringPool.COLON).concat(
-				String.valueOf(servletRequest.getServerPort()));
+		String serverName = servletRequest.getServerName();
+
+		String host = serverName.concat(StringPool.COLON).concat(
+			String.valueOf(servletRequest.getServerPort()));
 
 		ShindigUtil.setHost(host);
 
 		filterChain.doFilter(servletRequest, servletResponse);
 	}
 
-	public void init(FilterConfig config) throws ServletException {
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {
 
 		// LPS-23577
 
@@ -97,7 +100,7 @@ public class ShindigFilter extends InjectedFilter {
 			injector = null;
 		}
 		else {
-			super.init(config);
+			super.init(filterConfig);
 		}
 	}
 
@@ -167,17 +170,18 @@ public class ShindigFilter extends InjectedFilter {
 		return true;
 	}
 
-	private void _init(ServletContext context) throws ServletException {
-		injector = (Injector)context.getAttribute(INJECTOR_ATTRIBUTE);
+	private void _init(ServletContext servletContext) throws ServletException {
+		injector = (Injector)servletContext.getAttribute(
+			GuiceServletContextListener.INJECTOR_ATTRIBUTE);
 
 		if (injector == null) {
-			injector = (Injector)context.getAttribute(INJECTOR_NAME);
+			injector = (Injector)servletContext.getAttribute(
+				GuiceServletContextListener.INJECTOR_NAME);
 
 			if (injector == null) {
 				throw new UnavailableException(
-					"Guice Injector not found! Make sure you registered " +
-						GuiceServletContextListener.class.getName() +
-							" as a listener");
+					"Guice injector is not available. Please register " +
+						GuiceServletContextListener.class.getName() + ".");
 			}
 		}
 
