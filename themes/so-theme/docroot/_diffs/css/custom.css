@@ -286,6 +286,7 @@ a:focus .opens-new-window-accessible {
 		ul.site-list li {
 			@include border-radius(0);
 			background-position: 5px 3px;
+			padding-right: 16px;
 			position: relative;
 
 			.name, .name a, .star {
@@ -296,11 +297,10 @@ a:focus .opens-new-window-accessible {
 				padding: 3px 3px 3px 30px;
 			}
 
-			.star {
-				margin: 3px;
+			.star, .unstar {
 				position: absolute;
 				right: 0;
-				top: 0;
+				top: 3px;
 			}
 
 			&:hover {
