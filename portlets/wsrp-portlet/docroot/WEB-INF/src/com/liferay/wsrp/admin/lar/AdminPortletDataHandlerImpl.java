@@ -443,7 +443,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			WSRPProducerLocalServiceUtil.updateWSRPProducer(
 				importedWSRPProducer, false);
 		}
-		catch (NoSuchProducerException e) {
+		catch (NoSuchProducerException nspe) {
 			ServiceContext serviceContext =
 				portletDataContext.createServiceContext(
 					wsrpProducerElement, wsrpProducer, _NAMESPACE);
