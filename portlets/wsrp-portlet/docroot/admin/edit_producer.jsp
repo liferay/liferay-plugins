@@ -30,7 +30,7 @@ try {
 
 	version = GetterUtil.getString(wsrpProducer.getVersion(), Constants.WSRP_V2);
 }
-catch (NoSuchProducerException nsce) {
+catch (NoSuchProducerException nspe) {
 }
 
 String[] portletIds = StringUtil.split(BeanParamUtil.getString(wsrpProducer, request, "portletIds"));

@@ -83,7 +83,7 @@ int oAuthServiceCount = 0;
 		try {
 			oAuthConsumer = OAuthConsumerLocalServiceUtil.getOAuthConsumer(gadgetKey, serviceName);
 		}
-		catch (NoSuchOAuthConsumerException nsce) {
+		catch (NoSuchOAuthConsumerException nsoace) {
 		}
 
 		long oAuthConsumerId = BeanParamUtil.getLong(oAuthConsumer, request, "oAuthConsumerId");
