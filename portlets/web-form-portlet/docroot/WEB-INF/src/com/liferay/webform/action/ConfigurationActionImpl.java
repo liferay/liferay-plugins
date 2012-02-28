@@ -281,7 +281,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 
 				fileOutputStream.close();
 			}
-			catch (SecurityException es) {
+			catch (SecurityException se) {
 				SessionErrors.add(actionRequest, "fileNameInvalid");
 			}
 			catch (FileNotFoundException fnfe) {

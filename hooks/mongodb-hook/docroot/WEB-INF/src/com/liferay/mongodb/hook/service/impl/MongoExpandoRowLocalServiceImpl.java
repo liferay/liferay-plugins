@@ -94,8 +94,8 @@ public class MongoExpandoRowLocalServiceImpl
 
 			return getRow(expandoTable, classPK);
 		}
-		catch (PortalException e) {
-			throw new SystemException(e);
+		catch (PortalException pe) {
+			throw new SystemException(pe);
 		}
 	}
 
