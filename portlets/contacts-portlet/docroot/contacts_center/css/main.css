@@ -271,7 +271,7 @@ $section-header-bg: #CCE6F7;
 	.section {
 		border-bottom: 1px solid #E7E7E7;
 		clear: both;
-		padding: 10px;
+		padding: 5px;
 		zoom: 1;
 
 		&:after {
@@ -527,7 +527,7 @@ $section-header-bg: #CCE6F7;
 
 	.profile-actions {
 		border-bottom: 1px solid #C7D0DA;
-		margin: 0 -10px;
+		margin: 0 0 10px;
 		padding: 0 10px 6px;
 
 		h3 {
@@ -540,9 +540,6 @@ $section-header-bg: #CCE6F7;
 		}
 
 		.field-actions-toolbar {
-			padding-top: 2px;
-			text-align: right;
-
 			.actions-conjunction {
 				display: inline-block;
 				font-weight: bold;
@@ -567,6 +564,15 @@ $section-header-bg: #CCE6F7;
 				float: left;
 				margin: 2px;
 				padding-left: 25px;
+			}
+
+			.lfr-token {
+				background-color: #FFF;
+				border: 0
+			}
+
+			.lfr-token:hover {
+				background-color: #D1E5EF;
 			}
 		}
 	}

@@ -29,38 +29,51 @@ if (user2 != null) {
 }
 %>
 
-<c:if test="<%= (projectsEntries != null) && !projectsEntries.isEmpty() %>">
+<c:choose>
+	<c:when test="<%= (projectsEntries != null) && !projectsEntries.isEmpty() %>">
 
-	<h3><liferay-ui:message key="projects" />:</h3>
+		<%
+		for (ProjectsEntry projectsEntry : projectsEntries) {
+			String startDate = dateFormatDate.format(projectsEntry.getStartDate());
 
-	<%
-	for (ProjectsEntry projectsEntry : projectsEntries) {
-		String startDate = dateFormatDate.format(projectsEntry.getStartDate());
+			String endDate = null;
 
-		String endDate = null;
+			if (projectsEntry.getEndDate() != null) {
+				endDate = dateFormatDate.format(projectsEntry.getEndDate());
+			}
+			else {
+				endDate = LanguageUtil.get(pageContext, "current");
+			}
+		%>
 
-		if (projectsEntry.getEndDate() != null) {
-			endDate = dateFormatDate.format(projectsEntry.getEndDate());
-		}
-		else {
-			endDate = LanguageUtil.get(pageContext, "current");
-		}
-	%>
+			<div class="projects section field-group" data-sectionId="expertise" data-title="expertise">
+				<h3 class="project-title"><%= projectsEntry.getTitle() %></h3>
 
-		<div class="project">
-			<h3 class="project-title"><%= projectsEntry.getTitle() %></h3>
+				<div class="project-date">
+					<%= startDate %> - <%= endDate %>
+				</div>
 
-			<div class="project-date">
-				<%= startDate %> - <%= endDate %>
+				<div class="project-description">
+					<%= projectsEntry.getDescription() %>
+				</div>
 			</div>
 
-			<div class="project-description">
-				<%= projectsEntry.getDescription() %>
+		<%
+		}
+		%>
+
+	</c:when>
+	<c:otherwise>
+		<div class="profile-actions">
+			<div class="field-actions-toolbar">
+				<ul class="settings-actions">
+					<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="expertise" data-title="expertise">
+						<div class="aui-settings-field-content">
+							<span class="settings-label"><liferay-ui:message key="add-projects-you-worked-on" /></span>
+						</div>
+					</li>
+				</ul>
 			</div>
 		</div>
-
-	<%
-	}
-	%>
-
-</c:if>
+	</c:otherwise>
+</c:choose>

@@ -23,7 +23,7 @@ Contact contact2 = user2.getContact();
 %>
 
 <c:if test="<%= showComments && Validator.isNotNull(user2.getComments()) %>">
-	<div class="section field-group lfr-user-comments" data-namespaceId="<portlet:namespace />comments" data-title="comments">
+	<div class="section field-group lfr-user-comments" data-sectionId="comments" data-title="comments">
 		<h3><liferay-ui:message key="Introduction" />:</h3>
 
 		<ul class="property-list">
@@ -39,7 +39,7 @@ List<Phone> phones = PhoneServiceUtil.getPhones(Contact.class.getName(), contact
 %>
 
 <c:if test="<%= showPhones && ValidatorUtil.isNotEmpty(phones) %>">
-	<div class="section field-group lfr-user-phones" data-namespaceId="<portlet:namespace />phoneNumbers" data-title="phone-numbers">
+	<div class="section field-group lfr-user-phones" data-sectionId="phoneNumbers" data-title="phone-numbers">
 		<h3><liferay-ui:message key="phones" />:</h3>
 
 		<ul class="property-list">
@@ -66,7 +66,7 @@ List<EmailAddress> emailAddresses = EmailAddressServiceUtil.getEmailAddresses(Co
 %>
 
 <c:if test="<%= showAdditionalEmailAddresses && ValidatorUtil.isNotEmpty(emailAddresses) %>">
-	<div class="section field-group lfr-user-email-addresses" data-namespaceId="<portlet:namespace />additionalEmailAddresses" data-title="additional-email-addresses">
+	<div class="section field-group lfr-user-email-addresses" data-sectionId="additionalEmailAddresses" data-title="additional-email-addresses">
 		<h3><liferay-ui:message key="additional-email-addresses" />:</h3>
 
 		<ul class="property-list">
@@ -99,7 +99,7 @@ String ym = contact2.getYmSn();
 %>
 
 <c:if test="<%= showInstantMessenger && ContactsUtil.hasInstantMessenger(contact2) %>">
-	<div class="section field-group" data-namespaceId="<portlet:namespace />instantMessenger" data-title="instant-messenger">
+	<div class="section field-group" data-sectionId="instantMessenger" data-title="instant-messenger">
 		<h3><liferay-ui:message key="instant-messenger" />:</h3>
 
 		<ul class="property-list">
@@ -163,7 +163,7 @@ List<Address> addresses = AddressServiceUtil.getAddresses(Contact.class.getName(
 %>
 
 <c:if test="<%= showAddresses && ValidatorUtil.isNotEmpty(addresses) %>">
-	<div class="section field-group lfr-user-addresses" data-namespaceId="<portlet:namespace />addresses" data-title="addresses">
+	<div class="section field-group lfr-user-addresses" data-sectionId="addresses" data-title="addresses">
 		<h3><liferay-ui:message key="addresses" />:</h3>
 
 		<ul class="property-list">
@@ -243,7 +243,7 @@ List<Website> websites = WebsiteServiceUtil.getWebsites(Contact.class.getName(),
 %>
 
 <c:if test="<%= showWebsites && ValidatorUtil.isNotEmpty(websites) %>">
-	<div class="section field-group lfr-user-websites" data-namespaceId="<portlet:namespace />websites" data-title="websites">
+	<div class="section field-group lfr-user-websites" data-sectionId="websites" data-title="websites">
 		<h3><liferay-ui:message key="websites" />:</h3>
 
 		<ul class="property-list">
@@ -274,7 +274,7 @@ String twitter = contact2.getTwitterSn();
 %>
 
 <c:if test="<%= showSocialNetwork && ContactsUtil.hasSocialNetwork(contact2) %>">
-	<div class="section field-group lfr-user-social-network" data-namespaceId="<portlet:namespace />socialNetwork" data-title="social-network">
+	<div class="section field-group lfr-user-social-network" data-sectionId="socialNetwork" data-title="social-network">
 		<h3><liferay-ui:message key="social-network" />:</h3>
 
 		<ul class="property-list">
@@ -306,7 +306,7 @@ String twitter = contact2.getTwitterSn();
 </c:if>
 
 <c:if test="<%= showSMS && Validator.isNotNull(contact2.getSmsSn()) %>">
-	<div class="section field-group lfr-user-sms" data-namespaceId="<portlet:namespace />sms" data-title="sms">
+	<div class="section field-group lfr-user-sms" data-sectionId="sms" data-title="sms">
 		<h3><liferay-ui:message key="sms" />:</h3>
 
 		<ul class="property-list">

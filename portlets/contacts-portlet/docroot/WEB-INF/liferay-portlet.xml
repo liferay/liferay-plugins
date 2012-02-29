@@ -14,6 +14,7 @@
 		<control-panel-entry-weight>3.0</control-panel-entry-weight>
 		<header-portlet-css>/contacts_center/css/main.css</header-portlet-css>
 		<header-portlet-javascript>/contacts_center/js/main.js</header-portlet-javascript>
+		<footer-portal-javascript>/html/js/liferay/service.js</footer-portal-javascript>
 		<css-class-wrapper>contacts-portlet</css-class-wrapper>
 		<add-default-resource>true</add-default-resource>
 	</portlet>
@@ -23,6 +24,7 @@
 		<configuration-action-class>com.liferay.portal.kernel.portlet.DefaultConfigurationAction</configuration-action-class>
 		<instanceable>true</instanceable>
 		<header-portlet-css>/contacts_center/css/main.css</header-portlet-css>
+		<footer-portal-javascript>/html/js/liferay/service.js</footer-portal-javascript>
 		<css-class-wrapper>contacts-portlet</css-class-wrapper>
 	</portlet>
 	<portlet>
