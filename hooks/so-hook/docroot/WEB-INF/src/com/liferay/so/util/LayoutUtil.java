@@ -204,6 +204,7 @@ public class LayoutUtil {
 		}
 		else if (portletId.equals("2_WAR_contactsportlet_INSTANCE_efgh")) {
 			portletSetup.setValue("displayStyle", "2");
+			portletSetup.setValue("showCompleteYourProfileButtons", "true");
 			portletSetup.setValue("showSites", "false");
 			portletSetup.setValue("showRecentActivity", "false");
 		}
