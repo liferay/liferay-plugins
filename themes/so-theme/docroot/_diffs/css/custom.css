@@ -63,6 +63,10 @@ a:focus .opens-new-window-accessible {
 	padding-left: 210px;
 }
 
+#content div#column-1.portlet-column-only .portlet-column-content {
+	margin: -1px -1px -1px 0;
+}
+
 /* ---------- Heading ---------- */
 
 #banner {
@@ -207,7 +211,7 @@ a:focus .opens-new-window-accessible {
 	z-index: 1;
 
 	.portlet-msg, .portlet-msg-info, .portlet-msg-error, .portlet-msg-alert, .portlet-msg-success {
-		margin: 0;
+		margin: 0 0 10px;
 	}
 
 	.user-profile-detail .profile-image {
@@ -294,7 +298,11 @@ a:focus .opens-new-window-accessible {
 			}
 
 			.name a {
+				overflow: hidden;
 				padding: 3px 3px 3px 30px;
+				text-overflow: ellipsis;
+				word-wrap: break-word;
+				max-height: 2.75em;
 			}
 
 			.star, .unstar {
@@ -406,6 +414,12 @@ a:focus .opens-new-window-accessible {
 	border-bottom: 1px solid $border-color;
 	margin: 0 -10px;
 	padding: 0 10px 6px;
+}
+
+.user-sites li {
+	overflow: hidden;
+	text-overflow: ellipsis;
+		width: 30%;
 }
 
 .user-tags li {
@@ -1458,8 +1472,12 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 /*  Private Messaging  */
 
 .private-messaging-portlet {
-	.controls {
+	margin-left: 1px;
+	margin-top: 1px;
+	.controls, .portlet-msg-info {
 		@include border-radius(0);
+		border-width: 0 0 1px;
+		margin: 0;
 	}
 }
 
