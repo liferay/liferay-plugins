@@ -152,7 +152,7 @@ request.setAttribute("view_user.jsp-user", user2);
 			</aui:layout>
 		</c:if>
 
-		<c:if test="<%= ((displayStyle == ContactsConstants.DISPLAY_STYLE_DETAIL) || (displayStyle == ContactsConstants.DISPLAY_STYLE_FULL)) && UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.VIEW) %>">
+		<c:if test="<%= ((displayStyle == ContactsConstants.DISPLAY_STYLE_DETAIL) || (displayStyle == ContactsConstants.DISPLAY_STYLE_FULL) || (ContactsUtil.isMyProfile(user, user2) && showCompleteYourProfileButtons)) && UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.VIEW) %>">
 
 			<%
 			Contact contact2 = user.getContact();
@@ -161,6 +161,7 @@ request.setAttribute("view_user.jsp-user", user2);
 			List<EmailAddress> emailAddresses = EmailAddressServiceUtil.getEmailAddresses(Contact.class.getName(), contact2.getContactId());
 			List<Address> addresses = AddressServiceUtil.getAddresses(Contact.class.getName(), contact2.getContactId());
 			List<Website> websites = WebsiteServiceUtil.getWebsites(Contact.class.getName(), contact2.getContactId());
+			List<AssetTag> tags = AssetTagLocalServiceUtil.getTags(User.class.getName(), user2.getUserId());
 			%>
 
 			<div class="user-information" id="<portlet:namespace />userInformation">
@@ -174,6 +175,10 @@ request.setAttribute("view_user.jsp-user", user2);
 							<div class="lfr-user-info-container">
 								<liferay-util:include page="/contacts_center/view_user_information.jsp" servletContext="<%= application %>" />
 							</div>
+
+							<c:if test="<%= ContactsUtil.isMyProfile(user, user2) && showCompleteYourProfileButtons %>">
+								<%@ include file="/contacts_center/complete_your_profile_buttons.jspf" %>
+							</c:if>
 
 							<%
 							Map<String, String> extensions = ContactsExtensionsUtil.getExtensions();
@@ -196,19 +201,18 @@ request.setAttribute("view_user.jsp-user", user2);
 									<liferay-ui:message key="<%= title %>" />
 								</div>
 
-								<div class="section">
-									<div class="<%= cssClass %>">
-										<liferay-util:include page="<%= extensionPath %>" servletContext="<%= extensionServletContext %>" />
-									</div>
+								<div class="<%= cssClass %>">
+									<liferay-util:include page="<%= extensionPath %>" servletContext="<%= extensionServletContext %>" />
 								</div>
 
 							<%
 							}
 							%>
+
 						</aui:column>
 					</c:if>
 
-					<c:if test="<%= showSites || showTags || (ContactsUtil.isMyProfile(user, user2) && showCompleteYourProfileButtons) %>">
+					<c:if test="<%= showSites || showTags %>">
 						<aui:column cssClass="user-information-column-2" columnWidth="<%= showUsersInformation ? 20 : 100 %>">
 							<c:if test="<%= showSites %>">
 
@@ -280,45 +284,34 @@ request.setAttribute("view_user.jsp-user", user2);
 								<div class="user-tags-title">
 									<liferay-ui:message key="tags" />
 								</div>
+								<div class="field-group" data-sectionId="categorization" data-title="categorization">
+									<ul class="user-tags">
 
-								<ul class="user-tags">
+										<%
+										StringBuilder sb = new StringBuilder();
 
-									<%
-									StringBuilder sb = new StringBuilder();
+										for (AssetTag tag : tags) {
+											PortletURL searchURL = ((LiferayPortletResponse)renderResponse).createRenderURL("3");
 
-									List<AssetTag> tags = AssetTagLocalServiceUtil.getTags(User.class.getName(), user2.getUserId());
+											searchURL.setWindowState(WindowState.MAXIMIZED);
 
-									for (AssetTag tag : tags) {
-										PortletURL searchURL = ((LiferayPortletResponse)renderResponse).createRenderURL("3");
+											searchURL.setParameter("groupId", "0");
+											searchURL.setParameter("keywords", tag.getName());
+											searchURL.setParameter("struts_action", "/search/search");
 
-										searchURL.setWindowState(WindowState.MAXIMIZED);
+											sb.append("<li><a href=\"");
+											sb.append(searchURL);
+											sb.append("\">");
+											sb.append(tag.getName());
+											sb.append("</a></li>");
+										}
+										%>
 
-										searchURL.setParameter("groupId", "0");
-										searchURL.setParameter("keywords", tag.getName());
-										searchURL.setParameter("struts_action", "/search/search");
-
-										sb.append("<li><a href=\"");
-										sb.append(searchURL);
-										sb.append("\">");
-										sb.append(tag.getName());
-										sb.append("</a></li>");
-									}
-									%>
-
-									<%= sb.toString() %>
-								</ul>
-							</c:if>
-
-							<c:if test="<%= ContactsUtil.isMyProfile(user, user2) && showCompleteYourProfileButtons %>">
-								<%@ include file="/contacts_center/complete_your_profile_buttons.jspf" %>
+										<%= sb.toString() %>
+									</ul>
+								</div>
 							</c:if>
 						</aui:column>
-					</c:if>
-
-					<c:if test="<%= (ContactsUtil.isMyProfile(user, user2) && showCompleteYourProfileButtons) || showUsersInformation %>">
-						<div class="aui-helper-hidden">
-							<%@ include file="/contacts_center/edit_user_dialogs.jspf" %>
-						</div>
 					</c:if>
 				</aui:layout>
 			</div>
@@ -337,7 +330,7 @@ request.setAttribute("view_user.jsp-user", user2);
 	</div>
 </c:if>
 
-<c:if test="<%= ContactsUtil.isMyProfile(user, user2) && (showCompleteYourProfileButtons || showUsersInformation) && ((displayStyle == ContactsConstants.DISPLAY_STYLE_DETAIL) || (displayStyle == ContactsConstants.DISPLAY_STYLE_FULL)) && UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.VIEW) %>">
+<c:if test="<%= ContactsUtil.isMyProfile(user, user2) && (showCompleteYourProfileButtons || showUsersInformation || showTags) && ((displayStyle == ContactsConstants.DISPLAY_STYLE_DETAIL) || (displayStyle == ContactsConstants.DISPLAY_STYLE_FULL)) && UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.VIEW) %>">
 	<aui:script use="aui-base">
 			var userInformation = A.one('#<portlet:namespace />userInformation');
 
@@ -352,26 +345,30 @@ request.setAttribute("view_user.jsp-user", user2);
 			var <portlet:namespace />openDialog = function(event) {
 				var node = event.currentTarget;
 
-				var namespaceId = node.getAttribute('data-namespaceId');
+				var sectionId = node.getAttribute('data-sectionId');
 
-				var content = A.one('#' + namespaceId + 'Dialog');
+				var uri = '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/contacts_center/edit_user_dialogs.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';
 
-				if (content) {
-					Liferay.fire('formNavigator:reveal' + namespaceId);
+				uri = Liferay.Util.addParams('currSectionId=' + sectionId, uri) || uri;
 
-					var dialog = new A.Dialog(
-						{
-							bodyContent: content,
-							centered: true,
-							constrain2view: true,
-							cssClass: 'profile-dialog',
-							modal: true,
-							resizable: false,
-							title: Liferay.Language.get(node.getAttribute('data-title')),
-							width: 500
-						}
-					).render();
-				}
+				var dialog = new A.Dialog(
+					{
+						centered: true,
+						constrain2view: true,
+						cssClass: 'profile-dialog',
+						destroyOnClose: true,
+						modal: true,
+						resizable: false,
+						title: Liferay.Language.get(node.getAttribute('data-title')),
+						width: 500
+					}
+				).plug(
+					A.Plugin.IO,
+					{
+						uri: uri
+					}
+				).render();
+
 			};
 	</aui:script>
 </c:if>
