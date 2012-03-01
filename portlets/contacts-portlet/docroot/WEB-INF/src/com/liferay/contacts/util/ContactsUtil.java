@@ -124,10 +124,6 @@ public class ContactsUtil {
 		return false;
 	}
 
-	public static boolean isMyProfile(User currentUser, User profileUser) {
-		return currentUser.getUserId() == profileUser.getUserId();
-	}
-
 	private static String _getAddresses(User user) throws Exception {
 		List<Address> addresses = AddressLocalServiceUtil.getAddresses(
 			user.getCompanyId(), Contact.class.getName(), user.getContactId());

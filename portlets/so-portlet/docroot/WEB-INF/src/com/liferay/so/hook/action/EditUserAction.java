@@ -51,14 +51,10 @@ public class EditUserAction extends BaseStrutsPortletAction {
 			ActionResponse actionResponse)
 		throws Exception {
 
-		System.out.println("here in Hook EditUserAction");
-
 		User user = PortalUtil.getSelectedUser(actionRequest);
 
 		String projectsEntriesIndexesString = ParamUtil.getString(
 			actionRequest, "projectsEntriesIndexes");
-
-		System.out.println(projectsEntriesIndexesString);
 
 		if (Validator.isNull(projectsEntriesIndexesString)) {
 			originalStrutsPortletAction.processAction(

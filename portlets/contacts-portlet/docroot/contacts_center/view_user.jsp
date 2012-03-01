@@ -36,32 +36,8 @@ request.setAttribute("view_user.jsp-user", user2);
 %>
 
 <c:if test="<%= user2 != null %>">
-	<div class="contacts-profile <%= ContactsUtil.isMyProfile(user, user2) ? "my-profile" : StringPool.BLANK %>">
+	<div class="contacts-profile <%= (user.getUserId() == user2.getUserId()) ? "my-profile" : StringPool.BLANK %>">
 		<c:if test="<%= (displayStyle == ContactsConstants.DISPLAY_STYLE_BASIC) || (displayStyle == ContactsConstants.DISPLAY_STYLE_FULL) %>">
-			<div class="lfr-contact-grid-item">
-				<c:if test="<%= showIcon %>">
-					<div class="lfr-contact-thumb">
-						<a href="<%= user2.getDisplayURL(themeDisplay) %>"><img alt="<%= HtmlUtil.escape(user2.getFullName()) %>" src="<%= user2.getPortraitURL(themeDisplay) %>" /></a>
-					</div>
-				</c:if>
-
-				<div class="<%= showIcon ? StringPool.BLANK : "no-icon" %> lfr-contact-info">
-					<div class="lfr-contact-name">
-						<a href="<%= user2.getDisplayURL(themeDisplay) %>"><%= HtmlUtil.escape(user2.getFullName()) %></a>
-					</div>
-
-					<div class="lfr-contact-job-title">
-						<%= HtmlUtil.escape(user2.getJobTitle()) %>
-					</div>
-
-					<div class="lfr-contact-extra">
-						<%= HtmlUtil.escape(user2.getEmailAddress()) %>
-					</div>
-				</div>
-
-				<div class="clear"><!-- --></div>
-			</div>
-
 			<aui:layout cssClass="social-relations">
 
 				<%
@@ -150,12 +126,36 @@ request.setAttribute("view_user.jsp-user", user2);
 					</c:choose>
 				</aui:layout>
 			</aui:layout>
+
+			<div class="lfr-contact-grid-item">
+				<c:if test="<%= showIcon %>">
+					<div class="lfr-contact-thumb">
+						<a href="<%= user2.getDisplayURL(themeDisplay) %>"><img alt="<%= HtmlUtil.escape(user2.getFullName()) %>" src="<%= user2.getPortraitURL(themeDisplay) %>" /></a>
+					</div>
+				</c:if>
+
+				<div class="<%= showIcon ? StringPool.BLANK : "no-icon" %> lfr-contact-info">
+					<div class="lfr-contact-name">
+						<a href="<%= user2.getDisplayURL(themeDisplay) %>"><%= HtmlUtil.escape(user2.getFullName()) %></a>
+					</div>
+
+					<div class="lfr-contact-job-title">
+						<%= HtmlUtil.escape(user2.getJobTitle()) %>
+					</div>
+
+					<div class="lfr-contact-extra">
+						<%= HtmlUtil.escape(user2.getEmailAddress()) %>
+					</div>
+				</div>
+
+				<div class="clear"><!-- --></div>
+			</div>
 		</c:if>
 
-		<c:if test="<%= ((displayStyle == ContactsConstants.DISPLAY_STYLE_DETAIL) || (displayStyle == ContactsConstants.DISPLAY_STYLE_FULL) || (ContactsUtil.isMyProfile(user, user2) && showCompleteYourProfileButtons)) && UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.VIEW) %>">
+		<c:if test="<%= ((displayStyle == ContactsConstants.DISPLAY_STYLE_DETAIL) || (displayStyle == ContactsConstants.DISPLAY_STYLE_FULL) || ((themeDisplay.getUserId() == user2.getUserId()) && showCompleteYourProfileButtons)) && UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.VIEW) %>">
 
 			<%
-			Contact contact2 = user.getContact();
+			Contact contact2 = user2.getContact();
 
 			List<Phone> phones = PhoneServiceUtil.getPhones(Contact.class.getName(), contact2.getContactId());
 			List<EmailAddress> emailAddresses = EmailAddressServiceUtil.getEmailAddresses(Contact.class.getName(), contact2.getContactId());
@@ -176,7 +176,7 @@ request.setAttribute("view_user.jsp-user", user2);
 								<liferay-util:include page="/contacts_center/view_user_information.jsp" servletContext="<%= application %>" />
 							</div>
 
-							<c:if test="<%= ContactsUtil.isMyProfile(user, user2) && showCompleteYourProfileButtons %>">
+							<c:if test="<%= (themeDisplay.getUserId() == user2.getUserId()) && showCompleteYourProfileButtons %>">
 								<%@ include file="/contacts_center/complete_your_profile_buttons.jspf" %>
 							</c:if>
 
@@ -184,6 +184,8 @@ request.setAttribute("view_user.jsp-user", user2);
 							Map<String, String> extensions = ContactsExtensionsUtil.getExtensions();
 
 							Set<String> servletContextNames = extensions.keySet();
+
+							request.setAttribute("view_user.jsp-showCompleteYourProfileButtons", String.valueOf(showCompleteYourProfileButtons));
 
 							for (String servletContextName : servletContextNames) {
 								String extensionPath = extensions.get(servletContextName);
@@ -201,9 +203,7 @@ request.setAttribute("view_user.jsp-user", user2);
 									<liferay-ui:message key="<%= title %>" />
 								</div>
 
-								<div class="<%= cssClass %>">
-									<liferay-util:include page="<%= extensionPath %>" servletContext="<%= extensionServletContext %>" />
-								</div>
+								<liferay-util:include page="<%= extensionPath %>" servletContext="<%= extensionServletContext %>" />
 
 							<%
 							}
@@ -273,7 +273,7 @@ request.setAttribute("view_user.jsp-user", user2);
 										</c:when>
 										<c:otherwise>
 											<div class="empty">
-												<liferay-ui:message arguments="<%= PortalUtil.getUserName((group.isUser() ? group.getClassPK() : themeDisplay.getUserId()), group.getDescriptiveName(locale)) %>" key="x-does-not-belong-to-any-sites" />
+												<liferay-ui:message arguments="<%= PortalUtil.getUserName(user2.getUserId(), group.getDescriptiveName(locale)) %>" key="x-does-not-belong-to-any-sites" />
 											</div>
 										</c:otherwise>
 									</c:choose>
@@ -284,32 +284,45 @@ request.setAttribute("view_user.jsp-user", user2);
 								<div class="user-tags-title">
 									<liferay-ui:message key="tags" />
 								</div>
-								<div class="field-group" data-sectionId="categorization" data-title="categorization">
-									<ul class="user-tags">
+
+								<c:choose>
+									<c:when test="<%= !tags.isEmpty() %>">
+										<div class="field-group" data-sectionId="categorization" data-title="tags">
+											<ul class="user-tags">
+
+												<%
+												StringBuilder sb = new StringBuilder();
+
+												for (AssetTag tag : tags) {
+													PortletURL searchURL = ((LiferayPortletResponse)renderResponse).createRenderURL("3");
+
+													searchURL.setWindowState(WindowState.MAXIMIZED);
+
+													searchURL.setParameter("groupId", "0");
+													searchURL.setParameter("keywords", tag.getName());
+													searchURL.setParameter("struts_action", "/search/search");
+
+													sb.append("<li><a href=\"");
+													sb.append(searchURL);
+													sb.append("\">");
+													sb.append(tag.getName());
+													sb.append("</a></li>");
+												}
+												%>
+
+												<%= sb.toString() %>
+											</ul>
+										</div>
+									</c:when>
+									<c:otherwise>
 
 										<%
-										StringBuilder sb = new StringBuilder();
-
-										for (AssetTag tag : tags) {
-											PortletURL searchURL = ((LiferayPortletResponse)renderResponse).createRenderURL("3");
-
-											searchURL.setWindowState(WindowState.MAXIMIZED);
-
-											searchURL.setParameter("groupId", "0");
-											searchURL.setParameter("keywords", tag.getName());
-											searchURL.setParameter("struts_action", "/search/search");
-
-											sb.append("<li><a href=\"");
-											sb.append(searchURL);
-											sb.append("\">");
-											sb.append(tag.getName());
-											sb.append("</a></li>");
-										}
+										Group group = themeDisplay.getScopeGroup();
 										%>
 
-										<%= sb.toString() %>
-									</ul>
-								</div>
+										<liferay-ui:message arguments="<%= PortalUtil.getUserName(user2.getUserId(), group.getDescriptiveName(locale)) %>" key="x-does-not-have-any-tags" />
+									</c:otherwise>
+								</c:choose>
 							</c:if>
 						</aui:column>
 					</c:if>
@@ -330,7 +343,7 @@ request.setAttribute("view_user.jsp-user", user2);
 	</div>
 </c:if>
 
-<c:if test="<%= ContactsUtil.isMyProfile(user, user2) && (showCompleteYourProfileButtons || showUsersInformation || showTags) && ((displayStyle == ContactsConstants.DISPLAY_STYLE_DETAIL) || (displayStyle == ContactsConstants.DISPLAY_STYLE_FULL)) && UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.VIEW) %>">
+<c:if test="<%= (themeDisplay.getUserId() == user2.getUserId()) && (showCompleteYourProfileButtons || showUsersInformation || showTags) && ((displayStyle == ContactsConstants.DISPLAY_STYLE_DETAIL) || (displayStyle == ContactsConstants.DISPLAY_STYLE_FULL)) && UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.VIEW) %>">
 	<aui:script use="aui-base">
 			var userInformation = A.one('#<portlet:namespace />userInformation');
 

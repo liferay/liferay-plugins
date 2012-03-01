@@ -21,8 +21,6 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 String currSectionId = ParamUtil.getString(request, "currSectionId");
 
-System.out.println(currSectionId);
-
 themeDisplay.setIncludeServiceJs(true);
 
 User selUser = themeDisplay.getUser();
@@ -192,7 +190,7 @@ for (String[] categorySection : categorySections) {
 				String sectionId = _getSectionId(section);
 				String sectionJsp = jspPath + _getSectionJsp(section) + ".jsp";
 			%>
-				<div class="<%= !currSectionId.equals(sectionId) ? "aui-helper-hidden" : StringPool.BLANK %>"id="<portlet:namespace /><%= sectionId %>">
+				<div class="form-section <%= !currSectionId.equals(sectionId) ? "aui-helper-hidden" : StringPool.BLANK %>" id="<portlet:namespace /><%= sectionId %>">
 					<liferay-util:include page="<%= sectionJsp %>" portletId="<%= PortletKeys.USERS_ADMIN %>" />
 				</div>
 
@@ -230,7 +228,9 @@ for (String[] categorySection : categorySections) {
 					},
 					after: {
 						success: function(event, id, obj) {
-							var redirect = document.<portlet:namespace />fm.<portlet:namespace />redirect.value
+							var redirect = document.<portlet:namespace />fm.<portlet:namespace />redirect.value;
+
+							redirect = redirect.replace("&p_p_state=exclusive", "&p_p_state=normal");
 
 							location.href = redirect;
 						}

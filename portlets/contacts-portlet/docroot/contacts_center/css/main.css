@@ -1,3 +1,5 @@
+@import "compass";
+
 $border-color: #EBEBEB;
 $section-header-bg: #CCE6F7;
 
@@ -91,7 +93,7 @@ $section-header-bg: #CCE6F7;
 				margin-top: 5px;
 
 				span {
-			    	margin-right: 10px;
+					margin-right: 10px;
 				}
 			}
 		}
@@ -246,6 +248,7 @@ $section-header-bg: #CCE6F7;
 	}
 
 	.social-relations {
+		background-color: #E9E8E8;
 		padding: 4px 8px;
 		width: auto;
 
@@ -263,15 +266,10 @@ $section-header-bg: #CCE6F7;
 		padding-right: 5px;
 	}
 
-	.lfr-user-info-container {
-		min-height: 10px;
-		margin-bottom: 10px;
-	}
-
 	.section {
 		border-bottom: 1px solid #E7E7E7;
 		clear: both;
-		padding: 5px;
+		padding: 10px;
 		zoom: 1;
 
 		&:after {
@@ -289,7 +287,7 @@ $section-header-bg: #CCE6F7;
 			width: 100px;
 		}
 
-		ul {
+		.property-list {
 			margin: 0 0 0 105px;
 			padding: 0;
 		}
@@ -368,25 +366,6 @@ $section-header-bg: #CCE6F7;
 		}
 	}
 
-	.project {
-		float: left;
-		margin-bottom: 1em;
-		padding-top: 10px;
-		width: 100%;
-
-		h3 {
-			color: #666;
-		}
-
-		.project-date {
-			text-indent: 5px;
-		}
-
-		.project-description {
-			margin-left: 105px;
-		}
-	}
-
 	.property-type {
 		font-weight: bold;
 	}
@@ -402,6 +381,7 @@ $section-header-bg: #CCE6F7;
 	.user-information-title {
 		color: #666;
 		font-size: 1.5em;
+		margin-top: 20px;
 		text-align: right;
 		width: 110px;
 	}
@@ -518,7 +498,7 @@ $section-header-bg: #CCE6F7;
 	}
 
 	.my-profile .field-group:hover {
-		background-color: #DCE3EA;
+		background-color: #E9E8E8;
 		background-image: url(@theme_image_path@/common/edit.png);
 		background-position: right 5px;
 		background-repeat: no-repeat;
@@ -526,9 +506,17 @@ $section-header-bg: #CCE6F7;
 	}
 
 	.profile-actions {
-		border-bottom: 1px solid #C7D0DA;
-		margin: 0 0 10px;
-		padding: 0 10px 6px;
+		@include border-radius(4px);
+		background: #EEE;
+		border: 1px solid #C7D0DA;
+		margin: 20px 65px;
+		padding: 4px 4px 0;
+		
+		.portlet-msg-info {
+			background-color: transparent;
+			border-width: 0;
+			margin: 0;
+		}
 
 		h3 {
 			color: #B4BEC8;
@@ -550,6 +538,7 @@ $section-header-bg: #CCE6F7;
 			.settings-actions {
 				display: inline-block;
 				margin: 0px;
+				padding-left: 24px;
 			}
 
 			.settings-header-label {
@@ -559,11 +548,11 @@ $section-header-bg: #CCE6F7;
 
 			.action-field {
 				background-image: url(@theme_image_path@/common/add.png);
-				background-position: 5px 50%;
+				background-position: 2px 50%;
 				background-repeat: no-repeat;
 				float: left;
 				margin: 2px;
-				padding-left: 25px;
+				padding-left: 21px;
 			}
 
 			.lfr-token {
@@ -572,7 +561,7 @@ $section-header-bg: #CCE6F7;
 			}
 
 			.lfr-token:hover {
-				background-color: #D1E5EF;
+				background-color: #E9E8E8;
 			}
 		}
 	}

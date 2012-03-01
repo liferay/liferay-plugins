@@ -22,6 +22,8 @@
 <%
 User user2 = (User)request.getAttribute("view_user.jsp-user");
 
+boolean showCompleteYourProfileButtons = GetterUtil.getBoolean((String)request.getAttribute("view_user.jsp-showCompleteYourProfileButtons"), false);
+
 List<ProjectsEntry> projectsEntries = null;
 
 if (user2 != null) {
@@ -29,8 +31,8 @@ if (user2 != null) {
 }
 %>
 
-<c:choose>
-	<c:when test="<%= (projectsEntries != null) && !projectsEntries.isEmpty() %>">
+<c:if test="<%= (projectsEntries != null) && !projectsEntries.isEmpty() %>">
+	<div class="section field-group" data-sectionId="expertise" data-title="expertise">
 
 		<%
 		for (ProjectsEntry projectsEntry : projectsEntries) {
@@ -46,15 +48,15 @@ if (user2 != null) {
 			}
 		%>
 
-			<div class="projects section field-group" data-sectionId="expertise" data-title="expertise">
-				<h3 class="project-title"><%= projectsEntry.getTitle() %></h3>
+			<div class="projects">
+				<h3><%= projectsEntry.getTitle() %>:</h3>
 
-				<div class="project-date">
-					<%= startDate %> - <%= endDate %>
+				<div class="project-date property-list">
+					<span class="property"><%= startDate %> - <%= endDate %></span>
 				</div>
 
-				<div class="project-description">
-					<%= projectsEntry.getDescription() %>
+				<div class="project-description property-list">
+					<div class="property"><%= projectsEntry.getDescription() %></div>
 				</div>
 			</div>
 
@@ -62,18 +64,21 @@ if (user2 != null) {
 		}
 		%>
 
-	</c:when>
-	<c:otherwise>
-		<div class="profile-actions">
-			<div class="field-actions-toolbar">
-				<ul class="settings-actions">
-					<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="expertise" data-title="expertise">
-						<div class="aui-settings-field-content">
-							<span class="settings-label"><liferay-ui:message key="add-projects-you-worked-on" /></span>
-						</div>
-					</li>
-				</ul>
-			</div>
+	</div>
+</c:if>
+
+<c:if test="<%= showCompleteYourProfileButtons && themeDisplay.getUserId() == user2.getUserId()) %>">
+	<div class="profile-actions">
+		<p class="portlet-msg portlet-msg-info"><liferay-ui:message key="add-projects-you-worked-on" />:</p>
+
+		<div class="field-actions-toolbar">
+			<ul class="settings-actions">
+				<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="expertise" data-title="expertise">
+					<div class="aui-settings-field-content">
+						<span class="settings-label"><liferay-ui:message key="add" /></span>
+					</div>
+				</li>
+			</ul>
 		</div>
-	</c:otherwise>
-</c:choose>
+	</div>
+</c:if>
