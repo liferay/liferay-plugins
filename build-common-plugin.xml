@@ -432,7 +432,7 @@ Please find a solution that does not require portal-impl.jar.
 					<fileset dir="test" includes="*.properties" />
 					<fileset dir="test/${test.type}" includes="**/*.png,**/*.properties,**/*.xml" />
 				</copy>
-				
+
 				<if>
 					<available file="tmp" />
 					<then>
@@ -710,27 +710,32 @@ Please find a solution that does not require portal-impl.jar.
 				</path>
 			</else>
 		</if>
-		
+
 		<antcall target="test-integration" inheritrefs="true" />
 		<antcall target="test-unit" inheritrefs="true" />
 	</target>
 
-	<target name="test-cmd">		
-		<junit dir="${project.dir}" fork="on" forkmode="once" outputtoformatters="false" printsummary="on" showoutput="true">
-			<sysproperty key="net.sourceforge.cobertura.datafile" file="test-coverage/cobertura.ser" />
-			<jvmarg line="${junit.debug.jpda}" />
-			<jvmarg value="-Xmx1024m" />
-			<jvmarg value="-XX:MaxPermSize=256m" />
-			<jvmarg value="-Duser.timezone=GMT" />
-			<jvmarg value="-Dexternal-properties=${test.properties}" />
-			<classpath location="test-coverage" />
-			<classpath refid="test.classpath" />
-			<formatter type="brief" usefile="false" />
-			<formatter type="xml" />
-			<batchtest todir="test-results/${test.type}">
-				<fileset dir="test-classes/${test.type}" includes="**/${class}.class" />
-			</batchtest>
-		</junit>
+	<target name="test-cmd">
+		<if>
+			<available file="test/${test.type}" type="dir" />
+			<then>
+				<junit dir="${project.dir}" fork="on" forkmode="once" outputtoformatters="false" printsummary="on" showoutput="true">
+					<sysproperty key="net.sourceforge.cobertura.datafile" file="test-coverage/cobertura.ser" />
+					<jvmarg line="${junit.debug.jpda}" />
+					<jvmarg value="-Xmx1024m" />
+					<jvmarg value="-XX:MaxPermSize=256m" />
+					<jvmarg value="-Duser.timezone=GMT" />
+					<jvmarg value="-Dexternal-properties=${test.properties}" />
+					<classpath location="test-coverage" />
+					<classpath refid="test.classpath" />
+					<formatter type="brief" usefile="false" />
+					<formatter type="xml" />
+					<batchtest todir="test-results/${test.type}">
+						<fileset dir="test-classes/${test.type}" includes="**/${class}.class" />
+					</batchtest>
+				</junit>
+			</then>
+		</if>
 	</target>
 
 	<target name="test-class" depends="compile,compile-test" if="class">
@@ -753,7 +758,7 @@ Please find a solution that does not require portal-impl.jar.
 
 	<target name="test-integration" depends="compile,compile-test-integration">
 		<property name="class" value="*Test" />
-		
+
 		<ant target="test-cmd" inheritrefs="true">
 			<property name="test.type" value="integration" />
 		</ant>
