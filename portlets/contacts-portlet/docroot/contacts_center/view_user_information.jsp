@@ -23,8 +23,8 @@ Contact contact2 = user2.getContact();
 %>
 
 <c:if test="<%= showComments && Validator.isNotNull(user2.getComments()) %>">
-	<div class="section field-group lfr-user-comments" data-sectionId="comments" data-title="comments">
-		<h3><liferay-ui:message key="Introduction" />:</h3>
+	<div class="section field-group lfr-user-comments" data-sectionId="comments" data-title="introduction">
+		<h3><liferay-ui:message key="introduction" />:</h3>
 
 		<ul class="property-list">
 			<li>

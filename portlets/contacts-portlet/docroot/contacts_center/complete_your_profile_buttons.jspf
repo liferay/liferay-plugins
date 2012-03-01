@@ -14,80 +14,132 @@
  */
 --%>
 
-<div class="profile-actions">
-	<div class="field-actions-toolbar">
-		<ul class="settings-actions">
-			<c:if test="<%= Validator.isNull(user2.getComments()) %>">
-				<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="comments" data-title="comments">
-					<div class="aui-settings-field-content">
-						<span class="settings-label"><liferay-ui:message key="add-introduction" /></span>
-					</div>
-				</li>
-			</c:if>
+<%
+boolean incompleteProfile = false;
+%>
 
-			<c:if test="<%= ValidatorUtil.isEmpty(tags) %>">
-				<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="categorization" data-title="categorization">
-					<div class="aui-settings-field-content">
-						<span class="settings-label"><liferay-ui:message key="add-categorization" /></span>
-					</div>
-				</li>
-			</c:if>
+<liferay-util:buffer var="completeProfileHtml">
+	<div class="profile-actions">
+		<p class="portlet-msg portlet-msg-info"><liferay-ui:message key="to-complete-your-profile-please-add" />:</p>
 
-			<c:if test="<%= ValidatorUtil.isEmpty(phones) %>">
-				<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="phoneNumbers" data-title="phone-numbers">
-					<div class="aui-settings-field-content">
-						<span class="settings-label"><liferay-ui:message key="add-phones" /></span>
-					</div>
-				</li>
-			</c:if>
+		<div class="field-actions-toolbar">
+			<ul class="settings-actions">
+				<c:if test="<%= Validator.isNull(user2.getComments()) %>">
 
-			<c:if test="<%= ValidatorUtil.isEmpty(emailAddresses) %>">
-				<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="additionalEmailAddresses" data-title="additional-email-addresses">
-					<div class="aui-settings-field-content">
-						<span class="settings-label"><liferay-ui:message key="add-email-address" /></span>
-					</div>
-				</li>
-			</c:if>
+					<%
+					incompleteProfile = true;
+					%>
 
-			<c:if test="<%= !ContactsUtil.hasInstantMessenger(contact2) %>">
-				<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="instantMessenger" data-title="instant-messenger">
-					<div class="aui-settings-field-content">
-						<span class="settings-label"><liferay-ui:message key="add-instant-messenger" /></span>
-					</div>
-				</li>
-			</c:if>
+					<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="comments" data-title="introduction">
+						<div class="aui-settings-field-content">
+							<span class="settings-label"><liferay-ui:message key="introduction" /></span>
+						</div>
+					</li>
+				</c:if>
 
-			<c:if test="<%= ValidatorUtil.isEmpty(addresses) %>">
-				<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="addresses" data-title="addresses">
-					<div class="aui-settings-field-content">
-						<span class="settings-label"><liferay-ui:message key="add-addresses" /></span>
-					</div>
-				</li>
-			</c:if>
+				<c:if test="<%= ValidatorUtil.isEmpty(tags) %>">
 
-			<c:if test="<%= ValidatorUtil.isEmpty(websites) %>">
-				<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="websites" data-title="websites">
-					<div class="aui-settings-field-content">
-						<span class="settings-label"><liferay-ui:message key="add-websites" /></span>
-					</div>
-				</li>
-			</c:if>
+					<%
+					incompleteProfile = true;
+					%>
 
-			<c:if test="<%= !ContactsUtil.hasSocialNetwork(contact2) %>">
-				<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="socialNetwork" data-title="social-network">
-					<div class="aui-settings-field-content">
-						<span class="settings-label"><liferay-ui:message key="add-social-network" /></span>
-					</div>
-				</li>
-			</c:if>
+					<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="categorization" data-title="tags">
+						<div class="aui-settings-field-content">
+							<span class="settings-label"><liferay-ui:message key="tags" /></span>
+						</div>
+					</li>
+				</c:if>
 
-			<c:if test="<%= Validator.isNull(contact2.getSmsSn()) %>">
-				<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="sms" data-title="sms">
-					<div class="aui-settings-field-content">
-						<span class="settings-label"><liferay-ui:message key="add-sms" /></span>
-					</div>
-				</li>
-			</c:if>
-		</ul>
+				<c:if test="<%= ValidatorUtil.isEmpty(phones) %>">
+
+					<%
+					incompleteProfile = true;
+					%>
+
+					<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="phoneNumbers" data-title="phone-numbers">
+						<div class="aui-settings-field-content">
+							<span class="settings-label"><liferay-ui:message key="phones" /></span>
+						</div>
+					</li>
+				</c:if>
+
+				<c:if test="<%= ValidatorUtil.isEmpty(emailAddresses) %>">
+
+					<%
+					incompleteProfile = true;
+					%>
+
+					<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="additionalEmailAddresses" data-title="additional-email-addresses">
+						<div class="aui-settings-field-content">
+							<span class="settings-label"><liferay-ui:message key="email-address" /></span>
+						</div>
+					</li>
+				</c:if>
+
+				<c:if test="<%= !ContactsUtil.hasInstantMessenger(contact2) %>">
+					<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="instantMessenger" data-title="instant-messenger">
+						<div class="aui-settings-field-content">
+							<span class="settings-label"><liferay-ui:message key="instant-messenger" /></span>
+						</div>
+					</li>
+				</c:if>
+
+				<c:if test="<%= ValidatorUtil.isEmpty(addresses) %>">
+
+					<%
+					incompleteProfile = true;
+					%>
+
+					<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="addresses" data-title="addresses">
+						<div class="aui-settings-field-content">
+							<span class="settings-label"><liferay-ui:message key="addresses" /></span>
+						</div>
+					</li>
+				</c:if>
+
+				<c:if test="<%= ValidatorUtil.isEmpty(websites) %>">
+
+					<%
+					incompleteProfile = true;
+					%>
+
+					<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="websites" data-title="websites">
+						<div class="aui-settings-field-content">
+							<span class="settings-label"><liferay-ui:message key="websites" /></span>
+						</div>
+					</li>
+				</c:if>
+
+				<c:if test="<%= !ContactsUtil.hasSocialNetwork(contact2) %>">
+
+					<%
+					incompleteProfile = true;
+					%>
+
+					<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="socialNetwork" data-title="social-network">
+						<div class="aui-settings-field-content">
+							<span class="settings-label"><liferay-ui:message key="social-network" /></span>
+						</div>
+					</li>
+				</c:if>
+
+				<c:if test="<%= Validator.isNull(contact2.getSmsSn()) %>">
+
+					<%
+					incompleteProfile = true;
+					%>
+
+					<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="sms" data-title="sms">
+						<div class="aui-settings-field-content">
+							<span class="settings-label"><liferay-ui:message key="sms" /></span>
+						</div>
+					</li>
+				</c:if>
+			</ul>
+		</div>
 	</div>
-</div>
+</liferay-util:buffer>
+
+<c:if test="<%= incompleteProfile %>">
+	<%= completeProfileHtml %>
+</c:if>
