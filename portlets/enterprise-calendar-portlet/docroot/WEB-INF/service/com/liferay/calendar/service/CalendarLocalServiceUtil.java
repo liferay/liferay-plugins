@@ -292,6 +292,13 @@ public class CalendarLocalServiceUtil {
 			descriptionMap, color, defaultCalendar, serviceContext);
 	}
 
+	public static java.util.List<com.liferay.calendar.model.Calendar> getResourceCalendars(
+		long groupId, long calendarResourceId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getResourceCalendars(groupId, calendarResourceId);
+	}
+
 	public static java.util.List<com.liferay.calendar.model.Calendar> search(
 		long groupId, long calendarResourceId, java.lang.String name,
 		java.lang.String description, java.lang.Boolean defaultCalendar,

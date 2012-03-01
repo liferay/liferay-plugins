@@ -65,6 +65,32 @@ public class CalendarResourceServiceUtil {
 		return getService().getCalendarResource(calendarResourceId);
 	}
 
+	public static java.util.List<com.liferay.calendar.model.CalendarResource> searchByKeywords(
+		long groupId, long classNameId, long classPK,
+		java.lang.String keywords, java.lang.Boolean active, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .searchByKeywords(groupId, classNameId, classPK, keywords,
+			active, start, end, orderByComparator);
+	}
+
+	public static java.util.List<com.liferay.calendar.model.CalendarResource> search(
+		long groupId, long classNameId, long classPK, java.lang.String code,
+		java.lang.String name, java.lang.String description,
+		java.lang.String type, java.lang.Boolean active, boolean andOperator,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .search(groupId, classNameId, classPK, code, name,
+			description, type, active, andOperator, start, end,
+			orderByComparator);
+	}
+
 	public static com.liferay.calendar.model.CalendarResource updateCalendarResource(
 		long calendarResourceId, java.lang.String code,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,

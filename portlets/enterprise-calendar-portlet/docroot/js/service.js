@@ -27,6 +27,8 @@ Liferay.Service.registerClass(
 		addCalendarResource: true,
 		deleteCalendarResource: true,
 		getCalendarResource: true,
+		searchByKeywords: true,
+		search: true,
 		updateCalendarResource: true
 	}
 );

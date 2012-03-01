@@ -65,7 +65,9 @@
 		<field name="defaultCalendarId" type="long" />
 		<field name="code" type="String" />
 		<field name="name" type="String" localized="true" />
-		<field name="description" type="String" localized="true" />
+		<field name="description" type="String" localized="true">
+			<hint-collection name="TEXTAREA" />
+		</field>
 		<field name="type" type="String" />
 		<field name="active" type="boolean" />
 	</model>
