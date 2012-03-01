@@ -60,6 +60,13 @@ public class CalendarResourceLocalServiceImpl
 
 		// Calendar resource
 
+		long calendarResourceId = counterLocalService.increment();
+
+		if (Validator.isNull(className)) {
+			className = CalendarResource.class.getName();
+			classPK = calendarResourceId;
+		}
+
 		long globalUserId = 0;
 
 		if (CalendarResourceUtil.isGlobalResource(className, classPK)) {
@@ -77,8 +84,6 @@ public class CalendarResourceLocalServiceImpl
 		Date now = new Date();
 
 		validate(classNameId, classPK);
-
-		long calendarResourceId = counterLocalService.increment();
 
 		CalendarResource calendarResource = calendarResourcePersistence.create(
 			calendarResourceId);
