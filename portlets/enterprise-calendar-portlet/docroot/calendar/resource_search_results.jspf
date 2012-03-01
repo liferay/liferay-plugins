@@ -1,0 +1,34 @@
+<%--
+/**
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%
+CalendarResourceSearchTerms searchTerms = (CalendarResourceSearchTerms)searchContainer.getSearchTerms();
+
+List<CalendarResource> resultsResources = null;
+int totalResources = 0;
+long classNameId = PortalUtil.getClassNameId(CalendarResource.class.getName());
+
+if (searchTerms.isAdvancedSearch()) {
+	List<CalendarResource> allResults = CalendarResourceServiceUtil.search(themeDisplay.getScopeGroupId(), classNameId, 0l, searchTerms.getCode(), searchTerms.getName(), searchTerms.getDescription(), searchTerms.getType(), searchTerms.isActive(), searchTerms.isAndOperator(), QueryUtil.ALL_POS, QueryUtil.ALL_POS, searchContainer.getOrderByComparator());
+	resultsResources = ListUtil.subList(allResults, searchContainer.getStart(), searchContainer.getEnd());
+	totalResources = allResults.size();
+} else {
+	List<CalendarResource> allResults = CalendarResourceServiceUtil.searchByKeywords(themeDisplay.getScopeGroupId(), classNameId, 0l, searchTerms.getKeywords(), true, QueryUtil.ALL_POS, QueryUtil.ALL_POS, searchContainer.getOrderByComparator());
+	resultsResources = ListUtil.subList(allResults, searchContainer.getStart(), searchContainer.getEnd());
+	totalResources = allResults.size();
+}
+
+%>
