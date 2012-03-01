@@ -125,6 +125,14 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		return calendarPersistence.findByPrimaryKey(calendarId);
 	}
 
+	public List<Calendar> getResourceCalendars(
+			long groupId, long calendarResourceId)
+		throws PortalException, SystemException {
+
+		return calendarPersistence.findByG_C(groupId, calendarResourceId);
+	}
+
+
 	public List<Calendar> search(
 			long groupId, long calendarResourceId, String name,
 			String description, Boolean defaultCalendar, boolean andOperator,
