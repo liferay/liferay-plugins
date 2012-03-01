@@ -19,10 +19,15 @@ import com.liferay.calendar.service.base.CalendarResourceServiceBaseImpl;
 import com.liferay.calendar.service.permission.CalendarResourcePermission;
 import com.liferay.calendar.service.permission.EnterpriseCalendarPermission;
 import com.liferay.calendar.util.ActionKeys;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ServiceContext;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -66,6 +71,46 @@ public class CalendarResourceServiceImpl
 
 		return calendarResourceLocalService.getCalendarResource(
 			calendarResourceId);
+	}
+
+	public List<CalendarResource> searchByKeywords(
+			long groupId, long classNameId, long classPK, String keywords,
+			Boolean active, int start, int end,
+			OrderByComparator orderByComparator)
+		throws PortalException, SystemException {
+
+		return search(
+			groupId, classNameId, classPK, keywords, keywords, keywords,
+			null, active, false, start, end, orderByComparator);
+	}
+
+	public List<CalendarResource> search(
+			long groupId, long classNameId, long classPK, String code,
+			String name, String description, String type, Boolean active,
+			boolean andOperator, int start, int end,
+			OrderByComparator orderByComparator)
+		throws PortalException, SystemException {
+
+		List<CalendarResource> resources = calendarResourceLocalService.search(
+			groupId, classNameId, classPK, code, name, description, type,
+			active, andOperator, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			orderByComparator);
+
+		List<CalendarResource> filteredList = new ArrayList<CalendarResource>();
+
+		for (CalendarResource resource : resources) {
+			if (CalendarResourcePermission.contains(
+				getPermissionChecker(), resource, ActionKeys.VIEW)) {
+
+				filteredList.add(resource);
+			}
+		}
+
+		if (start > QueryUtil.ALL_POS && end > QueryUtil.ALL_POS) {
+			return ListUtil.subList(filteredList, start, end);
+		} else {
+			return filteredList;
+		}
 	}
 
 	public CalendarResource updateCalendarResource(
