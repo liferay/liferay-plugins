@@ -421,16 +421,16 @@ Please find a solution that does not require portal-impl.jar.
 		<antcall target="compile-test-unit" inheritall="false" />
 	</target>
 
-	<target name="compile-test-cmd" if="type">
+	<target name="compile-test-cmd">
 		<if>
-			<available file="test/${type}" type="dir" />
+			<available file="test/${test.type}" type="dir" />
 			<then>
-				<mkdir dir="test-classes/${type}" />
-				<mkdir dir="test-results/${type}" />
+				<mkdir dir="test-classes/${test.type}" />
+				<mkdir dir="test-results/${test.type}" />
 
-				<copy todir="test-classes/${type}">
+				<copy todir="test-classes/${test.type}">
 					<fileset dir="test" includes="*.properties" />
-					<fileset dir="test/${type}" includes="**/*.png,**/*.properties,**/*.xml" />
+					<fileset dir="test/${test.type}" includes="**/*.png,**/*.properties,**/*.xml" />
 				</copy>
 				
 				<if>
@@ -453,8 +453,8 @@ Please find a solution that does not require portal-impl.jar.
 
 				<antcall target="compile-java">
 					<param name="javac.classpathref" value="test.classpath" />
-					<param name="javac.destdir" value="test-classes/${type}" />
-					<param name="javac.srcdir" value="test/${type}" />
+					<param name="javac.destdir" value="test-classes/${test.type}" />
+					<param name="javac.srcdir" value="test/${test.type}" />
 					<reference refid="plugin-lib.classpath" torefid="plugin-lib.classpath" />
 				</antcall>
 			</then>
@@ -463,13 +463,13 @@ Please find a solution that does not require portal-impl.jar.
 
 	<target name="compile-test-integration">
 		<ant target="compile-test-cmd">
-			<property name="type" value="integration" />
+			<property name="test.type" value="integration" />
 		</ant>
 	</target>
 
 	<target name="compile-test-unit">
 		<ant target="compile-test-cmd">
-			<property name="type" value="unit" />
+			<property name="test.type" value="unit" />
 		</ant>
 	</target>
 
@@ -711,13 +711,11 @@ Please find a solution that does not require portal-impl.jar.
 			</else>
 		</if>
 		
-		<antcall target="test-integration" inheritRefs="true"/>
-
-		<antcall target="test-unit" inheritRefs="true"/>
-
+		<antcall target="test-integration" inheritrefs="true" />
+		<antcall target="test-unit" inheritrefs="true" />
 	</target>
 
-	<target name="test-cmd" if="type">		
+	<target name="test-cmd">		
 		<junit dir="${project.dir}" fork="on" forkmode="once" outputtoformatters="false" printsummary="on" showoutput="true">
 			<sysproperty key="net.sourceforge.cobertura.datafile" file="test-coverage/cobertura.ser" />
 			<jvmarg line="${junit.debug.jpda}" />
@@ -729,8 +727,8 @@ Please find a solution that does not require portal-impl.jar.
 			<classpath refid="test.classpath" />
 			<formatter type="brief" usefile="false" />
 			<formatter type="xml" />
-			<batchtest todir="test-results/${type}">
-				<fileset dir="test-classes/${type}" includes="**/${class}.class" />
+			<batchtest todir="test-results/${test.type}">
+				<fileset dir="test-classes/${test.type}" includes="**/${class}.class" />
 			</batchtest>
 		</junit>
 	</target>
@@ -754,27 +752,18 @@ Please find a solution that does not require portal-impl.jar.
 	</target>
 
 	<target name="test-integration" depends="compile,compile-test-integration">
-		<property name="class" value="*Test"/>
-		<ant target="test-cmd" inheritRefs="true">
-			<property name="type" value="integration" />
-		</ant>
+		<property name="class" value="*Test" />
 		
-		<!--
-		Establish some convention over configuration rule in order to be able
-		to run TestSuites and Single tests
-		-->
-		<!--
-		<property name="class" value="*TestSuite"/>
-		<ant target="test-cmd">
-			<property name="type" value="integration" />
-		</ant>		
-		-->
+		<ant target="test-cmd" inheritrefs="true">
+			<property name="test.type" value="integration" />
+		</ant>
 	</target>
 
 	<target name="test-unit" depends="compile,compile-test-unit">
-		<property name="class" value="*Test"/>
-		<ant target="test-cmd" inheritRefs="true">
-			<property name="type" value="unit" />
+		<property name="class" value="*Test" />
+
+		<ant target="test-cmd" inheritrefs="true">
+			<property name="test.type" value="unit" />
 		</ant>
 	</target>
 
