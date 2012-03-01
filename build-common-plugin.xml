@@ -715,6 +715,46 @@ Please find a solution that does not require portal-impl.jar.
 		<antcall target="test-unit" inheritrefs="true" />
 	</target>
 
+	<target name="test-class" depends="compile,compile-test">
+		<if>
+			<available file="test/integration" type="dir" />
+			<then>
+				<resourcecount property="test.integration.count">
+					<fileset dir="test-classes/integration" includes="**/${class}.class" />
+				</resourcecount>
+			</then>
+		</if>
+
+		<if>
+			<available file="test/unit" type="dir" />
+			<then>
+				<resourcecount property="test.unit.count">
+					<fileset dir="test-classes/unit" includes="**/${class}.class" />
+				</resourcecount>
+			</then>
+		</if>
+
+		<if>
+			<equals arg1="${test.integration.count}" arg2="1" />
+			<then>
+				<var name="test.type" value="integration" />
+			</then>
+			<elseif>
+				<equals arg1="${test.unit.count}" arg2="1" />
+				<then>
+					<var name="test.type" value="unit" />
+				</then>
+			</elseif>
+			<else>
+				<var name="test.type" value="" />
+			</else>
+		</if>
+
+		<ant target="test-cmd">
+			<property name="test.type" value="${test.type}" />
+		</ant>
+	</target>
+
 	<target name="test-cmd">
 		<if>
 			<available file="test/${test.type}" type="dir" />
@@ -736,24 +776,6 @@ Please find a solution that does not require portal-impl.jar.
 				</junit>
 			</then>
 		</if>
-	</target>
-
-	<target name="test-class" depends="compile,compile-test" if="class">
-		<junit dir="${project.dir}" fork="on" forkmode="once" outputtoformatters="false" printsummary="on" showoutput="true">
-			<sysproperty key="net.sourceforge.cobertura.datafile" file="test-coverage/cobertura.ser" />
-			<jvmarg line="${junit.debug.jpda}" />
-			<jvmarg value="-Xmx1024m" />
-			<jvmarg value="-XX:MaxPermSize=256m" />
-			<jvmarg value="-Duser.timezone=GMT" />
-			<jvmarg value="-Dexternal-properties=${test.properties}" />
-			<classpath location="test-coverage" />
-			<classpath refid="test.classpath" />
-			<formatter type="brief" usefile="false" />
-			<formatter type="xml" />
-			<batchtest todir="test-results">
-				<fileset dir="test-classes" includes="**/${class}.class" />
-			</batchtest>
-		</junit>
 	</target>
 
 	<target name="test-integration" depends="compile,compile-test-integration">
