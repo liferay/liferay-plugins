@@ -185,7 +185,7 @@ if (Validator.isNotNull(aim) && Validator.isNotNull(icq) && Validator.isNotNull(
 <%
 List<Address> addresses = AddressServiceUtil.getAddresses(Contact.class.getName(), contact2.getContactId());
 
-if (addresses.isEmpty) {
+if (addresses.isEmpty()) {
 	incompleteProfile = true;
 }
 %>

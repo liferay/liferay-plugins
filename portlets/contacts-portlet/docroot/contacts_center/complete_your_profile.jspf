@@ -27,7 +27,7 @@
 				</li>
 			</c:if>
 
-			<c:if test="<%= tags.isEmpty() %>">
+			<c:if test="<%= assetTags.isEmpty() %>">
 				<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="categorization" data-title="tags">
 					<div class="aui-settings-field-content">
 						<span class="settings-label"><liferay-ui:message key="tags" /></span>
