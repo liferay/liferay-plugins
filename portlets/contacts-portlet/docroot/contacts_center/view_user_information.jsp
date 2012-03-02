@@ -20,6 +20,18 @@
 User user2 = (User)request.getAttribute("view_user.jsp-user");
 
 Contact contact2 = user2.getContact();
+
+boolean incompleteProfile = false;
+
+List<AssetTag> tags = AssetTagLocalServiceUtil.getTags(User.class.getName(), user2.getUserId());
+
+if (tags.isEmpty()) {
+	incompleteProfile = true;
+}
+
+if (Validator.isNull(user2.getComments())) {
+	incompleteProfile = true;
+}
 %>
 
 <c:if test="<%= showComments && Validator.isNotNull(user2.getComments()) %>">
@@ -36,6 +48,10 @@ Contact contact2 = user2.getContact();
 
 <%
 List<Phone> phones = PhoneServiceUtil.getPhones(Contact.class.getName(), contact2.getContactId());
+
+if (phones.isEmpty()) {
+	incompleteProfile = true;
+}
 %>
 
 <c:if test="<%= showPhones && !phones.isEmpty() %>">
@@ -63,6 +79,10 @@ List<Phone> phones = PhoneServiceUtil.getPhones(Contact.class.getName(), contact
 
 <%
 List<EmailAddress> emailAddresses = EmailAddressServiceUtil.getEmailAddresses(Contact.class.getName(), contact2.getContactId());
+
+if (emailAddresses.isEmpty()) {
+	incompleteProfile = true;
+}
 %>
 
 <c:if test="<%= showAdditionalEmailAddresses && !emailAddresses.isEmpty() %>">
@@ -90,14 +110,16 @@ List<EmailAddress> emailAddresses = EmailAddressServiceUtil.getEmailAddresses(Co
 </c:if>
 
 <%
-boolean hasInstantMessenger = false;
-
 String aim = contact2.getAimSn();
 String icq = contact2.getIcqSn();
 String jabber = contact2.getJabberSn();
 String msn = contact2.getMsnSn();
 String skype = contact2.getSkypeSn();
 String ym = contact2.getYmSn();
+
+if (Validator.isNotNull(aim) && Validator.isNotNull(icq) && Validator.isNotNull(jabber) && Validator.isNotNull(msn) && Validator.isNotNull(skype) && Validator.isNotNull(ym)) {
+	incompleteProfile = true;
+}
 %>
 
 <c:if test="<%= showInstantMessenger && (Validator.isNotNull(aim) || Validator.isNotNull(icq) || Validator.isNotNull(jabber) || Validator.isNotNull(msn) || Validator.isNotNull(skype) || Validator.isNotNull(ym)) %>">
@@ -106,11 +128,6 @@ String ym = contact2.getYmSn();
 
 		<ul class="property-list">
 			<c:if test="<%= Validator.isNotNull(aim) %>">
-
-				<%
-				hasInstantMessenger = true;
-				%>
-
 				<li>
 					<span class="property-type"><liferay-ui:message key="aim" /></span>
 
@@ -119,11 +136,6 @@ String ym = contact2.getYmSn();
 			</c:if>
 
 			<c:if test="<%= Validator.isNotNull(icq) %>">
-
-				<%
-				hasInstantMessenger = true;
-				%>
-
 				<li>
 					<span class="property-type"><liferay-ui:message key="icq" /></span>
 
@@ -134,11 +146,6 @@ String ym = contact2.getYmSn();
 			</c:if>
 
 			<c:if test="<%= Validator.isNotNull(jabber) %>">
-
-				<%
-				hasInstantMessenger = true;
-				%>
-
 				<li>
 					<span class="property-type"><liferay-ui:message key="jabber" /></span>
 
@@ -147,11 +154,6 @@ String ym = contact2.getYmSn();
 			</c:if>
 
 			<c:if test="<%= Validator.isNotNull(msn) %>">
-
-				<%
-				hasInstantMessenger = true;
-				%>
-
 				<li>
 					<span class="property-type"><liferay-ui:message key="msn" /></span>
 
@@ -160,11 +162,6 @@ String ym = contact2.getYmSn();
 			</c:if>
 
 			<c:if test="<%= Validator.isNotNull(skype) %>">
-
-				<%
-				hasInstantMessenger = true;
-				%>
-
 				<li>
 					<span class="property-type"><liferay-ui:message key="skype" /></span>
 
@@ -173,11 +170,6 @@ String ym = contact2.getYmSn();
 			</c:if>
 
 			<c:if test="<%= Validator.isNotNull(ym) %>">
-
-				<%
-				hasInstantMessenger = true;
-				%>
-
 				<li>
 					<span class="property-type"><liferay-ui:message key="ym" /></span>
 
@@ -192,6 +184,10 @@ String ym = contact2.getYmSn();
 
 <%
 List<Address> addresses = AddressServiceUtil.getAddresses(Contact.class.getName(), contact2.getContactId());
+
+if (addresses.isEmpty) {
+	incompleteProfile = true;
+}
 %>
 
 <c:if test="<%= showAddresses && !addresses.isEmpty() %>">
@@ -272,6 +268,10 @@ List<Address> addresses = AddressServiceUtil.getAddresses(Contact.class.getName(
 
 <%
 List<Website> websites = WebsiteServiceUtil.getWebsites(Contact.class.getName(), contact2.getContactId());
+
+if (websites.isEmpty()) {
+	incompleteProfile = true;
+}
 %>
 
 <c:if test="<%= showWebsites && !websites.isEmpty() %>">
@@ -300,11 +300,13 @@ List<Website> websites = WebsiteServiceUtil.getWebsites(Contact.class.getName(),
 </c:if>
 
 <%
-boolean hasSocialNetwork = false;
-
 String facebook = contact2.getFacebookSn();
 String mySpace = contact2.getMySpaceSn();
 String twitter = contact2.getTwitterSn();
+
+if (Validator.isNull(facebook) && Validator.isNull(mySpace) && Validator.isNull(twitter)) {
+	incompleteProfile = true;
+}
 %>
 
 <c:if test="<%= showSocialNetwork && (Validator.isNotNull(facebook) || Validator.isNotNull(mySpace) || Validator.isNotNull(twitter)) %>">
@@ -313,11 +315,6 @@ String twitter = contact2.getTwitterSn();
 
 		<ul class="property-list">
 			<c:if test="<%= Validator.isNotNull(facebook) %>">
-
-				<%
-				hasSocialNetwork = true;
-				%>
-
 				<li>
 					<span class="property-type"><liferay-ui:message key="facebook" /></span>
 
@@ -326,11 +323,6 @@ String twitter = contact2.getTwitterSn();
 			</c:if>
 
 			<c:if test="<%= Validator.isNotNull(mySpace) %>">
-
-				<%
-				hasSocialNetwork = true;
-				%>
-
 				<li>
 					<span class="property-type"><liferay-ui:message key="myspace" /></span>
 
@@ -339,11 +331,6 @@ String twitter = contact2.getTwitterSn();
 			</c:if>
 
 			<c:if test="<%= Validator.isNotNull(twitter) %>">
-
-				<%
-				hasSocialNetwork = true;
-				%>
-
 				<li>
 					<span class="property-type"><liferay-ui:message key="twitter" /></span>
 
@@ -353,6 +340,12 @@ String twitter = contact2.getTwitterSn();
 		</ul>
 	</div>
 </c:if>
+
+<%
+if (Validator.isNotNull(contact2.getSmsSn())) {
+	incompleteProfile = true;
+}
+%>
 
 <c:if test="<%= showSMS && Validator.isNotNull(contact2.getSmsSn()) %>">
 	<div class="section field-group lfr-user-sms" data-sectionId="sms" data-title="sms">
@@ -366,6 +359,6 @@ String twitter = contact2.getTwitterSn();
 	</div>
 </c:if>
 
-<c:if test="<%= (themeDisplay.getUserId() == user2.getUserId()) && showCompleteYourProfileButtons %>">
-	<%@ include file="/contacts_center/complete_your_profile_buttons.jspf" %>
+<c:if test="<%= incompleteProfile && showCompleteYourProfile && (themeDisplay.getUserId() == user2.getUserId()) %>">
+	<%@ include file="/contacts_center/complete_your_profile.jspf" %>
 </c:if>

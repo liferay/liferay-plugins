@@ -41,14 +41,11 @@ import java.util.List;
 
 /**
  * @author Ryan Park
+ * @author Jonathan Lee
  */
 public class ContactsUtil {
 
-	public static String[] getPortalPropertiesValue(String key)
-		throws Exception {
-
-		String[] propsValue = null;
-
+	public static String[] getPortalPropsValue(String key) {
 		try {
 			ClassLoader portalClassLoader =
 				PortalClassLoaderUtil.getClassLoader();
@@ -58,15 +55,12 @@ public class ContactsUtil {
 
 			Field field = targetClass.getField(key);
 
-			Object test = null;
-
-			propsValue = (String[])field.get(test);
-
+			return (String[])field.get((Object)null);
 		}
 		catch (Exception e) {
 		}
 
-		return propsValue;
+		return null;
 	}
 
 	public static String getVCard(User user) throws Exception {

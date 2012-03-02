@@ -22,7 +22,7 @@
 <%
 User user2 = (User)request.getAttribute("view_user.jsp-user");
 
-boolean showCompleteYourProfileButtons = GetterUtil.getBoolean((String)request.getAttribute("view_user.jsp-showCompleteYourProfileButtons"), false);
+boolean showCompleteYourProfile = GetterUtil.getBoolean((String)request.getAttribute("view_user.jsp-showCompleteYourProfile"), false);
 
 List<ProjectsEntry> projectsEntries = null;
 
@@ -67,7 +67,7 @@ if (user2 != null) {
 	</div>
 </c:if>
 
-<c:if test="<%= showCompleteYourProfileButtons && (themeDisplay.getUserId() == user2.getUserId()) && projectsEntries.isEmpty() %>">
+<c:if test="<%= showCompleteYourProfile && (themeDisplay.getUserId() == user2.getUserId()) && projectsEntries.isEmpty() %>">
 	<div class="profile-actions">
 		<p class="portlet-msg portlet-msg-info"><liferay-ui:message key="add-projects-you-worked-on" />:</p>
 

@@ -152,8 +152,7 @@ request.setAttribute("view_user.jsp-user", user2);
 			</div>
 		</c:if>
 
-		<c:if test="<%= ((displayStyle == ContactsConstants.DISPLAY_STYLE_DETAIL) || (displayStyle == ContactsConstants.DISPLAY_STYLE_FULL) || ((themeDisplay.getUserId() == user2.getUserId()) && showCompleteYourProfileButtons)) && UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.VIEW) %>">
-
+		<c:if test="<%= ((displayStyle == ContactsConstants.DISPLAY_STYLE_DETAIL) || (displayStyle == ContactsConstants.DISPLAY_STYLE_FULL) || ((themeDisplay.getUserId() == user2.getUserId()) && showCompleteYourProfile)) && UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.VIEW) %>">
 			<div class="user-information" id="<portlet:namespace />userInformation">
 				<aui:layout>
 					<c:if test="<%= showUsersInformation %>">
@@ -171,7 +170,7 @@ request.setAttribute("view_user.jsp-user", user2);
 
 							Set<String> servletContextNames = extensions.keySet();
 
-							request.setAttribute("view_user.jsp-showCompleteYourProfileButtons", String.valueOf(showCompleteYourProfileButtons));
+							request.setAttribute("view_user.jsp-showCompleteYourProfile", String.valueOf(showCompleteYourProfile));
 
 							for (String servletContextName : servletContextNames) {
 								String extensionPath = extensions.get(servletContextName);
@@ -333,7 +332,7 @@ request.setAttribute("view_user.jsp-user", user2);
 	</div>
 </c:if>
 
-<c:if test="<%= (themeDisplay.getUserId() == user2.getUserId()) && (showCompleteYourProfileButtons || showUsersInformation || showTags) && ((displayStyle == ContactsConstants.DISPLAY_STYLE_DETAIL) || (displayStyle == ContactsConstants.DISPLAY_STYLE_FULL)) && UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.VIEW) %>">
+<c:if test="<%= (themeDisplay.getUserId() == user2.getUserId()) && (showCompleteYourProfile || showUsersInformation || showTags) && ((displayStyle == ContactsConstants.DISPLAY_STYLE_DETAIL) || (displayStyle == ContactsConstants.DISPLAY_STYLE_FULL)) && UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.VIEW) %>">
 	<aui:script use="aui-base">
 			var userInformation = A.one('#<portlet:namespace />userInformation');
 
@@ -352,7 +351,7 @@ request.setAttribute("view_user.jsp-user", user2);
 
 				var uri = '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/contacts_center/edit_user_dialogs.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';
 
-				uri = Liferay.Util.addParams('currSectionId=' + sectionId, uri) || uri;
+				uri = Liferay.Util.addParams('curSectionId=' + sectionId, uri) || uri;
 
 				var dialog = new A.Dialog(
 					{
@@ -371,7 +370,6 @@ request.setAttribute("view_user.jsp-user", user2);
 						uri: uri
 					}
 				).render();
-
 			};
 	</aui:script>
 </c:if>

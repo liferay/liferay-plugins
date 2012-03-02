@@ -1,0 +1,95 @@
+<%--
+/**
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<div class="profile-actions">
+	<p class="portlet-msg portlet-msg-info"><liferay-ui:message key="to-complete-your-profile-please-add" />:</p>
+
+	<div class="field-actions-toolbar">
+		<ul class="settings-actions">
+			<c:if test="<%= Validator.isNull(user2.getComments()) %>">
+				<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="comments" data-title="introduction">
+					<div class="aui-settings-field-content">
+						<span class="settings-label"><liferay-ui:message key="introduction" /></span>
+					</div>
+				</li>
+			</c:if>
+
+			<c:if test="<%= tags.isEmpty() %>">
+				<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="categorization" data-title="tags">
+					<div class="aui-settings-field-content">
+						<span class="settings-label"><liferay-ui:message key="tags" /></span>
+					</div>
+				</li>
+			</c:if>
+
+			<c:if test="<%= phones.isEmpty() %>">
+				<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="phoneNumbers" data-title="phone-numbers">
+					<div class="aui-settings-field-content">
+						<span class="settings-label"><liferay-ui:message key="phones" /></span>
+					</div>
+				</li>
+			</c:if>
+
+			<c:if test="<%= emailAddresses.isEmpty() %>">
+				<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="additionalEmailAddresses" data-title="additional-email-addresses">
+					<div class="aui-settings-field-content">
+						<span class="settings-label"><liferay-ui:message key="email-address" /></span>
+					</div>
+				</li>
+			</c:if>
+
+			<c:if test="<%= Validator.isNotNull(aim) && Validator.isNotNull(icq) && Validator.isNotNull(jabber) && Validator.isNotNull(msn) && Validator.isNotNull(skype) && Validator.isNotNull(ym) %>">
+				<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="instantMessenger" data-title="instant-messenger">
+					<div class="aui-settings-field-content">
+						<span class="settings-label"><liferay-ui:message key="instant-messenger" /></span>
+					</div>
+				</li>
+			</c:if>
+
+			<c:if test="<%= addresses.isEmpty() %>">
+				<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="addresses" data-title="addresses">
+					<div class="aui-settings-field-content">
+						<span class="settings-label"><liferay-ui:message key="addresses" /></span>
+					</div>
+				</li>
+			</c:if>
+
+			<c:if test="<%= websites.isEmpty() %>">
+				<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="websites" data-title="websites">
+					<div class="aui-settings-field-content">
+						<span class="settings-label"><liferay-ui:message key="websites" /></span>
+					</div>
+				</li>
+			</c:if>
+
+			<c:if test="<%= Validator.isNull(facebook) && Validator.isNull(mySpace) && Validator.isNull(twitter) %>">
+				<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="socialNetwork" data-title="social-network">
+					<div class="aui-settings-field-content">
+						<span class="settings-label"><liferay-ui:message key="social-network" /></span>
+					</div>
+				</li>
+			</c:if>
+
+			<c:if test="<%= Validator.isNull(contact2.getSmsSn()) %>">
+				<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="sms" data-title="sms">
+					<div class="aui-settings-field-content">
+						<span class="settings-label"><liferay-ui:message key="sms" /></span>
+					</div>
+				</li>
+			</c:if>
+		</ul>
+	</div>
+</div>
