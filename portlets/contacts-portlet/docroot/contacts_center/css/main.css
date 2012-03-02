@@ -381,9 +381,12 @@ $section-header-bg: #CCE6F7;
 	.user-information-title {
 		color: #666;
 		font-size: 1.5em;
-		margin-top: 20px;
 		text-align: right;
 		width: 110px;
+	}
+
+	.lfr-user-info-container {
+		margin-bottom: 10px;
 	}
 
 	.lfr-user-comments {
