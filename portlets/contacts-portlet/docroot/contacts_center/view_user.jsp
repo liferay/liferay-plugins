@@ -154,16 +154,6 @@ request.setAttribute("view_user.jsp-user", user2);
 
 		<c:if test="<%= ((displayStyle == ContactsConstants.DISPLAY_STYLE_DETAIL) || (displayStyle == ContactsConstants.DISPLAY_STYLE_FULL) || ((themeDisplay.getUserId() == user2.getUserId()) && showCompleteYourProfileButtons)) && UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.VIEW) %>">
 
-			<%
-			Contact contact2 = user2.getContact();
-
-			List<Phone> phones = PhoneServiceUtil.getPhones(Contact.class.getName(), contact2.getContactId());
-			List<EmailAddress> emailAddresses = EmailAddressServiceUtil.getEmailAddresses(Contact.class.getName(), contact2.getContactId());
-			List<Address> addresses = AddressServiceUtil.getAddresses(Contact.class.getName(), contact2.getContactId());
-			List<Website> websites = WebsiteServiceUtil.getWebsites(Contact.class.getName(), contact2.getContactId());
-			List<AssetTag> tags = AssetTagLocalServiceUtil.getTags(User.class.getName(), user2.getUserId());
-			%>
-
 			<div class="user-information" id="<portlet:namespace />userInformation">
 				<aui:layout>
 					<c:if test="<%= showUsersInformation %>">
@@ -175,10 +165,6 @@ request.setAttribute("view_user.jsp-user", user2);
 							<div class="lfr-user-info-container">
 								<liferay-util:include page="/contacts_center/view_user_information.jsp" servletContext="<%= application %>" />
 							</div>
-
-							<c:if test="<%= (themeDisplay.getUserId() == user2.getUserId()) && showCompleteYourProfileButtons %>">
-								<%@ include file="/contacts_center/complete_your_profile_buttons.jspf" %>
-							</c:if>
 
 							<%
 							Map<String, String> extensions = ContactsExtensionsUtil.getExtensions();
@@ -284,6 +270,10 @@ request.setAttribute("view_user.jsp-user", user2);
 								<div class="user-tags-title">
 									<liferay-ui:message key="tags" />
 								</div>
+
+								<%
+								List<AssetTag> tags = AssetTagLocalServiceUtil.getTags(User.class.getName(), user2.getUserId());
+								%>
 
 								<c:choose>
 									<c:when test="<%= !tags.isEmpty() %>">
