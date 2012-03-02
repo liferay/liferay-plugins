@@ -1214,11 +1214,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		}
 	}
 
-	.lfr-app-column-view {
-		border-width: 1px 0 0;
-		margin-left: 1px;
-	}
-
 	.social-relations a {
 		border: 1px solid transparent;
 		color: #34404F;
