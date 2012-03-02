@@ -51,7 +51,7 @@ if (projectsEntries.isEmpty()) {
 }
 %>
 
-<liferay-ui:error-marker key="errorSection" value="expertise" />
+<liferay-ui:error-marker key="errorSection" value="projects" />
 
 <h3><liferay-ui:message key="projects" /></h3>
 
@@ -101,7 +101,7 @@ if (projectsEntries.isEmpty()) {
 						<div class="aui-field">
 							<label class="aui-field-label" for="<portlet:namespace /><%= fieldParam %>"><liferay-ui:message key="start-date" /></label>
 
-							<%@ include file="/expertise/select_date.jspf" %>
+							<%@ include file="/projects/select_date.jspf" %>
 						</div>
 					</aui:column>
 					<aui:column>
@@ -115,7 +115,7 @@ if (projectsEntries.isEmpty()) {
 						<div class="aui-field">
 							<label class="aui-field-label" for="<portlet:namespace /><%= fieldParam %>"><liferay-ui:message key="end-date" /></label>
 
-							<%@ include file="/expertise/select_date.jspf" %>
+							<%@ include file="/projects/select_date.jspf" %>
 						</div>
 					</aui:column>
 					<aui:column>
@@ -145,11 +145,11 @@ if (projectsEntries.isEmpty()) {
 
 <aui:script use="liferay-auto-fields">
 	Liferay.once(
-		'formNavigator:reveal<portlet:namespace />expertise',
+		'formNavigator:reveal<portlet:namespace />projects',
 		function() {
 			new Liferay.AutoFields(
 				{
-					contentBox: '#<portlet:namespace />expertise > fieldset',
+					contentBox: '#<portlet:namespace />projects > fieldset',
 					fieldIndexes: '<portlet:namespace />projectsEntriesIndexes'
 				}
 			).render();
