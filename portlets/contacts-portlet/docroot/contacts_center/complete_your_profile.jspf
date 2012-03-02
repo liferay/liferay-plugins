@@ -15,7 +15,7 @@
 --%>
 
 <div class="profile-actions">
-	<p class="portlet-msg portlet-msg-info"><liferay-ui:message key="to-complete-your-profile-please-add" />:</p>
+	<p class="portlet-msg portlet-msg-info"><liferay-ui:message key="to-complete-your-profile-please-add" /></p>
 
 	<div class="field-actions-toolbar">
 		<ul class="settings-actions">
