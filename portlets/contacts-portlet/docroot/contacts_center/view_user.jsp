@@ -271,30 +271,30 @@ request.setAttribute("view_user.jsp-user", user2);
 								</div>
 
 								<%
-								List<AssetTag> tags = AssetTagLocalServiceUtil.getTags(User.class.getName(), user2.getUserId());
+								List<AssetTag> assetTags = AssetTagLocalServiceUtil.getTags(User.class.getName(), user2.getUserId());
 								%>
 
 								<c:choose>
-									<c:when test="<%= !tags.isEmpty() %>">
+									<c:when test="<%= !assetTags.isEmpty() %>">
 										<div class="field-group" data-sectionId="categorization" data-title="tags">
 											<ul class="user-tags">
 
 												<%
 												StringBuilder sb = new StringBuilder();
 
-												for (AssetTag tag : tags) {
+												for (AssetTag assetTag : assetTags) {
 													PortletURL searchURL = ((LiferayPortletResponse)renderResponse).createRenderURL("3");
 
 													searchURL.setWindowState(WindowState.MAXIMIZED);
 
 													searchURL.setParameter("groupId", "0");
-													searchURL.setParameter("keywords", tag.getName());
+													searchURL.setParameter("keywords", assetTag.getName());
 													searchURL.setParameter("struts_action", "/search/search");
 
 													sb.append("<li><a href=\"");
 													sb.append(searchURL);
 													sb.append("\">");
-													sb.append(tag.getName());
+													sb.append(assetTag.getName());
 													sb.append("</a></li>");
 												}
 												%>

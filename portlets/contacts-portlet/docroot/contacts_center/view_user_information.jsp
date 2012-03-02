@@ -23,9 +23,9 @@ Contact contact2 = user2.getContact();
 
 boolean incompleteProfile = false;
 
-List<AssetTag> tags = AssetTagLocalServiceUtil.getTags(User.class.getName(), user2.getUserId());
+List<AssetTag> assetTags = AssetTagLocalServiceUtil.getTags(User.class.getName(), user2.getUserId());
 
-if (tags.isEmpty()) {
+if (assetTags.isEmpty()) {
 	incompleteProfile = true;
 }
 
