@@ -66,7 +66,7 @@
 	</portlet>
 	<portlet>
 		<portlet-name>4</portlet-name>
-		<display-name>Expertise</display-name>
+		<display-name>Projects</display-name>
 		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
 		<expiration-cache>0</expiration-cache>
 		<supports>
@@ -74,9 +74,9 @@
 		</supports>
 		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
-			<title>Expertise</title>
-			<short-title>Expertise</short-title>
-			<keywords>Expertise</keywords>
+			<title>Projects</title>
+			<short-title>Projects</short-title>
+			<keywords>Projects</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

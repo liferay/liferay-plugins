@@ -57,7 +57,7 @@ public class HotDeployMessageListener extends BaseMessageListener {
 	protected void registerContactsExtension() throws Exception {
 		PortletClassInvoker.invoke(
 			false, "1_WAR_contactsportlet", _registerMethodKey, "so-portlet",
-			"/contacts/expertise.jsp");
+			"/contacts/projects.jsp");
 	}
 
 	private MethodKey _registerMethodKey = new MethodKey(

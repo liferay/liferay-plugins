@@ -32,7 +32,7 @@ if (user2 != null) {
 %>
 
 <c:if test="<%= (projectsEntries != null) && !projectsEntries.isEmpty() %>">
-	<div class="section field-group" data-sectionId="expertise" data-title="expertise">
+	<div class="section field-group" data-sectionId="projects" data-title="projects">
 
 		<%
 		for (ProjectsEntry projectsEntry : projectsEntries) {
@@ -73,7 +73,7 @@ if (user2 != null) {
 
 		<div class="field-actions-toolbar">
 			<ul class="settings-actions">
-				<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="expertise" data-title="expertise">
+				<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="projects" data-title="projects">
 					<div class="aui-settings-field-content">
 						<span class="settings-label"><liferay-ui:message key="add" /></span>
 					</div>
