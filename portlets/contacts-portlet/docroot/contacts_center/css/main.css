@@ -501,10 +501,7 @@ $section-header-bg: #CCE6F7;
 	}
 
 	.my-profile .field-group:hover {
-		background-color: #E9E8E8;
-		background-image: url(@theme_image_path@/common/edit.png);
-		background-position: right 5px;
-		background-repeat: no-repeat;
+		background: #E9E8E8 url(@theme_image_path@/common/edit.png) no-repeat right 5px;
 		cursor: pointer;
 	}
 
@@ -514,7 +511,7 @@ $section-header-bg: #CCE6F7;
 		border: 1px solid #C7D0DA;
 		margin: 20px 65px;
 		padding: 4px 4px 0;
-		
+
 		.portlet-msg-info {
 			background-color: transparent;
 			border-width: 0;
@@ -550,9 +547,7 @@ $section-header-bg: #CCE6F7;
 			}
 
 			.action-field {
-				background-image: url(@theme_image_path@/common/add.png);
-				background-position: 2px 50%;
-				background-repeat: no-repeat;
+				background: url(@theme_image_path@/common/add.png) no-repeat 2px 50%;
 				float: left;
 				margin: 2px;
 				padding-left: 21px;
