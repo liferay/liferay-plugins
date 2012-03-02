@@ -7,9 +7,11 @@ AUI.add(
 
 				instance.namespace = params.namespace;
 
-				instance.privateMessagingContainer = A.one('#p_p_id' + params.namespace + ' .messages-content');
+				instance.privateMessagingContainer = A.one('#p_p_id' + params.namespace + ' .private-messaging-container');
 
-				instance._assignEvents();
+				if (instance.privateMessagingContainer) {
+					instance._assignEvents();
+				}
 			},
 
 			deleteMessages: function(mbThreadIds) {
