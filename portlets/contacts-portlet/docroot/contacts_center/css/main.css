@@ -367,6 +367,10 @@ $toolbar-bg: #DCE3EA;
 					background-image: url(@theme_image_path@/social/unfollow.png);
 				}
 
+				.aui-icon-user {
+					background-image: url(@theme_image_path@/common/user_icon.png);
+				}
+
 				.edit-toolbar {
 					margin: 0;
 					overflow: visible;

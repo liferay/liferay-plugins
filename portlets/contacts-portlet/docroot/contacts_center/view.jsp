@@ -38,6 +38,10 @@ else if (socialRelationType != 0) {
 	params.put("socialRelationType", new Long[] {themeDisplay.getUserId(), new Long(socialRelationType)});
 }
 
+if (showOnlySiteMembers) {
+	params.put("usersGroups", new Long(group.getGroupId()));
+}
+
 List<User> users = UserLocalServiceUtil.search(company.getCompanyId(), name, WorkflowConstants.STATUS_APPROVED, params, 0, maxResultCount, new UserLastNameComparator(true));
 int usersCount = UserLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), name, WorkflowConstants.STATUS_APPROVED, params);
 
@@ -182,7 +186,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 									/>
 
 									<%
-									int allUsersCount = UserLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), StringPool.BLANK, WorkflowConstants.STATUS_APPROVED, null);
+									int allUsersCount = UserLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), StringPool.BLANK, WorkflowConstants.STATUS_APPROVED, params);
 									int connectionUsersCount = UserLocalServiceUtil.getSocialUsersCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION);
 									int followingUsersCount = UserLocalServiceUtil.getSocialUsersCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
 									%>
