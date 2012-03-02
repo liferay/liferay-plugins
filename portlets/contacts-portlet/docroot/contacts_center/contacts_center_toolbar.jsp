@@ -144,6 +144,24 @@
 		}
 	);
 
+	<%
+	String userDisplayURL = user2.getDisplayURL(themeDisplay);
+	%>
+
+	<c:if test="<%= (user2 != null) && showOnlySiteMembers && Validator.isNotNull(userDisplayURL) %>">
+		contactsToolbarChildren.push(
+			{
+				cssClass: '<%= user2 == null ? "aui-helper-hidden" : "" %>',
+				handler: function(event) {
+					location.href= '<%= userDisplayURL %>';
+				},
+				icon: 'user',
+				id: '<portlet:namespace />gotoProfileButton',
+				label: '<%= UnicodeLanguageUtil.get(pageContext, "go-to-profile") %>'
+			}
+		);
+	</c:if>
+
 	var contactsToolbar = new A.Toolbar(
 		{
 			activeState: false,

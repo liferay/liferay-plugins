@@ -1214,11 +1214,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		}
 	}
 
-	.lfr-app-column-view {
-		border-width: 1px 0 0;
-		margin-left: 1px;
-	}
-
 	.social-relations a {
 		border: 1px solid transparent;
 		color: #34404F;
@@ -1232,7 +1227,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		padding-right: 0;
 	}
 
-	#_4_WAR_contactsportlet_fm, .taglib-page-iterator {
+	.taglib-page-iterator {
 		padding: 5px;
 	}
 
