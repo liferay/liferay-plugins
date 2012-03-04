@@ -12,7 +12,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -31,7 +31,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -145,7 +145,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -164,7 +164,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -183,7 +183,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -204,7 +204,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -225,7 +225,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -246,7 +246,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -267,7 +267,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -288,7 +288,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -383,7 +383,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -402,7 +402,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -421,7 +421,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -440,7 +440,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -478,7 +478,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -497,7 +497,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -516,7 +516,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -535,7 +535,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -554,7 +554,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -611,7 +611,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -630,7 +630,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -649,7 +649,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -668,7 +668,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -687,7 +687,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -706,7 +706,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -725,7 +725,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -744,7 +744,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -782,7 +782,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -801,7 +801,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -839,7 +839,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -1504,7 +1504,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -1523,7 +1523,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -1542,7 +1542,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -1561,7 +1561,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -1599,7 +1599,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -1903,7 +1903,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -1922,7 +1922,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -1941,7 +1941,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -1960,7 +1960,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -1979,7 +1979,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -1998,7 +1998,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -2017,7 +2017,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -2036,7 +2036,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -2055,7 +2055,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -2074,7 +2074,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -2596,7 +2596,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -2615,7 +2615,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -2774,103 +2774,6 @@
 		</releng>
 	</plugin>
 	<plugin>
-		<artifact-id>ext_tmpl</artifact-id>
-		<name>@ext.display.name@</name>
-		<type>tool</type>
-		<tags></tags>
-		<short-description></short-description>
-		<change-log></change-log>
-		<page-url>http://www.liferay.com</page-url>
-		<author>Liferay, Inc.</author>
-		<licenses>LGPL</licenses>
-		<releng>
-			<bundle>false</bundle>
-			<experimental>false</experimental>
-			<marketplace>false</marketplace>
-			<parent-app></parent-app>
-			<standalone-app>true</standalone-app>
-			<supported>false</supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id>hook_tmpl</artifact-id>
-		<name>@hook.display.name@</name>
-		<type>tool</type>
-		<tags></tags>
-		<short-description></short-description>
-		<change-log></change-log>
-		<page-url>http://www.liferay.com</page-url>
-		<author>Liferay, Inc.</author>
-		<licenses>LGPL</licenses>
-		<releng>
-			<bundle>false</bundle>
-			<experimental>false</experimental>
-			<marketplace>false</marketplace>
-			<parent-app></parent-app>
-			<standalone-app>true</standalone-app>
-			<supported>false</supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id>layouttpl_tmpl</artifact-id>
-		<name>@layouttpl.display.name@ Templates</name>
-		<type>tool</type>
-		<tags></tags>
-		<short-description>
-		This plugin is a @layouttpl.display.name@ layout template.
-	</short-description>
-		<change-log></change-log>
-		<page-url>http://www.liferay.com</page-url>
-		<author>Liferay, Inc.</author>
-		<licenses>LGPL</licenses>
-		<releng>
-			<bundle>false</bundle>
-			<experimental>false</experimental>
-			<marketplace>false</marketplace>
-			<parent-app></parent-app>
-			<standalone-app>true</standalone-app>
-			<supported>false</supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id>portlet_tmpl</artifact-id>
-		<name>@portlet.display.name@</name>
-		<type>tool</type>
-		<tags></tags>
-		<short-description></short-description>
-		<change-log></change-log>
-		<page-url>http://www.liferay.com</page-url>
-		<author>Liferay, Inc.</author>
-		<licenses>LGPL</licenses>
-		<releng>
-			<bundle>false</bundle>
-			<experimental>false</experimental>
-			<marketplace>false</marketplace>
-			<parent-app></parent-app>
-			<standalone-app>true</standalone-app>
-			<supported>false</supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id>theme_tmpl</artifact-id>
-		<name>@theme.display.name@</name>
-		<type>tool</type>
-		<tags></tags>
-		<short-description></short-description>
-		<change-log></change-log>
-		<page-url>http://www.liferay.com</page-url>
-		<author>Liferay, Inc.</author>
-		<licenses>LGPL</licenses>
-		<releng>
-			<bundle>false</bundle>
-			<experimental>false</experimental>
-			<marketplace>false</marketplace>
-			<parent-app></parent-app>
-			<standalone-app>true</standalone-app>
-			<supported>false</supported>
-		</releng>
-	</plugin>
-	<plugin>
 		<artifact-id>cas-web</artifact-id>
 		<name>Central Authentication Service</name>
 		<type>web</type>
@@ -2883,7 +2786,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -2902,7 +2805,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -2921,7 +2824,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -2940,7 +2843,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -2959,7 +2862,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -2997,7 +2900,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -3016,7 +2919,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<experimental>false</experimental>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
