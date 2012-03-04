@@ -218,11 +218,7 @@
 				<xsl:otherwise>No</xsl:otherwise>
 			</xsl:choose>',
 
-		'Parent App':
-			'<xsl:choose>
-				<xsl:when test="parent-app = 'true'">Yes</xsl:when>
-				<xsl:otherwise>No</xsl:otherwise>
-			</xsl:choose>',
+		'Parent App': '<xsl:value-of select="parent-app" />',
 
 		'Standalone App':
 			'<xsl:choose>
