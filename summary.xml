@@ -15,7 +15,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -148,7 +148,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -186,7 +186,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -207,7 +207,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -228,7 +228,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -249,7 +249,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -270,7 +270,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -291,7 +291,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -326,7 +326,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<labs>true</labs>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -345,7 +345,7 @@
 		<releng>
 			<bundle>false</bundle>
 			<labs>true</labs>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
@@ -386,7 +386,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -424,7 +424,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -443,7 +443,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -500,7 +500,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -538,7 +538,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -614,7 +614,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -652,7 +652,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -671,7 +671,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -709,7 +709,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -728,7 +728,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -747,26 +747,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id>opensocial-portlet</artifact-id>
-		<name>OpenSocial</name>
-		<type>portlet</type>
-		<tags></tags>
-		<short-description></short-description>
-		<change-log></change-log>
-		<page-url>http://www.liferay.com</page-url>
-		<author>Liferay, Inc.</author>
-		<licenses>LGPL</licenses>
-		<releng>
-			<bundle>false</bundle>
-			<labs>true</labs>
-			<marketplace>false</marketplace>
-			<parent-app></parent-app>
-			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -842,7 +823,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -1526,7 +1507,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -1545,7 +1526,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -1564,7 +1545,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -1925,7 +1906,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -1944,7 +1925,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -1963,7 +1944,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -1982,7 +1963,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2020,7 +2001,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2039,7 +2020,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2077,7 +2058,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2599,7 +2580,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2789,7 +2770,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2808,7 +2789,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2827,7 +2808,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2846,7 +2827,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2865,26 +2846,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id>solr-web</artifact-id>
-		<name>Solr Search Engine</name>
-		<type>web</type>
-		<tags></tags>
-		<short-description>This plugin uses Solr as the search engine.</short-description>
-		<change-log></change-log>
-		<page-url>http://www.liferay.com</page-url>
-		<author>Liferay, Inc.</author>
-		<licenses>LGPL</licenses>
-		<releng>
-			<bundle>false</bundle>
-			<labs>true</labs>
-			<marketplace>false</marketplace>
-			<parent-app></parent-app>
-			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2903,7 +2865,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2922,7 +2884,7 @@
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<author>Arcsin</author>
