@@ -14,6 +14,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -33,6 +34,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -52,6 +54,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -71,6 +74,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -90,6 +94,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -109,6 +114,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -128,6 +134,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -147,6 +154,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -166,6 +174,7 @@
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app>Social Office</parent-app>
+			<public>true</public>
 			<standalone-app>false</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -185,6 +194,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -206,6 +216,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -227,6 +238,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -248,6 +260,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -269,6 +282,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -290,6 +304,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -309,6 +324,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -328,6 +344,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -347,6 +364,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -366,6 +384,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -385,6 +404,7 @@
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -404,6 +424,7 @@
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app>Social Office</parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -423,6 +444,7 @@
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -442,6 +464,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -461,6 +484,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -480,6 +504,7 @@
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app>Social Office</parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -499,6 +524,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -518,6 +544,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -537,6 +564,7 @@
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -556,6 +584,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -575,6 +604,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -594,6 +624,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -613,6 +644,7 @@
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -632,6 +664,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -651,6 +684,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -670,6 +704,7 @@
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -689,6 +724,7 @@
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app>Social Office</parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -708,6 +744,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -727,6 +764,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -746,6 +784,7 @@
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -765,6 +804,7 @@
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app>Social Office</parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -784,6 +824,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -803,6 +844,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -822,6 +864,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -841,6 +884,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -860,6 +904,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -879,6 +924,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -898,6 +944,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -917,6 +964,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -936,6 +984,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -955,6 +1004,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -974,6 +1024,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -993,6 +1044,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1012,6 +1064,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1031,6 +1084,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1050,6 +1104,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1069,6 +1124,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1088,6 +1144,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1107,6 +1164,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1126,6 +1184,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1145,6 +1204,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1164,6 +1224,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1183,6 +1244,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1202,6 +1264,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1221,6 +1284,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1240,6 +1304,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1259,6 +1324,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1278,6 +1344,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1297,6 +1364,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1316,6 +1384,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1335,6 +1404,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1354,6 +1424,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1373,6 +1444,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1392,6 +1464,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1411,6 +1484,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1430,6 +1504,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1449,6 +1524,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1468,6 +1544,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1487,6 +1564,7 @@
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app>Social Office</parent-app>
+			<public>true</public>
 			<standalone-app>false</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -1506,6 +1584,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -1525,6 +1604,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -1544,6 +1624,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -1563,6 +1644,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1582,6 +1664,7 @@
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app>Social Office</parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -1601,6 +1684,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1620,6 +1704,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1639,6 +1724,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1658,6 +1744,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1677,6 +1764,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1696,6 +1784,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1715,6 +1804,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1734,6 +1824,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1753,6 +1844,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1772,6 +1864,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1791,6 +1884,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1810,6 +1904,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1829,6 +1924,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1848,6 +1944,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1867,6 +1964,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1886,6 +1984,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -1905,6 +2004,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -1924,6 +2024,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -1943,6 +2044,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -1962,6 +2064,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -1981,6 +2084,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2000,6 +2104,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -2019,6 +2124,7 @@
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -2038,6 +2144,7 @@
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app>Social Office</parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -2057,6 +2164,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -2076,6 +2184,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2095,6 +2204,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2114,6 +2224,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2133,6 +2244,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2152,6 +2264,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2171,6 +2284,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2190,6 +2304,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2209,6 +2324,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2228,6 +2344,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2247,6 +2364,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2266,6 +2384,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2285,6 +2404,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2304,6 +2424,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2323,6 +2444,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2342,6 +2464,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2361,6 +2484,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2380,6 +2504,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2399,6 +2524,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2418,6 +2544,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2437,6 +2564,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2456,6 +2584,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2478,6 +2607,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2500,6 +2630,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2519,6 +2650,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2541,6 +2673,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2560,6 +2693,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2579,6 +2713,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -2598,6 +2733,7 @@
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app>Social Office</parent-app>
+			<public>true</public>
 			<standalone-app>false</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -2617,6 +2753,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2636,6 +2773,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2655,6 +2793,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2674,6 +2813,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2693,6 +2833,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2712,6 +2853,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2731,6 +2873,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2750,6 +2893,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
@@ -2769,6 +2913,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -2788,6 +2933,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -2807,6 +2953,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -2826,6 +2973,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -2845,6 +2993,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -2864,6 +3013,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -2883,6 +3033,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
+			<public>true</public>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
