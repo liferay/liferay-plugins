@@ -57,7 +57,7 @@
 									sortable: true
 								},
 								{
-									key: 'Experimental',
+									key: 'Labs',
 									sortable: true
 								},
 								{
@@ -206,9 +206,9 @@
 				<xsl:otherwise>No</xsl:otherwise>
 			</xsl:choose>',
 
-		'Experimental':
+		'Labs':
 			'<xsl:choose>
-				<xsl:when test="experimental = 'true'">Yes</xsl:when>
+				<xsl:when test="labs = 'true'">Yes</xsl:when>
 				<xsl:otherwise>No</xsl:otherwise>
 			</xsl:choose>',
 
