@@ -65,11 +65,15 @@
 									sortable: true
 								},
 								{
+									key: 'Standalone App',
+									sortable: true
+								},
+								{
 									key: 'Parent App',
 									sortable: true
 								},
 								{
-									key: 'Standalone App',
+									key: 'Public',
 									sortable: true
 								},
 								{
@@ -94,7 +98,7 @@
 
 							var authorsCols = [
 								{
-									key: 'Unique Authors',
+									key: 'Authors',
 									sortable: true
 								}
 							];
@@ -115,7 +119,7 @@
 
 							var licensesCols = [
 								{
-									key: 'Unique Licenses',
+									key: 'Licenses',
 									sortable: true
 								}
 							];
@@ -154,7 +158,7 @@
 
 	<xsl:template match="author">
 		{
-			'Unique Authors': '<xsl:value-of select="current()" />'
+			'Authors': '<xsl:value-of select="current()" />'
 		}
 
 		<xsl:if test="position() != last()">
@@ -164,7 +168,7 @@
 
 	<xsl:template match="license">
 		{
-			'Unique Licenses': '<xsl:value-of select="current()" />'
+			'Licenses': '<xsl:value-of select="current()" />'
 		}
 
 		<xsl:if test="position() != last()">
@@ -226,14 +230,16 @@
 				<xsl:otherwise>No</xsl:otherwise>
 			</xsl:choose>',
 
+		'Public':
+			'<xsl:choose>
+				<xsl:when test="public = 'true'">Yes</xsl:when>
+				<xsl:otherwise>No</xsl:otherwise>
+			</xsl:choose>',
+
 		'Supported':
 			'<xsl:choose>
 				<xsl:when test="supported = 'true'">Yes</xsl:when>
 				<xsl:otherwise>No</xsl:otherwise>
 			</xsl:choose>'
-
-		<xsl:if test="position() != last()">
-			,
-		</xsl:if>
 	</xsl:template>
 </xsl:stylesheet>
