@@ -163,11 +163,11 @@
 		<licenses>AGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
-			<labs>true</labs>
+			<labs>false</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
-			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<parent-app>Social Office</parent-app>
+			<standalone-app>false</standalone-app>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -382,7 +382,7 @@
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
-			<labs>true</labs>
+			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
@@ -401,11 +401,11 @@
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
-			<labs>true</labs>
+			<labs>false</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
+			<parent-app>Social Office</parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -420,7 +420,7 @@
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
-			<labs>true</labs>
+			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
@@ -477,11 +477,11 @@
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
-			<labs>true</labs>
+			<labs>false</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
+			<parent-app>Social Office</parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -534,7 +534,7 @@
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
-			<labs>true</labs>
+			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
@@ -610,7 +610,7 @@
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
-			<labs>true</labs>
+			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
@@ -667,7 +667,7 @@
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
-			<labs>true</labs>
+			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
@@ -686,11 +686,11 @@
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
-			<labs>true</labs>
+			<labs>false</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
+			<parent-app>Social Office</parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -743,7 +743,7 @@
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
-			<labs>true</labs>
+			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
@@ -781,11 +781,11 @@
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
-			<labs>true</labs>
+			<labs>false</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
+			<parent-app>Social Office</parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -1503,11 +1503,11 @@
 		<licenses>AGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
-			<labs>true</labs>
+			<labs>false</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
-			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<parent-app>Social Office</parent-app>
+			<standalone-app>false</standalone-app>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -1598,11 +1598,11 @@
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
-			<labs>true</labs>
+			<labs>false</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
+			<parent-app>Social Office</parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2035,7 +2035,7 @@
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
-			<labs>true</labs>
+			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<standalone-app>true</standalone-app>
@@ -2054,11 +2054,11 @@
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
-			<labs>true</labs>
+			<labs>false</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
+			<parent-app>Social Office</parent-app>
 			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2614,11 +2614,11 @@
 		<licenses>AGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
-			<labs>true</labs>
+			<labs>false</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
-			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<parent-app>Social Office</parent-app>
+			<standalone-app>false</standalone-app>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
