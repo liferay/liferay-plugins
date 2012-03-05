@@ -338,7 +338,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 				});
 		}
 
-		if (showOnlySiteMembers) {
+		if (_showOnlySiteMembers) {
 			params.put("usersGroups", new Long(group.getGroupId()));
 		}
 
@@ -394,7 +394,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 	public void init() throws PortletException {
 		super.init();
 
-		showOnlySiteMembers = GetterUtil.getBoolean(
+		_showOnlySiteMembers = GetterUtil.getBoolean(
 			getInitParameter("show-only-site-members"), false);
 	}
 
@@ -837,6 +837,6 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			Contact.class.getName(), user.getContactId(), websites);
 	}
 
-	protected boolean showOnlySiteMembers;
+	private boolean _showOnlySiteMembers;
 
 }
