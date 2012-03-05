@@ -1,8 +1,34 @@
+/**
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
 package com.liferay.calendar.portlet;
 
+import java.io.IOException;
+import java.util.Locale;
+import java.util.Map;
+
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
+import javax.portlet.PortletException;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
+
 import com.liferay.calendar.DuplicateCalendarResourceException;
+import com.liferay.calendar.NoSuchResourceException;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.CalendarResourceServiceUtil;
+import com.liferay.calendar.util.WebKeys;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.LocalizationUtil;
@@ -15,15 +41,10 @@ import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
-import java.io.IOException;
-import java.util.Locale;
-import java.util.Map;
-
-import javax.portlet.ActionRequest;
-import javax.portlet.ActionResponse;
-import javax.portlet.PortletException;
-
-
+/**
+ * @author Fabio Pezzutto
+ * @author Andrea Di Giorgi
+ */
 public class EnterpriseCalendarPortlet extends MVCPortlet {
 
 	public void deleteResource(
@@ -45,6 +66,37 @@ public class EnterpriseCalendarPortlet extends MVCPortlet {
 		if (!copyRequestParameters && !SessionErrors.isEmpty(actionRequest)) {
 			PortalUtil.copyRequestParameters(actionRequest, actionResponse);
 		}
+	}
+
+	public void render(
+			RenderRequest renderRequest, RenderResponse renderResponse)
+		throws PortletException, IOException {
+	
+		try {
+			CalendarResource calendarResource = null;
+	
+			long calendarResourceId = ParamUtil.getLong(
+				renderRequest, "calendarResourceId");
+	
+			if (calendarResourceId > 0) {
+				calendarResource =
+					CalendarResourceServiceUtil.getCalendarResource(
+						calendarResourceId);
+			}
+	
+			renderRequest.setAttribute(
+				WebKeys.ENTERPRISE_CALENDAR_RESOURCE, calendarResource);
+		}
+		catch (Exception e) {
+			if (e instanceof NoSuchResourceException) {
+				SessionErrors.add(renderRequest, e.getClass().getName());
+			}
+			else {
+				throw new PortletException(e);
+			}
+		}
+	
+		super.render(renderRequest, renderResponse);
 	}
 
 	public void updateResource(

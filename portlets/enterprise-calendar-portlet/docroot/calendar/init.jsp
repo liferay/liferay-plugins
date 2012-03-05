@@ -25,10 +25,8 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.calendar.DuplicateCalendarResourceException" %>
 <%@ page import="com.liferay.calendar.model.Calendar" %>
 <%@ page import="com.liferay.calendar.model.CalendarResource"%>
-<%@ page import="com.liferay.calendar.NoSuchResourceException" %>
 <%@ page import="com.liferay.calendar.search.CalendarResourceDisplayTerms" %>
 <%@ page import="com.liferay.calendar.search.CalendarResourceSearch" %>
 <%@ page import="com.liferay.calendar.search.CalendarResourceSearchTerms" %>
@@ -38,6 +36,7 @@
 <%@ page import="com.liferay.calendar.service.permission.EnterpriseCalendarPermission" %>
 <%@ page import="com.liferay.calendar.util.ActionKeys" %>
 <%@ page import="com.liferay.calendar.util.PortletPropsValues" %>
+<%@ page import="com.liferay.calendar.util.WebKeys" %>
 <%@ page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.RowChecker" %>
@@ -48,13 +47,12 @@
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.StringUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Validator" %>
-<%@ page import="com.liferay.portal.kernel.util.WebKeys" %>
-<%@ page import="com.liferay.portal.security.auth.PrincipalException" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
 <%@ page import="com.liferay.portlet.PortletURLUtil" %>
 
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Collections" %>
 <%@ page import="java.util.List" %>
 
 <%@ page import="javax.portlet.PortletMode" %>

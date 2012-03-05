@@ -96,20 +96,13 @@ public class CalendarResourceServiceImpl
 			active, andOperator, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			orderByComparator);
 
-		List<CalendarResource> filteredList = new ArrayList<CalendarResource>();
-
-		for (CalendarResource resource : resources) {
-			if (CalendarResourcePermission.contains(
-				getPermissionChecker(), resource, ActionKeys.VIEW)) {
-
-				filteredList.add(resource);
-			}
-		}
+		List<CalendarResource> filteredResources = filterResources(resources);
 
 		if (start > QueryUtil.ALL_POS && end > QueryUtil.ALL_POS) {
-			return ListUtil.subList(filteredList, start, end);
-		} else {
-			return filteredList;
+			return ListUtil.subList(filteredResources, start, end);
+		}
+		else {
+			return filteredResources;
 		}
 	}
 
@@ -125,6 +118,24 @@ public class CalendarResourceServiceImpl
 		return calendarResourceLocalService.updateCalendarResource(
 			calendarResourceId, code, nameMap, descriptionMap, type, active,
 			serviceContext);
+	}
+
+	protected List<CalendarResource> filterResources(
+			List<CalendarResource> resources)
+		throws PortalException, SystemException {
+	
+		List<CalendarResource> filteredResources =
+			new ArrayList<CalendarResource>();
+	
+		for (CalendarResource resource : resources) {
+			if (CalendarResourcePermission.contains(
+					getPermissionChecker(), resource, ActionKeys.VIEW)) {
+	
+				filteredResources.add(resource);
+			}
+		}
+	
+		return filteredResources;
 	}
 
 }

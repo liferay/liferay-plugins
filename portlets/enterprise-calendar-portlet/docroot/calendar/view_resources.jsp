@@ -20,15 +20,12 @@
 boolean showAddResourceButton = EnterpriseCalendarPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), ActionKeys.ADD_RESOURCE);
 %>
 
-<liferay-ui:error exception="<%= DuplicateCalendarResourceException.class %>" message="this-resource-already-exists" />
-
 <liferay-portlet:renderURL varImpl="searchURL">
 	<portlet:param name="mvcPath" value="/calendar/view_resources.jsp" />
 </liferay-portlet:renderURL>
 
 <aui:form action="<%= searchURL %>" method="get" name="fm">
 	<liferay-portlet:renderURLParams varImpl="searchURL" />
-	<aui:input name="<%= Constants.CMD %>" type="hidden" />
 	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 
 	<liferay-ui:search-form
@@ -38,23 +35,20 @@ boolean showAddResourceButton = EnterpriseCalendarPermission.contains(permission
 
 </aui:form>
 
-<div class="separator"></div>
+<div class="separator"><!-- --></div>
 
 <c:if test="<%= showAddResourceButton %>">
-	<aui:button-row cssClass="add-permission-button-row">
-		<portlet:renderURL var="editResourceURL">
-			<portlet:param name="redirect" value="<%= currentURL %>" />
-			<portlet:param name="jspPage" value="/calendar/edit_resource.jsp" />
-		</portlet:renderURL>
+	<aui:button-row>
+		<liferay-portlet:renderURL var="editResourceURL">
+			<liferay-portlet:param name="jspPage" value="/calendar/edit_resource.jsp" />
+			<liferay-portlet:param name="redirect" value="<%= currentURL %>" />
+		</liferay-portlet:renderURL>
 
 		<aui:button onClick="<%= editResourceURL %>" value="add-calendar-resource" />
 	</aui:button-row>
 </c:if>
 
-<liferay-ui:search-container
-	rowChecker="<%= new RowChecker(renderResponse) %>"
-	searchContainer="<%= new CalendarResourceSearch(renderRequest, currentURLObj) %>"
->
+<liferay-ui:search-container searchContainer="<%= new CalendarResourceSearch(renderRequest, currentURLObj) %>">
 
 	<%@ include file="/calendar/resource_search_results.jspf" %>
 

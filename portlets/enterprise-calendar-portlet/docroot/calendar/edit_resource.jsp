@@ -19,38 +19,36 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
-CalendarResource resource = null;
+CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKeys.ENTERPRISE_CALENDAR_RESOURCE);
+long calendarResourceId = 0;
 
-long calendarResourceId = ParamUtil.getLong(request, "calendarResourceId");
-List<Calendar> calendars = new ArrayList<Calendar>();
+List<Calendar> calendars;
 
-try {
-	if (calendarResourceId > 0) {
-		resource = CalendarResourceServiceUtil.getCalendarResource(calendarResourceId);
-		calendars = CalendarLocalServiceUtil.getResourceCalendars(themeDisplay.getScopeGroupId(), resource.getCalendarResourceId());
-	}
+if (calendarResource != null) {
+	calendarResourceId = calendarResource.getCalendarResourceId();
+
+	calendars = CalendarLocalServiceUtil.getResourceCalendars(themeDisplay.getScopeGroupId(), calendarResourceId);
 }
-catch (Exception e) {
-	if ((e instanceof NoSuchResourceException) || (e instanceof PrincipalException)) {
-		SessionErrors.add(renderRequest, e.getClass().getName());
-	}
+else {
+	calendars = Collections.emptyList();
 }
-
 %>
 
-<liferay-portlet:actionURL varImpl="updateResourceURL" name="updateResource" />
+<liferay-ui:header
+	backURL="<%= redirect %>"
+	title='<%= (calendarResource != null) ? calendarResource.getName(locale) : "new-calendar-resource" %>'
+/>
 
-<aui:form action="<%= updateResourceURL.toString() %>" method="post" name="fm">
-	<aui:input name="<%= Constants.CMD %>" type="hidden" />
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="calendarResourceId" type="hidden" value="<%= calendarResourceId %>" />
+<liferay-portlet:actionURL name="updateResource" var="updateResourceURL">
+	<liferay-portlet:param name="mvcPath" value="/calendar/edit_resource.jsp" />
+	<liferay-portlet:param name="redirect" value="<%= redirect %>" />
+	<liferay-portlet:param name="calendarResourceId" value="<%= String.valueOf(calendarResourceId) %>" />
+</liferay-portlet:actionURL>
 
-	<liferay-ui:header
-		backURL="<%= redirect %>"
-		title='<%= (resource != null) ? resource.getName(locale) : "new-calendar-resource" %>'
-	/>
+<aui:form action="<%= updateResourceURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateResource();" %>'>
+	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (calendarResource == null) ? Constants.ADD : Constants.UPDATE %>" />
 
-	<aui:model-context bean="<%= resource %>" model="<%= CalendarResource.class %>" />
+	<aui:model-context bean="<%= calendarResource %>" model="<%= CalendarResource.class %>" />
 
 	<aui:fieldset>
 		<aui:input name="code" />
@@ -62,9 +60,13 @@ catch (Exception e) {
 		<aui:select name="type">
 			<aui:option label="" value="" />
 			<%
-			for (String resourceType : PortletPropsValues.ECALENDAR_RESOURCE_TYPES) {
+			for (String resourceType : PortletPropsValues.ENTERPRISE_CALENDAR_RESOURCE_TYPES) {
 			%>
-				<aui:option label="<%= resourceType %>" value="<%= resourceType %>" selected="<%= resource != null && resource.getType().equals(resourceType) %>" />
+				<aui:option
+					label="<%= resourceType %>"
+					selected="<%= calendarResource != null && calendarResource.getType().equals(resourceType) %>"
+					value="<%= resourceType %>"
+				/>
 			<%
 			}
 			%>
@@ -74,46 +76,37 @@ catch (Exception e) {
 			<%
 			for (Calendar calendar : calendars) {
 			%>
-				<aui:option label="<%= calendar.getName(locale) %>" selected="<%= calendar.getCalendarId() == resource.getDefaultCalendarId() %>" value="<%= calendar.getCalendarId() %>" />
+				<aui:option
+					label="<%= calendar.getName(locale) %>"
+					selected="<%= calendar.getCalendarId() == calendarResource.getDefaultCalendarId() %>"
+					value="<%= calendar.getCalendarId() %>"
+				/>
 			<%
 			}
 			%>
 		</aui:select>
 
-		<aui:input inlineLabel="left" name="active" type="checkbox" value="<%= resource == null ? true : resource.isActive() %>" />
+		<aui:input inlineLabel="left" name="active" type="checkbox" value="<%= calendarResource == null ? true : calendarResource.isActive() %>" />
 
-		<c:if test="<%= resource == null %>">
+		<c:if test="<%= calendarResource == null %>">
 			<aui:field-wrapper label="permissions">
 				<liferay-ui:input-permissions modelName="<%= CalendarResource.class.getName() %>" />
 			</aui:field-wrapper>
 		</c:if>
 
-		<aui:button name="saveButton" onClick='<%= renderResponse.getNamespace() + "saveResource();" %>' value="save" />
+		<aui:button-row>
+			<aui:button type="submit" />
 
-		<aui:button name="cancelButton" onClick="<%= redirect %>" type="cancel" />
-
+			<aui:button href="<%= redirect %>" type="cancel" />
+		</aui:button-row>
 	</aui:fieldset>
 
 </aui:form>
 
 <aui:script>
-	Liferay.provide(
-		window,
-		'<portlet:namespace />saveResource',
-		function() {
-			var A = AUI();
-			var fm = A.one('#<portlet:namespace />fm');
-			var cmd = A.one('#<portlet:namespace /><%= Constants.CMD %>');
-			var action = '<%= (resource == null) ? Constants.ADD : Constants.UPDATE %>';
+	function <portlet:namespace />updateResource() {
+		submitForm(document.<portlet:namespace />fm);
+	}
 
-			cmd.val(action);
-
-			submitForm(fm);
-		},
-		['aui-base']
-	);
-</aui:script>
-
-<aui:script use="aui-base">
 	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />code);
 </aui:script>

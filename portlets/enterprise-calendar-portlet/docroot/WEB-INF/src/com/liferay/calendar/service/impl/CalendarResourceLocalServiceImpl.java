@@ -60,11 +60,8 @@ public class CalendarResourceLocalServiceImpl
 
 		// Calendar resource
 
-		long calendarResourceId = counterLocalService.increment();
-
 		if (Validator.isNull(className)) {
 			className = CalendarResource.class.getName();
-			classPK = calendarResourceId;
 		}
 
 		long globalUserId = 0;
@@ -83,7 +80,9 @@ public class CalendarResourceLocalServiceImpl
 		long classNameId = PortalUtil.getClassNameId(className);
 		Date now = new Date();
 
-		validate(classNameId, classPK);
+		validate(className, classPK);
+
+		long calendarResourceId = counterLocalService.increment();
 
 		CalendarResource calendarResource = calendarResourcePersistence.create(
 			calendarResourceId);
@@ -96,7 +95,14 @@ public class CalendarResourceLocalServiceImpl
 		calendarResource.setCreateDate(serviceContext.getCreateDate(now));
 		calendarResource.setModifiedDate(serviceContext.getModifiedDate(now));
 		calendarResource.setClassNameId(classNameId);
-		calendarResource.setClassPK(classPK);
+
+		if (className.equals(CalendarResource.class.getName())) {
+			calendarResource.setClassPK(calendarResourceId);
+		}
+		else {
+			calendarResource.setClassPK(classPK);
+		}
+
 		calendarResource.setClassUuid(classUuid);
 		calendarResource.setCode(code);
 		calendarResource.setNameMap(nameMap);
@@ -281,14 +287,18 @@ public class CalendarResourceLocalServiceImpl
 		return dynamicQuery.add(junction);
 	}
 
-	protected void validate(long classNameId, long classPK)
+	protected void validate(String className, long classPK)
 		throws PortalException, SystemException {
 
-		CalendarResource calendarResource =
-			calendarResourcePersistence.fetchByC_C(classNameId, classPK);
+		if (!className.equals(CalendarResource.class.getName())) {
+			long classNameId = PortalUtil.getClassNameId(className);
 
-		if (Validator.isNotNull(calendarResource)) {
-			throw new DuplicateCalendarResourceException();
+			CalendarResource calendarResource =
+				calendarResourcePersistence.fetchByC_C(classNameId, classPK);
+
+			if (Validator.isNotNull(calendarResource)) {
+				throw new DuplicateCalendarResourceException();
+			}
 		}
 	}
 

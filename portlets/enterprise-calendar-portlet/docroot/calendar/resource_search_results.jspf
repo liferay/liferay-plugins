@@ -19,14 +19,17 @@ CalendarResourceSearchTerms searchTerms = (CalendarResourceSearchTerms)searchCon
 
 List<CalendarResource> resultsResources = null;
 int totalResources = 0;
+
 long classNameId = PortalUtil.getClassNameId(CalendarResource.class.getName());
+long classPK = 0;
 
 if (searchTerms.isAdvancedSearch()) {
-	List<CalendarResource> allResults = CalendarResourceServiceUtil.search(themeDisplay.getScopeGroupId(), classNameId, 0l, searchTerms.getCode(), searchTerms.getName(), searchTerms.getDescription(), searchTerms.getType(), searchTerms.isActive(), searchTerms.isAndOperator(), QueryUtil.ALL_POS, QueryUtil.ALL_POS, searchContainer.getOrderByComparator());
+	List<CalendarResource> allResults = CalendarResourceServiceUtil.search(themeDisplay.getScopeGroupId(), classNameId, classPK, searchTerms.getCode(), searchTerms.getName(), searchTerms.getDescription(), searchTerms.getType(), searchTerms.isActive(), searchTerms.isAndOperator(), QueryUtil.ALL_POS, QueryUtil.ALL_POS, searchContainer.getOrderByComparator());
 	resultsResources = ListUtil.subList(allResults, searchContainer.getStart(), searchContainer.getEnd());
 	totalResources = allResults.size();
-} else {
-	List<CalendarResource> allResults = CalendarResourceServiceUtil.searchByKeywords(themeDisplay.getScopeGroupId(), classNameId, 0l, searchTerms.getKeywords(), true, QueryUtil.ALL_POS, QueryUtil.ALL_POS, searchContainer.getOrderByComparator());
+}
+else {
+	List<CalendarResource> allResults = CalendarResourceServiceUtil.searchByKeywords(themeDisplay.getScopeGroupId(), classNameId, classPK, searchTerms.getKeywords(), true, QueryUtil.ALL_POS, QueryUtil.ALL_POS, searchContainer.getOrderByComparator());
 	resultsResources = ListUtil.subList(allResults, searchContainer.getStart(), searchContainer.getEnd());
 	totalResources = allResults.size();
 }

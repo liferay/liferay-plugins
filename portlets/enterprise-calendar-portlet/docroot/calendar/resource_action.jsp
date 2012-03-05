@@ -19,21 +19,10 @@
 <%
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
-CalendarResource resource = null;
-
-boolean view = false;
-
-if (row != null && row.getObject() != null) {
-	resource = (CalendarResource)row.getObject();
-}
-else {
-	resource = (CalendarResource)request.getAttribute("view_resource.jsp-resource");
-	view = true;
-}
-
+CalendarResource resource = (CalendarResource)row.getObject();
 %>
 
-<liferay-ui:icon-menu showExpanded="<%= view %>" showWhenSingleIcon="<%= view %>">
+<liferay-ui:icon-menu>
 	<c:if test="<%= CalendarResourcePermission.contains(permissionChecker, resource, ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="editURL">
 			<portlet:param name="jspPage" value="/calendar/edit_resource.jsp" />
@@ -68,6 +57,8 @@ else {
 			<portlet:param name="calendarResourceId" value="<%= String.valueOf(resource.getCalendarResourceId()) %>" />
 		</portlet:actionURL>
 
-		<liferay-ui:icon-delete url="<%= deleteURL %>" />
+		<liferay-ui:icon-delete
+			url="<%= deleteURL %>"
+		/>
 	</c:if>
 </liferay-ui:icon-menu>

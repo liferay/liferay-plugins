@@ -20,4 +20,4 @@
 	<liferay-portlet:param name="jspPage" value="/calendar/view_resources.jsp" />
 </liferay-portlet:renderURL>
 
-<aui:a href="<%= resourcesURL.toString() %>">resourses...</aui:a>
+<aui:a href="<%= resourcesURL.toString() %>">resources...</aui:a>
