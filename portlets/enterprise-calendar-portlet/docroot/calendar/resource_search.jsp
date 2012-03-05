@@ -32,7 +32,7 @@ CalendarResourceDisplayTerms displayTerms = new CalendarResourceDisplayTerms(ren
 		<aui:select name="type">
 			<aui:option label="all" value="" />
 			<%
-			for (String resourceType : PortletPropsValues.ECALENDAR_RESOURCE_TYPES) {
+			for (String resourceType : PortletPropsValues.ENTERPRISE_CALENDAR_RESOURCE_TYPES) {
 			%>
 				<aui:option label="<%= resourceType %>" value="<%= resourceType %>" selected="<%= displayTerms.getType().equals(resourceType) %>" />
 			<%
