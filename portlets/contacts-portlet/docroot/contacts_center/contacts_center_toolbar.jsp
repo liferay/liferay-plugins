@@ -145,13 +145,16 @@
 	);
 
 	<%
-	String userDisplayURL = user2.getDisplayURL(themeDisplay);
+	String userDisplayURL = null;
+
+	if (user2 != null) {
+		userDisplayURL = user2.getDisplayURL(themeDisplay);
+	}
 	%>
 
-	<c:if test="<%= (user2 != null) && showOnlySiteMembers && Validator.isNotNull(userDisplayURL) %>">
+	<c:if test="<%= Validator.isNotNull(userDisplayURL) %>">
 		contactsToolbarChildren.push(
 			{
-				cssClass: '<%= user2 == null ? "aui-helper-hidden" : "" %>',
 				handler: function(event) {
 					location.href= '<%= userDisplayURL %>';
 				},
