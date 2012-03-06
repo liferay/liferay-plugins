@@ -72,7 +72,7 @@ JSONObject userPrefsJSONObject = ExpandoValueServiceUtil.getJSONData(themeDispla
 					userPrefsKey: '<%= userPrefsKey %>'
 				}
 			),
-			userPrefs: A.JSON.parse('<%= userPrefsJSONObject %>'),
+			userPrefs: A.JSON.parse('<%= String.valueOf(userPrefsJSONObject) %>'),
 			view: '<%= view %>',
 			viewParams: '<%= ParamUtil.getString(renderRequest, "viewParams") %>'
 		}
