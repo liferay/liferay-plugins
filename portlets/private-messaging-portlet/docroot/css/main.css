@@ -119,6 +119,18 @@
 	.thread {
 		.body {
 			padding: 5px 60px 0 0;
+
+			.image-thumbnail {
+				float: left;
+				height: 150px;
+				margin: 10px;
+				width: 150px;
+
+				img {
+					max-height: 150px;
+					max-width: 150px;
+				}
+			}
 		}
 
 		.thread-info {
