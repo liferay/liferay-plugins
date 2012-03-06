@@ -115,8 +115,8 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 					actionRequest,
 					"fieldValidationErrorMessage" + formFieldsIndex);
 
-				if ((Validator.isNotNull(fieldValidationScript) ^
-					(Validator.isNotNull(fieldValidationErrorMessage)))) {
+				if (Validator.isNotNull(fieldValidationScript) ^
+					Validator.isNotNull(fieldValidationErrorMessage)) {
 
 					SessionErrors.add(
 						actionRequest, "invalidValidationDefinition" + i);
