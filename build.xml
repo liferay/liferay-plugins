@@ -172,11 +172,13 @@
 
 		<delete file="dist/liferay-plugins-sdk-${lp.version}.zip" />
 
-		<zip
-			basedir="."
-			destfile="dist/liferay-plugins-sdk-${lp.version}.zip"
-			excludes=".git/**,build.*.properties,dist/**,clients/*-client/**,ext/*-ext/**,hooks/*-hook/**,layouttpl/*-layouttpl/**,portlets/*-portlet/**,private-plugins.txt,themes/*-theme/**,webs/*-web/**"
-		/>
+		<zip destfile="dist/liferay-plugins-sdk-${lp.version}.zip">
+			<zipfileset
+				dir="."
+				excludes=".git/**,build.*.properties,dist/**,clients/*-client/**,ext/*-ext/**,hooks/*-hook/**,layouttpl/*-layouttpl/**,portlets/*-portlet/**,private-plugins.txt,themes/*-theme/**,webs/*-web/**"
+				prefix="liferay-plugins-sdk-${lp.version}"
+			/>
+		</zip>
 	</target>
 
 	<target name="format-javadoc">
