@@ -278,7 +278,7 @@ public class JabberImpl implements Jabber {
 
 	public void updatePassword(long userId, String password) {
 		if (!PortletPropsValues.JABBER_IMPORT_USER_ENABLED ||
-			password == null) {
+			(password == null)) {
 
 			return;
 		}
