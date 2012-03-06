@@ -834,14 +834,16 @@ Please find a solution that does not require portal-impl.jar.
 
 		<if>
 			<and>
-				<equals arg1="${plugins.src.enabled}" arg2="true" />
+				<equals arg1="${plugins.src.zip.enabled}" arg2="true" />
 				<available file="${docroot.dir}/WEB-INF/src" />
 			</and>
 			<then>
-				<zip
-					basedir="${docroot.dir}/WEB-INF/src"
-					destfile="${plugin.src.file}"
-				/>
+				<zip destfile="${plugin.src.file}">
+					<zipfileset
+						dir="${docroot.dir}/WEB-INF/src"
+						prefix="${plugin.name}-src-${lp.version}.${plugin.version}"
+					/>
+				</zip>
 			</then>
 		</if>
 	</target>
