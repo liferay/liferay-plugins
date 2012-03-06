@@ -64,7 +64,7 @@ a:focus .opens-new-window-accessible {
 }
 
 #content div#column-1.portlet-column-only .portlet-column-content {
-	margin: -1px -1px -1px 0;
+	margin: 0 -1px -1px 0;
 }
 
 /* ---------- Heading ---------- */
@@ -205,6 +205,7 @@ a:focus .opens-new-window-accessible {
 #so-sidebar {
 	border-right: 1px solid $border-color;
 	left: 0;
+	padding-bottom: 2.5em;
 	position: absolute;
 	top: 0;
 	width: 200px;
@@ -293,7 +294,7 @@ a:focus .opens-new-window-accessible {
 			padding-right: 16px;
 			position: relative;
 
-			.name, .name a, .star {
+			.name, .name a, .favorite, .unfavorite {
 				display: block;
 			}
 
@@ -305,7 +306,7 @@ a:focus .opens-new-window-accessible {
 				max-height: 2.75em;
 			}
 
-			.star, .unstar {
+			.favorite, .unfavorite {
 				position: absolute;
 				right: 0;
 				top: 3px;
@@ -1234,6 +1235,10 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		}
 	}
 
+	.toolbar {
+		border-bottom-width: 0;
+	}
+
 	.lfr-app-column-view {
 		border-width: 1px 0 0;
 		margin-left: 1px;
@@ -1473,11 +1478,15 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 .private-messaging-portlet {
 	margin-left: 1px;
-	margin-top: 1px;
+
 	.controls, .portlet-msg-info {
 		@include border-radius(0);
 		border-width: 0 0 1px;
 		margin: 0;
+	}
+
+	.messages-content {
+		min-height: 400px;
 	}
 }
 
@@ -1670,6 +1679,10 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		margin: -10px;
 		padding: 10px;
 	}
+
+	tr.selected, tr.selected.hover td, tr.selected:hover td, tr.alt.selected:hover td {
+		background-color: #0070BA;
+	}
 }
 
 .portlet-wiki, .portlet-message-boards {
@@ -1695,10 +1708,15 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	margin: -10px -10px 0;
 }
 
-.top-links-navigation {
+.top-links .top-links-navigation {
 	background: #EEE;
 	padding: 4px 8px;
 	width: auto;
+
+	.taglib-text {
+		border-right-width: 0;
+		padding-right: 0;
+	}
 
 	a {
 		border: 1px solid transparent;
