@@ -365,7 +365,7 @@ public class MongoExpandoValueLocalServiceImpl
 				dbCursor = dbCollection.find();
 			}
 
-			if ((start != QueryUtil.ALL_POS) && end != QueryUtil.ALL_POS) {
+			if ((start != QueryUtil.ALL_POS) && (end != QueryUtil.ALL_POS)) {
 				dbCursor = dbCursor.skip(start).limit(end - start);
 			}
 

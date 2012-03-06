@@ -51,7 +51,7 @@ public class EventsWebCacheItem implements WebCacheItem {
 				x = array[i].indexOf("<b>");
 				y = array[i].indexOf("</b>");
 
-				if (x != -1 && y != -1) {
+				if ((x != -1) && (y != -1)) {
 					int year = GetterUtil.getInteger(StringUtil.extractDigits(
 						array[i].substring(x + 3, y)));
 

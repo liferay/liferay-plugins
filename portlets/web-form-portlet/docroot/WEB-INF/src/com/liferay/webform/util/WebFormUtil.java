@@ -144,7 +144,7 @@ public class WebFormUtil {
 	}
 
 	public static String[] split(String s, String delimiter) {
-		if (s == null || delimiter == null) {
+		if ((s == null) || (delimiter == null)) {
 			return new String[0];
 		}
 
