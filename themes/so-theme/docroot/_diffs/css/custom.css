@@ -1406,6 +1406,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		color: $header;
 		font-size: 1.55em;
 		font-weight: normal;
+		margin-top: .5em;
 		padding: 0 .25em .70em;
 	}
 
