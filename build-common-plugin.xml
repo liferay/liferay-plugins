@@ -35,9 +35,11 @@
 		<antelope:endswith string="${plugin.name}" with="-client" />
 		<then>
 			<property name="plugin.file" value="${project.dir}/dist/${plugin.name}-${lp.version}.${plugin.version}.jar" />
+			<property name="plugin.src.file" value="${project.dir}/dist/${plugin.name}-src-${lp.version}.${plugin.version}.zip" />
 		</then>
 		<else>
 			<property name="plugin.file" value="${project.dir}/dist/${plugin.name}-${lp.version}.${plugin.version}.war" />
+			<property name="plugin.src.file" value="${project.dir}/dist/${plugin.name}-src-${lp.version}.${plugin.version}.zip" />
 		</else>
 	</if>
 
@@ -254,6 +256,7 @@
 		<delete dir="test-results" />
 		<delete dir="tmp" />
 		<delete file="${plugin.file}" />
+		<delete file="${plugin.src.file}" />
 
 		<delete includeemptydirs="true">
 			<fileset dir="docroot" includes="**/.sass-cache/**" />
@@ -827,6 +830,19 @@ Please find a solution that does not require portal-impl.jar.
 					excludes="${plugins.war.excludes}"
 				/>
 			</else>
+		</if>
+
+		<if>
+			<and>
+				<equals arg1="${plugins.src.enabled}" arg2="true" />
+				<available file="${docroot.dir}/WEB-INF/src" />
+			</and>
+			<then>
+				<zip
+					basedir="${docroot.dir}/WEB-INF/src"
+					destfile="${plugin.src.file}"
+				/>
+			</then>
 		</if>
 	</target>
 </project>
