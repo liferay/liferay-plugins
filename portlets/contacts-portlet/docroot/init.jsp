@@ -97,7 +97,11 @@ page import="javax.portlet.WindowState" %>
 <%
 WindowState windowState = renderRequest.getWindowState();
 
-boolean showOnlySiteMembers = GetterUtil.getBoolean(portletConfig.getInitParameter("show-only-site-members"), false);
+boolean showOnlySiteMembers = false;
+
+if (portletName.equals(PortletKeys.MEMBERS)) {
+	showOnlySiteMembers = true;
+}
 
 PortletPreferences preferences = renderRequest.getPreferences();
 

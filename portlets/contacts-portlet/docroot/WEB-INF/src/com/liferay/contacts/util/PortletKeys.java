@@ -21,6 +21,8 @@ public class PortletKeys extends com.liferay.portal.util.PortletKeys {
 
 	public static final String CONTACTS_CENTER = "1";
 
+	public static final String MEMBERS = "4";
+
 	public static final String PROFILE = "2";
 
 }
