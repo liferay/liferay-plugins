@@ -46,7 +46,7 @@ public class HibernateServlet extends HttpServlet {
 		}
 
 		if ((contentType != null) &&
-			(contentType.startsWith(ContentTypes.MULTIPART_FORM_DATA))) {
+			contentType.startsWith(ContentTypes.MULTIPART_FORM_DATA)) {
 
 			request = PortalUtil.getUploadServletRequest(request);
 		}
