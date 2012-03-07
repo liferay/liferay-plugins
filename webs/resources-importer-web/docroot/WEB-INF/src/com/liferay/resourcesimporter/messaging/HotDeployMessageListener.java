@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.themeresourceimporter.messaging;
+package com.liferay.resourcesimporter.messaging;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.log.Log;
@@ -20,18 +20,21 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.servlet.ServletContextPool;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
-import com.liferay.themeresourceimporter.importer.FileImporter;
-import com.liferay.themeresourceimporter.importer.LarImporter;
+import com.liferay.resourcesimporter.util.FileSystemImporter;
+import com.liferay.resourcesimporter.util.LARImporter;
 
 import java.io.File;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 
@@ -43,56 +46,89 @@ public class HotDeployMessageListener extends BaseMessageListener {
 	@Override
 	protected void doReceive(Message message) throws Exception {
 		String command = message.getString("command");
-		String servletContextName = message.getString("servletContextName");
 
-		if (!command.equals("deploy") ||
-			!servletContextName.endsWith("-theme")) {
-
+		if (!command.equals("deploy")) {
 			return;
 		}
+
+		String servletContextName = message.getString("servletContextName");
 
 		ServletContext servletContext = ServletContextPool.get(
 			servletContextName);
 
-		File resourceDir = new File(
-			servletContext.getRealPath("/WEB-INF/classes/resources"));
+		File resourcesDir = new File(
+			servletContext.getRealPath("/WEB-INF/classes/resources-importer"));
 
-		if (!resourceDir.exists()) {
+		if (!resourcesDir.exists()) {
 			return;
 		}
 
-		_log.info("Importing resources from " + servletContextName);
+		if (_log.isInfoEnabled()) {
+			_log.info("Importing resources from " + servletContextName);
+		}
 
-		String name = TextFormatter.format(servletContextName, TextFormatter.J);
+		String layoutSetPrototypeName = TextFormatter.format(
+			servletContextName, TextFormatter.J);
 
-		File lar = new File(resourceDir, "/archive.lar");
+		File larFile = new File(resourcesDir, "/archive.lar");
 
 		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 
 		for (Company company : companies) {
-			if (hasLayoutSetPrototype(company.getCompanyId(), name)) {
+			if (hasLayoutSetPrototype(
+					company.getCompanyId(), layoutSetPrototypeName)) {
+
+				if (_log.isInfoEnabled()) {
+					_log.info(
+						"Layout set prototype already exists for company " +
+							company.getWebId());
+				}
+
 				continue;
 			}
 
-			if (lar.exists()) {
-				LarImporter.importResource(company.getCompanyId(), name, lar);
+			Map<Locale, String> layoutSetPrototypeNameMap =
+				new HashMap<Locale, String>();
+
+			Locale locale = LocaleUtil.getDefault();
+
+			layoutSetPrototypeNameMap.put(locale, layoutSetPrototypeName);
+
+			if (larFile.exists()) {
+				LARImporter larImporter = getLARImporter();
+
+				larImporter.importResources(
+					company.getCompanyId(), layoutSetPrototypeNameMap, larFile);
 			}
 			else {
-				FileImporter.importResource(
-					company.getCompanyId(), name, resourceDir);
+				FileSystemImporter fileSystemImporter = getFileSystemImporter();
+
+				fileSystemImporter.importResources(
+					company.getCompanyId(), layoutSetPrototypeNameMap,
+					resourcesDir);
 			}
 		}
 	}
 
+	protected FileSystemImporter getFileSystemImporter() {
+		return new FileSystemImporter();
+	}
+
+	protected LARImporter getLARImporter() {
+		return new LARImporter();
+	}
+
 	protected boolean hasLayoutSetPrototype(long companyId, String name)
 		throws Exception {
+
+		Locale locale = LocaleUtil.getDefault();
 
 		List<LayoutSetPrototype> layoutSetPrototypes =
 			LayoutSetPrototypeLocalServiceUtil.search(
 				companyId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 		for (LayoutSetPrototype layoutSetPrototype : layoutSetPrototypes) {
-			if (name.equals(layoutSetPrototype.getName(Locale.US))) {
+			if (name.equals(layoutSetPrototype.getName(locale))) {
 				return true;
 			}
 		}

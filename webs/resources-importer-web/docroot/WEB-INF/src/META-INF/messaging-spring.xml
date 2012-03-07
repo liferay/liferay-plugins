@@ -10,7 +10,7 @@
 
 	<!-- Listeners -->
 
-	<bean id="messageListener.hot_deploy" class="com.liferay.themeresourceimporter.messaging.HotDeployMessageListener" />
+	<bean id="messageListener.hot_deploy" class="com.liferay.resourcesimporter.messaging.HotDeployMessageListener" />
 
 	<!-- Configurator -->
 

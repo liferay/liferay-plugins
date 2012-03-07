@@ -12,9 +12,10 @@
  * details.
  */
 
-package com.liferay.themeresourceimporter.importer;
+package com.liferay.resourcesimporter.util;
 
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
@@ -34,91 +35,87 @@ import com.liferay.portlet.journal.service.JournalTemplateLocalServiceUtil;
 
 import java.io.File;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 /**
  * @author Ryan Park
  */
-public class FileImporter {
+public class FileSystemImporter {
 
-	public static void importResource(
-			long companyId, String name, File resourceDir)
+	public void importResources(
+			long companyId, Map<Locale, String> layoutSetPrototypeNameMap,
+			File resourcesDir)
 		throws Exception {
-
-		Map<Locale, String> nameMap = new HashMap<Locale, String>();
-
-		nameMap.put(Locale.US, name);
 
 		User user = UserLocalServiceUtil.getDefaultUser(companyId);
 
 		LayoutSetPrototype layoutSetPrototype =
 			LayoutSetPrototypeLocalServiceUtil.addLayoutSetPrototype(
-				user.getUserId(), companyId, nameMap, StringPool.BLANK, true,
-				true, new ServiceContext());
+				user.getUserId(), companyId, layoutSetPrototypeNameMap,
+				StringPool.BLANK, true, true, new ServiceContext());
 
 		Group group = layoutSetPrototype.getGroup();
 
-		File structuresDir = new File(resourceDir, "/structures");
+		File dlDocumentsDir = new File(
+			resourcesDir, "/document_library/documents");
 
-		if (structuresDir.exists() && structuresDir.isDirectory()) {
-			createStructures(
-				user.getUserId(), group.getGroupId(), structuresDir);
+		if (dlDocumentsDir.exists() && dlDocumentsDir.isDirectory()) {
+			createDLFileEntries(
+				user.getUserId(), group.getGroupId(), dlDocumentsDir);
 		}
 
-		File templatesDir = new File(resourceDir, "/templates");
+		File journalArticlesDir = new File(resourcesDir, "/journal/articles");
 
-		if (templatesDir.exists() && templatesDir.isDirectory()) {
-			createTemplates(
+		if (journalArticlesDir.exists() && journalArticlesDir.isDirectory()) {
+			createJournalArticles(
 				user.getUserId(), group.getGroupId(), StringPool.BLANK,
-				templatesDir);
+				StringPool.BLANK, journalArticlesDir);
 		}
 
-		File articlesDir = new File(resourceDir, "/articles");
+		File journalStructuresDir = new File(
+			resourcesDir, "/journal/structures");
 
-		if (articlesDir.exists() && articlesDir.isDirectory()) {
-			createArticles(
+		if (journalStructuresDir.exists() &&
+			journalStructuresDir.isDirectory()) {
+
+			createJournalStructures(
+				user.getUserId(), group.getGroupId(), journalStructuresDir);
+		}
+
+		File journalTemplatesDir = new File(resourcesDir, "/journal/templates");
+
+		if (journalTemplatesDir.exists() && journalTemplatesDir.isDirectory()) {
+			createJournalTemplates(
 				user.getUserId(), group.getGroupId(), StringPool.BLANK,
-				StringPool.BLANK, articlesDir);
-		}
-
-		File documentsDir = new File(resourceDir, "/documents");
-
-		if (documentsDir.exists() && documentsDir.isDirectory()) {
-			createDocuments(user.getUserId(), group.getGroupId(), documentsDir);
+				journalTemplatesDir);
 		}
 	}
 
-	protected static void createArticles(
+	protected void createDLFileEntries(long userId, long groupId, File dir)
+		throws Exception {
+	}
+
+	protected void createJournalArticles(
 			long userId, long groupId, String journalStructureId,
 			String journalTemplateId, File dir)
 		throws Exception {
 
-		File[] files = dir.listFiles();
-
-		if (files == null) {
-			return;
-		}
+		File[] files = listFiles(dir);
 
 		for (File file : files) {
-			if (file.isDirectory()) {
-				continue;
-			}
+			String title = getName(file.getName());
 
-			String name = getName(file.getName());
-
-			Map<Locale, String> titleMap = new HashMap<Locale, String>();
-
-			titleMap.put(Locale.US, name);
+			Map<Locale, String> titleMap = getNameMap(title);
 
 			String content = new String(FileUtil.getBytes(file));
 
 			ServiceContext serviceContext = new ServiceContext();
 
 			serviceContext.setScopeGroupId(groupId);
-
-			Map<String, byte[]> images = new HashMap<String, byte[]>();
 
 			JournalArticle journalArticle =
 				JournalArticleLocalServiceUtil.addArticle(
@@ -127,7 +124,8 @@ public class FileImporter {
 					content, "general", journalStructureId, journalTemplateId,
 					StringPool.BLANK, 1, 1, 2010, 0, 0, 0, 0, 0, 0, 0, true, 0,
 					0, 0, 0, 0, true, true, false, StringPool.BLANK, null,
-					images, StringPool.BLANK, serviceContext);
+					new HashMap<String, byte[]>(), StringPool.BLANK,
+					serviceContext);
 
 			JournalArticleLocalServiceUtil.updateStatus(
 				userId, groupId, journalArticle.getArticleId(),
@@ -136,29 +134,15 @@ public class FileImporter {
 		}
 	}
 
-	protected static void createDocuments(long userId, long groupId, File dir)
-		throws Exception {
-	}
-
-	protected static void createStructures(long userId, long groupId, File dir)
+	protected void createJournalStructures(long userId, long groupId, File dir)
 		throws Exception {
 
-		File[] files = dir.listFiles();
-
-		if (files == null) {
-			return;
-		}
+		File[] files = listFiles(dir);
 
 		for (File file : files) {
-			if (file.isDirectory()) {
-				continue;
-			}
-
 			String name = getName(file.getName());
 
-			Map<Locale, String> nameMap = new HashMap<Locale, String>();
-
-			nameMap.put(Locale.US, name);
+			Map<Locale, String> nameMap = getNameMap(name);
 
 			String xsd = new String(FileUtil.getBytes(file));
 
@@ -167,38 +151,31 @@ public class FileImporter {
 					userId, groupId, StringPool.BLANK, true, StringPool.BLANK,
 					nameMap, null, xsd, new ServiceContext());
 
-			File resourceDir = getResourceDir(dir);
+			File resourcesDir = getResourcesDir(dir);
 
-			File templatesDir = new File(resourceDir, "/templates/" + name);
+			File journalTemplatesDir = new File(
+				resourcesDir, "/journal/templates/" + name);
 
-			if (templatesDir.exists() && templatesDir.isDirectory()) {
-				createTemplates(
+			if (journalTemplatesDir.exists() &&
+				journalTemplatesDir.isDirectory()) {
+
+				createJournalTemplates(
 					userId, groupId, journalStructure.getStructureId(),
-					templatesDir);
+					journalTemplatesDir);
 			}
 		}
 	}
 
-	protected static void createTemplates(
+	protected void createJournalTemplates(
 			long userId, long groupId, String journalStructureId, File dir)
 		throws Exception {
 
-		File[] files = dir.listFiles();
-
-		if (files == null) {
-			return;
-		}
+		File[] files = listFiles(dir);
 
 		for (File file : files) {
-			if (file.isDirectory()) {
-				continue;
-			}
-
 			String name = getName(file.getName());
 
-			Map<Locale, String> nameMap = new HashMap<Locale, String>();
-
-			nameMap.put(Locale.US, name);
+			Map<Locale, String> nameMap = getNameMap(name);
 
 			String xsl = new String(FileUtil.getBytes(file));
 
@@ -209,19 +186,22 @@ public class FileImporter {
 					JournalTemplateConstants.LANG_TYPE_VM, false, false,
 					StringPool.BLANK, null, new ServiceContext());
 
-			File resourceDir = getResourceDir(dir);
+			File resourcesDir = getResourcesDir(dir);
 
-			File articlesDir = new File(resourceDir, "/articles/" + name);
+			File journalArticlesDir = new File(
+				resourcesDir, "/journal/articles/" + name);
 
-			if (articlesDir.exists() && articlesDir.isDirectory()) {
-				createArticles(
+			if (journalArticlesDir.exists() &&
+				journalArticlesDir.isDirectory()) {
+
+				createJournalArticles(
 					userId, groupId, journalStructureId,
-					journalTemplate.getTemplateId(), articlesDir);
+					journalTemplate.getTemplateId(), journalArticlesDir);
 			}
 		}
 	}
 
-	protected static String getName(String fileName) {
+	protected String getName(String fileName) {
 		int x = fileName.lastIndexOf(StringPool.SLASH);
 
 		if (x < 0) {
@@ -237,7 +217,17 @@ public class FileImporter {
 		return fileName.substring(x, y);
 	}
 
-	protected static File getResourceDir(File file) {
+	protected Map<Locale, String> getNameMap(String name) {
+		Map<Locale, String> nameMap = new HashMap<Locale, String>();
+
+		Locale locale = LocaleUtil.getDefault();
+
+		nameMap.put(locale, name);
+
+		return nameMap;
+	}
+
+	protected File getResourcesDir(File file) {
 		File resourceDir = file;
 
 		while (resourceDir != null) {
@@ -245,12 +235,32 @@ public class FileImporter {
 
 			String name = resourceDir.getName();
 
-			if (resourceDir.isDirectory() && name.equals("resources")) {
+			if (resourceDir.isDirectory() &&
+				name.equals("resources-importer")) {
+
 				return resourceDir;
 			}
 		}
 
 		return null;
+	}
+
+	protected File[] listFiles(File dir) {
+		File[] files = dir.listFiles();
+
+		if (files == null) {
+			return new File[0];
+		}
+
+		List<File> filesList = new ArrayList<File>();
+
+		for (File file : files) {
+			if (file.isFile()) {
+				filesList.add(file);
+			}
+		}
+
+		return filesList.toArray(new File[filesList.size()]);
 	}
 
 }
