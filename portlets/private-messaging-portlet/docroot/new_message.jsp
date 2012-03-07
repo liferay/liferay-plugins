@@ -35,10 +35,16 @@ if (mbThreadId != 0) {
 }
 %>
 
+<div id="<portlet:namespace />messageContainer"></div>
+
 <portlet:renderURL var="backURL" windowState="<%= WindowState.NORMAL.toString() %>" />
 
+<liferay-portlet:actionURL name="sendMessage" var="sendMessageURL">
+	<portlet:param name="redirect" value="<%= PortalUtil.getLayoutURL(themeDisplay) %>" />
+</liferay-portlet:actionURL>
+
 <aui:layout cssClass="message-body-container">
-	<form enctype="multipart/form-data" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />sendPrivateMessage(); return false;">
+	<aui:form action="<%= sendMessageURL %>" enctype="multipart/form-data" method="post" name="fm" onSubmit="event.preventDefault();">
 		<aui:input name="redirect" type="hidden" value="<%= backURL %>" />
 		<aui:input name="userId" type="hidden" value="<%= user.getUserId() %>" />
 		<aui:input name="mbThreadId" type="hidden" value="<%= mbThreadId %>" />
@@ -68,32 +74,82 @@ if (mbThreadId != 0) {
 		<aui:button-row>
 			<input type="submit" value="<liferay-ui:message key="send" />" />
 		</aui:button-row>
-	</form>
+	</aui:form>
 </aui:layout>
 
-<aui:script>
-	function <portlet:namespace />sendPrivateMessage() {
-		var A = AUI();
+<aui:script use="aui-base,aui-io-request,aui-loading-mask">
 
-		if (A.one('#<portlet:namespace />to').val() == '') {
-			A.one('#<portlet:namespace />to').focus();
+	var form = A.one('#<portlet:namespace />fm');
 
-			return false;
+	form.on(
+		'submit',
+		function(event) {
+			var recipients = A.one('#<portlet:namespace />to').val();
+
+			if (recipients == '') {
+				A.one('#<portlet:namespace />to').focus();
+
+				return false;
+			}
+
+			if (A.one('#<portlet:namespace />subject').val() == '') {
+				A.one('#<portlet:namespace />subject').focus();
+
+				return false;
+			}
+
+			if (A.one('#<portlet:namespace />body').val() == '') {
+				A.one('#<portlet:namespace />body').focus();
+
+				return false;
+			}
+
+			var loadingMask = new A.LoadingMask(
+				{
+					'strings.loading': '<%= UnicodeLanguageUtil.get(pageContext, "sending-message") %>',
+					target: A.one('.private-messaging-portlet .aui-dialog-bd')
+				}
+			);
+
+			loadingMask.show();
+
+			A.io.request(
+				'<liferay-portlet:resourceURL id="checkRecipients"><liferay-portlet:param name="redirect" value="<%= PortalUtil.getLayoutURL(themeDisplay) %>" /></liferay-portlet:resourceURL>',
+				{
+					after: {
+						success: function(event, id, obj) {
+							var response = this.get('responseData');
+
+							if (response.success) {
+								submitForm(document.<portlet:namespace />fm);
+							}
+							else {
+								<portlet:namespace />showMessage('<span class="portlet-msg-error"><%= LanguageUtil.get(pageContext, "the-following-users-were-not-found") %>&nbsp;<em>' + response.message + '</em></span>');
+
+								loadingMask.hide();
+							}
+						},
+						failure: function(event, id, obj) {
+							<portlet:namespace />showMessage('<span class="portlet-msg-error"><%= LanguageUtil.get(pageContext, "your-request-failed-to-complete") %></span>');
+
+							loadingMask.hide();
+						}
+					},
+					data: {
+						recipients: recipients
+					},
+					dataType: 'json'
+				}
+			);
 		}
+	);
 
-		if (A.one('#<portlet:namespace />subject').val() == '') {
-			A.one('#<portlet:namespace />subject').focus();
+	function <portlet:namespace />showMessage(message) {
+		var messageContainer = A.one('#<portlet:namespace />messageContainer');
 
-			return false;
+		if (messageContainer) {
+			messageContainer.html(message);
 		}
-
-		if (A.one('#<portlet:namespace />body').val() == '') {
-			A.one('#<portlet:namespace />body').focus();
-
-			return false;
-		}
-
-		submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="sendMessage"><portlet:param name="redirect" value="<%= PortalUtil.getLayoutURL(themeDisplay) %>" /></liferay-portlet:actionURL>');
 	}
 </aui:script>
 
