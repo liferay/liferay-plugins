@@ -64,7 +64,9 @@ a:focus .opens-new-window-accessible {
 }
 
 #content div#column-1.portlet-column-only .portlet-column-content {
-	margin: 0 -1px -1px 0;
+	background-color: #FFF;
+	margin-bottom: -1px;
+	margin-right: -1px;
 }
 
 /* ---------- Heading ---------- */
@@ -1492,6 +1494,10 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		@include border-radius(0);
 		border-width: 0 0 1px;
 		margin: 0;
+	}
+
+	.thread .results-row, .results-grid table.taglib-search-iterator, .results-grid .results-row td, .results-grid .results-row.alt td {
+		border-width: 1px 0;
 	}
 
 	.messages-content {
