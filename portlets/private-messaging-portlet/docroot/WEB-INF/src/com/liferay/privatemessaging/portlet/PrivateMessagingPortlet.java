@@ -14,19 +14,28 @@
 
 package com.liferay.privatemessaging.portlet;
 
+import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
+import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.security.auth.PrincipalException;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
@@ -44,6 +53,9 @@ import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
+import javax.portlet.PortletException;
+import javax.portlet.ResourceRequest;
+import javax.portlet.ResourceResponse;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -199,6 +211,76 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 				StreamUtil.cleanUp(inputStream);
 			}
 		}
+	}
+
+	@Override
+	public void serveResource(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws PortletException {
+
+		try {
+			String id = resourceRequest.getResourceID();
+
+			if (Validator.isNotNull(id) && id.equals("checkRecipients")) {
+				checkRecipients(resourceRequest, resourceResponse);
+			}
+			else {
+				super.serveResource(resourceRequest, resourceResponse);
+			}
+		}
+		catch (Exception e) {
+			throw new PortletException(e);
+		}
+	}
+
+	protected void checkRecipients(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		String[] recipients = StringUtil.split(
+			ParamUtil.getString(resourceRequest, "recipients"));
+
+		List<String> failedRecipients = new ArrayList<String>();
+
+		for (String recipient : recipients) {
+			recipient = recipient.trim();
+
+			int x = recipient.indexOf(CharPool.LESS_THAN);
+			int y = recipient.indexOf(CharPool.GREATER_THAN);
+
+			try {
+				if ((x != -1) && (y != -1)) {
+					recipient = recipient.substring(x + 1, y);
+				}
+
+				UserLocalServiceUtil.getUserByScreenName(
+					themeDisplay.getCompanyId(), recipient);
+			}
+			catch (NoSuchUserException nsue) {
+				failedRecipients.add(recipient);
+			}
+		}
+
+		if (!failedRecipients.isEmpty()) {
+			StringBundler sb = new StringBundler(3);
+
+			sb.append(StringPool.APOSTROPHE);
+			sb.append(StringUtil.merge(failedRecipients, "', '"));
+			sb.append(StringPool.APOSTROPHE);
+
+			jsonObject.put("message", sb.toString());
+			jsonObject.put("success", false);
+		}
+		else {
+			jsonObject.put("success", true);
+		}
+
+		writeJSON(resourceRequest, resourceResponse, jsonObject);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(

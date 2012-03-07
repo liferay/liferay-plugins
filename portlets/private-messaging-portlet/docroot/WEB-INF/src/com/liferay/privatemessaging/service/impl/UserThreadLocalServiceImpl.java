@@ -88,6 +88,10 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 
 		List<User> recipients = parseRecipients(userId, to);
 
+		if (recipients.isEmpty()) {
+			return null;
+		}
+
 		return addPrivateMessage(
 			userId, mbThreadId, parentMBMessageId, recipients, subject, body,
 			inputStreamOVPs, themeDisplay);
@@ -324,17 +328,17 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 			int y = recipient.indexOf(CharPool.GREATER_THAN);
 
 			try {
-				if ((x != -1) && (y != -1)) {
-					String screenName = recipient.substring(x + 1, y);
+				String screenName = recipient;
 
-					users.add(
-						UserLocalServiceUtil.getUserByScreenName(
-							user.getCompanyId(), screenName));
+				if ((x != -1) && (y != -1)) {
+					screenName = recipient.substring(x + 1, y);
 				}
-				else {
-					users.add(
-						UserLocalServiceUtil.getUserByScreenName(
-							user.getCompanyId(), recipient));
+
+				User recipientUser = UserLocalServiceUtil.getUserByScreenName(
+					user.getCompanyId(), screenName);
+
+				if (!users.contains(recipientUser)) {
+					users.add(recipientUser);
 				}
 			}
 			catch (NoSuchUserException nsue) {
