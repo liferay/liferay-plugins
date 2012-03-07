@@ -1379,6 +1379,10 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 }
 
+.private-page .microblogs-status-container {
+	padding-bottom: 0;
+}
+
 .profile-page .microblogs-status-container {
 	top: 0;
 
