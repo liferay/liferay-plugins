@@ -40,7 +40,7 @@ public class LarImporter {
 
 		Map<Locale, String> nameMap = new HashMap<Locale, String>();
 
-		nameMap.put(Locale.ENGLISH, name);
+		nameMap.put(Locale.US, name);
 
 		User user = UserLocalServiceUtil.getDefaultUser(companyId);
 

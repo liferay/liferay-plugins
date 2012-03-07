@@ -14,23 +14,24 @@
 
 package com.liferay.themeresourceimporter.messaging;
 
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.servlet.ServletContextPool;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
-import com.liferay.portal.service.GroupLocalServiceUtil;
-import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
+import com.liferay.themeresourceimporter.importer.FileImporter;
 import com.liferay.themeresourceimporter.importer.LarImporter;
 
 import java.io.File;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.ServletContext;
 
@@ -66,10 +67,6 @@ public class HotDeployMessageListener extends BaseMessageListener {
 
 		File lar = new File(resourceDir, "/archive.lar");
 
-		if (!lar.exists()) {
-			return;
-		}
-
 		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 
 		for (Company company : companies) {
@@ -77,26 +74,30 @@ public class HotDeployMessageListener extends BaseMessageListener {
 				continue;
 			}
 
-			LarImporter.importResource(company.getCompanyId(), name, lar);
+			if (lar.exists()) {
+				LarImporter.importResource(company.getCompanyId(), name, lar);
+			}
+			else {
+				FileImporter.importResource(
+					company.getCompanyId(), name, resourceDir);
+			}
 		}
 	}
 
 	protected boolean hasLayoutSetPrototype(long companyId, String name)
 		throws Exception {
 
-		long layoutSetPrototypeClassNameId = PortalUtil.getClassNameId(
-			LayoutSetPrototype.class.getName());
+		List<LayoutSetPrototype> layoutSetPrototypes =
+			LayoutSetPrototypeLocalServiceUtil.search(
+				companyId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
-		int count = GroupLocalServiceUtil.searchCount(
-			companyId, new long[] {layoutSetPrototypeClassNameId}, name,
-			StringPool.BLANK, null);
+		for (LayoutSetPrototype layoutSetPrototype : layoutSetPrototypes) {
+			if (name.equals(layoutSetPrototype.getName(Locale.US))) {
+				return true;
+			}
+		}
 
-		if (count > 0) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		return false;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
