@@ -316,6 +316,10 @@ a:focus .opens-new-window-accessible {
 				background-color: #F4F4F4;
 			}
 		}
+
+		ul.site-list .empty {
+			padding-left: 25px;
+		}
 	}
 }
 
