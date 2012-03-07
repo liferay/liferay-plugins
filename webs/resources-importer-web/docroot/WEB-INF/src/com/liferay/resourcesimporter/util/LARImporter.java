@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.themeresourceimporter.importer;
+package com.liferay.resourcesimporter.util;
 
 import com.liferay.portal.kernel.lar.PortletDataHandlerKeys;
 import com.liferay.portal.kernel.util.StringPool;
@@ -33,31 +33,29 @@ import java.util.Map;
 /**
  * @author Ryan Park
  */
-public class LarImporter {
+public class LARImporter {
 
-	public static void importResource(long companyId, String name, File lar)
+	public void importResources(
+			long companyId, Map<Locale, String> layoutSetPrototypeNameMap,
+			File larFile)
 		throws Exception {
-
-		Map<Locale, String> nameMap = new HashMap<Locale, String>();
-
-		nameMap.put(Locale.US, name);
 
 		User user = UserLocalServiceUtil.getDefaultUser(companyId);
 
 		LayoutSetPrototype layoutSetPrototype =
 			LayoutSetPrototypeLocalServiceUtil.addLayoutSetPrototype(
-				user.getUserId(), companyId, nameMap, StringPool.BLANK, true,
-				true, new ServiceContext());
+				user.getUserId(), companyId, layoutSetPrototypeNameMap,
+				StringPool.BLANK, true, true, new ServiceContext());
 
 		Group group = layoutSetPrototype.getGroup();
 
 		LayoutLocalServiceUtil.importLayouts(
 			user.getUserId(), group.getGroupId(), false, getParameterMap(),
-			lar);
+			larFile);
 	}
 
-	protected static Map<String, String[]> getParameterMap() {
-		Map<String, String[]> parameters = new HashMap();
+	protected Map<String, String[]> getParameterMap() {
+		Map<String, String[]> parameters = new HashMap<String, String[]>();
 
 		parameters.put(
 			PortletDataHandlerKeys.CATEGORIES,
