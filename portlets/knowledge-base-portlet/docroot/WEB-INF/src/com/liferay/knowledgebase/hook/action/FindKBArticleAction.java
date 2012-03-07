@@ -176,7 +176,7 @@ public class FindKBArticleAction extends BaseStrutsAction {
 		Layout selLayout = LayoutLocalServiceUtil.getLayout(plid);
 
 		if ((selLayout.getGroupId() == kbArticle.getGroupId()) &&
-			(selLayout.isTypePortlet())) {
+			selLayout.isTypePortlet()) {
 
 			layouts = ListUtil.copy(layouts);
 

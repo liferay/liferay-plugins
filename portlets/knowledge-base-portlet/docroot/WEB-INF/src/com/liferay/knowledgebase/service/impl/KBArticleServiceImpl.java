@@ -73,14 +73,14 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		if ((resourcePrimKey <= 0) &&
-			(portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN))) {
+			portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
 
 			AdminPermission.check(
 				getPermissionChecker(), serviceContext.getScopeGroupId(),
 				ActionKeys.ADD_KB_ARTICLE);
 		}
 		else if ((resourcePrimKey <= 0) &&
-				 (portletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY))) {
+				 portletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
 
 			DisplayPermission.check(
 				getPermissionChecker(), serviceContext.getScopeGroupId(),
@@ -123,13 +123,13 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		if ((resourcePrimKey <= 0) &&
-			(portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN))) {
+			portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
 
 			AdminPermission.check(
 				getPermissionChecker(), groupId, ActionKeys.ADD_KB_ARTICLE);
 		}
 		else if ((resourcePrimKey <= 0) &&
-				 (portletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY))) {
+				 portletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
 
 			DisplayPermission.check(
 				getPermissionChecker(), groupId, ActionKeys.ADD_KB_ARTICLE);
@@ -599,14 +599,14 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		if ((resourcePrimKey <= 0) &&
-			(portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN))) {
+			portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
 
 			AdminPermission.check(
 				getPermissionChecker(), serviceContext.getScopeGroupId(),
 				ActionKeys.ADD_KB_ARTICLE);
 		}
 		else if ((resourcePrimKey <= 0) &&
-				 (portletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY))) {
+				 portletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
 
 			DisplayPermission.check(
 				getPermissionChecker(), serviceContext.getScopeGroupId(),

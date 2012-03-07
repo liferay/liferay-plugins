@@ -805,7 +805,7 @@ public class ConsumerPortlet extends GenericPortlet {
 				markupServiceKey, PortletSession.APPLICATION_SCOPE);
 
 		if ((serviceHolderTransientValue == null) ||
-			(serviceHolderTransientValue.isNull())) {
+			serviceHolderTransientValue.isNull()) {
 
 			ServiceHolder serviceHolder = new ServiceHolder();
 

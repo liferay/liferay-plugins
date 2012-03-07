@@ -43,7 +43,7 @@ public class XAction extends Action {
 
 		String exception = request.getParameter("render_exception");
 
-		if ((exception != null) && (exception.equals("true"))) {
+		if ((exception != null) && exception.equals("true")) {
 			throw new SampleException();
 		}
 

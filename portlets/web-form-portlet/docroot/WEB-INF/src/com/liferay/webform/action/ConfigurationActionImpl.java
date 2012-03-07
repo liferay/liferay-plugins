@@ -298,7 +298,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			String fieldLabel = ParamUtil.getString(
 				actionRequest, "fieldLabel" + i + "_" + languageId);
 
-			while ((i == 1) || (Validator.isNotNull(fieldLabel))) {
+			while ((i == 1) || Validator.isNotNull(fieldLabel)) {
 				if (fieldLabel.length() > 75 ) {
 					SessionErrors.add(actionRequest, "fieldSizeInvalid" + i);
 				}

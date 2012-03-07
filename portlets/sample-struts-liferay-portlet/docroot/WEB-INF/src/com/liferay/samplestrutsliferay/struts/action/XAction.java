@@ -48,7 +48,7 @@ public class XAction extends PortletAction {
 
 		String exception = actionRequest.getParameter("action_exception");
 
-		if ((exception != null) && (exception.equals("true"))) {
+		if ((exception != null) && exception.equals("true")) {
 			throw new SampleException();
 		}
 
@@ -67,7 +67,7 @@ public class XAction extends PortletAction {
 
 		String exception = renderRequest.getParameter("render_exception");
 
-		if ((exception != null) && (exception.equals("true"))) {
+		if ((exception != null) && exception.equals("true")) {
 			throw new SampleException();
 		}
 
