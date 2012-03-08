@@ -42,7 +42,7 @@
 		<![CDATA[
 			(
 				SELECT
-					DISTINCT SO_FavoriteSite.userId, SO_FavoriteSite.groupId
+					DISTINCT SO_FavoriteSite.userId, SO_FavoriteSite.groupId, Group_.name
 				FROM
 					Group_
 				INNER JOIN
@@ -57,7 +57,7 @@
 			UNION
 			(
 				SELECT
-					DISTINCT Users_Groups.userId, Group_.groupId
+					DISTINCT Users_Groups.userId, Group_.groupId, Group_.name
 				FROM
 					Group_
 				INNER JOIN
