@@ -458,8 +458,7 @@ public class AdminPortlet extends MVCPortlet {
 
 			double priority = ParamUtil.getDouble(actionRequest, name);
 
-			long resourcePrimKey = GetterUtil.getLong(
-				name.substring(8, name.length()));
+			long resourcePrimKey = GetterUtil.getLong(name.substring(8));
 
 			resourcePrimKeyToPriorityMap.put(resourcePrimKey, priority);
 		}

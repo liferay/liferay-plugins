@@ -59,8 +59,7 @@ public class EventsWebCacheItem implements WebCacheItem {
 						array[i].substring(y, array[i].length())).trim();
 
 					if (description.startsWith("- ")) {
-						description = description.substring(
-							2, description.length());
+						description = description.substring(2);
 					}
 
 					Event event = new Event(year, description);
