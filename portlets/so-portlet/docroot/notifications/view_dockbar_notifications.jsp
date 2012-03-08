@@ -22,7 +22,16 @@
 <%
 String userNotificationEventUuids = StringPool.BLANK;
 
-List<NotificationEvent> notificationEvents = ChannelHubManagerUtil.getNotificationEvents(user.getCompanyId(), user.getUserId(), true);
+List<NotificationEvent> notificationEvents = null;
+
+try {
+	notificationEvents = ChannelHubManagerUtil.getNotificationEvents(user.getCompanyId(), user.getUserId(), true);
+}
+catch (UnknownChannelException e) {
+	Channel channel = ChannelHubManagerUtil.getChannel(user.getCompanyId(), user.getUserId(), true);
+
+	notificationEvents = channel.getNotificationEvents();
+}
 
 int notificationEventsCount = notificationEvents.size();
 %>
