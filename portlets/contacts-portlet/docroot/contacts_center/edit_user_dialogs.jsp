@@ -20,6 +20,7 @@
 String redirect = ParamUtil.getString(request, "redirect");
 
 String curSectionId = ParamUtil.getString(request, "curSectionId");
+
 boolean extension = ParamUtil.getBoolean(request, "extension");
 
 User selUser = themeDisplay.getUser();
@@ -32,6 +33,7 @@ if (selUser != null) {
 %>
 
 <liferay-util:buffer var="html">
+
 	<%
 	String taglibOnSubmit = "event.preventDefault(); " + renderResponse.getNamespace() + "saveForm();";
 	%>
@@ -70,11 +72,12 @@ if (selUser != null) {
 			String sectionJsp = jspPath + _getSectionJsp(curSectionId) + ".jsp";
 			%>
 
-				<div class="form-section selected" id="<portlet:namespace /><%= curSectionId %>">
-					<div id="<portlet:namespace />errorMessage"></div>
+			<div class="form-section selected" id="<portlet:namespace /><%= curSectionId %>">
+				<div id="<portlet:namespace />errorMessage"></div>
 
-					<liferay-util:include page="<%= sectionJsp %>" />
-				</div>
+				<liferay-util:include page="<%= sectionJsp %>" />
+			</div>
+
 			<aui:button-row>
 				<aui:button type="submit" />
 			</aui:button-row>
