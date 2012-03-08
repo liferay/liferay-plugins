@@ -32,7 +32,7 @@ if (user2 != null) {
 %>
 
 <c:if test="<%= (projectsEntries != null) && !projectsEntries.isEmpty() %>">
-	<div class="section field-group" data-sectionId="projects" data-title="projects">
+	<div class="field-group" data-extension="true" data-sectionId="projects" data-title="projects">
 
 		<%
 		for (ProjectsEntry projectsEntry : projectsEntries) {
@@ -48,7 +48,7 @@ if (user2 != null) {
 			}
 		%>
 
-			<div class="projects">
+			<div class="projects section">
 				<h3><%= projectsEntry.getTitle() %>:</h3>
 
 				<div class="project-date property-list">
@@ -73,7 +73,7 @@ if (user2 != null) {
 
 		<div class="field-actions-toolbar">
 			<ul class="settings-actions">
-				<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="projects" data-title="projects">
+				<li class="action-field aui-component aui-settings-field lfr-token" data-extension="true" data-sectionId="projects" data-title="projects">
 					<div class="aui-settings-field-content">
 						<span class="settings-label"><liferay-ui:message key="add" /></span>
 					</div>

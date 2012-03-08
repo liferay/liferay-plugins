@@ -17,15 +17,25 @@
 
 package com.liferay.so.hook.action;
 
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.struts.BaseStrutsPortletAction;
 import com.liferay.portal.kernel.struts.StrutsPortletAction;
+import com.liferay.portal.kernel.util.Constants;
+import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.User;
+import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.so.model.ProjectsEntry;
 import com.liferay.so.service.ProjectsEntryLocalServiceUtil;
+
+import java.io.IOException;
 
 import java.util.HashSet;
 import java.util.List;
@@ -34,10 +44,13 @@ import java.util.Set;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
+import javax.portlet.PortletRequest;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
+
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author Ryan Park
@@ -51,15 +64,76 @@ public class EditUserAction extends BaseStrutsPortletAction {
 			ActionResponse actionResponse)
 		throws Exception {
 
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		try {
+			updateProjectsEntries(actionRequest, actionResponse);
+
+			if (cmd.equals("updateFieldGroup")) {
+				String redirect = ParamUtil.getString(
+					actionRequest, "redirect");
+
+				jsonObject.put("redirect", redirect);
+				jsonObject.put("success", true);
+
+				writeJSON(actionRequest, actionResponse, jsonObject);
+			}
+			else {
+				originalStrutsPortletAction.processAction(
+					portletConfig, actionRequest, actionResponse);
+			}
+		}
+		catch (Exception e) {
+			if (cmd.equals("updateFieldGroup")) {
+				jsonObject.put("success", false);
+
+				ThemeDisplay themeDisplay =
+					(ThemeDisplay)actionRequest.getAttribute(
+						WebKeys.THEME_DISPLAY);
+
+				jsonObject.put(
+					"message", LanguageUtil.get(themeDisplay.getLocale(),
+					"your-request-failed-to-complete"));
+
+				writeJSON(actionRequest, actionResponse, jsonObject);
+			}
+		}
+	}
+
+	@Override
+	public String render(
+			StrutsPortletAction originalStrutsPortletAction,
+			PortletConfig portletConfig, RenderRequest renderRequest,
+			RenderResponse renderResponse)
+		throws Exception {
+
+		return originalStrutsPortletAction.render(
+			portletConfig, renderRequest, renderResponse);
+	}
+
+	@Override
+	public void serveResource(
+			StrutsPortletAction originalStrutsPortletAction,
+			PortletConfig portletConfig, ResourceRequest resourceRequest,
+			ResourceResponse resourceResponse)
+		throws Exception {
+
+		originalStrutsPortletAction.serveResource(
+			portletConfig, resourceRequest, resourceResponse);
+	}
+
+	protected void updateProjectsEntries(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
 		User user = PortalUtil.getSelectedUser(actionRequest);
 
 		String projectsEntriesIndexesString = ParamUtil.getString(
 			actionRequest, "projectsEntriesIndexes");
 
 		if (Validator.isNull(projectsEntriesIndexesString)) {
-			originalStrutsPortletAction.processAction(
-				portletConfig, actionRequest, actionResponse);
-
 			return;
 		}
 
@@ -133,31 +207,19 @@ public class EditUserAction extends BaseStrutsPortletAction {
 					projectsEntry.getProjectsEntryId());
 			}
 		}
-
-		originalStrutsPortletAction.processAction(
-			portletConfig, actionRequest, actionResponse);
 	}
 
-	@Override
-	public String render(
-			StrutsPortletAction originalStrutsPortletAction,
-			PortletConfig portletConfig, RenderRequest renderRequest,
-			RenderResponse renderResponse)
-		throws Exception {
+	protected void writeJSON(
+			PortletRequest portletRequest, ActionResponse actionResponse,
+			Object json)
+		throws IOException {
 
-		return originalStrutsPortletAction.render(
-			portletConfig, renderRequest, renderResponse);
-	}
+		HttpServletResponse response = PortalUtil.getHttpServletResponse(
+			actionResponse);
 
-	@Override
-	public void serveResource(
-			StrutsPortletAction originalStrutsPortletAction,
-			PortletConfig portletConfig, ResourceRequest resourceRequest,
-			ResourceResponse resourceResponse)
-		throws Exception {
+		response.setContentType(ContentTypes.TEXT_JAVASCRIPT);
 
-		originalStrutsPortletAction.serveResource(
-			portletConfig, resourceRequest, resourceResponse);
+		ServletResponseUtil.write(response, json.toString());
 	}
 
 }
