@@ -54,6 +54,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author Ryan Park
+ * @author Jonathan Lee
  */
 public class EditUserAction extends BaseStrutsPortletAction {
 
@@ -66,12 +67,10 @@ public class EditUserAction extends BaseStrutsPortletAction {
 
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+		if (cmd.equals("updateFieldGroup")) {
+			try {
+				updateProjectsEntries(actionRequest, actionResponse);
 
-		try {
-			updateProjectsEntries(actionRequest, actionResponse);
-
-			if (cmd.equals("updateFieldGroup")) {
 				String redirect = ParamUtil.getString(
 					actionRequest, "redirect");
 
@@ -80,15 +79,7 @@ public class EditUserAction extends BaseStrutsPortletAction {
 
 				writeJSON(actionRequest, actionResponse, jsonObject);
 			}
-			else {
-				originalStrutsPortletAction.processAction(
-					portletConfig, actionRequest, actionResponse);
-			}
-		}
-		catch (Exception e) {
-			if (cmd.equals("updateFieldGroup")) {
-				jsonObject.put("success", false);
-
+			catch (Exception e) {
 				ThemeDisplay themeDisplay =
 					(ThemeDisplay)actionRequest.getAttribute(
 						WebKeys.THEME_DISPLAY);
@@ -96,9 +87,16 @@ public class EditUserAction extends BaseStrutsPortletAction {
 				jsonObject.put(
 					"message", LanguageUtil.get(themeDisplay.getLocale(),
 					"your-request-failed-to-complete"));
+				jsonObject.put("success", false);
 
 				writeJSON(actionRequest, actionResponse, jsonObject);
 			}
+		}
+		else {
+			updateProjectsEntries(actionRequest, actionResponse);
+
+			originalStrutsPortletAction.processAction(
+					portletConfig, actionRequest, actionResponse);
 		}
 	}
 

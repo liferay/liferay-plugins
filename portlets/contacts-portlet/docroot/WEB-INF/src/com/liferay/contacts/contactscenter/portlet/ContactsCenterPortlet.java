@@ -92,6 +92,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author Ryan Park
  * @author Jonathan Lee
+ * @author Eudaldo Alonso
  */
 public class ContactsCenterPortlet extends MVCPortlet {
 
@@ -520,8 +521,6 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			jsonObject.put("success", true);
 		}
 		catch (Exception e) {
-			jsonObject.put("success", false);
-
 			String message = "your-request-failed-to-complete";
 
 			if (e instanceof AddressCityException) {
@@ -560,6 +559,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 			jsonObject.put(
 				"message", LanguageUtil.get(themeDisplay.getLocale(), message));
+			jsonObject.put("success", false);
 		}
 
 		writeJSON(actionRequest, actionResponse, jsonObject);
