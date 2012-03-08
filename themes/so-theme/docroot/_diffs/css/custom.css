@@ -1250,6 +1250,10 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		margin-left: 1px;
 	}
 
+	.contact-group-filter .contact-group-filter-content {
+		min-height: 30px;
+	}
+
 	.social-relations a {
 		border: 1px solid transparent;
 		color: #34404F;
@@ -1490,7 +1494,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 .private-messaging-portlet {
 	margin-left: 1px;
 
-	.controls, .portlet-msg-info {
+	.controls, .portlet-msg-info, .portlet-msg-success {
 		@include border-radius(0);
 		border-width: 0 0 1px;
 		margin: 0;
