@@ -15,29 +15,52 @@
 package com.liferay.contacts.contactscenter.portlet;
 
 import com.liferay.contacts.util.ContactsUtil;
+import com.liferay.portal.AddressCityException;
+import com.liferay.portal.AddressStreetException;
+import com.liferay.portal.AddressZipException;
+import com.liferay.portal.EmailAddressException;
+import com.liferay.portal.NoSuchCountryException;
+import com.liferay.portal.NoSuchListTypeException;
+import com.liferay.portal.NoSuchRegionException;
+import com.liferay.portal.PhoneNumberException;
+import com.liferay.portal.UserSmsException;
+import com.liferay.portal.WebsiteURLException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
 import com.liferay.portal.kernel.notifications.NotificationEvent;
 import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
+import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.model.Address;
+import com.liferay.portal.model.Contact;
+import com.liferay.portal.model.EmailAddress;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
+import com.liferay.portal.model.Phone;
 import com.liferay.portal.model.User;
+import com.liferay.portal.model.UserGroupRole;
+import com.liferay.portal.model.Website;
+import com.liferay.portal.service.EmailAddressServiceUtil;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.UserServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.comparator.UserLastNameComparator;
+import com.liferay.portlet.announcements.model.AnnouncementsDelivery;
+import com.liferay.portlet.announcements.service.AnnouncementsDeliveryLocalServiceUtil;
 import com.liferay.portlet.social.NoSuchRelationException;
 import com.liferay.portlet.social.model.SocialRelationConstants;
 import com.liferay.portlet.social.model.SocialRequest;
@@ -46,11 +69,13 @@ import com.liferay.portlet.social.model.SocialRequestFeedEntry;
 import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialRequestInterpreterLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialRequestLocalServiceUtil;
+import com.liferay.portlet.usersadmin.util.UsersAdminUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -364,6 +389,8 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
 
+		boolean redirect = true;
+
 		try {
 			String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
@@ -376,12 +403,19 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			else if (cmd.equals("requestSocialRelation")) {
 				requestSocialRelation(actionRequest, actionResponse);
 			}
+			else if (cmd.equals("updateFieldGroup")) {
+				updateFieldGroup(actionRequest, actionResponse);
+
+				redirect = false;
+			}
 		}
 		catch (Exception e) {
 			throw new PortletException(e);
 		}
 
-		sendRedirect(actionRequest, actionResponse);
+		if (redirect) {
+			sendRedirect(actionRequest, actionResponse);
+		}
 	}
 
 	public void requestSocialRelation(
@@ -443,6 +477,92 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		catch (Exception e) {
 			throw new PortletException(e);
 		}
+	}
+
+	public void updateFieldGroup(
+		ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		try {
+			String fieldGroup = ParamUtil.getString(
+				actionRequest, "fieldGroup");
+
+			if (fieldGroup.equals("additionalEmailAddresses")) {
+				updateAdditionalEmailAddresses(actionRequest);
+			}
+			else if (fieldGroup.equals("addresses")) {
+				updateAddresses(actionRequest);
+			}
+			else if (fieldGroup.equals("comments")) {
+				updateComments(actionRequest);
+			}
+			else if (fieldGroup.equals("instantMessenger")) {
+				updateInstantMessenger(actionRequest);
+			}
+			else if (fieldGroup.equals("sms")) {
+				updateSMS(actionRequest);
+			}
+			else if (fieldGroup.equals("socialNetwork")) {
+				updateSocialNetwork(actionRequest);
+			}
+			else if (fieldGroup.equals("phoneNumbers")) {
+				updatePhoneNumbers(actionRequest);
+			}
+			else if (fieldGroup.equals("websites")) {
+				updateWebsites(actionRequest);
+			}
+
+			String redirect = ParamUtil.getString(actionRequest, "redirect");
+
+			jsonObject.put("redirect", redirect);
+			jsonObject.put("success", true);
+		}
+		catch (Exception e) {
+			jsonObject.put("success", false);
+
+			String message = "your-request-failed-to-complete";
+
+			if (e instanceof AddressCityException) {
+				message = "please-enter-a-valid-city";
+			}
+			else if (e instanceof AddressStreetException) {
+				message = "please-enter-a-valid-street";
+			}
+			else if (e instanceof AddressZipException) {
+				message = "please-enter-a-valid-postal-code";
+			}
+			else if (e instanceof EmailAddressException) {
+				message = "please-enter-a-valid-email-address";
+			}
+			else if (e instanceof NoSuchCountryException) {
+				message ="please-select-a-country";
+			}
+			else if (e instanceof NoSuchListTypeException) {
+				message = "please-select-a-type";
+			}
+			else if (e instanceof NoSuchRegionException) {
+				message = "please-select-a-region";
+			}
+			else if (e instanceof PhoneNumberException) {
+				message = "please-enter-a-valid-phone-number";
+			}
+			else if (e instanceof UserSmsException) {
+				message = "please-enter-a-sms-id-that-is-a-valid-email-address";
+			}
+			else if (e instanceof WebsiteURLException) {
+				message = "please-enter-a-valid-url";
+			}
+
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+
+			jsonObject.put(
+				"message", LanguageUtil.get(themeDisplay.getLocale(), message));
+		}
+
+		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
 
 	public void updateSocialRequest(
@@ -520,6 +640,191 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		ChannelHubManagerUtil.sendNotificationEvent(
 			socialRequest.getCompanyId(), socialRequest.getReceiverUserId(),
 			notificationEvent);
+	}
+
+	protected void updateAdditionalEmailAddresses(ActionRequest actionRequest)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		User user = themeDisplay.getUser();
+
+		List<EmailAddress> emailAddresses = UsersAdminUtil.getEmailAddresses(
+			actionRequest);
+
+		UsersAdminUtil.updateEmailAddresses(
+			Contact.class.getName(), user.getContactId(), emailAddresses);
+	}
+
+	protected void updateAddresses(ActionRequest actionRequest)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		User user = themeDisplay.getUser();
+
+		List<Address> addresses = UsersAdminUtil.getAddresses(actionRequest);
+
+		UsersAdminUtil.updateAddresses(
+			Contact.class.getName(), user.getContactId(), addresses);
+	}
+
+	protected void updateComments(ActionRequest actionRequest)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		Contact contact = themeDisplay.getContact();
+
+		String comments = ParamUtil.getString(actionRequest, "comments");
+
+		updateProfile(
+			actionRequest, contact.getAimSn(), comments,
+			contact.getFacebookSn(), contact.getIcqSn(), contact.getJabberSn(),
+			contact.getMsnSn(), contact.getMySpaceSn(), contact.getSkypeSn(),
+			contact.getSmsSn(), contact.getTwitterSn(), contact.getYmSn());
+	}
+
+	protected void updateInstantMessenger(ActionRequest actionRequest)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		User user = themeDisplay.getUser();
+
+		Contact contact = themeDisplay.getContact();
+
+		String aimSn = ParamUtil.getString(actionRequest, "aimSn");
+		String icqSn = ParamUtil.getString(actionRequest, "icqSn");
+		String jabberSn = ParamUtil.getString(actionRequest, "jabberSn");
+		String msnSn = ParamUtil.getString(actionRequest, "msnSn");
+		String skypeSn = ParamUtil.getString(actionRequest, "skypeSn");
+		String ymSn = ParamUtil.getString(actionRequest, "ymSn");
+
+		updateProfile(
+			actionRequest, aimSn, user.getComments(), contact.getFacebookSn(),
+			icqSn, jabberSn, msnSn, contact.getMySpaceSn(), skypeSn,
+			contact.getSmsSn(), contact.getTwitterSn(), ymSn);
+	}
+
+	protected void updatePhoneNumbers(ActionRequest actionRequest)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		User user = themeDisplay.getUser();
+
+		List<Phone> phones = UsersAdminUtil.getPhones(actionRequest);
+
+		UsersAdminUtil.updatePhones(
+			Contact.class.getName(), user.getContactId(), phones);
+	}
+
+	protected void updateProfile(
+			ActionRequest actionRequest, String aimSn, String comments,
+			String facebookSn, String icqSn, String jabberSn, String msnSn,
+			String mySpaceSn, String skypeSn, String sms, String twitterSn,
+			String ymSn)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		User user = themeDisplay.getUser();
+
+		Contact contact = user.getContact();
+
+		Calendar cal = CalendarFactoryUtil.getCalendar();
+		cal.setTime(user.getBirthday());
+
+		int birthdayDay = cal.get(Calendar.DATE);
+		int birthdayMonth = cal.get(Calendar.MONTH);
+		int birthdayYear = cal.get(Calendar.YEAR);
+
+		List<UserGroupRole> userGroupRoles =
+			UserGroupRoleLocalServiceUtil.getUserGroupRoles(user.getUserId());
+
+		List<EmailAddress> emailAddresses =
+			EmailAddressServiceUtil.getEmailAddresses(
+				Contact.class.getName(), user.getContactId());
+
+		List<AnnouncementsDelivery> deliveries =
+			AnnouncementsDeliveryLocalServiceUtil.getUserDeliveries(
+				user.getUserId());
+
+		UserServiceUtil.updateUser(
+			user.getUserId(), user.getPasswordUnencrypted(),
+			user.getPasswordUnencrypted(), user.getPasswordUnencrypted(),
+			user.getPasswordReset(), user.getReminderQueryQuestion(),
+			user.getReminderQueryAnswer(), user.getScreenName(),
+			user.getEmailAddress(), user.getFacebookId(), user.getOpenId(),
+			user.getLanguageId(), user.getTimeZoneId(), user.getGreeting(),
+			comments, user.getFirstName(), user.getMiddleName(),
+			user.getLastName(), contact.getPrefixId(), contact.getSuffixId(),
+			user.isMale(), birthdayMonth, birthdayDay, birthdayYear, sms, aimSn,
+			facebookSn, icqSn, jabberSn, msnSn, mySpaceSn, skypeSn, twitterSn,
+			ymSn, user.getJobTitle(), user.getGroupIds(),
+			user.getOrganizationIds(), user.getRoleIds(), userGroupRoles,
+			user.getUserGroupIds(), user.getAddresses(), emailAddresses,
+			user.getPhones(), user.getWebsites(), deliveries,
+			new ServiceContext());
+	}
+
+	protected void updateSMS(ActionRequest actionRequest) throws Exception {
+		String smsSn = ParamUtil.getString(actionRequest, "smsSn");
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		User user = themeDisplay.getUser();
+
+		Contact contact = themeDisplay.getContact();
+
+		updateProfile(
+			actionRequest, contact.getAimSn(), user.getComments(),
+			contact.getFacebookSn(), contact.getIcqSn(), contact.getJabberSn(),
+			contact.getMsnSn(), contact.getMySpaceSn(), contact.getSkypeSn(),
+			smsSn, contact.getTwitterSn(), contact.getYmSn());
+	}
+
+	protected void updateSocialNetwork(ActionRequest actionRequest)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		User user = themeDisplay.getUser();
+
+		Contact contact = themeDisplay.getContact();
+
+		String facebookSn = ParamUtil.getString(actionRequest, "facebookSn");
+		String mySpaceSn = ParamUtil.getString(actionRequest, "mySpaceSn");
+		String twitterSn = ParamUtil.getString(actionRequest, "twitterSn");
+
+		updateProfile(
+			actionRequest, contact.getAimSn(), user.getComments(), facebookSn,
+			contact.getIcqSn(), contact.getJabberSn(), contact.getMsnSn(),
+			mySpaceSn, contact.getSkypeSn(), contact.getSmsSn(), twitterSn,
+			contact.getYmSn());
+	}
+
+	protected void updateWebsites(ActionRequest actionRequest)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		User user = themeDisplay.getUser();
+
+		List<Website> websites = UsersAdminUtil.getWebsites(actionRequest);
+
+		UsersAdminUtil.updateWebsites(
+			Contact.class.getName(), user.getContactId(), websites);
 	}
 
 }
