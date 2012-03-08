@@ -46,8 +46,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			}
 
 			String key = htmlAttribute.substring(0, pos);
-			String value = htmlAttribute.substring(
-				pos + 1, htmlAttribute.length());
+			String value = htmlAttribute.substring(pos + 1);
 
 			setPreference(actionRequest, key, value);
 		}

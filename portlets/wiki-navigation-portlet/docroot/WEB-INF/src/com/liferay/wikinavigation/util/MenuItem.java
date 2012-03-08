@@ -181,7 +181,7 @@ public class MenuItem implements Serializable {
 				String url = null;
 
 				if (index != -1) {
-					label = s.substring(index + 1, s.length());
+					label = s.substring(index + 1);
 					url = s.substring(0, index);
 
 					if (!url.startsWith(Http.HTTP)) {
