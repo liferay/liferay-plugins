@@ -148,7 +148,7 @@
 									}
 								}
 
-								if ((Validator.isNotNull(wallLayoutFriendlyURL)) && (wallUser.getUserId() != themeDisplay.getUserId())) {
+								if (Validator.isNotNull(wallLayoutFriendlyURL) && (wallUser.getUserId() != themeDisplay.getUserId())) {
 									wallToWallHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + wallLayoutFriendlyURL + "/-/wall/" + wallUser.getScreenName();
 								}
 							}
