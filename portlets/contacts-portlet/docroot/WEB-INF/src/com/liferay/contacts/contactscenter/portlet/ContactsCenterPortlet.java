@@ -736,6 +736,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		Contact contact = user.getContact();
 
 		Calendar cal = CalendarFactoryUtil.getCalendar();
+
 		cal.setTime(user.getBirthday());
 
 		int birthdayDay = cal.get(Calendar.DATE);
