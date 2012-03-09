@@ -96,7 +96,7 @@ if (selUser != null) {
 			);
 
 			<c:choose>
-				<c:when test='<%= extension %>'>
+				<c:when test="<%= extension %>">
 					var uri = '<liferay-portlet:actionURL portletName="<%= PortletKeys.USERS_ADMIN %>" windowState="<%= LiferayWindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/users_admin/edit_user" /></liferay-portlet:actionURL>';
 				</c:when>
 				<c:otherwise>
