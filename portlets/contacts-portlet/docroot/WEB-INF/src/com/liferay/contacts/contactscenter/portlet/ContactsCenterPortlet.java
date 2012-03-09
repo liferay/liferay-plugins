@@ -344,7 +344,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		String portletName = portletDisplay.getPortletName();
 
 		if (portletName.equals(PortletKeys.MEMBERS)) {
-			params.put("usersGroups", new Long(group.getGroupId()));
+			params.put("usersGroups", group.getGroupId());
 		}
 
 		List<User> users = UserLocalServiceUtil.search(
