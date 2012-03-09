@@ -152,12 +152,12 @@ ServletContext portalServletContext = ServletContextPool.get(portalServletContex
 		%>
 
 		<liferay-ui:input-move-boxes
-			leftTitle="current"
-			rightTitle="available"
 			leftBoxName="currentPortletIds"
-			rightBoxName="availablePortletIds"
 			leftList="<%= leftList %>"
+			leftTitle="current"
+			rightBoxName="availablePortletIds"
 			rightList="<%= rightList %>"
+			rightTitle="available"
 		/>
 	</td>
 </tr>

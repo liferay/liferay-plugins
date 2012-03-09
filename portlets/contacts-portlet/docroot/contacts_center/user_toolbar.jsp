@@ -50,8 +50,8 @@ else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), us
 		<c:when test="<%= SocialRequestLocalServiceUtil.hasRequest(themeDisplay.getUserId(), User.class.getName(), themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION, user2.getUserId(), SocialRequestConstants.STATUS_PENDING) %>">
 			<liferay-ui:icon
 				cssClass="disabled"
-				label="<%= true %>"
 				image="../social/coworker"
+				label="<%= true %>"
 				message="connection-requested"
 			/>
 		</c:when>

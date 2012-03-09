@@ -156,9 +156,9 @@ int yesTotal = MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrationsCount(
 
 			<div class="response">
 				<liferay-ui:user-display
+					displayStyle="<%= 2 %>"
 					userId="<%= curMeetupsRegistration.getUserId() %>"
 					userName="<%= curMeetupsRegistration.getUserName() %>"
-					displayStyle="<%= 2 %>"
 				/>
 
 				<c:if test="<%= Validator.isNotNull(curMeetupsRegistration.getComments()) %>">

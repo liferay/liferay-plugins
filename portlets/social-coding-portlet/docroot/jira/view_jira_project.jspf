@@ -115,11 +115,11 @@ for (int j = 0; j < jiraProjectRowsArray.length; j++) {
 		<tr>
 			<td>
 				<liferay-ui:icon
+					label="<%= true %>"
 					message="<%= message %>"
 					src="<%= icon %>"
-					url="<%= url %>"
 					target="_blank"
-					label="<%= true %>"
+					url="<%= url %>"
 				/>
 			</td>
 			<td>

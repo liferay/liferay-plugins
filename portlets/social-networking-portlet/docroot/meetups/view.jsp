@@ -130,16 +130,16 @@ for (int i = 0; i < meetupsEntries.size(); i++) {
 
 					<liferay-ui:icon
 						image="edit"
-						url="<%= editMeetupsEntryURL.toString() %>"
 						method="get"
+						url="<%= editMeetupsEntryURL.toString() %>"
 					/>
 				</c:if>
 
 				<liferay-ui:icon
 					image="join"
 					message="register"
-					url="<%= viewMeetupsEntryURL.toString() %>"
 					method="get"
+					url="<%= viewMeetupsEntryURL.toString() %>"
 				/>
 
 				<c:if test="<%= permissionChecker.isCompanyAdmin(company.getCompanyId()) %>">

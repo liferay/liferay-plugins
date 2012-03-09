@@ -40,9 +40,9 @@
 				<p class="leave-site">
 					<liferay-ui:icon
 						image="leave"
+						label="<%= true %>"
 						message="leave-site"
 						url="<%= leaveGroupHREF %>"
-						label="<%= true %>"
 					/>
 				</p>
 			</c:when>
@@ -58,9 +58,9 @@
 				<p class="join-site">
 					<liferay-ui:icon
 						image="join"
+						label="<%= true %>"
 						message="join-site"
 						url="<%= joinGroupURL.toString() %>"
-						label="<%= true %>"
 					/>
 				</p>
 			</c:when>
