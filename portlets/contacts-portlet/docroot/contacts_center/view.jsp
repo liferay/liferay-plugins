@@ -88,16 +88,9 @@ portletURL.setWindowState(WindowState.NORMAL);
 					<c:if test="<%= !userPublicPage %>">
 						<aui:layout cssClass="contact-group-filter">
 							<aui:select inlineField="true" label="" name="socialRelationType">
-								<c:choose>
-									<c:when test="<%= !showOnlySiteMembers %>">
-										<aui:option label="all" selected='<%= socialRelationType == 0 %>' value="all" />
-										<aui:option label="connections" selected='<%= socialRelationType == SocialRelationConstants.TYPE_BI_CONNECTION %>' value="<%= SocialRelationConstants.TYPE_BI_CONNECTION %>" />
-										<aui:option label="following" selected='<%= socialRelationType == SocialRelationConstants.TYPE_UNI_FOLLOWER %>' value="<%= SocialRelationConstants.TYPE_UNI_FOLLOWER %>" />
-									</c:when>
-									<c:otherwise>
-										<aui:option label="members" value="members" />
-									</c:otherwise>
-								</c:choose>
+								<aui:option label="all" selected='<%= socialRelationType == 0 %>' value="all" />
+								<aui:option label="connections" selected='<%= socialRelationType == SocialRelationConstants.TYPE_BI_CONNECTION %>' value="<%= SocialRelationConstants.TYPE_BI_CONNECTION %>" />
+								<aui:option label="following" selected='<%= socialRelationType == SocialRelationConstants.TYPE_UNI_FOLLOWER %>' value="<%= SocialRelationConstants.TYPE_UNI_FOLLOWER %>" />
 							</aui:select>
 						</aui:layout>
 					</c:if>
@@ -199,25 +192,17 @@ portletURL.setWindowState(WindowState.NORMAL);
 
 									<%
 									int allUsersCount = UserLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), StringPool.BLANK, WorkflowConstants.STATUS_APPROVED, params);
-
-									int connectionUsersCount = 0;
-									int followingUsersCount = 0;
-
-									if (!showOnlySiteMembers) {
-										connectionUsersCount = UserLocalServiceUtil.getSocialUsersCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION);
-										followingUsersCount = UserLocalServiceUtil.getSocialUsersCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
-									}
+									int connectionUsersCount = UserLocalServiceUtil.getSocialUsersCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION, params);
+									int followingUsersCount = UserLocalServiceUtil.getSocialUsersCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER, params);
 									%>
 
-									<c:if test="<%= !showOnlySiteMembers %>">
-										<aui:layout cssClass="contacts-count connections">
-											<a href="javascript:;"><liferay-ui:message arguments="<%= String.valueOf(connectionUsersCount) %>" key="you-have-x-connections" /></a>
-										</aui:layout>
+									<aui:layout cssClass="contacts-count connections">
+										<a href="javascript:;"><liferay-ui:message arguments="<%= String.valueOf(connectionUsersCount) %>" key='<%= showOnlySiteMembers ? "you-have-x-connections-in-this-site" : "you-have-x-connections" %>' /></a>
+									</aui:layout>
 
-										<aui:layout cssClass="contacts-count followings">
-											<a href="javascript:;"><liferay-ui:message arguments="<%= String.valueOf(followingUsersCount) %>" key="you-are-following-x-people" /></a>
-										</aui:layout>
-									</c:if>
+									<aui:layout cssClass="contacts-count followings">
+										<a href="javascript:;"><liferay-ui:message arguments="<%= String.valueOf(followingUsersCount) %>" key='<%= showOnlySiteMembers ? "you-are-following-x-people-in-this-site" : "you-are-following-x-people" %>' /></a>
+									</aui:layout>
 
 									<aui:layout cssClass="contacts-count all">
 										<a href="javascript:;"><liferay-ui:message arguments="<%= String.valueOf(allUsersCount) %>" key="view-all-x-users" /></a>
