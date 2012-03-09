@@ -67,9 +67,7 @@ if (selUser != null) {
 				request.setAttribute("websites.classPK", 0L);
 			}
 
-			String jspPath = "/html/portlet/users_admin/user/";
-
-			String sectionJsp = jspPath + _getSectionJsp(curSectionId) + ".jsp";
+			String sectionJsp = "/html/portlet/users_admin/user/" + _getSectionJsp(curSectionId) + ".jsp";
 			%>
 
 			<div class="form-section selected" id="<portlet:namespace /><%= curSectionId %>">
@@ -97,14 +95,12 @@ if (selUser != null) {
 				}
 			);
 
-			var uri = '';
-
 			<c:choose>
 				<c:when test='<%= extension %>'>
-					uri = '<liferay-portlet:actionURL portletName="<%= PortletKeys.USERS_ADMIN %>" windowState="<%= LiferayWindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/users_admin/edit_user" /></liferay-portlet:actionURL>';
+					var uri = '<liferay-portlet:actionURL portletName="<%= PortletKeys.USERS_ADMIN %>" windowState="<%= LiferayWindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/users_admin/edit_user" /></liferay-portlet:actionURL>';
 				</c:when>
 				<c:otherwise>
-					uri = '<liferay-portlet:actionURL />';
+					var uri = '<liferay-portlet:actionURL />';
 				</c:otherwise>
 			</c:choose>
 
@@ -148,7 +144,14 @@ if (selUser != null) {
 	</aui:script>
 </liferay-util:buffer>
 
-<%= extension ? StringUtil.replace(html, renderResponse.getNamespace(), "_" + PortletKeys.USERS_ADMIN + "_") : html %>
+<c:choose>
+	<c:when test="<%= extension %>">
+		<%= StringUtil.replace(html, renderResponse.getNamespace(), "_" + PortletKeys.USERS_ADMIN + "_") %>
+	</c:when>
+	<c:otherwise>
+		<%= html %>
+	</c:otherwise>
+</c:choose>
 
 <%!
 private String _getSectionJsp(String curSectionId) {
