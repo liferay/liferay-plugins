@@ -95,11 +95,6 @@ page import="javax.portlet.WindowState" %>
 <%
 WindowState windowState = renderRequest.getWindowState();
 
-boolean showOnlySiteMembers = false;
-
-if (portletName.equals(PortletKeys.MEMBERS)) {
-	showOnlySiteMembers = true;
-}
 
 PortletPreferences preferences = renderRequest.getPreferences();
 
@@ -123,6 +118,13 @@ boolean showIcon = PrefsParamUtil.getBoolean(preferences, request, "showIcon", t
 boolean showInstantMessenger = PrefsParamUtil.getBoolean(preferences, request, "showInstantMessenger", true);
 boolean showPhones = PrefsParamUtil.getBoolean(preferences, request, "showPhones", true);
 boolean showRecentActivity = PrefsParamUtil.getBoolean(preferences, request, "showRecentActivity", false);
+
+boolean showOnlySiteMembers = false;
+
+if (portletName.equals(PortletKeys.MEMBERS)) {
+	showOnlySiteMembers = true;
+}
+
 boolean showSites = PrefsParamUtil.getBoolean(preferences, request, "showSites", false);
 boolean showSMS = PrefsParamUtil.getBoolean(preferences, request, "showSMS", true);
 boolean showSocialNetwork = PrefsParamUtil.getBoolean(preferences, request, "showSocialNetwork", true);
