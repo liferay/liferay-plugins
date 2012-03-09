@@ -144,7 +144,7 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 			<liferay-ui:captcha url="<%= captchaURL %>" />
 		</c:if>
 
-		<aui:button type="submit" onClick="" value="send" />
+		<aui:button onClick="" type="submit" value="send" />
 	</aui:fieldset>
 </aui:form>
 

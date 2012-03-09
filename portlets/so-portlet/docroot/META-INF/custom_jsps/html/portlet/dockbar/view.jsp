@@ -77,7 +77,7 @@ Role role = RoleLocalServiceUtil.fetchRole(themeDisplay.getCompanyId(), "Social 
 
 				<li class="has-submenu user-avatar" id="<portlet:namespace />userMenu">
 					<a class="menu-button user-fullname user-portrait" href="javascript:;">
-						<img style="width: 18px" src="<%= HtmlUtil.escape(user.getPortraitURL(themeDisplay)) %>" />
+						<img src="<%= HtmlUtil.escape(user.getPortraitURL(themeDisplay)) %>" style="width: 18px" />
 
 						<%= HtmlUtil.escape(user.getFullName()) %>
 					</a>

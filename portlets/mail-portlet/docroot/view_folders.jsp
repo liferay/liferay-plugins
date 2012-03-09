@@ -27,7 +27,7 @@ MailManager mailManager = MailManager.getInstance(request);
 		image="../mail/compose"
 	/>
 
-	<aui:a cssClass="compose-message" href="javascript:;" data-messageId="0" data-messageType="new" data-replyMessageId="0"><liferay-ui:message key="compose-email" /></aui:a>
+	<aui:a cssClass="compose-message" data-messageId="0" data-messageType="new" data-replyMessageId="0" href="javascript:;"><liferay-ui:message key="compose-email" /></aui:a>
 
 	<br /><br />
 

@@ -23,7 +23,7 @@
 
 	<aui:fieldset>
 		<div class="portlet-msg-info">
-			<aui:a href="http://www.google.com/apis/maps/signup.html" target="_blank" label="you-can-get-a-license-directly-from-google" />
+			<aui:a href="http://www.google.com/apis/maps/signup.html" label="you-can-get-a-license-directly-from-google" target="_blank" />
 		</div>
 
 		<aui:input cssClass="lfr-input-text-container" label="google-license" name="preferences--license--" type="text" value="<%= license %>" />

@@ -26,7 +26,7 @@
 	</span>
 </logic:messagesPresent>
 
-<html:form action="/sample_struts_liferay_portlet/unsubscribe?actionURL=true" method="post" focus="firstName">
+<html:form action="/sample_struts_liferay_portlet/unsubscribe?actionURL=true" focus="firstName" method="post">
 
 <table border="0" cellpadding="0" cellspacing="0">
 <tr>

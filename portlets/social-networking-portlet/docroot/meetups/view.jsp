@@ -50,7 +50,7 @@ else if (tabs1.equals("my-meetups")) {
 	addMeetupsEntryURL.setParameter("redirect", currentURL);
 	%>
 
-	<input type="button" value='<liferay-ui:message key="add-meetup" />' onClick='location.href = "<%= addMeetupsEntryURL.toString() %>"' />
+	<input onClick='location.href = "<%= addMeetupsEntryURL.toString() %>"' type="button" value='<liferay-ui:message key="add-meetup" />' />
 
 	<br /><br />
 </c:if>

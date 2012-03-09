@@ -16,7 +16,7 @@
 
 <%@ include file="/init.jsp" %>
 
-<form name="<portlet:namespace />fm" target="_blank" onSubmit="submitForm(document.<portlet:namespace />fm, 'http://www.weather.com/search/enhancedlocalsearch', false); return false;">
+<form name="<portlet:namespace />fm" onSubmit="submitForm(document.<portlet:namespace />fm, 'http://www.weather.com/search/enhancedlocalsearch', false); return false;" target="_blank">
 
 <table class="lfr-table">
 

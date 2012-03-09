@@ -23,11 +23,11 @@
 	refresh="<%= false %>"
 >
 	<liferay-ui:section>
-		<form method="get" target="_blank" name="<portlet:namespace />fm1" onSubmit="if (!document.<portlet:namespace />fm1.showfn_cb.checked) { document.<portlet:namespace />fm1.showfn.value = 'no'; } if (!document.<portlet:namespace />fm1.showxref_cb.checked) { document.<portlet:namespace />fm1.showxref.value = 'no'; } submitForm(document.<portlet:namespace />fm1, 'http://www.biblegateway.com/cgi-bin/bible', false); return false;">
+		<form method="get" name="<portlet:namespace />fm1" onSubmit="if (!document.<portlet:namespace />fm1.showfn_cb.checked) { document.<portlet:namespace />fm1.showfn.value = 'no'; } if (!document.<portlet:namespace />fm1.showxref_cb.checked) { document.<portlet:namespace />fm1.showxref.value = 'no'; } submitForm(document.<portlet:namespace />fm1, 'http://www.biblegateway.com/cgi-bin/bible', false); return false;" target="_blank">
 		<input name="showfn" type="hidden" value="yes" />
 		<input name="showxref" type="hidden" value="yes" />
 
-		<input name="passage" type="text" size="30" />
+		<input name="passage" size="30" type="text" />
 
 		<select name="version">
 			<option value="ESV">ESV</option>
@@ -66,7 +66,7 @@
 				return false;"
 		>
 
-		<input name="<portlet:namespace />passage" type="text" size="30" /><br />
+		<input name="<portlet:namespace />passage" size="30" type="text" /><br />
 
 		<input name="<portlet:namespace />version" type="checkbox" value="ESV" /> <span style="font-size: xx-small;">ESV</span>
 
@@ -89,9 +89,9 @@
 		</form>
 	</liferay-ui:section>
 	<liferay-ui:section>
-		<form method="get" target="_blank" name="<portlet:namespace />fm3" onSubmit="submitForm(document.<portlet:namespace />fm3, 'http://www.biblegateway.com/cgi-bin/bible', false); return false;">
+		<form method="get" name="<portlet:namespace />fm3" onSubmit="submitForm(document.<portlet:namespace />fm3, 'http://www.biblegateway.com/cgi-bin/bible', false); return false;" target="_blank">
 
-		<input name="search" type="text" size="30" />
+		<input name="search" size="30" type="text" />
 
 		<select name="version">
 			<option value="ESV">ESV</option>

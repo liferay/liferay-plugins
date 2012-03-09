@@ -24,7 +24,7 @@ Folder rootFolder = ShindigUtil.getGadgetEditorRootFolder(repositoryId);
 
 <div id="<portlet:namespace />editor"></div>
 
-<portlet:renderURL windowState="<%= LiferayWindowState.POP_UP.toString() %>" var="editorGadgetURL">
+<portlet:renderURL var="editorGadgetURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 	<portlet:param name="mvcPath" value="/admin/edit_gadget.jsp" />
 	<portlet:param name="editorGadgetURL" value="editorGadgetURLPlaceholder" />
 </portlet:renderURL>

@@ -65,7 +65,7 @@ long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/
 		<liferay-ui:message key="description" />
 	</td>
 	<td>
-		<liferay-ui:input-field cssClass="input-task-description" model="<%= TasksEntry.class %>" bean="<%= tasksEntry %>" field="title" />
+		<liferay-ui:input-field bean="<%= tasksEntry %>" cssClass="input-task-description" field="title" model="<%= TasksEntry.class %>" />
 	</td>
 </tr>
 <tr>
@@ -154,7 +154,7 @@ long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/
 		<liferay-ui:message key="due-date" />
 	</td>
 	<td>
-		<liferay-ui:input-field model="<%= TasksEntry.class %>" bean="<%= tasksEntry %>" field="dueDate" defaultValue="<%= dueDate %>" disabled="<%= neverDue %>" />
+		<liferay-ui:input-field bean="<%= tasksEntry %>" defaultValue="<%= dueDate %>" disabled="<%= neverDue %>" field="dueDate" model="<%= TasksEntry.class %>" />
 
 		<div style="clear: both;">
 
@@ -162,7 +162,7 @@ long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/
 			String taglibNeverReviewOnClick = renderResponse.getNamespace() + "disableInputDate('dueDate', this.checked);";
 			%>
 
-			<aui:input label="never-due" name="neverDue" value="<%= neverDue %>" onClick="<%= taglibNeverReviewOnClick %>" type="checkbox" />
+			<aui:input label="never-due" name="neverDue" onClick="<%= taglibNeverReviewOnClick %>" type="checkbox" value="<%= neverDue %>" />
 		</div>
 	</td>
 </tr>

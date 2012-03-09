@@ -54,7 +54,7 @@ int y = html.indexOf("</tr>", x);
 			<img border="0" src="<%= themeDisplay.getPathThemeImages() %>/arrows/01_left.png" />
 		</a>
 	</th>
-	<th valign="center" colspan="5">
+	<th colspan="5" valign="center">
 		<%= dateFormat.format(selCal.getTime()) %>
 	</th>
 	<th valign="center">

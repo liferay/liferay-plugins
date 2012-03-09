@@ -127,7 +127,7 @@ if (projectsEntries.isEmpty()) {
 						<div class="aui-field">
 							<label class="aui-field-label" for="<portlet:namespace /><%= fieldParam %>"><liferay-ui:message key="current" /></label>
 
-							<liferay-ui:input-checkbox param="<%= fieldParam %>" defaultValue="<%= current %>" />
+							<liferay-ui:input-checkbox defaultValue="<%= current %>" param="<%= fieldParam %>" />
 						</div>
 					</aui:column>
 				</aui:layout>

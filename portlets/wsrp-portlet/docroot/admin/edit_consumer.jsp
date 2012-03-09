@@ -47,7 +47,7 @@ catch (NoSuchConsumerException nsce) {
 		<liferay-ui:message key="name" />
 	</td>
 	<td>
-		<liferay-ui:input-field model="<%= WSRPConsumer.class %>" bean="<%= wsrpConsumer %>" field="name" />
+		<liferay-ui:input-field bean="<%= wsrpConsumer %>" field="name" model="<%= WSRPConsumer.class %>" />
 	</td>
 </tr>
 <tr>
@@ -55,7 +55,7 @@ catch (NoSuchConsumerException nsce) {
 		<liferay-ui:message key="url" />
 	</td>
 	<td>
-		<liferay-ui:input-field model="<%= WSRPConsumer.class %>" bean="<%= wsrpConsumer %>" field="url" />
+		<liferay-ui:input-field bean="<%= wsrpConsumer %>" field="url" model="<%= WSRPConsumer.class %>" />
 	</td>
 </tr>
 <tr>
@@ -63,7 +63,7 @@ catch (NoSuchConsumerException nsce) {
 		<liferay-ui:message key="forward-cookies" />
 	</td>
 	<td>
-		<liferay-ui:input-field model="<%= WSRPConsumer.class %>" bean="<%= wsrpConsumer %>" field="forwardCookies" />
+		<liferay-ui:input-field bean="<%= wsrpConsumer %>" field="forwardCookies" model="<%= WSRPConsumer.class %>" />
 	</td>
 </tr>
 </table>

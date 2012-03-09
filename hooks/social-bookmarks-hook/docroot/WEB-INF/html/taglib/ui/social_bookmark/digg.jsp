@@ -28,7 +28,7 @@ else if (displayStyle.equals("vertical")) {
 %>
 
 <liferay-util:html-bottom outputKey="taglib_ui_social_bookmark_digg">
-	<script type="text/javascript" src="http://widgets.digg.com/buttons.js"></script>
+	<script src="http://widgets.digg.com/buttons.js" type="text/javascript"></script>
 </liferay-util:html-bottom>
 
 <a

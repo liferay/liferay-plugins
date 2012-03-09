@@ -168,7 +168,7 @@ if (supportsInbandRegistration) {
 			}
 			%>
 
-			<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" paginate="<%= false %>" />
+			<liferay-ui:search-iterator paginate="<%= false %>" searchContainer="<%= searchContainer %>" />
 		</td>
 	</tr>
 </tbody>

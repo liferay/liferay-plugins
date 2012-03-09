@@ -16,16 +16,16 @@
 
 <%@ include file="/html/portlet/sample_struts_liferay_portlet/init.jsp" %>
 
-<tiles:useAttribute id="tilesPortletContent" name="portlet_content" classname="java.lang.String" ignore="true" />
+<tiles:useAttribute classname="java.lang.String" id="tilesPortletContent" ignore="true" name="portlet_content" />
 
 <div>
-	<jsp:include page='<%= "/html" + tilesPortletContent %>' flush="true" />
+	<jsp:include flush="true" page='<%= "/html" + tilesPortletContent %>' />
 </div>
 
 <div class="separator"></div>
 
 <div>
-	<jsp:include page="/html/portlet/sample_struts_liferay_portlet/nav.jsp" flush="true" />
+	<jsp:include flush="true" page="/html/portlet/sample_struts_liferay_portlet/nav.jsp" />
 </div>
 
 <br />
