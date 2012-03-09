@@ -248,7 +248,7 @@ if (comment) {
 
 			var inputValue = '<%= ((microblogsEntry != null) && (edit)) ? StringUtil.replace(microblogsEntry.getContent(), "\'", "\\'") : StringPool.BLANK %>';
 
-			if (autocomplete.height() < 45 || highlighterContent.height() < 45) {
+			if ((autocomplete.height() < 45) || (highlighterContent.height() < 45)) {
 				autocomplete.height(45);
 
 				highlighterContent.height(45);

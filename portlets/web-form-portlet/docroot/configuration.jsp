@@ -207,7 +207,7 @@ if (!fieldsEditingDisabled) {
 
 		var optionsDiv = formRow.one('.options');
 
-		if (value == 'options' || value == 'radio') {
+		if ((value == 'options') || (value == 'radio')) {
 			optionsDiv.all('label').show();
 			optionsDiv.show();
 		}
