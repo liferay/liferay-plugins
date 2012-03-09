@@ -390,8 +390,6 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
 
-		boolean redirect = true;
-
 		try {
 			String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
@@ -407,16 +405,14 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			else if (cmd.equals("updateFieldGroup")) {
 				updateFieldGroup(actionRequest, actionResponse);
 
-				redirect = false;
+				return;
 			}
 		}
 		catch (Exception e) {
 			throw new PortletException(e);
 		}
 
-		if (redirect) {
-			sendRedirect(actionRequest, actionResponse);
-		}
+		sendRedirect(actionRequest, actionResponse);
 	}
 
 	public void requestSocialRelation(
@@ -481,7 +477,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 	}
 
 	public void updateFieldGroup(
-		ActionRequest actionRequest, ActionResponse actionResponse)
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
@@ -776,14 +772,14 @@ public class ContactsCenterPortlet extends MVCPortlet {
 	}
 
 	protected void updateSMS(ActionRequest actionRequest) throws Exception {
-		String smsSn = ParamUtil.getString(actionRequest, "smsSn");
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
 		User user = themeDisplay.getUser();
 
 		Contact contact = themeDisplay.getContact();
+
+		String smsSn = ParamUtil.getString(actionRequest, "smsSn");
 
 		updateProfile(
 			actionRequest, contact.getAimSn(), user.getComments(),

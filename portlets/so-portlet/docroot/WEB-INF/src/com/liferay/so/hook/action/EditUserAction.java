@@ -35,8 +35,6 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.so.model.ProjectsEntry;
 import com.liferay.so.service.ProjectsEntryLocalServiceUtil;
 
-import java.io.IOException;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -44,7 +42,6 @@ import java.util.Set;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
-import javax.portlet.PortletRequest;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
@@ -68,6 +65,8 @@ public class EditUserAction extends BaseStrutsPortletAction {
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
 		if (cmd.equals("updateFieldGroup")) {
+			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
 			try {
 				updateProjectsEntries(actionRequest, actionResponse);
 
@@ -76,21 +75,26 @@ public class EditUserAction extends BaseStrutsPortletAction {
 
 				jsonObject.put("redirect", redirect);
 				jsonObject.put("success", true);
-
-				writeJSON(actionRequest, actionResponse, jsonObject);
 			}
 			catch (Exception e) {
 				ThemeDisplay themeDisplay =
 					(ThemeDisplay)actionRequest.getAttribute(
 						WebKeys.THEME_DISPLAY);
 
-				jsonObject.put(
-					"message", LanguageUtil.get(themeDisplay.getLocale(),
-					"your-request-failed-to-complete"));
-				jsonObject.put("success", false);
+				String message = LanguageUtil.get(
+					themeDisplay.getLocale(),
+					"your-request-failed-to-complete");
 
-				writeJSON(actionRequest, actionResponse, jsonObject);
+				jsonObject.put("message", message);
+				jsonObject.put("success", false);
 			}
+
+			HttpServletResponse response = PortalUtil.getHttpServletResponse(
+				actionResponse);
+
+			response.setContentType(ContentTypes.TEXT_JAVASCRIPT);
+
+			ServletResponseUtil.write(response, jsonObject.toString());
 		}
 		else {
 			updateProjectsEntries(actionRequest, actionResponse);
@@ -205,19 +209,6 @@ public class EditUserAction extends BaseStrutsPortletAction {
 					projectsEntry.getProjectsEntryId());
 			}
 		}
-	}
-
-	protected void writeJSON(
-			PortletRequest portletRequest, ActionResponse actionResponse,
-			Object json)
-		throws IOException {
-
-		HttpServletResponse response = PortalUtil.getHttpServletResponse(
-			actionResponse);
-
-		response.setContentType(ContentTypes.TEXT_JAVASCRIPT);
-
-		ServletResponseUtil.write(response, json.toString());
 	}
 
 }
