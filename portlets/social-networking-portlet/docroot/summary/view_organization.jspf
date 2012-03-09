@@ -40,9 +40,9 @@
 				<p class="leave-organization">
 					<liferay-ui:icon
 						image="leave"
+						label="<%= true %>"
 						message="leave-organization"
 						url="<%= leaveOrganizationHREF %>"
-						label="<%= true %>"
 					/>
 				</p>
 			</c:when>
@@ -58,9 +58,9 @@
 				<p class="join-organization">
 					<liferay-ui:icon
 						image="join"
+						label="<%= true %>"
 						message="join-organization"
 						url="<%= joinOrganizationURL.toString() %>"
-						label="<%= true %>"
 					/>
 				</p>
 			</c:otherwise>

@@ -71,8 +71,8 @@
 			%>
 
 			<liferay-ui:user-display
-				userId="<%= userId %>"
 				displayStyle="<%= 2 %>"
+				userId="<%= userId %>"
 			/>
 
 			<div class="last-thread">

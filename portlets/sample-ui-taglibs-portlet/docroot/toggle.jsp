@@ -35,10 +35,10 @@ Result:
 
 <div>
 	<liferay-ui:toggle
+		defaultShowContent="true"
+		hideImage='<%= themeDisplay.getPathThemeImages() + "/arrows/01_right.png" %>'
 		id="toggle_id_sample_ui_taglibs_test"
 		showImage='<%= themeDisplay.getPathThemeImages() + "/arrows/01_down.png" %>'
-		hideImage='<%= themeDisplay.getPathThemeImages() + "/arrows/01_right.png" %>'
-		defaultShowContent="true"
 	/>
 </div>
 

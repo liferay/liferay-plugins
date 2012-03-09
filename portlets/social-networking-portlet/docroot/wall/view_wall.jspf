@@ -108,9 +108,9 @@
 			<tr>
 				<td align="center" valign="top">
 					<liferay-ui:user-display
+						displayStyle="<%= 2 %>"
 						userId="<%= wallEntry.getUserId() %>"
 						userName="<%= wallEntry.getUserName() %>"
-						displayStyle="<%= 2 %>"
 					/>
 				</td>
 				<td valign="top" width="99%">

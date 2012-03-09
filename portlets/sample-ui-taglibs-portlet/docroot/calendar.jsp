@@ -34,10 +34,10 @@ Result:
 <br /><br />
 
 <liferay-ui:calendar
-	month="<%= Calendar.FEBRUARY %>"
 	day="<%= 14 %>"
-	year="<%= 2007 %>"
 	headerPattern="MMMM"
+	month="<%= Calendar.FEBRUARY %>"
+	year="<%= 2007 %>"
 />
 
 <div class="separator"></div>

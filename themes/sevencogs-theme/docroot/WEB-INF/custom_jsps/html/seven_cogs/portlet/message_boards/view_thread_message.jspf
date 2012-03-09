@@ -44,9 +44,9 @@
 				</div>
 
 				<liferay-ui:user-display
+					displayStyle="<%= 1 %>"
 					userId="<%= message.getUserId() %>"
 					userName="<%= HtmlUtil.escape(message.getUserName()) %>"
-					displayStyle="<%= 1 %>"
 				>
 
 					<%

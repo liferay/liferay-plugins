@@ -76,9 +76,9 @@ Do you have the <i><liferay-ui:message key='<%= "action." + actionId %>' /></i> 
 <portlet:renderURL var="redirectURL" />
 
 <liferay-security:permissionsURL
-	redirect="<%= redirectURL %>"
 	modelResource="<%= name %>"
 	modelResourceDescription='<%= "Hello World" %>'
+	redirect="<%= redirectURL %>"
 	resourcePrimKey="<%= primKey %>"
 	var="permissionsURL"
 />

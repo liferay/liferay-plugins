@@ -108,9 +108,9 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 	>
 		<liferay-ui:search-container-column-text valign="top">
 			<liferay-ui:user-display
+				displayStyle="<%= 2 %>"
 				userId="<%= mbMessage.getUserId() %>"
 				userName="<%= mbMessage.getUserName() %>"
-				displayStyle="<%= 2 %>"
 			/>
 
 			<%
