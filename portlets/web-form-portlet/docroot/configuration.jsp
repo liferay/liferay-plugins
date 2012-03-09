@@ -110,7 +110,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 						<liferay-ui:message key="there-is-existing-form-data-please-export-and-delete-it-before-making-changes-to-the-fields" />
 					</div>
 
-					<liferay-portlet:resourceURL var="exportURL" portletName="<%= portletResource %>">
+					<liferay-portlet:resourceURL portletName="<%= portletResource %>" var="exportURL">
 						<portlet:param name="<%= Constants.CMD %>" value="export" />
 					</liferay-portlet:resourceURL>
 
@@ -120,7 +120,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 
 					<aui:button onClick="<%= taglibExport %>" value="export-data" />
 
-					<liferay-portlet:actionURL var="deleteURL" portletName="<%= portletResource %>">
+					<liferay-portlet:actionURL portletName="<%= portletResource %>" var="deleteURL">
 						<portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="deleteData" />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
 					</liferay-portlet:actionURL>

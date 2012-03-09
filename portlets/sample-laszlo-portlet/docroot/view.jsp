@@ -15,7 +15,7 @@
 --%>
 
 <div style="text-align: center;">
-	<object height="15" data="<%= request.getContextPath() %>/hello_laszlo.lzx?lzt=swf" type="application/x-shockwave-flash" width="100%">
+	<object data="<%= request.getContextPath() %>/hello_laszlo.lzx?lzt=swf" height="15" type="application/x-shockwave-flash" width="100%">
 		<param name="menu" value="false" />
 		<param name="movie" value="<%= request.getContextPath() %>/hello_laszlo.lzx?lzt=swf" />
 		<param name="quality" value="high" />

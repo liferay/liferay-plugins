@@ -145,7 +145,7 @@ pageContext.setAttribute("portletURL", portletURL);
 						<span class="name">
 							<c:choose>
 								<c:when test="<%= group.hasPrivateLayouts() || group.hasPublicLayouts() %>">
-									<liferay-portlet:actionURL windowState="<%= LiferayWindowState.NORMAL.toString() %>" portletName="<%= PortletKeys.MY_SITES %>" var="siteURL">
+									<liferay-portlet:actionURL portletName="<%= PortletKeys.MY_SITES %>" var="siteURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>">
 										<portlet:param name="struts_action" value="/my_sites/view" />
 										<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 										<portlet:param name="privateLayout" value="<%= String.valueOf(!group.hasPublicLayouts()) %>" />
@@ -216,7 +216,7 @@ pageContext.setAttribute("portletURL", portletURL);
 						label: '<liferay-ui:message key="add-site" />',
 						on: {
 							click: function(event) {
-								<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="addSiteURL">
+								<liferay-portlet:renderURL var="addSiteURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 									<portlet:param name="mvcPath" value="/sites/edit_site.jsp" />
 								</liferay-portlet:renderURL>
 
@@ -229,7 +229,7 @@ pageContext.setAttribute("portletURL", portletURL);
 					label: '<liferay-ui:message key="more-sites" />',
 					on: {
 						click: function(event) {
-							<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="viewSitesURL">
+							<liferay-portlet:renderURL var="viewSitesURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 								<portlet:param name="mvcPath" value="/sites/view_sites.jsp" />
 							</liferay-portlet:renderURL>
 
@@ -277,7 +277,7 @@ pageContext.setAttribute("portletURL", portletURL);
 				userSites: <%= tabs1.equals("my-sites") %>
 			};
 
-			<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="viewSitesURL">
+			<liferay-portlet:renderURL var="viewSitesURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 				<portlet:param name="mvcPath" value="/sites/view_sites.jsp" />
 			</liferay-portlet:renderURL>
 

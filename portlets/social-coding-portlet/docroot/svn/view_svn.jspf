@@ -160,11 +160,11 @@
 						%>
 
 							<c:if test="<%= SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnUserId, svnRepository.getSvnRepositoryId()) > 0 %>">
-								<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="userRevisionsURL">
+								<portlet:renderURL var="userRevisionsURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
 									<portlet:param name="url" value="<%= url %>" />
 								</portlet:renderURL>
 
-								<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="allRevisionsURL">
+								<portlet:renderURL var="allRevisionsURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
 									<portlet:param name="url" value="<%= url %>" />
 									<portlet:param name="all" value="true" />
 								</portlet:renderURL>

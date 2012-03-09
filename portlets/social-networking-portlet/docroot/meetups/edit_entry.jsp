@@ -60,7 +60,7 @@ if (meetupsEntry != null) {
 		<liferay-ui:message key="title" />
 	</td>
 	<td>
-		<liferay-ui:input-field model="<%= MeetupsEntry.class %>" bean="<%= meetupsEntry %>" field="title" />
+		<liferay-ui:input-field bean="<%= meetupsEntry %>" field="title" model="<%= MeetupsEntry.class %>" />
 	</td>
 </tr>
 <tr>
@@ -68,7 +68,7 @@ if (meetupsEntry != null) {
 		<liferay-ui:message key="description" />
 	</td>
 	<td>
-		<liferay-ui:input-field model="<%= MeetupsEntry.class %>" bean="<%= meetupsEntry %>" field="description" />
+		<liferay-ui:input-field bean="<%= meetupsEntry %>" field="description" model="<%= MeetupsEntry.class %>" />
 	</td>
 </tr>
 <tr>
@@ -81,7 +81,7 @@ if (meetupsEntry != null) {
 		<liferay-ui:message key="start-date" />
 	</td>
 	<td>
-		<liferay-ui:input-field model="<%= MeetupsEntry.class %>" bean="<%= meetupsEntry %>" field="startDate" defaultValue="<%= startDate %>" />
+		<liferay-ui:input-field bean="<%= meetupsEntry %>" defaultValue="<%= startDate %>" field="startDate" model="<%= MeetupsEntry.class %>" />
 	</td>
 </tr>
 <tr>
@@ -89,7 +89,7 @@ if (meetupsEntry != null) {
 		<liferay-ui:message key="end-date" />
 	</td>
 	<td>
-		<liferay-ui:input-field model="<%= MeetupsEntry.class %>" bean="<%= meetupsEntry %>" field="endDate" defaultValue="<%= endDate %>" />
+		<liferay-ui:input-field bean="<%= meetupsEntry %>" defaultValue="<%= endDate %>" field="endDate" model="<%= MeetupsEntry.class %>" />
 	</td>
 </tr>
 <tr>
@@ -102,7 +102,7 @@ if (meetupsEntry != null) {
 		<liferay-ui:message key="max-attendees" />
 	</td>
 	<td>
-		<liferay-ui:input-field model="<%= MeetupsEntry.class %>" bean="<%= meetupsEntry %>" field="maxAttendees" />
+		<liferay-ui:input-field bean="<%= meetupsEntry %>" field="maxAttendees" model="<%= MeetupsEntry.class %>" />
 	</td>
 </tr>
 <tr>
@@ -110,7 +110,7 @@ if (meetupsEntry != null) {
 		<liferay-ui:message key="price" />
 	</td>
 	<td>
-		<liferay-ui:input-field model="<%= MeetupsEntry.class %>" bean="<%= meetupsEntry %>" field="price" />
+		<liferay-ui:input-field bean="<%= meetupsEntry %>" field="price" model="<%= MeetupsEntry.class %>" />
 	</td>
 </tr>
 <tr>

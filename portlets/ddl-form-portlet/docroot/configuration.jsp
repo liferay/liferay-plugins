@@ -76,7 +76,7 @@ catch (NoSuchRecordSetException nsrse) {
 
 			</aui:select>
 
-			<aui:input helpMessage="check-to-allow-multiple-form-submissions-per-user" name="allow-multiple-submissions" type="checkbox" value="<%= multipleSubmissions %>" onChange='<%= "document." + renderResponse.getNamespace() + "fm." + renderResponse.getNamespace() + "multipleSubmissions.value = this.checked;" %>' />
+			<aui:input helpMessage="check-to-allow-multiple-form-submissions-per-user" name="allow-multiple-submissions" onChange='<%= "document." + renderResponse.getNamespace() + "fm." + renderResponse.getNamespace() + "multipleSubmissions.value = this.checked;" %>' type="checkbox" value="<%= multipleSubmissions %>" />
 		</aui:fieldset>
 	</c:if>
 

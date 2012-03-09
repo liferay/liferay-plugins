@@ -26,7 +26,7 @@
 	</span>
 </logic:messagesPresent>
 
-<html:form action="/sample_struts_portlet/unsubscribe/action" method="post" focus="firstName">
+<html:form action="/sample_struts_portlet/unsubscribe/action" focus="firstName" method="post">
 
 <table border="0" cellpadding="0" cellspacing="0">
 <tr>

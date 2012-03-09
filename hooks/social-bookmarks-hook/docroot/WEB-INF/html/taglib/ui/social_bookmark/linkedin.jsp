@@ -28,7 +28,7 @@ else if (displayStyle.equals("vertical")) {
 %>
 
 <liferay-util:html-bottom outputKey="taglib_ui_social_bookmark_linkedin">
-	<script type="text/javascript" src="http://platform.linkedin.com/in.js"></script>
+	<script src="http://platform.linkedin.com/in.js" type="text/javascript"></script>
 </liferay-util:html-bottom>
 
 <script <%= linkedinDisplayStyle %> data-url="<%= url %>" type="in/share"></script>

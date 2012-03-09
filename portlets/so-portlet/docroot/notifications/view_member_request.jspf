@@ -42,7 +42,7 @@ catch (Exception e) {
 
 		<div class="notification-entry">
 			<div class="title">
-				<liferay-portlet:actionURL windowState="<%= LiferayWindowState.NORMAL.toString() %>" portletName="<%= PortletKeys.MY_SITES %>" var="siteURL">
+				<liferay-portlet:actionURL portletName="<%= PortletKeys.MY_SITES %>" var="siteURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>">
 					<portlet:param name="struts_action" value="/my_sites/view" />
 					<portlet:param name="groupId" value="<%= String.valueOf(invitedGroup.getGroupId()) %>" />
 					<portlet:param name="privateLayout" value="<%= String.valueOf(!invitedGroup.hasPublicLayouts()) %>" />

@@ -53,7 +53,7 @@ $theme.include($body_top_include)
 		#end
 
 		#if ($is_signed_in)
-			<a id="toggleFluid" href="javascript:;"><span>$languageUtil.format($locale, "toggle-fluid-layout")</span></a>
+			<a href="javascript:;" id="toggleFluid"><span>$languageUtil.format($locale, "toggle-fluid-layout")</span></a>
 		#end
 	</header>
 
@@ -66,7 +66,7 @@ $theme.include($body_top_include)
 					</div>
 
 					#if ($page_group.isUser() && !$layout.isPublicLayout())
-						<a href="$current_user_profile_url" class="profile-name">$current_user_name</a>
+						<a class="profile-name" href="$current_user_profile_url">$current_user_name</a>
 					#end
 				</div>
 			#end

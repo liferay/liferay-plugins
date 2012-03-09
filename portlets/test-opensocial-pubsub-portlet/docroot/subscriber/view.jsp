@@ -19,7 +19,7 @@
 <h3>Subscribe</h3>
 
 <div>
-	<aui:select name="subscribeTopic" label="">
+	<aui:select label="" name="subscribeTopic">
 		<aui:option label="String" />
 		<aui:option label="Array" />
 	</aui:select>
@@ -30,11 +30,11 @@
 <h3>Unsubscribe</h3>
 
 <div>
-	<aui:select name="unsubscribeTopic" label="">
-		<aui:option value="string_callback_fn" label="String with Callback Function" />
-		<aui:option value="string" label="String without Callback Function" />
-		<aui:option value="handle" label="Topic Handle" />
-		<aui:option value="handle_detach" label="Handle.detach();" />
+	<aui:select label="" name="unsubscribeTopic">
+		<aui:option label="String with Callback Function" value="string_callback_fn" />
+		<aui:option label="String without Callback Function" value="string" />
+		<aui:option label="Topic Handle" value="handle" />
+		<aui:option label="Handle.detach();" value="handle_detach" />
 	</aui:select>
 
 	<aui:button name="unsubscribe" value="Unsubscribe" />

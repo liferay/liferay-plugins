@@ -59,7 +59,7 @@
 		%>
 
 		<liferay-ui:search-container-column-text align="center">
-			<aui:input label="" name="mbThread" type="checkbox" data-mbThreadId="<%= userThread.getMbThreadId() %>" />
+			<aui:input data-mbThreadId="<%= userThread.getMbThreadId() %>" label="" name="mbThread" type="checkbox" />
 		</liferay-ui:search-container-column-text>
 
 		<liferay-ui:search-container-column-text valign="top">

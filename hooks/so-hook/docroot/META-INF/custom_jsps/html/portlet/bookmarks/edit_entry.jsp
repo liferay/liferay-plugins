@@ -31,7 +31,7 @@ long entryId = BeanParamUtil.getLong(entry, request, "entryId");
 long folderId = BeanParamUtil.getLong(entry, request, "folderId");
 %>
 
-<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editEntryURL">
+<portlet:actionURL var="editEntryURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
 	<portlet:param name="struts_action" value="/bookmarks/edit_entry" />
 </portlet:actionURL>
 

@@ -72,7 +72,7 @@ MailManager mailManager = MailManager.getInstance(request);
 				<aui:a cssClass="message-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageNumber="<%= messageNumber - 1 %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" href="javascript:;">&lt; <liferay-ui:message key="newer" /></aui:a>
 			</c:if>
 
-			<liferay-ui:message key="x-of-x" arguments='<%= new Object[] {messageNumber, messageCount} %>' />
+			<liferay-ui:message arguments='<%= new Object[] {messageNumber, messageCount} %>' key="x-of-x" />
 
 			<c:if test="<%= messageNumber < messageCount %>">
 				<aui:a cssClass="message-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageNumber="<%= messageNumber + 1 %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" href="javascript:;"><liferay-ui:message key="older" /> &gt;</aui:a>

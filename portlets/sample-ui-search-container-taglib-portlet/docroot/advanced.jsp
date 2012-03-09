@@ -45,7 +45,7 @@ portletURL.setParameter("mvcPath", "/advanced.jsp");
 		keyProperty="userId"
 		modelVar="curUser"
 	>
-		<liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" varImpl="rowURL">
+		<liferay-portlet:renderURL varImpl="rowURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
 			<portlet:param name="mvcPath" value="/advanced_user_display.jsp" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="userId" value="<%= String.valueOf(curUser.getUserId()) %>" />

@@ -51,7 +51,7 @@ boolean ignoreRequestValue = (index != formFieldsIndex);
 
 	<c:choose>
 		<c:when test="<%= !fieldsEditingDisabled %>">
-			<aui:input type="hidden" name='<%= "_field" + index %>' />
+			<aui:input name='<%= "_field" + index %>' type="hidden" />
 
 			<aui:field-wrapper cssClass="label-name" label="name">
 				<liferay-ui:input-localized ignoreRequestValue="<%= ignoreRequestValue %>" name='<%= "fieldLabel" + index %>' xml="<%= fieldLabelXml %>" />
@@ -129,9 +129,9 @@ boolean ignoreRequestValue = (index != formFieldsIndex);
 
 					<div class='validation-input <%= Validator.isNull(fieldValidationScript) ? "aui-helper-hidden" : "" %>'>
 						<aui:column columnWidth="50">
-							<aui:input cssClass="validation-script" cols="80" ignoreRequestValue="<%= ignoreRequestValue %>" label="validation-script" name='<%= "fieldValidationScript" + index %>' style="width: 95%" type="textarea" value="<%= fieldValidationScript %>" wrap="off" />
+							<aui:input cols="80" cssClass="validation-script" ignoreRequestValue="<%= ignoreRequestValue %>" label="validation-script" name='<%= "fieldValidationScript" + index %>' style="width: 95%" type="textarea" value="<%= fieldValidationScript %>" wrap="off" />
 
-							<aui:input cssClass="lfr-input-text-container" cols="80" ignoreRequestValue="<%= ignoreRequestValue %>" label="validation-error-message" name='<%= "fieldValidationErrorMessage" + index %>' size="80" value="<%= fieldValidationErrorMessage %>" />
+							<aui:input cols="80" cssClass="lfr-input-text-container" ignoreRequestValue="<%= ignoreRequestValue %>" label="validation-error-message" name='<%= "fieldValidationErrorMessage" + index %>' size="80" value="<%= fieldValidationErrorMessage %>" />
 						</aui:column>
 						<aui:column columnWidth="50">
 							<div class="syntax-help">

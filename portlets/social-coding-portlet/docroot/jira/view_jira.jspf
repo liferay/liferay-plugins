@@ -50,7 +50,7 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(company.getCompanyId(),
 				<c:if test="<%= UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
 					<br />
 
-					<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editURL" />
+					<portlet:renderURL var="editURL" windowState="<%= WindowState.MAXIMIZED.toString() %>" />
 
 					<liferay-ui:icon
 						image="edit"

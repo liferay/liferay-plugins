@@ -16,7 +16,7 @@
 
 <%@ include file="/html/portlet/sample_struts_portlet/init.jsp" %>
 
-<html:form action="/sample_struts_portlet/upload/action" enctype="multipart/form-data" method="post" focus="file">
+<html:form action="/sample_struts_portlet/upload/action" enctype="multipart/form-data" focus="file" method="post">
 
 <table border="0" cellpadding="0" cellspacing="0">
 <tr>

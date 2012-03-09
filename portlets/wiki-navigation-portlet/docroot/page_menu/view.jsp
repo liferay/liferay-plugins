@@ -22,7 +22,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 
 <c:choose>
 	<c:when test="<%= wikiPage != null %>">
-		<liferay-ui:panel-container id='pageMenu' extended="<%= Boolean.TRUE %>" persistState="<%= true %>">
+		<liferay-ui:panel-container extended="<%= Boolean.TRUE %>" id='pageMenu' persistState="<%= true %>">
 
 			<%
 			List<MenuItem> menuItems = MenuItem.fromWikiPage(wikiPage, portletURL);
@@ -52,7 +52,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 		<c:if test="<%= PortletPermissionUtil.contains(permissionChecker, plid, portletDisplay.getId(), ActionKeys.CONFIGURATION) && WikiPagePermission.contains(permissionChecker, wikiPage, ActionKeys.UPDATE) %>">
 			<br />
 
-			<liferay-portlet:renderURL var="editURL" portletName="<%= PortletKeys.WIKI %>">
+			<liferay-portlet:renderURL portletName="<%= PortletKeys.WIKI %>" var="editURL">
 				<portlet:param name="struts_action" value="/wiki/edit_page" />
 				<portlet:param name="nodeId" value="<%= String.valueOf(wikiPage.getNodeId()) %>" />
 				<portlet:param name="title" value="<%= HtmlUtil.unescape(wikiPage.getTitle()) %>" />

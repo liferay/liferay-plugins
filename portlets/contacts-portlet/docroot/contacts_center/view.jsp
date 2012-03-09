@@ -68,23 +68,23 @@ portletURL.setWindowState(WindowState.NORMAL);
 			<aui:input name="type" type="hidden" value="" />
 
 			<aui:layout cssClass="toolbar">
-				<aui:column cssClass="search-column" columnWidth="30">
+				<aui:column columnWidth="30" cssClass="search-column">
 					<div class="lfr-search-column contacts-search aui-search-bar">
-						<aui:input cssClass="search-input" label="" id="name" name="name" size="30" type="text" value="<%= HtmlUtil.escape(name) %>" />
+						<aui:input cssClass="search-input" id="name" label="" name="name" size="30" type="text" value="<%= HtmlUtil.escape(name) %>" />
 					</div>
 				</aui:column>
 
-				<aui:column cssClass="button-column" columnWidth="70">
+				<aui:column columnWidth="70" cssClass="button-column">
 					<div id="<portlet:namespace/>userToolbarButtons"><!-- --></div>
 
-					<div id="<portlet:namespace/>contactCenterToolbarButtons" class="aui-helper-hidden">
+					<div class="aui-helper-hidden" id="<portlet:namespace/>contactCenterToolbarButtons">
 						<liferay-util:include page="/contacts_center/contacts_center_toolbar.jsp" servletContext="<%= application %>" />
 					</div>
 				</aui:column>
 			</aui:layout>
 
 			<aui:layout cssClass="contacts-result-container lfr-app-column-view">
-				<aui:column columnWidth="30" first="<%= true %>" cssClass="contacts-list">
+				<aui:column columnWidth="30" cssClass="contacts-list" first="<%= true %>">
 					<c:if test="<%= !userPublicPage %>">
 						<aui:layout cssClass="contact-group-filter">
 							<aui:select inlineField="true" label="" name="socialRelationType">
@@ -121,7 +121,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 								</div>
 							</c:if>
 
-							<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="viewSummaryURL">
+							<liferay-portlet:renderURL var="viewSummaryURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 								<portlet:param name="mvcPath" value="/contacts_center/view_resources.jsp" />
 								<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
 							</liferay-portlet:renderURL>
@@ -131,7 +131,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 									<input class="contact-ids" <%= themeDisplay.getUserId() == user2.getUserId() ? "disabled=\"true\"" : StringPool.BLANK %> name="contact-ids-<%= user2.getUserId() %>" type="checkbox" value="<%= user2.getUserId() %>" />
 								</div>
 
-								<div class="lfr-contact-grid-item" data-viewSummaryURL="<%= viewSummaryURL %>" data-userId="<%= user2.getUserId() %>">
+								<div class="lfr-contact-grid-item" data-userId="<%= user2.getUserId() %>" data-viewSummaryURL="<%= viewSummaryURL %>">
 									<div class="lfr-contact-thumb">
 										<img alt="<%= HtmlUtil.escape(user2.getFullName()) %>" src="<%= user2.getPortraitURL(themeDisplay) %>" />
 									</div>
@@ -162,7 +162,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 
 						<c:if test="<%= usersCount > maxResultCount %>">
 							<div class="more-results">
-								<a href="javascript:;" data-end="<%= maxResultCount %>" data-lastNameAnchor="<%= lastNameAnchor %>"><liferay-ui:message key="view-more" /> (<%= usersCount - maxResultCount %>)</a>
+								<a data-end="<%= maxResultCount %>" data-lastNameAnchor="<%= lastNameAnchor %>" href="javascript:;"><liferay-ui:message key="view-more" /> (<%= usersCount - maxResultCount %>)</a>
 							</div>
 						</c:if>
 					</aui:layout>

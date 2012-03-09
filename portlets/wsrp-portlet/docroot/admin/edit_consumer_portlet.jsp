@@ -59,7 +59,7 @@ PortletDescription[] portletDescriptions = serviceDescription.getOfferedPortlets
 		<liferay-ui:message key="name" />
 	</td>
 	<td>
-		<liferay-ui:input-field model="<%= WSRPConsumerPortlet.class %>" bean="<%= wsrpConsumerPortlet %>" field="name" />
+		<liferay-ui:input-field bean="<%= wsrpConsumerPortlet %>" field="name" model="<%= WSRPConsumerPortlet.class %>" />
 	</td>
 </tr>
 <tr>

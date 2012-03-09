@@ -1,7 +1,7 @@
 #set ($contentId = $reserved-article-id.getData())
 #set ($contentClass = "multiple-items-" + $contentId + "-carousel")
 
-<style type="text/css" media="screen">
+<style media="screen" type="text/css">
 	#$contentClass {
 		height: $height.getData()px;
 		position: relative;

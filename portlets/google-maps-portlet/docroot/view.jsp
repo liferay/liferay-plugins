@@ -35,13 +35,13 @@
 		<form name="<portlet:namespace />fm">
 
 		<c:if test="<%= mapInputEnabled %>">
-			<input class="lfr-input-text" name="<portlet:namespace />mapAddress" type="text" onKeyPress="if (event.keyCode == 13) { <portlet:namespace />getMap(); return false; }" value="<%= mapAddress %>" />
+			<input class="lfr-input-text" name="<portlet:namespace />mapAddress" onKeyPress="if (event.keyCode == 13) { <portlet:namespace />getMap(); return false; }" type="text" value="<%= mapAddress %>" />
 
 			<input type="button" value="<liferay-ui:message key="get-map" />" onClick="<portlet:namespace />getMap();" />
 		</c:if>
 
 		<c:if test="<%= directionsInputEnabled %>">
-			<input class="lfr-input-text" name="<portlet:namespace />directionsAddress" type="text" onKeyPress="if (event.keyCode == 13) { <portlet:namespace />getDirections(); return false; }" value="<%= directionsAddress %>" />
+			<input class="lfr-input-text" name="<portlet:namespace />directionsAddress" onKeyPress="if (event.keyCode == 13) { <portlet:namespace />getDirections(); return false; }" type="text" value="<%= directionsAddress %>" />
 
 			<input type="button" value="<liferay-ui:message key="get-directions" />" onClick="<portlet:namespace />getDirections();" />
 		</c:if>

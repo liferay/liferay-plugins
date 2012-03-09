@@ -209,7 +209,7 @@ taskListURL.setParameter("tabs2", tabs2);
 				for (int i = TasksEntryConstants.STATUS_PERCENT_TWENTY; i <= TasksEntryConstants.STATUS_RESOLVED; i++) {
 			%>
 
-					<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="statusURL" name="updateTasksEntryStatus">
+					<portlet:actionURL name="updateTasksEntryStatus" var="statusURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
 						<portlet:param name="redirect" value="<%= taskListURL.toString() %>" />
 						<portlet:param name="tasksEntryId" value="<%= String.valueOf(tasksEntry.getTasksEntryId()) %>" />
 						<portlet:param name="resolverUserId" value="<%= String.valueOf(user.getUserId()) %>" />

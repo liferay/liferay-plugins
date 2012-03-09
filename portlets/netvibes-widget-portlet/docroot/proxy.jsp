@@ -19,8 +19,8 @@
 <html>
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<script type="text/javascript" src="http://www.netvibes.com/js/UWA/Utils/ifproxy.js"></script>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+	<script src="http://www.netvibes.com/js/UWA/Utils/ifproxy.js" type="text/javascript"></script>
 	<title>UWA Container Proxy</title>
 </head>
 

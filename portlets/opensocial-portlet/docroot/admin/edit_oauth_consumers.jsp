@@ -96,7 +96,7 @@ int oAuthServiceCount = 0;
 		<aui:model-context bean="<%= oAuthConsumer %>" model="<%= OAuthConsumer.class %>" />
 
 		<aui:fieldset>
-			<aui:select name="keyType" id='<%= "keyType" + oAuthServiceCount %>' >
+			<aui:select id='<%= "keyType" + oAuthServiceCount %>' name="keyType">
 				<aui:option label="<%= OAuthConsumerConstants.KEY_TYPE_HMAC_SYMMETRIC.toString() %>" value="<%= OAuthConsumerConstants.KEY_TYPE_HMAC_SYMMETRIC %>" />
 				<aui:option label="<%= OAuthConsumerConstants.KEY_TYPE_PLAINTEXT.toString() %>" value="<%= OAuthConsumerConstants.KEY_TYPE_PLAINTEXT %>" />
 				<aui:option label="<%= OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE.toString() %>" value="<%= OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE %>" />
