@@ -17,7 +17,6 @@
 
 package com.liferay.so.sites.util;
 
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.model.Group;
@@ -38,18 +37,12 @@ import java.util.List;
 public class SitesUtil {
 
 	public static List<Group> getFavoriteSitesGroups(
-			long userId, String name, int maxResultSize)
+			long userId, String name, int start, int end)
 		throws Exception {
-
-		int start = 0;
-
-		if (maxResultSize == QueryUtil.ALL_POS) {
-			start = QueryUtil.ALL_POS;
-		}
 
 		List<Object[]> favoriteSites =
 			FavoriteSiteLocalServiceUtil.getFavoriteSites(
-				userId, name, start, maxResultSize);
+				userId, name, start, end);
 
 		List<Group> groups = new ArrayList<Group>(favoriteSites.size());
 
