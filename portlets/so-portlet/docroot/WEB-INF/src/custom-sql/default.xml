@@ -6,72 +6,29 @@
 			SELECT
 				COUNT(*) AS COUNT_VALUE
 			FROM
-			(
-				(
-					SELECT
-						DISTINCT SO_FavoriteSite.userId, SO_FavoriteSite.groupId
-					FROM
-						Group_
-					INNER JOIN
-						SO_FavoriteSite ON
-							(Group_.groupId = SO_FavoriteSite.groupId)
-					WHERE
-						(SO_FavoriteSite.userId = ?) AND
-						(lower(Group_.name) LIKE ? OR lower(Group_.name) LIKE ? OR ? IS NULL)
-				)
-				UNION
-				(
-					SELECT
-						DISTINCT Users_Groups.userId, Group_.groupId
-					FROM
-						Group_
-					INNER JOIN
-						Users_Groups ON
-							(Users_Groups.groupId = Group_.groupId)
-					WHERE
-						(Users_Groups.userId = ?) AND
-						(lower(Group_.name) LIKE ? OR lower(Group_.name) LIKE ? OR ? IS NULL) AND
-						(Group_.liveGroupId = 0) AND
-						(Group_.name != 'Control Panel') AND
-						(Group_.type_ != 4)
-				)
-			) AS MyFavoriteSites
+				Group_
+			INNER JOIN
+				SO_FavoriteSite ON
+					(Group_.groupId = SO_FavoriteSite.groupId)
+			WHERE
+				(SO_FavoriteSite.userId = ?) AND
+				(lower(Group_.name) LIKE ? OR lower(Group_.name) LIKE ? OR ? IS NULL)
 		]]>
 	</sql>
 	<sql id="com.liferay.so.service.persistence.FavoriteSiteFinder.findByU_N">
 		<![CDATA[
-			(
-				SELECT
-					DISTINCT SO_FavoriteSite.userId, SO_FavoriteSite.groupId, Group_.name
-				FROM
-					Group_
-				INNER JOIN
-					SO_FavoriteSite ON
-						(Group_.groupId = SO_FavoriteSite.groupId)
-				WHERE
-					(SO_FavoriteSite.userId = ?) AND
-					(lower(Group_.name) LIKE ? OR lower(Group_.name) LIKE ? OR ? IS NULL)
-				ORDER BY
-					Group_.name ASC
-			)
-			UNION
-			(
-				SELECT
-					DISTINCT Users_Groups.userId, Group_.groupId, Group_.name
-				FROM
-					Group_
-				INNER JOIN
-					Users_Groups ON
-						(Users_Groups.groupId = Group_.groupId)
-				WHERE
-					(Users_Groups.userId = ?) AND
-					(lower(Group_.name) LIKE ? OR lower(Group_.name) LIKE ? OR ? IS NULL) AND
-					(Group_.name != 'Control Panel') AND
-					(Group_.liveGroupId = 0) AND
-					(Group_.type_ != 4)
-				ORDER BY
-					Group_.name ASC
-			)
+			SELECT
+				DISTINCT SO_FavoriteSite.userId, SO_FavoriteSite.groupId, Group_.name
+			FROM
+				Group_
+			INNER JOIN
+				SO_FavoriteSite ON
+					(Group_.groupId = SO_FavoriteSite.groupId)
+			WHERE
+				(SO_FavoriteSite.userId = ?) AND
+				(lower(Group_.name) LIKE ? OR lower(Group_.name) LIKE ? OR ? IS NULL)
+			ORDER BY
+				Group_.name ASC
 		]]>
 	</sql>
 </custom-sql>

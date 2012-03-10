@@ -77,7 +77,6 @@ AUI().use(
 									keywords: data.keywords || '',
 									searchTab: data.searchTab || tabs1,
 									start: data.start || 0,
-									userGroups: data.userGroups || false
 								}
 							}
 						},

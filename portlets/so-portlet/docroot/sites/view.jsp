@@ -29,8 +29,8 @@ List<Group> groups = null;
 int groupsCount = 0;
 
 if (tabs1.equals("my-sites")) {
-	groups = SitesUtil.getFavoriteSitesGroups(themeDisplay.getUserId(), searchName, maxResultSize);
-	groupsCount = SitesUtil.getFavoriteSitesGroupsCount(themeDisplay.getUserId(), searchName);
+	groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName, true, maxResultSize);
+	groupsCount = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName, true);
 
 	if (groupsCount == 0) {
 		tabs1 = "all-sites";
@@ -38,6 +38,10 @@ if (tabs1.equals("my-sites")) {
 		groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName, false, maxResultSize);
 		groupsCount = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName, false);
 	}
+}
+else if (tabs1.equals("my-favorites")) {
+	groups = SitesUtil.getFavoriteSitesGroups(themeDisplay.getUserId(), searchName, 0, maxResultSize);
+	groupsCount = SitesUtil.getFavoriteSitesGroupsCount(themeDisplay.getUserId(), searchName);
 }
 else {
 	groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchName, false, maxResultSize);
@@ -58,6 +62,7 @@ pageContext.setAttribute("portletURL", portletURL);
 	<aui:select label="" name="tabs1">
 		<aui:option label="all-sites" selected='<%= tabs1.equals("all-sites") %>' value="all-sites" />
 		<aui:option label="my-sites" selected='<%= tabs1.equals("my-sites") %>' value="my-sites" />
+		<aui:option label="my-favorites" selected='<%= tabs1.equals("my-favorites") %>' value="my-favorites" />
 	</aui:select>
 </div>
 
@@ -274,7 +279,7 @@ pageContext.setAttribute("portletURL", portletURL);
 
 			var data = {
 				keywords: keywords,
-				userSites: <%= tabs1.equals("my-sites") %>
+				tabs1: sitesTabsSelect.get('value')
 			};
 
 			<liferay-portlet:renderURL var="viewSitesURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">

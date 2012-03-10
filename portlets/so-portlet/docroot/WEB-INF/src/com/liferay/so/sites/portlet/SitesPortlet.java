@@ -188,8 +188,6 @@ public class SitesPortlet extends MVCPortlet {
 		String name = ParamUtil.getString(resourceRequest, "keywords");
 		String searchTab = ParamUtil.getString(resourceRequest, "searchTab");
 		int start = ParamUtil.getInteger(resourceRequest, "start");
-		boolean userGroups = ParamUtil.getBoolean(
-			resourceRequest, "userGroups");
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
@@ -200,7 +198,6 @@ public class SitesPortlet extends MVCPortlet {
 		optionsJSONObject.put("keywords", keywords);
 		optionsJSONObject.put("maxResultSize", maxResultSize);
 		optionsJSONObject.put("start", start);
-		optionsJSONObject.put("userGroups", userGroups);
 
 		jsonObject.put("options", optionsJSONObject);
 
@@ -211,31 +208,47 @@ public class SitesPortlet extends MVCPortlet {
 		int groupsCount = 0;
 
 		if (directory) {
-			LinkedHashMap<String, Object> params =
-				new LinkedHashMap<String, Object>();
-
-			if (userGroups) {
-				params.put("usersGroups", themeDisplay.getUserId());
+			if (searchTab.equals("my-favorites")) {
+				groups = SitesUtil.getFavoriteSitesGroups(
+					themeDisplay.getUserId(), keywords, start, end);
+				groupsCount = SitesUtil.getFavoriteSitesGroupsCount(
+					themeDisplay.getUserId(), keywords);
 			}
 			else {
-				List<Integer> types = new ArrayList<Integer>();
+				LinkedHashMap<String, Object> params =
+					new LinkedHashMap<String, Object>();
 
-				types.add(GroupConstants.TYPE_SITE_OPEN);
-				types.add(GroupConstants.TYPE_SITE_RESTRICTED);
+				if (searchTab.equals("my-sites")) {
+					params.put("usersGroups", themeDisplay.getUserId());
+				}
+				else {
+					List<Integer> types = new ArrayList<Integer>();
 
-				params.put("types", types);
+					types.add(GroupConstants.TYPE_SITE_OPEN);
+					types.add(GroupConstants.TYPE_SITE_RESTRICTED);
+
+					params.put("types", types);
+				}
+
+				groups = GroupLocalServiceUtil.search(
+					themeDisplay.getCompanyId(), keywords, null, params, start,
+					end, new GroupNameComparator(true));
+				groupsCount = GroupLocalServiceUtil.searchCount(
+					themeDisplay.getCompanyId(), keywords, null, params);
 			}
-
-			groups = GroupLocalServiceUtil.search(
-				themeDisplay.getCompanyId(), keywords, null, params, start, end,
-				new GroupNameComparator(true));
-			groupsCount = GroupLocalServiceUtil.searchCount(
-				themeDisplay.getCompanyId(), keywords, null, params);
 		}
 		else {
 			if (searchTab.equals("my-sites")) {
+				groups = SitesUtil.getVisibleSites(
+					themeDisplay.getCompanyId(), themeDisplay.getUserId(),
+					keywords, true, maxResultSize);
+				groupsCount = SitesUtil.getVisibleSitesCount(
+					themeDisplay.getCompanyId(), themeDisplay.getUserId(),
+					keywords, true);
+			}
+			else if (searchTab.equals("my-favorites")) {
 				groups = SitesUtil.getFavoriteSitesGroups(
-					themeDisplay.getUserId(), keywords, maxResultSize);
+					themeDisplay.getUserId(), keywords, 0, maxResultSize);
 				groupsCount = SitesUtil.getFavoriteSitesGroupsCount(
 					themeDisplay.getUserId(), keywords);
 			}
