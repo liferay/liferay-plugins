@@ -65,10 +65,6 @@ public class FavoriteSiteFinderImpl
 			qPos.add(StringPool.PERCENT + name + StringPool.PERCENT);
 			qPos.add(groupRealName);
 			qPos.add(name);
-			qPos.add(userId);
-			qPos.add(StringPool.PERCENT + name + StringPool.PERCENT);
-			qPos.add(groupRealName);
-			qPos.add(name);
 
 			Iterator<Long> itr = q.iterate();
 
@@ -110,10 +106,6 @@ public class FavoriteSiteFinderImpl
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
-			qPos.add(userId);
-			qPos.add(StringPool.PERCENT + name + StringPool.PERCENT);
-			qPos.add(groupRealName);
-			qPos.add(name);
 			qPos.add(userId);
 			qPos.add(StringPool.PERCENT + name + StringPool.PERCENT);
 			qPos.add(groupRealName);
