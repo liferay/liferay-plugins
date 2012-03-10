@@ -38,18 +38,12 @@ import java.util.List;
 public class SitesUtil {
 
 	public static List<Group> getFavoriteSitesGroups(
-			long userId, String name, int maxResultSize)
+			long userId, String name, int start, int end)
 		throws Exception {
-
-		int start = 0;
-
-		if (maxResultSize == QueryUtil.ALL_POS) {
-			start = QueryUtil.ALL_POS;
-		}
 
 		List<Object[]> favoriteSites =
 			FavoriteSiteLocalServiceUtil.getFavoriteSites(
-				userId, name, start, maxResultSize);
+				userId, name, start, end);
 
 		List<Group> groups = new ArrayList<Group>(favoriteSites.size());
 

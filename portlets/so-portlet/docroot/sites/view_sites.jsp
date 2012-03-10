@@ -21,27 +21,35 @@
 
 <%
 String keywords = ParamUtil.getString(request, "keywords");
-boolean userSites = ParamUtil.getBoolean(request, "userSites");
+String tabs1 = ParamUtil.getString(request, "tabs1");
 
 String searchKeywords = DAOParamUtil.getLike(request, "keywords");
 
-LinkedHashMap<String, Object> params = new LinkedHashMap<String, Object>();
+List<Group> groups = null;
+int groupsCount = 0;
 
-if (userSites) {
-	params.put("usersGroups", themeDisplay.getUserId());
+if (tabs1.equals("my-favorites")) {
+	groups = SitesUtil.getFavoriteSitesGroups(themeDisplay.getUserId(), keywords, 0, maxResultSize);
+	groupsCount = SitesUtil.getFavoriteSitesGroupsCount(themeDisplay.getUserId(), keywords);
 }
 else {
-	List<Integer> types = new ArrayList<Integer>();
+	LinkedHashMap<String, Object> params = new LinkedHashMap<String, Object>();
 
-	types.add(GroupConstants.TYPE_SITE_OPEN);
-	types.add(GroupConstants.TYPE_SITE_RESTRICTED);
+	if (tabs1.equals("my-sites")) {
+		params.put("usersGroups", themeDisplay.getUserId());
+	}
+	else {
+		List<Integer> types = new ArrayList<Integer>();
 
-	params.put("types", types);
+		types.add(GroupConstants.TYPE_SITE_OPEN);
+		types.add(GroupConstants.TYPE_SITE_RESTRICTED);
+
+		params.put("types", types);
+	}
+
+	groups = GroupLocalServiceUtil.search(themeDisplay.getCompanyId(), searchKeywords, null, params, 0, maxResultSize, new GroupNameComparator(true));
+	groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), searchKeywords, null, params);
 }
-
-List<Group> groups = GroupLocalServiceUtil.search(themeDisplay.getCompanyId(), searchKeywords, null, params, 0, maxResultSize, new GroupNameComparator(true));
-
-int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), searchKeywords, null, params);
 %>
 
 <div class="so-sites-directory" id="<portlet:namespace />directory">
@@ -51,10 +59,12 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 		<div class="buttons-left">
 			<input id="<portlet:namespace />dialogKeywords" size="30" type="text" value="<%= HtmlUtil.escape(keywords) %>" />
 
-			<span>
-				<input <%= userSites ? "checked" : StringPool.BLANK %> id="<portlet:namespace />userSites" name="<portlet:namespace />userSites" type="checkbox" />
-
-				<label for="<portlet:namespace />userSites"><liferay-ui:message key="my-sites" /></label>
+			<span class="sites-tabs">
+				<aui:select label="" name="tabs1">
+					<aui:option label="all-sites" selected='<%= tabs1.equals("all-sites") %>' value="all-sites" />
+					<aui:option label="my-sites" selected='<%= tabs1.equals("my-sites") %>' value="my-sites" />
+					<aui:option label="my-favorites" selected='<%= tabs1.equals("my-favorites") %>' value="my-favorites" />
+				</aui:select>
 			</span>
 		</div>
 
@@ -217,7 +227,7 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 	var keywordsInput = directoryContainer.one('#<portlet:namespace />dialogKeywords');
 	var nextButton = directoryContainer.one('.search .next');
 	var previousButton = directoryContainer.one('.search .previous');
-	var userGroupsCheckbox = directoryContainer.one('#<portlet:namespace />userSites');
+	var sitesTabsSelect = directoryContainer.one('select[name=<portlet:namespace />tabs1]');
 
 	var directoryList = new Liferay.SO.SiteList(
 		{
@@ -226,8 +236,8 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 					directory: true,
 					end: <%= maxResultSize %>,
 					keywords: query,
-					start: 0,
-					userGroups: userGroupsCheckbox.get('checked')
+					searchTab: sitesTabsSelect.get('value'),
+					start: 0
 				}
 			},
 
@@ -343,11 +353,18 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 				directory: true,
 				end: end,
 				keywords: query,
-				start: start,
-				userGroups: userGroupsCheckbox.get('checked')
+				searchTab: sitesTabsSelect.get('value'),
+				start: start
 			}
 		};
 	};
+
+	sitesTabsSelect.on(
+		'change',
+		function(event) {
+			directoryList.sendRequest();
+		}
+	);
 
 	nextButton.on(
 		'click',
@@ -377,13 +394,6 @@ int groupsCount = GroupLocalServiceUtil.searchCount(themeDisplay.getCompanyId(),
 			}
 
 			directoryList.sendRequest(keywordsInput.get('value'), getRequestTemplate(targetPage));
-		}
-	);
-
-	userGroupsCheckbox.on(
-		'change',
-		function() {
-			directoryList.sendRequest();
 		}
 	);
 
