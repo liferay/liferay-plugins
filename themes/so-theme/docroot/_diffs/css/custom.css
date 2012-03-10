@@ -2,6 +2,7 @@
 
 $border-color: #C7D0DA;
 $fixed-width: 980px;
+$gray: #CECECE;
 $header: #8F0920;
 $link: #2571AD;
 $navigation-width: 200px;
@@ -95,7 +96,10 @@ a:focus .opens-new-window-accessible {
 		font-size: 2.2em;
 		font-weight: bold;
 		line-height: 1em;
+		overflow: hidden;
 		padding: 30px 20px 0;
+		text-overflow: ellipsis;
+		width: 50%;
 
 		a {
 			color: $header;
@@ -201,6 +205,9 @@ a:focus .opens-new-window-accessible {
 
 	.profile-name {
 		font-weight: bold;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		width: 128px;
 	}
 }
 
@@ -319,7 +326,7 @@ a:focus .opens-new-window-accessible {
 			}
 		}
 
-		ul.site-list .empty {
+		ul.site-list .empty, ul.site-list .more {
 			padding-left: 25px;
 		}
 	}
@@ -426,7 +433,7 @@ a:focus .opens-new-window-accessible {
 .user-sites li {
 	overflow: hidden;
 	text-overflow: ellipsis;
-		width: 30%;
+	width: 200px;
 }
 
 .user-tags li {
@@ -524,7 +531,7 @@ button, input[type=submit], input[type=button], input[type=reset], .aui-panel-hd
 	@include border-radius(3px);
 	@include box-shadow(0 1px 0 #F4F3F3 inset, 0 -1px 0 #D9D8D8 inset);
 	background: #E9E8E8;
-	border: 1px solid #CECECE;
+	border: 1px solid $gray;
 	text-shadow: none;
 }
 
@@ -559,6 +566,10 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		background: #EEE;
 		border-color: #AAA;
 		color: #5A5A5A;
+	}
+
+	&:active {
+		@include box-shadow(0 1px 1px #C9C9C9 inset);
 	}
 }
 
@@ -663,7 +674,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		.aui-tab-content, .aui-tab-content:hover {
 			@include box-shadow(none);
 			background: #FFF;
-			border-color: #CECECE #CECECE #FFF;
+			border-color: $gray $gray #FFF;
 
 			.aui-tab-label {
 				color: #5A5A5A;
@@ -916,40 +927,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	@include box-shadow(0 -10px 9px 4px black, 0 -2px 10px -6px rgba(0, 0, 0, 0.5));
 }
 
-/* Message Boards */
-
-.portlet-message-boards {
-	.category-current {
-		font-weight: bold;
-	}
-
-	.result-data .views {
-		clear: none;
-		color: #777;
-		float: none;
-		padding: 0;
-	}
-
-	.displayStyle-question .stats {
-		width: auto;
-	}
-
-	.stats {
-		.votes, .status {
-			display: block;
-			height: auto;
-			margin: 0;
-			padding: 0;
-			width: auto;
-		}
-
-		.count {
-			display: inline;
-			font-size: 1em;
-		}
-	}
-}
-
 /* Recent Documents */
 
 .portlet-recent-documents {
@@ -1072,7 +1049,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		}
 	}
 
-	.entry, h1.header-title, #blogsCommentsPanelContainer {
+	.entry, h1.header-title, #blogsCommentsPanelContainer, .aui-form {
 		margin: 0 auto;
 		max-width: 640px;
 		position: relative;
@@ -1341,6 +1318,10 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		z-index: 4;
 	}
 
+	.highlighter-content {
+		padding: 5px 0;
+	}
+
 	.microblogs-countdown {
 		@include border-radius(3px);
 		font-size: .9em;
@@ -1501,7 +1482,21 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 
 	.thread .results-row, .results-grid table.taglib-search-iterator, .results-grid .results-row td, .results-grid .results-row.alt td {
-		border-width: 1px 0;
+		border-width: 0 0 1px;
+	}
+
+	.message-link:hover {
+		background-color: #E8EFF4;
+		text-decoration: none;
+	}
+
+	.user-profile-image {
+		position: relative;
+		z-index: 2;
+	}
+
+	.taglib-search-iterator-page-iterator-bottom {
+		padding: 10px;
 	}
 
 	.messages-content {
@@ -1610,15 +1605,30 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		margin: 0;
 	}
 
+	.document-library-breadcrumb {
+		border-bottom: 1px solid $gray;
+	}
+
 	.search-button-container {
-		.aui-column-content, .aui-column-content-center {
+		@include box-shadow(none);
+		border-width: 0;
+
+		.aui-column:before, .aui-column-content, .aui-column-content-center {
 			border-width: 0;
 			padding: 0;
 		}
 
-		.lfr-search-combobox .lfr-search-combobox-item, .lfr-search-combobox .aui-button {
+		.lfr-search-combobox-item, .aui-button {
 			margin: 0;
 		}
+
+		.aui-field-input-text {
+			padding: 5px 4px;
+		}
+	}
+
+	.document-container {
+		min-height: 400px;
 	}
 
 	.aui-column-content-first, .aui-column-content-last {
@@ -1660,6 +1670,14 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		right: 0;
 		top: 0;
 		z-index: 1;
+	}
+
+	.aui-field-wrapper-content {
+		margin: 0;
+	}
+
+	.aui-fieldset-content {
+		padding: 10px;
 	}
 }
 
@@ -1763,18 +1781,51 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 }
 
+
+/* Message Boards */
+
 .portlet-message-boards {
+	.category-current {
+		font-weight: bold;
+	}
+
+	.result-data .views {
+		clear: none;
+		color: #777;
+		float: none;
+		padding: 0;
+	}
+
+	.displayStyle-question .stats {
+		width: auto;
+	}
+
+	.stats {
+		.votes, .status {
+			display: block;
+			height: auto;
+			margin: 0;
+			padding: 0;
+			width: auto;
+		}
+
+		.count {
+			display: inline;
+			font-size: 1em;
+		}
+	}
 	.category-search {
 		padding: 5px;
 	}
 
 	.message-container {
-		border-color: #CECECE;
-		border-width: 0 0 1px;
+		border-color: $gray;
+		border-width: 0 0 1px 1px;
 		margin: 0;
+		padding: 0 5px;
 
 		&.reply {
-			border: 1px solid #CECECE;
+			border: 1px solid $gray;
 			margin: -1px 0;
 			padding: 0 5px;
 		}
@@ -1811,7 +1862,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 			.edit-controls {
 				position: absolute;
-				right: 0;
+				right: -5px;
 				top: 0;
 			}
 		}
@@ -1850,9 +1901,8 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 
 	.thread-controls, .edit-controls {
-		@include border-radius(3px);
 		background: #EEE;
-		border: 1px solid #CECECE;
+		border: 1px solid $gray;
 		padding: 4px 5px;
 
 		a {
@@ -1868,12 +1918,17 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		}
 	}
 
+	.thread-controls {
+		@include border-radius(3px 3px 0 0);
+	}
+
 	.thread-navigation {
-		border-right: 1px solid #CECECE;
+		border-right: 1px solid $gray;
 		padding: 0 5px;
 	}
 
 	.edit-controls {
+		@include border-radius(3px);
 		position: relative;
 		top: -.5em;
 
