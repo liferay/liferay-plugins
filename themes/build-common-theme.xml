@@ -75,14 +75,14 @@
 		<if>
 			<equals arg1="${theme.parent}" arg2="_unstyled" />
 			<then>
-				<copy todir="docroot" overwrite="true">
+				<copy todir="docroot" overwrite="true" preservelastmodified="true">
 					<fileset
 						dir="${app.server.portal.dir}/html/themes/_unstyled"
 						excludes="templates/**"
 					/>
 				</copy>
 
-				<copy todir="docroot/templates" overwrite="true">
+				<copy todir="docroot/templates" overwrite="true" preservelastmodified="true">
 					<fileset
 						dir="${app.server.portal.dir}/html/themes/_unstyled/templates"
 						excludes="init.${theme.type}"
@@ -93,14 +93,14 @@
 			<elseif>
 				<equals arg1="${theme.parent}" arg2="_styled" />
 				<then>
-					<copy todir="docroot" overwrite="true">
+					<copy todir="docroot" overwrite="true" preservelastmodified="true">
 						<fileset
 							dir="${app.server.portal.dir}/html/themes/_unstyled"
 							excludes="templates/**"
 						/>
 					</copy>
 
-					<copy todir="docroot/templates" overwrite="true">
+					<copy todir="docroot/templates" overwrite="true" preservelastmodified="true">
 						<fileset
 							dir="${app.server.portal.dir}/html/themes/_unstyled/templates"
 							excludes="init.${theme.type}"
@@ -108,7 +108,7 @@
 						/>
 					</copy>
 
-					<copy todir="docroot" overwrite="true">
+					<copy todir="docroot" overwrite="true" preservelastmodified="true">
 						<fileset
 							dir="${app.server.portal.dir}/html/themes/_styled"
 						/>
@@ -118,14 +118,14 @@
 			<elseif>
 				<equals arg1="${theme.parent}" arg2="classic" />
 				<then>
-					<copy todir="docroot" overwrite="true">
+					<copy todir="docroot" overwrite="true" preservelastmodified="true">
 						<fileset
 							dir="${app.server.portal.dir}/html/themes/classic"
 							excludes="_diffs/**,templates/**"
 						/>
 					</copy>
 
-					<copy todir="docroot/templates" overwrite="true">
+					<copy todir="docroot/templates" overwrite="true" preservelastmodified="true">
 						<fileset
 							dir="${app.server.portal.dir}/html/themes/classic/templates"
 							includes="*.${theme.type}"
@@ -138,7 +138,7 @@
 				<then>
 					<ant dir="${theme.parent}" target="compile" inheritAll="false" />
 
-					<copy todir="docroot" overwrite="true">
+					<copy todir="docroot" overwrite="true" preservelastmodified="true">
 						<fileset
 							dir="${theme.parent}/docroot"
 							excludes="_diffs/**,WEB-INF/*.properties,WEB-INF/*.xml"
@@ -151,7 +151,7 @@
 		<if>
 			<available file="docroot/_diffs" />
 			<then>
-				<copy todir="docroot" overwrite="true">
+				<copy todir="docroot" overwrite="true" preservelastmodified="true">
 					<fileset
 						dir="docroot/_diffs"
 					/>
@@ -164,7 +164,7 @@
 			<then>
 				<mkdir dir="docroot/WEB-INF/classes"/>
 
-				<copy todir="docroot/WEB-INF/classes">
+				<copy todir="docroot/WEB-INF/classes" preservelastmodified="true">
 					<fileset dir="docroot/WEB-INF/src" excludes="**/*.java" />
 				</copy>
 			</then>
