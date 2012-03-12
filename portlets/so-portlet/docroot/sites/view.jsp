@@ -80,7 +80,7 @@ pageContext.setAttribute("portletURL", portletURL);
 
 	<c:if test="<%= !hideNotice %>">
 		<div class="portlet-msg-info favorite-msg-info <%= hideNotice %>">
-			<liferay-ui:message key="favorite-some-sites-to-customize-your-sites-list" />
+			<liferay-ui:message key="favorite-some-sites-to-customize-this-list" />
 
 			<span class="hide-notice">
 				<liferay-portlet:actionURL name="hideNotice" var="hideNoticeURL">
