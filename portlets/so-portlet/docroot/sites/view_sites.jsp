@@ -20,9 +20,9 @@
 <%@ include file="/sites/init.jsp" %>
 
 <%
-String keywords = ParamUtil.getString(request, "keywords");
 String tabs1 = ParamUtil.getString(request, "tabs1");
 
+String keywords = ParamUtil.getString(request, "keywords");
 String searchKeywords = DAOParamUtil.getLike(request, "keywords");
 
 List<Group> groups = null;
