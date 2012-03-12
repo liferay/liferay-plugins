@@ -17,6 +17,7 @@ package com.liferay.portal.search.solr.servlet;
 import com.liferay.portal.kernel.concurrent.ConcurrentHashSet;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
 import com.liferay.portal.search.solr.server.LiveServerChecker;
+import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
 
 import java.util.Set;
 
@@ -50,6 +51,8 @@ public class SolrServletContextListener
 
 			_liveServerCheckers.remove(liveServerChecker);
 		}
+
+		MultiThreadedHttpConnectionManager.shutdownAll();
 	}
 
 	@Override
