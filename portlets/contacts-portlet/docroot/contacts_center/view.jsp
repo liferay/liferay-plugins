@@ -29,7 +29,7 @@ if (group.isUser() && layout.isPublicLayout()) {
 	userPublicPage = true;
 }
 
-LinkedHashMap<String, Object> params = new LinkedHashMap<String, Object>();
+Map<String, Object> params = new LinkedHashMap<String, Object>();
 
 if (userPublicPage) {
 	params.put("socialRelation", new Long[] {group.getClassPK()});
