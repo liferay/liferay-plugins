@@ -463,18 +463,18 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		throws PortletException {
 
 		try {
-			String id = resourceRequest.getResourceID();
+			String resourceID = resourceRequest.getResourceID();
 
-			if (id.equals("exportVCard")) {
+			if (resourceID.equals("exportVCard")) {
 				exportVCard(resourceRequest, resourceResponse);
 			}
-			else if (id.equals("exportVCards")) {
+			else if (resourceID.equals("exportVCards")) {
 				exportVCards(resourceRequest, resourceResponse);
 			}
-			else if (id.equals("getContact")) {
+			else if (resourceID.equals("getContact")) {
 				getContact(resourceRequest, resourceResponse);
 			}
-			else if (id.equals("getContacts")) {
+			else if (resourceID.equals("getContacts")) {
 				getContacts(resourceRequest, resourceResponse);
 			}
 			else {

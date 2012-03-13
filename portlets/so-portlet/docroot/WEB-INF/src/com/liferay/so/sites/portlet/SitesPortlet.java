@@ -419,13 +419,13 @@ public class SitesPortlet extends MVCPortlet {
 		throws PortletException {
 
 		try {
-			String id = resourceRequest.getResourceID();
+			String resourceID = resourceRequest.getResourceID();
 
-			if (id.equals("getLayoutSetPrototypeDescription")) {
+			if (resourceID.equals("getLayoutSetPrototypeDescription")) {
 				getLayoutSetPrototypeDescription(
 					resourceRequest, resourceResponse);
 			}
-			else if (id.equals("getSites")) {
+			else if (resourceID.equals("getSites")) {
 				getSites(resourceRequest, resourceResponse);
 			}
 			else {
