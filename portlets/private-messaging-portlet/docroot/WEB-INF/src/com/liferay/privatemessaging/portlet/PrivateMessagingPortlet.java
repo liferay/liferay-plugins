@@ -240,8 +240,6 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
 		String[] recipients = StringUtil.split(
 			ParamUtil.getString(resourceRequest, "recipients"));
 
@@ -265,6 +263,8 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 				failedRecipients.add(recipient);
 			}
 		}
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		if (!failedRecipients.isEmpty()) {
 			StringBundler sb = new StringBundler(3);
