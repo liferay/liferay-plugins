@@ -47,13 +47,17 @@ public class UserListener extends BaseModelListener<User> {
 				return;
 			}
 
+			long userGroupId = (Long)associationClassPK;
+
 			UserGroup userGroup = UserGroupLocalServiceUtil.getUserGroup(
-				(Long)associationClassPK);
+				userGroupId);
 
 			String name = userGroup.getName();
 
 			if (name.equals(UserGroupConstants.SOCIAL_OFFICE_USERS)) {
-				updateUserLayoutSets((Long)classPK);
+				long userId = (Long)classPK;
+
+				updateUserLayoutSets(userId);
 			}
 		}
 		catch (Exception e) {

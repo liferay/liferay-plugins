@@ -89,16 +89,16 @@ public class InstanceUtil {
 
 	public static void initRuntime(long companyId) {
 
-		// Sites
-
-		Portlet portlet = PortletLocalServiceUtil.getPortletById(
-			PortletKeys.MY_SITES);
-
-		portlet.setAddDefaultResource(true);
-
 		// Directory
 
 		portlet = PortletLocalServiceUtil.getPortletById(PortletKeys.DIRECTORY);
+
+		portlet.setAddDefaultResource(true);
+
+		// My Sites
+
+		Portlet portlet = PortletLocalServiceUtil.getPortletById(
+			PortletKeys.MY_SITES);
 
 		portlet.setAddDefaultResource(true);
 
