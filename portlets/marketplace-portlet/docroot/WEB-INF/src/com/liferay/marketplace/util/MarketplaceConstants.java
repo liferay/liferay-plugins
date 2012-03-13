@@ -14,18 +14,28 @@
 
 package com.liferay.marketplace.util;
 
+import com.liferay.portal.kernel.util.ReleaseInfo;
+
 /**
  * @author Ryan Park
  */
 public class MarketplaceConstants {
 
-	public static final String MARKETPLACE_PATH_PURCHASED =
-		"/widget/web/guest/mpserver/-/mp_server/purchased/6100";
-
-	public static final String MARKETPLACE_PATH_STORE =
-		"/widget/web/guest/mpserver/-/mp_server/store/6100";
-
 	public static final String MARKETPLACE_URL_LOGOUT =
 		"http://mp.liferay.com/c/portal/logout";
+
+	public static String getPathPurchased() {
+		return _MARKETPLACE_PATH_PURCHASED + ReleaseInfo.getBuildNumber();
+	}
+
+	public static String getPathStore() {
+		return _MARKETPLACE_PATH_STORE + ReleaseInfo.getBuildNumber();
+	}
+
+	private static final String _MARKETPLACE_PATH_PURCHASED =
+		"/widget/web/guest/mpserver/-/mp_server/purchased/";
+
+	private static final String _MARKETPLACE_PATH_STORE =
+		"/widget/web/guest/mpserver/-/mp_server/store/";
 
 }
