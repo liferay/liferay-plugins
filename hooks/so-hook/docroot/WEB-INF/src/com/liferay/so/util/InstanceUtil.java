@@ -29,6 +29,7 @@ import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Role;
+import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroup;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.GroupLocalServiceUtil;
@@ -357,17 +358,26 @@ public class InstanceUtil {
 			LocaleUtil.getDefault(),
 			"Social Office Users have access to the Social Office Suite.");
 
-		RoleLocalServiceUtil.addRole(
+		Role role = RoleLocalServiceUtil.addRole(
 			defaultUserId, companyId, RoleConstants.SOCIAL_OFFICE_USER, null,
 			descriptionMap, RoleConstants.TYPE_REGULAR);
+
+		ResourcePermissionLocalServiceUtil.setResourcePermissions(
+			companyId, PortletKeys.PORTAL, ResourceConstants.SCOPE_COMPANY,
+			String.valueOf(companyId), role.getRoleId(),
+			new String[] {ActionKeys.ADD_COMMUNITY});
+
+		ResourcePermissionLocalServiceUtil.setResourcePermissions(
+			companyId, User.class.getName(), ResourceConstants.SCOPE_COMPANY,
+			String.valueOf(companyId), role.getRoleId(),
+			new String[] {ActionKeys.VIEW});
 	}
 
 	protected static void setupUserGroup(long companyId) throws Exception {
 		long defaultUserId = UserLocalServiceUtil.getDefaultUserId(companyId);
 
 		UserGroup userGroup = UserGroupLocalServiceUtil.addUserGroup(
-			defaultUserId, companyId,
-			UserGroupConstants.SOCIAL_OFFICE_USERS,
+			defaultUserId, companyId, UserGroupConstants.SOCIAL_OFFICE_USERS,
 			"Social Office Users have access to the Social Office Suite.");
 
 		Role role = RoleLocalServiceUtil.getRole(
