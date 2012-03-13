@@ -210,7 +210,7 @@ public class LoginPreAction extends Action {
 			user.getCompanyId(), UserGroupConstants.SOCIAL_OFFICE_USERS);
 
 		if (!UserLocalServiceUtil.hasUserGroupUser(
-			userGroup.getUserGroupId(), user.getUserId())) {
+				userGroup.getUserGroupId(), user.getUserId())) {
 
 			return;
 		}
