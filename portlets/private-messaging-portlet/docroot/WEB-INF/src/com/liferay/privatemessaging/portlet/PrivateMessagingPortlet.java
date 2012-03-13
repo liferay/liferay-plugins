@@ -219,9 +219,11 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 		throws PortletException {
 
 		try {
-			String id = resourceRequest.getResourceID();
+			String resourceID = resourceRequest.getResourceID();
 
-			if (Validator.isNotNull(id) && id.equals("checkRecipients")) {
+			if (Validator.isNotNull(resourceID) &&
+				resourceID.equals("checkRecipients")) {
+
 				checkRecipients(resourceRequest, resourceResponse);
 			}
 			else {
@@ -274,6 +276,7 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 			sb.append(StringPool.APOSTROPHE);
 
 			jsonObject.put("message", sb.toString());
+
 			jsonObject.put("success", false);
 		}
 		else {
