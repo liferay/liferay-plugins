@@ -78,7 +78,6 @@ if (mbThreadId != 0) {
 </aui:layout>
 
 <aui:script use="aui-base,aui-io-request,aui-loading-mask">
-
 	var form = A.one('#<portlet:namespace />fm');
 
 	form.on(
