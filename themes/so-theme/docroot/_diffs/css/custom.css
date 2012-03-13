@@ -1780,7 +1780,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 }
 
-
 /* Message Boards */
 
 .portlet-message-boards {
@@ -1813,6 +1812,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 			font-size: 1em;
 		}
 	}
+
 	.category-search {
 		padding: 5px;
 	}
