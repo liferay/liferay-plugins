@@ -18,7 +18,7 @@
 package com.liferay.so.util;
 
 /**
- * @author Eudaldo alonso
+ * @author Eudaldo Alonso
  */
 public class UserGroupConstants
 	extends com.liferay.portal.model.UserGroupConstants {
