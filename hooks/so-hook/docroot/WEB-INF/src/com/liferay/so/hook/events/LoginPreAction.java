@@ -26,18 +26,18 @@ import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
-import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
+import com.liferay.portal.model.UserGroup;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
-import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.UserGroupLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.so.util.LayoutUtil;
 import com.liferay.so.util.PortletPropsKeys;
-import com.liferay.so.util.RoleConstants;
+import com.liferay.so.util.UserGroupConstants;
 
 import java.util.List;
 
@@ -206,11 +206,11 @@ public class LoginPreAction extends Action {
 			return;
 		}
 
-		Role role = RoleLocalServiceUtil.fetchRole(
-			user.getCompanyId(), RoleConstants.SOCIAL_OFFICE_USER);
+		UserGroup userGroup = UserGroupLocalServiceUtil.getUserGroup(
+			user.getCompanyId(), UserGroupConstants.SOCIAL_OFFICE_USERS);
 
-		if (!UserLocalServiceUtil.hasRoleUser(
-				role.getRoleId(), user.getUserId())) {
+		if (!UserLocalServiceUtil.hasUserGroupUser(
+			userGroup.getUserGroupId(), user.getUserId())) {
 
 			return;
 		}
