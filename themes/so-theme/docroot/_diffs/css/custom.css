@@ -308,11 +308,11 @@ a:focus .opens-new-window-accessible {
 			}
 
 			.name a {
+				max-height: 2.75em;
 				overflow: hidden;
 				padding: 3px 3px 3px 30px;
 				text-overflow: ellipsis;
 				word-wrap: break-word;
-				max-height: 2.75em;
 			}
 
 			.favorite, .unfavorite {
@@ -1025,7 +1025,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 }
 
 /* Blogs */
-
 
 .portlet-blogs {
 	.portlet-borderless-container .portlet-body {
