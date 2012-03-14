@@ -889,15 +889,8 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 			width: auto;
 		}
 
-		.day-text, .day-number {
+		.day-text {
 			color: #333;
-			display: inline-block;
-			font-size: 2em;
-			font-weight: normal;
-		}
-
-		.day-text:after {
-			content: ",";
 		}
 
 		.taglib-calendar {
@@ -1835,6 +1828,18 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 	.category-search {
 		padding: 5px;
+	}
+
+	.answer {
+		@include border-radius(4px 0 0 4px);
+		background-color: #AAD049;
+		margin-right: 91px;
+		padding: 4px;
+		position: absolute;
+		right: 100%;
+		text-align: right;
+		top: 0;
+		width: 79px;
 	}
 
 	.message-container {
