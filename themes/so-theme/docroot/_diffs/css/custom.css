@@ -294,10 +294,6 @@ a:focus .opens-new-window-accessible {
 			padding: 0;
 		}
 
-		ul.site-list {
-			margin-bottom: 1em;
-		}
-
 		ul.site-list li {
 			@include border-radius(0);
 			background-position: 5px 3px;
@@ -309,9 +305,9 @@ a:focus .opens-new-window-accessible {
 			}
 
 			.name a {
+				margin: -3px -3px -3px -25px;
 				max-height: 2.75em;
 				overflow: hidden;
-				padding: 3px 3px 3px 30px;
 				text-overflow: ellipsis;
 				word-wrap: break-word;
 			}
@@ -327,8 +323,12 @@ a:focus .opens-new-window-accessible {
 			}
 		}
 
-		ul.site-list .empty, ul.site-list .more {
-			padding-left: 25px;
+		ul.site-list {
+			margin-bottom: 1em;
+
+			.empty, .more, .name, .name a {
+				padding: 3px 3px 3px 25px;
+			}
 		}
 	}
 }
