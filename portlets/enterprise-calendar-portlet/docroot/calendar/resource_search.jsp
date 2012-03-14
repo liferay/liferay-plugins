@@ -26,22 +26,26 @@ CalendarResourceDisplayTerms displayTerms = new CalendarResourceDisplayTerms(ren
 	id="toggle_id_resource_search"
 >
 	<aui:fieldset>
-		<aui:input name="<%= displayTerms.CODE %>" size="20" value="<%= displayTerms.getCode() %>" />
-		<aui:input name="<%= displayTerms.NAME %>" size="20" value="<%= displayTerms.getName() %>" />
-		<aui:input name="<%= displayTerms.DESCRIPTION %>" size="20" value="<%= displayTerms.getDescription() %>" />
-		<aui:select name="type">
-			<aui:option label="all" value="" />
+		<aui:input name="<%= displayTerms.CODE %>" value="<%= displayTerms.getCode() %>" />
+
+		<aui:input name="<%= displayTerms.NAME %>" value="<%= displayTerms.getName() %>" />
+
+		<aui:input name="<%= displayTerms.DESCRIPTION %>" value="<%= displayTerms.getDescription() %>" />
+
+		<aui:select name="type" value="">
+			<aui:option label="all" value="<%= displayTerms.getType() %>" />
 			<%
 			for (String resourceType : PortletPropsValues.ENTERPRISE_CALENDAR_RESOURCE_TYPES) {
 			%>
-				<aui:option label="<%= resourceType %>" value="<%= resourceType %>" selected="<%= displayTerms.getType().equals(resourceType) %>" />
+				<aui:option label="<%= resourceType %>" value="<%= resourceType %>" />
 			<%
 			}
 			%>
 		</aui:select>
-		<aui:select name="<%= displayTerms.ACTIVE %>">
-			<aui:option label="yes" selected="<%= displayTerms.isActive() %>" value="1" />
-			<aui:option label="no" selected="<%= !displayTerms.isActive() %>" value="0" />
+
+		<aui:select name="<%= displayTerms.ACTIVE %>" value="<%= displayTerms.isActive() %>">
+			<aui:option label="yes" value="true" />
+			<aui:option label="no" value="false" />
 		</aui:select>
 	</aui:fieldset>
 </liferay-ui:search-toggle>

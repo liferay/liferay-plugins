@@ -51,7 +51,7 @@ CalendarResource resource = (CalendarResource)row.getObject();
 	</c:if>
 
 	<c:if test="<%= CalendarResourcePermission.contains(permissionChecker, resource, ActionKeys.DELETE) %>">
-		<portlet:actionURL var="deleteURL" name="deleteResource">
+		<portlet:actionURL name="deleteResource" var="deleteURL">
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="calendarResourceId" value="<%= String.valueOf(resource.getCalendarResourceId()) %>" />

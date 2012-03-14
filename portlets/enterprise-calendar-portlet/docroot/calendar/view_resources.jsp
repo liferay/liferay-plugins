@@ -16,10 +16,6 @@
 
 <%@ include file="/calendar/init.jsp" %>
 
-<%
-boolean showAddResourceButton = EnterpriseCalendarPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), ActionKeys.ADD_RESOURCE);
-%>
-
 <liferay-portlet:renderURL varImpl="searchURL">
 	<portlet:param name="mvcPath" value="/calendar/view_resources.jsp" />
 </liferay-portlet:renderURL>
@@ -37,7 +33,7 @@ boolean showAddResourceButton = EnterpriseCalendarPermission.contains(permission
 
 <div class="separator"><!-- --></div>
 
-<c:if test="<%= showAddResourceButton %>">
+<c:if test="<%= EnterpriseCalendarPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), ActionKeys.ADD_RESOURCE) %>">
 	<aui:button-row>
 		<liferay-portlet:renderURL var="editResourceURL">
 			<liferay-portlet:param name="jspPage" value="/calendar/edit_resource.jsp" />

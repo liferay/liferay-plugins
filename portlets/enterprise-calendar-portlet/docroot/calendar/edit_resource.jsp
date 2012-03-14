@@ -22,15 +22,12 @@ String redirect = ParamUtil.getString(request, "redirect");
 CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKeys.ENTERPRISE_CALENDAR_RESOURCE);
 long calendarResourceId = 0;
 
-List<Calendar> calendars;
+List<Calendar> calendars = null;
 
 if (calendarResource != null) {
 	calendarResourceId = calendarResource.getCalendarResourceId();
 
 	calendars = CalendarLocalServiceUtil.getResourceCalendars(themeDisplay.getScopeGroupId(), calendarResourceId);
-}
-else {
-	calendars = Collections.emptyList();
 }
 %>
 
@@ -46,8 +43,6 @@ else {
 </liferay-portlet:actionURL>
 
 <aui:form action="<%= updateResourceURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateResource();" %>'>
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (calendarResource == null) ? Constants.ADD : Constants.UPDATE %>" />
-
 	<aui:model-context bean="<%= calendarResource %>" model="<%= CalendarResource.class %>" />
 
 	<aui:fieldset>
@@ -57,36 +52,30 @@ else {
 
 		<aui:input name="description" />
 
-		<aui:select name="type">
+		<aui:select name="type" value="<%= (calendarResource == null) ? StringPool.BLANK : calendarResource.getType() %>">
 			<aui:option label="" value="" />
 			<%
 			for (String resourceType : PortletPropsValues.ENTERPRISE_CALENDAR_RESOURCE_TYPES) {
 			%>
-				<aui:option
-					label="<%= resourceType %>"
-					selected="<%= calendarResource != null && calendarResource.getType().equals(resourceType) %>"
-					value="<%= resourceType %>"
-				/>
+				<aui:option label="<%= resourceType %>" value="<%= resourceType %>" />
 			<%
 			}
 			%>
 		</aui:select>
 
-		<aui:select name="defaultCalendarId" label="default-calendar" >
-			<%
-			for (Calendar calendar : calendars) {
-			%>
-				<aui:option
-					label="<%= calendar.getName(locale) %>"
-					selected="<%= calendar.getCalendarId() == calendarResource.getDefaultCalendarId() %>"
-					value="<%= calendar.getCalendarId() %>"
-				/>
-			<%
-			}
-			%>
-		</aui:select>
+		<c:if test="<%= calendars != null %>">
+			<aui:select label="default-calendar" name="defaultCalendarId" value="<%= calendarResource.getDefaultCalendarId() %>">
+				<%
+				for (Calendar calendar : calendars) {
+				%>
+					<aui:option label="<%= calendar.getName(locale) %>" value="<%= calendar.getCalendarId() %>" />
+				<%
+				}
+				%>
+			</aui:select>
+		</c:if>
 
-		<aui:input inlineLabel="left" name="active" type="checkbox" value="<%= calendarResource == null ? true : calendarResource.isActive() %>" />
+		<aui:input inlineLabel="left" name="active" type="checkbox" value="<%= (calendarResource == null) ? true : calendarResource.isActive() %>" />
 
 		<c:if test="<%= calendarResource == null %>">
 			<aui:field-wrapper label="permissions">
