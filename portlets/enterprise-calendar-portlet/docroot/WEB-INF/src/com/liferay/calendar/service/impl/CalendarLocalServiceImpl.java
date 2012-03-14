@@ -82,6 +82,13 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 
 		calendarPersistence.update(calendar, false);
 
+		// Calendar resource
+
+		if (defaultCalendar) {
+			calendarResourceLocalService.updateDefaultCalendarId(
+				calendarResourceId, calendarId);
+		}
+
 		// Resources
 
 		resourceLocalService.addModelResources(calendar, serviceContext);
@@ -100,8 +107,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		// Resources
 
 		resourceLocalService.deleteResource(
-			calendar.getCompanyId(), Calendar.class.getName(),
-			ResourceConstants.SCOPE_INDIVIDUAL, calendar.getCalendarId());
+			calendar, ResourceConstants.SCOPE_INDIVIDUAL);
 
 		// Calendar bookings
 
@@ -131,7 +137,6 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 
 		return calendarPersistence.findByG_C(groupId, calendarResourceId);
 	}
-
 
 	public List<Calendar> search(
 			long groupId, long calendarResourceId, String name,
@@ -178,11 +183,31 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 
 		calendarPersistence.update(calendar, false);
 
+		// Calendar resource
+
+		if (defaultCalendar) {
+			calendarResourceLocalService.updateDefaultCalendarId(
+				calendar.getCalendarResourceId(), calendarId);
+		}
+
 		// Resources
 
 		resourceLocalService.updateModelResources(calendar, serviceContext);
 
 		return calendar;
+	}
+
+	public Calendar updateCalendar(
+			long calendarId, Map<Locale, String> nameMap,
+			Map<Locale, String> descriptionMap, int color,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		Calendar calendar = calendarPersistence.findByPrimaryKey(calendarId);
+
+		return updateCalendar(
+			calendarId, nameMap, descriptionMap, color,
+			calendar.isDefaultCalendar(), serviceContext);
 	}
 
 	protected DynamicQuery buildDynamicQuery(

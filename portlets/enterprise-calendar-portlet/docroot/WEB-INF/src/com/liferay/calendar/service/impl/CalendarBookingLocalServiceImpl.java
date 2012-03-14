@@ -166,9 +166,7 @@ public class CalendarBookingLocalServiceImpl
 		// Resources
 
 		resourceLocalService.deleteResource(
-			calendarBooking.getCompanyId(), CalendarBooking.class.getName(),
-			ResourceConstants.SCOPE_INDIVIDUAL,
-			calendarBooking.getCalendarBookingId());
+			calendarBooking, ResourceConstants.SCOPE_INDIVIDUAL);
 	}
 
 	@Override

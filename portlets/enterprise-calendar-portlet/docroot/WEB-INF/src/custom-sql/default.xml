@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.liferay.calendar.service.persistence.CalendarResourceFinder.countByC_G_C_C_N_D_T_A">
+		<![CDATA[
+			SELECT
+				COUNT(DISTINCT calendarResourceId) AS COUNT_VALUE
+			FROM
+				CalendarResource
+			WHERE
+				(companyId = ?) AND
+				[$GROUP_ID$]
+				(classNameId = ? OR ? IS NULL) AND
+				(
+					(lower(code_) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(lower(name) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(description LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(type_ LIKE ? [$AND_OR_NULL_CHECK$])
+				) AND
+				(active_ = ?)
+		]]>
+	</sql>
+	<sql id="com.liferay.calendar.service.persistence.CalendarResourceFinder.findByC_G_C_C_N_D_T_A">
+		<![CDATA[
+			SELECT
+				{CalendarResource.*}
+			FROM
+				CalendarResource
+			WHERE
+				(companyId = ?) AND
+				[$GROUP_ID$]
+				(classNameId = ? OR ? IS NULL) AND
+				(
+					(lower(code_) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(lower(name) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(description LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(type_ LIKE ? [$AND_OR_NULL_CHECK$])
+				) AND
+				(active_ = ?)
+				[$ORDER_BY$]
+		]]>
+	</sql>
+</custom-sql>
