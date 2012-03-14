@@ -1,0 +1,16 @@
+<ehcache
+	dynamicConfig="true"
+	monitoring="off"
+	name="liferay-single-vm"
+	updateCheck="false"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="ehcache.xsd"
+>
+	<cache
+		eternal="false"
+		maxElementsInMemory="1"
+		name="com.liferay.portal.util.WebCachePool"
+		overflowToDisk="false"
+		timeToIdleSeconds="10"
+	/>
+</ehcache>
