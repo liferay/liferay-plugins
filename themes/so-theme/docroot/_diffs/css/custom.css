@@ -248,20 +248,12 @@ a:focus .opens-new-window-accessible {
 		padding: 0 7px;
 	}
 
-	.portlet-topper {
-		display: none;
-	}
-
 	.portlet {
 		border-bottom-width: 0;
 	}
 
-	.so-portlet-sites .search {
-		float: none;
-
-		.search-input {
-			width: 151px;
-		}
+	.portlet-topper {
+		display: none;
 	}
 
 	.sites-tabs select {
@@ -283,6 +275,14 @@ a:focus .opens-new-window-accessible {
 	}
 
 	.so-portlet-sites {
+		.search {
+			float: none;
+
+			.search-input {
+				width: 151px;
+			}
+		}
+
 		.portlet-content {
 			padding: 5px 10px 0 5px;
 		}
@@ -441,7 +441,6 @@ a:focus .opens-new-window-accessible {
 	display: inline;
 
 	a {
-		@include border-radius(4px);
 		background: $link;
 		color: #EEE;
 		display: inline-block;
@@ -503,8 +502,6 @@ a:focus .opens-new-window-accessible {
 }
 
 input[type=text], textarea, input[type=password], .aui-field-select select, .aui-textboxlistentry-holder, .so-portlet-invite-members .search, .microblogs-portlet .autocomplete {
-	@include border-radius(5px);
-	@include box-shadow(0 1px 3px #C9C9C9 inset);
 	background: #FFF;
 	border: 1px solid $border-color;
 	padding: 6px 5px;
@@ -529,8 +526,6 @@ input[type=text], textarea, input[type=password], .aui-field-select select, .aui
 }
 
 button, input[type=submit], input[type=button], input[type=reset], .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .aui-dialog-hd, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .aui-button-input, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .results-header th, .contacts-portlet .social-relations a:hover, .top-links-navigation a:hover, .lfr-actions.lfr-extended, .invite-members, .thread-controls a:hover, .edit-controls a:hover, .portlet-document-library .select-documents, .portlet-document-library-display .select-documents, .tasks-dialog .control a.taglib-icon, #toggleFluid {
-	@include border-radius(3px);
-	@include box-shadow(0 1px 0 #F4F3F3 inset, 0 -1px 0 #D9D8D8 inset);
 	background: #E9E8E8;
 	border: 1px solid $gray;
 	text-shadow: none;
@@ -549,13 +544,7 @@ button, input[type=submit], input[type=button], input[type=reset], .aui-panel-hd
 }
 
 .aui-panel-hd button, .aui-panel-hd .aui-button, .aui-panel-hd .aui-state-default, .aui-textboxlistentry-holder .aui-field-input-text, .microblogs-portlet .autocomplete input[type=text] {
-	@include border-radius(0);
-	@include box-shadow(none);
 	border-color: transparent;
-}
-
-.aui-tab-content, .aui-toolbar-item {
-	@include border-radius(0);
 }
 
 .aui-form-validator-error-container .aui-field-element {
@@ -568,30 +557,19 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		border-color: #AAA;
 		color: #5A5A5A;
 	}
-
-	&:active {
-		@include box-shadow(0 1px 1px #C9C9C9 inset);
-	}
 }
 
 .aui-toolbar {
 	.aui-toolbar-item {
-		@include border-radius(0);
 		border-width: 1px 0 1px 1px;
 	}
 
-	.aui-toolbar-first {
-		@include border-radius(3px 0 0 3px);
-	}
-
 	.aui-toolbar-last {
-		@include border-radius(0 3px 3px 0);
 		border-right-width: 1px;
 	}
 }
 
 .aui-underlay-content, .aui-dialog-content {
-	@include box-shadow(0 0 9px -3px #000, 0 20px 29px -22px rgba(0, 0, 0, 0.6));
 	border-width: 0;
 	background-color: #F9F9F9;
 }
@@ -630,26 +608,16 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 }
 
 .so-layout-fluid-ad #toggleFluid {
-	@include box-shadow(0 0 9px -3px #000 inset);
 	background-color: #CCC;
 }
 
 /* ---------- Tabs ---------- */
 
-.aui-dialog .yui3-widget-hd, .aui-panel-hd, .aui-dialog-hd, .aui-tabview-list {
-	@include border-radius(3px 3px 0 0);
-}
-
 .aui-tabview-list {
 	padding: 0;
 
 	.aui-tab:first-child, .first, .first .aui-tab-content {
-		@include border-radius(3px 0 0 0);
 		border-left-width: 0;
-	}
-
-	.last, .last .aui-tab-content {
-		@include border-radius(0 3px 0 0);
 	}
 
 	.aui-tab-content {
@@ -673,7 +641,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 	.aui-tab-active {
 		.aui-tab-content, .aui-tab-content:hover {
-			@include box-shadow(none);
 			background: #FFF;
 			border-color: $gray $gray #FFF;
 
@@ -860,10 +827,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		float: none;
 	}
 
-	.aui-tabview-list, .aui-tabview-list .first, .aui-tabview-list .last {
-		@include border-radius(0);
-	}
-
 	.aui-tabview-list {
 		border-left-color: $border-color;
 		border-width: 0 0 1px 1px;
@@ -918,7 +881,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		}
 
 		.event-box {
-			@include box-shadow(0 3px 10px -6px rgba(0, 0, 0, .5));
 			background: #EEE;
 			border: 1px solid #CCC;
 		}
@@ -934,10 +896,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	.so-portlet-dockbar-notifications .menu-button .notification-count {
 		background: #0070BA;
 	}
-}
-
-.lfr-dockbar-pinned .dockbar {
-	@include box-shadow(0 -10px 9px 4px black, 0 -2px 10px -6px rgba(0, 0, 0, 0.5));
 }
 
 /* Recent Documents */
@@ -1045,7 +1003,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 
 	.portlet-msg-success {
-		@include border-radius(0);
 		border-width: 0;
 		margin: -10px -10px 10px;
 	}
@@ -1083,7 +1040,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 
 	.lfr-meta-actions {
-		@include border-radius(4px);
 		background-color: rgba(255, 255, 255, .8);
 		margin: 0;
 		padding: 4px;
@@ -1318,10 +1274,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 /*  Microblogs Portlet  */
 
 .microblogs-portlet {
-	.microblogs-entry-form textarea {
-		@include box-shadow(none);
-	}
-
 	.aui-tabview-list {
 		margin: 1em;
 	}
@@ -1335,7 +1287,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 
 	.microblogs-countdown {
-		@include border-radius(3px);
 		font-size: .9em;
 	}
 }
@@ -1345,8 +1296,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	top: -6px;
 
 	.microblogs-entry, .portlet-msg-info {
-		@include border-radius(5px);
-		@include box-shadow(0 3px 2px #DDD);
 		background-color: #FFF;
 		border: 1px solid #C7D0DA;
 		margin: 10px;
@@ -1488,7 +1437,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	margin-left: 1px;
 
 	.controls, .portlet-msg-info, .portlet-msg-success {
-		@include border-radius(0);
 		border-width: 0 0 1px;
 		margin: 0;
 	}
@@ -1582,7 +1530,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 /*  Sites Portlet */
 
 .so-portlet-sites-dialog .aui-button-holder {
-	@include border-radius(0 0 3px 3px);
 	margin: 0 -10px -10px;
 }
 
@@ -1612,7 +1559,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 
 	.portlet-msg, .portlet-msg-info, .portlet-msg-error, .portlet-msg-alert, .portlet-msg-success {
-		@include border-radius(0);
 		border-width: 0;
 		margin: 0;
 	}
@@ -1622,7 +1568,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 
 	.search-button-container {
-		@include box-shadow(none);
 		border-width: 0;
 
 		.aui-column:before, .aui-column-content, .aui-column-content-center {
@@ -1738,7 +1683,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	border-left: 1px solid $border-color;
 
 	.portlet-msg-success {
-		@include border-radius(0);
 		border-width: 0 0 1px;
 		margin: -10px -10px 10px;
 	}
@@ -1831,7 +1775,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 
 	.answer {
-		@include border-radius(4px 0 0 4px);
 		background-color: #AAD049;
 		margin-right: 91px;
 		padding: 4px;
@@ -1942,17 +1885,12 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		}
 	}
 
-	.thread-controls {
-		@include border-radius(3px 3px 0 0);
-	}
-
 	.thread-navigation {
 		border-right: 1px solid $gray;
 		padding: 0 5px;
 	}
 
 	.edit-controls {
-		@include border-radius(3px);
 		position: relative;
 		top: -.5em;
 
@@ -2058,5 +1996,83 @@ body.so-layout-fluid, body.so-layout-fluid-ad {
 
 	#content #so-context {
 		border-right-width: 0;
+	}
+}
+
+/* Extras */
+
+.lfr-dockbar-pinned .dockbar {
+	@include box-shadow(0 -10px 9px 4px black, 0 -2px 10px -6px rgba(0, 0, 0, 0.5));
+}
+
+input[type=text], textarea, input[type=password], .aui-field-select select, .aui-textboxlistentry-holder, .so-portlet-invite-members .search, .microblogs-portlet .autocomplete, .user-group .microblogs-status-container .microblogs-entry, .user-group .microblogs-status-container .portlet-msg-info {
+	@include border-radius(5px);
+}
+
+input[type=text], textarea, input[type=password], .aui-field-select select, .aui-textboxlistentry-holder, .so-portlet-invite-members .search, .microblogs-portlet .autocomplete {
+	@include box-shadow(0 1px 3px #C9C9C9 inset);
+}
+
+button, input[type=submit], input[type=button], input[type=reset], .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .aui-dialog-hd, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .aui-button-input, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .results-header th, .contacts-portlet .social-relations a:hover, .top-links-navigation a:hover, .lfr-actions.lfr-extended, .invite-members, .thread-controls a:hover, .edit-controls a:hover, .portlet-document-library .select-documents, .portlet-document-library-display .select-documents, .tasks-dialog .control a.taglib-icon, #toggleFluid, .microblogs-portlet .microblogs-countdown, .portlet-message-boards .edit-controls {
+	@include border-radius(3px);
+}
+
+button, input[type=submit], input[type=button], input[type=reset], .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .aui-dialog-hd, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .aui-button-input, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .results-header th, .contacts-portlet .social-relations a:hover, .top-links-navigation a:hover, .lfr-actions.lfr-extended, .invite-members, .thread-controls a:hover, .edit-controls a:hover, .portlet-document-library .select-documents, .portlet-document-library-display .select-documents, .tasks-dialog .control a.taglib-icon, #toggleFluid, .so-layout-fluid-ad #toggleFluid {
+	@include box-shadow(0 1px 0 #F4F3F3 inset, 0 -1px 0 #D9D8D8 inset);
+}
+
+.aui-underlay-content, .aui-dialog-content {
+	@include box-shadow(0 0 9px -3px #000, 0 20px 29px -22px rgba(0, 0, 0, 0.6));
+}
+
+.user-group .microblogs-status-container .microblogs-entry, .user-group .microblogs-status-container .portlet-msg-info {
+	@include box-shadow(0 3px 2px #DDD);
+}
+input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .contacts-portlet .social-relations a:hover, .top-links-navigation a:hover, .lfr-actions.lfr-extended:hover, .invite-members:hover, .thread-controls a:hover, .edit-controls a:hover, .tasks-dialog .control a.taglib-icon:hover {
+	&:active {
+		@include box-shadow(0 1px 1px #C9C9C9 inset);
+	}
+}
+
+.portlet-calendar .day-grid .event-box {
+	@include box-shadow(0 3px 10px -6px rgba(0, 0, 0, .5));
+}
+
+.user-tags li a, .portlet-blogs .lfr-meta-actions {
+	@include border-radius(4px);
+}
+
+.aui-panel-hd button, .aui-panel-hd .aui-button, .aui-panel-hd .aui-state-default, .aui-textboxlistentry-holder .aui-field-input-text, .microblogs-portlet .autocomplete input[type=text], .aui-tab-content, .aui-toolbar-item, .aui-toolbar .aui-toolbar-item, .portlet-blogs .portlet-msg-success, .private-messaging-portlet .controls, .private-messaging-portlet .portlet-msg-info, .private-messaging-portlet .portlet-msg-success,
+.portlet-document-library .portlet-msg, .portlet-document-library .portlet-msg-info, .portlet-document-library .portlet-msg-error, .portlet-document-library .portlet-msg-alert, .portlet-document-library .portlet-msg-success, .portlet-wiki .portlet-msg-success, .portlet-message-boards .portlet-msg-success {
+	@include border-radius(0);
+}
+
+.aui-panel-hd button, .aui-panel-hd .aui-button, .aui-panel-hd .aui-state-default, .aui-textboxlistentry-holder .aui-field-input-text, .microblogs-portlet .autocomplete input[type=text], .aui-tabview-list .aui-tab-active .aui-tab-content, .aui-tabview-list .aui-tab-active .aui-tab-content:hover, .microblogs-portlet .microblogs-entry-form textarea, .portlet-document-library .search-button-container {
+	@include box-shadow(none);
+}
+
+.aui-toolbar .aui-toolbar-first, .portlet-message-boards .answer {
+	@include border-radius(3px 0 0 3px);
+}
+
+.aui-toolbar .aui-toolbar-last {
+	@include border-radius(0 3px 3px 0);
+}
+
+.aui-dialog .yui3-widget-hd, .aui-panel-hd, .aui-dialog-hd, .aui-tabview-list, .portlet-message-boards .thread-controls {
+	@include border-radius(3px 3px 0 0);
+}
+
+.so-portlet-sites-dialog .aui-button-holder {
+	@include border-radius(0 0 3px 3px);
+}
+
+.aui-tabview-list {
+	.aui-tab:first-child, .first, .first .aui-tab-content {
+		@include border-radius(3px 0 0 0);
+	}
+
+	.last, .last .aui-tab-content {
+		@include border-radius(0 3px 0 0);
 	}
 }
