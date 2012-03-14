@@ -15,6 +15,7 @@
 package com.liferay.calendar.util;
 
 /**
+ * @author Eduardo Lundgren
  * @author Andrea Di Giorgi
  */
 public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {

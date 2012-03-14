@@ -15,9 +15,12 @@
 package com.liferay.calendar.util;
 
 /**
+ * @author Eduardo Lundgren
  * @author Fabio Pezzutto
  */
 public class PortletPropsKeys {
 
-	public static final String ENTERPRISE_CALENDAR_RESOURCE_TYPES = "enterprise.calendar.resource.types";
+	public static final String ENTERPRISE_CALENDAR_RESOURCE_TYPES =
+		"enterprise.calendar.resource.types";
+
 }

@@ -15,10 +15,12 @@
 package com.liferay.calendar.util;
 
 /**
+ * @author Eduardo Lundgren
  * @author Fabio Pezzutto
  */
 public class PortletKeys extends com.liferay.portal.util.PortletKeys {
 
 	public static final String ENTERPRISE_CALENDAR =
 		"1_WAR_enterprisecalendarportlet";
+
 }

@@ -17,11 +17,14 @@ package com.liferay.calendar.util;
 import com.liferay.util.portlet.PortletProps;
 
 /**
+ * @author Eduardo Lundgren
  * @author Fabio Pezzutto
  * @author Andrea Di Giorgi
  */
 public class PortletPropsValues {
 
-	public static final String[] ENTERPRISE_CALENDAR_RESOURCE_TYPES = PortletProps.getArray(PortletPropsKeys.ENTERPRISE_CALENDAR_RESOURCE_TYPES);
+	public static final String[] ENTERPRISE_CALENDAR_RESOURCE_TYPES =
+		PortletProps.getArray(
+			PortletPropsKeys.ENTERPRISE_CALENDAR_RESOURCE_TYPES);
 
 }

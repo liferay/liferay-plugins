@@ -6,6 +6,10 @@
 		<display-name>Enterprise Calendar Portlet</display-name>
 		<portlet-class>com.liferay.calendar.portlet.EnterpriseCalendarPortlet</portlet-class>
 		<init-param>
+			<name>copy-request-parameters</name>
+			<value>true</value>
+		</init-param>
+		<init-param>
 			<name>view-jsp</name>
 			<value>/calendar/view.jsp</value>
 		</init-param>

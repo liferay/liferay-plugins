@@ -14,7 +14,22 @@
 
 package com.liferay.calendar.portlet;
 
+import com.liferay.calendar.DuplicateCalendarResourceException;
+import com.liferay.calendar.NoSuchResourceException;
+import com.liferay.calendar.model.CalendarResource;
+import com.liferay.calendar.service.CalendarResourceServiceUtil;
+import com.liferay.calendar.util.WebKeys;
+import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.util.LocalizationUtil;
+import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
+import com.liferay.portal.security.auth.PrincipalException;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextFactory;
+import com.liferay.util.bridges.mvc.MVCPortlet;
+
 import java.io.IOException;
+
 import java.util.Locale;
 import java.util.Map;
 
@@ -24,24 +39,8 @@ import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
-import com.liferay.calendar.DuplicateCalendarResourceException;
-import com.liferay.calendar.NoSuchResourceException;
-import com.liferay.calendar.model.CalendarResource;
-import com.liferay.calendar.service.CalendarResourceServiceUtil;
-import com.liferay.calendar.util.WebKeys;
-import com.liferay.portal.kernel.servlet.SessionErrors;
-import com.liferay.portal.kernel.util.Constants;
-import com.liferay.portal.kernel.util.LocalizationUtil;
-import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
-import com.liferay.portal.security.auth.PrincipalException;
-import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.service.ServiceContextFactory;
-import com.liferay.portal.util.PortalUtil;
-import com.liferay.util.bridges.mvc.MVCPortlet;
-
 /**
+ * @author Eduardo Lundgren
  * @author Fabio Pezzutto
  * @author Andrea Di Giorgi
  */
@@ -57,33 +56,22 @@ public class EnterpriseCalendarPortlet extends MVCPortlet {
 		CalendarResourceServiceUtil.deleteCalendarResource(calendarResourceId);
 	}
 
-	public void processAction(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws IOException, PortletException {
-
-		super.processAction(actionRequest, actionResponse);
-
-		if (!copyRequestParameters && !SessionErrors.isEmpty(actionRequest)) {
-			PortalUtil.copyRequestParameters(actionRequest, actionResponse);
-		}
-	}
-
 	public void render(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException, IOException {
-	
+
 		try {
 			CalendarResource calendarResource = null;
-	
+
 			long calendarResourceId = ParamUtil.getLong(
 				renderRequest, "calendarResourceId");
-	
+
 			if (calendarResourceId > 0) {
 				calendarResource =
 					CalendarResourceServiceUtil.getCalendarResource(
 						calendarResourceId);
 			}
-	
+
 			renderRequest.setAttribute(
 				WebKeys.ENTERPRISE_CALENDAR_RESOURCE, calendarResource);
 		}
@@ -95,7 +83,7 @@ public class EnterpriseCalendarPortlet extends MVCPortlet {
 				throw new PortletException(e);
 			}
 		}
-	
+
 		super.render(renderRequest, renderResponse);
 	}
 
@@ -105,6 +93,8 @@ public class EnterpriseCalendarPortlet extends MVCPortlet {
 
 		long calendarResourceId = ParamUtil.getLong(
 			actionRequest, "calendarResourceId");
+		long defaultCalendarId = ParamUtil.getLong(
+			actionRequest, "defaultCalendarId");
 		String code = ParamUtil.getString(actionRequest, "code");
 		Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(
 			actionRequest, "name");
@@ -113,24 +103,22 @@ public class EnterpriseCalendarPortlet extends MVCPortlet {
 		String type = ParamUtil.getString(actionRequest, "type");
 		boolean active = ParamUtil.getBoolean(actionRequest, "active");
 
-		String cmd = ParamUtil.get(
-			actionRequest, Constants.CMD, StringPool.BLANK);
-
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			CalendarResource.class.getName(), actionRequest);
 
-		if (cmd.equals(Constants.UPDATE)) {
+		if (calendarResourceId > 0) {
 			CalendarResourceServiceUtil.updateCalendarResource(
-				calendarResourceId, code, nameMap, descriptionMap, type, active,
-				serviceContext);
+				calendarResourceId, defaultCalendarId, code, nameMap,
+				descriptionMap, type, active, serviceContext);
 		} else {
 			CalendarResourceServiceUtil.addCalendarResource(
 				serviceContext.getScopeGroupId(), null, 0,
-				PortalUUIDUtil.generate(), code, nameMap, descriptionMap, type,
-				active, serviceContext);
+				PortalUUIDUtil.generate(), defaultCalendarId, code, nameMap,
+				descriptionMap, type, active, serviceContext);
 		}
 	}
 
+	@Override
 	protected boolean isSessionErrorException(Throwable cause) {
 		if (cause instanceof DuplicateCalendarResourceException ||
 			cause instanceof PrincipalException) {
