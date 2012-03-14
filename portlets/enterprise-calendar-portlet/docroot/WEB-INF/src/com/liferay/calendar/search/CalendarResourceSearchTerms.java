@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.dao.search.DAOParamUtil;
 import javax.portlet.PortletRequest;
 
 /**
+ * @author Eduardo Lundgren
  * @author Fabio Pezzutto
  */
 public class CalendarResourceSearchTerms extends CalendarResourceDisplayTerms {
