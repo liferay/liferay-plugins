@@ -688,13 +688,10 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		User user = themeDisplay.getUser();
 
-		String assetCategoryIdsString = ParamUtil.getString(
-			actionRequest, "assetCategoryNames");
-		String assetTagNamesString = ParamUtil.getString(
-			actionRequest, "assetTagNames");
-
-		long[] assetCategoryIds = StringUtil.split(assetCategoryIdsString, 0L);
-		String[] assetTagNames = StringUtil.split(assetTagNamesString);
+		long[] assetCategoryIds = StringUtil.split(
+			ParamUtil.getString(actionRequest, "assetCategoryNames"), 0L);
+		String[] assetTagNames = StringUtil.split(
+			ParamUtil.getString(actionRequest, "assetTagNames"));
 
 		UserLocalServiceUtil.updateAsset(
 			user.getUserId(), user, assetCategoryIds, assetTagNames);
