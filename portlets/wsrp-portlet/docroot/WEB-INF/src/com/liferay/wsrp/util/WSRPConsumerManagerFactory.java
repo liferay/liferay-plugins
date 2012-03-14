@@ -14,11 +14,15 @@
 
 package com.liferay.wsrp.util;
 
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.AutoResetThreadLocal;
+import com.liferay.portal.model.User;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.wsrp.model.WSRPConsumer;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
+import javax.servlet.http.HttpSession;
 
 import oasis.names.tc.wsrp.v2.types.RegistrationContext;
 
@@ -28,22 +32,36 @@ import oasis.names.tc.wsrp.v2.types.RegistrationContext;
 public class WSRPConsumerManagerFactory {
 
 	public static void destroyWSRPConsumerManager(String url) {
-		_wsrpConsumerManagersByUrl.remove(url);
+		_wsrpConsumerManagers.remove(url);
+
+		HttpSession session = getSession();
+
+		if (session != null) {
+			session.removeAttribute("wsrpConsumerManagers");
+		}
+	}
+
+	public static HttpSession getSession() {
+		return _session.get();
 	}
 
 	public static WSRPConsumerManager getWSRPConsumerManager(
-			WSRPConsumer wsrpConsumer, String userToken)
+			WSRPConsumer wsrpConsumer)
 		throws Exception {
 
 		return _getWSRPConsumerManager(
 			wsrpConsumer.getUrl(), wsrpConsumer.getRegistrationContext(),
-			wsrpConsumer.getForwardCookies(), userToken);
+			wsrpConsumer.getForwardCookies());
 	}
 
-	public static boolean testWSRPConsumerManager(
-		WSRPConsumer wsrpConsumer, String userToken) {
+	public static void setSession(HttpSession session) {
+		_session.set(session);
+	}
 
+	public static boolean testWSRPConsumerManager(WSRPConsumer wsrpConsumer) {
 		try {
+			String userToken = _getUserToken();
+
 			new WSRPConsumerManager(
 				wsrpConsumer.getUrl(), wsrpConsumer.getRegistrationContext(),
 				wsrpConsumer.getForwardCookies(), userToken);
@@ -55,48 +73,73 @@ public class WSRPConsumerManagerFactory {
 		}
 	}
 
+	private static String _getUserToken() throws Exception {
+		String userToken = null;
+
+		HttpSession session = getSession();
+
+		if (session != null) {
+			Long userId = (Long)session.getAttribute(WebKeys.USER_ID);
+
+			User user = null;
+
+			if (userId != null) {
+				user = UserLocalServiceUtil.fetchUser(userId);
+			}
+
+			if (user != null) {
+				userToken = user.getLogin();
+			}
+		}
+
+		return userToken;
+	}
+
+	@SuppressWarnings("unchecked")
 	private static WSRPConsumerManager _getWSRPConsumerManager(
 			String url, RegistrationContext registrationContext,
-			String forwardCookies, String userToken)
+			String forwardCookies)
 		throws Exception {
 
-		Map<String, WSRPConsumerManager> wsrpConsumerManagersByUserToken =
-			_wsrpConsumerManagersByUrl.get(url);
+		HttpSession session = getSession();
 
-		if (wsrpConsumerManagersByUserToken == null) {
-			wsrpConsumerManagersByUserToken =
-				new ConcurrentHashMap<String, WSRPConsumerManager>();
+		Map<String, WSRPConsumerManager> wsrpConsumerManagers =
+			_wsrpConsumerManagers;
 
-			_wsrpConsumerManagersByUrl.put(
-				url, wsrpConsumerManagersByUserToken);
+		if (session != null) {
+			wsrpConsumerManagers =
+				(Map<String, WSRPConsumerManager>)
+					session.getAttribute("wsrpConsumerManagers");
+
+			if (wsrpConsumerManagers == null) {
+				wsrpConsumerManagers =
+					new ConcurrentHashMap<String, WSRPConsumerManager>();
+
+				session.setAttribute(
+					"wsrpConsumerManagers", wsrpConsumerManagers);
+			}
 		}
 
-		String userTokenKey = userToken;
+		WSRPConsumerManager wsrpConsumerManager = wsrpConsumerManagers.get(url);
 
-		if (Validator.isNull(userTokenKey)) {
-			userTokenKey = _DEFAULT_USER_TOKEN;
+		if (wsrpConsumerManager == null) {
+			String userToken = _getUserToken();
+
+			wsrpConsumerManager = new WSRPConsumerManager(
+				url, registrationContext, forwardCookies, userToken);
+
+			wsrpConsumerManagers.put(url, wsrpConsumerManager);
 		}
-
-		WSRPConsumerManager wsrpConsumerManager =
-			wsrpConsumerManagersByUserToken.get(userTokenKey);
-
-		if (wsrpConsumerManager != null) {
-			return wsrpConsumerManager;
-		}
-
-		wsrpConsumerManager = new WSRPConsumerManager(
-			url, registrationContext, forwardCookies, userToken);
-
-		wsrpConsumerManagersByUserToken.put(userTokenKey, wsrpConsumerManager);
 
 		return wsrpConsumerManager;
 	}
 
-	private static final String _DEFAULT_USER_TOKEN =
-		"default.wsrp.consumer.manager.user.token";
+	private static AutoResetThreadLocal<HttpSession> _session =
+		new AutoResetThreadLocal<HttpSession>(
+			HttpSession.class + "._session", null);
 
-	private static Map<String, Map<String, WSRPConsumerManager>>
-		_wsrpConsumerManagersByUrl =
-			new ConcurrentHashMap<String, Map<String, WSRPConsumerManager>>();
+	private static Map<String, WSRPConsumerManager>
+		_wsrpConsumerManagers =
+			new ConcurrentHashMap<String, WSRPConsumerManager>();
 
 }

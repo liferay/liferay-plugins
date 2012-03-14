@@ -263,22 +263,22 @@ public class WSRPConsumerPortletLocalServiceWrapper
 
 	public com.liferay.wsrp.model.WSRPConsumerPortlet addWSRPConsumerPortlet(
 		long wsrpConsumerId, java.lang.String name,
-		java.lang.String portletHandle, java.lang.String userToken,
+		java.lang.String portletHandle,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _wsrpConsumerPortletLocalService.addWSRPConsumerPortlet(wsrpConsumerId,
-			name, portletHandle, userToken, serviceContext);
+			name, portletHandle, serviceContext);
 	}
 
 	public com.liferay.wsrp.model.WSRPConsumerPortlet addWSRPConsumerPortlet(
 		java.lang.String wsrpConsumerUuid, java.lang.String name,
-		java.lang.String portletHandle, java.lang.String userToken,
+		java.lang.String portletHandle,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _wsrpConsumerPortletLocalService.addWSRPConsumerPortlet(wsrpConsumerUuid,
-			name, portletHandle, userToken, serviceContext);
+			name, portletHandle, serviceContext);
 	}
 
 	public void deleteWSRPConsumerPortlet(
@@ -339,13 +339,12 @@ public class WSRPConsumerPortletLocalServiceWrapper
 
 	public void initWSRPConsumerPortlet(long companyId, long wsrpConsumerId,
 		long wsrpConsumerPortletId, java.lang.String wsrpConsumerPortletUuid,
-		java.lang.String name, java.lang.String portletHandle,
-		java.lang.String userToken)
+		java.lang.String name, java.lang.String portletHandle)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_wsrpConsumerPortletLocalService.initWSRPConsumerPortlet(companyId,
 			wsrpConsumerId, wsrpConsumerPortletId, wsrpConsumerPortletUuid,
-			name, portletHandle, userToken);
+			name, portletHandle);
 	}
 
 	public void initWSRPConsumerPortlets()

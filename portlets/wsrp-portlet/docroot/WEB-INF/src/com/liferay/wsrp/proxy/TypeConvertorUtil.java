@@ -39,6 +39,7 @@ import org.apache.commons.beanutils.PropertyUtils;
  */
 public class TypeConvertorUtil {
 
+	@SuppressWarnings("unchecked")
 	public static Object convert(Object source, int sourceVersion)
 		throws Exception {
 

@@ -90,13 +90,12 @@ public class WSRPConsumerPortletLocalServiceClp
 
 		_addWSRPConsumerPortletMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addWSRPConsumerPortlet", long.class, java.lang.String.class,
-				java.lang.String.class, java.lang.String.class,
+				java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
 		_addWSRPConsumerPortletMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addWSRPConsumerPortlet", java.lang.String.class,
 				java.lang.String.class, java.lang.String.class,
-				java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
 		_deleteWSRPConsumerPortletMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
@@ -130,7 +129,7 @@ public class WSRPConsumerPortletLocalServiceClp
 		_initWSRPConsumerPortletMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
 				"initWSRPConsumerPortlet", long.class, long.class, long.class,
 				java.lang.String.class, java.lang.String.class,
-				java.lang.String.class, java.lang.String.class);
+				java.lang.String.class);
 
 		_initWSRPConsumerPortletsMethodKey29 = new MethodKey(_classLoaderProxy.getClassName(),
 				"initWSRPConsumerPortlets");
@@ -611,7 +610,7 @@ public class WSRPConsumerPortletLocalServiceClp
 
 	public com.liferay.wsrp.model.WSRPConsumerPortlet addWSRPConsumerPortlet(
 		long wsrpConsumerId, java.lang.String name,
-		java.lang.String portletHandle, java.lang.String userToken,
+		java.lang.String portletHandle,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -620,7 +619,6 @@ public class WSRPConsumerPortletLocalServiceClp
 		MethodHandler methodHandler = new MethodHandler(_addWSRPConsumerPortletMethodKey17,
 				wsrpConsumerId, ClpSerializer.translateInput(name),
 				ClpSerializer.translateInput(portletHandle),
-				ClpSerializer.translateInput(userToken),
 				ClpSerializer.translateInput(serviceContext));
 
 		try {
@@ -649,7 +647,7 @@ public class WSRPConsumerPortletLocalServiceClp
 
 	public com.liferay.wsrp.model.WSRPConsumerPortlet addWSRPConsumerPortlet(
 		java.lang.String wsrpConsumerUuid, java.lang.String name,
-		java.lang.String portletHandle, java.lang.String userToken,
+		java.lang.String portletHandle,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -659,7 +657,6 @@ public class WSRPConsumerPortletLocalServiceClp
 				ClpSerializer.translateInput(wsrpConsumerUuid),
 				ClpSerializer.translateInput(name),
 				ClpSerializer.translateInput(portletHandle),
-				ClpSerializer.translateInput(userToken),
 				ClpSerializer.translateInput(serviceContext));
 
 		try {
@@ -931,16 +928,14 @@ public class WSRPConsumerPortletLocalServiceClp
 
 	public void initWSRPConsumerPortlet(long companyId, long wsrpConsumerId,
 		long wsrpConsumerPortletId, java.lang.String wsrpConsumerPortletUuid,
-		java.lang.String name, java.lang.String portletHandle,
-		java.lang.String userToken)
+		java.lang.String name, java.lang.String portletHandle)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_initWSRPConsumerPortletMethodKey28,
 				companyId, wsrpConsumerId, wsrpConsumerPortletId,
 				ClpSerializer.translateInput(wsrpConsumerPortletUuid),
 				ClpSerializer.translateInput(name),
-				ClpSerializer.translateInput(portletHandle),
-				ClpSerializer.translateInput(userToken));
+				ClpSerializer.translateInput(portletHandle));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);

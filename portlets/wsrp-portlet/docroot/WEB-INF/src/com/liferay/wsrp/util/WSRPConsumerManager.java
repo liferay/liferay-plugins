@@ -22,10 +22,6 @@ import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.Namespace;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
-import com.liferay.portal.model.Company;
-import com.liferay.portal.model.CompanyConstants;
-import com.liferay.portal.model.User;
-import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.PortletQNameUtil;
 import com.liferay.wsrp.proxy.ServiceHandler;
 
@@ -36,8 +32,6 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.portlet.PortletRequest;
 
 import javax.xml.namespace.QName;
 
@@ -58,36 +52,6 @@ import oasis.names.tc.wsrp.v2.wsdl.WSRP_v2_Service;
  * @author Brian Wing Shun Chan
  */
 public class WSRPConsumerManager {
-
-	public static String getUserToken(PortletRequest portletRequest)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		User user = themeDisplay.getUser();
-
-		if (user == null) {
-			return null;
-		}
-
-		Company company = themeDisplay.getCompany();
-
-		String authType = company.getAuthType();
-
-		if (authType.equals(CompanyConstants.AUTH_TYPE_EA)) {
-			return user.getEmailAddress();
-		}
-		else if (authType.equals(CompanyConstants.AUTH_TYPE_SN)) {
-			return user.getScreenName();
-		}
-		else if (authType.equals(CompanyConstants.AUTH_TYPE_ID)) {
-			return String.valueOf(user.getUserId());
-		}
-		else {
-			return user.getScreenName();
-		}
-	}
 
 	public WSRPConsumerManager(
 			String url, RegistrationContext registrationContext,

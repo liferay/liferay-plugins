@@ -24,7 +24,7 @@ WSRPConsumer wsrpConsumer = (WSRPConsumer)row.getObject();
 ServiceDescription serviceDescription = null;
 
 try {
-	WSRPConsumerManager wsrpConsumerManager = WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer, userToken);
+	WSRPConsumerManager wsrpConsumerManager = WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
 
 	serviceDescription = wsrpConsumerManager.getServiceDescription();
 }

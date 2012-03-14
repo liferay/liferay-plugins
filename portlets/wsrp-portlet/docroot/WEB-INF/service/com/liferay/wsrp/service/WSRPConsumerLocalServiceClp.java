@@ -87,7 +87,7 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 		_addWSRPConsumerMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addWSRPConsumer", long.class, java.lang.String.class,
 				java.lang.String.class, java.lang.String.class,
-				java.lang.String.class, java.lang.String.class,
+				java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
 		_getWSRPConsumerMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
@@ -102,18 +102,18 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 		_registerWSRPConsumerMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"registerWSRPConsumer", long.class, java.lang.String.class,
 				com.liferay.portal.kernel.util.UnicodeProperties.class,
-				java.lang.String.class, java.lang.String.class);
+				java.lang.String.class);
 
 		_restartConsumerMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
-				"restartConsumer", long.class, java.lang.String.class);
+				"restartConsumer", long.class);
 
 		_updateServiceDescriptionMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
-				"updateServiceDescription", long.class, java.lang.String.class);
+				"updateServiceDescription", long.class);
 
 		_updateWSRPConsumerMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateWSRPConsumer", long.class, java.lang.String.class,
 				java.lang.String.class, java.lang.String.class,
-				java.lang.String.class, java.lang.String.class);
+				java.lang.String.class);
 	}
 
 	public com.liferay.wsrp.model.WSRPConsumer addWSRPConsumer(
@@ -588,7 +588,6 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 	public com.liferay.wsrp.model.WSRPConsumer addWSRPConsumer(long companyId,
 		java.lang.String adminPortletId, java.lang.String name,
 		java.lang.String url, java.lang.String forwardCookies,
-		java.lang.String userToken,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -599,7 +598,6 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 				ClpSerializer.translateInput(name),
 				ClpSerializer.translateInput(url),
 				ClpSerializer.translateInput(forwardCookies),
-				ClpSerializer.translateInput(userToken),
 				ClpSerializer.translateInput(serviceContext));
 
 		try {
@@ -717,7 +715,7 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 	public com.liferay.wsrp.model.WSRPConsumer registerWSRPConsumer(
 		long wsrpConsumerId, java.lang.String adminPortletId,
 		com.liferay.portal.kernel.util.UnicodeProperties registrationProperties,
-		java.lang.String registrationHandle, java.lang.String userToken)
+		java.lang.String registrationHandle)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -725,8 +723,7 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 		MethodHandler methodHandler = new MethodHandler(_registerWSRPConsumerMethodKey21,
 				wsrpConsumerId, ClpSerializer.translateInput(adminPortletId),
 				ClpSerializer.translateInput(registrationProperties),
-				ClpSerializer.translateInput(registrationHandle),
-				ClpSerializer.translateInput(userToken));
+				ClpSerializer.translateInput(registrationHandle));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -752,11 +749,11 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 		return (com.liferay.wsrp.model.WSRPConsumer)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void restartConsumer(long wsrpConsumerId, java.lang.String userToken)
+	public void restartConsumer(long wsrpConsumerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_restartConsumerMethodKey22,
-				wsrpConsumerId, ClpSerializer.translateInput(userToken));
+				wsrpConsumerId);
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -780,12 +777,11 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 		}
 	}
 
-	public void updateServiceDescription(long wsrpConsumerId,
-		java.lang.String userToken)
+	public void updateServiceDescription(long wsrpConsumerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_updateServiceDescriptionMethodKey23,
-				wsrpConsumerId, ClpSerializer.translateInput(userToken));
+				wsrpConsumerId);
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -812,7 +808,7 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 	public com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(
 		long wsrpConsumerId, java.lang.String adminPortletId,
 		java.lang.String name, java.lang.String url,
-		java.lang.String forwardCookies, java.lang.String userToken)
+		java.lang.String forwardCookies)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -821,8 +817,7 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 				wsrpConsumerId, ClpSerializer.translateInput(adminPortletId),
 				ClpSerializer.translateInput(name),
 				ClpSerializer.translateInput(url),
-				ClpSerializer.translateInput(forwardCookies),
-				ClpSerializer.translateInput(userToken));
+				ClpSerializer.translateInput(forwardCookies));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

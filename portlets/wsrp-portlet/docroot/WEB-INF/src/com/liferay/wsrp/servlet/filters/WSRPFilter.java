@@ -15,6 +15,7 @@
 package com.liferay.wsrp.servlet.filters;
 
 import com.liferay.wsrp.axis.WSRPHTTPSender;
+import com.liferay.wsrp.util.WSRPConsumerManagerFactory;
 
 import java.io.IOException;
 
@@ -25,11 +26,12 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author Michael Young
  */
-public class WSRPHTTPSenderFilter implements Filter {
+public class WSRPFilter implements Filter {
 
 	public void destroy() {
 	}
@@ -38,6 +40,12 @@ public class WSRPHTTPSenderFilter implements Filter {
 			ServletRequest servletRequest, ServletResponse servletResponse,
 			FilterChain filterChain)
 		throws IOException, ServletException {
+
+		HttpServletRequest request = (HttpServletRequest)servletRequest;
+
+		HttpSession session = request.getSession();
+
+		WSRPConsumerManagerFactory.setSession(session);
 
 		WSRPHTTPSender.setCurrentRequest((HttpServletRequest)servletRequest);
 

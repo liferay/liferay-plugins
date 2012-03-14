@@ -240,7 +240,6 @@ public interface WSRPConsumerLocalService extends PersistedModelLocalService {
 	public com.liferay.wsrp.model.WSRPConsumer addWSRPConsumer(long companyId,
 		java.lang.String adminPortletId, java.lang.String name,
 		java.lang.String url, java.lang.String forwardCookies,
-		java.lang.String userToken,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -263,23 +262,22 @@ public interface WSRPConsumerLocalService extends PersistedModelLocalService {
 	public com.liferay.wsrp.model.WSRPConsumer registerWSRPConsumer(
 		long wsrpConsumerId, java.lang.String adminPortletId,
 		com.liferay.portal.kernel.util.UnicodeProperties registrationProperties,
-		java.lang.String registrationHandle, java.lang.String userToken)
+		java.lang.String registrationHandle)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void restartConsumer(long wsrpConsumerId, java.lang.String userToken)
+	public void restartConsumer(long wsrpConsumerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void updateServiceDescription(long wsrpConsumerId,
-		java.lang.String userToken)
+	public void updateServiceDescription(long wsrpConsumerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(
 		long wsrpConsumerId, java.lang.String adminPortletId,
 		java.lang.String name, java.lang.String url,
-		java.lang.String forwardCookies, java.lang.String userToken)
+		java.lang.String forwardCookies)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 }

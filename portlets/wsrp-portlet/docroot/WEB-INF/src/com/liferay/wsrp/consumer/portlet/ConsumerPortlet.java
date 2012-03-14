@@ -299,11 +299,8 @@ public class ConsumerPortlet extends GenericPortlet {
 			WSRPConsumerLocalServiceUtil.getWSRPConsumer(
 				wsrpConsumerPortlet.getWsrpConsumerId());
 
-		String userToken = WSRPConsumerManager.getUserToken(actionRequest);
-
 		WSRPConsumerManager wsrpConsumerManager =
-			WSRPConsumerManagerFactory.getWSRPConsumerManager(
-				wsrpConsumer, userToken);
+			WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
 
 		InteractionParams interactionParams = new InteractionParams();
 		MarkupParams markupParams = new MarkupParams();
@@ -352,11 +349,8 @@ public class ConsumerPortlet extends GenericPortlet {
 			WSRPConsumerLocalServiceUtil.getWSRPConsumer(
 				wsrpConsumerPortlet.getWsrpConsumerId());
 
-		String userToken = WSRPConsumerManager.getUserToken(eventRequest);
-
 		WSRPConsumerManager wsrpConsumerManager =
-			WSRPConsumerManagerFactory.getWSRPConsumerManager(
-				wsrpConsumer, userToken);
+			WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
 
 		EventParams eventParams = new EventParams();
 		MarkupParams markupParams = new MarkupParams();
@@ -523,11 +517,8 @@ public class ConsumerPortlet extends GenericPortlet {
 			WSRPConsumerLocalServiceUtil.getWSRPConsumer(
 				wsrpConsumerPortlet.getWsrpConsumerId());
 
-		String userToken = WSRPConsumerManager.getUserToken(portletRequest);
-
 		WSRPConsumerManager wsrpConsumerManager =
-			WSRPConsumerManagerFactory.getWSRPConsumerManager(
-				wsrpConsumer, userToken);
+			WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
 
 		MarkupParams markupParams = new MarkupParams();
 		PortletContext portletContext = new PortletContext();
@@ -741,11 +732,8 @@ public class ConsumerPortlet extends GenericPortlet {
 			WSRPConsumerLocalServiceUtil.getWSRPConsumer(
 				wsrpConsumerPortlet.getWsrpConsumerId());
 
-		String userToken = WSRPConsumerManager.getUserToken(resourceRequest);
-
 		WSRPConsumerManager wsrpConsumerManager =
-			WSRPConsumerManagerFactory.getWSRPConsumerManager(
-				wsrpConsumer, userToken);
+			WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
 
 		PortletContext portletContext = new PortletContext();
 		ResourceParams resourceParams = new ResourceParams();
@@ -790,6 +778,7 @@ public class ConsumerPortlet extends GenericPortlet {
 			serviceHolder, wsrpResourceResponse);
 	}
 
+	@SuppressWarnings("unchecked")
 	protected ServiceHolder getServiceHolder(
 			PortletRequest portletRequest,
 			WSRPConsumerManager wsrpConsumerManager, WSRPConsumer wsrpConsumer)
@@ -1049,6 +1038,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		eventParams.setEvents(new Event[] {event});
 	}
 
+	@SuppressWarnings("unchecked")
 	protected void initContexts(
 			PortletRequest portletRequest, PortletResponse portletResponse,
 			WSRPConsumerPortlet wsrpConsumerPortlet,
@@ -1482,6 +1472,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	protected void processMultipartForm(
 			ActionRequest actionRequest, ActionResponse actionResponse,
 			InteractionParams interactionParams)
@@ -1504,6 +1495,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	protected Object[] processMultipartForm(
 			PortletRequest portletRequest, PortletResponse portletResponse)
 		throws Exception {
@@ -1583,6 +1575,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		return new Object[] {formParameters, uploadContexts};
 	}
 
+	@SuppressWarnings("unchecked")
 	protected void processMultipartForm(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse,
 			ResourceParams resourceParams)

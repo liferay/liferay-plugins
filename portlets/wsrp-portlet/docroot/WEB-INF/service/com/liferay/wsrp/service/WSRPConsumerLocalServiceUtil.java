@@ -266,13 +266,12 @@ public class WSRPConsumerLocalServiceUtil {
 	public static com.liferay.wsrp.model.WSRPConsumer addWSRPConsumer(
 		long companyId, java.lang.String adminPortletId, java.lang.String name,
 		java.lang.String url, java.lang.String forwardCookies,
-		java.lang.String userToken,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addWSRPConsumer(companyId, adminPortletId, name, url,
-			forwardCookies, userToken, serviceContext);
+			forwardCookies, serviceContext);
 	}
 
 	public static com.liferay.wsrp.model.WSRPConsumer getWSRPConsumer(
@@ -296,37 +295,35 @@ public class WSRPConsumerLocalServiceUtil {
 	public static com.liferay.wsrp.model.WSRPConsumer registerWSRPConsumer(
 		long wsrpConsumerId, java.lang.String adminPortletId,
 		com.liferay.portal.kernel.util.UnicodeProperties registrationProperties,
-		java.lang.String registrationHandle, java.lang.String userToken)
+		java.lang.String registrationHandle)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .registerWSRPConsumer(wsrpConsumerId, adminPortletId,
-			registrationProperties, registrationHandle, userToken);
+			registrationProperties, registrationHandle);
 	}
 
-	public static void restartConsumer(long wsrpConsumerId,
-		java.lang.String userToken)
+	public static void restartConsumer(long wsrpConsumerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().restartConsumer(wsrpConsumerId, userToken);
+		getService().restartConsumer(wsrpConsumerId);
 	}
 
-	public static void updateServiceDescription(long wsrpConsumerId,
-		java.lang.String userToken)
+	public static void updateServiceDescription(long wsrpConsumerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().updateServiceDescription(wsrpConsumerId, userToken);
+		getService().updateServiceDescription(wsrpConsumerId);
 	}
 
 	public static com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(
 		long wsrpConsumerId, java.lang.String adminPortletId,
 		java.lang.String name, java.lang.String url,
-		java.lang.String forwardCookies, java.lang.String userToken)
+		java.lang.String forwardCookies)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .updateWSRPConsumer(wsrpConsumerId, adminPortletId, name,
-			url, forwardCookies, userToken);
+			url, forwardCookies);
 	}
 
 	public static void clearService() {

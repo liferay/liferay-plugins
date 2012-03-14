@@ -25,7 +25,7 @@ WSRPConsumer wsrpConsumer = WSRPConsumerLocalServiceUtil.getWSRPConsumer(wsrpCon
 
 UnicodeProperties registrationProperties = wsrpConsumer.getRegistrationProperties();
 
-WSRPConsumerManager wsrpConsumerManager = WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer, userToken);
+WSRPConsumerManager wsrpConsumerManager = WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
 
 ServiceDescription serviceDescription = wsrpConsumerManager.getServiceDescription();
 

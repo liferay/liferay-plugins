@@ -21,7 +21,7 @@ long wsrpConsumerId = ParamUtil.getLong(request, "wsrpConsumerId");
 
 WSRPConsumer wsrpConsumer = WSRPConsumerLocalServiceUtil.getWSRPConsumer(wsrpConsumerId);
 
-WSRPConsumerManager wsrpConsumerManager = WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer, userToken);
+WSRPConsumerManager wsrpConsumerManager = WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
 
 PortletURL portletURL = renderResponse.createRenderURL();
 

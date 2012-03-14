@@ -241,14 +241,14 @@ public interface WSRPConsumerPortletLocalService
 
 	public com.liferay.wsrp.model.WSRPConsumerPortlet addWSRPConsumerPortlet(
 		long wsrpConsumerId, java.lang.String name,
-		java.lang.String portletHandle, java.lang.String userToken,
+		java.lang.String portletHandle,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.wsrp.model.WSRPConsumerPortlet addWSRPConsumerPortlet(
 		java.lang.String wsrpConsumerUuid, java.lang.String name,
-		java.lang.String portletHandle, java.lang.String userToken,
+		java.lang.String portletHandle,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -294,8 +294,7 @@ public interface WSRPConsumerPortletLocalService
 
 	public void initWSRPConsumerPortlet(long companyId, long wsrpConsumerId,
 		long wsrpConsumerPortletId, java.lang.String wsrpConsumerPortletUuid,
-		java.lang.String name, java.lang.String portletHandle,
-		java.lang.String userToken)
+		java.lang.String name, java.lang.String portletHandle)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
