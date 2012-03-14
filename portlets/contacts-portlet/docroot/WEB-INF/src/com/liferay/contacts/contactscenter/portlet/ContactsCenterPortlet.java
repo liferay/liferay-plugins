@@ -693,8 +693,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		String assetTagNamesString = ParamUtil.getString(
 			actionRequest, "assetTagNames");
 
-		long[] assetCategoryIds = StringUtil.split(
-			assetCategoryIdsString, (long)0);
+		long[] assetCategoryIds = StringUtil.split(assetCategoryIdsString, 0L);
 		String[] assetTagNames = StringUtil.split(assetTagNamesString);
 
 		UserLocalServiceUtil.updateAsset(
