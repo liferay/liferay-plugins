@@ -98,8 +98,7 @@ public class InstanceUtil {
 
 		// My Sites
 
-		portlet = PortletLocalServiceUtil.getPortletById(
-			PortletKeys.MY_SITES);
+		portlet = PortletLocalServiceUtil.getPortletById(PortletKeys.MY_SITES);
 
 		portlet.setAddDefaultResource(true);
 
