@@ -18,17 +18,18 @@ import com.liferay.calendar.model.CalendarResource;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
 /**
+ * @author Eduardo Lundgren
  * @author Fabio Pezzutto
  */
 public class CalendarResourceCodeComparator extends OrderByComparator {
 
 	public static final String ORDER_BY_ASC =
-		"CalendarResource.code, CalendarResource.name ASC";
+		"CalendarResource.code_, CalendarResource.name ASC";
 
 	public static final String ORDER_BY_DESC =
-		"CalendarResource.code, CalendarResource.name DESC";
+		"CalendarResource.code_, CalendarResource.name DESC";
 
-	public static final String[] ORDER_BY_FIELDS = {"code", "name"};
+	public static final String[] ORDER_BY_FIELDS = {"code_", "name"};
 
 	public CalendarResourceCodeComparator() {
 		this(false);

@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import javax.portlet.PortletRequest;
 
 /**
+ * @author Eduardo Lundgren
  * @author Fabio Pezzutto
  */
 public class CalendarResourceDisplayTerms extends DisplayTerms {
@@ -35,7 +36,6 @@ public class CalendarResourceDisplayTerms extends DisplayTerms {
 	public static final String TYPE = "type";
 
 	public CalendarResourceDisplayTerms(PortletRequest portletRequest) {
-
 		super(portletRequest);
 
 		active = ParamUtil.getBoolean(portletRequest, ACTIVE, true);
@@ -43,10 +43,6 @@ public class CalendarResourceDisplayTerms extends DisplayTerms {
 		description = ParamUtil.getString(portletRequest, DESCRIPTION);
 		name = ParamUtil.getString(portletRequest, NAME);
 		type = ParamUtil.getString(portletRequest, TYPE);
-	}
-
-	public boolean isActive() {
-		return active;
 	}
 
 	public String getCode() {
@@ -63,6 +59,10 @@ public class CalendarResourceDisplayTerms extends DisplayTerms {
 
 	public String getType() {
 		return type;
+	}
+
+	public boolean isActive() {
+		return active;
 	}
 
 	protected boolean active;

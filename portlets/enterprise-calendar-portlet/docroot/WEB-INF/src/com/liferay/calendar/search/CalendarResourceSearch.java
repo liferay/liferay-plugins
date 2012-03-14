@@ -35,6 +35,7 @@ import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
 
 /**
+ * @author Eduardo Lundgren
  * @author Fabio Pezzutto
  */
 public class CalendarResourceSearch extends SearchContainer<CalendarResource> {
