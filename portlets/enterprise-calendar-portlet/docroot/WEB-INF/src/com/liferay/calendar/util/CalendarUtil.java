@@ -21,6 +21,7 @@ import com.liferay.util.UniqueList;
 import java.util.List;
 
 /**
+ * @author Eduardo Lundgren
  * @author Peter Shin
  */
 public class CalendarUtil {

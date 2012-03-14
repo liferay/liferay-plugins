@@ -80,4 +80,17 @@ public class CalendarServiceImpl extends CalendarServiceBaseImpl {
 			serviceContext);
 	}
 
+	public Calendar updateCalendar(
+			long calendarId, Map<Locale, String> nameMap,
+			Map<Locale, String> descriptionMap, int color,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		CalendarPermission.check(
+			getPermissionChecker(), calendarId, ActionKeys.UPDATE);
+
+		return calendarLocalService.updateCalendar(
+			calendarId, nameMap, descriptionMap, color, serviceContext);
+	}
+
 }

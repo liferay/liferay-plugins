@@ -66,7 +66,7 @@ public class CalendarResourceUtil {
 		return orderByComparator;
 	}
 
-	public static boolean isGlobalResource(String className, long classPK) {
+	public static boolean isGlobalResource(String className) {
 		if (className.equals(Group.class.getName()) ||
 			className.equals(User.class.getName())) {
 
