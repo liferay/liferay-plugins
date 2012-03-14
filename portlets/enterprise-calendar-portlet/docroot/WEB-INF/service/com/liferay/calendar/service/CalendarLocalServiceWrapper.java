@@ -319,6 +319,16 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 			descriptionMap, color, defaultCalendar, serviceContext);
 	}
 
+	public com.liferay.calendar.model.Calendar updateCalendar(long calendarId,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		int color, com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarLocalService.updateCalendar(calendarId, nameMap,
+			descriptionMap, color, serviceContext);
+	}
+
 	/**
 	 * @deprecated Renamed to {@link #getWrappedService}
 	 */

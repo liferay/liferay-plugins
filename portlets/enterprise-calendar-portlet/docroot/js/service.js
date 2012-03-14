@@ -25,10 +25,12 @@ Liferay.Service.registerClass(
 	Liferay.Service.Calendar, "CalendarResource",
 	{
 		addCalendarResource: true,
+		countByKeywords: true,
 		deleteCalendarResource: true,
 		getCalendarResource: true,
-		searchByKeywords: true,
 		search: true,
+		searchByKeywords: true,
+		searchCount: true,
 		updateCalendarResource: true
 	}
 );

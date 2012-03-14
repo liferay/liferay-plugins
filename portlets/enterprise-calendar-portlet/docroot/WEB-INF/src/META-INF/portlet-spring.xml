@@ -28,4 +28,5 @@
 		<property name="service" ref="com.liferay.calendar.service.CalendarResourceService" />
 	</bean>
 	<bean id="com.liferay.calendar.service.persistence.CalendarResourcePersistence" class="com.liferay.calendar.service.persistence.CalendarResourcePersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.calendar.service.persistence.CalendarResourceFinder" class="com.liferay.calendar.service.persistence.CalendarResourceFinderImpl" parent="basePersistence" />
 </beans>

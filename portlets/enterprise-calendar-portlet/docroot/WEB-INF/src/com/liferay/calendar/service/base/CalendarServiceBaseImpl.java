@@ -23,6 +23,7 @@ import com.liferay.calendar.service.CalendarResourceService;
 import com.liferay.calendar.service.CalendarService;
 import com.liferay.calendar.service.persistence.CalendarBookingPersistence;
 import com.liferay.calendar.service.persistence.CalendarPersistence;
+import com.liferay.calendar.service.persistence.CalendarResourceFinder;
 import com.liferay.calendar.service.persistence.CalendarResourcePersistence;
 
 import com.liferay.counter.service.CounterLocalService;
@@ -232,6 +233,25 @@ public abstract class CalendarServiceBaseImpl extends PrincipalBean
 	}
 
 	/**
+	 * Returns the calendar resource finder.
+	 *
+	 * @return the calendar resource finder
+	 */
+	public CalendarResourceFinder getCalendarResourceFinder() {
+		return calendarResourceFinder;
+	}
+
+	/**
+	 * Sets the calendar resource finder.
+	 *
+	 * @param calendarResourceFinder the calendar resource finder
+	 */
+	public void setCalendarResourceFinder(
+		CalendarResourceFinder calendarResourceFinder) {
+		this.calendarResourceFinder = calendarResourceFinder;
+	}
+
+	/**
 	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
@@ -433,6 +453,8 @@ public abstract class CalendarServiceBaseImpl extends PrincipalBean
 	protected CalendarResourceService calendarResourceService;
 	@BeanReference(type = CalendarResourcePersistence.class)
 	protected CalendarResourcePersistence calendarResourcePersistence;
+	@BeanReference(type = CalendarResourceFinder.class)
+	protected CalendarResourceFinder calendarResourceFinder;
 	@BeanReference(type = CounterLocalService.class)
 	protected CounterLocalService counterLocalService;
 	@BeanReference(type = ResourceLocalService.class)

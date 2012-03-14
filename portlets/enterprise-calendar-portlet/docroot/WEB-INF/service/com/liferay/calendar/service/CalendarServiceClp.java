@@ -40,6 +40,11 @@ public class CalendarServiceClp implements CalendarService {
 				"updateCalendar", long.class, java.util.Map.class,
 				java.util.Map.class, int.class, boolean.class,
 				com.liferay.portal.service.ServiceContext.class);
+
+		_updateCalendarMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateCalendar", long.class, java.util.Map.class,
+				java.util.Map.class, int.class,
+				com.liferay.portal.service.ServiceContext.class);
 	}
 
 	public com.liferay.calendar.model.Calendar addCalendar(long groupId,
@@ -180,6 +185,43 @@ public class CalendarServiceClp implements CalendarService {
 		return (com.liferay.calendar.model.Calendar)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.calendar.model.Calendar updateCalendar(long calendarId,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		int color, com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_updateCalendarMethodKey4,
+				calendarId, ClpSerializer.translateInput(nameMap),
+				ClpSerializer.translateInput(descriptionMap), color,
+				ClpSerializer.translateInput(serviceContext));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.calendar.model.Calendar)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public ClassLoaderProxy getClassLoaderProxy() {
 		return _classLoaderProxy;
 	}
@@ -189,4 +231,5 @@ public class CalendarServiceClp implements CalendarService {
 	private MethodKey _deleteCalendarMethodKey1;
 	private MethodKey _getCalendarMethodKey2;
 	private MethodKey _updateCalendarMethodKey3;
+	private MethodKey _updateCalendarMethodKey4;
 }
