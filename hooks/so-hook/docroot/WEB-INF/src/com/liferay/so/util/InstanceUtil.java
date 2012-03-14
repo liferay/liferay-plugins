@@ -91,13 +91,14 @@ public class InstanceUtil {
 
 		// Directory
 
-		portlet = PortletLocalServiceUtil.getPortletById(PortletKeys.DIRECTORY);
+		Portlet portlet = PortletLocalServiceUtil.getPortletById(
+			PortletKeys.DIRECTORY);
 
 		portlet.setAddDefaultResource(true);
 
 		// My Sites
 
-		Portlet portlet = PortletLocalServiceUtil.getPortletById(
+		portlet = PortletLocalServiceUtil.getPortletById(
 			PortletKeys.MY_SITES);
 
 		portlet.setAddDefaultResource(true);
