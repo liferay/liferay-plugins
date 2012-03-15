@@ -1,11 +1,12 @@
 @import "compass";
 
-$border-color: #C7D0DA;
+$blue-link: #2571AD;
 $fixed-width: 980px;
 $gray: #CECECE;
-$header: #8F0920;
-$link: #2571AD;
+$gray-dark: #C7D0DA;
+$gray-light: #F4F4F4;
 $navigation-width: 200px;
+$red: #8F0920;
 
 $content-width: ($fixed-width - $navigation-width) - 2px;
 
@@ -17,7 +18,7 @@ body {
 }
 
 a, a:visited, a:active {
-	color: $link;
+	color: $blue-link;
 	text-decoration: none;
 }
 
@@ -41,7 +42,7 @@ a:focus .opens-new-window-accessible {
 	text-indent: 0;
 }
 
-#content:after, #banner:after, #footer, .contacts-portlet .members-container:after, .portlet-msg-info:after, .portlet-toolbar:after, .so-portlet-activities .activity-item:after, .taglib-header:after {
+#content:after, #banner:after, #footer, .contacts-portlet .members-container:after, .portlet-msg-info:after, .portlet-toolbar:after, .so-portlet-activities .activity-item:after, .taglib-header:after, .tasks-portlet:after {
 	clear: both;
 	content: "";
 	display: block;
@@ -73,7 +74,7 @@ a:focus .opens-new-window-accessible {
 /* ---------- Heading ---------- */
 
 #banner {
-	border-bottom: 1px solid $border-color;
+	border-bottom: 1px solid $gray-dark;
 	position: relative;
 
 	.logo {
@@ -102,7 +103,7 @@ a:focus .opens-new-window-accessible {
 		width: 50%;
 
 		a {
-			color: $header;
+			color: $red;
 		}
 	}
 
@@ -156,7 +157,7 @@ a:focus .opens-new-window-accessible {
 		}
 
 		a:hover, &.selected {
-			background: #F4F4F4;
+			background: $gray-light;
 			text-decoration: none;
 		}
 
@@ -165,11 +166,11 @@ a:focus .opens-new-window-accessible {
 		}
 
 		&.selected {
-			border-left: 2px solid $header;
+			border-left: 2px solid $red;
 		}
 
 		&.selected a {
-			color: $header;
+			color: $red;
 			font-weight: bold;
 		}
 	}
@@ -213,7 +214,7 @@ a:focus .opens-new-window-accessible {
 }
 
 #so-sidebar {
-	border-right: 1px solid $border-color;
+	border-right: 1px solid $gray-dark;
 	left: 0;
 	padding-bottom: 2.5em;
 	position: absolute;
@@ -236,7 +237,7 @@ a:focus .opens-new-window-accessible {
 	}
 
 	hr {
-		border-top: 1px solid $border-color;
+		border-top: 1px solid $gray-dark;
 		border-width: 1px 0 0;
 		margin: 10px 0 3px;
 	}
@@ -264,7 +265,7 @@ a:focus .opens-new-window-accessible {
 		width: auto;
 
 		.lfr-contact-name {
-			color: $link;
+			color: $blue-link;
 		}
 
 		.lfr-contact-name, .lfr-contact-job-title {
@@ -319,7 +320,7 @@ a:focus .opens-new-window-accessible {
 			}
 
 			&:hover {
-				background-color: #F4F4F4;
+				background-color: $gray-light;
 			}
 		}
 
@@ -350,7 +351,7 @@ a:focus .opens-new-window-accessible {
 	position: relative;
 
 	#so-context {
-		border: 1px solid $border-color;
+		border: 1px solid $gray-dark;
 		border-width: 0 1px 1px 0;
 		position: relative;
 	}
@@ -358,19 +359,19 @@ a:focus .opens-new-window-accessible {
 	.portlet-layout {
 		.portlet-column-only {
 			background: #FFF;
-			border-right: 1px solid $border-color;
+			border-right: 1px solid $gray-dark;
 			position: relative;
 			z-index: 2;
 
 			.portlet-column-content {
-				border-bottom: 1px solid $border-color;
+				border-bottom: 1px solid $gray-dark;
 			}
 		}
 
 		.portlet-column:before {
 			bottom: 0;
 			content: "";
-			border-right: 1px solid $border-color;
+			border-right: 1px solid $gray-dark;
 			position: absolute;
 			top: 0;
 		}
@@ -388,7 +389,7 @@ a:focus .opens-new-window-accessible {
 /* ---------- Portlets ---------- */
 
 .portlet {
-	border-bottom: 1px solid $border-color;
+	border-bottom: 1px solid $gray-dark;
 	margin-bottom: -1px;
 	position: relative;
 
@@ -426,7 +427,7 @@ a:focus .opens-new-window-accessible {
 }
 
 .user-sites, .user-tags {
-	border-bottom: 1px solid $border-color;
+	border-bottom: 1px solid $gray-dark;
 	margin: 0 -10px;
 	padding: 0 10px 6px;
 }
@@ -441,7 +442,7 @@ a:focus .opens-new-window-accessible {
 	display: inline;
 
 	a {
-		background: $link;
+		background: $blue-link;
 		color: #EEE;
 		display: inline-block;
 		margin: 4px;
@@ -450,12 +451,12 @@ a:focus .opens-new-window-accessible {
 }
 
 .profile-header {
-	border: 1px solid $border-color;
+	border: 1px solid $gray-dark;
 	border-width: 0 0 1px 1px;
 	padding: 10px;
 
 	h1 {
-		color: $header;
+		color: $red;
 		margin: 0 0 5px;
 		padding: 0;
 	}
@@ -503,12 +504,12 @@ a:focus .opens-new-window-accessible {
 
 input[type=text], textarea, input[type=password], .aui-field-select select, .aui-textboxlistentry-holder, .so-portlet-invite-members .search, .microblogs-portlet .autocomplete {
 	background: #FFF;
-	border: 1px solid $border-color;
+	border: 1px solid $gray-dark;
 	padding: 6px 5px;
 
 	&:hover, &:active, &:focus, &.focus {
 		background-color: #FFFFF6;
-		border-color: $link;
+		border-color: $blue-link;
 	}
 
 	input[type=text] {
@@ -830,7 +831,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 
 	.aui-tabview-list {
-		border-left-color: $border-color;
+		border-left-color: $gray-dark;
 		border-width: 0 0 1px 1px;
 		margin-bottom: 0;
 	}
@@ -845,12 +846,12 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 
 	.calendar-container {
-		border: 1px solid $border-color;
+		border: 1px solid $gray-dark;
 		border-width: 0 1px;
 		width: auto;
 
 		.calendar-day {
-			border-bottom: 1px solid $border-color;
+			border-bottom: 1px solid $gray-dark;
 			width: auto;
 		}
 
@@ -859,7 +860,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		}
 
 		.taglib-calendar {
-			border-top: $border-color;
+			border-top: $gray-dark;
 		}
 	}
 
@@ -942,7 +943,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 .so-portlet-sites-dialog {
 	.template-details {
-		background: #F4F4F4;
+		background: $gray-light;
 		border: 1px solid #C0C2C5;
 		padding: 1em;
 
@@ -1010,7 +1011,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 
 	.search-form {
-		background: #F4F4F4;
+		background: $gray-light;
 		float: none;
 		margin: -10px -10px 10px -9px;
 		padding: 5px;
@@ -1180,11 +1181,11 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 .contacts-portlet {
 	.contacts-profile {
-		border-bottom: 1px solid $border-color;
+		border-bottom: 1px solid $gray-dark;
 		margin-bottom: -1px;
 
 		.lfr-contact-name a {
-			color: $header;
+			color: $red;
 		}
 	}
 
@@ -1224,7 +1225,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 
 	.members-container {
-		border: 1px solid $border-color;
+		border: 1px solid $gray-dark;
 		border-width: 1px 0;
 
 		.lfr-members-grid-item {
@@ -1299,7 +1300,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 	.microblogs-entry, .portlet-msg-info {
 		background-color: #FFF;
-		border: 1px solid $border-color;
+		border: 1px solid $gray-dark;
 		margin: 10px;
 		padding: 8px 10px;
 	}
@@ -1317,8 +1318,8 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 
 	&:after, &:before {
-		border: 8px solid $border-color;
-		border-color: transparent transparent $border-color;
+		border: 8px solid $gray-dark;
+		border-color: transparent transparent $gray-dark;
 		content: "";
 		display: block;
 		left: 30px;
@@ -1345,7 +1346,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 
 	&:after, &:before {
-		border-color: transparent $border-color transparent transparent;
+		border-color: transparent $gray-dark transparent transparent;
 		left: -5px;
 		margin: -8px 0 0;
 		top: 18px;
@@ -1361,7 +1362,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 .so-portlet-activities {
 	.portlet-title {
-		color: $header;
+		color: $red;
 		font-size: 1.55em;
 		font-weight: normal;
 		margin-top: .5em;
@@ -1401,7 +1402,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 
 	a.group {
-		color: $header;
+		color: $red;
 	}
 }
 
@@ -1476,12 +1477,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	.filter-wrapper {
 		margin-top: -0.5em;
 	}
-
-	&:after {
-		clear: both;
-		content: "";
-		display: block;
-	}
 }
 
 .upcoming-tasks-portlet .tasksentries-container .tasks-title a {
@@ -1538,7 +1533,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 /* Documents and Images Library */
 
 .portlet-document-library {
-	border-left: 1px solid $border-color;
+	border-left: 1px solid $gray-dark;
 
 	.lfr-app-column-view {
 		.results-row.alt td {
@@ -1662,7 +1657,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 }
 
 .portlet-wiki, .portlet-message-boards {
-	border-left: 1px solid $border-color;
+	border-left: 1px solid $gray-dark;
 
 	.portlet-msg-success {
 		border-width: 0 0 1px;
@@ -1904,7 +1899,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 .events-display-portlet {
 	h2 {
-		color: $header;
+		color: $red;
 		font-size: 1em;
 	}
 
@@ -1931,7 +1926,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 
 	.aui-form fieldset.aui-fieldset {
-		border-bottom: 1px solid $border-color;
+		border-bottom: 1px solid $gray-dark;
 	}
 
 	.aui-form fieldset.aui-fieldset, .lfr-token-list, .taglib-search-iterator-page-iterator-bottom {
@@ -1952,7 +1947,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 
 	.menu {
-		border-right: 1px solid $border-color;
+		border-right: 1px solid $gray-dark;
 	}
 
 	.results-grid {
