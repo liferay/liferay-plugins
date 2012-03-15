@@ -475,7 +475,6 @@ public class WSRPConsumerPortletLocalServiceImpl
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	protected ConsumerPortlet getConsumerPortletInstance(Portlet portlet)
 		throws Exception {
 

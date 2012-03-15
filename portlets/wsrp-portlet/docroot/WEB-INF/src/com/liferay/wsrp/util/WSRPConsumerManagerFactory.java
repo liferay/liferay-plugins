@@ -37,7 +37,7 @@ public class WSRPConsumerManagerFactory {
 		HttpSession session = getSession();
 
 		if (session != null) {
-			session.removeAttribute("wsrpConsumerManagers");
+			session.removeAttribute(WebKeys.WSRP_CONSUMER_MANAGERS);
 		}
 	}
 
@@ -95,7 +95,6 @@ public class WSRPConsumerManagerFactory {
 		return userToken;
 	}
 
-	@SuppressWarnings("unchecked")
 	private static WSRPConsumerManager _getWSRPConsumerManager(
 			String url, RegistrationContext registrationContext,
 			String forwardCookies)
@@ -109,14 +108,14 @@ public class WSRPConsumerManagerFactory {
 		if (session != null) {
 			wsrpConsumerManagers =
 				(Map<String, WSRPConsumerManager>)
-					session.getAttribute("wsrpConsumerManagers");
+					session.getAttribute(WebKeys.WSRP_CONSUMER_MANAGERS);
 
 			if (wsrpConsumerManagers == null) {
 				wsrpConsumerManagers =
 					new ConcurrentHashMap<String, WSRPConsumerManager>();
 
 				session.setAttribute(
-					"wsrpConsumerManagers", wsrpConsumerManagers);
+					WebKeys.WSRP_CONSUMER_MANAGERS, wsrpConsumerManagers);
 			}
 		}
 

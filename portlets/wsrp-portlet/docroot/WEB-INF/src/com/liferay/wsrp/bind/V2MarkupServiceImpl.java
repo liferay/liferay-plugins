@@ -65,7 +65,6 @@ import oasis.names.tc.wsrp.v2.types.HandleEventsResponse;
 import oasis.names.tc.wsrp.v2.types.InitCookie;
 import oasis.names.tc.wsrp.v2.types.InteractionParams;
 import oasis.names.tc.wsrp.v2.types.MarkupContext;
-import oasis.names.tc.wsrp.v2.types.MarkupParams;
 import oasis.names.tc.wsrp.v2.types.MarkupResponse;
 import oasis.names.tc.wsrp.v2.types.MimeRequest;
 import oasis.names.tc.wsrp.v2.types.NamedString;
@@ -391,9 +390,6 @@ public class V2MarkupServiceImpl
 		RuntimeContext runtimeContext =
 			performBlockingInteraction.getRuntimeContext();
 
-		PortletContext portletContext =
-			performBlockingInteraction.getPortletContext();
-
 		InteractionParams interactionParams =
 			performBlockingInteraction.getInteractionParams();
 
@@ -434,9 +430,6 @@ public class V2MarkupServiceImpl
 					charSet);
 			}
 		}
-
-		MarkupParams markupParams =
-			performBlockingInteraction.getMarkupParams();
 
 		NamedString[] formParameters = interactionParams.getFormParameters();
 

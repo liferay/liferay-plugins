@@ -31,4 +31,7 @@ public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
 
 	public static final String SESSION_CONTEXT = "SESSION_CONTEXT";
 
+	public static final String WSRP_CONSUMER_MANAGERS =
+		"WSRP_CONSUMER_MANAGERS";
+
 }

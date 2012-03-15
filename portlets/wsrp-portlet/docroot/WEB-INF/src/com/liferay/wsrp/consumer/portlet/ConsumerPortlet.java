@@ -778,7 +778,6 @@ public class ConsumerPortlet extends GenericPortlet {
 			serviceHolder, wsrpResourceResponse);
 	}
 
-	@SuppressWarnings("unchecked")
 	protected ServiceHolder getServiceHolder(
 			PortletRequest portletRequest,
 			WSRPConsumerManager wsrpConsumerManager, WSRPConsumer wsrpConsumer)
@@ -1038,7 +1037,6 @@ public class ConsumerPortlet extends GenericPortlet {
 		eventParams.setEvents(new Event[] {event});
 	}
 
-	@SuppressWarnings("unchecked")
 	protected void initContexts(
 			PortletRequest portletRequest, PortletResponse portletResponse,
 			WSRPConsumerPortlet wsrpConsumerPortlet,
@@ -1472,7 +1470,6 @@ public class ConsumerPortlet extends GenericPortlet {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	protected void processMultipartForm(
 			ActionRequest actionRequest, ActionResponse actionResponse,
 			InteractionParams interactionParams)
@@ -1495,7 +1492,6 @@ public class ConsumerPortlet extends GenericPortlet {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	protected Object[] processMultipartForm(
 			PortletRequest portletRequest, PortletResponse portletResponse)
 		throws Exception {
@@ -1575,7 +1571,6 @@ public class ConsumerPortlet extends GenericPortlet {
 		return new Object[] {formParameters, uploadContexts};
 	}
 
-	@SuppressWarnings("unchecked")
 	protected void processMultipartForm(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse,
 			ResourceParams resourceParams)
