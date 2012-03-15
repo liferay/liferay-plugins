@@ -7,6 +7,8 @@ AUI.add(
 
 		var ParseContent = A.Plugin.ParseContent;
 
+		var STR_UNDEFINED = 'undefined';
+
 		var TPL_BLOCK_IMG =
 			'<span>' +
 				'<img class="icon" alt="" src="' + themeDisplay.getPathThemeImages() + '/social/block.png">' +
@@ -276,15 +278,26 @@ AUI.add(
 
 						var contactsResult = new ContactsResult(
 							{
+								inputNode: contactsSearchInput,
+								listNode: contactsResult,
+								minQueryLength: 0,
 								requestTemplate: function(query) {
 									return {
 										keywords: query
 									}
 								},
+								resultTextLocator: function(response) {
+									var result = '';
 
-								inputNode: contactsSearchInput,
-								listNode: contactsResult,
-								minQueryLength: 0,
+									if (typeof response.toString != STR_UNDEFINED) {
+										result = response.toString();
+									}
+									else if (typeof response.responseText != STR_UNDEFINED) {
+										result = response.responseText;
+									}
+
+									return result;
+								},
 								source: instance._createDataSource(contactsResultURL)
 							}
 						);
