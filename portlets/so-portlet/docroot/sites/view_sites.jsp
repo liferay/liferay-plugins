@@ -231,6 +231,9 @@ else {
 
 	var directoryList = new Liferay.SO.SiteList(
 		{
+			inputNode: '#<portlet:namespace />directory #<portlet:namespace />dialogKeywords',
+			listNode: '#<portlet:namespace />directory .directory-list',
+			minQueryLength: 0,
 			requestTemplate: function(query) {
 				return {
 					directory: true,
@@ -240,10 +243,18 @@ else {
 					start: 0
 				}
 			},
+			resultTextLocator: function(response) {
+				var result = '';
 
-			inputNode: '#<portlet:namespace />directory #<portlet:namespace />dialogKeywords',
-			listNode: '#<portlet:namespace />directory .directory-list',
-			minQueryLength: 0,
+				if (typeof response.toString != 'undefined') {
+					result = response.toString();
+				}
+				else if (typeof response.responseText != 'undefined') {
+					result = response.responseText;
+				}
+
+				return result;
+			},
 			source: Liferay.SO.Sites.createDataSource('<portlet:resourceURL id="getSites" />')
 		}
 	);
