@@ -34,7 +34,10 @@
 	</aui:column>
 </aui:layout>
 
-<liferay-ui:search-container delta="10" emptyResultsMessage="no-messages-found">
+<liferay-ui:search-container
+	delta="10"
+	emptyResultsMessage="no-messages-found"
+>
 	<liferay-ui:search-container-results>
 
 		<%

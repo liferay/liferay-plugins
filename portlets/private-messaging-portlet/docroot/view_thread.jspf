@@ -89,7 +89,10 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 	</c:choose>
 </aui:layout>
 
-<liferay-ui:search-container delta="25" emptyResultsMessage="no-messages-found">
+<liferay-ui:search-container
+	delta="25"
+	emptyResultsMessage="no-messages-found"
+>
 	<liferay-ui:search-container-results>
 
 		<%
