@@ -842,7 +842,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 .breadcrumbs-horizontal {
 	li {
-		background: url(../images/arrows/05_right.png) no-repeat scroll 100% 50% transparent;
+		background: transparent url(../images/arrows/05_right.png) no-repeat scroll 100% 50%;
 		margin-right: 5px;
 		max-width: 50%;
 		padding-right: 15px;
