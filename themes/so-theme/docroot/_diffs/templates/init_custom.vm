@@ -39,6 +39,8 @@
 	#end
 #end
 
+#set ($current_user_dashboard_url = $theme_display.getURLPortal() + $theme_display.getPathFriendlyURLPrivateUser() + "/" + $user.getScreenName())
+
 #set ($layoutFluid = $getterUtil.getBoolean($sessionClicks.get($request, "so-layout-fluid", "false")))
 
 #if ($layoutFluid == true)
