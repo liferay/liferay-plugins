@@ -252,16 +252,14 @@ String subject = HtmlUtil.escape(PrivateMessagingUtil.getThreadSubject(mbThreadI
 
 <aui:script use="aui-image-viewer-gallery">
 	var viewportRegion = A.getDoc().get('viewportRegion');
-	var maxHeight = (viewportRegion.height * 0.7);
-	var maxWidth = (viewportRegion.width * 0.7);
 
-	var imageGallery1 = new A.ImageGallery(
+	var imageGallery = new A.ImageGallery(
 		{
 			caption: '<%= subject %>',
 			delay: 2000,
 			links: '.body .image-thumbnail a',
-			maxHeight: maxHeight,
-			maxWidth: maxWidth
+			maxHeight: (viewportRegion.height * 0.7),
+			maxWidth: (viewportRegion.width * 0.7)
 		}
 	).render();
 </aui:script>
