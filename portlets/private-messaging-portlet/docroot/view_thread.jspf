@@ -257,11 +257,11 @@ String subject = HtmlUtil.escape(PrivateMessagingUtil.getThreadSubject(mbThreadI
 
 	var imageGallery1 = new A.ImageGallery(
 		{
-			links: '.body .image-thumbnail a',
 			caption: '<%= subject %>',
+			delay: 2000,
+			links: '.body .image-thumbnail a',
 			maxHeight: maxHeight,
-			maxWidth: maxWidth,
-			delay: 2000
+			maxWidth: maxWidth
 		}
 	).render();
 </aui:script>
