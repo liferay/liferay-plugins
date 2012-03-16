@@ -148,22 +148,19 @@ public class UserListener extends BaseModelListener<User> {
 
 		Group group = layoutSetPrototype.getGroup();
 
-		List<Layout> layoutSetPrototypeLayouts =
-			LayoutLocalServiceUtil.getLayouts(group.getGroupId(), true);
+		List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
+			group.getGroupId(), true);
 
-		String[] prototypeLayoutUuids =
-			new String[layoutSetPrototypeLayouts.size()];
+		String[] prototypeLayoutUuids = new String[layouts.size()];
 
-		for (int i = 0; i < layoutSetPrototypeLayouts.size(); i++) {
-			Layout layoutSetPrototypeLayout = layoutSetPrototypeLayouts.get(i);
+		for (int i = 0; i < layouts.size(); i++) {
+			Layout layoutSetPrototypeLayout = layouts.get(i);
 
 			prototypeLayoutUuids[i] = layoutSetPrototypeLayout.getUuid();
 		}
 
 		List<Layout> userLayouts = LayoutLocalServiceUtil.getLayouts(
 			userGroup.getGroupId(), privateLayout);
-
-		ServiceContext serviceContext = new ServiceContext();
 
 		for (Layout userLayout : userLayouts) {
 			if (ArrayUtil.contains(
@@ -172,7 +169,7 @@ public class UserListener extends BaseModelListener<User> {
 
 				LayoutLocalServiceUtil.deleteLayout(
 					userLayout.getGroupId(), privateLayout,
-					userLayout.getLayoutId(), serviceContext);
+					userLayout.getLayoutId(), new ServiceContext());
 			}
 		}
 	}

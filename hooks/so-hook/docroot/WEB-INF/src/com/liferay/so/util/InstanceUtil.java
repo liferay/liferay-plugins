@@ -137,12 +137,10 @@ public class InstanceUtil {
 		boolean active = true;
 		long defaultUserId = UserLocalServiceUtil.getDefaultUserId(companyId);
 
-		ServiceContext serviceContext = new ServiceContext();
-
 		LayoutSetPrototype layoutSetPrototype =
 			LayoutSetPrototypeLocalServiceUtil.addLayoutSetPrototype(
 				defaultUserId, companyId, localeNamesMap, description, active,
-				true, serviceContext);
+				true, new ServiceContext());
 
 		UnicodeProperties settingsProperties =
 			layoutSetPrototype.getSettingsProperties();
@@ -250,10 +248,8 @@ public class InstanceUtil {
 
 		Group group = layoutSetPrototype.getGroup();
 
-		ServiceContext serviceContext = new ServiceContext();
-
 		LayoutLocalServiceUtil.deleteLayouts(
-			group.getGroupId(), true, serviceContext);
+			group.getGroupId(), true, new ServiceContext());
 
 		LayoutSetLocalServiceUtil.updateLookAndFeel(
 			group.getGroupId(), "so_WAR_sotheme", "01", "", false);
@@ -378,10 +374,8 @@ public class InstanceUtil {
 
 		Group group = layoutSetPrototype.getGroup();
 
-		ServiceContext serviceContext = new ServiceContext();
-
 		LayoutLocalServiceUtil.deleteLayouts(
-			group.getGroupId(), true, serviceContext);
+			group.getGroupId(), true, new ServiceContext());
 
 		LayoutSetLocalServiceUtil.updateLookAndFeel(
 			group.getGroupId(), "so_WAR_sotheme", "01", "", false);
@@ -483,10 +477,8 @@ public class InstanceUtil {
 
 		Group group = layoutSetPrototype.getGroup();
 
-		ServiceContext serviceContext = new ServiceContext();
-
 		LayoutLocalServiceUtil.deleteLayouts(
-			group.getGroupId(), true, serviceContext);
+			group.getGroupId(), true, new ServiceContext());
 
 		LayoutSetLocalServiceUtil.updateLookAndFeel(
 			group.getGroupId(), "so_WAR_sotheme", "01", "", false);
