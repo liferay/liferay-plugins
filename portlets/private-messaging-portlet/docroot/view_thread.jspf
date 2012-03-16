@@ -34,10 +34,14 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 	<aui:button href="<%= deleteMessageURL %>" name="deleteMessage" value="delete" />
 </aui:layout>
 
+<%
+String subject = HtmlUtil.escape(PrivateMessagingUtil.getThreadSubject(mbThreadId));
+%>
+
 <liferay-ui:header
 	backLabel="messages"
 	backURL="<%= backURL.toString() %>"
-	title="<%= HtmlUtil.escape(PrivateMessagingUtil.getThreadSubject(mbThreadId)) %>"
+	title="<%= subject %>"
 />
 
 <aui:layout cssClass="thread-info">
@@ -159,11 +163,16 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 							if (StringUtil.endsWith(fileName, ".gif") || StringUtil.endsWith(fileName, ".jpg") || StringUtil.endsWith(fileName, ".png")) {
 						%>
 
-								<div>
-									<img alt="<liferay-ui:message key="attachment" />" src="<liferay-portlet:actionURL name="getMessageAttachment" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="messageId" value="<%= String.valueOf(mbMessage.getMessageId()) %>" /><portlet:param name="attachment" value="<%= fileName %>" /></liferay-portlet:actionURL>" />
-								</div>
+								<liferay-portlet:actionURL name="getMessageAttachment" var="imageURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
+									<portlet:param name="messageId" value="<%= String.valueOf(mbMessage.getMessageId()) %>" />
+									<portlet:param name="attachment" value="<%= fileName %>" />
+								</liferay-portlet:actionURL>
 
-								<br />
+								<div class="image-thumbnail">
+									<a href="<%= imageURL %>" title="<%= fileName %>">
+										<img alt="<liferay-ui:message key="attachment" />" src="<%= imageURL %>" />
+									</a>
+								</div>
 
 						<%
 							}
@@ -239,4 +248,20 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 	function <portlet:namespace />sendPrivateMessage() {
 		submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="sendMessage" />');
 	}
+</aui:script>
+
+<aui:script use="aui-image-viewer-gallery">
+	var viewportRegion = A.getDoc().get('viewportRegion');
+	var maxHeight = (viewportRegion.height * 0.7);
+	var maxWidth = (viewportRegion.width * 0.7);
+
+	var imageGallery1 = new A.ImageGallery(
+		{
+			caption: '<%= subject %>',
+			delay: 2000,
+			links: '.body .image-thumbnail a',
+			maxHeight: maxHeight,
+			maxWidth: maxWidth
+		}
+	).render();
 </aui:script>
