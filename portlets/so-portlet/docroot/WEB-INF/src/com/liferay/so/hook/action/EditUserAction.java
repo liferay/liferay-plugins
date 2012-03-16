@@ -114,24 +114,20 @@ public class EditUserAction extends BaseStrutsPortletAction {
 				new DynamicActionRequest(actionRequest);
 
 			if (cmd.equals(Constants.UPDATE)) {
-
 				User user = PortalUtil.getSelectedUser(actionRequest);
 
-				List<Role> curRoles = user.getRoles();
+				List<Role> roles = user.getRoles();
 
-				Role socialOfficeRole =
-					RoleLocalServiceUtil.getRole(user.getCompanyId(),
-						RoleConstants.SOCIAL_OFFICE_USER);
+				Role role = RoleLocalServiceUtil.getRole(
+					user.getCompanyId(), RoleConstants.SOCIAL_OFFICE_USER);
 
 				long[] roleIds = getLongArray(
 					actionRequest, "rolesSearchContainerPrimaryKeys");
 
-				boolean containsSocialOfficeRole =
-					ArrayUtil.contains(roleIds, socialOfficeRole.getRoleId());
+				boolean newSocialOfficeUser = ArrayUtil.contains(
+					roleIds, role.getRoleId());
 
-				if (containsSocialOfficeRole &&
-					!curRoles.contains(socialOfficeRole)) {
-
+				if (newSocialOfficeUser && !roles.contains(role)) {
 					LayoutSetPrototype[] layoutSetPrototypes =
 						LayoutSetPrototypeUtil.getLayoutSetPrototypes(user);
 
@@ -150,9 +146,7 @@ public class EditUserAction extends BaseStrutsPortletAction {
 						"privateLayoutSetPrototypeLinkEnabled",
 						String.valueOf(true));
 				}
-				else if (!containsSocialOfficeRole &&
-					curRoles.contains(socialOfficeRole)) {
-
+				else if (!newSocialOfficeUser && roles.contains(role)) {
 					dynamicActionRequest.setParameter(
 						"publicLayoutSetPrototypeId", StringPool.BLANK);
 					dynamicActionRequest.setParameter(
