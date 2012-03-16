@@ -22,14 +22,14 @@ import com.liferay.portal.NoSuchGroupException;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
-import com.liferay.portal.model.UserGroup;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
+import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.service.UserGroupLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.so.util.UserGroupConstants;
+import com.liferay.so.util.RoleConstants;
 
 /**
  * @author Jonathan Lee
@@ -43,18 +43,17 @@ public class UserListener extends BaseModelListener<User> {
 		throws ModelListenerException {
 
 		try {
-			if (!associationClassName.equals(UserGroup.class.getName())) {
+			if (!associationClassName.equals(Role.class.getName())) {
 				return;
 			}
 
-			long userGroupId = (Long)associationClassPK;
+			long roleId = (Long)associationClassPK;
 
-			UserGroup userGroup = UserGroupLocalServiceUtil.getUserGroup(
-				userGroupId);
+			Role role = RoleLocalServiceUtil.getRole(roleId);
 
-			String name = userGroup.getName();
+			String name = role.getName();
 
-			if (name.equals(UserGroupConstants.SOCIAL_OFFICE_USERS)) {
+			if (name.equals(RoleConstants.SOCIAL_OFFICE_USER)) {
 				long userId = (Long)classPK;
 
 				updateUserLayoutSets(userId);

@@ -20,11 +20,11 @@
 <%@ include file="/html/taglib/init.jsp" %>
 
 <%
-UserGroup userGroup = UserGroupLocalServiceUtil.getUserGroup(themeDisplay.getCompanyId(), "Social Office Users");
+Role role = RoleLocalServiceUtil.fetchRole(themeDisplay.getCompanyId(), "Social Office User");
 %>
 
 <c:choose>
-	<c:when test="<%= (userGroup == null) || !UserLocalServiceUtil.hasUserGroupUser(userGroup.getUserGroupId(), themeDisplay.getUserId()) %>">
+	<c:when test="<%= (role == null) || !UserLocalServiceUtil.hasRoleUser(role.getRoleId(), themeDisplay.getUserId()) %>">
 		<liferay-util:include page="/html/taglib/ui/my_sites/page.portal.jsp" />
 	</c:when>
 	<c:otherwise>
