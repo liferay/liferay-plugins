@@ -23,17 +23,26 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.struts.BaseStrutsPortletAction;
 import com.liferay.portal.kernel.struts.StrutsPortletAction;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.model.LayoutSetPrototype;
+import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.so.model.ProjectsEntry;
 import com.liferay.so.service.ProjectsEntryLocalServiceUtil;
+import com.liferay.so.util.DynamicActionRequest;
+import com.liferay.so.util.LayoutSetPrototypeUtil;
+import com.liferay.so.util.RoleConstants;
 
 import java.util.HashSet;
 import java.util.List;
@@ -42,6 +51,7 @@ import java.util.Set;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
+import javax.portlet.PortletRequest;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
@@ -100,8 +110,64 @@ public class EditUserAction extends BaseStrutsPortletAction {
 		else {
 			updateProjectsEntries(actionRequest, actionResponse);
 
+			DynamicActionRequest dynamicActionRequest =
+				new DynamicActionRequest(actionRequest);
+
+			if (cmd.equals(Constants.UPDATE)) {
+
+				User user = PortalUtil.getSelectedUser(actionRequest);
+
+				List<Role> curRoles = user.getRoles();
+
+				Role socialOfficeRole =
+					RoleLocalServiceUtil.getRole(user.getCompanyId(),
+						RoleConstants.SOCIAL_OFFICE_USER);
+
+				long[] roleIds = getLongArray(
+					actionRequest, "rolesSearchContainerPrimaryKeys");
+
+				boolean containsSocialOfficeRole =
+					ArrayUtil.contains(roleIds, socialOfficeRole.getRoleId());
+
+				if (containsSocialOfficeRole &&
+					!curRoles.contains(socialOfficeRole)) {
+
+					LayoutSetPrototype[] layoutSetPrototypes =
+						LayoutSetPrototypeUtil.getLayoutSetPrototypes(user);
+
+					dynamicActionRequest.setParameter(
+						"publicLayoutSetPrototypeId",
+						String.valueOf(
+							layoutSetPrototypes[0].getLayoutSetPrototypeId()));
+					dynamicActionRequest.setParameter(
+						"privateLayoutSetPrototypeId",
+						String.valueOf(
+							layoutSetPrototypes[1].getLayoutSetPrototypeId()));
+					dynamicActionRequest.setParameter(
+						"publicLayoutSetPrototypeLinkEnabled",
+						String.valueOf(true));
+					dynamicActionRequest.setParameter(
+						"privateLayoutSetPrototypeLinkEnabled",
+						String.valueOf(true));
+				}
+				else if (!containsSocialOfficeRole &&
+					curRoles.contains(socialOfficeRole)) {
+
+					dynamicActionRequest.setParameter(
+						"publicLayoutSetPrototypeId", StringPool.BLANK);
+					dynamicActionRequest.setParameter(
+						"privateLayoutSetPrototypeId", StringPool.BLANK);
+					dynamicActionRequest.setParameter(
+						"publicLayoutSetPrototypeLinkEnabled",
+						String.valueOf(false));
+					dynamicActionRequest.setParameter(
+						"privateLayoutSetPrototypeLinkEnabled",
+						String.valueOf(false));
+				}
+			}
+
 			originalStrutsPortletAction.processAction(
-					portletConfig, actionRequest, actionResponse);
+				portletConfig, dynamicActionRequest, actionResponse);
 		}
 	}
 
@@ -125,6 +191,16 @@ public class EditUserAction extends BaseStrutsPortletAction {
 
 		originalStrutsPortletAction.serveResource(
 			portletConfig, resourceRequest, resourceResponse);
+	}
+
+	protected long[] getLongArray(PortletRequest portletRequest, String name) {
+		String value = portletRequest.getParameter(name);
+
+		if (value == null) {
+			return null;
+		}
+
+		return StringUtil.split(GetterUtil.getString(value), 0L);
 	}
 
 	protected void updateProjectsEntries(

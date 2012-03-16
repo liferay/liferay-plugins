@@ -78,14 +78,16 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 								continue;
 							}
 
-							Boolean socialOfficeDefault = (Boolean)layoutSetPrototype.getExpandoBridge().getAttribute("socialOfficeDefault");
+							String layoutSetPrototypeKey = (String)layoutSetPrototype.getExpandoBridge().getAttribute(SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY);
 
-							if (socialOfficeDefault.booleanValue()) {
+							boolean layoutSetPrototypeSite = layoutSetPrototypeKey.equals(SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_SITE);
+
+							if (layoutSetPrototypeSite) {
 								defaultLayoutSetPrototype = layoutSetPrototype;
 							}
 						%>
 
-							<aui:option selected="<%= socialOfficeDefault %>" value="<%= layoutSetPrototype.getLayoutSetPrototypeId() %>"><%= layoutSetPrototype.getName(user.getLanguageId()) %></aui:option>
+							<aui:option selected="<%= layoutSetPrototypeSite %>" value="<%= layoutSetPrototype.getLayoutSetPrototypeId() %>"><%= layoutSetPrototype.getName(user.getLanguageId()) %></aui:option>
 
 						<%
 						}

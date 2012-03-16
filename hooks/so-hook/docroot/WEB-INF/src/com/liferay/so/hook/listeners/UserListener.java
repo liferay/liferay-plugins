@@ -18,23 +18,73 @@
 package com.liferay.so.hook.listeners;
 
 import com.liferay.portal.ModelListenerException;
-import com.liferay.portal.NoSuchGroupException;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.Layout;
+import com.liferay.portal.model.LayoutSet;
+import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
+import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.so.util.LayoutSetPrototypeUtil;
 import com.liferay.so.util.RoleConstants;
+
+import java.util.List;
 
 /**
  * @author Jonathan Lee
+ * @author Eudaldo Alonso
  */
 public class UserListener extends BaseModelListener<User> {
+
+	@Override
+	public void onAfterAddAssociation(
+			Object classPK, String associationClassName,
+			Object associationClassPK)
+		throws ModelListenerException {
+
+		try {
+			if (!associationClassName.equals(Role.class.getName())) {
+				return;
+			}
+
+			long roleId = (Long)associationClassPK;
+
+			Role role = RoleLocalServiceUtil.getRole(roleId);
+
+			String name = role.getName();
+
+			if (name.equals(RoleConstants.SOCIAL_OFFICE_USER)) {
+				long userId = (Long)classPK;
+
+				User user = UserLocalServiceUtil.getUser(userId);
+
+				LayoutSetPrototype[] layoutSetPrototypes =
+					LayoutSetPrototypeUtil.getLayoutSetPrototypes(user);
+
+				LayoutSetLocalServiceUtil.updateLayoutSetPrototypeLinkEnabled(
+					user.getGroup().getGroupId(), false, true,
+					layoutSetPrototypes[0].getUuid());
+
+				LayoutSetLocalServiceUtil.updateLayoutSetPrototypeLinkEnabled(
+					user.getGroup().getGroupId(), true, true,
+					layoutSetPrototypes[1].getUuid());
+			}
+		}
+		catch (Exception e) {
+			throw new ModelListenerException(e);
+		}
+	}
 
 	@Override
 	public void onAfterRemoveAssociation(
@@ -56,7 +106,14 @@ public class UserListener extends BaseModelListener<User> {
 			if (name.equals(RoleConstants.SOCIAL_OFFICE_USER)) {
 				long userId = (Long)classPK;
 
-				updateUserLayoutSets(userId);
+				User user = UserLocalServiceUtil.getUser(userId);
+
+				LayoutSetPrototype[] layoutSetPrototypes =
+					LayoutSetPrototypeUtil.getLayoutSetPrototypes(user);
+
+				removeUserLayouts(
+					user, false, layoutSetPrototypes[0].getUuid());
+				removeUserLayouts(user, true, layoutSetPrototypes[1].getUuid());
 			}
 		}
 		catch (Exception e) {
@@ -64,31 +121,59 @@ public class UserListener extends BaseModelListener<User> {
 		}
 	}
 
-	protected void updateUserLayoutSets(long userId) throws Exception {
-		try {
-			User user = UserLocalServiceUtil.getUser(userId);
+	protected void removeUserLayouts(
+			User user, boolean privateLayout, String layoutSetPrototypeUuid)
+		throws PortalException, SystemException {
 
-			Group group = user.getGroup();
+		Group userGroup = user.getGroup();
 
-			ServiceContext serviceContext = new ServiceContext();
+		LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
+			userGroup.getGroupId(), privateLayout);
 
-			LayoutSetLocalServiceUtil.deleteLayoutSet(
-				group.getGroupId(), false, serviceContext);
-			LayoutSetLocalServiceUtil.deleteLayoutSet(
-				group.getGroupId(), true, serviceContext);
+		UnicodeProperties settingsProperties =
+			layoutSet.getSettingsProperties();
 
-			LayoutSetLocalServiceUtil.addLayoutSet(group.getGroupId(), false);
-			LayoutSetLocalServiceUtil.addLayoutSet(group.getGroupId(), true);
+		settingsProperties.remove("last-merge-time");
 
-			UnicodeProperties typeSettingsProperties =
-				group.getTypeSettingsProperties();
+		layoutSet.setSettingsProperties(settingsProperties);
 
-			typeSettingsProperties.remove("customJspServletContextName");
+		layoutSet.setLayoutSetPrototypeLinkEnabled(false);
+		layoutSet.setLayoutSetPrototypeUuid(StringPool.BLANK);
 
-			GroupLocalServiceUtil.updateGroup(
-				group.getGroupId(), typeSettingsProperties.toString());
+		LayoutSetLocalServiceUtil.updateLayoutSet(layoutSet);
+
+		LayoutSetPrototype layoutSetPrototype =
+			LayoutSetPrototypeLocalServiceUtil.getLayoutSetPrototypeByUuid(
+				layoutSetPrototypeUuid);
+
+		Group group = layoutSetPrototype.getGroup();
+
+		List<Layout> layoutSetPrototypeLayouts =
+			LayoutLocalServiceUtil.getLayouts(group.getGroupId(), true);
+
+		String[] prototypeLayoutUuids =
+			new String[layoutSetPrototypeLayouts.size()];
+
+		for (int i = 0; i < layoutSetPrototypeLayouts.size(); i++) {
+			Layout layoutSetPrototypeLayout = layoutSetPrototypeLayouts.get(i);
+
+			prototypeLayoutUuids[i] = layoutSetPrototypeLayout.getUuid();
 		}
-		catch (NoSuchGroupException nsge) {
+
+		List<Layout> userLayouts = LayoutLocalServiceUtil.getLayouts(
+			userGroup.getGroupId(), privateLayout);
+
+		ServiceContext serviceContext = new ServiceContext();
+
+		for (Layout userLayout : userLayouts) {
+			if (ArrayUtil.contains(
+					prototypeLayoutUuids,
+					userLayout.getSourcePrototypeLayoutUuid())) {
+
+				LayoutLocalServiceUtil.deleteLayout(
+					userLayout.getGroupId(), privateLayout,
+					userLayout.getLayoutId(), serviceContext);
+			}
 		}
 	}
 

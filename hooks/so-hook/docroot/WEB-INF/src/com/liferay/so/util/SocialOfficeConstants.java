@@ -1,4 +1,3 @@
-<%--
 /**
  * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
@@ -15,22 +14,24 @@
  * You should have received a copy of the GNU General Public License along with
  * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
---%>
 
-<%@ include file="/init.jsp" %>
+package com.liferay.so.util;
 
-<%@ page import="com.liferay.portal.kernel.language.UnicodeLanguageUtil" %><%@
-page import="com.liferay.so.service.FavoriteSiteLocalServiceUtil" %><%@
-page import="com.liferay.so.util.SocialOfficeConstants" %>
+/*
+ * @author Eudaldo Alonso
+ */
+public class SocialOfficeConstants {
 
-<%
-PortletPreferences preferences = renderRequest.getPreferences();
+	public static final String LAYOUT_SET_PROTOTYPE_KEY =
+		"layoutSetPrototypeKey";
 
-String portletResource = ParamUtil.getString(request, "portletResource");
+	public static final String LAYOUT_SET_PROTOTYPE_KEY_SITE =
+		"layoutSetPrototypeKey_Site";
 
-if (Validator.isNotNull(portletResource)) {
-	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
+	public static final String LAYOUT_SET_PROTOTYPE_KEY_USER_PRIVATE =
+		"layoutSetPrototypeKey_UserPrivate";
+
+	public static final String LAYOUT_SET_PROTOTYPE_KEY_USER_PUBLIC =
+		"layoutSetPrototypeKey_UserPublic";
+
 }
-
-int maxResultSize = GetterUtil.getInteger(preferences.getValue("maxResultSize", null), 10);
-%>
