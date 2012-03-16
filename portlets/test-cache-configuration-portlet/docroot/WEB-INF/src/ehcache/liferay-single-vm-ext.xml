@@ -9,7 +9,7 @@
 	<cache
 		eternal="false"
 		maxElementsInMemory="1"
-		name="com.liferay.portal.velocity.LiferayResourceCacheUtil"
+		name="com.liferay.portal.util.WebCachePool"
 		overflowToDisk="false"
 		timeToIdleSeconds="10"
 	/>

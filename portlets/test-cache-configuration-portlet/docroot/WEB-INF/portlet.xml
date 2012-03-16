@@ -2,8 +2,8 @@
 
 <portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" version="2.0">
 	<portlet>
-		<portlet-name>test-cache-override</portlet-name>
-		<display-name>Cache Override Portlet</display-name>
+		<portlet-name>1</portlet-name>
+		<display-name>Test Cache Configuration</display-name>
 		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
 		<init-param>
 			<name>view-template</name>
@@ -14,9 +14,9 @@
 			<mime-type>text/html</mime-type>
 		</supports>
 		<portlet-info>
-			<title>Cache Override Portlet</title>
-			<short-title>Cache Override Portlet</short-title>
-			<keywords>Cache Override Portlet</keywords>
+			<title>Test Cache Configuration</title>
+			<short-title>Test Cache Configuration</short-title>
+			<keywords>Test Cache Configuration</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>
