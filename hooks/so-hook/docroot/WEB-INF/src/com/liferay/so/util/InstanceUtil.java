@@ -30,7 +30,6 @@ import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
-import com.liferay.portal.model.UserGroup;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
@@ -40,7 +39,6 @@ import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.service.UserGroupLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.PortletPreferencesThreadLocal;
@@ -68,7 +66,6 @@ public class InstanceUtil {
 			PortletPreferencesThreadLocal.setStrict(false);
 
 			setupRole(companyId);
-			setupUserGroup(companyId);
 
 			setupExpando(companyId);
 			setupLayoutSetPrototype(companyId);
@@ -371,20 +368,6 @@ public class InstanceUtil {
 			companyId, User.class.getName(), ResourceConstants.SCOPE_COMPANY,
 			String.valueOf(companyId), role.getRoleId(),
 			new String[] {ActionKeys.VIEW});
-	}
-
-	protected static void setupUserGroup(long companyId) throws Exception {
-		long defaultUserId = UserLocalServiceUtil.getDefaultUserId(companyId);
-
-		UserGroup userGroup = UserGroupLocalServiceUtil.addUserGroup(
-			defaultUserId, companyId, UserGroupConstants.SOCIAL_OFFICE_USERS,
-			"Social Office Users have access to the Social Office Suite.");
-
-		Role role = RoleLocalServiceUtil.getRole(
-			companyId, RoleConstants.SOCIAL_OFFICE_USER);
-
-		GroupLocalServiceUtil.addRoleGroups(
-			role.getRoleId(), new long[] {userGroup.getGroup().getGroupId()});
 	}
 
 	protected static void updatePermissions(ExpandoColumn expandoColumn)
