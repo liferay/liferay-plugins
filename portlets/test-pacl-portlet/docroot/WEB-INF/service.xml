@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+
+<service-builder package-path="com.liferay.testpacl">
+	<namespace>TestPACL</namespace>
+	<entity name="TestPACL" local-service="true" remote-service="false">
+
+		<!-- References -->
+
+		<reference package-path="com.liferay.portal" entity="Company" />
+		<reference package-path="com.liferay.portal" entity="Group" />
+		<reference package-path="com.liferay.portal" entity="Portal" />
+		<reference package-path="com.liferay.portal" entity="User" />
+	</entity>
+</service-builder>

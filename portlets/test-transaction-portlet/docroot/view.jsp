@@ -21,15 +21,15 @@
 <%@ page import="com.liferay.testtransaction.service.BarLocalServiceUtil" %>
 
 <p>
-	BarLocalServiceUtil.addBar_Success=<%= _testAddBar_Success() %><br />
-	BarLocalServiceUtil.addBarAndClassName_PortalRollback=<%= _testAddBarAndClassName_PortalRollback() %><br />
-	BarLocalServiceUtil.addBarAndClassName_PortletRollback=<%= _testAddBarAndClassName_PortletRollback() %>
+	BarLocalServiceUtil#addBar_Success=<%= _testAddBar_Success() %><br />
+	BarLocalServiceUtil#addBarAndClassName_PortalRollback=<%= _testAddBarAndClassName_PortalRollback() %><br />
+	BarLocalServiceUtil#addBarAndClassName_PortletRollback=<%= _testAddBarAndClassName_PortletRollback() %>
 </p>
 
 <p>
-	PortalServiceUtil.testAddClassNameAndTestTransactionPortletBar_Success=<%= _testAddClassNameAndTestTransactionPortletBar_Success() %><br />
-	PortalServiceUtil.testAddClassNameAndTestTransactionPortletBar_PortalRollback=<%= _testAddClassNameAndTestTransactionPortletBar_PortalRollback() %><br />
-	PortletServiceUtil.testAddClassNameAndTestTransactionPortletBar_PortletRollback=<%= _testAddClassNameAndTestTransactionPortletBar_PortletRollback() %>
+	PortalServiceUtil#testAddClassNameAndTestTransactionPortletBar_Success=<%= _testAddClassNameAndTestTransactionPortletBar_Success() %><br />
+	PortalServiceUtil#testAddClassNameAndTestTransactionPortletBar_PortalRollback=<%= _testAddClassNameAndTestTransactionPortletBar_PortalRollback() %><br />
+	PortletServiceUtil#testAddClassNameAndTestTransactionPortletBar_PortletRollback=<%= _testAddClassNameAndTestTransactionPortletBar_PortletRollback() %>
 </p>
 
 <%!
