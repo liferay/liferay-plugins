@@ -58,18 +58,10 @@ public class StorePortlet extends MVCPortlet {
 		String url = ParamUtil.getString(actionRequest, "url");
 		String version = ParamUtil.getString(actionRequest, "version");
 
-		String encodedClientId = MarketplaceUtil.encodeClientId(
-			themeDisplay.getCompanyId(), themeDisplay.getUserId(), token);
+		url = getRemoteAppPackageURL(
+			themeDisplay.getCompanyId(), themeDisplay.getUserId(), token, url);
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(url);
-		sb.append(StringPool.SLASH);
-		sb.append(encodedClientId);
-		sb.append(StringPool.SLASH);
-		sb.append(token);
-
-		URL urlObj = new URL(sb.toString());
+		URL urlObj = new URL(url);
 
 		InputStream inputStream = urlObj.openStream();
 
@@ -180,9 +172,16 @@ public class StorePortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String token = ParamUtil.getString(actionRequest, "token");
 		long remoteAppId = ParamUtil.getLong(actionRequest, "appId");
 		String version = ParamUtil.getString(actionRequest, "version");
 		String url = ParamUtil.getString(actionRequest, "url");
+
+		url = getRemoteAppPackageURL(
+			themeDisplay.getCompanyId(), themeDisplay.getUserId(), token, url);
 
 		URL urlObj = new URL(url);
 
@@ -295,6 +294,24 @@ public class StorePortlet extends MVCPortlet {
 		}
 
 		return jsonObject;
+	}
+
+	protected String getRemoteAppPackageURL(
+			long companyId, long userId, String token, String url)
+		throws Exception {
+
+		String encodedClientId = MarketplaceUtil.encodeClientId(
+			companyId, userId, token);
+
+		StringBundler sb = new StringBundler(5);
+
+		sb.append(url);
+		sb.append(StringPool.SLASH);
+		sb.append(encodedClientId);
+		sb.append(StringPool.SLASH);
+		sb.append(token);
+
+		return sb.toString();
 	}
 
 }
