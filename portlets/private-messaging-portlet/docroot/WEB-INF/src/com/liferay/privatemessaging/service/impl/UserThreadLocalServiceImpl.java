@@ -75,6 +75,8 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 
 		long parentMBMessageId = MBMessageConstants.DEFAULT_PARENT_MESSAGE_ID;
 
+		List<User> recipients = null;
+
 		if (mbThreadId != 0) {
 			List<MBMessage> mbMessages =
 				MBMessageLocalServiceUtil.getThreadMessages(
@@ -85,11 +87,12 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 			parentMBMessageId = lastMBMessage.getMessageId();
 			subject = lastMBMessage.getSubject();
 		}
+		else {
+			recipients = parseRecipients(userId, to);
 
-		List<User> recipients = parseRecipients(userId, to);
-
-		if (recipients.isEmpty()) {
-			return null;
+			if (recipients.isEmpty()) {
+				return null;
+			}
 		}
 
 		return addPrivateMessage(
