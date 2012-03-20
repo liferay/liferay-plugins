@@ -58,24 +58,27 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	* Deletes the foo with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param fooId the primary key of the foo
+	* @return the foo that was removed
 	* @throws PortalException if a foo with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteFoo(long fooId)
+	public com.liferay.sampleservicebuilder.model.Foo deleteFoo(long fooId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_fooLocalService.deleteFoo(fooId);
+		return _fooLocalService.deleteFoo(fooId);
 	}
 
 	/**
 	* Deletes the foo from the database. Also notifies the appropriate model listeners.
 	*
 	* @param foo the foo
+	* @return the foo that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteFoo(com.liferay.sampleservicebuilder.model.Foo foo)
+	public com.liferay.sampleservicebuilder.model.Foo deleteFoo(
+		com.liferay.sampleservicebuilder.model.Foo foo)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_fooLocalService.deleteFoo(foo);
+		return _fooLocalService.deleteFoo(foo);
 	}
 
 	/**

@@ -67,24 +67,28 @@ public class FooLocalServiceUtil {
 	* Deletes the foo with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param fooId the primary key of the foo
+	* @return the foo that was removed
 	* @throws PortalException if a foo with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteFoo(long fooId)
+	public static com.liferay.sampleservicebuilder.model.Foo deleteFoo(
+		long fooId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteFoo(fooId);
+		return getService().deleteFoo(fooId);
 	}
 
 	/**
 	* Deletes the foo from the database. Also notifies the appropriate model listeners.
 	*
 	* @param foo the foo
+	* @return the foo that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteFoo(com.liferay.sampleservicebuilder.model.Foo foo)
+	public static com.liferay.sampleservicebuilder.model.Foo deleteFoo(
+		com.liferay.sampleservicebuilder.model.Foo foo)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteFoo(foo);
+		return getService().deleteFoo(foo);
 	}
 
 	/**

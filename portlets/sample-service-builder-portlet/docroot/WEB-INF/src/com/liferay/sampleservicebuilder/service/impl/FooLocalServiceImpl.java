@@ -70,7 +70,7 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void deleteFoo(Foo foo) throws SystemException {
+	public Foo deleteFoo(Foo foo) throws SystemException {
 		try {
 			assetEntryLocalService.deleteEntry(
 				Foo.class.getName(), foo.getFooId());
@@ -78,16 +78,18 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 		catch (PortalException pe) {
 		}
 
-		fooPersistence.remove(foo);
+		return fooPersistence.remove(foo);
 	}
 
 	@Override
-	public void deleteFoo(long fooId) throws SystemException {
+	public Foo deleteFoo(long fooId) throws SystemException {
 		Foo foo = fooPersistence.fetchByPrimaryKey(fooId);
 
-		if (foo != null) {
-			deleteFoo(foo);
+		if (foo == null) {
+			return null;
 		}
+
+		return deleteFoo(foo);
 	}
 
 	public List<Foo> getFoos(int start, int end, OrderByComparator obc)

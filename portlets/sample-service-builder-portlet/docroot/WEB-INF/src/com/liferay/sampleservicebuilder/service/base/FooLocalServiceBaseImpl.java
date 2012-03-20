@@ -23,11 +23,8 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
@@ -83,25 +80,11 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	 * @return the foo that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public Foo addFoo(Foo foo) throws SystemException {
 		foo.setNew(true);
 
-		foo = fooPersistence.update(foo, false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(foo);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return foo;
+		return fooPersistence.update(foo, false);
 	}
 
 	/**
@@ -118,47 +101,25 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	 * Deletes the foo with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param fooId the primary key of the foo
+	 * @return the foo that was removed
 	 * @throws PortalException if a foo with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteFoo(long fooId) throws PortalException, SystemException {
-		Foo foo = fooPersistence.remove(fooId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(foo);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+	@Indexable(type = IndexableType.DELETE)
+	public Foo deleteFoo(long fooId) throws PortalException, SystemException {
+		return fooPersistence.remove(fooId);
 	}
 
 	/**
 	 * Deletes the foo from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param foo the foo
+	 * @return the foo that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteFoo(Foo foo) throws SystemException {
-		fooPersistence.remove(foo);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(foo);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+	@Indexable(type = IndexableType.DELETE)
+	public Foo deleteFoo(Foo foo) throws SystemException {
+		return fooPersistence.remove(foo);
 	}
 
 	/**
@@ -294,6 +255,7 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	 * @return the foo that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public Foo updateFoo(Foo foo) throws SystemException {
 		return updateFoo(foo, true);
 	}
@@ -306,25 +268,11 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	 * @return the foo that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public Foo updateFoo(Foo foo, boolean merge) throws SystemException {
 		foo.setNew(false);
 
-		foo = fooPersistence.update(foo, merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(foo);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return foo;
+		return fooPersistence.update(foo, merge);
 	}
 
 	/**
@@ -712,6 +660,5 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	protected AssetTagService assetTagService;
 	@BeanReference(type = AssetTagPersistence.class)
 	protected AssetTagPersistence assetTagPersistence;
-	private static Log _log = LogFactoryUtil.getLog(FooLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }
