@@ -21,7 +21,7 @@
 </div>
 
 <form action="<%= iFrameURL %>" id="<portlet:namespace />fm" method="post" target="<portlet:namespace />frame">
-<input name="mpClientURL" value="<%= themeDisplay.getPortalURL() + themeDisplay.getURLCurrent() %>" type="hidden" />
+<input name="mpClientURL" type="hidden" value="<%= themeDisplay.getPortalURL() + themeDisplay.getURLCurrent() %>" />
 </form>
 
 <div class="aui-helper-hidden time-out-message portlet-msg-error">
