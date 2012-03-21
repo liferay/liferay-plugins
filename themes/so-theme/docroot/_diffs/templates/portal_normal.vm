@@ -24,14 +24,14 @@ $theme.include($body_top_include)
 	<header id="banner" role="banner">
 		<hgroup id="heading">
 			<div class="company-title">
-				<a class="$logo" href="$company_url" title="#language("go-to") $company_name">
+				<a class="$logo" href="$current_user_dashboard_url" title="#language("go-to") $company_name">
 					<span>$company_name</span>
 				</a>
 			</div>
 
 			#if (!$page_group.isUser())
 				<div class="community-title">
-					<a href="$community_default_url" title="#language("go-to") $community_name">
+					<a href="$logo_url" title="#language("go-to") $community_name">
 						<span>$community_name</span>
 					</a>
 				</div>
