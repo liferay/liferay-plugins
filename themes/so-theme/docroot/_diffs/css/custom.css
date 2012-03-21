@@ -59,6 +59,7 @@ a:focus .opens-new-window-accessible {
 
 #content {
 	width: 760px;
+	zoom: 1;
 }
 
 #footer p {
@@ -76,19 +77,29 @@ a:focus .opens-new-window-accessible {
 #banner {
 	border-bottom: 1px solid $gray-dark;
 	position: relative;
+	zoom: 1;
 
 	.logo {
-		text-indent: -9999em;
+		display: block;
+
+		img {
+			max-height: 64px;
+			width: auto;
+		}
 	}
 
 	.company-title {
 		float: left;
 		padding: 5px 10px 10px;
+	}
 
-		.theme-logo {
-			background-image: url(../images/custom/so_logo.png);
-			height: 64px;
-			width: 186px;
+	.default-logo {
+		background-image: url(../images/custom/so_logo.png);
+		height: 64px;
+		width: 186px;
+
+		img {
+			display: none;
 		}
 	}
 
@@ -354,6 +365,7 @@ a:focus .opens-new-window-accessible {
 		border: 1px solid $gray-dark;
 		border-width: 0 1px 1px 0;
 		position: relative;
+		zoom: 1;
 	}
 
 	.portlet-layout {
@@ -1965,6 +1977,10 @@ body.so-layout-fluid, body.so-layout-fluid-ad {
 	#content, #footer, #banner #heading {
 		margin: 0 auto;
 		width: auto;
+	}
+
+	#content {
+		z-index: 1;
 	}
 
 	#heading #page-search {
