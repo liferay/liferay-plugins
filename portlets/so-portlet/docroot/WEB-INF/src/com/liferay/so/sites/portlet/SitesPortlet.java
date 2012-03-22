@@ -451,7 +451,7 @@ public class SitesPortlet extends MVCPortlet {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		try {
-			GroupServiceUtil.getGroup(groupId);
+			GroupLocalServiceUtil.getGroup(groupId);
 		}
 		catch (Exception e) {
 			jsonObject.put("result", "failure");
