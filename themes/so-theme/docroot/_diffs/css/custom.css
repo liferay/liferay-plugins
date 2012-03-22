@@ -1665,6 +1665,10 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	.lfr-header-row {
 		background: #EEE;
 		border-bottom: 1px solid #AAA;
+
+		.aui-toolbar .aui-toolbar-content {
+			margin-right: 5px;
+		}
 	}
 
 	.lfr-header-row-content .parent-folder-title, .portlet-document-library-display .lfr-header-row-content .parent-folder-title {
