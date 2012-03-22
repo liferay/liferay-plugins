@@ -44,7 +44,7 @@ UserGroup userGroup = UserGroupLocalServiceUtil.getUserGroup(themeDisplay.getCom
 				<%
 				Group mySite = user.getGroup();
 
-				PortletURL portletURL = new PortletURLImpl(request, PortletKeys.MY_SITES, plid, PortletRequest.ACTION_PHASE);
+				PortletURL portletURL = new PortletURLImpl(request, PortletKeys.SITE_REDIRECTOR, plid, PortletRequest.ACTION_PHASE);
 
 				portletURL.setWindowState(WindowState.NORMAL);
 				portletURL.setPortletMode(PortletMode.VIEW);
