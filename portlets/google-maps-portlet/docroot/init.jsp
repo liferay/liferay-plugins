@@ -28,10 +28,10 @@ page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
 page import="com.liferay.portal.kernel.util.Validator" %><%@
+page import="com.liferay.portal.util.PortalUtil" %><%@
 page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
 
-<%@ page import="javax.portlet.PortletPreferences" %><%@
-page import="javax.portlet.WindowState" %>
+<%@ page import="javax.portlet.PortletPreferences" %>
 
 <portlet:defineObjects />
 
@@ -44,7 +44,6 @@ if (Validator.isNotNull(portletResource)) {
 	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-String license = preferences.getValue("license", StringPool.BLANK);
 String mapAddress = preferences.getValue("mapAddress", StringPool.BLANK);
 boolean mapInputEnabled = GetterUtil.getBoolean(preferences.getValue("mapInputEnabled", StringPool.BLANK));
 String directionsAddress = preferences.getValue("directionsAddress", StringPool.BLANK);
