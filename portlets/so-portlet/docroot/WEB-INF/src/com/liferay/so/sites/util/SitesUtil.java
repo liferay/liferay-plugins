@@ -51,7 +51,7 @@ public class SitesUtil {
 			long groupId = (Long)favoriteSite[1];
 
 			try {
-				groups.add(GroupServiceUtil.getGroup(groupId));
+				groups.add(GroupLocalServiceUtil.getGroup(groupId));
 			}
 			catch (Exception e) {
 				FavoriteSiteLocalServiceUtil.deleteFavoriteSite(
