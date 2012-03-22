@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.Constants;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -52,9 +53,7 @@ import com.liferay.portal.model.Phone;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroupRole;
 import com.liferay.portal.model.Website;
-import com.liferay.portal.service.EmailAddressServiceUtil;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.UserServiceUtil;
 import com.liferay.portal.theme.PortletDisplay;
@@ -773,16 +772,15 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		int birthdayMonth = cal.get(Calendar.MONTH);
 		int birthdayYear = cal.get(Calendar.YEAR);
 
-		List<UserGroupRole> userGroupRoles =
-			UserGroupRoleLocalServiceUtil.getUserGroupRoles(user.getUserId());
+		List<UserGroupRole> userGroupRoles = UsersAdminUtil.getUserGroupRoles(
+			actionRequest);
 
-		List<EmailAddress> emailAddresses =
-			EmailAddressServiceUtil.getEmailAddresses(
-				Contact.class.getName(), user.getContactId());
+		List<EmailAddress> emailAddresses = UsersAdminUtil.getEmailAddresses(
+			actionRequest);
 
-		List<AnnouncementsDelivery> deliveries =
+		List<AnnouncementsDelivery> deliveries = ListUtil.copy(
 			AnnouncementsDeliveryLocalServiceUtil.getUserDeliveries(
-				user.getUserId());
+				user.getUserId()));
 
 		UserServiceUtil.updateUser(
 			user.getUserId(), user.getPasswordUnencrypted(),
