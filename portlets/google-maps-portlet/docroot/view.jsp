@@ -16,21 +16,27 @@
 
 <%@ include file="/init.jsp" %>
 
+<%
+mapAddress = GetterUtil.getString((String)portletSession.getAttribute("mapAddress"), mapAddress);
+directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("directionsAddress"), directionsAddress);
+%>
+
 <c:choose>
-	<c:when test="<%= Validator.isNotNull(license) %>">
-
-		<%
-		mapAddress = GetterUtil.getString((String)portletSession.getAttribute("mapAddress"), mapAddress);
-		directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("directionsAddress"), directionsAddress);
-		%>
-
+	<c:when test="<%= Validator.isNotNull(mapAddress) %>">
 		<style>
 			.ie6 .maps-content img {
- 				behavior: expression(this.pngSet=true);
+				behavior: expression(this.pngSet=true);
 			}
 		</style>
 
-		<script src="https://www.google.com/jsapi?key=<%= license %>" type="text/javascript"></script>
+		<c:choose>
+			<c:when test="<%= PortalUtil.isSecure(request) %>">
+				<script src="https://maps-api-ssl.google.com/maps/api/js?v=3&sensor=true" type="text/javascript"></script>
+			</c:when>
+			<c:otherwise>
+				<script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
+			</c:otherwise>
+		</c:choose>
 
 		<form name="<portlet:namespace />fm">
 
@@ -59,35 +65,45 @@
 			var <portlet:namespace />geocoder;
 
 			function <portlet:namespace />load() {
-				if (GBrowserIsCompatible()) {
-					<portlet:namespace />map = new GMap2(document.getElementById("<portlet:namespace />map"));
+				var myOptions = {
+					zoom: 8,
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+		  		}
 
-					<portlet:namespace />map.addControl(new GSmallMapControl());
-					<portlet:namespace />map.addControl(new GMapTypeControl());
+				<portlet:namespace />map = new google.maps.Map(document.getElementById("<portlet:namespace />map"), myOptions);
 
-					<portlet:namespace />geocoder = new GClientGeocoder();
+				<portlet:namespace />geocoder = new google.maps.Geocoder();
 
-					<portlet:namespace />getAddress("<%= mapAddress %>");
-				}
+				<portlet:namespace />getAddress("<%= mapAddress %>");
 			}
 
-			google.load("maps", "2", {"callback" : <portlet:namespace />load});
+			<portlet:namespace />load();
 
 			function <portlet:namespace />getAddress(address) {
-				<portlet:namespace />geocoder.getLatLng(
-					address,
-					function(point) {
-						if (!point) {
-							//alert(address + " not found");
+				<portlet:namespace />geocoder.geocode(
+					{'address': address},
+					function(results, status) {
+						if (status == google.maps.GeocoderStatus.OK) {
+							var location = results[0].geometry.location;
+
+							<portlet:namespace />map.setCenter(location);
+
+							var marker = new google.maps.Marker(
+								{
+									map: <portlet:namespace />map,
+									position: location
+								}
+							);
+
+							var infowindow = new google.maps.InfoWindow({
+								content: address
+							});
+
+							infowindow.setPosition(location);
+							infowindow.open(<portlet:namespace />map, marker);
 						}
 						else {
-							<portlet:namespace />map.setCenter(point, 13);
-
-							var marker = new GMarker(point);
-
-							<portlet:namespace />map.addOverlay(marker);
-
-							marker.openInfoWindowHtml(address);
+							//alert("Geocode was not successful for the following reason: " + status + "(address: " + address + ")");
 						}
 					}
 				);
@@ -156,10 +172,6 @@
 				},
 				['aui-io-request']
 			);
-		</aui:script>
-
-		<aui:script use="aui-base">
-			A.getWin().on('unload', GUnload);
 		</aui:script>
 	</c:when>
 	<c:otherwise>

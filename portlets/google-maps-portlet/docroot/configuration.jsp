@@ -22,12 +22,6 @@
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
 	<aui:fieldset>
-		<div class="portlet-msg-info">
-			<aui:a href="http://www.google.com/apis/maps/signup.html" label="you-can-get-a-license-directly-from-google" target="_blank" />
-		</div>
-
-		<aui:input cssClass="lfr-input-text-container" label="google-license" name="preferences--license--" type="text" value="<%= license %>" />
-
 		<aui:input cssClass="lfr-input-text-container" name="preferences--mapAddress--" type="text" value="<%= mapAddress %>" />
 
 		<aui:input name="preferences--mapInputEnabled--" type="checkbox" value="<%= mapInputEnabled %>" />
