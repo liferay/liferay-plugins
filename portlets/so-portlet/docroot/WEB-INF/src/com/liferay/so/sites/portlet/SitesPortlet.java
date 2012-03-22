@@ -451,7 +451,14 @@ public class SitesPortlet extends MVCPortlet {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		try {
-			GroupServiceUtil.getGroup(groupId);
+			if (cmd.equals(Constants.ADD)) {
+				FavoriteSiteLocalServiceUtil.addFavoriteSite(
+					themeDisplay.getUserId(), groupId);
+			}
+			else if (cmd.equals(Constants.DELETE)) {
+				FavoriteSiteLocalServiceUtil.deleteFavoriteSite(
+					themeDisplay.getUserId(), groupId);
+			}
 		}
 		catch (Exception e) {
 			jsonObject.put("result", "failure");
@@ -459,15 +466,6 @@ public class SitesPortlet extends MVCPortlet {
 			writeJSON(actionRequest, actionResponse, jsonObject);
 
 			return;
-		}
-
-		if (cmd.equals(Constants.ADD)) {
-			FavoriteSiteLocalServiceUtil.addFavoriteSite(
-				themeDisplay.getUserId(), groupId);
-		}
-		else if (cmd.equals(Constants.DELETE)) {
-			FavoriteSiteLocalServiceUtil.deleteFavoriteSite(
-				themeDisplay.getUserId(), groupId);
 		}
 
 		jsonObject.put("result", "success");

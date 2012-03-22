@@ -27,6 +27,7 @@ import com.liferay.portal.model.Company;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.so.model.FavoriteSite;
 import com.liferay.so.service.base.FavoriteSiteLocalServiceBaseImpl;
 
@@ -40,6 +41,8 @@ public class FavoriteSiteLocalServiceImpl
 
 	 public FavoriteSite addFavoriteSite(long userId, long groupId)
 		throws PortalException, SystemException {
+
+		validate(groupId);
 
 		User user = userLocalService.getUserById(userId);
 
@@ -156,6 +159,12 @@ public class FavoriteSiteLocalServiceImpl
 		}
 
 		return groupRealName;
+	}
+
+	protected void validate(long groupId)
+		throws PortalException, SystemException {
+
+		GroupLocalServiceUtil.getGroup(groupId);
 	}
 
 }
