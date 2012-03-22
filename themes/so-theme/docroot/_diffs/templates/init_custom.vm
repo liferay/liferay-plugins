@@ -39,18 +39,18 @@
 	#end
 #end
 
-#set ($user_group_id = $user.getGroup().getGroupId())
+#set ($user_group = $user.getGroup())
 
-#set ($current_user_dashboard_url = $portletURLFactory.create($request, "49", $page.getPlid(), "ACTION_PHASE"))
+#set ($portlet_url = $portletURLFactory.create($request, "49", $page.getPlid(), "ACTION_PHASE"))
 
-$current_user_dashboard_url.setWindowState("normal")
-$current_user_dashboard_url.setPortletMode("view")
+$portlet_url.setWindowState("normal")
+$portlet_url.setPortletMode("view")
 
-$current_user_dashboard_url.setParameter("struts_action", "/my_sites/view")
-$current_user_dashboard_url.setParameter("groupId", "$user_group_id")
-$current_user_dashboard_url.setParameter("privateLayout", "true")
+$portlet_url.setParameter("struts_action", "/my_sites/view")
+$portlet_url.setParameter("groupId", "$user_group.getGroupId()")
+$portlet_url.setParameter("privateLayout", "true")
 
-#set ($logo_url = $htmlUtil.escape($current_user_dashboard_url.toString()))
+#set ($current_user_dashboard_url = $htmlUtil.escape($portlet_url.toString()))
 
 #set ($layoutFluid = $getterUtil.getBoolean($sessionClicks.get($request, "so-layout-fluid", "false")))
 
