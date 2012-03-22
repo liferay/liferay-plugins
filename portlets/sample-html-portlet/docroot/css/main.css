@@ -1,0 +1,317 @@
+@import "compass";
+
+#p_p_id_samplehtml_WAR_samplehtmlportlet_ {
+	body {
+		font: normal 12px/1.25 arial, verdana, sans-serif;
+	}
+
+	textarea {
+		min-height: 12em;
+		width: 100%;
+	}
+
+	.textarea {
+		min-height: 12em;
+		width: 100%;
+	}
+
+	/* ---------- Headers ---------- */
+
+	h1,h2,h3,h4,h5,h6 {
+		font-weight: bold;
+		line-height: 140%;
+	}
+
+	h1 {
+		font-size: 4em;
+		margin: 10px 0 10px 0;
+	}
+
+	h2 {
+		font-size: 3.5em;
+		margin: 10px 0 10px 0;
+	}
+
+	h3 {
+		font-size: 3em;
+		line-height: 130%;
+		margin: 10px 0 10px 0;
+	}
+
+	h4 {
+		font-size: 2.5em;
+		margin: 10px 0 10px 0;
+	}
+
+	h5 {
+		font-size: 2.2em;
+		margin: 10px 0 10px 0;
+	}
+
+	h6 {
+		font-size: 2em;
+		margin: 10px 0 5px 0;
+	}
+
+	/* ---------- Blockquotes ---------- */
+
+	blockquote {
+		border-left: 1px solid #ccc;
+		color: #888;
+		font-size: 1.5em;
+		font-style: italic;
+		margin: 30px 30px 30px 0;
+		padding: 0 0 0 20px;
+	}
+
+	blockquote span {
+		color: #000;
+		display: block;
+		font-size: 0.7em;
+	}
+
+	blockquote.small {
+		font-size: 1.2em;
+	}
+
+	/* ---------- Typography ---------- */
+
+	.typography {
+		background-color: #FFF;
+		@include border-radius(5px);
+		margin: 0 1em 2em;
+		padding: 0 10px 10px 10px;
+	}
+
+	.last .typography {
+		margin-right: 1em;
+	}
+
+	/* ---------- Lists ---------- */
+
+	#lists {
+		.aui-column-content {
+		background-color: #FFF;
+		@include border-radius(5px);
+		margin-right: 1em;
+		padding: 0 10px 10px 10px;
+		}
+
+		.last .aui-column-content {
+			margin-right: 0;
+		}
+	}
+
+	ul.alt {
+		list-style: none;
+		margin: 0;
+		li {
+			padding: 3px 0;
+			span {
+				display: inline !important;
+				list-style-type: none;
+				margin: 0;
+				padding-left: 20px;
+				&.alert {
+					background-position: 3px -145px;
+				}
+				&.carat {
+					background-position: -32px 0;
+				}
+				&.close {
+					background-position: -95px -129px;
+				}
+				&.signal {
+					background-position: -16px -176px;
+				}
+			}
+		}
+	}
+
+	ul.icon {
+		list-style: none;
+		margin: 0;
+		position: relative;
+		li {
+			padding: 3px 0 3px 20px;
+			span {
+				height: 16px;
+				left: 0;
+				list-style-type: none;
+				margin: 0;
+				position: absolute;
+				width: 16px;
+				&.check {
+					background-position: -64px -144px;
+				}
+				&.close {
+					background-position: -95px -129px;
+				}
+			}
+		}
+	}
+
+	/* ---------- Pre & Code ---------- */
+
+	pre {
+		background: #fff;
+		border: 1px solid #ddd;
+		@include border-radius(5px);
+		box-shadow: inset 0px 0px 7px rgba(0,0,0,0.2);
+		margin: 0 0 20px 0;
+		padding: 10px;
+		white-space: pre-wrap;
+		white-space: -moz-pre-wrap !important;
+		word-wrap: break-word;
+	}
+
+		/* ---------- Columns ---------- */
+
+	#columns .aui-layout-content {
+		background-color: #FFF;
+		@include border-radius(10px);
+		padding: 10px;
+	}
+
+	.column-width .aui-column-first {
+		background-color: #4D99E0;
+	}
+
+	.column-width .aui-column-last {
+		background-color: #7401E4;
+	}
+
+	/* ---------- Headings Inside Portlets ---------- */
+
+	.column-heading {
+		color: #515151;
+	}
+
+	.hr-heading {
+		color: #515151;
+	}
+
+	.list-heading {
+		color: #515151;
+	}
+
+	.style-heading {
+		color: #515151;
+	}
+
+	.tab-heading {
+		color: #515151;
+	}
+
+	.tooltips-heading {
+		color: #515151;
+	}
+
+	/* ---------- Breadcrumbs ---------- */
+
+	.breadcrumb-styled {
+		border: 2px solid #0E080A;
+		@include border-radius(5px);
+		height: 4em;
+		margin-bottom: 2em;
+	}
+
+	.breadcrumb-styled li a {
+		padding: 10px 25px 10px 15px;
+		text-decoration: none;
+		border-top: 1px solid #EFEFEF;
+		border-bottom: 1px solid #EFEFEF;
+		font-size: 12px;
+	}
+
+	.breadcrumb-styled li a:hover {
+		text-decoration: underline;
+	}
+
+	/* ---------- Tooltips ---------- */
+
+	#tooltips {
+		.aui-column-content {
+			background-color: #FFF;
+			@include border-radius(5px);
+			margin-right: 1em;
+			padding: 0 10px 10px 10px;
+		}
+
+		.last .aui-column-content {
+			margin-right: 0;
+		}
+	}
+
+	/* ---------- HR ---------- */
+
+	hr {
+		border-bottom:0;
+		border-left:0;
+		border-right:0;
+		border-top:1px dotted #ccc;
+		clear:both;
+		height:1px;
+		margin:30px 0;
+		min-height: 0px;
+		&.alt1 {
+			border-style: solid;
+		}
+		&.alt2 {
+			border-style: dashed;
+		}
+	}
+
+	#hr {
+		.aui-column-content{
+		background-color: #FFF;
+		@include border-radius(5px);
+		margin-right: 1em;
+		padding: 10px;
+		}
+
+		.last .aui-column-content {
+			margin-right: 0;
+		}
+	}
+
+	/* ---------- Icons ---------- */
+
+	.aui-icon {
+		display: inline-block !important;
+	}
+
+	.icon-example {
+		display: inline-block;
+		list-style: none;
+	}
+
+	.icon-example li {
+		float: left;
+		padding: 15px;
+	}
+
+	/* ---------- Buttons ---------- */
+
+	.aui-buttonitem-content {
+		margin: 10px;
+	}
+
+	/* ---------- Carousel ---------- */
+
+	.aui-carousel-item {
+		@include border-radius(10px);
+		text-indent: -9999em;
+	}
+
+	.portlet-title {
+		font-size: inherit;
+		margin: 0;
+	}
+
+	/* ---------- Forms ---------- */
+
+	.aui-form-hint {
+		margin-top: -10px;
+	}
+}
