@@ -43,12 +43,11 @@
 
 #set ($user_dashboard_portlet_url = $portletURLFactory.create($request, "49", $page.getPlid(), "ACTION_PHASE"))
 
-$user_dashboard_portlet_url.setWindowState("normal")
-$user_dashboard_portlet_url.setPortletMode("view")
-
 $user_dashboard_portlet_url.setParameter("struts_action", "/my_sites/view")
 $user_dashboard_portlet_url.setParameter("groupId", "$user_group.getGroupId()")
 $user_dashboard_portlet_url.setParameter("privateLayout", "true")
+$user_dashboard_portlet_url.setPortletMode("view")
+$user_dashboard_portlet_url.setWindowState("normal")
 
 #set ($user_dashboard_url = $htmlUtil.escape($user_dashboard_portlet_url.toString()))
 
