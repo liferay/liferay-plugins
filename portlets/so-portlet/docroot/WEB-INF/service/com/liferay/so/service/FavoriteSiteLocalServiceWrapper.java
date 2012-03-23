@@ -60,25 +60,28 @@ public class FavoriteSiteLocalServiceWrapper implements FavoriteSiteLocalService
 	* Deletes the favorite site with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param favoriteSiteId the primary key of the favorite site
+	* @return the favorite site that was removed
 	* @throws PortalException if a favorite site with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteFavoriteSite(long favoriteSiteId)
+	public com.liferay.so.model.FavoriteSite deleteFavoriteSite(
+		long favoriteSiteId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_favoriteSiteLocalService.deleteFavoriteSite(favoriteSiteId);
+		return _favoriteSiteLocalService.deleteFavoriteSite(favoriteSiteId);
 	}
 
 	/**
 	* Deletes the favorite site from the database. Also notifies the appropriate model listeners.
 	*
 	* @param favoriteSite the favorite site
+	* @return the favorite site that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteFavoriteSite(
+	public com.liferay.so.model.FavoriteSite deleteFavoriteSite(
 		com.liferay.so.model.FavoriteSite favoriteSite)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_favoriteSiteLocalService.deleteFavoriteSite(favoriteSite);
+		return _favoriteSiteLocalService.deleteFavoriteSite(favoriteSite);
 	}
 
 	/**

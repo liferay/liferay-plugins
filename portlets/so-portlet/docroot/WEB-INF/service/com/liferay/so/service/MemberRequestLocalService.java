@@ -67,10 +67,12 @@ public interface MemberRequestLocalService extends PersistedModelLocalService {
 	* Deletes the member request with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param memberRequestId the primary key of the member request
+	* @return the member request that was removed
 	* @throws PortalException if a member request with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteMemberRequest(long memberRequestId)
+	public com.liferay.so.model.MemberRequest deleteMemberRequest(
+		long memberRequestId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -78,9 +80,10 @@ public interface MemberRequestLocalService extends PersistedModelLocalService {
 	* Deletes the member request from the database. Also notifies the appropriate model listeners.
 	*
 	* @param memberRequest the member request
+	* @return the member request that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteMemberRequest(
+	public com.liferay.so.model.MemberRequest deleteMemberRequest(
 		com.liferay.so.model.MemberRequest memberRequest)
 		throws com.liferay.portal.kernel.exception.SystemException;
 

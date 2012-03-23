@@ -67,25 +67,28 @@ public class MemberRequestLocalServiceUtil {
 	* Deletes the member request with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param memberRequestId the primary key of the member request
+	* @return the member request that was removed
 	* @throws PortalException if a member request with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteMemberRequest(long memberRequestId)
+	public static com.liferay.so.model.MemberRequest deleteMemberRequest(
+		long memberRequestId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteMemberRequest(memberRequestId);
+		return getService().deleteMemberRequest(memberRequestId);
 	}
 
 	/**
 	* Deletes the member request from the database. Also notifies the appropriate model listeners.
 	*
 	* @param memberRequest the member request
+	* @return the member request that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteMemberRequest(
+	public static com.liferay.so.model.MemberRequest deleteMemberRequest(
 		com.liferay.so.model.MemberRequest memberRequest)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteMemberRequest(memberRequest);
+		return getService().deleteMemberRequest(memberRequest);
 	}
 
 	/**
