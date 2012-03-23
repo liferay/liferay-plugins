@@ -662,6 +662,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 								FileVersion curFileVersion = (FileVersion)fileVersions.get(i);
 							%>
 
+							<div class="version-entry">
 								<div class="version">
 									<span class="version-number"><%= String.valueOf(curFileVersion.getVersion()) %></span>
 									<span class="user-name"><liferay-ui:message key="by" />: <%= curFileVersion.getUserName() %></span>
@@ -669,7 +670,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 									<span class="size"><liferay-ui:message key="size" />: <%= TextFormatter.formatKB(curFileVersion.getSize(), locale) + "k" %></span>
 								</div>
 								<div class="version-description">
-									<span><%= curFileVersion.getDescription() %></span>
+									<%= curFileVersion.getDescription() %>
 								</div>
 
 								<liferay-ui:icon
@@ -712,7 +713,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 										url="<%= revertURL %>"
 									/>
 								</c:if>
-
+							</div>
 							<%
 							}
 							%>
