@@ -70,8 +70,6 @@ page import="javax.portlet.WindowState" %>
 <liferay-theme:defineObjects />
 
 <%
-String ddmResource = portletConfig.getInitParameter("ddm-resource");
-
 String currentURL = PortalUtil.getCurrentURL(request);
 
 PortletPreferences preferences = null;
@@ -91,6 +89,8 @@ long recordSetId = GetterUtil.getLong(preferences.getValue("recordSetId", null))
 long detailDDMTemplateId = GetterUtil.getLong(preferences.getValue("detailDDMTemplateId", null));
 
 boolean multipleSubmissions = GetterUtil.getBoolean(preferences.getValue("multipleSubmissions", null));
+
+String ddmResource = portletConfig.getInitParameter("ddm-resource");
 
 Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
 %>
