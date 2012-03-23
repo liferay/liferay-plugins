@@ -1665,6 +1665,10 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	.lfr-header-row {
 		background: #EEE;
 		border-bottom: 1px solid #AAA;
+
+		.aui-toolbar .aui-toolbar-content {
+			margin-right: 5px;
+		}
 	}
 
 	.lfr-header-row-content .parent-folder-title, .portlet-document-library-display .lfr-header-row-content .parent-folder-title {
@@ -1697,6 +1701,67 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 	.aui-fieldset-content {
 		padding: 10px;
+	}
+
+	.version-entry {
+		border-bottom: 1px solid $border-color;
+		padding: 10px 4px;
+
+		.version-number, .user-name {
+			font-weight: bold;
+		}
+
+		.version-number {
+			color: #8F0920;
+		}
+
+		.version-description {
+			padding: 4px 0 4px 10px;
+		}
+	}
+
+	.lfr-document-library-comments {
+		h3 {
+			margin: 0 auto;
+			width: 90%;
+		}
+
+		.add-comment {
+			border-bottom: 1px solid #EEE;
+		}
+
+		.lfr-discussion-details {
+			position: relative;
+
+			.user-profile-image {
+				text-align: right;
+			}
+
+			.user-name {
+				left: 100%;
+				position: absolute;
+				text-align: left;
+				text-decoration: none;
+				top: 0;
+				white-space: nowrap;
+			}
+		}
+
+		.lfr-discussion-form-reply {
+			margin-left: 25px;
+
+			.user-name, .user-details {
+				display: none;
+			}
+
+			textarea {
+				width: 95%;
+			}
+		}
+
+		.lfr-discussion-body {
+			padding-top: 1.5em;
+		}
 	}
 }
 
