@@ -9,6 +9,10 @@
 			<name>view-template</name>
 			<value>/view.jsp</value>
 		</init-param>
+		<init-param>
+			<name>ddm-resource</name>
+			<value>com.liferay.portlet.dynamicdatalists</value>
+		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
 			<mime-type>text/html</mime-type>

@@ -70,6 +70,8 @@ page import="javax.portlet.WindowState" %>
 <liferay-theme:defineObjects />
 
 <%
+String ddmResource = portletConfig.getInitParameter("ddm-resource");
+
 String currentURL = PortalUtil.getCurrentURL(request);
 
 PortletPreferences preferences = null;
