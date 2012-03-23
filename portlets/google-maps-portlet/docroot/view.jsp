@@ -66,8 +66,8 @@ directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("di
 
 			function <portlet:namespace />load() {
 				var myOptions = {
-					zoom: 8,
-					mapTypeId: google.maps.MapTypeId.ROADMAP
+					mapTypeId: google.maps.MapTypeId.ROADMAP,
+					zoom: 8
 		  		}
 
 				<portlet:namespace />map = new google.maps.Map(document.getElementById("<portlet:namespace />map"), myOptions);
@@ -81,7 +81,9 @@ directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("di
 
 			function <portlet:namespace />getAddress(address) {
 				<portlet:namespace />geocoder.geocode(
-					{'address': address},
+					{
+						'address': address
+					},
 					function(results, status) {
 						if (status == google.maps.GeocoderStatus.OK) {
 							var location = results[0].geometry.location;
@@ -95,15 +97,18 @@ directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("di
 								}
 							);
 
-							var infowindow = new google.maps.InfoWindow({
-								content: address
-							});
+							var infowindow = new google.maps.InfoWindow(
+								{
+									content: address
+								}
+							);
 
 							infowindow.setPosition(location);
+
 							infowindow.open(<portlet:namespace />map, marker);
 						}
 						else {
-							//alert("Geocode was not successful for the following reason: " + status + "(address: " + address + ")");
+							//alert(status);
 						}
 					}
 				);
