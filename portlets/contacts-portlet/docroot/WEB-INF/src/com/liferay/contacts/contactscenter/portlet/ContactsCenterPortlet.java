@@ -38,7 +38,6 @@ import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.Constants;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -774,13 +773,11 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		List<UserGroupRole> userGroupRoles = UsersAdminUtil.getUserGroupRoles(
 			actionRequest);
-
 		List<EmailAddress> emailAddresses = UsersAdminUtil.getEmailAddresses(
 			actionRequest);
-
-		List<AnnouncementsDelivery> deliveries = ListUtil.copy(
+		List<AnnouncementsDelivery> announcementsDeliveries =
 			AnnouncementsDeliveryLocalServiceUtil.getUserDeliveries(
-				user.getUserId()));
+				user.getUserId());
 
 		UserServiceUtil.updateUser(
 			user.getUserId(), user.getPasswordUnencrypted(),
@@ -796,7 +793,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			ymSn, user.getJobTitle(), user.getGroupIds(),
 			user.getOrganizationIds(), user.getRoleIds(), userGroupRoles,
 			user.getUserGroupIds(), user.getAddresses(), emailAddresses,
-			user.getPhones(), user.getWebsites(), deliveries,
+			user.getPhones(), user.getWebsites(), announcementsDeliveries,
 			new ServiceContext());
 	}
 
