@@ -30,6 +30,8 @@
 		
 		<!-- References -->
 
+		<reference package-path="com.liferay.portal" entity="Company" />
+		<reference package-path="com.liferay.portal" entity="Group" />
 		<reference package-path="com.liferay.portal" entity="User" />
 	</entity>
 	<entity name="MemberRequest" local-service="true" remote-service="false">

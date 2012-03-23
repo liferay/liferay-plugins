@@ -157,7 +157,7 @@ public class SitesUtil {
 			return GroupLocalServiceUtil.searchCount(
 				comapnyId, keywords, null, params);
 		}
-		else{
+		else {
 			LinkedHashMap<String, Object> params =
 				new LinkedHashMap<String, Object>();
 
