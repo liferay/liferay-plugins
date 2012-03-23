@@ -154,14 +154,17 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		return (com.liferay.so.model.ProjectsEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteProjectsEntry(long projectsEntryId)
+	public com.liferay.so.model.ProjectsEntry deleteProjectsEntry(
+		long projectsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteProjectsEntryMethodKey2,
 				projectsEntryId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -180,16 +183,20 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.so.model.ProjectsEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteProjectsEntry(
+	public com.liferay.so.model.ProjectsEntry deleteProjectsEntry(
 		com.liferay.so.model.ProjectsEntry projectsEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteProjectsEntryMethodKey3,
 				ClpSerializer.translateInput(projectsEntry));
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -204,6 +211,8 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.so.model.ProjectsEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@SuppressWarnings("rawtypes")

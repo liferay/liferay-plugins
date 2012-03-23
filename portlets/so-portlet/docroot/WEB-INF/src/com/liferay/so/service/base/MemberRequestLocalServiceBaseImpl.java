@@ -23,11 +23,8 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.GroupLocalService;
@@ -89,26 +86,12 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 * @return the member request that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public MemberRequest addMemberRequest(MemberRequest memberRequest)
 		throws SystemException {
 		memberRequest.setNew(true);
 
-		memberRequest = memberRequestPersistence.update(memberRequest, false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(memberRequest);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return memberRequest;
+		return memberRequestPersistence.update(memberRequest, false);
 	}
 
 	/**
@@ -125,49 +108,27 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 * Deletes the member request with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param memberRequestId the primary key of the member request
+	 * @return the member request that was removed
 	 * @throws PortalException if a member request with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteMemberRequest(long memberRequestId)
+	@Indexable(type = IndexableType.DELETE)
+	public MemberRequest deleteMemberRequest(long memberRequestId)
 		throws PortalException, SystemException {
-		MemberRequest memberRequest = memberRequestPersistence.remove(memberRequestId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(memberRequest);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return memberRequestPersistence.remove(memberRequestId);
 	}
 
 	/**
 	 * Deletes the member request from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param memberRequest the member request
+	 * @return the member request that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteMemberRequest(MemberRequest memberRequest)
+	@Indexable(type = IndexableType.DELETE)
+	public MemberRequest deleteMemberRequest(MemberRequest memberRequest)
 		throws SystemException {
-		memberRequestPersistence.remove(memberRequest);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(memberRequest);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return memberRequestPersistence.remove(memberRequest);
 	}
 
 	/**
@@ -293,6 +254,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 * @return the member request that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public MemberRequest updateMemberRequest(MemberRequest memberRequest)
 		throws SystemException {
 		return updateMemberRequest(memberRequest, true);
@@ -306,26 +268,12 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 * @return the member request that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public MemberRequest updateMemberRequest(MemberRequest memberRequest,
 		boolean merge) throws SystemException {
 		memberRequest.setNew(false);
 
-		memberRequest = memberRequestPersistence.update(memberRequest, merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(memberRequest);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return memberRequest;
+		return memberRequestPersistence.update(memberRequest, merge);
 	}
 
 	/**
@@ -859,6 +807,5 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	protected UserGroupRoleService userGroupRoleService;
 	@BeanReference(type = UserGroupRolePersistence.class)
 	protected UserGroupRolePersistence userGroupRolePersistence;
-	private static Log _log = LogFactoryUtil.getLog(MemberRequestLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

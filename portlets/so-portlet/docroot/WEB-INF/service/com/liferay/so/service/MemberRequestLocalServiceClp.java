@@ -176,14 +176,17 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		return (com.liferay.so.model.MemberRequest)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteMemberRequest(long memberRequestId)
+	public com.liferay.so.model.MemberRequest deleteMemberRequest(
+		long memberRequestId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteMemberRequestMethodKey2,
 				memberRequestId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -202,16 +205,20 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.so.model.MemberRequest)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteMemberRequest(
+	public com.liferay.so.model.MemberRequest deleteMemberRequest(
 		com.liferay.so.model.MemberRequest memberRequest)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteMemberRequestMethodKey3,
 				ClpSerializer.translateInput(memberRequest));
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -226,6 +233,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.so.model.MemberRequest)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@SuppressWarnings("rawtypes")

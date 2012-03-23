@@ -161,14 +161,17 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		return (com.liferay.so.model.FavoriteSite)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteFavoriteSite(long favoriteSiteId)
+	public com.liferay.so.model.FavoriteSite deleteFavoriteSite(
+		long favoriteSiteId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteFavoriteSiteMethodKey2,
 				favoriteSiteId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -187,16 +190,20 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.so.model.FavoriteSite)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteFavoriteSite(
+	public com.liferay.so.model.FavoriteSite deleteFavoriteSite(
 		com.liferay.so.model.FavoriteSite favoriteSite)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteFavoriteSiteMethodKey3,
 				ClpSerializer.translateInput(favoriteSite));
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -211,6 +218,8 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.so.model.FavoriteSite)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@SuppressWarnings("rawtypes")

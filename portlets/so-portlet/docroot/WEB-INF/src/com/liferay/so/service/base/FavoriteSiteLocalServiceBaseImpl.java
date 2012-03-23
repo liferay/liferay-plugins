@@ -23,18 +23,21 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
+import com.liferay.portal.service.CompanyLocalService;
+import com.liferay.portal.service.CompanyService;
+import com.liferay.portal.service.GroupLocalService;
+import com.liferay.portal.service.GroupService;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
 import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.service.UserService;
+import com.liferay.portal.service.persistence.CompanyPersistence;
+import com.liferay.portal.service.persistence.GroupPersistence;
 import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 
@@ -80,26 +83,12 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * @return the favorite site that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public FavoriteSite addFavoriteSite(FavoriteSite favoriteSite)
 		throws SystemException {
 		favoriteSite.setNew(true);
 
-		favoriteSite = favoriteSitePersistence.update(favoriteSite, false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(favoriteSite);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return favoriteSite;
+		return favoriteSitePersistence.update(favoriteSite, false);
 	}
 
 	/**
@@ -116,49 +105,27 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * Deletes the favorite site with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param favoriteSiteId the primary key of the favorite site
+	 * @return the favorite site that was removed
 	 * @throws PortalException if a favorite site with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteFavoriteSite(long favoriteSiteId)
+	@Indexable(type = IndexableType.DELETE)
+	public FavoriteSite deleteFavoriteSite(long favoriteSiteId)
 		throws PortalException, SystemException {
-		FavoriteSite favoriteSite = favoriteSitePersistence.remove(favoriteSiteId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(favoriteSite);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return favoriteSitePersistence.remove(favoriteSiteId);
 	}
 
 	/**
 	 * Deletes the favorite site from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param favoriteSite the favorite site
+	 * @return the favorite site that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteFavoriteSite(FavoriteSite favoriteSite)
+	@Indexable(type = IndexableType.DELETE)
+	public FavoriteSite deleteFavoriteSite(FavoriteSite favoriteSite)
 		throws SystemException {
-		favoriteSitePersistence.remove(favoriteSite);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(favoriteSite);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return favoriteSitePersistence.remove(favoriteSite);
 	}
 
 	/**
@@ -284,6 +251,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * @return the favorite site that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public FavoriteSite updateFavoriteSite(FavoriteSite favoriteSite)
 		throws SystemException {
 		return updateFavoriteSite(favoriteSite, true);
@@ -297,26 +265,12 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * @return the favorite site that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public FavoriteSite updateFavoriteSite(FavoriteSite favoriteSite,
 		boolean merge) throws SystemException {
 		favoriteSite.setNew(false);
 
-		favoriteSite = favoriteSitePersistence.update(favoriteSite, merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(favoriteSite);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return favoriteSite;
+		return favoriteSitePersistence.update(favoriteSite, merge);
 	}
 
 	/**
@@ -467,6 +421,114 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 */
 	public void setCounterLocalService(CounterLocalService counterLocalService) {
 		this.counterLocalService = counterLocalService;
+	}
+
+	/**
+	 * Returns the company local service.
+	 *
+	 * @return the company local service
+	 */
+	public CompanyLocalService getCompanyLocalService() {
+		return companyLocalService;
+	}
+
+	/**
+	 * Sets the company local service.
+	 *
+	 * @param companyLocalService the company local service
+	 */
+	public void setCompanyLocalService(CompanyLocalService companyLocalService) {
+		this.companyLocalService = companyLocalService;
+	}
+
+	/**
+	 * Returns the company remote service.
+	 *
+	 * @return the company remote service
+	 */
+	public CompanyService getCompanyService() {
+		return companyService;
+	}
+
+	/**
+	 * Sets the company remote service.
+	 *
+	 * @param companyService the company remote service
+	 */
+	public void setCompanyService(CompanyService companyService) {
+		this.companyService = companyService;
+	}
+
+	/**
+	 * Returns the company persistence.
+	 *
+	 * @return the company persistence
+	 */
+	public CompanyPersistence getCompanyPersistence() {
+		return companyPersistence;
+	}
+
+	/**
+	 * Sets the company persistence.
+	 *
+	 * @param companyPersistence the company persistence
+	 */
+	public void setCompanyPersistence(CompanyPersistence companyPersistence) {
+		this.companyPersistence = companyPersistence;
+	}
+
+	/**
+	 * Returns the group local service.
+	 *
+	 * @return the group local service
+	 */
+	public GroupLocalService getGroupLocalService() {
+		return groupLocalService;
+	}
+
+	/**
+	 * Sets the group local service.
+	 *
+	 * @param groupLocalService the group local service
+	 */
+	public void setGroupLocalService(GroupLocalService groupLocalService) {
+		this.groupLocalService = groupLocalService;
+	}
+
+	/**
+	 * Returns the group remote service.
+	 *
+	 * @return the group remote service
+	 */
+	public GroupService getGroupService() {
+		return groupService;
+	}
+
+	/**
+	 * Sets the group remote service.
+	 *
+	 * @param groupService the group remote service
+	 */
+	public void setGroupService(GroupService groupService) {
+		this.groupService = groupService;
+	}
+
+	/**
+	 * Returns the group persistence.
+	 *
+	 * @return the group persistence
+	 */
+	public GroupPersistence getGroupPersistence() {
+		return groupPersistence;
+	}
+
+	/**
+	 * Sets the group persistence.
+	 *
+	 * @param groupPersistence the group persistence
+	 */
+	public void setGroupPersistence(GroupPersistence groupPersistence) {
+		this.groupPersistence = groupPersistence;
 	}
 
 	/**
@@ -655,6 +717,18 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	protected ProjectsEntryPersistence projectsEntryPersistence;
 	@BeanReference(type = CounterLocalService.class)
 	protected CounterLocalService counterLocalService;
+	@BeanReference(type = CompanyLocalService.class)
+	protected CompanyLocalService companyLocalService;
+	@BeanReference(type = CompanyService.class)
+	protected CompanyService companyService;
+	@BeanReference(type = CompanyPersistence.class)
+	protected CompanyPersistence companyPersistence;
+	@BeanReference(type = GroupLocalService.class)
+	protected GroupLocalService groupLocalService;
+	@BeanReference(type = GroupService.class)
+	protected GroupService groupService;
+	@BeanReference(type = GroupPersistence.class)
+	protected GroupPersistence groupPersistence;
 	@BeanReference(type = ResourceLocalService.class)
 	protected ResourceLocalService resourceLocalService;
 	@BeanReference(type = ResourceService.class)
@@ -667,6 +741,5 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private static Log _log = LogFactoryUtil.getLog(FavoriteSiteLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

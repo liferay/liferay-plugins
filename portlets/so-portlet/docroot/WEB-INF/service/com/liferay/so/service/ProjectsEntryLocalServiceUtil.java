@@ -67,25 +67,28 @@ public class ProjectsEntryLocalServiceUtil {
 	* Deletes the projects entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param projectsEntryId the primary key of the projects entry
+	* @return the projects entry that was removed
 	* @throws PortalException if a projects entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteProjectsEntry(long projectsEntryId)
+	public static com.liferay.so.model.ProjectsEntry deleteProjectsEntry(
+		long projectsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteProjectsEntry(projectsEntryId);
+		return getService().deleteProjectsEntry(projectsEntryId);
 	}
 
 	/**
 	* Deletes the projects entry from the database. Also notifies the appropriate model listeners.
 	*
 	* @param projectsEntry the projects entry
+	* @return the projects entry that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteProjectsEntry(
+	public static com.liferay.so.model.ProjectsEntry deleteProjectsEntry(
 		com.liferay.so.model.ProjectsEntry projectsEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteProjectsEntry(projectsEntry);
+		return getService().deleteProjectsEntry(projectsEntry);
 	}
 
 	/**
