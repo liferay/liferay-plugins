@@ -129,7 +129,7 @@ public class ServicePreAction extends Action {
 		User user = UserLocalServiceUtil.getUser(userId);
 
 		return themeDisplay.getPathFriendlyURLPublic() + "/" +
-			user.getScreenName() + "/profile";
+			user.getScreenName() + "/so/profile";
 	}
 
 	protected boolean isDirectoryView(
