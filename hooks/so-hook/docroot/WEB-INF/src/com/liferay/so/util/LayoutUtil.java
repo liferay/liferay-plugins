@@ -55,7 +55,7 @@ public class LayoutUtil {
 
 	public static Layout addLayout(
 			Group group, boolean privateLayout, long parentLayoutId,
-			String name, String layoutTemplateId)
+			String name, String layoutTemplateId, String friendlyURL)
 		throws Exception {
 
 		ServiceContext serviceContext = new ServiceContext();
@@ -63,7 +63,7 @@ public class LayoutUtil {
 		Layout layout = LayoutLocalServiceUtil.addLayout(
 			group.getCreatorUserId(), group.getGroupId(), privateLayout,
 			parentLayoutId, name, StringPool.BLANK, StringPool.BLANK,
-			LayoutConstants.TYPE_PORTLET, false, null, serviceContext);
+			LayoutConstants.TYPE_PORTLET, false, friendlyURL, serviceContext);
 
 		LayoutTypePortlet layoutTypePortlet =
 			(LayoutTypePortlet)layout.getLayoutType();

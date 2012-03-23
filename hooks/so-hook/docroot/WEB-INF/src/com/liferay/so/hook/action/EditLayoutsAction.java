@@ -65,7 +65,7 @@ public class EditLayoutsAction extends BaseStrutsPortletAction {
 		Group group = GroupLocalServiceUtil.getGroup(groupId);
 
 		Layout layout = LayoutUtil.addLayout(
-			group, true, parentLayoutId, pageTitle, "1_column");
+			group, true, parentLayoutId, pageTitle, "1_column", null);
 
 		LayoutUtil.updatePermissions(layout, false);
 	}

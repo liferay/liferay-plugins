@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
+import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.LayoutSet;
 import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.model.Role;
@@ -47,6 +48,8 @@ import java.util.List;
  */
 public class UserListener extends BaseModelListener<User> {
 
+	private static int _PRIORITY = 100;
+	
 	@Override
 	public void onAfterAddAssociation(
 			Object classPK, String associationClassName,
@@ -69,16 +72,26 @@ public class UserListener extends BaseModelListener<User> {
 
 				User user = UserLocalServiceUtil.getUser(userId);
 
+				Group group = user.getGroup();
+				
 				LayoutSetPrototype[] layoutSetPrototypes =
 					LayoutSetPrototypeUtil.getLayoutSetPrototypes(user);
 
-				LayoutSetLocalServiceUtil.updateLayoutSetPrototypeLinkEnabled(
-					user.getGroup().getGroupId(), false, true,
-					layoutSetPrototypes[0].getUuid());
+				long[] publicPlids = getUserLayoutPlids(group, false);
 
 				LayoutSetLocalServiceUtil.updateLayoutSetPrototypeLinkEnabled(
-					user.getGroup().getGroupId(), true, true,
+					group.getGroupId(), false, true,
+					layoutSetPrototypes[0].getUuid());
+
+				orderLayouts(publicPlids);
+
+				long[] privatePlids = getUserLayoutPlids(group, true);
+
+				LayoutSetLocalServiceUtil.updateLayoutSetPrototypeLinkEnabled(
+					group.getGroupId(), true, true, 
 					layoutSetPrototypes[1].getUuid());
+
+				orderLayouts(privatePlids);
 			}
 		}
 		catch (Exception e) {
@@ -120,6 +133,35 @@ public class UserListener extends BaseModelListener<User> {
 			throw new ModelListenerException(e);
 		}
 	}
+
+	protected long[] getUserLayoutPlids(Group group, boolean privateLayout)
+		throws PortalException , SystemException {
+
+		List<Layout> layouts =
+			LayoutLocalServiceUtil.getLayouts(
+				group.getGroupId(), privateLayout,
+				LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
+
+		int size = layouts.size();
+
+		long[] plids = new long[size];
+
+		for (int i = 0; i < size; i++) {
+			Layout layout = layouts.get(i);
+
+			plids[i] = layout.getPlid();
+		}
+
+		return plids;
+	}
+
+	protected void orderLayouts(long[] plids) 
+		throws PortalException , SystemException {
+							
+		for (int i = 0; i < plids.length; i++) {
+			LayoutLocalServiceUtil.updatePriority(plids[i], _PRIORITY + i);
+		}		
+	} 	
 
 	protected void removeUserLayouts(
 			User user, boolean privateLayout, String layoutSetPrototypeUuid)

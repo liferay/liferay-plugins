@@ -258,7 +258,7 @@ public class InstanceUtil {
 
 		Layout layout = LayoutUtil.addLayout(
 			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Home",
-			PortletPropsValues.SITE_PROTOTYPE_LAYOUT_TEMPLATE);
+			PortletPropsValues.SITE_PROTOTYPE_LAYOUT_TEMPLATE, null);
 
 		LayoutUtil.addPortlets(
 			group, layout, "/home", PortletPropsKeys.SITE_PROTOTYPE_PORTLETS);
@@ -271,7 +271,7 @@ public class InstanceUtil {
 
 		layout = LayoutUtil.addLayout(
 			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Calendar",
-			"1_column");
+			"1_column", null);
 
 		LayoutUtil.addPortlets(
 			group, layout, "/calendar",
@@ -283,7 +283,7 @@ public class InstanceUtil {
 
 		layout = LayoutUtil.addLayout(
 			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Documents",
-			"1_column");
+			"1_column", null);
 
 		LayoutUtil.addPortlets(
 			group, layout, "/documents",
@@ -297,7 +297,7 @@ public class InstanceUtil {
 
 		layout = LayoutUtil.addLayout(
 			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Forums",
-			"1_column");
+			"1_column", null);
 
 		LayoutUtil.addPortlets(
 			group, layout, "/forums", PortletPropsKeys.SITE_PROTOTYPE_PORTLETS);
@@ -311,7 +311,7 @@ public class InstanceUtil {
 
 		layout = LayoutUtil.addLayout(
 			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Blog",
-			"2_columns_iii");
+			"2_columns_iii", null);
 
 		LayoutUtil.addPortlets(
 			group, layout, "/blog", PortletPropsKeys.SITE_PROTOTYPE_PORTLETS);
@@ -324,7 +324,7 @@ public class InstanceUtil {
 
 		layout = LayoutUtil.addLayout(
 			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Wiki",
-			"1_column");
+			"1_column", null);
 
 		LayoutUtil.addPortlets(
 			group, layout, "/wiki", PortletPropsKeys.SITE_PROTOTYPE_PORTLETS);
@@ -337,7 +337,7 @@ public class InstanceUtil {
 
 		layout = LayoutUtil.addLayout(
 			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Members",
-			"1_column");
+			"1_column", null);
 
 		LayoutUtil.addPortlets(
 			group, layout, "/members",
@@ -380,11 +380,11 @@ public class InstanceUtil {
 		LayoutSetLocalServiceUtil.updateLookAndFeel(
 			group.getGroupId(), "so_WAR_sotheme", "01", "", false);
 
-		// Home
+		// Dashboard
 
 		Layout layout = LayoutUtil.addLayout(
-			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Home",
-			"2_columns_iii");
+			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Dashboard",
+			"2_columns_iii", "/so/dashboard");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/home",
@@ -398,7 +398,7 @@ public class InstanceUtil {
 
 		layout = LayoutUtil.addLayout(
 			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
-			"Contacts Center", "1_column");
+			"Contacts Center", "1_column", "/so/contacts-center");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/contacts-center",
@@ -412,7 +412,7 @@ public class InstanceUtil {
 
 		layout = LayoutUtil.addLayout(
 			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Microblogs",
-			"1_column");
+			"1_column", "/so/microblogs");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/microblogs",
@@ -426,7 +426,7 @@ public class InstanceUtil {
 
 		layout = LayoutUtil.addLayout(
 			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Messages",
-			"1_column");
+			"1_column", "/so/messages");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/messages",
@@ -440,7 +440,7 @@ public class InstanceUtil {
 
 		layout = LayoutUtil.addLayout(
 			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Tasks",
-			"1_column");
+			"1_column", "/so/tasks");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/tasks",
@@ -487,7 +487,7 @@ public class InstanceUtil {
 
 		Layout layout = LayoutUtil.addLayout(
 			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Profile",
-			"1_2_columns_ii");
+			"1_2_columns_ii", "/so/profile");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/profile",
@@ -501,7 +501,7 @@ public class InstanceUtil {
 
 		layout = LayoutUtil.addLayout(
 			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Contacts",
-			"1_column");
+			"1_column", "/so/contacts");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/contacts",
@@ -515,7 +515,7 @@ public class InstanceUtil {
 
 		layout = LayoutUtil.addLayout(
 			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
-			"Microblogs", "1_column");
+			"Microblogs", "1_column", "/so/microblogs");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/microblogs",
