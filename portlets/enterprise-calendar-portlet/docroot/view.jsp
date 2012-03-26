@@ -14,10 +14,10 @@
  */
 --%>
 
-<%@ include file="/calendar/init.jsp" %>
+<%@ include file="/init.jsp" %>
 
-<liferay-portlet:renderURL var="resourcesURL">
-	<liferay-portlet:param name="jspPage" value="/calendar/view_resources.jsp" />
+<liferay-portlet:renderURL var="viewCalendarResourcesURL">
+	<liferay-portlet:param name="jspPage" value="/view_calendar_resources.jsp" />
 </liferay-portlet:renderURL>
 
-<aui:a href="<%= resourcesURL.toString() %>">resources...</aui:a>
+<aui:a href="<%= viewCalendarResourcesURL.toString() %>">Resources...</aui:a>

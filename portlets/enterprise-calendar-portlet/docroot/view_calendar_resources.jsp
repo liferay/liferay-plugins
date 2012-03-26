@@ -14,10 +14,10 @@
  */
 --%>
 
-<%@ include file="/calendar/init.jsp" %>
+<%@ include file="/init.jsp" %>
 
 <liferay-portlet:renderURL varImpl="searchURL">
-	<portlet:param name="mvcPath" value="/calendar/view_resources.jsp" />
+	<portlet:param name="mvcPath" value="/view_calendar_resources.jsp" />
 </liferay-portlet:renderURL>
 
 <aui:form action="<%= searchURL %>" method="get" name="fm">
@@ -25,33 +25,32 @@
 	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 
 	<liferay-ui:search-form
-		page="/calendar/resource_search.jsp"
+		page="/calendar_resource_search.jsp"
 		servletContext="<%= application %>"
 	/>
-
 </aui:form>
 
 <div class="separator"><!-- --></div>
 
-<c:if test="<%= EnterpriseCalendarPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), ActionKeys.ADD_RESOURCE) %>">
+<c:if test="<%= CalendarPortletPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), ActionKeys.ADD_RESOURCE) %>">
 	<aui:button-row>
-		<liferay-portlet:renderURL var="editResourceURL">
-			<liferay-portlet:param name="jspPage" value="/calendar/edit_resource.jsp" />
+		<liferay-portlet:renderURL var="editCalendarResourceURL">
+			<liferay-portlet:param name="jspPage" value="/edit_calendar_resource.jsp" />
 			<liferay-portlet:param name="redirect" value="<%= currentURL %>" />
 		</liferay-portlet:renderURL>
 
-		<aui:button onClick="<%= editResourceURL %>" value="add-calendar-resource" />
+		<aui:button onClick="<%= editCalendarResourceURL %>" value="add-calendar-resource" />
 	</aui:button-row>
 </c:if>
 
-<liferay-ui:search-container searchContainer="<%= new CalendarResourceSearch(renderRequest, currentURLObj) %>">
+<liferay-portlet:renderURL varImpl="iteratorURL">
+	<portlet:param name="mvcPath" value="/view_calendar_resources.jsp" />
+</liferay-portlet:renderURL>
 
-	<%@ include file="/calendar/resource_search_results.jspf" %>
-
-	<liferay-ui:search-container-results
-		results="<%= resultsResources %>"
-		total="<%= totalResources %>"
-	/>
+<liferay-ui:search-container searchContainer="<%= new CalendarResourceSearch(renderRequest, iteratorURL) %>">
+	<liferay-ui:search-container-results>
+		<%@ include file="/resource_search_results.jspf" %>
+	</liferay-ui:search-container-results>
 
 	<liferay-ui:search-container-row
 		className="com.liferay.calendar.model.CalendarResource"
@@ -91,9 +90,8 @@
 
 		<liferay-ui:search-container-column-jsp
 			align="right"
-			path="/calendar/resource_action.jsp"
+			path="/resource_action.jsp"
 		/>
-
 	</liferay-ui:search-container-row>
 
 	<liferay-ui:search-iterator />

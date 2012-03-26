@@ -29,11 +29,9 @@
 page import="com.liferay.calendar.model.CalendarResource" %><%@
 page import="com.liferay.calendar.search.CalendarResourceDisplayTerms" %><%@
 page import="com.liferay.calendar.search.CalendarResourceSearch" %><%@
-page import="com.liferay.calendar.search.CalendarResourceSearchTerms" %><%@
 page import="com.liferay.calendar.service.CalendarLocalServiceUtil" %><%@
-page import="com.liferay.calendar.service.CalendarResourceServiceUtil" %><%@
+page import="com.liferay.calendar.service.permission.CalendarPortletPermission" %><%@
 page import="com.liferay.calendar.service.permission.CalendarResourcePermission" %><%@
-page import="com.liferay.calendar.service.permission.EnterpriseCalendarPermission" %><%@
 page import="com.liferay.calendar.util.ActionKeys" %><%@
 page import="com.liferay.calendar.util.PortletPropsValues" %><%@
 page import="com.liferay.calendar.util.WebKeys" %><%@
@@ -42,28 +40,14 @@ page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
 page import="com.liferay.portal.kernel.util.StringUtil" %><%@
-page import="com.liferay.portal.util.PortalUtil" %><%@
-page import="com.liferay.portlet.PortletURLUtil" %>
+page import="com.liferay.portal.util.PortalUtil" %>
 
 <%@ page import="java.util.List" %>
-
-<%@ page import="javax.portlet.PortletURL" %>
 
 <portlet:defineObjects />
 
 <liferay-theme:defineObjects />
 
 <%
-String portletResource = ParamUtil.getString(request, "portletResource");
-
-PortletURL currentURLObj = null;
-
-if (renderRequest != null) {
-	currentURLObj = PortletURLUtil.getCurrent(renderRequest, renderResponse);
-}
-else if (resourceRequest != null) {
-	currentURLObj = PortletURLUtil.getCurrent(resourceRequest, resourceResponse);
-}
-
-String currentURL = currentURLObj.toString();
+String currentURL = PortalUtil.getCurrentURL(request);
 %>

@@ -14,20 +14,20 @@
  */
 --%>
 
-<%@ include file="/calendar/init.jsp" %>
+<%@ include file="/init.jsp" %>
 
 <%
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
-CalendarResource resource = (CalendarResource)row.getObject();
+CalendarResource calendarResource = (CalendarResource)row.getObject();
 %>
 
 <liferay-ui:icon-menu>
-	<c:if test="<%= CalendarResourcePermission.contains(permissionChecker, resource, ActionKeys.UPDATE) %>">
+	<c:if test="<%= CalendarResourcePermission.contains(permissionChecker, calendarResource, ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="editURL">
-			<portlet:param name="jspPage" value="/calendar/edit_resource.jsp" />
-			<portlet:param name="calendarResourceId" value="<%= String.valueOf(resource.getCalendarResourceId()) %>" />
+			<portlet:param name="jspPage" value="/edit_calendar_resource.jsp" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
+			<portlet:param name="calendarResourceId" value="<%= String.valueOf(calendarResource.getCalendarResourceId()) %>" />
 		</portlet:renderURL>
 
 		<liferay-ui:icon
@@ -36,11 +36,11 @@ CalendarResource resource = (CalendarResource)row.getObject();
 		/>
 	</c:if>
 
-	<c:if test="<%= CalendarResourcePermission.contains(permissionChecker, resource, ActionKeys.PERMISSIONS) %>">
+	<c:if test="<%= CalendarResourcePermission.contains(permissionChecker, calendarResource, ActionKeys.PERMISSIONS) %>">
 		<liferay-security:permissionsURL
 			modelResource="<%= CalendarResource.class.getName() %>"
-			modelResourceDescription="<%= resource.getName(locale) %>"
-			resourcePrimKey="<%= String.valueOf(resource.getCalendarResourceId()) %>"
+			modelResourceDescription="<%= calendarResource.getName(locale) %>"
+			resourcePrimKey="<%= String.valueOf(calendarResource.getCalendarResourceId()) %>"
 			var="permissionsURL"
 		/>
 
@@ -50,11 +50,11 @@ CalendarResource resource = (CalendarResource)row.getObject();
 		/>
 	</c:if>
 
-	<c:if test="<%= CalendarResourcePermission.contains(permissionChecker, resource, ActionKeys.DELETE) %>">
-		<portlet:actionURL name="deleteResource" var="deleteURL">
+	<c:if test="<%= CalendarResourcePermission.contains(permissionChecker, calendarResource, ActionKeys.DELETE) %>">
+		<portlet:actionURL name="deleteCalendarResource" var="deleteURL">
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
-			<portlet:param name="calendarResourceId" value="<%= String.valueOf(resource.getCalendarResourceId()) %>" />
+			<portlet:param name="calendarResourceId" value="<%= String.valueOf(calendarResource.getCalendarResourceId()) %>" />
 		</portlet:actionURL>
 
 		<liferay-ui:icon-delete

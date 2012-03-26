@@ -14,12 +14,13 @@
  */
 --%>
 
-<%@ include file="/calendar/init.jsp" %>
+<%@ include file="/init.jsp" %>
 
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
-CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKeys.ENTERPRISE_CALENDAR_RESOURCE);
+CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKeys.CALENDAR_RESOURCE);
+
 long calendarResourceId = 0;
 
 List<Calendar> calendars = null;
@@ -36,13 +37,13 @@ if (calendarResource != null) {
 	title='<%= (calendarResource != null) ? calendarResource.getName(locale) : "new-calendar-resource" %>'
 />
 
-<liferay-portlet:actionURL name="updateResource" var="updateResourceURL">
-	<liferay-portlet:param name="mvcPath" value="/calendar/edit_resource.jsp" />
+<liferay-portlet:actionURL name="updateCalendarResource" var="updateCalendarResourceURL">
+	<liferay-portlet:param name="mvcPath" value="/edit_calendar_resource.jsp" />
 	<liferay-portlet:param name="redirect" value="<%= redirect %>" />
 	<liferay-portlet:param name="calendarResourceId" value="<%= String.valueOf(calendarResourceId) %>" />
 </liferay-portlet:actionURL>
 
-<aui:form action="<%= updateResourceURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateResource();" %>'>
+<aui:form action="<%= updateCalendarResourceURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateCalendarResource();" %>'>
 	<aui:model-context bean="<%= calendarResource %>" model="<%= CalendarResource.class %>" />
 
 	<aui:fieldset>
@@ -54,24 +55,32 @@ if (calendarResource != null) {
 
 		<aui:select name="type" value="<%= (calendarResource == null) ? StringPool.BLANK : calendarResource.getType() %>">
 			<aui:option label="" value="" />
+
 			<%
-			for (String resourceType : PortletPropsValues.ENTERPRISE_CALENDAR_RESOURCE_TYPES) {
+			for (String type : PortletPropsValues.CALENDAR_RESOURCE_TYPES) {
 			%>
-				<aui:option label="<%= resourceType %>" value="<%= resourceType %>" />
+
+				<aui:option label="<%= type %>" value="<%= type %>" />
+
 			<%
 			}
 			%>
+
 		</aui:select>
 
 		<c:if test="<%= calendars != null %>">
 			<aui:select label="default-calendar" name="defaultCalendarId" value="<%= calendarResource.getDefaultCalendarId() %>">
+
 				<%
 				for (Calendar calendar : calendars) {
 				%>
+
 					<aui:option label="<%= calendar.getName(locale) %>" value="<%= calendar.getCalendarId() %>" />
+
 				<%
 				}
 				%>
+
 			</aui:select>
 		</c:if>
 
@@ -93,7 +102,7 @@ if (calendarResource != null) {
 </aui:form>
 
 <aui:script>
-	function <portlet:namespace />updateResource() {
+	function <portlet:namespace />updateCalendarResource() {
 		submitForm(document.<portlet:namespace />fm);
 	}
 

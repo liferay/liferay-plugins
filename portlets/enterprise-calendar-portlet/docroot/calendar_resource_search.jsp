@@ -14,7 +14,7 @@
  */
 --%>
 
-<%@ include file="/calendar/init.jsp" %>
+<%@ include file="/init.jsp" %>
 
 <%
 CalendarResourceDisplayTerms displayTerms = new CalendarResourceDisplayTerms(renderRequest);
@@ -23,7 +23,7 @@ CalendarResourceDisplayTerms displayTerms = new CalendarResourceDisplayTerms(ren
 <liferay-ui:search-toggle
 	buttonLabel="search"
 	displayTerms="<%= displayTerms %>"
-	id="toggle_id_resource_search"
+	id="toggle_id_calendar_resource_search"
 >
 	<aui:fieldset>
 		<aui:input name="<%= displayTerms.CODE %>" value="<%= displayTerms.getCode() %>" />
@@ -34,13 +34,17 @@ CalendarResourceDisplayTerms displayTerms = new CalendarResourceDisplayTerms(ren
 
 		<aui:select name="type" value="">
 			<aui:option label="all" value="<%= displayTerms.getType() %>" />
+
 			<%
-			for (String resourceType : PortletPropsValues.ENTERPRISE_CALENDAR_RESOURCE_TYPES) {
+			for (String type : PortletPropsValues.CALENDAR_RESOURCE_TYPES) {
 			%>
-				<aui:option label="<%= resourceType %>" value="<%= resourceType %>" />
+
+				<aui:option label="<%= type %>" value="<%= type %>" />
+
 			<%
 			}
 			%>
+
 		</aui:select>
 
 		<aui:select name="<%= displayTerms.ACTIVE %>" value="<%= displayTerms.isActive() %>">
