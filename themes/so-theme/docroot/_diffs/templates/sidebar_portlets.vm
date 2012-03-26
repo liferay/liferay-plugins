@@ -14,7 +14,7 @@
 
 <hr />
 
-<h3>$sidebar_portlet_title</h3>
+<h3>$htmlUtil.escape($sidebar_portlet_title)</h3>
 
 $velocityPortletPreferences.setValue("displayStyle", "0")
 $velocityPortletPreferences.setValue("portletSetupShowBorders", "false")
