@@ -2959,6 +2959,26 @@
 		</releng>
 	</plugin>
 	<plugin>
+		<artifact-id>resources-importer-web</artifact-id>
+		<name>Resources Importer</name>
+		<type>web</type>
+		<tags></tags>
+		<short-description></short-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>LGPL</licenses>
+		<releng>
+			<bundle>false</bundle>
+			<labs>true</labs>
+			<marketplace>true</marketplace>
+			<parent-app></parent-app>
+			<public>true</public>
+			<standalone-app>true</standalone-app>
+			<supported>false</supported>
+		</releng>
+	</plugin>
+	<plugin>
 		<artifact-id>server-manager-web</artifact-id>
 		<name>Server Manager</name>
 		<type>web</type>
