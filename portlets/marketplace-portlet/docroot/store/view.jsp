@@ -21,6 +21,7 @@
 </div>
 
 <form action="<%= iFrameURL %>" id="<portlet:namespace />fm" method="post" target="<portlet:namespace />frame">
+<input name="referer" type="hidden" value="<%= referer %>" />
 <input name="mpClientURL" type="hidden" value="<%= themeDisplay.getPortalURL() + themeDisplay.getURLCurrent() %>" />
 </form>
 
