@@ -42,7 +42,7 @@ zipsString = StringUtil.merge(zips, StringPool.NEW_LINE);
 		String zip = (String)enu.nextElement();
 	%>
 
-		<strong><%= zip %></strong><%= (enu.hasMoreElements()) ? ", " : "." %>
+		<strong><%= HtmlUtil.escape(zip) %></strong><%= (enu.hasMoreElements()) ? ", " : "." %>
 
 	<%
 	}
@@ -54,7 +54,7 @@ zipsString = StringUtil.merge(zips, StringPool.NEW_LINE);
 
 <br /><br />
 
-<textarea class="lfr-textarea" name="<portlet:namespace />zips" wrap="soft"><%= zipsString %></textarea>
+<textarea class="lfr-textarea" name="<portlet:namespace />zips" wrap="soft"><%= HtmlUtil.escape(zipsString) %></textarea>
 
 <br /><br />
 

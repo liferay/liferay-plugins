@@ -29,7 +29,7 @@ for (String zip : zips) {
 
 		<tr>
 			<td>
-				<a href="http://www.weather.com/search/enhancedlocalsearch?where=<%= weather.getZip() %>" style="font-size: xx-small; font-weight: bold;" target="_blank"><%= weather.getZip() %></a>
+				<a href="http://www.weather.com/search/enhancedlocalsearch?where=<%= HtmlUtil.escapeURL(weather.getZip()) %>" style="font-size: xx-small; font-weight: bold;" target="_blank"><%= HtmlUtil.escape(weather.getZip()) %></a>
 			</td>
 			<td align="right">
 				<span style="font-size: xx-small;">
