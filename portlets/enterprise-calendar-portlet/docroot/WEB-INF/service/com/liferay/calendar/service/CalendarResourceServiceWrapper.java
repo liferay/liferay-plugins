@@ -47,17 +47,11 @@ public class CalendarResourceServiceWrapper implements CalendarResourceService,
 			descriptionMap, type, active, serviceContext);
 	}
 
-	public int countByKeywords(long companyId, long[] groupIds,
-		long[] classNameIds, java.lang.String keywords, boolean active)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _calendarResourceService.countByKeywords(companyId, groupIds,
-			classNameIds, keywords, active);
-	}
-
-	public void deleteCalendarResource(long calendarResourceId)
+	public com.liferay.calendar.model.CalendarResource deleteCalendarResource(
+		long calendarResourceId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_calendarResourceService.deleteCalendarResource(calendarResourceId);
+		return _calendarResourceService.deleteCalendarResource(calendarResourceId);
 	}
 
 	public com.liferay.calendar.model.CalendarResource getCalendarResource(
@@ -65,6 +59,17 @@ public class CalendarResourceServiceWrapper implements CalendarResourceService,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _calendarResourceService.getCalendarResource(calendarResourceId);
+	}
+
+	public java.util.List<com.liferay.calendar.model.CalendarResource> search(
+		long companyId, long[] groupIds, long[] classNameIds,
+		java.lang.String keywords, boolean active, boolean andOperator,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResourceService.search(companyId, groupIds,
+			classNameIds, keywords, active, andOperator, start, end,
+			orderByComparator);
 	}
 
 	public java.util.List<com.liferay.calendar.model.CalendarResource> search(
@@ -79,15 +84,11 @@ public class CalendarResourceServiceWrapper implements CalendarResourceService,
 			start, end, orderByComparator);
 	}
 
-	public java.util.List<com.liferay.calendar.model.CalendarResource> searchByKeywords(
-		long companyId, long[] groupIds, long[] classNameIds,
-		java.lang.String keywords, boolean active, boolean andOperator,
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+	public int searchCount(long companyId, long[] groupIds,
+		long[] classNameIds, java.lang.String keywords, boolean active)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _calendarResourceService.searchByKeywords(companyId, groupIds,
-			classNameIds, keywords, active, andOperator, start, end,
-			orderByComparator);
+		return _calendarResourceService.searchCount(companyId, groupIds,
+			classNameIds, keywords, active);
 	}
 
 	public int searchCount(long companyId, long[] groupIds,

@@ -113,14 +113,17 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 		return (com.liferay.calendar.model.CalendarBooking)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteCalendarBooking(long calendarBookingId)
+	public com.liferay.calendar.model.CalendarBooking deleteCalendarBooking(
+		long calendarBookingId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteCalendarBookingMethodKey1,
 				calendarBookingId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -139,6 +142,8 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.calendar.model.CalendarBooking)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.calendar.model.CalendarBooking getCalendarBooking(

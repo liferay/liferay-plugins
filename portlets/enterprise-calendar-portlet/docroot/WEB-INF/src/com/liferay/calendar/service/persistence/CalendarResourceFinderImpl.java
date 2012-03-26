@@ -48,6 +48,32 @@ public class CalendarResourceFinderImpl
 	public static final String FIND_BY_C_G_C_C_N_D_T_A =
 		CalendarResourceFinder.class.getName() + ".findByC_G_C_C_N_D_T_A";
 
+	public int countByKeywords(
+			long companyId, long[] groupIds, long[] classNameIds,
+			String keywords, boolean active)
+		throws SystemException {
+
+		String[] codes = null;
+		String[] names = null;
+		String[] descriptions = null;
+		String[] types = null;
+		boolean andOperator = false;
+
+		if (Validator.isNotNull(keywords)) {
+			codes = CustomSQLUtil.keywords(keywords);
+			names = CustomSQLUtil.keywords(keywords);
+			descriptions = CustomSQLUtil.keywords(keywords, false);
+			types = CustomSQLUtil.keywords(keywords, false);
+		}
+		else {
+			andOperator = true;
+		}
+
+		return countByC_G_C_C_N_D_T_A(
+			companyId, groupIds, classNameIds, codes, names, descriptions,
+			types, active, andOperator);
+	}
+
 	public int countByC_G_C_C_N_D_T_A(
 			long companyId, long[] groupIds, long[] classNameIds, String code,
 			String name, String description, String type, boolean active,
@@ -75,7 +101,7 @@ public class CalendarResourceFinderImpl
 			types, active, andOperator, false);
 	}
 
-	public int countByKeywords(
+	public int filterCountByKeywords(
 			long companyId, long[] groupIds, long[] classNameIds,
 			String keywords, boolean active)
 		throws SystemException {
@@ -96,7 +122,7 @@ public class CalendarResourceFinderImpl
 			andOperator = true;
 		}
 
-		return countByC_G_C_C_N_D_T_A(
+		return filterCountByC_G_C_C_N_D_T_A(
 			companyId, groupIds, classNameIds, codes, names, descriptions,
 			types, active, andOperator);
 	}
@@ -128,9 +154,10 @@ public class CalendarResourceFinderImpl
 			types, active, andOperator, true);
 	}
 
-	public int filterCountByKeywords(
+	public List<CalendarResource> filterFindByKeywords(
 			long companyId, long[] groupIds, long[] classNameIds,
-			String keywords, boolean active)
+			String keywords, boolean active, int start, int end,
+			OrderByComparator orderByComparator)
 		throws SystemException {
 
 		String[] codes = null;
@@ -149,9 +176,9 @@ public class CalendarResourceFinderImpl
 			andOperator = true;
 		}
 
-		return filterCountByC_G_C_C_N_D_T_A(
+		return filterFindByC_G_C_C_N_D_T_A(
 			companyId, groupIds, classNameIds, codes, names, descriptions,
-			types, active, andOperator);
+			types, active, andOperator, start, end, orderByComparator);
 	}
 
 	public List<CalendarResource> filterFindByC_G_C_C_N_D_T_A(
@@ -183,7 +210,7 @@ public class CalendarResourceFinderImpl
 			types, active, andOperator, start, end, orderByComparator, true);
 	}
 
-	public List<CalendarResource> filterFindByKeywords(
+	public List<CalendarResource> findByKeywords(
 			long companyId, long[] groupIds, long[] classNameIds,
 			String keywords, boolean active, int start, int end,
 			OrderByComparator orderByComparator)
@@ -205,7 +232,7 @@ public class CalendarResourceFinderImpl
 			andOperator = true;
 		}
 
-		return filterFindByC_G_C_C_N_D_T_A(
+		return findByC_G_C_C_N_D_T_A(
 			companyId, groupIds, classNameIds, codes, names, descriptions,
 			types, active, andOperator, start, end, orderByComparator);
 	}
@@ -237,33 +264,6 @@ public class CalendarResourceFinderImpl
 		return doFindByC_G_C_C_N_D_T_A(
 			companyId, groupIds, classNameIds, codes, names, descriptions,
 			types, active, andOperator, start, end, orderByComparator, false);
-	}
-
-	public List<CalendarResource> findByKeywords(
-			long companyId, long[] groupIds, long[] classNameIds,
-			String keywords, boolean active, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
-
-		String[] codes = null;
-		String[] names = null;
-		String[] descriptions = null;
-		String[] types = null;
-		boolean andOperator = false;
-
-		if (Validator.isNotNull(keywords)) {
-			codes = CustomSQLUtil.keywords(keywords);
-			names = CustomSQLUtil.keywords(keywords);
-			descriptions = CustomSQLUtil.keywords(keywords, false);
-			types = CustomSQLUtil.keywords(keywords, false);
-		}
-		else {
-			andOperator = true;
-		}
-
-		return findByC_G_C_C_N_D_T_A(
-			companyId, groupIds, classNameIds, codes, names, descriptions,
-			types, active, andOperator, start, end, orderByComparator);
 	}
 
 	protected int doCountByC_G_C_C_N_D_T_A(

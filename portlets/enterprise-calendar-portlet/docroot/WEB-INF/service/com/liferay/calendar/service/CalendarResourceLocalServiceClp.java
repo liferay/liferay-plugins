@@ -99,22 +99,22 @@ public class CalendarResourceLocalServiceClp
 				java.util.Map.class, java.lang.String.class, boolean.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_countByKeywordsMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
-				"countByKeywords", long.class, long[].class, long[].class,
-				java.lang.String.class, boolean.class);
-
-		_searchMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+		_searchMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"search", long.class, long[].class, long[].class,
 				java.lang.String.class, java.lang.String.class,
 				java.lang.String.class, java.lang.String.class, boolean.class,
 				boolean.class, int.class, int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
-		_searchByKeywordsMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+		_searchByKeywordsMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"searchByKeywords", long.class, long[].class, long[].class,
 				java.lang.String.class, boolean.class, boolean.class,
 				int.class, int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_searchCountMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+				"searchCount", long.class, long[].class, long[].class,
+				java.lang.String.class, boolean.class);
 
 		_searchCountMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
 				"searchCount", long.class, long[].class, long[].class,
@@ -189,14 +189,17 @@ public class CalendarResourceLocalServiceClp
 		return (com.liferay.calendar.model.CalendarResource)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteCalendarResource(long calendarResourceId)
+	public com.liferay.calendar.model.CalendarResource deleteCalendarResource(
+		long calendarResourceId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteCalendarResourceMethodKey2,
 				calendarResourceId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -215,17 +218,21 @@ public class CalendarResourceLocalServiceClp
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.calendar.model.CalendarResource)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteCalendarResource(
+	public com.liferay.calendar.model.CalendarResource deleteCalendarResource(
 		com.liferay.calendar.model.CalendarResource calendarResource)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteCalendarResourceMethodKey3,
 				ClpSerializer.translateInput(calendarResource));
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -244,6 +251,8 @@ public class CalendarResourceLocalServiceClp
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.calendar.model.CalendarResource)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -686,36 +695,6 @@ public class CalendarResourceLocalServiceClp
 		return (com.liferay.calendar.model.CalendarResource)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public int countByKeywords(long companyId, long[] groupIds,
-		long[] classNameIds, java.lang.String keywords, boolean active)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		MethodHandler methodHandler = new MethodHandler(_countByKeywordsMethodKey19,
-				companyId, ClpSerializer.translateInput(groupIds),
-				ClpSerializer.translateInput(classNameIds),
-				ClpSerializer.translateInput(keywords), active);
-
-		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return ((Integer)returnObj).intValue();
-	}
-
 	public java.util.List<com.liferay.calendar.model.CalendarResource> search(
 		long companyId, long[] groupIds, long[] classNameIds,
 		java.lang.String code, java.lang.String name,
@@ -725,7 +704,7 @@ public class CalendarResourceLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_searchMethodKey20,
+		MethodHandler methodHandler = new MethodHandler(_searchMethodKey19,
 				companyId, ClpSerializer.translateInput(groupIds),
 				ClpSerializer.translateInput(classNameIds),
 				ClpSerializer.translateInput(code),
@@ -762,7 +741,7 @@ public class CalendarResourceLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_searchByKeywordsMethodKey21,
+		MethodHandler methodHandler = new MethodHandler(_searchByKeywordsMethodKey20,
 				companyId, ClpSerializer.translateInput(groupIds),
 				ClpSerializer.translateInput(classNameIds),
 				ClpSerializer.translateInput(keywords), active, andOperator,
@@ -786,6 +765,36 @@ public class CalendarResourceLocalServiceClp
 		}
 
 		return (java.util.List<com.liferay.calendar.model.CalendarResource>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public int searchCount(long companyId, long[] groupIds,
+		long[] classNameIds, java.lang.String keywords, boolean active)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_searchCountMethodKey21,
+				companyId, ClpSerializer.translateInput(groupIds),
+				ClpSerializer.translateInput(classNameIds),
+				ClpSerializer.translateInput(keywords), active);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
 	}
 
 	public int searchCount(long companyId, long[] groupIds,
@@ -963,9 +972,9 @@ public class CalendarResourceLocalServiceClp
 	private MethodKey _getBeanIdentifierMethodKey16;
 	private MethodKey _setBeanIdentifierMethodKey17;
 	private MethodKey _addCalendarResourceMethodKey18;
-	private MethodKey _countByKeywordsMethodKey19;
-	private MethodKey _searchMethodKey20;
-	private MethodKey _searchByKeywordsMethodKey21;
+	private MethodKey _searchMethodKey19;
+	private MethodKey _searchByKeywordsMethodKey20;
+	private MethodKey _searchCountMethodKey21;
 	private MethodKey _searchCountMethodKey22;
 	private MethodKey _updateCalendarResourceMethodKey23;
 	private MethodKey _updateCalendarResourceMethodKey24;

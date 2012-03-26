@@ -66,10 +66,11 @@ public interface CalendarLocalService extends PermissionedModelLocalService {
 	* Deletes the calendar with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param calendarId the primary key of the calendar
+	* @return the calendar that was removed
 	* @throws PortalException if a calendar with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteCalendar(long calendarId)
+	public com.liferay.calendar.model.Calendar deleteCalendar(long calendarId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -77,10 +78,12 @@ public interface CalendarLocalService extends PermissionedModelLocalService {
 	* Deletes the calendar from the database. Also notifies the appropriate model listeners.
 	*
 	* @param calendar the calendar
+	* @return the calendar that was removed
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteCalendar(com.liferay.calendar.model.Calendar calendar)
+	public com.liferay.calendar.model.Calendar deleteCalendar(
+		com.liferay.calendar.model.Calendar calendar)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -260,8 +263,7 @@ public interface CalendarLocalService extends PermissionedModelLocalService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.calendar.model.Calendar> getResourceCalendars(
 		long groupId, long calendarResourceId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.calendar.model.Calendar> search(

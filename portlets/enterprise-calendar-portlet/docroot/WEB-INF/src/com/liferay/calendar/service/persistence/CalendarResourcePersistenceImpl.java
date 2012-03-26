@@ -6180,13 +6180,14 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @return the calendar resource that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByUUID_G(String uuid, long groupId)
+	public CalendarResource removeByUUID_G(String uuid, long groupId)
 		throws NoSuchResourceException, SystemException {
 		CalendarResource calendarResource = findByUUID_G(uuid, groupId);
 
-		remove(calendarResource);
+		return remove(calendarResource);
 	}
 
 	/**
@@ -6220,13 +6221,14 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	 *
 	 * @param classNameId the class name ID
 	 * @param classPK the class p k
+	 * @return the calendar resource that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByC_C(long classNameId, long classPK)
+	public CalendarResource removeByC_C(long classNameId, long classPK)
 		throws NoSuchResourceException, SystemException {
 		CalendarResource calendarResource = findByC_C(classNameId, classPK);
 
-		remove(calendarResource);
+		return remove(calendarResource);
 	}
 
 	/**

@@ -59,7 +59,8 @@ public class CalendarResourceUtil {
 
 		if (orderByCol.equals("name")) {
 			orderByComparator = new CalendarResourceNameComparator(orderByAsc);
-		} else {
+		}
+		else {
 			orderByComparator = new CalendarResourceCodeComparator(orderByAsc);
 		}
 

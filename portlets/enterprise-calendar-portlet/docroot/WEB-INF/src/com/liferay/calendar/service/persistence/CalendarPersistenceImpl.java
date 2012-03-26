@@ -3041,13 +3041,14 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @return the calendar that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByUUID_G(String uuid, long groupId)
+	public Calendar removeByUUID_G(String uuid, long groupId)
 		throws NoSuchCalendarException, SystemException {
 		Calendar calendar = findByUUID_G(uuid, groupId);
 
-		remove(calendar);
+		return remove(calendar);
 	}
 
 	/**

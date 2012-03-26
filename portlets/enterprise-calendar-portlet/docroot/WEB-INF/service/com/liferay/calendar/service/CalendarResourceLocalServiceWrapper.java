@@ -61,27 +61,30 @@ public class CalendarResourceLocalServiceWrapper
 	* Deletes the calendar resource with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param calendarResourceId the primary key of the calendar resource
+	* @return the calendar resource that was removed
 	* @throws PortalException if a calendar resource with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteCalendarResource(long calendarResourceId)
+	public com.liferay.calendar.model.CalendarResource deleteCalendarResource(
+		long calendarResourceId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_calendarResourceLocalService.deleteCalendarResource(calendarResourceId);
+		return _calendarResourceLocalService.deleteCalendarResource(calendarResourceId);
 	}
 
 	/**
 	* Deletes the calendar resource from the database. Also notifies the appropriate model listeners.
 	*
 	* @param calendarResource the calendar resource
+	* @return the calendar resource that was removed
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteCalendarResource(
+	public com.liferay.calendar.model.CalendarResource deleteCalendarResource(
 		com.liferay.calendar.model.CalendarResource calendarResource)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_calendarResourceLocalService.deleteCalendarResource(calendarResource);
+		return _calendarResourceLocalService.deleteCalendarResource(calendarResource);
 	}
 
 	/**
@@ -292,13 +295,6 @@ public class CalendarResourceLocalServiceWrapper
 			nameMap, descriptionMap, type, active, serviceContext);
 	}
 
-	public int countByKeywords(long companyId, long[] groupIds,
-		long[] classNameIds, java.lang.String keywords, boolean active)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _calendarResourceLocalService.countByKeywords(companyId,
-			groupIds, classNameIds, keywords, active);
-	}
-
 	public java.util.List<com.liferay.calendar.model.CalendarResource> search(
 		long companyId, long[] groupIds, long[] classNameIds,
 		java.lang.String code, java.lang.String name,
@@ -320,6 +316,13 @@ public class CalendarResourceLocalServiceWrapper
 		return _calendarResourceLocalService.searchByKeywords(companyId,
 			groupIds, classNameIds, keywords, active, andOperator, start, end,
 			orderByComparator);
+	}
+
+	public int searchCount(long companyId, long[] groupIds,
+		long[] classNameIds, java.lang.String keywords, boolean active)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResourceLocalService.searchCount(companyId, groupIds,
+			classNameIds, keywords, active);
 	}
 
 	public int searchCount(long companyId, long[] groupIds,

@@ -997,12 +997,14 @@ public class CalendarUtil {
 	*
 	* @param uuid the uuid
 	* @param groupId the group ID
+	* @return the calendar that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByUUID_G(java.lang.String uuid, long groupId)
+	public static com.liferay.calendar.model.Calendar removeByUUID_G(
+		java.lang.String uuid, long groupId)
 		throws com.liferay.calendar.NoSuchCalendarException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByUUID_G(uuid, groupId);
+		return getPersistence().removeByUUID_G(uuid, groupId);
 	}
 
 	/**

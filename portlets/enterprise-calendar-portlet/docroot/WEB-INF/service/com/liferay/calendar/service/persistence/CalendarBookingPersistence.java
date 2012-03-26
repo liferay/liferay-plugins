@@ -746,9 +746,11 @@ public interface CalendarBookingPersistence extends BasePersistence<CalendarBook
 	*
 	* @param uuid the uuid
 	* @param groupId the group ID
+	* @return the calendar booking that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByUUID_G(java.lang.String uuid, long groupId)
+	public com.liferay.calendar.model.CalendarBooking removeByUUID_G(
+		java.lang.String uuid, long groupId)
 		throws com.liferay.calendar.NoSuchBookingException,
 			com.liferay.portal.kernel.exception.SystemException;
 

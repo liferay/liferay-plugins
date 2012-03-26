@@ -54,18 +54,11 @@ public class CalendarResourceServiceUtil {
 			serviceContext);
 	}
 
-	public static int countByKeywords(long companyId, long[] groupIds,
-		long[] classNameIds, java.lang.String keywords, boolean active)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .countByKeywords(companyId, groupIds, classNameIds,
-			keywords, active);
-	}
-
-	public static void deleteCalendarResource(long calendarResourceId)
+	public static com.liferay.calendar.model.CalendarResource deleteCalendarResource(
+		long calendarResourceId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteCalendarResource(calendarResourceId);
+		return getService().deleteCalendarResource(calendarResourceId);
 	}
 
 	public static com.liferay.calendar.model.CalendarResource getCalendarResource(
@@ -73,6 +66,17 @@ public class CalendarResourceServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getCalendarResource(calendarResourceId);
+	}
+
+	public static java.util.List<com.liferay.calendar.model.CalendarResource> search(
+		long companyId, long[] groupIds, long[] classNameIds,
+		java.lang.String keywords, boolean active, boolean andOperator,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .search(companyId, groupIds, classNameIds, keywords, active,
+			andOperator, start, end, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.calendar.model.CalendarResource> search(
@@ -88,15 +92,12 @@ public class CalendarResourceServiceUtil {
 			orderByComparator);
 	}
 
-	public static java.util.List<com.liferay.calendar.model.CalendarResource> searchByKeywords(
-		long companyId, long[] groupIds, long[] classNameIds,
-		java.lang.String keywords, boolean active, boolean andOperator,
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+	public static int searchCount(long companyId, long[] groupIds,
+		long[] classNameIds, java.lang.String keywords, boolean active)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .searchByKeywords(companyId, groupIds, classNameIds,
-			keywords, active, andOperator, start, end, orderByComparator);
+				   .searchCount(companyId, groupIds, classNameIds, keywords,
+			active);
 	}
 
 	public static int searchCount(long companyId, long[] groupIds,

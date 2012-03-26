@@ -939,12 +939,14 @@ public class CalendarBookingUtil {
 	*
 	* @param uuid the uuid
 	* @param groupId the group ID
+	* @return the calendar booking that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByUUID_G(java.lang.String uuid, long groupId)
+	public static com.liferay.calendar.model.CalendarBooking removeByUUID_G(
+		java.lang.String uuid, long groupId)
 		throws com.liferay.calendar.NoSuchBookingException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByUUID_G(uuid, groupId);
+		return getPersistence().removeByUUID_G(uuid, groupId);
 	}
 
 	/**

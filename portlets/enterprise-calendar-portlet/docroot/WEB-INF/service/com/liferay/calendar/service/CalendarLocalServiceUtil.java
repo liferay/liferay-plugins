@@ -67,27 +67,30 @@ public class CalendarLocalServiceUtil {
 	* Deletes the calendar with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param calendarId the primary key of the calendar
+	* @return the calendar that was removed
 	* @throws PortalException if a calendar with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteCalendar(long calendarId)
+	public static com.liferay.calendar.model.Calendar deleteCalendar(
+		long calendarId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteCalendar(calendarId);
+		return getService().deleteCalendar(calendarId);
 	}
 
 	/**
 	* Deletes the calendar from the database. Also notifies the appropriate model listeners.
 	*
 	* @param calendar the calendar
+	* @return the calendar that was removed
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteCalendar(
+	public static com.liferay.calendar.model.Calendar deleteCalendar(
 		com.liferay.calendar.model.Calendar calendar)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteCalendar(calendar);
+		return getService().deleteCalendar(calendar);
 	}
 
 	/**
@@ -294,8 +297,7 @@ public class CalendarLocalServiceUtil {
 
 	public static java.util.List<com.liferay.calendar.model.Calendar> getResourceCalendars(
 		long groupId, long calendarResourceId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getResourceCalendars(groupId, calendarResourceId);
 	}
 

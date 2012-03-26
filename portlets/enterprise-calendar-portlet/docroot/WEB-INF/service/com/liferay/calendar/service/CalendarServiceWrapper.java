@@ -43,10 +43,10 @@ public class CalendarServiceWrapper implements CalendarService,
 			nameMap, descriptionMap, color, defaultCalendar, serviceContext);
 	}
 
-	public void deleteCalendar(long calendarId)
+	public com.liferay.calendar.model.Calendar deleteCalendar(long calendarId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_calendarService.deleteCalendar(calendarId);
+		return _calendarService.deleteCalendar(calendarId);
 	}
 
 	public com.liferay.calendar.model.Calendar getCalendar(long calendarId)

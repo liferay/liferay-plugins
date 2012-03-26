@@ -1587,9 +1587,11 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 	*
 	* @param uuid the uuid
 	* @param groupId the group ID
+	* @return the calendar resource that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByUUID_G(java.lang.String uuid, long groupId)
+	public com.liferay.calendar.model.CalendarResource removeByUUID_G(
+		java.lang.String uuid, long groupId)
 		throws com.liferay.calendar.NoSuchResourceException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -1617,9 +1619,11 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 	*
 	* @param classNameId the class name ID
 	* @param classPK the class p k
+	* @return the calendar resource that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByC_C(long classNameId, long classPK)
+	public com.liferay.calendar.model.CalendarResource removeByC_C(
+		long classNameId, long classPK)
 		throws com.liferay.calendar.NoSuchResourceException,
 			com.liferay.portal.kernel.exception.SystemException;
 

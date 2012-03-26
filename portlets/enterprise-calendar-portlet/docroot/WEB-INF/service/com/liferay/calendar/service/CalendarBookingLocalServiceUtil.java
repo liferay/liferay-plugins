@@ -67,27 +67,30 @@ public class CalendarBookingLocalServiceUtil {
 	* Deletes the calendar booking with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param calendarBookingId the primary key of the calendar booking
+	* @return the calendar booking that was removed
 	* @throws PortalException if a calendar booking with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteCalendarBooking(long calendarBookingId)
+	public static com.liferay.calendar.model.CalendarBooking deleteCalendarBooking(
+		long calendarBookingId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteCalendarBooking(calendarBookingId);
+		return getService().deleteCalendarBooking(calendarBookingId);
 	}
 
 	/**
 	* Deletes the calendar booking from the database. Also notifies the appropriate model listeners.
 	*
 	* @param calendarBooking the calendar booking
+	* @return the calendar booking that was removed
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteCalendarBooking(
+	public static com.liferay.calendar.model.CalendarBooking deleteCalendarBooking(
 		com.liferay.calendar.model.CalendarBooking calendarBooking)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteCalendarBooking(calendarBooking);
+		return getService().deleteCalendarBooking(calendarBooking);
 	}
 
 	/**

@@ -1908,12 +1908,14 @@ public class CalendarResourceUtil {
 	*
 	* @param uuid the uuid
 	* @param groupId the group ID
+	* @return the calendar resource that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByUUID_G(java.lang.String uuid, long groupId)
+	public static com.liferay.calendar.model.CalendarResource removeByUUID_G(
+		java.lang.String uuid, long groupId)
 		throws com.liferay.calendar.NoSuchResourceException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByUUID_G(uuid, groupId);
+		return getPersistence().removeByUUID_G(uuid, groupId);
 	}
 
 	/**
@@ -1944,12 +1946,14 @@ public class CalendarResourceUtil {
 	*
 	* @param classNameId the class name ID
 	* @param classPK the class p k
+	* @return the calendar resource that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByC_C(long classNameId, long classPK)
+	public static com.liferay.calendar.model.CalendarResource removeByC_C(
+		long classNameId, long classPK)
 		throws com.liferay.calendar.NoSuchResourceException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByC_C(classNameId, classPK);
+		return getPersistence().removeByC_C(classNameId, classPK);
 	}
 
 	/**
