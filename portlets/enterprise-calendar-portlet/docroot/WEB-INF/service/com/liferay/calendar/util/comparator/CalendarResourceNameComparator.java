@@ -41,13 +41,19 @@ public class CalendarResourceNameComparator extends OrderByComparator {
 
 	@Override
 	public int compare(Object obj1, Object obj2) {
-		CalendarResource resource1 = (CalendarResource)obj1;
-		CalendarResource resource2 = (CalendarResource)obj2;
+		CalendarResource calendarResource1 = (CalendarResource)obj1;
+		CalendarResource calendarResource2 = (CalendarResource)obj2;
 
-		int value = resource1.getName().compareTo(resource2.getName());
+		String name1 = calendarResource1.getName();
+		String name2 = calendarResource2.getName();
+
+		int value = name1.compareTo(name2);
 
 		if (value == 0) {
-			value = resource1.getCode().compareTo(resource2.getCode());
+			String code1 = calendarResource1.getCode();
+			String code2 = calendarResource2.getCode();
+
+			value = code1.compareTo(code2);
 		}
 
 		if (_ascending) {

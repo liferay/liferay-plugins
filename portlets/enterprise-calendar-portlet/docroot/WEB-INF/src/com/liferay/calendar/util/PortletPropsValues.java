@@ -23,8 +23,7 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
-	public static final String[] ENTERPRISE_CALENDAR_RESOURCE_TYPES =
-		PortletProps.getArray(
-			PortletPropsKeys.ENTERPRISE_CALENDAR_RESOURCE_TYPES);
+	public static final String[] CALENDAR_RESOURCE_TYPES =
+		PortletProps.getArray(PortletPropsKeys.CALENDAR_RESOURCE_TYPES);
 
 }

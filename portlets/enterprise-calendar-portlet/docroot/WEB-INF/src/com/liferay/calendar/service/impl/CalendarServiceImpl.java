@@ -48,13 +48,13 @@ public class CalendarServiceImpl extends CalendarServiceBaseImpl {
 			color, defaultCalendar, serviceContext);
 	}
 
-	public void deleteCalendar(long calendarId)
+	public Calendar deleteCalendar(long calendarId)
 		throws PortalException, SystemException {
 
 		CalendarPermission.check(
 			getPermissionChecker(), calendarId, ActionKeys.DELETE);
 
-		calendarLocalService.deleteCalendar(calendarId);
+		return calendarLocalService.deleteCalendar(calendarId);
 	}
 
 	public Calendar getCalendar(long calendarId)

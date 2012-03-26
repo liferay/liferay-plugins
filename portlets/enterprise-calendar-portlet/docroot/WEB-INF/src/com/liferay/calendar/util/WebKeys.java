@@ -20,7 +20,6 @@ package com.liferay.calendar.util;
  */
 public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
 
-	public static final String ENTERPRISE_CALENDAR_RESOURCE =
-		"ENTERPRISE_CALENDAR_RESOURCE";
+	public static final String CALENDAR_RESOURCE = "CALENDAR_RESOURCE";
 
 }

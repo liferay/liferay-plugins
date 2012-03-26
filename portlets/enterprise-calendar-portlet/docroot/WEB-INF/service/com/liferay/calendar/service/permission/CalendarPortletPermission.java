@@ -22,7 +22,7 @@ import com.liferay.portal.security.permission.PermissionChecker;
  * @author Eduardo Lundgren
  * @author Andrea Di Giorgi
  */
-public class EnterpriseCalendarPermission {
+public class CalendarPortletPermission {
 
 	public static void check(
 			PermissionChecker permissionChecker, long groupId, String actionId)

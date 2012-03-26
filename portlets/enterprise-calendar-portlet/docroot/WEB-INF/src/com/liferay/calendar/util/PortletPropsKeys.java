@@ -20,7 +20,7 @@ package com.liferay.calendar.util;
  */
 public class PortletPropsKeys {
 
-	public static final String ENTERPRISE_CALENDAR_RESOURCE_TYPES =
-		"enterprise.calendar.resource.types";
+	public static final String CALENDAR_RESOURCE_TYPES =
+		"calendar.resource.types";
 
 }

@@ -93,19 +93,19 @@ public class CalendarResourceSearch extends SearchContainer<CalendarResource> {
 				Validator.isNotNull(orderByType)) {
 
 				preferences.setValue(
-					PortletKeys.ENTERPRISE_CALENDAR,
-					"users-resources-order-by-col", orderByCol);
+					PortletKeys.CALENDAR, "users-resources-order-by-col",
+					orderByCol);
 				preferences.setValue(
-					PortletKeys.ENTERPRISE_CALENDAR,
-					"users-resources-order-by-type", orderByType);
+					PortletKeys.CALENDAR, "users-resources-order-by-type",
+					orderByType);
 			}
 			else {
 				orderByCol = preferences.getValue(
-					PortletKeys.ENTERPRISE_CALENDAR,
-					"users-resources-order-by-col", "last-name");
+					PortletKeys.CALENDAR, "users-resources-order-by-col",
+					"last-name");
 				orderByType = preferences.getValue(
-					PortletKeys.ENTERPRISE_CALENDAR,
-					"users-resources-order-by-type", "asc");
+					PortletKeys.CALENDAR, "users-resources-order-by-type",
+					"asc");
 			}
 
 			OrderByComparator orderByComparator =

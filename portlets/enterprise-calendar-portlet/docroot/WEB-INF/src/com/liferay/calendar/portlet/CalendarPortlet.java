@@ -44,9 +44,9 @@ import javax.portlet.RenderResponse;
  * @author Fabio Pezzutto
  * @author Andrea Di Giorgi
  */
-public class EnterpriseCalendarPortlet extends MVCPortlet {
+public class CalendarPortlet extends MVCPortlet {
 
-	public void deleteResource(
+	public void deleteCalendarResource(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
@@ -56,6 +56,7 @@ public class EnterpriseCalendarPortlet extends MVCPortlet {
 		CalendarResourceServiceUtil.deleteCalendarResource(calendarResourceId);
 	}
 
+	@Override
 	public void render(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException, IOException {
@@ -73,7 +74,7 @@ public class EnterpriseCalendarPortlet extends MVCPortlet {
 			}
 
 			renderRequest.setAttribute(
-				WebKeys.ENTERPRISE_CALENDAR_RESOURCE, calendarResource);
+				WebKeys.CALENDAR_RESOURCE, calendarResource);
 		}
 		catch (Exception e) {
 			if (e instanceof NoSuchResourceException) {
@@ -87,12 +88,13 @@ public class EnterpriseCalendarPortlet extends MVCPortlet {
 		super.render(renderRequest, renderResponse);
 	}
 
-	public void updateResource(
+	public void updateCalendarResource(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
 		long calendarResourceId = ParamUtil.getLong(
 			actionRequest, "calendarResourceId");
+
 		long defaultCalendarId = ParamUtil.getLong(
 			actionRequest, "defaultCalendarId");
 		String code = ParamUtil.getString(actionRequest, "code");
@@ -106,14 +108,15 @@ public class EnterpriseCalendarPortlet extends MVCPortlet {
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			CalendarResource.class.getName(), actionRequest);
 
-		if (calendarResourceId > 0) {
-			CalendarResourceServiceUtil.updateCalendarResource(
-				calendarResourceId, defaultCalendarId, code, nameMap,
-				descriptionMap, type, active, serviceContext);
-		} else {
+		if (calendarResourceId <= 0) {
 			CalendarResourceServiceUtil.addCalendarResource(
 				serviceContext.getScopeGroupId(), null, 0,
 				PortalUUIDUtil.generate(), defaultCalendarId, code, nameMap,
+				descriptionMap, type, active, serviceContext);
+		}
+		else {
+			CalendarResourceServiceUtil.updateCalendarResource(
+				calendarResourceId, defaultCalendarId, code, nameMap,
 				descriptionMap, type, active, serviceContext);
 		}
 	}

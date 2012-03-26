@@ -111,17 +111,9 @@ public class CalendarResourceLocalServiceImpl
 		return calendarResource;
 	}
 
-	public int countByKeywords(
-			long companyId, long[] groupIds, long[] classNameIds,
-			String keywords, boolean active)
-		throws SystemException {
-
-		return calendarResourceFinder.countByKeywords(
-			companyId, groupIds, classNameIds, keywords, active);
-	}
-
 	@Override
-	public void deleteCalendarResource(CalendarResource calendarResource)
+	public CalendarResource deleteCalendarResource(
+			CalendarResource calendarResource)
 		throws PortalException, SystemException {
 
 		// Calendar resource
@@ -142,16 +134,18 @@ public class CalendarResourceLocalServiceImpl
 		for (CalendarBooking calendarBooking : calendarBookings) {
 			calendarBookingLocalService.deleteCalendarBooking(calendarBooking);
 		}
+
+		return calendarResource;
 	}
 
 	@Override
-	public void deleteCalendarResource(long calendarResourceId)
+	public CalendarResource deleteCalendarResource(long calendarResourceId)
 		throws PortalException, SystemException {
 
 		CalendarResource calendarResource =
 			calendarResourcePersistence.findByPrimaryKey(calendarResourceId);
 
-		deleteCalendarResource(calendarResource);
+		return deleteCalendarResource(calendarResource);
 	}
 
 	@Override
@@ -182,6 +176,15 @@ public class CalendarResourceLocalServiceImpl
 		return calendarResourceFinder.findByKeywords(
 			companyId, groupIds, classNameIds, keywords, active, start, end,
 			orderByComparator);
+	}
+
+	public int searchCount(
+			long companyId, long[] groupIds, long[] classNameIds,
+			String keywords, boolean active)
+		throws SystemException {
+
+		return calendarResourceFinder.countByKeywords(
+			companyId, groupIds, classNameIds, keywords, active);
 	}
 
 	public int searchCount(

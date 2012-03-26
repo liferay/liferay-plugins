@@ -25,7 +25,6 @@ import javax.portlet.PortletRequest;
 public class CalendarResourceSearchTerms extends CalendarResourceDisplayTerms {
 
 	public CalendarResourceSearchTerms(PortletRequest portletRequest) {
-
 		super(portletRequest);
 
 		active = DAOParamUtil.getBoolean(portletRequest, ACTIVE);

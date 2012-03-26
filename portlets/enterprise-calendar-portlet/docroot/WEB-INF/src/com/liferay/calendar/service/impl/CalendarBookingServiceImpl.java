@@ -60,7 +60,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			required, requestMessage, responseMessage, serviceContext);
 	}
 
-	public void deleteCalendarBooking(long calendarBookingId)
+	public CalendarBooking deleteCalendarBooking(long calendarBookingId)
 		throws PortalException, SystemException {
 
 		CalendarBooking calendarBooking =
@@ -70,7 +70,8 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			getPermissionChecker(), calendarBooking.getCalendarId(),
 			ActionKeys.MANAGE_BOOKINGS);
 
-		calendarBookingLocalService.deleteCalendarBooking(calendarBookingId);
+		return calendarBookingLocalService.deleteCalendarBooking(
+			calendarBookingId);
 	}
 
 	public CalendarBooking getCalendarBooking(long calendarBookingId)
