@@ -187,16 +187,16 @@ else {
 								<portlet:param name="privateLayout" value="<%= String.valueOf(!group.hasPublicLayouts()) %>" />
 							</liferay-portlet:actionURL>
 
-							<a href="<%= siteURL %>"><%= group.getDescriptiveName(locale) %></a>
+							<a href="<%= siteURL %>"><%= HtmlUtil.escape(group.getDescriptiveName(locale)) %></a>
 						</c:when>
 						<c:otherwise>
-							<%= group.getDescriptiveName(locale) %>
+							<%= HtmlUtil.escape(group.getDescriptiveName(locale)) %>
 						</c:otherwise>
 					</c:choose>
 				</span>
 
 				<span class="description">
-					<%= group.getDescription() %>
+					<%= HtmlUtil.escape(group.getDescription()) %>
 				</span>
 			</li>
 

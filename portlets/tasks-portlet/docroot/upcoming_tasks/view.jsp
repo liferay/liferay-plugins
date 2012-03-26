@@ -52,10 +52,10 @@
 			<li class="<%= cssClass %>">
 				<c:choose>
 					<c:when test="<%= Validator.isNotNull(taskHREF) %>">
-						<a href="javascript:;" onClick="Liferay.Tasks.openTask('<%= taskHREF %>');"><%= tasksEntry.getTitle() %></a>
+						<a href="javascript:;" onClick="Liferay.Tasks.openTask('<%= taskHREF %>');"><%= HtmlUtil.escape(tasksEntry.getTitle()) %></a>
 					</c:when>
 					<c:otherwise>
-						<span><%= tasksEntry.getTitle() %></span>
+						<span><%= HtmlUtil.escape(tasksEntry.getTitle()) %></span>
 					</c:otherwise>
 				</c:choose>
 			</li>

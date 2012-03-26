@@ -49,14 +49,14 @@ if (user2 != null) {
 		%>
 
 			<div class="projects section">
-				<h3><%= projectsEntry.getTitle() %>:</h3>
+				<h3><%= HtmlUtil.escape(projectsEntry.getTitle()) %>:</h3>
 
 				<div class="project-date property-list">
 					<span class="property"><%= startDate %> - <%= endDate %></span>
 				</div>
 
 				<div class="project-description property-list">
-					<div class="property"><%= projectsEntry.getDescription() %></div>
+					<div class="property"><%= HtmlUtil.escape(projectsEntry.getDescription()) %></div>
 				</div>
 			</div>
 

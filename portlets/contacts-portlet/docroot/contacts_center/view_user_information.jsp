@@ -40,7 +40,7 @@ if (Validator.isNull(user2.getComments())) {
 
 		<ul class="property-list">
 			<li>
-				<span class="property"><%= HtmlUtil.escape(user2.getComments()) %></span>
+				<span class="property"><%= user2.getComments() %></span>
 			</li>
 		</ul>
 	</div>
@@ -244,7 +244,7 @@ if (addresses.isEmpty()) {
 					</c:if>
 
 					<c:if test="<%= Validator.isNotNull(zipCode) %>">
-						<%= zipCode %>,
+						<%= HtmlUtil.escape(zipCode) %>,
 					</c:if>
 
 					<c:if test="<%= Validator.isNotNull(regionName) %>">

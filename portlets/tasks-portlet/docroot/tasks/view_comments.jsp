@@ -40,7 +40,7 @@ List<MBMessage> messages = treeWalker.getMessages();
 
 		<div class="comment-wrapper <%= className %>">
 			<div class="comment-body">
-				<span class="message"><%= message.getBody() %></span>
+				<span class="message"><%= HtmlUtil.escape(message.getBody()) %></span>
 			</div>
 
 			<div class="comment-info">
