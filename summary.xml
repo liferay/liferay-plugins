@@ -5,12 +5,16 @@
 		<type>hook</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -25,12 +29,16 @@
 		<type>hook</type>
 		<tags></tags>
 		<short-description>This hook uses MongoDB to persist custom attributes.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -45,12 +53,16 @@
 		<type>hook</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -65,12 +77,16 @@
 		<type>hook</type>
 		<tags></tags>
 		<short-description>This hook shows how to use Liferay's Expando to automatically create custom fields.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -85,12 +101,16 @@
 		<type>hook</type>
 		<tags></tags>
 		<short-description>This hook shows how to add a new Servlet Filter to Liferay's core.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -105,12 +125,16 @@
 		<type>hook</type>
 		<tags></tags>
 		<short-description>This hook shows how to extend Liferay's core Struts actions.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -125,12 +149,16 @@
 		<type>hook</type>
 		<tags></tags>
 		<short-description>This hook shows how to wrap Liferay's core services and models.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -145,12 +173,16 @@
 		<type>hook</type>
 		<tags></tags>
 		<short-description>This hook contains custom configuration used for Liferay's demo website.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -165,12 +197,16 @@
 		<type>hook</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>AGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app>Social Office</parent-app>
@@ -185,12 +221,16 @@
 		<type>hook</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -207,12 +247,16 @@
 		<short-description>
 		This plugin is a 1-2-1 columns layout template.
 	</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -229,12 +273,16 @@
 		<short-description>
 		This plugin is a 1-3-1 columns layout template.
 	</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -251,12 +299,16 @@
 		<short-description>
 		This plugin is a 1-3-2 columns layout template.
 	</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -273,12 +325,16 @@
 		<short-description>
 		This plugin is a 2-1-2 columns layout template.
 	</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -295,12 +351,16 @@
 		<short-description>
 		This plugin is a 3-2-3 columns layout template.
 	</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -315,12 +375,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -335,12 +399,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -355,12 +423,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -375,12 +447,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -395,16 +471,23 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility>6.1.1,6.1.11</compatibility>
+			<demo-url></demo-url>
+			<icon>portlets/chat-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
 			<public>true</public>
+			<screenshot>portlets/chat-portlet/docroot/WEB-INF/releng/screenshots/1.png</screenshot>
+			<screenshot>portlets/chat-portlet/docroot/WEB-INF/releng/screenshots/2.png</screenshot>
 			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
@@ -415,12 +498,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app>Social Office</parent-app>
@@ -435,12 +522,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -455,12 +546,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -475,12 +570,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -495,12 +594,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app>Social Office</parent-app>
@@ -515,12 +618,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -535,12 +642,16 @@
 		<type>portlet</type>
 		<tags>google</tags>
 		<short-description>This plugin allows easy integration with Google AdSense.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -555,12 +666,16 @@
 		<type>portlet</type>
 		<tags>google</tags>
 		<short-description>This plugin allows easy integration with Google Maps.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -575,12 +690,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -595,12 +714,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description>This plugin shows geocode IPs.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -615,12 +738,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -635,12 +762,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -655,12 +786,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description>This plugin transforms Bible references via RefTagger.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -675,12 +810,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -695,12 +834,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -715,12 +858,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app>Social Office</parent-app>
@@ -735,12 +882,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -755,12 +906,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -775,12 +930,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -795,12 +954,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app>Social Office</parent-app>
@@ -815,12 +978,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -835,12 +1002,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin is used by Liferay release managers to track packages among the Liferay public site, the SourceForge downloads page, and the SourceForge SVN repository.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -855,12 +1026,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin provides a console for executing arbitrary Ruby code. Use this portlet should only be used for development.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -875,12 +1050,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows how to use DAO in Liferay.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -895,12 +1074,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -915,12 +1098,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows how to create Groovy portlets in Liferay.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -935,12 +1122,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows how to use Hibernate in Liferay.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -955,12 +1146,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows how to use ICEfaces Ajax Push to do Interportlet Communication within Liferay.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -975,12 +1170,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows how to use ICEfaces and the JSF 1.1 MyFaces RI and the JSP view-handler within Liferay.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -995,12 +1194,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows how to use ICEfaces and the JSF 1.1 Sun RI and the Facelets view-handler within Liferay.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1015,12 +1218,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows how to use ICEfaces and the JSF 1.1 Sun RI and the JSP view-handler within Liferay.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1035,12 +1242,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows how to use ICEfaces and the JSF 1.2 Sun RI and the Facelets view-handler within Liferay. Requires Tomcat 6.x, GlassFish 2.0.x, or JBoss AS 4.2.x since JSF 1.2 has a JRE5 dependency.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1055,12 +1266,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows how to use the JSF 1.1 MyFaces RI and the Facelets view-handler within Liferay.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1075,12 +1290,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows how to use the JSF 1.1 MyFaces RI and the JSP view-handler within Liferay.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1095,12 +1314,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows the Sun OpenPortal JSF Portlet Bridge and shows how to use the JSF 1.1 Sun RI and the Facelets view-handler within Liferay.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1115,12 +1338,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin leverages the Sun OpenPortal JSF Portlet Bridge and shows how to use the JSF 1.1 Sun RI and the JSP view-handler within Liferay.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1135,12 +1362,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin leverages the Sun OpenPortal JSF Portlet Bridge and shows how to use the JSF 1.2 Sun RI and the Facelets view-handler within Liferay.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1155,12 +1386,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin leverages the Sun OpenPortal JSF Portlet Bridge and shows how to use the JSF 1.2 Sun RI and the JSP view-handler within Liferay.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1175,12 +1410,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows how to use JSON in Liferay.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1195,12 +1434,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows how to create JSP portlets in Liferay.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1215,12 +1458,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows how to use the LAR (Liferay Archive) service from a portlet.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1235,12 +1482,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows how to create Laszlo portlets in Liferay.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1255,12 +1506,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows how to use the permission service from a portlet.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1275,12 +1530,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows how to create PHP portlets in Liferay.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1295,12 +1554,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows how to use the portal-client.jar to access Liferay's services using SOAP.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1315,12 +1578,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows how to use Liferay's services throught regular Java calls.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1335,12 +1602,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows how to create Python portlets in Liferay.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1355,12 +1626,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin portlet shows how to create Ruby portlets in Liferay.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1375,12 +1650,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows how to use Liferay's Service Builder in a hot deployable portlet.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1395,12 +1674,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows how to create a sign in portlet in Liferay.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1415,12 +1698,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows how to use Spring in Liferay.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>SpringSource, Inc.</author>
 		<licenses>Apache</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1435,12 +1722,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows how to use Liferay's Struts Bridge.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1455,12 +1746,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows how to use the Apache Struts Bridge with Liferay.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1475,12 +1770,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows how to use Tapestry in Liferay.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1495,12 +1794,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows how to use Liferay's UI search container taglib in a portlet.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1515,12 +1818,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin shows how to use Liferay's UI taglibs in a portlet.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1535,12 +1842,16 @@
 		<type>portlet</type>
 		<tags>sample</tags>
 		<short-description>This plugin contains several portlets for WAP clients.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1555,12 +1866,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>AGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app>Social Office</parent-app>
@@ -1575,12 +1890,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -1595,12 +1914,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -1615,12 +1938,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -1635,12 +1962,16 @@
 		<type>portlet</type>
 		<tags>sun</tags>
 		<short-description>This is the Sun Tour IPC plugin. Released April 22, 2008</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
 		<licenses>CDDL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1655,12 +1986,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app>Social Office</parent-app>
@@ -1675,12 +2010,16 @@
 		<type>portlet</type>
 		<tags>test</tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1695,12 +2034,16 @@
 		<type>portlet</type>
 		<tags>test</tags>
 		<short-description>Able requires Baker and Charlie.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1715,12 +2058,16 @@
 		<type>portlet</type>
 		<tags>test</tags>
 		<short-description>Baker is required by Able.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1735,12 +2082,16 @@
 		<type>portlet</type>
 		<tags>test</tags>
 		<short-description>Charlie is required by Able.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1755,12 +2106,16 @@
 		<type>portlet</type>
 		<tags>test</tags>
 		<short-description>Dog requires Able.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1775,12 +2130,16 @@
 		<type>portlet</type>
 		<tags>test</tags>
 		<short-description>Easy requires Fox.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1795,12 +2154,16 @@
 		<type>portlet</type>
 		<tags>test</tags>
 		<short-description>Fox requires Easy.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1815,12 +2178,16 @@
 		<type>portlet</type>
 		<tags>test</tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1835,12 +2202,16 @@
 		<type>portlet</type>
 		<tags>test</tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1855,12 +2226,16 @@
 		<type>portlet</type>
 		<tags>test</tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1875,12 +2250,16 @@
 		<type>portlet</type>
 		<tags>test</tags>
 		<short-description>This plugin shows how to localize a portlet.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1895,12 +2274,16 @@
 		<type>portlet</type>
 		<tags>test</tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1915,12 +2298,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1935,12 +2322,16 @@
 		<type>portlet</type>
 		<tags>test</tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1955,12 +2346,16 @@
 		<type>portlet</type>
 		<tags>test</tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -1975,12 +2370,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -1995,12 +2394,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description>This plugin provides integration with Twitter. Every tweet is logged as an activity.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -2015,12 +2418,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -2035,12 +2442,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -2055,12 +2466,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -2075,12 +2490,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -2095,12 +2514,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -2115,12 +2538,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -2135,12 +2562,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app>Social Office</parent-app>
@@ -2155,12 +2586,16 @@
 		<type>portlet</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -2175,12 +2610,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://opensourcetemplates.org/template_info.php?id=104</page-url>
 		<author>Studio7Designs</author>
 		<licenses>CCA</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2195,12 +2634,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://templates.arcsin.se</page-url>
 		<author>Viktor Persson</author>
 		<licenses>CCA</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2215,12 +2658,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://templates.arcsin.se</page-url>
 		<author>Arcsin</author>
 		<licenses>CCA</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2235,12 +2682,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://templates.arcsin.se</page-url>
 		<author>Arcsin</author>
 		<licenses>CCA</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2255,12 +2706,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2275,12 +2730,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2295,12 +2754,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2315,12 +2778,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2335,12 +2802,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://templates.arcsin.se</page-url>
 		<author>Arcsin</author>
 		<licenses>CCA</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2355,12 +2826,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2375,12 +2850,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://templates.arcsin.se</page-url>
 		<author>Viktor Persson</author>
 		<licenses>CCA</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2395,12 +2874,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://drupal.org/node/91964</page-url>
 		<author>Stefan Nagtegaal and Steven Wittens</author>
 		<licenses>GPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2415,12 +2898,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2435,12 +2922,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.styleshout.com</page-url>
 		<author>Styleshout</author>
 		<licenses>CCA</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2455,12 +2946,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2475,12 +2970,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2495,12 +2994,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2515,12 +3018,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2535,12 +3042,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2555,12 +3066,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2575,12 +3090,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2598,12 +3117,16 @@
 		This is a sample HTML4 theme with configuration set in
 		liferay-look-and-feel.xml.
 	</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2621,12 +3144,16 @@
 		This is a sample styled theme with advanced configuration set in
 		liferay-look-and-feel.xml.
 	</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2641,12 +3168,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description>This is a sample styled theme with minimal configuration set in liferay-plugin-package.properties.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2664,12 +3195,16 @@
 		This is a sample unstyled theme with configuration set in
 		liferay-look-and-feel.xml.
 	</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2684,12 +3219,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2704,12 +3243,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -2724,12 +3267,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>AGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app>Social Office</parent-app>
@@ -2744,12 +3291,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2764,12 +3315,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2784,12 +3339,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2804,12 +3363,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2824,12 +3387,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2844,12 +3411,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://2010dev.wordpress.com/</page-url>
 		<author>WordPress</author>
 		<licenses>GPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2864,12 +3435,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2884,12 +3459,16 @@
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.oswd.org/design/information/id/3559</page-url>
 		<author>NodeThirtyThree</author>
 		<licenses>CCA</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -2904,12 +3483,16 @@
 		<type>web</type>
 		<tags></tags>
 		<short-description>This is the Central Authentication Service plugin.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>BSD</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -2924,12 +3507,16 @@
 		<type>web</type>
 		<tags></tags>
 		<short-description>This plugin helps deploy other plugins within a cluster using the native application server deployment mechanisms.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -2944,12 +3531,16 @@
 		<type>web</type>
 		<tags></tags>
 		<short-description>This plugin uses Kaleo as the workflow engine.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -2964,12 +3555,16 @@
 		<type>web</type>
 		<tags></tags>
 		<short-description></short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -2984,12 +3579,16 @@
 		<type>web</type>
 		<tags></tags>
 		<short-description>This plugin allows remote management of Liferay plugins.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -3004,12 +3603,16 @@
 		<type>web</type>
 		<tags></tags>
 		<short-description>This plugin uses Solr as the search engine.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -3024,12 +3627,16 @@
 		<type>web</type>
 		<tags></tags>
 		<short-description>This is the Theme Loader plugin.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -3044,12 +3651,16 @@
 		<type>web</type>
 		<tags></tags>
 		<short-description>This plugin uses WURFL for device detection. See http://wurfl.sourceforge.net.</short-description>
+		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>AGPL</licenses>
 		<releng>
 			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>

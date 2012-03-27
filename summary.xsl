@@ -29,11 +29,19 @@
 									sortable: true
 								},
 								{
+									key: 'Category',
+									sortable: true
+								},
+								{
 									key: 'Tags',
 									sortable: true
 								},
 								{
 									key: 'Short Description',
+									sortable: true
+								},
+								{
+									key: 'Long Description',
 									sortable: true
 								},
 								{
@@ -45,6 +53,10 @@
 									sortable: true
 								},
 								{
+									key: 'Demo URL',
+									sortable: true
+								},
+								{
 									key: 'Author',
 									sortable: true
 								},
@@ -53,7 +65,11 @@
 									sortable: true
 								},
 								{
-									key: 'Include in Bundle',
+									key: 'Bundle',
+									sortable: true
+								},
+								{
+									key: 'Compatibility',
 									sortable: true
 								},
 								{
@@ -79,6 +95,14 @@
 								{
 									key: 'Supported',
 									sortable: true
+								},
+								{
+									key: 'Icon',
+									sortable: false
+								},
+								{
+									key: 'Screenshots',
+									sortable: false
 								}
 							];
 
@@ -181,6 +205,7 @@
 			'Artifact ID': '<xsl:value-of select="artifact-id" />',
 			'Name': '<xsl:value-of select="name" />',
 			'Type': '<xsl:value-of select="type" />',
+			'Category': '<xsl:value-of select="releng/category" />',
 			'Tags': '<xsl:value-of select="tags" />',
 
 			'Short Description':
@@ -190,8 +215,16 @@
 					<xsl:with-param name="with">\'</xsl:with-param>
 				</xsl:call-template>',
 
+			'Long Description':
+				'<xsl:call-template name="str:subst">
+					<xsl:with-param name="text" select="normalize-space(long-description) "/>
+					<xsl:with-param name="replace">'</xsl:with-param>
+					<xsl:with-param name="with">\'</xsl:with-param>
+				</xsl:call-template>',
+
 			'Change Log': '<xsl:value-of select="change-log" />',
 			'Page URL': '<xsl:value-of select="page-url" />',
+			'Demo URL': '<xsl:value-of select="releng/demo-url" />',
 			'Author': '<xsl:value-of select="author" />',
 			'Licenses': '<xsl:value-of select="licenses" />',
 
@@ -204,11 +237,15 @@
 	</xsl:template>
 
 	<xsl:template match="releng">
-		'Include in Bundle':
+		'Bundle':
 			'<xsl:choose>
 				<xsl:when test="bundle = 'true'">Yes</xsl:when>
 				<xsl:otherwise>No</xsl:otherwise>
 			</xsl:choose>',
+
+		'Compatibility': '<xsl:value-of select="compatibility" />',
+
+		'Icon': '<xsl:if test="icon != ''"><img height="50"><xsl:attribute name="src"><xsl:value-of select="icon" /></xsl:attribute></img></xsl:if>',
 
 		'Labs':
 			'<xsl:choose>
@@ -224,15 +261,17 @@
 
 		'Parent App': '<xsl:value-of select="parent-app" />',
 
-		'Standalone App':
-			'<xsl:choose>
-				<xsl:when test="standalone-app = 'true'">Yes</xsl:when>
-				<xsl:otherwise>No</xsl:otherwise>
-			</xsl:choose>',
-
 		'Public':
 			'<xsl:choose>
 				<xsl:when test="public = 'true'">Yes</xsl:when>
+				<xsl:otherwise>No</xsl:otherwise>
+			</xsl:choose>',
+
+		'Screenshots': '<nobr><xsl:for-each select="screenshot"><a target="_blank"><xsl:attribute name="href"><xsl:value-of select="current()" /></xsl:attribute><img height="50"><xsl:attribute name="src"><xsl:value-of select="current()" /></xsl:attribute></img></a></xsl:for-each></nobr>',
+
+		'Standalone App':
+			'<xsl:choose>
+				<xsl:when test="standalone-app = 'true'">Yes</xsl:when>
 				<xsl:otherwise>No</xsl:otherwise>
 			</xsl:choose>',
 
