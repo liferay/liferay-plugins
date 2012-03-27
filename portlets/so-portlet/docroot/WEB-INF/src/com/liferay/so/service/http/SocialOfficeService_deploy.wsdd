@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+	<service name="Plugin_SO_SocialOfficeService" provider="java:RPC" style="rpc" use="encoded">
+		<operation xmlns:operNS="urn:http.service.so.liferay.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="isSocialOfficeSite" qname="operNS:isSocialOfficeSite" returnQName="isSocialOfficeSiteReturn" returnType="rtns:boolean" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="groupId" type="tns:long"></parameter>
+		</operation>
+		<parameter name="allowedMethods" value="isSocialOfficeSite" />
+		<parameter name="className" value="com.liferay.so.service.http.SocialOfficeServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="SocialOfficeServiceSoap" />
+		<parameter name="wsdlServiceElement" value="SocialOfficeServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_SO_SocialOfficeService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.so.liferay.com" />
+	</service>
+</deployment>
