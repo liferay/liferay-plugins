@@ -5,6 +5,7 @@
 	<import class="com.liferay.so.model.FavoriteSite" />
 	<import class="com.liferay.so.model.MemberRequest" />
 	<import class="com.liferay.so.model.ProjectsEntry" />
+	<import class="com.liferay.so.model.SocialOffice" />
 	<class name="com.liferay.so.model.impl.FavoriteSiteImpl" table="SO_FavoriteSite">
 		<cache usage="read-write" />
 		<id name="favoriteSiteId" type="long">

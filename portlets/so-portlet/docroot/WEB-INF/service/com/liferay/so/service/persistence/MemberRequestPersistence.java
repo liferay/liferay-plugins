@@ -439,9 +439,10 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	* Removes the member request where key = &#63; from the database.
 	*
 	* @param key the key
+	* @return the member request that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByKey(java.lang.String key)
+	public com.liferay.so.model.MemberRequest removeByKey(java.lang.String key)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchMemberRequestException;
 
@@ -470,9 +471,11 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	* @param groupId the group ID
 	* @param receiverUserId the receiver user ID
 	* @param status the status
+	* @return the member request that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByG_R_S(long groupId, long receiverUserId, int status)
+	public com.liferay.so.model.MemberRequest removeByG_R_S(long groupId,
+		long receiverUserId, int status)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchMemberRequestException;
 
