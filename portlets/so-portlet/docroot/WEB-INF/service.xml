@@ -124,6 +124,12 @@
 			<finder-column name="userId" />
 		</finder>
 	</entity>
+	<entity name="SocialOffice" local-service="false" remote-service="true">
+
+		<!-- References -->
+		
+		<reference package-path="com.liferay.portal" entity="Group" />
+	</entity>
 	<exceptions>
 		<exception>MemberRequestAlreadyUsed</exception>
 		<exception>MemberRequestInvalidUser</exception>
