@@ -2002,8 +2002,7 @@ input[type=text], input[type=password], textarea, .aui-field-select select, .aui
 	@include border-radius(5px);
 }
 
-input[type=text], input[type=password], textarea, .aui-field-select select, .aui-textboxlistentry-holder, .microblogs-portlet .autocomplete,
-.so-portlet-invite-members .search {
+input[type=text], input[type=password], textarea, .aui-field-select select, .aui-textboxlistentry-holder, .microblogs-portlet .autocomplete, .so-portlet-invite-members .search {
 	@include box-shadow(0 1px 3px #C9C9C9 inset);
 }
 
