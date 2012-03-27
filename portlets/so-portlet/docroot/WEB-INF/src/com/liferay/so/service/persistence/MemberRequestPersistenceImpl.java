@@ -1789,13 +1789,14 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * Removes the member request where key = &#63; from the database.
 	 *
 	 * @param key the key
+	 * @return the member request that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByKey(String key)
+	public MemberRequest removeByKey(String key)
 		throws NoSuchMemberRequestException, SystemException {
 		MemberRequest memberRequest = findByKey(key);
 
-		remove(memberRequest);
+		return remove(memberRequest);
 	}
 
 	/**
@@ -1831,14 +1832,15 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param groupId the group ID
 	 * @param receiverUserId the receiver user ID
 	 * @param status the status
+	 * @return the member request that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByG_R_S(long groupId, long receiverUserId, int status)
-		throws NoSuchMemberRequestException, SystemException {
+	public MemberRequest removeByG_R_S(long groupId, long receiverUserId,
+		int status) throws NoSuchMemberRequestException, SystemException {
 		MemberRequest memberRequest = findByG_R_S(groupId, receiverUserId,
 				status);
 
-		remove(memberRequest);
+		return remove(memberRequest);
 	}
 
 	/**

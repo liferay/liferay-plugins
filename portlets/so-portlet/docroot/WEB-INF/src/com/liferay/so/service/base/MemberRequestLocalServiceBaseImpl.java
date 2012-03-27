@@ -48,6 +48,7 @@ import com.liferay.so.model.MemberRequest;
 import com.liferay.so.service.FavoriteSiteLocalService;
 import com.liferay.so.service.MemberRequestLocalService;
 import com.liferay.so.service.ProjectsEntryLocalService;
+import com.liferay.so.service.SocialOfficeService;
 import com.liferay.so.service.persistence.FavoriteSiteFinder;
 import com.liferay.so.service.persistence.FavoriteSitePersistence;
 import com.liferay.so.service.persistence.MemberRequestPersistence;
@@ -406,6 +407,24 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	public void setProjectsEntryPersistence(
 		ProjectsEntryPersistence projectsEntryPersistence) {
 		this.projectsEntryPersistence = projectsEntryPersistence;
+	}
+
+	/**
+	 * Returns the social office remote service.
+	 *
+	 * @return the social office remote service
+	 */
+	public SocialOfficeService getSocialOfficeService() {
+		return socialOfficeService;
+	}
+
+	/**
+	 * Sets the social office remote service.
+	 *
+	 * @param socialOfficeService the social office remote service
+	 */
+	public void setSocialOfficeService(SocialOfficeService socialOfficeService) {
+		this.socialOfficeService = socialOfficeService;
 	}
 
 	/**
@@ -775,6 +794,8 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	protected ProjectsEntryLocalService projectsEntryLocalService;
 	@BeanReference(type = ProjectsEntryPersistence.class)
 	protected ProjectsEntryPersistence projectsEntryPersistence;
+	@BeanReference(type = SocialOfficeService.class)
+	protected SocialOfficeService socialOfficeService;
 	@BeanReference(type = CounterLocalService.class)
 	protected CounterLocalService counterLocalService;
 	@BeanReference(type = GroupLocalService.class)

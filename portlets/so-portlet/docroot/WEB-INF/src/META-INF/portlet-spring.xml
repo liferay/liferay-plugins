@@ -17,4 +17,8 @@
 		<property name="service" ref="com.liferay.so.service.ProjectsEntryLocalService" />
 	</bean>
 	<bean id="com.liferay.so.service.persistence.ProjectsEntryPersistence" class="com.liferay.so.service.persistence.ProjectsEntryPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.so.service.SocialOfficeService" class="com.liferay.so.service.impl.SocialOfficeServiceImpl" />
+	<bean id="com.liferay.so.service.SocialOfficeServiceUtil" class="com.liferay.so.service.SocialOfficeServiceUtil">
+		<property name="service" ref="com.liferay.so.service.SocialOfficeService" />
+	</bean>
 </beans>
