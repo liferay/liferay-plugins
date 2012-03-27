@@ -17,9 +17,11 @@
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
+<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <%@ page import="com.liferay.chat.NoSuchEntryException" %><%@
 page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %><%@
+page import="com.liferay.portal.kernel.util.FileUtil" %><%@
 page import="com.liferay.portal.kernel.util.HttpUtil" %><%@
 page import="com.liferay.portal.service.CompanyLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.GroupLocalServiceUtil" %><%@
@@ -28,7 +30,8 @@ page import="com.liferay.portal.theme.ThemeDisplay" %><%@
 page import="com.liferay.testpacl.service.TestPACLLocalServiceUtil" %><%@
 page import="com.liferay.testpacl.util.TestPACLUtil" %>
 
-<%@ page import="java.io.IOException" %><%@
+<%@ page import="java.io.File" %><%@
+page import="java.io.IOException" %><%@
 page import="java.io.Writer" %>
 
 <%@ page import="java.net.ServerSocket" %><%@

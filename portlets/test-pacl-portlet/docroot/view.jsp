@@ -16,10 +16,138 @@
 
 <%@ include file="/init.jsp" %>
 
-<h3>Services: Chat Portlet</h3>
+<liferay-ui:header
+	title="Files"
+/>
 
 <p>
-	<h4>com.liferay.chat.service.impl.EntryLocalServiceImpl</h4>
+	<h3>Delete</h3>
+</p>
+
+<p>
+	<h3>Execute</h3>
+</p>
+
+<p>
+	<h3>Read</h3>
+</p>
+
+<p>
+	../webapps/chat-portlet/css/main.css=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				FileUtil.read("../webapps/chat-portlet/css/main.css");
+			}
+
+		};
+		%>
+
+	../webapps/chat-portlet/images/saved.png=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				FileUtil.read("../webapps/chat-portlet/images/saved.png");
+			}
+
+		};
+		%>
+
+	../webapps/chat-portlet/WEB-INF/liferay-releng.properties=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				FileUtil.read("../webapps/chat-portlet/WEB-INF/liferay-releng.properties");
+			}
+
+		};
+		%>
+
+	../webapps/chat-portlet/WEB-INF/content/Language.properties=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				FileUtil.read("../webapps/chat-portlet/WEB-INF/src/content/Language.properties");
+			}
+
+		};
+		%>
+
+</p>
+
+<p>
+	<h3>Write</h3>
+</p>
+
+<p>
+	../webapps/chat-portlet/css/main.css=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				FileUtil.write("../webapps/chat-portlet/css/main.css", "");
+			}
+
+		};
+		%>
+
+	../webapps/chat-portlet/images/saved.png=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				File file = new File("../webapps/chat-portlet/images/saved.png");
+
+				byte[] bytes = FileUtil.getBytes(file);
+
+				FileUtil.write(file, bytes);
+			}
+
+		};
+		%>
+
+	../webapps/chat-portlet/WEB-INF/liferay-releng.properties=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				FileUtil.write("../webapps/chat-portlet/WEB-INF/liferay-releng.properties", "");
+			}
+
+		};
+		%>
+
+	../webapps/chat-portlet/WEB-INF/content/Language.properties=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				FileUtil.write("../webapps/chat-portlet/WEB-INF/src/content/Language.properties", "");
+			}
+
+		};
+		%>
+
+</p>
+
+<liferay-ui:header
+	title="Services: Chat Portlet"
+/>
+
+<p>
+	<h3>com.liferay.chat.service.impl.EntryLocalServiceImpl</h3>
 </p>
 
 <p>
@@ -53,7 +181,7 @@
 </p>
 
 <p>
-	<h4>com.liferay.chat.service.impl.StatusLocalServiceImpl</h4>
+	<h3>com.liferay.chat.service.impl.StatusLocalServiceImpl</h3>
 </p>
 
 <p>
@@ -82,10 +210,12 @@
 		%>
 </p>
 
-<h3>Services: Portal</h3>
+<liferay-ui:header
+	title="Services: Portal"
+/>
 
 <p>
-	<h4>com.liferay.portal.service.impl.CompanyLocalServiceImpl</h4>
+	<h3>com.liferay.portal.service.impl.CompanyLocalServiceImpl</h3>
 </p>
 
 <p>
@@ -128,7 +258,7 @@
 </p>
 
 <p>
-	<h4>com.liferay.portal.service.impl.GroupLocalServiceImpl</h4>
+	<h3>com.liferay.portal.service.impl.GroupLocalServiceImpl</h3>
 </p>
 
 <p>
@@ -171,7 +301,7 @@
 </p>
 
 <p>
-	<h4>com.liferay.portal.service.impl.PortalServiceImpl</h4>
+	<h3>com.liferay.portal.service.impl.PortalServiceImpl</h3>
 </p>
 
 <p>
@@ -250,7 +380,7 @@
 </p>
 
 <p>
-	<h4>com.liferay.portal.service.impl.UserLocalServiceImpl</h4>
+	<h3>com.liferay.portal.service.impl.UserLocalServiceImpl</h3>
 </p>
 
 <p>
@@ -292,10 +422,12 @@
 
 </p>
 
-<h3>Services: Test PACL Portlet</h3>
+<liferay-ui:header
+	title="Services: Test PACL Portlet"
+/>
 
 <p>
-	<h4>com.liferay.testpacl.service.impl.TestPACLLocalServiceImpl</h4>
+	<h3>com.liferay.testpacl.service.impl.TestPACLLocalServiceImpl</h3>
 </p>
 
 <p>
@@ -313,10 +445,12 @@
 
 </p>
 
-<h3>Sockets</h3>
+<liferay-ui:header
+	title="Sockets"
+/>
 
 <p>
-	<h4>Connect</h4>
+	<h3>Connect</h3>
 </p>
 
 <p>
@@ -412,7 +546,7 @@
 </p>
 
 <p>
-	<h4>Listen</h4>
+	<h3>Listen</h3>
 </p>
 
 <p>
@@ -515,10 +649,12 @@
 
 </p>
 
-<h3>Threads</h3>
+<liferay-ui:header
+	title="Threads"
+/>
 
 <p>
-	<h4>Current Thread</h4>
+	<h3>Current Thread</h3>
 </p>
 
 <p>
@@ -532,7 +668,7 @@
 </p>
 
 <p>
-	<h4>Message Bus Thread</h4>
+	<h3>Message Bus Thread</h3>
 </p>
 
 <p>
@@ -546,7 +682,7 @@
 </p>
 
 <p>
-	<h4>New Thread</h4>
+	<h3>New Thread</h3>
 </p>
 
 <p>
