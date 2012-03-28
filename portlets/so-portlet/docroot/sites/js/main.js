@@ -127,6 +127,7 @@ AUI().use(
 						{
 							constrain2view: true,
 							cssClass: 'so-portlet-sites-dialog',
+							modal: true,
 							resizable: false,
 							width: 526
 						}
@@ -145,7 +146,7 @@ AUI().use(
 				instance._directoryList = directoryList;
 			},
 
-			updateSites: function() {
+			updateSites: function(showSuccessMessage) {
 				var instance = this;
 
 				if (instance._directoryList) {
@@ -154,6 +155,10 @@ AUI().use(
 
 				if (instance._siteList) {
 					instance._siteList.sendRequest();
+				}
+
+				if (showSuccessMessage && instance._saveMessages) {
+					instance._saveMessages.html('<span class="portlet-msg-success">' + Liferay.Language.get('your-request-completed-successfully') + '</span>');
 				}
 			},
 
@@ -222,6 +227,8 @@ AUI().use(
 				siteList.on('results', instance._updateSiteList);
 
 				instance._siteList = siteList;
+
+				instance._saveMessages = A.one(config.saveMessages);
 			},
 
 			_updateSiteList: function(event) {

@@ -192,9 +192,7 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 	</aui:button-row>
 </aui:form>
 
-<aui:script>
-	var A = AUI();
-
+<aui:script use="aui-base,aui-io-request,aui-loading-mask">
 	var form = A.one(document.<portlet:namespace />dialogFm);
 
 	var sectionContainer = A.one('.so-portlet-sites-dialog .section-container');
@@ -207,6 +205,15 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 		'<portlet:namespace />save',
 		function() {
 			nextButton.set('disabled', true);
+
+			var loadingMask = new A.LoadingMask(
+				{
+					'strings.loading': '<%= UnicodeLanguageUtil.get(pageContext, "creating-a-new-site") %>',
+					target: A.one('.so-portlet-sites-dialog')
+				}
+			);
+
+			loadingMask.show();
 
 			var layoutElems = sectionContainer.all('.delete-layouts-container .page input:not(:checked)');
 
@@ -230,17 +237,16 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 							var data = this.get('responseData');
 
 							if (data.result == 'success') {
-								form.one('.portlet-msg-success').show();
 								form.one('.portlet-msg-error').hide();
 
-								form.one('.section-container').hide();
-
-								Liferay.SO.Sites.updateSites();
+								Liferay.SO.Sites.updateSites(true);
 
 								var callback = function() {
 									var dialog = Liferay.SO.Sites.getPopup();
 
 									dialog.hide();
+
+									loadingMask.hide();
 								}
 
 								setTimeout(callback, 1000);
@@ -257,6 +263,8 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 								var section = A.one('.so-portlet-sites-dialog .section');
 
 								<portlet:namespace />showSection(section);
+
+								loadingMask.hide();
 							}
 						}
 					},
