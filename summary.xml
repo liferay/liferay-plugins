@@ -183,6 +183,7 @@
 			<category></category>
 			<compatibility></compatibility>
 			<demo-url></demo-url>
+			<icon>hooks/sevencogs-hook/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -676,6 +677,7 @@
 			<category></category>
 			<compatibility></compatibility>
 			<demo-url></demo-url>
+			<icon>portlets/google-maps-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -820,6 +822,7 @@
 			<category></category>
 			<compatibility></compatibility>
 			<demo-url></demo-url>
+			<icon>portlets/mail-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -940,6 +943,7 @@
 			<category></category>
 			<compatibility></compatibility>
 			<demo-url></demo-url>
+			<icon>portlets/opensocial-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -2404,6 +2408,7 @@
 			<category></category>
 			<compatibility></compatibility>
 			<demo-url></demo-url>
+			<icon>portlets/twitter-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -3253,6 +3258,7 @@
 			<category></category>
 			<compatibility></compatibility>
 			<demo-url></demo-url>
+			<icon>themes/sevencogs-theme/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -3541,6 +3547,7 @@
 			<category></category>
 			<compatibility></compatibility>
 			<demo-url></demo-url>
+			<icon>webs/kaleo-web/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -3613,6 +3620,7 @@
 			<category></category>
 			<compatibility></compatibility>
 			<demo-url></demo-url>
+			<icon>webs/solr-web/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
