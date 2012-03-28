@@ -40,7 +40,6 @@ if (selUser != null) {
 
 	<div id="<portlet:namespace />updateUserDialog">
 		<aui:form action="" method="post" name="fm" onSubmit="<%= taglibOnSubmit %>">
-			<aui:input name="<%= Constants.CMD %>" type="hidden" value="updateFieldGroup" />
 			<aui:input name="redirect" type="hidden"  value="<%= redirect %>" />
 			<aui:input name="fieldGroup" type="hidden"  value="<%= curSectionId %>" />
 			<aui:input name="p_u_i_d" type="hidden" value="<%= (selUser != null) ? selUser.getUserId() : 0 %>" />
@@ -97,10 +96,10 @@ if (selUser != null) {
 
 			<c:choose>
 				<c:when test="<%= extension %>">
-					var uri = '<liferay-portlet:actionURL portletName="<%= PortletKeys.USERS_ADMIN %>" windowState="<%= LiferayWindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/users_admin/edit_user" /></liferay-portlet:actionURL>';
+					var uri = '<liferay-portlet:actionURL name="updateFieldGroup" portletName="<%= PortletKeys.USERS_ADMIN %>" windowState="<%= LiferayWindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/users_admin/edit_user" /></liferay-portlet:actionURL>';
 				</c:when>
 				<c:otherwise>
-					var uri = '<liferay-portlet:actionURL />';
+					var uri = '<liferay-portlet:actionURL name="updateFieldGroup" />';
 				</c:otherwise>
 			</c:choose>
 

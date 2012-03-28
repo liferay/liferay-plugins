@@ -62,9 +62,10 @@ public class EditUserAction extends BaseStrutsPortletAction {
 			ActionResponse actionResponse)
 		throws Exception {
 
-		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+		String actionName = ParamUtil.getString(
+			actionRequest, ActionRequest.ACTION_NAME);
 
-		if (cmd.equals("updateFieldGroup")) {
+		if (actionName.equals("updateFieldGroup")) {
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 			try {
