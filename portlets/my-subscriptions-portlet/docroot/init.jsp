@@ -36,8 +36,8 @@ page import="com.liferay.portal.kernel.util.WebKeys" %><%@
 page import="com.liferay.portal.model.Subscription" %><%@
 page import="com.liferay.portal.security.permission.ResourceActionsUtil" %><%@
 page import="com.liferay.portal.service.SubscriptionLocalServiceUtil" %><%@
-page import="com.liferay.portal.util.comparator.SubscriptionClassNameIdComparator" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
+page import="com.liferay.portal.util.comparator.SubscriptionClassNameIdComparator" %><%@
 page import="com.liferay.portlet.asset.model.AssetRenderer" %>
 
 <%@ page import="java.text.Format" %>
