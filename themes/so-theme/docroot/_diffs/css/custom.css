@@ -911,6 +911,11 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	.so-portlet-dockbar-notifications .menu-button .notification-count {
 		background: #0070BA;
 	}
+
+	.user-avatar {
+		height: 28px;
+		overflow-y: hidden;
+	}
 }
 
 /* Recent Documents */
