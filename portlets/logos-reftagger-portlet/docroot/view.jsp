@@ -19,6 +19,7 @@
 
 <liferay-util:html-bottom>
 	<script src="http://bible.logos.com/jsapi/referencetagging.js" type="text/javascript"></script>
+
 	<aui:script position="inline">
 		Logos.ReferenceTagging.lbsBibleVersion = "ESV";
 		Logos.ReferenceTagging.lbsLinksOpenNewWindow = true;
