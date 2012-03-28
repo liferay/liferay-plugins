@@ -17,7 +17,7 @@
 
 		<column name="companyId" type="long" />
 		<column name="userId" type="long" />
-		
+
 		<!-- Finder methods -->
 
 		<finder name="UserId" return-type="Collection">
@@ -27,7 +27,7 @@
 			<finder-column name="groupId" />
 			<finder-column name="userId" />
 		</finder>
-		
+
 		<!-- References -->
 
 		<reference package-path="com.liferay.portal" entity="Company" />
@@ -117,7 +117,7 @@
 		<order by="asc">
 			<order-column name="endDate" />
 		</order>
-		
+
 		<!-- Finder methods -->
 
 		<finder name="UserId" return-type="Collection">
@@ -127,7 +127,7 @@
 	<entity name="SocialOffice" local-service="false" remote-service="true">
 
 		<!-- References -->
-		
+
 		<reference package-path="com.liferay.portal" entity="Group" />
 	</entity>
 	<exceptions>
