@@ -25,6 +25,44 @@
 </p>
 
 <p>
+
+	<%
+	new FileSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testDeleteWithFile("../webapps/chat-portlet/WEB-INF/.gitignore");
+		}
+
+	};
+
+	new FileSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testDeleteWithFileUtil("../webapps/chat-portlet/WEB-INF/.gitignore");
+		}
+
+	};
+
+	new FileSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testDeleteWithFile("../webapps/chat-portlet/WEB-INF/liferay-releng.properties");
+		}
+
+	};
+
+	new FileSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testDeleteWithFileUtil("../webapps/chat-portlet/WEB-INF/liferay-releng.properties");
+		}
+
+	};
+	%>
+
+</p>
+
+<p>
 	<h3>Execute</h3>
 </p>
 
@@ -33,53 +71,72 @@
 </p>
 
 <p>
-	../webapps/chat-portlet/css/main.css=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new FileSecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				FileUtil.read("../webapps/chat-portlet/css/main.css");
-			}
+		protected void test() throws Exception {
+			testReadWithFile("../webapps/chat-portlet/css/main.css");
+		}
 
-		};
-		%>
+	};
 
-	../webapps/chat-portlet/images/saved.png=
+	new FileSecurityExceptionTest(out, themeDisplay, true) {
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+		protected void test() throws Exception {
+			testReadWithFileUtil("../webapps/chat-portlet/css/main.css");
+		}
 
-			protected void test() throws Exception {
-				FileUtil.read("../webapps/chat-portlet/images/saved.png");
-			}
+	};
 
-		};
-		%>
+	new FileSecurityExceptionTest(out, themeDisplay, false) {
 
-	../webapps/chat-portlet/WEB-INF/liferay-releng.properties=
+		protected void test() throws Exception {
+			testReadWithFile("../webapps/chat-portlet/images/saved.png");
+		}
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	};
 
-			protected void test() throws Exception {
-				FileUtil.read("../webapps/chat-portlet/WEB-INF/liferay-releng.properties");
-			}
+	new FileSecurityExceptionTest(out, themeDisplay, false) {
 
-		};
-		%>
+		protected void test() throws Exception {
+			testReadWithFileUtil("../webapps/chat-portlet/images/saved.png");
+		}
 
-	../webapps/chat-portlet/WEB-INF/content/Language.properties=
+	};
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+	new FileSecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				FileUtil.read("../webapps/chat-portlet/WEB-INF/src/content/Language.properties");
-			}
+		protected void test() throws Exception {
+			testReadWithFile("../webapps/chat-portlet/WEB-INF/web.xml");
+		}
 
-		};
-		%>
+	};
+
+	new FileSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testReadWithFileUtil("../webapps/chat-portlet/WEB-INF/web.xml");
+		}
+
+	};
+
+	new FileSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testReadWithFile("../webapps/chat-portlet/WEB-INF/src/content/Language.properties");
+		}
+
+	};
+
+	new FileSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testReadWithFileUtil("../webapps/chat-portlet/WEB-INF/src/content/Language.properties");
+		}
+
+	};
+	%>
 
 </p>
 
@@ -88,57 +145,72 @@
 </p>
 
 <p>
-	../webapps/chat-portlet/css/main.css=
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	<%
+	new FileSecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				FileUtil.write("../webapps/chat-portlet/css/main.css", "");
-			}
+		protected void test() throws Exception {
+			testWriteWithFile("../webapps/chat-portlet/css/main.css");
+		}
 
-		};
-		%>
+	};
 
-	../webapps/chat-portlet/images/saved.png=
+	new FileSecurityExceptionTest(out, themeDisplay, true) {
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+		protected void test() throws Exception {
+			testWriteWithFileUtil("../webapps/chat-portlet/css/main.css");
+		}
 
-			protected void test() throws Exception {
-				File file = new File("../webapps/chat-portlet/images/saved.png");
+	};
 
-				byte[] bytes = FileUtil.getBytes(file);
+	new FileSecurityExceptionTest(out, themeDisplay, false) {
 
-				FileUtil.write(file, bytes);
-			}
+		protected void test() throws Exception {
+			testWriteWithFile("../webapps/chat-portlet/images/saved.png");
+		}
 
-		};
-		%>
+	};
 
-	../webapps/chat-portlet/WEB-INF/liferay-releng.properties=
+	new FileSecurityExceptionTest(out, themeDisplay, false) {
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+		protected void test() throws Exception {
+			testWriteWithFileUtil("../webapps/chat-portlet/images/saved.png");
+		}
 
-			protected void test() throws Exception {
-				FileUtil.write("../webapps/chat-portlet/WEB-INF/liferay-releng.properties", "");
-			}
+	};
 
-		};
-		%>
+	new FileSecurityExceptionTest(out, themeDisplay, false) {
 
-	../webapps/chat-portlet/WEB-INF/content/Language.properties=
+		protected void test() throws Exception {
+			testWriteWithFile("../webapps/chat-portlet/WEB-INF/liferay-releng.properties");
+		}
 
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+	};
 
-			protected void test() throws Exception {
-				FileUtil.write("../webapps/chat-portlet/WEB-INF/src/content/Language.properties", "");
-			}
+	new FileSecurityExceptionTest(out, themeDisplay, false) {
 
-		};
-		%>
+		protected void test() throws Exception {
+			testWriteWithFileUtil("../webapps/chat-portlet/WEB-INF/liferay-releng.properties");
+		}
+
+	};
+
+	new FileSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testWriteWithFile("../webapps/chat-portlet/WEB-INF/src/content/Language.properties");
+		}
+
+	};
+
+	new FileSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testWriteWithFileUtil("../webapps/chat-portlet/WEB-INF/src/content/Language.properties");
+		}
+
+	};
+	%>
 
 </p>
 
@@ -705,11 +777,135 @@ private static String _assertTrue(boolean value) {
 	}
 }
 
+private class FileSecurityExceptionTest extends SecurityExceptionTest {
+
+	public FileSecurityExceptionTest(Writer writer, ThemeDisplay themeDisplay, boolean expectSecurityException) throws IOException {
+		super(writer, themeDisplay, expectSecurityException);
+	}
+
+	protected void testDeleteWithFile(String fileName) throws Exception {
+		writer.write(fileName);
+		writer.write("=");
+
+		File file = new File(fileName);
+
+		byte[] bytes = null;
+
+		try {
+			bytes = FileUtil.getBytes(file);
+		}
+		catch (SecurityException se) {
+			throw new Exception(se.getMessage(), se);
+		}
+
+		if (file.delete()) {
+			try {
+				FileUtil.write(file, bytes);
+			}
+			catch (SecurityException se) {
+				throw new Exception(se.getMessage(), se);
+			}
+
+			if (expectSecurityException) {
+				throw new SecurityException();
+			}
+		}
+		else {
+			if (!expectSecurityException) {
+				throw new SecurityException();
+			}
+		}
+	}
+
+	protected void testDeleteWithFileUtil(String fileName) throws Exception {
+		writer.write(fileName);
+		writer.write("=");
+
+		File file = new File(fileName);
+
+		byte[] bytes = null;
+
+		try {
+			bytes = FileUtil.getBytes(file);
+		}
+		catch (SecurityException se) {
+			throw new Exception(se.getMessage(), se);
+		}
+
+		if (FileUtil.delete(file)) {
+			try {
+				FileUtil.write(file, bytes);
+			}
+			catch (SecurityException se) {
+				throw new Exception(se.getMessage(), se);
+			}
+
+			if (expectSecurityException) {
+				throw new SecurityException();
+			}
+		}
+		else {
+			if (!expectSecurityException) {
+				throw new SecurityException();
+			}
+		}
+	}
+
+	protected void testReadWithFile(String fileName) throws Exception {
+		writer.write(fileName);
+		writer.write("=");
+
+		File file = new File(fileName);
+
+		if (expectSecurityException && file.canRead()) {
+			throw new SecurityException();
+		}
+		else if (!expectSecurityException && !file.canRead()) {
+			throw new SecurityException();
+		}
+	}
+
+	protected void testReadWithFileUtil(String fileName) throws Exception {
+		writer.write(fileName);
+		writer.write("=");
+
+		FileUtil.read(fileName);
+	}
+
+	protected void testWriteWithFile(String fileName) throws Exception {
+		writer.write(fileName);
+		writer.write("=");
+
+		File file = new File(fileName);
+
+		if (expectSecurityException && file.canWrite()) {
+			throw new SecurityException();
+		}
+		else if (!expectSecurityException && !file.canWrite()) {
+			throw new SecurityException();
+		}
+	}
+
+	protected void testWriteWithFileUtil(String fileName) throws Exception {
+		writer.write(fileName);
+		writer.write("=");
+
+		File file = new File(fileName);
+
+		byte[] bytes = FileUtil.getBytes(file);
+
+		FileUtil.write(file, bytes);
+	}
+
+}
+
 private class SecurityExceptionTest {
 
 	public SecurityExceptionTest(Writer writer, ThemeDisplay themeDisplay, boolean expectSecurityException) throws IOException {
 		try {
+			this.writer = writer;
 			this.themeDisplay = themeDisplay;
+			this.expectSecurityException = expectSecurityException;
 
 			test();
 
@@ -726,7 +922,8 @@ private class SecurityExceptionTest {
 			}
 			else {
 				writer.write("FAILED");
-			} }
+			}
+		}
 		catch (Exception e) {
 			writer.write("FAILED with " + e.getMessage());
 		}
@@ -737,7 +934,9 @@ private class SecurityExceptionTest {
 	protected void test() throws Exception {
 	}
 
+	protected boolean expectSecurityException;
 	protected ThemeDisplay themeDisplay;
+	protected Writer writer;
 
 }
 %>
