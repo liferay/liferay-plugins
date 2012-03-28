@@ -49,7 +49,7 @@
 
 <liferay-ui:search-container searchContainer="<%= new CalendarResourceSearch(renderRequest, iteratorURL) %>">
 	<liferay-ui:search-container-results>
-		<%@ include file="/resource_search_results.jspf" %>
+		<%@ include file="/calendar_resource_search_results.jspf" %>
 	</liferay-ui:search-container-results>
 
 	<liferay-ui:search-container-row
@@ -90,7 +90,7 @@
 
 		<liferay-ui:search-container-column-jsp
 			align="right"
-			path="/resource_action.jsp"
+			path="/calendar_resource_action.jsp"
 		/>
 	</liferay-ui:search-container-row>
 
