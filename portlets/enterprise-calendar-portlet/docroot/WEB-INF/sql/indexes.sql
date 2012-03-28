@@ -5,7 +5,6 @@ create index IX_96C8590 on Calendar (uuid_);
 create unique index IX_3AE311A on Calendar (uuid_, groupId);
 
 create index IX_D300DFCE on CalendarBooking (calendarId);
-create index IX_740CAE7E on CalendarBooking (calendarId, remindBy);
 create index IX_C4D67607 on CalendarBooking (calendarId, startDate, endDate);
 create index IX_B198FFC on CalendarBooking (calendarResourceId);
 create index IX_97B612E2 on CalendarBooking (calendarResourceId, status);
