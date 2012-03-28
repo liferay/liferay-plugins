@@ -1033,10 +1033,13 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		}
 	}
 
+	div.taglib-header {
+		position: relative;
+	}
+
 	h1.header-title, #blogsCommentsPanelContainer, .aui-form, .entry {
 		margin: 0 auto;
 		max-width: 640px;
-		position: relative;
 	}
 
 	h1.header-title, .entry-title h2 {
