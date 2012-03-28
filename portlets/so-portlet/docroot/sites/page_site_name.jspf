@@ -21,9 +21,7 @@
 	<c:if test="<%= group.isRegularSite() && !group.isControlPanel() %>">
 
 		<%
-		ExpandoBridge expandoBridge = group.getExpandoBridge();
-
-		boolean socialOfficeEnabled = GetterUtil.getBoolean(expandoBridge.getAttribute("socialOfficeEnabled"));
+		boolean socialOfficeEnabled = SocialOfficeServiceUtil.isSocialOfficeSite(group.getGroupId());
 		%>
 
 		<c:choose>
