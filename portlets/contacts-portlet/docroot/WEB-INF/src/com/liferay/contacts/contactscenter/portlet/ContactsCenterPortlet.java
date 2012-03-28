@@ -399,28 +399,21 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		throws IOException, PortletException {
 
 		try {
-			String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+			String actionName = ParamUtil.getString(
+				actionRequest, ActionRequest.ACTION_NAME);
 
-			if (cmd.equals("addSocialRelation")) {
-				addSocialRelation(actionRequest, actionResponse);
-			}
-			else if (cmd.equals("deleteSocialRelation")) {
-				deleteSocialRelation(actionRequest, actionResponse);
-			}
-			else if (cmd.equals("requestSocialRelation")) {
-				requestSocialRelation(actionRequest, actionResponse);
-			}
-			else if (cmd.equals("updateFieldGroup")) {
+			if (actionName.equals("updateFieldGroup")) {
 				updateFieldGroup(actionRequest, actionResponse);
 
 				return;
+			}
+			else {
+				super.processAction(actionRequest, actionResponse);
 			}
 		}
 		catch (Exception e) {
 			throw new PortletException(e);
 		}
-
-		sendRedirect(actionRequest, actionResponse);
 	}
 
 	public void requestSocialRelation(

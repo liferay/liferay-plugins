@@ -53,7 +53,7 @@
 			{
 				cssClass: '<%= user2 == null ? "aui-helper-hidden" : "" %>',
 				handler: function(event) {
-					<portlet:namespace />relationAction(event, 'requestSocialRelation', '<%= String.valueOf(SocialRelationConstants.TYPE_BI_CONNECTION) %>');
+					<portlet:namespace />relationAction(event, '<portlet:actionURL name="requestSocialRelation"><portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_BI_CONNECTION) %>" /></portlet:actionURL>');
 				},
 				icon: 'add-coworker',
 				id: '<portlet:namespace />addConnectionButton',
@@ -67,7 +67,7 @@
 			{
 				cssClass: '<%= user2 == null ? "aui-helper-hidden" : "" %>',
 				handler: function(event) {
-					<portlet:namespace />relationAction(event, 'deleteSocialRelation', '<%= String.valueOf(SocialRelationConstants.TYPE_BI_CONNECTION) %>');
+					<portlet:namespace />relationAction(event, '<portlet:actionURL name="deleteSocialRelation"><portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_BI_CONNECTION) %>" /></portlet:actionURL>');
 				},
 				icon: 'remove-coworker',
 				id: '<portlet:namespace />removeConnectionButton',
@@ -81,7 +81,7 @@
 			{
 				cssClass: '<%= user2 == null ? "aui-helper-hidden" : "" %>',
 				handler: function(event) {
-					<portlet:namespace />relationAction(event, 'addSocialRelation', '<%= String.valueOf(SocialRelationConstants.TYPE_UNI_FOLLOWER) %>');
+					<portlet:namespace />relationAction(event, '<portlet:actionURL name="addSocialRelation"><portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_FOLLOWER) %>" /></portlet:actionURL>');
 				},
 				icon: 'follow',
 				id: '<portlet:namespace />followButton',
@@ -95,7 +95,7 @@
 			{
 				cssClass: '<%= user2 == null ? "aui-helper-hidden" : "" %>',
 				handler: function(event) {
-					<portlet:namespace />relationAction(event, 'deleteSocialRelation', '<%= String.valueOf(SocialRelationConstants.TYPE_UNI_FOLLOWER) %>');
+					<portlet:namespace />relationAction(event, '<portlet:actionURL name="deleteSocialRelation"><portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_FOLLOWER) %>" /></portlet:actionURL>');
 				},
 				icon: 'unfollow',
 				id: '<portlet:namespace />unfollowButton',
@@ -109,7 +109,7 @@
 			{
 				cssClass: '<%= user2 == null ? "aui-helper-hidden" : "" %>',
 				handler: function(event) {
-					<portlet:namespace />relationAction(event, 'addSocialRelation', '<%= String.valueOf(SocialRelationConstants.TYPE_UNI_ENEMY) %>');
+					<portlet:namespace />relationAction(event, '<portlet:actionURL name="addSocialRelation"><portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_ENEMY) %>" /></portlet:actionURL>');
 				},
 				icon: 'block',
 				id: '<portlet:namespace />blockButton',
@@ -123,7 +123,7 @@
 			{
 				cssClass: '<%= user2 == null ? "aui-helper-hidden" : "" %>',
 				handler: function(event) {
-					<portlet:namespace />relationAction(event, 'deleteSocialRelation', '<%= String.valueOf(SocialRelationConstants.TYPE_UNI_ENEMY) %>');
+					<portlet:namespace />relationAction(event, '<portlet:actionURL name="deleteSocialRelation"><portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_ENEMY) %>" /></portlet:actionURL>');
 				},
 				icon: 'unblock',
 				id: '<portlet:namespace />unblockButton',
@@ -136,7 +136,14 @@
 		{
 			cssClass: '<%= user2 == null ? "aui-helper-hidden" : "" %>',
 			handler: function(event) {
-				<portlet:namespace />relationAction(event, 'exportVCard');
+				<c:choose>
+					<c:when test="<%= (user2 == null) %>">
+						<portlet:namespace />relationAction(event, '<liferay-portlet:resourceURL id="exportVCards" />');
+					</c:when>
+					<c:otherwise>
+						location.href = '<liferay-portlet:resourceURL id="exportVCard"><portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" /></liferay-portlet:resourceURL>';
+					</c:otherwise>
+				</c:choose>
 			},
 			icon: 'export',
 			id: '<portlet:namespace />exportButton',
@@ -173,7 +180,7 @@
 		}
 	).render();
 
-	function <portlet:namespace />relationAction(event, action, type) {
+	function <portlet:namespace />relationAction(event, uri) {
 		<c:choose>
 			<c:when test="<%= (user2 == null) %>">
 				var selectedUsersNodes = A.all('.lfr-contact-grid-item input');
@@ -182,34 +189,21 @@
 					var selectedUsersIds = selectedUsersNodes.val();
 
 					if (selectedUsersIds.length > 0) {
-						document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = action;
 						document.<portlet:namespace />fm.<portlet:namespace />redirect.value = location.href;
 						document.<portlet:namespace />fm.<portlet:namespace />userIds.value = selectedUsersIds.join();
-						document.<portlet:namespace />fm.<portlet:namespace />type.value = type;
 
-						if (action == 'exportVCard') {
-							submitForm(document.<portlet:namespace />fm, '<liferay-portlet:resourceURL id="exportVCards" />');
-						}
-						else {
-							submitForm(document.<portlet:namespace />fm, '<portlet:actionURL />');
-						}
+						submitForm(document.<portlet:namespace />fm, uri);
 					}
 				}
 			</c:when>
 			<c:otherwise>
 				event.preventDefault();
 
-				if (action == 'exportVCard') {
-					location.href = '<liferay-portlet:resourceURL id="exportVCard"><portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" /></liferay-portlet:resourceURL>'
-				}
-				else {
 					A.io.request(
-						'<portlet:actionURL />',
+						uri,
 						{
 							data: {
-								cmd: action,
 								redirect: '<%= currentURL %>',
-								type: type,
 								userIds: '<%= user2.getUserId() %>'
 							},
 							after: {
@@ -226,7 +220,6 @@
 							}
 						}
 					);
-				}
 			</c:otherwise>
 		</c:choose>
 	}
