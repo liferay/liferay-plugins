@@ -514,8 +514,8 @@ public class InstanceUtil {
 		// Microblogs
 
 		layout = LayoutUtil.addLayout(
-			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
-			"Microblogs", "1_column", "/so/microblogs");
+			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Microblogs",
+			"1_column", "/so/microblogs");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/microblogs",

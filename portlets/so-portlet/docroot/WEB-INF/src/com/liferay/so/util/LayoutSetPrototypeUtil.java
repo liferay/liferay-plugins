@@ -28,6 +28,7 @@ import com.liferay.portlet.expando.model.ExpandoValue;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 
 import java.util.List;
+
 /*
  * @author Eudaldo Alonso
  */
