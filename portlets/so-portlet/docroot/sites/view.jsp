@@ -55,7 +55,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 pageContext.setAttribute("portletURL", portletURL);
 %>
 
-<div id="<portlet:namespace/>saveMessages"><!-- --></div>
+<div id="<portlet:namespace/>messages"><!-- --></div>
 
 <form action="<%= portletURL.toString() %>" method="get" name="<portlet:namespace />fm">
 <liferay-portlet:renderURLParams varImpl="portletURL" />
@@ -205,7 +205,7 @@ pageContext.setAttribute("portletURL", portletURL);
 <aui:script use="aui-base,aui-io,aui-toolbar">
 	Liferay.SO.Sites.init(
 		{
-			saveMessages: '#<portlet:namespace />saveMessages',
+			messages: '#<portlet:namespace />messages',
 			siteList: '.so-portlet-sites .site-list',
 			siteListContainer: '.so-portlet-sites .site-list-container',
 			siteListURL: '<portlet:resourceURL id="getSites"><portlet:param name="portletResource" value="<%= portletResource %>" /></portlet:resourceURL>',
@@ -264,7 +264,7 @@ pageContext.setAttribute("portletURL", portletURL);
 
 			Liferay.SO.Sites.init(
 				{
-					saveMessages: '#<portlet:namespace />saveMessages',
+					messages: '#<portlet:namespace />messages',
 					siteList: '.so-portlet-sites .site-list',
 					siteListContainer: '.so-portlet-sites .site-list-container',
 					siteListURL: '<portlet:resourceURL id="getSites"><portlet:param name="portletResource" value="<%= portletResource %>" /></portlet:resourceURL>',
