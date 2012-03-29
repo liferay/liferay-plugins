@@ -404,8 +404,6 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 			if (actionName.equals("updateFieldGroup")) {
 				updateFieldGroup(actionRequest, actionResponse);
-
-				return;
 			}
 			else {
 				super.processAction(actionRequest, actionResponse);

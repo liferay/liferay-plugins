@@ -199,27 +199,27 @@
 			<c:otherwise>
 				event.preventDefault();
 
-					A.io.request(
-						uri,
-						{
-							data: {
-								redirect: '<%= currentURL %>',
-								userIds: '<%= user2.getUserId() %>'
-							},
-							after: {
-								failure: function(event, id, obj) {
-									var saveMessages = A.one('#<portlet:namespace/>saveMessages');
+				A.io.request(
+					uri,
+					{
+						data: {
+							redirect: '<%= currentURL %>',
+							userIds: '<%= user2.getUserId() %>'
+						},
+						after: {
+							failure: function(event, id, obj) {
+								var saveMessages = A.one('#<portlet:namespace/>saveMessages');
 
-									if (saveMessages) {
-										saveMessages.html('<span class="portlet-msg-error">' + Liferay.Language.get('an-error-occurred-while-retrieving-the-users-information') + '</span>');
-									}
-								},
-								success: function(event, id, obj) {
-									Liferay.ContactsCenter.renderContent(this.get('responseData'));
+								if (saveMessages) {
+									saveMessages.html('<span class="portlet-msg-error">' + Liferay.Language.get('an-error-occurred-while-retrieving-the-users-information') + '</span>');
 								}
+							},
+							success: function(event, id, obj) {
+								Liferay.ContactsCenter.renderContent(this.get('responseData'));
 							}
 						}
-					);
+					}
+				);
 			</c:otherwise>
 		</c:choose>
 	}
