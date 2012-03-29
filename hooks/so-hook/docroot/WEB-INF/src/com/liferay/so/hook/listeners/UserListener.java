@@ -21,6 +21,8 @@ import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.MethodKey;
+import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.model.BaseModelListener;
@@ -48,8 +50,6 @@ import java.util.List;
  */
 public class UserListener extends BaseModelListener<User> {
 
-	private static int _PRIORITY = 100;
-	
 	@Override
 	public void onAfterAddAssociation(
 			Object classPK, String associationClassName,
@@ -73,7 +73,7 @@ public class UserListener extends BaseModelListener<User> {
 				User user = UserLocalServiceUtil.getUser(userId);
 
 				Group group = user.getGroup();
-				
+
 				LayoutSetPrototype[] layoutSetPrototypes =
 					LayoutSetPrototypeUtil.getLayoutSetPrototypes(user);
 
@@ -83,13 +83,27 @@ public class UserListener extends BaseModelListener<User> {
 					group.getGroupId(), false, true,
 					layoutSetPrototypes[0].getUuid());
 
+				LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
+						group.getGroupId(), false);
+
+				PortalClassInvoker.invoke(
+					true, _mergeLayoutSetProtypeLayoutsMethodKey, group,
+					layoutSet);
+
 				orderLayouts(publicPlids);
 
 				long[] privatePlids = getUserLayoutPlids(group, true);
 
 				LayoutSetLocalServiceUtil.updateLayoutSetPrototypeLinkEnabled(
-					group.getGroupId(), true, true, 
+					group.getGroupId(), true, true,
 					layoutSetPrototypes[1].getUuid());
+
+				layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
+						group.getGroupId(), true);
+
+				PortalClassInvoker.invoke(
+					true, _mergeLayoutSetProtypeLayoutsMethodKey, group,
+					layoutSet);
 
 				orderLayouts(privatePlids);
 			}
@@ -135,7 +149,7 @@ public class UserListener extends BaseModelListener<User> {
 	}
 
 	protected long[] getUserLayoutPlids(Group group, boolean privateLayout)
-		throws PortalException , SystemException {
+		throws PortalException, SystemException {
 
 		List<Layout> layouts =
 			LayoutLocalServiceUtil.getLayouts(
@@ -155,13 +169,13 @@ public class UserListener extends BaseModelListener<User> {
 		return plids;
 	}
 
-	protected void orderLayouts(long[] plids) 
-		throws PortalException , SystemException {
-							
+	protected void orderLayouts(long[] plids)
+		throws PortalException, SystemException {
+
 		for (int i = 0; i < plids.length; i++) {
 			LayoutLocalServiceUtil.updatePriority(plids[i], _PRIORITY + i);
-		}		
-	} 	
+		}
+	}
 
 	protected void removeUserLayouts(
 			User user, boolean privateLayout, String layoutSetPrototypeUuid)
@@ -184,6 +198,9 @@ public class UserListener extends BaseModelListener<User> {
 
 		LayoutSetLocalServiceUtil.updateLayoutSet(layoutSet);
 
+		LayoutSetLocalServiceUtil.updateLookAndFeel(
+			userGroup.getGroupId(), null, null, "", false);
+
 		LayoutSetPrototype layoutSetPrototype =
 			LayoutSetPrototypeLocalServiceUtil.getLayoutSetPrototypeByUuid(
 				layoutSetPrototypeUuid);
@@ -193,12 +210,12 @@ public class UserListener extends BaseModelListener<User> {
 		List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
 			group.getGroupId(), true);
 
-		String[] prototypeLayoutUuids = new String[layouts.size()];
+		String[] layoutUuids = new String[layouts.size()];
 
 		for (int i = 0; i < layouts.size(); i++) {
-			Layout layoutSetPrototypeLayout = layouts.get(i);
+			Layout curLayout = layouts.get(i);
 
-			prototypeLayoutUuids[i] = layoutSetPrototypeLayout.getUuid();
+			layoutUuids[i] = curLayout.getUuid();
 		}
 
 		List<Layout> userLayouts = LayoutLocalServiceUtil.getLayouts(
@@ -206,8 +223,7 @@ public class UserListener extends BaseModelListener<User> {
 
 		for (Layout userLayout : userLayouts) {
 			if (ArrayUtil.contains(
-					prototypeLayoutUuids,
-					userLayout.getSourcePrototypeLayoutUuid())) {
+					layoutUuids, userLayout.getSourcePrototypeLayoutUuid())) {
 
 				LayoutLocalServiceUtil.deleteLayout(
 					userLayout.getGroupId(), privateLayout,
@@ -215,5 +231,15 @@ public class UserListener extends BaseModelListener<User> {
 			}
 		}
 	}
+
+	private static final String _CLASS_NAME =
+		"com.liferay.portlet.sites.util.SitesUtil";
+
+	private static final int _PRIORITY = 100;
+
+	private static MethodKey _mergeLayoutSetProtypeLayoutsMethodKey =
+		new MethodKey(
+			_CLASS_NAME, "mergeLayoutSetProtypeLayouts", Group.class,
+			LayoutSet.class);
 
 }
