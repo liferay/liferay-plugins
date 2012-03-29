@@ -157,8 +157,8 @@ AUI().use(
 					instance._siteList.sendRequest();
 				}
 
-				if (showSuccessMessage && instance._saveMessages) {
-					instance._saveMessages.html('<span class="portlet-msg-success">' + Liferay.Language.get('your-request-completed-successfully') + '</span>');
+				if (showSuccessMessage && instance._messages) {
+					instance._messages.html('<span class="portlet-msg-success">' + Liferay.Language.get('your-request-completed-successfully') + '</span>');
 				}
 			},
 
@@ -228,7 +228,7 @@ AUI().use(
 
 				instance._siteList = siteList;
 
-				instance._saveMessages = A.one(config.saveMessages);
+				instance._messages = A.one(config.messages);
 			},
 
 			_updateSiteList: function(event) {
