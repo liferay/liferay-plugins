@@ -14,14 +14,12 @@
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/commons-httpclient.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/commons-logging.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/log4j.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/lib/portal/slf4j-api.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/portal-service/portal-service.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/util-taglib/util-taglib.jar" />
-	<classpathentry kind="lib" path="tmp/WEB-INF/lib/apache-solr-core-1.4.1.jar" />
-	<classpathentry kind="lib" path="tmp/WEB-INF/lib/apache-solr-solrj-1.4.1.jar" />
-	<classpathentry kind="lib" path="tmp/WEB-INF/lib/slf4j-api.jar" />
-	<classpathentry kind="lib" path="tmp/WEB-INF/lib/slf4j-jdk14.jar" />
-	<classpathentry kind="lib" path="tmp/WEB-INF/lib/slf4j-log4j12.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/apache-solr-core-3.5.0.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/apache-solr-solrj-3.5.0.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>

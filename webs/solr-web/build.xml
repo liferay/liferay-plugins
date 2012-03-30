@@ -4,7 +4,7 @@
 <project name="solr-web" basedir="." default="deploy">
 	<import file="../build-common-web.xml" />
 
-	<property name="original.war.file" value="apache-solr-1.4.1.zip" />
+	<property name="original.war.file" value="apache-solr-3.5.0.zip" />
 
 	<target name="merge-unzip">
 		<unzip
@@ -12,16 +12,15 @@
 			src="${original.war.file}"
 		>
 			<patternset
-				includes="apache-solr-1.4.1/dist/slf4j-*.jar,apache-solr-1.4.1/dist/apache-solr-core-*.jar,apache-solr-1.4.1/dist/apache-solr-solrj-*.jar"
+				includes="apache-solr-3.5.0/dist/apache-solr-core-*.jar,apache-solr-3.5.0/dist/apache-solr-solrj-*.jar"
 			/>
 			<mapper type="flatten" />
 		</unzip>
 	</target>
-
 	<target name="shrink-zip">
 		<antcall target="shrink-zip-cmd">
 			<param name="zip.file.name" value="${original.war.file}" />
-			<param name="zip.includes" value="apache-solr-1.4.1/dist/apache-solr-core-*.jar,apache-solr-1.4.1/dist/apache-solr-solrj-*.jar" />
+			<param name="zip.includes" value="apache-solr-3.5.0/dist/apache-solr-core-*.jar,apache-solr-3.5.0/dist/apache-solr-solrj-*.jar" />
 		</antcall>
 	</target>
 </project>
