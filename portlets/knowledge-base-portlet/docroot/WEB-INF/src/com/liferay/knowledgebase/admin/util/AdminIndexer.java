@@ -19,13 +19,18 @@ import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.permission.KBArticlePermission;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
-import com.liferay.knowledgebase.util.comparator.KBArticleModifiedDateComparator;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.Projection;
+import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ProjectionList;
+import com.liferay.portal.kernel.dao.orm.Property;
+import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.search.BaseIndexer;
 import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
-import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.search.SearchException;
@@ -33,6 +38,7 @@ import com.liferay.portal.kernel.search.Summary;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -107,6 +113,18 @@ public class AdminIndexer extends BaseIndexer {
 		hits.setQueryTerms(queryTerms);
 
 		return hits;
+	}
+
+	protected void addReindexCriteria(
+		DynamicQuery dynamicQuery, long companyId) {
+
+		Property companyIdProperty = PropertyFactoryUtil.forName("companyId");
+
+		dynamicQuery.add(companyIdProperty.eq(companyId));
+
+		Property statusProperty = PropertyFactoryUtil.forName("status");
+
+		dynamicQuery.add(statusProperty.eq(WorkflowConstants.STATUS_APPROVED));
 	}
 
 	@Override
@@ -209,26 +227,70 @@ public class AdminIndexer extends BaseIndexer {
 	}
 
 	protected void reindexKBArticles(long companyId) throws Exception {
-		int count = KBArticleLocalServiceUtil.getCompanyKBArticlesCount(
-			companyId, WorkflowConstants.STATUS_APPROVED);
+		Class<?> clazz = getClass();
 
-		int pages = count / Indexer.DEFAULT_INTERVAL;
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			KBArticle.class, clazz.getClassLoader());
 
-		for (int i = 0; i <= pages; i++) {
-			int start = (i * Indexer.DEFAULT_INTERVAL);
-			int end = start + Indexer.DEFAULT_INTERVAL;
+		Projection minKBArticleIdProjection = ProjectionFactoryUtil.min(
+			"kbArticleId");
+		Projection maxKBArticleIdProjection = ProjectionFactoryUtil.max(
+			"kbArticleId");
 
-			reindexKBArticles(companyId, start, end);
+		ProjectionList projectionList = ProjectionFactoryUtil.projectionList();
+
+		projectionList.add(minKBArticleIdProjection);
+		projectionList.add(maxKBArticleIdProjection);
+
+		dynamicQuery.setProjection(projectionList);
+
+		addReindexCriteria(dynamicQuery, companyId);
+
+		List<Object[]> results = KBArticleLocalServiceUtil.dynamicQuery(
+			dynamicQuery);
+
+		Object[] minAndMaxKBArticleIds = results.get(0);
+
+		if ((minAndMaxKBArticleIds[0] == null) ||
+			(minAndMaxKBArticleIds[1] == null)) {
+
+			return;
+		}
+
+		long minKBArticleId = (Long)minAndMaxKBArticleIds[0];
+		long maxKBArticleId = (Long)minAndMaxKBArticleIds[1];
+
+		long startKBArticleId = minKBArticleId;
+		long endKBArticleId = startKBArticleId + DEFAULT_INTERVAL;
+
+		while (startKBArticleId <= maxKBArticleId) {
+			reindexKBArticles(companyId, startKBArticleId, endKBArticleId);
+
+			startKBArticleId = endKBArticleId;
+			endKBArticleId += DEFAULT_INTERVAL;
 		}
 	}
 
-	protected void reindexKBArticles(long companyId, int start, int end)
+	protected void reindexKBArticles(
+			long companyId, long startKBArticleId, long endKBArticleId)
 		throws Exception {
 
-		List<KBArticle> kbArticles =
-			KBArticleLocalServiceUtil.getCompanyKBArticles(
-				companyId, WorkflowConstants.STATUS_APPROVED, start, end,
-				new KBArticleModifiedDateComparator());
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			KBArticle.class, PortalClassLoaderUtil.getClassLoader());
+
+		Property property = PropertyFactoryUtil.forName("kbArticleId");
+
+		dynamicQuery.add(property.ge(startKBArticleId));
+		dynamicQuery.add(property.lt(endKBArticleId));
+
+		addReindexCriteria(dynamicQuery, companyId);
+
+		List<KBArticle> kbArticles = KBArticleLocalServiceUtil.dynamicQuery(
+			dynamicQuery);
+
+		if (kbArticles.isEmpty()) {
+			return;
+		}
 
 		Collection<Document> documents = new ArrayList<Document>();
 
