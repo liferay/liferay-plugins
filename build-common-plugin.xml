@@ -855,8 +855,9 @@ Please find a solution that does not require portal-impl.jar.
 					<jvmarg line="${junit.debug.jpda}" />
 					<jvmarg value="-Xmx1024m" />
 					<jvmarg value="-XX:MaxPermSize=256m" />
-					<jvmarg value="-Duser.timezone=GMT" />
 					<jvmarg value="-Dexternal-properties=${test.properties}" />
+					<jvmarg value="-Djava.net.preferIPv4Stack=true" />
+					<jvmarg value="-Duser.timezone=GMT" />
 					<classpath location="test-coverage" />
 					<classpath refid="test.classpath" />
 					<formatter type="brief" usefile="false" />
