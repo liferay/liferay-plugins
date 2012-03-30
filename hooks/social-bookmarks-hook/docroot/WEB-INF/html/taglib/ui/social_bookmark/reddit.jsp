@@ -26,7 +26,7 @@ if (displayStyle.equals("vertical")) {
 
 <c:choose>
 	<c:when test='<%= displayStyle.equals("simple") %>'>
-		<a href="http://www.reddit.com/submit" onclick="window.location = 'http://www.reddit.com/submit?url=' + encodeURIComponent('<%= url %>'); return false" title="<liferay-ui:message key="submit-to-reddit" />"><img alt="<liferay-ui:message key="submit-to-reddit" />" border="0" src="http://www.reddit.com/static/spreddit7.gif" /></a>
+		<a href="<%= HttpUtil.getProtocol(request) %>://www.reddit.com/submit" onclick="window.location = '<%= HttpUtil.getProtocol(request) %>://www.reddit.com/submit?url=' + encodeURIComponent('<%= url %>'); return false" title="<liferay-ui:message key="submit-to-reddit" />"><img alt="<liferay-ui:message key="submit-to-reddit" />" border="0" src="<%= HttpUtil.getProtocol(request) %>://www.reddit.com/static/spreddit7.gif" /></a>
 	</c:when>
 	<c:otherwise>
 		<script type="text/javascript">
@@ -35,6 +35,6 @@ if (displayStyle.equals("vertical")) {
 			reddit_url = '<%= url %>';
 		</script>
 
-		<script src="http://www.reddit.com/static/button/<%= redditDisplayStyle %>.js?styled=off" type="text/javascript"></script>
+		<script src="<%= HttpUtil.getProtocol(request) %>://www.reddit.com/static/button/<%= redditDisplayStyle %>.js?styled=off" type="text/javascript"></script>
 	</c:otherwise>
 </c:choose>

@@ -16,6 +16,6 @@
 
 <%@ include file="/html/taglib/ui/social_bookmark/init.jsp" %>
 
-<script src="http://static.evernote.com/noteit.js" type="text/javascript"></script>
+<script src="<%= HttpUtil.getProtocol(request) %>://static.evernote.com/noteit.js" type="text/javascript"></script>
 
-<a href="#" onClick="Evernote.doClip({}); return false;"><img alt="Clip to Evernote" src="http://static.evernote.com/article-clipper.png" /></a>
+<a href="#" onClick="Evernote.doClip({}); return false;"><img alt="Clip to Evernote" src="<%= HttpUtil.getProtocol(request) %>://static.evernote.com/article-clipper.png" /></a>
