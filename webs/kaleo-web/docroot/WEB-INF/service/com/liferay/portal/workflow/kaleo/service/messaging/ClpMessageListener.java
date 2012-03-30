@@ -20,6 +20,7 @@ import com.liferay.portal.workflow.kaleo.service.ClpSerializer;
 import com.liferay.portal.workflow.kaleo.service.KaleoActionLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoConditionLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalServiceUtil;
+import com.liferay.portal.workflow.kaleo.service.KaleoDefinitionServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoInstanceLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoInstanceTokenLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoLogLocalServiceUtil;
@@ -55,6 +56,7 @@ public class ClpMessageListener extends BaseMessageListener {
 
 			KaleoDefinitionLocalServiceUtil.clearService();
 
+			KaleoDefinitionServiceUtil.clearService();
 			KaleoInstanceLocalServiceUtil.clearService();
 
 			KaleoInstanceTokenLocalServiceUtil.clearService();
