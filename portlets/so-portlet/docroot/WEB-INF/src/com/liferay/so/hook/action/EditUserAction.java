@@ -113,6 +113,8 @@ public class EditUserAction extends BaseStrutsPortletAction {
 			DynamicActionRequest dynamicActionRequest =
 				new DynamicActionRequest(actionRequest);
 
+			String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+
 			if (cmd.equals(Constants.UPDATE)) {
 				User user = PortalUtil.getSelectedUser(actionRequest);
 
