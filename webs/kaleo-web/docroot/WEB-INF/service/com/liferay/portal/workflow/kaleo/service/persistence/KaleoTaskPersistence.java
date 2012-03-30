@@ -414,9 +414,11 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	* Removes the kaleo task where kaleoNodeId = &#63; from the database.
 	*
 	* @param kaleoNodeId the kaleo node ID
+	* @return the kaleo task that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByKaleoNodeId(long kaleoNodeId)
+	public com.liferay.portal.workflow.kaleo.model.KaleoTask removeByKaleoNodeId(
+		long kaleoNodeId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchTaskException;
 

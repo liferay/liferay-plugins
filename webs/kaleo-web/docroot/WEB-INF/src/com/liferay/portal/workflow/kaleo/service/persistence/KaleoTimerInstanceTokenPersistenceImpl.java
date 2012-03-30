@@ -2095,14 +2095,16 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	 *
 	 * @param kaleoInstanceTokenId the kaleo instance token ID
 	 * @param kaleoTimerId the kaleo timer ID
+	 * @return the kaleo timer instance token that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByKITI_KTI(long kaleoInstanceTokenId, long kaleoTimerId)
+	public KaleoTimerInstanceToken removeByKITI_KTI(long kaleoInstanceTokenId,
+		long kaleoTimerId)
 		throws NoSuchTimerInstanceTokenException, SystemException {
 		KaleoTimerInstanceToken kaleoTimerInstanceToken = findByKITI_KTI(kaleoInstanceTokenId,
 				kaleoTimerId);
 
-		remove(kaleoTimerInstanceToken);
+		return remove(kaleoTimerInstanceToken);
 	}
 
 	/**

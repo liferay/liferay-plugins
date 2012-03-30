@@ -67,10 +67,12 @@ public interface KaleoDefinitionLocalService extends PersistedModelLocalService 
 	* Deletes the kaleo definition with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoDefinitionId the primary key of the kaleo definition
+	* @return the kaleo definition that was removed
 	* @throws PortalException if a kaleo definition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoDefinition(long kaleoDefinitionId)
+	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition deleteKaleoDefinition(
+		long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -78,9 +80,10 @@ public interface KaleoDefinitionLocalService extends PersistedModelLocalService 
 	* Deletes the kaleo definition from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoDefinition the kaleo definition
+	* @return the kaleo definition that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoDefinition(
+	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition deleteKaleoDefinition(
 		com.liferay.portal.workflow.kaleo.model.KaleoDefinition kaleoDefinition)
 		throws com.liferay.portal.kernel.exception.SystemException;
 

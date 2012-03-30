@@ -154,14 +154,17 @@ public class KaleoConditionLocalServiceClp implements KaleoConditionLocalService
 		return (com.liferay.portal.workflow.kaleo.model.KaleoCondition)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteKaleoCondition(long kaleoConditionId)
+	public com.liferay.portal.workflow.kaleo.model.KaleoCondition deleteKaleoCondition(
+		long kaleoConditionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteKaleoConditionMethodKey2,
 				kaleoConditionId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -180,16 +183,20 @@ public class KaleoConditionLocalServiceClp implements KaleoConditionLocalService
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.portal.workflow.kaleo.model.KaleoCondition)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteKaleoCondition(
+	public com.liferay.portal.workflow.kaleo.model.KaleoCondition deleteKaleoCondition(
 		com.liferay.portal.workflow.kaleo.model.KaleoCondition kaleoCondition)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteKaleoConditionMethodKey3,
 				ClpSerializer.translateInput(kaleoCondition));
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -204,6 +211,8 @@ public class KaleoConditionLocalServiceClp implements KaleoConditionLocalService
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.portal.workflow.kaleo.model.KaleoCondition)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@SuppressWarnings("rawtypes")

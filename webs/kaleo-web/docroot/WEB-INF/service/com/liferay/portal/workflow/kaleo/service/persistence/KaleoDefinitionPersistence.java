@@ -670,9 +670,11 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	* @param companyId the company ID
 	* @param name the name
 	* @param version the version
+	* @return the kaleo definition that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByC_N_V(long companyId, java.lang.String name, int version)
+	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition removeByC_N_V(
+		long companyId, java.lang.String name, int version)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchDefinitionException;
 

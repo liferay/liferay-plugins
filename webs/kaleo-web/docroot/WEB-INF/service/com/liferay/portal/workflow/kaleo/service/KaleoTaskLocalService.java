@@ -67,10 +67,12 @@ public interface KaleoTaskLocalService extends PersistedModelLocalService {
 	* Deletes the kaleo task with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTaskId the primary key of the kaleo task
+	* @return the kaleo task that was removed
 	* @throws PortalException if a kaleo task with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoTask(long kaleoTaskId)
+	public com.liferay.portal.workflow.kaleo.model.KaleoTask deleteKaleoTask(
+		long kaleoTaskId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -78,9 +80,10 @@ public interface KaleoTaskLocalService extends PersistedModelLocalService {
 	* Deletes the kaleo task from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTask the kaleo task
+	* @return the kaleo task that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoTask(
+	public com.liferay.portal.workflow.kaleo.model.KaleoTask deleteKaleoTask(
 		com.liferay.portal.workflow.kaleo.model.KaleoTask kaleoTask)
 		throws com.liferay.portal.kernel.exception.SystemException;
 

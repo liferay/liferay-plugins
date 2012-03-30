@@ -215,14 +215,17 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		return (com.liferay.portal.workflow.kaleo.model.KaleoLog)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteKaleoLog(long kaleoLogId)
+	public com.liferay.portal.workflow.kaleo.model.KaleoLog deleteKaleoLog(
+		long kaleoLogId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteKaleoLogMethodKey2,
 				kaleoLogId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -241,16 +244,20 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.portal.workflow.kaleo.model.KaleoLog)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteKaleoLog(
+	public com.liferay.portal.workflow.kaleo.model.KaleoLog deleteKaleoLog(
 		com.liferay.portal.workflow.kaleo.model.KaleoLog kaleoLog)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteKaleoLogMethodKey3,
 				ClpSerializer.translateInput(kaleoLog));
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -265,6 +272,8 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.portal.workflow.kaleo.model.KaleoLog)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@SuppressWarnings("rawtypes")

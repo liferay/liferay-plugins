@@ -60,25 +60,28 @@ public class KaleoTimerLocalServiceWrapper implements KaleoTimerLocalService,
 	* Deletes the kaleo timer with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTimerId the primary key of the kaleo timer
+	* @return the kaleo timer that was removed
 	* @throws PortalException if a kaleo timer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoTimer(long kaleoTimerId)
+	public com.liferay.portal.workflow.kaleo.model.KaleoTimer deleteKaleoTimer(
+		long kaleoTimerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_kaleoTimerLocalService.deleteKaleoTimer(kaleoTimerId);
+		return _kaleoTimerLocalService.deleteKaleoTimer(kaleoTimerId);
 	}
 
 	/**
 	* Deletes the kaleo timer from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTimer the kaleo timer
+	* @return the kaleo timer that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoTimer(
+	public com.liferay.portal.workflow.kaleo.model.KaleoTimer deleteKaleoTimer(
 		com.liferay.portal.workflow.kaleo.model.KaleoTimer kaleoTimer)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoTimerLocalService.deleteKaleoTimer(kaleoTimer);
+		return _kaleoTimerLocalService.deleteKaleoTimer(kaleoTimer);
 	}
 
 	/**

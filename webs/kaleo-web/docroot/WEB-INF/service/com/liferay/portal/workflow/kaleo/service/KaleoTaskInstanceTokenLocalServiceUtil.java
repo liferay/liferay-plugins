@@ -68,26 +68,29 @@ public class KaleoTaskInstanceTokenLocalServiceUtil {
 	* Deletes the kaleo task instance token with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTaskInstanceTokenId the primary key of the kaleo task instance token
+	* @return the kaleo task instance token that was removed
 	* @throws PortalException if a kaleo task instance token with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoTaskInstanceToken(
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken deleteKaleoTaskInstanceToken(
 		long kaleoTaskInstanceTokenId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoTaskInstanceToken(kaleoTaskInstanceTokenId);
+		return getService()
+				   .deleteKaleoTaskInstanceToken(kaleoTaskInstanceTokenId);
 	}
 
 	/**
 	* Deletes the kaleo task instance token from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTaskInstanceToken the kaleo task instance token
+	* @return the kaleo task instance token that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoTaskInstanceToken(
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken deleteKaleoTaskInstanceToken(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoTaskInstanceToken(kaleoTaskInstanceToken);
+		return getService().deleteKaleoTaskInstanceToken(kaleoTaskInstanceToken);
 	}
 
 	/**

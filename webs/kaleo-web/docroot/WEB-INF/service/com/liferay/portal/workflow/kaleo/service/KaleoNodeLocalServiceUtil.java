@@ -67,25 +67,28 @@ public class KaleoNodeLocalServiceUtil {
 	* Deletes the kaleo node with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoNodeId the primary key of the kaleo node
+	* @return the kaleo node that was removed
 	* @throws PortalException if a kaleo node with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoNode(long kaleoNodeId)
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNode deleteKaleoNode(
+		long kaleoNodeId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoNode(kaleoNodeId);
+		return getService().deleteKaleoNode(kaleoNodeId);
 	}
 
 	/**
 	* Deletes the kaleo node from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoNode the kaleo node
+	* @return the kaleo node that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoNode(
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNode deleteKaleoNode(
 		com.liferay.portal.workflow.kaleo.model.KaleoNode kaleoNode)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoNode(kaleoNode);
+		return getService().deleteKaleoNode(kaleoNode);
 	}
 
 	/**

@@ -61,26 +61,28 @@ public class KaleoNotificationRecipientLocalServiceWrapper
 	* Deletes the kaleo notification recipient with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoNotificationRecipientId the primary key of the kaleo notification recipient
+	* @return the kaleo notification recipient that was removed
 	* @throws PortalException if a kaleo notification recipient with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoNotificationRecipient(
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient deleteKaleoNotificationRecipient(
 		long kaleoNotificationRecipientId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_kaleoNotificationRecipientLocalService.deleteKaleoNotificationRecipient(kaleoNotificationRecipientId);
+		return _kaleoNotificationRecipientLocalService.deleteKaleoNotificationRecipient(kaleoNotificationRecipientId);
 	}
 
 	/**
 	* Deletes the kaleo notification recipient from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoNotificationRecipient the kaleo notification recipient
+	* @return the kaleo notification recipient that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoNotificationRecipient(
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient deleteKaleoNotificationRecipient(
 		com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient kaleoNotificationRecipient)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoNotificationRecipientLocalService.deleteKaleoNotificationRecipient(kaleoNotificationRecipient);
+		return _kaleoNotificationRecipientLocalService.deleteKaleoNotificationRecipient(kaleoNotificationRecipient);
 	}
 
 	/**

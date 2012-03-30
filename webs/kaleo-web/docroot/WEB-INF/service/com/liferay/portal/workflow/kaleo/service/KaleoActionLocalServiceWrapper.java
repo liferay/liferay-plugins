@@ -60,25 +60,28 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService,
 	* Deletes the kaleo action with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoActionId the primary key of the kaleo action
+	* @return the kaleo action that was removed
 	* @throws PortalException if a kaleo action with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoAction(long kaleoActionId)
+	public com.liferay.portal.workflow.kaleo.model.KaleoAction deleteKaleoAction(
+		long kaleoActionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_kaleoActionLocalService.deleteKaleoAction(kaleoActionId);
+		return _kaleoActionLocalService.deleteKaleoAction(kaleoActionId);
 	}
 
 	/**
 	* Deletes the kaleo action from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoAction the kaleo action
+	* @return the kaleo action that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoAction(
+	public com.liferay.portal.workflow.kaleo.model.KaleoAction deleteKaleoAction(
 		com.liferay.portal.workflow.kaleo.model.KaleoAction kaleoAction)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoActionLocalService.deleteKaleoAction(kaleoAction);
+		return _kaleoActionLocalService.deleteKaleoAction(kaleoAction);
 	}
 
 	/**

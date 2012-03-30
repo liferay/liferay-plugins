@@ -67,25 +67,28 @@ public class KaleoLogLocalServiceUtil {
 	* Deletes the kaleo log with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoLogId the primary key of the kaleo log
+	* @return the kaleo log that was removed
 	* @throws PortalException if a kaleo log with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoLog(long kaleoLogId)
+	public static com.liferay.portal.workflow.kaleo.model.KaleoLog deleteKaleoLog(
+		long kaleoLogId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoLog(kaleoLogId);
+		return getService().deleteKaleoLog(kaleoLogId);
 	}
 
 	/**
 	* Deletes the kaleo log from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoLog the kaleo log
+	* @return the kaleo log that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoLog(
+	public static com.liferay.portal.workflow.kaleo.model.KaleoLog deleteKaleoLog(
 		com.liferay.portal.workflow.kaleo.model.KaleoLog kaleoLog)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoLog(kaleoLog);
+		return getService().deleteKaleoLog(kaleoLog);
 	}
 
 	/**

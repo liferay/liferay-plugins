@@ -68,10 +68,11 @@ public interface KaleoTaskAssignmentInstanceLocalService
 	* Deletes the kaleo task assignment instance with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTaskAssignmentInstanceId the primary key of the kaleo task assignment instance
+	* @return the kaleo task assignment instance that was removed
 	* @throws PortalException if a kaleo task assignment instance with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoTaskAssignmentInstance(
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance deleteKaleoTaskAssignmentInstance(
 		long kaleoTaskAssignmentInstanceId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -80,9 +81,10 @@ public interface KaleoTaskAssignmentInstanceLocalService
 	* Deletes the kaleo task assignment instance from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTaskAssignmentInstance the kaleo task assignment instance
+	* @return the kaleo task assignment instance that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoTaskAssignmentInstance(
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance deleteKaleoTaskAssignmentInstance(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance)
 		throws com.liferay.portal.kernel.exception.SystemException;
 

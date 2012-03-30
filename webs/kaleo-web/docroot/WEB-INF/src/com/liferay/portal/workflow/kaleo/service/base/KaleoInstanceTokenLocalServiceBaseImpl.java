@@ -23,11 +23,8 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
@@ -105,27 +102,12 @@ public abstract class KaleoInstanceTokenLocalServiceBaseImpl
 	 * @return the kaleo instance token that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public KaleoInstanceToken addKaleoInstanceToken(
 		KaleoInstanceToken kaleoInstanceToken) throws SystemException {
 		kaleoInstanceToken.setNew(true);
 
-		kaleoInstanceToken = kaleoInstanceTokenPersistence.update(kaleoInstanceToken,
-				false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(kaleoInstanceToken);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return kaleoInstanceToken;
+		return kaleoInstanceTokenPersistence.update(kaleoInstanceToken, false);
 	}
 
 	/**
@@ -143,49 +125,27 @@ public abstract class KaleoInstanceTokenLocalServiceBaseImpl
 	 * Deletes the kaleo instance token with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param kaleoInstanceTokenId the primary key of the kaleo instance token
+	 * @return the kaleo instance token that was removed
 	 * @throws PortalException if a kaleo instance token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteKaleoInstanceToken(long kaleoInstanceTokenId)
-		throws PortalException, SystemException {
-		KaleoInstanceToken kaleoInstanceToken = kaleoInstanceTokenPersistence.remove(kaleoInstanceTokenId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(kaleoInstanceToken);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+	@Indexable(type = IndexableType.DELETE)
+	public KaleoInstanceToken deleteKaleoInstanceToken(
+		long kaleoInstanceTokenId) throws PortalException, SystemException {
+		return kaleoInstanceTokenPersistence.remove(kaleoInstanceTokenId);
 	}
 
 	/**
 	 * Deletes the kaleo instance token from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param kaleoInstanceToken the kaleo instance token
+	 * @return the kaleo instance token that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteKaleoInstanceToken(KaleoInstanceToken kaleoInstanceToken)
-		throws SystemException {
-		kaleoInstanceTokenPersistence.remove(kaleoInstanceToken);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(kaleoInstanceToken);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+	@Indexable(type = IndexableType.DELETE)
+	public KaleoInstanceToken deleteKaleoInstanceToken(
+		KaleoInstanceToken kaleoInstanceToken) throws SystemException {
+		return kaleoInstanceTokenPersistence.remove(kaleoInstanceToken);
 	}
 
 	/**
@@ -311,6 +271,7 @@ public abstract class KaleoInstanceTokenLocalServiceBaseImpl
 	 * @return the kaleo instance token that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public KaleoInstanceToken updateKaleoInstanceToken(
 		KaleoInstanceToken kaleoInstanceToken) throws SystemException {
 		return updateKaleoInstanceToken(kaleoInstanceToken, true);
@@ -324,28 +285,13 @@ public abstract class KaleoInstanceTokenLocalServiceBaseImpl
 	 * @return the kaleo instance token that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public KaleoInstanceToken updateKaleoInstanceToken(
 		KaleoInstanceToken kaleoInstanceToken, boolean merge)
 		throws SystemException {
 		kaleoInstanceToken.setNew(false);
 
-		kaleoInstanceToken = kaleoInstanceTokenPersistence.update(kaleoInstanceToken,
-				merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(kaleoInstanceToken);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return kaleoInstanceToken;
+		return kaleoInstanceTokenPersistence.update(kaleoInstanceToken, merge);
 	}
 
 	/**
@@ -1242,6 +1188,5 @@ public abstract class KaleoInstanceTokenLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private static Log _log = LogFactoryUtil.getLog(KaleoInstanceTokenLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

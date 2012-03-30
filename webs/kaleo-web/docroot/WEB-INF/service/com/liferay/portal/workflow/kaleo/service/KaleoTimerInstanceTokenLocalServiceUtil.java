@@ -68,26 +68,30 @@ public class KaleoTimerInstanceTokenLocalServiceUtil {
 	* Deletes the kaleo timer instance token with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTimerInstanceTokenId the primary key of the kaleo timer instance token
+	* @return the kaleo timer instance token that was removed
 	* @throws PortalException if a kaleo timer instance token with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoTimerInstanceToken(
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken deleteKaleoTimerInstanceToken(
 		long kaleoTimerInstanceTokenId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoTimerInstanceToken(kaleoTimerInstanceTokenId);
+		return getService()
+				   .deleteKaleoTimerInstanceToken(kaleoTimerInstanceTokenId);
 	}
 
 	/**
 	* Deletes the kaleo timer instance token from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTimerInstanceToken the kaleo timer instance token
+	* @return the kaleo timer instance token that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoTimerInstanceToken(
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken deleteKaleoTimerInstanceToken(
 		com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken kaleoTimerInstanceToken)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoTimerInstanceToken(kaleoTimerInstanceToken);
+		return getService()
+				   .deleteKaleoTimerInstanceToken(kaleoTimerInstanceToken);
 	}
 
 	/**

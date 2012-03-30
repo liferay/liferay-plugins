@@ -67,10 +67,12 @@ public interface KaleoTransitionLocalService extends PersistedModelLocalService 
 	* Deletes the kaleo transition with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTransitionId the primary key of the kaleo transition
+	* @return the kaleo transition that was removed
 	* @throws PortalException if a kaleo transition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoTransition(long kaleoTransitionId)
+	public com.liferay.portal.workflow.kaleo.model.KaleoTransition deleteKaleoTransition(
+		long kaleoTransitionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -78,9 +80,10 @@ public interface KaleoTransitionLocalService extends PersistedModelLocalService 
 	* Deletes the kaleo transition from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTransition the kaleo transition
+	* @return the kaleo transition that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoTransition(
+	public com.liferay.portal.workflow.kaleo.model.KaleoTransition deleteKaleoTransition(
 		com.liferay.portal.workflow.kaleo.model.KaleoTransition kaleoTransition)
 		throws com.liferay.portal.kernel.exception.SystemException;
 

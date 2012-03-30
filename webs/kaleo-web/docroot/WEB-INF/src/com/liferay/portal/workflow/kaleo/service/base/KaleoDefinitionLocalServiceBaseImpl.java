@@ -23,11 +23,8 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
@@ -105,27 +102,12 @@ public abstract class KaleoDefinitionLocalServiceBaseImpl
 	 * @return the kaleo definition that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public KaleoDefinition addKaleoDefinition(KaleoDefinition kaleoDefinition)
 		throws SystemException {
 		kaleoDefinition.setNew(true);
 
-		kaleoDefinition = kaleoDefinitionPersistence.update(kaleoDefinition,
-				false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(kaleoDefinition);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return kaleoDefinition;
+		return kaleoDefinitionPersistence.update(kaleoDefinition, false);
 	}
 
 	/**
@@ -142,49 +124,27 @@ public abstract class KaleoDefinitionLocalServiceBaseImpl
 	 * Deletes the kaleo definition with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param kaleoDefinitionId the primary key of the kaleo definition
+	 * @return the kaleo definition that was removed
 	 * @throws PortalException if a kaleo definition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteKaleoDefinition(long kaleoDefinitionId)
+	@Indexable(type = IndexableType.DELETE)
+	public KaleoDefinition deleteKaleoDefinition(long kaleoDefinitionId)
 		throws PortalException, SystemException {
-		KaleoDefinition kaleoDefinition = kaleoDefinitionPersistence.remove(kaleoDefinitionId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(kaleoDefinition);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return kaleoDefinitionPersistence.remove(kaleoDefinitionId);
 	}
 
 	/**
 	 * Deletes the kaleo definition from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param kaleoDefinition the kaleo definition
+	 * @return the kaleo definition that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteKaleoDefinition(KaleoDefinition kaleoDefinition)
-		throws SystemException {
-		kaleoDefinitionPersistence.remove(kaleoDefinition);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(kaleoDefinition);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+	@Indexable(type = IndexableType.DELETE)
+	public KaleoDefinition deleteKaleoDefinition(
+		KaleoDefinition kaleoDefinition) throws SystemException {
+		return kaleoDefinitionPersistence.remove(kaleoDefinition);
 	}
 
 	/**
@@ -310,6 +270,7 @@ public abstract class KaleoDefinitionLocalServiceBaseImpl
 	 * @return the kaleo definition that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public KaleoDefinition updateKaleoDefinition(
 		KaleoDefinition kaleoDefinition) throws SystemException {
 		return updateKaleoDefinition(kaleoDefinition, true);
@@ -323,28 +284,13 @@ public abstract class KaleoDefinitionLocalServiceBaseImpl
 	 * @return the kaleo definition that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public KaleoDefinition updateKaleoDefinition(
 		KaleoDefinition kaleoDefinition, boolean merge)
 		throws SystemException {
 		kaleoDefinition.setNew(false);
 
-		kaleoDefinition = kaleoDefinitionPersistence.update(kaleoDefinition,
-				merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(kaleoDefinition);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return kaleoDefinition;
+		return kaleoDefinitionPersistence.update(kaleoDefinition, merge);
 	}
 
 	/**
@@ -1241,6 +1187,5 @@ public abstract class KaleoDefinitionLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private static Log _log = LogFactoryUtil.getLog(KaleoDefinitionLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

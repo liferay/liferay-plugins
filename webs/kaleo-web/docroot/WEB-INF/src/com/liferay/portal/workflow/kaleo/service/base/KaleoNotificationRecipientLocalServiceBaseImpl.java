@@ -23,11 +23,8 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
@@ -108,28 +105,14 @@ public abstract class KaleoNotificationRecipientLocalServiceBaseImpl
 	 * @return the kaleo notification recipient that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public KaleoNotificationRecipient addKaleoNotificationRecipient(
 		KaleoNotificationRecipient kaleoNotificationRecipient)
 		throws SystemException {
 		kaleoNotificationRecipient.setNew(true);
 
-		kaleoNotificationRecipient = kaleoNotificationRecipientPersistence.update(kaleoNotificationRecipient,
-				false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(kaleoNotificationRecipient);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return kaleoNotificationRecipient;
+		return kaleoNotificationRecipientPersistence.update(kaleoNotificationRecipient,
+			false);
 	}
 
 	/**
@@ -147,51 +130,29 @@ public abstract class KaleoNotificationRecipientLocalServiceBaseImpl
 	 * Deletes the kaleo notification recipient with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param kaleoNotificationRecipientId the primary key of the kaleo notification recipient
+	 * @return the kaleo notification recipient that was removed
 	 * @throws PortalException if a kaleo notification recipient with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteKaleoNotificationRecipient(
+	@Indexable(type = IndexableType.DELETE)
+	public KaleoNotificationRecipient deleteKaleoNotificationRecipient(
 		long kaleoNotificationRecipientId)
 		throws PortalException, SystemException {
-		KaleoNotificationRecipient kaleoNotificationRecipient = kaleoNotificationRecipientPersistence.remove(kaleoNotificationRecipientId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(kaleoNotificationRecipient);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return kaleoNotificationRecipientPersistence.remove(kaleoNotificationRecipientId);
 	}
 
 	/**
 	 * Deletes the kaleo notification recipient from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param kaleoNotificationRecipient the kaleo notification recipient
+	 * @return the kaleo notification recipient that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteKaleoNotificationRecipient(
+	@Indexable(type = IndexableType.DELETE)
+	public KaleoNotificationRecipient deleteKaleoNotificationRecipient(
 		KaleoNotificationRecipient kaleoNotificationRecipient)
 		throws SystemException {
-		kaleoNotificationRecipientPersistence.remove(kaleoNotificationRecipient);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(kaleoNotificationRecipient);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return kaleoNotificationRecipientPersistence.remove(kaleoNotificationRecipient);
 	}
 
 	/**
@@ -318,6 +279,7 @@ public abstract class KaleoNotificationRecipientLocalServiceBaseImpl
 	 * @return the kaleo notification recipient that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public KaleoNotificationRecipient updateKaleoNotificationRecipient(
 		KaleoNotificationRecipient kaleoNotificationRecipient)
 		throws SystemException {
@@ -332,28 +294,14 @@ public abstract class KaleoNotificationRecipientLocalServiceBaseImpl
 	 * @return the kaleo notification recipient that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public KaleoNotificationRecipient updateKaleoNotificationRecipient(
 		KaleoNotificationRecipient kaleoNotificationRecipient, boolean merge)
 		throws SystemException {
 		kaleoNotificationRecipient.setNew(false);
 
-		kaleoNotificationRecipient = kaleoNotificationRecipientPersistence.update(kaleoNotificationRecipient,
-				merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(kaleoNotificationRecipient);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return kaleoNotificationRecipient;
+		return kaleoNotificationRecipientPersistence.update(kaleoNotificationRecipient,
+			merge);
 	}
 
 	/**
@@ -1310,6 +1258,5 @@ public abstract class KaleoNotificationRecipientLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private static Log _log = LogFactoryUtil.getLog(KaleoNotificationRecipientLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

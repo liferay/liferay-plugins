@@ -1558,13 +1558,14 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 * Removes the kaleo condition where kaleoNodeId = &#63; from the database.
 	 *
 	 * @param kaleoNodeId the kaleo node ID
+	 * @return the kaleo condition that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByKaleoNodeId(long kaleoNodeId)
+	public KaleoCondition removeByKaleoNodeId(long kaleoNodeId)
 		throws NoSuchConditionException, SystemException {
 		KaleoCondition kaleoCondition = findByKaleoNodeId(kaleoNodeId);
 
-		remove(kaleoCondition);
+		return remove(kaleoCondition);
 	}
 
 	/**

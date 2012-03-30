@@ -2034,14 +2034,16 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 	 *
 	 * @param kaleoInstanceId the kaleo instance ID
 	 * @param kaleoTaskId the kaleo task ID
+	 * @return the kaleo task instance token that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByKII_KTI(long kaleoInstanceId, long kaleoTaskId)
+	public KaleoTaskInstanceToken removeByKII_KTI(long kaleoInstanceId,
+		long kaleoTaskId)
 		throws NoSuchTaskInstanceTokenException, SystemException {
 		KaleoTaskInstanceToken kaleoTaskInstanceToken = findByKII_KTI(kaleoInstanceId,
 				kaleoTaskId);
 
-		remove(kaleoTaskInstanceToken);
+		return remove(kaleoTaskInstanceToken);
 	}
 
 	/**

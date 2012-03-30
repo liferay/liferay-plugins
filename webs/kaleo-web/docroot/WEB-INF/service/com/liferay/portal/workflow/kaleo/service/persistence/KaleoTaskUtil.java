@@ -556,12 +556,14 @@ public class KaleoTaskUtil {
 	* Removes the kaleo task where kaleoNodeId = &#63; from the database.
 	*
 	* @param kaleoNodeId the kaleo node ID
+	* @return the kaleo task that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByKaleoNodeId(long kaleoNodeId)
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTask removeByKaleoNodeId(
+		long kaleoNodeId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchTaskException {
-		getPersistence().removeByKaleoNodeId(kaleoNodeId);
+		return getPersistence().removeByKaleoNodeId(kaleoNodeId);
 	}
 
 	/**

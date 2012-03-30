@@ -67,25 +67,28 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 	* Deletes the kaleo task assignment with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTaskAssignmentId the primary key of the kaleo task assignment
+	* @return the kaleo task assignment that was removed
 	* @throws PortalException if a kaleo task assignment with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoTaskAssignment(long kaleoTaskAssignmentId)
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment deleteKaleoTaskAssignment(
+		long kaleoTaskAssignmentId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoTaskAssignment(kaleoTaskAssignmentId);
+		return getService().deleteKaleoTaskAssignment(kaleoTaskAssignmentId);
 	}
 
 	/**
 	* Deletes the kaleo task assignment from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTaskAssignment the kaleo task assignment
+	* @return the kaleo task assignment that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoTaskAssignment(
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment deleteKaleoTaskAssignment(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment kaleoTaskAssignment)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoTaskAssignment(kaleoTaskAssignment);
+		return getService().deleteKaleoTaskAssignment(kaleoTaskAssignment);
 	}
 
 	/**

@@ -67,10 +67,12 @@ public interface KaleoConditionLocalService extends PersistedModelLocalService {
 	* Deletes the kaleo condition with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoConditionId the primary key of the kaleo condition
+	* @return the kaleo condition that was removed
 	* @throws PortalException if a kaleo condition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoCondition(long kaleoConditionId)
+	public com.liferay.portal.workflow.kaleo.model.KaleoCondition deleteKaleoCondition(
+		long kaleoConditionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -78,9 +80,10 @@ public interface KaleoConditionLocalService extends PersistedModelLocalService {
 	* Deletes the kaleo condition from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoCondition the kaleo condition
+	* @return the kaleo condition that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoCondition(
+	public com.liferay.portal.workflow.kaleo.model.KaleoCondition deleteKaleoCondition(
 		com.liferay.portal.workflow.kaleo.model.KaleoCondition kaleoCondition)
 		throws com.liferay.portal.kernel.exception.SystemException;
 

@@ -23,11 +23,8 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
@@ -105,26 +102,12 @@ public abstract class KaleoNodeLocalServiceBaseImpl
 	 * @return the kaleo node that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public KaleoNode addKaleoNode(KaleoNode kaleoNode)
 		throws SystemException {
 		kaleoNode.setNew(true);
 
-		kaleoNode = kaleoNodePersistence.update(kaleoNode, false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(kaleoNode);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return kaleoNode;
+		return kaleoNodePersistence.update(kaleoNode, false);
 	}
 
 	/**
@@ -141,48 +124,27 @@ public abstract class KaleoNodeLocalServiceBaseImpl
 	 * Deletes the kaleo node with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param kaleoNodeId the primary key of the kaleo node
+	 * @return the kaleo node that was removed
 	 * @throws PortalException if a kaleo node with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteKaleoNode(long kaleoNodeId)
+	@Indexable(type = IndexableType.DELETE)
+	public KaleoNode deleteKaleoNode(long kaleoNodeId)
 		throws PortalException, SystemException {
-		KaleoNode kaleoNode = kaleoNodePersistence.remove(kaleoNodeId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(kaleoNode);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return kaleoNodePersistence.remove(kaleoNodeId);
 	}
 
 	/**
 	 * Deletes the kaleo node from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param kaleoNode the kaleo node
+	 * @return the kaleo node that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteKaleoNode(KaleoNode kaleoNode) throws SystemException {
-		kaleoNodePersistence.remove(kaleoNode);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(kaleoNode);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+	@Indexable(type = IndexableType.DELETE)
+	public KaleoNode deleteKaleoNode(KaleoNode kaleoNode)
+		throws SystemException {
+		return kaleoNodePersistence.remove(kaleoNode);
 	}
 
 	/**
@@ -307,6 +269,7 @@ public abstract class KaleoNodeLocalServiceBaseImpl
 	 * @return the kaleo node that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public KaleoNode updateKaleoNode(KaleoNode kaleoNode)
 		throws SystemException {
 		return updateKaleoNode(kaleoNode, true);
@@ -320,26 +283,12 @@ public abstract class KaleoNodeLocalServiceBaseImpl
 	 * @return the kaleo node that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public KaleoNode updateKaleoNode(KaleoNode kaleoNode, boolean merge)
 		throws SystemException {
 		kaleoNode.setNew(false);
 
-		kaleoNode = kaleoNodePersistence.update(kaleoNode, merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(kaleoNode);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return kaleoNode;
+		return kaleoNodePersistence.update(kaleoNode, merge);
 	}
 
 	/**
@@ -1236,6 +1185,5 @@ public abstract class KaleoNodeLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private static Log _log = LogFactoryUtil.getLog(KaleoNodeLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

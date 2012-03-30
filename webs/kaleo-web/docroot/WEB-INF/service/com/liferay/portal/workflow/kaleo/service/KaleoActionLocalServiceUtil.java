@@ -67,25 +67,28 @@ public class KaleoActionLocalServiceUtil {
 	* Deletes the kaleo action with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoActionId the primary key of the kaleo action
+	* @return the kaleo action that was removed
 	* @throws PortalException if a kaleo action with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoAction(long kaleoActionId)
+	public static com.liferay.portal.workflow.kaleo.model.KaleoAction deleteKaleoAction(
+		long kaleoActionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoAction(kaleoActionId);
+		return getService().deleteKaleoAction(kaleoActionId);
 	}
 
 	/**
 	* Deletes the kaleo action from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoAction the kaleo action
+	* @return the kaleo action that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoAction(
+	public static com.liferay.portal.workflow.kaleo.model.KaleoAction deleteKaleoAction(
 		com.liferay.portal.workflow.kaleo.model.KaleoAction kaleoAction)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoAction(kaleoAction);
+		return getService().deleteKaleoAction(kaleoAction);
 	}
 
 	/**

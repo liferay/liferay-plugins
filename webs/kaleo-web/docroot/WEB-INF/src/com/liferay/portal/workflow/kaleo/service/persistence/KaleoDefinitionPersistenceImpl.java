@@ -2601,13 +2601,14 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	 * @param companyId the company ID
 	 * @param name the name
 	 * @param version the version
+	 * @return the kaleo definition that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByC_N_V(long companyId, String name, int version)
-		throws NoSuchDefinitionException, SystemException {
+	public KaleoDefinition removeByC_N_V(long companyId, String name,
+		int version) throws NoSuchDefinitionException, SystemException {
 		KaleoDefinition kaleoDefinition = findByC_N_V(companyId, name, version);
 
-		remove(kaleoDefinition);
+		return remove(kaleoDefinition);
 	}
 
 	/**

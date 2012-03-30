@@ -60,25 +60,28 @@ public class KaleoNodeLocalServiceWrapper implements KaleoNodeLocalService,
 	* Deletes the kaleo node with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoNodeId the primary key of the kaleo node
+	* @return the kaleo node that was removed
 	* @throws PortalException if a kaleo node with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoNode(long kaleoNodeId)
+	public com.liferay.portal.workflow.kaleo.model.KaleoNode deleteKaleoNode(
+		long kaleoNodeId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_kaleoNodeLocalService.deleteKaleoNode(kaleoNodeId);
+		return _kaleoNodeLocalService.deleteKaleoNode(kaleoNodeId);
 	}
 
 	/**
 	* Deletes the kaleo node from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoNode the kaleo node
+	* @return the kaleo node that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoNode(
+	public com.liferay.portal.workflow.kaleo.model.KaleoNode deleteKaleoNode(
 		com.liferay.portal.workflow.kaleo.model.KaleoNode kaleoNode)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoNodeLocalService.deleteKaleoNode(kaleoNode);
+		return _kaleoNodeLocalService.deleteKaleoNode(kaleoNode);
 	}
 
 	/**

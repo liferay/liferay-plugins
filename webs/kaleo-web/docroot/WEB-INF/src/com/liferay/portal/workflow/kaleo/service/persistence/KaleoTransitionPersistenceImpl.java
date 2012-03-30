@@ -2220,13 +2220,14 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 *
 	 * @param kaleoNodeId the kaleo node ID
 	 * @param name the name
+	 * @return the kaleo transition that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByKNI_N(long kaleoNodeId, String name)
+	public KaleoTransition removeByKNI_N(long kaleoNodeId, String name)
 		throws NoSuchTransitionException, SystemException {
 		KaleoTransition kaleoTransition = findByKNI_N(kaleoNodeId, name);
 
-		remove(kaleoTransition);
+		return remove(kaleoTransition);
 	}
 
 	/**
@@ -2234,14 +2235,16 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 *
 	 * @param kaleoNodeId the kaleo node ID
 	 * @param defaultTransition the default transition
+	 * @return the kaleo transition that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByKNI_DT(long kaleoNodeId, boolean defaultTransition)
+	public KaleoTransition removeByKNI_DT(long kaleoNodeId,
+		boolean defaultTransition)
 		throws NoSuchTransitionException, SystemException {
 		KaleoTransition kaleoTransition = findByKNI_DT(kaleoNodeId,
 				defaultTransition);
 
-		remove(kaleoTransition);
+		return remove(kaleoTransition);
 	}
 
 	/**

@@ -67,25 +67,28 @@ public class KaleoDefinitionLocalServiceUtil {
 	* Deletes the kaleo definition with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoDefinitionId the primary key of the kaleo definition
+	* @return the kaleo definition that was removed
 	* @throws PortalException if a kaleo definition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoDefinition(long kaleoDefinitionId)
+	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition deleteKaleoDefinition(
+		long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoDefinition(kaleoDefinitionId);
+		return getService().deleteKaleoDefinition(kaleoDefinitionId);
 	}
 
 	/**
 	* Deletes the kaleo definition from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoDefinition the kaleo definition
+	* @return the kaleo definition that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoDefinition(
+	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition deleteKaleoDefinition(
 		com.liferay.portal.workflow.kaleo.model.KaleoDefinition kaleoDefinition)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoDefinition(kaleoDefinition);
+		return getService().deleteKaleoDefinition(kaleoDefinition);
 	}
 
 	/**

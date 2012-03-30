@@ -67,25 +67,28 @@ public class KaleoNotificationLocalServiceUtil {
 	* Deletes the kaleo notification with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoNotificationId the primary key of the kaleo notification
+	* @return the kaleo notification that was removed
 	* @throws PortalException if a kaleo notification with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoNotification(long kaleoNotificationId)
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNotification deleteKaleoNotification(
+		long kaleoNotificationId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoNotification(kaleoNotificationId);
+		return getService().deleteKaleoNotification(kaleoNotificationId);
 	}
 
 	/**
 	* Deletes the kaleo notification from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoNotification the kaleo notification
+	* @return the kaleo notification that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoNotification(
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNotification deleteKaleoNotification(
 		com.liferay.portal.workflow.kaleo.model.KaleoNotification kaleoNotification)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoNotification(kaleoNotification);
+		return getService().deleteKaleoNotification(kaleoNotification);
 	}
 
 	/**

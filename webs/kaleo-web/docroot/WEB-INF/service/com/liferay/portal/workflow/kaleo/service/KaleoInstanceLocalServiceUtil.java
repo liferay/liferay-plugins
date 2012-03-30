@@ -67,25 +67,28 @@ public class KaleoInstanceLocalServiceUtil {
 	* Deletes the kaleo instance with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoInstanceId the primary key of the kaleo instance
+	* @return the kaleo instance that was removed
 	* @throws PortalException if a kaleo instance with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoInstance(long kaleoInstanceId)
+	public static com.liferay.portal.workflow.kaleo.model.KaleoInstance deleteKaleoInstance(
+		long kaleoInstanceId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoInstance(kaleoInstanceId);
+		return getService().deleteKaleoInstance(kaleoInstanceId);
 	}
 
 	/**
 	* Deletes the kaleo instance from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoInstance the kaleo instance
+	* @return the kaleo instance that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoInstance(
+	public static com.liferay.portal.workflow.kaleo.model.KaleoInstance deleteKaleoInstance(
 		com.liferay.portal.workflow.kaleo.model.KaleoInstance kaleoInstance)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoInstance(kaleoInstance);
+		return getService().deleteKaleoInstance(kaleoInstance);
 	}
 
 	/**

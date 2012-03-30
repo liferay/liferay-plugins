@@ -67,25 +67,28 @@ public class KaleoTimerLocalServiceUtil {
 	* Deletes the kaleo timer with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTimerId the primary key of the kaleo timer
+	* @return the kaleo timer that was removed
 	* @throws PortalException if a kaleo timer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoTimer(long kaleoTimerId)
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTimer deleteKaleoTimer(
+		long kaleoTimerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoTimer(kaleoTimerId);
+		return getService().deleteKaleoTimer(kaleoTimerId);
 	}
 
 	/**
 	* Deletes the kaleo timer from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTimer the kaleo timer
+	* @return the kaleo timer that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoTimer(
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTimer deleteKaleoTimer(
 		com.liferay.portal.workflow.kaleo.model.KaleoTimer kaleoTimer)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoTimer(kaleoTimer);
+		return getService().deleteKaleoTimer(kaleoTimer);
 	}
 
 	/**

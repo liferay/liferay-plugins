@@ -1546,13 +1546,14 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 * Removes the kaleo task where kaleoNodeId = &#63; from the database.
 	 *
 	 * @param kaleoNodeId the kaleo node ID
+	 * @return the kaleo task that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByKaleoNodeId(long kaleoNodeId)
+	public KaleoTask removeByKaleoNodeId(long kaleoNodeId)
 		throws NoSuchTaskException, SystemException {
 		KaleoTask kaleoTask = findByKaleoNodeId(kaleoNodeId);
 
-		remove(kaleoTask);
+		return remove(kaleoTask);
 	}
 
 	/**

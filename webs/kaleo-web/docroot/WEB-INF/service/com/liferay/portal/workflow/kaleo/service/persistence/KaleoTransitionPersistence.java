@@ -571,9 +571,11 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 	*
 	* @param kaleoNodeId the kaleo node ID
 	* @param name the name
+	* @return the kaleo transition that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByKNI_N(long kaleoNodeId, java.lang.String name)
+	public com.liferay.portal.workflow.kaleo.model.KaleoTransition removeByKNI_N(
+		long kaleoNodeId, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchTransitionException;
 
@@ -582,9 +584,11 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 	*
 	* @param kaleoNodeId the kaleo node ID
 	* @param defaultTransition the default transition
+	* @return the kaleo transition that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByKNI_DT(long kaleoNodeId, boolean defaultTransition)
+	public com.liferay.portal.workflow.kaleo.model.KaleoTransition removeByKNI_DT(
+		long kaleoNodeId, boolean defaultTransition)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchTransitionException;
 
