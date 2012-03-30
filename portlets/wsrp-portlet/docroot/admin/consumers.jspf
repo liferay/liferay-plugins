@@ -29,6 +29,7 @@
 
 	<liferay-ui:search-container-row
 		className="com.liferay.wsrp.model.WSRPConsumer"
+		escapedModel="<%= true %>"
 		keyProperty="wsrpConsumerId"
 		modelVar="consumer"
 	>

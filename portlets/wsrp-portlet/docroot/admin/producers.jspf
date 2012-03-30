@@ -26,6 +26,7 @@
 
 	<liferay-ui:search-container-row
 		className="com.liferay.wsrp.model.WSRPProducer"
+		escapedModel="<%= true %>"
 		keyProperty="wsrpProducerId"
 		modelVar="producer"
 	>
