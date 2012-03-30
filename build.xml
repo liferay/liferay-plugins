@@ -118,7 +118,6 @@
 					includes="${plugins.ear.includes}"
 				/>
 			</path>
-
 			<sequential>
 				<antelope:stringutil string="@{module.full.path}" property="module.full.path.unix">
 					<antelope:replace regex="\\" replacement="/" />
