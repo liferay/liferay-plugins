@@ -35,7 +35,7 @@ if (Validator.isNull(user2.getComments())) {
 %>
 
 <c:if test="<%= showComments && Validator.isNotNull(user2.getComments()) %>">
-	<div class="section field-group lfr-user-comments" data-sectionId="comments" data-title="introduction">
+	<div class="section field-group lfr-user-comments" data-sectionId="comments" data-title="<%= LanguageUtil.get(pageContext, "introduction") %>">
 		<h3><liferay-ui:message key="introduction" />:</h3>
 
 		<ul class="property-list">
@@ -55,7 +55,7 @@ if (phones.isEmpty()) {
 %>
 
 <c:if test="<%= showPhones && !phones.isEmpty() %>">
-	<div class="section field-group lfr-user-phones" data-sectionId="phoneNumbers" data-title="phone-numbers">
+	<div class="section field-group lfr-user-phones" data-sectionId="phoneNumbers" data-title="<%= LanguageUtil.get(pageContext, "phone-numbers") %>">
 		<h3><liferay-ui:message key="phones" />:</h3>
 
 		<ul class="property-list">
@@ -86,7 +86,7 @@ if (emailAddresses.isEmpty()) {
 %>
 
 <c:if test="<%= showAdditionalEmailAddresses && !emailAddresses.isEmpty() %>">
-	<div class="section field-group lfr-user-email-addresses" data-sectionId="additionalEmailAddresses" data-title="additional-email-addresses">
+	<div class="section field-group lfr-user-email-addresses" data-sectionId="additionalEmailAddresses" data-title="<%= LanguageUtil.get(pageContext, "additional-email-addresses") %>">
 		<h3><liferay-ui:message key="additional-email-addresses" />:</h3>
 
 		<ul class="property-list">
@@ -123,7 +123,7 @@ if (Validator.isNotNull(aim) && Validator.isNotNull(icq) && Validator.isNotNull(
 %>
 
 <c:if test="<%= showInstantMessenger && (Validator.isNotNull(aim) || Validator.isNotNull(icq) || Validator.isNotNull(jabber) || Validator.isNotNull(msn) || Validator.isNotNull(skype) || Validator.isNotNull(ym)) %>">
-	<div class="section field-group" data-sectionId="instantMessenger" data-title="instant-messenger">
+	<div class="section field-group" data-sectionId="instantMessenger" data-title="<%= LanguageUtil.get(pageContext, "instant-messenger") %>">
 		<h3><liferay-ui:message key="instant-messenger" />:</h3>
 
 		<ul class="property-list">
@@ -191,7 +191,7 @@ if (addresses.isEmpty()) {
 %>
 
 <c:if test="<%= showAddresses && !addresses.isEmpty() %>">
-	<div class="section field-group lfr-user-addresses" data-sectionId="addresses" data-title="addresses">
+	<div class="section field-group lfr-user-addresses" data-sectionId="addresses" data-title="<%= LanguageUtil.get(pageContext, "addresses") %>">
 		<h3><liferay-ui:message key="addresses" />:</h3>
 
 		<ul class="property-list">
@@ -275,7 +275,7 @@ if (websites.isEmpty()) {
 %>
 
 <c:if test="<%= showWebsites && !websites.isEmpty() %>">
-	<div class="section field-group lfr-user-websites" data-sectionId="websites" data-title="websites">
+	<div class="section field-group lfr-user-websites" data-sectionId="websites" data-title="<%= LanguageUtil.get(pageContext, "websites") %>">
 		<h3><liferay-ui:message key="websites" />:</h3>
 
 		<ul class="property-list">
@@ -310,7 +310,7 @@ if (Validator.isNull(facebook) && Validator.isNull(mySpace) && Validator.isNull(
 %>
 
 <c:if test="<%= showSocialNetwork && (Validator.isNotNull(facebook) || Validator.isNotNull(mySpace) || Validator.isNotNull(twitter)) %>">
-	<div class="section field-group lfr-user-social-network" data-sectionId="socialNetwork" data-title="social-network">
+	<div class="section field-group lfr-user-social-network" data-sectionId="socialNetwork" data-title="<%= LanguageUtil.get(pageContext, "social-network") %>">
 		<h3><liferay-ui:message key="social-network" />:</h3>
 
 		<ul class="property-list">
@@ -348,7 +348,7 @@ if (Validator.isNotNull(contact2.getSmsSn())) {
 %>
 
 <c:if test="<%= showSMS && Validator.isNotNull(contact2.getSmsSn()) %>">
-	<div class="section field-group lfr-user-sms" data-sectionId="sms" data-title="sms">
+	<div class="section field-group lfr-user-sms" data-sectionId="sms" data-title="<%= LanguageUtil.get(pageContext, "sms") %>">
 		<h3><liferay-ui:message key="sms" />:</h3>
 
 		<ul class="property-list">

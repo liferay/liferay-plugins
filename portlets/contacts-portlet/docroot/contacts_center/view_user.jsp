@@ -274,7 +274,7 @@ request.setAttribute("view_user.jsp-user", user2);
 
 								<c:choose>
 									<c:when test="<%= !assetTags.isEmpty() %>">
-										<div class="field-group" data-sectionId="categorization" data-title="tags">
+										<div class="field-group" data-sectionId="categorization" data-title="<%= LanguageUtil.get(pageContext, "tags") %>" >
 											<ul class="user-tags">
 
 												<%
@@ -363,7 +363,7 @@ request.setAttribute("view_user.jsp-user", user2);
 						destroyOnClose: true,
 						modal: true,
 						resizable: false,
-						title: Liferay.Language.get(node.getAttribute('data-title')),
+						title: node.getAttribute('data-title'),
 						width: 500
 					}
 				).plug(
