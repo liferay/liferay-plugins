@@ -15,6 +15,10 @@
 	<bean id="com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalServiceUtil" class="com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalServiceUtil">
 		<property name="service" ref="com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalService" />
 	</bean>
+	<bean id="com.liferay.portal.workflow.kaleo.service.KaleoDefinitionService" class="com.liferay.portal.workflow.kaleo.service.impl.KaleoDefinitionServiceImpl" />
+	<bean id="com.liferay.portal.workflow.kaleo.service.KaleoDefinitionServiceUtil" class="com.liferay.portal.workflow.kaleo.service.KaleoDefinitionServiceUtil">
+		<property name="service" ref="com.liferay.portal.workflow.kaleo.service.KaleoDefinitionService" />
+	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.service.persistence.KaleoDefinitionPersistence" class="com.liferay.portal.workflow.kaleo.service.persistence.KaleoDefinitionPersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.portal.workflow.kaleo.service.KaleoInstanceLocalService" class="com.liferay.portal.workflow.kaleo.service.impl.KaleoInstanceLocalServiceImpl" />
 	<bean id="com.liferay.portal.workflow.kaleo.service.KaleoInstanceLocalServiceUtil" class="com.liferay.portal.workflow.kaleo.service.KaleoInstanceLocalServiceUtil">

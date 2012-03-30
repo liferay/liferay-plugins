@@ -38,6 +38,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken;
 import com.liferay.portal.workflow.kaleo.service.KaleoActionLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoConditionLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalService;
+import com.liferay.portal.workflow.kaleo.service.KaleoDefinitionService;
 import com.liferay.portal.workflow.kaleo.service.KaleoInstanceLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoInstanceTokenLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoLogLocalService;
@@ -392,6 +393,25 @@ public abstract class KaleoTimerInstanceTokenLocalServiceBaseImpl
 	public void setKaleoDefinitionLocalService(
 		KaleoDefinitionLocalService kaleoDefinitionLocalService) {
 		this.kaleoDefinitionLocalService = kaleoDefinitionLocalService;
+	}
+
+	/**
+	 * Returns the kaleo definition remote service.
+	 *
+	 * @return the kaleo definition remote service
+	 */
+	public KaleoDefinitionService getKaleoDefinitionService() {
+		return kaleoDefinitionService;
+	}
+
+	/**
+	 * Sets the kaleo definition remote service.
+	 *
+	 * @param kaleoDefinitionService the kaleo definition remote service
+	 */
+	public void setKaleoDefinitionService(
+		KaleoDefinitionService kaleoDefinitionService) {
+		this.kaleoDefinitionService = kaleoDefinitionService;
 	}
 
 	/**
@@ -1123,6 +1143,8 @@ public abstract class KaleoTimerInstanceTokenLocalServiceBaseImpl
 	protected KaleoConditionPersistence kaleoConditionPersistence;
 	@BeanReference(type = KaleoDefinitionLocalService.class)
 	protected KaleoDefinitionLocalService kaleoDefinitionLocalService;
+	@BeanReference(type = KaleoDefinitionService.class)
+	protected KaleoDefinitionService kaleoDefinitionService;
 	@BeanReference(type = KaleoDefinitionPersistence.class)
 	protected KaleoDefinitionPersistence kaleoDefinitionPersistence;
 	@BeanReference(type = KaleoInstanceLocalService.class)
