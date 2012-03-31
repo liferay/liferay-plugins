@@ -7,4 +7,15 @@
 			<access>PROPERTY</access>
 		</persistence-unit-defaults>
 	</persistence-unit-metadata>
+	<mapped-superclass class="com.liferay.testpacl.model.impl.FooModelImpl">
+		<attributes>
+			<id name="fooId" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="com.liferay.testpacl.model.impl.FooImpl" name="Foo">
+		<table name="TestPACL_Foo" />
+		<attributes />
+	</entity>
 </entity-mappings>

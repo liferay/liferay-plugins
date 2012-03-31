@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
 
+import com.liferay.testpacl.model.FooClp;
+
 import java.lang.reflect.Method;
 
 import java.util.ArrayList;
@@ -92,6 +94,14 @@ public class ClpSerializer {
 	}
 
 	public static Object translateInput(BaseModel<?> oldModel) {
+		Class<?> oldModelClass = oldModel.getClass();
+
+		String oldModelClassName = oldModelClass.getName();
+
+		if (oldModelClassName.equals(FooClp.class.getName())) {
+			return translateInputFoo(oldModel);
+		}
+
 		return oldModel;
 	}
 
@@ -107,6 +117,42 @@ public class ClpSerializer {
 		return newList;
 	}
 
+	public static Object translateInputFoo(BaseModel<?> oldModel) {
+		FooClp oldCplModel = (FooClp)oldModel;
+
+		Thread currentThread = Thread.currentThread();
+
+		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+
+		try {
+			currentThread.setContextClassLoader(_classLoader);
+
+			try {
+				Class<?> newModelClass = Class.forName("com.liferay.testpacl.model.impl.FooImpl",
+						true, _classLoader);
+
+				Object newModel = newModelClass.newInstance();
+
+				Method method0 = newModelClass.getMethod("setFooId",
+						new Class[] { Long.TYPE });
+
+				Long value0 = new Long(oldCplModel.getFooId());
+
+				method0.invoke(newModel, value0);
+
+				return newModel;
+			}
+			catch (Exception e) {
+				_log.error(e, e);
+			}
+		}
+		finally {
+			currentThread.setContextClassLoader(contextClassLoader);
+		}
+
+		return oldModel;
+	}
+
 	public static Object translateInput(Object obj) {
 		if (obj instanceof BaseModel<?>) {
 			return translateInput((BaseModel<?>)obj);
@@ -120,6 +166,14 @@ public class ClpSerializer {
 	}
 
 	public static Object translateOutput(BaseModel<?> oldModel) {
+		Class<?> oldModelClass = oldModel.getClass();
+
+		String oldModelClassName = oldModelClass.getName();
+
+		if (oldModelClassName.equals("com.liferay.testpacl.model.impl.FooImpl")) {
+			return translateOutputFoo(oldModel);
+		}
+
 		return oldModel;
 	}
 
@@ -147,8 +201,39 @@ public class ClpSerializer {
 		}
 	}
 
+	public static Object translateOutputFoo(BaseModel<?> oldModel) {
+		Thread currentThread = Thread.currentThread();
+
+		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+
+		try {
+			currentThread.setContextClassLoader(_classLoader);
+
+			try {
+				FooClp newModel = new FooClp();
+
+				Class<?> oldModelClass = oldModel.getClass();
+
+				Method method0 = oldModelClass.getMethod("getFooId");
+
+				Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
+
+				newModel.setFooId(value0);
+
+				return newModel;
+			}
+			catch (Exception e) {
+				_log.error(e, e);
+			}
+		}
+		finally {
+			currentThread.setContextClassLoader(contextClassLoader);
+		}
+
+		return oldModel;
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(ClpSerializer.class);
-	@SuppressWarnings("unused")
 	private static ClassLoader _classLoader;
 	private static String _servletContextName;
 }
