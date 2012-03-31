@@ -3,7 +3,11 @@
 
 <service-builder package-path="com.liferay.testpacl">
 	<namespace>TestPACL</namespace>
-	<entity name="TestPACL" local-service="true" remote-service="false">
+	<entity name="Foo" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="fooId" type="long" primary="true" />
 
 		<!-- References -->
 

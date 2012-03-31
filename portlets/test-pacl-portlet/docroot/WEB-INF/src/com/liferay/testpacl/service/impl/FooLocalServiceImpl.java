@@ -28,14 +28,14 @@ import com.liferay.portal.service.PortalServiceUtil;
 import com.liferay.portal.service.persistence.CompanyUtil;
 import com.liferay.portal.service.persistence.GroupUtil;
 import com.liferay.portal.service.persistence.UserUtil;
-import com.liferay.testpacl.service.base.TestPACLLocalServiceBaseImpl;
+import com.liferay.testpacl.service.base.FooLocalServiceBaseImpl;
 
 import java.util.List;
 
 /**
  * @author Brian Wing Shun Chan
  */
-public class TestPACLLocalServiceImpl extends TestPACLLocalServiceBaseImpl {
+public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 
 	public Company getCompanyPersistence_FindByPrimaryKey(long companyId)
 		throws PortalException, SystemException {

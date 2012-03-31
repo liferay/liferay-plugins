@@ -17,6 +17,95 @@
 <%@ include file="/init.jsp" %>
 
 <liferay-ui:header
+	title="Dynamic Query"
+/>
+
+<p>
+	<h3>Chat Portlet</h3>
+</p>
+
+<p>
+	com.liferay.chat.model.Entry=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				ClassLoader classLoader = PortletClassLoaderUtil.getClassLoader("1_WAR_chatportlet");
+
+				DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(Entry.class, classLoader);
+			}
+
+		};
+		%>
+
+	com.liferay.chat.model.Status=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				ClassLoader classLoader = PortletClassLoaderUtil.getClassLoader("1_WAR_chatportlet");
+
+				DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(Status.class, classLoader);
+			}
+
+		};
+		%>
+
+</p>
+
+<p>
+	<h3>Portal</h3>
+</p>
+
+<p>
+	com.liferay.portal.model.Group=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(Group.class);
+			}
+
+		};
+		%>
+
+	com.liferay.portal.model.Role=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(Role.class);
+			}
+
+		};
+		%>
+
+</p>
+
+<p>
+	<h3>Test PACL Portlet</h3>
+</p>
+
+<p>
+	com.liferay.testpacl.model.Foo=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(Foo.class);
+			}
+
+		};
+		%>
+
+</p>
+
+<liferay-ui:header
 	title="Files"
 />
 
@@ -289,14 +378,16 @@
 </p>
 
 <p>
-	TestPACLLocalServiceUtil#getEntryLocalServiceUtil_GetEntry=
+	EntryLocalServiceUtil#getEntry=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, false) {
 
 			protected void test() throws Exception {
 				try {
-					TestPACLLocalServiceUtil.getEntryLocalServiceUtil_GetEntry(0);
+					EntryLocalServiceUtil.getEntry(0);
+
+					throw new Exception("Failed to throw NoSuchEntryException");
 				}
 				catch (NoSuchEntryException nsee) {
 				}
@@ -305,17 +396,48 @@
 		};
 		%>
 
-	TestPACLLocalServiceUtil#getEntryLocalServiceUtil_GetEntries=
+	EntryLocalServiceUtil#getEntries=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, false) {
 
 			protected void test() throws Exception {
-				TestPACLLocalServiceUtil.getEntryLocalServiceUtil_GetEntries(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+				EntryLocalServiceUtil.getEntries(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 			}
 
 		};
 		%>
+
+	FooLocalServiceUtil#getEntryLocalServiceUtil_GetEntry=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				try {
+					FooLocalServiceUtil.getEntryLocalServiceUtil_GetEntry(0);
+
+					throw new Exception("Failed to throw NoSuchEntryException");
+				}
+				catch (NoSuchEntryException nsee) {
+				}
+			}
+
+		};
+		%>
+
+	FooLocalServiceUtil#getEntryLocalServiceUtil_GetEntries=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				FooLocalServiceUtil.getEntryLocalServiceUtil_GetEntries(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+			}
+
+		};
+		%>
+
 </p>
 
 <p>
@@ -323,29 +445,54 @@
 </p>
 
 <p>
-	TestPACLLocalServiceUtil#getStatusLocalServiceUtil_GetStatus=
+	FooLocalServiceUtil#getStatusLocalServiceUtil_GetStatus=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, true) {
 
 			protected void test() throws Exception {
-				TestPACLLocalServiceUtil.getStatusLocalServiceUtil_GetStatus(0);
+				FooLocalServiceUtil.getStatusLocalServiceUtil_GetStatus(0);
 			}
 
 		};
 		%>
 
-	TestPACLLocalServiceUtil#getStatusLocalServiceUtil_GetStatuses=
+	FooLocalServiceUtil#getStatusLocalServiceUtil_GetStatuses=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, false) {
 
 			protected void test() throws Exception {
-				TestPACLLocalServiceUtil.getStatusLocalServiceUtil_GetStatuses(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+				FooLocalServiceUtil.getStatusLocalServiceUtil_GetStatuses(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 			}
 
 		};
 		%>
+
+	StatusLocalServiceUtil#getStatus=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				StatusLocalServiceUtil.getStatus(0);
+			}
+
+		};
+		%>
+
+	StatusLocalServiceUtil#getStatuses=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				StatusLocalServiceUtil.getStatuses(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+			}
+
+		};
+		%>
+
 </p>
 
 <liferay-ui:header
@@ -369,25 +516,25 @@
 		};
 		%>
 
-	TestPACLLocalServiceUtil#getCompanyPersistence_FindByPrimaryKey=
+	FooLocalServiceUtil#getCompanyPersistence_FindByPrimaryKey=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, false) {
 
 			protected void test() throws Exception {
-				TestPACLLocalServiceUtil.getCompanyPersistence_FindByPrimaryKey(themeDisplay.getCompanyId());
+				FooLocalServiceUtil.getCompanyPersistence_FindByPrimaryKey(themeDisplay.getCompanyId());
 			}
 
 		};
 		%>
 
-	TestPACLLocalServiceUtil#getCompanyUtil_FindByPrimaryKey=
+	FooLocalServiceUtil#getCompanyUtil_FindByPrimaryKey=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, false) {
 
 			protected void test() throws Exception {
-				TestPACLLocalServiceUtil.getCompanyUtil_FindByPrimaryKey(themeDisplay.getCompanyId());
+				FooLocalServiceUtil.getCompanyUtil_FindByPrimaryKey(themeDisplay.getCompanyId());
 			}
 
 		};
@@ -412,25 +559,25 @@
 		};
 		%>
 
-	TestPACLLocalServiceUtil#getGroupPersistence_FindByPrimaryKey=
+	FooLocalServiceUtil#getGroupPersistence_FindByPrimaryKey=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, true) {
 
 			protected void test() throws Exception {
-				TestPACLLocalServiceUtil.getGroupPersistence_FindByPrimaryKey(themeDisplay.getScopeGroupId());
+				FooLocalServiceUtil.getGroupPersistence_FindByPrimaryKey(themeDisplay.getScopeGroupId());
 			}
 
 		};
 		%>
 
-	TestPACLLocalServiceUtil#getGroupUtil_FindByPrimaryKey=
+	FooLocalServiceUtil#getGroupUtil_FindByPrimaryKey=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, true) {
 
 			protected void test() throws Exception {
-				TestPACLLocalServiceUtil.getGroupUtil_FindByPrimaryKey(themeDisplay.getScopeGroupId());
+				FooLocalServiceUtil.getGroupUtil_FindByPrimaryKey(themeDisplay.getScopeGroupId());
 			}
 
 		};
@@ -443,73 +590,73 @@
 </p>
 
 <p>
-	TestPACLLocalServiceUtil#getPortalService_GetBuildNumber=
+	FooLocalServiceUtil#getPortalService_GetBuildNumber=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, false) {
 
 			protected void test() throws Exception {
-				TestPACLLocalServiceUtil.getPortalService_GetBuildNumber();
+				FooLocalServiceUtil.getPortalService_GetBuildNumber();
 			}
 
 		};
 		%>
 
-	TestPACLLocalServiceUtil#getPortalService_TestGetBuildNumber=
+	FooLocalServiceUtil#getPortalService_TestGetBuildNumber=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, true) {
 
 			protected void test() throws Exception {
-				TestPACLLocalServiceUtil.getPortalService_TestGetBuildNumber();
+				FooLocalServiceUtil.getPortalService_TestGetBuildNumber();
 			}
 
 		};
 		%>
 
-	TestPACLLocalServiceUtil#getPortalService_TestHasClassName=
+	FooLocalServiceUtil#getPortalService_TestHasClassName=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, true) {
 
 			protected void test() throws Exception {
-				TestPACLLocalServiceUtil.getPortalService_TestHasClassName();
+				FooLocalServiceUtil.getPortalService_TestHasClassName();
 			}
 
 		};
 		%>
 
-	TestPACLLocalServiceUtil#getPortalServiceUtil_GetBuildNumber=
+	FooLocalServiceUtil#getPortalServiceUtil_GetBuildNumber=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, false) {
 
 			protected void test() throws Exception {
-				TestPACLLocalServiceUtil.getPortalServiceUtil_GetBuildNumber();
+				FooLocalServiceUtil.getPortalServiceUtil_GetBuildNumber();
 			}
 
 		};
 		%>
 
-	TestPACLLocalServiceUtil#getPortalServiceUtil_TestGetBuildNumber=
+	FooLocalServiceUtil#getPortalServiceUtil_TestGetBuildNumber=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, true) {
 
 			protected void test() throws Exception {
-				TestPACLLocalServiceUtil.getPortalServiceUtil_TestGetBuildNumber();
+				FooLocalServiceUtil.getPortalServiceUtil_TestGetBuildNumber();
 			}
 
 		};
 		%>
 
-	TestPACLLocalServiceUtil#getPortalServiceUtil_TestHasClassName=
+	FooLocalServiceUtil#getPortalServiceUtil_TestHasClassName=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, true) {
 
 			protected void test() throws Exception {
-				TestPACLLocalServiceUtil.getPortalServiceUtil_TestHasClassName();
+				FooLocalServiceUtil.getPortalServiceUtil_TestHasClassName();
 			}
 
 		};
@@ -522,25 +669,25 @@
 </p>
 
 <p>
-	TestPACLLocalServiceUtil#getUserPersistence_FindByPrimaryKey=
+	FooLocalServiceUtil#getUserPersistence_FindByPrimaryKey=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, true) {
 
 			protected void test() throws Exception {
-				TestPACLLocalServiceUtil.getUserPersistence_FindByPrimaryKey(themeDisplay.getUserId());
+				FooLocalServiceUtil.getUserPersistence_FindByPrimaryKey(themeDisplay.getUserId());
 			}
 
 		};
 		%>
 
-	TestPACLLocalServiceUtil#getUserUtil_FindByPrimaryKey=
+	FooLocalServiceUtil#getUserUtil_FindByPrimaryKey=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, true) {
 
 			protected void test() throws Exception {
-				TestPACLLocalServiceUtil.getUserUtil_FindByPrimaryKey(themeDisplay.getUserId());
+				FooLocalServiceUtil.getUserUtil_FindByPrimaryKey(themeDisplay.getUserId());
 			}
 
 		};
@@ -565,17 +712,17 @@
 />
 
 <p>
-	<h3>com.liferay.testpacl.service.impl.TestPACLLocalServiceImpl</h3>
+	<h3>com.liferay.testpacl.service.impl.FooLocalServiceImpl</h3>
 </p>
 
 <p>
-	TestPACLLocalServiceUtil#getReleaseInfo_GetBuildNumber=
+	FooLocalServiceUtil#getReleaseInfo_GetBuildNumber=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, false) {
 
 			protected void test() throws Exception {
-				TestPACLLocalServiceUtil.getReleaseInfo_GetBuildNumber();
+				FooLocalServiceUtil.getReleaseInfo_GetBuildNumber();
 			}
 
 		};

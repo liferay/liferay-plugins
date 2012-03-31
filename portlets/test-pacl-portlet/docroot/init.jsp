@@ -20,15 +20,25 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <%@ page import="com.liferay.chat.NoSuchEntryException" %><%@
+page import="com.liferay.chat.model.Entry" %><%@
+page import="com.liferay.chat.model.Status" %><%@
+page import="com.liferay.chat.service.EntryLocalServiceUtil" %><%@
+page import="com.liferay.chat.service.StatusLocalServiceUtil" %><%@
+page import="com.liferay.portal.kernel.dao.orm.DynamicQuery" %><%@
+page import="com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %><%@
+page import="com.liferay.portal.kernel.portlet.PortletClassLoaderUtil" %><%@
 page import="com.liferay.portal.kernel.util.FileUtil" %><%@
 page import="com.liferay.portal.kernel.util.HttpUtil" %><%@
 page import="com.liferay.portal.kernel.util.OSDetector" %><%@
+page import="com.liferay.portal.model.Group" %><%@
+page import="com.liferay.portal.model.Role" %><%@
 page import="com.liferay.portal.service.CompanyLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.GroupLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.UserLocalServiceUtil" %><%@
 page import="com.liferay.portal.theme.ThemeDisplay" %><%@
-page import="com.liferay.testpacl.service.TestPACLLocalServiceUtil" %><%@
+page import="com.liferay.testpacl.model.Foo" %><%@
+page import="com.liferay.testpacl.service.FooLocalServiceUtil" %><%@
 page import="com.liferay.testpacl.util.TestPACLUtil" %>
 
 <%@ page import="java.io.File" %><%@

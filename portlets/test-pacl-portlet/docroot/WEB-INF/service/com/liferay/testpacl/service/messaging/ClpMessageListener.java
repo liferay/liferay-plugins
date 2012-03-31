@@ -18,7 +18,7 @@ import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 
 import com.liferay.testpacl.service.ClpSerializer;
-import com.liferay.testpacl.service.TestPACLLocalServiceUtil;
+import com.liferay.testpacl.service.FooLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
@@ -35,7 +35,7 @@ public class ClpMessageListener extends BaseMessageListener {
 
 		if (command.equals("undeploy") &&
 				servletContextName.equals(getServletContextName())) {
-			TestPACLLocalServiceUtil.clearService();
+			FooLocalServiceUtil.clearService();
 		}
 	}
 }

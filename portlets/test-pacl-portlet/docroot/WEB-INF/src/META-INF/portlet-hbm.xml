@@ -2,5 +2,11 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
-	<import class="com.liferay.testpacl.model.TestPACL" />
+	<import class="com.liferay.testpacl.model.Foo" />
+	<class name="com.liferay.testpacl.model.impl.FooImpl" table="TestPACL_Foo">
+		<cache usage="read-write" />
+		<id name="fooId" type="long">
+			<generator class="assigned" />
+		</id>
+	</class>
 </hibernate-mapping>
