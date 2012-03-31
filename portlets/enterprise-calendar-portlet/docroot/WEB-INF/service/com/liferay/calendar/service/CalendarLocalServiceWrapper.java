@@ -292,22 +292,40 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 	}
 
 	public java.util.List<com.liferay.calendar.model.Calendar> search(
-		long groupId, long calendarResourceId, java.lang.String name,
-		java.lang.String description, java.lang.Boolean defaultCalendar,
+		long companyId, long[] groupIds, long[] calendarResourceIds,
+		java.lang.String name, java.lang.String description,
 		boolean andOperator, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _calendarLocalService.search(groupId, calendarResourceId, name,
-			description, defaultCalendar, andOperator, start, end,
+		return _calendarLocalService.search(companyId, groupIds,
+			calendarResourceIds, name, description, andOperator, start, end,
 			orderByComparator);
 	}
 
-	public long searchCount(long groupId, long calendarResourceId,
-		java.lang.String name, java.lang.String description,
-		java.lang.Boolean defaultCalendar, boolean andOperator)
+	public java.util.List<com.liferay.calendar.model.Calendar> searchByKeywords(
+		long companyId, long[] groupIds, long[] calendarResourceIds,
+		java.lang.String keywords, boolean andOperator, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _calendarLocalService.searchCount(groupId, calendarResourceId,
-			name, description, defaultCalendar, andOperator);
+		return _calendarLocalService.searchByKeywords(companyId, groupIds,
+			calendarResourceIds, keywords, andOperator, start, end,
+			orderByComparator);
+	}
+
+	public int searchCount(long companyId, long[] groupIds,
+		long[] calendarResourceIds, java.lang.String keywords,
+		boolean andOperator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarLocalService.searchCount(companyId, groupIds,
+			calendarResourceIds, keywords, andOperator);
+	}
+
+	public int searchCount(long companyId, long[] groupIds,
+		long[] calendarResourceIds, java.lang.String name,
+		java.lang.String description, boolean andOperator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarLocalService.searchCount(companyId, groupIds,
+			calendarResourceIds, name, description, andOperator);
 	}
 
 	public com.liferay.calendar.model.Calendar updateCalendar(long calendarId,

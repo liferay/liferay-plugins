@@ -125,6 +125,79 @@ public class CalendarServiceSoap {
 		}
 	}
 
+	public static com.liferay.calendar.model.CalendarSoap[] search(
+		long companyId, long[] groupIds, long[] calendarResourceIds,
+		java.lang.String keywords, boolean andOperator, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws RemoteException {
+		try {
+			java.util.List<com.liferay.calendar.model.Calendar> returnValue = CalendarServiceUtil.search(companyId,
+					groupIds, calendarResourceIds, keywords, andOperator,
+					start, end, orderByComparator);
+
+			return com.liferay.calendar.model.CalendarSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.calendar.model.CalendarSoap[] search(
+		long companyId, long[] groupIds, long[] calendarResourceIds,
+		java.lang.String name, java.lang.String description,
+		boolean andOperator, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws RemoteException {
+		try {
+			java.util.List<com.liferay.calendar.model.Calendar> returnValue = CalendarServiceUtil.search(companyId,
+					groupIds, calendarResourceIds, name, description,
+					andOperator, start, end, orderByComparator);
+
+			return com.liferay.calendar.model.CalendarSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static int searchCount(long companyId, long[] groupIds,
+		long[] calendarResourceIds, java.lang.String keywords,
+		boolean andOperator) throws RemoteException {
+		try {
+			int returnValue = CalendarServiceUtil.searchCount(companyId,
+					groupIds, calendarResourceIds, keywords, andOperator);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static int searchCount(long companyId, long[] groupIds,
+		long[] calendarResourceIds, java.lang.String name,
+		java.lang.String description, boolean andOperator)
+		throws RemoteException {
+		try {
+			int returnValue = CalendarServiceUtil.searchCount(companyId,
+					groupIds, calendarResourceIds, name, description,
+					andOperator);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.liferay.calendar.model.CalendarSoap updateCalendar(
 		long calendarId, java.lang.String[] nameMapLanguageIds,
 		java.lang.String[] nameMapValues,

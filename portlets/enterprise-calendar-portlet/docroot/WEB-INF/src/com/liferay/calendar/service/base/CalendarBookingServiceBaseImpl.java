@@ -22,6 +22,7 @@ import com.liferay.calendar.service.CalendarResourceLocalService;
 import com.liferay.calendar.service.CalendarResourceService;
 import com.liferay.calendar.service.CalendarService;
 import com.liferay.calendar.service.persistence.CalendarBookingPersistence;
+import com.liferay.calendar.service.persistence.CalendarFinder;
 import com.liferay.calendar.service.persistence.CalendarPersistence;
 import com.liferay.calendar.service.persistence.CalendarResourceFinder;
 import com.liferay.calendar.service.persistence.CalendarResourcePersistence;
@@ -118,6 +119,24 @@ public abstract class CalendarBookingServiceBaseImpl extends PrincipalBean
 	 */
 	public void setCalendarPersistence(CalendarPersistence calendarPersistence) {
 		this.calendarPersistence = calendarPersistence;
+	}
+
+	/**
+	 * Returns the calendar finder.
+	 *
+	 * @return the calendar finder
+	 */
+	public CalendarFinder getCalendarFinder() {
+		return calendarFinder;
+	}
+
+	/**
+	 * Sets the calendar finder.
+	 *
+	 * @param calendarFinder the calendar finder
+	 */
+	public void setCalendarFinder(CalendarFinder calendarFinder) {
+		this.calendarFinder = calendarFinder;
 	}
 
 	/**
@@ -461,6 +480,8 @@ public abstract class CalendarBookingServiceBaseImpl extends PrincipalBean
 	protected CalendarService calendarService;
 	@BeanReference(type = CalendarPersistence.class)
 	protected CalendarPersistence calendarPersistence;
+	@BeanReference(type = CalendarFinder.class)
+	protected CalendarFinder calendarFinder;
 	@BeanReference(type = CalendarBookingLocalService.class)
 	protected CalendarBookingLocalService calendarBookingLocalService;
 	@BeanReference(type = CalendarBookingService.class)
