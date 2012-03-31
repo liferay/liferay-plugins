@@ -14,6 +14,8 @@
 
 package com.liferay.calendar.util;
 
+import com.liferay.calendar.util.comparator.CalendarNameComparator;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.util.UniqueList;
@@ -23,8 +25,24 @@ import java.util.List;
 /**
  * @author Eduardo Lundgren
  * @author Peter Shin
+ * @author Fabio Pezzutto
  */
 public class CalendarUtil {
+
+	public static OrderByComparator getOrderByComparator(
+		String orderByCol, String orderByType) {
+
+		boolean orderByAsc = false;
+
+		if (orderByType.equals("asc")) {
+			orderByAsc = true;
+		}
+
+		OrderByComparator orderByComparator = new CalendarNameComparator(
+			orderByAsc);
+
+		return orderByComparator;
+	}
 
 	public static String[] splitKeywords(String keywords) {
 		List<String> keywordsList = new UniqueList<String>();

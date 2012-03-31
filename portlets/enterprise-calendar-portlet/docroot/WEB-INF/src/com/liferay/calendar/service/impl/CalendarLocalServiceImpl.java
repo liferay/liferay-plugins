@@ -17,28 +17,16 @@ package com.liferay.calendar.service.impl;
 import com.liferay.calendar.CalendarNameException;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.service.base.CalendarLocalServiceBaseImpl;
-import com.liferay.calendar.util.CalendarUtil;
-import com.liferay.portal.kernel.dao.orm.Criterion;
-import com.liferay.portal.kernel.dao.orm.Disjunction;
-import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.Junction;
-import com.liferay.portal.kernel.dao.orm.Property;
-import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -141,28 +129,44 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 	}
 
 	public List<Calendar> search(
-			long groupId, long calendarResourceId, String name,
-			String description, Boolean defaultCalendar, boolean andOperator,
+			long companyId, long[] groupIds, long[] calendarResourceIds,
+			String name, String description, boolean andOperator,
 			int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 
-		DynamicQuery dynamicQuery = buildDynamicQuery(
-			groupId, calendarResourceId, name, description, defaultCalendar,
-			andOperator);
-
-		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
+		return calendarFinder.findByC_G_C_N_D(
+			companyId, groupIds, calendarResourceIds, name, description,
+			andOperator, start, end, orderByComparator);
 	}
 
-	public long searchCount(
-			long groupId, long calendarResourceId, String name,
-			String description, Boolean defaultCalendar, boolean andOperator)
+	public List<Calendar> searchByKeywords(
+			long companyId, long[] groupIds, long[] calendarResourceIds,
+			String keywords, boolean andOperator, int start, int end,
+			OrderByComparator orderByComparator)
 		throws SystemException {
 
-		DynamicQuery dynamicQuery = buildDynamicQuery(
-			groupId, calendarResourceId, name, description, defaultCalendar,
-			andOperator);
+		return calendarFinder.findByKeywords(
+			companyId, groupIds, calendarResourceIds, keywords, start, end,
+			orderByComparator);
+	}
 
-		return dynamicQueryCount(dynamicQuery);
+	public int searchCount(
+			long companyId, long[] groupIds, long[] calendarResourceIds,
+			String keywords, boolean andOperator)
+		throws SystemException {
+
+		return calendarFinder.countByKeywords(
+			companyId, groupIds, calendarResourceIds, keywords);
+	}
+
+	public int searchCount(
+			long companyId, long[] groupIds, long[] calendarResourceIds,
+			String name, String description, boolean andOperator)
+		throws SystemException {
+
+		return calendarFinder.countByC_G_C_N_D(
+			companyId, groupIds, calendarResourceIds, name, description,
+			andOperator);
 	}
 
 	public Calendar updateCalendar(
@@ -210,70 +214,6 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		return updateCalendar(
 			calendarId, nameMap, descriptionMap, color,
 			calendar.isDefaultCalendar(), serviceContext);
-	}
-
-	protected DynamicQuery buildDynamicQuery(
-		long groupId, long calendarResourceId, String name, String description,
-		Boolean defaultCalendar, boolean andOperator) {
-
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Calendar.class, getClassLoader());
-
-		if (groupId > 0) {
-			Property property = PropertyFactoryUtil.forName("groupId");
-
-			dynamicQuery.add(property.eq(groupId));
-		}
-
-		if (calendarResourceId > 0) {
-			Property property = PropertyFactoryUtil.forName(
-				"calendarResourceId");
-
-			dynamicQuery.add(property.eq(calendarResourceId));
-		}
-
-		if (defaultCalendar != null) {
-			Property property = PropertyFactoryUtil.forName("defaultCalendar");
-
-			dynamicQuery.add(property.eq(defaultCalendar));
-		}
-
-		Junction junction = null;
-
-		if (andOperator) {
-			junction = RestrictionsFactoryUtil.conjunction();
-		}
-		else {
-			junction = RestrictionsFactoryUtil.disjunction();
-		}
-
-		Map<String, String> terms = new HashMap<String, String>();
-
-		if (Validator.isNotNull(name)) {
-			terms.put("name", name);
-		}
-
-		if (Validator.isNotNull(description)) {
-			terms.put("description", description);
-		}
-
-		for (Map.Entry<String, String> entry : terms.entrySet()) {
-			String key = entry.getKey();
-			String value = entry.getValue();
-
-			Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
-
-			for (String keyword : CalendarUtil.splitKeywords(value)) {
-				Criterion criterion = RestrictionsFactoryUtil.ilike(
-					key, StringUtil.quote(keyword, StringPool.PERCENT));
-
-				disjunction.add(criterion);
-			}
-
-			junction.add(disjunction);
-		}
-
-		return dynamicQuery.add(junction);
 	}
 
 	protected void validate(Map<Locale, String> nameMap)

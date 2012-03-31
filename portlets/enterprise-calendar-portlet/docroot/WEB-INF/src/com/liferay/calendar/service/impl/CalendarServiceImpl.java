@@ -21,8 +21,10 @@ import com.liferay.calendar.service.permission.CalendarResourcePermission;
 import com.liferay.calendar.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ServiceContext;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -64,6 +66,47 @@ public class CalendarServiceImpl extends CalendarServiceBaseImpl {
 			getPermissionChecker(), calendarId, ActionKeys.VIEW);
 
 		return calendarLocalService.getCalendar(calendarId);
+	}
+
+	public List<Calendar> search(
+		long companyId, long[] groupIds, long[] calendarResourceIds,
+		String keywords, boolean andOperator, int start, int end,
+		OrderByComparator orderByComparator)
+						throws SystemException {
+
+		return calendarFinder.filterFindByKeywords(
+			companyId, groupIds, calendarResourceIds, keywords, start, end,
+			orderByComparator);
+	}
+
+	public List<Calendar> search(
+			long companyId, long[] groupIds, long[] calendarResourceIds,
+			String name, String description, boolean andOperator,
+			int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+
+		return calendarFinder.filterFindByC_G_C_N_D(
+			companyId, groupIds, calendarResourceIds, name, description,
+			andOperator, start, end, orderByComparator);
+	}
+
+	public int searchCount(
+			long companyId, long[] groupIds, long[] calendarResourceIds,
+			String keywords, boolean andOperator)
+		throws SystemException {
+
+		return calendarFinder.filterCountByKeywords(
+			companyId, groupIds, calendarResourceIds, keywords);
+	}
+
+	public int searchCount(
+			long companyId, long[] groupIds, long[] calendarResourceIds,
+			String name, String description, boolean andOperator)
+		throws SystemException {
+
+		return calendarFinder.filterCountByC_G_C_N_D(
+			companyId, groupIds, calendarResourceIds, name, description,
+			andOperator);
 	}
 
 	public Calendar updateCalendar(
