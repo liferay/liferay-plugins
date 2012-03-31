@@ -67,6 +67,72 @@
 </p>
 
 <p>
+
+	<%
+	new FileSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testExecute("../webapps/chat-portlet/images/saved.png");
+		}
+
+	};
+
+	if (OSDetector.isWindows()) {
+		new FileSecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				testExecute("ping.exe");
+			}
+
+		};
+
+		new FileSecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				testExecute("C:\\WINDOWS\\system32\\ping.exe");
+			}
+
+		};
+
+		new FileSecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				testExecute("C:\\WINDOWS\\system32\\whoami.exe");
+			}
+
+		};
+	}
+	else {
+		new FileSecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				testExecute("bash");
+			}
+
+		};
+
+		new FileSecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				testExecute("/bin/bash");
+			}
+
+		};
+
+		new FileSecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				testExecute("/bin/cat");
+			}
+
+		};
+	}
+	%>
+
+</p>
+
+
+<p>
 	<h3>Read</h3>
 </p>
 
@@ -849,6 +915,15 @@ private class FileSecurityExceptionTest extends SecurityExceptionTest {
 				throw new SecurityException();
 			}
 		}
+	}
+
+	protected void testExecute(String cmd) throws Exception {
+		writer.write(cmd);
+		writer.write("=");
+
+		Runtime runtime = Runtime.getRuntime();
+
+		runtime.exec(cmd);
 	}
 
 	protected void testReadWithFile(String fileName) throws Exception {
