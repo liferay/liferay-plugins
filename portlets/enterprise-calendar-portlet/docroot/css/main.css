@@ -1,0 +1,29 @@
+.enterprise-calendar-portlet .color-box {
+	width: 20px;
+	height: 20px;
+}
+
+.enterprise-calendar-portlet .color-area {
+	width: 80%;
+	height: 80%;
+}
+
+.enterprise-calendar-portlet .color-picker-element {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.ie6 .enterprise-calendar-portlet .color-picker-element {
+	display: inline;
+	zoom: 1;
+}
+
+.ie7 .enterprise-calendar-portlet .color-picker-element {
+	display: inline;
+	zoom: 1;
+}
+
+.ie8 .enterprise-calendar-portlet .color-picker-element {
+	display: inline;
+	zoom: 1;
+}

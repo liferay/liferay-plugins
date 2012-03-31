@@ -32,12 +32,19 @@ page import="com.liferay.calendar.search.CalendarResourceSearch" %><%@
 page import="com.liferay.calendar.search.CalendarResourceSearchTerms" %><%@
 page import="com.liferay.calendar.service.CalendarLocalServiceUtil" %><%@
 page import="com.liferay.calendar.service.CalendarResourceServiceUtil" %><%@
+page import="com.liferay.calendar.service.CalendarServiceUtil" %><%@
+page import="com.liferay.calendar.service.permission.CalendarPermission" %><%@
 page import="com.liferay.calendar.service.permission.CalendarPortletPermission" %><%@
 page import="com.liferay.calendar.service.permission.CalendarResourcePermission" %><%@
 page import="com.liferay.calendar.util.ActionKeys" %><%@
+page import="com.liferay.calendar.util.CalendarUtil" %><%@
+page import="com.liferay.calendar.util.ColorUtil" %><%@
+page import="com.liferay.calendar.util.comparator.CalendarNameComparator" %><%@
 page import="com.liferay.calendar.util.PortletPropsValues" %><%@
 page import="com.liferay.calendar.util.WebKeys" %><%@
 page import="com.liferay.portal.kernel.dao.search.ResultRow" %><%@
+page import="com.liferay.portal.kernel.dao.search.SearchContainer"%><%@
+page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
@@ -46,10 +53,13 @@ page import="com.liferay.portal.util.PortalUtil" %>
 
 <%@ page import="java.util.List" %>
 
+<%@ page import="javax.portlet.PortletURL" %>
+
 <portlet:defineObjects />
 
 <liferay-theme:defineObjects />
 
 <%
+PortletURL portletURL = renderResponse.createRenderURL();
 String currentURL = PortalUtil.getCurrentURL(request);
 %>

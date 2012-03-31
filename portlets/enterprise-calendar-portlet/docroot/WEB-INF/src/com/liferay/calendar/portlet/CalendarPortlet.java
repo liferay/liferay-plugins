@@ -16,8 +16,10 @@ package com.liferay.calendar.portlet;
 
 import com.liferay.calendar.DuplicateCalendarResourceException;
 import com.liferay.calendar.NoSuchResourceException;
+import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.CalendarResourceServiceUtil;
+import com.liferay.calendar.service.CalendarServiceUtil;
 import com.liferay.calendar.util.WebKeys;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.LocalizationUtil;
@@ -46,6 +48,15 @@ import javax.portlet.RenderResponse;
  */
 public class CalendarPortlet extends MVCPortlet {
 
+	public void deleteCalendar(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long calendarId = ParamUtil.getLong(actionRequest, "calendarId");
+
+		CalendarServiceUtil.deleteCalendar(calendarId);
+	}
+
 	public void deleteCalendarResource(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -62,10 +73,16 @@ public class CalendarPortlet extends MVCPortlet {
 		throws PortletException, IOException {
 
 		try {
+			Calendar calendar = null;
 			CalendarResource calendarResource = null;
 
+			long calendarId = ParamUtil.getLong(renderRequest, "calendarId");
 			long calendarResourceId = ParamUtil.getLong(
 				renderRequest, "calendarResourceId");
+
+			if (calendarId > 0) {
+				calendar = CalendarServiceUtil.getCalendar(calendarId);
+			}
 
 			if (calendarResourceId > 0) {
 				calendarResource =
@@ -73,6 +90,7 @@ public class CalendarPortlet extends MVCPortlet {
 						calendarResourceId);
 			}
 
+			renderRequest.setAttribute(WebKeys.CALENDAR, calendar);
 			renderRequest.setAttribute(
 				WebKeys.CALENDAR_RESOURCE, calendarResource);
 		}
@@ -86,6 +104,37 @@ public class CalendarPortlet extends MVCPortlet {
 		}
 
 		super.render(renderRequest, renderResponse);
+	}
+
+	public void updateCalendar(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long calendarId = ParamUtil.getLong(actionRequest, "calendarId", 0);
+		long calendarResourceId = ParamUtil.getLong(
+			actionRequest, "calendarResourceId", 0);
+
+		Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(
+			actionRequest, "name");
+		Map<Locale, String> descriptionMap =
+			LocalizationUtil.getLocalizationMap(actionRequest, "description");
+		int color = ParamUtil.getInteger(actionRequest, "color", 255);
+		boolean defaultCalendar = ParamUtil.getBoolean(
+			actionRequest, "defaultCalendar", false);
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			CalendarResource.class.getName(), actionRequest);
+
+		if (calendarId <= 0) {
+			CalendarServiceUtil.addCalendar(
+				serviceContext.getScopeGroupId(), calendarResourceId, nameMap,
+				descriptionMap, color, defaultCalendar, serviceContext);
+		}
+		else {
+			CalendarServiceUtil.updateCalendar(
+				calendarId, nameMap, descriptionMap, color, defaultCalendar,
+				serviceContext);
+		}
 	}
 
 	public void updateCalendarResource(

@@ -1,0 +1,100 @@
+<%--
+/**
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%@ include file="/init.jsp" %>
+
+<%
+String redirect = ParamUtil.getString(request, "redirect");
+
+CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKeys.CALENDAR_RESOURCE);
+long[] calendarResourceIds = new long[] {calendarResource.getCalendarResourceId()};
+long[] groupIds = new long[] {themeDisplay.getScopeGroupId()};
+
+String title = LanguageUtil.format(pageContext, "x-calendars", calendarResource.getName(locale));
+%>
+
+<liferay-ui:header
+	backURL="<%= redirect %>"
+	title='<%= title %>'
+/>
+
+<c:if test="<%= CalendarResourcePermission.contains(permissionChecker, calendarResource, ActionKeys.ADD_CALENDAR) %>">
+	<aui:button-row>
+		<liferay-portlet:renderURL var="editCalendarURL">
+			<liferay-portlet:param name="jspPage" value="/edit_calendar.jsp" />
+			<liferay-portlet:param name="calendarResourceId" value="<%= String.valueOf(calendarResource.getCalendarResourceId()) %>" />
+			<liferay-portlet:param name="redirect" value="<%= currentURL %>" />
+		</liferay-portlet:renderURL>
+
+		<aui:button onClick="<%= editCalendarURL %>" value="add-calendar" />
+	</aui:button-row>
+</c:if>
+
+<liferay-ui:search-container
+	searchContainer='<%= new SearchContainer(renderRequest, portletURL, null, "there-are-no-calendars-for-selected-resource") %>'
+	>
+
+	<liferay-ui:search-container-results
+		results='<%= CalendarServiceUtil.search(themeDisplay.getCompanyId(), groupIds, calendarResourceIds, null, false, searchContainer.getStart(), searchContainer.getEnd(), new CalendarNameComparator(true)) %>'
+		total='<%= CalendarServiceUtil.searchCount(themeDisplay.getCompanyId(), groupIds, calendarResourceIds, null, false) %>'
+	/>
+
+	<liferay-ui:search-container-row
+		className="com.liferay.calendar.model.Calendar"
+		keyProperty="calendarId"
+		modelVar="calendar"
+	>
+
+		<liferay-ui:search-container-column-text
+			name="name"
+			value="<%= calendar.getName(locale) %>"
+		/>
+
+		<liferay-ui:search-container-column-text
+			name="description"
+			value="<%= StringUtil.shorten(calendar.getDescription(locale)) %>"
+		/>
+
+		<liferay-ui:search-container-column-text
+			name="color"
+			align="center"
+		>
+			<span
+				class="color-area color-picker-element"
+				style="background-color:<%= ColorUtil.toHexString(calendar.getColor()) %>;">
+			</span>
+		</liferay-ui:search-container-column-text>
+
+		<liferay-ui:search-container-column-text name="default">
+			<c:choose>
+				<c:when test="<%= calendar.isDefaultCalendar() %>">
+					<liferay-ui:message key="yes" />
+				</c:when>
+				<c:otherwise>
+					<liferay-ui:message key="no" />
+				</c:otherwise>
+			</c:choose>
+		</liferay-ui:search-container-column-text>
+
+		<liferay-ui:search-container-column-jsp
+			align="right"
+			path="/calendar_action.jsp"
+		/>
+
+	</liferay-ui:search-container-row>
+
+	<liferay-ui:search-iterator />
+</liferay-ui:search-container>
