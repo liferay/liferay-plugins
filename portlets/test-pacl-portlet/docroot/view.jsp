@@ -27,22 +27,6 @@
 <p>
 
 	<%
-	new FileSecurityExceptionTest(out, themeDisplay, false) {
-
-		protected void test() throws Exception {
-			testDeleteWithFile("../webapps/chat-portlet/WEB-INF/.gitignore");
-		}
-
-	};
-
-	new FileSecurityExceptionTest(out, themeDisplay, false) {
-
-		protected void test() throws Exception {
-			testDeleteWithFileUtil("../webapps/chat-portlet/WEB-INF/.gitignore");
-		}
-
-	};
-
 	new FileSecurityExceptionTest(out, themeDisplay, true) {
 
 		protected void test() throws Exception {
@@ -55,6 +39,22 @@
 
 		protected void test() throws Exception {
 			testDeleteWithFileUtil("../webapps/chat-portlet/WEB-INF/liferay-releng.properties");
+		}
+
+	};
+
+	new FileSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testDeleteWithFile("../webapps/chat-portlet/WEB-INF/src/com/liferay/chat/util/ChatUtil.java");
+		}
+
+	};
+
+	new FileSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testDeleteWithFileUtil("../webapps/chat-portlet/WEB-INF/src/com/liferay/chat/util/ChatUtil.java");
 		}
 
 	};
