@@ -191,20 +191,17 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		List<Module> modules = modulePersistence.findByAppId(app.getAppId());
 
 		for (Module module : modules) {
-			String contextName = module.getContextName();
+			moduleLocalService.deleteModule(module.getModuleId());
 
 			if (hasDependentApp(module)) {
 				continue;
 			}
 
 			try {
-				DeployManagerUtil.undeploy(contextName);
+				DeployManagerUtil.undeploy(module.getContextName());
 			}
 			catch (Exception e) {
 				_log.error(e, e);
-			}
-			finally {
-				moduleLocalService.deleteModule(module.getModuleId());
 			}
 		}
 	}
