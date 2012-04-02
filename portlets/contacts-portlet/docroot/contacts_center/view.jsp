@@ -397,27 +397,25 @@ portletURL.setWindowState(WindowState.NORMAL);
 			);
 
 			<c:if test="<%= !userPublicPage %>">
-				<c:if test="<%= !showOnlySiteMembers %>">
-					A.one('.contacts-portlet .contacts-center-home .connections').on(
-						'click',
-						function(event) {
-							contactFilterSelect.set('value', '<%= SocialRelationConstants.TYPE_BI_CONNECTION %>');
+				A.one('.contacts-portlet .contacts-center-home .connections').on(
+					'click',
+					function(event) {
+						contactFilterSelect.set('value', '<%= SocialRelationConstants.TYPE_BI_CONNECTION %>');
 
-							contactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
-						},
-						'a'
-					);
+						contactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
+					},
+					'a'
+				);
 
-					A.one('.contacts-portlet .contacts-center-home .followings').on(
-						'click',
-						function(event) {
-							contactFilterSelect.set('value', '<%= SocialRelationConstants.TYPE_UNI_FOLLOWER %>');
+				A.one('.contacts-portlet .contacts-center-home .followings').on(
+					'click',
+					function(event) {
+						contactFilterSelect.set('value', '<%= SocialRelationConstants.TYPE_UNI_FOLLOWER %>');
 
-							contactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
-						},
-						'a'
-					);
-				</c:if>
+						contactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
+					},
+					'a'
+				);
 
 				A.one('.contacts-portlet .contacts-center-home .all').on(
 					'click',
