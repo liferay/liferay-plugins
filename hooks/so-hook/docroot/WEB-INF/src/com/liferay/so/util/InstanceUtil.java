@@ -361,17 +361,6 @@ public class InstanceUtil {
 			layoutSetPrototype.getLayoutSetPrototypeId(),
 			SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_USER_PRIVATE);
 
-		Role role = RoleLocalServiceUtil.getRole(
-			layoutSetPrototype.getCompanyId(),
-			RoleConstants.SOCIAL_OFFICE_USER);
-
-		ResourcePermissionLocalServiceUtil.setResourcePermissions(
-			layoutSetPrototype.getCompanyId(),
-			LayoutSetPrototype.class.getName(),
-			ResourceConstants.SCOPE_INDIVIDUAL,
-			String.valueOf(layoutSetPrototype.getPrimaryKey()),
-			role.getRoleId(), new String[] {ActionKeys.VIEW});
-
 		Group group = layoutSetPrototype.getGroup();
 
 		LayoutLocalServiceUtil.deleteLayouts(
@@ -463,17 +452,6 @@ public class InstanceUtil {
 			SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY,
 			layoutSetPrototype.getLayoutSetPrototypeId(),
 			SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_USER_PUBLIC);
-
-		Role role = RoleLocalServiceUtil.getRole(
-			layoutSetPrototype.getCompanyId(),
-			RoleConstants.SOCIAL_OFFICE_USER);
-
-		ResourcePermissionLocalServiceUtil.setResourcePermissions(
-			layoutSetPrototype.getCompanyId(),
-			LayoutSetPrototype.class.getName(),
-			ResourceConstants.SCOPE_INDIVIDUAL,
-			String.valueOf(layoutSetPrototype.getPrimaryKey()),
-			role.getRoleId(), new String[] {ActionKeys.VIEW});
 
 		Group group = layoutSetPrototype.getGroup();
 

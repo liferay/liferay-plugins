@@ -74,38 +74,45 @@ public class UserListener extends BaseModelListener<User> {
 
 				Group group = user.getGroup();
 
-				LayoutSetPrototype[] layoutSetPrototypes =
-					LayoutSetPrototypeUtil.getLayoutSetPrototypes(user);
+				LayoutSetPrototype publicLayoutSetPrototype =
+					LayoutSetPrototypeUtil.fetchLayoutSetPrototype(user, false);
 
-				long[] publicPlids = getUserLayoutPlids(group, false);
+				if (publicLayoutSetPrototype != null) {
+					LayoutSetLocalServiceUtil.
+						updateLayoutSetPrototypeLinkEnabled(
+							group.getGroupId(), false, true,
+							publicLayoutSetPrototype.getUuid());
 
-				LayoutSetLocalServiceUtil.updateLayoutSetPrototypeLinkEnabled(
-					group.getGroupId(), false, true,
-					layoutSetPrototypes[0].getUuid());
+					LayoutSet layoutSet =
+						LayoutSetLocalServiceUtil.getLayoutSet(
+							group.getGroupId(), false);
 
-				LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
-						group.getGroupId(), false);
+					PortalClassInvoker.invoke(
+						true, _mergeLayoutSetProtypeLayoutsMethodKey, group,
+						layoutSet);
 
-				PortalClassInvoker.invoke(
-					true, _mergeLayoutSetProtypeLayoutsMethodKey, group,
-					layoutSet);
+					orderLayouts(getUserLayoutPlids(group, false));
+				}
 
-				orderLayouts(publicPlids);
+				LayoutSetPrototype privateLayoutSetPrototype =
+					LayoutSetPrototypeUtil.fetchLayoutSetPrototype(user, true);
 
-				long[] privatePlids = getUserLayoutPlids(group, true);
+				if (privateLayoutSetPrototype != null) {
+					LayoutSetLocalServiceUtil.
+						updateLayoutSetPrototypeLinkEnabled(
+							group.getGroupId(), true, true,
+							privateLayoutSetPrototype.getUuid());
 
-				LayoutSetLocalServiceUtil.updateLayoutSetPrototypeLinkEnabled(
-					group.getGroupId(), true, true,
-					layoutSetPrototypes[1].getUuid());
+					LayoutSet layoutSet =
+						LayoutSetLocalServiceUtil.getLayoutSet(
+							group.getGroupId(), true);
 
-				layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
-						group.getGroupId(), true);
+					PortalClassInvoker.invoke(
+						true, _mergeLayoutSetProtypeLayoutsMethodKey, group,
+						layoutSet);
 
-				PortalClassInvoker.invoke(
-					true, _mergeLayoutSetProtypeLayoutsMethodKey, group,
-					layoutSet);
-
-				orderLayouts(privatePlids);
+					orderLayouts(getUserLayoutPlids(group, true));
+				}
 			}
 		}
 		catch (Exception e) {
@@ -135,12 +142,17 @@ public class UserListener extends BaseModelListener<User> {
 
 				User user = UserLocalServiceUtil.getUser(userId);
 
-				LayoutSetPrototype[] layoutSetPrototypes =
-					LayoutSetPrototypeUtil.getLayoutSetPrototypes(user);
+				LayoutSetPrototype publicLayoutSetPrototype =
+					LayoutSetPrototypeUtil.fetchLayoutSetPrototype(user, false);
 
 				removeUserLayouts(
-					user, false, layoutSetPrototypes[0].getUuid());
-				removeUserLayouts(user, true, layoutSetPrototypes[1].getUuid());
+					user, false, publicLayoutSetPrototype.getUuid());
+
+				LayoutSetPrototype privateLayoutSetPrototype =
+					LayoutSetPrototypeUtil.fetchLayoutSetPrototype(user, true);
+
+				removeUserLayouts(
+					user, true, privateLayoutSetPrototype.getUuid());
 			}
 		}
 		catch (Exception e) {

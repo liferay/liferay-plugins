@@ -34,10 +34,11 @@ import java.util.List;
  */
 public class LayoutSetPrototypeUtil {
 
-	public static LayoutSetPrototype[] getLayoutSetPrototypes(User user)
+	public static LayoutSetPrototype fetchLayoutSetPrototype(
+			User user, boolean privateLayoutSetPrototype)
 		throws PortalException, SystemException {
 
-		LayoutSetPrototype[] layoutSetPrototypes = new LayoutSetPrototype[2];
+		LayoutSetPrototype layoutSetPrototype = null;
 
 		List<ExpandoValue> expandoValues =
 			ExpandoValueLocalServiceUtil.getColumnValues(
@@ -47,33 +48,33 @@ public class LayoutSetPrototypeUtil {
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		for (ExpandoValue expandoValue : expandoValues) {
-			LayoutSetPrototype layoutSetPrototype =
+			LayoutSetPrototype curLayoutSetPrototype =
 				LayoutSetPrototypeServiceUtil.getLayoutSetPrototype(
 					expandoValue.getClassPK());
 
 			String layoutSetPrototypeKey =
-				(String)layoutSetPrototype.getExpandoBridge().getAttribute(
+				(String)curLayoutSetPrototype.getExpandoBridge().getAttribute(
 					SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY);
 
-			boolean layoutSetPrototypeKeyUserPublic =
-				layoutSetPrototypeKey.equals(
-					SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_USER_PUBLIC);
+			if (!privateLayoutSetPrototype) {
+				if (layoutSetPrototypeKey.equals(
+						SocialOfficeConstants.
+							LAYOUT_SET_PROTOTYPE_KEY_USER_PUBLIC)) {
 
-			if (layoutSetPrototypeKeyUserPublic) {
-				layoutSetPrototypes[0] = layoutSetPrototype;
+					layoutSetPrototype = curLayoutSetPrototype;
+				}
 			}
+			else {
+				if (layoutSetPrototypeKey.equals(
+						SocialOfficeConstants.
+							LAYOUT_SET_PROTOTYPE_KEY_USER_PRIVATE)) {
 
-			boolean layoutSetPrototypeKeyUserPrivate =
-				layoutSetPrototypeKey.equals(
-					SocialOfficeConstants.
-						LAYOUT_SET_PROTOTYPE_KEY_USER_PRIVATE);
-
-			if (layoutSetPrototypeKeyUserPrivate) {
-				layoutSetPrototypes[1] = layoutSetPrototype;
+					layoutSetPrototype = curLayoutSetPrototype;
+				}
 			}
 		}
 
-		return layoutSetPrototypes;
+		return layoutSetPrototype;
 	}
 
 }
