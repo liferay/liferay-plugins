@@ -130,23 +130,39 @@ public class EditUserAction extends BaseStrutsPortletAction {
 					roleIds, role.getRoleId());
 
 				if (newSocialOfficeUser && !roles.contains(role)) {
-					LayoutSetPrototype[] layoutSetPrototypes =
-						LayoutSetPrototypeUtil.getLayoutSetPrototypes(user);
+					LayoutSetPrototype publicLayoutSetPrototype =
+						LayoutSetPrototypeUtil.fetchLayoutSetPrototype(
+							user, false);
 
-					dynamicActionRequest.setParameter(
-						"publicLayoutSetPrototypeId",
-						String.valueOf(
-							layoutSetPrototypes[0].getLayoutSetPrototypeId()));
-					dynamicActionRequest.setParameter(
-						"privateLayoutSetPrototypeId",
-						String.valueOf(
-							layoutSetPrototypes[1].getLayoutSetPrototypeId()));
-					dynamicActionRequest.setParameter(
-						"publicLayoutSetPrototypeLinkEnabled",
-						String.valueOf(true));
-					dynamicActionRequest.setParameter(
-						"privateLayoutSetPrototypeLinkEnabled",
-						String.valueOf(true));
+					if (publicLayoutSetPrototype != null) {
+						dynamicActionRequest.setParameter(
+							"publicLayoutSetPrototypeId",
+							String.valueOf(
+								publicLayoutSetPrototype.
+									getLayoutSetPrototypeId()));
+
+						dynamicActionRequest.setParameter(
+							"publicLayoutSetPrototypeId",
+							String.valueOf(
+								publicLayoutSetPrototype.
+									getLayoutSetPrototypeId()));
+					}
+
+					LayoutSetPrototype privateLayoutSetPrototype =
+						LayoutSetPrototypeUtil.fetchLayoutSetPrototype(
+							user, true);
+
+					if (privateLayoutSetPrototype != null) {
+						dynamicActionRequest.setParameter(
+							"privateLayoutSetPrototypeId",
+							String.valueOf(
+								privateLayoutSetPrototype.
+									getLayoutSetPrototypeId()));
+
+						dynamicActionRequest.setParameter(
+							"privateLayoutSetPrototypeLinkEnabled",
+							String.valueOf(true));
+					}
 				}
 				else if (!newSocialOfficeUser && roles.contains(role)) {
 					dynamicActionRequest.setParameter(
