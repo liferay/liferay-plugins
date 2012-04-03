@@ -61,58 +61,52 @@ public class UserListener extends BaseModelListener<User> {
 				return;
 			}
 
-			long roleId = (Long)associationClassPK;
-
-			Role role = RoleLocalServiceUtil.getRole(roleId);
+			Role role = RoleLocalServiceUtil.getRole((Long)associationClassPK);
 
 			String name = role.getName();
 
-			if (name.equals(RoleConstants.SOCIAL_OFFICE_USER)) {
-				long userId = (Long)classPK;
+			if (!name.equals(RoleConstants.SOCIAL_OFFICE_USER)) {
+				return;
+			}
 
-				User user = UserLocalServiceUtil.getUser(userId);
+			User user = UserLocalServiceUtil.getUser((Long)classPK);
 
-				Group group = user.getGroup();
+			Group group = user.getGroup();
 
-				LayoutSetPrototype publicLayoutSetPrototype =
-					LayoutSetPrototypeUtil.fetchLayoutSetPrototype(user, false);
+			LayoutSetPrototype publicLayoutSetPrototype =
+				LayoutSetPrototypeUtil.fetchLayoutSetPrototype(user, false);
 
-				if (publicLayoutSetPrototype != null) {
-					LayoutSetLocalServiceUtil.
-						updateLayoutSetPrototypeLinkEnabled(
-							group.getGroupId(), false, true,
-							publicLayoutSetPrototype.getUuid());
+			if (publicLayoutSetPrototype != null) {
+				LayoutSetLocalServiceUtil.updateLayoutSetPrototypeLinkEnabled(
+					group.getGroupId(), false, true,
+					publicLayoutSetPrototype.getUuid());
 
-					LayoutSet layoutSet =
-						LayoutSetLocalServiceUtil.getLayoutSet(
-							group.getGroupId(), false);
+				LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
+					group.getGroupId(), false);
 
-					PortalClassInvoker.invoke(
-						true, _mergeLayoutSetProtypeLayoutsMethodKey, group,
-						layoutSet);
+				PortalClassInvoker.invoke(
+					true, _mergeLayoutSetProtypeLayoutsMethodKey, group,
+					layoutSet);
 
-					orderLayouts(getUserLayoutPlids(group, false));
-				}
+				orderUserLayouts(group, false);
+			}
 
-				LayoutSetPrototype privateLayoutSetPrototype =
-					LayoutSetPrototypeUtil.fetchLayoutSetPrototype(user, true);
+			LayoutSetPrototype privateLayoutSetPrototype =
+				LayoutSetPrototypeUtil.fetchLayoutSetPrototype(user, true);
 
-				if (privateLayoutSetPrototype != null) {
-					LayoutSetLocalServiceUtil.
-						updateLayoutSetPrototypeLinkEnabled(
-							group.getGroupId(), true, true,
-							privateLayoutSetPrototype.getUuid());
+			if (privateLayoutSetPrototype != null) {
+				LayoutSetLocalServiceUtil.updateLayoutSetPrototypeLinkEnabled(
+					group.getGroupId(), true, true,
+					privateLayoutSetPrototype.getUuid());
 
-					LayoutSet layoutSet =
-						LayoutSetLocalServiceUtil.getLayoutSet(
-							group.getGroupId(), true);
+				LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
+					group.getGroupId(), true);
 
-					PortalClassInvoker.invoke(
-						true, _mergeLayoutSetProtypeLayoutsMethodKey, group,
-						layoutSet);
+				PortalClassInvoker.invoke(
+					true, _mergeLayoutSetProtypeLayoutsMethodKey, group,
+					layoutSet);
 
-					orderLayouts(getUserLayoutPlids(group, true));
-				}
+				orderUserLayouts(group, true);
 			}
 		}
 		catch (Exception e) {
@@ -131,36 +125,32 @@ public class UserListener extends BaseModelListener<User> {
 				return;
 			}
 
-			long roleId = (Long)associationClassPK;
-
-			Role role = RoleLocalServiceUtil.getRole(roleId);
+			Role role = RoleLocalServiceUtil.getRole((Long)associationClassPK);
 
 			String name = role.getName();
 
-			if (name.equals(RoleConstants.SOCIAL_OFFICE_USER)) {
-				long userId = (Long)classPK;
-
-				User user = UserLocalServiceUtil.getUser(userId);
-
-				LayoutSetPrototype publicLayoutSetPrototype =
-					LayoutSetPrototypeUtil.fetchLayoutSetPrototype(user, false);
-
-				removeUserLayouts(
-					user, false, publicLayoutSetPrototype.getUuid());
-
-				LayoutSetPrototype privateLayoutSetPrototype =
-					LayoutSetPrototypeUtil.fetchLayoutSetPrototype(user, true);
-
-				removeUserLayouts(
-					user, true, privateLayoutSetPrototype.getUuid());
+			if (!name.equals(RoleConstants.SOCIAL_OFFICE_USER)) {
+				return;
 			}
+
+			User user = UserLocalServiceUtil.getUser((Long)classPK);
+
+			LayoutSetPrototype publicLayoutSetPrototype =
+				LayoutSetPrototypeUtil.fetchLayoutSetPrototype(user, false);
+
+			removeUserLayouts(user, false, publicLayoutSetPrototype.getUuid());
+
+			LayoutSetPrototype privateLayoutSetPrototype =
+				LayoutSetPrototypeUtil.fetchLayoutSetPrototype(user, true);
+
+			removeUserLayouts(user, true, privateLayoutSetPrototype.getUuid());
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
 		}
 	}
 
-	protected long[] getUserLayoutPlids(Group group, boolean privateLayout)
+	protected void orderUserLayouts(Group group, boolean privateLayout)
 		throws PortalException, SystemException {
 
 		List<Layout> layouts =
@@ -168,24 +158,11 @@ public class UserListener extends BaseModelListener<User> {
 				group.getGroupId(), privateLayout,
 				LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
 
-		int size = layouts.size();
-
-		long[] plids = new long[size];
-
-		for (int i = 0; i < size; i++) {
+		for (int i = 0; i < layouts.size(); i++) {
 			Layout layout = layouts.get(i);
 
-			plids[i] = layout.getPlid();
-		}
-
-		return plids;
-	}
-
-	protected void orderLayouts(long[] plids)
-		throws PortalException, SystemException {
-
-		for (int i = 0; i < plids.length; i++) {
-			LayoutLocalServiceUtil.updatePriority(plids[i], _PRIORITY + i);
+			LayoutLocalServiceUtil.updatePriority(
+				layout.getPlid(), _PRIORITY + i);
 		}
 	}
 
@@ -193,10 +170,10 @@ public class UserListener extends BaseModelListener<User> {
 			User user, boolean privateLayout, String layoutSetPrototypeUuid)
 		throws PortalException, SystemException {
 
-		Group userGroup = user.getGroup();
+		Group group = user.getGroup();
 
 		LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
-			userGroup.getGroupId(), privateLayout);
+			group.getGroupId(), privateLayout);
 
 		UnicodeProperties settingsProperties =
 			layoutSet.getSettingsProperties();
@@ -211,16 +188,16 @@ public class UserListener extends BaseModelListener<User> {
 		LayoutSetLocalServiceUtil.updateLayoutSet(layoutSet);
 
 		LayoutSetLocalServiceUtil.updateLookAndFeel(
-			userGroup.getGroupId(), null, null, "", false);
+			group.getGroupId(), null, null, StringPool.BLANK, false);
 
 		LayoutSetPrototype layoutSetPrototype =
 			LayoutSetPrototypeLocalServiceUtil.getLayoutSetPrototypeByUuid(
 				layoutSetPrototypeUuid);
 
-		Group group = layoutSetPrototype.getGroup();
+		Group layoutSetPrototypeGroup = layoutSetPrototype.getGroup();
 
 		List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
-			group.getGroupId(), true);
+			layoutSetPrototypeGroup.getGroupId(), true);
 
 		String[] layoutUuids = new String[layouts.size()];
 
@@ -230,16 +207,16 @@ public class UserListener extends BaseModelListener<User> {
 			layoutUuids[i] = curLayout.getUuid();
 		}
 
-		List<Layout> userLayouts = LayoutLocalServiceUtil.getLayouts(
-			userGroup.getGroupId(), privateLayout);
+		layouts = LayoutLocalServiceUtil.getLayouts(
+			group.getGroupId(), privateLayout);
 
-		for (Layout userLayout : userLayouts) {
+		for (Layout layout : layouts) {
 			if (ArrayUtil.contains(
-					layoutUuids, userLayout.getSourcePrototypeLayoutUuid())) {
+					layoutUuids, layout.getSourcePrototypeLayoutUuid())) {
 
 				LayoutLocalServiceUtil.deleteLayout(
-					userLayout.getGroupId(), privateLayout,
-					userLayout.getLayoutId(), new ServiceContext());
+					layout.getGroupId(), privateLayout, layout.getLayoutId(),
+					new ServiceContext());
 			}
 		}
 	}
