@@ -1,3 +1,17 @@
+/**
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
 package com.liferay.calendar.service.persistence;
 
 import com.liferay.calendar.model.Calendar;
@@ -8,7 +22,6 @@ import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -21,7 +34,9 @@ import com.liferay.util.dao.orm.CustomSQLUtil;
 import java.util.Iterator;
 import java.util.List;
 
-
+/**
+ * @author Fabio Pezzutto
+ */
 public class CalendarFinderImpl
 	extends BasePersistenceImpl<Calendar>
 	implements CalendarFinder {
@@ -225,16 +240,6 @@ public class CalendarFinderImpl
 			boolean inlineSQLHelper)
 		throws SystemException {
 
-		String[] calendarResourceIdsString = null;
-
-		if (calendarResourceIds == null) {
-			calendarResourceIdsString = new String[] {null};
-		}
-		else {
-			calendarResourceIdsString =
-				ArrayUtil.toStringArray(calendarResourceIds);
-		}
-
 		names = CustomSQLUtil.keywords(names);
 		descriptions = CustomSQLUtil.keywords(descriptions, false);
 
@@ -253,9 +258,9 @@ public class CalendarFinderImpl
 
 			sql = StringUtil.replace(
 				sql, "[$GROUP_ID$]", getGroupIds(groupIds));
-			sql = CustomSQLUtil.replaceKeywords(
-				sql, "calendarResourceIds", StringPool.EQUAL, false,
-				calendarResourceIdsString);
+			sql = StringUtil.replace(
+				sql, "[$CALENDAR_RESOURCE_ID$]",
+				getCalendarResourceIds(calendarResourceIds));
 			sql = CustomSQLUtil.replaceKeywords(
 				sql, "lower(name)", StringPool.LIKE, false, names);
 			sql = CustomSQLUtil.replaceKeywords(
@@ -270,7 +275,11 @@ public class CalendarFinderImpl
 
 			qPos.add(companyId);
 			qPos.add(groupIds);
-			qPos.add(calendarResourceIds, 2);
+
+			if (calendarResourceIds != null && calendarResourceIds.length > 0) {
+				qPos.add(calendarResourceIds);
+			}
+
 			qPos.add(names, 2);
 			qPos.add(descriptions, 2);
 
@@ -301,16 +310,6 @@ public class CalendarFinderImpl
 			boolean inlineSQLHelper)
 		throws SystemException {
 
-		String[] calendarResourceIdsString = null;
-
-		if (calendarResourceIds == null) {
-			calendarResourceIdsString = new String[] {null};
-		}
-		else {
-			calendarResourceIdsString =
-				ArrayUtil.toStringArray(calendarResourceIds);
-		}
-
 		names = CustomSQLUtil.keywords(names);
 		descriptions = CustomSQLUtil.keywords(descriptions, false);
 
@@ -329,9 +328,9 @@ public class CalendarFinderImpl
 
 			sql = StringUtil.replace(
 				sql, "[$GROUP_ID$]", getGroupIds(groupIds));
-			sql = CustomSQLUtil.replaceKeywords(
-				sql, "calendarResourceIds", StringPool.EQUAL, false,
-				calendarResourceIdsString);
+			sql = StringUtil.replace(
+				sql, "[$CALENDAR_RESOURCE_ID$]",
+				getCalendarResourceIds(calendarResourceIds));
 			sql = CustomSQLUtil.replaceKeywords(
 				sql, "lower(name)", StringPool.LIKE, false, names);
 			sql = CustomSQLUtil.replaceKeywords(
@@ -355,7 +354,11 @@ public class CalendarFinderImpl
 
 			qPos.add(companyId);
 			qPos.add(groupIds);
-			qPos.add(calendarResourceIds, 2);
+
+			if (calendarResourceIds != null && calendarResourceIds.length > 0) {
+				qPos.add(calendarResourceIds);
+			}
+
 			qPos.add(names, 2);
 			qPos.add(descriptions, 2);
 
@@ -368,6 +371,28 @@ public class CalendarFinderImpl
 		finally {
 			closeSession(session);
 		}
+	}
+
+	protected String getCalendarResourceIds(long[] calendarResourceIds) {
+		if (calendarResourceIds == null || calendarResourceIds.length == 0) {
+			return StringPool.BLANK;
+		}
+
+		StringBundler sb = new StringBundler(calendarResourceIds.length * 2);
+
+		sb.append("(");
+
+		for (int i = 0; i < calendarResourceIds.length; i++) {
+			sb.append("calendarResourceId = ?");
+
+			if ((i + 1) < calendarResourceIds.length) {
+				sb.append(" OR ");
+			}
+		}
+
+		sb.append(") AND");
+
+		return sb.toString();
 	}
 
 	protected String getGroupIds(long[] groupIds) {

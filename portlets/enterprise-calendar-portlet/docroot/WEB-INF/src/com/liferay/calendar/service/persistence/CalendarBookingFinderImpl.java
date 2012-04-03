@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.CalendarUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -324,25 +323,6 @@ public class CalendarBookingFinderImpl
 			int status, boolean andOperator, boolean inlineSQLHelper)
 		throws SystemException {
 
-		String[] calendarIdsString = null;
-
-		if (calendarIds == null) {
-			calendarIdsString = new String[] {null};
-		}
-		else {
-			calendarIdsString = ArrayUtil.toStringArray(calendarIds);
-		}
-
-		String[] calendarResourceIdsString = null;
-
-		if (calendarResourceIds == null) {
-			calendarResourceIdsString = new String[] {null};
-		}
-		else {
-			calendarResourceIdsString = ArrayUtil.toStringArray(
-				calendarResourceIds);
-		}
-
 		titles = CustomSQLUtil.keywords(titles);
 		descriptions = CustomSQLUtil.keywords(descriptions, false);
 		locations = CustomSQLUtil.keywords(locations);
@@ -365,11 +345,11 @@ public class CalendarBookingFinderImpl
 
 			sql = StringUtil.replace(
 				sql, "[$GROUP_ID$]", getGroupIds(groupIds));
-			sql = CustomSQLUtil.replaceKeywords(
-				sql, "calendarId", StringPool.EQUAL, false, calendarIdsString);
-			sql = CustomSQLUtil.replaceKeywords(
-				sql, "calendarResourceId", StringPool.EQUAL, false,
-				calendarResourceIdsString);
+			sql = StringUtil.replace(
+				sql, "[$CALENDAR_ID$]", getCalendarIds(calendarIds));
+			sql = StringUtil.replace(
+				sql, "[$CALENDAR_RESOURCE_ID$]",
+				getCalendarResourceIds(calendarResourceIds));
 
 			if (parentCalendarBookingId < 0) {
 				sql = StringUtil.replace(
@@ -402,12 +382,19 @@ public class CalendarBookingFinderImpl
 
 			qPos.add(companyId);
 			qPos.add(groupIds);
-			qPos.add(calendarIdsString, 2);
-			qPos.add(calendarResourceIdsString, 2);
+
+			if (calendarIds != null && calendarIds.length > 0) {
+				qPos.add(calendarIds);
+			}
+
+			if (calendarResourceIds != null && calendarResourceIds.length > 0) {
+				qPos.add(calendarResourceIds);
+			}
 
 			if (parentCalendarBookingId >= 0) {
 				qPos.add(parentCalendarBookingId);
 			}
+
 			qPos.add(titles, 2);
 			qPos.add(descriptions, 2);
 			qPos.add(locations, 2);
@@ -455,25 +442,6 @@ public class CalendarBookingFinderImpl
 			OrderByComparator orderByComparator, boolean inlineSQLHelper)
 		throws SystemException {
 
-		String[] calendarIdsString = null;
-
-		if (calendarIds == null) {
-			calendarIdsString = new String[] {null};
-		}
-		else {
-			calendarIdsString = ArrayUtil.toStringArray(calendarIds);
-		}
-
-		String[] calendarResourceIdsString = null;
-
-		if (calendarResourceIds == null) {
-			calendarResourceIdsString = new String[] {null};
-		}
-		else {
-			calendarResourceIdsString = ArrayUtil.toStringArray(
-				calendarResourceIds);
-		}
-
 		titles = CustomSQLUtil.keywords(titles);
 		descriptions = CustomSQLUtil.keywords(descriptions, false);
 		locations = CustomSQLUtil.keywords(locations);
@@ -496,11 +464,11 @@ public class CalendarBookingFinderImpl
 
 			sql = StringUtil.replace(
 				sql, "[$GROUP_ID$]", getGroupIds(groupIds));
-			sql = CustomSQLUtil.replaceKeywords(
-				sql, "calendarId", StringPool.EQUAL, false, calendarIdsString);
-			sql = CustomSQLUtil.replaceKeywords(
-				sql, "calendarResourceId", StringPool.EQUAL, false,
-				calendarResourceIdsString);
+			sql = StringUtil.replace(
+				sql, "[$CALENDAR_ID$]", getCalendarIds(calendarIds));
+			sql = StringUtil.replace(
+				sql, "[$CALENDAR_RESOURCE_ID$]",
+				getCalendarResourceIds(calendarResourceIds));
 
 			if (parentCalendarBookingId < 0) {
 				sql = StringUtil.replace(
@@ -533,12 +501,19 @@ public class CalendarBookingFinderImpl
 
 			qPos.add(companyId);
 			qPos.add(groupIds);
-			qPos.add(calendarIdsString, 2);
-			qPos.add(calendarResourceIdsString, 2);
+
+			if (calendarIds != null && calendarIds.length > 0) {
+				qPos.add(calendarIds);
+			}
+
+			if (calendarResourceIds != null && calendarResourceIds.length > 0) {
+				qPos.add(calendarResourceIds);
+			}
 
 			if (parentCalendarBookingId >= 0) {
 				qPos.add(parentCalendarBookingId);
 			}
+
 			qPos.add(titles, 2);
 			qPos.add(descriptions, 2);
 			qPos.add(locations, 2);
@@ -566,6 +541,51 @@ public class CalendarBookingFinderImpl
 		finally {
 			closeSession(session);
 		}
+	}
+
+	protected String getCalendarIds(long[] calendarIds) {
+		if (calendarIds == null || calendarIds.length == 0) {
+			return StringPool.BLANK;
+		}
+
+		StringBundler sb = new StringBundler(calendarIds.length * 2 + 1);
+
+		sb.append(" (");
+
+		for (int i = 0; i < calendarIds.length; i++) {
+			sb.append("calendarId = ? ");
+
+			if ((i + 1) != calendarIds.length) {
+				sb.append("OR ");
+			}
+		}
+
+		sb.append(") AND");
+
+		return sb.toString();
+	}
+
+	protected String getCalendarResourceIds(long[] calendarResourceIds) {
+		if (calendarResourceIds == null || calendarResourceIds.length == 0) {
+			return StringPool.BLANK;
+		}
+
+		StringBundler sb = new StringBundler(
+			calendarResourceIds.length * 2 + 1);
+
+		sb.append(" (");
+
+		for (int i = 0; i < calendarResourceIds.length; i++) {
+			sb.append("calendarResourceId = ? ");
+
+			if ((i + 1) != calendarResourceIds.length) {
+				sb.append("OR ");
+			}
+		}
+
+		sb.append(") AND");
+
+		return sb.toString();
 	}
 
 	protected String getGroupIds(long[] groupIds) {

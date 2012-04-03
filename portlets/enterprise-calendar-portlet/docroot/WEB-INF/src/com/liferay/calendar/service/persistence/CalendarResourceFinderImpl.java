@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -37,6 +36,7 @@ import java.util.List;
 
 /**
  * @author Eduardo Lundgren
+ * @author Fabio Pezzutto
  */
 public class CalendarResourceFinderImpl
 	extends BasePersistenceImpl<CalendarResource>
@@ -273,15 +273,6 @@ public class CalendarResourceFinderImpl
 			boolean inlineSQLHelper)
 		throws SystemException {
 
-		String[] classNameIdsString = null;
-
-		if (classNameIds == null) {
-			classNameIdsString = new String[] {null};
-		}
-		else {
-			classNameIdsString = ArrayUtil.toStringArray(classNameIds);
-		}
-
 		codes = CustomSQLUtil.keywords(codes);
 		names = CustomSQLUtil.keywords(names);
 		descriptions = CustomSQLUtil.keywords(descriptions, false);
@@ -302,9 +293,8 @@ public class CalendarResourceFinderImpl
 
 			sql = StringUtil.replace(
 				sql, "[$GROUP_ID$]", getGroupIds(groupIds));
-			sql = CustomSQLUtil.replaceKeywords(
-				sql, "classNameId", StringPool.EQUAL, false,
-				classNameIdsString);
+			sql = StringUtil.replace(
+				sql, "[$CLASS_NAME_ID$]", getClassNameIds(classNameIds));
 			sql = CustomSQLUtil.replaceKeywords(
 				sql, "lower(code_)", StringPool.LIKE, false, codes);
 			sql = CustomSQLUtil.replaceKeywords(
@@ -323,7 +313,11 @@ public class CalendarResourceFinderImpl
 
 			qPos.add(companyId);
 			qPos.add(groupIds);
-			qPos.add(classNameIds, 2);
+
+			if (classNameIds != null && classNameIds.length > 0) {
+				qPos.add(classNameIds);
+			}
+
 			qPos.add(codes, 2);
 			qPos.add(names, 2);
 			qPos.add(descriptions, 2);
@@ -358,15 +352,6 @@ public class CalendarResourceFinderImpl
 			boolean inlineSQLHelper)
 		throws SystemException {
 
-		String[] classNameIdsString = null;
-
-		if (classNameIds == null) {
-			classNameIdsString = new String[] {null};
-		}
-		else {
-			classNameIdsString = ArrayUtil.toStringArray(classNameIds);
-		}
-
 		codes = CustomSQLUtil.keywords(codes);
 		names = CustomSQLUtil.keywords(names);
 		descriptions = CustomSQLUtil.keywords(descriptions, false);
@@ -387,9 +372,8 @@ public class CalendarResourceFinderImpl
 
 			sql = StringUtil.replace(
 				sql, "[$GROUP_ID$]", getGroupIds(groupIds));
-			sql = CustomSQLUtil.replaceKeywords(
-				sql, "classNameId", StringPool.EQUAL, false,
-				classNameIdsString);
+			sql = StringUtil.replace(
+				sql, "[$CLASS_NAME_ID$]", getClassNameIds(classNameIds));
 			sql = CustomSQLUtil.replaceKeywords(
 				sql, "lower(code_)", StringPool.LIKE, false, codes);
 			sql = CustomSQLUtil.replaceKeywords(
@@ -417,7 +401,11 @@ public class CalendarResourceFinderImpl
 
 			qPos.add(companyId);
 			qPos.add(groupIds);
-			qPos.add(classNameIds, 2);
+
+			if (classNameIds != null && classNameIds.length > 0) {
+				qPos.add(classNameIds);
+			}
+
 			qPos.add(codes, 2);
 			qPos.add(names, 2);
 			qPos.add(descriptions, 2);
@@ -433,6 +421,28 @@ public class CalendarResourceFinderImpl
 		finally {
 			closeSession(session);
 		}
+	}
+
+	protected String getClassNameIds(long[] classNameIds) {
+		if (classNameIds == null || classNameIds.length == 0) {
+			return StringPool.BLANK;
+		}
+
+		StringBundler sb = new StringBundler(classNameIds.length * 2);
+
+		sb.append("(");
+
+		for (int i = 0; i < classNameIds.length; i++) {
+			sb.append("classNameId = ?");
+
+			if ((i + 1) < classNameIds.length) {
+				sb.append(" OR ");
+			}
+		}
+
+		sb.append(") AND");
+
+		return sb.toString();
 	}
 
 	protected String getGroupIds(long[] groupIds) {
