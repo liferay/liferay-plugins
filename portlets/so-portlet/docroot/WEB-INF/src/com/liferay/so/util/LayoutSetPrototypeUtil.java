@@ -38,8 +38,6 @@ public class LayoutSetPrototypeUtil {
 			User user, boolean privateLayoutSetPrototype)
 		throws PortalException, SystemException {
 
-		LayoutSetPrototype layoutSetPrototype = null;
-
 		List<ExpandoValue> expandoValues =
 			ExpandoValueLocalServiceUtil.getColumnValues(
 				user.getCompanyId(), LayoutSetPrototype.class.getName(),
@@ -48,33 +46,30 @@ public class LayoutSetPrototypeUtil {
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		for (ExpandoValue expandoValue : expandoValues) {
-			LayoutSetPrototype curLayoutSetPrototype =
+			LayoutSetPrototype layoutSetPrototype =
 				LayoutSetPrototypeServiceUtil.getLayoutSetPrototype(
 					expandoValue.getClassPK());
 
 			String layoutSetPrototypeKey =
-				(String)curLayoutSetPrototype.getExpandoBridge().getAttribute(
+				(String)layoutSetPrototype.getExpandoBridge().getAttribute(
 					SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY);
 
-			if (!privateLayoutSetPrototype) {
-				if (layoutSetPrototypeKey.equals(
+			if (privateLayoutSetPrototype &&
+				layoutSetPrototypeKey.equals(
+					SocialOfficeConstants.
+						LAYOUT_SET_PROTOTYPE_KEY_USER_PRIVATE)) {
+
+				return layoutSetPrototype;
+			}
+			else if (layoutSetPrototypeKey.equals(
 						SocialOfficeConstants.
 							LAYOUT_SET_PROTOTYPE_KEY_USER_PUBLIC)) {
 
-					layoutSetPrototype = curLayoutSetPrototype;
-				}
-			}
-			else {
-				if (layoutSetPrototypeKey.equals(
-						SocialOfficeConstants.
-							LAYOUT_SET_PROTOTYPE_KEY_USER_PRIVATE)) {
-
-					layoutSetPrototype = curLayoutSetPrototype;
-				}
+				return layoutSetPrototype;
 			}
 		}
 
-		return layoutSetPrototype;
+		return null;
 	}
 
 }

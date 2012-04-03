@@ -118,8 +118,6 @@ public class EditUserAction extends BaseStrutsPortletAction {
 			if (cmd.equals(Constants.UPDATE)) {
 				User user = PortalUtil.getSelectedUser(actionRequest);
 
-				List<Role> roles = user.getRoles();
-
 				Role role = RoleLocalServiceUtil.getRole(
 					user.getCompanyId(), RoleConstants.SOCIAL_OFFICE_USER);
 
@@ -128,6 +126,8 @@ public class EditUserAction extends BaseStrutsPortletAction {
 
 				boolean newSocialOfficeUser = ArrayUtil.contains(
 					roleIds, role.getRoleId());
+
+				List<Role> roles = user.getRoles();
 
 				if (newSocialOfficeUser && !roles.contains(role)) {
 					LayoutSetPrototype publicLayoutSetPrototype =
