@@ -19,26 +19,14 @@ import com.liferay.calendar.CalendarBookingTitleException;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.service.base.CalendarBookingLocalServiceBaseImpl;
-import com.liferay.calendar.util.CalendarUtil;
 import com.liferay.calendar.workflow.CalendarBookingApprovalWorkflow;
 import com.liferay.calendar.workflow.CalendarBookingWorkflowConstants;
 import com.liferay.portal.kernel.bean.BeanReference;
-import com.liferay.portal.kernel.dao.orm.Conjunction;
-import com.liferay.portal.kernel.dao.orm.Criterion;
-import com.liferay.portal.kernel.dao.orm.Disjunction;
-import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.Junction;
-import com.liferay.portal.kernel.dao.orm.Property;
-import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TimeZoneUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -49,7 +37,6 @@ import com.liferay.portlet.calendar.EventEndDateException;
 import com.liferay.portlet.calendar.EventStartDateException;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -69,7 +56,7 @@ public class CalendarBookingLocalServiceImpl
 			int startDateDay, int startDateYear, int startDateHour,
 			int startDateMinute, int endDateMonth, int endDateDay,
 			int endDateYear, int endDateHour, int endDateMinute, boolean allDay,
-			String recurrence, int priority, boolean outOfOffice,
+			String recurrence, Integer priority, boolean outOfOffice,
 			int firstReminder, int secondReminder, boolean required,
 			String requestMessage, String responseMessage,
 			ServiceContext serviceContext)
@@ -217,34 +204,59 @@ public class CalendarBookingLocalServiceImpl
 	}
 
 	public List<CalendarBooking> search(
-			long calendarId, long calendarResourceId, String title,
-			String description, String location, String type, Date startDate,
-			Date endDate, Boolean allDay, int priority, Boolean outOfOffice,
-			Boolean required, int status, boolean andOperator, int start,
-			int end, OrderByComparator orderByComparator)
+			long companyId, long[] groupIds, long[] calendarIds,
+			long[] calendarResourceIds, long parentCalendarBookingId,
+			String title, String description, String location, String type,
+			Date startDate, Date endDate, Integer priority, int status,
+			boolean andOperator, int start, int end,
+			OrderByComparator orderByComparator)
 		throws SystemException {
 
-		DynamicQuery dynamicQuery = buildDynamicQuery(
-			calendarId, calendarResourceId, title, description, location, type,
-			startDate, endDate, allDay, priority, outOfOffice, required, status,
-			andOperator);
-
-		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
+		return calendarBookingFinder.findByC_G_C_C_P_T_D_L_T_S_E_P_S(
+			companyId, groupIds, calendarIds, calendarResourceIds,
+			parentCalendarBookingId, title, description, location, type,
+			startDate, endDate, priority, status, andOperator, start, end,
+			orderByComparator);
 	}
 
-	public long searchCount(
-			long calendarId, long calendarResourceId, String title,
-			String description, String location, String type, Date startDate,
-			Date endDate, Boolean allDay, int priority, Boolean outOfOffice,
-			Boolean required, int status, boolean andOperator)
+	public List<CalendarBooking> searchByKeywords(
+			long companyId, long[] groupIds, long[] calendarIds,
+			String keywords, long[] calendarResourceIds,
+			long parentCalendarBookingId, Date startDate, Date endDate,
+			Integer priority, int status, int start, int end,
+			OrderByComparator orderByComparator)
 		throws SystemException {
 
-		DynamicQuery dynamicQuery = buildDynamicQuery(
-			calendarId, calendarResourceId, title, description, location, type,
-			startDate, endDate, allDay, priority, outOfOffice, required, status,
-			andOperator);
+		return calendarBookingFinder.findByKeywords(
+			companyId, groupIds, calendarIds, keywords, calendarResourceIds,
+			parentCalendarBookingId, startDate, endDate, priority, status,
+			start, end, orderByComparator);
+	}
 
-		return dynamicQueryCount(dynamicQuery);
+	public int searchCount(
+			long companyId, long[] groupIds, long[] calendarIds,
+			long[] calendarResourceIds, long parentCalendarBookingId,
+			String keywords, Date startDate, Date endDate, Integer priority,
+			int status)
+		throws SystemException {
+
+		return calendarBookingFinder.countByKeywords(
+			companyId, groupIds, calendarIds, keywords, calendarResourceIds,
+			parentCalendarBookingId, startDate, endDate, priority, status);
+	}
+
+	public int searchCount(
+			long companyId, long[] groupIds, long[] calendarIds,
+			long[] calendarResourceIds, long parentCalendarBookingId,
+			String title, String description, String location, String type,
+			Date startDate, Date endDate, Integer priority, int status,
+			boolean andOperator)
+		throws SystemException {
+
+		return calendarBookingFinder.countByC_G_C_C_P_T_D_L_T_S_E_P_S(
+			companyId, groupIds, calendarIds, calendarResourceIds,
+			parentCalendarBookingId, title, description, location, type,
+			startDate, endDate, priority, status, andOperator);
 	}
 
 	public CalendarBooking updateCalendarBooking(
@@ -254,7 +266,7 @@ public class CalendarBookingLocalServiceImpl
 			int startDateMonth, int startDateDay, int startDateYear,
 			int startDateHour, int startDateMinute, int endDateMonth,
 			int endDateDay, int endDateYear, int endDateHour, int endDateMinute,
-			boolean allDay, String recurrence, int priority,
+			boolean allDay, String recurrence, Integer priority,
 			boolean outOfOffice, int firstReminder, int secondReminder,
 			boolean required, String requestMessage, String responseMessage,
 			ServiceContext serviceContext)
@@ -353,117 +365,6 @@ public class CalendarBookingLocalServiceImpl
 		return calendarBooking;
 	}
 
-	protected DynamicQuery buildDynamicQuery(
-		long calendarId, long calendarResourceId, String title,
-		String description, String location, String type, Date startDate,
-		Date endDate, Boolean allDay, int priority, Boolean outOfOffice,
-		Boolean required, int status, boolean andOperator) {
-
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			CalendarBooking.class, getClassLoader());
-
-		if (calendarId > 0) {
-			Property property = PropertyFactoryUtil.forName("calendarId");
-
-			dynamicQuery.add(property.eq(calendarId));
-		}
-
-		if (calendarResourceId > 0) {
-			Property property = PropertyFactoryUtil.forName(
-				"calendarResourceId");
-
-			dynamicQuery.add(property.eq(calendarResourceId));
-		}
-
-		if (Validator.isNotNull(type)) {
-			Property property = PropertyFactoryUtil.forName("type");
-
-			dynamicQuery.add(property.eq(type));
-		}
-
-		if ((endDate != null) && (startDate != null)) {
-			Conjunction conjunction = RestrictionsFactoryUtil.conjunction();
-
-			Property propertyEnd = PropertyFactoryUtil.forName("endDate");
-			Property propertyStart = PropertyFactoryUtil.forName("startDate");
-
-			conjunction.add(propertyEnd.ge(startDate));
-			conjunction.add(propertyStart.le(endDate));
-
-			dynamicQuery.add(conjunction);
-		}
-
-		if (allDay != null) {
-			Property property = PropertyFactoryUtil.forName("allDay");
-
-			dynamicQuery.add(property.eq(allDay));
-		}
-
-		if (priority >= 0) {
-			Property property = PropertyFactoryUtil.forName("priority");
-
-			dynamicQuery.add(property.eq(priority));
-		}
-
-		if (outOfOffice != null) {
-			Property property = PropertyFactoryUtil.forName("outOfOffice");
-
-			dynamicQuery.add(property.eq(outOfOffice));
-		}
-
-		if (required != null) {
-			Property property = PropertyFactoryUtil.forName("required");
-
-			dynamicQuery.add(property.eq(required));
-		}
-
-		if (status != WorkflowConstants.STATUS_ANY) {
-			Property property = PropertyFactoryUtil.forName("status");
-
-			dynamicQuery.add(property.eq(status));
-		}
-
-		Junction junction = null;
-
-		if (andOperator) {
-			junction = RestrictionsFactoryUtil.conjunction();
-		}
-		else {
-			junction = RestrictionsFactoryUtil.disjunction();
-		}
-
-		Map<String, String> terms = new HashMap<String, String>();
-
-		if (Validator.isNotNull(title)) {
-			terms.put("title", title);
-		}
-
-		if (Validator.isNotNull(description)) {
-			terms.put("description", description);
-		}
-
-		if (Validator.isNotNull(location)) {
-			terms.put("location", location);
-		}
-
-		for (Map.Entry<String, String> entry : terms.entrySet()) {
-			String key = entry.getKey();
-			String value = entry.getValue();
-
-			Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
-
-			for (String keyword : CalendarUtil.splitKeywords(value)) {
-				Criterion criterion = RestrictionsFactoryUtil.ilike(
-					key, StringUtil.quote(keyword, StringPool.PERCENT));
-
-				disjunction.add(criterion);
-			}
-
-			junction.add(disjunction);
-		}
-
-		return dynamicQuery.add(junction);
-	}
 
 	protected java.util.Calendar getJCalendar(
 		int month, int day, int year, int hour, int minute) {

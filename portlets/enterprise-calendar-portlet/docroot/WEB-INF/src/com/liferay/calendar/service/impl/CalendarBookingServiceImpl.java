@@ -21,6 +21,7 @@ import com.liferay.calendar.service.permission.CalendarPermission;
 import com.liferay.calendar.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.service.ServiceContext;
 
@@ -42,7 +43,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			int startDateDay, int startDateYear, int startDateHour,
 			int startDateMinute, int endDateMonth, int endDateDay,
 			int endDateYear, int endDateHour, int endDateMinute, boolean allDay,
-			String recurrence, int priority, boolean outOfOffice,
+			String recurrence, Integer priority, boolean outOfOffice,
 			int firstReminder, int secondReminder, boolean required,
 			String requestMessage, String responseMessage,
 			ServiceContext serviceContext)
@@ -98,6 +99,62 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 		return calendarBookings;
 	}
 
+	public List<CalendarBooking> search(
+			long companyId, long[] groupIds, long[] calendarIds,
+			long[] calendarResourceIds, long parentCalendarBookingId,
+			String title, String description, String location, String type,
+			Date startDate, Date endDate, Integer priority, int status,
+			boolean andOperator, int start, int end,
+			OrderByComparator orderByComparator)
+		throws SystemException {
+
+		return calendarBookingFinder.filterFindByC_G_C_C_P_T_D_L_T_S_E_P_S(
+			companyId, groupIds, calendarIds, calendarResourceIds,
+			parentCalendarBookingId, title, description, location, type,
+			startDate, endDate, priority, status, andOperator, start, end,
+			orderByComparator);
+	}
+
+	public List<CalendarBooking> searchByKeywords(
+			long companyId, long[] groupIds, long[] calendarIds,
+			String keywords, long[] calendarResourceIds,
+			long parentCalendarBookingId, Date startDate, Date endDate,
+			Integer priority, int status, int start, int end,
+			OrderByComparator orderByComparator)
+		throws SystemException {
+
+		return calendarBookingFinder.filterFindByKeywords(
+			companyId, groupIds, calendarIds, keywords, calendarResourceIds,
+			parentCalendarBookingId, startDate, endDate, priority, status,
+			start, end, orderByComparator);
+	}
+
+	public int searchCount(
+			long companyId, long[] groupIds, long[] calendarIds,
+			long[] calendarResourceIds, long parentCalendarBookingId,
+			String keywords, Date startDate, Date endDate, Integer priority,
+			int status)
+		throws SystemException {
+
+		return calendarBookingFinder.filterCountByKeywords(
+			companyId, groupIds, calendarIds, keywords, calendarResourceIds,
+			parentCalendarBookingId, startDate, endDate, priority, status);
+	}
+
+	public int searchCount(
+			long companyId, long[] groupIds, long[] calendarIds,
+			long[] calendarResourceIds, long parentCalendarBookingId,
+			String title, String description, String location, String type,
+			Date startDate, Date endDate, Integer priority, int status,
+			boolean andOperator)
+		throws SystemException {
+
+		return calendarBookingFinder.filterCountByC_G_C_C_P_T_D_L_T_S_E_P_S(
+			companyId, groupIds, calendarIds, calendarResourceIds,
+			parentCalendarBookingId, title, description, location, type,
+			startDate, endDate, priority, status, andOperator);
+	}
+
 	public CalendarBooking updateCalendarBooking(
 			long calendarBookingId, long calendarId,
 			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
@@ -105,7 +162,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			int startDateMonth, int startDateDay, int startDateYear,
 			int startDateHour, int startDateMinute, int endDateMonth,
 			int endDateDay, int endDateYear, int endDateHour, int endDateMinute,
-			boolean allDay, String recurrence, int priority,
+			boolean allDay, String recurrence, Integer priority,
 			boolean outOfOffice, int firstReminder, int secondReminder,
 			boolean required, String requestMessage, String responseMessage,
 			ServiceContext serviceContext)
