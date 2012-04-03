@@ -41,7 +41,7 @@ public class CalendarBookingServiceWrapper implements CalendarBookingService,
 		int startDateYear, int startDateHour, int startDateMinute,
 		int endDateMonth, int endDateDay, int endDateYear, int endDateHour,
 		int endDateMinute, boolean allDay, java.lang.String recurrence,
-		int priority, boolean outOfOffice, int firstReminder,
+		java.lang.Integer priority, boolean outOfOffice, int firstReminder,
 		int secondReminder, boolean required, java.lang.String requestMessage,
 		java.lang.String responseMessage,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -78,6 +78,59 @@ public class CalendarBookingServiceWrapper implements CalendarBookingService,
 			startDate, endDate);
 	}
 
+	public java.util.List<com.liferay.calendar.model.CalendarBooking> search(
+		long companyId, long[] groupIds, long[] calendarIds,
+		long[] calendarResourceIds, long parentCalendarBookingId,
+		java.lang.String title, java.lang.String description,
+		java.lang.String location, java.lang.String type,
+		java.util.Date startDate, java.util.Date endDate,
+		java.lang.Integer priority, int status, boolean andOperator, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarBookingService.search(companyId, groupIds, calendarIds,
+			calendarResourceIds, parentCalendarBookingId, title, description,
+			location, type, startDate, endDate, priority, status, andOperator,
+			start, end, orderByComparator);
+	}
+
+	public java.util.List<com.liferay.calendar.model.CalendarBooking> searchByKeywords(
+		long companyId, long[] groupIds, long[] calendarIds,
+		java.lang.String keywords, long[] calendarResourceIds,
+		long parentCalendarBookingId, java.util.Date startDate,
+		java.util.Date endDate, java.lang.Integer priority, int status,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarBookingService.searchByKeywords(companyId, groupIds,
+			calendarIds, keywords, calendarResourceIds,
+			parentCalendarBookingId, startDate, endDate, priority, status,
+			start, end, orderByComparator);
+	}
+
+	public int searchCount(long companyId, long[] groupIds, long[] calendarIds,
+		long[] calendarResourceIds, long parentCalendarBookingId,
+		java.lang.String keywords, java.util.Date startDate,
+		java.util.Date endDate, java.lang.Integer priority, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarBookingService.searchCount(companyId, groupIds,
+			calendarIds, calendarResourceIds, parentCalendarBookingId,
+			keywords, startDate, endDate, priority, status);
+	}
+
+	public int searchCount(long companyId, long[] groupIds, long[] calendarIds,
+		long[] calendarResourceIds, long parentCalendarBookingId,
+		java.lang.String title, java.lang.String description,
+		java.lang.String location, java.lang.String type,
+		java.util.Date startDate, java.util.Date endDate,
+		java.lang.Integer priority, int status, boolean andOperator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarBookingService.searchCount(companyId, groupIds,
+			calendarIds, calendarResourceIds, parentCalendarBookingId, title,
+			description, location, type, startDate, endDate, priority, status,
+			andOperator);
+	}
+
 	public com.liferay.calendar.model.CalendarBooking updateCalendarBooking(
 		long calendarBookingId, long calendarId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
@@ -87,9 +140,10 @@ public class CalendarBookingServiceWrapper implements CalendarBookingService,
 		int startDateDay, int startDateYear, int startDateHour,
 		int startDateMinute, int endDateMonth, int endDateDay, int endDateYear,
 		int endDateHour, int endDateMinute, boolean allDay,
-		java.lang.String recurrence, int priority, boolean outOfOffice,
-		int firstReminder, int secondReminder, boolean required,
-		java.lang.String requestMessage, java.lang.String responseMessage,
+		java.lang.String recurrence, java.lang.Integer priority,
+		boolean outOfOffice, int firstReminder, int secondReminder,
+		boolean required, java.lang.String requestMessage,
+		java.lang.String responseMessage,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

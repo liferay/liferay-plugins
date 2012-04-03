@@ -19,6 +19,9 @@ Liferay.Service.registerClass(
 		deleteCalendarBooking: true,
 		getCalendarBooking: true,
 		getCalendarBookings: true,
+		search: true,
+		searchByKeywords: true,
+		searchCount: true,
 		updateCalendarBooking: true
 	}
 );
