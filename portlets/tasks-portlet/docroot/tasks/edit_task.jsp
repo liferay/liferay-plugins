@@ -81,7 +81,7 @@ long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/
 		<select name="<portlet:namespace />assigneeUserId">
 			<c:choose>
 				<c:when test="<%= group.isUser() %>">
-					<option <%= (assigneeUserId == user.getUserId()) ? "selected" : StringPool.BLANK %> value="<%= user.getUserId() %>"><%= HtmlUtil.escape(user.getFullName()) %></option>
+					<option <%= (assigneeUserId == 0) ? "selected" : StringPool.BLANK %> value="<%= user.getUserId() %>"><%= HtmlUtil.escape(user.getFullName()) %></option>
 
 					<optgroup label="<liferay-ui:message key="contacts" />">
 				</c:when>
@@ -117,7 +117,7 @@ long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/
 			for (User curUser : users) {
 				long curUserId = curUser.getUserId();
 
-				if ((curUserId == user.getUserId()) || (assigneeUserId == curUserId)) {
+				if (curUserId == user.getUserId()) {
 					continue;
 				}
 			%>
