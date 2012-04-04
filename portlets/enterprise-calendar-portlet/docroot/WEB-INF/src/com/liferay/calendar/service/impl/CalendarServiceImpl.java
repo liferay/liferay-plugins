@@ -69,10 +69,10 @@ public class CalendarServiceImpl extends CalendarServiceBaseImpl {
 	}
 
 	public List<Calendar> search(
-		long companyId, long[] groupIds, long[] calendarResourceIds,
-		String keywords, boolean andOperator, int start, int end,
-		OrderByComparator orderByComparator)
-						throws SystemException {
+			long companyId, long[] groupIds, long[] calendarResourceIds,
+			String keywords, boolean andOperator, int start, int end,
+			OrderByComparator orderByComparator)
+		throws SystemException {
 
 		return calendarFinder.filterFindByKeywords(
 			companyId, groupIds, calendarResourceIds, keywords, start, end,
@@ -81,8 +81,8 @@ public class CalendarServiceImpl extends CalendarServiceBaseImpl {
 
 	public List<Calendar> search(
 			long companyId, long[] groupIds, long[] calendarResourceIds,
-			String name, String description, boolean andOperator,
-			int start, int end, OrderByComparator orderByComparator)
+			String name, String description, boolean andOperator, int start,
+			int end, OrderByComparator orderByComparator)
 		throws SystemException {
 
 		return calendarFinder.filterFindByC_G_C_N_D(

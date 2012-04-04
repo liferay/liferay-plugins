@@ -18,15 +18,14 @@ import com.liferay.calendar.model.Calendar;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
 /**
+ * @author Eduardo Lundgren
  * @author Fabio Pezzutto
  */
 public class CalendarNameComparator extends OrderByComparator {
 
-	public static final String ORDER_BY_ASC =
-		"Calendar.name";
+	public static final String ORDER_BY_ASC = "Calendar.name ASC";
 
-	public static final String ORDER_BY_DESC =
-		"Calendar.name";
+	public static final String ORDER_BY_DESC = "Calendar.name DESC";
 
 	public static final String[] ORDER_BY_FIELDS = {"name"};
 
@@ -43,7 +42,10 @@ public class CalendarNameComparator extends OrderByComparator {
 		Calendar calendar1 = (Calendar)obj1;
 		Calendar calendar2 = (Calendar)obj2;
 
-		int value = calendar1.getName().compareTo(calendar2.getName());
+		String name1 = calendar1.getName();
+		String name2 = calendar2.getName();
+
+		int value = name1.compareTo(name2);
 
 		if (_ascending) {
 			return value;

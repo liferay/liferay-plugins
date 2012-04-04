@@ -34,11 +34,13 @@ import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.sql.Timestamp;
+
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 /**
+ * @author Eduardo Lundgren
  * @author Fabio Pezzutto
  */
 
@@ -53,36 +55,6 @@ public class CalendarBookingFinderImpl
 	public static final String FIND_BY_C_G_C_C_P_T_D_L_T_S_E_P_S =
 		CalendarBookingFinder.class.getName() +
 		".findByC_G_C_C_P_T_D_L_T_S_E_P_S";
-
-	public int countByKeywords(
-			long companyId, long[] groupIds, long[] calendarIds,
-			String keywords, long[] calendarResourceIds,
-			long parentCalendarBookingId, Date startDate, Date endDate,
-			Integer priority, int status)
-		throws SystemException {
-
-		String[] titles = null;
-		String[] descriptions = null;
-		String[] locations = null;
-		String[] types = null;
-		boolean andOperator = false;
-
-		if (Validator.isNotNull(keywords)) {
-			titles = CustomSQLUtil.keywords(keywords);
-			descriptions = CustomSQLUtil.keywords(keywords, false);
-			locations = CustomSQLUtil.keywords(keywords);
-			types = CustomSQLUtil.keywords(keywords, false);
-		}
-		else {
-			andOperator = true;
-		}
-
-		return countByC_G_C_C_P_T_D_L_T_S_E_P_S(
-			companyId, groupIds, calendarIds, calendarResourceIds,
-			parentCalendarBookingId, titles, descriptions, locations, types,
-			startDate, endDate, priority, status, andOperator);
-	}
-
 
 	public int countByC_G_C_C_P_T_D_L_T_S_E_P_S(
 			long companyId, long[] groupIds, long[] calendarIds,
@@ -117,7 +89,7 @@ public class CalendarBookingFinderImpl
 			startDate, endDate, priority, status, andOperator, false);
 	}
 
-	public int filterCountByKeywords(
+	public int countByKeywords(
 			long companyId, long[] groupIds, long[] calendarIds,
 			String keywords, long[] calendarResourceIds,
 			long parentCalendarBookingId, Date startDate, Date endDate,
@@ -140,7 +112,7 @@ public class CalendarBookingFinderImpl
 			andOperator = true;
 		}
 
-		return filterCountByC_G_C_C_P_T_D_L_T_S_E_P_S(
+		return countByC_G_C_C_P_T_D_L_T_S_E_P_S(
 			companyId, groupIds, calendarIds, calendarResourceIds,
 			parentCalendarBookingId, titles, descriptions, locations, types,
 			startDate, endDate, priority, status, andOperator);
@@ -179,12 +151,11 @@ public class CalendarBookingFinderImpl
 			startDate, endDate, priority, status, andOperator, true);
 	}
 
-	public List<CalendarBooking> filterFindByKeywords(
+	public int filterCountByKeywords(
 			long companyId, long[] groupIds, long[] calendarIds,
 			String keywords, long[] calendarResourceIds,
 			long parentCalendarBookingId, Date startDate, Date endDate,
-			Integer priority, int status, int start, int end,
-			OrderByComparator orderByComparator)
+			Integer priority, int status)
 		throws SystemException {
 
 		String[] titles = null;
@@ -203,11 +174,10 @@ public class CalendarBookingFinderImpl
 			andOperator = true;
 		}
 
-		return filterFindByC_G_C_C_P_T_D_L_T_S_E_P_S(
+		return filterCountByC_G_C_C_P_T_D_L_T_S_E_P_S(
 			companyId, groupIds, calendarIds, calendarResourceIds,
 			parentCalendarBookingId, titles, descriptions, locations, types,
-			startDate, endDate, priority, status, andOperator, start, end,
-			orderByComparator);
+			startDate, endDate, priority, status, andOperator);
 	}
 
 	public List<CalendarBooking> filterFindByC_G_C_C_P_T_D_L_T_S_E_P_S(
@@ -247,7 +217,7 @@ public class CalendarBookingFinderImpl
 			orderByComparator, true);
 	}
 
-	public List<CalendarBooking> findByKeywords(
+	public List<CalendarBooking> filterFindByKeywords(
 			long companyId, long[] groupIds, long[] calendarIds,
 			String keywords, long[] calendarResourceIds,
 			long parentCalendarBookingId, Date startDate, Date endDate,
@@ -271,7 +241,7 @@ public class CalendarBookingFinderImpl
 			andOperator = true;
 		}
 
-		return findByC_G_C_C_P_T_D_L_T_S_E_P_S(
+		return filterFindByC_G_C_C_P_T_D_L_T_S_E_P_S(
 			companyId, groupIds, calendarIds, calendarResourceIds,
 			parentCalendarBookingId, titles, descriptions, locations, types,
 			startDate, endDate, priority, status, andOperator, start, end,
@@ -313,6 +283,37 @@ public class CalendarBookingFinderImpl
 			parentCalendarBookingId, titles, descriptions, locations, types,
 			startDate, endDate, priority, status, andOperator, start, end,
 			orderByComparator, false);
+	}
+
+	public List<CalendarBooking> findByKeywords(
+			long companyId, long[] groupIds, long[] calendarIds,
+			String keywords, long[] calendarResourceIds,
+			long parentCalendarBookingId, Date startDate, Date endDate,
+			Integer priority, int status, int start, int end,
+			OrderByComparator orderByComparator)
+		throws SystemException {
+
+		String[] titles = null;
+		String[] descriptions = null;
+		String[] locations = null;
+		String[] types = null;
+		boolean andOperator = false;
+
+		if (Validator.isNotNull(keywords)) {
+			titles = CustomSQLUtil.keywords(keywords);
+			descriptions = CustomSQLUtil.keywords(keywords, false);
+			locations = CustomSQLUtil.keywords(keywords);
+			types = CustomSQLUtil.keywords(keywords, false);
+		}
+		else {
+			andOperator = true;
+		}
+
+		return findByC_G_C_C_P_T_D_L_T_S_E_P_S(
+			companyId, groupIds, calendarIds, calendarResourceIds,
+			parentCalendarBookingId, titles, descriptions, locations, types,
+			startDate, endDate, priority, status, andOperator, start, end,
+			orderByComparator);
 	}
 
 	protected int doCountByC_G_C_C_P_T_D_L_T_S_E_P_S(
@@ -366,7 +367,7 @@ public class CalendarBookingFinderImpl
 				sql, "type_", StringPool.LIKE, true, types);
 			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
 
-			if (priority == null || priority < 0) {
+			if (priority == null) {
 				sql = StringUtil.replace(sql, "(priority = ? ) AND", "");
 			}
 
@@ -383,11 +384,13 @@ public class CalendarBookingFinderImpl
 			qPos.add(companyId);
 			qPos.add(groupIds);
 
-			if (calendarIds != null && calendarIds.length > 0) {
+			if ((calendarIds != null) && (calendarIds.length > 0)) {
 				qPos.add(calendarIds);
 			}
 
-			if (calendarResourceIds != null && calendarResourceIds.length > 0) {
+			if ((calendarResourceIds != null) &&
+				(calendarResourceIds.length > 0)) {
+
 				qPos.add(calendarResourceIds);
 			}
 
@@ -400,7 +403,7 @@ public class CalendarBookingFinderImpl
 			qPos.add(locations, 2);
 			qPos.add(types, 2);
 
-			if (priority != null && priority >= 0) {
+			if (priority != null) {
 				qPos.add(priority);
 			}
 
@@ -485,7 +488,7 @@ public class CalendarBookingFinderImpl
 				sql, "type_", StringPool.LIKE, true, types);
 			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
 
-			if (priority == null || priority < 0) {
+			if (priority == null) {
 				sql = StringUtil.replace(sql, "(priority = ? ) AND", "");
 			}
 
@@ -502,11 +505,13 @@ public class CalendarBookingFinderImpl
 			qPos.add(companyId);
 			qPos.add(groupIds);
 
-			if (calendarIds != null && calendarIds.length > 0) {
+			if ((calendarIds != null) && (calendarIds.length > 0)) {
 				qPos.add(calendarIds);
 			}
 
-			if (calendarResourceIds != null && calendarResourceIds.length > 0) {
+			if ((calendarResourceIds != null) &&
+				(calendarResourceIds.length > 0)) {
+
 				qPos.add(calendarResourceIds);
 			}
 
@@ -519,7 +524,7 @@ public class CalendarBookingFinderImpl
 			qPos.add(locations, 2);
 			qPos.add(types, 2);
 
-			if (priority != null && priority >= 0) {
+			if (priority != null) {
 				qPos.add(priority);
 			}
 
@@ -544,7 +549,7 @@ public class CalendarBookingFinderImpl
 	}
 
 	protected String getCalendarIds(long[] calendarIds) {
-		if (calendarIds == null || calendarIds.length == 0) {
+		if ((calendarIds == null) || (calendarIds.length == 0)) {
 			return StringPool.BLANK;
 		}
 
@@ -566,7 +571,9 @@ public class CalendarBookingFinderImpl
 	}
 
 	protected String getCalendarResourceIds(long[] calendarResourceIds) {
-		if (calendarResourceIds == null || calendarResourceIds.length == 0) {
+		if ((calendarResourceIds == null) ||
+			(calendarResourceIds.length == 0)) {
+
 			return StringPool.BLANK;
 		}
 

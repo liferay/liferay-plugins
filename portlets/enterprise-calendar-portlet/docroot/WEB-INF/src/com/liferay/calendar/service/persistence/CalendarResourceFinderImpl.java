@@ -314,7 +314,7 @@ public class CalendarResourceFinderImpl
 			qPos.add(companyId);
 			qPos.add(groupIds);
 
-			if (classNameIds != null && classNameIds.length > 0) {
+			if ((classNameIds != null) && (classNameIds.length > 0)) {
 				qPos.add(classNameIds);
 			}
 
@@ -402,7 +402,7 @@ public class CalendarResourceFinderImpl
 			qPos.add(companyId);
 			qPos.add(groupIds);
 
-			if (classNameIds != null && classNameIds.length > 0) {
+			if ((classNameIds != null) && (classNameIds.length > 0)) {
 				qPos.add(classNameIds);
 			}
 
@@ -424,7 +424,7 @@ public class CalendarResourceFinderImpl
 	}
 
 	protected String getClassNameIds(long[] classNameIds) {
-		if (classNameIds == null || classNameIds.length == 0) {
+		if ((classNameIds == null) || (classNameIds.length == 0)) {
 			return StringPool.BLANK;
 		}
 

@@ -365,7 +365,6 @@ public class CalendarBookingLocalServiceImpl
 		return calendarBooking;
 	}
 
-
 	protected java.util.Calendar getJCalendar(
 		int month, int day, int year, int hour, int minute) {
 

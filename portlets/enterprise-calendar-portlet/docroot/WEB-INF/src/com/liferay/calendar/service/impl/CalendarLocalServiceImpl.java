@@ -130,8 +130,8 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 
 	public List<Calendar> search(
 			long companyId, long[] groupIds, long[] calendarResourceIds,
-			String name, String description, boolean andOperator,
-			int start, int end, OrderByComparator orderByComparator)
+			String name, String description, boolean andOperator, int start,
+			int end, OrderByComparator orderByComparator)
 		throws SystemException {
 
 		return calendarFinder.findByC_G_C_N_D(

@@ -35,6 +35,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
+ * @author Eduardo Lundgren
  * @author Fabio Pezzutto
  */
 public class CalendarFinderImpl
@@ -162,9 +163,8 @@ public class CalendarFinderImpl
 
 	public List<Calendar> filterFindByC_G_C_N_D(
 			long companyId, long[] groupIds, long[] calendarResourceIds,
-			String name, String description, boolean andOperator,
-			int start, int end,
-			OrderByComparator orderByComparator)
+			String name, String description, boolean andOperator, int start,
+			int end, OrderByComparator orderByComparator)
 		throws SystemException {
 
 		String[] names = CustomSQLUtil.keywords(name);
@@ -211,8 +211,8 @@ public class CalendarFinderImpl
 
 	public List<Calendar> findByC_G_C_N_D(
 			long companyId, long[] groupIds, long[] calendarResourceIds,
-			String name, String description, boolean andOperator,
-			int start, int end, OrderByComparator orderByComparator)
+			String name, String description, boolean andOperator, int start,
+			int end, OrderByComparator orderByComparator)
 		throws SystemException {
 
 		String[] names = CustomSQLUtil.keywords(name);
@@ -276,7 +276,9 @@ public class CalendarFinderImpl
 			qPos.add(companyId);
 			qPos.add(groupIds);
 
-			if (calendarResourceIds != null && calendarResourceIds.length > 0) {
+			if ((calendarResourceIds != null) &&
+				(calendarResourceIds.length > 0)) {
+
 				qPos.add(calendarResourceIds);
 			}
 
@@ -322,8 +324,8 @@ public class CalendarFinderImpl
 
 			if (inlineSQLHelper) {
 				sql = InlineSQLHelperUtil.replacePermissionCheck(
-					sql, Calendar.class.getName(),
-					"Calendar.calendarId", groupIds);
+					sql, Calendar.class.getName(), "Calendar.calendarId",
+					groupIds);
 			}
 
 			sql = StringUtil.replace(
@@ -340,8 +342,7 @@ public class CalendarFinderImpl
 			StringBundler sb = new StringBundler();
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(
-					sb, "Calendar.", orderByComparator);
+				appendOrderByComparator(sb, "Calendar.", orderByComparator);
 			}
 
 			sql = StringUtil.replace(sql, "[$ORDER_BY$]", sb.toString());
@@ -355,15 +356,16 @@ public class CalendarFinderImpl
 			qPos.add(companyId);
 			qPos.add(groupIds);
 
-			if (calendarResourceIds != null && calendarResourceIds.length > 0) {
+			if ((calendarResourceIds != null) &&
+				(calendarResourceIds.length > 0)) {
+
 				qPos.add(calendarResourceIds);
 			}
 
 			qPos.add(names, 2);
 			qPos.add(descriptions, 2);
 
-			return (List<Calendar>)QueryUtil.list(
-				q, getDialect(), start, end);
+			return (List<Calendar>)QueryUtil.list(q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
@@ -374,7 +376,9 @@ public class CalendarFinderImpl
 	}
 
 	protected String getCalendarResourceIds(long[] calendarResourceIds) {
-		if (calendarResourceIds == null || calendarResourceIds.length == 0) {
+		if ((calendarResourceIds == null) ||
+			(calendarResourceIds.length == 0)) {
+
 			return StringPool.BLANK;
 		}
 

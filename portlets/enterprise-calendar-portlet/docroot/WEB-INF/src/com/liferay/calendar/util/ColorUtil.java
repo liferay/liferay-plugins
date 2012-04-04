@@ -14,15 +14,17 @@
 
 package com.liferay.calendar.util;
 
+import com.liferay.portal.kernel.util.StringPool;
+
 /**
  * @author Fabio Pezzutto
  * @author Andrea Di Giorgi
+ * @author Eduardo Lundgren
  */
 public class ColorUtil {
 
 	public static String toHexString(int color) {
-		return "#" +
-			Integer.toHexString(0x1000000 | color).substring(1).toUpperCase();
+		return StringPool.POUND.concat(Integer.toHexString(color));
 	}
 
 }
