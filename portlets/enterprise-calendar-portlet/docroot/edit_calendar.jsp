@@ -20,9 +20,11 @@
 String redirect = ParamUtil.getString(request, "redirect");
 
 Calendar calendar = (Calendar)request.getAttribute(WebKeys.CALENDAR);
+
 CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKeys.CALENDAR_RESOURCE);
 
 long calendarId = 0;
+
 String title = LanguageUtil.format(pageContext, "add-new-calendar-for-x", calendarResource.getName(locale));
 
 if (calendar != null) {
@@ -47,19 +49,18 @@ if (calendar != null) {
 	<aui:model-context bean="<%= calendar %>" model="<%= Calendar.class %>" />
 
 	<aui:fieldset>
-
 		<aui:input name="name" />
 
 		<aui:input name="description" />
 
 		<aui:input name="color" type="hidden" />
 
-		<aui:field-wrapper label="color" inlineLabel="left">
-			<span id="<portlet:namespace />colorPicker" class="color-picker-element">
+		<aui:field-wrapper inlineLabel="left" label="color">
+			<span class="color-picker-element" id="<portlet:namespace />colorPicker">
 			</span>
 			<span
-				id="<portlet:namespace />colorBox"
 				class="color-box color-picker-element"
+				id="<portlet:namespace />colorBox"
 				style='background-color:<%= calendar != null ? ColorUtil.toHexString(calendar.getColor()) : "#0000FF" %>'
 			>
 			</span>

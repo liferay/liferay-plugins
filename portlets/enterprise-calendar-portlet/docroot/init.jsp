@@ -37,13 +37,12 @@ page import="com.liferay.calendar.service.permission.CalendarPermission" %><%@
 page import="com.liferay.calendar.service.permission.CalendarPortletPermission" %><%@
 page import="com.liferay.calendar.service.permission.CalendarResourcePermission" %><%@
 page import="com.liferay.calendar.util.ActionKeys" %><%@
-page import="com.liferay.calendar.util.CalendarUtil" %><%@
 page import="com.liferay.calendar.util.ColorUtil" %><%@
-page import="com.liferay.calendar.util.comparator.CalendarNameComparator" %><%@
 page import="com.liferay.calendar.util.PortletPropsValues" %><%@
 page import="com.liferay.calendar.util.WebKeys" %><%@
+page import="com.liferay.calendar.util.comparator.CalendarNameComparator" %><%@
 page import="com.liferay.portal.kernel.dao.search.ResultRow" %><%@
-page import="com.liferay.portal.kernel.dao.search.SearchContainer"%><%@
+page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
@@ -61,5 +60,6 @@ page import="com.liferay.portal.util.PortalUtil" %>
 
 <%
 PortletURL portletURL = renderResponse.createRenderURL();
+
 String currentURL = PortalUtil.getCurrentURL(request);
 %>

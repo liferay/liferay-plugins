@@ -20,10 +20,11 @@
 String redirect = ParamUtil.getString(request, "redirect");
 
 CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKeys.CALENDAR_RESOURCE);
-long[] calendarResourceIds = new long[] {calendarResource.getCalendarResourceId()};
-long[] groupIds = new long[] {themeDisplay.getScopeGroupId()};
 
 String title = LanguageUtil.format(pageContext, "x-calendars", calendarResource.getName(locale));
+
+long[] calendarResourceIds = new long[] {calendarResource.getCalendarResourceId()};
+long[] groupIds = new long[] {themeDisplay.getScopeGroupId()};
 %>
 
 <liferay-ui:header
@@ -43,10 +44,7 @@ String title = LanguageUtil.format(pageContext, "x-calendars", calendarResource.
 	</aui:button-row>
 </c:if>
 
-<liferay-ui:search-container
-	searchContainer='<%= new SearchContainer(renderRequest, portletURL, null, "there-are-no-calendars-for-selected-resource") %>'
-	>
-
+<liferay-ui:search-container searchContainer='<%= new SearchContainer(renderRequest, portletURL, null, "there-are-no-calendars-for-selected-resource") %>'>
 	<liferay-ui:search-container-results
 		results='<%= CalendarServiceUtil.search(themeDisplay.getCompanyId(), groupIds, calendarResourceIds, null, false, searchContainer.getStart(), searchContainer.getEnd(), new CalendarNameComparator(true)) %>'
 		total='<%= CalendarServiceUtil.searchCount(themeDisplay.getCompanyId(), groupIds, calendarResourceIds, null, false) %>'
@@ -69,13 +67,10 @@ String title = LanguageUtil.format(pageContext, "x-calendars", calendarResource.
 		/>
 
 		<liferay-ui:search-container-column-text
-			name="color"
 			align="center"
+			name="color"
 		>
-			<span
-				class="color-area color-picker-element"
-				style="background-color:<%= ColorUtil.toHexString(calendar.getColor()) %>;">
-			</span>
+			<span class="color-area color-picker-element" style="background-color:<%= ColorUtil.toHexString(calendar.getColor()) %>;"></span>
 		</liferay-ui:search-container-column-text>
 
 		<liferay-ui:search-container-column-text name="default">
