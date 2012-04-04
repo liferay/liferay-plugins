@@ -1,15 +1,28 @@
 #set ($logo = "logo")
 
+#set ($user_profile_url = $community_default_public_url)
+#set ($user_dashboard_portlet_url = $site_default_url)
+
 #if (($company.getLogoId() == 0) && !$layout.layoutSet.isLogo())
 	#set ($logo = "${logo} theme-logo")
 #else
 	#set ($logo = "${logo} company-logo")
 #end
 
-#set ($user_profile_url = $community_default_public_url)
-
 #if ($is_signed_in)
+	#set ($user_group = $user.getGroup())
+
 	#set ($nav_css_class = "${nav_css_class} sort-pages modify-pages")
+
+	#set ($user_dashboard_portlet_url = $portletURLFactory.create($request, "49", $page.getPlid(), "ACTION_PHASE"))
+
+	$user_dashboard_portlet_url.setParameter("struts_action", "/my_sites/view")
+	$user_dashboard_portlet_url.setParameter("groupId", "$user_group.getGroupId()")
+	$user_dashboard_portlet_url.setParameter("privateLayout", "true")
+	$user_dashboard_portlet_url.setPortletMode("view")
+	$user_dashboard_portlet_url.setWindowState("normal")
+
+	#set ($user_dashboard_url = $htmlUtil.escape($user_dashboard_portlet_url.toString()))
 #end
 
 #if ($page_group.isUser())
@@ -39,17 +52,6 @@
 	#end
 #end
 
-#set ($user_group = $user.getGroup())
-
-#set ($user_dashboard_portlet_url = $portletURLFactory.create($request, "49", $page.getPlid(), "ACTION_PHASE"))
-
-$user_dashboard_portlet_url.setParameter("struts_action", "/my_sites/view")
-$user_dashboard_portlet_url.setParameter("groupId", "$user_group.getGroupId()")
-$user_dashboard_portlet_url.setParameter("privateLayout", "true")
-$user_dashboard_portlet_url.setPortletMode("view")
-$user_dashboard_portlet_url.setWindowState("normal")
-
-#set ($user_dashboard_url = $htmlUtil.escape($user_dashboard_portlet_url.toString()))
 
 #set ($layoutFluid = $getterUtil.getBoolean($sessionClicks.get($request, "so-layout-fluid", "false")))
 
