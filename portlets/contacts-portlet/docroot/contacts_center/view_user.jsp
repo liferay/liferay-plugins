@@ -247,7 +247,7 @@ request.setAttribute("view_user.jsp-user", user2);
 													<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
 												</liferay-portlet:actionURL>
 
-												<li class="user-information-sites"><a href="<%= siteURL %>"><%= curGroup.getDescriptiveName(locale) %></a></li>
+												<li class="user-information-sites"><a href="<%= siteURL %>"><%= HtmlUtil.escape(curGroup.getDescriptiveName(locale)) %></a></li>
 
 											<%
 											}

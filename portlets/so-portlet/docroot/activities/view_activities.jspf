@@ -80,7 +80,7 @@
 
 			<div class="activity-data">
 				<div class="activity-title">
-					<%= HtmlUtil.escape(activityFeedEntry.getTitle()) %>
+					<%= activityFeedEntry.getTitle() %>
 				</div>
 
 				<div class="activity-body">
@@ -88,7 +88,7 @@
 						<%= timeFormatDate.format(activity.getCreateDate()) %>
 					</span>
 
-					<%= HtmlUtil.escape(activityFeedEntry.getBody()) %>
+					<%= activityFeedEntry.getBody() %>
 				</div>
 			</div>
 		</div>
