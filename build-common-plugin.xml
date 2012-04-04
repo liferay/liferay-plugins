@@ -317,6 +317,35 @@
 
 	<target name="clean" description="clean">
 		<delete dir="docroot/WEB-INF/classes" />
+
+		<if>
+			<and>
+				<available file="docroot/WEB-INF/.gitignore" />
+			</and>
+			<then>
+				<loadfile property=".gitignore.content" srcFile="docroot/WEB-INF/.gitignore" />
+
+				<if>
+					<contains string="${.gitignore.content}" substring="/lib" />
+					<then>
+						<delete dir="docroot/WEB-INF/lib" />
+					</then>
+				</if>
+			</then>
+		</if>
+
+		<if>
+			<and>
+				<available file="docroot/WEB-INF/.svn" />
+				<not>
+					<available file="docroot/WEB-INF/lib/.svn" />
+				</not>
+			</and>
+			<then>
+				<delete dir="docroot/WEB-INF/lib" />
+			</then>
+		</if>
+
 		<delete dir="test-classes" />
 		<delete dir="test-results" />
 		<delete dir="tmp" />
