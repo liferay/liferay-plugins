@@ -182,8 +182,8 @@ public class UserListener extends BaseModelListener<User> {
 
 		layoutSet.setSettingsProperties(settingsProperties);
 
-		layoutSet.setLayoutSetPrototypeLinkEnabled(false);
 		layoutSet.setLayoutSetPrototypeUuid(StringPool.BLANK);
+		layoutSet.setLayoutSetPrototypeLinkEnabled(false);
 
 		LayoutSetLocalServiceUtil.updateLayoutSet(layoutSet);
 
@@ -202,9 +202,9 @@ public class UserListener extends BaseModelListener<User> {
 		String[] layoutUuids = new String[layouts.size()];
 
 		for (int i = 0; i < layouts.size(); i++) {
-			Layout curLayout = layouts.get(i);
+			Layout layout = layouts.get(i);
 
-			layoutUuids[i] = curLayout.getUuid();
+			layoutUuids[i] = layout.getUuid();
 		}
 
 		layouts = LayoutLocalServiceUtil.getLayouts(

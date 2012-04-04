@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
-import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.TeamLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
@@ -49,10 +48,7 @@ public class UpgradeGroup extends UpgradeProcess {
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		for (Group group : groups) {
-			if (!group.isSite() ||
-				group.getName().equals(GroupConstants.CONTROL_PANEL) ||
-				group.getName().equals(GroupConstants.GUEST)) {
-
+			if (!group.isSite() || group.isControlPanel() || group.isGuest()) {
 				continue;
 			}
 

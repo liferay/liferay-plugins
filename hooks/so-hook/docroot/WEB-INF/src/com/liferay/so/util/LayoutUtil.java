@@ -55,7 +55,7 @@ public class LayoutUtil {
 
 	public static Layout addLayout(
 			Group group, boolean privateLayout, long parentLayoutId,
-			String name, String layoutTemplateId, String friendlyURL)
+			String name, String friendlyURL, String layoutTemplateId)
 		throws Exception {
 
 		ServiceContext serviceContext = new ServiceContext();

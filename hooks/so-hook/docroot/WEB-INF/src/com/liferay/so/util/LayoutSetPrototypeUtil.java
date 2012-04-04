@@ -23,12 +23,12 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.LayoutSetPrototypeServiceUtil;
+import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.model.ExpandoTableConstants;
 import com.liferay.portlet.expando.model.ExpandoValue;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 
 import java.util.List;
-
 /*
  * @author Eudaldo Alonso
  */
@@ -50,9 +50,10 @@ public class LayoutSetPrototypeUtil {
 				LayoutSetPrototypeServiceUtil.getLayoutSetPrototype(
 					expandoValue.getClassPK());
 
-			String layoutSetPrototypeKey =
-				(String)layoutSetPrototype.getExpandoBridge().getAttribute(
-					SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY);
+			ExpandoBridge expandoBridge = layoutSetPrototype.getExpandoBridge();
+
+			String layoutSetPrototypeKey = (String)expandoBridge.getAttribute(
+				SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY);
 
 			if (privateLayoutSetPrototype &&
 				layoutSetPrototypeKey.equals(
