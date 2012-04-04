@@ -56,9 +56,11 @@ public class BasicAuthSolrServer extends StoppableSolrServer {
 		_username = username;
 		_password = password;
 
-		_connectionManager = new MultiThreadedHttpConnectionManager();
+		_multiThreadedHttpConnectionManager =
+			new MultiThreadedHttpConnectionManager();
 
-		HttpClient httpClient = new HttpClient(_connectionManager);
+		HttpClient httpClient = new HttpClient(
+			_multiThreadedHttpConnectionManager);
 
 		if ((_username != null) && (_password != null)) {
 			if (authScope == null) {
@@ -164,38 +166,43 @@ public class BasicAuthSolrServer extends StoppableSolrServer {
 	public void stop() {
 		_stopped = true;
 
-		int i = 0;
+		while (true) {
+			int connectionsInPool =
+				_multiThreadedHttpConnectionManager.getConnectionsInPool();
 
-		while ((i = _connectionManager.getConnectionsInPool()) > 0) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(
-					"[" + toString() + "] Waiting on " + i +
-						" connections...");
+			if (connectionsInPool <= 0) {
+				break;
 			}
 
-			_connectionManager.closeIdleConnections(200);
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					toString() + " waiting on " + connectionsInPool +
+						" connections");
+			}
+
+			_multiThreadedHttpConnectionManager.closeIdleConnections(200);
 
 			try {
 				Thread.sleep(200);
 			}
-			catch (InterruptedException e) {
+			catch (InterruptedException ie) {
 			}
 		}
 
-		_connectionManager.shutdown();
+		_multiThreadedHttpConnectionManager.shutdown();
 
 		if (_log.isDebugEnabled()) {
-			_log.debug(
-				"[" + toString() + "] I'm shutdown!");
+			_log.debug(toString() + " is shutdown");
 		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(BasicAuthSolrServer.class);
 
-	private MultiThreadedHttpConnectionManager _connectionManager;
+	private MultiThreadedHttpConnectionManager
+		_multiThreadedHttpConnectionManager;
 	private String _password;
-	private boolean _stopped;
 	private CommonsHttpSolrServer _server;
+	private boolean _stopped;
 	private String _username;
 
 }
