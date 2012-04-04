@@ -34,7 +34,9 @@ public class UpgradeCompany extends UpgradeProcess {
 	protected void doUpgrade() throws Exception {
 		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 
-		ClassLoader classLoader = getClass().getClassLoader();
+		Class<?> clazz = getClass();
+
+		ClassLoader classLoader = clazz.getClassLoader();
 
 		InputStream inputStream = classLoader.getResourceAsStream(
 			"/resources/logo.png");

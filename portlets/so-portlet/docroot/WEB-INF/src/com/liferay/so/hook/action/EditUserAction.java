@@ -76,110 +76,12 @@ public class EditUserAction extends BaseStrutsPortletAction {
 			actionRequest, ActionRequest.ACTION_NAME);
 
 		if (actionName.equals("updateFieldGroup")) {
-			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-			try {
-				updateProjectsEntries(actionRequest, actionResponse);
-
-				String redirect = ParamUtil.getString(
-					actionRequest, "redirect");
-
-				jsonObject.put("redirect", redirect);
-				jsonObject.put("success", true);
-			}
-			catch (Exception e) {
-				ThemeDisplay themeDisplay =
-					(ThemeDisplay)actionRequest.getAttribute(
-						WebKeys.THEME_DISPLAY);
-
-				String message = LanguageUtil.get(
-					themeDisplay.getLocale(),
-					"your-request-failed-to-complete");
-
-				jsonObject.put("message", message);
-				jsonObject.put("success", false);
-			}
-
-			HttpServletResponse response = PortalUtil.getHttpServletResponse(
-				actionResponse);
-
-			response.setContentType(ContentTypes.TEXT_JAVASCRIPT);
-
-			ServletResponseUtil.write(response, jsonObject.toString());
+			updateFieldGroup(actionRequest, actionResponse);
 		}
 		else {
-			updateProjectsEntries(actionRequest, actionResponse);
-
-			DynamicActionRequest dynamicActionRequest =
-				new DynamicActionRequest(actionRequest);
-
-			String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
-
-			if (cmd.equals(Constants.UPDATE)) {
-				User user = PortalUtil.getSelectedUser(actionRequest);
-
-				Role role = RoleLocalServiceUtil.getRole(
-					user.getCompanyId(), RoleConstants.SOCIAL_OFFICE_USER);
-
-				long[] roleIds = getLongArray(
-					actionRequest, "rolesSearchContainerPrimaryKeys");
-
-				boolean newSocialOfficeUser = ArrayUtil.contains(
-					roleIds, role.getRoleId());
-
-				List<Role> roles = user.getRoles();
-
-				if (newSocialOfficeUser && !roles.contains(role)) {
-					LayoutSetPrototype publicLayoutSetPrototype =
-						LayoutSetPrototypeUtil.fetchLayoutSetPrototype(
-							user, false);
-
-					if (publicLayoutSetPrototype != null) {
-						dynamicActionRequest.setParameter(
-							"publicLayoutSetPrototypeId",
-							String.valueOf(
-								publicLayoutSetPrototype.
-									getLayoutSetPrototypeId()));
-
-						dynamicActionRequest.setParameter(
-							"publicLayoutSetPrototypeId",
-							String.valueOf(
-								publicLayoutSetPrototype.
-									getLayoutSetPrototypeId()));
-					}
-
-					LayoutSetPrototype privateLayoutSetPrototype =
-						LayoutSetPrototypeUtil.fetchLayoutSetPrototype(
-							user, true);
-
-					if (privateLayoutSetPrototype != null) {
-						dynamicActionRequest.setParameter(
-							"privateLayoutSetPrototypeId",
-							String.valueOf(
-								privateLayoutSetPrototype.
-									getLayoutSetPrototypeId()));
-
-						dynamicActionRequest.setParameter(
-							"privateLayoutSetPrototypeLinkEnabled",
-							String.valueOf(true));
-					}
-				}
-				else if (!newSocialOfficeUser && roles.contains(role)) {
-					dynamicActionRequest.setParameter(
-						"publicLayoutSetPrototypeId", StringPool.BLANK);
-					dynamicActionRequest.setParameter(
-						"privateLayoutSetPrototypeId", StringPool.BLANK);
-					dynamicActionRequest.setParameter(
-						"publicLayoutSetPrototypeLinkEnabled",
-						String.valueOf(false));
-					dynamicActionRequest.setParameter(
-						"privateLayoutSetPrototypeLinkEnabled",
-						String.valueOf(false));
-				}
-			}
-
-			originalStrutsPortletAction.processAction(
-				portletConfig, dynamicActionRequest, actionResponse);
+			updateUser(
+				originalStrutsPortletAction, portletConfig, actionRequest,
+				actionResponse);
 		}
 	}
 
@@ -213,6 +115,39 @@ public class EditUserAction extends BaseStrutsPortletAction {
 		}
 
 		return StringUtil.split(GetterUtil.getString(value), 0L);
+	}
+
+	protected void updateFieldGroup(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		try {
+			updateProjectsEntries(actionRequest, actionResponse);
+
+			String redirect = ParamUtil.getString(actionRequest, "redirect");
+
+			jsonObject.put("redirect", redirect);
+			jsonObject.put("success", true);
+		}
+		catch (Exception e) {
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+
+			String message = LanguageUtil.get(
+				themeDisplay.getLocale(), "your-request-failed-to-complete");
+
+			jsonObject.put("message", message);
+			jsonObject.put("success", false);
+		}
+
+		HttpServletResponse response = PortalUtil.getHttpServletResponse(
+			actionResponse);
+
+		response.setContentType(ContentTypes.TEXT_JAVASCRIPT);
+
+		ServletResponseUtil.write(response, jsonObject.toString());
 	}
 
 	protected void updateProjectsEntries(
@@ -298,6 +233,83 @@ public class EditUserAction extends BaseStrutsPortletAction {
 					projectsEntry.getProjectsEntryId());
 			}
 		}
+	}
+
+	protected void updateUser(
+			StrutsPortletAction originalStrutsPortletAction,
+			PortletConfig portletConfig, ActionRequest actionRequest,
+			ActionResponse actionResponse)
+		throws Exception {
+
+		updateProjectsEntries(actionRequest, actionResponse);
+
+		DynamicActionRequest dynamicActionRequest =
+			new DynamicActionRequest(actionRequest);
+
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+
+		if (!cmd.equals(Constants.UPDATE)) {
+			originalStrutsPortletAction.processAction(
+				portletConfig, dynamicActionRequest, actionResponse);
+
+			return;
+		}
+
+		User user = PortalUtil.getSelectedUser(actionRequest);
+
+		Role role = RoleLocalServiceUtil.getRole(
+			user.getCompanyId(), RoleConstants.SOCIAL_OFFICE_USER);
+
+		long[] roleIds = getLongArray(
+			actionRequest, "rolesSearchContainerPrimaryKeys");
+
+		boolean newSocialOfficeUser = ArrayUtil.contains(
+			roleIds, role.getRoleId());
+
+		List<Role> roles = user.getRoles();
+
+		if (newSocialOfficeUser && !roles.contains(role)) {
+			LayoutSetPrototype publicLayoutSetPrototype =
+				LayoutSetPrototypeUtil.fetchLayoutSetPrototype(user, false);
+
+			if (publicLayoutSetPrototype != null) {
+				dynamicActionRequest.setParameter(
+					"publicLayoutSetPrototypeId",
+					String.valueOf(
+						publicLayoutSetPrototype.getLayoutSetPrototypeId()));
+				dynamicActionRequest.setParameter(
+					"publicLayoutSetPrototypeLinkEnabled",
+					Boolean.TRUE.toString());
+			}
+
+			LayoutSetPrototype privateLayoutSetPrototype =
+				LayoutSetPrototypeUtil.fetchLayoutSetPrototype(user, true);
+
+			if (privateLayoutSetPrototype != null) {
+				dynamicActionRequest.setParameter(
+					"privateLayoutSetPrototypeId",
+					String.valueOf(
+						privateLayoutSetPrototype.getLayoutSetPrototypeId()));
+				dynamicActionRequest.setParameter(
+					"privateLayoutSetPrototypeLinkEnabled",
+					Boolean.TRUE.toString());
+			}
+		}
+		else if (!newSocialOfficeUser && roles.contains(role)) {
+			dynamicActionRequest.setParameter(
+				"publicLayoutSetPrototypeId", StringPool.BLANK);
+			dynamicActionRequest.setParameter(
+				"publicLayoutSetPrototypeLinkEnabled",
+				Boolean.FALSE.toString());
+			dynamicActionRequest.setParameter(
+				"privateLayoutSetPrototypeId", StringPool.BLANK);
+			dynamicActionRequest.setParameter(
+				"privateLayoutSetPrototypeLinkEnabled",
+				Boolean.FALSE.toString());
+		}
+
+		originalStrutsPortletAction.processAction(
+			portletConfig, dynamicActionRequest, actionResponse);
 	}
 
 }
