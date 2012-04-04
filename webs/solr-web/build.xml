@@ -17,6 +17,7 @@
 			<mapper type="flatten" />
 		</unzip>
 	</target>
+
 	<target name="shrink-zip">
 		<antcall target="shrink-zip-cmd">
 			<param name="zip.file.name" value="${original.war.file}" />
