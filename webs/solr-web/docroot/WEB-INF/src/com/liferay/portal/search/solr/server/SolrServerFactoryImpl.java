@@ -72,6 +72,10 @@ public class SolrServerFactoryImpl implements SolrServerFactory {
 				return;
 			}
 
+			BasicAuthSolrServer solrServer =
+				(BasicAuthSolrServer)solrServerWrapper.getServer();
+			solrServer.shutdown();
+
 			_deadServers.put(solrServerWrapper.getId(), solrServerWrapper);
 			_liveServers.remove(solrServerWrapper.getId());
 		}

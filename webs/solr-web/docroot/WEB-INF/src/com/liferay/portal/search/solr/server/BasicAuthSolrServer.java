@@ -37,6 +37,8 @@ import org.apache.solr.common.util.NamedList;
  */
 public class BasicAuthSolrServer extends SolrServer {
 
+	private boolean shutdown;
+
 	public BasicAuthSolrServer(String url) throws MalformedURLException {
 		this(null, null, url);
 	}
@@ -96,7 +98,13 @@ public class BasicAuthSolrServer extends SolrServer {
 	public NamedList<Object> request(SolrRequest solrRequest)
 		throws IOException, SolrServerException {
 
-		return _server.request(solrRequest);
+		synchronized (this) {
+			if (shutdown == true) {
+				return null;
+			}
+
+			return _server.request(solrRequest);
+		}
 	}
 
 	public NamedList<Object> request(
@@ -147,6 +155,12 @@ public class BasicAuthSolrServer extends SolrServer {
 
 	public void setSoTimeout(int soTimeout) {
 		_server.setSoTimeout(soTimeout);
+	}
+
+	public void shutdown() {
+		synchronized (this) {
+			shutdown = true;
+		}
 	}
 
 	private String _password;
