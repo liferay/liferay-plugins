@@ -15,10 +15,12 @@
 package com.liferay.calendar.service.impl;
 
 import com.liferay.calendar.DuplicateCalendarResourceException;
+import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.base.CalendarResourceLocalServiceBaseImpl;
 import com.liferay.calendar.util.CalendarResourceUtil;
+import com.liferay.calendar.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -108,6 +110,18 @@ public class CalendarResourceLocalServiceImpl
 		resourceLocalService.addModelResources(
 			calendarResource, serviceContext);
 
+		// Calendar
+
+		if (defaultCalendarId <= 0) {
+			Calendar calendar = calendarLocalService.addCalendar(
+				userId, groupId, calendarResourceId, nameMap, descriptionMap,
+				PortletPropsValues.CALENDAR_DEFAULT_COLOR, true,
+				serviceContext);
+
+			updateDefaultCalendarId(
+				calendarResourceId, calendar.getCalendarId());
+		}
+
 		return calendarResource;
 	}
 
@@ -135,6 +149,17 @@ public class CalendarResourceLocalServiceImpl
 			calendarBookingLocalService.deleteCalendarBooking(calendarBooking);
 		}
 
+		// Calendars
+
+		List<Calendar> calendars =
+			calendarLocalService.getResourceCalendars(
+				calendarResource.getGroupId(),
+				calendarResource.getCalendarResourceId());
+
+		for (Calendar calendar : calendars) {
+			calendarLocalService.deleteCalendar(calendar);
+		}
+
 		return calendarResource;
 	}
 
@@ -146,6 +171,13 @@ public class CalendarResourceLocalServiceImpl
 			calendarResourcePersistence.findByPrimaryKey(calendarResourceId);
 
 		return deleteCalendarResource(calendarResource);
+	}
+
+	public CalendarResource fetchCalendarResource(
+			long classNameId, long classPK)
+		throws SystemException {
+
+		return calendarResourcePersistence.fetchByC_C(classNameId, classPK);
 	}
 
 	@Override

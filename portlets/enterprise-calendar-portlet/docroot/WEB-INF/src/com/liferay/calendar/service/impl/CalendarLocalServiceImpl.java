@@ -17,6 +17,7 @@ package com.liferay.calendar.service.impl;
 import com.liferay.calendar.CalendarNameException;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.service.base.CalendarLocalServiceBaseImpl;
+import com.liferay.calendar.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -65,6 +66,11 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		calendar.setCalendarResourceId(calendarResourceId);
 		calendar.setNameMap(nameMap);
 		calendar.setDescriptionMap(descriptionMap);
+
+		if (color <= 0) {
+			color = PortletPropsValues.CALENDAR_DEFAULT_COLOR;
+		}
+
 		calendar.setColor(color);
 		calendar.setDefaultCalendar(defaultCalendar);
 
@@ -77,6 +83,14 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		// Calendar resource
 
 		if (defaultCalendar) {
+			List<Calendar> resourceCalendars = getResourceCalendars(
+				groupId, calendarResourceId);
+
+			for (Calendar resourceCalendar : resourceCalendars) {
+				updateDefaultCalendar(
+					resourceCalendar, calendar.equals(resourceCalendar));
+			}
+
 			calendarResourceLocalService.updateDefaultCalendarId(
 				calendarResourceId, calendarId);
 		}
@@ -184,6 +198,11 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		calendar.setModifiedDate(serviceContext.getModifiedDate(null));
 		calendar.setNameMap(nameMap);
 		calendar.setDescriptionMap(descriptionMap);
+
+		if (color <= 0) {
+			color = PortletPropsValues.CALENDAR_DEFAULT_COLOR;
+		}
+
 		calendar.setColor(color);
 		calendar.setDefaultCalendar(defaultCalendar);
 
@@ -192,6 +211,14 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		// Calendar resource
 
 		if (defaultCalendar) {
+			List<Calendar> resourceCalendars = getResourceCalendars(
+				calendar.getGroupId(), calendar.getCalendarResourceId());
+
+			for (Calendar resourceCalendar : resourceCalendars) {
+				updateDefaultCalendar(
+					resourceCalendar, calendar.equals(resourceCalendar));
+			}
+
 			calendarResourceLocalService.updateDefaultCalendarId(
 				calendar.getCalendarResourceId(), calendarId);
 		}
@@ -214,6 +241,15 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		return updateCalendar(
 			calendarId, nameMap, descriptionMap, color,
 			calendar.isDefaultCalendar(), serviceContext);
+	}
+
+	public void updateDefaultCalendar(
+			Calendar calendar, boolean defaultCalendar)
+		throws SystemException {
+
+		calendar.setDefaultCalendar(defaultCalendar);
+
+		calendarPersistence.update(calendar, false);
 	}
 
 	protected void validate(Map<Locale, String> nameMap)
