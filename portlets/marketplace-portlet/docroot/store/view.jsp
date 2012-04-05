@@ -62,7 +62,22 @@
 
 				Liferay.MarketplaceMessenger.setTargetURI(response.serverURL);
 
-				frame.height(response.height + 50);
+				if (response.height) {
+					frame.height(response.height + 50);
+				}
+
+				if (response.width) {
+					frame.width(response.width);
+				}
+			}
+			else if (response.cmd == 'resize') {
+				if (response.height) {
+					frame.height(response.height + 50);
+				}
+
+				if (response.width) {
+					frame.width(response.width);
+				}
 			}
 			else if (response.cmd == 'goto') {
 				var url = null;
