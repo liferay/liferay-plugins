@@ -18,6 +18,7 @@
 package com.liferay.so.hook.listeners;
 
 import com.liferay.portal.ModelListenerException;
+import com.liferay.portal.NoSuchGroupException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -144,6 +145,9 @@ public class UserListener extends BaseModelListener<User> {
 				LayoutSetPrototypeUtil.fetchLayoutSetPrototype(user, true);
 
 			removeUserLayouts(user, true, privateLayoutSetPrototype.getUuid());
+		}
+		catch (NoSuchGroupException nsge) {
+			return;
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
