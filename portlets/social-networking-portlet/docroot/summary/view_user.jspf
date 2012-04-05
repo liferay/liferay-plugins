@@ -186,6 +186,7 @@
 							<span class="rss-icon">
 								<liferay-ui:icon
 									image="rss"
+									method="get"
 									url='<%= blogsFriendlyURL + "/-/blogs/rss" %>'
 								/>
 							</span>
