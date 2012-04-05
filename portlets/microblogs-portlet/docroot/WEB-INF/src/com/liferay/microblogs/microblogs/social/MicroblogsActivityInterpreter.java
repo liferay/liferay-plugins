@@ -79,8 +79,8 @@ public class MicroblogsActivityInterpreter
 			else if (microblogsEntry.getType() ==
 						MicroblogsEntryConstants.TYPE_REPOST) {
 
-				sb.append(themeDisplay.translate("repost-from"));
-				sb.append(receiverUserName);
+				sb.append(themeDisplay.translate("reposted-from"));
+				sb.append(" " + receiverUserName);
 				sb.append(": ");
 			}
 		}
