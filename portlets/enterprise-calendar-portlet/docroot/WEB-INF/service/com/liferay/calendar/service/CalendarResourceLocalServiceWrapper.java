@@ -295,6 +295,13 @@ public class CalendarResourceLocalServiceWrapper
 			nameMap, descriptionMap, type, active, serviceContext);
 	}
 
+	public com.liferay.calendar.model.CalendarResource fetchCalendarResource(
+		long classNameId, long classPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResourceLocalService.fetchCalendarResource(classNameId,
+			classPK);
+	}
+
 	public java.util.List<com.liferay.calendar.model.CalendarResource> search(
 		long companyId, long[] groupIds, long[] classNameIds,
 		java.lang.String code, java.lang.String name,

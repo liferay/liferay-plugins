@@ -365,6 +365,12 @@ public class CalendarLocalServiceUtil {
 			serviceContext);
 	}
 
+	public static void updateDefaultCalendar(
+		com.liferay.calendar.model.Calendar calendar, boolean defaultCalendar)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getService().updateDefaultCalendar(calendar, defaultCalendar);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

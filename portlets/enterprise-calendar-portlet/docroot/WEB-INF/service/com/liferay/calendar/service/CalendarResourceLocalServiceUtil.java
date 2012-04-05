@@ -299,6 +299,12 @@ public class CalendarResourceLocalServiceUtil {
 			active, serviceContext);
 	}
 
+	public static com.liferay.calendar.model.CalendarResource fetchCalendarResource(
+		long classNameId, long classPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchCalendarResource(classNameId, classPK);
+	}
+
 	public static java.util.List<com.liferay.calendar.model.CalendarResource> search(
 		long companyId, long[] groupIds, long[] classNameIds,
 		java.lang.String code, java.lang.String name,

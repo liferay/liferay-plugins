@@ -306,4 +306,8 @@ public interface CalendarLocalService extends PermissionedModelLocalService {
 		int color, com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	public void updateDefaultCalendar(
+		com.liferay.calendar.model.Calendar calendar, boolean defaultCalendar)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

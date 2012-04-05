@@ -349,6 +349,12 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 			descriptionMap, color, serviceContext);
 	}
 
+	public void updateDefaultCalendar(
+		com.liferay.calendar.model.Calendar calendar, boolean defaultCalendar)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_calendarLocalService.updateDefaultCalendar(calendar, defaultCalendar);
+	}
+
 	/**
 	 * @deprecated Renamed to {@link #getWrappedService}
 	 */

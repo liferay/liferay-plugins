@@ -124,6 +124,10 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 				"updateCalendar", long.class, java.util.Map.class,
 				java.util.Map.class, int.class,
 				com.liferay.portal.service.ServiceContext.class);
+
+		_updateDefaultCalendarMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateDefaultCalendar",
+				com.liferay.calendar.model.Calendar.class, boolean.class);
 	}
 
 	public com.liferay.calendar.model.Calendar addCalendar(
@@ -907,6 +911,30 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 		return (com.liferay.calendar.model.Calendar)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public void updateDefaultCalendar(
+		com.liferay.calendar.model.Calendar calendar, boolean defaultCalendar)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		MethodHandler methodHandler = new MethodHandler(_updateDefaultCalendarMethodKey26,
+				ClpSerializer.translateInput(calendar), defaultCalendar);
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public ClassLoaderProxy getClassLoaderProxy() {
 		return _classLoaderProxy;
 	}
@@ -938,4 +966,5 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 	private MethodKey _searchCountMethodKey23;
 	private MethodKey _updateCalendarMethodKey24;
 	private MethodKey _updateCalendarMethodKey25;
+	private MethodKey _updateDefaultCalendarMethodKey26;
 }
