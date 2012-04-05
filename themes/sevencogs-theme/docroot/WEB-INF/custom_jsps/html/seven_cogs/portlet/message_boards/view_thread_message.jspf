@@ -80,6 +80,7 @@
 
 	<div class="thread-top float-container">
 		<div class="subject" style="width: 100%;">
+
 			<%
 			String assetTagNames = (String)request.getAttribute("edit_message.jsp-assetTagNames");
 			%>

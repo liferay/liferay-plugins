@@ -150,6 +150,7 @@ int oAuthServiceCount = 0;
 	<%
 	for (int rowCount = 0; rowCount < oAuthServiceCount; rowCount++) {
 	%>
+
 		A.one('#<portlet:namespace />keyType<%= rowCount %>').on(
 			'change',
 			function() {
@@ -158,6 +159,7 @@ int oAuthServiceCount = 0;
 		);
 
 		<portlet:namespace />renderConsumerSecretRow(<%= rowCount %>);
+
 	<%
 	}
 	%>
