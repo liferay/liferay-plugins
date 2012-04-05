@@ -58,19 +58,11 @@
 				clearTimeout(timeout);
 
 				frame.removeClass('aui-helper-hidden-accessible');
+
 				frame.ancestor().removeClass('loading-animation');
 
 				Liferay.MarketplaceMessenger.setTargetURI(response.serverURL);
 
-				if (response.height) {
-					frame.height(response.height + 50);
-				}
-
-				if (response.width) {
-					frame.width(response.width);
-				}
-			}
-			else if (response.cmd == 'resize') {
 				if (response.height) {
 					frame.height(response.height + 50);
 				}
@@ -94,6 +86,15 @@
 				}
 
 				window.location = url;
+			}
+			else if (response.cmd == 'resize') {
+				if (response.height) {
+					frame.height(response.height + 50);
+				}
+
+				if (response.width) {
+					frame.width(response.width);
+				}
 			}
 			else {
 				A.io.request(
