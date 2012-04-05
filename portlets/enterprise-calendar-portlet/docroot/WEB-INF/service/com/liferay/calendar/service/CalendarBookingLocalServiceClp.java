@@ -114,18 +114,18 @@ public class CalendarBookingLocalServiceClp
 
 		_searchMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
 				"search", long.class, long[].class, long[].class, long[].class,
+				long.class, java.lang.String.class, java.util.Date.class,
+				java.util.Date.class, java.lang.Integer.class, int.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_searchMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
+				"search", long.class, long[].class, long[].class, long[].class,
 				long.class, java.lang.String.class, java.lang.String.class,
 				java.lang.String.class, java.lang.String.class,
 				java.util.Date.class, java.util.Date.class,
 				java.lang.Integer.class, int.class, boolean.class, int.class,
 				int.class,
-				com.liferay.portal.kernel.util.OrderByComparator.class);
-
-		_searchByKeywordsMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
-				"searchByKeywords", long.class, long[].class, long[].class,
-				java.lang.String.class, long[].class, long.class,
-				java.util.Date.class, java.util.Date.class,
-				java.lang.Integer.class, int.class, int.class, int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
 		_searchCountMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
@@ -815,11 +815,9 @@ public class CalendarBookingLocalServiceClp
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> search(
 		long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
-		java.lang.String title, java.lang.String description,
-		java.lang.String location, java.lang.String type,
-		java.util.Date startDate, java.util.Date endDate,
-		java.lang.Integer priority, int status, boolean andOperator, int start,
-		int end,
+		java.lang.String keywords, java.util.Date startDate,
+		java.util.Date endDate, java.lang.Integer priority, int status,
+		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -828,14 +826,12 @@ public class CalendarBookingLocalServiceClp
 				companyId, ClpSerializer.translateInput(groupIds),
 				ClpSerializer.translateInput(calendarIds),
 				ClpSerializer.translateInput(calendarResourceIds),
-				parentCalendarBookingId, ClpSerializer.translateInput(title),
-				ClpSerializer.translateInput(description),
-				ClpSerializer.translateInput(location),
-				ClpSerializer.translateInput(type),
+				parentCalendarBookingId,
+				ClpSerializer.translateInput(keywords),
 				ClpSerializer.translateInput(startDate),
 				ClpSerializer.translateInput(endDate),
-				ClpSerializer.translateInput(priority), status, andOperator,
-				start, end, ClpSerializer.translateInput(orderByComparator));
+				ClpSerializer.translateInput(priority), status, start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -857,26 +853,30 @@ public class CalendarBookingLocalServiceClp
 		return (java.util.List<com.liferay.calendar.model.CalendarBooking>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<com.liferay.calendar.model.CalendarBooking> searchByKeywords(
+	public java.util.List<com.liferay.calendar.model.CalendarBooking> search(
 		long companyId, long[] groupIds, long[] calendarIds,
-		java.lang.String keywords, long[] calendarResourceIds,
-		long parentCalendarBookingId, java.util.Date startDate,
-		java.util.Date endDate, java.lang.Integer priority, int status,
-		int start, int end,
+		long[] calendarResourceIds, long parentCalendarBookingId,
+		java.lang.String title, java.lang.String description,
+		java.lang.String location, java.lang.String type,
+		java.util.Date startDate, java.util.Date endDate,
+		java.lang.Integer priority, int status, boolean andOperator, int start,
+		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_searchByKeywordsMethodKey23,
+		MethodHandler methodHandler = new MethodHandler(_searchMethodKey23,
 				companyId, ClpSerializer.translateInput(groupIds),
 				ClpSerializer.translateInput(calendarIds),
-				ClpSerializer.translateInput(keywords),
 				ClpSerializer.translateInput(calendarResourceIds),
-				parentCalendarBookingId,
+				parentCalendarBookingId, ClpSerializer.translateInput(title),
+				ClpSerializer.translateInput(description),
+				ClpSerializer.translateInput(location),
+				ClpSerializer.translateInput(type),
 				ClpSerializer.translateInput(startDate),
 				ClpSerializer.translateInput(endDate),
-				ClpSerializer.translateInput(priority), status, start, end,
-				ClpSerializer.translateInput(orderByComparator));
+				ClpSerializer.translateInput(priority), status, andOperator,
+				start, end, ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -1097,7 +1097,7 @@ public class CalendarBookingLocalServiceClp
 	private MethodKey _getCalendarBookingsMethodKey20;
 	private MethodKey _getCalendarBookingsMethodKey21;
 	private MethodKey _searchMethodKey22;
-	private MethodKey _searchByKeywordsMethodKey23;
+	private MethodKey _searchMethodKey23;
 	private MethodKey _searchCountMethodKey24;
 	private MethodKey _searchCountMethodKey25;
 	private MethodKey _updateCalendarBookingMethodKey26;

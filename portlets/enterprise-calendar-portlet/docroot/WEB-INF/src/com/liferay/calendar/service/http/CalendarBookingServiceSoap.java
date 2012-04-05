@@ -160,6 +160,30 @@ public class CalendarBookingServiceSoap {
 	public static com.liferay.calendar.model.CalendarBookingSoap[] search(
 		long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
+		java.lang.String keywords, java.util.Date startDate,
+		java.util.Date endDate, java.lang.Integer priority, int status,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws RemoteException {
+		try {
+			java.util.List<com.liferay.calendar.model.CalendarBooking> returnValue =
+				CalendarBookingServiceUtil.search(companyId, groupIds,
+					calendarIds, calendarResourceIds, parentCalendarBookingId,
+					keywords, startDate, endDate, priority, status, start, end,
+					orderByComparator);
+
+			return com.liferay.calendar.model.CalendarBookingSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.calendar.model.CalendarBookingSoap[] search(
+		long companyId, long[] groupIds, long[] calendarIds,
+		long[] calendarResourceIds, long parentCalendarBookingId,
 		java.lang.String title, java.lang.String description,
 		java.lang.String location, java.lang.String type,
 		java.util.Date startDate, java.util.Date endDate,
@@ -173,30 +197,6 @@ public class CalendarBookingServiceSoap {
 					calendarIds, calendarResourceIds, parentCalendarBookingId,
 					title, description, location, type, startDate, endDate,
 					priority, status, andOperator, start, end, orderByComparator);
-
-			return com.liferay.calendar.model.CalendarBookingSoap.toSoapModels(returnValue);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
-	public static com.liferay.calendar.model.CalendarBookingSoap[] searchByKeywords(
-		long companyId, long[] groupIds, long[] calendarIds,
-		java.lang.String keywords, long[] calendarResourceIds,
-		long parentCalendarBookingId, java.util.Date startDate,
-		java.util.Date endDate, java.lang.Integer priority, int status,
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws RemoteException {
-		try {
-			java.util.List<com.liferay.calendar.model.CalendarBooking> returnValue =
-				CalendarBookingServiceUtil.searchByKeywords(companyId,
-					groupIds, calendarIds, keywords, calendarResourceIds,
-					parentCalendarBookingId, startDate, endDate, priority,
-					status, start, end, orderByComparator);
 
 			return com.liferay.calendar.model.CalendarBookingSoap.toSoapModels(returnValue);
 		}

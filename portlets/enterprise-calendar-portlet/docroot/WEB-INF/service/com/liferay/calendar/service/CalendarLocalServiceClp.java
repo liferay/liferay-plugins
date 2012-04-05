@@ -98,13 +98,13 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 
 		_searchMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"search", long.class, long[].class, long[].class,
-				java.lang.String.class, java.lang.String.class, boolean.class,
-				int.class, int.class,
+				java.lang.String.class, boolean.class, int.class, int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
-		_searchByKeywordsMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
-				"searchByKeywords", long.class, long[].class, long[].class,
-				java.lang.String.class, boolean.class, int.class, int.class,
+		_searchMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+				"search", long.class, long[].class, long[].class,
+				java.lang.String.class, java.lang.String.class, boolean.class,
+				int.class, int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
 		_searchCountMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
@@ -703,8 +703,7 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 
 	public java.util.List<com.liferay.calendar.model.Calendar> search(
 		long companyId, long[] groupIds, long[] calendarResourceIds,
-		java.lang.String name, java.lang.String description,
-		boolean andOperator, int start, int end,
+		java.lang.String keywords, boolean andOperator, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -712,8 +711,7 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 		MethodHandler methodHandler = new MethodHandler(_searchMethodKey20,
 				companyId, ClpSerializer.translateInput(groupIds),
 				ClpSerializer.translateInput(calendarResourceIds),
-				ClpSerializer.translateInput(name),
-				ClpSerializer.translateInput(description), andOperator, start,
+				ClpSerializer.translateInput(keywords), andOperator, start,
 				end, ClpSerializer.translateInput(orderByComparator));
 
 		try {
@@ -736,17 +734,19 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 		return (java.util.List<com.liferay.calendar.model.Calendar>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<com.liferay.calendar.model.Calendar> searchByKeywords(
+	public java.util.List<com.liferay.calendar.model.Calendar> search(
 		long companyId, long[] groupIds, long[] calendarResourceIds,
-		java.lang.String keywords, boolean andOperator, int start, int end,
+		java.lang.String name, java.lang.String description,
+		boolean andOperator, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_searchByKeywordsMethodKey21,
+		MethodHandler methodHandler = new MethodHandler(_searchMethodKey21,
 				companyId, ClpSerializer.translateInput(groupIds),
 				ClpSerializer.translateInput(calendarResourceIds),
-				ClpSerializer.translateInput(keywords), andOperator, start,
+				ClpSerializer.translateInput(name),
+				ClpSerializer.translateInput(description), andOperator, start,
 				end, ClpSerializer.translateInput(orderByComparator));
 
 		try {
@@ -933,7 +933,7 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 	private MethodKey _addCalendarMethodKey18;
 	private MethodKey _getResourceCalendarsMethodKey19;
 	private MethodKey _searchMethodKey20;
-	private MethodKey _searchByKeywordsMethodKey21;
+	private MethodKey _searchMethodKey21;
 	private MethodKey _searchCountMethodKey22;
 	private MethodKey _searchCountMethodKey23;
 	private MethodKey _updateCalendarMethodKey24;

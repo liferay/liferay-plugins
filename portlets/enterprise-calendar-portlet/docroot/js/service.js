@@ -20,7 +20,6 @@ Liferay.Service.registerClass(
 		getCalendarBooking: true,
 		getCalendarBookings: true,
 		search: true,
-		searchByKeywords: true,
 		searchCount: true,
 		updateCalendarBooking: true
 	}

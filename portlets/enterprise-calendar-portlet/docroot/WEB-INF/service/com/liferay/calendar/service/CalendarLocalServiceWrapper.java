@@ -293,22 +293,22 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 
 	public java.util.List<com.liferay.calendar.model.Calendar> search(
 		long companyId, long[] groupIds, long[] calendarResourceIds,
+		java.lang.String keywords, boolean andOperator, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarLocalService.search(companyId, groupIds,
+			calendarResourceIds, keywords, andOperator, start, end,
+			orderByComparator);
+	}
+
+	public java.util.List<com.liferay.calendar.model.Calendar> search(
+		long companyId, long[] groupIds, long[] calendarResourceIds,
 		java.lang.String name, java.lang.String description,
 		boolean andOperator, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _calendarLocalService.search(companyId, groupIds,
 			calendarResourceIds, name, description, andOperator, start, end,
-			orderByComparator);
-	}
-
-	public java.util.List<com.liferay.calendar.model.Calendar> searchByKeywords(
-		long companyId, long[] groupIds, long[] calendarResourceIds,
-		java.lang.String keywords, boolean andOperator, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _calendarLocalService.searchByKeywords(companyId, groupIds,
-			calendarResourceIds, keywords, andOperator, start, end,
 			orderByComparator);
 	}
 

@@ -19,8 +19,8 @@ package com.liferay.calendar.service.persistence;
  */
 public interface CalendarBookingFinder {
 	public int countByKeywords(long companyId, long[] groupIds,
-		long[] calendarIds, java.lang.String keywords,
-		long[] calendarResourceIds, long parentCalendarBookingId,
+		long[] calendarIds, long[] calendarResourceIds,
+		long parentCalendarBookingId, java.lang.String keywords,
 		java.util.Date startDate, java.util.Date endDate,
 		java.lang.Integer priority, int status)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -44,8 +44,8 @@ public interface CalendarBookingFinder {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int filterCountByKeywords(long companyId, long[] groupIds,
-		long[] calendarIds, java.lang.String keywords,
-		long[] calendarResourceIds, long parentCalendarBookingId,
+		long[] calendarIds, long[] calendarResourceIds,
+		long parentCalendarBookingId, java.lang.String keywords,
 		java.util.Date startDate, java.util.Date endDate,
 		java.lang.Integer priority, int status)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -70,8 +70,8 @@ public interface CalendarBookingFinder {
 
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> filterFindByKeywords(
 		long companyId, long[] groupIds, long[] calendarIds,
-		java.lang.String keywords, long[] calendarResourceIds,
-		long parentCalendarBookingId, java.util.Date startDate,
+		long[] calendarResourceIds, long parentCalendarBookingId,
+		java.lang.String keywords, java.util.Date startDate,
 		java.util.Date endDate, java.lang.Integer priority, int status,
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -101,8 +101,8 @@ public interface CalendarBookingFinder {
 
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> findByKeywords(
 		long companyId, long[] groupIds, long[] calendarIds,
-		java.lang.String keywords, long[] calendarResourceIds,
-		long parentCalendarBookingId, java.util.Date startDate,
+		long[] calendarResourceIds, long parentCalendarBookingId,
+		java.lang.String keywords, java.util.Date startDate,
 		java.util.Date endDate, java.lang.Integer priority, int status,
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
