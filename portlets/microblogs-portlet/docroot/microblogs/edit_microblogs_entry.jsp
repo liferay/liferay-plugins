@@ -271,7 +271,11 @@ if (comment) {
 
 					buttonContainer.show();
 
-					A.one('#<portlet:namespace />placeholderText<%= microblogsEntryId %>').remove();
+					var placeholderText = A.one('#<portlet:namespace />placeholderText<%= microblogsEntryId %>');
+
+					if (placeholderText) {
+						placeholderText.remove();
+					}
 				}
 			);
 
