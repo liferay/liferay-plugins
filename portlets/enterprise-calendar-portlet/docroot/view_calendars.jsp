@@ -20,34 +20,32 @@
 String redirect = ParamUtil.getString(request, "redirect");
 
 CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKeys.CALENDAR_RESOURCE);
-
-String title = LanguageUtil.format(pageContext, "x-calendars", calendarResource.getName(locale));
-
-long[] calendarResourceIds = new long[] {calendarResource.getCalendarResourceId()};
-long[] groupIds = new long[] {themeDisplay.getScopeGroupId()};
 %>
 
 <liferay-ui:header
 	backURL="<%= redirect %>"
-	title='<%= title %>'
+	title='<%= LanguageUtil.format(pageContext, "x-calendars", calendarResource.getName(locale)) %>'
 />
 
 <c:if test="<%= CalendarResourcePermission.contains(permissionChecker, calendarResource, ActionKeys.ADD_CALENDAR) %>">
 	<aui:button-row>
 		<liferay-portlet:renderURL var="editCalendarURL">
 			<liferay-portlet:param name="jspPage" value="/edit_calendar.jsp" />
-			<liferay-portlet:param name="calendarResourceId" value="<%= String.valueOf(calendarResource.getCalendarResourceId()) %>" />
 			<liferay-portlet:param name="redirect" value="<%= currentURL %>" />
+			<liferay-portlet:param name="calendarResourceId" value="<%= String.valueOf(calendarResource.getCalendarResourceId()) %>" />
 		</liferay-portlet:renderURL>
 
 		<aui:button onClick="<%= editCalendarURL %>" value="add-calendar" />
 	</aui:button-row>
 </c:if>
 
-<liferay-ui:search-container searchContainer='<%= new SearchContainer(renderRequest, portletURL, null, "there-are-no-calendars-for-selected-resource") %>'>
+<liferay-ui:search-container
+	emptyResultsMessage="there-are-no-calendars-for-the-selected-resource"
+	iteratorURL="<%= portletURL %>"
+>
 	<liferay-ui:search-container-results
-		results='<%= CalendarServiceUtil.search(themeDisplay.getCompanyId(), groupIds, calendarResourceIds, null, false, searchContainer.getStart(), searchContainer.getEnd(), new CalendarNameComparator(true)) %>'
-		total='<%= CalendarServiceUtil.searchCount(themeDisplay.getCompanyId(), groupIds, calendarResourceIds, null, false) %>'
+		results="<%= CalendarServiceUtil.search(themeDisplay.getCompanyId(), new long[] {themeDisplay.getScopeGroupId()}, new long[] {calendarResource.getCalendarResourceId()}, null, false, searchContainer.getStart(), searchContainer.getEnd(), new CalendarNameComparator(true)) %>"
+		total="<%= CalendarServiceUtil.searchCount(themeDisplay.getCompanyId(), new long[] {themeDisplay.getScopeGroupId()}, new long[] {calendarResource.getCalendarResourceId()}, null, false) %>"
 	/>
 
 	<liferay-ui:search-container-row
@@ -55,7 +53,6 @@ long[] groupIds = new long[] {themeDisplay.getScopeGroupId()};
 		keyProperty="calendarId"
 		modelVar="calendar"
 	>
-
 		<liferay-ui:search-container-column-text
 			name="name"
 			value="<%= calendar.getName(locale) %>"
@@ -70,7 +67,7 @@ long[] groupIds = new long[] {themeDisplay.getScopeGroupId()};
 			align="center"
 			name="color"
 		>
-			<span class="color-area color-picker-element" style="background-color:<%= ColorUtil.toHexString(calendar.getColor()) %>;"></span>
+			<span class="color-area color-picker-element" style="background-color: <%= ColorUtil.toHexString(calendar.getColor()) %>;"></span>
 		</liferay-ui:search-container-column-text>
 
 		<liferay-ui:search-container-column-text name="default">

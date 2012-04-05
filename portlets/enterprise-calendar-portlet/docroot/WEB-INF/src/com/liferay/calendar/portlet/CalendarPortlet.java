@@ -74,15 +74,19 @@ public class CalendarPortlet extends MVCPortlet {
 
 		try {
 			Calendar calendar = null;
-			CalendarResource calendarResource = null;
 
 			long calendarId = ParamUtil.getLong(renderRequest, "calendarId");
-			long calendarResourceId = ParamUtil.getLong(
-				renderRequest, "calendarResourceId");
 
 			if (calendarId > 0) {
 				calendar = CalendarServiceUtil.getCalendar(calendarId);
 			}
+
+			renderRequest.setAttribute(WebKeys.CALENDAR, calendar);
+
+			CalendarResource calendarResource = null;
+
+			long calendarResourceId = ParamUtil.getLong(
+				renderRequest, "calendarResourceId");
 
 			if (calendarResourceId > 0) {
 				calendarResource =
@@ -90,7 +94,6 @@ public class CalendarPortlet extends MVCPortlet {
 						calendarResourceId);
 			}
 
-			renderRequest.setAttribute(WebKeys.CALENDAR, calendar);
 			renderRequest.setAttribute(
 				WebKeys.CALENDAR_RESOURCE, calendarResource);
 		}
@@ -110,10 +113,10 @@ public class CalendarPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		long calendarId = ParamUtil.getLong(actionRequest, "calendarId", 0);
-		long calendarResourceId = ParamUtil.getLong(
-			actionRequest, "calendarResourceId", 0);
+		long calendarId = ParamUtil.getLong(actionRequest, "calendarId");
 
+		long calendarResourceId = ParamUtil.getLong(
+			actionRequest, "calendarResourceId");
 		Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(
 			actionRequest, "name");
 		Map<Locale, String> descriptionMap =

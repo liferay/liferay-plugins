@@ -102,6 +102,19 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 	public List<CalendarBooking> search(
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,
+			String keywords, Date startDate, Date endDate, Integer priority,
+			int status, int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+
+		return calendarBookingFinder.filterFindByKeywords(
+			companyId, groupIds, calendarIds, calendarResourceIds,
+			parentCalendarBookingId, keywords, startDate, endDate, priority,
+			status, start, end, orderByComparator);
+	}
+
+	public List<CalendarBooking> search(
+			long companyId, long[] groupIds, long[] calendarIds,
+			long[] calendarResourceIds, long parentCalendarBookingId,
 			String title, String description, String location, String type,
 			Date startDate, Date endDate, Integer priority, int status,
 			boolean andOperator, int start, int end,
@@ -115,20 +128,6 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			orderByComparator);
 	}
 
-	public List<CalendarBooking> searchByKeywords(
-			long companyId, long[] groupIds, long[] calendarIds,
-			String keywords, long[] calendarResourceIds,
-			long parentCalendarBookingId, Date startDate, Date endDate,
-			Integer priority, int status, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
-
-		return calendarBookingFinder.filterFindByKeywords(
-			companyId, groupIds, calendarIds, keywords, calendarResourceIds,
-			parentCalendarBookingId, startDate, endDate, priority, status,
-			start, end, orderByComparator);
-	}
-
 	public int searchCount(
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,
@@ -137,8 +136,9 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 		throws SystemException {
 
 		return calendarBookingFinder.filterCountByKeywords(
-			companyId, groupIds, calendarIds, keywords, calendarResourceIds,
-			parentCalendarBookingId, startDate, endDate, priority, status);
+			companyId, groupIds, calendarIds, calendarResourceIds,
+			parentCalendarBookingId, keywords, startDate, endDate, priority,
+			status);
 	}
 
 	public int searchCount(

@@ -130,17 +130,6 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 
 	public List<Calendar> search(
 			long companyId, long[] groupIds, long[] calendarResourceIds,
-			String name, String description, boolean andOperator, int start,
-			int end, OrderByComparator orderByComparator)
-		throws SystemException {
-
-		return calendarFinder.findByC_G_C_N_D(
-			companyId, groupIds, calendarResourceIds, name, description,
-			andOperator, start, end, orderByComparator);
-	}
-
-	public List<Calendar> searchByKeywords(
-			long companyId, long[] groupIds, long[] calendarResourceIds,
 			String keywords, boolean andOperator, int start, int end,
 			OrderByComparator orderByComparator)
 		throws SystemException {
@@ -148,6 +137,17 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		return calendarFinder.findByKeywords(
 			companyId, groupIds, calendarResourceIds, keywords, start, end,
 			orderByComparator);
+	}
+
+	public List<Calendar> search(
+			long companyId, long[] groupIds, long[] calendarResourceIds,
+			String name, String description, boolean andOperator, int start,
+			int end, OrderByComparator orderByComparator)
+		throws SystemException {
+
+		return calendarFinder.findByC_G_C_N_D(
+			companyId, groupIds, calendarResourceIds, name, description,
+			andOperator, start, end, orderByComparator);
 	}
 
 	public int searchCount(
