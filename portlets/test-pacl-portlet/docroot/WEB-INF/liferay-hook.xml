@@ -6,4 +6,8 @@
 		<service-type>com.liferay.portlet.blogs.service.BlogsEntryLocalService</service-type>
 		<service-impl>com.liferay.testpacl.hook.service.impl.TestBlogsEntryLocalServiceImpl</service-impl>
 	</service>
+	<service>
+		<service-type>com.liferay.portlet.blogs.service.BlogsStatsUserLocalService</service-type>
+		<service-impl>com.liferay.testpacl.hook.service.impl.TestBlogsStatsUserLocalServiceImpl</service-impl>
+	</service>
 </hook>

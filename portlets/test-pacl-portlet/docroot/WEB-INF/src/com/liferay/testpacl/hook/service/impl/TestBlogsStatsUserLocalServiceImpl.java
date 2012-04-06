@@ -14,24 +14,24 @@
 
 package com.liferay.testpacl.hook.service.impl;
 
-import com.liferay.portlet.blogs.service.BlogsEntryLocalService;
-import com.liferay.portlet.blogs.service.BlogsEntryLocalServiceWrapper;
+import com.liferay.portlet.blogs.service.BlogsStatsUserLocalService;
+import com.liferay.portlet.blogs.service.BlogsStatsUserLocalServiceWrapper;
 
 /**
  * @author Brian Wing Shun Chan
  */
-public class TestBlogsEntryLocalServiceImpl
-	extends BlogsEntryLocalServiceWrapper {
+public class TestBlogsStatsUserLocalServiceImpl
+	extends BlogsStatsUserLocalServiceWrapper {
 
-	public TestBlogsEntryLocalServiceImpl(
-		BlogsEntryLocalService blogsEntryLocalService) {
+	public TestBlogsStatsUserLocalServiceImpl(
+		BlogsStatsUserLocalService blogsStatsUserLocalService) {
 
-		super(blogsEntryLocalService);
+		super(blogsStatsUserLocalService);
 	}
 
 	@Override
-	public int getBlogsEntriesCount() {
-		return -123;
+	public int getBlogsStatsUsersCount() {
+		return -456;
 	}
 
 }
