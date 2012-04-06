@@ -45,10 +45,10 @@ public class AppServiceUtil {
 		return getService().addApp(remoteAppId, version, inputStream);
 	}
 
-	public static void deleteApp(long appId)
+	public static com.liferay.marketplace.model.App deleteApp(long appId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteApp(appId);
+		return getService().deleteApp(appId);
 	}
 
 	public static void installApp(long remoteAppId)

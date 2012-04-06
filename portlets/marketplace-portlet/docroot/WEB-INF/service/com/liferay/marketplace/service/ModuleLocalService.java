@@ -66,10 +66,11 @@ public interface ModuleLocalService extends PersistedModelLocalService {
 	* Deletes the module with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param moduleId the primary key of the module
+	* @return the module that was removed
 	* @throws PortalException if a module with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteModule(long moduleId)
+	public com.liferay.marketplace.model.Module deleteModule(long moduleId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -77,9 +78,11 @@ public interface ModuleLocalService extends PersistedModelLocalService {
 	* Deletes the module from the database. Also notifies the appropriate model listeners.
 	*
 	* @param module the module
+	* @return the module that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteModule(com.liferay.marketplace.model.Module module)
+	public com.liferay.marketplace.model.Module deleteModule(
+		com.liferay.marketplace.model.Module module)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

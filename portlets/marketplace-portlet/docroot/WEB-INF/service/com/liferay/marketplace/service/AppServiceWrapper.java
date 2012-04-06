@@ -38,10 +38,10 @@ public class AppServiceWrapper implements AppService,
 		return _appService.addApp(remoteAppId, version, inputStream);
 	}
 
-	public void deleteApp(long appId)
+	public com.liferay.marketplace.model.App deleteApp(long appId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_appService.deleteApp(appId);
+		return _appService.deleteApp(appId);
 	}
 
 	public void installApp(long remoteAppId)

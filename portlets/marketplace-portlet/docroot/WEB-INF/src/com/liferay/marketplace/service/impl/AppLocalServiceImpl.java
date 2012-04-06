@@ -84,7 +84,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void deleteApp(App app) throws SystemException {
+	public App deleteApp(App app) throws SystemException {
 
 		// App
 
@@ -109,13 +109,15 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 				_log.warn(e, e);
 			}
 		}
+
+		return app;
 	}
 
 	@Override
-	public void deleteApp(long appId) throws PortalException, SystemException {
+	public App deleteApp(long appId) throws PortalException, SystemException {
 		App app = appPersistence.findByPrimaryKey(appId);
 
-		deleteApp(app);
+		return deleteApp(app);
 	}
 
 	public App fetchRemoteApp(long remoteAppId)

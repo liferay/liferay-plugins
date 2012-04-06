@@ -30,19 +30,14 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
-import com.liferay.portal.service.ResourceService;
 import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.service.UserService;
-import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 
 import java.io.Serializable;
@@ -78,25 +73,11 @@ public abstract class AppLocalServiceBaseImpl implements AppLocalService,
 	 * @return the app that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public App addApp(App app) throws SystemException {
 		app.setNew(true);
 
-		app = appPersistence.update(app, false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(app);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return app;
+		return appPersistence.update(app, false);
 	}
 
 	/**
@@ -113,47 +94,25 @@ public abstract class AppLocalServiceBaseImpl implements AppLocalService,
 	 * Deletes the app with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param appId the primary key of the app
+	 * @return the app that was removed
 	 * @throws PortalException if a app with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteApp(long appId) throws PortalException, SystemException {
-		App app = appPersistence.remove(appId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(app);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+	@Indexable(type = IndexableType.DELETE)
+	public App deleteApp(long appId) throws PortalException, SystemException {
+		return appPersistence.remove(appId);
 	}
 
 	/**
 	 * Deletes the app from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param app the app
+	 * @return the app that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteApp(App app) throws SystemException {
-		appPersistence.remove(app);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(app);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+	@Indexable(type = IndexableType.DELETE)
+	public App deleteApp(App app) throws SystemException {
+		return appPersistence.remove(app);
 	}
 
 	/**
@@ -275,6 +234,7 @@ public abstract class AppLocalServiceBaseImpl implements AppLocalService,
 	 * @return the app that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public App updateApp(App app) throws SystemException {
 		return updateApp(app, true);
 	}
@@ -287,25 +247,11 @@ public abstract class AppLocalServiceBaseImpl implements AppLocalService,
 	 * @return the app that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public App updateApp(App app, boolean merge) throws SystemException {
 		app.setNew(false);
 
-		app = appPersistence.update(app, merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(app);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return app;
+		return appPersistence.update(app, merge);
 	}
 
 	/**
@@ -433,42 +379,6 @@ public abstract class AppLocalServiceBaseImpl implements AppLocalService,
 	public void setResourceLocalService(
 		ResourceLocalService resourceLocalService) {
 		this.resourceLocalService = resourceLocalService;
-	}
-
-	/**
-	 * Returns the resource remote service.
-	 *
-	 * @return the resource remote service
-	 */
-	public ResourceService getResourceService() {
-		return resourceService;
-	}
-
-	/**
-	 * Sets the resource remote service.
-	 *
-	 * @param resourceService the resource remote service
-	 */
-	public void setResourceService(ResourceService resourceService) {
-		this.resourceService = resourceService;
-	}
-
-	/**
-	 * Returns the resource persistence.
-	 *
-	 * @return the resource persistence
-	 */
-	public ResourcePersistence getResourcePersistence() {
-		return resourcePersistence;
-	}
-
-	/**
-	 * Sets the resource persistence.
-	 *
-	 * @param resourcePersistence the resource persistence
-	 */
-	public void setResourcePersistence(ResourcePersistence resourcePersistence) {
-		this.resourcePersistence = resourcePersistence;
 	}
 
 	/**
@@ -600,16 +510,11 @@ public abstract class AppLocalServiceBaseImpl implements AppLocalService,
 	protected CounterLocalService counterLocalService;
 	@BeanReference(type = ResourceLocalService.class)
 	protected ResourceLocalService resourceLocalService;
-	@BeanReference(type = ResourceService.class)
-	protected ResourceService resourceService;
-	@BeanReference(type = ResourcePersistence.class)
-	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserLocalService.class)
 	protected UserLocalService userLocalService;
 	@BeanReference(type = UserService.class)
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private static Log _log = LogFactoryUtil.getLog(AppLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

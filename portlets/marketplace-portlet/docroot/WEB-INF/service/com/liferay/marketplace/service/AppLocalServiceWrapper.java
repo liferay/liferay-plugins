@@ -58,24 +58,27 @@ public class AppLocalServiceWrapper implements AppLocalService,
 	* Deletes the app with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param appId the primary key of the app
+	* @return the app that was removed
 	* @throws PortalException if a app with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteApp(long appId)
+	public com.liferay.marketplace.model.App deleteApp(long appId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_appLocalService.deleteApp(appId);
+		return _appLocalService.deleteApp(appId);
 	}
 
 	/**
 	* Deletes the app from the database. Also notifies the appropriate model listeners.
 	*
 	* @param app the app
+	* @return the app that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteApp(com.liferay.marketplace.model.App app)
+	public com.liferay.marketplace.model.App deleteApp(
+		com.liferay.marketplace.model.App app)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_appLocalService.deleteApp(app);
+		return _appLocalService.deleteApp(app);
 	}
 
 	/**

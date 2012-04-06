@@ -152,14 +152,16 @@ public class AppLocalServiceClp implements AppLocalService {
 		return (com.liferay.marketplace.model.App)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteApp(long appId)
+	public com.liferay.marketplace.model.App deleteApp(long appId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteAppMethodKey2,
 				appId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -178,15 +180,20 @@ public class AppLocalServiceClp implements AppLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.marketplace.model.App)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteApp(com.liferay.marketplace.model.App app)
+	public com.liferay.marketplace.model.App deleteApp(
+		com.liferay.marketplace.model.App app)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteAppMethodKey3,
 				ClpSerializer.translateInput(app));
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -201,6 +208,8 @@ public class AppLocalServiceClp implements AppLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.marketplace.model.App)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@SuppressWarnings("rawtypes")
