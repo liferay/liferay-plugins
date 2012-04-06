@@ -370,6 +370,19 @@
 </p>
 
 <liferay-ui:header
+	title="Hook"
+/>
+
+<p>
+	<h3>Services</h3>
+</p>
+
+<p>
+	TestBlogsEntryLocalServiceImpl#getBlogsEntriesCount=<%= _assertTrue(BlogsEntryLocalServiceUtil.getBlogsEntriesCount() < 0) %><br />
+	TestBlogsStatsUserLocalServiceImpl#getBlogsStatsUsersCount=<%= _assertTrue(BlogsStatsUserLocalServiceUtil.getBlogsStatsUsersCount() >= 0) %>
+</p>
+
+<liferay-ui:header
 	title="Services: Chat Portlet"
 />
 
