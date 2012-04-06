@@ -21,12 +21,14 @@ import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
+import com.liferay.portal.service.BaseLocalServiceImpl;
 import com.liferay.portal.service.CompanyLocalService;
 import com.liferay.portal.service.CompanyService;
 import com.liferay.portal.service.GroupLocalService;
@@ -35,12 +37,10 @@ import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.PortalLocalService;
 import com.liferay.portal.service.PortalService;
 import com.liferay.portal.service.ResourceLocalService;
-import com.liferay.portal.service.ResourceService;
 import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.service.UserService;
 import com.liferay.portal.service.persistence.CompanyPersistence;
 import com.liferay.portal.service.persistence.GroupPersistence;
-import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 
 import com.liferay.testpacl.model.Foo;
@@ -65,8 +65,8 @@ import javax.sql.DataSource;
  * @see com.liferay.testpacl.service.FooLocalServiceUtil
  * @generated
  */
-public abstract class FooLocalServiceBaseImpl implements FooLocalService,
-	IdentifiableBean {
+public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
+	implements FooLocalService, IdentifiableBean {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -120,6 +120,13 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	@Indexable(type = IndexableType.DELETE)
 	public Foo deleteFoo(Foo foo) throws SystemException {
 		return fooPersistence.remove(foo);
+	}
+
+	public DynamicQuery dynamicQuery() {
+		Class<?> clazz = getClass();
+
+		return DynamicQueryFactoryUtil.forClass(Foo.class,
+			clazz.getClassLoader());
 	}
 
 	/**
@@ -479,42 +486,6 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	}
 
 	/**
-	 * Returns the resource remote service.
-	 *
-	 * @return the resource remote service
-	 */
-	public ResourceService getResourceService() {
-		return resourceService;
-	}
-
-	/**
-	 * Sets the resource remote service.
-	 *
-	 * @param resourceService the resource remote service
-	 */
-	public void setResourceService(ResourceService resourceService) {
-		this.resourceService = resourceService;
-	}
-
-	/**
-	 * Returns the resource persistence.
-	 *
-	 * @return the resource persistence
-	 */
-	public ResourcePersistence getResourcePersistence() {
-		return resourcePersistence;
-	}
-
-	/**
-	 * Sets the resource persistence.
-	 *
-	 * @param resourcePersistence the resource persistence
-	 */
-	public void setResourcePersistence(ResourcePersistence resourcePersistence) {
-		this.resourcePersistence = resourcePersistence;
-	}
-
-	/**
 	 * Returns the user local service.
 	 *
 	 * @return the user local service
@@ -596,10 +567,9 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 		_beanIdentifier = beanIdentifier;
 	}
 
-	protected ClassLoader getClassLoader() {
-		Class<?> clazz = getClass();
-
-		return clazz.getClassLoader();
+	public Object invokeMethod(String name, String[] parameterTypes,
+		Object[] arguments) throws Throwable {
+		return _clpInvoker.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	protected Class<?> getModelClass() {
@@ -653,10 +623,6 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	protected PortalService portalService;
 	@BeanReference(type = ResourceLocalService.class)
 	protected ResourceLocalService resourceLocalService;
-	@BeanReference(type = ResourceService.class)
-	protected ResourceService resourceService;
-	@BeanReference(type = ResourcePersistence.class)
-	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserLocalService.class)
 	protected UserLocalService userLocalService;
 	@BeanReference(type = UserService.class)
@@ -664,4 +630,5 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService,
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 	private String _beanIdentifier;
+	private FooLocalServiceClpInvoker _clpInvoker = new FooLocalServiceClpInvoker();
 }

@@ -8,15 +8,13 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
 >
-	<bean id="com.liferay.portal.spring.aop.ChainableMethodAdviceInjector" class="com.liferay.portal.spring.aop.ChainableMethodAdviceInjector">
-		<property name="injectCondition">
-			<util:constant static-field="com.liferay.portal.util.PropsValues.CLUSTER_LINK_ENABLED" />
-		</property>
-		<property name="newChainableMethodAdvice">
-			<bean class="com.liferay.portal.cluster.ClusterableAdvice">
-				<property name="servletContextName" ref="servletContextName" />
-			</bean>
-		</property>
-		<property name="parentChainableMethodAdvice" ref="serviceAdvice" />
+	<bean class="com.liferay.portal.kernel.spring.util.SpringFactoryUtil" factory-method="newBean">
+		<constructor-arg value="com.liferay.portal.cluster.ClusterableChainableMethodAdviceInjector" />
+		<constructor-arg>
+			<map>
+				<entry key="parentChainableMethodAdvice" value-ref="serviceAdvice" />
+				<entry key="servletContextName" value-ref="servletContextName" />
+			</map>
+		</constructor-arg>
 	</bean>
 </beans>

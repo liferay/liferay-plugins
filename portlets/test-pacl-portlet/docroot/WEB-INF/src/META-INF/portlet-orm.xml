@@ -10,6 +10,7 @@
 	<mapped-superclass class="com.liferay.testpacl.model.impl.FooModelImpl">
 		<attributes>
 			<id name="fooId" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 		</attributes>

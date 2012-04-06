@@ -17,6 +17,7 @@ package com.liferay.testpacl.model;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
 import com.liferay.testpacl.service.FooLocalServiceUtil;
@@ -24,6 +25,9 @@ import com.liferay.testpacl.service.FooLocalServiceUtil;
 import java.io.Serializable;
 
 import java.lang.reflect.Proxy;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
@@ -56,12 +60,36 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("fooId", getFooId());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long fooId = (Long)attributes.get("fooId");
+
+		if (fooId != null) {
+			setFooId(fooId);
+		}
+	}
+
 	public long getFooId() {
 		return _fooId;
 	}
 
 	public void setFooId(long fooId) {
 		_fooId = fooId;
+	}
+
+	public BaseModel<?> getFooRemoteModel() {
+		return _fooRemoteModel;
+	}
+
+	public void setFooRemoteModel(BaseModel<?> fooRemoteModel) {
+		_fooRemoteModel = fooRemoteModel;
 	}
 
 	public void persist() throws SystemException {
@@ -160,4 +188,5 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 	}
 
 	private long _fooId;
+	private BaseModel<?> _fooRemoteModel;
 }

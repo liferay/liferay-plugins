@@ -15,9 +15,8 @@
 package com.liferay.testpacl.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the foo local service. This utility wraps {@link com.liferay.testpacl.service.impl.FooLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -87,6 +86,10 @@ public class FooLocalServiceUtil {
 		com.liferay.testpacl.model.Foo foo)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().deleteFoo(foo);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -260,6 +263,12 @@ public class FooLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static com.liferay.portal.model.Company getCompanyPersistence_FindByPrimaryKey(
 		long companyId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -364,34 +373,27 @@ public class FooLocalServiceUtil {
 
 	public static FooLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					FooLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					FooLocalService.class.getName(), portletClassLoader);
-
-			_service = new FooLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			if (invokableLocalService instanceof FooLocalService) {
+				_service = (FooLocalService)invokableLocalService;
+			}
+			else {
+				_service = new FooLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(FooLocalServiceUtil.class,
 				"_service");
-			MethodCache.remove(FooLocalService.class);
 		}
 
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(FooLocalService service) {
-		MethodCache.remove(FooLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(FooLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(FooLocalService.class);
 	}
 
 	private static FooLocalService _service;
