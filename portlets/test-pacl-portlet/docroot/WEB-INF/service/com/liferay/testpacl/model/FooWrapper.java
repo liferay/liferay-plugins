@@ -16,6 +16,9 @@ package com.liferay.testpacl.model;
 
 import com.liferay.portal.model.ModelWrapper;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * <p>
  * This class is a wrapper for {@link Foo}.
@@ -36,6 +39,22 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 
 	public String getModelClassName() {
 		return Foo.class.getName();
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("fooId", getFooId());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long fooId = (Long)attributes.get("fooId");
+
+		if (fooId != null) {
+			setFooId(fooId);
+		}
 	}
 
 	/**
@@ -116,7 +135,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 		return new FooWrapper((Foo)_foo.clone());
 	}
 
-	public int compareTo(Foo foo) {
+	public int compareTo(com.liferay.testpacl.model.Foo foo) {
 		return _foo.compareTo(foo);
 	}
 
@@ -125,11 +144,11 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 		return _foo.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<Foo> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<com.liferay.testpacl.model.Foo> toCacheModel() {
 		return _foo.toCacheModel();
 	}
 
-	public Foo toEscapedModel() {
+	public com.liferay.testpacl.model.Foo toEscapedModel() {
 		return new FooWrapper(_foo.toEscapedModel());
 	}
 

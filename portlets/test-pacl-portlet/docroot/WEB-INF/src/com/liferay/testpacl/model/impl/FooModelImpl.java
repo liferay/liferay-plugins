@@ -32,6 +32,9 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * The base model implementation for the Foo service. Represents a row in the &quot;TestPACL_Foo&quot; database table, with each column mapped to a property of this class.
  *
@@ -97,6 +100,24 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		return Foo.class.getName();
 	}
 
+	@Override
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("fooId", getFooId());
+
+		return attributes;
+	}
+
+	@Override
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long fooId = (Long)attributes.get("fooId");
+
+		if (fooId != null) {
+			setFooId(fooId);
+		}
+	}
+
 	public long getFooId() {
 		return _fooId;
 	}
@@ -118,17 +139,15 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(0,
-					Foo.class.getName(), getPrimaryKey());
-		}
-
-		return _expandoBridge;
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+			Foo.class.getName(), getPrimaryKey());
 	}
 
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		getExpandoBridge().setAttributes(serviceContext);
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
 	}
 
 	@Override
@@ -231,6 +250,5 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 			Foo.class
 		};
 	private long _fooId;
-	private transient ExpandoBridge _expandoBridge;
 	private Foo _escapedModelProxy;
 }
