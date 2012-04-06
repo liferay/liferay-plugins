@@ -23,9 +23,9 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
-	public static final int CALENDAR_DEFAULT_COLOR =
+	public static final int CALENDAR_COLOR_DEFAULT =
 		Integer.decode(
-			PortletProps.get(PortletPropsKeys.CALENDAR_DEFAULT_COLOR));
+			PortletProps.get(PortletPropsKeys.CALENDAR_COLOR_DEFAULT));
 
 	public static final String[] CALENDAR_RESOURCE_TYPES =
 		PortletProps.getArray(PortletPropsKeys.CALENDAR_RESOURCE_TYPES);

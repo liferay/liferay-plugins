@@ -115,7 +115,7 @@ public class CalendarResourceLocalServiceImpl
 		if (defaultCalendarId <= 0) {
 			Calendar calendar = calendarLocalService.addCalendar(
 				userId, groupId, calendarResourceId, nameMap, descriptionMap,
-				PortletPropsValues.CALENDAR_DEFAULT_COLOR, true,
+				PortletPropsValues.CALENDAR_COLOR_DEFAULT, true,
 				serviceContext);
 
 			updateDefaultCalendarId(
@@ -139,6 +139,16 @@ public class CalendarResourceLocalServiceImpl
 		resourceLocalService.deleteResource(
 			calendarResource, ResourceConstants.SCOPE_INDIVIDUAL);
 
+		// Calendars
+
+		List<Calendar> calendars = calendarPersistence.findByG_C(
+			calendarResource.getGroupId(),
+			calendarResource.getCalendarResourceId());
+
+		for (Calendar calendar : calendars) {
+			calendarLocalService.deleteCalendar(calendar);
+		}
+
 		// Calendar bookings
 
 		List<CalendarBooking> calendarBookings =
@@ -147,17 +157,6 @@ public class CalendarResourceLocalServiceImpl
 
 		for (CalendarBooking calendarBooking : calendarBookings) {
 			calendarBookingLocalService.deleteCalendarBooking(calendarBooking);
-		}
-
-		// Calendars
-
-		List<Calendar> calendars =
-			calendarLocalService.getResourceCalendars(
-				calendarResource.getGroupId(),
-				calendarResource.getCalendarResourceId());
-
-		for (Calendar calendar : calendars) {
-			calendarLocalService.deleteCalendar(calendar);
 		}
 
 		return calendarResource;

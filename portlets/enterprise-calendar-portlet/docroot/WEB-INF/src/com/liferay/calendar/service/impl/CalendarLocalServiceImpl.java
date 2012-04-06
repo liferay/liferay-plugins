@@ -48,6 +48,11 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		// Calendar
 
 		User user = userPersistence.findByPrimaryKey(userId);
+
+		if (color <= 0) {
+			color = PortletPropsValues.CALENDAR_COLOR_DEFAULT;
+		}
+
 		Date now = new Date();
 
 		validate(nameMap);
@@ -66,11 +71,6 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		calendar.setCalendarResourceId(calendarResourceId);
 		calendar.setNameMap(nameMap);
 		calendar.setDescriptionMap(descriptionMap);
-
-		if (color <= 0) {
-			color = PortletPropsValues.CALENDAR_DEFAULT_COLOR;
-		}
-
 		calendar.setColor(color);
 		calendar.setDefaultCalendar(defaultCalendar);
 
@@ -83,12 +83,15 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		// Calendar resource
 
 		if (defaultCalendar) {
-			List<Calendar> resourceCalendars = getResourceCalendars(
-				groupId, calendarResourceId);
+			List<Calendar> calendarResourceCalendars =
+				getCalendarResourceCalendars(groupId, calendarResourceId);
 
-			for (Calendar resourceCalendar : resourceCalendars) {
+			for (Calendar calendarResourceCalendar :
+					calendarResourceCalendars) {
+
 				updateDefaultCalendar(
-					resourceCalendar, calendar.equals(resourceCalendar));
+					calendarResourceCalendar,
+					calendar.equals(calendarResourceCalendar));
 			}
 
 			calendarResourceLocalService.updateDefaultCalendarId(
@@ -135,7 +138,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		return calendarPersistence.findByPrimaryKey(calendarId);
 	}
 
-	public List<Calendar> getResourceCalendars(
+	public List<Calendar> getCalendarResourceCalendars(
 			long groupId, long calendarResourceId)
 		throws SystemException {
 
@@ -193,39 +196,42 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 
 		Calendar calendar = calendarPersistence.findByPrimaryKey(calendarId);
 
+		if (color <= 0) {
+			color = PortletPropsValues.CALENDAR_COLOR_DEFAULT;
+		}
+
 		validate(nameMap);
 
 		calendar.setModifiedDate(serviceContext.getModifiedDate(null));
 		calendar.setNameMap(nameMap);
 		calendar.setDescriptionMap(descriptionMap);
-
-		if (color <= 0) {
-			color = PortletPropsValues.CALENDAR_DEFAULT_COLOR;
-		}
-
 		calendar.setColor(color);
 		calendar.setDefaultCalendar(defaultCalendar);
 
 		calendarPersistence.update(calendar, false);
 
+		// Resources
+
+		resourceLocalService.updateModelResources(calendar, serviceContext);
+
 		// Calendar resource
 
 		if (defaultCalendar) {
-			List<Calendar> resourceCalendars = getResourceCalendars(
-				calendar.getGroupId(), calendar.getCalendarResourceId());
+			List<Calendar> calendarResourceCalendars =
+				getCalendarResourceCalendars(
+					calendar.getGroupId(), calendar.getCalendarResourceId());
 
-			for (Calendar resourceCalendar : resourceCalendars) {
+			for (Calendar calendarResourceCalendar :
+					calendarResourceCalendars) {
+
 				updateDefaultCalendar(
-					resourceCalendar, calendar.equals(resourceCalendar));
+					calendarResourceCalendar,
+					calendar.equals(calendarResourceCalendar));
 			}
 
 			calendarResourceLocalService.updateDefaultCalendarId(
 				calendar.getCalendarResourceId(), calendarId);
 		}
-
-		// Resources
-
-		resourceLocalService.updateModelResources(calendar, serviceContext);
 
 		return calendar;
 	}
