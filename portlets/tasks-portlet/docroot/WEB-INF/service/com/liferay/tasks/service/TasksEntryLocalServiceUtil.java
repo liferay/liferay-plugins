@@ -67,27 +67,30 @@ public class TasksEntryLocalServiceUtil {
 	* Deletes the tasks entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param tasksEntryId the primary key of the tasks entry
+	* @return the tasks entry that was removed
 	* @throws PortalException if a tasks entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteTasksEntry(long tasksEntryId)
+	public static com.liferay.tasks.model.TasksEntry deleteTasksEntry(
+		long tasksEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteTasksEntry(tasksEntryId);
+		return getService().deleteTasksEntry(tasksEntryId);
 	}
 
 	/**
 	* Deletes the tasks entry from the database. Also notifies the appropriate model listeners.
 	*
 	* @param tasksEntry the tasks entry
+	* @return the tasks entry that was removed
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteTasksEntry(
+	public static com.liferay.tasks.model.TasksEntry deleteTasksEntry(
 		com.liferay.tasks.model.TasksEntry tasksEntry)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteTasksEntry(tasksEntry);
+		return getService().deleteTasksEntry(tasksEntry);
 	}
 
 	/**

@@ -53,7 +53,7 @@ public class SitesUtil {
 				groups.add(GroupLocalServiceUtil.getGroup(groupId));
 			}
 			catch (Exception e) {
-				FavoriteSiteLocalServiceUtil.deleteFavoriteSite(
+				FavoriteSiteLocalServiceUtil.deleteFavoriteSites(
 					curUserId, groupId);
 			}
 		}

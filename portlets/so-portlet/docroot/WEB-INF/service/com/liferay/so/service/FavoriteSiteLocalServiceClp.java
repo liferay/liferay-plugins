@@ -87,8 +87,8 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		_addFavoriteSiteMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addFavoriteSite", long.class, long.class);
 
-		_deleteFavoriteSiteMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-				"deleteFavoriteSite", long.class, long.class);
+		_deleteFavoriteSitesMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteFavoriteSites", long.class, long.class);
 
 		_getFavoriteSitesMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getFavoriteSites", long.class, int.class, int.class);
@@ -616,10 +616,10 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		return (com.liferay.so.model.FavoriteSite)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteFavoriteSite(long userId, long groupId)
+	public void deleteFavoriteSites(long userId, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteFavoriteSiteMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_deleteFavoriteSitesMethodKey18,
 				userId, groupId);
 
 		try {
@@ -831,7 +831,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 	private MethodKey _getBeanIdentifierMethodKey15;
 	private MethodKey _setBeanIdentifierMethodKey16;
 	private MethodKey _addFavoriteSiteMethodKey17;
-	private MethodKey _deleteFavoriteSiteMethodKey18;
+	private MethodKey _deleteFavoriteSitesMethodKey18;
 	private MethodKey _getFavoriteSitesMethodKey19;
 	private MethodKey _getFavoriteSitesMethodKey20;
 	private MethodKey _getFavoriteSitesCountMethodKey21;

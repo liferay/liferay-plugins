@@ -60,25 +60,28 @@ public class UserThreadLocalServiceWrapper implements UserThreadLocalService,
 	* Deletes the user thread with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param userThreadId the primary key of the user thread
+	* @return the user thread that was removed
 	* @throws PortalException if a user thread with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteUserThread(long userThreadId)
+	public com.liferay.privatemessaging.model.UserThread deleteUserThread(
+		long userThreadId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_userThreadLocalService.deleteUserThread(userThreadId);
+		return _userThreadLocalService.deleteUserThread(userThreadId);
 	}
 
 	/**
 	* Deletes the user thread from the database. Also notifies the appropriate model listeners.
 	*
 	* @param userThread the user thread
+	* @return the user thread that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteUserThread(
+	public com.liferay.privatemessaging.model.UserThread deleteUserThread(
 		com.liferay.privatemessaging.model.UserThread userThread)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_userThreadLocalService.deleteUserThread(userThread);
+		return _userThreadLocalService.deleteUserThread(userThread);
 	}
 
 	/**

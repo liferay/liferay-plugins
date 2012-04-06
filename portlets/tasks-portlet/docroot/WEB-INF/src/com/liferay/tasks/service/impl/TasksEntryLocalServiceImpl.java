@@ -112,17 +112,17 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void deleteTasksEntry(long tasksEntryId)
+	public TasksEntry deleteTasksEntry(long tasksEntryId)
 		throws PortalException, SystemException {
 
 		TasksEntry tasksEntry = tasksEntryPersistence.findByPrimaryKey(
 			tasksEntryId);
 
-		deleteTasksEntry(tasksEntry);
+		return deleteTasksEntry(tasksEntry);
 	}
 
 	@Override
-	public void deleteTasksEntry(TasksEntry tasksEntry)
+	public TasksEntry deleteTasksEntry(TasksEntry tasksEntry)
 		throws PortalException, SystemException {
 
 		// Tasks entry
@@ -143,6 +143,8 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 
 		SocialActivityLocalServiceUtil.deleteActivities(
 			TasksEntry.class.getName(), tasksEntry.getTasksEntryId());
+
+		return tasksEntry;
 	}
 
 	public List<TasksEntry> getAssigneeTasksEntries(

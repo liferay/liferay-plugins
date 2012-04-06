@@ -211,14 +211,17 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		return (com.liferay.tasks.model.TasksEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteTasksEntry(long tasksEntryId)
+	public com.liferay.tasks.model.TasksEntry deleteTasksEntry(
+		long tasksEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteTasksEntryMethodKey2,
 				tasksEntryId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -237,16 +240,21 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.tasks.model.TasksEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteTasksEntry(com.liferay.tasks.model.TasksEntry tasksEntry)
+	public com.liferay.tasks.model.TasksEntry deleteTasksEntry(
+		com.liferay.tasks.model.TasksEntry tasksEntry)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteTasksEntryMethodKey3,
 				ClpSerializer.translateInput(tasksEntry));
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -265,6 +273,8 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.tasks.model.TasksEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@SuppressWarnings("rawtypes")

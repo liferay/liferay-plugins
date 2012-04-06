@@ -115,17 +115,18 @@ public class MicroblogsEntryLocalServiceImpl
 	}
 
 	@Override
-	public void deleteMicroblogsEntry(long microblogsEntryId)
+	public MicroblogsEntry deleteMicroblogsEntry(long microblogsEntryId)
 		throws PortalException, SystemException {
 
 		MicroblogsEntry microblogsEntry =
 			microblogsEntryPersistence.findByPrimaryKey(microblogsEntryId);
 
-		deleteMicroblogsEntry(microblogsEntry);
+		return deleteMicroblogsEntry(microblogsEntry);
 	}
 
 	@Override
-	public void deleteMicroblogsEntry(MicroblogsEntry microblogsEntry)
+	public MicroblogsEntry deleteMicroblogsEntry(
+			MicroblogsEntry microblogsEntry)
 		throws PortalException, SystemException {
 
 		// Microblogs entry
@@ -143,6 +144,8 @@ public class MicroblogsEntryLocalServiceImpl
 		SocialActivityLocalServiceUtil.deleteActivities(
 			MicroblogsEntry.class.getName(),
 			microblogsEntry.getMicroblogsEntryId());
+
+		return microblogsEntry;
 	}
 
 	public void deleteUserMicroblogsEntries(long userId)

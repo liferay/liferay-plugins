@@ -264,10 +264,10 @@ public class FavoriteSiteLocalServiceWrapper implements FavoriteSiteLocalService
 		return _favoriteSiteLocalService.addFavoriteSite(userId, groupId);
 	}
 
-	public void deleteFavoriteSite(long userId, long groupId)
+	public void deleteFavoriteSites(long userId, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_favoriteSiteLocalService.deleteFavoriteSite(userId, groupId);
+		_favoriteSiteLocalService.deleteFavoriteSites(userId, groupId);
 	}
 
 	public java.util.List<com.liferay.so.model.FavoriteSite> getFavoriteSites(
