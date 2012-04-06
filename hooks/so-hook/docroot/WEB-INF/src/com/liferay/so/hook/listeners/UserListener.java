@@ -22,14 +22,11 @@ import com.liferay.portal.NoSuchGroupException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.MethodKey;
-import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
-import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.LayoutSet;
 import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.model.Role;
@@ -81,15 +78,6 @@ public class UserListener extends BaseModelListener<User> {
 				LayoutSetLocalServiceUtil.updateLayoutSetPrototypeLinkEnabled(
 					group.getGroupId(), false, true,
 					publicLayoutSetPrototype.getUuid());
-
-				LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
-					group.getGroupId(), false);
-
-				PortalClassInvoker.invoke(
-					true, _mergeLayoutSetProtypeLayoutsMethodKey, group,
-					layoutSet);
-
-				orderUserLayouts(group, false);
 			}
 
 			LayoutSetPrototype privateLayoutSetPrototype =
@@ -99,15 +87,6 @@ public class UserListener extends BaseModelListener<User> {
 				LayoutSetLocalServiceUtil.updateLayoutSetPrototypeLinkEnabled(
 					group.getGroupId(), true, true,
 					privateLayoutSetPrototype.getUuid());
-
-				LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
-					group.getGroupId(), true);
-
-				PortalClassInvoker.invoke(
-					true, _mergeLayoutSetProtypeLayoutsMethodKey, group,
-					layoutSet);
-
-				orderUserLayouts(group, true);
 			}
 		}
 		catch (Exception e) {
@@ -151,22 +130,6 @@ public class UserListener extends BaseModelListener<User> {
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
-		}
-	}
-
-	protected void orderUserLayouts(Group group, boolean privateLayout)
-		throws PortalException, SystemException {
-
-		List<Layout> layouts =
-			LayoutLocalServiceUtil.getLayouts(
-				group.getGroupId(), privateLayout,
-				LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
-
-		for (int i = 0; i < layouts.size(); i++) {
-			Layout layout = layouts.get(i);
-
-			LayoutLocalServiceUtil.updatePriority(
-				layout.getPlid(), _PRIORITY + i);
 		}
 	}
 
@@ -224,15 +187,5 @@ public class UserListener extends BaseModelListener<User> {
 			}
 		}
 	}
-
-	private static final String _CLASS_NAME =
-		"com.liferay.portlet.sites.util.SitesUtil";
-
-	private static final int _PRIORITY = 100;
-
-	private static MethodKey _mergeLayoutSetProtypeLayoutsMethodKey =
-		new MethodKey(
-			_CLASS_NAME, "mergeLayoutSetProtypeLayouts", Group.class,
-			LayoutSet.class);
 
 }
