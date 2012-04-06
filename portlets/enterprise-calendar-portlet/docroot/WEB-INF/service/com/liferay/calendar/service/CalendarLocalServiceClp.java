@@ -677,7 +677,7 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 		return (com.liferay.calendar.model.Calendar)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<com.liferay.calendar.model.Calendar> getResourceCalendars(
+	public java.util.List<com.liferay.calendar.model.Calendar> getCalendarResourceCalendars(
 		long groupId, long calendarResourceId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;

@@ -298,7 +298,7 @@ public class CalendarLocalServiceUtil {
 	public static java.util.List<com.liferay.calendar.model.Calendar> getResourceCalendars(
 		long groupId, long calendarResourceId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getResourceCalendars(groupId, calendarResourceId);
+		return getService().getCalendarResourceCalendars(groupId, calendarResourceId);
 	}
 
 	public static java.util.List<com.liferay.calendar.model.Calendar> search(

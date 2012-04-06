@@ -261,7 +261,7 @@ public interface CalendarLocalService extends PermissionedModelLocalService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.calendar.model.Calendar> getResourceCalendars(
+	public java.util.List<com.liferay.calendar.model.Calendar> getCalendarResourceCalendars(
 		long groupId, long calendarResourceId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 

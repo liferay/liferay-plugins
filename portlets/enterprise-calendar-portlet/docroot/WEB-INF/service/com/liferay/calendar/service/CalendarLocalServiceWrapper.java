@@ -284,10 +284,10 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 			defaultCalendar, serviceContext);
 	}
 
-	public java.util.List<com.liferay.calendar.model.Calendar> getResourceCalendars(
+	public java.util.List<com.liferay.calendar.model.Calendar> getCalendarResourceCalendars(
 		long groupId, long calendarResourceId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _calendarLocalService.getResourceCalendars(groupId,
+		return _calendarLocalService.getCalendarResourceCalendars(groupId,
 			calendarResourceId);
 	}
 
