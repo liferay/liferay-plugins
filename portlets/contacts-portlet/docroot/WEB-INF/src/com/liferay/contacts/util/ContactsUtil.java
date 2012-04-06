@@ -98,7 +98,7 @@ public class ContactsUtil {
 
 		StringBundler sb = new StringBundler(addresses.size() * 19);
 
-		for (Address address: addresses) {
+		for (Address address : addresses) {
 			sb.append("ADR;TYPE=");
 
 			ListType listType = address.getType();
@@ -316,7 +316,7 @@ public class ContactsUtil {
 
 		StringBundler sb = new StringBundler(websites.size() * 5);
 
-		for (Website website: websites) {
+		for (Website website : websites) {
 			sb.append("URL;TYPE=");
 
 			ListType listType = website.getType();

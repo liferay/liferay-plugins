@@ -37,7 +37,6 @@ import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
-import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -71,8 +70,6 @@ import com.liferay.portlet.social.service.SocialRequestInterpreterLocalServiceUt
 import com.liferay.portlet.social.service.SocialRequestLocalServiceUtil;
 import com.liferay.portlet.usersadmin.util.UsersAdminUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
-
-import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -396,7 +393,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 	@Override
 	public void processAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws IOException, PortletException {
+		throws PortletException {
 
 		try {
 			String actionName = ParamUtil.getString(
