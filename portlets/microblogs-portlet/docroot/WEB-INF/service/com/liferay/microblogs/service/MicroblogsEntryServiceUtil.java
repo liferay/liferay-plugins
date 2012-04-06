@@ -49,10 +49,11 @@ public class MicroblogsEntryServiceUtil {
 			receiverMicroblogsEntryId, socialRelationType, serviceContext);
 	}
 
-	public static void deleteMicroblogsEntry(long microblogsEntryId)
+	public static com.liferay.microblogs.model.MicroblogsEntry deleteMicroblogsEntry(
+		long microblogsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteMicroblogsEntry(microblogsEntryId);
+		return getService().deleteMicroblogsEntry(microblogsEntryId);
 	}
 
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(

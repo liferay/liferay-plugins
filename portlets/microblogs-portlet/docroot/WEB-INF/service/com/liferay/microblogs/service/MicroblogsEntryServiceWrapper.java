@@ -43,10 +43,11 @@ public class MicroblogsEntryServiceWrapper implements MicroblogsEntryService,
 			socialRelationType, serviceContext);
 	}
 
-	public void deleteMicroblogsEntry(long microblogsEntryId)
+	public com.liferay.microblogs.model.MicroblogsEntry deleteMicroblogsEntry(
+		long microblogsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_microblogsEntryService.deleteMicroblogsEntry(microblogsEntryId);
+		return _microblogsEntryService.deleteMicroblogsEntry(microblogsEntryId);
 	}
 
 	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(

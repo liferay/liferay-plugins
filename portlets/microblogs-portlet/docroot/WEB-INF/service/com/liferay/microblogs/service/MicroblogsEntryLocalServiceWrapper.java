@@ -61,27 +61,30 @@ public class MicroblogsEntryLocalServiceWrapper
 	* Deletes the microblogs entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param microblogsEntryId the primary key of the microblogs entry
+	* @return the microblogs entry that was removed
 	* @throws PortalException if a microblogs entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteMicroblogsEntry(long microblogsEntryId)
+	public com.liferay.microblogs.model.MicroblogsEntry deleteMicroblogsEntry(
+		long microblogsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_microblogsEntryLocalService.deleteMicroblogsEntry(microblogsEntryId);
+		return _microblogsEntryLocalService.deleteMicroblogsEntry(microblogsEntryId);
 	}
 
 	/**
 	* Deletes the microblogs entry from the database. Also notifies the appropriate model listeners.
 	*
 	* @param microblogsEntry the microblogs entry
+	* @return the microblogs entry that was removed
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteMicroblogsEntry(
+	public com.liferay.microblogs.model.MicroblogsEntry deleteMicroblogsEntry(
 		com.liferay.microblogs.model.MicroblogsEntry microblogsEntry)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_microblogsEntryLocalService.deleteMicroblogsEntry(microblogsEntry);
+		return _microblogsEntryLocalService.deleteMicroblogsEntry(microblogsEntry);
 	}
 
 	/**

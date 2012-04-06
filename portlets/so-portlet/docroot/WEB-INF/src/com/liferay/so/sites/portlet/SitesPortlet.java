@@ -456,7 +456,7 @@ public class SitesPortlet extends MVCPortlet {
 					themeDisplay.getUserId(), groupId);
 			}
 			else if (cmd.equals(Constants.DELETE)) {
-				FavoriteSiteLocalServiceUtil.deleteFavoriteSite(
+				FavoriteSiteLocalServiceUtil.deleteFavoriteSites(
 					themeDisplay.getUserId(), groupId);
 			}
 		}

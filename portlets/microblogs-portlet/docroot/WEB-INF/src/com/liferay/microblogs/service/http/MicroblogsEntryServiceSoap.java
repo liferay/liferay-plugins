@@ -84,10 +84,12 @@ public class MicroblogsEntryServiceSoap {
 		}
 	}
 
-	public static void deleteMicroblogsEntry(long microblogsEntryId)
-		throws RemoteException {
+	public static com.liferay.microblogs.model.MicroblogsEntrySoap deleteMicroblogsEntry(
+		long microblogsEntryId) throws RemoteException {
 		try {
-			MicroblogsEntryServiceUtil.deleteMicroblogsEntry(microblogsEntryId);
+			com.liferay.microblogs.model.MicroblogsEntry returnValue = MicroblogsEntryServiceUtil.deleteMicroblogsEntry(microblogsEntryId);
+
+			return com.liferay.microblogs.model.MicroblogsEntrySoap.toSoapModel(returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

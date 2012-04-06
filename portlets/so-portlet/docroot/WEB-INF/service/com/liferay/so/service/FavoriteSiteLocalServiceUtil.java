@@ -271,10 +271,10 @@ public class FavoriteSiteLocalServiceUtil {
 		return getService().addFavoriteSite(userId, groupId);
 	}
 
-	public static void deleteFavoriteSite(long userId, long groupId)
+	public static void deleteFavoriteSites(long userId, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteFavoriteSite(userId, groupId);
+		getService().deleteFavoriteSites(userId, groupId);
 	}
 
 	public static java.util.List<com.liferay.so.model.FavoriteSite> getFavoriteSites(

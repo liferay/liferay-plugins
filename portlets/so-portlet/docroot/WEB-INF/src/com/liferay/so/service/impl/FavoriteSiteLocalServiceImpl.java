@@ -58,13 +58,14 @@ public class FavoriteSiteLocalServiceImpl
 		return favoriteSite;
 	}
 
+	@Override
 	public FavoriteSite deleteFavoriteSite(long favoriteSiteId)
 		throws PortalException, SystemException {
 
 		return favoriteSitePersistence.remove(favoriteSiteId);
 	}
 
-	public void deleteFavoriteSite(long userId, long groupId)
+	public void deleteFavoriteSites(long userId, long groupId)
 		throws PortalException, SystemException {
 
 		favoriteSitePersistence.removeByG_U(groupId, userId);

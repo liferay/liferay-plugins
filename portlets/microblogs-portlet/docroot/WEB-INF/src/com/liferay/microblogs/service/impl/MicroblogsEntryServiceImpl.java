@@ -45,13 +45,14 @@ public class MicroblogsEntryServiceImpl extends MicroblogsEntryServiceBaseImpl {
 			socialRelationType, serviceContext);
 	}
 
-	public void deleteMicroblogsEntry(long microblogsEntryId)
+	public MicroblogsEntry deleteMicroblogsEntry(long microblogsEntryId)
 		throws PortalException, SystemException {
 
 		MicroblogsEntryPermission.check(
 			getPermissionChecker(), microblogsEntryId, ActionKeys.DELETE);
 
-		microblogsEntryLocalService.deleteMicroblogsEntry(microblogsEntryId);
+		return microblogsEntryLocalService.deleteMicroblogsEntry(
+			microblogsEntryId);
 	}
 
 	public List<MicroblogsEntry> getMicroblogsEntries(int start, int end)
