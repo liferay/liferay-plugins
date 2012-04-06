@@ -67,10 +67,12 @@ public interface OAuthConsumerLocalService extends PersistedModelLocalService {
 	* Deletes the o auth consumer with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param oAuthConsumerId the primary key of the o auth consumer
+	* @return the o auth consumer that was removed
 	* @throws PortalException if a o auth consumer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteOAuthConsumer(long oAuthConsumerId)
+	public com.liferay.opensocial.model.OAuthConsumer deleteOAuthConsumer(
+		long oAuthConsumerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -78,9 +80,10 @@ public interface OAuthConsumerLocalService extends PersistedModelLocalService {
 	* Deletes the o auth consumer from the database. Also notifies the appropriate model listeners.
 	*
 	* @param oAuthConsumer the o auth consumer
+	* @return the o auth consumer that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteOAuthConsumer(
+	public com.liferay.opensocial.model.OAuthConsumer deleteOAuthConsumer(
 		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer)
 		throws com.liferay.portal.kernel.exception.SystemException;
 

@@ -330,12 +330,14 @@ public class FeedUtil {
 	*
 	* @param companyId the company ID
 	* @param twitterUserId the twitter user ID
+	* @return the feed that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByC_TWUI(long companyId, long twitterUserId)
+	public static com.liferay.twitter.model.Feed removeByC_TWUI(
+		long companyId, long twitterUserId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.twitter.NoSuchFeedException {
-		getPersistence().removeByC_TWUI(companyId, twitterUserId);
+		return getPersistence().removeByC_TWUI(companyId, twitterUserId);
 	}
 
 	/**
@@ -343,13 +345,14 @@ public class FeedUtil {
 	*
 	* @param companyId the company ID
 	* @param twitterScreenName the twitter screen name
+	* @return the feed that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByC_TSN(long companyId,
+	public static com.liferay.twitter.model.Feed removeByC_TSN(long companyId,
 		java.lang.String twitterScreenName)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.twitter.NoSuchFeedException {
-		getPersistence().removeByC_TSN(companyId, twitterScreenName);
+		return getPersistence().removeByC_TSN(companyId, twitterScreenName);
 	}
 
 	/**

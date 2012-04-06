@@ -72,10 +72,11 @@ public class KBArticleServiceUtil {
 			fileName);
 	}
 
-	public static void deleteKBArticle(long resourcePrimKey)
+	public static com.liferay.knowledgebase.model.KBArticle deleteKBArticle(
+		long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKBArticle(resourcePrimKey);
+		return getService().deleteKBArticle(resourcePrimKey);
 	}
 
 	public static void deleteKBArticles(long groupId, long[] resourcePrimKeys)

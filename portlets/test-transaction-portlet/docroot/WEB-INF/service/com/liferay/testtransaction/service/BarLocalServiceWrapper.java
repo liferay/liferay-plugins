@@ -58,24 +58,27 @@ public class BarLocalServiceWrapper implements BarLocalService,
 	* Deletes the bar with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param barId the primary key of the bar
+	* @return the bar that was removed
 	* @throws PortalException if a bar with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteBar(long barId)
+	public com.liferay.testtransaction.model.Bar deleteBar(long barId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_barLocalService.deleteBar(barId);
+		return _barLocalService.deleteBar(barId);
 	}
 
 	/**
 	* Deletes the bar from the database. Also notifies the appropriate model listeners.
 	*
 	* @param bar the bar
+	* @return the bar that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteBar(com.liferay.testtransaction.model.Bar bar)
+	public com.liferay.testtransaction.model.Bar deleteBar(
+		com.liferay.testtransaction.model.Bar bar)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_barLocalService.deleteBar(bar);
+		return _barLocalService.deleteBar(bar);
 	}
 
 	/**

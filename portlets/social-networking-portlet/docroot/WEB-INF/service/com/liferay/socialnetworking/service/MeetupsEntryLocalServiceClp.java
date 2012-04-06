@@ -160,14 +160,17 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 		return (com.liferay.socialnetworking.model.MeetupsEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteMeetupsEntry(long meetupsEntryId)
+	public com.liferay.socialnetworking.model.MeetupsEntry deleteMeetupsEntry(
+		long meetupsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteMeetupsEntryMethodKey2,
 				meetupsEntryId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -186,16 +189,20 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.socialnetworking.model.MeetupsEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteMeetupsEntry(
+	public com.liferay.socialnetworking.model.MeetupsEntry deleteMeetupsEntry(
 		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteMeetupsEntryMethodKey3,
 				ClpSerializer.translateInput(meetupsEntry));
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -210,6 +217,8 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.socialnetworking.model.MeetupsEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@SuppressWarnings("rawtypes")

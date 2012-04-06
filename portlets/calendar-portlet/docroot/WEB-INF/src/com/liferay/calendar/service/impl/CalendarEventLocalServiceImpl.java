@@ -116,7 +116,7 @@ public class CalendarEventLocalServiceImpl
 	}
 
 	@Override
-	public void deleteCalendarEvent(CalendarEvent calendarEvent)
+	public CalendarEvent deleteCalendarEvent(CalendarEvent calendarEvent)
 		throws PortalException, SystemException {
 
 		// Calendar event
@@ -144,16 +144,18 @@ public class CalendarEventLocalServiceImpl
 
 		expandoValueLocalService.deleteValues(
 			CalendarEvent.class.getName(), calendarEvent.getCalendarEventId());
+
+		return calendarEvent;
 	}
 
 	@Override
-	public void deleteCalendarEvent(long calendarEventId)
+	public CalendarEvent deleteCalendarEvent(long calendarEventId)
 		throws PortalException, SystemException {
 
 		CalendarEvent calendarEvent = calendarEventPersistence.findByPrimaryKey(
 			calendarEventId);
 
-		deleteCalendarEvent(calendarEvent);
+		return deleteCalendarEvent(calendarEvent);
 	}
 
 	@Override

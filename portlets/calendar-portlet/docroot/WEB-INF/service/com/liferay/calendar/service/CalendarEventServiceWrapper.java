@@ -52,10 +52,11 @@ public class CalendarEventServiceWrapper implements CalendarEventService,
 			secondReminder, serviceContext);
 	}
 
-	public void deleteCalendarEvent(long calendarEventId)
+	public com.liferay.calendar.model.CalendarEvent deleteCalendarEvent(
+		long calendarEventId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_calendarEventService.deleteCalendarEvent(calendarEventId);
+		return _calendarEventService.deleteCalendarEvent(calendarEventId);
 	}
 
 	public com.liferay.calendar.model.CalendarEvent getCalendarEvent(

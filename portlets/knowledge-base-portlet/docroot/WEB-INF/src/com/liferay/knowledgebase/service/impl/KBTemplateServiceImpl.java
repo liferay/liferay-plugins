@@ -60,13 +60,13 @@ public class KBTemplateServiceImpl extends KBTemplateServiceBaseImpl {
 			getUserId(), title, content, serviceContext);
 	}
 
-	public void deleteKBTemplate(long kbTemplateId)
+	public KBTemplate deleteKBTemplate(long kbTemplateId)
 		throws PortalException, SystemException {
 
 		KBTemplatePermission.check(
 			getPermissionChecker(), kbTemplateId, ActionKeys.DELETE);
 
-		kbTemplateLocalService.deleteKBTemplate(kbTemplateId);
+		return kbTemplateLocalService.deleteKBTemplate(kbTemplateId);
 	}
 
 	public void deleteKBTemplates(long groupId, long[] kbTemplateIds)

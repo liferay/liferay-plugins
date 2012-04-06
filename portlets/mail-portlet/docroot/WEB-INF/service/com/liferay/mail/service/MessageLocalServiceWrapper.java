@@ -58,26 +58,29 @@ public class MessageLocalServiceWrapper implements MessageLocalService,
 	* Deletes the message with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param messageId the primary key of the message
+	* @return the message that was removed
 	* @throws PortalException if a message with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteMessage(long messageId)
+	public com.liferay.mail.model.Message deleteMessage(long messageId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_messageLocalService.deleteMessage(messageId);
+		return _messageLocalService.deleteMessage(messageId);
 	}
 
 	/**
 	* Deletes the message from the database. Also notifies the appropriate model listeners.
 	*
 	* @param message the message
+	* @return the message that was removed
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteMessage(com.liferay.mail.model.Message message)
+	public com.liferay.mail.model.Message deleteMessage(
+		com.liferay.mail.model.Message message)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_messageLocalService.deleteMessage(message);
+		return _messageLocalService.deleteMessage(message);
 	}
 
 	/**

@@ -67,25 +67,28 @@ public class SVNRevisionLocalServiceUtil {
 	* Deletes the s v n revision with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param svnRevisionId the primary key of the s v n revision
+	* @return the s v n revision that was removed
 	* @throws PortalException if a s v n revision with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteSVNRevision(long svnRevisionId)
+	public static com.liferay.socialcoding.model.SVNRevision deleteSVNRevision(
+		long svnRevisionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteSVNRevision(svnRevisionId);
+		return getService().deleteSVNRevision(svnRevisionId);
 	}
 
 	/**
 	* Deletes the s v n revision from the database. Also notifies the appropriate model listeners.
 	*
 	* @param svnRevision the s v n revision
+	* @return the s v n revision that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteSVNRevision(
+	public static com.liferay.socialcoding.model.SVNRevision deleteSVNRevision(
 		com.liferay.socialcoding.model.SVNRevision svnRevision)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteSVNRevision(svnRevision);
+		return getService().deleteSVNRevision(svnRevision);
 	}
 
 	/**

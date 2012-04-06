@@ -65,10 +65,11 @@ public interface TypeLocalService extends PersistedModelLocalService {
 	* Deletes the type with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param typeId the primary key of the type
+	* @return the type that was removed
 	* @throws PortalException if a type with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteType(long typeId)
+	public com.liferay.ams.model.Type deleteType(long typeId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -76,9 +77,11 @@ public interface TypeLocalService extends PersistedModelLocalService {
 	* Deletes the type from the database. Also notifies the appropriate model listeners.
 	*
 	* @param type the type
+	* @return the type that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteType(com.liferay.ams.model.Type type)
+	public com.liferay.ams.model.Type deleteType(
+		com.liferay.ams.model.Type type)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

@@ -424,13 +424,14 @@ public class OAuthConsumerUtil {
 	*
 	* @param gadgetKey the gadget key
 	* @param serviceName the service name
+	* @return the o auth consumer that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByG_S(java.lang.String gadgetKey,
-		java.lang.String serviceName)
+	public static com.liferay.opensocial.model.OAuthConsumer removeByG_S(
+		java.lang.String gadgetKey, java.lang.String serviceName)
 		throws com.liferay.opensocial.NoSuchOAuthConsumerException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByG_S(gadgetKey, serviceName);
+		return getPersistence().removeByG_S(gadgetKey, serviceName);
 	}
 
 	/**

@@ -61,17 +61,17 @@ public class OAuthConsumerLocalServiceImpl
 	}
 
 	@Override
-	public void deleteOAuthConsumer(long oAuthConsumerId)
+	public OAuthConsumer deleteOAuthConsumer(long oAuthConsumerId)
 		throws PortalException, SystemException {
 
 		OAuthConsumer oAuthConsumer = oAuthConsumerPersistence.findByPrimaryKey(
 			oAuthConsumerId);
 
-		deleteOAuthConsumer(oAuthConsumer);
+		return deleteOAuthConsumer(oAuthConsumer);
 	}
 
 	@Override
-	public void deleteOAuthConsumer(OAuthConsumer oAuthConsumer)
+	public OAuthConsumer deleteOAuthConsumer(OAuthConsumer oAuthConsumer)
 		throws SystemException {
 
 		// OAuth consumer
@@ -82,6 +82,8 @@ public class OAuthConsumerLocalServiceImpl
 
 		oAuthTokenLocalService.deleteOAuthTokens(
 			oAuthConsumer.getGadgetKey(), oAuthConsumer.getServiceName());
+
+		return oAuthConsumer;
 	}
 
 	public void deleteOAuthConsumers(String gadgetKey)

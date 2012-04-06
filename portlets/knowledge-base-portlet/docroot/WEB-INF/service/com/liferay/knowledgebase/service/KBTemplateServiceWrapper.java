@@ -41,10 +41,11 @@ public class KBTemplateServiceWrapper implements KBTemplateService,
 			serviceContext);
 	}
 
-	public void deleteKBTemplate(long kbTemplateId)
+	public com.liferay.knowledgebase.model.KBTemplate deleteKBTemplate(
+		long kbTemplateId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_kbTemplateService.deleteKBTemplate(kbTemplateId);
+		return _kbTemplateService.deleteKBTemplate(kbTemplateId);
 	}
 
 	public void deleteKBTemplates(long groupId, long[] kbTemplateIds)

@@ -66,24 +66,27 @@ public class FeedLocalServiceUtil {
 	* Deletes the feed with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param feedId the primary key of the feed
+	* @return the feed that was removed
 	* @throws PortalException if a feed with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteFeed(long feedId)
+	public static com.liferay.twitter.model.Feed deleteFeed(long feedId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteFeed(feedId);
+		return getService().deleteFeed(feedId);
 	}
 
 	/**
 	* Deletes the feed from the database. Also notifies the appropriate model listeners.
 	*
 	* @param feed the feed
+	* @return the feed that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteFeed(com.liferay.twitter.model.Feed feed)
+	public static com.liferay.twitter.model.Feed deleteFeed(
+		com.liferay.twitter.model.Feed feed)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteFeed(feed);
+		return getService().deleteFeed(feed);
 	}
 
 	/**

@@ -23,19 +23,14 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
-import com.liferay.portal.service.ResourceService;
 import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.service.UserService;
-import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 
 import com.liferay.wsrp.model.WSRPConsumerPortlet;
@@ -79,27 +74,12 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 * @return the w s r p consumer portlet that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public WSRPConsumerPortlet addWSRPConsumerPortlet(
 		WSRPConsumerPortlet wsrpConsumerPortlet) throws SystemException {
 		wsrpConsumerPortlet.setNew(true);
 
-		wsrpConsumerPortlet = wsrpConsumerPortletPersistence.update(wsrpConsumerPortlet,
-				false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(wsrpConsumerPortlet);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return wsrpConsumerPortlet;
+		return wsrpConsumerPortletPersistence.update(wsrpConsumerPortlet, false);
 	}
 
 	/**
@@ -117,51 +97,29 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 * Deletes the w s r p consumer portlet with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param wsrpConsumerPortletId the primary key of the w s r p consumer portlet
+	 * @return the w s r p consumer portlet that was removed
 	 * @throws PortalException if a w s r p consumer portlet with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteWSRPConsumerPortlet(long wsrpConsumerPortletId)
-		throws PortalException, SystemException {
-		WSRPConsumerPortlet wsrpConsumerPortlet = wsrpConsumerPortletPersistence.remove(wsrpConsumerPortletId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(wsrpConsumerPortlet);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+	@Indexable(type = IndexableType.DELETE)
+	public WSRPConsumerPortlet deleteWSRPConsumerPortlet(
+		long wsrpConsumerPortletId) throws PortalException, SystemException {
+		return wsrpConsumerPortletPersistence.remove(wsrpConsumerPortletId);
 	}
 
 	/**
 	 * Deletes the w s r p consumer portlet from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param wsrpConsumerPortlet the w s r p consumer portlet
+	 * @return the w s r p consumer portlet that was removed
 	 * @throws PortalException
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteWSRPConsumerPortlet(
+	@Indexable(type = IndexableType.DELETE)
+	public WSRPConsumerPortlet deleteWSRPConsumerPortlet(
 		WSRPConsumerPortlet wsrpConsumerPortlet)
 		throws PortalException, SystemException {
-		wsrpConsumerPortletPersistence.remove(wsrpConsumerPortlet);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(wsrpConsumerPortlet);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return wsrpConsumerPortletPersistence.remove(wsrpConsumerPortlet);
 	}
 
 	/**
@@ -287,6 +245,7 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 * @return the w s r p consumer portlet that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public WSRPConsumerPortlet updateWSRPConsumerPortlet(
 		WSRPConsumerPortlet wsrpConsumerPortlet) throws SystemException {
 		return updateWSRPConsumerPortlet(wsrpConsumerPortlet, true);
@@ -300,28 +259,13 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 * @return the w s r p consumer portlet that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public WSRPConsumerPortlet updateWSRPConsumerPortlet(
 		WSRPConsumerPortlet wsrpConsumerPortlet, boolean merge)
 		throws SystemException {
 		wsrpConsumerPortlet.setNew(false);
 
-		wsrpConsumerPortlet = wsrpConsumerPortletPersistence.update(wsrpConsumerPortlet,
-				merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(wsrpConsumerPortlet);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return wsrpConsumerPortlet;
+		return wsrpConsumerPortletPersistence.update(wsrpConsumerPortlet, merge);
 	}
 
 	/**
@@ -476,42 +420,6 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the resource remote service.
-	 *
-	 * @return the resource remote service
-	 */
-	public ResourceService getResourceService() {
-		return resourceService;
-	}
-
-	/**
-	 * Sets the resource remote service.
-	 *
-	 * @param resourceService the resource remote service
-	 */
-	public void setResourceService(ResourceService resourceService) {
-		this.resourceService = resourceService;
-	}
-
-	/**
-	 * Returns the resource persistence.
-	 *
-	 * @return the resource persistence
-	 */
-	public ResourcePersistence getResourcePersistence() {
-		return resourcePersistence;
-	}
-
-	/**
-	 * Sets the resource persistence.
-	 *
-	 * @param resourcePersistence the resource persistence
-	 */
-	public void setResourcePersistence(ResourcePersistence resourcePersistence) {
-		this.resourcePersistence = resourcePersistence;
-	}
-
-	/**
 	 * Returns the user local service.
 	 *
 	 * @return the user local service
@@ -642,16 +550,11 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	protected CounterLocalService counterLocalService;
 	@BeanReference(type = ResourceLocalService.class)
 	protected ResourceLocalService resourceLocalService;
-	@BeanReference(type = ResourceService.class)
-	protected ResourceService resourceService;
-	@BeanReference(type = ResourcePersistence.class)
-	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserLocalService.class)
 	protected UserLocalService userLocalService;
 	@BeanReference(type = UserService.class)
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private static Log _log = LogFactoryUtil.getLog(WSRPConsumerPortletLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

@@ -220,7 +220,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void deleteKBArticle(KBArticle kbArticle)
+	public KBArticle deleteKBArticle(KBArticle kbArticle)
 		throws PortalException, SystemException {
 
 		// Child kb articles
@@ -283,16 +283,18 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		workflowInstanceLinkLocalService.deleteWorkflowInstanceLinks(
 			kbArticle.getCompanyId(), kbArticle.getGroupId(),
 			KBArticle.class.getName(), kbArticle.getResourcePrimKey());
+
+		return kbArticle;
 	}
 
 	@Override
-	public void deleteKBArticle(long resourcePrimKey)
+	public KBArticle deleteKBArticle(long resourcePrimKey)
 		throws PortalException, SystemException {
 
 		KBArticle kbArticle = getLatestKBArticle(
 			resourcePrimKey, WorkflowConstants.STATUS_ANY);
 
-		deleteKBArticle(kbArticle);
+		return deleteKBArticle(kbArticle);
 	}
 
 	public void deleteKBArticles(long[] resourcePrimKeys)

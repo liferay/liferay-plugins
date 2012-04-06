@@ -43,7 +43,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			serviceContext);
 	}
 
-	public void deleteCalendarBooking(
+	public CalendarBooking deleteCalendarBooking(
 			long calendarResourceId, long calendarBookingId)
 		throws PortalException, SystemException {
 
@@ -51,7 +51,8 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			getPermissionChecker(), calendarResourceId,
 			ActionKeys.UPDATE_BOOKINGS);
 
-		calendarBookingLocalService.deleteCalendarBooking(calendarBookingId);
+		return calendarBookingLocalService.deleteCalendarBooking(
+			calendarBookingId);
 	}
 
 	public CalendarBooking getCalendarBooking(

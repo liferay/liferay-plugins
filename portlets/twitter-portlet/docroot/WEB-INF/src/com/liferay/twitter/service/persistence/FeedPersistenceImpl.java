@@ -39,7 +39,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
-import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
@@ -945,13 +944,14 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 *
 	 * @param companyId the company ID
 	 * @param twitterUserId the twitter user ID
+	 * @return the feed that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByC_TWUI(long companyId, long twitterUserId)
+	public Feed removeByC_TWUI(long companyId, long twitterUserId)
 		throws NoSuchFeedException, SystemException {
 		Feed feed = findByC_TWUI(companyId, twitterUserId);
 
-		remove(feed);
+		return remove(feed);
 	}
 
 	/**
@@ -959,13 +959,14 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 *
 	 * @param companyId the company ID
 	 * @param twitterScreenName the twitter screen name
+	 * @return the feed that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByC_TSN(long companyId, String twitterScreenName)
+	public Feed removeByC_TSN(long companyId, String twitterScreenName)
 		throws NoSuchFeedException, SystemException {
 		Feed feed = findByC_TSN(companyId, twitterScreenName);
 
-		remove(feed);
+		return remove(feed);
 	}
 
 	/**
@@ -1180,8 +1181,6 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 	@BeanReference(type = FeedPersistence.class)
 	protected FeedPersistence feedPersistence;
-	@BeanReference(type = ResourcePersistence.class)
-	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 	private static final String _SQL_SELECT_FEED = "SELECT feed FROM Feed feed";

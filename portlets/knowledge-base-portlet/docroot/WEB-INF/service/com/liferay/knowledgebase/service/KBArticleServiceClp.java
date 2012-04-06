@@ -252,14 +252,17 @@ public class KBArticleServiceClp implements KBArticleService {
 		}
 	}
 
-	public void deleteKBArticle(long resourcePrimKey)
+	public com.liferay.knowledgebase.model.KBArticle deleteKBArticle(
+		long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteKBArticleMethodKey3,
 				resourcePrimKey);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -278,6 +281,8 @@ public class KBArticleServiceClp implements KBArticleService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.knowledgebase.model.KBArticle)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public void deleteKBArticles(long groupId, long[] resourcePrimKeys)

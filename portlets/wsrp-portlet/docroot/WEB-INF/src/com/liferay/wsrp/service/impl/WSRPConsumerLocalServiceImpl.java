@@ -86,23 +86,23 @@ public class WSRPConsumerLocalServiceImpl
 	}
 
 	@Override
-	public void deleteWSRPConsumer(long wsrpConsumerId)
+	public WSRPConsumer deleteWSRPConsumer(long wsrpConsumerId)
 		throws PortalException, SystemException {
 
 		WSRPConsumer wsrpConsumer = wsrpConsumerPersistence.findByPrimaryKey(
 			wsrpConsumerId);
 
-		deleteWSRPConsumer(wsrpConsumer);
+		return deleteWSRPConsumer(wsrpConsumer);
 	}
 
 	@Override
-	public void deleteWSRPConsumer(WSRPConsumer wsrpConsumer)
+	public WSRPConsumer deleteWSRPConsumer(WSRPConsumer wsrpConsumer)
 		throws PortalException, SystemException {
 
 		wsrpConsumerPortletLocalService.deleteWSRPConsumerPortlets(
 			wsrpConsumer.getWsrpConsumerId());
 
-		wsrpConsumerPersistence.remove(wsrpConsumer);
+		return wsrpConsumerPersistence.remove(wsrpConsumer);
 	}
 
 	public WSRPConsumer getWSRPConsumer(String wsrpConsumerUuid)

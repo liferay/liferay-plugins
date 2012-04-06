@@ -67,25 +67,28 @@ public class DefinitionLocalServiceUtil {
 	* Deletes the definition with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param definitionId the primary key of the definition
+	* @return the definition that was removed
 	* @throws PortalException if a definition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteDefinition(long definitionId)
+	public static com.liferay.ams.model.Definition deleteDefinition(
+		long definitionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteDefinition(definitionId);
+		return getService().deleteDefinition(definitionId);
 	}
 
 	/**
 	* Deletes the definition from the database. Also notifies the appropriate model listeners.
 	*
 	* @param definition the definition
+	* @return the definition that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteDefinition(
+	public static com.liferay.ams.model.Definition deleteDefinition(
 		com.liferay.ams.model.Definition definition)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteDefinition(definition);
+		return getService().deleteDefinition(definition);
 	}
 
 	/**

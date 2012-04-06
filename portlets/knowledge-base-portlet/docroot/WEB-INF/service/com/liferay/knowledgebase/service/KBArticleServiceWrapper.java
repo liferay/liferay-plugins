@@ -62,10 +62,11 @@ public class KBArticleServiceWrapper implements KBArticleService,
 			resourcePrimKey, fileName);
 	}
 
-	public void deleteKBArticle(long resourcePrimKey)
+	public com.liferay.knowledgebase.model.KBArticle deleteKBArticle(
+		long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_kbArticleService.deleteKBArticle(resourcePrimKey);
+		return _kbArticleService.deleteKBArticle(resourcePrimKey);
 	}
 
 	public void deleteKBArticles(long groupId, long[] resourcePrimKeys)

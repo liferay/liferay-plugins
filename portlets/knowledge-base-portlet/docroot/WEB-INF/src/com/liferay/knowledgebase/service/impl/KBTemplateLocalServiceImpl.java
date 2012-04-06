@@ -105,7 +105,7 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void deleteKBTemplate(KBTemplate kbTemplate)
+	public KBTemplate deleteKBTemplate(KBTemplate kbTemplate)
 		throws PortalException, SystemException {
 
 		// KB template
@@ -127,16 +127,18 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 
 		socialActivityLocalService.deleteActivities(
 			KBTemplate.class.getName(), kbTemplate.getKbTemplateId());
+
+		return kbTemplate;
 	}
 
 	@Override
-	public void deleteKBTemplate(long kbTemplateId)
+	public KBTemplate deleteKBTemplate(long kbTemplateId)
 		throws PortalException, SystemException {
 
 		KBTemplate kbTemplate = kbTemplatePersistence.findByPrimaryKey(
 			kbTemplateId);
 
-		deleteKBTemplate(kbTemplate);
+		return deleteKBTemplate(kbTemplate);
 	}
 
 	public void deleteKBTemplates(long[] kbTemplateIds)

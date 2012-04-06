@@ -60,25 +60,28 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 	* Deletes the wall entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param wallEntryId the primary key of the wall entry
+	* @return the wall entry that was removed
 	* @throws PortalException if a wall entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteWallEntry(long wallEntryId)
+	public com.liferay.socialnetworking.model.WallEntry deleteWallEntry(
+		long wallEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_wallEntryLocalService.deleteWallEntry(wallEntryId);
+		return _wallEntryLocalService.deleteWallEntry(wallEntryId);
 	}
 
 	/**
 	* Deletes the wall entry from the database. Also notifies the appropriate model listeners.
 	*
 	* @param wallEntry the wall entry
+	* @return the wall entry that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteWallEntry(
+	public com.liferay.socialnetworking.model.WallEntry deleteWallEntry(
 		com.liferay.socialnetworking.model.WallEntry wallEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_wallEntryLocalService.deleteWallEntry(wallEntry);
+		return _wallEntryLocalService.deleteWallEntry(wallEntry);
 	}
 
 	/**

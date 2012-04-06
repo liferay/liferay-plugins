@@ -67,10 +67,12 @@ public interface KBCommentLocalService extends PersistedModelLocalService {
 	* Deletes the k b comment with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kbCommentId the primary key of the k b comment
+	* @return the k b comment that was removed
 	* @throws PortalException if a k b comment with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKBComment(long kbCommentId)
+	public com.liferay.knowledgebase.model.KBComment deleteKBComment(
+		long kbCommentId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -78,9 +80,10 @@ public interface KBCommentLocalService extends PersistedModelLocalService {
 	* Deletes the k b comment from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kbComment the k b comment
+	* @return the k b comment that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKBComment(
+	public com.liferay.knowledgebase.model.KBComment deleteKBComment(
 		com.liferay.knowledgebase.model.KBComment kbComment)
 		throws com.liferay.portal.kernel.exception.SystemException;
 

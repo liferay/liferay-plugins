@@ -99,14 +99,17 @@ public class CalendarEventServiceClp implements CalendarEventService {
 		return (com.liferay.calendar.model.CalendarEvent)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteCalendarEvent(long calendarEventId)
+	public com.liferay.calendar.model.CalendarEvent deleteCalendarEvent(
+		long calendarEventId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteCalendarEventMethodKey1,
 				calendarEventId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -125,6 +128,8 @@ public class CalendarEventServiceClp implements CalendarEventService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.calendar.model.CalendarEvent)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.calendar.model.CalendarEvent getCalendarEvent(

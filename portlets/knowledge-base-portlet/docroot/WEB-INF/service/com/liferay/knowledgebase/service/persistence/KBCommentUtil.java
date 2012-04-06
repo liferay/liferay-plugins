@@ -845,12 +845,14 @@ public class KBCommentUtil {
 	*
 	* @param uuid the uuid
 	* @param groupId the group ID
+	* @return the k b comment that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByUUID_G(java.lang.String uuid, long groupId)
+	public static com.liferay.knowledgebase.model.KBComment removeByUUID_G(
+		java.lang.String uuid, long groupId)
 		throws com.liferay.knowledgebase.NoSuchCommentException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByUUID_G(uuid, groupId);
+		return getPersistence().removeByUUID_G(uuid, groupId);
 	}
 
 	/**
@@ -894,12 +896,14 @@ public class KBCommentUtil {
 	* @param userId the user ID
 	* @param classNameId the class name ID
 	* @param classPK the class p k
+	* @return the k b comment that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByU_C_C(long userId, long classNameId, long classPK)
+	public static com.liferay.knowledgebase.model.KBComment removeByU_C_C(
+		long userId, long classNameId, long classPK)
 		throws com.liferay.knowledgebase.NoSuchCommentException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByU_C_C(userId, classNameId, classPK);
+		return getPersistence().removeByU_C_C(userId, classNameId, classPK);
 	}
 
 	/**

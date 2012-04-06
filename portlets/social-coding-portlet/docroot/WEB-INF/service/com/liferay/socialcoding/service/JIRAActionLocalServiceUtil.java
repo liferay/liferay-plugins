@@ -67,25 +67,28 @@ public class JIRAActionLocalServiceUtil {
 	* Deletes the j i r a action with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param jiraActionId the primary key of the j i r a action
+	* @return the j i r a action that was removed
 	* @throws PortalException if a j i r a action with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteJIRAAction(long jiraActionId)
+	public static com.liferay.socialcoding.model.JIRAAction deleteJIRAAction(
+		long jiraActionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteJIRAAction(jiraActionId);
+		return getService().deleteJIRAAction(jiraActionId);
 	}
 
 	/**
 	* Deletes the j i r a action from the database. Also notifies the appropriate model listeners.
 	*
 	* @param jiraAction the j i r a action
+	* @return the j i r a action that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteJIRAAction(
+	public static com.liferay.socialcoding.model.JIRAAction deleteJIRAAction(
 		com.liferay.socialcoding.model.JIRAAction jiraAction)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteJIRAAction(jiraAction);
+		return getService().deleteJIRAAction(jiraAction);
 	}
 
 	/**

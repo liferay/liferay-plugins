@@ -66,10 +66,11 @@ public interface AttachmentLocalService extends PersistedModelLocalService {
 	* Deletes the attachment with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param attachmentId the primary key of the attachment
+	* @return the attachment that was removed
 	* @throws PortalException if a attachment with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteAttachment(long attachmentId)
+	public com.liferay.mail.model.Attachment deleteAttachment(long attachmentId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -77,9 +78,11 @@ public interface AttachmentLocalService extends PersistedModelLocalService {
 	* Deletes the attachment from the database. Also notifies the appropriate model listeners.
 	*
 	* @param attachment the attachment
+	* @return the attachment that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteAttachment(com.liferay.mail.model.Attachment attachment)
+	public com.liferay.mail.model.Attachment deleteAttachment(
+		com.liferay.mail.model.Attachment attachment)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

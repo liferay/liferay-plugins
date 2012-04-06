@@ -23,11 +23,8 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.GroupLocalService;
@@ -36,12 +33,10 @@ import com.liferay.portal.service.LayoutLocalService;
 import com.liferay.portal.service.LayoutService;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
-import com.liferay.portal.service.ResourceService;
 import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.service.UserService;
 import com.liferay.portal.service.persistence.GroupPersistence;
 import com.liferay.portal.service.persistence.LayoutPersistence;
-import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 
 import com.liferay.wsrp.model.WSRPProducer;
@@ -85,26 +80,12 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	 * @return the w s r p producer that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public WSRPProducer addWSRPProducer(WSRPProducer wsrpProducer)
 		throws SystemException {
 		wsrpProducer.setNew(true);
 
-		wsrpProducer = wsrpProducerPersistence.update(wsrpProducer, false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(wsrpProducer);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return wsrpProducer;
+		return wsrpProducerPersistence.update(wsrpProducer, false);
 	}
 
 	/**
@@ -121,50 +102,28 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	 * Deletes the w s r p producer with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param wsrpProducerId the primary key of the w s r p producer
+	 * @return the w s r p producer that was removed
 	 * @throws PortalException if a w s r p producer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteWSRPProducer(long wsrpProducerId)
+	@Indexable(type = IndexableType.DELETE)
+	public WSRPProducer deleteWSRPProducer(long wsrpProducerId)
 		throws PortalException, SystemException {
-		WSRPProducer wsrpProducer = wsrpProducerPersistence.remove(wsrpProducerId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(wsrpProducer);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return wsrpProducerPersistence.remove(wsrpProducerId);
 	}
 
 	/**
 	 * Deletes the w s r p producer from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param wsrpProducer the w s r p producer
+	 * @return the w s r p producer that was removed
 	 * @throws PortalException
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteWSRPProducer(WSRPProducer wsrpProducer)
+	@Indexable(type = IndexableType.DELETE)
+	public WSRPProducer deleteWSRPProducer(WSRPProducer wsrpProducer)
 		throws PortalException, SystemException {
-		wsrpProducerPersistence.remove(wsrpProducer);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(wsrpProducer);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return wsrpProducerPersistence.remove(wsrpProducer);
 	}
 
 	/**
@@ -304,6 +263,7 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	 * @return the w s r p producer that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public WSRPProducer updateWSRPProducer(WSRPProducer wsrpProducer)
 		throws SystemException {
 		return updateWSRPProducer(wsrpProducer, true);
@@ -317,26 +277,12 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	 * @return the w s r p producer that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public WSRPProducer updateWSRPProducer(WSRPProducer wsrpProducer,
 		boolean merge) throws SystemException {
 		wsrpProducer.setNew(false);
 
-		wsrpProducer = wsrpProducerPersistence.update(wsrpProducer, merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(wsrpProducer);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return wsrpProducer;
+		return wsrpProducerPersistence.update(wsrpProducer, merge);
 	}
 
 	/**
@@ -599,42 +545,6 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the resource remote service.
-	 *
-	 * @return the resource remote service
-	 */
-	public ResourceService getResourceService() {
-		return resourceService;
-	}
-
-	/**
-	 * Sets the resource remote service.
-	 *
-	 * @param resourceService the resource remote service
-	 */
-	public void setResourceService(ResourceService resourceService) {
-		this.resourceService = resourceService;
-	}
-
-	/**
-	 * Returns the resource persistence.
-	 *
-	 * @return the resource persistence
-	 */
-	public ResourcePersistence getResourcePersistence() {
-		return resourcePersistence;
-	}
-
-	/**
-	 * Sets the resource persistence.
-	 *
-	 * @param resourcePersistence the resource persistence
-	 */
-	public void setResourcePersistence(ResourcePersistence resourcePersistence) {
-		this.resourcePersistence = resourcePersistence;
-	}
-
-	/**
 	 * Returns the user local service.
 	 *
 	 * @return the user local service
@@ -777,16 +687,11 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	protected LayoutPersistence layoutPersistence;
 	@BeanReference(type = ResourceLocalService.class)
 	protected ResourceLocalService resourceLocalService;
-	@BeanReference(type = ResourceService.class)
-	protected ResourceService resourceService;
-	@BeanReference(type = ResourcePersistence.class)
-	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserLocalService.class)
 	protected UserLocalService userLocalService;
 	@BeanReference(type = UserService.class)
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private static Log _log = LogFactoryUtil.getLog(WSRPProducerLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

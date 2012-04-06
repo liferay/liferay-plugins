@@ -43,7 +43,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
-import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
@@ -1892,13 +1891,14 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 * Removes the status where userId = &#63; from the database.
 	 *
 	 * @param userId the user ID
+	 * @return the status that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByUserId(long userId)
+	public Status removeByUserId(long userId)
 		throws NoSuchStatusException, SystemException {
 		Status status = findByUserId(userId);
 
-		remove(status);
+		return remove(status);
 	}
 
 	/**
@@ -2242,8 +2242,6 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	protected EntryPersistence entryPersistence;
 	@BeanReference(type = StatusPersistence.class)
 	protected StatusPersistence statusPersistence;
-	@BeanReference(type = ResourcePersistence.class)
-	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 	private static final String _SQL_SELECT_STATUS = "SELECT status FROM Status status";

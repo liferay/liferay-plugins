@@ -67,10 +67,12 @@ public interface OAuthTokenLocalService extends PersistedModelLocalService {
 	* Deletes the o auth token with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param oAuthTokenId the primary key of the o auth token
+	* @return the o auth token that was removed
 	* @throws PortalException if a o auth token with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteOAuthToken(long oAuthTokenId)
+	public com.liferay.opensocial.model.OAuthToken deleteOAuthToken(
+		long oAuthTokenId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -78,9 +80,10 @@ public interface OAuthTokenLocalService extends PersistedModelLocalService {
 	* Deletes the o auth token from the database. Also notifies the appropriate model listeners.
 	*
 	* @param oAuthToken the o auth token
+	* @return the o auth token that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteOAuthToken(
+	public com.liferay.opensocial.model.OAuthToken deleteOAuthToken(
 		com.liferay.opensocial.model.OAuthToken oAuthToken)
 		throws com.liferay.portal.kernel.exception.SystemException;
 

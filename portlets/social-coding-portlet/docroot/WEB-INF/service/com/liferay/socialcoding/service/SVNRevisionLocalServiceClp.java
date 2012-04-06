@@ -168,14 +168,17 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 		return (com.liferay.socialcoding.model.SVNRevision)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteSVNRevision(long svnRevisionId)
+	public com.liferay.socialcoding.model.SVNRevision deleteSVNRevision(
+		long svnRevisionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteSVNRevisionMethodKey2,
 				svnRevisionId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -194,16 +197,20 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.socialcoding.model.SVNRevision)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteSVNRevision(
+	public com.liferay.socialcoding.model.SVNRevision deleteSVNRevision(
 		com.liferay.socialcoding.model.SVNRevision svnRevision)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteSVNRevisionMethodKey3,
 				ClpSerializer.translateInput(svnRevision));
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -218,6 +225,8 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.socialcoding.model.SVNRevision)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@SuppressWarnings("rawtypes")

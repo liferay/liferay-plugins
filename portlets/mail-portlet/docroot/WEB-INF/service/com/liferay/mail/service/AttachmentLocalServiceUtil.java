@@ -67,25 +67,28 @@ public class AttachmentLocalServiceUtil {
 	* Deletes the attachment with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param attachmentId the primary key of the attachment
+	* @return the attachment that was removed
 	* @throws PortalException if a attachment with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteAttachment(long attachmentId)
+	public static com.liferay.mail.model.Attachment deleteAttachment(
+		long attachmentId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteAttachment(attachmentId);
+		return getService().deleteAttachment(attachmentId);
 	}
 
 	/**
 	* Deletes the attachment from the database. Also notifies the appropriate model listeners.
 	*
 	* @param attachment the attachment
+	* @return the attachment that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteAttachment(
+	public static com.liferay.mail.model.Attachment deleteAttachment(
 		com.liferay.mail.model.Attachment attachment)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteAttachment(attachment);
+		return getService().deleteAttachment(attachment);
 	}
 
 	/**

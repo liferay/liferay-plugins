@@ -59,7 +59,7 @@ public class FolderLocalServiceImpl extends FolderLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void deleteFolder(Folder folder)
+	public Folder deleteFolder(Folder folder)
 		throws PortalException, SystemException {
 
 		// Folder
@@ -75,15 +75,17 @@ public class FolderLocalServiceImpl extends FolderLocalServiceBaseImpl {
 		Indexer indexer = IndexerRegistryUtil.getIndexer(Message.class);
 
 		indexer.delete(folder);
+
+		return folder;
 	}
 
 	@Override
-	public void deleteFolder(long folderId)
+	public Folder deleteFolder(long folderId)
 		throws PortalException, SystemException {
 
 		Folder folder = folderPersistence.findByPrimaryKey(folderId);
 
-		deleteFolder(folder);
+		return deleteFolder(folder);
 	}
 
 	public void deleteFolders(long accountId)

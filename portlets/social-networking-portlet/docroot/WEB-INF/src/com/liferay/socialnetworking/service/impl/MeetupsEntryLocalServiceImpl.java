@@ -88,17 +88,19 @@ public class MeetupsEntryLocalServiceImpl
 	}
 
 	@Override
-	public void deleteMeetupsEntry(long meetupsEntryId)
+	public MeetupsEntry deleteMeetupsEntry(long meetupsEntryId)
 		throws PortalException, SystemException {
 
 		MeetupsEntry meetupsEntry = meetupsEntryPersistence.findByPrimaryKey(
 			meetupsEntryId);
 
+		meetupsEntryPersistence.remove(meetupsEntry);
+
 		meetupsRegistrationPersistence.removeByMeetupsEntryId(meetupsEntryId);
 
 		ImageLocalServiceUtil.deleteImage(meetupsEntry.getThumbnailId());
 
-		meetupsEntryPersistence.remove(meetupsEntry);
+		return meetupsEntry;
 	}
 
 	public List<MeetupsEntry> getMeetupsEntriesByCompany(long companyId)

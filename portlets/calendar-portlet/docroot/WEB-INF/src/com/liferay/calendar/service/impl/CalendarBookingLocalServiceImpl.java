@@ -107,20 +107,21 @@ public class CalendarBookingLocalServiceImpl
 	}
 
 	@Override
-	public void deleteCalendarBooking(CalendarBooking calendarBooking)
+	public CalendarBooking deleteCalendarBooking(
+			CalendarBooking calendarBooking)
 		throws SystemException {
 
-		calendarBookingPersistence.remove(calendarBooking);
+		return calendarBookingPersistence.remove(calendarBooking);
 	}
 
 	@Override
-	public void deleteCalendarBooking(long calendarBookingId)
+	public CalendarBooking deleteCalendarBooking(long calendarBookingId)
 		throws PortalException, SystemException {
 
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
 
-		deleteCalendarBooking(calendarBooking);
+		return deleteCalendarBooking(calendarBooking);
 	}
 
 	@Override

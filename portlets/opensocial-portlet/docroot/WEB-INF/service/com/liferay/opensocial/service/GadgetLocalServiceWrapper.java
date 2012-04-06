@@ -58,26 +58,29 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	* Deletes the gadget with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param gadgetId the primary key of the gadget
+	* @return the gadget that was removed
 	* @throws PortalException if a gadget with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteGadget(long gadgetId)
+	public com.liferay.opensocial.model.Gadget deleteGadget(long gadgetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_gadgetLocalService.deleteGadget(gadgetId);
+		return _gadgetLocalService.deleteGadget(gadgetId);
 	}
 
 	/**
 	* Deletes the gadget from the database. Also notifies the appropriate model listeners.
 	*
 	* @param gadget the gadget
+	* @return the gadget that was removed
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteGadget(com.liferay.opensocial.model.Gadget gadget)
+	public com.liferay.opensocial.model.Gadget deleteGadget(
+		com.liferay.opensocial.model.Gadget gadget)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_gadgetLocalService.deleteGadget(gadget);
+		return _gadgetLocalService.deleteGadget(gadget);
 	}
 
 	/**

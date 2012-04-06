@@ -118,7 +118,8 @@ public class CalendarResourceLocalServiceImpl
 	}
 
 	@Override
-	public void deleteCalendarResource(CalendarResource calendarResource)
+	public CalendarResource deleteCalendarResource(
+			CalendarResource calendarResource)
 		throws PortalException, SystemException {
 
 		// Calendar resource
@@ -147,16 +148,18 @@ public class CalendarResourceLocalServiceImpl
 		expandoValueLocalService.deleteValues(
 			CalendarResource.class.getName(),
 			calendarResource.getCalendarResourceId());
+
+		return calendarResource;
 	}
 
 	@Override
-	public void deleteCalendarResource(long calendarResourceId)
+	public CalendarResource deleteCalendarResource(long calendarResourceId)
 		throws PortalException, SystemException {
 
 		CalendarResource calendarResource =
 			calendarResourcePersistence.findByPrimaryKey(calendarResourceId);
 
-		deleteCalendarResource(calendarResource);
+		return deleteCalendarResource(calendarResource);
 	}
 
 	@Override

@@ -105,7 +105,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void deleteGadget(Gadget gadget)
+	public Gadget deleteGadget(Gadget gadget)
 		throws PortalException, SystemException {
 
 		// Gadget
@@ -121,15 +121,17 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 			gadget.getGadgetId());
 
 		oAuthConsumerLocalService.deleteOAuthConsumers(gadgetKey);
+
+		return gadget;
 	}
 
 	@Override
-	public void deleteGadget(long gadgetId)
+	public Gadget deleteGadget(long gadgetId)
 		throws PortalException, SystemException {
 
 		Gadget gadget = gadgetPersistence.findByPrimaryKey(gadgetId);
 
-		deleteGadget(gadget);
+		return deleteGadget(gadget);
 	}
 
 	@Clusterable

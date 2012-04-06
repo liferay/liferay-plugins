@@ -133,14 +133,16 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		return (com.liferay.ams.model.Type)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteType(long typeId)
+	public com.liferay.ams.model.Type deleteType(long typeId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteTypeMethodKey2,
 				typeId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -159,15 +161,20 @@ public class TypeLocalServiceClp implements TypeLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.ams.model.Type)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteType(com.liferay.ams.model.Type type)
+	public com.liferay.ams.model.Type deleteType(
+		com.liferay.ams.model.Type type)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteTypeMethodKey3,
 				ClpSerializer.translateInput(type));
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -182,6 +189,8 @@ public class TypeLocalServiceClp implements TypeLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.ams.model.Type)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@SuppressWarnings("rawtypes")

@@ -100,10 +100,12 @@ public class KBArticleServiceSoap {
 		}
 	}
 
-	public static void deleteKBArticle(long resourcePrimKey)
-		throws RemoteException {
+	public static com.liferay.knowledgebase.model.KBArticleSoap deleteKBArticle(
+		long resourcePrimKey) throws RemoteException {
 		try {
-			KBArticleServiceUtil.deleteKBArticle(resourcePrimKey);
+			com.liferay.knowledgebase.model.KBArticle returnValue = KBArticleServiceUtil.deleteKBArticle(resourcePrimKey);
+
+			return com.liferay.knowledgebase.model.KBArticleSoap.toSoapModel(returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

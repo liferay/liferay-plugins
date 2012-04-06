@@ -648,12 +648,13 @@ public class StatusUtil {
 	* Removes the status where userId = &#63; from the database.
 	*
 	* @param userId the user ID
+	* @return the status that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByUserId(long userId)
+	public static com.liferay.chat.model.Status removeByUserId(long userId)
 		throws com.liferay.chat.NoSuchStatusException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByUserId(userId);
+		return getPersistence().removeByUserId(userId);
 	}
 
 	/**

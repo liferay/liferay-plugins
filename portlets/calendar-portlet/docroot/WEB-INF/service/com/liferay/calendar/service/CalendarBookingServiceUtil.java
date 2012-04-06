@@ -48,11 +48,12 @@ public class CalendarBookingServiceUtil {
 			required, serviceContext);
 	}
 
-	public static void deleteCalendarBooking(long calendarResourceId,
-		long calendarBookingId)
+	public static com.liferay.calendar.model.CalendarBooking deleteCalendarBooking(
+		long calendarResourceId, long calendarBookingId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteCalendarBooking(calendarResourceId, calendarBookingId);
+		return getService()
+				   .deleteCalendarBooking(calendarResourceId, calendarBookingId);
 	}
 
 	public static com.liferay.calendar.model.CalendarBooking getCalendarBooking(

@@ -33,19 +33,14 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
-import com.liferay.portal.service.ResourceService;
 import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.service.UserService;
-import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 
 import java.io.Serializable;
@@ -81,26 +76,12 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * @return the attachment that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public Attachment addAttachment(Attachment attachment)
 		throws SystemException {
 		attachment.setNew(true);
 
-		attachment = attachmentPersistence.update(attachment, false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(attachment);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return attachment;
+		return attachmentPersistence.update(attachment, false);
 	}
 
 	/**
@@ -117,49 +98,27 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * Deletes the attachment with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param attachmentId the primary key of the attachment
+	 * @return the attachment that was removed
 	 * @throws PortalException if a attachment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteAttachment(long attachmentId)
+	@Indexable(type = IndexableType.DELETE)
+	public Attachment deleteAttachment(long attachmentId)
 		throws PortalException, SystemException {
-		Attachment attachment = attachmentPersistence.remove(attachmentId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(attachment);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return attachmentPersistence.remove(attachmentId);
 	}
 
 	/**
 	 * Deletes the attachment from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param attachment the attachment
+	 * @return the attachment that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteAttachment(Attachment attachment)
+	@Indexable(type = IndexableType.DELETE)
+	public Attachment deleteAttachment(Attachment attachment)
 		throws SystemException {
-		attachmentPersistence.remove(attachment);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(attachment);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return attachmentPersistence.remove(attachment);
 	}
 
 	/**
@@ -285,6 +244,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * @return the attachment that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public Attachment updateAttachment(Attachment attachment)
 		throws SystemException {
 		return updateAttachment(attachment, true);
@@ -298,26 +258,12 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * @return the attachment that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public Attachment updateAttachment(Attachment attachment, boolean merge)
 		throws SystemException {
 		attachment.setNew(false);
 
-		attachment = attachmentPersistence.update(attachment, merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(attachment);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return attachment;
+		return attachmentPersistence.update(attachment, merge);
 	}
 
 	/**
@@ -504,42 +450,6 @@ public abstract class AttachmentLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the resource remote service.
-	 *
-	 * @return the resource remote service
-	 */
-	public ResourceService getResourceService() {
-		return resourceService;
-	}
-
-	/**
-	 * Sets the resource remote service.
-	 *
-	 * @param resourceService the resource remote service
-	 */
-	public void setResourceService(ResourceService resourceService) {
-		this.resourceService = resourceService;
-	}
-
-	/**
-	 * Returns the resource persistence.
-	 *
-	 * @return the resource persistence
-	 */
-	public ResourcePersistence getResourcePersistence() {
-		return resourcePersistence;
-	}
-
-	/**
-	 * Sets the resource persistence.
-	 *
-	 * @param resourcePersistence the resource persistence
-	 */
-	public void setResourcePersistence(ResourcePersistence resourcePersistence) {
-		this.resourcePersistence = resourcePersistence;
-	}
-
-	/**
 	 * Returns the user local service.
 	 *
 	 * @return the user local service
@@ -674,16 +584,11 @@ public abstract class AttachmentLocalServiceBaseImpl
 	protected CounterLocalService counterLocalService;
 	@BeanReference(type = ResourceLocalService.class)
 	protected ResourceLocalService resourceLocalService;
-	@BeanReference(type = ResourceService.class)
-	protected ResourceService resourceService;
-	@BeanReference(type = ResourcePersistence.class)
-	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserLocalService.class)
 	protected UserLocalService userLocalService;
 	@BeanReference(type = UserService.class)
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private static Log _log = LogFactoryUtil.getLog(AttachmentLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

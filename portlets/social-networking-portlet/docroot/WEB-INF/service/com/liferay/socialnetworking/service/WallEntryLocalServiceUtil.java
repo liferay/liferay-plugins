@@ -67,25 +67,28 @@ public class WallEntryLocalServiceUtil {
 	* Deletes the wall entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param wallEntryId the primary key of the wall entry
+	* @return the wall entry that was removed
 	* @throws PortalException if a wall entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteWallEntry(long wallEntryId)
+	public static com.liferay.socialnetworking.model.WallEntry deleteWallEntry(
+		long wallEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteWallEntry(wallEntryId);
+		return getService().deleteWallEntry(wallEntryId);
 	}
 
 	/**
 	* Deletes the wall entry from the database. Also notifies the appropriate model listeners.
 	*
 	* @param wallEntry the wall entry
+	* @return the wall entry that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteWallEntry(
+	public static com.liferay.socialnetworking.model.WallEntry deleteWallEntry(
 		com.liferay.socialnetworking.model.WallEntry wallEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteWallEntry(wallEntry);
+		return getService().deleteWallEntry(wallEntry);
 	}
 
 	/**

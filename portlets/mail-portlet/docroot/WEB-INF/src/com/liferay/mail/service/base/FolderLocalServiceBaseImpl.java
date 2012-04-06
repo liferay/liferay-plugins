@@ -33,19 +33,14 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
-import com.liferay.portal.service.ResourceService;
 import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.service.UserService;
-import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 
 import java.io.Serializable;
@@ -81,25 +76,11 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	 * @return the folder that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public Folder addFolder(Folder folder) throws SystemException {
 		folder.setNew(true);
 
-		folder = folderPersistence.update(folder, false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(folder);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return folder;
+		return folderPersistence.update(folder, false);
 	}
 
 	/**
@@ -116,50 +97,28 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	 * Deletes the folder with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param folderId the primary key of the folder
+	 * @return the folder that was removed
 	 * @throws PortalException if a folder with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteFolder(long folderId)
+	@Indexable(type = IndexableType.DELETE)
+	public Folder deleteFolder(long folderId)
 		throws PortalException, SystemException {
-		Folder folder = folderPersistence.remove(folderId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(folder);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return folderPersistence.remove(folderId);
 	}
 
 	/**
 	 * Deletes the folder from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param folder the folder
+	 * @return the folder that was removed
 	 * @throws PortalException
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteFolder(Folder folder)
+	@Indexable(type = IndexableType.DELETE)
+	public Folder deleteFolder(Folder folder)
 		throws PortalException, SystemException {
-		folderPersistence.remove(folder);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(folder);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return folderPersistence.remove(folder);
 	}
 
 	/**
@@ -283,6 +242,7 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	 * @return the folder that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public Folder updateFolder(Folder folder) throws SystemException {
 		return updateFolder(folder, true);
 	}
@@ -295,26 +255,12 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	 * @return the folder that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public Folder updateFolder(Folder folder, boolean merge)
 		throws SystemException {
 		folder.setNew(false);
 
-		folder = folderPersistence.update(folder, merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(folder);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return folder;
+		return folderPersistence.update(folder, merge);
 	}
 
 	/**
@@ -501,42 +447,6 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	}
 
 	/**
-	 * Returns the resource remote service.
-	 *
-	 * @return the resource remote service
-	 */
-	public ResourceService getResourceService() {
-		return resourceService;
-	}
-
-	/**
-	 * Sets the resource remote service.
-	 *
-	 * @param resourceService the resource remote service
-	 */
-	public void setResourceService(ResourceService resourceService) {
-		this.resourceService = resourceService;
-	}
-
-	/**
-	 * Returns the resource persistence.
-	 *
-	 * @return the resource persistence
-	 */
-	public ResourcePersistence getResourcePersistence() {
-		return resourcePersistence;
-	}
-
-	/**
-	 * Sets the resource persistence.
-	 *
-	 * @param resourcePersistence the resource persistence
-	 */
-	public void setResourcePersistence(ResourcePersistence resourcePersistence) {
-		this.resourcePersistence = resourcePersistence;
-	}
-
-	/**
 	 * Returns the user local service.
 	 *
 	 * @return the user local service
@@ -671,16 +581,11 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService,
 	protected CounterLocalService counterLocalService;
 	@BeanReference(type = ResourceLocalService.class)
 	protected ResourceLocalService resourceLocalService;
-	@BeanReference(type = ResourceService.class)
-	protected ResourceService resourceService;
-	@BeanReference(type = ResourcePersistence.class)
-	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserLocalService.class)
 	protected UserLocalService userLocalService;
 	@BeanReference(type = UserService.class)
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private static Log _log = LogFactoryUtil.getLog(FolderLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

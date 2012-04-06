@@ -66,10 +66,11 @@ public interface FeedLocalService extends PersistedModelLocalService {
 	* Deletes the feed with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param feedId the primary key of the feed
+	* @return the feed that was removed
 	* @throws PortalException if a feed with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteFeed(long feedId)
+	public com.liferay.twitter.model.Feed deleteFeed(long feedId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -77,9 +78,11 @@ public interface FeedLocalService extends PersistedModelLocalService {
 	* Deletes the feed from the database. Also notifies the appropriate model listeners.
 	*
 	* @param feed the feed
+	* @return the feed that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteFeed(com.liferay.twitter.model.Feed feed)
+	public com.liferay.twitter.model.Feed deleteFeed(
+		com.liferay.twitter.model.Feed feed)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

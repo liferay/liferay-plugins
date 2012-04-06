@@ -45,7 +45,6 @@ import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
-import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
@@ -1213,13 +1212,14 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @return the calendar event that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByUUID_G(String uuid, long groupId)
+	public CalendarEvent removeByUUID_G(String uuid, long groupId)
 		throws NoSuchEventException, SystemException {
 		CalendarEvent calendarEvent = findByUUID_G(uuid, groupId);
 
-		remove(calendarEvent);
+		return remove(calendarEvent);
 	}
 
 	/**
@@ -1444,8 +1444,6 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 	protected CalendarEventPersistence calendarEventPersistence;
 	@BeanReference(type = CalendarResourcePersistence.class)
 	protected CalendarResourcePersistence calendarResourcePersistence;
-	@BeanReference(type = ResourcePersistence.class)
-	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 	@BeanReference(type = ExpandoValuePersistence.class)

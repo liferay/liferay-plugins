@@ -68,10 +68,12 @@ public interface MeetupsRegistrationLocalService
 	* Deletes the meetups registration with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param meetupsRegistrationId the primary key of the meetups registration
+	* @return the meetups registration that was removed
 	* @throws PortalException if a meetups registration with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteMeetupsRegistration(long meetupsRegistrationId)
+	public com.liferay.socialnetworking.model.MeetupsRegistration deleteMeetupsRegistration(
+		long meetupsRegistrationId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -79,9 +81,10 @@ public interface MeetupsRegistrationLocalService
 	* Deletes the meetups registration from the database. Also notifies the appropriate model listeners.
 	*
 	* @param meetupsRegistration the meetups registration
+	* @return the meetups registration that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteMeetupsRegistration(
+	public com.liferay.socialnetworking.model.MeetupsRegistration deleteMeetupsRegistration(
 		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration)
 		throws com.liferay.portal.kernel.exception.SystemException;
 

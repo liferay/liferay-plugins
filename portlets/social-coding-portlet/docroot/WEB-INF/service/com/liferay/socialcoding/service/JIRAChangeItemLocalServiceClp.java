@@ -143,14 +143,17 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		return (com.liferay.socialcoding.model.JIRAChangeItem)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteJIRAChangeItem(long jiraChangeItemId)
+	public com.liferay.socialcoding.model.JIRAChangeItem deleteJIRAChangeItem(
+		long jiraChangeItemId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteJIRAChangeItemMethodKey2,
 				jiraChangeItemId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -169,16 +172,20 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.socialcoding.model.JIRAChangeItem)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteJIRAChangeItem(
+	public com.liferay.socialcoding.model.JIRAChangeItem deleteJIRAChangeItem(
 		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteJIRAChangeItemMethodKey3,
 				ClpSerializer.translateInput(jiraChangeItem));
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -193,6 +200,8 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.socialcoding.model.JIRAChangeItem)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@SuppressWarnings("rawtypes")

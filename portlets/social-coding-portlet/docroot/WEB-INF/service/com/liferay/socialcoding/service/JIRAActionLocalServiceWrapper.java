@@ -60,25 +60,28 @@ public class JIRAActionLocalServiceWrapper implements JIRAActionLocalService,
 	* Deletes the j i r a action with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param jiraActionId the primary key of the j i r a action
+	* @return the j i r a action that was removed
 	* @throws PortalException if a j i r a action with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteJIRAAction(long jiraActionId)
+	public com.liferay.socialcoding.model.JIRAAction deleteJIRAAction(
+		long jiraActionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_jiraActionLocalService.deleteJIRAAction(jiraActionId);
+		return _jiraActionLocalService.deleteJIRAAction(jiraActionId);
 	}
 
 	/**
 	* Deletes the j i r a action from the database. Also notifies the appropriate model listeners.
 	*
 	* @param jiraAction the j i r a action
+	* @return the j i r a action that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteJIRAAction(
+	public com.liferay.socialcoding.model.JIRAAction deleteJIRAAction(
 		com.liferay.socialcoding.model.JIRAAction jiraAction)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_jiraActionLocalService.deleteJIRAAction(jiraAction);
+		return _jiraActionLocalService.deleteJIRAAction(jiraAction);
 	}
 
 	/**

@@ -58,24 +58,27 @@ public class AssetLocalServiceWrapper implements AssetLocalService,
 	* Deletes the asset with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param assetId the primary key of the asset
+	* @return the asset that was removed
 	* @throws PortalException if a asset with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteAsset(long assetId)
+	public com.liferay.ams.model.Asset deleteAsset(long assetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_assetLocalService.deleteAsset(assetId);
+		return _assetLocalService.deleteAsset(assetId);
 	}
 
 	/**
 	* Deletes the asset from the database. Also notifies the appropriate model listeners.
 	*
 	* @param asset the asset
+	* @return the asset that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteAsset(com.liferay.ams.model.Asset asset)
+	public com.liferay.ams.model.Asset deleteAsset(
+		com.liferay.ams.model.Asset asset)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_assetLocalService.deleteAsset(asset);
+		return _assetLocalService.deleteAsset(asset);
 	}
 
 	/**

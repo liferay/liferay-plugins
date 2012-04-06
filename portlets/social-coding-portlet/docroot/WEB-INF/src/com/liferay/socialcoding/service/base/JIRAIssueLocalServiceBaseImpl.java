@@ -23,19 +23,14 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
-import com.liferay.portal.service.ResourceService;
 import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.service.UserService;
-import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 
 import com.liferay.socialcoding.model.JIRAIssue;
@@ -88,26 +83,12 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	 * @return the j i r a issue that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public JIRAIssue addJIRAIssue(JIRAIssue jiraIssue)
 		throws SystemException {
 		jiraIssue.setNew(true);
 
-		jiraIssue = jiraIssuePersistence.update(jiraIssue, false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(jiraIssue);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return jiraIssue;
+		return jiraIssuePersistence.update(jiraIssue, false);
 	}
 
 	/**
@@ -124,48 +105,27 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	 * Deletes the j i r a issue with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param jiraIssueId the primary key of the j i r a issue
+	 * @return the j i r a issue that was removed
 	 * @throws PortalException if a j i r a issue with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteJIRAIssue(long jiraIssueId)
+	@Indexable(type = IndexableType.DELETE)
+	public JIRAIssue deleteJIRAIssue(long jiraIssueId)
 		throws PortalException, SystemException {
-		JIRAIssue jiraIssue = jiraIssuePersistence.remove(jiraIssueId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(jiraIssue);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return jiraIssuePersistence.remove(jiraIssueId);
 	}
 
 	/**
 	 * Deletes the j i r a issue from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param jiraIssue the j i r a issue
+	 * @return the j i r a issue that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteJIRAIssue(JIRAIssue jiraIssue) throws SystemException {
-		jiraIssuePersistence.remove(jiraIssue);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(jiraIssue);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+	@Indexable(type = IndexableType.DELETE)
+	public JIRAIssue deleteJIRAIssue(JIRAIssue jiraIssue)
+		throws SystemException {
+		return jiraIssuePersistence.remove(jiraIssue);
 	}
 
 	/**
@@ -290,6 +250,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	 * @return the j i r a issue that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public JIRAIssue updateJIRAIssue(JIRAIssue jiraIssue)
 		throws SystemException {
 		return updateJIRAIssue(jiraIssue, true);
@@ -303,26 +264,12 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	 * @return the j i r a issue that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public JIRAIssue updateJIRAIssue(JIRAIssue jiraIssue, boolean merge)
 		throws SystemException {
 		jiraIssue.setNew(false);
 
-		jiraIssue = jiraIssuePersistence.update(jiraIssue, merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(jiraIssue);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return jiraIssue;
+		return jiraIssuePersistence.update(jiraIssue, merge);
 	}
 
 	/**
@@ -646,42 +593,6 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the resource remote service.
-	 *
-	 * @return the resource remote service
-	 */
-	public ResourceService getResourceService() {
-		return resourceService;
-	}
-
-	/**
-	 * Sets the resource remote service.
-	 *
-	 * @param resourceService the resource remote service
-	 */
-	public void setResourceService(ResourceService resourceService) {
-		this.resourceService = resourceService;
-	}
-
-	/**
-	 * Returns the resource persistence.
-	 *
-	 * @return the resource persistence
-	 */
-	public ResourcePersistence getResourcePersistence() {
-		return resourcePersistence;
-	}
-
-	/**
-	 * Sets the resource persistence.
-	 *
-	 * @param resourcePersistence the resource persistence
-	 */
-	public void setResourcePersistence(ResourcePersistence resourcePersistence) {
-		this.resourcePersistence = resourcePersistence;
-	}
-
-	/**
 	 * Returns the user local service.
 	 *
 	 * @return the user local service
@@ -830,16 +741,11 @@ public abstract class JIRAIssueLocalServiceBaseImpl
 	protected CounterLocalService counterLocalService;
 	@BeanReference(type = ResourceLocalService.class)
 	protected ResourceLocalService resourceLocalService;
-	@BeanReference(type = ResourceService.class)
-	protected ResourceService resourceService;
-	@BeanReference(type = ResourcePersistence.class)
-	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserLocalService.class)
 	protected UserLocalService userLocalService;
 	@BeanReference(type = UserService.class)
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private static Log _log = LogFactoryUtil.getLog(JIRAIssueLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

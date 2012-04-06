@@ -54,13 +54,13 @@ public class CalendarEventServiceImpl extends CalendarEventServiceBaseImpl {
 			firstReminder, secondReminder, serviceContext);
 	}
 
-	public void deleteCalendarEvent(long calendarEventId)
+	public CalendarEvent deleteCalendarEvent(long calendarEventId)
 		throws PortalException, SystemException {
 
 		CalendarEventPermission.check(
 			getPermissionChecker(), calendarEventId, ActionKeys.DELETE);
 
-		calendarEventLocalService.deleteCalendarEvent(calendarEventId);
+		return calendarEventLocalService.deleteCalendarEvent(calendarEventId);
 	}
 
 	public CalendarEvent getCalendarEvent(long calendarEventId)

@@ -61,27 +61,30 @@ public class CalendarResourceLocalServiceWrapper
 	* Deletes the calendar resource with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param calendarResourceId the primary key of the calendar resource
+	* @return the calendar resource that was removed
 	* @throws PortalException if a calendar resource with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteCalendarResource(long calendarResourceId)
+	public com.liferay.calendar.model.CalendarResource deleteCalendarResource(
+		long calendarResourceId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_calendarResourceLocalService.deleteCalendarResource(calendarResourceId);
+		return _calendarResourceLocalService.deleteCalendarResource(calendarResourceId);
 	}
 
 	/**
 	* Deletes the calendar resource from the database. Also notifies the appropriate model listeners.
 	*
 	* @param calendarResource the calendar resource
+	* @return the calendar resource that was removed
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteCalendarResource(
+	public com.liferay.calendar.model.CalendarResource deleteCalendarResource(
 		com.liferay.calendar.model.CalendarResource calendarResource)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_calendarResourceLocalService.deleteCalendarResource(calendarResource);
+		return _calendarResourceLocalService.deleteCalendarResource(calendarResource);
 	}
 
 	/**

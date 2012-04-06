@@ -170,14 +170,17 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 		return (com.liferay.opensocial.model.OAuthConsumer)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteOAuthConsumer(long oAuthConsumerId)
+	public com.liferay.opensocial.model.OAuthConsumer deleteOAuthConsumer(
+		long oAuthConsumerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteOAuthConsumerMethodKey2,
 				oAuthConsumerId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -196,16 +199,20 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.opensocial.model.OAuthConsumer)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteOAuthConsumer(
+	public com.liferay.opensocial.model.OAuthConsumer deleteOAuthConsumer(
 		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteOAuthConsumerMethodKey3,
 				ClpSerializer.translateInput(oAuthConsumer));
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -220,6 +227,8 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.opensocial.model.OAuthConsumer)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@SuppressWarnings("rawtypes")

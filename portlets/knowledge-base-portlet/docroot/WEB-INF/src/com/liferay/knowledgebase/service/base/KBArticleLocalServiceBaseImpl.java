@@ -33,11 +33,8 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.CompanyLocalService;
@@ -50,7 +47,6 @@ import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.PortletPreferencesLocalService;
 import com.liferay.portal.service.PortletPreferencesService;
 import com.liferay.portal.service.ResourceLocalService;
-import com.liferay.portal.service.ResourceService;
 import com.liferay.portal.service.SubscriptionLocalService;
 import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.service.UserService;
@@ -59,7 +55,6 @@ import com.liferay.portal.service.persistence.CompanyPersistence;
 import com.liferay.portal.service.persistence.GroupPersistence;
 import com.liferay.portal.service.persistence.LayoutPersistence;
 import com.liferay.portal.service.persistence.PortletPreferencesPersistence;
-import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.SubscriptionPersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.WorkflowInstanceLinkPersistence;
@@ -105,26 +100,12 @@ public abstract class KBArticleLocalServiceBaseImpl
 	 * @return the k b article that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public KBArticle addKBArticle(KBArticle kbArticle)
 		throws SystemException {
 		kbArticle.setNew(true);
 
-		kbArticle = kbArticlePersistence.update(kbArticle, false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(kbArticle);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return kbArticle;
+		return kbArticlePersistence.update(kbArticle, false);
 	}
 
 	/**
@@ -141,50 +122,28 @@ public abstract class KBArticleLocalServiceBaseImpl
 	 * Deletes the k b article with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param kbArticleId the primary key of the k b article
+	 * @return the k b article that was removed
 	 * @throws PortalException if a k b article with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteKBArticle(long kbArticleId)
+	@Indexable(type = IndexableType.DELETE)
+	public KBArticle deleteKBArticle(long kbArticleId)
 		throws PortalException, SystemException {
-		KBArticle kbArticle = kbArticlePersistence.remove(kbArticleId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(kbArticle);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return kbArticlePersistence.remove(kbArticleId);
 	}
 
 	/**
 	 * Deletes the k b article from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param kbArticle the k b article
+	 * @return the k b article that was removed
 	 * @throws PortalException
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteKBArticle(KBArticle kbArticle)
+	@Indexable(type = IndexableType.DELETE)
+	public KBArticle deleteKBArticle(KBArticle kbArticle)
 		throws PortalException, SystemException {
-		kbArticlePersistence.remove(kbArticle);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(kbArticle);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return kbArticlePersistence.remove(kbArticle);
 	}
 
 	/**
@@ -323,6 +282,7 @@ public abstract class KBArticleLocalServiceBaseImpl
 	 * @return the k b article that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public KBArticle updateKBArticle(KBArticle kbArticle)
 		throws SystemException {
 		return updateKBArticle(kbArticle, true);
@@ -336,26 +296,12 @@ public abstract class KBArticleLocalServiceBaseImpl
 	 * @return the k b article that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public KBArticle updateKBArticle(KBArticle kbArticle, boolean merge)
 		throws SystemException {
 		kbArticle.setNew(false);
 
-		kbArticle = kbArticlePersistence.update(kbArticle, merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(kbArticle);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return kbArticle;
+		return kbArticlePersistence.update(kbArticle, merge);
 	}
 
 	/**
@@ -765,42 +711,6 @@ public abstract class KBArticleLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the resource remote service.
-	 *
-	 * @return the resource remote service
-	 */
-	public ResourceService getResourceService() {
-		return resourceService;
-	}
-
-	/**
-	 * Sets the resource remote service.
-	 *
-	 * @param resourceService the resource remote service
-	 */
-	public void setResourceService(ResourceService resourceService) {
-		this.resourceService = resourceService;
-	}
-
-	/**
-	 * Returns the resource persistence.
-	 *
-	 * @return the resource persistence
-	 */
-	public ResourcePersistence getResourcePersistence() {
-		return resourcePersistence;
-	}
-
-	/**
-	 * Sets the resource persistence.
-	 *
-	 * @param resourcePersistence the resource persistence
-	 */
-	public void setResourcePersistence(ResourcePersistence resourcePersistence) {
-		this.resourcePersistence = resourcePersistence;
-	}
-
-	/**
 	 * Returns the subscription local service.
 	 *
 	 * @return the subscription local service
@@ -1167,10 +1077,6 @@ public abstract class KBArticleLocalServiceBaseImpl
 	protected PortletPreferencesPersistence portletPreferencesPersistence;
 	@BeanReference(type = ResourceLocalService.class)
 	protected ResourceLocalService resourceLocalService;
-	@BeanReference(type = ResourceService.class)
-	protected ResourceService resourceService;
-	@BeanReference(type = ResourcePersistence.class)
-	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = SubscriptionLocalService.class)
 	protected SubscriptionLocalService subscriptionLocalService;
 	@BeanReference(type = SubscriptionPersistence.class)
@@ -1199,6 +1105,5 @@ public abstract class KBArticleLocalServiceBaseImpl
 	protected SocialActivityLocalService socialActivityLocalService;
 	@BeanReference(type = SocialActivityPersistence.class)
 	protected SocialActivityPersistence socialActivityPersistence;
-	private static Log _log = LogFactoryUtil.getLog(KBArticleLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

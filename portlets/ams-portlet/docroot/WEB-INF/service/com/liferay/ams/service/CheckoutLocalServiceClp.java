@@ -135,14 +135,16 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 		return (com.liferay.ams.model.Checkout)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteCheckout(long checkoutId)
+	public com.liferay.ams.model.Checkout deleteCheckout(long checkoutId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteCheckoutMethodKey2,
 				checkoutId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -161,15 +163,20 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.ams.model.Checkout)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteCheckout(com.liferay.ams.model.Checkout checkout)
+	public com.liferay.ams.model.Checkout deleteCheckout(
+		com.liferay.ams.model.Checkout checkout)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteCheckoutMethodKey3,
 				ClpSerializer.translateInput(checkout));
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -184,6 +191,8 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.ams.model.Checkout)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@SuppressWarnings("rawtypes")

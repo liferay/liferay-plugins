@@ -67,27 +67,30 @@ public class KBTemplateLocalServiceUtil {
 	* Deletes the k b template with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kbTemplateId the primary key of the k b template
+	* @return the k b template that was removed
 	* @throws PortalException if a k b template with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKBTemplate(long kbTemplateId)
+	public static com.liferay.knowledgebase.model.KBTemplate deleteKBTemplate(
+		long kbTemplateId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKBTemplate(kbTemplateId);
+		return getService().deleteKBTemplate(kbTemplateId);
 	}
 
 	/**
 	* Deletes the k b template from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kbTemplate the k b template
+	* @return the k b template that was removed
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKBTemplate(
+	public static com.liferay.knowledgebase.model.KBTemplate deleteKBTemplate(
 		com.liferay.knowledgebase.model.KBTemplate kbTemplate)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKBTemplate(kbTemplate);
+		return getService().deleteKBTemplate(kbTemplate);
 	}
 
 	/**

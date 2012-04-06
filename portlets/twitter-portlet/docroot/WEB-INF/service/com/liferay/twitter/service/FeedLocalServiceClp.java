@@ -144,14 +144,16 @@ public class FeedLocalServiceClp implements FeedLocalService {
 		return (com.liferay.twitter.model.Feed)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteFeed(long feedId)
+	public com.liferay.twitter.model.Feed deleteFeed(long feedId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteFeedMethodKey2,
 				feedId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -170,15 +172,20 @@ public class FeedLocalServiceClp implements FeedLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.twitter.model.Feed)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteFeed(com.liferay.twitter.model.Feed feed)
+	public com.liferay.twitter.model.Feed deleteFeed(
+		com.liferay.twitter.model.Feed feed)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteFeedMethodKey3,
 				ClpSerializer.translateInput(feed));
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -193,6 +200,8 @@ public class FeedLocalServiceClp implements FeedLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.twitter.model.Feed)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@SuppressWarnings("rawtypes")

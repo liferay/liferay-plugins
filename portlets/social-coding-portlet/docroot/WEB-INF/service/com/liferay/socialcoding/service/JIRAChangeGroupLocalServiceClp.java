@@ -141,14 +141,17 @@ public class JIRAChangeGroupLocalServiceClp
 		return (com.liferay.socialcoding.model.JIRAChangeGroup)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteJIRAChangeGroup(long jiraChangeGroupId)
+	public com.liferay.socialcoding.model.JIRAChangeGroup deleteJIRAChangeGroup(
+		long jiraChangeGroupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteJIRAChangeGroupMethodKey2,
 				jiraChangeGroupId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -167,16 +170,20 @@ public class JIRAChangeGroupLocalServiceClp
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.socialcoding.model.JIRAChangeGroup)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteJIRAChangeGroup(
+	public com.liferay.socialcoding.model.JIRAChangeGroup deleteJIRAChangeGroup(
 		com.liferay.socialcoding.model.JIRAChangeGroup jiraChangeGroup)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteJIRAChangeGroupMethodKey3,
 				ClpSerializer.translateInput(jiraChangeGroup));
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -191,6 +198,8 @@ public class JIRAChangeGroupLocalServiceClp
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.socialcoding.model.JIRAChangeGroup)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@SuppressWarnings("rawtypes")

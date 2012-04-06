@@ -61,27 +61,30 @@ public class CalendarEventLocalServiceWrapper
 	* Deletes the calendar event with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param calendarEventId the primary key of the calendar event
+	* @return the calendar event that was removed
 	* @throws PortalException if a calendar event with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteCalendarEvent(long calendarEventId)
+	public com.liferay.calendar.model.CalendarEvent deleteCalendarEvent(
+		long calendarEventId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_calendarEventLocalService.deleteCalendarEvent(calendarEventId);
+		return _calendarEventLocalService.deleteCalendarEvent(calendarEventId);
 	}
 
 	/**
 	* Deletes the calendar event from the database. Also notifies the appropriate model listeners.
 	*
 	* @param calendarEvent the calendar event
+	* @return the calendar event that was removed
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteCalendarEvent(
+	public com.liferay.calendar.model.CalendarEvent deleteCalendarEvent(
 		com.liferay.calendar.model.CalendarEvent calendarEvent)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_calendarEventLocalService.deleteCalendarEvent(calendarEvent);
+		return _calendarEventLocalService.deleteCalendarEvent(calendarEvent);
 	}
 
 	/**

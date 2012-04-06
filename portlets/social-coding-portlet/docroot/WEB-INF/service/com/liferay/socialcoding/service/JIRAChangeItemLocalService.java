@@ -67,10 +67,12 @@ public interface JIRAChangeItemLocalService extends PersistedModelLocalService {
 	* Deletes the j i r a change item with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param jiraChangeItemId the primary key of the j i r a change item
+	* @return the j i r a change item that was removed
 	* @throws PortalException if a j i r a change item with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteJIRAChangeItem(long jiraChangeItemId)
+	public com.liferay.socialcoding.model.JIRAChangeItem deleteJIRAChangeItem(
+		long jiraChangeItemId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -78,9 +80,10 @@ public interface JIRAChangeItemLocalService extends PersistedModelLocalService {
 	* Deletes the j i r a change item from the database. Also notifies the appropriate model listeners.
 	*
 	* @param jiraChangeItem the j i r a change item
+	* @return the j i r a change item that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteJIRAChangeItem(
+	public com.liferay.socialcoding.model.JIRAChangeItem deleteJIRAChangeItem(
 		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem)
 		throws com.liferay.portal.kernel.exception.SystemException;
 

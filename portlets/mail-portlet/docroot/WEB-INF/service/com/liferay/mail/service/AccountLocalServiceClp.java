@@ -162,14 +162,16 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		return (com.liferay.mail.model.Account)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteAccount(long accountId)
+	public com.liferay.mail.model.Account deleteAccount(long accountId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteAccountMethodKey2,
 				accountId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -188,16 +190,21 @@ public class AccountLocalServiceClp implements AccountLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.mail.model.Account)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteAccount(com.liferay.mail.model.Account account)
+	public com.liferay.mail.model.Account deleteAccount(
+		com.liferay.mail.model.Account account)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteAccountMethodKey3,
 				ClpSerializer.translateInput(account));
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -216,6 +223,8 @@ public class AccountLocalServiceClp implements AccountLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.mail.model.Account)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@SuppressWarnings("rawtypes")

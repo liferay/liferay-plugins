@@ -67,25 +67,28 @@ public class MeetupsEntryLocalServiceUtil {
 	* Deletes the meetups entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param meetupsEntryId the primary key of the meetups entry
+	* @return the meetups entry that was removed
 	* @throws PortalException if a meetups entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteMeetupsEntry(long meetupsEntryId)
+	public static com.liferay.socialnetworking.model.MeetupsEntry deleteMeetupsEntry(
+		long meetupsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteMeetupsEntry(meetupsEntryId);
+		return getService().deleteMeetupsEntry(meetupsEntryId);
 	}
 
 	/**
 	* Deletes the meetups entry from the database. Also notifies the appropriate model listeners.
 	*
 	* @param meetupsEntry the meetups entry
+	* @return the meetups entry that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteMeetupsEntry(
+	public static com.liferay.socialnetworking.model.MeetupsEntry deleteMeetupsEntry(
 		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteMeetupsEntry(meetupsEntry);
+		return getService().deleteMeetupsEntry(meetupsEntry);
 	}
 
 	/**

@@ -188,14 +188,16 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		return (com.liferay.mail.model.Message)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteMessage(long messageId)
+	public com.liferay.mail.model.Message deleteMessage(long messageId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteMessageMethodKey2,
 				messageId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -214,16 +216,21 @@ public class MessageLocalServiceClp implements MessageLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.mail.model.Message)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteMessage(com.liferay.mail.model.Message message)
+	public com.liferay.mail.model.Message deleteMessage(
+		com.liferay.mail.model.Message message)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteMessageMethodKey3,
 				ClpSerializer.translateInput(message));
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -242,6 +249,8 @@ public class MessageLocalServiceClp implements MessageLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.mail.model.Message)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@SuppressWarnings("rawtypes")

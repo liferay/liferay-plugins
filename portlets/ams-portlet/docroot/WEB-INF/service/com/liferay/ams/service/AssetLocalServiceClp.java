@@ -134,14 +134,16 @@ public class AssetLocalServiceClp implements AssetLocalService {
 		return (com.liferay.ams.model.Asset)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteAsset(long assetId)
+	public com.liferay.ams.model.Asset deleteAsset(long assetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteAssetMethodKey2,
 				assetId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -160,15 +162,20 @@ public class AssetLocalServiceClp implements AssetLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.ams.model.Asset)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteAsset(com.liferay.ams.model.Asset asset)
+	public com.liferay.ams.model.Asset deleteAsset(
+		com.liferay.ams.model.Asset asset)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteAssetMethodKey3,
 				ClpSerializer.translateInput(asset));
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -183,6 +190,8 @@ public class AssetLocalServiceClp implements AssetLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.ams.model.Asset)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@SuppressWarnings("rawtypes")

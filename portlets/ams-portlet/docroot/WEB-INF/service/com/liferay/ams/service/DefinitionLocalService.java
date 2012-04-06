@@ -66,10 +66,11 @@ public interface DefinitionLocalService extends PersistedModelLocalService {
 	* Deletes the definition with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param definitionId the primary key of the definition
+	* @return the definition that was removed
 	* @throws PortalException if a definition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteDefinition(long definitionId)
+	public com.liferay.ams.model.Definition deleteDefinition(long definitionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -77,9 +78,11 @@ public interface DefinitionLocalService extends PersistedModelLocalService {
 	* Deletes the definition from the database. Also notifies the appropriate model listeners.
 	*
 	* @param definition the definition
+	* @return the definition that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteDefinition(com.liferay.ams.model.Definition definition)
+	public com.liferay.ams.model.Definition deleteDefinition(
+		com.liferay.ams.model.Definition definition)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

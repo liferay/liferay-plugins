@@ -87,17 +87,17 @@ public class WSRPProducerLocalServiceImpl
 	}
 
 	@Override
-	public void deleteWSRPProducer(long wsrpProducerId)
+	public WSRPProducer deleteWSRPProducer(long wsrpProducerId)
 		throws PortalException, SystemException {
 
 		WSRPProducer wsrpProducer = wsrpProducerPersistence.findByPrimaryKey(
 			wsrpProducerId);
 
-		deleteWSRPProducer(wsrpProducer);
+		return deleteWSRPProducer(wsrpProducer);
 	}
 
 	@Override
-	public void deleteWSRPProducer(WSRPProducer wsrpProducer)
+	public WSRPProducer deleteWSRPProducer(WSRPProducer wsrpProducer)
 		throws PortalException, SystemException {
 
 		// WSRP producer
@@ -107,6 +107,8 @@ public class WSRPProducerLocalServiceImpl
 		// Group
 
 		groupLocalService.deleteGroup(wsrpProducer.getGroupId());
+
+		return wsrpProducer;
 	}
 
 	public WSRPProducer getWSRPProducer(String wsrpProducerUuid)

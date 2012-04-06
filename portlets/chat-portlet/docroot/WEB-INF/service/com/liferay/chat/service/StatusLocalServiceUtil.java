@@ -66,24 +66,27 @@ public class StatusLocalServiceUtil {
 	* Deletes the status with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param statusId the primary key of the status
+	* @return the status that was removed
 	* @throws PortalException if a status with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteStatus(long statusId)
+	public static com.liferay.chat.model.Status deleteStatus(long statusId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteStatus(statusId);
+		return getService().deleteStatus(statusId);
 	}
 
 	/**
 	* Deletes the status from the database. Also notifies the appropriate model listeners.
 	*
 	* @param status the status
+	* @return the status that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteStatus(com.liferay.chat.model.Status status)
+	public static com.liferay.chat.model.Status deleteStatus(
+		com.liferay.chat.model.Status status)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteStatus(status);
+		return getService().deleteStatus(status);
 	}
 
 	/**

@@ -48,10 +48,11 @@ public class KBTemplateServiceUtil {
 				   .addKBTemplate(portletId, title, content, serviceContext);
 	}
 
-	public static void deleteKBTemplate(long kbTemplateId)
+	public static com.liferay.knowledgebase.model.KBTemplate deleteKBTemplate(
+		long kbTemplateId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKBTemplate(kbTemplateId);
+		return getService().deleteKBTemplate(kbTemplateId);
 	}
 
 	public static void deleteKBTemplates(long groupId, long[] kbTemplateIds)

@@ -67,10 +67,12 @@ public interface WSRPProducerLocalService extends PersistedModelLocalService {
 	* Deletes the w s r p producer with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param wsrpProducerId the primary key of the w s r p producer
+	* @return the w s r p producer that was removed
 	* @throws PortalException if a w s r p producer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteWSRPProducer(long wsrpProducerId)
+	public com.liferay.wsrp.model.WSRPProducer deleteWSRPProducer(
+		long wsrpProducerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -78,10 +80,11 @@ public interface WSRPProducerLocalService extends PersistedModelLocalService {
 	* Deletes the w s r p producer from the database. Also notifies the appropriate model listeners.
 	*
 	* @param wsrpProducer the w s r p producer
+	* @return the w s r p producer that was removed
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteWSRPProducer(
+	public com.liferay.wsrp.model.WSRPProducer deleteWSRPProducer(
 		com.liferay.wsrp.model.WSRPProducer wsrpProducer)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

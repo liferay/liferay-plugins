@@ -539,9 +539,11 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	*
 	* @param companyId the company ID
 	* @param url the url
+	* @return the gadget that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByC_U(long companyId, java.lang.String url)
+	public com.liferay.opensocial.model.Gadget removeByC_U(long companyId,
+		java.lang.String url)
 		throws com.liferay.opensocial.NoSuchGadgetException,
 			com.liferay.portal.kernel.exception.SystemException;
 

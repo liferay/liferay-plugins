@@ -161,14 +161,16 @@ public class FolderLocalServiceClp implements FolderLocalService {
 		return (com.liferay.mail.model.Folder)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteFolder(long folderId)
+	public com.liferay.mail.model.Folder deleteFolder(long folderId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteFolderMethodKey2,
 				folderId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -187,16 +189,21 @@ public class FolderLocalServiceClp implements FolderLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.mail.model.Folder)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteFolder(com.liferay.mail.model.Folder folder)
+	public com.liferay.mail.model.Folder deleteFolder(
+		com.liferay.mail.model.Folder folder)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteFolderMethodKey3,
 				ClpSerializer.translateInput(folder));
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -215,6 +222,8 @@ public class FolderLocalServiceClp implements FolderLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.mail.model.Folder)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@SuppressWarnings("rawtypes")

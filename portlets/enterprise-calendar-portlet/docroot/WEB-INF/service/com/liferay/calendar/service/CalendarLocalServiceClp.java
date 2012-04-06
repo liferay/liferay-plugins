@@ -93,8 +93,8 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 				java.util.Map.class, java.util.Map.class, int.class,
 				boolean.class, com.liferay.portal.service.ServiceContext.class);
 
-		_getResourceCalendarsMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getResourceCalendars", long.class, long.class);
+		_getCalendarResourceCalendarsMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getCalendarResourceCalendars", long.class, long.class);
 
 		_searchMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"search", long.class, long[].class, long[].class,
@@ -682,7 +682,7 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getResourceCalendarsMethodKey19,
+		MethodHandler methodHandler = new MethodHandler(_getCalendarResourceCalendarsMethodKey19,
 				groupId, calendarResourceId);
 
 		try {
@@ -959,7 +959,7 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 	private MethodKey _getBeanIdentifierMethodKey16;
 	private MethodKey _setBeanIdentifierMethodKey17;
 	private MethodKey _addCalendarMethodKey18;
-	private MethodKey _getResourceCalendarsMethodKey19;
+	private MethodKey _getCalendarResourceCalendarsMethodKey19;
 	private MethodKey _searchMethodKey20;
 	private MethodKey _searchMethodKey21;
 	private MethodKey _searchCountMethodKey22;

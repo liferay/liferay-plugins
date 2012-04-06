@@ -67,27 +67,30 @@ public class WSRPConsumerLocalServiceUtil {
 	* Deletes the w s r p consumer with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param wsrpConsumerId the primary key of the w s r p consumer
+	* @return the w s r p consumer that was removed
 	* @throws PortalException if a w s r p consumer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteWSRPConsumer(long wsrpConsumerId)
+	public static com.liferay.wsrp.model.WSRPConsumer deleteWSRPConsumer(
+		long wsrpConsumerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteWSRPConsumer(wsrpConsumerId);
+		return getService().deleteWSRPConsumer(wsrpConsumerId);
 	}
 
 	/**
 	* Deletes the w s r p consumer from the database. Also notifies the appropriate model listeners.
 	*
 	* @param wsrpConsumer the w s r p consumer
+	* @return the w s r p consumer that was removed
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteWSRPConsumer(
+	public static com.liferay.wsrp.model.WSRPConsumer deleteWSRPConsumer(
 		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteWSRPConsumer(wsrpConsumer);
+		return getService().deleteWSRPConsumer(wsrpConsumer);
 	}
 
 	/**

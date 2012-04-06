@@ -66,24 +66,27 @@ public class BarLocalServiceUtil {
 	* Deletes the bar with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param barId the primary key of the bar
+	* @return the bar that was removed
 	* @throws PortalException if a bar with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteBar(long barId)
+	public static com.liferay.testtransaction.model.Bar deleteBar(long barId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteBar(barId);
+		return getService().deleteBar(barId);
 	}
 
 	/**
 	* Deletes the bar from the database. Also notifies the appropriate model listeners.
 	*
 	* @param bar the bar
+	* @return the bar that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteBar(com.liferay.testtransaction.model.Bar bar)
+	public static com.liferay.testtransaction.model.Bar deleteBar(
+		com.liferay.testtransaction.model.Bar bar)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteBar(bar);
+		return getService().deleteBar(bar);
 	}
 
 	/**

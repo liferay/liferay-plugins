@@ -67,26 +67,30 @@ public class GadgetLocalServiceUtil {
 	* Deletes the gadget with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param gadgetId the primary key of the gadget
+	* @return the gadget that was removed
 	* @throws PortalException if a gadget with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteGadget(long gadgetId)
+	public static com.liferay.opensocial.model.Gadget deleteGadget(
+		long gadgetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteGadget(gadgetId);
+		return getService().deleteGadget(gadgetId);
 	}
 
 	/**
 	* Deletes the gadget from the database. Also notifies the appropriate model listeners.
 	*
 	* @param gadget the gadget
+	* @return the gadget that was removed
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteGadget(com.liferay.opensocial.model.Gadget gadget)
+	public static com.liferay.opensocial.model.Gadget deleteGadget(
+		com.liferay.opensocial.model.Gadget gadget)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteGadget(gadget);
+		return getService().deleteGadget(gadget);
 	}
 
 	/**

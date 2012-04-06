@@ -66,26 +66,29 @@ public class FolderLocalServiceUtil {
 	* Deletes the folder with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param folderId the primary key of the folder
+	* @return the folder that was removed
 	* @throws PortalException if a folder with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteFolder(long folderId)
+	public static com.liferay.mail.model.Folder deleteFolder(long folderId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteFolder(folderId);
+		return getService().deleteFolder(folderId);
 	}
 
 	/**
 	* Deletes the folder from the database. Also notifies the appropriate model listeners.
 	*
 	* @param folder the folder
+	* @return the folder that was removed
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteFolder(com.liferay.mail.model.Folder folder)
+	public static com.liferay.mail.model.Folder deleteFolder(
+		com.liferay.mail.model.Folder folder)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteFolder(folder);
+		return getService().deleteFolder(folder);
 	}
 
 	/**

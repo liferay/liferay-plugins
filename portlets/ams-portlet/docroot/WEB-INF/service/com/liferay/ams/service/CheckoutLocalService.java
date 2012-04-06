@@ -66,10 +66,11 @@ public interface CheckoutLocalService extends PersistedModelLocalService {
 	* Deletes the checkout with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param checkoutId the primary key of the checkout
+	* @return the checkout that was removed
 	* @throws PortalException if a checkout with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteCheckout(long checkoutId)
+	public com.liferay.ams.model.Checkout deleteCheckout(long checkoutId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -77,9 +78,11 @@ public interface CheckoutLocalService extends PersistedModelLocalService {
 	* Deletes the checkout from the database. Also notifies the appropriate model listeners.
 	*
 	* @param checkout the checkout
+	* @return the checkout that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteCheckout(com.liferay.ams.model.Checkout checkout)
+	public com.liferay.ams.model.Checkout deleteCheckout(
+		com.liferay.ams.model.Checkout checkout)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

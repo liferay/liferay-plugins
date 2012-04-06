@@ -164,14 +164,17 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		return (com.liferay.socialnetworking.model.WallEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteWallEntry(long wallEntryId)
+	public com.liferay.socialnetworking.model.WallEntry deleteWallEntry(
+		long wallEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteWallEntryMethodKey2,
 				wallEntryId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -190,16 +193,20 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.socialnetworking.model.WallEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteWallEntry(
+	public com.liferay.socialnetworking.model.WallEntry deleteWallEntry(
 		com.liferay.socialnetworking.model.WallEntry wallEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteWallEntryMethodKey3,
 				ClpSerializer.translateInput(wallEntry));
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -214,6 +221,8 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.socialnetworking.model.WallEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@SuppressWarnings("rawtypes")

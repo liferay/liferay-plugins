@@ -67,25 +67,28 @@ public class SVNRepositoryLocalServiceUtil {
 	* Deletes the s v n repository with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param svnRepositoryId the primary key of the s v n repository
+	* @return the s v n repository that was removed
 	* @throws PortalException if a s v n repository with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteSVNRepository(long svnRepositoryId)
+	public static com.liferay.socialcoding.model.SVNRepository deleteSVNRepository(
+		long svnRepositoryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteSVNRepository(svnRepositoryId);
+		return getService().deleteSVNRepository(svnRepositoryId);
 	}
 
 	/**
 	* Deletes the s v n repository from the database. Also notifies the appropriate model listeners.
 	*
 	* @param svnRepository the s v n repository
+	* @return the s v n repository that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteSVNRepository(
+	public static com.liferay.socialcoding.model.SVNRepository deleteSVNRepository(
 		com.liferay.socialcoding.model.SVNRepository svnRepository)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteSVNRepository(svnRepository);
+		return getService().deleteSVNRepository(svnRepository);
 	}
 
 	/**

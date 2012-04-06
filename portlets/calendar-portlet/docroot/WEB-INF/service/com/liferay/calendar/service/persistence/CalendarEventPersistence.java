@@ -302,9 +302,11 @@ public interface CalendarEventPersistence extends BasePersistence<CalendarEvent>
 	*
 	* @param uuid the uuid
 	* @param groupId the group ID
+	* @return the calendar event that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByUUID_G(java.lang.String uuid, long groupId)
+	public com.liferay.calendar.model.CalendarEvent removeByUUID_G(
+		java.lang.String uuid, long groupId)
 		throws com.liferay.calendar.NoSuchEventException,
 			com.liferay.portal.kernel.exception.SystemException;
 

@@ -67,27 +67,30 @@ public class KBArticleLocalServiceUtil {
 	* Deletes the k b article with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kbArticleId the primary key of the k b article
+	* @return the k b article that was removed
 	* @throws PortalException if a k b article with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKBArticle(long kbArticleId)
+	public static com.liferay.knowledgebase.model.KBArticle deleteKBArticle(
+		long kbArticleId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKBArticle(kbArticleId);
+		return getService().deleteKBArticle(kbArticleId);
 	}
 
 	/**
 	* Deletes the k b article from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kbArticle the k b article
+	* @return the k b article that was removed
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKBArticle(
+	public static com.liferay.knowledgebase.model.KBArticle deleteKBArticle(
 		com.liferay.knowledgebase.model.KBArticle kbArticle)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKBArticle(kbArticle);
+		return getService().deleteKBArticle(kbArticle);
 	}
 
 	/**

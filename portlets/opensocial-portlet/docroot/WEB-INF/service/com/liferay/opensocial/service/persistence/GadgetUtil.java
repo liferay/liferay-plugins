@@ -696,12 +696,14 @@ public class GadgetUtil {
 	*
 	* @param companyId the company ID
 	* @param url the url
+	* @return the gadget that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByC_U(long companyId, java.lang.String url)
+	public static com.liferay.opensocial.model.Gadget removeByC_U(
+		long companyId, java.lang.String url)
 		throws com.liferay.opensocial.NoSuchGadgetException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByC_U(companyId, url);
+		return getPersistence().removeByC_U(companyId, url);
 	}
 
 	/**

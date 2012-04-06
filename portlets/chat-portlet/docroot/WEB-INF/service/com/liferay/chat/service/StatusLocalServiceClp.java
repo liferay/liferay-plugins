@@ -156,14 +156,16 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		return (com.liferay.chat.model.Status)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteStatus(long statusId)
+	public com.liferay.chat.model.Status deleteStatus(long statusId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteStatusMethodKey2,
 				statusId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -182,15 +184,20 @@ public class StatusLocalServiceClp implements StatusLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.chat.model.Status)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteStatus(com.liferay.chat.model.Status status)
+	public com.liferay.chat.model.Status deleteStatus(
+		com.liferay.chat.model.Status status)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteStatusMethodKey3,
 				ClpSerializer.translateInput(status));
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -205,6 +212,8 @@ public class StatusLocalServiceClp implements StatusLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.chat.model.Status)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@SuppressWarnings("rawtypes")

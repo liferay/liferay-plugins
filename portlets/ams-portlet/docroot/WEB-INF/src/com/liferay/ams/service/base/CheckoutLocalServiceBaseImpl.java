@@ -33,19 +33,14 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
-import com.liferay.portal.service.ResourceService;
 import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.service.UserService;
-import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 
 import java.io.Serializable;
@@ -81,25 +76,11 @@ public abstract class CheckoutLocalServiceBaseImpl
 	 * @return the checkout that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public Checkout addCheckout(Checkout checkout) throws SystemException {
 		checkout.setNew(true);
 
-		checkout = checkoutPersistence.update(checkout, false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(checkout);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return checkout;
+		return checkoutPersistence.update(checkout, false);
 	}
 
 	/**
@@ -116,48 +97,26 @@ public abstract class CheckoutLocalServiceBaseImpl
 	 * Deletes the checkout with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param checkoutId the primary key of the checkout
+	 * @return the checkout that was removed
 	 * @throws PortalException if a checkout with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteCheckout(long checkoutId)
+	@Indexable(type = IndexableType.DELETE)
+	public Checkout deleteCheckout(long checkoutId)
 		throws PortalException, SystemException {
-		Checkout checkout = checkoutPersistence.remove(checkoutId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(checkout);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return checkoutPersistence.remove(checkoutId);
 	}
 
 	/**
 	 * Deletes the checkout from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param checkout the checkout
+	 * @return the checkout that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteCheckout(Checkout checkout) throws SystemException {
-		checkoutPersistence.remove(checkout);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(checkout);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+	@Indexable(type = IndexableType.DELETE)
+	public Checkout deleteCheckout(Checkout checkout) throws SystemException {
+		return checkoutPersistence.remove(checkout);
 	}
 
 	/**
@@ -281,6 +240,7 @@ public abstract class CheckoutLocalServiceBaseImpl
 	 * @return the checkout that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public Checkout updateCheckout(Checkout checkout) throws SystemException {
 		return updateCheckout(checkout, true);
 	}
@@ -293,26 +253,12 @@ public abstract class CheckoutLocalServiceBaseImpl
 	 * @return the checkout that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public Checkout updateCheckout(Checkout checkout, boolean merge)
 		throws SystemException {
 		checkout.setNew(false);
 
-		checkout = checkoutPersistence.update(checkout, merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(checkout);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return checkout;
+		return checkoutPersistence.update(checkout, merge);
 	}
 
 	/**
@@ -500,42 +446,6 @@ public abstract class CheckoutLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the resource remote service.
-	 *
-	 * @return the resource remote service
-	 */
-	public ResourceService getResourceService() {
-		return resourceService;
-	}
-
-	/**
-	 * Sets the resource remote service.
-	 *
-	 * @param resourceService the resource remote service
-	 */
-	public void setResourceService(ResourceService resourceService) {
-		this.resourceService = resourceService;
-	}
-
-	/**
-	 * Returns the resource persistence.
-	 *
-	 * @return the resource persistence
-	 */
-	public ResourcePersistence getResourcePersistence() {
-		return resourcePersistence;
-	}
-
-	/**
-	 * Sets the resource persistence.
-	 *
-	 * @param resourcePersistence the resource persistence
-	 */
-	public void setResourcePersistence(ResourcePersistence resourcePersistence) {
-		this.resourcePersistence = resourcePersistence;
-	}
-
-	/**
 	 * Returns the user local service.
 	 *
 	 * @return the user local service
@@ -670,16 +580,11 @@ public abstract class CheckoutLocalServiceBaseImpl
 	protected CounterLocalService counterLocalService;
 	@BeanReference(type = ResourceLocalService.class)
 	protected ResourceLocalService resourceLocalService;
-	@BeanReference(type = ResourceService.class)
-	protected ResourceService resourceService;
-	@BeanReference(type = ResourcePersistence.class)
-	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserLocalService.class)
 	protected UserLocalService userLocalService;
 	@BeanReference(type = UserService.class)
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private static Log _log = LogFactoryUtil.getLog(CheckoutLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

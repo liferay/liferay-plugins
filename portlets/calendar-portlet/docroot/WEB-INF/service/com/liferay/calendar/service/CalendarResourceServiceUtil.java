@@ -50,10 +50,11 @@ public class CalendarResourceServiceUtil {
 			descriptionMap, active, serviceContext);
 	}
 
-	public static void deleteCalendarResource(long calendarResourceId)
+	public static com.liferay.calendar.model.CalendarResource deleteCalendarResource(
+		long calendarResourceId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteCalendarResource(calendarResourceId);
+		return getService().deleteCalendarResource(calendarResourceId);
 	}
 
 	public static com.liferay.calendar.model.CalendarResource getCalendarResource(

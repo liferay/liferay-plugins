@@ -33,19 +33,14 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
-import com.liferay.portal.service.ResourceService;
 import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.service.UserService;
-import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 
 import java.io.Serializable;
@@ -81,25 +76,11 @@ public abstract class AccountLocalServiceBaseImpl implements AccountLocalService
 	 * @return the account that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public Account addAccount(Account account) throws SystemException {
 		account.setNew(true);
 
-		account = accountPersistence.update(account, false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(account);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return account;
+		return accountPersistence.update(account, false);
 	}
 
 	/**
@@ -116,50 +97,28 @@ public abstract class AccountLocalServiceBaseImpl implements AccountLocalService
 	 * Deletes the account with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param accountId the primary key of the account
+	 * @return the account that was removed
 	 * @throws PortalException if a account with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteAccount(long accountId)
+	@Indexable(type = IndexableType.DELETE)
+	public Account deleteAccount(long accountId)
 		throws PortalException, SystemException {
-		Account account = accountPersistence.remove(accountId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(account);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return accountPersistence.remove(accountId);
 	}
 
 	/**
 	 * Deletes the account from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param account the account
+	 * @return the account that was removed
 	 * @throws PortalException
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteAccount(Account account)
+	@Indexable(type = IndexableType.DELETE)
+	public Account deleteAccount(Account account)
 		throws PortalException, SystemException {
-		accountPersistence.remove(account);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(account);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return accountPersistence.remove(account);
 	}
 
 	/**
@@ -283,6 +242,7 @@ public abstract class AccountLocalServiceBaseImpl implements AccountLocalService
 	 * @return the account that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public Account updateAccount(Account account) throws SystemException {
 		return updateAccount(account, true);
 	}
@@ -295,26 +255,12 @@ public abstract class AccountLocalServiceBaseImpl implements AccountLocalService
 	 * @return the account that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public Account updateAccount(Account account, boolean merge)
 		throws SystemException {
 		account.setNew(false);
 
-		account = accountPersistence.update(account, merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(account);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return account;
+		return accountPersistence.update(account, merge);
 	}
 
 	/**
@@ -501,42 +447,6 @@ public abstract class AccountLocalServiceBaseImpl implements AccountLocalService
 	}
 
 	/**
-	 * Returns the resource remote service.
-	 *
-	 * @return the resource remote service
-	 */
-	public ResourceService getResourceService() {
-		return resourceService;
-	}
-
-	/**
-	 * Sets the resource remote service.
-	 *
-	 * @param resourceService the resource remote service
-	 */
-	public void setResourceService(ResourceService resourceService) {
-		this.resourceService = resourceService;
-	}
-
-	/**
-	 * Returns the resource persistence.
-	 *
-	 * @return the resource persistence
-	 */
-	public ResourcePersistence getResourcePersistence() {
-		return resourcePersistence;
-	}
-
-	/**
-	 * Sets the resource persistence.
-	 *
-	 * @param resourcePersistence the resource persistence
-	 */
-	public void setResourcePersistence(ResourcePersistence resourcePersistence) {
-		this.resourcePersistence = resourcePersistence;
-	}
-
-	/**
 	 * Returns the user local service.
 	 *
 	 * @return the user local service
@@ -671,16 +581,11 @@ public abstract class AccountLocalServiceBaseImpl implements AccountLocalService
 	protected CounterLocalService counterLocalService;
 	@BeanReference(type = ResourceLocalService.class)
 	protected ResourceLocalService resourceLocalService;
-	@BeanReference(type = ResourceService.class)
-	protected ResourceService resourceService;
-	@BeanReference(type = ResourcePersistence.class)
-	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserLocalService.class)
 	protected UserLocalService userLocalService;
 	@BeanReference(type = UserService.class)
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private static Log _log = LogFactoryUtil.getLog(AccountLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

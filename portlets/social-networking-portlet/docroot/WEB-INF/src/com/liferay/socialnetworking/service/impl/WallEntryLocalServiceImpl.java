@@ -100,26 +100,28 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void deleteWallEntry(long wallEntryId)
+	public WallEntry deleteWallEntry(long wallEntryId)
 		throws PortalException, SystemException {
 
 		WallEntry wallEntry = wallEntryPersistence.findByPrimaryKey(
 			wallEntryId);
 
-		deleteWallEntry(wallEntry);
+		return deleteWallEntry(wallEntry);
 	}
 
 	@Override
-	public void deleteWallEntry(WallEntry wallEntry) throws SystemException {
+	public WallEntry deleteWallEntry(WallEntry wallEntry) throws SystemException {
+
+		// Entry
+
+		wallEntryPersistence.remove(wallEntry);
 
 		// Social
 
 		SocialActivityLocalServiceUtil.deleteActivities(
 			WallEntry.class.getName(), wallEntry.getWallEntryId());
 
-		// Entry
-
-		wallEntryPersistence.remove(wallEntry);
+		return wallEntry;
 	}
 
 	public List<WallEntry> getWallEntries(long groupId, int start, int end)

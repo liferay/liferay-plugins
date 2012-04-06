@@ -416,12 +416,14 @@ public class AccountUtil {
 	*
 	* @param userId the user ID
 	* @param address the address
+	* @return the account that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByU_A(long userId, java.lang.String address)
+	public static com.liferay.mail.model.Account removeByU_A(long userId,
+		java.lang.String address)
 		throws com.liferay.mail.NoSuchAccountException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByU_A(userId, address);
+		return getPersistence().removeByU_A(userId, address);
 	}
 
 	/**

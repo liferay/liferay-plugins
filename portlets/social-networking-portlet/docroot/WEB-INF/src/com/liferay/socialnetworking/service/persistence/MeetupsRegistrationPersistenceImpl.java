@@ -38,7 +38,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
-import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
@@ -1602,14 +1601,15 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 *
 	 * @param userId the user ID
 	 * @param meetupsEntryId the meetups entry ID
+	 * @return the meetups registration that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByU_ME(long userId, long meetupsEntryId)
+	public MeetupsRegistration removeByU_ME(long userId, long meetupsEntryId)
 		throws NoSuchMeetupsRegistrationException, SystemException {
 		MeetupsRegistration meetupsRegistration = findByU_ME(userId,
 				meetupsEntryId);
 
-		remove(meetupsRegistration);
+		return remove(meetupsRegistration);
 	}
 
 	/**
@@ -1885,8 +1885,6 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	protected MeetupsRegistrationPersistence meetupsRegistrationPersistence;
 	@BeanReference(type = WallEntryPersistence.class)
 	protected WallEntryPersistence wallEntryPersistence;
-	@BeanReference(type = ResourcePersistence.class)
-	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 	private static final String _SQL_SELECT_MEETUPSREGISTRATION = "SELECT meetupsRegistration FROM MeetupsRegistration meetupsRegistration";

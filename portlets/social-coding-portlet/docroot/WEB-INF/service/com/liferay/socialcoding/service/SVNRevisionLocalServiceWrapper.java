@@ -60,25 +60,28 @@ public class SVNRevisionLocalServiceWrapper implements SVNRevisionLocalService,
 	* Deletes the s v n revision with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param svnRevisionId the primary key of the s v n revision
+	* @return the s v n revision that was removed
 	* @throws PortalException if a s v n revision with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteSVNRevision(long svnRevisionId)
+	public com.liferay.socialcoding.model.SVNRevision deleteSVNRevision(
+		long svnRevisionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_svnRevisionLocalService.deleteSVNRevision(svnRevisionId);
+		return _svnRevisionLocalService.deleteSVNRevision(svnRevisionId);
 	}
 
 	/**
 	* Deletes the s v n revision from the database. Also notifies the appropriate model listeners.
 	*
 	* @param svnRevision the s v n revision
+	* @return the s v n revision that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteSVNRevision(
+	public com.liferay.socialcoding.model.SVNRevision deleteSVNRevision(
 		com.liferay.socialcoding.model.SVNRevision svnRevision)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_svnRevisionLocalService.deleteSVNRevision(svnRevision);
+		return _svnRevisionLocalService.deleteSVNRevision(svnRevision);
 	}
 
 	/**

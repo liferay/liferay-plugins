@@ -33,19 +33,14 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
-import com.liferay.portal.service.ResourceService;
 import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.service.UserService;
-import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 
 import java.io.Serializable;
@@ -81,25 +76,11 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	 * @return the asset that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public Asset addAsset(Asset asset) throws SystemException {
 		asset.setNew(true);
 
-		asset = assetPersistence.update(asset, false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(asset);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return asset;
+		return assetPersistence.update(asset, false);
 	}
 
 	/**
@@ -116,48 +97,26 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	 * Deletes the asset with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param assetId the primary key of the asset
+	 * @return the asset that was removed
 	 * @throws PortalException if a asset with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteAsset(long assetId)
+	@Indexable(type = IndexableType.DELETE)
+	public Asset deleteAsset(long assetId)
 		throws PortalException, SystemException {
-		Asset asset = assetPersistence.remove(assetId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(asset);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return assetPersistence.remove(assetId);
 	}
 
 	/**
 	 * Deletes the asset from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param asset the asset
+	 * @return the asset that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteAsset(Asset asset) throws SystemException {
-		assetPersistence.remove(asset);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(asset);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+	@Indexable(type = IndexableType.DELETE)
+	public Asset deleteAsset(Asset asset) throws SystemException {
+		return assetPersistence.remove(asset);
 	}
 
 	/**
@@ -279,6 +238,7 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	 * @return the asset that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public Asset updateAsset(Asset asset) throws SystemException {
 		return updateAsset(asset, true);
 	}
@@ -291,26 +251,12 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	 * @return the asset that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public Asset updateAsset(Asset asset, boolean merge)
 		throws SystemException {
 		asset.setNew(false);
 
-		asset = assetPersistence.update(asset, merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(asset);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return asset;
+		return assetPersistence.update(asset, merge);
 	}
 
 	/**
@@ -498,42 +444,6 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	}
 
 	/**
-	 * Returns the resource remote service.
-	 *
-	 * @return the resource remote service
-	 */
-	public ResourceService getResourceService() {
-		return resourceService;
-	}
-
-	/**
-	 * Sets the resource remote service.
-	 *
-	 * @param resourceService the resource remote service
-	 */
-	public void setResourceService(ResourceService resourceService) {
-		this.resourceService = resourceService;
-	}
-
-	/**
-	 * Returns the resource persistence.
-	 *
-	 * @return the resource persistence
-	 */
-	public ResourcePersistence getResourcePersistence() {
-		return resourcePersistence;
-	}
-
-	/**
-	 * Sets the resource persistence.
-	 *
-	 * @param resourcePersistence the resource persistence
-	 */
-	public void setResourcePersistence(ResourcePersistence resourcePersistence) {
-		this.resourcePersistence = resourcePersistence;
-	}
-
-	/**
 	 * Returns the user local service.
 	 *
 	 * @return the user local service
@@ -668,16 +578,11 @@ public abstract class AssetLocalServiceBaseImpl implements AssetLocalService,
 	protected CounterLocalService counterLocalService;
 	@BeanReference(type = ResourceLocalService.class)
 	protected ResourceLocalService resourceLocalService;
-	@BeanReference(type = ResourceService.class)
-	protected ResourceService resourceService;
-	@BeanReference(type = ResourcePersistence.class)
-	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserLocalService.class)
 	protected UserLocalService userLocalService;
 	@BeanReference(type = UserService.class)
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private static Log _log = LogFactoryUtil.getLog(AssetLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

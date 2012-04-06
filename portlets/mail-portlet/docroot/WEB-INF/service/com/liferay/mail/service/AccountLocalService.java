@@ -66,10 +66,11 @@ public interface AccountLocalService extends PersistedModelLocalService {
 	* Deletes the account with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param accountId the primary key of the account
+	* @return the account that was removed
 	* @throws PortalException if a account with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteAccount(long accountId)
+	public com.liferay.mail.model.Account deleteAccount(long accountId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -77,10 +78,12 @@ public interface AccountLocalService extends PersistedModelLocalService {
 	* Deletes the account from the database. Also notifies the appropriate model listeners.
 	*
 	* @param account the account
+	* @return the account that was removed
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteAccount(com.liferay.mail.model.Account account)
+	public com.liferay.mail.model.Account deleteAccount(
+		com.liferay.mail.model.Account account)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

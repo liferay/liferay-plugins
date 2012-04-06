@@ -66,24 +66,27 @@ public class AssetLocalServiceUtil {
 	* Deletes the asset with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param assetId the primary key of the asset
+	* @return the asset that was removed
 	* @throws PortalException if a asset with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteAsset(long assetId)
+	public static com.liferay.ams.model.Asset deleteAsset(long assetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteAsset(assetId);
+		return getService().deleteAsset(assetId);
 	}
 
 	/**
 	* Deletes the asset from the database. Also notifies the appropriate model listeners.
 	*
 	* @param asset the asset
+	* @return the asset that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteAsset(com.liferay.ams.model.Asset asset)
+	public static com.liferay.ams.model.Asset deleteAsset(
+		com.liferay.ams.model.Asset asset)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteAsset(asset);
+		return getService().deleteAsset(asset);
 	}
 
 	/**

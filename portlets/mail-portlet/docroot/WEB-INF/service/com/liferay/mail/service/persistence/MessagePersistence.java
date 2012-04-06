@@ -409,9 +409,11 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	*
 	* @param folderId the folder ID
 	* @param remoteMessageId the remote message ID
+	* @return the message that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByF_R(long folderId, long remoteMessageId)
+	public com.liferay.mail.model.Message removeByF_R(long folderId,
+		long remoteMessageId)
 		throws com.liferay.mail.NoSuchMessageException,
 			com.liferay.portal.kernel.exception.SystemException;
 

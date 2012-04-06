@@ -420,9 +420,11 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 	*
 	* @param wsrpConsumerId the wsrp consumer ID
 	* @param portletHandle the portlet handle
+	* @return the w s r p consumer portlet that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByW_P(long wsrpConsumerId, java.lang.String portletHandle)
+	public com.liferay.wsrp.model.WSRPConsumerPortlet removeByW_P(
+		long wsrpConsumerId, java.lang.String portletHandle)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.wsrp.NoSuchConsumerPortletException;
 

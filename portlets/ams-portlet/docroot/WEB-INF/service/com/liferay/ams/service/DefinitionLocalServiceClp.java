@@ -135,14 +135,16 @@ public class DefinitionLocalServiceClp implements DefinitionLocalService {
 		return (com.liferay.ams.model.Definition)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteDefinition(long definitionId)
+	public com.liferay.ams.model.Definition deleteDefinition(long definitionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteDefinitionMethodKey2,
 				definitionId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -161,15 +163,20 @@ public class DefinitionLocalServiceClp implements DefinitionLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.ams.model.Definition)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteDefinition(com.liferay.ams.model.Definition definition)
+	public com.liferay.ams.model.Definition deleteDefinition(
+		com.liferay.ams.model.Definition definition)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteDefinitionMethodKey3,
 				ClpSerializer.translateInput(definition));
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -184,6 +191,8 @@ public class DefinitionLocalServiceClp implements DefinitionLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.ams.model.Definition)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@SuppressWarnings("rawtypes")

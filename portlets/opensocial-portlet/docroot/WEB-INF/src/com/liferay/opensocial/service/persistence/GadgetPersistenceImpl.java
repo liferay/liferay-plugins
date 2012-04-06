@@ -47,7 +47,6 @@ import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.security.permission.InlineSQLHelperUtil;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
-import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
@@ -2227,13 +2226,14 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 *
 	 * @param companyId the company ID
 	 * @param url the url
+	 * @return the gadget that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByC_U(long companyId, String url)
+	public Gadget removeByC_U(long companyId, String url)
 		throws NoSuchGadgetException, SystemException {
 		Gadget gadget = findByC_U(companyId, url);
 
-		remove(gadget);
+		return remove(gadget);
 	}
 
 	/**
@@ -2616,8 +2616,6 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	protected OAuthConsumerPersistence oAuthConsumerPersistence;
 	@BeanReference(type = OAuthTokenPersistence.class)
 	protected OAuthTokenPersistence oAuthTokenPersistence;
-	@BeanReference(type = ResourcePersistence.class)
-	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 	private static final String _SQL_SELECT_GADGET = "SELECT gadget FROM Gadget gadget";

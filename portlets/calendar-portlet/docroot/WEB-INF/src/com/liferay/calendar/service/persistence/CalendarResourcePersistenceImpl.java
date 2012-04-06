@@ -48,7 +48,6 @@ import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.security.permission.InlineSQLHelperUtil;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
-import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
@@ -4271,13 +4270,14 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @return the calendar resource that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByUUID_G(String uuid, long groupId)
+	public CalendarResource removeByUUID_G(String uuid, long groupId)
 		throws NoSuchResourceException, SystemException {
 		CalendarResource calendarResource = findByUUID_G(uuid, groupId);
 
-		remove(calendarResource);
+		return remove(calendarResource);
 	}
 
 	/**
@@ -4311,13 +4311,14 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	 *
 	 * @param classNameId the class name ID
 	 * @param classPK the class p k
+	 * @return the calendar resource that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByC_C(long classNameId, long classPK)
+	public CalendarResource removeByC_C(long classNameId, long classPK)
 		throws NoSuchResourceException, SystemException {
 		CalendarResource calendarResource = findByC_C(classNameId, classPK);
 
-		remove(calendarResource);
+		return remove(calendarResource);
 	}
 
 	/**
@@ -5239,8 +5240,6 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	protected CalendarEventPersistence calendarEventPersistence;
 	@BeanReference(type = CalendarResourcePersistence.class)
 	protected CalendarResourcePersistence calendarResourcePersistence;
-	@BeanReference(type = ResourcePersistence.class)
-	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 	@BeanReference(type = ExpandoValuePersistence.class)

@@ -551,12 +551,14 @@ public class MessageUtil {
 	*
 	* @param folderId the folder ID
 	* @param remoteMessageId the remote message ID
+	* @return the message that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByF_R(long folderId, long remoteMessageId)
+	public static com.liferay.mail.model.Message removeByF_R(long folderId,
+		long remoteMessageId)
 		throws com.liferay.mail.NoSuchMessageException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByF_R(folderId, remoteMessageId);
+		return getPersistence().removeByF_R(folderId, remoteMessageId);
 	}
 
 	/**
