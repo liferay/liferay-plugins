@@ -36,10 +36,10 @@ public class AppServiceImpl extends AppServiceBaseImpl {
 			getUserId(), remoteAppId, version, inputStream);
 	}
 
-	public void deleteApp(long appId) throws PortalException, SystemException {
+	public App deleteApp(long appId) throws PortalException, SystemException {
 		MarketplacePermission.check(getPermissionChecker());
 
-		appLocalService.deleteApp(appId);
+		return appLocalService.deleteApp(appId);
 	}
 
 	public void installApp(long remoteAppId)

@@ -66,24 +66,27 @@ public class AppLocalServiceUtil {
 	* Deletes the app with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param appId the primary key of the app
+	* @return the app that was removed
 	* @throws PortalException if a app with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteApp(long appId)
+	public static com.liferay.marketplace.model.App deleteApp(long appId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteApp(appId);
+		return getService().deleteApp(appId);
 	}
 
 	/**
 	* Deletes the app from the database. Also notifies the appropriate model listeners.
 	*
 	* @param app the app
+	* @return the app that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteApp(com.liferay.marketplace.model.App app)
+	public static com.liferay.marketplace.model.App deleteApp(
+		com.liferay.marketplace.model.App app)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteApp(app);
+		return getService().deleteApp(app);
 	}
 
 	/**

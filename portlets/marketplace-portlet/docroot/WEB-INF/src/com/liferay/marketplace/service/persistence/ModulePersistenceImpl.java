@@ -45,7 +45,6 @@ import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
-import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
@@ -1987,13 +1986,14 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	 *
 	 * @param appId the app ID
 	 * @param contextName the context name
+	 * @return the module that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByA_C(long appId, String contextName)
+	public Module removeByA_C(long appId, String contextName)
 		throws NoSuchModuleException, SystemException {
 		Module module = findByA_C(appId, contextName);
 
-		remove(module);
+		return remove(module);
 	}
 
 	/**
@@ -2334,8 +2334,6 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	protected AppPersistence appPersistence;
 	@BeanReference(type = ModulePersistence.class)
 	protected ModulePersistence modulePersistence;
-	@BeanReference(type = ResourcePersistence.class)
-	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 	private static final String _SQL_SELECT_MODULE = "SELECT module FROM Module module";

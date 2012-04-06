@@ -30,19 +30,14 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
-import com.liferay.portal.service.ResourceService;
 import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.service.UserService;
-import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 
 import java.io.Serializable;
@@ -78,25 +73,11 @@ public abstract class ModuleLocalServiceBaseImpl implements ModuleLocalService,
 	 * @return the module that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public Module addModule(Module module) throws SystemException {
 		module.setNew(true);
 
-		module = modulePersistence.update(module, false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(module);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return module;
+		return modulePersistence.update(module, false);
 	}
 
 	/**
@@ -113,48 +94,26 @@ public abstract class ModuleLocalServiceBaseImpl implements ModuleLocalService,
 	 * Deletes the module with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param moduleId the primary key of the module
+	 * @return the module that was removed
 	 * @throws PortalException if a module with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteModule(long moduleId)
+	@Indexable(type = IndexableType.DELETE)
+	public Module deleteModule(long moduleId)
 		throws PortalException, SystemException {
-		Module module = modulePersistence.remove(moduleId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(module);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return modulePersistence.remove(moduleId);
 	}
 
 	/**
 	 * Deletes the module from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param module the module
+	 * @return the module that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteModule(Module module) throws SystemException {
-		modulePersistence.remove(module);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(module);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+	@Indexable(type = IndexableType.DELETE)
+	public Module deleteModule(Module module) throws SystemException {
+		return modulePersistence.remove(module);
 	}
 
 	/**
@@ -278,6 +237,7 @@ public abstract class ModuleLocalServiceBaseImpl implements ModuleLocalService,
 	 * @return the module that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public Module updateModule(Module module) throws SystemException {
 		return updateModule(module, true);
 	}
@@ -290,26 +250,12 @@ public abstract class ModuleLocalServiceBaseImpl implements ModuleLocalService,
 	 * @return the module that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public Module updateModule(Module module, boolean merge)
 		throws SystemException {
 		module.setNew(false);
 
-		module = modulePersistence.update(module, merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(module);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return module;
+		return modulePersistence.update(module, merge);
 	}
 
 	/**
@@ -437,42 +383,6 @@ public abstract class ModuleLocalServiceBaseImpl implements ModuleLocalService,
 	public void setResourceLocalService(
 		ResourceLocalService resourceLocalService) {
 		this.resourceLocalService = resourceLocalService;
-	}
-
-	/**
-	 * Returns the resource remote service.
-	 *
-	 * @return the resource remote service
-	 */
-	public ResourceService getResourceService() {
-		return resourceService;
-	}
-
-	/**
-	 * Sets the resource remote service.
-	 *
-	 * @param resourceService the resource remote service
-	 */
-	public void setResourceService(ResourceService resourceService) {
-		this.resourceService = resourceService;
-	}
-
-	/**
-	 * Returns the resource persistence.
-	 *
-	 * @return the resource persistence
-	 */
-	public ResourcePersistence getResourcePersistence() {
-		return resourcePersistence;
-	}
-
-	/**
-	 * Sets the resource persistence.
-	 *
-	 * @param resourcePersistence the resource persistence
-	 */
-	public void setResourcePersistence(ResourcePersistence resourcePersistence) {
-		this.resourcePersistence = resourcePersistence;
 	}
 
 	/**
@@ -604,16 +514,11 @@ public abstract class ModuleLocalServiceBaseImpl implements ModuleLocalService,
 	protected CounterLocalService counterLocalService;
 	@BeanReference(type = ResourceLocalService.class)
 	protected ResourceLocalService resourceLocalService;
-	@BeanReference(type = ResourceService.class)
-	protected ResourceService resourceService;
-	@BeanReference(type = ResourcePersistence.class)
-	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserLocalService.class)
 	protected UserLocalService userLocalService;
 	@BeanReference(type = UserService.class)
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private static Log _log = LogFactoryUtil.getLog(ModuleLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
 }

@@ -65,9 +65,12 @@ import java.rmi.RemoteException;
  * @generated
  */
 public class AppServiceSoap {
-	public static void deleteApp(long appId) throws RemoteException {
+	public static com.liferay.marketplace.model.AppSoap deleteApp(long appId)
+		throws RemoteException {
 		try {
-			AppServiceUtil.deleteApp(appId);
+			com.liferay.marketplace.model.App returnValue = AppServiceUtil.deleteApp(appId);
+
+			return com.liferay.marketplace.model.AppSoap.toSoapModel(returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

@@ -77,14 +77,16 @@ public class AppServiceClp implements AppService {
 		return (com.liferay.marketplace.model.App)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteApp(long appId)
+	public com.liferay.marketplace.model.App deleteApp(long appId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteAppMethodKey1,
 				appId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -103,6 +105,8 @@ public class AppServiceClp implements AppService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.marketplace.model.App)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public void installApp(long remoteAppId)
