@@ -374,6 +374,20 @@
 />
 
 <p>
+	<h3>portal.properties</h3>
+</p>
+
+<p>
+	locales.beta=<%= _assertFalse(LanguageUtil.isBetaLocale(Locale.US)) %><br />
+
+	<%
+	String phoneNumber = PhoneNumberFormatUtil.format("123");
+	%>
+
+	phone.number.format.impl=<%= _assertTrue(phoneNumber.startsWith("(TEST")) %>
+</p>
+
+<p>
 	<h3>Services</h3>
 </p>
 
@@ -995,6 +1009,10 @@
 </p>
 
 <%!
+private static String _assertFalse(boolean value) {
+	return _assertTrue(!value);
+}
+
 private static String _assertTrue(boolean value) {
 	if (value) {
 		return "PASSED";
