@@ -27,6 +27,8 @@ page import="com.liferay.chat.service.StatusLocalServiceUtil" %><%@
 page import="com.liferay.portal.kernel.dao.orm.DynamicQuery" %><%@
 page import="com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %><%@
+page import="com.liferay.portal.kernel.format.PhoneNumberFormatUtil" %><%@
+page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.portlet.PortletClassLoaderUtil" %><%@
 page import="com.liferay.portal.kernel.util.FileUtil" %><%@
 page import="com.liferay.portal.kernel.util.HttpUtil" %><%@
@@ -50,7 +52,8 @@ page import="java.io.Writer" %>
 <%@ page import="java.net.ServerSocket" %><%@
 page import="java.net.Socket" %>
 
-<%@ page import="java.util.Map" %>
+<%@ page import="java.util.Locale" %><%@
+page import="java.util.Map" %>
 
 <portlet:defineObjects />
 
