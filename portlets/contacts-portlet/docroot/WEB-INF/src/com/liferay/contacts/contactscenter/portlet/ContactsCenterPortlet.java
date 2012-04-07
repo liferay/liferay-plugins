@@ -666,9 +666,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			Contact.class.getName(), user.getContactId(), addresses);
 	}
 
-	protected void updateAsset(ActionRequest actionRequest)
-		throws Exception {
-
+	protected void updateAsset(ActionRequest actionRequest) throws Exception {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
