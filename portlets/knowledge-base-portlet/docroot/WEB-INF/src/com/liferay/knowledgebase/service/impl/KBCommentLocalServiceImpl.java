@@ -76,7 +76,8 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	}
 
 	@Override
-	public KBComment deleteKBComment(KBComment kbComment) throws SystemException {
+	public KBComment deleteKBComment(KBComment kbComment)
+		throws SystemException {
 
 		// KB comment
 
@@ -87,7 +88,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		socialActivityLocalService.deleteActivities(
 			KBComment.class.getName(), kbComment.getKbCommentId());
 
-		return KBComment;
+		return kbComment;
 	}
 
 	@Override
