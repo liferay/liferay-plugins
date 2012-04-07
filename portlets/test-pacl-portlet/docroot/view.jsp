@@ -374,6 +374,19 @@
 />
 
 <p>
+	<h3>Language.properties</h3>
+</p>
+
+<p>
+	en_UK=<%= _assertEquals(LanguageUtil.get(Locale.UK, "stars"), "David Beckham") %><br />
+	en_US=<%= _assertEquals(LanguageUtil.get(Locale.US, "stars"), "Stars") %><br />
+	es_ES=<%= _assertEquals(LanguageUtil.get(new Locale("es"), "stars"), "Estrellas") %><br />
+	it_IT=<%= _assertEquals(LanguageUtil.get(Locale.ITALY, "stars"), "Stelle") %><br />
+	pt_BR=<%= _assertEquals(LanguageUtil.get(new Locale("pt", "BR"), "stars"), "Ricardo Kaka") %><br />
+	pt_PT=<%= _assertEquals(LanguageUtil.get(new Locale("pt", "PT"), "stars"), "Cristiano Ronaldo") %>
+</p>
+
+<p>
 	<h3>portal.properties</h3>
 </p>
 
@@ -1009,6 +1022,10 @@
 </p>
 
 <%!
+private static String _assertEquals(Object expected, Object actual) {
+	return _assertTrue(Validator.equals(expected, actual));
+}
+
 private static String _assertFalse(boolean value) {
 	return _assertTrue(!value);
 }
