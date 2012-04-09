@@ -18,17 +18,13 @@
 
 <%
 long entryId = ParamUtil.getLong(request, "entryId");
-
-Entry entry = null;
-
-if (entryId > 0) {
-	entry = EntryLocalServiceUtil.getEntry(entryId);
-}
 %>
 
-<c:if test="<%= entry != null %>">
+<c:if test="<%= entryId > 0 %>">
 
 	<%
+	Entry entry = EntryLocalServiceUtil.getEntry(entryId);
+
 	entry = entry.toEscapedModel();
 	%>
 
