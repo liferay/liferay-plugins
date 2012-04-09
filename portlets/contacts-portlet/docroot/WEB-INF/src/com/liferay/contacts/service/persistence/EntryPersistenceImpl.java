@@ -44,6 +44,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
+import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
@@ -1155,14 +1156,13 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 *
 	 * @param userId the user ID
 	 * @param emailAddress the email address
-	 * @return the entry that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Entry removeByU_EA(long userId, String emailAddress)
+	public void removeByU_EA(long userId, String emailAddress)
 		throws NoSuchEntryException, SystemException {
 		Entry entry = findByU_EA(userId, emailAddress);
 
-		return remove(entry);
+		remove(entry);
 	}
 
 	/**
@@ -1371,6 +1371,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 	@BeanReference(type = EntryPersistence.class)
 	protected EntryPersistence entryPersistence;
+	@BeanReference(type = ResourcePersistence.class)
+	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 	private static final String _SQL_SELECT_ENTRY = "SELECT entry FROM Entry entry";
