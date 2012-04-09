@@ -229,7 +229,7 @@ AUI.add(
 						instance._buttonUnBlockUserIds.length = 0;
 						instance._buttonUnFollowUserIds.length = 0;
 
-						A.all('.aui-toolbar-content button').hide();
+						A.all('.contacts-portlet .aui-toolbar-content button').hide();
 
 						instance._contactCenterToolbar.hide();
 
