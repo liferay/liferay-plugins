@@ -30,7 +30,7 @@ import org.apache.struts.action.ActionMapping;
  */
 public class NestedForm extends ActionForm {
 
-	public Collection getBooks() {
+	public Collection<Book> getBooks() {
 		return _books;
 	}
 
@@ -59,6 +59,6 @@ public class NestedForm extends ActionForm {
 		return errors;
 	}
 
-	private Collection _books;
+	private Collection<Book> _books;
 
 }

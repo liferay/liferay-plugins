@@ -26,7 +26,6 @@ import com.liferay.samplehibernate.util.FoodItemUtil;
 import com.liferay.util.xml.BeanToXMLUtil;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -60,11 +59,7 @@ public class FoodItemComponentImpl {
 
 		Element root = doc.addElement("result");
 
-		Iterator itr = list.iterator();
-
-		while (itr.hasNext()) {
-			Object obj = itr.next();
-
+		for (Object obj : list) {
 			BeanToXMLUtil.addBean(obj, root);
 		}
 

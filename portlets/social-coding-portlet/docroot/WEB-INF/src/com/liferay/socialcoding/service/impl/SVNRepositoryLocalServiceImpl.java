@@ -94,21 +94,21 @@ public class SVNRepositoryLocalServiceImpl
 			Collection<SVNLogEntry> svnLogEntries = repository.log(
 				null, null, startRevision, endRevision, false, true);
 
-			Iterator<SVNLogEntry> itr = svnLogEntries.iterator();
+			if (!svnLogEntries.isEmpty()) {
+				SVNLogEntry lastSvnLogEntry = null;
 
-			while (itr.hasNext()) {
-				SVNLogEntry svnLogEntry = itr.next();
+				for (SVNLogEntry svnLogEntry : svnLogEntries) {
+					svnRevisionLocalService.addSVNRevision(
+						svnLogEntry.getAuthor(), svnLogEntry.getDate(),
+						svnRepository.getSvnRepositoryId(),
+						svnLogEntry.getRevision(), svnLogEntry.getMessage());
 
-				svnRevisionLocalService.addSVNRevision(
-					svnLogEntry.getAuthor(), svnLogEntry.getDate(),
-					svnRepository.getSvnRepositoryId(),
-					svnLogEntry.getRevision(), svnLogEntry.getMessage());
-
-				if (!itr.hasNext()) {
-					svnRepository.setRevisionNumber(svnLogEntry.getRevision());
-
-					svnRepositoryPersistence.update(svnRepository, false);
+					lastSvnLogEntry = svnLogEntry;
 				}
+
+				svnRepository.setRevisionNumber(lastSvnLogEntry.getRevision());
+
+				svnRepositoryPersistence.update(svnRepository, false);
 			}
 		}
 		catch (SVNException svne) {

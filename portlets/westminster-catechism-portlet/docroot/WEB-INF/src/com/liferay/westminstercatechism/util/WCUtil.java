@@ -74,22 +74,21 @@ public class WCUtil {
 
 		_shorter = new ArrayList<WCEntry>();
 
-		Element root = doc.getRootElement();
+		Element rootElement = doc.getRootElement();
 
-		Iterator<Element> itr1 = root.element("shorter").elements(
-			"entry").iterator();
+		Element shorterElement = rootElement.element("shorter");
 
-		while (itr1.hasNext()) {
-			Element entry = itr1.next();
+		List<Element> entryElements = shorterElement.elements("entry");
 
+		for (Element entry : entryElements) {
 			List<String[]> proofs = new ArrayList<String[]>();
 
-			Iterator<Element> itr2 = entry.element(
-				"proofs").elements("scriptures").iterator();
+			Element proofsElement = entry.element("proofs");
 
-			while (itr2.hasNext()) {
-				Element scriptures = itr2.next();
+			List<Element> scripturesElements = proofsElement.elements(
+				"scriptures");
 
+			for (Element scriptures : scripturesElements) {
 				proofs.add(StringUtil.split(
 					scriptures.getText(), StringPool.SEMICOLON));
 			}
@@ -104,19 +103,19 @@ public class WCUtil {
 
 		_larger = new ArrayList<WCEntry>();
 
-		itr1 = root.element("larger").elements("entry").iterator();
+		Element largerElement = rootElement.element("larger");
 
-		while (itr1.hasNext()) {
-			Element entry = itr1.next();
+		entryElements = largerElement.elements("entry");
 
+		for (Element entry : entryElements) {
 			List<String[]> proofs = new ArrayList<String[]>();
 
-			Iterator<Element> itr2 = entry.element(
-				"proofs").elements("scriptures").iterator();
+			Element proofsElement = entry.element("proofs");
 
-			while (itr2.hasNext()) {
-				Element scriptures = itr2.next();
+			List<Element> scripturesElements = proofsElement.elements(
+				"scriptures");
 
+			for (Element scriptures : scripturesElements) {
 				proofs.add(StringUtil.split(
 					scriptures.getText(), StringPool.SEMICOLON));
 			}

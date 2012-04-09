@@ -25,7 +25,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -38,21 +37,19 @@ public class UpgradeTaskInstanceToken extends UpgradeProcess {
 			return;
 		}
 
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler(_kaleoInstanceTokenIds.size() * 4
+			+ 1);
 
 		sb.append("delete from KaleoInstanceToken where ");
 
-		Iterator<Long> itr = _kaleoInstanceTokenIds.iterator();
-
-		while (itr.hasNext()) {
+		for (Long kaleoInstanceTokenId : _kaleoInstanceTokenIds) {
 			sb.append("(kaleoInstanceTokenId = ");
-			sb.append(itr.next());
+			sb.append(kaleoInstanceTokenId);
 			sb.append(StringPool.CLOSE_PARENTHESIS);
-
-			if (itr.hasNext()) {
-				sb.append(" OR ");
-			}
+			sb.append(" OR ");
 		}
+
+		sb.setIndex(sb.index() - 1);
 
 		String sql = sb.toString();
 

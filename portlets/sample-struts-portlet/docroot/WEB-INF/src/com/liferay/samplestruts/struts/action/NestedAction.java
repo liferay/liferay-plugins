@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.samplestruts.model.Book;
 import com.liferay.samplestruts.struts.form.NestedForm;
 
-import java.util.Iterator;
+import java.util.Collection;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,11 +42,9 @@ public class NestedAction extends Action {
 
 		NestedForm nestedForm = (NestedForm)form;
 
-		Iterator itr = nestedForm.getBooks().iterator();
+		Collection<Book> books = nestedForm.getBooks();
 
-		while (itr.hasNext()) {
-			Book book = (Book)itr.next();
-
+		for (Book book : books) {
 			if (_log.isInfoEnabled()) {
 				_log.info(
 					"Book " + book.getIsbn() + " " + book.getTitle() + " " +

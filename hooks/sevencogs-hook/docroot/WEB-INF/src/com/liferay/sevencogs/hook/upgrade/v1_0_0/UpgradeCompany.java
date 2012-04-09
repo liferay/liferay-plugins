@@ -100,7 +100,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -2277,14 +2276,11 @@ public class UpgradeCompany extends UpgradeProcess {
 			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
 				layout, portletId);
 
-		Iterator<Map.Entry<String, String>> itr =
-			preferences.entrySet().iterator();
+		for (Map.Entry<String, String> preferenceEntry :
+				preferences.entrySet()) {
 
-		while (itr.hasNext()) {
-			Map.Entry<String, String> entry = itr.next();
-
-			String key = entry.getKey();
-			String value = entry.getValue();
+			String key = preferenceEntry.getKey();
+			String value = preferenceEntry.getValue();
 
 			portletSetup.setValue(key, value);
 		}
