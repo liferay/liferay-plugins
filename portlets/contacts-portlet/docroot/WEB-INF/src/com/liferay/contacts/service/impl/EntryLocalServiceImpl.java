@@ -83,19 +83,19 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 		return entryFinder.countByKeywords(userId, keywords);
 	}
 
-	public int searchUsersAndContactsCount(
-			long companyId, long userId, String keywords)
-		throws SystemException {
-
-		return entryFinder.countByKeywords(companyId, userId, keywords);
-	}
-
-	public List<BaseModel<?>> searchUsersAndContactsCount(
+	public List<BaseModel<?>> searchUsersAndContacts(
 			long companyId, long userId, String keywords, int start, int end)
 		throws SystemException {
 
 		return entryFinder.findByKeywords(
 			companyId, userId, keywords, start, end);
+	}
+
+	public int searchUsersAndContactsCount(
+			long companyId, long userId, String keywords)
+		throws SystemException {
+
+		return entryFinder.countByKeywords(companyId, userId, keywords);
 	}
 
 	public Entry updateEntry(

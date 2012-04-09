@@ -305,7 +305,7 @@ public class EntryFinderImpl
 		try {
 			session = openSession();
 
-			String sql = CustomSQLUtil.get(COUNT_BY_C_U_FN_EA);
+			String sql = CustomSQLUtil.get(FIND_BY_C_U_FN_EA);
 
 			sql = CustomSQLUtil.replaceKeywords(
 				sql, "lower(User_.firstName)", StringPool.LIKE, false,
