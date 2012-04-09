@@ -27,6 +27,28 @@ AUI.add(
 				'<span class="taglib-text">' + Liferay.Language.get('connection-requested') + '</span>' +
 			'</span>';
 
+		var TPL_CONTACT_DATA =
+			'{lastNameAnchor}' +
+			'<div class="lfr-contact">' +
+				'<div class="lfr-contact-checkbox">' +
+					'<input type="checkbox" value="{entryId}" disabled="true" name="contact-ids-{entryId}" class="contact-ids" label="" />' +
+				'</div>' +
+				'<div class="lfr-contact-grid-item" data-viewSummaryURL="{viewSummaryURL}" data-contactId="{entryId}">' +
+					'<div class="lfr-contact-thumb">' +
+						'<img alt="{fullName}" src="{portraitURL}" />' +
+					'</div>' +
+					'<div class="lfr-contact-info">' +
+						'<div class="lfr-contact-name">' +
+							'<a>{fullName}</a>' +
+						'</div>' +
+						'<div class="lfr-contact-extra">' +
+							'{emailAddress}' +
+						'</div>' +
+					'</div>' +
+					'<div class="clear"></div>' +
+				'</div>' +
+			'</div>';
+
 		var TPL_FOLLOWING_IMG =
 			'<span>' +
 				'<img class="icon" alt="" src="' + themeDisplay.getPathThemeImages() + '/social/following.png">' +
@@ -374,8 +396,17 @@ AUI.add(
 
 										var nameAnchor;
 
-										if (result.lastName) {
-											nameAnchor = result.lastName.substring(0, 1).toUpperCase();
+										var name;
+
+										if (result.registeredUser) {
+										 	name = result.lastName;
+										}
+										else {
+											name = result.fullName;
+										}
+
+										if (name) {
+											nameAnchor = name.substring(0, 1).toUpperCase();
 										}
 										else {
 											nameAnchor = Liferay.Language.get('no-last-name');
@@ -387,21 +418,36 @@ AUI.add(
 											lastNameAnchor = nameAnchor;
 										}
 
-										return A.Lang.sub(
-											TPL_USER_DATA,
-											{
-												checked: ((Array.indexOf(selectedUsersIds, result.userId) != -1) ? 'checked="true"' : ''),
-												disabled: (themeDisplay.getUserId() == result.userId) ? 'disabled="true"' : '',
-												emailAddress: (result.emailAddress ? result.emailAddress : ''),
-												lastNameAnchor: (displayLastNameAnchor ? '<div class="lastNameAnchor"><a>' + lastNameAnchor + '</a></div>' : ''),
-												firstName: (result.firstName ? result.firstName : ''),
-												fullName: (result.fullName ? result.fullName : ''),
-												lastName: (result.lastName ? result.lastName + ',' : ''),
-												portraitURL: (result.portraitURL ? result.portraitURL : ''),
-												userId: result.userId,
-												viewSummaryURL: (result.viewSummaryURL ? result.viewSummaryURL : '')
-											}
-										);
+										if (result.registeredUser) {
+											return A.Lang.sub(
+												TPL_USER_DATA,
+												{
+													checked: ((Array.indexOf(selectedUsersIds, result.userId) != -1) ? 'checked="true"' : ''),
+													disabled: (themeDisplay.getUserId() == result.userId) ? 'disabled="true"' : '',
+													emailAddress: (result.emailAddress ? result.emailAddress : ''),
+													lastNameAnchor: (displayLastNameAnchor ? '<div class="lastNameAnchor"><a>' + lastNameAnchor + '</a></div>' : ''),
+													firstName: (result.firstName ? result.firstName : ''),
+													fullName: (result.fullName ? result.fullName : ''),
+													lastName: (result.lastName ? result.lastName + ',' : ''),
+													portraitURL: (result.portraitURL ? result.portraitURL : ''),
+													userId: result.userId,
+													viewSummaryURL: (result.viewSummaryURL ? result.viewSummaryURL : '')
+												}
+											);
+										}
+										else {
+											return A.Lang.sub(
+												TPL_CONTACT_DATA,
+												{
+													entryId: result.entryId,
+													emailAddress: (result.emailAddress ? result.emailAddress : ''),
+													lastNameAnchor: (displayLastNameAnchor ? '<div class="lastNameAnchor"><a>' + lastNameAnchor + '</a></div>' : ''),
+													fullName: (result.fullName ? result.fullName : ''),
+													portraitURL: (result.portraitURL ? result.portraitURL : ''),
+													viewSummaryURL: (result.viewSummaryURL ? result.viewSummaryURL : '')
+												}
+											);
+										}
 									}
 								).join('')
 							);

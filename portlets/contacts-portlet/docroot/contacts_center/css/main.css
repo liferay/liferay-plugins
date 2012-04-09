@@ -23,6 +23,19 @@ $toolbar-bg: #DCE3EA;
 		font-size: 14px;
 		min-height: 31px;
 
+		.add-contact {
+			background-image: url(@theme_image_path@/common/add.png);
+			background-repeat: no-repeat;
+			bottom: 5px;
+			position: absolute;
+			right: 10px;
+			
+			a {
+				padding-left: 20px;
+				text-decoration: underline;
+			}
+		}
+
 		.contact-group-filter-content {
 			padding: 5px 0 1px 5px;
 		}
@@ -62,7 +75,7 @@ $toolbar-bg: #DCE3EA;
 		}
 	}
 
-	.lfr-contact-grid-item {
+	.lfr-contact-grid-item, .lfr-detail-info {
 		display: block;
 		overflow: hidden;
 
@@ -206,7 +219,7 @@ $toolbar-bg: #DCE3EA;
 	}
 
 	.contacts-profile {
-		.lfr-contact-grid-item {
+		.lfr-detail-info {
 			border-bottom-width: 0;
 			padding: 10px 10px 5px;
 		}
@@ -292,6 +305,10 @@ $toolbar-bg: #DCE3EA;
 		padding-right: 5px;
 	}
 
+	.search-column {
+		width: 250px;
+	}
+
 	.section {
 		border-bottom: 1px solid #E7E7E7;
 		clear: both;
@@ -347,6 +364,10 @@ $toolbar-bg: #DCE3EA;
 					background-image: url(@theme_image_path@/social/block.png);
 				}
 
+				.aui-icon-delete {
+					background-image: url(@theme_image_path@/common/delete.png);
+				}
+
 				.aui-icon-edit {
 					background-image: url(@theme_image_path@/common/edit.png);
 				}
@@ -365,6 +386,10 @@ $toolbar-bg: #DCE3EA;
 
 				.aui-icon-unfollow {
 					background-image: url(@theme_image_path@/social/unfollow.png);
+				}
+
+				.aui-icon-user {
+					background-image: url(@theme_image_path@/common/user_icon.png);
 				}
 
 				.edit-toolbar {
@@ -595,6 +620,17 @@ $toolbar-bg: #DCE3EA;
 		color: #929292;
 		font-weight: bold;
 		padding: 6px 0 0;
+	}
+}
+
+.contact-dialog {
+	input[type="text"], textarea {
+    	width: 90%;
+	}
+
+	.aui-field-text {
+		display: block;
+		margin-bottom: 10px;
 	}
 }
 
