@@ -415,14 +415,12 @@ public class EntryUtil {
 	*
 	* @param userId the user ID
 	* @param emailAddress the email address
-	* @return the entry that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.liferay.contacts.model.Entry removeByU_EA(long userId,
-		java.lang.String emailAddress)
+	public static void removeByU_EA(long userId, java.lang.String emailAddress)
 		throws com.liferay.contacts.NoSuchEntryException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().removeByU_EA(userId, emailAddress);
+		getPersistence().removeByU_EA(userId, emailAddress);
 	}
 
 	/**

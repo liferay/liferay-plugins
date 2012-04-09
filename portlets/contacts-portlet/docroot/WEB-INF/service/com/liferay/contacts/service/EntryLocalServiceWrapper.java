@@ -58,27 +58,24 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 	* Deletes the entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param entryId the primary key of the entry
-	* @return the entry that was removed
 	* @throws PortalException if a entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.contacts.model.Entry deleteEntry(long entryId)
+	public void deleteEntry(long entryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _entryLocalService.deleteEntry(entryId);
+		_entryLocalService.deleteEntry(entryId);
 	}
 
 	/**
 	* Deletes the entry from the database. Also notifies the appropriate model listeners.
 	*
 	* @param entry the entry
-	* @return the entry that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.contacts.model.Entry deleteEntry(
-		com.liferay.contacts.model.Entry entry)
+	public void deleteEntry(com.liferay.contacts.model.Entry entry)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _entryLocalService.deleteEntry(entry);
+		_entryLocalService.deleteEntry(entry);
 	}
 
 	/**
@@ -283,18 +280,18 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 		return _entryLocalService.searchCount(userId, keywords);
 	}
 
+	public java.util.List<com.liferay.portal.model.BaseModel<?>> searchUsersAndContacts(
+		long companyId, long userId, java.lang.String keywords, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		return _entryLocalService.searchUsersAndContacts(companyId, userId,
+			keywords, start, end);
+	}
+
 	public int searchUsersAndContactsCount(long companyId, long userId,
 		java.lang.String keywords)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _entryLocalService.searchUsersAndContactsCount(companyId,
 			userId, keywords);
-	}
-
-	public java.util.List<com.liferay.portal.model.BaseModel<?>> searchUsersAndContactsCount(
-		long companyId, long userId, java.lang.String keywords, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
-		return _entryLocalService.searchUsersAndContactsCount(companyId,
-			userId, keywords, start, end);
 	}
 
 	public com.liferay.contacts.model.Entry updateEntry(long entryId,

@@ -101,13 +101,13 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		_searchCountMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"searchCount", long.class, java.lang.String.class);
 
-		_searchUsersAndContactsCountMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
-				"searchUsersAndContactsCount", long.class, long.class,
-				java.lang.String.class);
+		_searchUsersAndContactsMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+				"searchUsersAndContacts", long.class, long.class,
+				java.lang.String.class, int.class, int.class);
 
 		_searchUsersAndContactsCountMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
 				"searchUsersAndContactsCount", long.class, long.class,
-				java.lang.String.class, int.class, int.class);
+				java.lang.String.class);
 
 		_updateEntryMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateEntry", long.class, java.lang.String.class,
@@ -164,16 +164,14 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		return (com.liferay.contacts.model.Entry)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.liferay.contacts.model.Entry deleteEntry(long entryId)
+	public void deleteEntry(long entryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
 		MethodHandler methodHandler = new MethodHandler(_deleteEntryMethodKey2,
 				entryId);
 
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -192,20 +190,15 @@ public class EntryLocalServiceClp implements EntryLocalService {
 					" is not a valid exception");
 			}
 		}
-
-		return (com.liferay.contacts.model.Entry)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.liferay.contacts.model.Entry deleteEntry(
-		com.liferay.contacts.model.Entry entry)
+	public void deleteEntry(com.liferay.contacts.model.Entry entry)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
 		MethodHandler methodHandler = new MethodHandler(_deleteEntryMethodKey3,
 				ClpSerializer.translateInput(entry));
 
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -220,8 +213,6 @@ public class EntryLocalServiceClp implements EntryLocalService {
 					" is not a valid exception");
 			}
 		}
-
-		return (com.liferay.contacts.model.Entry)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -729,40 +720,12 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
-	public int searchUsersAndContactsCount(long companyId, long userId,
-		java.lang.String keywords)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		MethodHandler methodHandler = new MethodHandler(_searchUsersAndContactsCountMethodKey22,
-				companyId, userId, ClpSerializer.translateInput(keywords));
-
-		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return ((Integer)returnObj).intValue();
-	}
-
-	public java.util.List<com.liferay.portal.model.BaseModel<?>> searchUsersAndContactsCount(
+	public java.util.List<com.liferay.portal.model.BaseModel<?>> searchUsersAndContacts(
 		long companyId, long userId, java.lang.String keywords, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_searchUsersAndContactsCountMethodKey23,
+		MethodHandler methodHandler = new MethodHandler(_searchUsersAndContactsMethodKey22,
 				companyId, userId, ClpSerializer.translateInput(keywords),
 				start, end);
 
@@ -784,6 +747,34 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		}
 
 		return (java.util.List<com.liferay.portal.model.BaseModel<?>>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public int searchUsersAndContactsCount(long companyId, long userId,
+		java.lang.String keywords)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_searchUsersAndContactsCountMethodKey23,
+				companyId, userId, ClpSerializer.translateInput(keywords));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
 	}
 
 	public com.liferay.contacts.model.Entry updateEntry(long entryId,
@@ -849,7 +840,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 	private MethodKey _getEntriesCountMethodKey19;
 	private MethodKey _searchMethodKey20;
 	private MethodKey _searchCountMethodKey21;
-	private MethodKey _searchUsersAndContactsCountMethodKey22;
+	private MethodKey _searchUsersAndContactsMethodKey22;
 	private MethodKey _searchUsersAndContactsCountMethodKey23;
 	private MethodKey _updateEntryMethodKey24;
 }

@@ -66,11 +66,10 @@ public interface EntryLocalService extends PersistedModelLocalService {
 	* Deletes the entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param entryId the primary key of the entry
-	* @return the entry that was removed
 	* @throws PortalException if a entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.contacts.model.Entry deleteEntry(long entryId)
+	public void deleteEntry(long entryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -78,11 +77,9 @@ public interface EntryLocalService extends PersistedModelLocalService {
 	* Deletes the entry from the database. Also notifies the appropriate model listeners.
 	*
 	* @param entry the entry
-	* @return the entry that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.contacts.model.Entry deleteEntry(
-		com.liferay.contacts.model.Entry entry)
+	public void deleteEntry(com.liferay.contacts.model.Entry entry)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -259,14 +256,14 @@ public interface EntryLocalService extends PersistedModelLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.portal.model.BaseModel<?>> searchUsersAndContacts(
+		long companyId, long userId, java.lang.String keywords, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int searchUsersAndContactsCount(long companyId, long userId,
 		java.lang.String keywords)
 		throws com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.portal.model.BaseModel<?>> searchUsersAndContactsCount(
-		long companyId, long userId, java.lang.String keywords, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.contacts.model.Entry updateEntry(long entryId,
 		java.lang.String fullName, java.lang.String emailAddress,
