@@ -54,6 +54,14 @@ if (entryId > 0) {
 
 	var form = A.one('#<portlet:namespace />addEntry');
 
+	var failureCallback = funciton () {
+		var errorMessage = A.one('#<portlet:namespace/>errorMessage');
+
+		if (errorMessage) {
+			errorMessage.html('<span class="portlet-msg-error"><liferay-ui:message key="an-error-occurred-while-retrieving-the-users-information" /></span>');
+		}
+	}
+
 	form.on(
 		'submit',
 		function(event) {
@@ -63,17 +71,9 @@ if (entryId > 0) {
 				form.attr('action'),
 				{
 					after: {
-						failure: function(event, id, obj) {
-							var errorMessage = A.one('#<portlet:namespace/>errorMessage');
-
-							if (errorMessage) {
-								errorMessage.html('<span class="portlet-msg-error">' + Liferay.Language.get('an-error-occurred-while-retrieving-the-users-information') + '</span>');
-							}
-						},
+						failure: failureCallback,
 						success: function(event, id, obj) {
 							var responseData = this.get('responseData');
-
-							console.log('checkpoint A');
 
 							if (!responseData.success) {
 								var message = A.one('#<portlet:namespace />errorMessage');
@@ -84,16 +84,10 @@ if (entryId > 0) {
 							}
 							else {
 								A.io.request(
-									'<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/contacts_center/view_resources.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="registeredUser" value="<%= String.valueOf(false) %>" /></liferay-portlet:renderURL>',
+									'<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/contacts_center/view_resources.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="registeredUser" value="false" %>" /></liferay-portlet:renderURL>',
 									{
 										after: {
-											failure: function(event, id, obj) {
-												var errorMessage = A.one('#<portlet:namespace/>errorMessage');
-
-												if (errorMessage) {
-													errorMessage.html('<span class="portlet-msg-error">' + Liferay.Language.get('an-error-occurred-while-retrieving-the-users-information') + '</span>');
-												}
-											},
+											failure: failureCallback,
 											success: function(event, id, obj) {
 												Liferay.ContactsCenter.renderContent(this.get('responseData'));
 

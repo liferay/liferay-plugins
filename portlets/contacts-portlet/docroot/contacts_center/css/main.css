@@ -24,12 +24,11 @@ $toolbar-bg: #DCE3EA;
 		min-height: 31px;
 
 		.add-contact {
-			background-image: url(@theme_image_path@/common/add.png);
-			background-repeat: no-repeat;
+			background: url(@theme_image_path@/common/add.png) no-repeat;
 			bottom: 5px;
 			position: absolute;
 			right: 10px;
-			
+
 			a {
 				padding-left: 20px;
 				text-decoration: underline;
