@@ -92,7 +92,7 @@ if (entryId > 0) {
 												Liferay.ContactsCenter.renderContent(this.get('responseData'));
 
 												var searchInput = A.one('.contacts-portlet #<portlet:namespace />name');
-												var contactFilterSelect = A.one('.contacts-portlet .contact-group-filter select[name=<portlet:namespace />socialRelationType]');
+												var contactFilterSelect = A.one('.contacts-portlet .contact-group-filter select[name=<portlet:namespace />filterBy]');
 
 												Liferay.ContactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
 

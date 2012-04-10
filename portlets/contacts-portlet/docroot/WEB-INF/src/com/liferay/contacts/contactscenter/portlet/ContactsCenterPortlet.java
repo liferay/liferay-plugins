@@ -18,6 +18,7 @@ import com.liferay.contacts.DuplicateEntryEmailAddressException;
 import com.liferay.contacts.EntryEmailAddressException;
 import com.liferay.contacts.model.Entry;
 import com.liferay.contacts.service.EntryLocalServiceUtil;
+import com.liferay.contacts.util.ContactsConstants;
 import com.liferay.contacts.util.ContactsUtil;
 import com.liferay.contacts.util.PortletKeys;
 import com.liferay.contacts.util.SocialRelationConstants;
@@ -309,9 +310,8 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		String redirect = ParamUtil.getString(resourceRequest, "redirect");
 
+		String filterBy = ParamUtil.getString(resourceRequest, "filterBy");
 		String keywords = ParamUtil.getString(resourceRequest, "keywords");
-		int socialRelationType = ParamUtil.getInteger(
-			resourceRequest, "socialRelationType");
 		int start = ParamUtil.getInteger(resourceRequest, "start");
 		int end = ParamUtil.getInteger(resourceRequest, "end");
 
@@ -320,8 +320,8 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		JSONObject optionsJSONObject = JSONFactoryUtil.createJSONObject();
 
 		optionsJSONObject.put("end", end);
+		optionsJSONObject.put("filterBy", filterBy);
 		optionsJSONObject.put("keywords", keywords);
-		optionsJSONObject.put("socialRelationType", socialRelationType);
 		optionsJSONObject.put("start", start);
 
 		jsonObject.put("options", optionsJSONObject);
@@ -332,7 +332,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
-		if ((socialRelationType == 0) &&
+		if (filterBy.equals(ContactsConstants.FILTER_BY_NOTHING) &&
 			!portletName.equals(PortletKeys.MEMBERS)) {
 
 			List<BaseModel<?>> contacts =
@@ -356,8 +356,8 @@ public class ContactsCenterPortlet extends MVCPortlet {
 				jsonArray.put(contactJSONObject);
 			}
 		}
-		else if ((socialRelationType ==
-					SocialRelationConstants.TYPE_MY_CONTACTS) &&
+		else if (filterBy.equals(
+					ContactsConstants.FILTER_BY_TYPE_MY_CONTACTS) &&
 				 !portletName.equals(PortletKeys.MEMBERS)) {
 
 			List<Entry> entries = EntryLocalServiceUtil.search(
@@ -380,16 +380,21 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			if (group.isUser() && layout.isPublicLayout()) {
 				params.put("socialRelation", new Long[] {group.getClassPK()});
 			}
-			else if (socialRelationType != 0) {
+			else if (filterBy.startsWith(ContactsConstants.FILTER_BY_TYPE)) {
 				params.put(
 					"socialRelationType",
 					new Long[] {
-						themeDisplay.getUserId(), new Long(socialRelationType)
+						themeDisplay.getUserId(),
+						ContactsConstants.getSocialRelationType(filterBy)
 					});
 			}
 
 			if (portletName.equals(PortletKeys.MEMBERS)) {
 				params.put("usersGroups", group.getGroupId());
+			}
+			else if (filterBy.startsWith(ContactsConstants.FILTER_BY_GROUP)) {
+				params.put(
+					"usersGroups", ContactsConstants.getGroupId(filterBy));
 			}
 
 			List<User> users = UserLocalServiceUtil.search(
