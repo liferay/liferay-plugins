@@ -20,7 +20,7 @@
 	<ul class="tasks-entries">
 
 		<%
-		List<TasksEntry> taskEntries = TasksEntryLocalServiceUtil.getTasksEntries(0, 0, user.getUserId(), 0, TasksEntryConstants.STATUS_ALL, new long[0], new long[0], 0, 10);
+		List<TasksEntry> taskEntries = TasksEntryLocalServiceUtil.getTasksEntries(0, 0, user.getUserId(), 0, TasksEntryConstants.STATUS_OPEN, new long[0], new long[0], 0, 10);
 
 		for (TasksEntry tasksEntry : taskEntries) {
 			String taskHREF = null;
