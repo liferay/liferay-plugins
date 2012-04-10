@@ -17,9 +17,6 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String tabs1 = ParamUtil.getString(request, "tabs1", tabs1Default);
-String tabs2 = ParamUtil.getString(request, "tabs2", "open");
-
 long tasksEntryId = ParamUtil.getLong(request, "tasksEntryId");
 
 TasksEntry tasksEntry = null;
@@ -33,65 +30,43 @@ catch (NoSuchTasksEntryException nstee) {
 long priority = BeanParamUtil.getLong(tasksEntry, request, "priority", TasksEntryConstants.PRIORITY_NORMAL);
 long assigneeUserId = BeanParamUtil.getLong(tasksEntry, request, "assigneeUserId");
 
-Calendar dueDate = CalendarFactoryUtil.getCalendar(timeZone, locale);
-
 boolean neverDue = true;
 
-if (tasksEntry != null) {
-	if (tasksEntry.getDueDate() != null) {
-		dueDate.setTime(tasksEntry.getDueDate());
-
-		neverDue = false;
-	}
+if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
+	neverDue = false;
 }
-
-int status = BeanParamUtil.getInteger(tasksEntry, request, "status", TasksEntryConstants.STATUS_ALL);
-
-long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/html/js/", true);
 %>
 
-<script src="<%= HtmlUtil.escape(PortalUtil.getStaticResourceURL(request, themeDisplay.getCDNHost() + themeDisplay.getPathJavaScript() + "/liferay/service.js", javaScriptLastModified)) %>" type="text/javascript"></script>
+<portlet:actionURL name="updateTasksEntry" var="updateTasksEntryURL" >
+	<portlet:param name="mvcPath" value="/tasks/edit_task.jsp" />
+</portlet:actionURL>
 
-<form action="<portlet:actionURL name="updateTasksEntry" />" method="post" name="<portlet:namespace />fm1">
-<input name="<portlet:namespace />tasksEntryId" type="hidden" value="<%= tasksEntryId %>" />
-<input name="<portlet:namespace />userId" type="hidden" value="<%= user.getUserId() %>" />
-<input name="<portlet:namespace />resolverUserId" type="hidden" value="<%= user.getUserId() %>" />
+<aui:form action="<%= updateTasksEntryURL %>" method="post" name="fm1" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveForm();" %>'>
+	<aui:input name="tasksEntryId" type="hidden" value="<%= tasksEntryId %>" />
+	<aui:input name="userId" type="hidden" value="<%= user.getUserId() %>" />
+	<aui:input name="resolverUserId" type="hidden" value="<%= user.getUserId() %>" />
 
-<liferay-ui:header title='<%= (tasksEntry == null) ? "add-task" : "update-task" %>' />
+	<liferay-ui:asset-tags-error />
 
-<table class="lfr-table">
-<tr>
-	<td class="lfr-label">
-		<liferay-ui:message key="description" />
-	</td>
-	<td>
-		<liferay-ui:input-field bean="<%= tasksEntry %>" cssClass="input-task-description" field="title" model="<%= TasksEntry.class %>" />
-	</td>
-</tr>
-<tr>
-	<td colspan="2">
-		<br />
-	</td>
-</tr>
-<tr>
-	<td class="lfr-label">
-		<liferay-ui:message key="assignee" />
-	</td>
-	<td>
-		<select name="<portlet:namespace />assigneeUserId">
+	<aui:model-context bean="<%= tasksEntry %>" model="<%= TasksEntry.class %>" />
+
+	<aui:fieldset>
+		<aui:input cssClass="input-task-description" label="description" name="title" />
+
+		<aui:select label="assignee" name="assigneeUserId">
 			<c:choose>
 				<c:when test="<%= group.isUser() %>">
-					<option <%= (assigneeUserId == 0) ? "selected" : StringPool.BLANK %> value="<%= user.getUserId() %>"><%= HtmlUtil.escape(user.getFullName()) %></option>
+					<aui:option label="<%= HtmlUtil.escape(user.getFullName()) %>" selected="<%= (assigneeUserId == 0) %>" value="<%= user.getUserId() %>" />
 
 					<optgroup label="<liferay-ui:message key="contacts" />">
 				</c:when>
 				<c:otherwise>
-					<option <%= (assigneeUserId == 0) ? "selected" : StringPool.BLANK %> value="0"></option>
+					<aui:option label="" selected="<%= (assigneeUserId == 0) %>" value="0" />
 
-					<option <%= (assigneeUserId == user.getUserId()) ? "selected" : StringPool.BLANK %> value="<%= user.getUserId() %>"><%= HtmlUtil.escape(user.getFullName()) %></option>
+					<aui:option label="<%= HtmlUtil.escape(user.getFullName()) %>" selected="<%= (assigneeUserId == user.getUserId()) %>" />
 
 					<c:if test="<%= (tasksEntry != null) && (assigneeUserId > 0) && (assigneeUserId != user.getUserId()) %>">
-						<option selected value="<%= assigneeUserId %>"><%= PortalUtil.getUserName(assigneeUserId, tasksEntry.getAssigneeFullName()) %></option>
+						<aui:option label="<%= PortalUtil.getUserName(assigneeUserId, tasksEntry.getAssigneeFullName()) %>" selected="<%= true %>" value="<%= assigneeUserId %>" />
 					</c:if>
 
 					<optgroup label="<liferay-ui:message key="members" />">
@@ -112,8 +87,6 @@ long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/
 				users = UserLocalServiceUtil.search(company.getCompanyId(), StringPool.BLANK, WorkflowConstants.STATUS_APPROVED, userParams, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new ContactFirstNameComparator(true));
 			}
 
-			long defaultUserId = themeDisplay.getDefaultUserId();
-
 			for (User curUser : users) {
 				long curUserId = curUser.getUserId();
 
@@ -122,160 +95,116 @@ long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/
 				}
 			%>
 
-				<option <%= (assigneeUserId == curUserId) ? "selected" : StringPool.BLANK %> value="<%= curUserId %>"><%= HtmlUtil.escape(curUser.getFullName()) %></option>
+				<aui:option label="<%= HtmlUtil.escape(curUser.getFullName()) %>" selected="<%= (assigneeUserId == curUserId) %>" value="<%= curUserId %>" />
 
 			<%
 			}
 			%>
 
 			</optgroup>
-		</select>
-	</td>
-</tr>
-<tr>
-	<td class="lfr-label">
-		<liferay-ui:message key="priority" />
-	</td>
-	<td>
-		<select name="<portlet:namespace />priority">
-			<option value="1" <%= (priority == 1) ? "selected" : StringPool.BLANK %>><liferay-ui:message key="high" /></option>
-			<option value="2" <%= (priority == 2) ? "selected" : StringPool.BLANK %>><liferay-ui:message key="normal" /></option>
-			<option value="3" <%= (priority == 3) ? "selected" : StringPool.BLANK %>><liferay-ui:message key="low" /></option>
-		</select>
-	</td>
-</tr>
-<tr>
-	<td colspan="2">
-		<br />
-	</td>
-</tr>
-<tr>
-	<td class="lfr-label">
-		<liferay-ui:message key="due-date" />
-	</td>
-	<td>
-		<liferay-ui:input-field bean="<%= tasksEntry %>" defaultValue="<%= dueDate %>" disabled="<%= neverDue %>" field="dueDate" model="<%= TasksEntry.class %>" />
+		</aui:select>
 
-		<div style="clear: both;">
+		<aui:select name="priority">
+			<aui:option label="high" value="1" selected="<%= (priority == 1) %>" />
+			<aui:option label="normal" value="2" selected="<%= (priority == 2) %>" />
+			<aui:option label="low" value="3" selected="<%= (priority == 3) %>" />
+		</aui:select>
 
-			<%
-			String taglibNeverReviewOnClick = renderResponse.getNamespace() + "disableInputDate('dueDate', this.checked);";
-			%>
+		<aui:input disabled="<%= neverDue %>" label="due-date" name="dueDate" />
 
-			<aui:input label="never-due" name="neverDue" onClick="<%= taglibNeverReviewOnClick %>" type="checkbox" value="<%= neverDue %>" />
-		</div>
-	</td>
-</tr>
+		<%
+		String taglibNeverReviewOnClick = renderResponse.getNamespace() + "disableInputDate('dueDate', this.checked);";
+		%>
 
-<c:if test="<%= tasksEntry != null %>">
-	<tr>
-		<td colspan="2">
-			<br />
-		</td>
-	</tr>
-	<tr>
-		<td class="lfr-label">
-			<liferay-ui:message key="status" />
-		</td>
-		<td>
-			<select name="<portlet:namespace />status">
+		<aui:input name="neverDue" onClick="<%= taglibNeverReviewOnClick %>" type="checkbox" value="<%= neverDue %>" />
+
+		<c:if test="<%= tasksEntry != null %>">
+			<aui:select name="status">
 
 				<%
 				for (int curStatus : TasksEntryConstants.STATUSES) {
 				%>
 
-					<option value="<%= curStatus %>" <%= (status == curStatus) ? "selected" : StringPool.BLANK %>><liferay-ui:message key="<%= TasksEntryConstants.getStatusLabel(curStatus) %>" /></option>
+					<aui:option label="<%= TasksEntryConstants.getStatusLabel(curStatus) %>" selected="<%= tasksEntry.getStatus() == curStatus %>" />
 
 				<%
 				}
 				%>
 
-			</select>
-		</td>
-	</tr>
-</c:if>
+			</aui:select>
+		</c:if>
 
-<tr>
-	<td colspan="2">
-		<br />
-	</td>
-</tr>
-<tr>
-	<td class="lfr-label">
-		<liferay-ui:message key="tags" />
-	</td>
-	<td>
+		<aui:input name="tags" type="assetTags" />
 
-		<%
-		long classPK = 0;
+		<aui:button-row cssClass="task-action">
+			<aui:button type="submit" />
 
-		if (tasksEntry != null) {
-			classPK = tasksEntry.getTasksEntryId();
-		}
-		%>
+			<c:if test="<%= tasksEntryId > 0 %>">
+				<portlet:renderURL var="viewURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
+					<portlet:param name="mvcPath" value="/tasks/view_task.jsp" />
+					<portlet:param name="tasksEntryId" value="<%= String.valueOf(tasksEntry.getTasksEntryId()) %>" />
+				</portlet:renderURL>
 
-		<liferay-ui:asset-tags-selector
-			className="<%= TasksEntry.class.getName() %>"
-			classPK="<%= classPK %>"
-			contentCallback='<%= renderResponse.getNamespace() + "getSuggestionsContent" %>'
-		/>
+				<%
+				String taglibOnClick = "Liferay.Tasks.openTask('" + viewURL.toString() + "');";
+				%>
 
-	</td>
-</tr>
-</table>
+				<aui:button onClick="<%= taglibOnClick %>" type="cancel" />
+			</c:if>
 
-<div class="task-action">
-	<input id="<portlet:namespace />submit" type="submit" value="<liferay-ui:message key="save" />" />
-
-	<c:if test="<%= tasksEntryId > 0 %>">
-		<input type="button" value="<liferay-ui:message key="cancel" />" onClick="Liferay.Tasks.openTask('<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/tasks/view_task.jsp" /><portlet:param name="tasksEntryId" value="<%= String.valueOf(tasksEntry.getTasksEntryId()) %>" /></portlet:renderURL>');" />
-	</c:if>
-
-	<div class="task-action-right">
-		<input type="button" value="<liferay-ui:message key="close" />" onClick="Liferay.Tasks.closePopup();" />
-	</div>
-</div>
-
-</form>
+			<div class="task-action-right">
+				<aui:button onClick="Liferay.Tasks.closePopup();" value="close" />
+			</div>
+		</aui:button-row>
+	</aui:fieldset>
+</aui:form>
 
 <aui:script>
 	function <portlet:namespace />getSuggestionsContent() {
-		var content = document.<portlet:namespace />fm1.<portlet:namespace/>title.value;
+		var content = document.<portlet:namespace />fm1.<portlet:namespace/>title.value + ' ';
 
 		return content;
 	}
 
-	function <portlet:namespace />disableInputDate(date, checked) {
-		eval("document.<portlet:namespace />fm1.<portlet:namespace />" + date + "Month.disabled = " + checked + ";");
-		eval("document.<portlet:namespace />fm1.<portlet:namespace />" + date + "Day.disabled = " + checked + ";");
-		eval("document.<portlet:namespace />fm1.<portlet:namespace />" + date + "Year.disabled = " + checked + ";");
-		eval("document.<portlet:namespace />fm1.<portlet:namespace />" + date + "Hour.disabled = " + checked + ";");
-		eval("document.<portlet:namespace />fm1.<portlet:namespace />" + date + "Minute.disabled = " + checked + ";");
-		eval("document.<portlet:namespace />fm1.<portlet:namespace />" + date + "AmPm.disabled = " + checked + ";");
-	}
-</aui:script>
+	Liferay.provide(
+		window,
+		'<portlet:namespace />disableInputDate',
+		function(date, checked) {
+			var A = AUI();
 
-<aui:script use="aui-base">
-	form = A.one(document.<portlet:namespace />fm1);
+			document.<portlet:namespace />fm1["<portlet:namespace />" + date + "Month"].disabled = checked;
+			document.<portlet:namespace />fm1["<portlet:namespace />" + date + "Day"].disabled = checked;
+			document.<portlet:namespace />fm1["<portlet:namespace />" + date + "Year"].disabled = checked;
+			document.<portlet:namespace />fm1["<portlet:namespace />" + date + "Hour"].disabled = checked;
+			document.<portlet:namespace />fm1["<portlet:namespace />" + date + "Minute"].disabled = checked;
+			document.<portlet:namespace />fm1["<portlet:namespace />" + date + "AmPm"].disabled = checked;
 
-	form.on(
-		'submit',
-		function(event) {
-			event.preventDefault();
+			var calendarWidget = A.Widget.getByNode(document.<portlet:namespace />fm1["<portlet:namespace />" + date + "Month"]);
 
-			var popup = Liferay.Tasks.getPopup();
-
-			popup.io.set('form', {id: form.getDOM()});
-			popup.io.set('uri', form.getAttribute('action'));
-
-			popup.io.once(
-				'success',
-				function() {
-					Liferay.Tasks.updateTaskList();
-				}
-			);
-
-			popup.io.start();
-		}
+			if (calendarWidget) {
+				calendarWidget.set('disabled', checked);
+			}
+		},
+		['aui-base']
 	);
+
+	function <portlet:namespace />saveForm() {
+		var A = AUI();
+
+		var form = A.one(document.<portlet:namespace />fm1);
+
+		var popup = Liferay.Tasks.getPopup();
+
+		popup.io.set('form', {id: form.getDOM()});
+		popup.io.set('uri', form.getAttribute('action'));
+
+		popup.io.once(
+			'success',
+			function() {
+				Liferay.Tasks.updateTaskList();
+			}
+		);
+
+		popup.io.start();
+	}
 </aui:script>
