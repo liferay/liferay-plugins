@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-int socialRelationType = ParamUtil.getInteger(request, "socialRelationType");
+String filterBy = ParamUtil.getString(request, "filterBy", ContactsConstants.FILTER_BY_NOTHING);
 
 String name = ParamUtil.getString(request, "name");
 
@@ -34,18 +34,21 @@ LinkedHashMap<String, Object> params = new LinkedHashMap<String, Object>();
 if (userPublicPage) {
 	params.put("socialRelation", new Long[] {group.getClassPK()});
 }
-else if (socialRelationType != 0) {
-	params.put("socialRelationType", new Long[] {themeDisplay.getUserId(), new Long(socialRelationType)});
+else if (filterBy.startsWith(ContactsConstants.FILTER_BY_TYPE)) {
+	params.put("socialRelationType", new Long[] {themeDisplay.getUserId(), ContactsConstants.getSocialRelationType(filterBy)});
 }
 
 if (showOnlySiteMembers) {
 	params.put("usersGroups", new Long(group.getGroupId()));
 }
+else if (filterBy.startsWith(ContactsConstants.FILTER_BY_GROUP)) {
+	params.put("usersGroups", ContactsConstants.getGroupId(filterBy));
+}
 
 List<BaseModel<?>> contacts = null;
 int contactsCount = 0;
 
-if (userPublicPage || showOnlySiteMembers || (socialRelationType != 0)) {
+if (userPublicPage || showOnlySiteMembers || !filterBy.equals(ContactsConstants.FILTER_BY_NOTHING)) {
 	List<User> users = UserLocalServiceUtil.search(company.getCompanyId(), name, WorkflowConstants.STATUS_APPROVED, params, 0, maxResultCount, new UserLastNameComparator(true));
 
 	contacts = new ArrayList<BaseModel<?>>(users);
@@ -98,13 +101,33 @@ portletURL.setWindowState(WindowState.NORMAL);
 				<aui:column columnWidth="30" cssClass="contacts-list" first="<%= true %>">
 					<c:if test="<%= !userPublicPage %>">
 						<aui:layout cssClass="contact-group-filter">
-							<aui:select inlineField="true" label="" name="socialRelationType">
-								<aui:option label="all" selected='<%= socialRelationType == 0 %>' value="all" />
-								<aui:option label="connections" selected='<%= socialRelationType == SocialRelationConstants.TYPE_BI_CONNECTION %>' value="<%= SocialRelationConstants.TYPE_BI_CONNECTION %>" />
-								<aui:option label="following" selected='<%= socialRelationType == SocialRelationConstants.TYPE_UNI_FOLLOWER %>' value="<%= SocialRelationConstants.TYPE_UNI_FOLLOWER %>" />
+							<aui:select inlineField="true" label="" name="filterBy">
+								<aui:option label="all" selected='<%= filterBy.equals(ContactsConstants.FILTER_BY_NOTHING) %>' value="<%= ContactsConstants.FILTER_BY_NOTHING %>" />
+								<aui:option label="connections" selected='<%= filterBy.equals(ContactsConstants.FILTER_BY_TYPE_BI_CONNECTION) %>' value="<%= ContactsConstants.FILTER_BY_TYPE_BI_CONNECTION %>" />
+								<aui:option label="following" selected='<%= filterBy.equals(ContactsConstants.FILTER_BY_TYPE_UNI_FOLLOWER) %>' value="<%= ContactsConstants.FILTER_BY_TYPE_UNI_FOLLOWER %>" />
 
 								<c:if test="<%= !showOnlySiteMembers %>">
-									<aui:option label="my-contacts" selected='<%= socialRelationType == SocialRelationConstants.TYPE_MY_CONTACTS %>' value="<%= SocialRelationConstants.TYPE_MY_CONTACTS %>" />
+									<aui:option label="my-contacts" selected='<%= filterBy.equals(ContactsConstants.FILTER_BY_TYPE_MY_CONTACTS) %>' value="<%= ContactsConstants.FILTER_BY_TYPE_MY_CONTACTS %>" />
+
+									<%
+									List<Group> groups = themeDisplay.getUser().getGroups();
+									%>
+
+									<optgroup label="<liferay-ui:message key="members-of" />">
+
+										<%
+										for (Group curGroup : groups) {
+
+											String idGroup = ContactsConstants.FILTER_BY_GROUP + curGroup.getGroupId();
+										%>
+
+										<aui:option label="<%= HtmlUtil.escape(curGroup.getDescriptiveName(locale)) %>" selected='<%= filterBy.equals(idGroup) %>' value="<%= idGroup %>" />
+
+										<%
+										}
+										%>
+
+									</optgroup>
 								</c:if>
 							</aui:select>
 
@@ -281,7 +304,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 									<%
 									int allUsersCount = 0;
 
-									if (userPublicPage || showOnlySiteMembers || (socialRelationType != 0)) {
+									if (userPublicPage || showOnlySiteMembers || !filterBy.equals(ContactsConstants.FILTER_BY_NOTHING)) {
 										allUsersCount = UserLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), StringPool.BLANK, WorkflowConstants.STATUS_APPROVED, params);
 									}
 									else {
@@ -351,7 +374,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 			Liferay.ContactsCenter = contactsCenter;
 
 			<c:if test="<%= !userPublicPage %>">
-				var contactFilterSelect = A.one('.contacts-portlet .contact-group-filter select[name=<portlet:namespace />socialRelationType]');
+				var contactFilterSelect = A.one('.contacts-portlet .contact-group-filter select[name=<portlet:namespace />filterBy]');
 
 				contactFilterSelect.on(
 					'change',
@@ -413,8 +436,8 @@ portletURL.setWindowState(WindowState.NORMAL);
 							},
 							data: {
 								end: end,
+								filterBy: contactFilterSelect.get('value') || '<%= ContactsConstants.FILTER_BY_NOTHING %>',
 								keywords: searchInput.get('value'),
-								socialRelationType: contactFilterSelect.get('value') || 'all',
 								start: start
 							},
 							type: 'json'
@@ -532,7 +555,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 				contactsCenterHome.one('.contacts').on(
 					'click',
 					function(event) {
-						contactFilterSelect.set('value', '<%= SocialRelationConstants.TYPE_MY_CONTACTS %>');
+						contactFilterSelect.set('value', '<%= ContactsConstants.FILTER_BY_TYPE_MY_CONTACTS %>');
 
 						contactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
 					},
@@ -542,7 +565,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 				contactsCenterHome.one('.connections').on(
 					'click',
 					function(event) {
-						contactFilterSelect.set('value', '<%= SocialRelationConstants.TYPE_BI_CONNECTION %>');
+						contactFilterSelect.set('value', '<%= ContactsConstants.FILTER_BY_TYPE_BI_CONNECTION %>');
 
 						contactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
 					},
@@ -552,7 +575,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 				contactsCenterHome.one('.followings').on(
 					'click',
 					function(event) {
-						contactFilterSelect.set('value', '<%= SocialRelationConstants.TYPE_UNI_FOLLOWER %>');
+						contactFilterSelect.set('value', '<%= ContactsConstants.FILTER_BY_TYPE_UNI_FOLLOWER %>');
 
 						contactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
 					},
@@ -562,11 +585,11 @@ portletURL.setWindowState(WindowState.NORMAL);
 				contactsCenterHome.one('.all').on(
 					'click',
 					function(event) {
-						contactFilterSelect.set('value', 'all');
+						contactFilterSelect.set('value', '<%= ContactsConstants.FILTER_BY_NOTHING %>');
 
 						searchInput.set('value', '');
 
-						contactsCenter.updateContacts('', contactFilterSelect.get('value'));
+						contactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
 					},
 					'a'
 				);

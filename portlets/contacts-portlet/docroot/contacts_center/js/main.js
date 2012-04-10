@@ -226,11 +226,11 @@ AUI.add(
 						contactResultContent.append(contactUserHTML.join(''));
 					},
 
-					updateContacts: function(keywords, socialRelationType) {
+					updateContacts: function(keywords, filterBy) {
 						var instance = this;
 
 						if (instance._contactList) {
-							instance._contactList.sendRequest(keywords, instance._getRequestTemplate(socialRelationType));
+							instance._contactList.sendRequest(keywords, instance._getRequestTemplate(filterBy));
 						}
 					},
 
@@ -268,18 +268,18 @@ AUI.add(
 									request: function(event) {
 										var contactFilterContainer = A.one('.contacts-portlet .contact-group-filter');
 
-										var socialRelationType = 0;
+										var filterBy = '0';
 
 										if (contactFilterContainer) {
-											socialRelationType = contactFilterContainer.one('select').get('value');
+											filterBy = contactFilterContainer.one('select').get('value');
 										}
 
 										var data = event.request;
 
 										event.cfg.data = {
 											end: data.end || 100,
+											filterBy: data.filterBy || filterBy,
 											keywords: data.keywords || '',
-											socialRelationType: data.socialRelationType || socialRelationType,
 											start: data.start || 0
 										}
 									}
@@ -329,12 +329,12 @@ AUI.add(
 						instance._contactList = contactsResult;
 					},
 
-					_getRequestTemplate: function(socialRelationType) {
+					_getRequestTemplate: function(filterBy) {
 						return function(query) {
 							return {
 								end: 100,
+								filterBy: filterBy,
 								keywords: query,
-								socialRelationType: socialRelationType,
 								start: 0
 							}
 						};
