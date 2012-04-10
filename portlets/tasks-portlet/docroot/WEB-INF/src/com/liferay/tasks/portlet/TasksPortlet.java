@@ -30,6 +30,7 @@ import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletURLFactoryUtil;
+import com.liferay.portlet.asset.AssetTagException;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.service.MBMessageServiceUtil;
 import com.liferay.tasks.model.TasksEntry;
@@ -188,32 +189,42 @@ public class TasksPortlet extends MVCPortlet {
 
 		TasksEntry taskEntry = null;
 
-		if (tasksEntryId <= 0) {
-			taskEntry = TasksEntryServiceUtil.addTasksEntry(
-				title, priority, assigneeUserId, dueDateMonth, dueDateDay,
-				dueDateYear, dueDateHour, dueDateMinute, neverDue,
-				serviceContext);
+		try {
+			if (tasksEntryId <= 0) {
+				taskEntry = TasksEntryServiceUtil.addTasksEntry(
+					title, priority, assigneeUserId, dueDateMonth, dueDateDay,
+					dueDateYear, dueDateHour, dueDateMinute, neverDue,
+					serviceContext);
+			}
+			else {
+				taskEntry = TasksEntryServiceUtil.updateTasksEntry(
+					tasksEntryId, title, priority, assigneeUserId, resolverUserId,
+					dueDateMonth, dueDateDay, dueDateYear, dueDateHour,
+					dueDateMinute, neverDue, status, serviceContext);
+			}
+
+			Layout layout = themeDisplay.getLayout();
+
+			PortletURL portletURL = PortletURLFactoryUtil.create(
+				actionRequest, PortletKeys.TASKS, layout.getPlid(),
+				PortletRequest.RENDER_PHASE);
+
+			portletURL.setWindowState(LiferayWindowState.EXCLUSIVE);
+
+			portletURL.setParameter("mvcPath", "/tasks/view_task.jsp");
+			portletURL.setParameter(
+				"tasksEntryId", String.valueOf(taskEntry.getTasksEntryId()));
+
+			actionResponse.sendRedirect(portletURL.toString());
 		}
-		else {
-			taskEntry = TasksEntryServiceUtil.updateTasksEntry(
-				tasksEntryId, title, priority, assigneeUserId, resolverUserId,
-				dueDateMonth, dueDateDay, dueDateYear, dueDateHour,
-				dueDateMinute, neverDue, status, serviceContext);
+		catch (AssetTagException ate) {
+			actionResponse.setRenderParameter(
+				"mvcPath", "/tasks/edit_task.jsp");
+
+			actionResponse.setRenderParameters(actionRequest.getParameterMap());
+
+			SessionErrors.add(actionRequest, ate.getClass().getName(), ate);
 		}
-
-		Layout layout = themeDisplay.getLayout();
-
-		PortletURL portletURL = PortletURLFactoryUtil.create(
-			actionRequest, PortletKeys.TASKS, layout.getPlid(),
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setWindowState(LiferayWindowState.EXCLUSIVE);
-
-		portletURL.setParameter("mvcPath", "/tasks/view_task.jsp");
-		portletURL.setParameter(
-			"tasksEntryId", String.valueOf(taskEntry.getTasksEntryId()));
-
-		actionResponse.sendRedirect(portletURL.toString());
 	}
 
 	public void updateTasksEntryStatus(

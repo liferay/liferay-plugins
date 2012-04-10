@@ -32,7 +32,7 @@ portletURL.setParameter("tabs2", tabs2);
 
 <div class="control-wrapper">
 	<c:if test="<%= TasksPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), ActionKeys.ADD_ENTRY) %>">
-		<a class="add-task" href="javascript:;" onClick="Liferay.Tasks.displayPopup('<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/tasks/edit_task.jsp" /><portlet:param name="tabs1" value="<%= tabs1 %>" /><portlet:param name="tabs2" value="<%= tabs2 %>" /></portlet:renderURL>', 'Tasks');"><liferay-ui:message key="add-task" /></a>
+		<a class="add-task" href="javascript:;" onClick="Liferay.Tasks.displayPopup('<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/tasks/edit_task.jsp" /></portlet:renderURL>', '<liferay-ui:message key="add-task" />');"><liferay-ui:message key="add-task" /></a>
 	</c:if>
 
 	<c:if test="<%= TasksPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), ActionKeys.PERMISSIONS) %>">
