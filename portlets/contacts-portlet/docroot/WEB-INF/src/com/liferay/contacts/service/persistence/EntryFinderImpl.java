@@ -228,9 +228,6 @@ public class EntryFinderImpl
 			andOperator = true;
 		}
 
-		fullNames = CustomSQLUtil.keywords(fullNames);
-		emailAddresses = CustomSQLUtil.keywords(emailAddresses);
-
 		return findByC_U_FN_EA(
 			companyId, userId, fullNames, emailAddresses, andOperator, start,
 			end);
@@ -252,9 +249,6 @@ public class EntryFinderImpl
 			andOperator = true;
 		}
 
-		fullNames = CustomSQLUtil.keywords(fullNames);
-		emailAddresses = CustomSQLUtil.keywords(emailAddresses);
-
 		return findByU_FN_EA(
 			userId, fullNames, emailAddresses, andOperator, start, end);
 	}
@@ -263,6 +257,9 @@ public class EntryFinderImpl
 			long userId, String[] fullNames, String[] emailAddresses,
 			boolean andOperator, int start, int end)
 		throws SystemException {
+
+		fullNames = CustomSQLUtil.keywords(fullNames);
+		emailAddresses = CustomSQLUtil.keywords(emailAddresses);
 
 		Session session = null;
 
