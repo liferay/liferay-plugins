@@ -164,14 +164,16 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		return (com.liferay.contacts.model.Entry)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteEntry(long entryId)
+	public com.liferay.contacts.model.Entry deleteEntry(long entryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteEntryMethodKey2,
 				entryId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -190,15 +192,20 @@ public class EntryLocalServiceClp implements EntryLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.contacts.model.Entry)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteEntry(com.liferay.contacts.model.Entry entry)
+	public com.liferay.contacts.model.Entry deleteEntry(
+		com.liferay.contacts.model.Entry entry)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		MethodHandler methodHandler = new MethodHandler(_deleteEntryMethodKey3,
 				ClpSerializer.translateInput(entry));
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -213,6 +220,8 @@ public class EntryLocalServiceClp implements EntryLocalService {
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.contacts.model.Entry)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@SuppressWarnings("rawtypes")

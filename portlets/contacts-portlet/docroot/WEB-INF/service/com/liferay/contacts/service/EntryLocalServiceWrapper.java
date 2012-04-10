@@ -58,24 +58,27 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 	* Deletes the entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param entryId the primary key of the entry
+	* @return the entry that was removed
 	* @throws PortalException if a entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteEntry(long entryId)
+	public com.liferay.contacts.model.Entry deleteEntry(long entryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_entryLocalService.deleteEntry(entryId);
+		return _entryLocalService.deleteEntry(entryId);
 	}
 
 	/**
 	* Deletes the entry from the database. Also notifies the appropriate model listeners.
 	*
 	* @param entry the entry
+	* @return the entry that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteEntry(com.liferay.contacts.model.Entry entry)
+	public com.liferay.contacts.model.Entry deleteEntry(
+		com.liferay.contacts.model.Entry entry)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_entryLocalService.deleteEntry(entry);
+		return _entryLocalService.deleteEntry(entry);
 	}
 
 	/**
