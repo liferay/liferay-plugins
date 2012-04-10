@@ -23,11 +23,11 @@
 	$user_dashboard_portlet_url.setWindowState("normal")
 
 	#set ($user_dashboard_url = $htmlUtil.escape($user_dashboard_portlet_url.toString()))
+
+	#set ($user_local_service = $serviceLocator.findService("com.liferay.portal.service.UserLocalService"))
 #end
 
 #if ($page_group.isUser())
-	#set ($user_local_service = $serviceLocator.findService("com.liferay.portal.service.UserLocalService"))
-
 	#set ($current_user = $user_local_service.getUserById($page_group.getClassPK()))
 
 	#set ($current_user_name = $current_user.getFullName())
