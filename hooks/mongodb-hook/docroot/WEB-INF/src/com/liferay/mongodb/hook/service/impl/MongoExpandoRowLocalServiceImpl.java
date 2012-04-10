@@ -132,9 +132,7 @@ public class MongoExpandoRowLocalServiceImpl
 	}
 
 	@Override
-	public int getRowsCount(long tableId)
-		throws SystemException {
-
+	public int getRowsCount(long tableId) throws SystemException {
 		try {
 			ExpandoTable expandoTable = ExpandoTableLocalServiceUtil.getTable(
 				tableId);

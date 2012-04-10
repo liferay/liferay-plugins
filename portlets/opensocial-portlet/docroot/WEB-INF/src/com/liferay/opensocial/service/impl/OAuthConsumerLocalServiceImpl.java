@@ -86,9 +86,7 @@ public class OAuthConsumerLocalServiceImpl
 		return oAuthConsumer;
 	}
 
-	public void deleteOAuthConsumers(String gadgetKey)
-		throws SystemException {
-
+	public void deleteOAuthConsumers(String gadgetKey) throws SystemException {
 		List<OAuthConsumer> oAuthConsumers =
 			oAuthConsumerPersistence.findByGadgetKey(gadgetKey);
 

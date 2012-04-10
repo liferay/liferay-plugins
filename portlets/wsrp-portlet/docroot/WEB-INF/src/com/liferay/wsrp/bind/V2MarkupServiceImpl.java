@@ -627,9 +627,7 @@ public class V2MarkupServiceImpl
 		return portletId;
 	}
 
-	protected String getPortletMode(MimeRequest mimeRequest)
-		throws Exception {
-
+	protected String getPortletMode(MimeRequest mimeRequest) throws Exception {
 		String portletMode = mimeRequest.getMode();
 
 		return portletMode.substring(5);
@@ -849,9 +847,7 @@ public class V2MarkupServiceImpl
 		return sb.toString();
 	}
 
-	protected String getWindowState(MimeRequest mimeRequest)
-		throws Exception {
-
+	protected String getWindowState(MimeRequest mimeRequest) throws Exception {
 		String windowState = mimeRequest.getWindowState();
 
 		return windowState.substring(5);

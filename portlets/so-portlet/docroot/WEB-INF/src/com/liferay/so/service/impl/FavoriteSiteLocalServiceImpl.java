@@ -89,9 +89,7 @@ public class FavoriteSiteLocalServiceImpl
 			userId, name, groupRealName, start, end);
 	}
 
-	public int getFavoriteSitesCount(long userId)
-		throws SystemException {
-
+	public int getFavoriteSitesCount(long userId) throws SystemException {
 		return favoriteSitePersistence.countByUserId(userId);
 	}
 
@@ -105,9 +103,7 @@ public class FavoriteSiteLocalServiceImpl
 		return favoriteSiteFinder.countByU_N(userId, name, groupRealName);
 	}
 
-	public boolean isFavoriteSite(long favoriteSiteId)
-		throws SystemException {
-
+	public boolean isFavoriteSite(long favoriteSiteId) throws SystemException {
 		FavoriteSite favoriteSite = favoriteSitePersistence.fetchByPrimaryKey(
 			favoriteSiteId);
 

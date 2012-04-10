@@ -388,9 +388,7 @@ public class MongoExpandoValueLocalServiceImpl
 	}
 
 	@Override
-	public int getColumnValuesCount(long columnId)
-		throws SystemException {
-
+	public int getColumnValuesCount(long columnId) throws SystemException {
 		try {
 			ExpandoColumn expandoColumn =
 				ExpandoColumnLocalServiceUtil.getColumn(columnId);

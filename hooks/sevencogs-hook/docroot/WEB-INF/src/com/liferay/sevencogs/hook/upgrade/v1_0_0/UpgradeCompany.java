@@ -951,9 +951,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		}
 	}
 
-	protected void enableSocialActivities(long groupId)
-		throws Exception {
-
+	protected void enableSocialActivities(long groupId) throws Exception {
 		SocialActivitySettingLocalServiceUtil.updateActivitySetting(
 			groupId, BlogsEntry.class.getName(), true);
 		SocialActivitySettingLocalServiceUtil.updateActivitySetting(

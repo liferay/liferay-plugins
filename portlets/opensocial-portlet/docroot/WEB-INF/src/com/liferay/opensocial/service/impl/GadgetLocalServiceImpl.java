@@ -224,9 +224,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		}
 	}
 
-	public void initGadgets()
-		throws PortalException, SystemException {
-
+	public void initGadgets() throws PortalException, SystemException {
 		List<Gadget> gadgets = gadgetPersistence.findAll();
 
 		for (Gadget gadget : gadgets) {
