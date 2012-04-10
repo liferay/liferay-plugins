@@ -120,9 +120,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		return deleteApp(app);
 	}
 
-	public App fetchRemoteApp(long remoteAppId)
-		throws SystemException {
-
+	public App fetchRemoteApp(long remoteAppId) throws SystemException {
 		return appPersistence.fetchByRemoteAppId(remoteAppId);
 	}
 

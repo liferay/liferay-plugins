@@ -109,8 +109,7 @@ public class KaleoNodeLocalServiceImpl extends KaleoNodeLocalServiceBaseImpl {
 		return kaleoNode;
 	}
 
-	public void deleteCompanyKaleoNodes(long companyId)
-		throws SystemException {
+	public void deleteCompanyKaleoNodes(long companyId) throws SystemException {
 
 		// Kaleo nodes
 

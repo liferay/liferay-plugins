@@ -157,9 +157,7 @@ public class LayoutUtil {
 			portletPrimaryKey, true, true, true);
 	}
 
-	public static void configureAssetPublisher(Layout layout)
-		throws Exception {
-
+	public static void configureAssetPublisher(Layout layout) throws Exception {
 		PortletPreferences portletSetup =
 			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
 				layout, "101_INSTANCE_abcd");
@@ -170,9 +168,7 @@ public class LayoutUtil {
 		portletSetup.store();
 	}
 
-	public static void configureMessageBoards(Layout layout)
-		throws Exception {
-
+	public static void configureMessageBoards(Layout layout) throws Exception {
 		PortletPreferences portletSetup =
 			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
 				layout, PortletKeys.MESSAGE_BOARDS);

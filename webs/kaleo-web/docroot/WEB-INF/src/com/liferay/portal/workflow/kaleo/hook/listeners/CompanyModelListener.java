@@ -26,9 +26,7 @@ import com.liferay.portal.workflow.kaleo.manager.PortalKaleoManagerUtil;
 public class CompanyModelListener extends BaseModelListener<Company> {
 
 	@Override
-	public void onAfterRemove(Company company)
-		throws ModelListenerException {
-
+	public void onAfterRemove(Company company) throws ModelListenerException {
 		try {
 			PortalKaleoManager portalKaleoManager =
 				PortalKaleoManagerUtil.getPortalKaleoManager();

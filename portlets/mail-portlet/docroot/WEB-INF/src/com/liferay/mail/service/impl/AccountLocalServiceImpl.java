@@ -134,9 +134,7 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 		return accountPersistence.findByU_A(userId, address);
 	}
 
-	public List<Account> getAccounts(long userId)
-		throws SystemException {
-
+	public List<Account> getAccounts(long userId) throws SystemException {
 		return accountPersistence.findByUserId(userId);
 	}
 

@@ -345,9 +345,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		return StringUtil.shorten(HtmlContentUtil.getPlainText(body), 50);
 	}
 
-	protected long getSize(long messageId, String body)
-		throws SystemException {
-
+	protected long getSize(long messageId, String body) throws SystemException {
 		if (Validator.isNull(body)) {
 			return 0;
 		}

@@ -35,9 +35,7 @@ public class KaleoDefinitionImpl
 		return KaleoNodeLocalServiceUtil.getKaleoNode(getStartKaleoNodeId());
 	}
 
-	public boolean hasIncompleteKaleoInstances()
-		throws SystemException {
-
+	public boolean hasIncompleteKaleoInstances() throws SystemException {
 		int count = KaleoInstanceLocalServiceUtil.getKaleoInstancesCount(
 			getKaleoDefinitionId(), false);
 

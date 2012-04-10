@@ -43,9 +43,7 @@ public class KaleoNodeImpl extends KaleoNodeBaseImpl {
 			getKaleoNodeId(), name);
 	}
 
-	public List<KaleoTransition> getKaleoTransitions()
-		throws SystemException {
-
+	public List<KaleoTransition> getKaleoTransitions() throws SystemException {
 		return KaleoTransitionLocalServiceUtil.getKaleoTransitions(
 			getKaleoNodeId());
 	}
