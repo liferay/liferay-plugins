@@ -31,9 +31,34 @@ $theme.include($body_top_include)
 
 			#if (!$page_group.isUser())
 				<div class="community-title">
-					<a href="$community_default_url" title="#language("go-to") $community_name">
+					<a href="$community_default_url" title='#language("go-to") $community_name'>
 						<span>$community_name</span>
 					</a>
+					
+					#if (($page_group.getType() == 1) && $is_signed_in)
+						#set ($site_membership_url = $portletURLFactory.create($request, "134", $page.getPlid(), "ACTION_PHASE"))
+
+						$site_membership_url.setWindowState("normal")
+						$site_membership_url.setParameter("struts_action", "/sites_admin/edit_site_assignments")
+						$site_membership_url.setParameter("cmd", "group_users")
+						$site_membership_url.setParameter("groupId", "$page_group.getGroupId()")
+
+						#if (!$user_local_service.hasGroupUser($page_group.getGroupId(), $user_id))
+							$site_membership_url.setParameter("addUserIds", "$user_id")
+							
+							#set ($site_membership_action = "join")
+						#else
+							$site_membership_url.setParameter("removeUserIds", "$user_id")
+
+							#set ($site_membership_action = "leave")
+						#end
+
+						#set ($site_membership_url = $htmlUtil.escape($site_membership_url.toString()))
+
+						<form action="$site_membership_url" name="joinSocialOfficeSite" method="Post">
+							<input type="submit" value='#language("$site_membership_action")' />
+						</form>
+					#end
 				</div>
 			#end
 
@@ -65,7 +90,7 @@ $theme.include($body_top_include)
 						<a href="$current_user_profile_url"><img src="$current_user_profile_portrait_url" alt="$current_user_name"></a>
 					</div>
 
-					#if ($page_group.isUser() && !$layout.isPublicLayout())
+					#if (!$layout.isPublicLayout())
 						<a class="profile-name" href="$current_user_profile_url">$current_user_name</a>
 					#end
 				</div>
