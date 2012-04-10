@@ -48,7 +48,6 @@ import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.OrganizationLocalServiceUtil;
-import com.liferay.portal.service.PermissionLocalServiceUtil;
 import com.liferay.portal.service.ResourceLocalServiceUtil;
 import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
@@ -1025,14 +1024,8 @@ public class UpgradeCompany extends UpgradeProcess {
 		int scope = ResourceConstants.SCOPE_COMPANY;
 		String primKey = String.valueOf(companyId);
 
-		if (_PERMISSIONS_USER_CHECK_ALGORITHM == 6) {
-			ResourcePermissionLocalServiceUtil.setResourcePermissions(
-				companyId, name, scope, primKey, roleId, actionIds);
-		}
-		else {
-			PermissionLocalServiceUtil.setRolePermissions(
-				roleId, companyId, name, scope, primKey, actionIds);
-		}
+		ResourcePermissionLocalServiceUtil.setResourcePermissions(
+			companyId, name, scope, primKey, roleId, actionIds);
 	}
 
 	protected Organization setupOrganizations(
@@ -2300,10 +2293,6 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		return portletSetup;
 	}
-
-	private static final int _PERMISSIONS_USER_CHECK_ALGORITHM =
-		GetterUtil.getInteger(
-			PropsUtil.get(PropsKeys.PERMISSIONS_USER_CHECK_ALGORITHM));
 
 	private static final int _SN_FRIENDS_REQUEST_KEYS_ADD_FRIEND = 1;
 
