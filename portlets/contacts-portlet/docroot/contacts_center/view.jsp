@@ -49,7 +49,6 @@ if (userPublicPage || showOnlySiteMembers || (socialRelationType != 0)) {
 	List<User> users = UserLocalServiceUtil.search(company.getCompanyId(), name, WorkflowConstants.STATUS_APPROVED, params, 0, maxResultCount, new UserLastNameComparator(true));
 
 	contacts = new ArrayList<BaseModel<?>>(users);
-
 	contactsCount = UserLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), name, WorkflowConstants.STATUS_APPROVED, params);
 }
 else {
@@ -122,14 +121,14 @@ portletURL.setWindowState(WindowState.NORMAL);
 						<%
 						String lastNameAnchor = StringPool.SPACE;
 
-						for (BaseModel<?> curContact : contacts) {
+						for (BaseModel<?> contact : contacts) {
 						%>
 
 							<c:choose>
-								<c:when test="<%= curContact instanceof User %>">
+								<c:when test="<%= contact instanceof User %>">
 
 									<%
-									User user2 = (User)curContact;
+									User user2 = (User)contact;
 
 									String lastName = user2.getLastName();
 
@@ -154,7 +153,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 									<liferay-portlet:renderURL var="viewUserSummaryURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 										<portlet:param name="mvcPath" value="/contacts_center/view_resources.jsp" />
 										<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
-										<portlet:param name="registeredUser" value="<%= String.valueOf(true) %>" />
+										<portlet:param name="portalUser" value="<%= Boolean.TRUE.toString() %>" />
 									</liferay-portlet:renderURL>
 
 									<div class="lfr-contact">
@@ -190,7 +189,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 								<c:otherwise>
 
 									<%
-									Entry entry = (Entry)curContact;
+									Entry entry = (Entry)contact;
 
 									String fullName = entry.getFullName();
 
@@ -214,9 +213,9 @@ portletURL.setWindowState(WindowState.NORMAL);
 
 									<liferay-portlet:renderURL var="viewContactSummaryURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 										<portlet:param name="mvcPath" value="/contacts_center/view_resources.jsp" />
-										<portlet:param name="entryId" value="<%= String.valueOf(entry.getEntryId()) %>" />
-										<portlet:param name="registeredUser" value="<%= String.valueOf(false) %>" />
 										<portlet:param name="redirect" value="<%= currentURL %>" />
+										<portlet:param name="entryId" value="<%= String.valueOf(entry.getEntryId()) %>" />
+										<portlet:param name="portalUser" value="<%= Boolean.FALSE.toString() %>" />
 									</liferay-portlet:renderURL>
 
 									<div class="lfr-contact">
@@ -282,7 +281,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 									<%
 									int allUsersCount = 0;
 
-									if (userPublicPage || showOnlySiteMembers || socialRelationType != 0) {
+									if (userPublicPage || showOnlySiteMembers || (socialRelationType != 0)) {
 										allUsersCount = UserLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), StringPool.BLANK, WorkflowConstants.STATUS_APPROVED, params);
 									}
 									else {
