@@ -52,7 +52,6 @@
 	#end
 #end
 
-
 #set ($layoutFluid = $getterUtil.getBoolean($sessionClicks.get($request, "so-layout-fluid", "false")))
 
 #if ($layoutFluid == true)
