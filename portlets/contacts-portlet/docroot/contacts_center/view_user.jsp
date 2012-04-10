@@ -337,7 +337,13 @@ request.setAttribute("view_user.jsp-user", user2);
 			userInformation.delegate(
 				'click',
 				function(event) {
-					<portlet:namespace />openDialog(event);
+					var node = event.target;
+
+					var tagName = node.get('tagName');
+
+					if (!tagName || (tagName.toLowerCase() != 'a')) {
+						<portlet:namespace />openDialog(event);
+					}
 				},
 				'.field-group, .action-field'
 			);
