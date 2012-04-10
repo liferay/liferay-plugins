@@ -121,14 +121,14 @@ portletURL.setWindowState(WindowState.NORMAL);
 						<%
 						String lastNameAnchor = StringPool.SPACE;
 
-						for (BaseModel<?> contact : contacts) {
+						for (BaseModel<?> curContact : contacts) {
 						%>
 
 							<c:choose>
-								<c:when test="<%= contact instanceof User %>">
+								<c:when test="<%= curContact instanceof User %>">
 
 									<%
-									User user2 = (User)contact;
+									User user2 = (User)curContact;
 
 									String lastName = user2.getLastName();
 
@@ -189,7 +189,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 								<c:otherwise>
 
 									<%
-									Entry entry = (Entry)contact;
+									Entry entry = (Entry)curContact;
 
 									String fullName = entry.getFullName();
 
