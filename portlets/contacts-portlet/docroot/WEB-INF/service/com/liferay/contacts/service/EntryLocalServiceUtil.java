@@ -66,24 +66,27 @@ public class EntryLocalServiceUtil {
 	* Deletes the entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param entryId the primary key of the entry
+	* @return the entry that was removed
 	* @throws PortalException if a entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteEntry(long entryId)
+	public static com.liferay.contacts.model.Entry deleteEntry(long entryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteEntry(entryId);
+		return getService().deleteEntry(entryId);
 	}
 
 	/**
 	* Deletes the entry from the database. Also notifies the appropriate model listeners.
 	*
 	* @param entry the entry
+	* @return the entry that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteEntry(com.liferay.contacts.model.Entry entry)
+	public static com.liferay.contacts.model.Entry deleteEntry(
+		com.liferay.contacts.model.Entry entry)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteEntry(entry);
+		return getService().deleteEntry(entry);
 	}
 
 	/**
