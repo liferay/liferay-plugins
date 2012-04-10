@@ -17,12 +17,12 @@
 <%@ include file="/init.jsp" %>
 
 <%
-boolean registeredUser = ParamUtil.getBoolean(request, "registeredUser");
+boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 %>
 
 <div>
 	<c:choose>
-		<c:when test="<%= !registeredUser %>">
+		<c:when test="<%= !portalUser %>">
 
 			<%
 			long entryId = ParamUtil.getLong(request, "entryId");

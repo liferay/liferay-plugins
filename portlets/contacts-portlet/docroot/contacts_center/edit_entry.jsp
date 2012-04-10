@@ -84,7 +84,7 @@ if (entryId > 0) {
 							}
 							else {
 								A.io.request(
-									'<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/contacts_center/view_resources.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="registeredUser" value="false" %>" /></liferay-portlet:renderURL>',
+									'<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/contacts_center/view_resources.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="portalUser" value="0" %>" /></liferay-portlet:renderURL>',
 									{
 										after: {
 											failure: failureCallback,

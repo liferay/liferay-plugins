@@ -35,7 +35,6 @@ import com.liferay.portal.WebsiteURLException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
 import com.liferay.portal.kernel.notifications.NotificationEvent;
 import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
@@ -44,7 +43,6 @@ import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
-import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -79,8 +77,6 @@ import com.liferay.portlet.social.service.SocialRequestLocalServiceUtil;
 import com.liferay.portlet.usersadmin.util.UsersAdminUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
-import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.LinkedHashMap;
@@ -88,7 +84,6 @@ import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
 import javax.portlet.PortletURL;
 import javax.portlet.ResourceRequest;
@@ -296,7 +291,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		viewSummaryURL.setParameter(
 			"mvcPath", "/contacts_center/view_resources.jsp");
 		viewSummaryURL.setParameter("userId", String.valueOf(user.getUserId()));
-		viewSummaryURL.setParameter("registeredUser", Boolean.TRUE.toString());
+		viewSummaryURL.setParameter("portalUser", Boolean.TRUE.toString());
 
 		userJSONObject.put("viewSummaryURL", viewSummaryURL.toString());
 
@@ -312,12 +307,13 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
+		String redirect = ParamUtil.getString(resourceRequest, "redirect");
+
 		String keywords = ParamUtil.getString(resourceRequest, "keywords");
 		int socialRelationType = ParamUtil.getInteger(
 			resourceRequest, "socialRelationType");
 		int start = ParamUtil.getInteger(resourceRequest, "start");
 		int end = ParamUtil.getInteger(resourceRequest, "end");
-		String redirect = ParamUtil.getString(resourceRequest, "redirect");
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
@@ -423,7 +419,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 	@Override
 	public void processAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws IOException, PortletException {
+		throws PortletException {
 
 		try {
 			String actionName = ParamUtil.getString(
@@ -516,14 +512,11 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			WebKeys.THEME_DISPLAY);
 
 		long entryId = ParamUtil.getLong(actionRequest, "entryId");
+
+		String fullName = ParamUtil.getString(actionRequest, "fullName");
 		String emailAddress = ParamUtil.getString(
 			actionRequest, "emailAddress");
-		String fullName = ParamUtil.getString(actionRequest, "fullName");
 		String comments = ParamUtil.getString(actionRequest, "comments");
-
-		PortletConfig portletConfig =
-			(PortletConfig)actionRequest.getAttribute(
-				JavaConstants.JAVAX_PORTLET_CONFIG);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
@@ -548,10 +541,9 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			jsonObject.put("entryId", entry.getEntryId());
 			jsonObject.put("success", true);
 
-			message = LanguageUtil.get(
-				portletConfig, themeDisplay.getLocale(), message);
-
-			SessionMessages.add(actionRequest, "request_processed", message);
+			SessionMessages.add(
+				actionRequest, "request_processed",
+				themeDisplay.translate(message));
 		}
 		catch (Exception e) {
 			String message = null;
@@ -570,10 +562,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 					"an-error-occurred-while-processing-the-requested-resource";
 			}
 
-			message = LanguageUtil.get(
-				portletConfig, themeDisplay.getLocale(), message);
-
-			jsonObject.put("message", message);
+			jsonObject.put("message", themeDisplay.translate(message));
 			jsonObject.put("success", false);
 		}
 
@@ -660,8 +649,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
-			jsonObject.put(
-				"message", LanguageUtil.get(themeDisplay.getLocale(), message));
+			jsonObject.put("message", themeDisplay.translate(message));
 			jsonObject.put("success", false);
 		}
 
@@ -720,7 +708,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		contactJSONObject.put("entryId", String.valueOf(entry.getEntryId()));
 		contactJSONObject.put("emailAddress", entry.getEmailAddress());
 		contactJSONObject.put("fullName", entry.getFullName());
-		contactJSONObject.put("registeredUser", false);
+		contactJSONObject.put("portalUser", false);
 		contactJSONObject.put(
 			"portraitURL",
 			themeDisplay.getPathImage() + "/user_male_portrait?img_id=0");
@@ -737,7 +725,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		viewSummaryURL.setParameter("redirect", redirect);
 		viewSummaryURL.setParameter(
 			"entryId", String.valueOf(entry.getEntryId()));
-		viewSummaryURL.setParameter("registeredUser", Boolean.FALSE.toString());
+		viewSummaryURL.setParameter("portalUser", Boolean.FALSE.toString());
 
 		contactJSONObject.put("viewSummaryURL", viewSummaryURL.toString());
 
@@ -770,9 +758,9 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		userJSONObject.put("emailAddress", user.getEmailAddress());
 		userJSONObject.put("firstName", user.getFirstName());
 		userJSONObject.put("fullName", user.getFullName());
-		userJSONObject.put("registeredUser", true);
 		userJSONObject.put("jobTitle", user.getJobTitle());
 		userJSONObject.put("lastName", user.getLastName());
+		userJSONObject.put("portalUser", true);
 		userJSONObject.put("portraitURL", user.getPortraitURL(themeDisplay));
 		userJSONObject.put("userId", String.valueOf(user.getUserId()));
 
@@ -786,7 +774,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		viewSummaryURL.setParameter(
 			"mvcPath", "/contacts_center/view_resources.jsp");
 		viewSummaryURL.setParameter("userId", String.valueOf(user.getUserId()));
-		viewSummaryURL.setParameter("registeredUser", Boolean.TRUE.toString());
+		viewSummaryURL.setParameter("portalUser", Boolean.TRUE.toString());
 
 		userJSONObject.put("viewSummaryURL", viewSummaryURL.toString());
 
@@ -852,9 +840,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			Contact.class.getName(), user.getContactId(), addresses);
 	}
 
-	protected void updateAsset(ActionRequest actionRequest)
-		throws Exception {
-
+	protected void updateAsset(ActionRequest actionRequest) throws Exception {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
