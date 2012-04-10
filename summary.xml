@@ -843,7 +843,7 @@
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
-			<bundle>false</bundle>
+			<bundle>true</bundle>
 			<category></category>
 			<compatibility></compatibility>
 			<demo-url></demo-url>
