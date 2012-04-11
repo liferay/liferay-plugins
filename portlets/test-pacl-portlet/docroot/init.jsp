@@ -24,6 +24,7 @@ page import="com.liferay.chat.model.Entry" %><%@
 page import="com.liferay.chat.model.Status" %><%@
 page import="com.liferay.chat.service.EntryLocalServiceUtil" %><%@
 page import="com.liferay.chat.service.StatusLocalServiceUtil" %><%@
+page import="com.liferay.portal.kernel.dao.jdbc.DataAccess" %><%@
 page import="com.liferay.portal.kernel.dao.orm.DynamicQuery" %><%@
 page import="com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %><%@
@@ -52,6 +53,11 @@ page import="java.io.Writer" %>
 
 <%@ page import="java.net.ServerSocket" %><%@
 page import="java.net.Socket" %>
+
+<%@ page import="java.sql.Connection" %><%@
+page import="java.sql.PreparedStatement" %><%@
+page import="java.sql.SQLException" %><%@
+page import="java.sql.Statement" %>
 
 <%@ page import="java.util.Locale" %><%@
 page import="java.util.Map" %>
