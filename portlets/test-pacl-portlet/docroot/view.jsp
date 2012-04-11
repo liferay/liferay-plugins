@@ -756,6 +756,18 @@
 </p>
 
 <p>
+	FooLocalServiceUtil#getFoosCount=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				FooLocalServiceUtil.getFoosCount();
+			}
+
+		};
+		%>
+
 	FooLocalServiceUtil#getReleaseInfo_GetBuildNumber=
 
 		<%
@@ -972,6 +984,364 @@
 
 		};
 		%>
+
+</p>
+
+<liferay-ui:header
+	title="SQL"
+/>
+
+<p>
+	<h3>Create</h3>
+</p>
+
+<p>
+
+	<%
+	new SQLSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testPreparedStatement("create table TestPACL_CreateFailure (userId bigint)");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testStatement("create table TestPACL_CreateFailure (userId bigint)");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testPreparedStatement("create table TestPACL_CreateSuccess (userId bigint)");
+
+			executePreparedStatement("drop table TestPACL_CreateSuccess");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testStatement("create table TestPACL_CreateSuccess (userId bigint)");
+
+			executeStatement("drop table TestPACL_CreateSuccess");
+		}
+
+	};
+	%>
+
+</p>
+
+<p>
+	<h3>Drop</h3>
+</p>
+
+<p>
+
+	<%
+	new SQLSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testPreparedStatement("drop table TestPACL_DropFailure");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testStatement("drop table TestPACL_DropFailure");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			executePreparedStatement("create table TestPACL_DropSuccess (userId bigint)");
+
+			testPreparedStatement("drop table TestPACL_DropSuccess");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			executeStatement("create table TestPACL_DropSuccess (userId bigint)");
+
+			testStatement("drop table TestPACL_DropSuccess");
+		}
+
+	};
+	%>
+
+</p>
+
+<p>
+	<h3>Insert</h3>
+</p>
+
+<p>
+
+	<%
+	new SQLSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testPreparedStatement("insert into TestPACL_InsertFailure values (1)");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testStatement("insert into TestPACL_InsertFailure values (1)");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			executePreparedStatement("create table TestPACL_InsertSuccess (userId bigint)");
+
+			testPreparedStatement("insert into TestPACL_InsertSuccess values (1)");
+
+			executePreparedStatement("drop table TestPACL_InsertSuccess");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			executeStatement("create table TestPACL_InsertSuccess (userId bigint)");
+
+			testStatement("insert into TestPACL_InsertSuccess values (1)");
+
+			executeStatement("drop table TestPACL_InsertSuccess");
+		}
+
+	};
+	%>
+
+</p>
+
+<p>
+	<h3>Replace</h3>
+</p>
+
+<p>
+
+	<%
+	new SQLSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testPreparedStatement("replace TestPACL_ReplaceFailure (userId) values (1)");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testStatement("replace TestPACL_ReplaceFailure (userId) values (1)");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			executePreparedStatement("create table TestPACL_ReplaceSuccess (userId bigint)");
+
+			testPreparedStatement("replace TestPACL_ReplaceSuccess (userId) values (1)");
+
+			executePreparedStatement("drop table TestPACL_ReplaceSuccess");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			executeStatement("create table TestPACL_ReplaceSuccess (userId bigint)");
+
+			testStatement("replace TestPACL_ReplaceSuccess (userId) values (1)");
+
+			executeStatement("drop table TestPACL_ReplaceSuccess");
+		}
+
+	};
+	%>
+
+</p>
+
+<p>
+	<h3>Select</h3>
+</p>
+
+<p>
+
+	<%
+	new SQLSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testPreparedStatement("select * from Counter");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testStatement("select * from Counter");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			try {
+				testPreparedStatement("select * from TestPACL_Bar");
+
+				throw new Exception("Failed to throw SQLException");
+			}
+			catch (SQLException se) {
+			}
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			try {
+				testStatement("select * from TestPACL_Bar");
+
+				throw new Exception("Failed to throw SQLException");
+			}
+			catch (SQLException se) {
+			}
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testPreparedStatement("select * from User_");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testStatement("select * from User_");
+		}
+
+	};
+	%>
+
+</p>
+
+<p>
+	<h3>Truncate</h3>
+</p>
+
+<p>
+
+	<%
+	new SQLSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testPreparedStatement("truncate table TestPACL_TruncateFailure");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testStatement("truncate table TestPACL_TruncateFailure");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			executePreparedStatement("create table TestPACL_TruncateSuccess (userId bigint)");
+
+			testPreparedStatement("truncate table TestPACL_TruncateSuccess");
+
+			executePreparedStatement("drop table TestPACL_TruncateSuccess");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			executeStatement("create table TestPACL_TruncateSuccess (userId bigint)");
+
+			testStatement("truncate table TestPACL_TruncateSuccess");
+
+			executePreparedStatement("drop table TestPACL_TruncateSuccess");
+		}
+
+	};
+	%>
+
+</p>
+
+<p>
+	<h3>Update</h3>
+</p>
+
+<p>
+
+	<%
+	new SQLSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testPreparedStatement("update ListType set name = 'Test PACL' where listTypeId = -123");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testStatement("update ListType set name = 'Test PACL' where listTypeId = -123");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testPreparedStatement("update User_ set firstName = 'Test PACL' where userId = -123");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testStatement("update User_ set firstName = 'Test PACL' where userId = -123");
+		}
+
+	};
+	%>
 
 </p>
 
@@ -1208,6 +1578,48 @@ private class SecurityExceptionTest {
 	protected boolean expectSecurityException;
 	protected ThemeDisplay themeDisplay;
 	protected Writer writer;
+
+}
+
+private class SQLSecurityExceptionTest extends SecurityExceptionTest {
+
+	public SQLSecurityExceptionTest(Writer writer, ThemeDisplay themeDisplay, boolean expectSecurityException) throws IOException {
+		super(writer, themeDisplay, expectSecurityException);
+	}
+
+	protected void executePreparedStatement(String sql) throws Exception {
+		Connection connection = DataAccess.getConnection();
+
+		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+		preparedStatement.execute();
+
+		DataAccess.cleanUp(connection, preparedStatement);
+	}
+
+	protected void executeStatement(String sql) throws Exception {
+		Connection connection = DataAccess.getConnection();
+
+		Statement statement = connection.createStatement();
+
+		statement.execute(sql);
+
+		DataAccess.cleanUp(connection, statement);
+	}
+
+	protected void testPreparedStatement(String sql) throws Exception {
+		writer.write(sql);
+		writer.write("=");
+
+		executePreparedStatement(sql);
+	}
+
+	protected void testStatement(String sql) throws Exception {
+		writer.write(sql);
+		writer.write("=");
+
+		executeStatement(sql);
+	}
 
 }
 %>
