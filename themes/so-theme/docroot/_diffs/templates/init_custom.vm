@@ -1,6 +1,7 @@
 #set ($user_local_service = $serviceLocator.findService("com.liferay.portal.service.UserLocalService"))
 
 #set ($logo = "logo")
+
 #set ($user_profile_url = $community_default_public_url)
 #set ($user_dashboard_portlet_url = $site_default_url)
 
