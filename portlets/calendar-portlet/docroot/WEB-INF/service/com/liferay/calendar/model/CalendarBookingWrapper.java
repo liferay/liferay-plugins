@@ -266,6 +266,10 @@ public class CalendarBookingWrapper implements CalendarBooking,
 		return _calendarBooking.getClassName();
 	}
 
+	public void setClassName(java.lang.String className) {
+		_calendarBooking.setClassName(className);
+	}
+
 	/**
 	* Returns the class name ID of this calendar booking.
 	*

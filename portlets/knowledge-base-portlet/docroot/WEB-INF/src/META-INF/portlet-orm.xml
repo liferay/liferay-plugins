@@ -67,6 +67,7 @@
 			<basic name="classPK" />
 			<basic name="content" />
 			<basic name="helpful" />
+			<transient name="className" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
