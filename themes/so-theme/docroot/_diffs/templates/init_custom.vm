@@ -1,5 +1,6 @@
-#set ($logo = "logo")
+#set ($user_local_service = $serviceLocator.findService("com.liferay.portal.service.UserLocalService"))
 
+#set ($logo = "logo")
 #set ($user_profile_url = $community_default_public_url)
 #set ($user_dashboard_portlet_url = $site_default_url)
 
@@ -23,8 +24,6 @@
 	$user_dashboard_portlet_url.setWindowState("normal")
 
 	#set ($user_dashboard_url = $htmlUtil.escape($user_dashboard_portlet_url.toString()))
-
-	#set ($user_local_service = $serviceLocator.findService("com.liferay.portal.service.UserLocalService"))
 #end
 
 #if ($page_group.isUser())
