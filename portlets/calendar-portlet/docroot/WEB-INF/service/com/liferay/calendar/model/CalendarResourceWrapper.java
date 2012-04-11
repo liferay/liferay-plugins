@@ -230,6 +230,10 @@ public class CalendarResourceWrapper implements CalendarResource,
 		return _calendarResource.getClassName();
 	}
 
+	public void setClassName(java.lang.String className) {
+		_calendarResource.setClassName(className);
+	}
+
 	/**
 	* Returns the class name ID of this calendar resource.
 	*
