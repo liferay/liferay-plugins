@@ -118,6 +118,17 @@ a:focus .opens-new-window-accessible {
 		}
 	}
 
+	#socialOfficeMembership {
+		display: inline-block;
+		position: relative;
+		top: -2px;
+
+		input {
+			font-size: 12px;
+			vertical-align: middle;
+		}
+	}
+
 	h3.page-title {
 		display: none;
 	}
