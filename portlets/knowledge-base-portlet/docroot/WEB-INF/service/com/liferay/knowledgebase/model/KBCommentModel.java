@@ -199,6 +199,8 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	 */
 	public String getClassName();
 
+	public void setClassName(String className);
+
 	/**
 	 * Returns the class name ID of this k b comment.
 	 *

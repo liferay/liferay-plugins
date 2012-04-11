@@ -229,6 +229,10 @@ public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {
 		return _kbComment.getClassName();
 	}
 
+	public void setClassName(java.lang.String className) {
+		_kbComment.setClassName(className);
+	}
+
 	/**
 	* Returns the class name ID of this k b comment.
 	*
