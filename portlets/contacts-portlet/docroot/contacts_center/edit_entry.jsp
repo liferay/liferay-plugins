@@ -58,7 +58,7 @@ if (entryId > 0) {
 		var errorMessage = A.one('#<portlet:namespace/>errorMessage');
 
 		if (errorMessage) {
-			errorMessage.html('<span class="portlet-msg-error"><%= HtmlUtil.escapeJS(LanguageUtil.get(pageContext, "an-error-occurred-while-retrieving-the-users-information")) %></span>');
+			errorMessage.html('<span class="portlet-msg-error"><liferay-ui:message key="an-error-occurred-while-retrieving-the-users-information" unicode="<%= true %>" /></span>');
 		}
 	}
 
