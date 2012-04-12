@@ -15,6 +15,7 @@
 			<category></category>
 			<compatibility></compatibility>
 			<demo-url></demo-url>
+			<icon>hooks/default-web-content-hook/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -533,6 +534,7 @@
 			<category></category>
 			<compatibility></compatibility>
 			<demo-url></demo-url>
+			<icon>portlets/ddl-form-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -629,6 +631,7 @@
 			<category></category>
 			<compatibility></compatibility>
 			<demo-url></demo-url>
+			<icon>portlets/flash-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -653,6 +656,7 @@
 			<category></category>
 			<compatibility></compatibility>
 			<demo-url></demo-url>
+			<icon>portlets/google-adsense-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -726,6 +730,7 @@
 			<category></category>
 			<compatibility></compatibility>
 			<demo-url></demo-url>
+			<icon>portlets/ip-geocoder-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<parent-app></parent-app>
@@ -774,6 +779,7 @@
 			<category></category>
 			<compatibility></compatibility>
 			<demo-url></demo-url>
+			<icon>portlets/knowledge-base-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -1928,6 +1934,7 @@
 			<category></category>
 			<compatibility></compatibility>
 			<demo-url></demo-url>
+			<icon>portlets/social-networking-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -1952,6 +1959,7 @@
 			<category></category>
 			<compatibility></compatibility>
 			<demo-url></demo-url>
+			<icon>portlets/stocks-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -2433,6 +2441,7 @@
 			<category></category>
 			<compatibility></compatibility>
 			<demo-url></demo-url>
+			<icon>portlets/vimeo-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -2457,6 +2466,7 @@
 			<category></category>
 			<compatibility></compatibility>
 			<demo-url></demo-url>
+			<icon>portlets/weather-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -2481,6 +2491,7 @@
 			<category></category>
 			<compatibility></compatibility>
 			<demo-url></demo-url>
+			<icon>portlets/web-form-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -2529,6 +2540,7 @@
 			<category></category>
 			<compatibility></compatibility>
 			<demo-url></demo-url>
+			<icon>portlets/wiki-navigation-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -2553,6 +2565,7 @@
 			<category></category>
 			<compatibility></compatibility>
 			<demo-url></demo-url>
+			<icon>portlets/wsrp-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -2601,6 +2614,7 @@
 			<category></category>
 			<compatibility></compatibility>
 			<demo-url></demo-url>
+			<icon>portlets/youtube-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -3499,6 +3513,7 @@
 			<category></category>
 			<compatibility></compatibility>
 			<demo-url></demo-url>
+			<icon>webs/cas-web/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -3596,6 +3611,7 @@
 			<category></category>
 			<compatibility></compatibility>
 			<demo-url></demo-url>
+			<icon>webs/server-manager-web/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
@@ -3669,6 +3685,7 @@
 			<category></category>
 			<compatibility></compatibility>
 			<demo-url></demo-url>
+			<icon>webs/wurfl-web/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<parent-app></parent-app>
