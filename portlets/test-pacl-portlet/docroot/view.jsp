@@ -1206,6 +1206,22 @@
 
 	};
 
+	new SQLSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testPreparedStatement("select * from Counter inner join User_ on User_.userId = Counter.currentId");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testStatement("select * from Counter inner join User_ on User_.userId = Counter.currentId");
+		}
+
+	};
+
 	new SQLSecurityExceptionTest(out, themeDisplay, false) {
 
 		protected void test() throws Exception {
@@ -1313,6 +1329,14 @@
 	new SQLSecurityExceptionTest(out, themeDisplay, false) {
 
 		protected void test() throws Exception {
+			testDB("update ListType set name = 'Test PACL' where listTypeId = -123");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
 			testPreparedStatement("update ListType set name = 'Test PACL' where listTypeId = -123");
 		}
 
@@ -1322,6 +1346,38 @@
 
 		protected void test() throws Exception {
 			testStatement("update ListType set name = 'Test PACL' where listTypeId = -123");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testDB("update ListType set name = 'Test PACL' where listTypeId = (select userId from User_)");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testPreparedStatement("update ListType set name = 'Test PACL' where listTypeId = (select userId from User_)");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testStatement("update ListType set name = 'Test PACL' where listTypeId = (select userId from User_)");
+		}
+
+	};
+
+	new SQLSecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testDB("update User_ set firstName = 'Test PACL' where userId = -123");
 		}
 
 	};
@@ -1587,24 +1643,50 @@ private class SQLSecurityExceptionTest extends SecurityExceptionTest {
 		super(writer, themeDisplay, expectSecurityException);
 	}
 
+	protected void executeDB(String sql) throws Exception {
+		DB db = DBFactoryUtil.getDB();
+
+		db.runSQL(sql);
+	}
+
 	protected void executePreparedStatement(String sql) throws Exception {
-		Connection connection = DataAccess.getConnection();
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
 
-		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+		try {
+			connection = DataAccess.getConnection();
 
-		preparedStatement.execute();
+			preparedStatement = connection.prepareStatement(sql);
 
-		DataAccess.cleanUp(connection, preparedStatement);
+			preparedStatement.execute();
+		}
+		finally {
+			DataAccess.cleanUp(connection, preparedStatement);
+		}
 	}
 
 	protected void executeStatement(String sql) throws Exception {
-		Connection connection = DataAccess.getConnection();
+		Connection connection = null;
+		Statement statement = null;
 
-		Statement statement = connection.createStatement();
+		try {
+			connection = DataAccess.getConnection();
 
-		statement.execute(sql);
+			statement = connection.createStatement();
 
-		DataAccess.cleanUp(connection, statement);
+			statement.execute(sql);
+		}
+		finally {
+			DataAccess.cleanUp(connection, statement);
+		}
+
+	}
+
+	protected void testDB(String sql) throws Exception {
+		writer.write(sql);
+		writer.write("=");
+
+		executeDB(sql);
 	}
 
 	protected void testPreparedStatement(String sql) throws Exception {
