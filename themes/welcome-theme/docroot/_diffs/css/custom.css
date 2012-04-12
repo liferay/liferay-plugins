@@ -1,0 +1,180 @@
+/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+/* Wrapper
+   ========================================================================== */
+
+#wrapper
+{
+	font-size: 16px;
+	margin: 0 auto;
+	padding: 35px 0 0;
+	position: relative;
+	width: 700px;
+}
+
+/* Skip to Content
+   ========================================================================== */
+
+#skip-to-content
+{
+	clip: rect(0 0 0 0);
+	left: 0;
+	overflow: hidden;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 100;
+}
+
+#skip-to-content:focus,
+#skip-to-content:hover
+{
+	clip: inherit;
+	outline: 0;
+	padding: 0.5em 0.75em;
+}
+
+#skip-to-content:focus,
+#skip-to-content:hover
+{
+	background: #4497D1;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5), 0 1px 50px rgba(0, 0, 0, 0.5);
+	color: #FF6;
+}
+
+#heading .site-title
+{
+	margin: 0 0 0.25em;
+}
+
+#heading .page-title
+{
+	font-size: 100%;
+	margin: 0 0 1em;
+}
+
+/* Sign In
+   ========================================================================== */
+
+#sign-in
+{
+	font-size: 75%;
+	padding: 0.5em 1em;
+	position: absolute;
+	right: 1em;
+	text-decoration: none;
+	top: 35px;
+}
+
+#sign-in
+{
+	background: #4497D1;
+	color: #FFF;
+}
+
+#sign-in:focus,
+#sign-in:hover
+{
+	color: #FF0;
+}
+
+/* Navigation
+   ========================================================================== */
+
+#navigation h1
+{
+	clip: rect(0 0 0 0);
+	position: absolute;
+}
+
+#navigation ul
+{
+	border-collapse: collapse;
+	display: table;
+	margin: 0;
+	width: 100%;
+}
+
+#navigation li
+{
+	border: 0 solid;
+	border-width: 0 1px;
+	display: table-cell;
+	width: 33.333%;
+}
+
+#navigation li
+{
+	border-color: #FFF;
+}
+
+#navigation li:first-child
+{
+	border-left-width: 0;
+}
+
+#navigation li:last-child
+{
+	border-right-width: 0;
+}
+
+#navigation a
+{
+	display: block;
+	outline: 0;
+	overflow: hidden;
+	padding: 0.3125em 0;
+	text-align: center;
+	text-decoration: none;
+}
+
+#navigation a
+{
+	background: #ECECEC;
+	color: #919191;
+}
+
+#navigation a:focus,
+#navigation a:hover
+{
+	background: #717171;
+	color: #FFF;
+	outline: 0;
+}
+
+#navigation a.selected
+{
+	background: #4497D1;
+	color: #FFF;
+}
+
+#navigation a.selected:focus,
+#navigation a.selected:hover
+{
+	color: #FF0;
+}
+
+/* Footer
+   ========================================================================== */
+
+#footer
+{
+	border-collapse: collapse;
+	display: table;
+	margin: 0;
+	width: 100%;
+}
+
+#footer div
+{
+	border: 1px solid;
+	display: table-cell;
+	height: 94px;
+	width: 33.333%;
+}
+
+#footer div
+{
+	border-color: #DCDEE0;
+}
