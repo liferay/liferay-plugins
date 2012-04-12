@@ -37,12 +37,12 @@ public class UpgradeTaskInstanceToken extends UpgradeProcess {
 			return;
 		}
 
-		StringBundler sb = new StringBundler(_kaleoInstanceTokenIds.size() * 4
-			+ 1);
+		StringBundler sb = new StringBundler(
+			_kaleoInstanceTokenIds.size() * 4 + 1);
 
 		sb.append("delete from KaleoInstanceToken where ");
 
-		for (Long kaleoInstanceTokenId : _kaleoInstanceTokenIds) {
+		for (long kaleoInstanceTokenId : _kaleoInstanceTokenIds) {
 			sb.append("(kaleoInstanceTokenId = ");
 			sb.append(kaleoInstanceTokenId);
 			sb.append(StringPool.CLOSE_PARENTHESIS);

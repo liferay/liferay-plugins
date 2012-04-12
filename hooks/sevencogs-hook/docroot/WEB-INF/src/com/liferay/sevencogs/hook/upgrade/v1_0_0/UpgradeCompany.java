@@ -2276,11 +2276,9 @@ public class UpgradeCompany extends UpgradeProcess {
 			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
 				layout, portletId);
 
-		for (Map.Entry<String, String> preferenceEntry :
-				preferences.entrySet()) {
-
-			String key = preferenceEntry.getKey();
-			String value = preferenceEntry.getValue();
+		for (Map.Entry<String, String> entry : preferences.entrySet()) {
+			String key = entry.getKey();
+			String value = entry.getValue();
 
 			portletSetup.setValue(key, value);
 		}

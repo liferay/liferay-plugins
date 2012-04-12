@@ -60,7 +60,7 @@ public class RBVUtil {
 	}
 
 	private RBVUtil() {
-		Document doc = null;
+		Document document = null;
 
 		try {
 			ClassLoader classLoader = getClass().getClassLoader();
@@ -69,7 +69,7 @@ public class RBVUtil {
 				"com/liferay/randombibleverse/dependencies/" +
 					"random_bible_verse.xml");
 
-			doc = SAXReaderUtil.read(url);
+			document = SAXReaderUtil.read(url);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -78,7 +78,7 @@ public class RBVUtil {
 		_bibles = new LinkedHashMap<String, Bible>();
 		_verses = new ArrayList<String>();
 
-		Element rootElement = doc.getRootElement();
+		Element rootElement = document.getRootElement();
 
 		Element biblesElement = rootElement.element("bibles");
 

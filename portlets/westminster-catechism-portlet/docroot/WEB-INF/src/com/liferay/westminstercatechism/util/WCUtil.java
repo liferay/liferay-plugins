@@ -28,7 +28,6 @@ import java.net.URL;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -57,7 +56,7 @@ public class WCUtil {
 	}
 
 	private WCUtil() {
-		Document doc = null;
+		Document document = null;
 
 		try {
 			ClassLoader classLoader = getClass().getClassLoader();
@@ -66,7 +65,7 @@ public class WCUtil {
 				"com/liferay/westminstercatechism/dependencies/" +
 					"westminster_catechmism.xml");
 
-			doc = SAXReaderUtil.read(url);
+			document = SAXReaderUtil.read(url);
 		}
 		catch (DocumentException de) {
 			_log.error(de, de);
@@ -74,28 +73,30 @@ public class WCUtil {
 
 		_shorter = new ArrayList<WCEntry>();
 
-		Element rootElement = doc.getRootElement();
+		Element rootElement = document.getRootElement();
 
 		Element shorterElement = rootElement.element("shorter");
 
 		List<Element> entryElements = shorterElement.elements("entry");
 
-		for (Element entry : entryElements) {
+		for (Element entryElement : entryElements) {
 			List<String[]> proofs = new ArrayList<String[]>();
 
-			Element proofsElement = entry.element("proofs");
+			Element proofsElement = entryElement.element("proofs");
 
 			List<Element> scripturesElements = proofsElement.elements(
 				"scriptures");
 
-			for (Element scriptures : scripturesElements) {
-				proofs.add(StringUtil.split(
-					scriptures.getText(), StringPool.SEMICOLON));
+			for (Element scripturesElement : scripturesElements) {
+				proofs.add(
+					StringUtil.split(
+						scripturesElement.getText(), StringPool.SEMICOLON));
 			}
 
 			_shorter.add(
 				new WCEntry(
-					entry.elementText("question"), entry.elementText("answer"),
+					entryElement.elementText("question"),
+					entryElement.elementText("answer"),
 					proofs.toArray(new String[0][0])));
 		}
 
