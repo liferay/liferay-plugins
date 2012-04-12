@@ -104,7 +104,6 @@ AUI().use(
 				popup.show();
 
 				popup.set('title', title);
-				popup.set('xy', [viewportRegion.left + 20, viewportRegion.top + 20]);
 
 				popup.io.set('uri', url);
 				popup.io.set('data', data);
@@ -125,11 +124,15 @@ AUI().use(
 				if (!instance._popup) {
 					instance._popup = new A.Dialog(
 						{
+							align: {
+								node: null,
+								points: ['tc', 'tc']
+							},
 							constrain2view: true,
 							cssClass: 'so-portlet-sites-dialog',
 							modal: true,
-							resizable: false,
-							width: 526
+							resizable: true,
+							width: 650
 						}
 					).plug(
 						A.Plugin.IO,
