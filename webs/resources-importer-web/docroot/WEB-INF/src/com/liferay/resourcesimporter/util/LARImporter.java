@@ -111,9 +111,6 @@ public class LARImporter {
 		parameters.put(
 			PortletDataHandlerKeys.USER_ID_STRATEGY,
 			new String[] {Boolean.TRUE.toString()});
-		parameters.put(
-			PortletDataHandlerKeys.USER_PERMISSIONS,
-			new String[] {Boolean.TRUE.toString()});
 
 		return parameters;
 	}
