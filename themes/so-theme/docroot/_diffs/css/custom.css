@@ -1934,18 +1934,20 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		font-size: 1em;
 	}
 
-	.results-grid, .results-row td, .results-row.alt td {
-		background-color: transparent;
-		border-width: 0;
-		padding: 0;
-	}
+	.today-events {
+		.results-grid, .results-row td, .results-row.alt td {
+			background-color: transparent;
+			border-width: 0;
+			/*padding: 0;*/
+		}
 
-	.results-row td, .results-row.alt td {
-		border-bottom: 1px solid #EEE;
-	}
+		.results-row td, .results-row.alt td {
+			border-bottom: 1px solid #EEE;
+		}
 
-	.results-row.hover td {
-		background: #EEE;
+		.results-row.hover td {
+			background: #EEE;
+		}
 	}
 }
 
