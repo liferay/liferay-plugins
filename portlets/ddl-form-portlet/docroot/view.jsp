@@ -128,7 +128,8 @@ boolean showSelectListIcon = PortletPermissionUtil.contains(permissionChecker, p
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="portletResourceNamespace" value="<%= renderResponse.getNamespace() %>" />
 					<portlet:param name="groupId" value="<%= String.valueOf(scopeGroupId) %>" />
-					<portlet:param name="structureId" value="<%= String.valueOf(recordSet.getDDMStructureId()) %>" />
+					<portlet:param name="classNameId" value="<%= String.valueOf(PortalUtil.getClassNameId(DDMStructure.class)) %>" />
+					<portlet:param name="classPK" value="<%= String.valueOf(recordSet.getDDMStructureId()) %>" />
 					<portlet:param name="structureAvailableFields" value='<%= renderResponse.getNamespace() + "structureAvailableFields" %>' />
 					<portlet:param name="ddmResource" value="<%= ddmResource %>" />
 				</liferay-portlet:renderURL>
@@ -146,7 +147,6 @@ boolean showSelectListIcon = PortletPermissionUtil.contains(permissionChecker, p
 					<portlet:param name="portletResourceNamespace" value="<%= renderResponse.getNamespace() %>" />
 					<portlet:param name="groupId" value="<%= String.valueOf(ddmTemplate.getGroupId()) %>" />
 					<portlet:param name="templateId" value="<%= String.valueOf(ddmTemplate.getTemplateId()) %>" />
-					<portlet:param name="structureId" value="<%= String.valueOf(ddmTemplate.getStructureId()) %>" />
 					<portlet:param name="structureAvailableFields" value='<%= renderResponse.getNamespace() + "structureAvailableFields" %>' />
 				</liferay-portlet:renderURL>
 

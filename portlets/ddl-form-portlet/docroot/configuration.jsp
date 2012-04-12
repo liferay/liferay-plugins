@@ -56,9 +56,10 @@ catch (NoSuchRecordSetException nsrse) {
 				<aui:option label="default" value="<%= 0 %>" />
 
 				<%
-				long ddmStructureId = recordSet.getDDMStructureId();
+				long classNameId = PortalUtil.getClassNameId(DDMStructure.class);
+				long classPK = recordSet.getDDMStructureId();
 
-				List<DDMTemplate> ddmTemplates = DDMTemplateLocalServiceUtil.getTemplates(ddmStructureId, DDMTemplateConstants.TEMPLATE_TYPE_DETAIL, DDMTemplateConstants.TEMPLATE_MODE_CREATE);
+				List<DDMTemplate> ddmTemplates = DDMTemplateLocalServiceUtil.getTemplates(classNameId, classPK, DDMTemplateConstants.TEMPLATE_TYPE_DETAIL, DDMTemplateConstants.TEMPLATE_MODE_CREATE);
 
 				for (DDMTemplate ddmTemplate : ddmTemplates) {
 					boolean selected = false;
