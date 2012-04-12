@@ -91,6 +91,7 @@
 			padding: 5px 1px;
 		}
 	}
+
 	.search {
 		float: right;
 		margin-bottom:10px;
@@ -193,5 +194,20 @@
 
 	.search {
 		float: none;
+		margin: 10px 0;
+
+		.search-input {
+			vertical-align: top;
+			width: 150px;
+		}
+
+		.sites-tabs {
+			float: left;
+			margin-right: 5px;
+
+			select {
+				padding: 5px 1px;
+			}
+		}
 	}
 }
