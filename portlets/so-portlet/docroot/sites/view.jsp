@@ -241,7 +241,7 @@ pageContext.setAttribute("portletURL", portletURL);
 								<portlet:param name="mvcPath" value="/sites/view_sites.jsp" />
 							</liferay-portlet:renderURL>
 
-							Liferay.SO.Sites.displayPopup('<%= viewSitesURL %>', '<liferay-ui:message key="sites" />');
+							Liferay.SO.Sites.displayPopup('<%= viewSitesURL %>', '<liferay-ui:message key="more-sites" />');
 						}
 					}
 				}
