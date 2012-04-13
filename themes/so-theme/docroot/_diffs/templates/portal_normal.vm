@@ -36,11 +36,12 @@ $theme.include($body_top_include)
 					</a>
 
 					#if (($page_group.getType() == 1) && $is_signed_in)
-						#set ($site_membership_url = $portletURLFactory.create($request, "134", $page.getPlid(), "ACTION_PHASE"))
+						#set ($site_membership_url = $portletURLFactory.create($request, "174", $page.getPlid(), "ACTION_PHASE"))
 
 						$site_membership_url.setWindowState("normal")
 						$site_membership_url.setParameter("struts_action", "/sites_admin/edit_site_assignments")
 						$site_membership_url.setParameter("cmd", "group_users")
+						$site_membership_url.setParameter("redirect", "$community_default_url")
 						$site_membership_url.setParameter("groupId", "$page_group.getGroupId()")
 
 						#if (!$user_local_service.hasGroupUser($page_group.getGroupId(), $user_id))
