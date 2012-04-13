@@ -121,7 +121,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 											String filterByGroupId = ContactsConstants.FILTER_BY_GROUP + curGroup.getGroupId();
 										%>
 
-										<aui:option label="<%= HtmlUtil.escape(curGroup.getDescriptiveName(locale)) %>" selected='<%= filterBy.equals(filterByGroupId) %>' value="<%= filterByGroupId %>" />
+											<aui:option label="<%= HtmlUtil.escape(curGroup.getDescriptiveName(locale)) %>" selected='<%= filterBy.equals(filterByGroupId) %>' value="<%= filterByGroupId %>" />
 
 										<%
 										}
