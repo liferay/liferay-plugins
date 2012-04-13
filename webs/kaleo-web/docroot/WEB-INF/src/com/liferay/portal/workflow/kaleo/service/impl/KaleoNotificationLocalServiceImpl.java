@@ -74,8 +74,7 @@ public class KaleoNotificationLocalServiceImpl
 			notification.getNotificationTypes();
 
 		if (!notificationTypes.isEmpty()) {
-			StringBundler sb = new StringBundler(
-				notificationTypes.size() * 2);
+			StringBundler sb = new StringBundler(notificationTypes.size() * 2);
 
 			for (NotificationType notificationType : notificationTypes) {
 				sb.append(notificationType.getValue());

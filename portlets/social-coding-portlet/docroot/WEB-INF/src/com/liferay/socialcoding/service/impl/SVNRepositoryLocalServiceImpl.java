@@ -23,7 +23,6 @@ import com.liferay.socialcoding.service.base.SVNRepositoryLocalServiceBaseImpl;
 import com.liferay.socialcoding.svn.util.SVNConstants;
 
 import java.util.Collection;
-import java.util.Iterator;
 
 import org.tmatesoft.svn.core.SVNException;
 import org.tmatesoft.svn.core.SVNLogEntry;
