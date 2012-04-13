@@ -37,7 +37,7 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 }
 %>
 
-<portlet:actionURL name="updateTasksEntry" var="updateTasksEntryURL" >
+<portlet:actionURL name="updateTasksEntry" var="updateTasksEntryURL">
 	<portlet:param name="mvcPath" value="/tasks/edit_task.jsp" />
 </portlet:actionURL>
 
@@ -105,9 +105,9 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 		</aui:select>
 
 		<aui:select name="priority">
-			<aui:option label="high" value="1" selected="<%= (priority == 1) %>" />
-			<aui:option label="normal" value="2" selected="<%= (priority == 2) %>" />
-			<aui:option label="low" value="3" selected="<%= (priority == 3) %>" />
+			<aui:option label="high" selected="<%= (priority == 1) %>" value="1" />
+			<aui:option label="normal" selected="<%= (priority == 2) %>" value="2" />
+			<aui:option label="low" selected="<%= (priority == 3) %>" value="3" />
 		</aui:select>
 
 		<aui:input disabled="<%= neverDue %>" label="due-date" name="dueDate" />

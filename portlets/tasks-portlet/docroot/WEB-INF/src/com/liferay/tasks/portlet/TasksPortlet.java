@@ -198,9 +198,10 @@ public class TasksPortlet extends MVCPortlet {
 			}
 			else {
 				taskEntry = TasksEntryServiceUtil.updateTasksEntry(
-					tasksEntryId, title, priority, assigneeUserId, resolverUserId,
-					dueDateMonth, dueDateDay, dueDateYear, dueDateHour,
-					dueDateMinute, neverDue, status, serviceContext);
+					tasksEntryId, title, priority, assigneeUserId,
+					resolverUserId, dueDateMonth, dueDateDay, dueDateYear,
+					dueDateHour, dueDateMinute, neverDue, status,
+					serviceContext);
 			}
 
 			Layout layout = themeDisplay.getLayout();
