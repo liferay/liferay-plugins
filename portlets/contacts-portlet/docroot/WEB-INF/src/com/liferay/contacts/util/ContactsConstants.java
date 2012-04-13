@@ -14,8 +14,6 @@
 
 package com.liferay.contacts.util;
 
-import com.liferay.portal.kernel.util.GetterUtil;
-
 /**
  * @author Jonathan Lee
  */
@@ -61,19 +59,6 @@ public class ContactsConstants {
 		else {
 			return null;
 		}
-	}
-
-	public static long getGroupId(String filterBy) {
-		String groupIdString = filterBy.substring(FILTER_BY_GROUP.length());
-
-		return GetterUtil.getLong(groupIdString);
-	}
-
-	public static long getSocialRelationType(String filterBy) {
-		String socialRelationTypeString = filterBy.substring(
-			FILTER_BY_TYPE.length());
-
-		return GetterUtil.getLong(socialRelationTypeString);
 	}
 
 }

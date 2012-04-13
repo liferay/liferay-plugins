@@ -35,14 +35,14 @@ if (userPublicPage) {
 	params.put("socialRelation", new Long[] {group.getClassPK()});
 }
 else if (filterBy.startsWith(ContactsConstants.FILTER_BY_TYPE)) {
-	params.put("socialRelationType", new Long[] {themeDisplay.getUserId(), ContactsConstants.getSocialRelationType(filterBy)});
+	params.put("socialRelationType", new Long[] {themeDisplay.getUserId(), ContactsUtil.getSocialRelationType(filterBy)});
 }
 
 if (showOnlySiteMembers) {
 	params.put("usersGroups", new Long(group.getGroupId()));
 }
 else if (filterBy.startsWith(ContactsConstants.FILTER_BY_GROUP)) {
-	params.put("usersGroups", ContactsConstants.getGroupId(filterBy));
+	params.put("usersGroups", ContactsUtil.getGroupId(filterBy));
 }
 
 List<BaseModel<?>> contacts = null;
