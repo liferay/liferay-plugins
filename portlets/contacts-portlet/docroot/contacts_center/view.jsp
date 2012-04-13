@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String filterBy = ParamUtil.getString(request, "filterBy", ContactsConstants.FILTER_BY_NOTHING);
+String filterBy = ParamUtil.getString(request, "filterBy", ContactsConstants.FILTER_BY_DEFAULT);
 
 String name = ParamUtil.getString(request, "name");
 
@@ -48,7 +48,7 @@ else if (filterBy.startsWith(ContactsConstants.FILTER_BY_GROUP)) {
 List<BaseModel<?>> contacts = null;
 int contactsCount = 0;
 
-if (userPublicPage || showOnlySiteMembers || !filterBy.equals(ContactsConstants.FILTER_BY_NOTHING)) {
+if (userPublicPage || showOnlySiteMembers || !filterBy.equals(ContactsConstants.FILTER_BY_DEFAULT)) {
 	List<User> users = UserLocalServiceUtil.search(company.getCompanyId(), name, WorkflowConstants.STATUS_APPROVED, params, 0, maxResultCount, new UserLastNameComparator(true));
 
 	contacts = new ArrayList<BaseModel<?>>(users);
@@ -102,7 +102,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 					<c:if test="<%= !userPublicPage %>">
 						<aui:layout cssClass="contact-group-filter">
 							<aui:select inlineField="true" label="" name="filterBy">
-								<aui:option label="all" selected='<%= filterBy.equals(ContactsConstants.FILTER_BY_NOTHING) %>' value="<%= ContactsConstants.FILTER_BY_NOTHING %>" />
+								<aui:option label="all" selected='<%= filterBy.equals(ContactsConstants.FILTER_BY_DEFAULT) %>' value="<%= ContactsConstants.FILTER_BY_DEFAULT %>" />
 								<aui:option label="connections" selected='<%= filterBy.equals(ContactsConstants.FILTER_BY_TYPE_BI_CONNECTION) %>' value="<%= ContactsConstants.FILTER_BY_TYPE_BI_CONNECTION %>" />
 								<aui:option label="following" selected='<%= filterBy.equals(ContactsConstants.FILTER_BY_TYPE_UNI_FOLLOWER) %>' value="<%= ContactsConstants.FILTER_BY_TYPE_UNI_FOLLOWER %>" />
 
@@ -110,7 +110,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 									<aui:option label="my-contacts" selected='<%= filterBy.equals(ContactsConstants.FILTER_BY_TYPE_MY_CONTACTS) %>' value="<%= ContactsConstants.FILTER_BY_TYPE_MY_CONTACTS %>" />
 
 									<%
-									List<Group> groups = themeDisplay.getUser().getGroups();
+									List<Group> groups = user.getGroups();
 									%>
 
 									<optgroup label="<liferay-ui:message key="members-of" />">
@@ -118,10 +118,10 @@ portletURL.setWindowState(WindowState.NORMAL);
 										<%
 										for (Group curGroup : groups) {
 
-											String idGroup = ContactsConstants.FILTER_BY_GROUP + curGroup.getGroupId();
+											String filterByGroupId = ContactsConstants.FILTER_BY_GROUP + curGroup.getGroupId();
 										%>
 
-										<aui:option label="<%= HtmlUtil.escape(curGroup.getDescriptiveName(locale)) %>" selected='<%= filterBy.equals(idGroup) %>' value="<%= idGroup %>" />
+										<aui:option label="<%= HtmlUtil.escape(curGroup.getDescriptiveName(locale)) %>" selected='<%= filterBy.equals(filterByGroupId) %>' value="<%= filterByGroupId %>" />
 
 										<%
 										}
@@ -304,7 +304,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 									<%
 									int allUsersCount = 0;
 
-									if (userPublicPage || showOnlySiteMembers || !filterBy.equals(ContactsConstants.FILTER_BY_NOTHING)) {
+									if (userPublicPage || showOnlySiteMembers || !filterBy.equals(ContactsConstants.FILTER_BY_DEFAULT)) {
 										allUsersCount = UserLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), StringPool.BLANK, WorkflowConstants.STATUS_APPROVED, params);
 									}
 									else {
@@ -436,7 +436,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 							},
 							data: {
 								end: end,
-								filterBy: contactFilterSelect.get('value') || '<%= ContactsConstants.FILTER_BY_NOTHING %>',
+								filterBy: contactFilterSelect.get('value') || '<%= ContactsConstants.FILTER_BY_DEFAULT %>',
 								keywords: searchInput.get('value'),
 								start: start
 							},
@@ -585,7 +585,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 				contactsCenterHome.one('.all').on(
 					'click',
 					function(event) {
-						contactFilterSelect.set('value', '<%= ContactsConstants.FILTER_BY_NOTHING %>');
+						contactFilterSelect.set('value', '<%= ContactsConstants.FILTER_BY_DEFAULT %>');
 
 						searchInput.set('value', '');
 

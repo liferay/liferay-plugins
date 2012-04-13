@@ -332,7 +332,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
-		if (filterBy.equals(ContactsConstants.FILTER_BY_NOTHING) &&
+		if (filterBy.equals(ContactsConstants.FILTER_BY_DEFAULT) &&
 			!portletName.equals(PortletKeys.MEMBERS)) {
 
 			List<BaseModel<?>> contacts =
