@@ -60,6 +60,7 @@
 							},
 							constrain2view: true,
 							cssClass: 'so-portlet-sites-dialog',
+							modal: true,
 							resizable: true,
 							title: title,
 							width: 650
