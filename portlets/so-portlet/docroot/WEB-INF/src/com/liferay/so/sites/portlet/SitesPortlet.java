@@ -280,7 +280,7 @@ public class SitesPortlet extends MVCPortlet {
 				Layout layout = themeDisplay.getLayout();
 
 				PortletURL portletURL = liferayPortletResponse.createActionURL(
-					PortletKeys.MY_SITES);
+					PortletKeys.SITE_REDIRECTOR);
 
 				portletURL.setWindowState(WindowState.NORMAL);
 

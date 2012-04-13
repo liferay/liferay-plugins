@@ -181,7 +181,7 @@ else {
 				<span class="name">
 					<c:choose>
 						<c:when test="<%= group.hasPrivateLayouts() || group.hasPublicLayouts() %>">
-							<liferay-portlet:actionURL portletName="<%= PortletKeys.MY_SITES %>" var="siteURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>">
+							<liferay-portlet:actionURL portletName="<%= PortletKeys.SITE_REDIRECTOR %>" var="siteURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>">
 								<portlet:param name="struts_action" value="/my_sites/view" />
 								<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 								<portlet:param name="privateLayout" value="<%= String.valueOf(!group.hasPublicLayouts()) %>" />
