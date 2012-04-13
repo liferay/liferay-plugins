@@ -3402,6 +3402,30 @@
 		</releng>
 	</plugin>
 	<plugin>
+		<artifact-id>welcome-theme</artifact-id>
+		<name>Welcome</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<long-description></long-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>LGPL</licenses>
+		<releng>
+			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
+			<labs>true</labs>
+			<marketplace>true</marketplace>
+			<parent-app></parent-app>
+			<public>true</public>
+			<standalone-app>true</standalone-app>
+			<supported>true</supported>
+		</releng>
+	</plugin>
+	<plugin>
 		<artifact-id>wordpress-kubrick-theme</artifact-id>
 		<name>Wordpress Kubrick</name>
 		<type>theme</type>
