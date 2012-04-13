@@ -14,9 +14,6 @@
 
 package com.liferay.mail.model;
 
-import com.liferay.mail.model.Attachment;
-import com.liferay.mail.model.Message;
-
 import java.util.List;
 
 /**
