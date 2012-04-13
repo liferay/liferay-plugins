@@ -14,6 +14,7 @@
 
 package com.liferay.contacts.util;
 
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -45,6 +46,13 @@ import java.util.List;
  */
 public class ContactsUtil {
 
+	public static long getGroupId(String filterBy) {
+		String groupIdString = filterBy.substring(
+			ContactsConstants.FILTER_BY_GROUP.length());
+
+		return GetterUtil.getLong(groupIdString);
+	}
+
 	public static String[] getPortalPropsValue(String key) {
 		try {
 			ClassLoader portalClassLoader =
@@ -61,6 +69,13 @@ public class ContactsUtil {
 		}
 
 		return null;
+	}
+
+	public static long getSocialRelationType(String filterBy) {
+		String socialRelationTypeString = filterBy.substring(
+			ContactsConstants.FILTER_BY_TYPE.length());
+
+		return GetterUtil.getLong(socialRelationTypeString);
 	}
 
 	public static String getVCard(User user) throws Exception {

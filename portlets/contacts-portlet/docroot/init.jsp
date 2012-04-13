@@ -28,6 +28,7 @@
 page import="com.liferay.contacts.service.EntryLocalServiceUtil" %><%@
 page import="com.liferay.contacts.util.ContactsConstants" %><%@
 page import="com.liferay.contacts.util.ContactsExtensionsUtil" %><%@
+page import="com.liferay.contacts.util.ContactsUtil" %><%@
 page import="com.liferay.contacts.util.PortletKeys" %><%@
 page import="com.liferay.contacts.util.SocialRelationConstants" %><%@
 page import="com.liferay.contacts.util.WebKeys" %><%@

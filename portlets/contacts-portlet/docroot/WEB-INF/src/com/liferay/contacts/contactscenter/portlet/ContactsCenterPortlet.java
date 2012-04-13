@@ -385,7 +385,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 					"socialRelationType",
 					new Long[] {
 						themeDisplay.getUserId(),
-						ContactsConstants.getSocialRelationType(filterBy)
+						ContactsUtil.getSocialRelationType(filterBy)
 					});
 			}
 
@@ -393,8 +393,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 				params.put("usersGroups", group.getGroupId());
 			}
 			else if (filterBy.startsWith(ContactsConstants.FILTER_BY_GROUP)) {
-				params.put(
-					"usersGroups", ContactsConstants.getGroupId(filterBy));
+				params.put("usersGroups", ContactsUtil.getGroupId(filterBy));
 			}
 
 			List<User> users = UserLocalServiceUtil.search(
