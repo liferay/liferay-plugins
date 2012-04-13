@@ -56,7 +56,7 @@ $theme.include($body_top_include)
 
 						#set ($site_membership_url = $htmlUtil.escape($site_membership_url.toString()))
 
-						<form action="$site_membership_url" id="socialOfficeMembership" name="membershipFm" method="Post">
+						<form action="$site_membership_url" id="socialOfficeMembership" method="Post" name="membershipFm">
 							<input type="submit" value='#language("$site_membership_action")' />
 						</form>
 					#end
