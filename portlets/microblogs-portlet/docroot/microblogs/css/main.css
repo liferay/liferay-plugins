@@ -221,6 +221,7 @@ $microblogs-border-color: #C7D0DA;
 		padding: 5px;
 		position: absolute;
 		top: 1px;
+		visibility: hidden;
 		word-wrap: break-word;
 		z-index: 998;
 	}
@@ -231,17 +232,18 @@ $microblogs-border-color: #C7D0DA;
 		position: static;
 	}
 
-	.highlighter-content b, .highlighter-content b span {
+	.highlighter-content span {
 		background-color: #97D1FF;
 		font-weight: normal;
 		line-height: 1.45em;
 		margin: -2px -2px 0;
 		padding: 2px 2px 0;
+		visibility: visible;
+		zoom: 1;
 	}
 
-	.highlighter-content span {
+	.highlighter-content div {
 		display: inline-block;
-		filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
 		white-space: pre;
 	}
 
