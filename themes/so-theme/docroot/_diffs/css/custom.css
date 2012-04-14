@@ -1316,6 +1316,10 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		z-index: 4;
 	}
 
+	.autocomplete {
+		background-color: transparent;
+	}
+
 	.highlighter-content {
 		padding: 5px 0;
 	}
@@ -1641,7 +1645,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		z-index: 1;
 	}
 
-	.aui-fieldset-content {
+	.aui-fieldset-content, .lfr-dynamic-uploader {
 		padding: 10px;
 	}
 }

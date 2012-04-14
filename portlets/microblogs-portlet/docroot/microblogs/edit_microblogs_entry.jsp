@@ -201,7 +201,7 @@ if (comment) {
 			return '[@' + MAP_USERS[str] + ']';
 		},
 		userName: function(str, match) {
-			return '<b>' + str + '</b>'
+			return '<span>' + str + '</span>'
 		}
 	};
 
@@ -352,7 +352,7 @@ if (comment) {
 			updatedText = updatedText.replace(/(\n)/gm, '<br />');
 			updatedText = updatedText.replace(/\s{2}/g, '&nbsp; ');
 
-			highlighterContent.html('<span>' + updatedText + '</span>');
+			highlighterContent.html('<div>' + updatedText + '</div>');
 		};
 
 		var updateHighlightDivSize = function(event) {
