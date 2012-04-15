@@ -15,5 +15,5 @@
 --%>
 
 <%
-throw new Exception("This JSP should never have been copied");
+throw new Exception("Hook custom JSPs should not have been allowed");
 %>
