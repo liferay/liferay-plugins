@@ -31,6 +31,7 @@ import com.liferay.portlet.dynamicdatamapping.model.DDMStructure;
 import com.liferay.portlet.dynamicdatamapping.storage.Field;
 import com.liferay.portlet.dynamicdatamapping.storage.FieldConstants;
 import com.liferay.portlet.dynamicdatamapping.storage.Fields;
+import com.liferay.portlet.dynamicdatamapping.util.DDMUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.Serializable;
@@ -61,29 +62,11 @@ public class DDLFormPortlet extends MVCPortlet {
 
 		DDMStructure ddmStructure = recordSet.getDDMStructure();
 
-		Set<String> fieldNames = ddmStructure.getFieldNames();
-
-		Fields fields = new Fields();
-
-		for (String fieldName : fieldNames) {
-			Field field = new Field();
-
-			field.setName(fieldName);
-
-			String fieldDataType = ddmStructure.getFieldDataType(fieldName);
-
-			String fieldValue = ParamUtil.getString(actionRequest, fieldName);
-
-			Serializable fieldValueSerializable =
-				FieldConstants.getSerializable(fieldDataType, fieldValue);
-
-			field.setValue(fieldValueSerializable);
-
-			fields.put(field);
-		}
-
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			DDLRecord.class.getName(), actionRequest);
+
+		Fields fields = DDMUtil.getFields(
+			ddmStructure.getStructureId(), serviceContext);
 
 		DDLRecordServiceUtil.addRecord(
 			themeDisplay.getScopeGroupId(), recordSetId, 0, fields,
