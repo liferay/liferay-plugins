@@ -26,7 +26,7 @@ import javax.servlet.ServletResponse;
 /**
  * @author Brian Wing Shun Chan
  */
-public class TestFilter implements Filter {
+public class FailureFilter implements Filter {
 
 	public void destroy() {
 	}
