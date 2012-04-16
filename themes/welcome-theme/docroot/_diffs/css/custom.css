@@ -69,6 +69,11 @@
 
 /* Navigation */
 
+#navigation
+{
+	box-shadow: 0 0 5px #000;
+}
+
 #navigation h1 {
 	clip: rect(0 0 0 0);
 	position: absolute;
