@@ -71,7 +71,7 @@
 				},
 				icon: 'remove-coworker',
 				id: '<portlet:namespace />removeConnectionButton',
-				label: '<%= UnicodeLanguageUtil.get(pageContext, "remove-as-connection") %>'
+				label: '<%= UnicodeLanguageUtil.get(pageContext, "remove-connection") %>'
 			}
 		);
 	</c:if>
@@ -147,7 +147,7 @@
 			},
 			icon: 'export',
 			id: '<portlet:namespace />exportButton',
-			label: '<%= UnicodeLanguageUtil.get(pageContext, "export-vcard") %>'
+			label: '<%= UnicodeLanguageUtil.get(pageContext, "vcard") %>'
 		}
 	);
 
@@ -167,7 +167,7 @@
 				},
 				icon: 'user',
 				id: '<portlet:namespace />gotoProfileButton',
-				label: '<%= UnicodeLanguageUtil.get(pageContext, "go-to-profile") %>'
+				label: '<%= UnicodeLanguageUtil.get(pageContext, "profile") %>'
 			}
 		);
 	</c:if>

@@ -42,7 +42,7 @@ else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), us
 				cssClass="action remove-connection"
 				image="../social/remove_coworker"
 				label="<%= true %>"
-				message="remove-as-connection"
+				message="remove-connection"
 				method="get"
 				url="<%= removeConnectionURL %>"
 			/>
@@ -151,7 +151,7 @@ else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), us
 <liferay-ui:icon
 	image="export"
 	label="<%= true %>"
-	message="export-vcard"
+	message="vcard"
 	url="<%= exportURL %>"
 />
 
