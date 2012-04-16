@@ -12,26 +12,25 @@
  * details.
  */
 
-package com.liferay.testpacl.hook.service.impl;
+package com.liferay.testpacl.hook.format;
 
-import com.liferay.portlet.blogs.service.BlogsEntryLocalService;
-import com.liferay.portlet.blogs.service.BlogsEntryLocalServiceWrapper;
+import com.liferay.portal.kernel.format.PhoneNumberFormat;
 
 /**
  * @author Brian Wing Shun Chan
  */
-public class TestBlogsEntryLocalServiceImpl
-	extends BlogsEntryLocalServiceWrapper {
+public class PhoneNumberFormatImpl implements PhoneNumberFormat {
 
-	public TestBlogsEntryLocalServiceImpl(
-		BlogsEntryLocalService blogsEntryLocalService) {
-
-		super(blogsEntryLocalService);
+	public String format(String phoneNumber) {
+		return "(TEST) " + phoneNumber;
 	}
 
-	@Override
-	public int getBlogsEntriesCount() {
-		return -123;
+	public String strip(String phoneNumber) {
+		return phoneNumber;
+	}
+
+	public boolean validate(String phoneNumber) {
+		return true;
 	}
 
 }

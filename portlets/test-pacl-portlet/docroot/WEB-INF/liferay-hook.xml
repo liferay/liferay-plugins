@@ -21,18 +21,18 @@
 	</indexer-post-processor>
 	<service>
 		<service-type>com.liferay.portlet.blogs.service.BlogsEntryLocalService</service-type>
-		<service-impl>com.liferay.testpacl.hook.service.impl.TestBlogsEntryLocalServiceImpl</service-impl>
+		<service-impl>com.liferay.testpacl.hook.service.impl.BlogsEntryLocalServiceImpl</service-impl>
 	</service>
 	<service>
 		<service-type>com.liferay.portlet.blogs.service.BlogsStatsUserLocalService</service-type>
-		<service-impl>com.liferay.testpacl.hook.service.impl.TestBlogsStatsUserLocalServiceImpl</service-impl>
+		<service-impl>com.liferay.testpacl.hook.service.impl.BlogsStatsUserLocalServiceImpl</service-impl>
 	</service>
 	<servlet-filter>
-		<servlet-filter-name>Test Filter</servlet-filter-name>
-		<servlet-filter-impl>com.liferay.testpacl.hook.filter.TestFilter</servlet-filter-impl>
+		<servlet-filter-name>Failure Filter</servlet-filter-name>
+		<servlet-filter-impl>com.liferay.testpacl.hook.filter.FailureFilter</servlet-filter-impl>
 	</servlet-filter>
 	<servlet-filter-mapping>
-		<servlet-filter-name>Test Filter</servlet-filter-name>
+		<servlet-filter-name>Failure Filter</servlet-filter-name>
 		<before-filter>SSO Open SSO Filter</before-filter>
 		<url-pattern>/group/*</url-pattern>
 		<url-pattern>/user/*</url-pattern>
