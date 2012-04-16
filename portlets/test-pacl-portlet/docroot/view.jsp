@@ -409,6 +409,15 @@
 	TestBlogsStatsUserLocalServiceImpl#getBlogsStatsUsersCount=<%= _assertTrue(BlogsStatsUserLocalServiceUtil.getBlogsStatsUsersCount() >= 0) %>
 </p>
 
+<p>
+	<h3>Struts Actions</h3>
+</p>
+
+<p>
+	/portal/test/pacl/failure=<%= _assertFalse(FailureStrutsAction.isInstantiated()) %><br />
+	/portal/test/pacl/success=<%= _assertTrue(SuccessStrutsAction.isInstantiated()) %>
+</p>
+
 <liferay-ui:header
 	title="Services: Chat Portlet"
 />

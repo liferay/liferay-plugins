@@ -33,4 +33,12 @@
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 	</servlet-filter-mapping>
+	<struts-action>
+		<struts-action-path>/portal/test/pacl/failure</struts-action-path>
+		<struts-action-impl>com.liferay.testpacl.hook.action.FailureStrutsAction</struts-action-impl>
+	</struts-action>
+	<struts-action>
+		<struts-action-path>/portal/test/pacl/success</struts-action-path>
+		<struts-action-impl>com.liferay.testpacl.hook.action.SuccessStrutsAction</struts-action-impl>
+	</struts-action>
 </hook>
