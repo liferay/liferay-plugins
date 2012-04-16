@@ -374,6 +374,15 @@
 />
 
 <p>
+	<h3>Indexers</h3>
+</p>
+
+<p>
+	com.liferay.portal.model.Organization=<%= _assertFalse(OrganizationIndexerPostProcessor.isInstantiated()) %><br />
+	com.liferay.portal.model.User=<%= _assertTrue(UserIndexerPostProcessor.isInstantiated()) %>
+</p>
+
+<p>
 	<h3>Language.properties</h3>
 </p>
 

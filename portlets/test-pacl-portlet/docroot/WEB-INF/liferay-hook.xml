@@ -11,6 +11,14 @@
 	<language-properties>content/Language_pt_BR.properties</language-properties>
 	<language-properties>content/Language_pt_PT.properties</language-properties>
 	<custom-jsp-dir>/META-INF/custom_jsps</custom-jsp-dir>
+	<indexer-post-processor>
+		<indexer-class-name>com.liferay.portal.model.Organization</indexer-class-name>
+		<indexer-post-processor-impl>com.liferay.testpacl.hook.indexer.OrganizationIndexerPostProcessor</indexer-post-processor-impl>
+	</indexer-post-processor>
+	<indexer-post-processor>
+		<indexer-class-name>com.liferay.portal.model.User</indexer-class-name>
+		<indexer-post-processor-impl>com.liferay.testpacl.hook.indexer.UserIndexerPostProcessor</indexer-post-processor-impl>
+	</indexer-post-processor>
 	<service>
 		<service-type>com.liferay.portlet.blogs.service.BlogsEntryLocalService</service-type>
 		<service-impl>com.liferay.testpacl.hook.service.impl.TestBlogsEntryLocalServiceImpl</service-impl>
