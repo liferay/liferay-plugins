@@ -341,7 +341,7 @@ $toolbar-bg: #DCE3EA;
 
 		.button-column {
 			float: left;
-			width: 70%;
+			width: 500px;
 
 			.lfr-button-column {
 				padding-left: 10px;
