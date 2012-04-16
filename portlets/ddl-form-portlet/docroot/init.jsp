@@ -40,7 +40,6 @@ page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.portal.kernel.util.WebKeys" %><%@
 page import="com.liferay.portal.kernel.workflow.WorkflowConstants" %><%@
 page import="com.liferay.portal.security.permission.ActionKeys" %><%@
-page import="com.liferay.portal.service.WorkflowDefinitionLinkLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.permission.PortletPermissionUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
 page import="com.liferay.portal.util.PortletKeys" %><%@
