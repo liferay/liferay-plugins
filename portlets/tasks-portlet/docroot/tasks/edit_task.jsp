@@ -63,7 +63,7 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 				<c:otherwise>
 					<aui:option label="" selected="<%= (assigneeUserId == 0) %>" value="0" />
 
-					<aui:option label="<%= HtmlUtil.escape(user.getFullName()) %>" selected="<%= (assigneeUserId == user.getUserId()) %>" />
+					<aui:option label="<%= HtmlUtil.escape(user.getFullName()) %>" selected="<%= (assigneeUserId == user.getUserId()) %>" value="<%= user.getUserId() %>"/>
 
 					<c:if test="<%= (tasksEntry != null) && (assigneeUserId > 0) && (assigneeUserId != user.getUserId()) %>">
 						<aui:option label="<%= PortalUtil.getUserName(assigneeUserId, tasksEntry.getAssigneeFullName()) %>" selected="<%= true %>" value="<%= assigneeUserId %>" />
