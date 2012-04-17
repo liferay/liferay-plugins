@@ -65,12 +65,6 @@ if (entryId > 0) {
 	form.on(
 		'submit',
 		function(event) {
-			event.halt();
-
-			var contactFilterSelect = A.one('#<portlet:namespace />filterBy');
-
-			var searchInput = A.one('.contacts-portlet #<portlet:namespace />name');
-
 			var start = 0;
 			var end = <%= maxResultCount %>;
 
@@ -84,6 +78,10 @@ if (entryId > 0) {
 
 				lastNameAnchor = node.getAttribute('data-lastNameAnchor');
 			}
+
+			var contactFilterSelect = A.one('#<portlet:namespace />filterBy');
+
+			var searchInput = A.one('.contacts-portlet #<portlet:namespace />name');
 
 			A.io.request(
 				form.attr('action'),

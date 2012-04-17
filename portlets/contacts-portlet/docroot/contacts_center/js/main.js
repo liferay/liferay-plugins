@@ -265,13 +265,10 @@ AUI.add(
 						var contact = data.contact;
 
 						instance._renderEntryDetailView(contact);
-
 						instance._renderEntryToolbar(contact);
 
 						var contactList = data.contactList;
-
 						var contactUserHTML = instance._renderResult(contactList, true, lastNameAnchor);
-
 						var contactResultContent = A.one('.contacts-portlet .contacts-result-content');
 
 						contactResultContent.html(contactUserHTML.join(''));
@@ -289,7 +286,6 @@ AUI.add(
 								var user = contacts[0].user;
 
 								instance._updateUserToolBar(user);
-
 								instance._updateUserIcons(user);
 							}
 							else {
@@ -305,9 +301,7 @@ AUI.add(
 						}
 
 						var contactList = data.contactList;
-
 						var contactUserHTML = instance._renderResult(contactList, true, lastNameAnchor);
-
 						var contactResultContent = A.one('.contacts-portlet .contacts-result-content');
 
 						contactResultContent.html(contactUserHTML.join(''));
@@ -471,10 +465,7 @@ AUI.add(
 					_deleteEntry: function(contact) {
 						var instance = this;
 
-						var confirmMessageText = Lang.sub(
-							Liferay.Language.get('are-you-sure-you-want-to-delete-x-from-your-contacts'),
-							[contact.fullName]
-						);
+						var confirmMessageText = Lang.sub(Liferay.Language.get('are-you-sure-you-want-to-delete-x-from-your-contacts'), [contact.fullName]);
 
 						if (confirm(confirmMessageText)) {
 							var actionURL = new Liferay.PortletURL.createActionURL();
