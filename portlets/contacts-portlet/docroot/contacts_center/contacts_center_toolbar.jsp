@@ -36,6 +36,12 @@
 		user2 = UserLocalServiceUtil.getUser(userId);
 	}
 
+	boolean showAddAsConnectionButton = false;
+	boolean showBlockButton = false;
+	boolean showFollowButton = false;
+	boolean showRemoveAsConnectionButton = false;
+	boolean showUnBlockButton = false;
+	boolean showUnFollowButton = false;
 	boolean viewRelationActions = true;
 
 	if (user2 != null) {
@@ -45,14 +51,25 @@
 		else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY)) {
 			viewRelationActions = false;
 		}
-	}
 
-	boolean showAddAsConnectionButton = user2 != null && viewRelationActions && !((user2 != null) && SocialRequestLocalServiceUtil.hasRequest(themeDisplay.getUserId(), User.class.getName(), themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION, user2.getUserId(), SocialRequestConstants.STATUS_PENDING)) && SocialRelationLocalServiceUtil.isRelatable(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION);
+		if (viewRelationActions) {
+			showAddAsConnectionButton = !SocialRequestLocalServiceUtil.hasRequest(themeDisplay.getUserId(), User.class.getName(), themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION, user2.getUserId(), SocialRequestConstants.STATUS_PENDING) && SocialRelationLocalServiceUtil.isRelatable(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION);
+
+			showRemoveAsConnectionButton = SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION);
+
+			showFollowButton = SocialRelationLocalServiceUtil.isRelatable(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
+
+			showUnFollowButton = SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
+		}
+
+		showBlockButton = SocialRelationLocalServiceUtil.isRelatable(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY);
+		showUnBlockButton = SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY);
+	}
 	%>
 
 	contactsToolbarChildren.push(
 		{
-			cssClass: '<%= ((user2 == null) || !showAddAsConnectionButton) ? "aui-helper-hidden" : "" %>',
+			cssClass: '<%= !showAddAsConnectionButton ? "aui-helper-hidden" : "" %>',
 			handler: function(event) {
 				<portlet:namespace />relationAction(event, '<portlet:actionURL name="requestSocialRelation"><portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_BI_CONNECTION) %>" /></portlet:actionURL>');
 			},
@@ -62,13 +79,9 @@
 		}
 	);
 
-	<%
-	boolean showRemoveAsConnectionButton = (user2 != null) && viewRelationActions && SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION);
-	%>
-
 	contactsToolbarChildren.push(
 		{
-			cssClass: '<%= ((user2 == null) || !showRemoveAsConnectionButton) ? "aui-helper-hidden" : "" %>',
+			cssClass: '<%= !showRemoveAsConnectionButton ? "aui-helper-hidden" : "" %>',
 			handler: function(event) {
 				<portlet:namespace />relationAction(event, '<portlet:actionURL name="deleteSocialRelation"><portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_BI_CONNECTION) %>" /></portlet:actionURL>');
 			},
@@ -78,13 +91,9 @@
 		}
 	);
 
-	<%
-	boolean showFollowButton = user2 != null && viewRelationActions && SocialRelationLocalServiceUtil.isRelatable(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
-	%>
-
 	contactsToolbarChildren.push(
 		{
-			cssClass: '<%= ((user2 == null) || !showFollowButton) ? "aui-helper-hidden" : "" %>',
+			cssClass: '<%= !showFollowButton ? "aui-helper-hidden" : "" %>',
 			handler: function(event) {
 				<portlet:namespace />relationAction(event, '<portlet:actionURL name="addSocialRelation"><portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_FOLLOWER) %>" /></portlet:actionURL>');
 			},
@@ -94,13 +103,9 @@
 		}
 	);
 
-	<%
-	boolean showUnFollowButton = user2 != null && viewRelationActions && SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
-	%>
-
 	contactsToolbarChildren.push(
 		{
-			cssClass: '<%= ((user2 == null) || !showUnFollowButton) ? "aui-helper-hidden" : "" %>',
+			cssClass: '<%= !showUnFollowButton ? "aui-helper-hidden" : "" %>',
 			handler: function(event) {
 				<portlet:namespace />relationAction(event, '<portlet:actionURL name="deleteSocialRelation"><portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_FOLLOWER) %>" /></portlet:actionURL>');
 			},
@@ -110,13 +115,9 @@
 		}
 	);
 
-	<%
-	boolean showBlockButton = user2 != null && SocialRelationLocalServiceUtil.isRelatable(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY);
-	%>
-
 	contactsToolbarChildren.push(
 		{
-			cssClass: '<%= ((user2 == null) || !showBlockButton) ? "aui-helper-hidden" : "" %>',
+			cssClass: '<%= !showBlockButton ? "aui-helper-hidden" : "" %>',
 			handler: function(event) {
 				<portlet:namespace />relationAction(event, '<portlet:actionURL name="addSocialRelation"><portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_ENEMY) %>" /></portlet:actionURL>');
 			},
@@ -126,13 +127,9 @@
 		}
 	);
 
-	<%
-	boolean showUnBlockButton = user2 != null && SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY);
-	%>
-
 	contactsToolbarChildren.push(
 		{
-			cssClass: '<%= ((user2 == null) || !showUnBlockButton) ? "aui-helper-hidden" : "" %>',
+			cssClass: '<%= !showUnBlockButton ? "aui-helper-hidden" : "" %>',
 			handler: function(event) {
 				<portlet:namespace />relationAction(event, '<portlet:actionURL name="deleteSocialRelation"><portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_ENEMY) %>" /></portlet:actionURL>');
 			},

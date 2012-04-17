@@ -228,27 +228,6 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		writeJSON(resourceRequest, resourceResponse, userJSONObject);
 	}
 
-	public void getContacts(
-			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		String redirect = ParamUtil.getString(resourceRequest, "redirect");
-
-		String filterBy = ParamUtil.getString(resourceRequest, "filterBy");
-		String keywords = ParamUtil.getString(resourceRequest, "keywords");
-		int start = ParamUtil.getInteger(resourceRequest, "start");
-		int end = ParamUtil.getInteger(resourceRequest, "end");
-
-		JSONObject jsonContactListJSON = getContactListJSON(
-			filterBy, keywords, redirect, themeDisplay,
-			(LiferayPortletResponse)resourceResponse, start, end);
-
-		writeJSON(resourceRequest, resourceResponse, jsonContactListJSON);
-	}
-
 	public JSONObject getContactListJSON(
 			String filterBy, String keywords, String redirect,
 			ThemeDisplay themeDisplay,
@@ -358,6 +337,27 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		jsonObject.put("users", jsonArray);
 
 		return jsonObject;
+	}
+
+	public void getContacts(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String redirect = ParamUtil.getString(resourceRequest, "redirect");
+
+		String filterBy = ParamUtil.getString(resourceRequest, "filterBy");
+		String keywords = ParamUtil.getString(resourceRequest, "keywords");
+		int start = ParamUtil.getInteger(resourceRequest, "start");
+		int end = ParamUtil.getInteger(resourceRequest, "end");
+
+		JSONObject jsonContactListJSON = getContactListJSON(
+			filterBy, keywords, redirect, themeDisplay,
+			(LiferayPortletResponse)resourceResponse, start, end);
+
+		writeJSON(resourceRequest, resourceResponse, jsonContactListJSON);
 	}
 
 	public JSONObject getUserJSON(
@@ -795,13 +795,13 @@ public class ContactsCenterPortlet extends MVCPortlet {
 	}
 
 	protected String getRelationMessage(ActionRequest actionRequest) {
-		int type = ParamUtil.getInteger(actionRequest, "type"); 		
+		int type = ParamUtil.getInteger(actionRequest, "type");
 
 		String messageType = StringPool.BLANK;
 
 		if (type == SocialRelationConstants.TYPE_BI_CONNECTION) {
 			messageType = "connection";
-		} 		
+		}
 		else if (type == SocialRelationConstants.TYPE_UNI_FOLLOWER) {
 			messageType = "follower";
 		}
