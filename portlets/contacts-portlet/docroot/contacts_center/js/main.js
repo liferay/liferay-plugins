@@ -59,8 +59,8 @@ AUI.add(
 						'<div class="lfr-contact-name">' +
 							'{fullName}' +
 						'</div>' +
-						'<div class="lfr-contact-extra">' +
-							'{emailAddress}' +
+						'<div class="lfr-contac<a href="mailto:{emailAddress}">{emailAddress}</a>t-extra">' +
+							'' +
 						'</div>' +
 					'</div>' +
 				'</div>' +

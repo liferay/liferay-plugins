@@ -42,7 +42,7 @@ long entryId = ParamUtil.getLong(request, "entryId");
 				</div>
 
 				<div class="lfr-contact-extra">
-					<%= HtmlUtil.escape(entry.getEmailAddress()) %>
+					<a href="mailto:<%= HtmlUtil.escape(entry.getEmailAddress()) %>"><%= HtmlUtil.escape(entry.getEmailAddress()) %></a>
 				</div>
 			</div>
 		</div>
