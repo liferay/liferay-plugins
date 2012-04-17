@@ -17,6 +17,8 @@
 <%@ include file="/init.jsp" %>
 
 <%
+themeDisplay.setIncludeServiceJs(true);
+
 long tasksEntryId = ParamUtil.getLong(request, "tasksEntryId");
 
 TasksEntry tasksEntry = null;
