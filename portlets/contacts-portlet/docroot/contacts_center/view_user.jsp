@@ -149,7 +149,7 @@ request.setAttribute("view_user.jsp-user", user2);
 					</div>
 
 					<div class="lfr-contact-extra">
-						<%= HtmlUtil.escape(user2.getEmailAddress()) %>
+						<a href="mailto:<%= HtmlUtil.escape(user2.getEmailAddress()) %>"><%= HtmlUtil.escape(user2.getEmailAddress()) %></a>
 					</div>
 				</div>
 
