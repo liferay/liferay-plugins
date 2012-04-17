@@ -80,6 +80,15 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 			return null;
 		}
 
+		String groupName = StringPool.BLANK;
+
+		if (activity.getGroupId() != themeDisplay.getScopeGroupId()) {
+			groupName = getGroupName(activity.getGroupId(), themeDisplay);
+		}
+
+		String creatorUserName = getUserName(
+			activity.getUserId(), themeDisplay);
+
 		// Link
 
 		String link = KnowledgeBaseUtil.getKBArticleURL(
@@ -88,20 +97,43 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		// Title
 
-		String key = StringPool.BLANK;
+		String titlePattern = null;
 
 		if (activity.getType() == AdminActivityKeys.ADD_KB_ARTICLE) {
-			key = "activity-knowledge-base-admin-add-kb-article";
+			if (Validator.isNull(groupName)) {
+				titlePattern = "activity-knowledge-base-admin-add-kb-article";
+			}
+			else {
+				titlePattern =
+					"activity-knowledge-base-admin-add-kb-article-in";
+			}
 		}
 		else if (activity.getType() == AdminActivityKeys.MOVE_KB_ARTICLE) {
-			key = "activity-knowledge-base-admin-move-kb-article";
+			if (Validator.isNull(groupName)) {
+				titlePattern = "activity-knowledge-base-admin-move-kb-article";
+			}
+			else {
+				titlePattern =
+					"activity-knowledge-base-admin-move-kb-article-in";
+			}
 		}
 		else if (activity.getType() == AdminActivityKeys.UPDATE_KB_ARTICLE) {
-			key = "activity-knowledge-base-admin-update-kb-article";
+			if (Validator.isNull(groupName)) {
+				titlePattern =
+					"activity-knowledge-base-admin-update-kb-article";
+			}
+			else {
+				titlePattern =
+					"activity-knowledge-base-admin-update-kb-article-in";
+			}
 		}
 
-		String title = getTitle(
-			activity, key, kbArticle.getTitle(), link, themeDisplay);
+		String articleTitle = wrapLink(
+			link, HtmlUtil.escape(cleanContent(kbArticle.getTitle())));
+
+		Object[] titleArguments = {creatorUserName, articleTitle, groupName};
+
+		String title = themeDisplay.translate(titlePattern, titleArguments);
 
 		// Body
 
@@ -116,6 +148,15 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		KBComment kbComment = KBCommentLocalServiceUtil.getKBComment(
 			activity.getClassPK());
+
+		String groupName = StringPool.BLANK;
+
+		if (activity.getGroupId() != themeDisplay.getScopeGroupId()) {
+			groupName = getGroupName(activity.getGroupId(), themeDisplay);
+		}
+
+		String creatorUserName = getUserName(
+			activity.getUserId(), themeDisplay);
 
 		KBArticle kbArticle = null;
 		KBTemplate kbTemplate = null;
@@ -143,25 +184,41 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		// Title
 
-		String key = StringPool.BLANK;
+		String titlePattern = null;
 
 		if (activity.getType() == AdminActivityKeys.ADD_KB_COMMENT) {
-			key = "activity-knowledge-base-admin-add-kb-comment";
+			if (Validator.isNull(groupName)) {
+				titlePattern = "activity-knowledge-base-admin-add-kb-comment";
+			}
+			else {
+				titlePattern =
+					"activity-knowledge-base-admin-add-kb-comment-in";
+			}
 		}
 		else if (activity.getType() == AdminActivityKeys.UPDATE_KB_COMMENT) {
-			key = "activity-knowledge-base-admin-update-kb-comment";
+			if (Validator.isNull(groupName)) {
+				titlePattern =
+					"activity-knowledge-base-admin-update-kb-comment";
+			}
+			else {
+				titlePattern =
+					"activity-knowledge-base-admin-update-kb-comment-in";
+			}
 		}
 
-		String content = StringPool.BLANK;
+		String entityTitle = null;
 
 		if (kbArticle != null) {
-			content = kbArticle.getTitle();
+			entityTitle = wrapLink(
+				link, HtmlUtil.escape(cleanContent(kbArticle.getTitle())));
 		}
 		else if (kbTemplate != null) {
-			content = kbTemplate.getTitle();
+			entityTitle = HtmlUtil.escape(cleanContent(kbTemplate.getTitle()));
 		}
 
-		String title = getTitle(activity, key, content, link, themeDisplay);
+		Object[] titleArguments = {creatorUserName, entityTitle, groupName};
+
+		String title = themeDisplay.translate(titlePattern, titleArguments);
 
 		// Body
 
@@ -186,57 +243,55 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 			return null;
 		}
 
-		// Link
-
-		String link = StringPool.BLANK;
-
-		// Title
-
-		String key = StringPool.BLANK;
-
-		if (activity.getType() == AdminActivityKeys.ADD_KB_TEMPLATE) {
-			key = "activity-knowledge-base-admin-add-kb-template";
-		}
-		else if (activity.getType() == AdminActivityKeys.UPDATE_KB_TEMPLATE) {
-			key = "activity-knowledge-base-admin-update-kb-template";
-		}
-
-		String title = getTitle(
-			activity, key, kbTemplate.getTitle(), link, themeDisplay);
-
-		// Body
-
-		String body = StringPool.BLANK;
-
-		return new SocialActivityFeedEntry(link, title, body);
-	}
-
-	protected String getTitle(
-		SocialActivity activity, String key, String content, String link,
-		ThemeDisplay themeDisplay) {
-
-		String userName = getUserName(activity.getUserId(), themeDisplay);
-
-		String text = HtmlUtil.escape(cleanContent(content));
-
-		if (Validator.isNotNull(link)) {
-			text = wrapLink(link, text);
-		}
-
 		String groupName = StringPool.BLANK;
 
 		if (activity.getGroupId() != themeDisplay.getScopeGroupId()) {
 			groupName = getGroupName(activity.getGroupId(), themeDisplay);
 		}
 
-		String pattern = key;
+		String creatorUserName = getUserName(
+			activity.getUserId(), themeDisplay);
 
-		if (Validator.isNotNull(groupName)) {
-			pattern += "-in";
+		// Link
+
+		String link = StringPool.BLANK;
+
+		// Title
+
+		String titlePattern = null;
+
+		if (activity.getType() == AdminActivityKeys.ADD_KB_TEMPLATE) {
+			if (Validator.isNull(groupName)) {
+				titlePattern = "activity-knowledge-base-admin-add-kb-template";
+			}
+			else {
+				titlePattern =
+					"activity-knowledge-base-admin-add-kb-template-in";
+			}
+		}
+		else if (activity.getType() == AdminActivityKeys.UPDATE_KB_TEMPLATE) {
+			if (Validator.isNull(groupName)) {
+				titlePattern =
+					"activity-knowledge-base-admin-update-kb-template";
+			}
+			else {
+				titlePattern =
+					"activity-knowledge-base-admin-update-kb-template-in";
+			}
 		}
 
-		return themeDisplay.translate(
-			pattern, new Object[] {userName, text, groupName});
+		String articleTitle = HtmlUtil.escape(
+			cleanContent(kbTemplate.getTitle()));
+
+		Object[] titleArguments = {creatorUserName, articleTitle, groupName};
+
+		String title = themeDisplay.translate(titlePattern, titleArguments);
+
+		// Body
+
+		String body = StringPool.BLANK;
+
+		return new SocialActivityFeedEntry(link, title, body);
 	}
 
 	private static final String[] _CLASS_NAMES = new String[] {

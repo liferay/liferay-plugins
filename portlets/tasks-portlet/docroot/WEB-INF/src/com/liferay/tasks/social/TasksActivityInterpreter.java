@@ -53,23 +53,39 @@ public class TasksActivityInterpreter extends BaseSocialActivityInterpreter {
 		String titlePattern = null;
 
 		if (activityType == TasksActivityKeys.ADD_ENTRY) {
-			titlePattern = "activity-tasks-add-entry";
+			if ((userId != receiverUserId) && (receiverUserId != 0)) {
+				titlePattern = "activity-tasks-add-entry-for";
+			}
+			else {
+				titlePattern = "activity-tasks-add-entry";
+			}
 		}
 		else if (activityType == TasksActivityKeys.REOPEN_ENTRY) {
-			titlePattern = "activity-tasks-reopened-entry";
+			if ((userId != receiverUserId) && (receiverUserId != 0)) {
+				titlePattern = "activity-tasks-reopened-entry-for";
+			}
+			else {
+				titlePattern = "activity-tasks-reopened-entry";
+			}
 		}
 		else if (activityType == TasksActivityKeys.RESOLVE_ENTRY) {
-			titlePattern = "activity-tasks-resolved-entry";
+			if ((userId != receiverUserId) && (receiverUserId != 0)) {
+				titlePattern = "activity-tasks-resolved-entry-for";
+			}
+			else {
+				titlePattern = "activity-tasks-resolved-entry";
+			}
 
 			userId = tasksEntry.getResolverUserId();
 			receiverUserId = tasksEntry.getUserId();
 		}
 		else if (activityType == TasksActivityKeys.UPDATE_ENTRY) {
-			titlePattern = "activity-tasks-update-entry";
-		}
-
-		if ((userId != receiverUserId) && (receiverUserId != 0)) {
-			titlePattern += "-for";
+			if ((userId != receiverUserId) && (receiverUserId != 0)) {
+				titlePattern = "activity-tasks-update-entry-for";
+			}
+			else {
+				titlePattern = "activity-tasks-update-entry";
+			}
 		}
 
 		String creatorUserName = getUserName(userId, themeDisplay);
