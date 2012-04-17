@@ -81,44 +81,49 @@ request.setAttribute("view_user.jsp-user", user2);
 							else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY)) {
 								blocked = true;
 							}
+
+							boolean showConnectedRequestedIcon = !blocked && SocialRequestLocalServiceUtil.hasRequest(themeDisplay.getUserId(), User.class.getName(), themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION, user2.getUserId(), SocialRequestConstants.STATUS_PENDING);
 							%>
 
-							<c:choose>
-								<c:when test="<%= !blocked && SocialRequestLocalServiceUtil.hasRequest(themeDisplay.getUserId(), User.class.getName(), themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION, user2.getUserId(), SocialRequestConstants.STATUS_PENDING) %>">
-									<liferay-ui:icon
-										cssClass="disabled"
-										image="../social/coworker"
-										label="<%= true %>"
-										message="connection-requested"
-									/>
-								</c:when>
-								<c:when test="<%= !blocked && SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION) %>">
-									<liferay-ui:icon
-										cssClass="connected"
-										image="../social/coworker"
-										label="<%= true %>"
-										message="connected"
-									/>
-								</c:when>
-							</c:choose>
+							<liferay-ui:icon
+								cssClass='<%= (showConnectedRequestedIcon) ? "disabled" : "disabled aui-helper-hidden" %>'
+								image="../social/coworker"
+								label="<%= true %>"
+								message="connection-requested"
+							/>
 
-							<c:if test="<%= !blocked && SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER) %>">
-								<liferay-ui:icon
-									cssClass="following"
-									image="../social/following"
-									label="<%= true %>"
-									message="following"
-								/>
-							</c:if>
+							<%
+							boolean showConnectedIcon = !blocked && SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION);
+							%>
 
-							<c:if test="<%= SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY) %>">
-								<liferay-ui:icon
-									cssClass="block"
-									image="../social/block"
-									label="<%= true %>"
-									message="block"
-								/>
-							</c:if>
+							<liferay-ui:icon
+								cssClass='<%= (showConnectedIcon) ? "connected" : "connected aui-helper-hidden" %>'
+								image="../social/coworker"
+								label="<%= true %>"
+								message="connected"
+							/>
+
+							<%
+							boolean showFollowingIcon = !blocked && SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
+							%>
+
+							<liferay-ui:icon
+								cssClass='<%= (showFollowingIcon) ? "following" : "following aui-helper-hidden" %>'
+								image="../social/following"
+								label="<%= true %>"
+								message="following"
+							/>
+
+							<%
+							boolean showBlockIcon = SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY);
+							%>
+
+							<liferay-ui:icon
+								cssClass='<%= (showBlockIcon) ? "block" : "block aui-helper-hidden" %>'
+								image="../social/block"
+								label="<%= true %>"
+								message="block"
+							/>
 						</c:when>
 						<c:otherwise>
 							<liferay-util:include page="/contacts_center/user_toolbar.jsp" servletContext="<%= application %>" />

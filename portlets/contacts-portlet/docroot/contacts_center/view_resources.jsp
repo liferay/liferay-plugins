@@ -61,29 +61,7 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 						contactsToolbarChildren.push(
 							{
 								handler: function(event) {
-									var uri = '<%= viewEntryURL %>';
-
-									var dialog = new A.Dialog(
-										{
-											centered: true,
-											constrain2view: true,
-											cssClass: 'contact-dialog',
-											destroyOnClose: true,
-											modal: true,
-											resizable: false,
-											title: '<%= LanguageUtil.get(pageContext, "update-contact") %>',
-											width: 500
-										}
-									).plug(
-										A.Plugin.IO,
-										{
-											uri: uri
-										}
-									).render();
-
-									var fm = A.one('#<portlet:namespace />fm');
-
-									fm.setData('dialogInstance', dialog);
+									Liferay.ContactsCenter.showPopup('<%= LanguageUtil.get(pageContext, "update-contact") %>', '<%= viewEntryURL %>');
 								},
 								icon: 'edit',
 								id: '<portlet:namespace />edit',
@@ -102,11 +80,7 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 											{
 												after: {
 													failure: function(event, id, obj) {
-														var saveMessages = A.one('#<portlet:namespace/>saveMessages');
-
-														if (saveMessages) {
-															saveMessages.html('<span class="portlet-msg-error">' + Liferay.Language.get('an-error-occurred-while-retrieving-the-users-information') + '</span>');
-														}
+														Liferay.ContactsCenter.showMessage(false);
 													},
 													success: function(event, id, obj) {
 														location.href = '<%= redirect %>';
