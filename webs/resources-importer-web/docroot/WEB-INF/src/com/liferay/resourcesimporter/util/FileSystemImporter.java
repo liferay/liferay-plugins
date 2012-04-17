@@ -16,14 +16,17 @@ package com.liferay.resourcesimporter.util;
 
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.model.User;
+import com.liferay.portal.security.auth.CompanyThreadLocal;
 import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.portlet.journal.model.JournalArticle;
 import com.liferay.portlet.journal.model.JournalArticleConstants;
 import com.liferay.portlet.journal.model.JournalStructure;
@@ -51,52 +54,83 @@ public class FileSystemImporter {
 			File resourcesDir)
 		throws Exception {
 
-		User user = UserLocalServiceUtil.getDefaultUser(companyId);
+		long curCompanyId = CompanyThreadLocal.getCompanyId();
 
-		LayoutSetPrototype layoutSetPrototype =
-			LayoutSetPrototypeLocalServiceUtil.addLayoutSetPrototype(
-				user.getUserId(), companyId, layoutSetPrototypeNameMap,
-				StringPool.BLANK, true, true, new ServiceContext());
+		try {
+			CompanyThreadLocal.setCompanyId(companyId);
 
-		Group group = layoutSetPrototype.getGroup();
+			User user = UserLocalServiceUtil.getDefaultUser(companyId);
 
-		File dlDocumentsDir = new File(
-			resourcesDir, "/document_library/documents");
+			LayoutSetPrototype layoutSetPrototype =
+				LayoutSetPrototypeLocalServiceUtil.addLayoutSetPrototype(
+					user.getUserId(), companyId, layoutSetPrototypeNameMap,
+					StringPool.BLANK, true, true, new ServiceContext());
 
-		if (dlDocumentsDir.exists() && dlDocumentsDir.isDirectory()) {
-			createDLFileEntries(
-				user.getUserId(), group.getGroupId(), dlDocumentsDir);
+			Group group = layoutSetPrototype.getGroup();
+
+			File dlDocumentsDir = new File(
+				resourcesDir, "/document_library/documents");
+
+			if (dlDocumentsDir.exists() && dlDocumentsDir.isDirectory()) {
+				createDLFileEntries(
+					user.getUserId(), group.getGroupId(), dlDocumentsDir);
+			}
+
+			File journalArticlesDir = new File(
+				resourcesDir, "/journal/articles");
+
+			if (journalArticlesDir.exists() &&
+				journalArticlesDir.isDirectory()) {
+
+				createJournalArticles(
+					user.getUserId(), group.getGroupId(), StringPool.BLANK,
+					StringPool.BLANK, journalArticlesDir);
+			}
+
+			File journalStructuresDir = new File(
+				resourcesDir, "/journal/structures");
+
+			if (journalStructuresDir.exists() &&
+				journalStructuresDir.isDirectory()) {
+
+				createJournalStructures(
+					user.getUserId(), group.getGroupId(), journalStructuresDir);
+			}
+
+			File journalTemplatesDir = new File(
+				resourcesDir, "/journal/templates");
+
+			if (journalTemplatesDir.exists() &&
+				journalTemplatesDir.isDirectory()) {
+
+				createJournalTemplates(
+					user.getUserId(), group.getGroupId(), StringPool.BLANK,
+					journalTemplatesDir);
+			}
 		}
-
-		File journalArticlesDir = new File(resourcesDir, "/journal/articles");
-
-		if (journalArticlesDir.exists() && journalArticlesDir.isDirectory()) {
-			createJournalArticles(
-				user.getUserId(), group.getGroupId(), StringPool.BLANK,
-				StringPool.BLANK, journalArticlesDir);
-		}
-
-		File journalStructuresDir = new File(
-			resourcesDir, "/journal/structures");
-
-		if (journalStructuresDir.exists() &&
-			journalStructuresDir.isDirectory()) {
-
-			createJournalStructures(
-				user.getUserId(), group.getGroupId(), journalStructuresDir);
-		}
-
-		File journalTemplatesDir = new File(resourcesDir, "/journal/templates");
-
-		if (journalTemplatesDir.exists() && journalTemplatesDir.isDirectory()) {
-			createJournalTemplates(
-				user.getUserId(), group.getGroupId(), StringPool.BLANK,
-				journalTemplatesDir);
+		finally {
+			CompanyThreadLocal.setCompanyId(curCompanyId);
 		}
 	}
 
 	protected void createDLFileEntries(long userId, long groupId, File dir)
 		throws Exception {
+
+		File[] files = listFiles(dir);
+
+		for (File file : files) {
+			String mimeType = MimeTypesUtil.getContentType(file);
+
+			byte[] bytes = FileUtil.getBytes(file);
+
+			ServiceContext serviceContext = new ServiceContext();
+
+			serviceContext.setScopeGroupId(groupId);
+
+			DLAppLocalServiceUtil.addFileEntry(
+				userId, groupId, 0, file.getName(), mimeType, file.getName(),
+				StringPool.BLANK, StringPool.BLANK, bytes, serviceContext);
+		}
 	}
 
 	protected void createJournalArticles(
