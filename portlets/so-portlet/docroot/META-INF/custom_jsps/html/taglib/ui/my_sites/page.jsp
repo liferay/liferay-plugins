@@ -52,27 +52,25 @@
 				function(url, title) {
 					var A = AUI();
 
-					var dialog = new A.Dialog(
+					Liferay.Util.openWindow(
 						{
-							align: {
-								node: null,
-								points: ['tc', 'tc']
+							dialog: {
+								align: {
+									node: null,
+									points: ['tc', 'tc']
+								},
+								constrain2view: true,
+								cssClass: 'so-portlet-sites-dialog',
+								modal: true,
+								resizable: true,
+								width: 650
 							},
-							constrain2view: true,
-							cssClass: 'so-portlet-sites-dialog',
-							modal: true,
-							resizable: true,
 							title: title,
-							width: 650
-						}
-					).plug(
-						A.Plugin.IO,
-						{
 							uri: url
 						}
-					).render();
+					);
 				},
-				['aui-base', 'aui-dialog', 'aui-io']
+				['aui-base']
 			);
 		</aui:script>
 	</c:otherwise>
