@@ -1,4 +1,4 @@
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+@import "compass";
 
 /* Wrapper */
 
@@ -33,7 +33,6 @@
 #skip-to-content:hover {
 	background: #4497D1;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5), 0 1px 50px rgba(0, 0, 0, 0.5);
 	color: #FF6;
 }
 
@@ -68,11 +67,6 @@
 }
 
 /* Navigation */
-
-#navigation
-{
-	box-shadow: 0 0 5px #000;
-}
 
 #navigation h1 {
 	clip: rect(0 0 0 0);
@@ -154,4 +148,15 @@
 
 #footer div {
 	border-color: #DCDEE0;
+}
+
+/* Extras */
+
+#navigation {
+	@include box-shadow(0 0 5px #000);
+}
+
+#skip-to-content:focus,
+#skip-to-content:hover {
+	@include box-shadow(0 1px 5px rgba(0, 0, 0, 0.5), 0 1px 50px rgba(0, 0, 0, 0.5));
 }
