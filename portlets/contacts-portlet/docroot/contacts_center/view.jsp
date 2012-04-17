@@ -73,8 +73,6 @@ portletURL.setWindowState(WindowState.NORMAL);
 		</aui:layout>
 	</c:when>
 	<c:otherwise>
-		<div id="<portlet:namespace/>saveMessages"><!-- --></div>
-
 		<aui:form action="<%= portletURL.toString() %>" method="post" name="fm">
 			<aui:input name="<%= Constants.CMD %>" type="hidden" value="" />
 			<aui:input name="redirect" type="hidden" value="" />
@@ -280,6 +278,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 				</aui:column>
 
 				<aui:column columnWidth="70" cssClass="contacts-container">
+					<div id="<portlet:namespace/>messageContainer"></div>
 					<div id="<portlet:namespace/>detailUserView">
 						<c:choose>
 							<c:when test="<%= userPublicPage %>">
@@ -367,14 +366,17 @@ portletURL.setWindowState(WindowState.NORMAL);
 					contactsResultContainer: '.contacts-portlet .contacts-result',
 					contactsResultURL: '<portlet:resourceURL id="getContacts"><portlet:param name="portletResource" value="<%= portletResource %>" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:resourceURL>',
 					contactsSearchInput: '#<portlet:namespace />name',
-					namespace: '<portlet:namespace />'
+					defaultMessageError: '<liferay-ui:message key="an-error-occurred-while-retrieving-the-users-information" unicode="<%= true %>" />',
+					defaultMessageSuccess: '<liferay-ui:message key="your-request-completed-successfully" unicode="<%= true %>" />',
+					namespace: '<portlet:namespace />',
+					showIcon: '<%= showIcon %>'
 				}
 			);
 
 			Liferay.ContactsCenter = contactsCenter;
 
 			<c:if test="<%= !userPublicPage %>">
-				var contactFilterSelect = A.one('.contacts-portlet .contact-group-filter select[name=<portlet:namespace />filterBy]');
+				var contactFilterSelect = A.one('#<portlet:namespace />filterBy');
 
 				contactFilterSelect.on(
 					'change',
@@ -398,11 +400,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 						{
 							after: {
 								failure: function(event, id, obj) {
-									var saveMessages = A.one('#<portlet:namespace/>saveMessages');
-
-									if (saveMessages) {
-										saveMessages.html('<span class="portlet-msg-error">' + Liferay.Language.get('an-error-occurred-while-retrieving-the-users-information') + '</span>');
-									}
+									contactsCenter.showMessage(false);
 								},
 								success: function(event, id, obj) {
 									contactsCenter.renderContent(this.get('responseData'), true);
@@ -440,7 +438,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 								keywords: searchInput.get('value'),
 								start: start
 							},
-							type: 'json'
+							dataType: 'json'
 						}
 					);
 				},
@@ -460,11 +458,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 							{
 								after: {
 									failure: function(event, id, obj) {
-										var saveMessages = A.one('#<portlet:namespace/>saveMessages');
-
-										if (saveMessages) {
-											saveMessages.html('<span class="portlet-msg-error">' + responseData.message + '</span>');
-										}
+										contactsCenter.showMessage(false, responseData.message);
 									},
 									success: function(event, id, obj) {
 										var responseData = this.get('responseData');
@@ -502,11 +496,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 						{
 							after: {
 								failure: function(event, id, obj) {
-									var saveMessages = A.one('#<portlet:namespace/>saveMessages');
-
-									if (saveMessages) {
-										saveMessages.html('<span class="portlet-msg-error">' + Liferay.Language.get('an-error-occurred-while-retrieving-the-users-information') + '</span>');
-									}
+									contactsCenter.showMessage(false);
 								},
 								success: function(event, id, obj) {
 									contactsCenter.renderContent(this.get('responseData'));
@@ -527,25 +517,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 					A.one('.contacts-portlet .add-contact').on(
 						'click',
 						function(event) {
-							var dialog = new A.Dialog(
-							{
-								centered: true,
-								constrain2view: true,
-								cssClass: 'contact-dialog',
-								destroyOnClose: true,
-								modal: true,
-								resizable: false,
-								title: '<%= LanguageUtil.get(pageContext, "add-contact") %>',
-								width: 500
-							}
-							).plug(
-								A.Plugin.IO,
-								{
-									uri: '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/contacts_center/edit_entry.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>'
-								}
-							).render();
-
-							A.one('#<portlet:namespace />fm').setData('dialogInstance', dialog);
+							contactsCenter.showPopup('<%= LanguageUtil.get(pageContext, "add-contact") %>', '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/contacts_center/edit_entry.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>');
 						}
 					);
 				</c:if>

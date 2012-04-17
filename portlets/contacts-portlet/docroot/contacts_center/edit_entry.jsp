@@ -67,6 +67,24 @@ if (entryId > 0) {
 		function(event) {
 			event.halt();
 
+			var contactFilterSelect = A.one('#<portlet:namespace />filterBy');
+
+			var searchInput = A.one('.contacts-portlet #<portlet:namespace />name');
+
+			var start = 0;
+			var end = <%= maxResultCount %>;
+
+			var lastNameAnchor = '';
+
+			var node = A.one('.more-results a');
+
+			if (node) {
+				start = A.DataType.Number.parse(node.getAttribute('data-end'));
+				end = start + <%= maxResultCount %>;
+
+				lastNameAnchor = node.getAttribute('data-lastNameAnchor');
+			}
+
 			A.io.request(
 				form.attr('action'),
 				{
@@ -83,29 +101,17 @@ if (entryId > 0) {
 								}
 							}
 							else {
-								A.io.request(
-									'<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/contacts_center/view_resources.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="portalUser" value="0" /></liferay-portlet:renderURL>',
-									{
-										after: {
-											failure: failureCallback,
-											success: function(event, id, obj) {
-												Liferay.ContactsCenter.renderContent(this.get('responseData'));
+								Liferay.ContactsCenter.renderEntry(responseData);
 
-												var searchInput = A.one('.contacts-portlet #<portlet:namespace />name');
-												var contactFilterSelect = A.one('.contacts-portlet .contact-group-filter select[name=<portlet:namespace />filterBy]');
-
-												Liferay.ContactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
-
-												A.one('#<portlet:namespace />fm').getData('dialogInstance').destroy();
-											}
-										},
-										data: {
-											entryId: responseData.entryId
-										}
-									}
-								);
+								Liferay.ContactsCenter.closePopup();
 							}
 						}
+					},
+					data: {
+						end: end,
+						filterBy: contactFilterSelect.get('value') || '<%= ContactsConstants.FILTER_BY_DEFAULT %>',
+						keywords: searchInput.get('value'),
+						start: start
 					},
 					dataType: 'json',
 					form: {
