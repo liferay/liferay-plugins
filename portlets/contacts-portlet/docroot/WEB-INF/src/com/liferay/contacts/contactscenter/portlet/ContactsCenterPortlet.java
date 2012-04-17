@@ -219,13 +219,16 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		long userId = ParamUtil.getLong(resourceRequest, "userId");
 
-		JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		userJSONObject.put("success", true);
-		userJSONObject.put("user", getUserJSON(
-			userId, themeDisplay, (LiferayPortletResponse)resourceResponse));
+		jsonObject.put("success", true);
 
-		writeJSON(resourceRequest, resourceResponse, userJSONObject);
+		JSONObject userJSONObject = getUserJSON(
+			userId, themeDisplay, (LiferayPortletResponse)resourceResponse);
+
+		jsonObject.put("user", userJSONObject);
+
+		writeJSON(resourceRequest, resourceResponse, jsonObject);
 	}
 
 	public JSONObject getContactListJSON(
@@ -454,19 +457,22 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			if (actionName.equals("addSocialRelation") && jsonFormat) {
 				addSocialRelation(actionRequest, actionResponse);
 
-				writeObjectContactsJSON(actionRequest, actionResponse,
+				writeObjectContactsJSON(
+					actionRequest, actionResponse,
 					getRelationMessage(actionRequest));
 			}
 			else if (actionName.equals("deleteSocialRelation") && jsonFormat) {
 				deleteSocialRelation(actionRequest, actionResponse);
 
-				writeObjectContactsJSON(actionRequest, actionResponse,
+				writeObjectContactsJSON(
+					actionRequest, actionResponse,
 					getRelationMessage(actionRequest));
 			}
 			else if (actionName.equals("requestSocialRelation") && jsonFormat) {
 				requestSocialRelation(actionRequest, actionResponse);
 
-				writeObjectContactsJSON(actionRequest, actionResponse,
+				writeObjectContactsJSON(
+					actionRequest, actionResponse,
 					getRelationMessage(actionRequest));
 			}
 			else if (actionName.equals("deleteEntry")) {

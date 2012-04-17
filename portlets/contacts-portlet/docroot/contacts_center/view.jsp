@@ -279,6 +279,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 
 				<aui:column columnWidth="70" cssClass="contacts-container">
 					<div id="<portlet:namespace/>messageContainer"></div>
+
 					<div id="<portlet:namespace/>detailUserView">
 						<c:choose>
 							<c:when test="<%= userPublicPage %>">
