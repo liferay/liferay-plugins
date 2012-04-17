@@ -57,7 +57,7 @@
 				},
 				icon: 'add-coworker',
 				id: '<portlet:namespace />addConnectionButton',
-				label: '<%= UnicodeLanguageUtil.get(pageContext, "add-as-connection") %>'
+				label: '<%= UnicodeLanguageUtil.get(pageContext, "add-connection") %>'
 			}
 		);
 	</c:if>

@@ -1942,7 +1942,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		.results-grid, .results-row td, .results-row.alt td {
 			background-color: transparent;
 			border-width: 0;
-			/*padding: 0;*/
 		}
 
 		.results-row td, .results-row.alt td {

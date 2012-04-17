@@ -66,7 +66,7 @@ else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), us
 				cssClass="action add-connection"
 				image="../social/add_coworker"
 				label="<%= true %>"
-				message="add-as-connection"
+				message="add-connection"
 				method="get"
 				url="<%= addConnectionURL %>"
 			/>
