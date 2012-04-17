@@ -83,43 +83,34 @@ request.setAttribute("view_user.jsp-user", user2);
 							}
 
 							boolean showConnectedRequestedIcon = !blocked && SocialRequestLocalServiceUtil.hasRequest(themeDisplay.getUserId(), User.class.getName(), themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION, user2.getUserId(), SocialRequestConstants.STATUS_PENDING);
+							boolean showConnectedIcon = !blocked && SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION);
+							boolean showFollowingIcon = !blocked && SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
+							boolean showBlockIcon = SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY);
 							%>
 
 							<liferay-ui:icon
-								cssClass='<%= (showConnectedRequestedIcon) ? "disabled" : "disabled aui-helper-hidden" %>'
+								cssClass='<%= showConnectedRequestedIcon ? "disabled" : "disabled aui-helper-hidden" %>'
 								image="../social/coworker"
 								label="<%= true %>"
 								message="connection-requested"
 							/>
 
-							<%
-							boolean showConnectedIcon = !blocked && SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION);
-							%>
-
 							<liferay-ui:icon
-								cssClass='<%= (showConnectedIcon) ? "connected" : "connected aui-helper-hidden" %>'
+								cssClass='<%= showConnectedIcon ? "connected" : "connected aui-helper-hidden" %>'
 								image="../social/coworker"
 								label="<%= true %>"
 								message="connected"
 							/>
 
-							<%
-							boolean showFollowingIcon = !blocked && SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
-							%>
-
 							<liferay-ui:icon
-								cssClass='<%= (showFollowingIcon) ? "following" : "following aui-helper-hidden" %>'
+								cssClass='<%= showFollowingIcon ? "following" : "following aui-helper-hidden" %>'
 								image="../social/following"
 								label="<%= true %>"
 								message="following"
 							/>
 
-							<%
-							boolean showBlockIcon = SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY);
-							%>
-
 							<liferay-ui:icon
-								cssClass='<%= (showBlockIcon) ? "block" : "block aui-helper-hidden" %>'
+								cssClass='<%= showBlockIcon ? "block" : "block aui-helper-hidden" %>'
 								image="../social/block"
 								label="<%= true %>"
 								message="block"
