@@ -21,7 +21,7 @@ AUI.add(
 	},
 	'',
 	{
-		requires: ['aui-base', 'autocomplete-base']
+		requires: ['aui-base', 'autocomplete-base', 'node-core']
 	}
 );
 
@@ -33,7 +33,7 @@ AUI().use(
 	'json-parse',
 	'liferay-so-site-list',
 	function(A) {
-		var STR_UNDEFINED = 'undefined';
+		var Lang = A.Lang;
 
 		Liferay.namespace('SO');
 
@@ -214,10 +214,10 @@ AUI().use(
 						resultTextLocator: function(response) {
 							var result = '';
 
-							if (typeof response.toString != STR_UNDEFINED) {
+							if (!Lang.isUndefined(response.toString)) {
 								result = response.toString();
 							}
-							else if (typeof response.responseText != STR_UNDEFINED) {
+							else if (!Lang.isUndefined(response.responseText)) {
 								result = response.responseText;
 							}
 

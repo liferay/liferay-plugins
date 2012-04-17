@@ -446,6 +446,12 @@ else {
 									siteName.insert(siteAction, 'replace');
 
 									setTimeout("Liferay.SO.Sites.updateSites();", 2000);
+
+									<c:if test="<%= themeDisplay.isStatePopUp() %>">
+										if (window.parent) {
+											Liferay.Util.getOpener().Liferay.Portlet.refresh('#p_p_id_5_WAR_soportlet_');
+										}
+									</c:if>
 								}
 							}
 						}
@@ -459,6 +465,12 @@ else {
 						after: {
 							success: function(event, id, obj) {
 								Liferay.SO.Sites.updateSites();
+
+								<c:if test="<%= themeDisplay.isStatePopUp() %>">
+									if (window.parent) {
+										Liferay.Util.getOpener().Liferay.Portlet.refresh('#p_p_id_5_WAR_soportlet_');
+									}
+								</c:if>
 							}
 						}
 					}
