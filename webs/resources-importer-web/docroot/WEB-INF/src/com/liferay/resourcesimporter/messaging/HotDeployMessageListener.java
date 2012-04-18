@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.LayoutSetPrototype;
+import com.liferay.portal.security.auth.CompanyThreadLocal;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
 import com.liferay.resourcesimporter.util.FileSystemImporter;
@@ -87,25 +88,36 @@ public class HotDeployMessageListener extends BaseMessageListener {
 				continue;
 			}
 
-			Map<Locale, String> layoutSetPrototypeNameMap =
-				new HashMap<Locale, String>();
+			long companyId = CompanyThreadLocal.getCompanyId();
 
-			Locale locale = LocaleUtil.getDefault();
+			try {
+				CompanyThreadLocal.setCompanyId(company.getCompanyId());
 
-			layoutSetPrototypeNameMap.put(locale, layoutSetPrototypeName);
+				Map<Locale, String> layoutSetPrototypeNameMap =
+					new HashMap<Locale, String>();
 
-			if (larFile.exists()) {
-				LARImporter larImporter = getLARImporter();
+				Locale locale = LocaleUtil.getDefault();
 
-				larImporter.importResources(
-					company.getCompanyId(), layoutSetPrototypeNameMap, larFile);
+				layoutSetPrototypeNameMap.put(locale, layoutSetPrototypeName);
+
+				if (larFile.exists()) {
+					LARImporter larImporter = getLARImporter();
+
+					larImporter.importResources(
+						company.getCompanyId(), layoutSetPrototypeNameMap,
+						larFile);
+				}
+				else {
+					FileSystemImporter fileSystemImporter =
+						getFileSystemImporter();
+
+					fileSystemImporter.importResources(
+						company.getCompanyId(), layoutSetPrototypeNameMap,
+						resourcesDir);
+				}
 			}
-			else {
-				FileSystemImporter fileSystemImporter = getFileSystemImporter();
-
-				fileSystemImporter.importResources(
-					company.getCompanyId(), layoutSetPrototypeNameMap,
-					resourcesDir);
+			finally {
+				CompanyThreadLocal.setCompanyId(companyId);
 			}
 		}
 	}

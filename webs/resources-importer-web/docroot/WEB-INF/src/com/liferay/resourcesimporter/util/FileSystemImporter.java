@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.model.User;
-import com.liferay.portal.security.auth.CompanyThreadLocal;
 import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -54,62 +53,47 @@ public class FileSystemImporter {
 			File resourcesDir)
 		throws Exception {
 
-		long curCompanyId = CompanyThreadLocal.getCompanyId();
+		User user = UserLocalServiceUtil.getDefaultUser(companyId);
 
-		try {
-			CompanyThreadLocal.setCompanyId(companyId);
+		LayoutSetPrototype layoutSetPrototype =
+			LayoutSetPrototypeLocalServiceUtil.addLayoutSetPrototype(
+				user.getUserId(), companyId, layoutSetPrototypeNameMap,
+				StringPool.BLANK, true, true, new ServiceContext());
 
-			User user = UserLocalServiceUtil.getDefaultUser(companyId);
+		Group group = layoutSetPrototype.getGroup();
 
-			LayoutSetPrototype layoutSetPrototype =
-				LayoutSetPrototypeLocalServiceUtil.addLayoutSetPrototype(
-					user.getUserId(), companyId, layoutSetPrototypeNameMap,
-					StringPool.BLANK, true, true, new ServiceContext());
+		File dlDocumentsDir = new File(
+			resourcesDir, "/document_library/documents");
 
-			Group group = layoutSetPrototype.getGroup();
-
-			File dlDocumentsDir = new File(
-				resourcesDir, "/document_library/documents");
-
-			if (dlDocumentsDir.exists() && dlDocumentsDir.isDirectory()) {
-				createDLFileEntries(
-					user.getUserId(), group.getGroupId(), dlDocumentsDir);
-			}
-
-			File journalArticlesDir = new File(
-				resourcesDir, "/journal/articles");
-
-			if (journalArticlesDir.exists() &&
-				journalArticlesDir.isDirectory()) {
-
-				createJournalArticles(
-					user.getUserId(), group.getGroupId(), StringPool.BLANK,
-					StringPool.BLANK, journalArticlesDir);
-			}
-
-			File journalStructuresDir = new File(
-				resourcesDir, "/journal/structures");
-
-			if (journalStructuresDir.exists() &&
-				journalStructuresDir.isDirectory()) {
-
-				createJournalStructures(
-					user.getUserId(), group.getGroupId(), journalStructuresDir);
-			}
-
-			File journalTemplatesDir = new File(
-				resourcesDir, "/journal/templates");
-
-			if (journalTemplatesDir.exists() &&
-				journalTemplatesDir.isDirectory()) {
-
-				createJournalTemplates(
-					user.getUserId(), group.getGroupId(), StringPool.BLANK,
-					journalTemplatesDir);
-			}
+		if (dlDocumentsDir.exists() && dlDocumentsDir.isDirectory()) {
+			createDLFileEntries(
+				user.getUserId(), group.getGroupId(), dlDocumentsDir);
 		}
-		finally {
-			CompanyThreadLocal.setCompanyId(curCompanyId);
+
+		File journalArticlesDir = new File(resourcesDir, "/journal/articles");
+
+		if (journalArticlesDir.exists() && journalArticlesDir.isDirectory()) {
+			createJournalArticles(
+				user.getUserId(), group.getGroupId(), StringPool.BLANK,
+				StringPool.BLANK, journalArticlesDir);
+		}
+
+		File journalStructuresDir = new File(
+			resourcesDir, "/journal/structures");
+
+		if (journalStructuresDir.exists() &&
+			journalStructuresDir.isDirectory()) {
+
+			createJournalStructures(
+				user.getUserId(), group.getGroupId(), journalStructuresDir);
+		}
+
+		File journalTemplatesDir = new File(resourcesDir, "/journal/templates");
+
+		if (journalTemplatesDir.exists() && journalTemplatesDir.isDirectory()) {
+			createJournalTemplates(
+				user.getUserId(), group.getGroupId(), StringPool.BLANK,
+				journalTemplatesDir);
 		}
 	}
 
