@@ -803,34 +803,41 @@ public class ContactsCenterPortlet extends MVCPortlet {
 	protected String getRelationMessage(ActionRequest actionRequest) {
 		int type = ParamUtil.getInteger(actionRequest, "type");
 
-		String messageType = StringPool.BLANK;
-
-		if (type == SocialRelationConstants.TYPE_BI_CONNECTION) {
-			messageType = "connection";
-		}
-		else if (type == SocialRelationConstants.TYPE_UNI_FOLLOWER) {
-			messageType = "follower";
-		}
-		else if (type == SocialRelationConstants.TYPE_UNI_ENEMY) {
-			messageType = "block";
-		}
-
 		String actionName = ParamUtil.getString(
 			actionRequest, ActionRequest.ACTION_NAME);
 
-		String messageAction = StringPool.BLANK;
+		String message = "your-request-completed-successfully";
 
 		if (actionName.equals("addSocialRelation")) {
-			messageAction = "added";
+			if (type == SocialRelationConstants.TYPE_BI_CONNECTION) {
+				message = "you-are-now-connected-to-this-user";
+			}
+			else if (type == SocialRelationConstants.TYPE_UNI_FOLLOWER) {
+				message = "you-are-now-following-this-user";
+			}
+			else if (type == SocialRelationConstants.TYPE_UNI_ENEMY) {
+				message = "you-have-blocked-this-user";
+			}
 		}
 		else if (actionName.equals("deleteSocialRelation")) {
-			messageAction = "deleted";
+			if (type == SocialRelationConstants.TYPE_BI_CONNECTION) {
+				message = "you-are-not-connected-to-this-user-anymore";
+			}
+			else if (type == SocialRelationConstants.TYPE_UNI_FOLLOWER) {
+				message = "you-are-not-following-this-user-anymore";
+			}
+			else if (type == SocialRelationConstants.TYPE_UNI_ENEMY) {
+				message = "you-have-unblocked-this-user";
+			}
 		}
 		else if (actionName.equals("requestSocialRelation")) {
-			messageAction = "requested";
+			if (type == SocialRelationConstants.TYPE_BI_CONNECTION) {
+				message =
+					"this-user-has-received-a-connection-request-from-you";
+			}
 		}
 
-		return messageAction + StringPool.DASH + messageType;
+		return message;
 	}
 
 	protected long[] getUserIds(ActionRequest actionRequest) {
