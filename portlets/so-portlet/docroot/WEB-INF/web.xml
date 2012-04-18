@@ -5,7 +5,6 @@
 		<param-name>portalContextConfigLocation</param-name>
 		<param-value>/WEB-INF/classes/META-INF/messaging-spring.xml</param-value>
 	</context-param>
-
 	<servlet>
 		<servlet-name>JSON Web Service Servlet</servlet-name>
 		<servlet-class>com.liferay.portal.kernel.servlet.PortalClassLoaderServlet</servlet-class>
