@@ -25,16 +25,50 @@ public class SocialOfficeServiceClp implements SocialOfficeService {
 	public SocialOfficeServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
 
-		_isSocialOfficeSiteMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-				"isSocialOfficeSite", long.class);
+		_getUserSocialOfficeGroupIdsMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getUserSocialOfficeGroupIds");
+
+		_isSocialOfficeGroupMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"isSocialOfficeGroup", long.class);
 	}
 
-	public boolean isSocialOfficeSite(long groupId)
+	public long[] getUserSocialOfficeGroupIds()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_isSocialOfficeSiteMethodKey0,
+		MethodHandler methodHandler = new MethodHandler(_getUserSocialOfficeGroupIdsMethodKey0);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (long[])ClpSerializer.translateOutput(returnObj);
+	}
+
+	public boolean isSocialOfficeGroup(long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_isSocialOfficeGroupMethodKey1,
 				groupId);
 
 		try {
@@ -66,5 +100,6 @@ public class SocialOfficeServiceClp implements SocialOfficeService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _isSocialOfficeSiteMethodKey0;
+	private MethodKey _getUserSocialOfficeGroupIdsMethodKey0;
+	private MethodKey _isSocialOfficeGroupMethodKey1;
 }
