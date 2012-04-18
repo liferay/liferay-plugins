@@ -54,10 +54,24 @@ import java.rmi.RemoteException;
  * @generated
  */
 public class SocialOfficeServiceSoap {
-	public static boolean isSocialOfficeSite(long groupId)
+	public static long[] getUserSocialOfficeGroupIds()
 		throws RemoteException {
 		try {
-			boolean returnValue = SocialOfficeServiceUtil.isSocialOfficeSite(groupId);
+			long[] returnValue = SocialOfficeServiceUtil.getUserSocialOfficeGroupIds();
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static boolean isSocialOfficeGroup(long groupId)
+		throws RemoteException {
+		try {
+			boolean returnValue = SocialOfficeServiceUtil.isSocialOfficeGroup(groupId);
 
 			return returnValue;
 		}

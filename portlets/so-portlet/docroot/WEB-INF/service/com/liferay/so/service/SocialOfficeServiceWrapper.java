@@ -31,10 +31,16 @@ public class SocialOfficeServiceWrapper implements SocialOfficeService,
 		_socialOfficeService = socialOfficeService;
 	}
 
-	public boolean isSocialOfficeSite(long groupId)
+	public long[] getUserSocialOfficeGroupIds()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _socialOfficeService.isSocialOfficeSite(groupId);
+		return _socialOfficeService.getUserSocialOfficeGroupIds();
+	}
+
+	public boolean isSocialOfficeGroup(long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _socialOfficeService.isSocialOfficeGroup(groupId);
 	}
 
 	/**
