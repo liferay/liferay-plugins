@@ -18,7 +18,6 @@ import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
@@ -165,6 +164,16 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		return PortalUtil.getClassName(getClassNameId());
 	}
 
+	public void setClassName(String className) {
+		long classNameId = 0;
+
+		if (Validator.isNotNull(className)) {
+			classNameId = PortalUtil.getClassNameId(className);
+		}
+
+		setClassNameId(classNameId);
+	}
+
 	public long getClassNameId() {
 		return _classNameId;
 	}
@@ -266,13 +275,8 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 				currentThread.setContextClassLoader(portalClassLoader);
 			}
 
-			Locale[] locales = LanguageUtil.getAvailableLocales();
-
-			for (Locale locale : locales) {
-				String title = titleMap.get(locale);
-
-				setTitle(title, locale, defaultLocale);
-			}
+			setTitle(LocalizationUtil.updateLocalization(titleMap, getTitle(),
+					"Title", LocaleUtil.toLanguageId(defaultLocale)));
 		}
 		finally {
 			if (contextClassLoader != portalClassLoader) {
@@ -366,13 +370,8 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 				currentThread.setContextClassLoader(portalClassLoader);
 			}
 
-			Locale[] locales = LanguageUtil.getAvailableLocales();
-
-			for (Locale locale : locales) {
-				String name = nameMap.get(locale);
-
-				setName(name, locale, defaultLocale);
-			}
+			setName(LocalizationUtil.updateLocalization(nameMap, getName(),
+					"Name", LocaleUtil.toLanguageId(defaultLocale)));
 		}
 		finally {
 			if (contextClassLoader != portalClassLoader) {
@@ -469,13 +468,9 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 				currentThread.setContextClassLoader(portalClassLoader);
 			}
 
-			Locale[] locales = LanguageUtil.getAvailableLocales();
-
-			for (Locale locale : locales) {
-				String description = descriptionMap.get(locale);
-
-				setDescription(description, locale, defaultLocale);
-			}
+			setDescription(LocalizationUtil.updateLocalization(descriptionMap,
+					getDescription(), "Description",
+					LocaleUtil.toLanguageId(defaultLocale)));
 		}
 		finally {
 			if (contextClassLoader != portalClassLoader) {

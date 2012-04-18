@@ -20,6 +20,7 @@ create index IX_69C17E43 on KBArticle (resourcePrimKey, main);
 create index IX_4E89983C on KBArticle (resourcePrimKey, status);
 create unique index IX_AA304772 on KBArticle (resourcePrimKey, version);
 create index IX_C23FA26F on KBArticle (uuid_);
+create index IX_4E87D659 on KBArticle (uuid_, companyId);
 create unique index IX_5C941F1B on KBArticle (uuid_, groupId);
 
 create index IX_9FE4C2A3 on KBComment (classNameId, classPK);
@@ -27,8 +28,10 @@ create index IX_20A6BD9C on KBComment (groupId);
 create index IX_E8D43932 on KBComment (groupId, classNameId);
 create unique index IX_FD56A55D on KBComment (userId, classNameId, classPK);
 create index IX_8E470726 on KBComment (uuid_);
+create index IX_6CB72942 on KBComment (uuid_, companyId);
 create unique index IX_791D1844 on KBComment (uuid_, groupId);
 
 create index IX_83D9CC13 on KBTemplate (groupId);
 create index IX_9909475D on KBTemplate (uuid_);
+create index IX_853770AB on KBTemplate (uuid_, companyId);
 create unique index IX_40AA25ED on KBTemplate (uuid_, groupId);

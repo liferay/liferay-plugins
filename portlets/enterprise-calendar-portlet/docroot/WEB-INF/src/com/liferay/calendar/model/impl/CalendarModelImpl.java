@@ -101,10 +101,11 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 				"value.object.column.bitmask.enabled.com.liferay.calendar.model.Calendar"),
 			true);
 	public static long CALENDARRESOURCEID_COLUMN_BITMASK = 1L;
-	public static long DEFAULTCALENDAR_COLUMN_BITMASK = 2L;
-	public static long GROUPID_COLUMN_BITMASK = 4L;
-	public static long RESOURCEBLOCKID_COLUMN_BITMASK = 8L;
-	public static long UUID_COLUMN_BITMASK = 16L;
+	public static long COMPANYID_COLUMN_BITMASK = 2L;
+	public static long DEFAULTCALENDAR_COLUMN_BITMASK = 4L;
+	public static long GROUPID_COLUMN_BITMASK = 8L;
+	public static long RESOURCEBLOCKID_COLUMN_BITMASK = 16L;
+	public static long UUID_COLUMN_BITMASK = 32L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -237,7 +238,19 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 	}
 
 	public void setCompanyId(long companyId) {
+		_columnBitmask |= COMPANYID_COLUMN_BITMASK;
+
+		if (!_setOriginalCompanyId) {
+			_setOriginalCompanyId = true;
+
+			_originalCompanyId = _companyId;
+		}
+
 		_companyId = companyId;
+	}
+
+	public long getOriginalCompanyId() {
+		return _originalCompanyId;
 	}
 
 	@JSON
@@ -647,6 +660,10 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 
 		calendarModelImpl._setOriginalGroupId = false;
 
+		calendarModelImpl._originalCompanyId = calendarModelImpl._companyId;
+
+		calendarModelImpl._setOriginalCompanyId = false;
+
 		calendarModelImpl._originalResourceBlockId = calendarModelImpl._resourceBlockId;
 
 		calendarModelImpl._setOriginalResourceBlockId = false;
@@ -852,6 +869,8 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 	private long _originalGroupId;
 	private boolean _setOriginalGroupId;
 	private long _companyId;
+	private long _originalCompanyId;
+	private boolean _setOriginalCompanyId;
 	private long _userId;
 	private String _userUuid;
 	private String _userName;

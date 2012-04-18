@@ -93,9 +93,10 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.sampleservicebuilder.model.Foo"),
 			true);
-	public static long FIELD2_COLUMN_BITMASK = 1L;
-	public static long GROUPID_COLUMN_BITMASK = 2L;
-	public static long UUID_COLUMN_BITMASK = 4L;
+	public static long COMPANYID_COLUMN_BITMASK = 1L;
+	public static long FIELD2_COLUMN_BITMASK = 2L;
+	public static long GROUPID_COLUMN_BITMASK = 4L;
+	public static long UUID_COLUMN_BITMASK = 8L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -227,7 +228,19 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	}
 
 	public void setCompanyId(long companyId) {
+		_columnBitmask |= COMPANYID_COLUMN_BITMASK;
+
+		if (!_setOriginalCompanyId) {
+			_setOriginalCompanyId = true;
+
+			_originalCompanyId = _companyId;
+		}
+
 		_companyId = companyId;
+	}
+
+	public long getOriginalCompanyId() {
+		return _originalCompanyId;
 	}
 
 	@JSON
@@ -457,6 +470,10 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 
 		fooModelImpl._setOriginalGroupId = false;
 
+		fooModelImpl._originalCompanyId = fooModelImpl._companyId;
+
+		fooModelImpl._setOriginalCompanyId = false;
+
 		fooModelImpl._originalField2 = fooModelImpl._field2;
 
 		fooModelImpl._setOriginalField2 = false;
@@ -653,6 +670,8 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	private long _originalGroupId;
 	private boolean _setOriginalGroupId;
 	private long _companyId;
+	private long _originalCompanyId;
+	private boolean _setOriginalCompanyId;
 	private long _userId;
 	private String _userUuid;
 	private String _userName;
