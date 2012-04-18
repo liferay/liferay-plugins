@@ -40,9 +40,9 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
 import com.liferay.portal.kernel.notifications.NotificationEvent;
 import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
+import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
-import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -65,7 +65,6 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.UserServiceUtil;
 import com.liferay.portal.theme.PortletDisplay;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.comparator.UserLastNameComparator;
 import com.liferay.portlet.announcements.model.AnnouncementsDelivery;
 import com.liferay.portlet.announcements.service.AnnouncementsDeliveryLocalServiceUtil;
@@ -88,12 +87,11 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
+import javax.portlet.PortletRequest;
+import javax.portlet.PortletResponse;
 import javax.portlet.PortletURL;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author Ryan Park
@@ -175,13 +173,8 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		String vCard = ContactsUtil.getVCard(user);
 
-		HttpServletRequest request = PortalUtil.getHttpServletRequest(
-			resourceRequest);
-		HttpServletResponse response = PortalUtil.getHttpServletResponse(
-			resourceResponse);
-
-		ServletResponseUtil.sendFile(
-			request, response, user.getFullName() + ".vcf",
+		PortletResponseUtil.sendFile(
+			resourceRequest, resourceResponse, user.getFullName() + ".vcf",
 			vCard.getBytes(StringPool.UTF8), "text/x-vcard; charset=UTF-8");
 	}
 
@@ -192,22 +185,19 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		long[] userIds = StringUtil.split(
 			ParamUtil.getString(resourceRequest, "userIds"), 0L);
 
-		List<User> users = new ArrayList<User>();
+		List<User> users = new ArrayList<User>(userIds.length);
 
 		for (long userId : userIds) {
-			users.add(UserServiceUtil.getUserById(userId));
+			User user = UserServiceUtil.getUserById(userId);
+
+			users.add(user);
 		}
 
 		String vCards = ContactsUtil.getVCards(users);
 
-		HttpServletRequest request = PortalUtil.getHttpServletRequest(
-			resourceRequest);
-		HttpServletResponse response = PortalUtil.getHttpServletResponse(
-			resourceResponse);
-
-		ServletResponseUtil.sendFile(
-			request, response, "vcards.vcf", vCards.getBytes(StringPool.UTF8),
-			"text/x-vcard; charset=UTF-8");
+		PortletResponseUtil.sendFile(
+			resourceRequest, resourceResponse, "vcards.vcf",
+			vCards.getBytes(StringPool.UTF8), "text/x-vcard; charset=UTF-8");
 	}
 
 	public void getContact(
@@ -223,223 +213,22 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		jsonObject.put("success", true);
 
-		JSONObject userJSONObject = getUserJSON(
-			userId, themeDisplay, (LiferayPortletResponse)resourceResponse);
+		JSONObject userJSONObject = getUserJSONObject(
+			resourceResponse, themeDisplay, userId);
 
 		jsonObject.put("user", userJSONObject);
 
 		writeJSON(resourceRequest, resourceResponse, jsonObject);
 	}
 
-	public JSONObject getContactListJSON(
-			String filterBy, String keywords, String redirect,
-			ThemeDisplay themeDisplay,
-			LiferayPortletResponse liferayPortletResponse, int start, int end)
-		throws Exception {
-
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		JSONObject optionsJSONObject = JSONFactoryUtil.createJSONObject();
-
-		optionsJSONObject.put("end", end);
-		optionsJSONObject.put("filterBy", filterBy);
-		optionsJSONObject.put("keywords", keywords);
-		optionsJSONObject.put("start", start);
-
-		jsonObject.put("options", optionsJSONObject);
-
-		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
-
-		String portletName = portletDisplay.getPortletName();
-
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		if (filterBy.equals(ContactsConstants.FILTER_BY_DEFAULT) &&
-			!portletName.equals(PortletKeys.MEMBERS)) {
-
-			List<BaseModel<?>> contacts =
-				EntryLocalServiceUtil.searchUsersAndContacts(
-					themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-					keywords, start, end);
-
-			for (BaseModel<?> contact : contacts) {
-				JSONObject contactJSONObject = null;
-
-				if (contact instanceof User) {
-					contactJSONObject = getUserJSONObject(
-						liferayPortletResponse, (User)contact, themeDisplay);
-				}
-				else {
-					contactJSONObject = getEntryJSONObject(
-						liferayPortletResponse, (Entry)contact, redirect,
-						themeDisplay);
-				}
-
-				jsonArray.put(contactJSONObject);
-			}
-		}
-		else if (filterBy.equals(
-					ContactsConstants.FILTER_BY_TYPE_MY_CONTACTS) &&
-				 !portletName.equals(PortletKeys.MEMBERS)) {
-
-			List<Entry> entries = EntryLocalServiceUtil.search(
-				themeDisplay.getUserId(), keywords, start, end);
-
-			for (Entry entry : entries) {
-				JSONObject contactJSONObject = getEntryJSONObject(
-					liferayPortletResponse, entry, redirect, themeDisplay);
-
-				jsonArray.put(contactJSONObject);
-			}
-		}
-		else {
-			Group group = themeDisplay.getScopeGroup();
-			Layout layout = themeDisplay.getLayout();
-
-			LinkedHashMap<String, Object> params =
-				new LinkedHashMap<String, Object>();
-
-			if (group.isUser() && layout.isPublicLayout()) {
-				params.put("socialRelation", new Long[] {group.getClassPK()});
-			}
-			else if (filterBy.startsWith(ContactsConstants.FILTER_BY_TYPE)) {
-				params.put(
-					"socialRelationType",
-					new Long[] {
-						themeDisplay.getUserId(),
-						ContactsUtil.getSocialRelationType(filterBy)
-					});
-			}
-
-			if (portletName.equals(PortletKeys.MEMBERS)) {
-				params.put("usersGroups", group.getGroupId());
-			}
-			else if (filterBy.startsWith(ContactsConstants.FILTER_BY_GROUP)) {
-				params.put("usersGroups", ContactsUtil.getGroupId(filterBy));
-			}
-
-			List<User> users = UserLocalServiceUtil.search(
-				themeDisplay.getCompanyId(), keywords,
-				WorkflowConstants.STATUS_APPROVED, params, start, end,
-				new UserLastNameComparator(true));
-
-			int usersCount = UserLocalServiceUtil.searchCount(
-				themeDisplay.getCompanyId(), keywords,
-				WorkflowConstants.STATUS_APPROVED, params);
-
-			jsonObject.put("count", usersCount);
-
-			for (User user : users) {
-				JSONObject userJSONObject = getUserJSONObject(
-					liferayPortletResponse, user, themeDisplay);
-
-				jsonArray.put(userJSONObject);
-			}
-		}
-
-		jsonObject.put("users", jsonArray);
-
-		return jsonObject;
-	}
-
 	public void getContacts(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
+		JSONObject contactListJSONObject = getContactsJSONObject(
+			resourceRequest, resourceResponse);
 
-		String redirect = ParamUtil.getString(resourceRequest, "redirect");
-
-		String filterBy = ParamUtil.getString(resourceRequest, "filterBy");
-		String keywords = ParamUtil.getString(resourceRequest, "keywords");
-		int start = ParamUtil.getInteger(resourceRequest, "start");
-		int end = ParamUtil.getInteger(resourceRequest, "end");
-
-		JSONObject jsonContactListJSON = getContactListJSON(
-			filterBy, keywords, redirect, themeDisplay,
-			(LiferayPortletResponse)resourceResponse, start, end);
-
-		writeJSON(resourceRequest, resourceResponse, jsonContactListJSON);
-	}
-
-	public JSONObject getUserJSON(
-			long userId, ThemeDisplay themeDisplay,
-			LiferayPortletResponse liferayPortletResponse)
-		throws Exception {
-
-		JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
-
-		User user = UserLocalServiceUtil.getUser(userId);
-
-		boolean viewRelationActions = true;
-
-		if (SocialRelationLocalServiceUtil.hasRelation(
-			userId, themeDisplay.getUserId(),
-			SocialRelationConstants.TYPE_UNI_ENEMY)) {
-
-			viewRelationActions = false;
-		}
-		else if (SocialRelationLocalServiceUtil.hasRelation(
-			themeDisplay.getUserId(), userId,
-			SocialRelationConstants.TYPE_UNI_ENEMY)) {
-
-			viewRelationActions = false;
-		}
-
-		boolean block = SocialRelationLocalServiceUtil.hasRelation(
-			themeDisplay.getUserId(), userId,
-			SocialRelationConstants.TYPE_UNI_ENEMY);
-
-		userJSONObject.put("block", block);
-
-		boolean connectionRequested =
-			viewRelationActions &&
-				SocialRequestLocalServiceUtil.hasRequest(
-					themeDisplay.getUserId(), User.class.getName(),
-					themeDisplay.getUserId(),
-					SocialRelationConstants.TYPE_BI_CONNECTION, userId,
-					SocialRequestConstants.STATUS_PENDING);
-
-		userJSONObject.put("connectionRequested", connectionRequested);
-
-		boolean connected =
-			!connectionRequested &&
-				viewRelationActions &&
-				SocialRelationLocalServiceUtil.hasRelation(
-					themeDisplay.getUserId(), userId,
-					SocialRelationConstants.TYPE_BI_CONNECTION);
-
-		userJSONObject.put("connected", connected);
-
-		userJSONObject.put("emailAddress", user.getEmailAddress());
-		userJSONObject.put("firstName", user.getFirstName());
-
-		boolean following =
-			viewRelationActions &&
-				SocialRelationLocalServiceUtil.hasRelation(
-					themeDisplay.getUserId(), userId,
-					SocialRelationConstants.TYPE_UNI_FOLLOWER);
-
-		userJSONObject.put("following", following);
-		userJSONObject.put("fullName", user.getFullName());
-		userJSONObject.put("jobTitle", user.getJobTitle());
-		userJSONObject.put("lastName", user.getLastName());
-		userJSONObject.put("portraitURL", user.getPortraitURL(themeDisplay));
-		userJSONObject.put("userId", String.valueOf(user.getUserId()));
-
-		PortletURL viewSummaryURL = liferayPortletResponse.createRenderURL();
-
-		viewSummaryURL.setWindowState(LiferayWindowState.EXCLUSIVE);
-
-		viewSummaryURL.setParameter(
-			"mvcPath", "/contacts_center/view_resources.jsp");
-		viewSummaryURL.setParameter("portalUser", Boolean.TRUE.toString());
-		viewSummaryURL.setParameter("userId", String.valueOf(user.getUserId()));
-
-		userJSONObject.put("viewSummaryURL", viewSummaryURL.toString());
-
-		return userJSONObject;
+		writeJSON(resourceRequest, resourceResponse, contactListJSONObject);
 	}
 
 	@Override
@@ -454,26 +243,21 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			boolean jsonFormat = ParamUtil.getBoolean(
 				actionRequest, "jsonFormat");
 
-			if (actionName.equals("addSocialRelation") && jsonFormat) {
-				addSocialRelation(actionRequest, actionResponse);
+			if (jsonFormat) {
+				if (actionName.equals("addSocialRelation")) {
+					addSocialRelation(actionRequest, actionResponse);
+					}
+				else if (actionName.equals("deleteSocialRelation")) {
+					deleteSocialRelation(actionRequest, actionResponse);	
+				}
+				else if (actionName.equals("requestSocialRelation")) {
+					requestSocialRelation(actionRequest, actionResponse);
+				}
 
-				writeObjectContactsJSON(
-					actionRequest, actionResponse,
-					getRelationMessage(actionRequest));
-			}
-			else if (actionName.equals("deleteSocialRelation") && jsonFormat) {
-				deleteSocialRelation(actionRequest, actionResponse);
-
-				writeObjectContactsJSON(
-					actionRequest, actionResponse,
-					getRelationMessage(actionRequest));
-			}
-			else if (actionName.equals("requestSocialRelation") && jsonFormat) {
-				requestSocialRelation(actionRequest, actionResponse);
-
-				writeObjectContactsJSON(
-					actionRequest, actionResponse,
-					getRelationMessage(actionRequest));
+				JSONObject jsonObject = getContactsDisplayJSONObject(
+					actionRequest, actionResponse);
+				
+				writeJSON(actionRequest, actionResponse, jsonObject);
 			}
 			else if (actionName.equals("deleteEntry")) {
 				deleteEntry(actionRequest, actionResponse);
@@ -561,13 +345,14 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
+		String redirect = ParamUtil.getString(actionRequest, "redirect");
+
 		long entryId = ParamUtil.getLong(actionRequest, "entryId");
 
-		String comments = ParamUtil.getString(actionRequest, "comments");
+		String fullName = ParamUtil.getString(actionRequest, "fullName");
 		String emailAddress = ParamUtil.getString(
 			actionRequest, "emailAddress");
-		String fullName = ParamUtil.getString(actionRequest, "fullName");
-		String redirect = ParamUtil.getString(actionRequest, "redirect");
+		String comments = ParamUtil.getString(actionRequest, "comments");
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
@@ -589,31 +374,27 @@ public class ContactsCenterPortlet extends MVCPortlet {
 				message = "you-have-successfully-added-a-new-contact";
 			}
 
-			jsonObject.put("contact", getEntryJSONObject(
-				(LiferayPortletResponse) actionResponse, entry, redirect,
-				themeDisplay));
+			jsonObject.put(
+				"contact",
+				getEntryJSONObject(
+					actionResponse, themeDisplay, entry, redirect));
 
-			String keywords = ParamUtil.getString(actionRequest, "keywords");
-			String filterBy = ParamUtil.getString(actionRequest, "filterBy");
-			int start = ParamUtil.getInteger(actionRequest, "start");
-			int end = ParamUtil.getInteger(actionRequest, "end");
+			JSONObject contactsJSONObject = getContactsJSONObject(
+				actionRequest, actionResponse);
 
-			JSONObject jsonContactListJSON = getContactListJSON(
-				filterBy, keywords, redirect, themeDisplay,
-				(LiferayPortletResponse)actionResponse, start, end);
+			jsonObject.put("contactList", contactsJSONObject);
 
-			jsonObject.put("contactList", jsonContactListJSON);
 			jsonObject.put("success", true);
 		}
 		catch (Exception e) {
-			if (e instanceof EntryEmailAddressException) {
-				message = "please-enter-a-valid-email-address";
-			}
-			else if (e instanceof ContactFullNameException) {
+			if (e instanceof ContactFullNameException) {
 				message = "full-name-cannot-be-empty";
 			}
 			else if (e instanceof DuplicateEntryEmailAddressException) {
 				message = "there-is-already-a-contact-with-this-email-address";
+			}
+			else if (e instanceof EntryEmailAddressException) {
+				message = "please-enter-a-valid-email-address";
 			}
 			else {
 				message =
@@ -623,11 +404,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			jsonObject.put("success", false);
 		}
 
-		PortletConfig portletConfig = (PortletConfig)actionRequest.getAttribute(
-			JavaConstants.JAVAX_PORTLET_CONFIG);
-
-		jsonObject.put("message", LanguageUtil.get(
-			portletConfig, themeDisplay.getLocale(), message));
+		jsonObject.put("message", translate(actionRequest, message));
 
 		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
@@ -673,6 +450,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			String redirect = ParamUtil.getString(actionRequest, "redirect");
 
 			jsonObject.put("redirect", redirect);
+
 			jsonObject.put("success", true);
 		}
 		catch (Exception e) {
@@ -709,15 +487,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 				message = "please-enter-a-valid-url";
 			}
 
-			ThemeDisplay themeDisplay =
-				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
-
-			PortletConfig portletConfig =
-				(PortletConfig)actionRequest.getAttribute(
-					JavaConstants.JAVAX_PORTLET_CONFIG);
-
-			jsonObject.put("message", LanguageUtil.get(
-				portletConfig, themeDisplay.getLocale(), message));
+			jsonObject.put("message", translate(actionRequest, message));
 
 			jsonObject.put("success", false);
 		}
@@ -733,6 +503,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			WebKeys.THEME_DISPLAY);
 
 		long requestId = ParamUtil.getLong(actionRequest, "requestId");
+
 		int status = ParamUtil.getInteger(actionRequest, "status");
 
 		SocialRequest socialRequest =
@@ -765,17 +536,175 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		if (entryId > 0) {
 			EntryLocalServiceUtil.deleteEntry(entryId);
 		}
+	}	
+
+	protected JSONObject getContactsDisplayJSONObject(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long[] userIds = StringUtil.split(
+			ParamUtil.getString(actionRequest, "userIds"), 0L);
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		JSONObject contactListJSONObject = getContactsJSONObject(
+			actionRequest, actionResponse);
+
+		jsonObject.put("contactList", contactListJSONObject);
+
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+		for (long userId : userIds) {
+			JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
+
+			userJSONObject.put("success", true);
+			userJSONObject.put(
+				"user",
+				getUserJSONObject(actionResponse, themeDisplay, userId));
+
+			jsonArray.put(userJSONObject);
+		}
+
+		jsonObject.put("contacts", jsonArray);
+
+		String message = getRelationMessage(actionRequest);
+					
+		jsonObject.put("message", translate(actionRequest, message));
+		
+		return jsonObject;
+	}
+
+	protected JSONObject getContactsJSONObject(
+			PortletRequest portletRequest, PortletResponse portletResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String redirect = ParamUtil.getString(portletRequest, "redirect");
+
+		String filterBy = ParamUtil.getString(portletRequest, "filterBy");
+		String keywords = ParamUtil.getString(portletRequest, "keywords");
+		int start = ParamUtil.getInteger(portletRequest, "start");
+		int end = ParamUtil.getInteger(portletRequest, "end");
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		JSONObject optionsJSONObject = JSONFactoryUtil.createJSONObject();
+
+		optionsJSONObject.put("end", end);
+		optionsJSONObject.put("filterBy", filterBy);
+		optionsJSONObject.put("keywords", keywords);
+		optionsJSONObject.put("start", start);
+
+		jsonObject.put("options", optionsJSONObject);
+
+		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
+
+		String portletName = portletDisplay.getPortletName();
+
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+		if (filterBy.equals(ContactsConstants.FILTER_BY_DEFAULT) &&
+			!portletName.equals(PortletKeys.MEMBERS)) {
+
+			List<BaseModel<?>> contacts =
+				EntryLocalServiceUtil.searchUsersAndContacts(
+					themeDisplay.getCompanyId(), themeDisplay.getUserId(),
+					keywords, start, end);
+
+			for (BaseModel<?> contact : contacts) {
+				JSONObject contactJSONObject = null;
+
+				if (contact instanceof User) {
+					contactJSONObject = getUserJSONObject(
+						portletResponse, themeDisplay, (User)contact);
+				}
+				else {
+					contactJSONObject = getEntryJSONObject(
+						portletResponse, themeDisplay, (Entry)contact,
+						redirect);
+				}
+
+				jsonArray.put(contactJSONObject);
+			}
+		}
+		else if (filterBy.equals(
+					ContactsConstants.FILTER_BY_TYPE_MY_CONTACTS) &&
+				 !portletName.equals(PortletKeys.MEMBERS)) {
+
+			List<Entry> entries = EntryLocalServiceUtil.search(
+				themeDisplay.getUserId(), keywords, start, end);
+
+			for (Entry entry : entries) {
+				JSONObject contactJSONObject = getEntryJSONObject(
+					portletResponse, themeDisplay, entry, redirect);
+
+				jsonArray.put(contactJSONObject);
+			}
+		}
+		else {
+			LinkedHashMap<String, Object> params =
+				new LinkedHashMap<String, Object>();
+
+			Group group = themeDisplay.getScopeGroup();
+			Layout layout = themeDisplay.getLayout();
+
+			if (group.isUser() && layout.isPublicLayout()) {
+				params.put("socialRelation", new Long[] {group.getClassPK()});
+			}
+			else if (filterBy.startsWith(ContactsConstants.FILTER_BY_TYPE)) {
+				params.put(
+					"socialRelationType",
+					new Long[] {
+						themeDisplay.getUserId(),
+						ContactsUtil.getSocialRelationType(filterBy)
+					});
+			}
+
+			if (portletName.equals(PortletKeys.MEMBERS)) {
+				params.put("usersGroups", group.getGroupId());
+			}
+			else if (filterBy.startsWith(ContactsConstants.FILTER_BY_GROUP)) {
+				params.put("usersGroups", ContactsUtil.getGroupId(filterBy));
+			}
+
+			int usersCount = UserLocalServiceUtil.searchCount(
+				themeDisplay.getCompanyId(), keywords,
+				WorkflowConstants.STATUS_APPROVED, params);
+
+			jsonObject.put("count", usersCount);
+
+			List<User> users = UserLocalServiceUtil.search(
+				themeDisplay.getCompanyId(), keywords,
+				WorkflowConstants.STATUS_APPROVED, params, start, end,
+				new UserLastNameComparator(true));
+
+			for (User user : users) {
+				JSONObject userJSONObject = getUserJSONObject(
+					portletResponse, themeDisplay, user);
+
+				jsonArray.put(userJSONObject);
+			}
+		}
+
+		jsonObject.put("users", jsonArray);
+
+		return jsonObject;
 	}
 
 	protected JSONObject getEntryJSONObject(
-			LiferayPortletResponse liferayPortletResponse, Entry entry,
-			String redirect, ThemeDisplay themeDisplay)
+			PortletResponse portletResponse, ThemeDisplay themeDisplay,
+			Entry entry, String redirect)
 		throws Exception {
 
 		JSONObject contactJSONObject = JSONFactoryUtil.createJSONObject();
 
-		contactJSONObject.put("entryId", String.valueOf(entry.getEntryId()));
 		contactJSONObject.put("emailAddress", entry.getEmailAddress());
+		contactJSONObject.put("entryId", String.valueOf(entry.getEntryId()));
 		contactJSONObject.put("comments", entry.getComments());
 		contactJSONObject.put("fullName", entry.getFullName());
 		contactJSONObject.put("portalUser", false);
@@ -783,10 +712,11 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			"portraitURL",
 			themeDisplay.getPathImage() + "/user_male_portrait?img_id=0");
 		contactJSONObject.put("redirect", redirect);
+		
+		LiferayPortletResponse liferayPortletResponse =
+			(LiferayPortletResponse)portletResponse;
 
 		PortletURL viewSummaryURL = liferayPortletResponse.createRenderURL();
-
-		viewSummaryURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 
 		viewSummaryURL.setParameter(
 			"mvcPath", "/contacts_center/view_resources.jsp");
@@ -794,6 +724,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		viewSummaryURL.setParameter(
 			"entryId", String.valueOf(entry.getEntryId()));
 		viewSummaryURL.setParameter("portalUser", Boolean.FALSE.toString());
+		viewSummaryURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 
 		contactJSONObject.put("viewSummaryURL", viewSummaryURL.toString());
 
@@ -857,11 +788,27 @@ public class ContactsCenterPortlet extends MVCPortlet {
 	}
 
 	protected JSONObject getUserJSONObject(
-			LiferayPortletResponse liferayPortletResponse, User user,
-			ThemeDisplay themeDisplay)
+			PortletResponse portletResponse, ThemeDisplay themeDisplay,
+			long userId)
+		throws Exception {
+
+		User user = UserLocalServiceUtil.getUser(userId);
+
+		return getUserJSONObject(portletResponse, themeDisplay, user);
+	}
+
+	protected JSONObject getUserJSONObject(
+			PortletResponse portletResponse, ThemeDisplay themeDisplay,
+			User user)
 		throws Exception {
 
 		JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
+
+		boolean block = SocialRelationLocalServiceUtil.hasRelation(
+			themeDisplay.getUserId(), user.getUserId(),
+			SocialRelationConstants.TYPE_UNI_ENEMY);
+
+		userJSONObject.put("block", block);
 
 		userJSONObject.put("emailAddress", user.getEmailAddress());
 		userJSONObject.put("firstName", user.getFirstName());
@@ -872,16 +819,50 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		userJSONObject.put("portraitURL", user.getPortraitURL(themeDisplay));
 		userJSONObject.put("userId", String.valueOf(user.getUserId()));
 
-		PortletURL viewSummaryURL = liferayPortletResponse.createRenderURL();
+		LiferayPortletResponse liferayPortletResponse =
+			(LiferayPortletResponse)portletResponse;
 
-		viewSummaryURL.setWindowState(LiferayWindowState.EXCLUSIVE);
+		PortletURL viewSummaryURL = liferayPortletResponse.createRenderURL();
 
 		viewSummaryURL.setParameter(
 			"mvcPath", "/contacts_center/view_resources.jsp");
 		viewSummaryURL.setParameter("userId", String.valueOf(user.getUserId()));
 		viewSummaryURL.setParameter("portalUser", Boolean.TRUE.toString());
+		viewSummaryURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 
 		userJSONObject.put("viewSummaryURL", viewSummaryURL.toString());
+
+		if (!SocialRelationLocalServiceUtil.hasRelation(
+				user.getUserId(), themeDisplay.getUserId(),
+				SocialRelationConstants.TYPE_UNI_ENEMY) &&
+			!SocialRelationLocalServiceUtil.hasRelation(
+				themeDisplay.getUserId(), user.getUserId(),
+				SocialRelationConstants.TYPE_UNI_ENEMY)) {
+
+			boolean connectionRequested =
+				SocialRequestLocalServiceUtil.hasRequest(
+					themeDisplay.getUserId(), User.class.getName(),
+					themeDisplay.getUserId(),
+					SocialRelationConstants.TYPE_BI_CONNECTION,
+					user.getUserId(), SocialRequestConstants.STATUS_PENDING);
+
+			userJSONObject.put("connectionRequested", connectionRequested);
+
+			boolean connected =
+				!connectionRequested &&
+				SocialRelationLocalServiceUtil.hasRelation(
+					themeDisplay.getUserId(), user.getUserId(),
+					SocialRelationConstants.TYPE_BI_CONNECTION);
+
+			userJSONObject.put("connected", connected);
+
+			boolean following =
+				SocialRelationLocalServiceUtil.hasRelation(
+					themeDisplay.getUserId(), user.getUserId(),
+					SocialRelationConstants.TYPE_UNI_FOLLOWER);
+
+			userJSONObject.put("following", following);			
+		}
 
 		return userJSONObject;
 	}
@@ -914,6 +895,16 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		ChannelHubManagerUtil.sendNotificationEvent(
 			socialRequest.getCompanyId(), socialRequest.getReceiverUserId(),
 			notificationEvent);
+	}
+
+	protected String translate(PortletRequest portletRequest, String key) {
+		PortletConfig portletConfig = (PortletConfig)portletRequest.getAttribute(
+			JavaConstants.JAVAX_PORTLET_CONFIG);
+	
+		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+		
+		return LanguageUtil.get(portletConfig, themeDisplay.getLocale(), key);
 	}
 
 	protected void updateAdditionalEmailAddresses(ActionRequest actionRequest)
@@ -1112,54 +1103,6 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		UsersAdminUtil.updateWebsites(
 			Contact.class.getName(), user.getContactId(), websites);
-	}
-
-	protected void writeObjectContactsJSON(
-			ActionRequest actionRequest, ActionResponse actionResponse,
-			String message)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		long[] userIds = StringUtil.split(
-			ParamUtil.getString(actionRequest, "userIds"), 0L);
-
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		for (long userId : userIds) {
-			JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
-
-			userJSONObject.put("success", true);
-			userJSONObject.put("user", getUserJSON(
-				userId, themeDisplay, (LiferayPortletResponse)actionResponse));
-
-			jsonArray.put(userJSONObject);
-		}
-
-		jsonObject.put("contacts", jsonArray);
-
-		String keywords = ParamUtil.getString(actionRequest, "keywords");
-		String redirect = ParamUtil.getString(actionRequest, "redirect");
-		String filterBy = ParamUtil.getString(actionRequest, "filterBy");
-		int start = ParamUtil.getInteger(actionRequest, "start");
-		int end = ParamUtil.getInteger(actionRequest, "end");
-
-		JSONObject jsonContactListJSON = getContactListJSON(
-			filterBy, keywords, redirect, themeDisplay,
-			(LiferayPortletResponse)actionResponse, start, end);
-
-		jsonObject.put("contactList", jsonContactListJSON);
-
-		PortletConfig portletConfig = (PortletConfig)actionRequest.getAttribute(
-			JavaConstants.JAVAX_PORTLET_CONFIG);
-
-		jsonObject.put("message", LanguageUtil.get(
-			portletConfig, themeDisplay.getLocale(), message));
-
-		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
 
 }
