@@ -85,6 +85,8 @@ page import="javax.portlet.WindowState" %>
 <liferay-theme:defineObjects />
 
 <%
+themeDisplay.setIncludeServiceJs(true);
+
 String currentURL = PortalUtil.getCurrentURL(request);
 
 Group group = themeDisplay.getScopeGroup();
