@@ -59,6 +59,7 @@ page import="com.liferay.portlet.messageboards.model.MBThread" %><%@
 page import="com.liferay.portlet.messageboards.model.MBTreeWalker" %><%@
 page import="com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil" %><%@
 page import="com.liferay.portlet.messageboards.util.comparator.MessageCreateDateComparator" %><%@
+page import="com.liferay.portlet.social.model.SocialRelationConstants" %><%@
 page import="com.liferay.tasks.NoSuchTasksEntryException" %><%@
 page import="com.liferay.tasks.model.TasksEntry" %><%@
 page import="com.liferay.tasks.model.TasksEntryConstants" %><%@
