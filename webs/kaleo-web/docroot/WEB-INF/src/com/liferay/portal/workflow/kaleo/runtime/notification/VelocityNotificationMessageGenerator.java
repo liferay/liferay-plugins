@@ -14,9 +14,11 @@
 
 package com.liferay.portal.workflow.kaleo.runtime.notification;
 
-import com.liferay.portal.kernel.velocity.VelocityContext;
-import com.liferay.portal.kernel.velocity.VelocityEngine;
-import com.liferay.portal.kernel.velocity.VelocityEngineUtil;
+import com.liferay.portal.kernel.template.Template;
+import com.liferay.portal.kernel.template.TemplateContextType;
+import com.liferay.portal.kernel.template.TemplateManager;
+import com.liferay.portal.kernel.template.TemplateManagerUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.workflow.WorkflowTaskAssignee;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
@@ -41,32 +43,40 @@ public class VelocityNotificationMessageGenerator
 	public String generateMessage(
 			String kaleoClassName, long kaleoClassPK, String notificationName,
 			String notificationTemplate, ExecutionContext executionContext)
-		throws NotificationMessageGenerationException {
+		throws Exception {
 
-		VelocityEngine velocityEngine = VelocityEngineUtil.getVelocityEngine();
+		StringBundler sb = new StringBundler();
 
-		VelocityContext velocityContext =
-			VelocityEngineUtil.getRestrictedToolsContext();
+		sb.append(notificationName);
+		sb.append(kaleoClassName);
+		sb.append(kaleoClassPK);
+
+		Template template = TemplateManagerUtil.getTemplate(
+			TemplateManager.VELOCITY, sb.toString(),
+			TemplateContextType.RESTRICTED);
 
 		try {
-			populateContextVariables(velocityContext, executionContext);
+			populateContextVariables(template, executionContext);
 
 			StringWriter stringWriter = new StringWriter();
 
-			velocityEngine.mergeTemplate(
-				notificationName + kaleoClassName + kaleoClassPK,
-				notificationTemplate, velocityContext, stringWriter);
+			template.processTemplate(stringWriter);
 
 			return stringWriter.toString();
 		}
 		catch (Exception e) {
-			throw new NotificationMessageGenerationException(
-				"Unable to generate notification message", e);
+			if (e instanceof NotificationMessageGenerationException) {
+				throw new NotificationMessageGenerationException(
+					"Unable to generate notification message", e);
+			}
+			else {
+				throw e;
+			}
 		}
 	}
 
 	protected void populateContextVariables(
-			VelocityContext velocityContext, ExecutionContext executionContext)
+			Template template, ExecutionContext executionContext)
 		throws Exception {
 
 		Map<String, Serializable> workflowContext =
@@ -85,7 +95,7 @@ public class VelocityNotificationMessageGenerator
 		for (Map.Entry<String, Serializable> entry :
 				workflowContext.entrySet()) {
 
-			velocityContext.put(entry.getKey(), entry.getValue());
+			template.put(entry.getKey(), entry.getValue());
 		}
 
 		KaleoTaskInstanceToken kaleoTaskInstanceToken =
@@ -94,21 +104,21 @@ public class VelocityNotificationMessageGenerator
 		if (kaleoTaskInstanceToken != null) {
 			KaleoTask kaleoTask = kaleoTaskInstanceToken.getKaleoTask();
 
-			velocityContext.put("taskName", kaleoTask.getName());
+			template.put("taskName", kaleoTask.getName());
 
-			velocityContext.put("userId", kaleoTaskInstanceToken.getUserId());
+			template.put("userId", kaleoTaskInstanceToken.getUserId());
 
 			List<WorkflowTaskAssignee> workflowTaskAssignees =
 				KaleoTaskAssignmentInstanceUtil.getWorkflowTaskAssignees(
 					kaleoTaskInstanceToken);
 
-			velocityContext.put("workflowTaskAssignees", workflowTaskAssignees);
+			template.put("workflowTaskAssignees", workflowTaskAssignees);
 		}
 		else {
 			KaleoInstanceToken kaleoInstanceToken =
 				executionContext.getKaleoInstanceToken();
 
-			velocityContext.put("userId", kaleoInstanceToken.getUserId());
+			template.put("userId", kaleoInstanceToken.getUserId());
 		}
 	}
 

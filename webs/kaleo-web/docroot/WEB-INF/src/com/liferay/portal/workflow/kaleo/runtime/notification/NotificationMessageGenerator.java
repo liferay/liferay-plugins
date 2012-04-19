@@ -24,6 +24,6 @@ public interface NotificationMessageGenerator {
 	public String generateMessage(
 			String kaleoClassName, long kaleoClassPK, String notificationName,
 			String notificationTemplate, ExecutionContext executionContext)
-		throws NotificationMessageGenerationException;
+		throws Exception;
 
 }

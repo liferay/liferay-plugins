@@ -14,9 +14,11 @@
 
 package com.liferay.portal.workflow.kaleo.runtime.notification;
 
-import com.liferay.portal.kernel.freemarker.FreeMarkerContext;
-import com.liferay.portal.kernel.freemarker.FreeMarkerEngine;
-import com.liferay.portal.kernel.freemarker.FreeMarkerEngineUtil;
+import com.liferay.portal.kernel.template.Template;
+import com.liferay.portal.kernel.template.TemplateContextType;
+import com.liferay.portal.kernel.template.TemplateManager;
+import com.liferay.portal.kernel.template.TemplateManagerUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.workflow.WorkflowTaskAssignee;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
@@ -41,34 +43,40 @@ public class FreeMarkerNotificationMessageGenerator
 	public String generateMessage(
 			String kaleoClassName, long kaleoClassPK, String notificationName,
 			String notificationTemplate, ExecutionContext executionContext)
-		throws NotificationMessageGenerationException {
+		throws Exception {
 
-		FreeMarkerEngine freeMarkerEngine =
-			FreeMarkerEngineUtil.getFreeMarkerEngine();
+		StringBundler sb = new StringBundler();
 
-		FreeMarkerContext freeMarketContext =
-			FreeMarkerEngineUtil.getWrappedRestrictedToolsContext();
+		sb.append(notificationName);
+		sb.append(kaleoClassName);
+		sb.append(kaleoClassPK);
+
+		Template template = TemplateManagerUtil.getTemplate(
+			TemplateManager.FREEMARKER, sb.toString(),
+			TemplateContextType.RESTRICTED);
 
 		try {
-			populateContextVariables(freeMarketContext, executionContext);
+			populateContextVariables(template, executionContext);
 
 			StringWriter stringWriter = new StringWriter();
 
-			freeMarkerEngine.mergeTemplate(
-				notificationName + kaleoClassName + kaleoClassPK,
-				notificationTemplate, freeMarketContext, stringWriter);
+			template.processTemplate(stringWriter);
 
 			return stringWriter.toString();
 		}
 		catch (Exception e) {
-			throw new NotificationMessageGenerationException(
-				"Unable to generate notification message", e);
+			if (e instanceof NotificationMessageGenerationException) {
+				throw new NotificationMessageGenerationException(
+					"Unable to generate notification message", e);
+			}
+			else {
+				throw e;
+			}
 		}
 	}
 
 	protected void populateContextVariables(
-			FreeMarkerContext freeMarkerContext,
-			ExecutionContext executionContext)
+			Template template, ExecutionContext executionContext)
 		throws Exception {
 
 		Map<String, Serializable> workflowContext =
@@ -87,7 +95,7 @@ public class FreeMarkerNotificationMessageGenerator
 		for (Map.Entry<String, Serializable> entry :
 				workflowContext.entrySet()) {
 
-			freeMarkerContext.put(entry.getKey(), entry.getValue());
+			template.put(entry.getKey(), entry.getValue());
 		}
 
 		KaleoTaskInstanceToken kaleoTaskInstanceToken =
@@ -96,22 +104,21 @@ public class FreeMarkerNotificationMessageGenerator
 		if (kaleoTaskInstanceToken != null) {
 			KaleoTask kaleoTask = kaleoTaskInstanceToken.getKaleoTask();
 
-			freeMarkerContext.put("taskName", kaleoTask.getName());
+			template.put("taskName", kaleoTask.getName());
 
-			freeMarkerContext.put("userId", kaleoTaskInstanceToken.getUserId());
+			template.put("userId", kaleoTaskInstanceToken.getUserId());
 
 			List<WorkflowTaskAssignee> workflowTaskAssignees =
 				KaleoTaskAssignmentInstanceUtil.getWorkflowTaskAssignees(
 					kaleoTaskInstanceToken);
 
-			freeMarkerContext.put(
-				"workflowTaskAssignees", workflowTaskAssignees);
+			template.put("workflowTaskAssignees", workflowTaskAssignees);
 		}
 		else {
 			KaleoInstanceToken kaleoInstanceToken =
 				executionContext.getKaleoInstanceToken();
 
-			freeMarkerContext.put("userId", kaleoInstanceToken.getUserId());
+			template.put("userId", kaleoInstanceToken.getUserId());
 		}
 	}
 
