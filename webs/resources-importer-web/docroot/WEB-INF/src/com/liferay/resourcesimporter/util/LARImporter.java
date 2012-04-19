@@ -15,43 +15,25 @@
 package com.liferay.resourcesimporter.util;
 
 import com.liferay.portal.kernel.lar.PortletDataHandlerKeys;
-import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.model.Group;
-import com.liferay.portal.model.LayoutSetPrototype;
-import com.liferay.portal.model.User;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
-import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
-import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.service.UserLocalServiceUtil;
 
 import java.io.File;
 
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 /**
  * @author Ryan Park
  */
-public class LARImporter {
+public class LARImporter extends BaseImporter {
 
-	public void importResources(
-			long companyId, Map<Locale, String> layoutSetPrototypeNameMap,
-			File larFile)
-		throws Exception {
-
-		User user = UserLocalServiceUtil.getDefaultUser(companyId);
-
-		LayoutSetPrototype layoutSetPrototype =
-			LayoutSetPrototypeLocalServiceUtil.addLayoutSetPrototype(
-				user.getUserId(), companyId, layoutSetPrototypeNameMap,
-				StringPool.BLANK, true, true, new ServiceContext());
-
-		Group group = layoutSetPrototype.getGroup();
-
+	public void importResources() throws Exception {
 		LayoutLocalServiceUtil.importLayouts(
-			user.getUserId(), group.getGroupId(), false, getParameterMap(),
-			larFile);
+			userId, groupId, false, getParameterMap(), _larFile);
+	}
+
+	public void setLARFile(File larFile) {
+		_larFile = larFile;
 	}
 
 	protected Map<String, String[]> getParameterMap() {
@@ -114,5 +96,7 @@ public class LARImporter {
 
 		return parameters;
 	}
+
+	private File _larFile;
 
 }

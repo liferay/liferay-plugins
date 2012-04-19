@@ -28,6 +28,7 @@ import com.liferay.portal.security.auth.CompanyThreadLocal;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
 import com.liferay.resourcesimporter.util.FileSystemImporter;
+import com.liferay.resourcesimporter.util.Importer;
 import com.liferay.resourcesimporter.util.LARImporter;
 
 import java.io.File;
@@ -64,12 +65,10 @@ public class HotDeployMessageListener extends BaseMessageListener {
 			return;
 		}
 
-		if (_log.isInfoEnabled()) {
-			_log.info("Importing resources from " + servletContextName);
-		}
-
 		String layoutSetPrototypeName = TextFormatter.format(
 			servletContextName, TextFormatter.J);
+
+		layoutSetPrototypeName += " " + System.currentTimeMillis();
 
 		File larFile = new File(resourcesDir, "/archive.lar");
 
@@ -93,6 +92,21 @@ public class HotDeployMessageListener extends BaseMessageListener {
 			try {
 				CompanyThreadLocal.setCompanyId(company.getCompanyId());
 
+				Importer importer = null;
+
+				if (larFile.exists()) {
+					LARImporter larImporter = getLARImporter();
+
+					larImporter.setLARFile(larFile);
+
+					importer = larImporter;
+				}
+				else {
+					importer = getFileSystemImporter();
+				}
+
+				importer.setCompanyId(company.getCompanyId());
+
 				Map<Locale, String> layoutSetPrototypeNameMap =
 					new HashMap<Locale, String>();
 
@@ -100,21 +114,21 @@ public class HotDeployMessageListener extends BaseMessageListener {
 
 				layoutSetPrototypeNameMap.put(locale, layoutSetPrototypeName);
 
-				if (larFile.exists()) {
-					LARImporter larImporter = getLARImporter();
+				importer.setLayoutSetPrototypeNameMap(
+					layoutSetPrototypeNameMap);
 
-					larImporter.importResources(
-						company.getCompanyId(), layoutSetPrototypeNameMap,
-						larFile);
-				}
-				else {
-					FileSystemImporter fileSystemImporter =
-						getFileSystemImporter();
+				importer.setResourcesDir(resourcesDir);
+				importer.setServletContextName(servletContextName);
 
-					fileSystemImporter.importResources(
-						company.getCompanyId(), layoutSetPrototypeNameMap,
-						resourcesDir);
+				importer.afterPropertiesSet();
+
+				if (_log.isInfoEnabled()) {
+					_log.info(
+						"Importing resources from " + servletContextName +
+							" to group " + importer.getGroupId());
 				}
+
+				importer.importResources();
 			}
 			finally {
 				CompanyThreadLocal.setCompanyId(companyId);
