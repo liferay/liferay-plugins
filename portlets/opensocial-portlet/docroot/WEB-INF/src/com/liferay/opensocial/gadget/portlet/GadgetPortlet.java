@@ -14,17 +14,17 @@
 
 package com.liferay.opensocial.gadget.portlet;
 
-import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.opensocial.gadget.action.ConfigurationActionImpl;
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
+import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.theme.PortletDisplay;
+import com.liferay.portal.theme.ThemeDisplay;
 
 import javax.portlet.PortletConfig;
 import javax.portlet.RenderRequest;
 
-import com.liferay.portal.theme.ThemeDisplay;
 import org.apache.shindig.gadgets.spec.GadgetSpec;
 
 /**
