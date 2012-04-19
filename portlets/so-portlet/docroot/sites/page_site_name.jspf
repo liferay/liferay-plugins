@@ -21,7 +21,7 @@
 	<c:if test="<%= group.isRegularSite() && !group.isControlPanel() %>">
 
 		<%
-		boolean socialOfficeEnabled = SocialOfficeServiceUtil.isSocialOfficeSite(group.getGroupId());
+		boolean socialOfficeEnabled = SocialOfficeServiceUtil.isSocialOfficeGroup(group.getGroupId());
 		%>
 
 		<c:choose>

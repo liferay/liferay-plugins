@@ -87,7 +87,7 @@ else {
 
 			ExpandoBridge expandoBridge = group.getExpandoBridge();
 
-			boolean socialOfficeEnabled = SocialOfficeServiceUtil.isSocialOfficeSite(group.getGroupId());
+			boolean socialOfficeEnabled = SocialOfficeServiceUtil.isSocialOfficeGroup(group.getGroupId());
 
 			if (socialOfficeEnabled) {
 				classNames += "social-office-enabled ";
