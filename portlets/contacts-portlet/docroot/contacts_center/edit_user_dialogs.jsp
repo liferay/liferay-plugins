@@ -72,7 +72,14 @@ if (selUser != null) {
 			<div class="form-section selected" id="<portlet:namespace /><%= curSectionId %>">
 				<div id="<portlet:namespace />errorMessage"></div>
 
-				<liferay-util:include page="<%= sectionJsp %>" />
+				<c:choose>
+					<c:when test='<%= curSectionId.equals("details") %>'>
+						<liferay-util:include page='<%= "/contacts_center/user/" + _getSectionJsp(curSectionId) + ".jsp" %>' servletContext="<%= application %>" />
+					</c:when>
+					<c:otherwise>
+						<liferay-util:include page="<%= sectionJsp %>" />
+					</c:otherwise>
+				</c:choose>
 			</div>
 
 			<aui:button-row>
