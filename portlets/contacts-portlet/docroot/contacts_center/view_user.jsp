@@ -36,7 +36,7 @@ request.setAttribute("view_user.jsp-user", user2);
 %>
 
 <c:if test="<%= user2 != null %>">
-	<div class="contacts-profile <%= (user.getUserId() == user2.getUserId()) ? "my-profile" : StringPool.BLANK %>">
+	<div class="contacts-profile <%= (user.getUserId() == user2.getUserId()) ? "my-profile" : StringPool.BLANK %>" id="<portlet:namespace />contactsProfile">
 		<c:if test="<%= (displayStyle == ContactsConstants.DISPLAY_STYLE_BASIC) || (displayStyle == ContactsConstants.DISPLAY_STYLE_FULL) %>">
 			<aui:layout cssClass="social-relations">
 
@@ -123,7 +123,7 @@ request.setAttribute("view_user.jsp-user", user2);
 				</aui:layout>
 			</aui:layout>
 
-			<div class="lfr-detail-info">
+			<div class="lfr-detail-info field-group" data-sectionId="details" data-title="<%= LanguageUtil.get(pageContext, "details") %>">
 				<c:if test="<%= showIcon %>">
 					<div class="lfr-contact-thumb">
 						<a href="<%= user2.getDisplayURL(themeDisplay) %>"><img alt="<%= HtmlUtil.escape(user2.getFullName()) %>" src="<%= user2.getPortraitURL(themeDisplay) %>" /></a>
@@ -326,11 +326,11 @@ request.setAttribute("view_user.jsp-user", user2);
 	</div>
 </c:if>
 
-<c:if test="<%= (themeDisplay.getUserId() == user2.getUserId()) && (showCompleteYourProfile || showUsersInformation || showTags) && ((displayStyle == ContactsConstants.DISPLAY_STYLE_DETAIL) || (displayStyle == ContactsConstants.DISPLAY_STYLE_FULL)) && UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.VIEW) %>">
+<c:if test="<%= themeDisplay.getUserId() == user2.getUserId() %>">
 	<aui:script use="aui-base">
-			var userInformation = A.one('#<portlet:namespace />userInformation');
+			var contactsProfile = A.one('#<portlet:namespace />contactsProfile');
 
-			userInformation.delegate(
+			contactsProfile.delegate(
 				'click',
 				function(event) {
 					var node = event.target;
@@ -359,7 +359,10 @@ request.setAttribute("view_user.jsp-user", user2);
 
 				var dialog = new A.Dialog(
 					{
-						centered: true,
+						align: {
+							node: null,
+							points: ['tc', 'tc']
+						},
 						constrain2view: true,
 						cssClass: 'profile-dialog',
 						destroyOnClose: true,

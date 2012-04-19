@@ -25,7 +25,9 @@ import com.liferay.contacts.util.SocialRelationConstants;
 import com.liferay.portal.AddressCityException;
 import com.liferay.portal.AddressStreetException;
 import com.liferay.portal.AddressZipException;
+import com.liferay.portal.ContactFirstNameException;
 import com.liferay.portal.ContactFullNameException;
+import com.liferay.portal.ContactLastNameException;
 import com.liferay.portal.EmailAddressException;
 import com.liferay.portal.NoSuchCountryException;
 import com.liferay.portal.NoSuchListTypeException;
@@ -33,6 +35,7 @@ import com.liferay.portal.NoSuchRegionException;
 import com.liferay.portal.PhoneNumberException;
 import com.liferay.portal.UserSmsException;
 import com.liferay.portal.WebsiteURLException;
+import com.liferay.portal.kernel.bean.BeanParamUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -428,17 +431,13 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			else if (fieldGroup.equals("categorization")) {
 				updateAsset(actionRequest);
 			}
-			else if (fieldGroup.equals("comments")) {
-				updateComments(actionRequest);
-			}
-			else if (fieldGroup.equals("instantMessenger")) {
-				updateInstantMessenger(actionRequest);
-			}
-			else if (fieldGroup.equals("sms")) {
-				updateSMS(actionRequest);
-			}
-			else if (fieldGroup.equals("socialNetwork")) {
-				updateSocialNetwork(actionRequest);
+			else if (fieldGroup.equals("comments") ||
+					fieldGroup.equals("details") ||
+					fieldGroup.equals("instantMessenger") ||
+					fieldGroup.equals("sms") ||
+					fieldGroup.equals("socialNetwork")) {
+
+				updateProfile(actionRequest);
 			}
 			else if (fieldGroup.equals("phoneNumbers")) {
 				updatePhoneNumbers(actionRequest);
@@ -464,6 +463,15 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			}
 			else if (e instanceof AddressZipException) {
 				message = "please-enter-a-valid-postal-code";
+			}
+			else if (e instanceof ContactFirstNameException) {
+				message = "please-enter-a-valid-first-name";
+			}
+			else if (e instanceof ContactFullNameException) {
+				message = "please-enter-a-valid-first-middle-and-last-name";
+			}
+			else if (e instanceof ContactLastNameException) {
+				message = "please-enter-a-valid-last-name";
 			}
 			else if (e instanceof EmailAddressException) {
 				message = "please-enter-a-valid-email-address";
@@ -964,46 +972,6 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			user.getUserId(), user, assetCategoryIds, assetTagNames);
 	}
 
-	protected void updateComments(ActionRequest actionRequest)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		Contact contact = themeDisplay.getContact();
-
-		String comments = ParamUtil.getString(actionRequest, "comments");
-
-		updateProfile(
-			actionRequest, contact.getAimSn(), comments,
-			contact.getFacebookSn(), contact.getIcqSn(), contact.getJabberSn(),
-			contact.getMsnSn(), contact.getMySpaceSn(), contact.getSkypeSn(),
-			contact.getSmsSn(), contact.getTwitterSn(), contact.getYmSn());
-	}
-
-	protected void updateInstantMessenger(ActionRequest actionRequest)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		User user = themeDisplay.getUser();
-
-		Contact contact = themeDisplay.getContact();
-
-		String aimSn = ParamUtil.getString(actionRequest, "aimSn");
-		String icqSn = ParamUtil.getString(actionRequest, "icqSn");
-		String jabberSn = ParamUtil.getString(actionRequest, "jabberSn");
-		String msnSn = ParamUtil.getString(actionRequest, "msnSn");
-		String skypeSn = ParamUtil.getString(actionRequest, "skypeSn");
-		String ymSn = ParamUtil.getString(actionRequest, "ymSn");
-
-		updateProfile(
-			actionRequest, aimSn, user.getComments(), contact.getFacebookSn(),
-			icqSn, jabberSn, msnSn, contact.getMySpaceSn(), skypeSn,
-			contact.getSmsSn(), contact.getTwitterSn(), ymSn);
-	}
-
 	protected void updatePhoneNumbers(ActionRequest actionRequest)
 		throws Exception {
 
@@ -1018,11 +986,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			Contact.class.getName(), user.getContactId(), phones);
 	}
 
-	protected void updateProfile(
-			ActionRequest actionRequest, String aimSn, String comments,
-			String facebookSn, String icqSn, String jabberSn, String msnSn,
-			String mySpaceSn, String skypeSn, String sms, String twitterSn,
-			String ymSn)
+	protected void updateProfile(ActionRequest actionRequest)
 		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
@@ -1030,7 +994,40 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		User user = themeDisplay.getUser();
 
+		boolean deleteLogo = ParamUtil.getBoolean(actionRequest, "deleteLogo");
+
+		if (deleteLogo) {
+			UserServiceUtil.deletePortrait(user.getUserId());
+		}
+
+		String comments = BeanParamUtil.getString(
+			user, actionRequest, "comments");
+		String firstName = BeanParamUtil.getString(
+			user, actionRequest, "firstName");
+		String jobTitle = BeanParamUtil.getString(
+			user, actionRequest, "jobTitle");
+		String middleName = BeanParamUtil.getString(
+			user, actionRequest, "middleName");
+		String lastName = BeanParamUtil.getString(
+			user, actionRequest, "lastName");
+
 		Contact contact = user.getContact();
+
+		String aimSn = BeanParamUtil.getString(contact, actionRequest, "aimSn");
+		String facebookSn = BeanParamUtil.getString(
+			contact, actionRequest, "facebookSn");
+		String icqSn = BeanParamUtil.getString(contact, actionRequest, "icqSn");
+		String jabberSn = BeanParamUtil.getString(
+			contact, actionRequest, "jabberSn");
+		String msnSn = BeanParamUtil.getString(contact, actionRequest, "msnSn");
+		String mySpaceSn = BeanParamUtil.getString(
+			contact, actionRequest, "mySpaceSn");
+		String skypeSn = BeanParamUtil.getString(
+			contact, actionRequest, "skypeSn");
+		String smsSn = BeanParamUtil.getString(contact, actionRequest, "smsSn");
+		String twitterSn = BeanParamUtil.getString(
+			contact, actionRequest, "twitterSn");
+		String ymSn = BeanParamUtil.getString(contact, actionRequest, "ymSn");
 
 		Calendar cal = CalendarFactoryUtil.getCalendar();
 
@@ -1055,53 +1052,14 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			user.getReminderQueryAnswer(), user.getScreenName(),
 			user.getEmailAddress(), user.getFacebookId(), user.getOpenId(),
 			user.getLanguageId(), user.getTimeZoneId(), user.getGreeting(),
-			comments, user.getFirstName(), user.getMiddleName(),
-			user.getLastName(), contact.getPrefixId(), contact.getSuffixId(),
-			user.isMale(), birthdayMonth, birthdayDay, birthdayYear, sms, aimSn,
-			facebookSn, icqSn, jabberSn, msnSn, mySpaceSn, skypeSn, twitterSn,
-			ymSn, user.getJobTitle(), user.getGroupIds(),
+			comments, firstName, middleName, lastName, contact.getPrefixId(),
+			contact.getSuffixId(), user.isMale(), birthdayMonth, birthdayDay,
+			birthdayYear, smsSn, aimSn, facebookSn, icqSn, jabberSn, msnSn,
+			mySpaceSn, skypeSn, twitterSn, ymSn, jobTitle, user.getGroupIds(),
 			user.getOrganizationIds(), user.getRoleIds(), userGroupRoles,
 			user.getUserGroupIds(), user.getAddresses(), emailAddresses,
 			user.getPhones(), user.getWebsites(), announcementsDeliveries,
 			new ServiceContext());
-	}
-
-	protected void updateSMS(ActionRequest actionRequest) throws Exception {
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		User user = themeDisplay.getUser();
-
-		Contact contact = themeDisplay.getContact();
-
-		String smsSn = ParamUtil.getString(actionRequest, "smsSn");
-
-		updateProfile(
-			actionRequest, contact.getAimSn(), user.getComments(),
-			contact.getFacebookSn(), contact.getIcqSn(), contact.getJabberSn(),
-			contact.getMsnSn(), contact.getMySpaceSn(), contact.getSkypeSn(),
-			smsSn, contact.getTwitterSn(), contact.getYmSn());
-	}
-
-	protected void updateSocialNetwork(ActionRequest actionRequest)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		User user = themeDisplay.getUser();
-
-		Contact contact = themeDisplay.getContact();
-
-		String facebookSn = ParamUtil.getString(actionRequest, "facebookSn");
-		String mySpaceSn = ParamUtil.getString(actionRequest, "mySpaceSn");
-		String twitterSn = ParamUtil.getString(actionRequest, "twitterSn");
-
-		updateProfile(
-			actionRequest, contact.getAimSn(), user.getComments(), facebookSn,
-			contact.getIcqSn(), contact.getJabberSn(), contact.getMsnSn(),
-			mySpaceSn, contact.getSkypeSn(), contact.getSmsSn(), twitterSn,
-			contact.getYmSn());
 	}
 
 	protected void updateWebsites(ActionRequest actionRequest)
