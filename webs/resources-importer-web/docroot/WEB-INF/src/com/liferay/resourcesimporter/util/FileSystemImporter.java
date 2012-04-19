@@ -116,7 +116,7 @@ public class FileSystemImporter extends BaseImporter {
 				StringPool.BLANK, StringPool.BLANK, bytes, serviceContext);
 		}
 	}
-	
+
 	protected void addJournalArticles(
 			String journalStructureId, String journalTemplateId, File dir)
 		throws Exception {
@@ -221,7 +221,14 @@ public class FileSystemImporter extends BaseImporter {
 
 		String name = layoutJSONObject.getString("name");
 		String title = layoutJSONObject.getString("title");
+
 		String friendlyURL = layoutJSONObject.getString("friendlyURL");
+
+		if (Validator.isNotNull(friendlyURL)) {
+			if (!friendlyURL.startsWith(StringPool.SLASH)) {
+				friendlyURL = StringPool.SLASH + friendlyURL;
+			}
+		}
 
 		Layout layout = LayoutLocalServiceUtil.addLayout(
 			userId, groupId, true, parentLayoutId, name, title,
