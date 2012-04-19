@@ -101,7 +101,7 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void deleteAttachment(long attachmentId)
+	public Attachment deleteAttachment(long attachmentId)
 		throws PortalException, SystemException {
 
 		// Attachment
@@ -130,6 +130,8 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 				_log.debug(nsfe, nsfe);
 			}
 		}
+
+		return attachment;
 	}
 
 	public void deleteAttachments(long companyId, long messageId)

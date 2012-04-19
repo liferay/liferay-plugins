@@ -41,14 +41,14 @@ public class GadgetServiceImpl extends GadgetServiceBaseImpl {
 			companyId, url, portletCategoryNames, serviceContext);
 	}
 
-	public void deleteGadget(long gadgetId, ServiceContext serviceContext)
+	public Gadget deleteGadget(long gadgetId, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		GadgetPermission.check(
 			getPermissionChecker(), serviceContext.getScopeGroupId(), gadgetId,
 			ActionKeys.DELETE);
 
-		gadgetLocalService.deleteGadget(gadgetId);
+		return gadgetLocalService.deleteGadget(gadgetId);
 	}
 
 	public void updateGadget(

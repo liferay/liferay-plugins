@@ -89,16 +89,16 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void deleteMessage(long messageId)
+	public Message deleteMessage(long messageId)
 		throws PortalException, SystemException {
 
 		Message message = messagePersistence.findByPrimaryKey(messageId);
 
-		deleteMessage(message);
+		return deleteMessage(message);
 	}
 
 	@Override
-	public void deleteMessage(Message message)
+	public Message deleteMessage(Message message)
 		throws PortalException, SystemException {
 
 		// Message
@@ -115,6 +115,8 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		Indexer indexer = IndexerRegistryUtil.getIndexer(Message.class);
 
 		indexer.delete(message);
+
+		return message;
 	}
 
 	public void deleteMessages(long folderId)

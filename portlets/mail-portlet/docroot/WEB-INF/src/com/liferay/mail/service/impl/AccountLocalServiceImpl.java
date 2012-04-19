@@ -89,7 +89,7 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void deleteAccount(Account account)
+	public Account deleteAccount(Account account)
 		throws PortalException, SystemException {
 
 		// Account
@@ -105,15 +105,17 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 		Indexer indexer = IndexerRegistryUtil.getIndexer(Message.class);
 
 		indexer.delete(account);
+
+		return account;
 	}
 
 	@Override
-	public void deleteAccount(long accountId)
+	public Account deleteAccount(long accountId)
 		throws PortalException, SystemException {
 
 		Account account = accountPersistence.findByPrimaryKey(accountId);
 
-		deleteAccount(account);
+		return deleteAccount(account);
 	}
 
 	public void deleteAccounts(long userId)

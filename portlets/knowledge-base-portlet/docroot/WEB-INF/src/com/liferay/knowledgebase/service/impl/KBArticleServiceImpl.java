@@ -142,13 +142,13 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		kbArticleLocalService.deleteAttachment(companyId, fileName);
 	}
 
-	public void deleteKBArticle(long resourcePrimKey)
+	public KBArticle deleteKBArticle(long resourcePrimKey)
 		throws PortalException, SystemException {
 
 		KBArticlePermission.check(
 			getPermissionChecker(), resourcePrimKey, ActionKeys.DELETE);
 
-		kbArticleLocalService.deleteKBArticle(resourcePrimKey);
+		return kbArticleLocalService.deleteKBArticle(resourcePrimKey);
 	}
 
 	public void deleteKBArticles(long groupId, long[] resourcePrimKeys)

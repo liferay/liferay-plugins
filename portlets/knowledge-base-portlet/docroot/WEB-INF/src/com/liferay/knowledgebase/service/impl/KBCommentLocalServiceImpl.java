@@ -76,7 +76,8 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void deleteKBComment(KBComment kbComment) throws SystemException {
+	public KBComment deleteKBComment(KBComment kbComment)
+		throws SystemException {
 
 		// KB comment
 
@@ -86,16 +87,18 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 
 		socialActivityLocalService.deleteActivities(
 			KBComment.class.getName(), kbComment.getKbCommentId());
+
+		return kbComment;
 	}
 
 	@Override
-	public void deleteKBComment(long kbCommentId)
+	public KBComment deleteKBComment(long kbCommentId)
 		throws PortalException, SystemException {
 
 		KBComment kbComment = kbCommentPersistence.findByPrimaryKey(
 			kbCommentId);
 
-		deleteKBComment(kbComment);
+		return deleteKBComment(kbComment);
 	}
 
 	public void deleteKBComments(String className, long classPK)

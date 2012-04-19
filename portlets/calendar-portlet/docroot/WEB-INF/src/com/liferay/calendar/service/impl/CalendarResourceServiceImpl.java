@@ -49,13 +49,14 @@ public class CalendarResourceServiceImpl
 			serviceContext);
 	}
 
-	public void deleteCalendarResource(long calendarResourceId)
+	public CalendarResource deleteCalendarResource(long calendarResourceId)
 		throws PortalException, SystemException {
 
 		CalendarResourcePermission.check(
 			getPermissionChecker(), calendarResourceId, ActionKeys.DELETE);
 
-		calendarResourceLocalService.deleteCalendarResource(calendarResourceId);
+		return calendarResourceLocalService.deleteCalendarResource(
+			calendarResourceId);
 	}
 
 	public CalendarResource getCalendarResource(long calendarResourceId)
