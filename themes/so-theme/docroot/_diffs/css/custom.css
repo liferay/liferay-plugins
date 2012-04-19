@@ -1683,6 +1683,10 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	.document-info {
 		background-color: #EEE;
 	}
+
+	.taglib-ratings.stars .aui-rating-content, .taglib-ratings.stars .liferay-rating-score {
+		min-width: 200px;
+	}
 }
 
 /* Social Office Notifications */
