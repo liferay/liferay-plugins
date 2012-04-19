@@ -289,10 +289,11 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 		return _gadgetLocalService.getGadget(companyId, url);
 	}
 
-	public com.liferay.opensocial.model.Gadget getGadget(java.lang.String uuid)
+	public com.liferay.opensocial.model.Gadget getGadget(
+		java.lang.String uuid, long companyId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _gadgetLocalService.getGadget(uuid);
+		return _gadgetLocalService.getGadget(uuid, companyId);
 	}
 
 	public java.util.List<com.liferay.opensocial.model.Gadget> getGadgets(

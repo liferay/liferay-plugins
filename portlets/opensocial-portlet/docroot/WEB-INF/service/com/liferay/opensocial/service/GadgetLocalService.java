@@ -263,7 +263,8 @@ public interface GadgetLocalService extends PersistedModelLocalService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.opensocial.model.Gadget getGadget(java.lang.String uuid)
+	public com.liferay.opensocial.model.Gadget getGadget(
+		java.lang.String uuid, long companyId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

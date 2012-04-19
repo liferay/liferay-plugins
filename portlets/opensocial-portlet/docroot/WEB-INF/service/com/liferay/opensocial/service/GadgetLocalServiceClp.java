@@ -103,7 +103,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 				"getGadget", long.class, java.lang.String.class);
 
 		_getGadgetMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getGadget", java.lang.String.class);
+				"getGadget", java.lang.String.class, long.class);
 
 		_getGadgetsMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getGadgets", long.class, int.class, int.class);
@@ -750,13 +750,14 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return (com.liferay.opensocial.model.Gadget)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.liferay.opensocial.model.Gadget getGadget(java.lang.String uuid)
+	public com.liferay.opensocial.model.Gadget getGadget(
+		java.lang.String uuid, long companyId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getGadgetMethodKey22,
-				ClpSerializer.translateInput(uuid));
+				ClpSerializer.translateInput(uuid), companyId);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
