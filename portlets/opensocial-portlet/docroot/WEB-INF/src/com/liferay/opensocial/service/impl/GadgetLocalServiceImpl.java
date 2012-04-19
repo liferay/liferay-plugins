@@ -175,10 +175,10 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		return gadgetPersistence.findByC_U(companyId, url);
 	}
 
-	public Gadget getGadget(String uuid)
+	public Gadget getGadget(String uuid, long companyId)
 		throws PortalException, SystemException {
 
-		List<Gadget> gadgets = gadgetPersistence.findByUuid(uuid);
+		List<Gadget> gadgets = gadgetPersistence.findByUuid_C(uuid, companyId);
 
 		if (gadgets.isEmpty()) {
 			throw new NoSuchGadgetException(

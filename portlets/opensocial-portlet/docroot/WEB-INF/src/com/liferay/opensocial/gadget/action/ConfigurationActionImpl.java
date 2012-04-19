@@ -16,7 +16,9 @@ package com.liferay.opensocial.gadget.action;
 
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
+import com.liferay.opensocial.util.WebKeys;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.theme.ThemeDisplay;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -55,10 +57,14 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			PortletConfig portletConfig, PortletRequest portletRequest)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		String portletResource = ParamUtil.getString(
 			portletRequest, "portletResource");
 
-		return ShindigUtil.getGadget(portletResource);
+		return ShindigUtil.getGadget(
+			portletResource, themeDisplay.getCompanyId());
 	}
 
 }

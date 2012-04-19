@@ -146,7 +146,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		Gadget importedGadget = null;
 
 		try {
-			importedGadget = GadgetLocalServiceUtil.getGadget(gadget.getUuid());
+			importedGadget = GadgetLocalServiceUtil.getGadget(
+				gadget.getUuid(), portletDataContext.getCompanyId());
 
 			importedGadget.setName(gadget.getName());
 			importedGadget.setUrl(gadget.getUrl());

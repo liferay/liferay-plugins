@@ -14,6 +14,7 @@
 
 package com.liferay.opensocial.gadget.portlet;
 
+import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.opensocial.gadget.action.ConfigurationActionImpl;
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
@@ -23,6 +24,7 @@ import com.liferay.portal.theme.PortletDisplay;
 import javax.portlet.PortletConfig;
 import javax.portlet.RenderRequest;
 
+import com.liferay.portal.theme.ThemeDisplay;
 import org.apache.shindig.gadgets.spec.GadgetSpec;
 
 /**
@@ -32,9 +34,13 @@ public class GadgetPortlet extends BaseGadgetPortlet {
 
 	@Override
 	protected Gadget getGadget(RenderRequest renderRequest) throws Exception {
+		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		PortletConfig portletConfig = getPortletConfig();
 
-		return ShindigUtil.getGadget(portletConfig.getPortletName());
+		return ShindigUtil.getGadget(
+			portletConfig.getPortletName(), themeDisplay.getCompanyId());
 	}
 
 	@Override

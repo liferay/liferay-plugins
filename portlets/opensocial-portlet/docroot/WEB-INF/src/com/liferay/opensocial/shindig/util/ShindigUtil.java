@@ -190,7 +190,7 @@ public class ShindigUtil {
 	}
 
 	public static com.liferay.opensocial.model.Gadget getGadget(
-			String portletName)
+			String portletName, long companyId)
 		throws Exception {
 
 		int pos = portletName.indexOf(StringPool.UNDERLINE);
@@ -200,7 +200,7 @@ public class ShindigUtil {
 		uuid = PortalUUIDUtil.fromJsSafeUuid(uuid);
 
 		com.liferay.opensocial.model.Gadget gadget =
-			GadgetLocalServiceUtil.getGadget(uuid);
+			GadgetLocalServiceUtil.getGadget(uuid, companyId);
 
 		return gadget;
 	}
