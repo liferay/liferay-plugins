@@ -45,7 +45,7 @@ public class VelocityNotificationMessageGenerator
 			String notificationTemplate, ExecutionContext executionContext)
 		throws Exception {
 
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler(3);
 
 		sb.append(notificationName);
 		sb.append(kaleoClassName);
