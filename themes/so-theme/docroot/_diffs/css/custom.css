@@ -1687,6 +1687,44 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	.taglib-ratings.stars .aui-rating-content, .taglib-ratings.stars .liferay-rating-score {
 		min-width: 200px;
 	}
+
+	.version-history .results-grid {
+		tr {
+			position: relative;
+		}
+
+		td, th {
+			overflow: hidden;
+			padding: 5px 3px;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			word-wrap: normal;
+
+			&:hover {
+				background-color: #FFF;
+				border: 1px solid $gray-light;
+				overflow: visible;
+				margin-top: -1px;
+				text-overflow: visible;
+				position: absolute;
+				z-index: 1;
+			}
+		}
+
+		.results-header {
+			font-size: .85em;
+			white-space: nowrap;
+		}
+
+		td.first, th.first {
+			width: 20px;
+		}
+
+		td.last, th.last {
+			padding: 5px 0;
+			width: 38px;
+		}
+	}
 }
 
 /* Social Office Notifications */
