@@ -77,7 +77,7 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 			List<User> users = null;
 
 			if (group.isUser()) {
-				users = UserLocalServiceUtil.getSocialUsers(group.getClassPK(), QueryUtil.ALL_POS, QueryUtil.ALL_POS, new ContactFirstNameComparator(true));
+				users = UserLocalServiceUtil.getSocialUsers(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new ContactFirstNameComparator(true));
 			}
 			else {
 				LinkedHashMap userParams = new LinkedHashMap();
