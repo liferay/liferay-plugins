@@ -183,7 +183,7 @@ if (user2 != null) {
 	).render();
 
 	function <portlet:namespace />relationAction(event, uri) {
-		var end = <%= maxResultCount %>;
+		var end = <%= ContactsConstants.MAX_RESULT_COUNT %>;
 
 		var lastNameAnchor = '';
 
