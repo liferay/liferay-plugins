@@ -6,9 +6,9 @@
 #set ($user_dashboard_portlet_url = $site_default_url)
 
 #if (($company.getLogoId() == 0) && !$layout.layoutSet.isLogo())
-	#set ($logo = "${logo} theme-logo")
-#else
-	#set ($logo = "${logo} company-logo")
+	#set ($site_logo = $images_folder + "/custom/so_logo.png")
+	#set ($site_logo_height = "64px")
+	#set ($site_logo_width = "186px")
 #end
 
 #if ($is_signed_in)
