@@ -65,7 +65,7 @@ if (entryId > 0) {
 	form.on(
 		'submit',
 		function(event) {
-			var end = <%= maxResultCount %>;
+			var end = <%= ContactsConstants.MAX_RESULT_COUNT %>;
 
 			var lastNameAnchor = '';
 
