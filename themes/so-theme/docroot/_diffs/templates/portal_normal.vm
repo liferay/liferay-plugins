@@ -34,7 +34,6 @@ $theme.include($body_top_include)
 					<a href="$community_default_url" title='#language("go-to") $community_name'>
 						<span>$community_name</span>
 					</a>
-
 				</div>
 
 				#if (($page_group.getType() == 1) && $is_signed_in)
