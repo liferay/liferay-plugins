@@ -52,8 +52,8 @@ import com.liferay.portal.service.permission.GroupPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portal.util.comparator.GroupNameComparator;
-import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.so.service.FavoriteSiteLocalServiceUtil;
+import com.liferay.so.service.SocialOfficeServiceUtil;
 import com.liferay.so.sites.util.SitesUtil;
 import com.liferay.so.util.WebKeys;
 import com.liferay.util.bridges.mvc.MVCPortlet;
@@ -293,12 +293,10 @@ public class SitesPortlet extends MVCPortlet {
 				groupJSONObject.put("url", portletURL.toString());
 			}
 
-			ExpandoBridge expandoBridge = group.getExpandoBridge();
+			boolean socialOfficeGroup =
+				SocialOfficeServiceUtil.isSocialOfficeGroup(group.getGroupId());
 
-			boolean socialOfficeEnabled = GetterUtil.getBoolean(
-				expandoBridge.getAttribute("socialOfficeEnabled"));
-
-			groupJSONObject.put("socialOfficeEnabled", socialOfficeEnabled);
+			groupJSONObject.put("socialOfficeGroup", socialOfficeGroup);
 
 			Layout layout = themeDisplay.getLayout();
 

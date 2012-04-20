@@ -262,7 +262,7 @@ AUI().use(
 							function(result) {
 								var classNames = [];
 
-								if (result.socialOfficeEnabled) {
+								if (result.socialOfficeGroup) {
 									classNames.push('social-office-enabled');
 								}
 

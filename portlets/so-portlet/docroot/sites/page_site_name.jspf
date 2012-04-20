@@ -19,13 +19,8 @@
 
 <span class="site-name">
 	<c:if test="<%= group.isRegularSite() && !group.isControlPanel() %>">
-
-		<%
-		boolean socialOfficeEnabled = SocialOfficeServiceUtil.isSocialOfficeGroup(group.getGroupId());
-		%>
-
 		<c:choose>
-			<c:when test="<%= socialOfficeEnabled %>">
+			<c:when test="<%= SocialOfficeServiceUtil.isSocialOfficeGroup(group.getGroupId()) %>">
 				<liferay-ui:icon message="<%= group.getDescriptiveName(locale) %>" src='<%= themeDisplay.getPathContext() + "/html/icons/social_office.png" %>' />
 			</c:when>
 			<c:otherwise>

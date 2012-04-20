@@ -87,9 +87,7 @@ else {
 
 			ExpandoBridge expandoBridge = group.getExpandoBridge();
 
-			boolean socialOfficeEnabled = SocialOfficeServiceUtil.isSocialOfficeGroup(group.getGroupId());
-
-			if (socialOfficeEnabled) {
+			if (SocialOfficeServiceUtil.isSocialOfficeGroup(group.getGroupId())) {
 				classNames += "social-office-enabled ";
 			}
 
@@ -294,7 +292,7 @@ else {
 						var classNames = [];
 						var joinHtml = '';
 
-						if (result.socialOfficeEnabled) {
+						if (result.socialOfficeGroup) {
 							classNames.push('social-office-enabled');
 						}
 
