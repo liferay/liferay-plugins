@@ -120,8 +120,8 @@ a:focus .opens-new-window-accessible {
 
 	#socialOfficeMembership {
 		bottom: 0;
-		right: 0;
 		position: absolute;
+		right: 0;
 
 		input {
 			font-size: 12px;
@@ -1324,10 +1324,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 			display: inline;
 		}
 	}
-
-/*	.contacts-portlet .section .property-list {
-		margin: 20px 0px 40px 0px;
-	}*/
 }
 
 .portlet-column-only .contacts-portlet .contacts-profile {
