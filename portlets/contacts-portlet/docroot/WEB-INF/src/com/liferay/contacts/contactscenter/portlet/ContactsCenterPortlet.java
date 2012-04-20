@@ -40,9 +40,9 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
 import com.liferay.portal.kernel.notifications.NotificationEvent;
 import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
-import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
+import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -248,7 +248,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 					addSocialRelation(actionRequest, actionResponse);
 					}
 				else if (actionName.equals("deleteSocialRelation")) {
-					deleteSocialRelation(actionRequest, actionResponse);	
+					deleteSocialRelation(actionRequest, actionResponse);
 				}
 				else if (actionName.equals("requestSocialRelation")) {
 					requestSocialRelation(actionRequest, actionResponse);
@@ -256,7 +256,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 				JSONObject jsonObject = getContactsDisplayJSONObject(
 					actionRequest, actionResponse);
-				
+
 				writeJSON(actionRequest, actionResponse, jsonObject);
 			}
 			else if (actionName.equals("deleteEntry")) {
@@ -536,7 +536,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		if (entryId > 0) {
 			EntryLocalServiceUtil.deleteEntry(entryId);
 		}
-	}	
+	}
 
 	protected JSONObject getContactsDisplayJSONObject(
 			ActionRequest actionRequest, ActionResponse actionResponse)
@@ -571,9 +571,9 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		jsonObject.put("contacts", jsonArray);
 
 		String message = getRelationMessage(actionRequest);
-					
+
 		jsonObject.put("message", translate(actionRequest, message));
-		
+
 		return jsonObject;
 	}
 
@@ -616,6 +616,13 @@ public class ContactsCenterPortlet extends MVCPortlet {
 					themeDisplay.getCompanyId(), themeDisplay.getUserId(),
 					keywords, start, end);
 
+			int contactsCount =
+				EntryLocalServiceUtil.searchUsersAndContactsCount(
+					themeDisplay.getCompanyId(), themeDisplay.getUserId(),
+					keywords);
+
+			jsonObject.put("count", contactsCount);
+
 			for (BaseModel<?> contact : contacts) {
 				JSONObject contactJSONObject = null;
 
@@ -638,6 +645,11 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 			List<Entry> entries = EntryLocalServiceUtil.search(
 				themeDisplay.getUserId(), keywords, start, end);
+
+			int entriesCount = EntryLocalServiceUtil.searchCount(
+				themeDisplay.getUserId(), keywords);
+
+			jsonObject.put("count", entriesCount);
 
 			for (Entry entry : entries) {
 				JSONObject contactJSONObject = getEntryJSONObject(
@@ -712,7 +724,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			"portraitURL",
 			themeDisplay.getPathImage() + "/user_male_portrait?img_id=0");
 		contactJSONObject.put("redirect", redirect);
-		
+
 		LiferayPortletResponse liferayPortletResponse =
 			(LiferayPortletResponse)portletResponse;
 
@@ -861,7 +873,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 					themeDisplay.getUserId(), user.getUserId(),
 					SocialRelationConstants.TYPE_UNI_FOLLOWER);
 
-			userJSONObject.put("following", following);			
+			userJSONObject.put("following", following);
 		}
 
 		return userJSONObject;
@@ -900,10 +912,10 @@ public class ContactsCenterPortlet extends MVCPortlet {
 	protected String translate(PortletRequest portletRequest, String key) {
 		PortletConfig portletConfig = (PortletConfig)portletRequest.getAttribute(
 			JavaConstants.JAVAX_PORTLET_CONFIG);
-	
+
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
-		
+
 		return LanguageUtil.get(portletConfig, themeDisplay.getLocale(), key);
 	}
 

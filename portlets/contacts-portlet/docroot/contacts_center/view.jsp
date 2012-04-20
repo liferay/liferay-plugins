@@ -369,6 +369,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 					contactsSearchInput: '#<portlet:namespace />name',
 					defaultMessageError: '<liferay-ui:message key="an-error-occurred-while-retrieving-the-users-information" unicode="<%= true %>" />',
 					defaultMessageSuccess: '<liferay-ui:message key="your-request-completed-successfully" unicode="<%= true %>" />',
+					maxResultCount: <%= maxResultCount %>,
 					namespace: '<portlet:namespace />',
 					showIcon: '<%= showIcon %>'
 				}

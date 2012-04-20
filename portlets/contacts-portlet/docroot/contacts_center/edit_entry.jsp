@@ -65,7 +65,6 @@ if (entryId > 0) {
 	form.on(
 		'submit',
 		function(event) {
-			var start = 0;
 			var end = <%= maxResultCount %>;
 
 			var lastNameAnchor = '';
@@ -73,8 +72,7 @@ if (entryId > 0) {
 			var node = A.one('.more-results a');
 
 			if (node) {
-				start = A.DataType.Number.parse(node.getAttribute('data-end'));
-				end = start + <%= maxResultCount %>;
+				end = A.DataType.Number.parse(node.getAttribute('data-end'));
 
 				lastNameAnchor = node.getAttribute('data-lastNameAnchor');
 			}
@@ -109,7 +107,7 @@ if (entryId > 0) {
 						end: end,
 						filterBy: contactFilterSelect.get('value') || '<%= ContactsConstants.FILTER_BY_DEFAULT %>',
 						keywords: searchInput.get('value'),
-						start: start
+						start: 0
 					},
 					dataType: 'json',
 					form: {
