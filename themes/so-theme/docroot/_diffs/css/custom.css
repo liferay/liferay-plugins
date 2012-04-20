@@ -1305,6 +1305,29 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 			margin-left: 0;
 		}
 	}
+
+	.projects {
+		padding: 20px 65px;
+
+		h3 {
+			color: #666;
+			float: none;
+			text-align: left;
+			width: auto;
+		}
+
+		h3, .property-list {
+			margin: 0;
+		}
+
+		h3, .project-date {
+			display: inline;
+		}
+	}
+
+/*	.contacts-portlet .section .property-list {
+		margin: 20px 0px 40px 0px;
+	}*/
 }
 
 .portlet-column-only .contacts-portlet .contacts-profile {
