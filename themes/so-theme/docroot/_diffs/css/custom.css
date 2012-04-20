@@ -81,6 +81,7 @@ a:focus .opens-new-window-accessible {
 
 	.logo {
 		display: block;
+		zoom: 0;
 
 		img {
 			max-height: 64px;
@@ -91,16 +92,6 @@ a:focus .opens-new-window-accessible {
 	.company-title {
 		float: left;
 		padding: 5px 10px 10px;
-	}
-
-	.default-logo {
-		background-image: url(../images/custom/so_logo.png);
-		height: 64px;
-		width: 186px;
-
-		img {
-			display: none;
-		}
 	}
 
 	.community-title {
@@ -2068,6 +2059,10 @@ body.so-layout-fluid, body.so-layout-fluid-ad {
 	#content, #footer, #banner #heading {
 		margin: 0 auto;
 		width: auto;
+	}
+
+	#heading {
+		zoom: 1;
 	}
 
 	#content {
