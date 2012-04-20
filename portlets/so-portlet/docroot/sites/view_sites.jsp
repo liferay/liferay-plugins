@@ -477,4 +477,20 @@ else {
 		},
 		'.action a'
 	);
+
+	<c:if test="<%= themeDisplay.isStatePopUp() %>">
+		directoryContainer.one('.directory-list').delegate(
+			'click',
+			function(event) {
+				if (window.parent) {
+					event.preventDefault();
+
+					var uri = event.currentTarget.getAttribute('href');
+
+					Liferay.Util.getOpener().location.href = uri;
+				}
+			},
+			'.name a'
+		);
+	</c:if>
 </aui:script>
