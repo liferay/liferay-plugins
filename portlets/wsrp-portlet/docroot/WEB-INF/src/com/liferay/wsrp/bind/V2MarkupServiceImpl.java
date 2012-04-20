@@ -655,8 +655,8 @@ public class V2MarkupServiceImpl
 			for (Cookie cookie : forwardCookies) {
 				String cookieName = cookie.getName();
 
-				if (!cookieName.equalsIgnoreCase("cookie_support") ||
-					!cookieName.equalsIgnoreCase("guest_language_id") ||
+				if (!cookieName.equalsIgnoreCase("cookie_support") &&
+					!cookieName.equalsIgnoreCase("guest_language_id") &&
 					!cookieName.equalsIgnoreCase("jsessionid")) {
 
 					if (Validator.isNull(cookie.getDomain())) {
