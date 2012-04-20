@@ -59,8 +59,8 @@ AUI.add(
 						'<div class="lfr-contact-name">' +
 							'{fullName}' +
 						'</div>' +
-						'<div class="lfr-contac<a href="mailto:{emailAddress}">{emailAddress}</a>t-extra">' +
-							'' +
+						'<div class="lfr-contact-extra">' +
+							'<a href="mailto:{emailAddress}">{emailAddress}</a>' +
 						'</div>' +
 					'</div>' +
 				'</div>' +
@@ -168,6 +168,8 @@ AUI.add(
 
 						instance._defaultMessageError = config.defaultMessageError;
 						instance._defaultMessageSuccess = config.defaultMessageSuccess;
+
+						instance._maxResultCount = config.maxResultCount;
 
 						instance._showIcon = config.showIcon;
 					},
@@ -338,7 +340,7 @@ AUI.add(
 						var contactResultContent = A.one('.contacts-portlet .contacts-result-content');
 						var moreResults = A.one('.contacts-portlet .more-results');
 
-						moreResults.empty();
+						moreResults.remove();
 
 						contactResultContent.append(contactUserHTML.join(''));
 					},
@@ -392,6 +394,8 @@ AUI.add(
 					},
 
 					_createDataSource: function(url) {
+						var instance = this;
+
 						return new A.DataSource.IO(
 							{
 								ioConfig: {
@@ -410,7 +414,7 @@ AUI.add(
 										var data = event.request;
 
 										event.cfg.data = {
-											end: data.end || 100,
+											end: data.end || instance._maxResultCount,
 											filterBy: data.filterBy || filterBy,
 											keywords: data.keywords || '',
 											start: data.start || 0
@@ -508,9 +512,11 @@ AUI.add(
 					},
 
 					_getRequestTemplate: function(filterBy) {
+						var instance = this;
+
 						return function(query) {
 							return {
-								end: 100,
+								end: instance._maxResultCount,
 								filterBy: filterBy,
 								keywords: query,
 								start: 0

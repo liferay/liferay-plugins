@@ -164,6 +164,19 @@ $toolbar-bg: #DCE3EA;
 			position: absolute;
 			top: 38px;
 			width: 250px;
+
+			.more-results a {
+				border: 1px solid #CCC;
+				display: block;
+				margin: 5px;
+				padding: 2px;
+				text-align: center;
+
+				&:hover {
+					background-color: #CCE6F7;
+					text-decoration: underline;
+				}
+			}
 		}
 
 		.lfr-contact-grid-item .lfr-contact-info {
@@ -175,13 +188,6 @@ $toolbar-bg: #DCE3EA;
 
 		.more-results, .lfr-contact-grid-item:hover {
 			background-color: #E8EFF4;
-		}
-
-		.more-results {
-			border: 1px solid #CCC;
-			margin: 5px;
-			padding: 2px;
-			text-align: center;
 		}
 
 		.empty {

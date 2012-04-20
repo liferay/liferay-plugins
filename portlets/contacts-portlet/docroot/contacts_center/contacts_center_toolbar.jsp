@@ -183,7 +183,6 @@ if (user2 != null) {
 	).render();
 
 	function <portlet:namespace />relationAction(event, uri) {
-		var start = 0;
 		var end = <%= maxResultCount %>;
 
 		var lastNameAnchor = '';
@@ -191,8 +190,7 @@ if (user2 != null) {
 		var node = A.one('.more-results a');
 
 		if (node) {
-			start = A.DataType.Number.parse(node.getAttribute('data-end'));
-			end = start + <%= maxResultCount %>;
+			end = A.DataType.Number.parse(node.getAttribute('data-end'));
 
 			lastNameAnchor = node.getAttribute('data-lastNameAnchor');
 		}
@@ -225,7 +223,7 @@ if (user2 != null) {
 					end: end,
 					filterBy: contactFilterSelect.get('value') || '<%= ContactsConstants.FILTER_BY_DEFAULT %>',
 					keywords: searchInput.get('value'),
-					start: start,
+					start: 0,
 					jsonFormat: true,
 					userIds: userIds.join()
 				},
