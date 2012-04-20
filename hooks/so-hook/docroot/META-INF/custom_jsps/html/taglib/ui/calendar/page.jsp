@@ -24,6 +24,8 @@ int month = GetterUtil.getInteger((String)request.getAttribute("liferay-ui:calen
 int day = GetterUtil.getInteger((String)request.getAttribute("liferay-ui:calendar:day"));
 int year = GetterUtil.getInteger((String)request.getAttribute("liferay-ui:calendar:year"));
 
+String eventType = ParamUtil.getString(request, "eventType");
+
 Calendar selCal = CalendarFactoryUtil.getCalendar(timeZone, locale);
 
 selCal.set(Calendar.MONTH, month);
@@ -50,7 +52,7 @@ int y = html.indexOf("</tr>", x);
 
 <tr>
 	<th valign="center">
-		<a href="javascript:<%= namespace %>updateCalendar(<%= selMonth - 1 %>, <%= selDay %>, <%= selYear %>);">
+		<a href="javascript:<%= namespace %>updateSummaryCalendar(<%= selMonth - 1 %>, <%= selDay %>, <%= selYear %>);">
 			<img border="0" src="<%= themeDisplay.getPathThemeImages() %>/arrows/01_left.png" />
 		</a>
 	</th>
@@ -58,10 +60,16 @@ int y = html.indexOf("</tr>", x);
 		<%= dateFormat.format(selCal.getTime()) %>
 	</th>
 	<th valign="center">
-		<a href="javascript:<%= namespace %>updateCalendar(<%= selMonth + 1 %>, <%= selDay %>, <%= selYear %>);">
+		<a href="javascript:<%= namespace %>updateSummaryCalendar(<%= selMonth + 1 %>, <%= selDay %>, <%= selYear %>);">
 			<img border="0" src="<%= themeDisplay.getPathThemeImages() %>/arrows/01_right.png" />
 		</a>
 	</th>
 </tr>
 
 <%= html.substring(y + 5) %>
+
+<aui:script>
+	function <portlet:namespace />updateSummaryCalendar(month, day, year) {
+		location.href = '<portlet:renderURL><portlet:param name="tabs1" value="summary" /><portlet:param name="eventType" value="<%= eventType %>" /></portlet:renderURL>&<portlet:namespace />month=' + month + '&<portlet:namespace />day=' + day + '&<portlet:namespace />year=' + year;
+	}
+</aui:script>
