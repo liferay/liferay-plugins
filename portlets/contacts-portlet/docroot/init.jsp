@@ -113,7 +113,7 @@ String currentURL = PortalUtil.getCurrentURL(request);
 
 int displayStyle = PrefsParamUtil.getInteger(preferences, request, "displayStyle", ContactsConstants.DISPLAY_STYLE_FULL);
 
-int maxResultCount = GetterUtil.getInteger(portletConfig.getInitParameter("max-result-count"), ContactsConstants.MAX_RESULT_COUNT);
+int maxResultCount = ContactsConstants.MAX_RESULT_COUNT;
 
 boolean showAdditionalEmailAddresses = PrefsParamUtil.getBoolean(preferences, request, "showAdditionalEmailAddresses", true);
 boolean showAddresses = PrefsParamUtil.getBoolean(preferences, request, "showAddresses", true);

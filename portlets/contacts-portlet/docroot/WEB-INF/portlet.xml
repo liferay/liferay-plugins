@@ -10,10 +10,6 @@
 			<value>/contacts_center/configuration.jsp</value>
 		</init-param>
 		<init-param>
-			<name>max-result-count</name>
-			<value>100</value>
-		</init-param>
-		<init-param>
 			<name>view-template</name>
 			<value>/contacts_center/view.jsp</value>
 		</init-param>

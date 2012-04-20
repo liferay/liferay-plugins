@@ -78,7 +78,7 @@ if (user2 != null) {
 			},
 			icon: 'add-coworker',
 			id: '<portlet:namespace />addConnectionButton',
-			label: '<%= UnicodeLanguageUtil.get(pageContext, "add-as-connection") %>'
+			label: '<%= UnicodeLanguageUtil.get(pageContext, "add-connection") %>'
 		}
 	);
 
@@ -90,7 +90,7 @@ if (user2 != null) {
 			},
 			icon: 'remove-coworker',
 			id: '<portlet:namespace />removeConnectionButton',
-			label: '<%= UnicodeLanguageUtil.get(pageContext, "remove-as-connection") %>'
+			label: '<%= UnicodeLanguageUtil.get(pageContext, "remove-connection") %>'
 		}
 	);
 

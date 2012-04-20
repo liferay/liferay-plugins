@@ -910,8 +910,9 @@ public class ContactsCenterPortlet extends MVCPortlet {
 	}
 
 	protected String translate(PortletRequest portletRequest, String key) {
-		PortletConfig portletConfig = (PortletConfig)portletRequest.getAttribute(
-			JavaConstants.JAVAX_PORTLET_CONFIG);
+		PortletConfig portletConfig =
+			(PortletConfig)portletRequest.getAttribute(
+				JavaConstants.JAVAX_PORTLET_CONFIG);
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
