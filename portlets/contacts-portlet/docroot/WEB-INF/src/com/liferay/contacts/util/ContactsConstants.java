@@ -46,6 +46,8 @@ public class ContactsConstants {
 	public static final String FILTER_BY_TYPE_UNI_FOLLOWER =
 		FILTER_BY_TYPE + SocialRelationConstants.TYPE_UNI_FOLLOWER;
 
+	public static final int MAX_RESULT_COUNT = 100;
+
 	public static String getDisplayStyleLabel(int displayStyle) {
 		if (displayStyle == DISPLAY_STYLE_BASIC) {
 			return DISPLAY_STYLE_BASIC_LABEL;
