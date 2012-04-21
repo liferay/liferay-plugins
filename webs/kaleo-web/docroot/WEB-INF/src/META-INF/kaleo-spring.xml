@@ -210,7 +210,7 @@
 		</property>
 	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.notification.TemplateNotificationMessageGenerator" class="com.liferay.portal.workflow.kaleo.runtime.notification.TemplateNotificationMessageGenerator">
-		<property name="templateLanguageMapping">
+		<property name="templateManagerNames">
 			<map>
 				<entry key="freemarker" value="FREEMARKER" />
 				<entry key="velocity" value="VELOCITY" />

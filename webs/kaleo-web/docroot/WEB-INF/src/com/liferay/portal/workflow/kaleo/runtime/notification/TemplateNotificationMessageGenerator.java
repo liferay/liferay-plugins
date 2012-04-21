@@ -42,20 +42,18 @@ public class TemplateNotificationMessageGenerator
 	implements NotificationMessageGenerator {
 
 	public String generateMessage(
-		String kaleoClassName, long kaleoClassPK, String notificationName,
-		String notificationTemplateLanguage, String notificationTemplate,
-		ExecutionContext executionContext)
-	throws NotificationMessageGenerationException {
+			String kaleoClassName, long kaleoClassPK, String notificationName,
+			String notificationTemplateLanguage, String notificationTemplate,
+			ExecutionContext executionContext)
+		throws NotificationMessageGenerationException {
 
-		String templateManagerName = _templateLanguageMapping.get(
+		String templateManagerName = _templateManagerNames.get(
 			notificationTemplateLanguage);
 
 		if (Validator.isNull(templateManagerName)) {
 			throw new NotificationMessageGenerationException(
-				"Invalid notification template language: " +
-					notificationTemplateLanguage +
-					". Supported languages are: " +
-					_templateLanguageMapping.keySet().toString());
+				"Unsupported notification template language " +
+					notificationTemplateLanguage);
 		}
 
 		try {
@@ -80,10 +78,10 @@ public class TemplateNotificationMessageGenerator
 		}
 	}
 
-	public void setTemplateLanguageMapping(
-		Map<String, String> templateLanguageMapping) {
+	public void setTemplateManagerNames(
+		Map<String, String> templateManagerNames) {
 
-		_templateLanguageMapping = templateLanguageMapping;
+		_templateManagerNames = templateManagerNames;
 	}
 
 	protected void populateContextVariables(
@@ -133,7 +131,7 @@ public class TemplateNotificationMessageGenerator
 		}
 	}
 
-	private Map<String, String> _templateLanguageMapping =
+	private Map<String, String> _templateManagerNames =
 		new HashMap<String, String>();
 
 }
