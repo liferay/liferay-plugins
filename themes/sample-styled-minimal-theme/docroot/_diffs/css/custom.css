@@ -55,7 +55,7 @@ body #banner .logo a {
 }
 
 .logo .current-community {
-	background: #A6AFBE url(../images/dock/my_places_public.png) no-repeat 15px 50%;
+	background: #A6AFBE url(../images/common/my_places_public.png) no-repeat 15px 50%;
 	color: #FFF;
 	display: block;
 	float: right;
@@ -86,7 +86,7 @@ body #banner .logo a {
 }
 
 .private-page .logo .current-community {
-	background-image: url(../images/dock/my_places_private.png);
+	background-image: url(../images/common/my_places_private.png);
 }
 
 .ie6 #banner {

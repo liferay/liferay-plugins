@@ -40,7 +40,7 @@ MailManager mailManager = MailManager.getInstance(request);
 		String folderImage = "../common/folder";
 
 		if (folder.getFolderId() == mailAccount.getInboxFolderId()) {
-			folderImage = "../dock/home";
+			folderImage = "../common/home";
 		}
 		else if (folder.getFolderId() == mailAccount.getDraftFolderId()) {
 			folderImage = "../mail/edit_draft";

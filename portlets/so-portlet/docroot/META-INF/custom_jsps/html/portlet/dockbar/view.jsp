@@ -109,7 +109,7 @@
 									<a href="<%= themeDisplay.getURLSignOut().toString() %>">
 										<liferay-ui:icon
 											message="sign-out"
-											src='<%= themeDisplay.getPathThemeImages() + "/dock/sign_out.png" %>'
+											src='<%= themeDisplay.getPathThemeImages() + "/common/sign_out.png" %>'
 										/>
 
 										<liferay-ui:message key="sign-out" />
