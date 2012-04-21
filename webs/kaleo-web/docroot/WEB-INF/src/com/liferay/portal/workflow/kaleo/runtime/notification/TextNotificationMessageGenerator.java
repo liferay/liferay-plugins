@@ -24,7 +24,8 @@ public class TextNotificationMessageGenerator
 
 	public String generateMessage(
 		String kaleoClassName, long kaleoClassPK, String notificationName,
-		String notificationTemplate, ExecutionContext executionContext) {
+		String notificationTemplateLanguage, String notificationTemplate,
+		ExecutionContext executionContext) {
 
 		return notificationTemplate;
 	}

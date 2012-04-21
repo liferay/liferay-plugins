@@ -201,15 +201,19 @@
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.notification.NotificationMessageGeneratorFactory" class="com.liferay.portal.workflow.kaleo.runtime.notification.NotificationMessageGeneratorFactory">
 		<property name="notificationMessageGenerators">
 			<map>
-				<entry key="freemarker">
-					<bean class="com.liferay.portal.workflow.kaleo.runtime.notification.FreeMarkerNotificationMessageGenerator" />
-				</entry>
+				<entry key="freemarker" value-ref="com.liferay.portal.workflow.kaleo.runtime.notification.TemplateNotificationMessageGenerator" />
 				<entry key="text">
 					<bean class="com.liferay.portal.workflow.kaleo.runtime.notification.TextNotificationMessageGenerator" />
 				</entry>
-				<entry key="velocity">
-					<bean class="com.liferay.portal.workflow.kaleo.runtime.notification.VelocityNotificationMessageGenerator" />
-				</entry>
+				<entry key="velocity" value-ref="com.liferay.portal.workflow.kaleo.runtime.notification.TemplateNotificationMessageGenerator" />
+			</map>
+		</property>
+	</bean>
+	<bean id="com.liferay.portal.workflow.kaleo.runtime.notification.TemplateNotificationMessageGenerator" class="com.liferay.portal.workflow.kaleo.runtime.notification.TemplateNotificationMessageGenerator">
+		<property name="templateLanguageMapping">
+			<map>
+				<entry key="freemarker" value="FREEMARKER" />
+				<entry key="velocity" value="VELOCITY" />
 			</map>
 		</property>
 	</bean>

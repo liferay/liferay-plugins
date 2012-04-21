@@ -16,9 +16,8 @@ package com.liferay.portal.workflow.kaleo.runtime.notification;
 
 import com.liferay.portal.kernel.template.Template;
 import com.liferay.portal.kernel.template.TemplateContextType;
-import com.liferay.portal.kernel.template.TemplateManager;
 import com.liferay.portal.kernel.template.TemplateManagerUtil;
-import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowTaskAssignee;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
@@ -31,31 +30,42 @@ import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 import java.io.Serializable;
 import java.io.StringWriter;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
+ * @author Marcellus Tavares
  * @author Michael C. Han
  */
-public class VelocityNotificationMessageGenerator
+public class TemplateNotificationMessageGenerator
 	implements NotificationMessageGenerator {
 
 	public String generateMessage(
-			String kaleoClassName, long kaleoClassPK, String notificationName,
-			String notificationTemplate, ExecutionContext executionContext)
-		throws Exception {
+		String kaleoClassName, long kaleoClassPK, String notificationName,
+		String notificationTemplateLanguage, String notificationTemplate,
+		ExecutionContext executionContext)
+	throws NotificationMessageGenerationException {
 
-		StringBundler sb = new StringBundler(3);
+		String templateManagerName = _templateLanguageMapping.get(
+			notificationTemplateLanguage);
 
-		sb.append(notificationName);
-		sb.append(kaleoClassName);
-		sb.append(kaleoClassPK);
-
-		Template template = TemplateManagerUtil.getTemplate(
-			TemplateManager.VELOCITY, sb.toString(),
-			TemplateContextType.RESTRICTED);
+		if (Validator.isNull(templateManagerName)) {
+			throw new NotificationMessageGenerationException(
+				"Invalid notification template language: " +
+					notificationTemplateLanguage +
+					". Supported languages are: " +
+					_templateLanguageMapping.keySet().toString());
+		}
 
 		try {
+			String templateId =
+				notificationName + kaleoClassName + kaleoClassPK;
+
+			Template template = TemplateManagerUtil.getTemplate(
+				templateManagerName, templateId, notificationTemplate,
+				TemplateContextType.RESTRICTED);
+
 			populateContextVariables(template, executionContext);
 
 			StringWriter stringWriter = new StringWriter();
@@ -65,14 +75,15 @@ public class VelocityNotificationMessageGenerator
 			return stringWriter.toString();
 		}
 		catch (Exception e) {
-			if (e instanceof NotificationMessageGenerationException) {
-				throw new NotificationMessageGenerationException(
-					"Unable to generate notification message", e);
-			}
-			else {
-				throw e;
-			}
+			throw new NotificationMessageGenerationException(
+				"Unable to generate notification message", e);
 		}
+	}
+
+	public void setTemplateLanguageMapping(
+		Map<String, String> templateLanguageMapping) {
+
+		_templateLanguageMapping = templateLanguageMapping;
 	}
 
 	protected void populateContextVariables(
@@ -121,5 +132,8 @@ public class VelocityNotificationMessageGenerator
 			template.put("userId", kaleoInstanceToken.getUserId());
 		}
 	}
+
+	private Map<String, String> _templateLanguageMapping =
+		new HashMap<String, String>();
 
 }

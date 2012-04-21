@@ -58,8 +58,9 @@ public class NotificationUtil {
 			notificationMessageGenerator.generateMessage(
 				kaleoNotification.getKaleoClassName(),
 				kaleoNotification.getKaleoClassPK(),
-				kaleoNotification.getName(), kaleoNotification.getTemplate(),
-				executionContext);
+				kaleoNotification.getName(),
+				kaleoNotification.getTemplateLanguage(),
+				kaleoNotification.getTemplate(), executionContext);
 
 		String notificationSubject = kaleoNotification.getDescription();
 
