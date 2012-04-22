@@ -142,7 +142,12 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 	}
 
 	public void persist() throws SystemException {
-		StatusLocalServiceUtil.updateStatus(this);
+		if (this.isNew()) {
+			StatusLocalServiceUtil.addStatus(this);
+		}
+		else {
+			StatusLocalServiceUtil.updateStatus(this);
+		}
 	}
 
 	@Override

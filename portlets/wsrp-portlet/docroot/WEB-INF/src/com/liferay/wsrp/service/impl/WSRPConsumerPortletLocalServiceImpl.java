@@ -175,7 +175,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 		String url) {
 
 		try {
-			Portlet portlet = _portletsPool.get(wsrpConsumerPortletUuid);
+			Portlet portlet = _portletsPool.remove(wsrpConsumerPortletUuid);
 
 			if (portlet == null) {
 				return;

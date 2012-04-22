@@ -38,6 +38,11 @@ public abstract class BarBaseImpl extends BarModelImpl implements Bar {
 	 * Never modify or reference this class directly. All methods that expect a bar model instance should use the {@link Bar} interface instead.
 	 */
 	public void persist() throws SystemException {
-		BarLocalServiceUtil.updateBar(this);
+		if (this.isNew()) {
+			BarLocalServiceUtil.addBar(this);
+		}
+		else {
+			BarLocalServiceUtil.updateBar(this);
+		}
 	}
 }

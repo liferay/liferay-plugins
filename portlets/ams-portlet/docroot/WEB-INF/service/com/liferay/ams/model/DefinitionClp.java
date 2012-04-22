@@ -173,7 +173,12 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 	}
 
 	public void persist() throws SystemException {
-		DefinitionLocalServiceUtil.updateDefinition(this);
+		if (this.isNew()) {
+			DefinitionLocalServiceUtil.addDefinition(this);
+		}
+		else {
+			DefinitionLocalServiceUtil.updateDefinition(this);
+		}
 	}
 
 	@Override

@@ -619,6 +619,16 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		List<Message> list = (List<Message>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (Message message : list) {
+				if ((companyId != message.getCompanyId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -963,6 +973,16 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 
 		List<Message> list = (List<Message>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Message message : list) {
+				if ((folderId != message.getFolderId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1313,6 +1333,15 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		if (retrieveFromCache) {
 			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_F_R,
 					finderArgs, this);
+		}
+
+		if (result instanceof Message) {
+			Message message = (Message)result;
+
+			if ((folderId != message.getFolderId()) ||
+					(remoteMessageId != message.getRemoteMessageId())) {
+				result = null;
+			}
 		}
 
 		if (result == null) {

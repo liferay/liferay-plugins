@@ -181,7 +181,12 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 	}
 
 	public void persist() throws SystemException {
-		OAuthTokenLocalServiceUtil.updateOAuthToken(this);
+		if (this.isNew()) {
+			OAuthTokenLocalServiceUtil.addOAuthToken(this);
+		}
+		else {
+			OAuthTokenLocalServiceUtil.updateOAuthToken(this);
+		}
 	}
 
 	@Override

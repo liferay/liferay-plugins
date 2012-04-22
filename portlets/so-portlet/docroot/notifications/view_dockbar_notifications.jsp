@@ -33,7 +33,7 @@ int notificationEventsCount = notificationEvents.size();
 		<%
 		if (!notificationEvents.isEmpty()) {
 			for (NotificationEvent notificationEvent : notificationEvents) {
-				if (notificationEvent.getType().equals(PortletKey.SO_NOTIFICATION)) {
+				if (notificationEvent.getType().equals(PortletKeys.SO_NOTIFICATION)) {
 					userNotificationEventUuids = StringUtil.add(userNotificationEventUuids, notificationEvent.getUuid());
 				}
 				else {
@@ -62,7 +62,7 @@ int notificationEventsCount = notificationEvents.size();
 			%>
 
 				<c:choose>
-					<c:when test='<%= portletId.equals("<%= PortletKeys.SO_INVITE_MEMBERS %>") %>'>
+					<c:when test='<%= portletId.equals(PortletKeys.SO_INVITE_MEMBERS) %>'>
 						<%@ include file="/notifications/view_member_request.jspf" %>
 					</c:when>
 					<c:when test='<%= portletId.equals("1_WAR_contactsportlet") %>'>

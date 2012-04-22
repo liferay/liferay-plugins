@@ -35,6 +35,7 @@ import com.liferay.tasks.model.TasksEntry;
 import com.liferay.tasks.model.TasksEntryConstants;
 import com.liferay.tasks.service.base.TasksEntryLocalServiceBaseImpl;
 import com.liferay.tasks.social.TasksActivityKeys;
+import com.liferay.tasks.util.PortletKeys;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -408,7 +409,7 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 
 		notificationEventJSON.put("body", tasksEntry.getTitle());
 		notificationEventJSON.put("entryId", tasksEntry.getTasksEntryId());
-		notificationEventJSON.put("portletId", "1_WAR_tasksportlet");
+		notificationEventJSON.put("portletId", PortletKeys.TASKS);
 		notificationEventJSON.put("userId", serviceContext.getUserId());
 
 		for (long receiverUserId : receiverUserIds) {

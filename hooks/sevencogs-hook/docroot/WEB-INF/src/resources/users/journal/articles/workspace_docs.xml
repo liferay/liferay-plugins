@@ -8,7 +8,7 @@
 			</p>
 
 			<p>
-				In order to share folders, documents or images with the users of an organization or community you should use the private pages of that organization or community. To see an example, access the private pages of the organization 7Cogs and find a page called Shared documents. Only the members of that organization can access the private pages. If you only want some users of the organization to be able to access that page you would define a role for them and define permissions for that role.
+				In order to share folders, documents or images with the users of an organization or user group, you should create a site with private pages for that organization or user group. To see an example, access the 7Cogs site and find a page called Shared documents. Only the members of that organization can access the private pages. If you only want certain users of the organization to be able to access that page you would define an organizational role, add the privileged users to the role, and only allow the new role to have access to the page.
 			</p>
 		]]>
 	</static-content>

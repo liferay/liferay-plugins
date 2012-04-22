@@ -708,6 +708,16 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 		List<KaleoTimerInstanceToken> list = (List<KaleoTimerInstanceToken>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoTimerInstanceToken kaleoTimerInstanceToken : list) {
+				if ((kaleoInstanceId != kaleoTimerInstanceToken.getKaleoInstanceId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1067,6 +1077,15 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 					finderArgs, this);
 		}
 
+		if (result instanceof KaleoTimerInstanceToken) {
+			KaleoTimerInstanceToken kaleoTimerInstanceToken = (KaleoTimerInstanceToken)result;
+
+			if ((kaleoInstanceTokenId != kaleoTimerInstanceToken.getKaleoInstanceTokenId()) ||
+					(kaleoTimerId != kaleoTimerInstanceToken.getKaleoTimerId())) {
+				result = null;
+			}
+		}
+
 		if (result == null) {
 			StringBundler query = new StringBundler(4);
 
@@ -1210,6 +1229,17 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 
 		List<KaleoTimerInstanceToken> list = (List<KaleoTimerInstanceToken>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoTimerInstanceToken kaleoTimerInstanceToken : list) {
+				if ((kaleoInstanceTokenId != kaleoTimerInstanceToken.getKaleoInstanceTokenId()) ||
+						(completed != kaleoTimerInstanceToken.getCompleted())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1595,6 +1625,18 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 
 		List<KaleoTimerInstanceToken> list = (List<KaleoTimerInstanceToken>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoTimerInstanceToken kaleoTimerInstanceToken : list) {
+				if ((kaleoInstanceTokenId != kaleoTimerInstanceToken.getKaleoInstanceTokenId()) ||
+						(completed != kaleoTimerInstanceToken.getCompleted()) ||
+						(blocking != kaleoTimerInstanceToken.getBlocking())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;

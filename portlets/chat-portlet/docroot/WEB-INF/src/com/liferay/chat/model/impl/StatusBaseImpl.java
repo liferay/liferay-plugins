@@ -38,6 +38,11 @@ public abstract class StatusBaseImpl extends StatusModelImpl implements Status {
 	 * Never modify or reference this class directly. All methods that expect a status model instance should use the {@link Status} interface instead.
 	 */
 	public void persist() throws SystemException {
-		StatusLocalServiceUtil.updateStatus(this);
+		if (this.isNew()) {
+			StatusLocalServiceUtil.addStatus(this);
+		}
+		else {
+			StatusLocalServiceUtil.updateStatus(this);
+		}
 	}
 }

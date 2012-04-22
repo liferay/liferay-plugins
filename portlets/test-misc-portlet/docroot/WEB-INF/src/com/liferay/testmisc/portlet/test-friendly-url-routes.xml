@@ -3,6 +3,10 @@
 
 <routes>
 	<route>
+		<pattern></pattern>
+		<implicit-parameter name="jspPage">/view.jsp</implicit-parameter>
+	</route>
+	<route>
 		<pattern>/logo.png</pattern>
 		<ignored-parameter name="p_p_cacheability" />
 		<implicit-parameter name="p_p_lifecycle">2</implicit-parameter>

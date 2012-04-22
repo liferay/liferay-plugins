@@ -640,6 +640,16 @@ public class KaleoNotificationRecipientPersistenceImpl
 		List<KaleoNotificationRecipient> list = (List<KaleoNotificationRecipient>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoNotificationRecipient kaleoNotificationRecipient : list) {
+				if ((companyId != kaleoNotificationRecipient.getCompanyId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -994,6 +1004,16 @@ public class KaleoNotificationRecipientPersistenceImpl
 
 		List<KaleoNotificationRecipient> list = (List<KaleoNotificationRecipient>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoNotificationRecipient kaleoNotificationRecipient : list) {
+				if ((kaleoDefinitionId != kaleoNotificationRecipient.getKaleoDefinitionId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1350,6 +1370,16 @@ public class KaleoNotificationRecipientPersistenceImpl
 
 		List<KaleoNotificationRecipient> list = (List<KaleoNotificationRecipient>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoNotificationRecipient kaleoNotificationRecipient : list) {
+				if ((kaleoNotificationId != kaleoNotificationRecipient.getKaleoNotificationId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;

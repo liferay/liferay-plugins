@@ -229,7 +229,12 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 	}
 
 	public void persist() throws SystemException {
-		KaleoInstanceTokenLocalServiceUtil.updateKaleoInstanceToken(this);
+		if (this.isNew()) {
+			KaleoInstanceTokenLocalServiceUtil.addKaleoInstanceToken(this);
+		}
+		else {
+			KaleoInstanceTokenLocalServiceUtil.updateKaleoInstanceToken(this);
+		}
 	}
 
 	@Override

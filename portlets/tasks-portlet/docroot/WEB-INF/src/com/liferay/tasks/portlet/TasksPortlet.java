@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.model.Layout;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -34,6 +35,7 @@ import com.liferay.portlet.messageboards.service.MBMessageServiceUtil;
 import com.liferay.tasks.model.TasksEntry;
 import com.liferay.tasks.service.TasksEntryLocalServiceUtil;
 import com.liferay.tasks.service.TasksEntryServiceUtil;
+import com.liferay.tasks.util.PortletKeys;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
@@ -199,14 +201,15 @@ public class TasksPortlet extends MVCPortlet {
 				dueDateMinute, neverDue, status, serviceContext);
 		}
 
+		Layout layout = themeDisplay.getLayout();
+
 		PortletURL portletURL = PortletURLFactoryUtil.create(
-			PortalUtil.getHttpServletRequest(actionRequest),
-			"1_WAR_tasksportlet", themeDisplay.getLayout().getPlid(),
+			actionRequest, PortletKeys.TASKS, layout.getPlid(),
 			PortletRequest.RENDER_PHASE);
 
 		portletURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 
-		portletURL.setParameter("mvcPath", "/view_task.jsp");
+		portletURL.setParameter("mvcPath", "/tasks/view_task.jsp");
 		portletURL.setParameter(
 			"tasksEntryId", String.valueOf(taskEntry.getTasksEntryId()));
 

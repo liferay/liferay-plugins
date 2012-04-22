@@ -766,6 +766,16 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		List<TasksEntry> list = (List<TasksEntry>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (TasksEntry tasksEntry : list) {
+				if ((groupId != tasksEntry.getGroupId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1422,6 +1432,16 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		List<TasksEntry> list = (List<TasksEntry>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (TasksEntry tasksEntry : list) {
+				if ((userId != tasksEntry.getUserId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1772,6 +1792,16 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 
 		List<TasksEntry> list = (List<TasksEntry>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (TasksEntry tasksEntry : list) {
+				if ((assigneeUserId != tasksEntry.getAssigneeUserId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2124,6 +2154,16 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 
 		List<TasksEntry> list = (List<TasksEntry>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (TasksEntry tasksEntry : list) {
+				if ((resolverUserId != tasksEntry.getResolverUserId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2478,6 +2518,17 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 
 		List<TasksEntry> list = (List<TasksEntry>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (TasksEntry tasksEntry : list) {
+				if ((groupId != tasksEntry.getGroupId()) ||
+						(userId != tasksEntry.getUserId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -3176,6 +3227,17 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		List<TasksEntry> list = (List<TasksEntry>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (TasksEntry tasksEntry : list) {
+				if ((groupId != tasksEntry.getGroupId()) ||
+						(assigneeUserId != tasksEntry.getAssigneeUserId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -3873,6 +3935,17 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 
 		List<TasksEntry> list = (List<TasksEntry>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (TasksEntry tasksEntry : list) {
+				if ((groupId != tasksEntry.getGroupId()) ||
+						(resolverUserId != tasksEntry.getResolverUserId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;

@@ -39,6 +39,11 @@ public abstract class AccountBaseImpl extends AccountModelImpl
 	 * Never modify or reference this class directly. All methods that expect a account model instance should use the {@link Account} interface instead.
 	 */
 	public void persist() throws SystemException {
-		AccountLocalServiceUtil.updateAccount(this);
+		if (this.isNew()) {
+			AccountLocalServiceUtil.addAccount(this);
+		}
+		else {
+			AccountLocalServiceUtil.updateAccount(this);
+		}
 	}
 }

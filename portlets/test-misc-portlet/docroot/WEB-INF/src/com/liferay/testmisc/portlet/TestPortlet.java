@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.portlet.PortletRequestUtil;
 
@@ -56,7 +57,7 @@ public class TestPortlet extends LiferayPortlet {
 		String mvcPath = ParamUtil.getString(
 			renderRequest, "mvcPath", "/view.jsp");
 
-		if (mvcPath.equals("/renderResponseponse/buffer_size.jsp")) {
+		if (mvcPath.equals("/portlet_response/buffer_size.jsp")) {
 			testResponseBufferSize(renderResponse);
 		}
 
@@ -66,7 +67,16 @@ public class TestPortlet extends LiferayPortlet {
 	@Override
 	public void processAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws IOException {
+		throws IOException, PortletException {
+
+		String actionName = ParamUtil.getString(
+			actionRequest, ActionRequest.ACTION_NAME);
+
+		if (Validator.isNotNull(actionName)) {
+			super.processAction(actionRequest, actionResponse);
+
+			return;
+		}
 
 		HttpServletRequest request = PortalUtil.getHttpServletRequest(
 			actionRequest);

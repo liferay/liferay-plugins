@@ -196,7 +196,12 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 	}
 
 	public void persist() throws SystemException {
-		KaleoTaskAssignmentLocalServiceUtil.updateKaleoTaskAssignment(this);
+		if (this.isNew()) {
+			KaleoTaskAssignmentLocalServiceUtil.addKaleoTaskAssignment(this);
+		}
+		else {
+			KaleoTaskAssignmentLocalServiceUtil.updateKaleoTaskAssignment(this);
+		}
 	}
 
 	@Override

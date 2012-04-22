@@ -695,6 +695,16 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 		List<KaleoTaskInstanceToken> list = (List<KaleoTaskInstanceToken>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoTaskInstanceToken kaleoTaskInstanceToken : list) {
+				if ((companyId != kaleoTaskInstanceToken.getCompanyId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1047,6 +1057,16 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 
 		List<KaleoTaskInstanceToken> list = (List<KaleoTaskInstanceToken>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoTaskInstanceToken kaleoTaskInstanceToken : list) {
+				if ((kaleoDefinitionId != kaleoTaskInstanceToken.getKaleoDefinitionId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1403,6 +1423,16 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 
 		List<KaleoTaskInstanceToken> list = (List<KaleoTaskInstanceToken>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoTaskInstanceToken kaleoTaskInstanceToken : list) {
+				if ((kaleoInstanceId != kaleoTaskInstanceToken.getKaleoInstanceId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1761,6 +1791,15 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 		if (retrieveFromCache) {
 			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_KII_KTI,
 					finderArgs, this);
+		}
+
+		if (result instanceof KaleoTaskInstanceToken) {
+			KaleoTaskInstanceToken kaleoTaskInstanceToken = (KaleoTaskInstanceToken)result;
+
+			if ((kaleoInstanceId != kaleoTaskInstanceToken.getKaleoInstanceId()) ||
+					(kaleoTaskId != kaleoTaskInstanceToken.getKaleoTaskId())) {
+				result = null;
+			}
 		}
 
 		if (result == null) {
@@ -2316,6 +2355,10 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 
+	static {
+		FINDER_PATH_GET_KALEOTASKASSIGNMENTINSTANCES.setCacheKeyGeneratorCacheName(null);
+	}
+
 	/**
 	 * Returns an ordered range of all the kaleo task assignment instances associated with the kaleo task instance token.
 	 *
@@ -2396,6 +2439,10 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 			com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskAssignmentInstancePersistenceImpl.FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
 			"getKaleoTaskAssignmentInstancesSize",
 			new String[] { Long.class.getName() });
+
+	static {
+		FINDER_PATH_GET_KALEOTASKASSIGNMENTINSTANCES_SIZE.setCacheKeyGeneratorCacheName(null);
+	}
 
 	/**
 	 * Returns the number of kaleo task assignment instances associated with the kaleo task instance token.

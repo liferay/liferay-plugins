@@ -167,7 +167,12 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 	}
 
 	public void persist() throws SystemException {
-		WSRPConsumerLocalServiceUtil.updateWSRPConsumer(this);
+		if (this.isNew()) {
+			WSRPConsumerLocalServiceUtil.addWSRPConsumer(this);
+		}
+		else {
+			WSRPConsumerLocalServiceUtil.updateWSRPConsumer(this);
+		}
 	}
 
 	@Override

@@ -39,6 +39,11 @@ public abstract class WSRPConsumerPortletBaseImpl
 	 * Never modify or reference this class directly. All methods that expect a w s r p consumer portlet model instance should use the {@link WSRPConsumerPortlet} interface instead.
 	 */
 	public void persist() throws SystemException {
-		WSRPConsumerPortletLocalServiceUtil.updateWSRPConsumerPortlet(this);
+		if (this.isNew()) {
+			WSRPConsumerPortletLocalServiceUtil.addWSRPConsumerPortlet(this);
+		}
+		else {
+			WSRPConsumerPortletLocalServiceUtil.updateWSRPConsumerPortlet(this);
+		}
 	}
 }

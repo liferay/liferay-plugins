@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -594,6 +595,18 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 		List<KaleoTimer> list = (List<KaleoTimer>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoTimer kaleoTimer : list) {
+				if (!Validator.equals(kaleoClassName,
+							kaleoTimer.getKaleoClassName()) ||
+						(kaleoClassPK != kaleoTimer.getKaleoClassPK())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -995,6 +1008,19 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 
 		List<KaleoTimer> list = (List<KaleoTimer>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoTimer kaleoTimer : list) {
+				if (!Validator.equals(kaleoClassName,
+							kaleoTimer.getKaleoClassName()) ||
+						(kaleoClassPK != kaleoTimer.getKaleoClassPK()) ||
+						(blocking != kaleoTimer.getBlocking())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;

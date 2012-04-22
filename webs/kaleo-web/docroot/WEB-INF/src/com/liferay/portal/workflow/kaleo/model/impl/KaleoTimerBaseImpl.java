@@ -38,6 +38,11 @@ public abstract class KaleoTimerBaseImpl extends KaleoTimerModelImpl
 	 * Never modify or reference this class directly. All methods that expect a kaleo timer model instance should use the {@link KaleoTimer} interface instead.
 	 */
 	public void persist() throws SystemException {
-		KaleoTimerLocalServiceUtil.updateKaleoTimer(this);
+		if (this.isNew()) {
+			KaleoTimerLocalServiceUtil.addKaleoTimer(this);
+		}
+		else {
+			KaleoTimerLocalServiceUtil.updateKaleoTimer(this);
+		}
 	}
 }

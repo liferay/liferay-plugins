@@ -204,7 +204,12 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 	}
 
 	public void persist() throws SystemException {
-		KaleoNodeLocalServiceUtil.updateKaleoNode(this);
+		if (this.isNew()) {
+			KaleoNodeLocalServiceUtil.addKaleoNode(this);
+		}
+		else {
+			KaleoNodeLocalServiceUtil.updateKaleoNode(this);
+		}
 	}
 
 	@Override

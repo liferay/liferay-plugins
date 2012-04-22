@@ -50,10 +50,11 @@ catch (Exception e) {
 
 				<%
 				String siteDescriptiveName = "<a href='" + siteURL + "'>" + invitedGroup.getDescriptiveName(locale) + "</a>";
-				String userFullName = "<a href=\"" + userDisplayURL + "\">" + userFullName + "</a>";
+
+				userFullName = "<a href=\"" + userDisplayURL + "\">" + userFullName + "</a>";
 				%>
 
-				<liferay-ui:message arguments="<%= new Object[] {userFullNameHTML, siteDescriptiveName} %>" key='<%= notificationEventJSON.getString("title") %>' />
+				<liferay-ui:message arguments="<%= new Object[] {userFullName, siteDescriptiveName} %>" key='<%= notificationEventJSON.getString("title") %>' />
 			</div>
 
 			<div class="request">

@@ -304,7 +304,12 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 	}
 
 	public void persist() throws SystemException {
-		AccountLocalServiceUtil.updateAccount(this);
+		if (this.isNew()) {
+			AccountLocalServiceUtil.addAccount(this);
+		}
+		else {
+			AccountLocalServiceUtil.updateAccount(this);
+		}
 	}
 
 	@Override

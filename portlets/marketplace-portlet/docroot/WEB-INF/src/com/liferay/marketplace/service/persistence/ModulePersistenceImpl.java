@@ -649,6 +649,16 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 		List<Module> list = (List<Module>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (Module module : list) {
+				if (!Validator.equals(uuid, module.getUuid())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1006,6 +1016,16 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 		List<Module> list = (List<Module>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (Module module : list) {
+				if ((appId != module.getAppId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1341,6 +1361,16 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 
 		List<Module> list = (List<Module>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Module module : list) {
+				if (!Validator.equals(contextName, module.getContextName())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1708,6 +1738,15 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 		if (retrieveFromCache) {
 			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_A_C,
 					finderArgs, this);
+		}
+
+		if (result instanceof Module) {
+			Module module = (Module)result;
+
+			if ((appId != module.getAppId()) ||
+					!Validator.equals(contextName, module.getContextName())) {
+				result = null;
+			}
 		}
 
 		if (result == null) {

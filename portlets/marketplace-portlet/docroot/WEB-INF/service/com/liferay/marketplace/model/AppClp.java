@@ -160,7 +160,12 @@ public class AppClp extends BaseModelImpl<App> implements App {
 	}
 
 	public void persist() throws SystemException {
-		AppLocalServiceUtil.updateApp(this);
+		if (this.isNew()) {
+			AppLocalServiceUtil.addApp(this);
+		}
+		else {
+			AppLocalServiceUtil.updateApp(this);
+		}
 	}
 
 	@Override

@@ -15,11 +15,13 @@
 --%>
 
 <div class="summary-container">
-	<h2>
-		<%= HtmlUtil.escape(user2.getFullName()) %>
-	</h2>
+	<div class="user-portrait">
+		<h2>
+			<%= HtmlUtil.escape(user2.getFullName()) %>
+		</h2>
 
-	<img alt="<liferay-ui:message key="user-portrait" />" class="user-profile-image" src="<%= user2.getPortraitURL(themeDisplay) %>" />
+		<img alt="<liferay-ui:message key="user-portrait" />" class="user-profile-image" src="<%= user2.getPortraitURL(themeDisplay) %>" />
+	</div>
 
 	<c:choose>
 		<c:when test="<%= SocialRelationLocalServiceUtil.hasRelation(user.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND) %>">
@@ -72,22 +74,38 @@
 		</c:when>
 	</c:choose>
 
-	<p>
-		<span class="user-job-title"><liferay-ui:message key="job-title" /></span>
+	<%
+	Contact contact2 = user2.getContact();
 
-		<%= HtmlUtil.escape(user2.getContact().getJobTitle()) %>
-	</p>
+	String jobTitle = contact2.getJobTitle();
+	%>
+
+	<c:if test="<%= Validator.isNotNull(jobTitle) %>">
+		<div class="user-job-title">
+			<p>
+				<span class="title">
+					<liferay-ui:message key="job-title" />
+				</span>
+
+				<%= HtmlUtil.escape(jobTitle) %>
+			</p>
+		</div>
+	</c:if>
 
 	<%
-	String twitterSn = user2.getContact().getTwitterSn();
+	String twitterSn = contact2.getTwitterSn();
 	%>
 
 	<c:if test="<%= Validator.isNotNull(twitterSn) %>">
-		<p>
-			<span class="user-twitter-sn"><liferay-ui:message key="twitter" /></span>
+		<div class="user-twitter">
+			<p>
+				<span class="title">
+					<liferay-ui:message key="twitter" />
+				</span>
 
-			<a class="user-twitter-link" href="http://twitter.com/<%= HtmlUtil.escapeAttribute(twitterSn) %>"><%= HtmlUtil.escape(twitterSn) %></a>
-		</p>
+				<a class="user-twitter-link" href="http://twitter.com/<%= HtmlUtil.escapeAttribute(twitterSn) %>"><%= HtmlUtil.escape(twitterSn) %></a>
+			</p>
+		</div>
 	</c:if>
 
 	<%
@@ -95,11 +113,15 @@
 	%>
 
 	<c:if test="<%= Validator.isNotNull(aboutMe) %>">
-		<p>
-			<span class="user-about"><liferay-ui:message key="about-me" /></span>
+		<div class="user-about">
+			<p>
+				<span class="title">
+					<liferay-ui:message key="about-me" />
+				</span>
 
-			<%= aboutMe %>
-		</p>
+				<%= aboutMe %>
+			</p>
+		</div>
 	</c:if>
 
 	<%
@@ -108,90 +130,92 @@
 	%>
 
 	<c:if test="<%= (mbMessagesCount > 0) || (blogsEntriesCount > 0) %>">
-		<span class="user-about"><liferay-ui:message key="activity-details" /></span>
+		<div class="user-activity-details">
+			<span class="title">
+				<liferay-ui:message key="activity-details" />
+			</span>
 
-		<table class="lfr-table">
+			<c:if test="<%= mbMessagesCount > 0 %>">
+				<div class="user-mb-message-post-count aui-helper-clearfix">
+					<c:choose>
+						<c:when test="<%= mbPlid != LayoutConstants.DEFAULT_PLID %>">
+							<span class="view-icon">
+								<liferay-ui:icon
+									image="view"
+									label="<%= true %>"
+									message='<%= LanguageUtil.format(pageContext, "x-forum-posts", new Object[] {"<strong>" + mbMessagesCount + "</strong>"}) %>'
+									url='<%= mbFriendlyURL + "/-/message_boards/recent-posts?_19_groupThreadsUserId=" + user2.getUserId() %>'
+								/>
+							</span>
 
-		<c:if test="<%= mbMessagesCount > 0 %>">
-			<c:choose>
-				<c:when test="<%= mbPlid != LayoutConstants.DEFAULT_PLID %>">
-					<tr>
-						<td>
-							<liferay-ui:icon
-								image="view"
-								label="<%= true %>"
-								message='<%= LanguageUtil.format(pageContext, "x-forum-posts", new Object[] {"<strong>" + mbMessagesCount + "</strong>"}) %>'
-								url='<%= mbFriendlyURL + "/-/message_boards/recent-posts?_19_groupThreadsUserId=" + user2.getUserId() %>'
-							/>
-						</td>
-						<td>
-							<liferay-ui:icon
-								image="rss"
-								url='<%= themeDisplay.getPathMain() + "/message_boards/rss?p_l_id=" + mbPlid + "&groupId=" + guestGroup.getGroupId() + "&userId=" + user2.getUserId() %>'
-							/>
-						</td>
-					</tr>
-				</c:when>
-				<c:otherwise>
-					<tr>
-						<td>
-							<%= LanguageUtil.format(pageContext, "x-forum-posts", new Object[] {"<strong>" + mbMessagesCount + "</strong>"}) %>
-						</td>
-					</tr>
-				</c:otherwise>
-			</c:choose>
-		</c:if>
+							<span class="rss-icon">
+								<liferay-ui:icon
+									image="rss"
+									url='<%= themeDisplay.getPathMain() + "/message_boards/rss?p_l_id=" + mbPlid + "&groupId=" + guestGroup.getGroupId() + "&userId=" + user2.getUserId() %>'
+								/>
+							</span>
+						</c:when>
+						<c:otherwise>
+							<span>
+								<%= LanguageUtil.format(pageContext, "x-forum-posts", new Object[] {"<strong>" + mbMessagesCount + "</strong>"}) %>
+							</span>
+						</c:otherwise>
+					</c:choose>
 
-		<c:if test="<%= blogsEntriesCount > 0 %>">
-			<c:choose>
-				<c:when test="<%= blogsPlid != LayoutConstants.DEFAULT_PLID %>">
-					<tr>
-						<td>
-							<liferay-ui:icon
-								image="view"
-								label="<%= true %>"
-								message='<%= LanguageUtil.format(pageContext, "x-blog-entries", new Object[] {"<strong>" + blogsEntriesCount + "</strong>"}) %>'
-								url="<%= blogsFriendlyURL %>"
-							/>
-						</td>
-						<td>
-							<liferay-ui:icon
-								image="rss"
-								url='<%= blogsFriendlyURL + "/-/blogs/rss" %>'
-							/>
-						</td>
-					</tr>
-				</c:when>
-				<c:otherwise>
-					<tr>
-						<td>
-							<%= LanguageUtil.format(pageContext, "x-blog-entries", new Object[] {"<strong>" + blogsEntriesCount + "</strong>"}) %>
-						</td>
-					</tr>
-				</c:otherwise>
-			</c:choose>
-		</c:if>
+					<c:if test="<%= blogsEntriesCount > 0 %>">
+						<span class="comma">
+							<%= StringPool.COMMA %>
+						</span>
+					</c:if>
+				</div>
+			</c:if>
 
-		</table>
+			<c:if test="<%= blogsEntriesCount > 0 %>">
+				<div class="user-blog-entry-count aui-helper-clearfix">
+					<c:choose>
+						<c:when test="<%= blogsPlid != LayoutConstants.DEFAULT_PLID %>">
+							<span class="view-icon">
+								<liferay-ui:icon
+									image="view"
+									label="<%= true %>"
+									message='<%= LanguageUtil.format(pageContext, "x-blog-entries", new Object[] {"<strong>" + blogsEntriesCount + "</strong>"}) %>'
+									url='<%= blogsFriendlyURL %>'
+								/>
+							</span>
+
+							<span class="rss-icon">
+								<liferay-ui:icon
+									image="rss"
+									url='<%= blogsFriendlyURL + "/-/blogs/rss" %>'
+								/>
+							</span>
+						</c:when>
+						<c:otherwise>
+							<span>
+								<%= LanguageUtil.format(pageContext, "x-blog-entries", new Object[] {"<strong>" + blogsEntriesCount + "</strong>"}) %>
+							</span>
+						</c:otherwise>
+					</c:choose>
+				</div>
+			</c:if>
+		</div>
 	</c:if>
 
+	<c:if test="<%= UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
+
+		<%
+		PortletURL editSummaryURL = renderResponse.createRenderURL();
+
+		editSummaryURL.setWindowState(WindowState.MAXIMIZED);
+
+		editSummaryURL.setParameter("jspPage", "/summary/edit_summary.jsp");
+		%>
+
+		<liferay-ui:icon
+			image="edit"
+			label="<%= true %>"
+			message="edit-profile"
+			url="<%= editSummaryURL.toString() %>"
+		/>
+	</c:if>
 </div>
-
-<c:if test="<%= UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
-	<br />
-
-	<%
-	PortletURL editSummaryURL = renderResponse.createRenderURL();
-
-	editSummaryURL.setWindowState(WindowState.MAXIMIZED);
-
-	editSummaryURL.setParameter("mvcPath", "/summary/edit_summary.jsp");
-	%>
-
-	<liferay-ui:icon
-		image="edit"
-		label="<%= true %>"
-		url="<%= editSummaryURL.toString() %>"
-	/>
-
-</c:if>

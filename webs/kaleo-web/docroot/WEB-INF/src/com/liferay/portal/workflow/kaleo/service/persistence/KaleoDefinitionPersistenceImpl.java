@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -751,6 +752,16 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		List<KaleoDefinition> list = (List<KaleoDefinition>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoDefinition kaleoDefinition : list) {
+				if ((companyId != kaleoDefinition.getCompanyId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1106,6 +1117,17 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 		List<KaleoDefinition> list = (List<KaleoDefinition>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoDefinition kaleoDefinition : list) {
+				if ((companyId != kaleoDefinition.getCompanyId()) ||
+						!Validator.equals(name, kaleoDefinition.getName())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1503,6 +1525,17 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		List<KaleoDefinition> list = (List<KaleoDefinition>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoDefinition kaleoDefinition : list) {
+				if ((companyId != kaleoDefinition.getCompanyId()) ||
+						(active != kaleoDefinition.getActive())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1879,6 +1912,16 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 					finderArgs, this);
 		}
 
+		if (result instanceof KaleoDefinition) {
+			KaleoDefinition kaleoDefinition = (KaleoDefinition)result;
+
+			if ((companyId != kaleoDefinition.getCompanyId()) ||
+					!Validator.equals(name, kaleoDefinition.getName()) ||
+					(version != kaleoDefinition.getVersion())) {
+				result = null;
+			}
+		}
+
 		if (result == null) {
 			StringBundler query = new StringBundler(5);
 
@@ -2042,6 +2085,18 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 		List<KaleoDefinition> list = (List<KaleoDefinition>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (KaleoDefinition kaleoDefinition : list) {
+				if ((companyId != kaleoDefinition.getCompanyId()) ||
+						!Validator.equals(name, kaleoDefinition.getName()) ||
+						(active != kaleoDefinition.getActive())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2996,6 +3051,10 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 
+	static {
+		FINDER_PATH_GET_KALEONODES.setCacheKeyGeneratorCacheName(null);
+	}
+
 	/**
 	 * Returns an ordered range of all the kaleo nodes associated with the kaleo definition.
 	 *
@@ -3073,6 +3132,10 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 			com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeImpl.class,
 			com.liferay.portal.workflow.kaleo.service.persistence.KaleoNodePersistenceImpl.FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
 			"getKaleoNodesSize", new String[] { Long.class.getName() });
+
+	static {
+		FINDER_PATH_GET_KALEONODES_SIZE.setCacheKeyGeneratorCacheName(null);
+	}
 
 	/**
 	 * Returns the number of kaleo nodes associated with the kaleo definition.

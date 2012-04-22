@@ -257,7 +257,12 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 	}
 
 	public void persist() throws SystemException {
-		KaleoTimerInstanceTokenLocalServiceUtil.updateKaleoTimerInstanceToken(this);
+		if (this.isNew()) {
+			KaleoTimerInstanceTokenLocalServiceUtil.addKaleoTimerInstanceToken(this);
+		}
+		else {
+			KaleoTimerInstanceTokenLocalServiceUtil.updateKaleoTimerInstanceToken(this);
+		}
 	}
 
 	@Override

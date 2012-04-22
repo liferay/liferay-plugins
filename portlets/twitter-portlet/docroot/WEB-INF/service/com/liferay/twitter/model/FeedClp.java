@@ -149,7 +149,12 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 	}
 
 	public void persist() throws SystemException {
-		FeedLocalServiceUtil.updateFeed(this);
+		if (this.isNew()) {
+			FeedLocalServiceUtil.addFeed(this);
+		}
+		else {
+			FeedLocalServiceUtil.updateFeed(this);
+		}
 	}
 
 	@Override

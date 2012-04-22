@@ -182,7 +182,12 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 	}
 
 	public void persist() throws SystemException {
-		MeetupsEntryLocalServiceUtil.updateMeetupsEntry(this);
+		if (this.isNew()) {
+			MeetupsEntryLocalServiceUtil.addMeetupsEntry(this);
+		}
+		else {
+			MeetupsEntryLocalServiceUtil.updateMeetupsEntry(this);
+		}
 	}
 
 	@Override

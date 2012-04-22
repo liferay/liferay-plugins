@@ -39,6 +39,11 @@ public abstract class JIRAActionBaseImpl extends JIRAActionModelImpl
 	 * Never modify or reference this class directly. All methods that expect a j i r a action model instance should use the {@link JIRAAction} interface instead.
 	 */
 	public void persist() throws SystemException {
-		JIRAActionLocalServiceUtil.updateJIRAAction(this);
+		if (this.isNew()) {
+			JIRAActionLocalServiceUtil.addJIRAAction(this);
+		}
+		else {
+			JIRAActionLocalServiceUtil.updateJIRAAction(this);
+		}
 	}
 }

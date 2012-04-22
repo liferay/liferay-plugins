@@ -3,6 +3,10 @@
 
 <routes>
 	<route>
+		<pattern></pattern>
+		<implicit-parameter name="jspPage">/wall/view.jsp</implicit-parameter>
+	</route>
+	<route>
 		<pattern>/{wallToWallScreenName}</pattern>
 		<implicit-parameter name="p_p_state">maximized</implicit-parameter>
 	</route>

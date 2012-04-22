@@ -58,7 +58,6 @@ public class ViewChartAction extends Action {
 				_log.info("execute");
 			}
 
-			String portletName = "sample_struts_portlet";
 			String attrName = "chart_name";
 
 			// Application scoped session attributes can be fetched from the
@@ -131,10 +130,10 @@ public class ViewChartAction extends Action {
 
 		HttpSession session = request.getSession();
 
-		Enumeration enu = session.getAttributeNames();
+		Enumeration<String> enu = session.getAttributeNames();
 
 		while (enu.hasMoreElements()) {
-			String encodedAttrName = (String)enu.nextElement();
+			String encodedAttrName = enu.nextElement();
 
 			String decodedAttrName =
 				PortletSessionUtil.decodeAttributeName(encodedAttrName);

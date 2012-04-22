@@ -45,15 +45,12 @@
 	<sql id="com.liferay.chat.service.persistence.StatusFinder.findByModifiedDate">
 		<![CDATA[
 			SELECT
-				User_.userId AS userId, User_.screenName AS screenName, Contact_.firstName AS firstName, Contact_.middleName AS middleName, Contact_.lastName AS lastName, User_.portraitId AS portraitId, Chat_Status.awake AS awake
+				User_.userId AS userId, User_.screenName AS screenName, User_.firstName AS firstName, User_.middleName AS middleName, User_.lastName AS lastName, User_.portraitId AS portraitId, Chat_Status.awake AS awake
 			FROM
 				Chat_Status
 			INNER JOIN
 				User_ ON
 					(User_.userId = Chat_Status.userId)
-			INNER JOIN
-				Contact_ ON
-					(Contact_.contactId = User_.contactId)
 			WHERE
 				(User_.companyId = ?) AND
 				(User_.userId != ?) AND
@@ -61,23 +58,20 @@
 				(Chat_Status.online_ = [$TRUE$])
 			ORDER BY
 				Chat_Status.awake ASC,
-				Contact_.firstName ASC,
-				Contact_.middleName ASC,
-				Contact_.lastName ASC
+				User_.firstName ASC,
+				User_.middleName ASC,
+				User_.lastName ASC
 		]]>
 	</sql>
 	<sql id="com.liferay.chat.service.persistence.StatusFinder.findBySocialRelationType">
 		<![CDATA[
 			SELECT
-				User_.userId AS userId, User_.screenName AS screenName, Contact_.firstName AS firstName, Contact_.middleName AS middleName, Contact_.lastName AS lastName, User_.portraitId AS portraitId, Chat_Status.awake AS awake
+				User_.userId AS userId, User_.screenName AS screenName, User_.firstName AS firstName, User_.middleName AS middleName, User_.lastName AS lastName, User_.portraitId AS portraitId, Chat_Status.awake AS awake
 			FROM
 				Chat_Status
 			INNER JOIN
 				User_ ON
 					(User_.userId = Chat_Status.userId)
-			INNER JOIN
-				Contact_ ON
-					(Contact_.contactId = User_.contactId)
 			INNER JOIN
 				SocialRelation ON
 					(SocialRelation.userId2 = User_.userId)
@@ -88,23 +82,20 @@
 				(Chat_Status.online_ = [$TRUE$])
 			ORDER BY
 				Chat_Status.awake ASC,
-				Contact_.firstName ASC,
-				Contact_.middleName ASC,
-				Contact_.lastName ASC
+				User_.firstName ASC,
+				User_.middleName ASC,
+				User_.lastName ASC
 		]]>
 	</sql>
 	<sql id="com.liferay.chat.service.persistence.StatusFinder.findByUsersGroups">
 		<![CDATA[
 			SELECT DISTINCT
-				User_.userId AS userId, User_.screenName AS screenName, Contact_.firstName AS firstName, Contact_.middleName AS middleName, Contact_.lastName AS lastName, User_.portraitId AS portraitId, Chat_Status.awake AS awake
+				User_.userId AS userId, User_.screenName AS screenName, User_.firstName AS firstName, User_.middleName AS middleName, User_.lastName AS lastName, User_.portraitId AS portraitId, Chat_Status.awake AS awake
 			FROM
 				Chat_Status
 			INNER JOIN
 				User_ ON
 					(User_.userId = Chat_Status.userId)
-			INNER JOIN
-				Contact_ ON
-					(Contact_.contactId = User_.contactId)
 			INNER JOIN
 				Users_Groups ON
 					(Users_Groups.userId = User_.userId)
@@ -123,9 +114,9 @@
 				(Chat_Status.online_ = [$TRUE$])
 			ORDER BY
 				Chat_Status.awake ASC,
-				Contact_.firstName ASC,
-				Contact_.middleName ASC,
-				Contact_.lastName ASC
+				User_.firstName ASC,
+				User_.middleName ASC,
+				User_.lastName ASC
 		]]>
 	</sql>
 </custom-sql>

@@ -140,7 +140,12 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 	}
 
 	public void persist() throws SystemException {
-		OAuthConsumerLocalServiceUtil.updateOAuthConsumer(this);
+		if (this.isNew()) {
+			OAuthConsumerLocalServiceUtil.addOAuthConsumer(this);
+		}
+		else {
+			OAuthConsumerLocalServiceUtil.updateOAuthConsumer(this);
+		}
 	}
 
 	@Override

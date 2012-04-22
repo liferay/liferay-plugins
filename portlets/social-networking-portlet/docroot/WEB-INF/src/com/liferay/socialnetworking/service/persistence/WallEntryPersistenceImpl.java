@@ -594,6 +594,16 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		List<WallEntry> list = (List<WallEntry>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (WallEntry wallEntry : list) {
+				if ((groupId != wallEntry.getGroupId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -937,6 +947,16 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 
 		List<WallEntry> list = (List<WallEntry>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (WallEntry wallEntry : list) {
+				if ((userId != wallEntry.getUserId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1290,6 +1310,17 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 
 		List<WallEntry> list = (List<WallEntry>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (WallEntry wallEntry : list) {
+				if ((groupId != wallEntry.getGroupId()) ||
+						(userId != wallEntry.getUserId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;

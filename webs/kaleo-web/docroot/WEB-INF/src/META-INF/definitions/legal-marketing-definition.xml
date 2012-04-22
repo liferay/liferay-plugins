@@ -10,6 +10,9 @@
 	<version>1</version>
 	<state>
 		<name>created</name>
+		<metadata>
+			<![CDATA[{"xy":[62,51]}]]>
+		</metadata>
 		<initial>true</initial>
 		<transitions>
 			<transition>
@@ -21,6 +24,9 @@
 	</state>
 	<task>
 		<name>update</name>
+		<metadata>
+			<![CDATA[{"xy":[522,211]}]]>
+		</metadata>
 		<actions>
 			<notification>
 				<name>Creator Modification Notification</name>
@@ -43,6 +49,9 @@
 	</task>
 	<task>
 		<name>marketing-review</name>
+		<metadata>
+			<![CDATA[{"xy":[291,39]}]]>
+		</metadata>
 		<actions>
 			<notification>
 				<name>Market Content Review Notification</name>
@@ -103,6 +112,9 @@
 	</task>
 	<task>
 		<name>legal-review</name>
+		<metadata>
+			<![CDATA[{"xy":[121,209]}]]>
+		</metadata>
 		<actions>
 			<notification>
 				<name>Legal Content Review Notification</name>
@@ -163,6 +175,9 @@
 	</task>
 	<state>
 		<name>approve</name>
+		<metadata>
+			<![CDATA[{"xy":[138,377]}]]>
+		</metadata>
 		<actions>
 			<action>
 				<name>Approve Asset</name>

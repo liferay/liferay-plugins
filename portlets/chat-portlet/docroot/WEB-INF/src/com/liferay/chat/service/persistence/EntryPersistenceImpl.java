@@ -40,6 +40,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -766,6 +767,16 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		List<Entry> list = (List<Entry>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (Entry entry : list) {
+				if ((createDate != entry.getCreateDate())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1110,6 +1121,16 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		List<Entry> list = (List<Entry>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (Entry entry : list) {
+				if ((fromUserId != entry.getFromUserId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1452,6 +1473,16 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 		List<Entry> list = (List<Entry>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Entry entry : list) {
+				if ((toUserId != entry.getToUserId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1803,6 +1834,17 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 		List<Entry> list = (List<Entry>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Entry entry : list) {
+				if ((createDate != entry.getCreateDate()) ||
+						(fromUserId != entry.getFromUserId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2173,6 +2215,17 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 		List<Entry> list = (List<Entry>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Entry entry : list) {
+				if ((createDate != entry.getCreateDate()) ||
+						(toUserId != entry.getToUserId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2547,6 +2600,18 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 		List<Entry> list = (List<Entry>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Entry entry : list) {
+				if ((createDate != entry.getCreateDate()) ||
+						(fromUserId != entry.getFromUserId()) ||
+						(toUserId != entry.getToUserId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2938,6 +3003,18 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 		List<Entry> list = (List<Entry>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Entry entry : list) {
+				if ((fromUserId != entry.getFromUserId()) ||
+						(toUserId != entry.getToUserId()) ||
+						!Validator.equals(content, entry.getContent())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;

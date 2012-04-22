@@ -142,7 +142,12 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 	}
 
 	public void persist() throws SystemException {
-		MeetupsRegistrationLocalServiceUtil.updateMeetupsRegistration(this);
+		if (this.isNew()) {
+			MeetupsRegistrationLocalServiceUtil.addMeetupsRegistration(this);
+		}
+		else {
+			MeetupsRegistrationLocalServiceUtil.updateMeetupsRegistration(this);
+		}
 	}
 
 	@Override

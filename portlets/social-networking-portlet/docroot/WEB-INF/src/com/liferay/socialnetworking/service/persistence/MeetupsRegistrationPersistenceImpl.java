@@ -637,6 +637,16 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		List<MeetupsRegistration> list = (List<MeetupsRegistration>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (MeetupsRegistration meetupsRegistration : list) {
+				if ((meetupsEntryId != meetupsRegistration.getMeetupsEntryId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -994,6 +1004,15 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 					finderArgs, this);
 		}
 
+		if (result instanceof MeetupsRegistration) {
+			MeetupsRegistration meetupsRegistration = (MeetupsRegistration)result;
+
+			if ((userId != meetupsRegistration.getUserId()) ||
+					(meetupsEntryId != meetupsRegistration.getMeetupsEntryId())) {
+				result = null;
+			}
+		}
+
 		if (result == null) {
 			StringBundler query = new StringBundler(4);
 
@@ -1136,6 +1155,17 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 		List<MeetupsRegistration> list = (List<MeetupsRegistration>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (MeetupsRegistration meetupsRegistration : list) {
+				if ((meetupsEntryId != meetupsRegistration.getMeetupsEntryId()) ||
+						(status != meetupsRegistration.getStatus())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;

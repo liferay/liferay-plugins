@@ -17,6 +17,21 @@
 			<guest-unsupported />
 		</permissions>
 	</portlet-resource>
+	<portlet-resource>
+		<portlet-name>2</portlet-name>
+		<permissions>
+			<supports>
+				<action-key>VIEW</action-key>
+			</supports>
+			<site-member-defaults>
+				<action-key>VIEW</action-key>
+			</site-member-defaults>
+			<guest-defaults>
+				<action-key>VIEW</action-key>
+			</guest-defaults>
+			<guest-unsupported />
+		</permissions>
+	</portlet-resource>
 	<model-resource>
 		<model-name>com.liferay.tasks</model-name>
 		<portlet-ref>

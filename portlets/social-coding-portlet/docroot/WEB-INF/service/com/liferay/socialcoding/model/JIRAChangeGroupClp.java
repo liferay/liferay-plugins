@@ -93,7 +93,12 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 	}
 
 	public void persist() throws SystemException {
-		JIRAChangeGroupLocalServiceUtil.updateJIRAChangeGroup(this);
+		if (this.isNew()) {
+			JIRAChangeGroupLocalServiceUtil.addJIRAChangeGroup(this);
+		}
+		else {
+			JIRAChangeGroupLocalServiceUtil.updateJIRAChangeGroup(this);
+		}
 	}
 
 	@Override

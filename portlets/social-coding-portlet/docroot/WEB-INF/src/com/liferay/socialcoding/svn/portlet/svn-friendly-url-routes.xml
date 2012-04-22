@@ -3,6 +3,10 @@
 
 <routes>
 	<route>
+		<pattern></pattern>
+		<implicit-parameter name="jspPage">/svn/view.jsp</implicit-parameter>
+	</route>
+	<route>
 		<pattern>/rss/all/plugin/trunk</pattern>
 		<implicit-parameter name="all">1</implicit-parameter>
 		<implicit-parameter name="p_p_state">exclusive</implicit-parameter>

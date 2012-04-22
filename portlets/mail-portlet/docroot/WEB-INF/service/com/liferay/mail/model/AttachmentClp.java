@@ -139,7 +139,12 @@ public class AttachmentClp extends BaseModelImpl<Attachment>
 	}
 
 	public void persist() throws SystemException {
-		AttachmentLocalServiceUtil.updateAttachment(this);
+		if (this.isNew()) {
+			AttachmentLocalServiceUtil.addAttachment(this);
+		}
+		else {
+			AttachmentLocalServiceUtil.updateAttachment(this);
+		}
 	}
 
 	@Override

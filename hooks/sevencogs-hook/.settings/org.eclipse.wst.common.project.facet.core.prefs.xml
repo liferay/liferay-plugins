@@ -1,0 +1,7 @@
+<root>
+  <facet id="liferay.hook">
+    <node name="libprov">
+      <attribute name="provider-id" value="com.liferay.ide.eclipse.plugin.hook.libraryProvider"/>
+    </node>
+  </facet>
+</root>

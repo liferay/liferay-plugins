@@ -350,7 +350,12 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 	}
 
 	public void persist() throws SystemException {
-		KBArticleLocalServiceUtil.updateKBArticle(this);
+		if (this.isNew()) {
+			KBArticleLocalServiceUtil.addKBArticle(this);
+		}
+		else {
+			KBArticleLocalServiceUtil.updateKBArticle(this);
+		}
 	}
 
 	@Override

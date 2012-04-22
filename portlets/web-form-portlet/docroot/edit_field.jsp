@@ -20,7 +20,6 @@
 int index = ParamUtil.getInteger(renderRequest, "index", GetterUtil.getInteger((String)request.getAttribute("configuration.jsp-index")));
 int formFieldsIndex = GetterUtil.getInteger((String)request.getAttribute("configuration.jsp-formFieldsIndex"));
 boolean fieldsEditingDisabled = GetterUtil.getBoolean((String)request.getAttribute("configuration.jsp-fieldsEditingDisabled"));
-
 String fieldLabelXml = LocalizationUtil.getLocalizationXmlFromPreferences(preferences, renderRequest, "fieldLabel" + formFieldsIndex);
 String fieldLabel = LocalizationUtil.getLocalization(fieldLabelXml, themeDisplay.getLanguageId());
 String fieldType = PrefsParamUtil.getString(preferences, renderRequest, "fieldType" + formFieldsIndex);
@@ -29,6 +28,8 @@ String fieldOptionsXml = LocalizationUtil.getLocalizationXmlFromPreferences(pref
 String fieldOptions = LocalizationUtil.getLocalization(fieldOptionsXml, themeDisplay.getLanguageId());
 String fieldValidationScript = PrefsParamUtil.getString(preferences, request, "fieldValidationScript" + formFieldsIndex);
 String fieldValidationErrorMessage = PrefsParamUtil.getString(preferences, request, "fieldValidationErrorMessage" + formFieldsIndex);
+
+boolean ignoreRequestValue = (index != formFieldsIndex);
 %>
 
 <liferay-ui:error key='<%= "fieldSizeInvalid" + formFieldsIndex %>' message="please-enter-no-more-than-75-characters" />
@@ -53,7 +54,7 @@ String fieldValidationErrorMessage = PrefsParamUtil.getString(preferences, reque
 			<aui:input type="hidden" name='<%= "_field" + index %>' />
 
 			<aui:field-wrapper cssClass="label-name" label="name">
-				<liferay-ui:input-localized name='<%= "fieldLabel" + index %>' xml="<%= fieldLabelXml %>" />
+				<liferay-ui:input-localized ignoreRequestValue="<%= ignoreRequestValue %>" name='<%= "fieldLabel" + index %>' xml="<%= fieldLabelXml %>" />
 			</aui:field-wrapper>
 		</c:when>
 		<c:otherwise>
@@ -69,7 +70,7 @@ String fieldValidationErrorMessage = PrefsParamUtil.getString(preferences, reque
 
 	<c:choose>
 		<c:when test="<%= !fieldsEditingDisabled %>">
-			<aui:select label="type" name='<%= "fieldType" + index %>'>
+			<aui:select ignoreRequestValue="<%= ignoreRequestValue %>" label="type" name='<%= "fieldType" + index %>'>
 				<aui:option selected='<%= fieldType.equals("text") %>' value="text"><liferay-ui:message key="text" /></aui:option>
 				<aui:option selected='<%= fieldType.equals("textarea") %>' value="textarea"><liferay-ui:message key="text-box" /></aui:option>
 				<aui:option selected='<%= fieldType.equals("options") %>' value="options"><liferay-ui:message key="options" /></aui:option>
@@ -90,7 +91,7 @@ String fieldValidationErrorMessage = PrefsParamUtil.getString(preferences, reque
 
 	<c:choose>
 		<c:when test="<%= !fieldsEditingDisabled %>">
-			<aui:input cssClass="optional-control" inlineLabel="left" label="optional" name='<%= "fieldOptional" + index %>' type="checkbox" value="<%= fieldOptional %>" />
+			<aui:input cssClass="optional-control" ignoreRequestValue="<%= ignoreRequestValue %>" inlineLabel="left" label="optional" name='<%= "fieldOptional" + index %>' type="checkbox" value="<%= fieldOptional %>" />
 		</c:when>
 		<c:otherwise>
 				<dt>
@@ -105,7 +106,7 @@ String fieldValidationErrorMessage = PrefsParamUtil.getString(preferences, reque
 	<c:choose>
 		<c:when test="<%= !fieldsEditingDisabled %>">
 			<aui:field-wrapper cssClass='<%= "options" + ((Validator.isNull(fieldType) || (!fieldType.equals("options") && !fieldType.equals("radio"))) ? " aui-helper-hidden" : StringPool.BLANK) %>' helpMessage="add-options-separated-by-commas" label="options">
-				<liferay-ui:input-localized name='<%= "fieldOptions" + index %>' xml="<%= fieldOptionsXml %>" />
+				<liferay-ui:input-localized ignoreRequestValue="<%= ignoreRequestValue %>" name='<%= "fieldOptions" + index %>' xml="<%= fieldOptionsXml %>" />
 			</aui:field-wrapper>
 		</c:when>
 		<c:when test="<%= Validator.isNotNull(fieldOptions) %>">
@@ -128,9 +129,9 @@ String fieldValidationErrorMessage = PrefsParamUtil.getString(preferences, reque
 
 					<div class='validation-input <%= Validator.isNull(fieldValidationScript) ? "aui-helper-hidden" : "" %>'>
 						<aui:column columnWidth="50">
-							<aui:input cssClass="validation-script" cols="80" label="validation-script" name='<%= "fieldValidationScript" + index %>' style="width: 95%" type="textarea" value="<%= fieldValidationScript %>" wrap="off" />
+							<aui:input cssClass="validation-script" cols="80" ignoreRequestValue="<%= ignoreRequestValue %>" label="validation-script" name='<%= "fieldValidationScript" + index %>' style="width: 95%" type="textarea" value="<%= fieldValidationScript %>" wrap="off" />
 
-							<aui:input cssClass="lfr-input-text-container" cols="80" label="validation-error-message" name='<%= "fieldValidationErrorMessage" + index %>' size="80" value="<%= fieldValidationErrorMessage %>" />
+							<aui:input cssClass="lfr-input-text-container" cols="80" ignoreRequestValue="<%= ignoreRequestValue %>" label="validation-error-message" name='<%= "fieldValidationErrorMessage" + index %>' size="80" value="<%= fieldValidationErrorMessage %>" />
 						</aui:column>
 						<aui:column columnWidth="50">
 							<div class="syntax-help">

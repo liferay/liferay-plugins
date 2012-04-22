@@ -28,7 +28,7 @@ if (Validator.isNotNull(portletResource)) {
 	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-String defaultTabs1 = preferences.getValue("defaultTabs1", "friends");
+String defaultTabs1 = preferences.getValue("defaultTabs1", "connections");
 
 String tabs1 = ParamUtil.getString(request, "tabs1", defaultTabs1);
 

@@ -645,7 +645,12 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 	}
 
 	public void persist() throws SystemException {
-		CalendarBookingLocalServiceUtil.updateCalendarBooking(this);
+		if (this.isNew()) {
+			CalendarBookingLocalServiceUtil.addCalendarBooking(this);
+		}
+		else {
+			CalendarBookingLocalServiceUtil.updateCalendarBooking(this);
+		}
 	}
 
 	@Override

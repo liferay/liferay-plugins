@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -583,6 +584,15 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 					finderArgs, this);
 		}
 
+		if (result instanceof Feed) {
+			Feed feed = (Feed)result;
+
+			if ((companyId != feed.getCompanyId()) ||
+					(twitterUserId != feed.getTwitterUserId())) {
+				result = null;
+			}
+		}
+
 		if (result == null) {
 			StringBundler query = new StringBundler(3);
 
@@ -720,6 +730,16 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		if (retrieveFromCache) {
 			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_C_TSN,
 					finderArgs, this);
+		}
+
+		if (result instanceof Feed) {
+			Feed feed = (Feed)result;
+
+			if ((companyId != feed.getCompanyId()) ||
+					!Validator.equals(twitterScreenName,
+						feed.getTwitterScreenName())) {
+				result = null;
+			}
 		}
 
 		if (result == null) {

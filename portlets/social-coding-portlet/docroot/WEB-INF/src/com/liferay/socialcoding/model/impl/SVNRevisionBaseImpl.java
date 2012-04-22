@@ -39,6 +39,11 @@ public abstract class SVNRevisionBaseImpl extends SVNRevisionModelImpl
 	 * Never modify or reference this class directly. All methods that expect a s v n revision model instance should use the {@link SVNRevision} interface instead.
 	 */
 	public void persist() throws SystemException {
-		SVNRevisionLocalServiceUtil.updateSVNRevision(this);
+		if (this.isNew()) {
+			SVNRevisionLocalServiceUtil.addSVNRevision(this);
+		}
+		else {
+			SVNRevisionLocalServiceUtil.updateSVNRevision(this);
+		}
 	}
 }

@@ -38,6 +38,11 @@ public abstract class KaleoTransitionBaseImpl extends KaleoTransitionModelImpl
 	 * Never modify or reference this class directly. All methods that expect a kaleo transition model instance should use the {@link KaleoTransition} interface instead.
 	 */
 	public void persist() throws SystemException {
-		KaleoTransitionLocalServiceUtil.updateKaleoTransition(this);
+		if (this.isNew()) {
+			KaleoTransitionLocalServiceUtil.addKaleoTransition(this);
+		}
+		else {
+			KaleoTransitionLocalServiceUtil.updateKaleoTransition(this);
+		}
 	}
 }

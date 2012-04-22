@@ -533,6 +533,16 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 		List<JIRAChangeItem> list = (List<JIRAChangeItem>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (JIRAChangeItem jiraChangeItem : list) {
+				if ((jiraChangeGroupId != jiraChangeItem.getJiraChangeGroupId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 

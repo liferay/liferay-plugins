@@ -23,7 +23,7 @@
 
 <aui:script use="liferay-dockbar">
 	Liferay.once(
-		'initDockbar',
+		'dockbarLoaded',
 		function() {
 			var notificationsMenuVars = {
 				container: A.one('#<portlet:namespace />notificationsMenuContainer'),

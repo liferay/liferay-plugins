@@ -40,6 +40,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -586,6 +587,16 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 		List<OAuthConsumer> list = (List<OAuthConsumer>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (OAuthConsumer oAuthConsumer : list) {
+				if (!Validator.equals(gadgetKey, oAuthConsumer.getGadgetKey())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -961,6 +972,16 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 		if (retrieveFromCache) {
 			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_G_S,
 					finderArgs, this);
+		}
+
+		if (result instanceof OAuthConsumer) {
+			OAuthConsumer oAuthConsumer = (OAuthConsumer)result;
+
+			if (!Validator.equals(gadgetKey, oAuthConsumer.getGadgetKey()) ||
+					!Validator.equals(serviceName,
+						oAuthConsumer.getServiceName())) {
+				result = null;
+			}
 		}
 
 		if (result == null) {

@@ -148,7 +148,12 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 	}
 
 	public void persist() throws SystemException {
-		CheckoutLocalServiceUtil.updateCheckout(this);
+		if (this.isNew()) {
+			CheckoutLocalServiceUtil.addCheckout(this);
+		}
+		else {
+			CheckoutLocalServiceUtil.updateCheckout(this);
+		}
 	}
 
 	@Override

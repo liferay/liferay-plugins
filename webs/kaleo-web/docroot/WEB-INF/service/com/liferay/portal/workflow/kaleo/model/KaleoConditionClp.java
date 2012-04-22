@@ -156,7 +156,12 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 	}
 
 	public void persist() throws SystemException {
-		KaleoConditionLocalServiceUtil.updateKaleoCondition(this);
+		if (this.isNew()) {
+			KaleoConditionLocalServiceUtil.addKaleoCondition(this);
+		}
+		else {
+			KaleoConditionLocalServiceUtil.updateKaleoCondition(this);
+		}
 	}
 
 	@Override

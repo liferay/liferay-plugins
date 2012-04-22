@@ -1,0 +1,17 @@
+.events-display-portlet {
+	h2 {
+		margin: 0.5em 0;
+	}
+
+	.event-name {
+		font-weight: bold;
+	}
+
+	.event-time {
+		float: right;
+	}
+
+	.event-type, .results-header, .taglib-search-iterator-page-iterator-bottom {
+		display: none;
+	}
+}

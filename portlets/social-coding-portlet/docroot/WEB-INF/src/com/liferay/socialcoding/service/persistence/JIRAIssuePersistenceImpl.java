@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -993,6 +994,16 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (JIRAIssue jiraIssue : list) {
+				if ((projectId != jiraIssue.getProjectId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1339,6 +1350,14 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					finderArgs, this);
 		}
 
+		if (result instanceof JIRAIssue) {
+			JIRAIssue jiraIssue = (JIRAIssue)result;
+
+			if (!Validator.equals(key, jiraIssue.getKey())) {
+				result = null;
+			}
+		}
+
 		if (result == null) {
 			StringBundler query = new StringBundler(3);
 
@@ -1486,6 +1505,17 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (JIRAIssue jiraIssue : list) {
+				if (!Validator.equals(reporterJiraUserId,
+							jiraIssue.getReporterJiraUserId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1862,6 +1892,17 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (JIRAIssue jiraIssue : list) {
+				if (!Validator.equals(assigneeJiraUserId,
+							jiraIssue.getAssigneeJiraUserId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2241,6 +2282,17 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (JIRAIssue jiraIssue : list) {
+				if (!Validator.equals(modifiedDate, jiraIssue.getModifiedDate()) ||
+						(projectId != jiraIssue.getProjectId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2628,6 +2680,18 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (JIRAIssue jiraIssue : list) {
+				if ((projectId != jiraIssue.getProjectId()) ||
+						!Validator.equals(reporterJiraUserId,
+							jiraIssue.getReporterJiraUserId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -3026,6 +3090,18 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (JIRAIssue jiraIssue : list) {
+				if ((projectId != jiraIssue.getProjectId()) ||
+						!Validator.equals(assigneeJiraUserId,
+							jiraIssue.getAssigneeJiraUserId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -3430,6 +3506,19 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (JIRAIssue jiraIssue : list) {
+				if (!Validator.equals(modifiedDate, jiraIssue.getModifiedDate()) ||
+						(projectId != jiraIssue.getProjectId()) ||
+						!Validator.equals(reporterJiraUserId,
+							jiraIssue.getReporterJiraUserId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -3869,6 +3958,19 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (JIRAIssue jiraIssue : list) {
+				if (!Validator.equals(modifiedDate, jiraIssue.getModifiedDate()) ||
+						(projectId != jiraIssue.getProjectId()) ||
+						!Validator.equals(assigneeJiraUserId,
+							jiraIssue.getAssigneeJiraUserId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -4304,6 +4406,19 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (JIRAIssue jiraIssue : list) {
+				if ((projectId != jiraIssue.getProjectId()) ||
+						!Validator.equals(reporterJiraUserId,
+							jiraIssue.getReporterJiraUserId()) ||
+						!Validator.equals(status, jiraIssue.getStatus())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -4749,6 +4864,19 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 		List<JIRAIssue> list = (List<JIRAIssue>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (JIRAIssue jiraIssue : list) {
+				if ((projectId != jiraIssue.getProjectId()) ||
+						!Validator.equals(assigneeJiraUserId,
+							jiraIssue.getAssigneeJiraUserId()) ||
+						!Validator.equals(status, jiraIssue.getStatus())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;

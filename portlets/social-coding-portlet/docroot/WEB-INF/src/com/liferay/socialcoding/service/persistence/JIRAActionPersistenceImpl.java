@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -596,6 +597,16 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		List<JIRAAction> list = (List<JIRAAction>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (JIRAAction jiraAction : list) {
+				if (!Validator.equals(jiraUserId, jiraAction.getJiraUserId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -967,6 +978,16 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		List<JIRAAction> list = (List<JIRAAction>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (JIRAAction jiraAction : list) {
+				if ((jiraIssueId != jiraAction.getJiraIssueId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1311,6 +1332,16 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 
 		List<JIRAAction> list = (List<JIRAAction>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (JIRAAction jiraAction : list) {
+				if (!Validator.equals(type, jiraAction.getType())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;

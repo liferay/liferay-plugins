@@ -605,6 +605,16 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		List<Foo> list = (List<Foo>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (Foo foo : list) {
+				if (!Validator.equals(uuid, foo.getUuid())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -976,6 +986,15 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 					finderArgs, this);
 		}
 
+		if (result instanceof Foo) {
+			Foo foo = (Foo)result;
+
+			if (!Validator.equals(uuid, foo.getUuid()) ||
+					(groupId != foo.getGroupId())) {
+				result = null;
+			}
+		}
+
 		if (result == null) {
 			StringBundler query = new StringBundler(4);
 
@@ -1120,6 +1139,16 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 
 		List<Foo> list = (List<Foo>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (Foo foo : list) {
+				if ((field2 != foo.getField2())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;

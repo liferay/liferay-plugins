@@ -38,6 +38,11 @@ public abstract class AppBaseImpl extends AppModelImpl implements App {
 	 * Never modify or reference this class directly. All methods that expect a app model instance should use the {@link App} interface instead.
 	 */
 	public void persist() throws SystemException {
-		AppLocalServiceUtil.updateApp(this);
+		if (this.isNew()) {
+			AppLocalServiceUtil.addApp(this);
+		}
+		else {
+			AppLocalServiceUtil.updateApp(this);
+		}
 	}
 }

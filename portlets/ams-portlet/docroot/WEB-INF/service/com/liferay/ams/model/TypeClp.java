@@ -81,7 +81,12 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 	}
 
 	public void persist() throws SystemException {
-		TypeLocalServiceUtil.updateType(this);
+		if (this.isNew()) {
+			TypeLocalServiceUtil.addType(this);
+		}
+		else {
+			TypeLocalServiceUtil.updateType(this);
+		}
 	}
 
 	@Override

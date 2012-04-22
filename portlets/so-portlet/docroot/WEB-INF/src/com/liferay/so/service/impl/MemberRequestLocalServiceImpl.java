@@ -38,12 +38,12 @@ import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.User;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portal.util.PortletKeys;
 import com.liferay.so.MemberRequestAlreadyUsedException;
 import com.liferay.so.MemberRequestInvalidUserException;
 import com.liferay.so.invitemembers.util.InviteMembersConstants;
 import com.liferay.so.model.MemberRequest;
 import com.liferay.so.service.base.MemberRequestLocalServiceBaseImpl;
+import com.liferay.so.util.PortletKeys;
 
 import java.util.Date;
 import java.util.List;

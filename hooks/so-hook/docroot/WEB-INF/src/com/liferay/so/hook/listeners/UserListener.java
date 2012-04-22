@@ -18,15 +18,17 @@
 package com.liferay.so.hook.listeners;
 
 import com.liferay.portal.ModelListenerException;
+import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Role;
-import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.so.util.RoleConstants;
 
 /**
  * @author Jonathan Lee
@@ -34,7 +36,7 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 public class UserListener extends BaseModelListener<User> {
 
 	@Override
-	public void onAfterAddAssociation(
+	public void onAfterRemoveAssociation(
 			Object classPK, String associationClassName,
 			Object associationClassPK)
 		throws ModelListenerException {
@@ -46,8 +48,10 @@ public class UserListener extends BaseModelListener<User> {
 
 			Role role = RoleLocalServiceUtil.getRole((Long)associationClassPK);
 
-			if (role.getName().equals(RoleConstants.POWER_USER)) {
-				updateUserPublicLayoutSet((Long)classPK);
+			String name = role.getName();
+
+			if (name.equals(RoleConstants.SOCIAL_OFFICE_USER)) {
+				updateUserLayoutSets((Long)classPK);
 			}
 		}
 		catch (Exception e) {
@@ -55,7 +59,7 @@ public class UserListener extends BaseModelListener<User> {
 		}
 	}
 
-	protected void updateUserPublicLayoutSet(long userId) throws Exception {
+	protected void updateUserLayoutSets(long userId) throws Exception {
 		User user = UserLocalServiceUtil.getUser(userId);
 
 		Group group = user.getGroup();
@@ -69,6 +73,14 @@ public class UserListener extends BaseModelListener<User> {
 
 		LayoutSetLocalServiceUtil.addLayoutSet(group.getGroupId(), false);
 		LayoutSetLocalServiceUtil.addLayoutSet(group.getGroupId(), true);
+
+		UnicodeProperties typeSettingsProperties =
+			group.getTypeSettingsProperties();
+
+		typeSettingsProperties.remove("customJspServletContextName");
+
+		GroupLocalServiceUtil.updateGroup(
+			group.getGroupId(), typeSettingsProperties.toString());
 	}
 
 }

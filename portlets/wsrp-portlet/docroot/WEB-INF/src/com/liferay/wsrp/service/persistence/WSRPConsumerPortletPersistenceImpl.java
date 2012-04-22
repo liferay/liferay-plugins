@@ -642,6 +642,16 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		List<WSRPConsumerPortlet> list = (List<WSRPConsumerPortlet>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (WSRPConsumerPortlet wsrpConsumerPortlet : list) {
+				if (!Validator.equals(uuid, wsrpConsumerPortlet.getUuid())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1019,6 +1029,16 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		List<WSRPConsumerPortlet> list = (List<WSRPConsumerPortlet>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (WSRPConsumerPortlet wsrpConsumerPortlet : list) {
+				if ((wsrpConsumerId != wsrpConsumerPortlet.getWsrpConsumerId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -1376,6 +1396,16 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		if (retrieveFromCache) {
 			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_W_P,
 					finderArgs, this);
+		}
+
+		if (result instanceof WSRPConsumerPortlet) {
+			WSRPConsumerPortlet wsrpConsumerPortlet = (WSRPConsumerPortlet)result;
+
+			if ((wsrpConsumerId != wsrpConsumerPortlet.getWsrpConsumerId()) ||
+					!Validator.equals(portletHandle,
+						wsrpConsumerPortlet.getPortletHandle())) {
+				result = null;
+			}
 		}
 
 		if (result == null) {

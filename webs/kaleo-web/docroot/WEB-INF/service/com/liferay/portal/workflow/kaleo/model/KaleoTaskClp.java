@@ -163,7 +163,12 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 	}
 
 	public void persist() throws SystemException {
-		KaleoTaskLocalServiceUtil.updateKaleoTask(this);
+		if (this.isNew()) {
+			KaleoTaskLocalServiceUtil.addKaleoTask(this);
+		}
+		else {
+			KaleoTaskLocalServiceUtil.updateKaleoTask(this);
+		}
 	}
 
 	@Override

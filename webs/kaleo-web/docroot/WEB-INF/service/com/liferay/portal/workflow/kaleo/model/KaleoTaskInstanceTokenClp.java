@@ -245,7 +245,12 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 	}
 
 	public void persist() throws SystemException {
-		KaleoTaskInstanceTokenLocalServiceUtil.updateKaleoTaskInstanceToken(this);
+		if (this.isNew()) {
+			KaleoTaskInstanceTokenLocalServiceUtil.addKaleoTaskInstanceToken(this);
+		}
+		else {
+			KaleoTaskInstanceTokenLocalServiceUtil.updateKaleoTaskInstanceToken(this);
+		}
 	}
 
 	@Override

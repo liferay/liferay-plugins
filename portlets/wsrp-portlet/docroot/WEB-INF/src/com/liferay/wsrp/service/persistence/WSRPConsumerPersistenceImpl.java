@@ -571,6 +571,16 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		List<WSRPConsumer> list = (List<WSRPConsumer>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
 
+		if ((list != null) && !list.isEmpty()) {
+			for (WSRPConsumer wsrpConsumer : list) {
+				if (!Validator.equals(uuid, wsrpConsumer.getUuid())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
 		if (list == null) {
 			StringBundler query = null;
 
@@ -940,6 +950,16 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 
 		List<WSRPConsumer> list = (List<WSRPConsumer>)FinderCacheUtil.getResult(finderPath,
 				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (WSRPConsumer wsrpConsumer : list) {
+				if ((companyId != wsrpConsumer.getCompanyId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
 
 		if (list == null) {
 			StringBundler query = null;

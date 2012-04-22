@@ -216,7 +216,12 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 	}
 
 	public void persist() throws SystemException {
-		TasksEntryLocalServiceUtil.updateTasksEntry(this);
+		if (this.isNew()) {
+			TasksEntryLocalServiceUtil.addTasksEntry(this);
+		}
+		else {
+			TasksEntryLocalServiceUtil.updateTasksEntry(this);
+		}
 	}
 
 	@Override
