@@ -307,7 +307,7 @@ public class AssetWrapper implements Asset, ModelWrapper<Asset> {
 		return new AssetWrapper((Asset)_asset.clone());
 	}
 
-	public int compareTo(com.liferay.ams.model.Asset asset) {
+	public int compareTo(Asset asset) {
 		return _asset.compareTo(asset);
 	}
 
@@ -316,11 +316,11 @@ public class AssetWrapper implements Asset, ModelWrapper<Asset> {
 		return _asset.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<com.liferay.ams.model.Asset> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<Asset> toCacheModel() {
 		return _asset.toCacheModel();
 	}
 
-	public com.liferay.ams.model.Asset toEscapedModel() {
+	public Asset toEscapedModel() {
 		return new AssetWrapper(_asset.toEscapedModel());
 	}
 

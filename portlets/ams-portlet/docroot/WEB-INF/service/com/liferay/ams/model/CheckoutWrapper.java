@@ -298,7 +298,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 		return new CheckoutWrapper((Checkout)_checkout.clone());
 	}
 
-	public int compareTo(com.liferay.ams.model.Checkout checkout) {
+	public int compareTo(Checkout checkout) {
 		return _checkout.compareTo(checkout);
 	}
 
@@ -307,11 +307,11 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 		return _checkout.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<com.liferay.ams.model.Checkout> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<Checkout> toCacheModel() {
 		return _checkout.toCacheModel();
 	}
 
-	public com.liferay.ams.model.Checkout toEscapedModel() {
+	public Checkout toEscapedModel() {
 		return new CheckoutWrapper(_checkout.toEscapedModel());
 	}
 

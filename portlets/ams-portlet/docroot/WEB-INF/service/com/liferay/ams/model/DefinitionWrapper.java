@@ -352,7 +352,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 		return new DefinitionWrapper((Definition)_definition.clone());
 	}
 
-	public int compareTo(com.liferay.ams.model.Definition definition) {
+	public int compareTo(Definition definition) {
 		return _definition.compareTo(definition);
 	}
 
@@ -361,11 +361,11 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 		return _definition.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<com.liferay.ams.model.Definition> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<Definition> toCacheModel() {
 		return _definition.toCacheModel();
 	}
 
-	public com.liferay.ams.model.Definition toEscapedModel() {
+	public Definition toEscapedModel() {
 		return new DefinitionWrapper(_definition.toEscapedModel());
 	}
 

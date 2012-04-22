@@ -152,7 +152,7 @@ public class TypeWrapper implements Type, ModelWrapper<Type> {
 		return new TypeWrapper((Type)_type.clone());
 	}
 
-	public int compareTo(com.liferay.ams.model.Type type) {
+	public int compareTo(Type type) {
 		return _type.compareTo(type);
 	}
 
@@ -161,11 +161,11 @@ public class TypeWrapper implements Type, ModelWrapper<Type> {
 		return _type.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<com.liferay.ams.model.Type> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<Type> toCacheModel() {
 		return _type.toCacheModel();
 	}
 
-	public com.liferay.ams.model.Type toEscapedModel() {
+	public Type toEscapedModel() {
 		return new TypeWrapper(_type.toEscapedModel());
 	}
 
