@@ -68,6 +68,9 @@ page import="java.sql.Statement" %>
 <%@ page import="java.util.Locale" %><%@
 page import="java.util.Map" %>
 
+<%@ page import="javax.naming.Context" %><%@
+page import="javax.naming.InitialContext" %>
+
 <portlet:defineObjects />
 
 <liferay-theme:defineObjects />

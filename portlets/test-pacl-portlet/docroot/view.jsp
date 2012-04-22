@@ -554,6 +554,216 @@
 </p>
 
 <liferay-ui:header
+	title="JNDI"
+/>
+
+<p>
+	<h3>Bind</h3>
+</p>
+
+<p>
+
+	<%
+	new JNDISecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testBind("test-pacl:matthew", "Matthew");
+		}
+
+	};
+
+	new JNDISecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testBind("test-pacl:Matthew", "Matthew");
+		}
+
+	};
+
+	new JNDISecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testBind("test-pacl:mark", "Mark");
+		}
+
+	};
+
+	new JNDISecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testBind("test-pacl:Mark", "Mark");
+		}
+
+	};
+
+	new JNDISecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testBind("test-pacl:luke", "Luke");
+		}
+
+	};
+
+	new JNDISecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testBind("test-pacl:Luke", "Luke");
+		}
+
+	};
+
+	new JNDISecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testBind("test-pacl:john 3:16", "John");
+		}
+
+	};
+	%>
+
+</p>
+
+<p>
+	<h3>Lookup</h3>
+</p>
+
+	<%
+	new JNDISecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testLookup("java_liferay:jdbc/LiferayPool", null);
+		}
+
+	};
+
+	new JNDISecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testLookup("test-pacl:matthew", "Matthew");
+		}
+
+	};
+
+	new JNDISecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			try {
+				testLookup("test-pacl:matthew", "Matthew 1:1");
+			}
+			catch (ExpectedTestException ete) {
+			}
+		}
+
+	};
+
+	new JNDISecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testLookup("test-pacl:mark", "Mark");
+		}
+
+	};
+
+	new JNDISecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testLookup("test-pacl:Mark", "Mark");
+		}
+
+	};
+
+	new JNDISecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testLookup("test-pacl:luke", "Luke");
+		}
+
+	};
+
+	new JNDISecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testLookup("test-pacl:Luke", "Luke");
+		}
+
+	};
+
+	new JNDISecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testLookup("test-pacl:john 3:16", "John");
+		}
+
+	};
+	%>
+
+<p>
+	<h3>Unbind</h3>
+</p>
+
+<p>
+
+	<%
+	new JNDISecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testUnbind("test-pacl:matthew");
+		}
+
+	};
+
+	new JNDISecurityExceptionTest(out, themeDisplay, true) {
+
+		protected void test() throws Exception {
+			testUnbind("test-pacl:Matthew");
+		}
+
+	};
+
+	new JNDISecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testUnbind("test-pacl:mark");
+		}
+
+	};
+
+	new JNDISecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testUnbind("test-pacl:Mark");
+		}
+
+	};
+
+	new JNDISecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testUnbind("test-pacl:luke");
+		}
+
+	};
+
+	new JNDISecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testUnbind("test-pacl:Luke");
+		}
+
+	};
+
+	new JNDISecurityExceptionTest(out, themeDisplay, false) {
+
+		protected void test() throws Exception {
+			testUnbind("test-pacl:john 3:16");
+		}
+
+	};
+	%>
+
+</p>
+
+<liferay-ui:header
 	title="Services: Portal"
 />
 
@@ -1483,6 +1693,9 @@ private static String _assertTrue(boolean value) {
 	}
 }
 
+private class ExpectedTestException extends Exception {
+}
+
 private class FileSecurityExceptionTest extends SecurityExceptionTest {
 
 	public FileSecurityExceptionTest(Writer writer, ThemeDisplay themeDisplay, boolean expectSecurityException) throws IOException {
@@ -1610,6 +1823,57 @@ private class FileSecurityExceptionTest extends SecurityExceptionTest {
 		byte[] bytes = FileUtil.getBytes(file);
 
 		FileUtil.write(file, bytes);
+	}
+
+}
+
+private class JNDISecurityExceptionTest extends SecurityExceptionTest {
+
+	public JNDISecurityExceptionTest(Writer writer, ThemeDisplay themeDisplay, boolean expectSecurityException) throws IOException {
+		super(writer, themeDisplay, expectSecurityException);
+	}
+
+	protected void bind(String name, Object object) throws Exception {
+		Context context = new InitialContext();
+
+		context.bind(name, object);
+	}
+
+	protected Object lookup(String name) throws Exception {
+		Context context = new InitialContext();
+
+		return context.lookup(name);
+	}
+
+	protected void unbind(String name) throws Exception {
+		Context context = new InitialContext();
+
+		context.unbind(name);
+	}
+
+	protected void testBind(String name, Object object) throws Exception {
+		writer.write(name);
+		writer.write("=");
+
+		bind(name, object);
+	}
+
+	protected void testLookup(String name, String expectedObject) throws Exception {
+		writer.write(name);
+		writer.write("=");
+
+		Object actualObject = lookup(name);
+
+		if (!expectedObject.equals(actualObject)) {
+			throw new ExpectedTestException();
+		}
+	}
+
+	protected void testUnbind(String name) throws Exception {
+		writer.write(name);
+		writer.write("=");
+
+		unbind(name);
 	}
 
 }
