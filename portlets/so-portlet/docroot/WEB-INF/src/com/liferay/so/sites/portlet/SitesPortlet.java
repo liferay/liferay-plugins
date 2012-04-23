@@ -412,6 +412,27 @@ public class SitesPortlet extends MVCPortlet {
 	}
 
 	@Override
+	public void processAction(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws PortletException {
+
+		try {
+			String actionName = ParamUtil.getString(
+				actionRequest, ActionRequest.ACTION_NAME);
+
+			if (actionName.equals("addSite")) {
+				addSite(actionRequest, actionResponse);
+			}
+			else {
+				super.processAction(actionRequest, actionResponse);
+			}
+		}
+		catch (Exception e) {
+			throw new PortletException(e);
+		}
+	}
+
+	@Override
 	public void serveResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws PortletException {
