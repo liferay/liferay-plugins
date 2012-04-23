@@ -26,14 +26,19 @@ User selUser = (User)request.getAttribute("user.selUser");
 
 <aui:fieldset column="<%= true %>" cssClass="aui-w50">
 	<aui:input name="screenName" />
+
 	<aui:input bean="<%= user %>" model="<%= User.class %>" name="emailAddress">
 		<c:if test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.USERS_EMAIL_ADDRESS_REQUIRED) %>">
 			<aui:validator name="required" />
 		</c:if>
 	</aui:input>
+
 	<aui:input name="firstName" />
+
 	<aui:input name="middleName" />
+
 	<aui:input name="lastName" />
+
 	<aui:input name="jobTitle" />
 </aui:fieldset>
 

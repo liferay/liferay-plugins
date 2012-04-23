@@ -347,7 +347,7 @@ request.setAttribute("view_user.jsp-user", user2);
 			var <portlet:namespace />openDialog = function(event) {
 				var node = event.currentTarget;
 
-				var uri = '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/contacts_center/edit_user_dialogs.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';
+				var uri = '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/contacts_center/edit_user_dialogs.jsp" /></portlet:renderURL>';
 
 				if (node.getAttribute('data-sectionId')) {
 					uri = Liferay.Util.addParams('curSectionId=' + node.getAttribute('data-sectionId'), uri) || uri;
