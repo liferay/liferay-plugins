@@ -68,7 +68,7 @@ public class HotDeployMessageListener extends BaseMessageListener {
 		String layoutSetPrototypeName = TextFormatter.format(
 			servletContextName, TextFormatter.J);
 
-		layoutSetPrototypeName += " " + System.currentTimeMillis();
+		//layoutSetPrototypeName += " " + System.currentTimeMillis();
 
 		File larFile = new File(resourcesDir, "/archive.lar");
 
