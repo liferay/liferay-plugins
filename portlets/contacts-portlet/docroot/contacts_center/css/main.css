@@ -627,7 +627,7 @@ $toolbar-bg: #DCE3EA;
 
 .contact-dialog {
 	input[type="text"], textarea {
-    	width: 90%;
+		width: 90%;
 	}
 
 	.aui-field-text {
@@ -674,6 +674,14 @@ $toolbar-bg: #DCE3EA;
 		img {
 			margin-left: 1.5em;
 			margin-top: 2.4em;
+		}
+	}
+
+	.user-porfile-image {
+		padding-top: 20px;
+
+		.lfr-change-logo {
+			background: none;
 		}
 	}
 }
