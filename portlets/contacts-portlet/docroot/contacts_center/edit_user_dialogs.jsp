@@ -40,7 +40,7 @@ if (selUser != null) {
 
 	<div id="<portlet:namespace />updateUserDialog">
 		<aui:form action="" method="post" name="dialogForm" onSubmit="<%= taglibOnSubmit %>">
-			<aui:input name="redirect" type="hidden"  value="<%= redirect %>" />
+			<aui:input name="redirect" type="hidden"  value="<%= selUser.getDisplayURL(themeDisplay) %>" />
 			<aui:input name="fieldGroup" type="hidden"  value="<%= curSectionId %>" />
 			<aui:input name="p_u_i_d" type="hidden" value="<%= (selUser != null) ? selUser.getUserId() : 0 %>" />
 

@@ -28,11 +28,16 @@ import com.liferay.portal.AddressZipException;
 import com.liferay.portal.ContactFirstNameException;
 import com.liferay.portal.ContactFullNameException;
 import com.liferay.portal.ContactLastNameException;
+import com.liferay.portal.DuplicateUserEmailAddressException;
 import com.liferay.portal.EmailAddressException;
 import com.liferay.portal.NoSuchCountryException;
 import com.liferay.portal.NoSuchListTypeException;
 import com.liferay.portal.NoSuchRegionException;
 import com.liferay.portal.PhoneNumberException;
+import com.liferay.portal.ReservedUserEmailAddressException;
+import com.liferay.portal.ReservedUserScreenNameException;
+import com.liferay.portal.UserEmailAddressException;
+import com.liferay.portal.UserScreenNameException;
 import com.liferay.portal.UserSmsException;
 import com.liferay.portal.WebsiteURLException;
 import com.liferay.portal.kernel.bean.BeanParamUtil;
@@ -473,6 +478,9 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			else if (e instanceof ContactLastNameException) {
 				message = "please-enter-a-valid-last-name";
 			}
+			else if (e instanceof DuplicateUserEmailAddressException) {
+				message = "the-email-address-you-requested-is-already-taken";
+			}
 			else if (e instanceof EmailAddressException) {
 				message = "please-enter-a-valid-email-address";
 			}
@@ -487,6 +495,18 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			}
 			else if (e instanceof PhoneNumberException) {
 				message = "please-enter-a-valid-phone-number";
+			}
+			else if (e instanceof ReservedUserEmailAddressException) {
+				message = "the-email-address-you-requested-is-reserveds";
+			}
+			else if (e instanceof ReservedUserScreenNameException) {
+				message = "the-screen-name-you-requested-is-reserved";
+			}
+			else if (e instanceof UserEmailAddressException) {
+				message = "please-enter-a-valid-email-address";
+			}
+			else if (e instanceof UserScreenNameException) {
+				message = "please-enter-a-valid-screen-name";
 			}
 			else if (e instanceof UserSmsException) {
 				message = "please-enter-a-sms-id-that-is-a-valid-email-address";
@@ -1002,14 +1022,18 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		String comments = BeanParamUtil.getString(
 			user, actionRequest, "comments");
+		String emailAddress = BeanParamUtil.getString(
+			user, actionRequest, "emailAddress");
 		String firstName = BeanParamUtil.getString(
 			user, actionRequest, "firstName");
 		String jobTitle = BeanParamUtil.getString(
 			user, actionRequest, "jobTitle");
-		String middleName = BeanParamUtil.getString(
-			user, actionRequest, "middleName");
 		String lastName = BeanParamUtil.getString(
 			user, actionRequest, "lastName");
+		String middleName = BeanParamUtil.getString(
+			user, actionRequest, "middleName");
+		String screenName = BeanParamUtil.getString(
+			user, actionRequest, "screenName");
 
 		Contact contact = user.getContact();
 
@@ -1049,13 +1073,13 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			user.getUserId(), user.getPasswordUnencrypted(),
 			user.getPasswordUnencrypted(), user.getPasswordUnencrypted(),
 			user.getPasswordReset(), user.getReminderQueryQuestion(),
-			user.getReminderQueryAnswer(), user.getScreenName(),
-			user.getEmailAddress(), user.getFacebookId(), user.getOpenId(),
-			user.getLanguageId(), user.getTimeZoneId(), user.getGreeting(),
-			comments, firstName, middleName, lastName, contact.getPrefixId(),
-			contact.getSuffixId(), user.isMale(), birthdayMonth, birthdayDay,
-			birthdayYear, smsSn, aimSn, facebookSn, icqSn, jabberSn, msnSn,
-			mySpaceSn, skypeSn, twitterSn, ymSn, jobTitle, user.getGroupIds(),
+			user.getReminderQueryAnswer(), screenName, emailAddress,
+			user.getFacebookId(), user.getOpenId(), user.getLanguageId(),
+			user.getTimeZoneId(), user.getGreeting(), comments, firstName,
+			middleName, lastName, contact.getPrefixId(), contact.getSuffixId(),
+			user.isMale(), birthdayMonth, birthdayDay, birthdayYear, smsSn,
+			aimSn, facebookSn, icqSn, jabberSn, msnSn, mySpaceSn, skypeSn,
+			twitterSn, ymSn, jobTitle, user.getGroupIds(),
 			user.getOrganizationIds(), user.getRoleIds(), userGroupRoles,
 			user.getUserGroupIds(), user.getAddresses(), emailAddresses,
 			user.getPhones(), user.getWebsites(), announcementsDeliveries,

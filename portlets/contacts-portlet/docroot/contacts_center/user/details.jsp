@@ -25,6 +25,12 @@ User selUser = (User)request.getAttribute("user.selUser");
 <h3><liferay-ui:message key="details" /></h3>
 
 <aui:fieldset column="<%= true %>" cssClass="aui-w50">
+	<aui:input name="screenName" />
+	<aui:input bean="<%= user %>" model="<%= User.class %>" name="emailAddress">
+		<c:if test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.USERS_EMAIL_ADDRESS_REQUIRED) %>">
+			<aui:validator name="required" />
+		</c:if>
+	</aui:input>
 	<aui:input name="firstName" />
 	<aui:input name="middleName" />
 	<aui:input name="lastName" />
@@ -32,7 +38,7 @@ User selUser = (User)request.getAttribute("user.selUser");
 </aui:fieldset>
 
 <aui:fieldset column="<%= true %>" cssClass="aui-w50">
-	<div id="<portlet:namespace />userDetailsDialog">
+	<div class="user-porfile-image" id="<portlet:namespace />userProfileImage">
 		<c:if test="<%= selUser != null %>">
 
 			<%
@@ -61,7 +67,7 @@ User selUser = (User)request.getAttribute("user.selUser");
 
 <aui:script use="aui-base">
 	window['<%= PortalUtil.getPortletNamespace(PortletKeys.USERS_ADMIN) %>changeLogo'] = function (logoURL) {
-		var avatarDialog = A.one('#<portlet:namespace />userDetailsDialog .avatar');
+		var avatarDialog = A.one('#<portlet:namespace />userProfileImage .avatar');
 
 		if (avatarDialog) {
 			avatarDialog.attr('src', logoURL);
