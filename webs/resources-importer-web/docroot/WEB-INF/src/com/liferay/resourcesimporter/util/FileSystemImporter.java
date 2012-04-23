@@ -138,7 +138,7 @@ public class FileSystemImporter extends BaseImporter {
 
 			JournalArticle journalArticle =
 				JournalArticleLocalServiceUtil.addArticle(
-					userId, groupId, 0, 0, journalArticleId, false,
+					userId, groupId, 0, 0, 0, journalArticleId, false,
 					JournalArticleConstants.VERSION_DEFAULT, titleMap, null,
 					content, "general", journalStructureId, journalTemplateId,
 					StringPool.BLANK, 1, 1, 2010, 0, 0, 0, 0, 0, 0, 0, true, 0,
