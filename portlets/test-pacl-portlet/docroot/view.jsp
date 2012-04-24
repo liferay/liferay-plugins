@@ -17,6 +17,228 @@
 <%@ include file="/init.jsp" %>
 
 <liferay-ui:header
+	title="Class Loader"
+/>
+
+<p>
+	<h3>Get Class Loader: JDK</h3>
+</p>
+
+<p>
+	com.liferay.chat.service.EntryLocalService#getClass#getClassLoader=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				EntryLocalService entryLocalService = EntryLocalServiceUtil.getService();
+
+				Class<?> clazz = entryLocalService.getClass();
+
+				clazz.getClassLoader();
+			}
+
+		};
+		%>
+
+	com.liferay.portal.util.Portal#getClass#getClassLoader=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				Portal portal = PortalUtil.getPortal();
+
+				Class<?> clazz = portal.getClass();
+
+				clazz.getClassLoader();
+			}
+
+		};
+		%>
+
+	com.liferay.portlet.blogs.service.BlogsEntryLocalService#getClass#getClassLoader=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				BlogsEntryLocalService blogsEntryLocalService = BlogsEntryLocalServiceUtil.getService();
+
+				Class<?> clazz = blogsEntryLocalService.getClass();
+
+				clazz.getClassLoader();
+			}
+
+		};
+		%>
+
+	com.liferay.testpacl.service.FooLocalService#getClass#getClassLoader=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				FooLocalService fooLocalService = FooLocalServiceUtil.getService();
+
+				Class<?> clazz = fooLocalService.getClass();
+
+				clazz.getClassLoader();
+			}
+
+		};
+		%>
+
+	com.liferay.testpacl.util.TestPACLUtil.class#getClassLoader=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				TestPACLUtil.class.getClassLoader();
+			}
+
+		};
+		%>
+
+	java.lang.ClassLoader#getSystemClassLoader=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				ClassLoader.getSystemClassLoader();
+			}
+
+		};
+		%>
+
+	java.lang.Class#getClassLoader=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				Class<?> clazz = getClass();
+
+				clazz.getClassLoader();
+			}
+
+		};
+		%>
+
+	java.lang.Object.class#getClassLoader=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				Object.class.getClassLoader();
+			}
+
+		};
+		%>
+
+	java.lang.Object#getClass#getClassLoader=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				Object object = new Object();
+
+				Class<?> clazz = object.getClass();
+
+				clazz.getClassLoader();
+			}
+
+		};
+		%>
+
+	java.lang.Thread#getContextClassLoader=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				Thread thread = Thread.currentThread();
+
+				thread.getContextClassLoader();
+			}
+
+		};
+		%>
+
+</p>
+
+<p>
+	<h3>Get Class Loader: Portal</h3>
+</p>
+
+<p>
+	PortalClassLoaderUtil#getClassLoader=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				PortalClassLoaderUtil.getClassLoader();
+			}
+
+		};
+		%>
+
+	PortletClassLoaderUtil#getClassLoader("1_WAR_chatportlet")=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				PortletClassLoaderUtil.getClassLoader("1_WAR_chatportlet");
+			}
+
+		};
+		%>
+
+	PortletClassLoaderUtil#getClassLoader("1_WAR_chatportl3t")=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				PortletClassLoaderUtil.getClassLoader("1_WAR_chatportl3t");
+			}
+
+		};
+		%>
+
+	PortletClassLoaderUtil#getClassLoader("chat-portlet")=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				PortletClassLoaderUtil.getClassLoader("chat-portlet");
+			}
+
+		};
+		%>
+
+	PortletClassLoaderUtil#getClassLoader("chat-portl3t")=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				PortletClassLoaderUtil.getClassLoader("chat-portl3t");
+			}
+
+		};
+		%>
+
+</p>
+
+<liferay-ui:header
 	title="Dynamic Query"
 />
 
