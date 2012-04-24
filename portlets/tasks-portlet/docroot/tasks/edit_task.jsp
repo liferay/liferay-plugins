@@ -125,7 +125,7 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 				for (int curStatus : TasksEntryConstants.STATUSES) {
 				%>
 
-					<aui:option label="<%= TasksEntryConstants.getStatusLabel(curStatus) %>" selected="<%= tasksEntry.getStatus() == curStatus %>" />
+					<aui:option label="<%= TasksEntryConstants.getStatusLabel(curStatus) %>" selected="<%= tasksEntry.getStatus() == curStatus %>" value="<%= curStatus %>" />
 
 				<%
 				}
