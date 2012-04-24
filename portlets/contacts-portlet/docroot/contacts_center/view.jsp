@@ -515,6 +515,8 @@ portletURL.setWindowState(WindowState.NORMAL);
 			);
 
 			<c:if test="<%= !userPublicPage %>">
+				var contactsCenterHome = A.one('.contacts-portlet .contacts-center-home');
+
 				<c:if test="<%= !showOnlySiteMembers %>">
 					A.one('.contacts-portlet .add-contact').on(
 						'click',
@@ -522,19 +524,17 @@ portletURL.setWindowState(WindowState.NORMAL);
 							contactsCenter.showPopup('<%= LanguageUtil.get(pageContext, "add-contact") %>', '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/contacts_center/edit_entry.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>');
 						}
 					);
+
+					contactsCenterHome.one('.contacts').on(
+						'click',
+						function(event) {
+							contactFilterSelect.set('value', '<%= ContactsConstants.FILTER_BY_TYPE_MY_CONTACTS %>');
+
+							contactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
+						},
+						'a'
+					);
 				</c:if>
-
-				var contactsCenterHome = A.one('.contacts-portlet .contacts-center-home');
-
-				contactsCenterHome.one('.contacts').on(
-					'click',
-					function(event) {
-						contactFilterSelect.set('value', '<%= ContactsConstants.FILTER_BY_TYPE_MY_CONTACTS %>');
-
-						contactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
-					},
-					'a'
-				);
 
 				contactsCenterHome.one('.connections').on(
 					'click',
