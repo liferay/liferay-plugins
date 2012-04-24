@@ -82,6 +82,9 @@ public class UserListener extends BaseModelListener<User> {
 				LayoutSetLocalServiceUtil.updateLayoutSetPrototypeLinkEnabled(
 					group.getGroupId(), false, true,
 					publicLayoutSetPrototype.getUuid());
+
+				LayoutLocalServiceUtil.updatePriorities(
+					group.getGroupId(), false);
 			}
 
 			LayoutSetPrototype privateLayoutSetPrototype =
@@ -91,6 +94,9 @@ public class UserListener extends BaseModelListener<User> {
 				LayoutSetLocalServiceUtil.updateLayoutSetPrototypeLinkEnabled(
 					group.getGroupId(), true, true,
 					privateLayoutSetPrototype.getUuid());
+
+				LayoutLocalServiceUtil.updatePriorities(
+					group.getGroupId(), true);
 			}
 
 			enableSocialOffice(group);
