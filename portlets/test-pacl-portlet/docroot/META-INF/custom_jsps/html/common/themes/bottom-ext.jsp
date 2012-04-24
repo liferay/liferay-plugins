@@ -15,5 +15,5 @@
 --%>
 
 <%
-throw new Exception("Hook custom JSPs should not have been allowed");
+throw new Exception("Custom JSP directory is not protected");
 %>
