@@ -60,7 +60,10 @@ AUI().use(
 				if (!instance._popup) {
 					instance._popup = new A.Dialog(
 						{
-							centered: true,
+							align: {
+								node: null,
+								points: ['tc', 'tc']
+							},
 							constrain2view: true,
 							cssClass: 'tasks-dialog',
 							modal: true,
