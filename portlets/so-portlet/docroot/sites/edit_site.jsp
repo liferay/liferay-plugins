@@ -95,7 +95,12 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 
 					</aui:select>
 
-					<aui:select name="type">
+					<aui:select label="visibility" name="privateLayout">
+						<aui:option label="public" value="<%= Boolean.FALSE.toString() %>" />
+						<aui:option label="private" value="<%= Boolean.TRUE.toString() %>" />
+					</aui:select>
+
+					<aui:select name="membershipType">
 						<aui:option label="open" value="<%= GroupConstants.TYPE_SITE_OPEN %>" />
 						<aui:option label="restricted" value="<%= GroupConstants.TYPE_SITE_RESTRICTED %>" />
 						<aui:option label="private" value="<%= GroupConstants.TYPE_SITE_PRIVATE %>" />
