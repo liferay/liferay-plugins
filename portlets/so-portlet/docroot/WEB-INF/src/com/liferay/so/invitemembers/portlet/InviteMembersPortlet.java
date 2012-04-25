@@ -19,18 +19,29 @@ package com.liferay.so.invitemembers.portlet;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.so.service.MemberRequestLocalServiceUtil;
+import com.liferay.so.util.PortletKeys;
 import com.liferay.so.util.WebKeys;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletRequest;
+import javax.portlet.PortletURL;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Ryan Park
@@ -71,13 +82,56 @@ public class InviteMembersPortlet extends MVCPortlet {
 			return;
 		}
 
+		String loginURL = getLoginURL(actionRequest);
+
 		MemberRequestLocalServiceUtil.addMemberRequests(
 			themeDisplay.getUserId(), groupId, receiverUserIds, invitedRoleId,
-			invitedTeamId, themeDisplay);
+			invitedTeamId, loginURL, themeDisplay);
+
+		String createAccountURL = getCreateAccountURL(actionRequest);
 
 		MemberRequestLocalServiceUtil.addMemberRequests(
 			themeDisplay.getUserId(), groupId, receiverEmailAddresses,
-			invitedRoleId, invitedTeamId, themeDisplay);
+			invitedRoleId, invitedTeamId, createAccountURL, themeDisplay);
+	}
+
+	protected String getCreateAccountURL(ActionRequest actionRequest)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		HttpServletRequest httpServletRequest =
+			PortalUtil.getHttpServletRequest(actionRequest);
+
+		String createAccountURL = PortalUtil.getCreateAccountURL(
+			httpServletRequest, themeDisplay);
+
+		String redirect = getRedirectURL(actionRequest);
+
+		if (Validator.isNotNull(redirect)) {
+			createAccountURL = HttpUtil.addParameter(
+				createAccountURL, "redirect", redirect);
+		}
+
+		return createAccountURL;
+	}
+
+	protected String getLoginURL(ActionRequest actionRequest) throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String loginURL =
+			themeDisplay.getPortalURL() + themeDisplay.getURLSignIn();
+
+		String redirect = getRedirectURL(actionRequest);
+
+		if (Validator.isNotNull(redirect)) {
+			loginURL = HttpUtil.addParameter(loginURL, "redirect", redirect);
+		}
+
+		return loginURL;
 	}
 
 	protected long[] getLongArray(PortletRequest portletRequest, String name) {
@@ -88,6 +142,34 @@ public class InviteMembersPortlet extends MVCPortlet {
 		}
 
 		return StringUtil.split(GetterUtil.getString(value), 0L);
+	}
+
+	protected String getRedirectURL(ActionRequest actionRequest)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long groupId = ParamUtil.getLong(actionRequest, "groupId");
+
+		Group group = GroupLocalServiceUtil.getGroup(groupId);
+
+		if (!group.hasPublicLayouts()) {
+			return null;
+		}
+
+		PortletURL redirectURL =
+			PortletURLFactoryUtil.create(
+				actionRequest, PortletKeys.SITE_REDIRECTOR,
+				themeDisplay.getPlid(), PortletRequest.RENDER_PHASE);
+
+		redirectURL.setWindowState(LiferayWindowState.NORMAL);
+		redirectURL.setParameter("struts_action", "/my_sites/view");
+		redirectURL.setParameter("groupId", String.valueOf(groupId));
+		redirectURL.setParameter(
+			"privateLayout", String.valueOf(!group.hasPublicLayouts()));
+
+		return redirectURL.toString();
 	}
 
 	protected String[] getStringArray(
