@@ -58,7 +58,8 @@ public class MicroblogsEntryServiceImpl extends MicroblogsEntryServiceBaseImpl {
 	public List<MicroblogsEntry> getMicroblogsEntries(int start, int end)
 		throws PortalException, SystemException {
 
-		return microblogsEntryFinder.findByUserId(getUserId(), start, end);
+		return microblogsEntryFinder.findByUserId(
+			getGuestOrUserId(), start, end);
 	}
 
 	public List<MicroblogsEntry> getMicroblogsEntries(
@@ -66,19 +67,20 @@ public class MicroblogsEntryServiceImpl extends MicroblogsEntryServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		return microblogsEntryFinder.findByU_ATN(
-			getUserId(), assetTagName, start, end);
+			getGuestOrUserId(), assetTagName, start, end);
 	}
 
 	public int getMicroblogsEntriesCount()
 		throws PortalException, SystemException {
 
-		return microblogsEntryFinder.countByUserId(getUserId());
+		return microblogsEntryFinder.countByUserId(getGuestOrUserId());
 	}
 
 	public int getMicroblogsEntriesCount(String assetTagName)
 		throws PortalException, SystemException {
 
-		return microblogsEntryFinder.countByU_ATN(getUserId(), assetTagName);
+		return microblogsEntryFinder.countByU_ATN(
+			getGuestOrUserId(), assetTagName);
 	}
 
 	public MicroblogsEntry getMicroblogsEntry(long microblogsEntryId)
@@ -96,7 +98,7 @@ public class MicroblogsEntryServiceImpl extends MicroblogsEntryServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		return microblogsEntryFinder.findByU_MU(
-			getUserId(), microblogsEntryUserId, start, end);
+			getGuestOrUserId(), microblogsEntryUserId, start, end);
 	}
 
 	public List<MicroblogsEntry> getUserMicroblogsEntries(
@@ -104,14 +106,14 @@ public class MicroblogsEntryServiceImpl extends MicroblogsEntryServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		return microblogsEntryFinder.findByU_T_MU(
-			getUserId(), type, microblogsEntryUserId, start, end);
+			getGuestOrUserId(), type, microblogsEntryUserId, start, end);
 	}
 
 	public int getUserMicroblogsEntriesCount(long microblogsEntryUserId)
 		throws PortalException, SystemException {
 
 		return microblogsEntryFinder.countByU_MU(
-			getUserId(), microblogsEntryUserId);
+			getGuestOrUserId(), microblogsEntryUserId);
 	}
 
 	public int getUserMicroblogsEntriesCount(
@@ -119,7 +121,7 @@ public class MicroblogsEntryServiceImpl extends MicroblogsEntryServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		return microblogsEntryFinder.countByU_T_MU(
-			getUserId(), type, microblogsEntryUserId);
+			getGuestOrUserId(), type, microblogsEntryUserId);
 	}
 
 	public MicroblogsEntry updateMicroblogsEntry(
