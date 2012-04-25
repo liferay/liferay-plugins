@@ -149,6 +149,14 @@ AUI().use(
 				instance._directoryList = directoryList;
 			},
 
+			setTitle: function(title) {
+				var instance = this;
+
+				var popup = instance.getPopup();
+
+				popup.set('title', title);
+			},
+
 			updateSites: function(showSuccessMessage) {
 				var instance = this;
 

@@ -41,9 +41,7 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 	</div>
 
 	<div class="section-container">
-		<div class="section site-information">
-			<liferay-ui:header title="information" />
-
+		<div class="section site-information" data-title='<%= LanguageUtil.get(pageContext, "add-site-information")%>' data-step='<%= LanguageUtil.format(pageContext, "step-x-of-x", new Integer[] {1, 3})%>'>
 			<aui:fieldset>
 				<aui:input name="name" />
 
@@ -55,9 +53,7 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 		LayoutSetPrototype defaultLayoutSetPrototype = null;
 		%>
 
-		<div class="section site-settings aui-helper-hidden">
-			<liferay-ui:header title="settings" />
-
+		<div class="section site-settings aui-helper-hidden" data-title='<%= LanguageUtil.get(pageContext, "add-site-settings")%>' data-step='<%= LanguageUtil.format(pageContext, "step-x-of-x", new Integer[] {2, 3})%>'>
 			<aui:column columnWidth="<%= 50 %>" first="<%= true %>">
 
 				<%
@@ -109,50 +105,46 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 			</aui:column>
 
 			<aui:column columnWidth="<%= 50 %>">
-				<div class="template-details">
-					<c:if test="<%= defaultLayoutSetPrototype != null %>">
-						<h3 class="name"><%= defaultLayoutSetPrototype.getName(locale) %></h3>
+				<div class="portlet-msg-info">
+					<div class="template-details">
+						<c:if test="<%= defaultLayoutSetPrototype != null %>">
+							<h3 class="name"><%= defaultLayoutSetPrototype.getName(locale) %></h3>
 
-						<p class="description">
-							<%= defaultLayoutSetPrototype.getDescription() %>
-						</p>
+							<p class="description">
+								<%= defaultLayoutSetPrototype.getDescription() %>
+							</p>
 
-						<span>
-							<liferay-ui:message key="included-pages" />
-						</span>
+							<span>
+								<liferay-ui:message key="included-pages" />:
+							</span>
 
-						<ul class="pages">
+							<ul class="pages">
 
-							<%
-							Group layoutSetPrototypeGroup = defaultLayoutSetPrototype.getGroup();
+								<%
+								Group layoutSetPrototypeGroup = defaultLayoutSetPrototype.getGroup();
 
-							List<Layout> prototypeLayouts = LayoutLocalServiceUtil.getLayouts(layoutSetPrototypeGroup.getGroupId(), true, 0);
+								List<Layout> prototypeLayouts = LayoutLocalServiceUtil.getLayouts(layoutSetPrototypeGroup.getGroupId(), true, 0);
 
-							for (Layout prototypeLayout : prototypeLayouts) {
-							%>
+								for (Layout prototypeLayout : prototypeLayouts) {
+								%>
 
-								<li><%= prototypeLayout.getName(locale) %></li>
+									<li><%= prototypeLayout.getName(locale) %></li>
 
-							<%
-							}
-							%>
+								<%
+								}
+								%>
 
-						</ul>
-					</c:if>
+							</ul>
+						</c:if>
 
-					<div style="clear: both;"></div>
+						<div style="clear: both;"></div>
+					</div>
 				</div>
 			</aui:column>
 		</div>
 
-		<div class="section site-customization aui-helper-hidden">
-			<liferay-ui:header title="customization" />
-
-			<div class="set-label">
-				<liferay-ui:message key="included-pages" />
-			</div>
-
-			<div class="tip">
+		<div class="section site-customization aui-helper-hidden" data-title='<%= LanguageUtil.get(pageContext, "add-site-customization")%>' data-step='<%= LanguageUtil.format(pageContext, "step-x-of-x", new Integer[] {3, 3})%>'>
+			<div class="tip portlet-msg-info">
 				<liferay-ui:message key="uncheck-the-pages-to-exclude-from-your-site" />
 			</div>
 
@@ -191,6 +183,12 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 			<aui:button disabled="<%= true %>" id="previous" onClick='<%= renderResponse.getNamespace() + "previous()" %>' value="previous" />
 
 			<aui:button id="next" onClick='<%= renderResponse.getNamespace() + "next()" %>' value="next" />
+		</div>
+
+		<div id="<portlet:namespace />step" class="step">
+			<span>
+				<liferay-ui:message key="step-x-of-x" arguments="<%= new Integer[] {1, 3}%>" />
+			</span>
 		</div>
 
 		<div class="buttons-right">
@@ -298,6 +296,10 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 		window,
 		'<portlet:namespace />showSection',
 		function(section) {
+			Liferay.SO.Sites.setTitle(section.getAttribute('data-title'));
+
+			A.one('#<portlet:namespace />step').html('<span>' + section.getAttribute('data-step') + '</span>');
+
 			sectionContainer.all('.section').hide();
 
 			if (!section.previous()) {
