@@ -102,7 +102,12 @@ ECJ was automatically installed. Please rerun your task.
 			fork="true"
 			newenvironment="true"
 		>
-			<arg line="--limit ${limit} --init ${init}" />
+			<jvmarg value="-Xmx128m" />
+			<arg value="javadoc.base.dir=${basedir}" />
+			<arg value="javadoc.init=${init}" />
+			<arg value="javadoc.limit=${limit}" />
+			<arg value="javadoc.output.file=javadocs.xml" />
+			<arg value="javadoc.update=${update}" />
 		</java>
 	</target>
 
