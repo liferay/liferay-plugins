@@ -270,41 +270,7 @@ public class V2MarkupServiceImpl
 
 		UploadContext[] uploadContexts = resourceParams.getUploadContexts();
 
-		if (uploadContexts != null) {
-			for (UploadContext uploadContext : uploadContexts) {
-				NamedString mimeAttribute = uploadContext.getMimeAttributes(0);
-
-				String[] mimeAttributeValues = StringUtil.split(
-					mimeAttribute.getValue(), StringPool.SEMICOLON);
-
-				String name = StringUtil.replace(
-					mimeAttributeValues[1], "name=", StringPool.BLANK);
-
-				name = StringUtil.trim(name);
-
-				String fileName = StringUtil.replace(
-					mimeAttributeValues[2], "filename=", StringPool.BLANK);
-
-				fileName = StringUtil.trim(fileName);
-
-				String contentType = uploadContext.getMimeType();
-
-				String charSet = null;
-
-				if (contentType.contains(StringPool.SEMICOLON)) {
-					int pos = contentType.indexOf(StringPool.SEMICOLON);
-
-					charSet = contentType.substring(pos + 1);
-					charSet = StringUtil.trim(charSet);
-
-					contentType = contentType.substring(0, pos);
-				}
-
-				httpOptions.addFilePart(
-					name, fileName, uploadContext.getUploadData(), contentType,
-					charSet);
-			}
-		}
+		processUploadContexts(uploadContexts, httpOptions);
 
 		NamedString[] formParameters = resourceParams.getFormParameters();
 
@@ -433,41 +399,7 @@ public class V2MarkupServiceImpl
 
 		UploadContext[] uploadContexts = interactionParams.getUploadContexts();
 
-		if (uploadContexts != null) {
-			for (UploadContext uploadContext : uploadContexts) {
-				NamedString mimeAttribute = uploadContext.getMimeAttributes(0);
-
-				String[] mimeAttributeValues = StringUtil.split(
-					mimeAttribute.getValue(), StringPool.SEMICOLON);
-
-				String name = StringUtil.replace(
-					mimeAttributeValues[1], "name=", StringPool.BLANK);
-
-				name = StringUtil.trim(name);
-
-				String fileName = StringUtil.replace(
-					mimeAttributeValues[2], "filename=", StringPool.BLANK);
-
-				fileName = StringUtil.trim(fileName);
-
-				String contentType = uploadContext.getMimeType();
-
-				String charSet = null;
-
-				if (contentType.contains(StringPool.SEMICOLON)) {
-					int pos = contentType.indexOf(StringPool.SEMICOLON);
-
-					charSet = contentType.substring(pos + 1);
-					charSet = StringUtil.trim(charSet);
-
-					contentType = contentType.substring(0, pos);
-				}
-
-				httpOptions.addFilePart(
-					name, fileName, uploadContext.getUploadData(), contentType,
-					charSet);
-			}
-		}
+		processUploadContexts(uploadContexts, httpOptions);
 
 		NamedString[] formParameters = interactionParams.getFormParameters();
 
@@ -889,6 +821,46 @@ public class V2MarkupServiceImpl
 		String windowState = mimeRequest.getWindowState();
 
 		return windowState.substring(5);
+	}
+
+	protected void processUploadContexts(
+		UploadContext[] uploadContexts, Http.Options httpOptions) {
+
+		if (uploadContexts != null) {
+			for (UploadContext uploadContext : uploadContexts) {
+				NamedString mimeAttribute = uploadContext.getMimeAttributes(0);
+
+				String[] mimeAttributeValues = StringUtil.split(
+					mimeAttribute.getValue(), StringPool.SEMICOLON);
+
+				String name = StringUtil.replace(
+					mimeAttributeValues[1], "name=", StringPool.BLANK);
+
+				name = StringUtil.trim(name);
+
+				String fileName = StringUtil.replace(
+					mimeAttributeValues[2], "filename=", StringPool.BLANK);
+
+				fileName = StringUtil.trim(fileName);
+
+				String contentType = uploadContext.getMimeType();
+
+				String charSet = null;
+
+				if (contentType.contains(StringPool.SEMICOLON)) {
+					int pos = contentType.indexOf(StringPool.SEMICOLON);
+
+					charSet = contentType.substring(pos + 1);
+					charSet = StringUtil.trim(charSet);
+
+					contentType = contentType.substring(0, pos);
+				}
+
+				httpOptions.addFilePart(
+					name, fileName, uploadContext.getUploadData(), contentType,
+					charSet);
+			}
+		}
 	}
 
 	private static final String _PATH_WIDGET = "/widget/c/portal/layout";
