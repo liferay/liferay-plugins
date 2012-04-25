@@ -177,6 +177,13 @@
 			background-image: url(@portal_ctx@/html/icons/social_office.png);
 		}
 	}
+	.aui-field {
+		margin: 10px 0;
+	}
+
+	.aui-field-select {
+		display: block;
+	}
 
 	.buttons-left {
 		float: left;
@@ -207,6 +214,50 @@
 
 			select {
 				padding: 5px 1px;
+			}
+		}
+	}
+
+	.section {
+		min-height: 220px;
+	}
+
+	.site-customization {
+		.page {
+			margin: 5px 0;
+			width: 200px;
+
+			input {
+				margin-right: 5px;
+			}
+		}
+	}
+
+	.step {
+		color: #AAAAAA;
+		display: inline-block;
+		font-weight: bold;
+		margin-left: 5em;
+		text-shadow: 1px 1px 1px #DDDDDD;
+
+		span {
+			display: block;
+			margin: 5px;
+		}
+	}
+
+	.template-details {
+		background: none;
+		border: 0;
+		padding: 0;
+
+		ul.pages {
+			margin-left: 2em;
+
+			li {
+				float: none;
+				list-style: disc outside none;
+				padding-right: 0;
 			}
 		}
 	}
