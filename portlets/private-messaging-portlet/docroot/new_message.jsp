@@ -123,13 +123,13 @@ if (mbThreadId != 0) {
 								submitForm(document.<portlet:namespace />fm);
 							}
 							else {
-								<portlet:namespace />showMessage('<span class="portlet-msg-error"><%= LanguageUtil.get(pageContext, "the-following-users-were-not-found") %>&nbsp;<em>' + response.message + '</em></span>');
+								<portlet:namespace />showMessage('<span class="portlet-msg-error"><%= UnicodeLanguageUtil.get(pageContext, "the-following-users-were-not-found") %>&nbsp;<em>' + response.message + '</em></span>');
 
 								loadingMask.hide();
 							}
 						},
 						failure: function(event, id, obj) {
-							<portlet:namespace />showMessage('<span class="portlet-msg-error"><%= LanguageUtil.get(pageContext, "your-request-failed-to-complete") %></span>');
+							<portlet:namespace />showMessage('<span class="portlet-msg-error"><%= UnicodeLanguageUtil.get(pageContext, "your-request-failed-to-complete") %></span>');
 
 							loadingMask.hide();
 						}

@@ -271,7 +271,7 @@ else {
 
 		if (results.length == 0) {
 			buffer.push(
-				'<li class="empty"><liferay-ui:message key="there-are-no-results" /></li>'
+				'<li class="empty"><liferay-ui:message key="there-are-no-results" unicode="true" /></li>'
 			);
 		}
 		else {

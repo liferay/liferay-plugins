@@ -61,7 +61,7 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 						contactsToolbarChildren.push(
 							{
 								handler: function(event) {
-									Liferay.ContactsCenter.showPopup('<%= LanguageUtil.get(pageContext, "update-contact") %>', '<%= viewEntryURL %>');
+									Liferay.ContactsCenter.showPopup('<%= UnicodeLanguageUtil.get(pageContext, "update-contact") %>', '<%= viewEntryURL %>');
 								},
 								icon: 'edit',
 								id: '<portlet:namespace />edit',
@@ -72,7 +72,7 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 						contactsToolbarChildren.push(
 							{
 								handler: function(event) {
-									var confirmMessage = '<%= LanguageUtil.format(pageContext, "are-you-sure-you-want-to-delete-x-from-your-contacts", entry.getFullName()) %>';
+									var confirmMessage = '<%= UnicodeLanguageUtil.format(pageContext, "are-you-sure-you-want-to-delete-x-from-your-contacts", entry.getFullName()) %>';
 
 									if (confirm(confirmMessage)) {
 										A.io.request(

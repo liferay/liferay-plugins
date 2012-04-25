@@ -32,23 +32,23 @@ long entryId = ParamUtil.getLong(request, "entryId");
 		<div class="lfr-detail-info">
 			<c:if test="<%= showIcon %>">
 				<div class="lfr-contact-thumb">
-					<img alt="<%= HtmlUtil.escape(entry.getFullName()) %>" src='<%= themeDisplay.getPathImage() + "/user_male_portrait?img_id=0&t=" %>' />
+					<img alt="<%= entry.getFullName() %>" src='<%= themeDisplay.getPathImage() + "/user_male_portrait?img_id=0&t=" %>' />
 				</div>
 			</c:if>
 
 			<div class="<%= showIcon ? StringPool.BLANK : "no-icon" %> lfr-contact-info">
 				<div class="lfr-contact-name">
-					<%= HtmlUtil.escape(entry.getFullName()) %>
+					<%= entry.getFullName() %>
 				</div>
 
 				<div class="lfr-contact-extra">
-					<a href="mailto:<%= HtmlUtil.escape(entry.getEmailAddress()) %>"><%= HtmlUtil.escape(entry.getEmailAddress()) %></a>
+					<a href="mailto:<%= entry.getEmailAddress() %>"><%= entry.getEmailAddress() %></a>
 				</div>
 			</div>
 		</div>
 		<div class="lfr-detail-info">
 			<div class="comments">
-				<%= HtmlUtil.escape(entry.getComments()) %>
+				<%= entry.getComments() %>
 			</div>
 		</div>
 	</div>
