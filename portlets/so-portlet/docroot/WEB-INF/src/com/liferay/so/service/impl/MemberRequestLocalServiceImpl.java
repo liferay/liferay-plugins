@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.mail.MailMessage;
 import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
 import com.liferay.portal.kernel.notifications.NotificationEvent;
 import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StringPool;
@@ -33,11 +34,8 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.Group;
-import com.liferay.portal.model.GroupConstants;
-import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.User;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.so.MemberRequestAlreadyUsedException;
 import com.liferay.so.MemberRequestInvalidUserException;
 import com.liferay.so.invitemembers.util.InviteMembersConstants;
@@ -60,7 +58,7 @@ public class MemberRequestLocalServiceImpl
 	public MemberRequest addMemberRequest(
 			long userId, long groupId, long receiverUserId,
 			String receiverEmailAddress, long invitedRoleId, long invitedTeamId,
-			ThemeDisplay themeDisplay)
+			String createAccountURL, String loginURL, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		// Member request
@@ -91,7 +89,9 @@ public class MemberRequestLocalServiceImpl
 		// Email
 
 		try {
-			sendEmail(receiverEmailAddress, memberRequest, themeDisplay);
+			sendEmail(
+				receiverEmailAddress, memberRequest, createAccountURL, loginURL,
+				themeDisplay);
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
@@ -106,7 +106,8 @@ public class MemberRequestLocalServiceImpl
 
 	public void addMemberRequests(
 			long userId, long groupId, long[] receiverUserIds,
-			long invitedRoleId, long invitedTeamId, ThemeDisplay themeDisplay)
+			long invitedRoleId, long invitedTeamId, String loginURL,
+			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		for (long receiverUserId : receiverUserIds) {
@@ -120,13 +121,14 @@ public class MemberRequestLocalServiceImpl
 
 			addMemberRequest(
 				userId, groupId, receiverUserId, emailAddress, invitedRoleId,
-				invitedTeamId, themeDisplay);
+				invitedTeamId, StringPool.BLANK, loginURL, themeDisplay);
 		}
 	}
 
 	public void addMemberRequests(
 			long userId, long groupId, String[] emailAddresses,
-			long invitedRoleId, long invitedTeamId, ThemeDisplay themeDisplay)
+			long invitedRoleId, long invitedTeamId, String createAccountURL,
+			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		for (String emailAddress : emailAddresses) {
@@ -136,7 +138,7 @@ public class MemberRequestLocalServiceImpl
 
 			addMemberRequest(
 				userId, groupId, 0, emailAddress, invitedRoleId, invitedTeamId,
-				themeDisplay);
+				createAccountURL, StringPool.BLANK, themeDisplay);
 		}
 	}
 
@@ -241,31 +243,9 @@ public class MemberRequestLocalServiceImpl
 		return memberRequest;
 	}
 
-	protected String getCreateAccountURL(String key, ThemeDisplay themeDisplay)
-		throws Exception {
-
-		return getLoginURL(key, themeDisplay) +
-			"&p_p_id=58&_58_struts_action=%2Flogin%2Fcreate_account";
-	}
-
-	protected String getLoginURL(String key, ThemeDisplay themeDisplay)
-		throws Exception {
-
-		Group group = groupLocalService.getGroup(
-			themeDisplay.getCompanyId(), GroupConstants.GUEST);
-
-		long plid = PortalUtil.getPlidFromPortletId(
-			group.getGroupId(), PortletKeys.LOGIN);
-
-		Layout layout = layoutLocalService.getLayout(plid);
-
-		return PortalUtil.getLayoutFullURL(layout, themeDisplay, false) +
-			"?key=" + key;
-	}
-
 	protected void sendEmail(
 			String emailAddress, MemberRequest memberRequest,
-			ThemeDisplay themeDisplay)
+			String createAccountURL, String loginURL, ThemeDisplay themeDisplay)
 		throws Exception {
 
 		long companyId = memberRequest.getCompanyId();
@@ -312,10 +292,6 @@ public class MemberRequestLocalServiceImpl
 					"new_user_body.tmpl");
 		}
 
-		String createAccountURL = getCreateAccountURL(
-			memberRequest.getKey(), themeDisplay);
-		String loginURL = getLoginURL(memberRequest.getKey(), themeDisplay);
-
 		subject = StringUtil.replace(
 			subject,
 			new String[] {
@@ -325,6 +301,20 @@ public class MemberRequestLocalServiceImpl
 				group.getDescriptiveName(themeDisplay.getLocale()),
 				user.getFullName()
 			});
+
+		if (Validator.isNull(createAccountURL)) {
+			createAccountURL = themeDisplay.getPortalURL();
+		}
+
+		createAccountURL = HttpUtil.addParameter(
+			createAccountURL, "key", memberRequest.getKey());
+
+		if (Validator.isNull(loginURL)) {
+			loginURL = themeDisplay.getPortalURL();
+		}
+
+		createAccountURL = HttpUtil.addParameter(
+			loginURL, "key", memberRequest.getKey());
 
 		body = StringUtil.replace(
 			body,
