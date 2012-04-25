@@ -40,6 +40,7 @@ import com.liferay.portal.model.LayoutSet;
 import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.ActionKeys;
+import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.GroupServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
@@ -314,18 +315,24 @@ public class SitesPortlet extends MVCPortlet {
 			siteAssignmentsPortletURL.setParameter(
 				"groupId", String.valueOf(group.getGroupId()));
 
-			if (!GroupLocalServiceUtil.hasUserGroup(
-					themeDisplay.getUserId(), group.getGroupId()) &&
-				(group.getType() == GroupConstants.TYPE_SITE_OPEN)) {
+			boolean member = GroupLocalServiceUtil.hasUserGroup(
+				themeDisplay.getUserId(), group.getGroupId());
 
+			PermissionChecker permissionChecker =
+				themeDisplay.getPermissionChecker();
+
+			if (!member && (group.getType() == GroupConstants.TYPE_SITE_OPEN)) {
 				siteAssignmentsPortletURL.setParameter(
 					"addUserIds", String.valueOf(themeDisplay.getUserId()));
 
 				groupJSONObject.put(
 					"joinUrl", siteAssignmentsPortletURL.toString());
 			}
-			else if (GroupLocalServiceUtil.hasUserGroup(
-						themeDisplay.getUserId(), group.getGroupId())) {
+			else if (member &&
+					 ((group.getType() != GroupConstants.TYPE_SITE_PRIVATE) ||
+					  GroupPermissionUtil.contains(
+							permissionChecker, group.getGroupId(),
+							ActionKeys.ASSIGN_MEMBERS))) {
 
 				siteAssignmentsPortletURL.setParameter(
 					"removeUserIds", String.valueOf(themeDisplay.getUserId()));
@@ -335,8 +342,7 @@ public class SitesPortlet extends MVCPortlet {
 			}
 
 			if (GroupPermissionUtil.contains(
-					themeDisplay.getPermissionChecker(), group.getGroupId(),
-					ActionKeys.DELETE)) {
+					permissionChecker, group.getGroupId(), ActionKeys.DELETE)) {
 
 				PortletURL deletePortletURL =
 					liferayPortletResponse.createActionURL(
