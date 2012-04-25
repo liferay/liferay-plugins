@@ -70,6 +70,13 @@
 				if (response.width) {
 					frame.width(response.width);
 				}
+
+				Liferay.MarketplaceMessenger.postMessage(
+					{
+						message: 'success',
+						supportsHotDeploy: <%= ServerDetector.isSupportsHotDeploy() %>
+					}
+				);
 			}
 			else if (response.cmd == 'goto') {
 				var url = null;
