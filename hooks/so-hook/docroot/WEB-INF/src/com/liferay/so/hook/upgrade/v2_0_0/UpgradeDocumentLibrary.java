@@ -18,8 +18,6 @@
 package com.liferay.so.hook.upgrade.v2_0_0;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.repository.model.FileEntry;
-import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.model.Group;
@@ -29,8 +27,12 @@ import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
+import com.liferay.portlet.documentlibrary.model.DLFileEntry;
+import com.liferay.portlet.documentlibrary.model.DLFolder;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.service.DLFolderLocalServiceUtil;
 
 import java.util.List;
 
@@ -81,15 +83,15 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 
 		boolean deleteFolder = true;
 
-		List<FileEntry> fileEntries = DLAppLocalServiceUtil.getFileEntries(
-			groupId, rootFolderId);
+		List<DLFileEntry> dlFileEntries =
+			DLFileEntryLocalServiceUtil.getFileEntries(groupId, rootFolderId);
 
-		for (FileEntry fileEntry : fileEntries) {
+		for (DLFileEntry dlFileEntry : dlFileEntries) {
 			ServiceContext serviceContext = new ServiceContext();
 
 			try {
 				DLAppLocalServiceUtil.moveFileEntry(
-					fileEntry.getUserId(), fileEntry.getFileEntryId(),
+					dlFileEntry.getUserId(), dlFileEntry.getFileEntryId(),
 					DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, serviceContext);
 			}
 			catch (Exception e) {
@@ -97,17 +99,18 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 			}
 		}
 
-		List<Folder> folders = DLAppLocalServiceUtil.getFolders(
+		List<DLFolder> dlFolders = DLFolderLocalServiceUtil.getFolders(
 			groupId, rootFolderId);
 
-		for (Folder folder : folders) {
+		for (DLFolder dlFolder : dlFolders) {
 			ServiceContext serviceContext = new ServiceContext();
 
 			try {
 				DLAppLocalServiceUtil.updateFolder(
-					folder.getFolderId(),
+					dlFolder.getFolderId(),
 					DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-					folder.getName(), folder.getDescription(), serviceContext);
+					dlFolder.getName(), dlFolder.getDescription(),
+					serviceContext);
 			}
 			catch (Exception e) {
 				deleteFolder = false;
