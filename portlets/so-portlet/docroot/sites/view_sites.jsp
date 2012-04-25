@@ -144,7 +144,7 @@ else {
 					</span>
 				</c:if>
 
-				<c:if test="<%= member %>">
+				<c:if test="<%= member && ((group.getType() != GroupConstants.TYPE_SITE_PRIVATE) || GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.ASSIGN_MEMBERS)) %>">
 					<span class="action leave">
 						<liferay-portlet:actionURL portletName="<%= PortletKeys.SITES_ADMIN %>" var="leaveURL" windowState="<%= WindowState.NORMAL.toString() %>">
 							<portlet:param name="struts_action" value="/sites_admin/edit_site_assignments" />
