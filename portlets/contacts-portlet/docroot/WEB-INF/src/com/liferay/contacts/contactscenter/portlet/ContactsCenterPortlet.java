@@ -741,6 +741,8 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			Entry entry, String redirect)
 		throws Exception {
 
+		entry = entry.toEscapedModel();
+
 		JSONObject contactJSONObject = JSONFactoryUtil.createJSONObject();
 
 		contactJSONObject.put("emailAddress", entry.getEmailAddress());
@@ -841,6 +843,8 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			PortletResponse portletResponse, ThemeDisplay themeDisplay,
 			User user)
 		throws Exception {
+
+		user = user.toEscapedModel();
 
 		JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
 

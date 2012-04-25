@@ -32,7 +32,7 @@
 			</liferay-portlet:renderURL>
 
 			<li>
-				<a class="open-sites-directory" href="javascript:;" onClick="<portlet:namespace />displayDirectoryPopup('<%= viewSitesURL %>', '<liferay-ui:message key="more-sites" />');">
+				<a class="open-sites-directory" href="javascript:;" onClick="<portlet:namespace />displayDirectoryPopup('<%= viewSitesURL %>', '<liferay-ui:message key="more-sites" unicode="true" />');">
 					<span class="site-name">
 						<liferay-ui:icon
 							message="more-sites"

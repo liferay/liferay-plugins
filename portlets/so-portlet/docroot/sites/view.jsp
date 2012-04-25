@@ -219,27 +219,27 @@ pageContext.setAttribute("portletURL", portletURL);
 				<c:if test="<%= PortalPermissionUtil.contains(permissionChecker, ActionKeys.ADD_COMMUNITY) %>">
 					{
 						icon: 'plusthick',
-						label: '<liferay-ui:message key="add-site" />',
+						label: '<liferay-ui:message key="add-site" unicode="true" />',
 						on: {
 							click: function(event) {
 								<liferay-portlet:renderURL var="addSiteURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 									<portlet:param name="mvcPath" value="/sites/edit_site.jsp" />
 								</liferay-portlet:renderURL>
 
-								Liferay.SO.Sites.displayPopup('<%= addSiteURL %>', '<liferay-ui:message key="add-site" />');
+								Liferay.SO.Sites.displayPopup('<%= addSiteURL %>', '<liferay-ui:message key="add-site" unicode="true" />');
 							}
 						}
 					},
 				</c:if>
 				{
-					label: '<liferay-ui:message key="more-sites" />',
+					label: '<liferay-ui:message key="more-sites" unicode="true" />',
 					on: {
 						click: function(event) {
 							<liferay-portlet:renderURL var="viewSitesURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 								<portlet:param name="mvcPath" value="/sites/view_sites.jsp" />
 							</liferay-portlet:renderURL>
 
-							Liferay.SO.Sites.displayPopup('<%= viewSitesURL %>', '<liferay-ui:message key="more-sites" />');
+							Liferay.SO.Sites.displayPopup('<%= viewSitesURL %>', '<liferay-ui:message key="more-sites" unicode="true" />');
 						}
 					}
 				}
@@ -288,7 +288,7 @@ pageContext.setAttribute("portletURL", portletURL);
 				<portlet:param name="mvcPath" value="/sites/view_sites.jsp" />
 			</liferay-portlet:renderURL>
 
-			Liferay.SO.Sites.displayPopup('<%= viewSitesURL %>', '<liferay-ui:message key="sites" />', data);
+			Liferay.SO.Sites.displayPopup('<%= viewSitesURL %>', '<liferay-ui:message key="sites" unicode="true" />', data);
 		},
 		'.more a'
 	);
