@@ -50,16 +50,18 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 						title = titleNode.get('innerHTML');
 					}
 
-					var viewportRegion = A.getBody().get('viewportRegion');
-
 					var dialog = new A.Dialog(
 						{
+							align: {
+								node: null,
+								points: ['tc', 'tc']
+							},
 							cssClass: 'so-portlet-invite-members',
 							destroyOnClose: true,
+							modal: true,
 							resizable: false,
 							title: title,
 							width: 700,
-							xy: [viewportRegion.left + 20, viewportRegion.top + 20]
 						}
 					).plug(
 						A.Plugin.IO,
