@@ -826,40 +826,42 @@ public class V2MarkupServiceImpl
 	protected void processUploadContexts(
 		UploadContext[] uploadContexts, Http.Options httpOptions) {
 
-		if (uploadContexts != null) {
-			for (UploadContext uploadContext : uploadContexts) {
-				NamedString mimeAttribute = uploadContext.getMimeAttributes(0);
+		if (uploadContexts == null) {
+			return;
+		}
 
-				String[] mimeAttributeValues = StringUtil.split(
-					mimeAttribute.getValue(), StringPool.SEMICOLON);
+		for (UploadContext uploadContext : uploadContexts) {
+			NamedString mimeAttribute = uploadContext.getMimeAttributes(0);
 
-				String name = StringUtil.replace(
-					mimeAttributeValues[1], "name=", StringPool.BLANK);
+			String[] mimeAttributeValues = StringUtil.split(
+				mimeAttribute.getValue(), StringPool.SEMICOLON);
 
-				name = StringUtil.trim(name);
+			String name = StringUtil.replace(
+				mimeAttributeValues[1], "name=", StringPool.BLANK);
 
-				String fileName = StringUtil.replace(
-					mimeAttributeValues[2], "filename=", StringPool.BLANK);
+			name = StringUtil.trim(name);
 
-				fileName = StringUtil.trim(fileName);
+			String fileName = StringUtil.replace(
+				mimeAttributeValues[2], "filename=", StringPool.BLANK);
 
-				String contentType = uploadContext.getMimeType();
+			fileName = StringUtil.trim(fileName);
 
-				String charSet = null;
+			String contentType = uploadContext.getMimeType();
 
-				if (contentType.contains(StringPool.SEMICOLON)) {
-					int pos = contentType.indexOf(StringPool.SEMICOLON);
+			String charSet = null;
 
-					charSet = contentType.substring(pos + 1);
-					charSet = StringUtil.trim(charSet);
+			if (contentType.contains(StringPool.SEMICOLON)) {
+				int pos = contentType.indexOf(StringPool.SEMICOLON);
 
-					contentType = contentType.substring(0, pos);
-				}
+				charSet = contentType.substring(pos + 1);
+				charSet = StringUtil.trim(charSet);
 
-				httpOptions.addFilePart(
-					name, fileName, uploadContext.getUploadData(), contentType,
-					charSet);
+				contentType = contentType.substring(0, pos);
 			}
+
+			httpOptions.addFilePart(
+				name, fileName, uploadContext.getUploadData(), contentType,
+				charSet);
 		}
 	}
 
