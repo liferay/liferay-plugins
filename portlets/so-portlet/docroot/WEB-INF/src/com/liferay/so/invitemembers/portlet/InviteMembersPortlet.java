@@ -81,21 +81,27 @@ public class InviteMembersPortlet extends MVCPortlet {
 			return;
 		}
 
-		Group group = GroupLocalServiceUtil.getGroup(groupId);
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			actionRequest);
 
-		PortletURL portletURL =
-			PortletURLFactoryUtil.create(
-				actionRequest, PortletKeys.SITE_REDIRECTOR,
-				themeDisplay.getPlid(), PortletRequest.RENDER_PHASE);
+		PortletURL portletURL = PortletURLFactoryUtil.create(
+			actionRequest, PortletKeys.SITE_REDIRECTOR, themeDisplay.getPlid(),
+			PortletRequest.RENDER_PHASE);
 
-		portletURL.setWindowState(LiferayWindowState.NORMAL);
 		portletURL.setParameter("struts_action", "/my_sites/view");
 		portletURL.setParameter("groupId", String.valueOf(groupId));
+
+		Group group = GroupLocalServiceUtil.getGroup(groupId);
+
 		portletURL.setParameter(
 			"privateLayout", String.valueOf(!group.hasPublicLayouts()));
 
+		portletURL.setWindowState(LiferayWindowState.NORMAL);
+
 		String createAccountURL = PortalUtil.getCreateAccountURL(
 			PortalUtil.getHttpServletRequest(actionRequest), themeDisplay);
+
+		serviceContext.setAttribute("createAccountURL", createAccountURL);
 
 		createAccountURL = HttpUtil.addParameter(
 			createAccountURL, "redirect", portletURL.toString());
@@ -106,10 +112,6 @@ public class InviteMembersPortlet extends MVCPortlet {
 		loginURL = HttpUtil.addParameter(
 			loginURL, "redirect", portletURL.toString());
 
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			actionRequest);
-
-		serviceContext.setAttribute("createAccountURL", createAccountURL);
 		serviceContext.setAttribute("loginURL", loginURL);
 
 		MemberRequestLocalServiceUtil.addMemberRequests(
