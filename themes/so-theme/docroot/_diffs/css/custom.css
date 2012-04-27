@@ -30,7 +30,7 @@ a:hover {
 	position: static;
 }
 
-#skip-to-content, #navigation h1, .opens-new-window-accessible, #toggleFluid span {
+#skip-to-content, #navigation h1, .opens-new-window-accessible, #toggleFluid span, .site-breadcrumbs h1 {
 	clip: rect(0 0 0 0);
 	position: absolute;
 	text-indent: -9999em;
@@ -826,21 +826,53 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 /* Breadcrumbs */
 
-.breadcrumbs .last {
-	background-image: none;
+.site-breadcrumbs {
+	margin: 0 0 5px;
+	padding-top: 5px;
+	width: auto;
 }
 
-.breadcrumbs-horizontal {
-	li {
-		background: transparent url(../images/arrows/05_right.png) no-repeat scroll 100% 50%;
-		margin-right: 5px;
-		max-width: 50%;
-		padding-right: 15px;
-	}
+.site-breadcrumbs ul {
+	background-color: #FFF;
+}
 
-	.last {
-		margin-top: 0.2em;
-	}
+.site-breadcrumbs li {
+	background-image: none;
+	margin-right: 0;
+	padding-left: 0.75em;
+	padding-right: 0;
+}
+
+.site-breadcrumbs li span {
+	background: url(@theme_image_path@/common/breadcrumbs.png) no-repeat 100% 50%;
+	margin-right: 5px;
+	max-width: 50%;
+	padding-right: 15px;
+}
+
+.site-breadcrumbs li span a {
+	text-decoration: none;
+}
+
+.site-breadcrumbs li.first a {
+	color: #369;
+	font-weight: bold;
+}
+
+.site-breadcrumbs li.last a {
+	color: #4B5567;
+	font-size: 1.3em;
+}
+
+.site-breadcrumbs .last {
+	font-size: 1em;
+	margin-top: 0.2em;
+	padding-right: 0;
+}
+
+.site-breadcrumbs .last span {
+	background-image: none;
+	padding: 0;
 }
 
 /* Calendar */
