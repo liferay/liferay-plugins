@@ -35,7 +35,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
-import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.service.ServiceContext;
 import com.liferay.so.MemberRequestAlreadyUsedException;
 import com.liferay.so.MemberRequestInvalidUserException;
 import com.liferay.so.invitemembers.util.InviteMembersConstants;
@@ -49,7 +49,7 @@ import java.util.List;
 import javax.mail.internet.InternetAddress;
 
 /**
- * @author Ryan	Park
+ * @author Ryan Park
  * @author Jonathan Lee
  */
 public class MemberRequestLocalServiceImpl
@@ -58,7 +58,7 @@ public class MemberRequestLocalServiceImpl
 	public MemberRequest addMemberRequest(
 			long userId, long groupId, long receiverUserId,
 			String receiverEmailAddress, long invitedRoleId, long invitedTeamId,
-			String createAccountURL, String loginURL, ThemeDisplay themeDisplay)
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// Member request
@@ -89,9 +89,7 @@ public class MemberRequestLocalServiceImpl
 		// Email
 
 		try {
-			sendEmail(
-				receiverEmailAddress, memberRequest, createAccountURL, loginURL,
-				themeDisplay);
+			sendEmail(receiverEmailAddress, memberRequest, serviceContext);
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
@@ -106,8 +104,8 @@ public class MemberRequestLocalServiceImpl
 
 	public void addMemberRequests(
 			long userId, long groupId, long[] receiverUserIds,
-			long invitedRoleId, long invitedTeamId, String loginURL,
-			ThemeDisplay themeDisplay)
+			long invitedRoleId, long invitedTeamId,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		for (long receiverUserId : receiverUserIds) {
@@ -121,14 +119,14 @@ public class MemberRequestLocalServiceImpl
 
 			addMemberRequest(
 				userId, groupId, receiverUserId, emailAddress, invitedRoleId,
-				invitedTeamId, StringPool.BLANK, loginURL, themeDisplay);
+				invitedTeamId, serviceContext);
 		}
 	}
 
 	public void addMemberRequests(
 			long userId, long groupId, String[] emailAddresses,
-			long invitedRoleId, long invitedTeamId, String createAccountURL,
-			ThemeDisplay themeDisplay)
+			long invitedRoleId, long invitedTeamId,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		for (String emailAddress : emailAddresses) {
@@ -138,7 +136,7 @@ public class MemberRequestLocalServiceImpl
 
 			addMemberRequest(
 				userId, groupId, 0, emailAddress, invitedRoleId, invitedTeamId,
-				createAccountURL, StringPool.BLANK, themeDisplay);
+				serviceContext);
 		}
 	}
 
@@ -245,7 +243,7 @@ public class MemberRequestLocalServiceImpl
 
 	protected void sendEmail(
 			String emailAddress, MemberRequest memberRequest,
-			String createAccountURL, String loginURL, ThemeDisplay themeDisplay)
+			ServiceContext serviceContext)
 		throws Exception {
 
 		long companyId = memberRequest.getCompanyId();
@@ -298,22 +296,27 @@ public class MemberRequestLocalServiceImpl
 				"[$MEMBER_REQUEST_GROUP$]", "[$MEMBER_REQUEST_USER$]"
 			},
 			new String[] {
-				group.getDescriptiveName(themeDisplay.getLocale()),
+				group.getDescriptiveName(serviceContext.getLocale()),
 				user.getFullName()
 			});
 
+		String createAccountURL = (String)serviceContext.getAttribute(
+			"createAccountURL");
+
 		if (Validator.isNull(createAccountURL)) {
-			createAccountURL = themeDisplay.getPortalURL();
+			createAccountURL = serviceContext.getPortalURL();
 		}
 
 		createAccountURL = HttpUtil.addParameter(
 			createAccountURL, "key", memberRequest.getKey());
 
+		String loginURL = (String)serviceContext.getAttribute("loginURL");
+
 		if (Validator.isNull(loginURL)) {
-			loginURL = themeDisplay.getPortalURL();
+			loginURL = serviceContext.getPortalURL();
 		}
 
-		createAccountURL = HttpUtil.addParameter(
+		loginURL = HttpUtil.addParameter(
 			loginURL, "key", memberRequest.getKey());
 
 		body = StringUtil.replace(
@@ -326,7 +329,7 @@ public class MemberRequestLocalServiceImpl
 			},
 			new String[] {
 				fromAddress, fromName, createAccountURL,
-				group.getDescriptiveName(themeDisplay.getLocale()), loginURL,
+				group.getDescriptiveName(serviceContext.getLocale()), loginURL,
 				user.getFullName()
 			});
 
