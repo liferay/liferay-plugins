@@ -1050,7 +1050,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		position: relative;
 	}
 
-	h1.header-title, #blogsCommentsPanelContainer, .aui-form, .entry {
+	h1.header-title, #blogsCommentsPanelContainer, #_33_fm1 .aui-form, .entry {
 		margin: 0 auto;
 		max-width: 640px;
 	}
@@ -1064,6 +1064,10 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	h1.header-title {
 		font-size: 2em;
 		margin-top: 2em;
+	}
+
+	.entry {
+		position: relative;
 	}
 
 	.entry-date, .entry-title h2 {
