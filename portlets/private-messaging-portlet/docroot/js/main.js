@@ -85,7 +85,10 @@ AUI.add(
 
 				new A.Dialog(
 					{
-						centered: true,
+						align: {
+							node: null,
+							points: ['tc', 'tc']
+						},
 						cssClass: 'private-messaging-portlet',
 						destroyOnClose: true,
 						modal: true,
