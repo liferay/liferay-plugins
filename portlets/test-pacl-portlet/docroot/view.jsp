@@ -25,6 +25,34 @@
 </p>
 
 <p>
+	com.liferay.chat.model.EntryClp#toEscapedModel=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				long entryId = System.currentTimeMillis();
+
+				Entry newEntry = EntryLocalServiceUtil.createEntry(entryId);
+
+				newEntry.toEscapedModel();
+			}
+
+		};
+		%>
+
+	com.liferay.chat.model.EntryClp.class#getClassLoader=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				EntryClp.class.getClassLoader();
+			}
+
+		};
+		%>
+
 	com.liferay.chat.service.EntryLocalService#getClass#getClassLoader=
 
 		<%
@@ -191,7 +219,7 @@
 	PortletClassLoaderUtil#getClassLoader("1_WAR_chatportlet")=
 
 		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+		new SecurityExceptionTest(out, themeDisplay, true) {
 
 			protected void test() throws Exception {
 				PortletClassLoaderUtil.getClassLoader("1_WAR_chatportlet");
@@ -200,13 +228,13 @@
 		};
 		%>
 
-	PortletClassLoaderUtil#getClassLoader("1_WAR_chatportl3t")=
+	PortletClassLoaderUtil#getClassLoader("1_WAR_flashportlet")=
 
 		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+		new SecurityExceptionTest(out, themeDisplay, false) {
 
 			protected void test() throws Exception {
-				PortletClassLoaderUtil.getClassLoader("1_WAR_chatportl3t");
+				PortletClassLoaderUtil.getClassLoader("1_WAR_flashportlet");
 			}
 
 		};
@@ -215,7 +243,7 @@
 	PortletClassLoaderUtil#getClassLoader("chat-portlet")=
 
 		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
+		new SecurityExceptionTest(out, themeDisplay, true) {
 
 			protected void test() throws Exception {
 				PortletClassLoaderUtil.getClassLoader("chat-portlet");
@@ -224,13 +252,13 @@
 		};
 		%>
 
-	PortletClassLoaderUtil#getClassLoader("chat-portl3t")=
+	PortletClassLoaderUtil#getClassLoader("flash-portlet")=
 
 		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+		new SecurityExceptionTest(out, themeDisplay, false) {
 
 			protected void test() throws Exception {
-				PortletClassLoaderUtil.getClassLoader("chat-portl3t");
+				PortletClassLoaderUtil.getClassLoader("flash-portlet");
 			}
 
 		};
@@ -247,29 +275,25 @@
 </p>
 
 <p>
-	com.liferay.chat.model.Entry=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
-
-			protected void test() throws Exception {
-				ClassLoader classLoader = PortletClassLoaderUtil.getClassLoader("1_WAR_chatportlet");
-
-				DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(Entry.class, classLoader);
-			}
-
-		};
-		%>
-
-	com.liferay.chat.model.Status=
+	EntryLocalServiceUtil#dynamicQuery=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, false) {
 
 			protected void test() throws Exception {
-				ClassLoader classLoader = PortletClassLoaderUtil.getClassLoader("1_WAR_chatportlet");
+				EntryLocalServiceUtil.dynamicQuery();
+			}
 
-				DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(Status.class, classLoader);
+		};
+		%>
+
+	StatusLocalServiceUtil#dynamicQuery=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				StatusLocalServiceUtil.dynamicQuery();
 			}
 
 		};
@@ -282,25 +306,37 @@
 </p>
 
 <p>
-	com.liferay.portal.model.Group=
+	DynamicQueryFactoryUtil#forClass(Group.class)=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, true) {
 
 			protected void test() throws Exception {
-				DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(Group.class);
+				DynamicQueryFactoryUtil.forClass(Group.class);
 			}
 
 		};
 		%>
 
-	com.liferay.portal.model.Role=
+	DynamicQueryFactoryUtil#forClass(Role.class)=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				DynamicQueryFactoryUtil.forClass(Role.class);
+			}
+
+		};
+		%>
+
+	GroupLocalServiceUtil#dynamicQuery=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, false) {
 
 			protected void test() throws Exception {
-				DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(Role.class);
+				GroupLocalServiceUtil.dynamicQuery();
 			}
 
 		};
@@ -313,13 +349,25 @@
 </p>
 
 <p>
-	com.liferay.testpacl.model.Foo=
+	DynamicQueryFactoryUtil#forClass(Foo.class)=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, false) {
 
 			protected void test() throws Exception {
-				DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(Foo.class);
+				DynamicQueryFactoryUtil.forClass(Foo.class);
+			}
+
+		};
+		%>
+
+	FooLocalServiceUtil#dynamicQuery=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				FooLocalServiceUtil.dynamicQuery();
 			}
 
 		};
@@ -600,8 +648,8 @@
 </p>
 
 <p>
-	com.liferay.portal.model.Organization=<%= _assertFalse(OrganizationIndexerPostProcessor.isInstantiated()) %><br />
-	com.liferay.portal.model.User=<%= _assertTrue(UserIndexerPostProcessor.isInstantiated()) %>
+	Organization=<%= _assertFalse(OrganizationIndexerPostProcessor.isInstantiated()) %><br />
+	User=<%= _assertTrue(UserIndexerPostProcessor.isInstantiated()) %>
 </p>
 
 <p>
@@ -636,8 +684,8 @@
 </p>
 
 <p>
-	TestBlogsEntryLocalServiceImpl#getBlogsEntriesCount=<%= _assertTrue(BlogsEntryLocalServiceUtil.getBlogsEntriesCount() < 0) %><br />
-	TestBlogsStatsUserLocalServiceImpl#getBlogsStatsUsersCount=<%= _assertTrue(BlogsStatsUserLocalServiceUtil.getBlogsStatsUsersCount() >= 0) %>
+	BlogsEntryLocalService#getBlogsEntriesCount=<%= _assertTrue(BlogsEntryLocalServiceUtil.getBlogsEntriesCount() < 0) %><br />
+	BlogsStatsUserLocalService#getBlogsStatsUsersCount=<%= _assertTrue(BlogsStatsUserLocalServiceUtil.getBlogsStatsUsersCount() >= 0) %>
 </p>
 
 <p>
@@ -647,132 +695,6 @@
 <p>
 	/portal/test/pacl/failure=<%= _assertFalse(FailureStrutsAction.isInstantiated()) %><br />
 	/portal/test/pacl/success=<%= _assertTrue(SuccessStrutsAction.isInstantiated()) %>
-</p>
-
-<liferay-ui:header
-	title="Services: Chat Portlet"
-/>
-
-<p>
-	<h3>com.liferay.chat.service.impl.EntryLocalServiceImpl</h3>
-</p>
-
-<p>
-	EntryLocalServiceUtil#getEntry=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
-
-			protected void test() throws Exception {
-				try {
-					EntryLocalServiceUtil.getEntry(0);
-
-					throw new Exception("Failed to throw NoSuchEntryException");
-				}
-				catch (NoSuchEntryException nsee) {
-				}
-			}
-
-		};
-		%>
-
-	EntryLocalServiceUtil#getEntries=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
-
-			protected void test() throws Exception {
-				EntryLocalServiceUtil.getEntries(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-			}
-
-		};
-		%>
-
-	FooLocalServiceUtil#getEntryLocalServiceUtil_GetEntry=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
-
-			protected void test() throws Exception {
-				try {
-					FooLocalServiceUtil.getEntryLocalServiceUtil_GetEntry(0);
-
-					throw new Exception("Failed to throw NoSuchEntryException");
-				}
-				catch (NoSuchEntryException nsee) {
-				}
-			}
-
-		};
-		%>
-
-	FooLocalServiceUtil#getEntryLocalServiceUtil_GetEntries=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
-
-			protected void test() throws Exception {
-				FooLocalServiceUtil.getEntryLocalServiceUtil_GetEntries(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-			}
-
-		};
-		%>
-
-</p>
-
-<p>
-	<h3>com.liferay.chat.service.impl.StatusLocalServiceImpl</h3>
-</p>
-
-<p>
-	FooLocalServiceUtil#getStatusLocalServiceUtil_GetStatus=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
-
-			protected void test() throws Exception {
-				FooLocalServiceUtil.getStatusLocalServiceUtil_GetStatus(0);
-			}
-
-		};
-		%>
-
-	FooLocalServiceUtil#getStatusLocalServiceUtil_GetStatuses=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
-
-			protected void test() throws Exception {
-				FooLocalServiceUtil.getStatusLocalServiceUtil_GetStatuses(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-			}
-
-		};
-		%>
-
-	StatusLocalServiceUtil#getStatus=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
-
-			protected void test() throws Exception {
-				StatusLocalServiceUtil.getStatus(0);
-			}
-
-		};
-		%>
-
-	StatusLocalServiceUtil#getStatuses=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
-
-			protected void test() throws Exception {
-				StatusLocalServiceUtil.getStatuses(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-			}
-
-		};
-		%>
-
 </p>
 
 <liferay-ui:header
@@ -982,6 +904,267 @@
 
 	};
 	%>
+
+</p>
+
+<liferay-ui:header
+	title="Reflection"
+/>
+
+<p>
+	<h3>Portal</h3>
+</p>
+
+<p>
+
+	PropsKeys.class#ADMIN_DEFAULT_GROUP_NAMES=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				Class<?> clazz = PropsKeys.class;
+
+				clazz.getField("ADMIN_DEFAULT_GROUP_NAMES");
+			}
+
+		};
+		%>
+
+	PropsKeys.class#ADMIN_DEFAULT_GROUP_NAMES#setAccessible(false)=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				Class<?> clazz = PropsKeys.class;
+
+				Field field = clazz.getField("ADMIN_DEFAULT_GROUP_NAMES");
+
+				field.setAccessible(false);
+			}
+
+		};
+		%>
+
+	UserLocalServiceUtil.class#_service=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				Class<?> clazz = UserLocalServiceUtil.class;
+
+				clazz.getDeclaredField("_service");
+			}
+
+		};
+		%>
+
+</p>
+
+<p>
+	<h3>Test PACL Portlet</h3>
+</p>
+
+<p>
+	TestPACLUtil.class#TEST_FIELD=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				Class<?> clazz = TestPACLUtil.class;
+
+				clazz.getField("TEST_FIELD");
+			}
+
+		};
+		%>
+
+	TestPACLUtil.class#TEST_FIELD#setAccessible(false)=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				Class<?> clazz = TestPACLUtil.class;
+
+				Field field = clazz.getField("TEST_FIELD");
+
+				field.setAccessible(false);
+			}
+
+		};
+		%>
+
+	TestPACLUtil.class#_log=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				Class<?> clazz = TestPACLUtil.class;
+
+				clazz.getDeclaredField("_log");
+			}
+
+		};
+		%>
+
+</p>
+
+<liferay-ui:header
+	title="Services: Chat Portlet"
+/>
+
+<p>
+	<h3>com.liferay.chat.service.impl.EntryLocalServiceImpl</h3>
+</p>
+
+<p>
+	EntryLocalServiceUtil#getEntry=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				try {
+					EntryLocalServiceUtil.getEntry(0);
+
+					throw new Exception("Failed to throw NoSuchEntryException");
+				}
+				catch (NoSuchEntryException nsee) {
+				}
+			}
+
+		};
+		%>
+
+	EntryLocalServiceUtil#getEntries=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				EntryLocalServiceUtil.getEntries(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+			}
+
+		};
+		%>
+
+	EntryLocalServiceUtil#updateEntry=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				long entryId = System.currentTimeMillis();
+
+				Entry newEntry = EntryLocalServiceUtil.createEntry(entryId);
+
+				String content = PwdGenerator.getPassword();
+
+				newEntry.setContent(content);
+
+				EntryLocalServiceUtil.updateEntry(newEntry);
+
+				Entry existingEntry = EntryLocalServiceUtil.getEntry(entryId);
+
+				if (!Validator.equals(entryId, existingEntry.getEntryId()) ||
+					!Validator.equals(content, existingEntry.getContent())) {
+
+					throw new Exception("Expected identical entry");
+				}
+			}
+
+		};
+		%>
+
+	FooLocalServiceUtil#getEntryLocalServiceUtil_GetEntry=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				try {
+					FooLocalServiceUtil.getEntryLocalServiceUtil_GetEntry(0);
+
+					throw new Exception("Failed to throw NoSuchEntryException");
+				}
+				catch (NoSuchEntryException nsee) {
+				}
+			}
+
+		};
+		%>
+
+	FooLocalServiceUtil#getEntryLocalServiceUtil_GetEntries=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				FooLocalServiceUtil.getEntryLocalServiceUtil_GetEntries(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+			}
+
+		};
+		%>
+
+</p>
+
+<p>
+	<h3>com.liferay.chat.service.impl.StatusLocalServiceImpl</h3>
+</p>
+
+<p>
+	FooLocalServiceUtil#getStatusLocalServiceUtil_GetStatus=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				FooLocalServiceUtil.getStatusLocalServiceUtil_GetStatus(0);
+			}
+
+		};
+		%>
+
+	FooLocalServiceUtil#getStatusLocalServiceUtil_GetStatuses=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				FooLocalServiceUtil.getStatusLocalServiceUtil_GetStatuses(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+			}
+
+		};
+		%>
+
+	StatusLocalServiceUtil#getStatus=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				StatusLocalServiceUtil.getStatus(0);
+			}
+
+		};
+		%>
+
+	StatusLocalServiceUtil#getStatuses=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				StatusLocalServiceUtil.getStatuses(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+			}
+
+		};
+		%>
 
 </p>
 

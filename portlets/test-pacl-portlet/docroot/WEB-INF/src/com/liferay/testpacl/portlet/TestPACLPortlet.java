@@ -30,6 +30,8 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
 import java.io.File;
 import java.io.IOException;
 
+import java.lang.reflect.Field;
+
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -38,6 +40,10 @@ import javax.portlet.RenderResponse;
  * @author Brian Wing Shun Chan
  */
 public class TestPACLPortlet extends MVCPortlet {
+
+	public TestPACLPortlet() {
+		testWriteFile();
+	}
 
 	@Override
 	public void destroy() {
@@ -49,11 +55,20 @@ public class TestPACLPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		testGetClassLoaderBlogsEntryLocalService();
-		testGetClassLoaderEntryLocalService();
-		testGetClassLoaderFooLocalService();
-		testGetClassLoaderPortal();
-		testGetClassLoaderTestPACLUtil();
+		try{
+			testGetClassLoaderBlogsEntryLocalService();
+			testGetClassLoaderEntryLocalService();
+			testGetClassLoaderFooLocalService();
+			testGetClassLoaderPortal();
+			testGetClassLoaderTestPACLUtil();
+
+			testReflectionTestPACLUtil_log();
+			testReflectionTestPACLUtil_TEST_FIELD();
+			testReflectionTestPACLUtil_TEST_FIELD_setAccessible();
+		}
+		catch (Exception e) {
+			throw new PortletException(e);
+		}
 
 		include(viewTemplate, renderRequest, renderResponse);
 	}
@@ -122,6 +137,34 @@ public class TestPACLPortlet extends MVCPortlet {
 
 	protected void testGetClassLoaderTestPACLUtil() {
 		TestPACLUtil.class.getClassLoader();
+	}
+
+	protected void testReflectionTestPACLUtil_log() throws Exception {
+		Class<?> clazz = TestPACLUtil.class;
+
+		clazz.getDeclaredField("_log");
+	}
+
+	protected void testReflectionTestPACLUtil_TEST_FIELD() throws Exception {
+		Class<?> clazz = TestPACLUtil.class;
+
+		clazz.getField("TEST_FIELD");
+	}
+
+	protected void testReflectionTestPACLUtil_TEST_FIELD_setAccessible()
+		throws Exception {
+
+		Class<?> clazz = TestPACLUtil.class;
+
+		Field field = clazz.getField("TEST_FIELD");
+
+		try {
+			field.setAccessible(false);
+
+			throw new RuntimeException("Reflection is not protected");
+		}
+		catch (SecurityException se) {
+		}
 	}
 
 	protected void testWriteFile() {
