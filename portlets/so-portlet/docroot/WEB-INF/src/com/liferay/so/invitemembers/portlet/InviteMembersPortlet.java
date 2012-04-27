@@ -81,46 +81,44 @@ public class InviteMembersPortlet extends MVCPortlet {
 			return;
 		}
 
-		Group group = GroupLocalServiceUtil.fetchGroup(groupId);
+		Group group = GroupLocalServiceUtil.getGroup(groupId);
 
-		if (group != null) {
-			String createAccountURL = PortalUtil.getCreateAccountURL(
-				PortalUtil.getHttpServletRequest(actionRequest), themeDisplay);
+		PortletURL portletURL =
+			PortletURLFactoryUtil.create(
+				actionRequest, PortletKeys.SITE_REDIRECTOR,
+				themeDisplay.getPlid(), PortletRequest.RENDER_PHASE);
 
-			String loginURL = themeDisplay.getPortalURL() +
-				themeDisplay.getURLSignIn();
+		portletURL.setWindowState(LiferayWindowState.NORMAL);
+		portletURL.setParameter("struts_action", "/my_sites/view");
+		portletURL.setParameter("groupId", String.valueOf(groupId));
+		portletURL.setParameter(
+			"privateLayout", String.valueOf(!group.hasPublicLayouts()));
 
-			PortletURL portletURL =
-				PortletURLFactoryUtil.create(
-					actionRequest, PortletKeys.SITE_REDIRECTOR,
-					themeDisplay.getPlid(), PortletRequest.RENDER_PHASE);
+		String createAccountURL = PortalUtil.getCreateAccountURL(
+			PortalUtil.getHttpServletRequest(actionRequest), themeDisplay);
 
-			portletURL.setWindowState(LiferayWindowState.NORMAL);
-			portletURL.setParameter("struts_action", "/my_sites/view");
-			portletURL.setParameter("groupId", String.valueOf(groupId));
-			portletURL.setParameter(
-				"privateLayout", String.valueOf(!group.hasPublicLayouts()));
+		createAccountURL = HttpUtil.addParameter(
+			createAccountURL, "redirect", portletURL.toString());
 
-			createAccountURL = HttpUtil.addParameter(
-				createAccountURL, "redirect", portletURL.toString());
+		String loginURL = themeDisplay.getPortalURL() +
+			themeDisplay.getURLSignIn();
 
-			loginURL = HttpUtil.addParameter(
-				loginURL, "redirect", portletURL.toString());
+		loginURL = HttpUtil.addParameter(
+			loginURL, "redirect", portletURL.toString());
 
-			ServiceContext serviceContext = ServiceContextFactory.getInstance(
-				actionRequest);
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			actionRequest);
 
-			serviceContext.setAttribute("createAccountURL", createAccountURL);
-			serviceContext.setAttribute("loginURL", loginURL);
+		serviceContext.setAttribute("createAccountURL", createAccountURL);
+		serviceContext.setAttribute("loginURL", loginURL);
 
-			MemberRequestLocalServiceUtil.addMemberRequests(
-				themeDisplay.getUserId(), groupId, receiverUserIds,
-				invitedRoleId, invitedTeamId, serviceContext);
+		MemberRequestLocalServiceUtil.addMemberRequests(
+			themeDisplay.getUserId(), groupId, receiverUserIds, invitedRoleId,
+			invitedTeamId, serviceContext);
 
-			MemberRequestLocalServiceUtil.addMemberRequests(
-				themeDisplay.getUserId(), groupId, receiverEmailAddresses,
-				invitedRoleId, invitedTeamId, serviceContext);
-		}
+		MemberRequestLocalServiceUtil.addMemberRequests(
+			themeDisplay.getUserId(), groupId, receiverEmailAddresses,
+			invitedRoleId, invitedTeamId, serviceContext);
 	}
 
 	protected long[] getLongArray(PortletRequest portletRequest, String name) {
