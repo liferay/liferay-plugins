@@ -42,6 +42,7 @@ import java.util.List;
 
 /**
  * @author Scott Lee
+ * @author Eudaldo Alonso
  */
 public class PrivateMessagingUtil {
 
