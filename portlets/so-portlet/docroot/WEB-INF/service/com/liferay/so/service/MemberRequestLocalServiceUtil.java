@@ -267,32 +267,34 @@ public class MemberRequestLocalServiceUtil {
 	public static com.liferay.so.model.MemberRequest addMemberRequest(
 		long userId, long groupId, long receiverUserId,
 		java.lang.String receiverEmailAddress, long invitedRoleId,
-		long invitedTeamId, com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		long invitedTeamId,
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addMemberRequest(userId, groupId, receiverUserId,
-			receiverEmailAddress, invitedRoleId, invitedTeamId, themeDisplay);
+			receiverEmailAddress, invitedRoleId, invitedTeamId, serviceContext);
 	}
 
 	public static void addMemberRequests(long userId, long groupId,
 		long[] receiverUserIds, long invitedRoleId, long invitedTeamId,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService()
 			.addMemberRequests(userId, groupId, receiverUserIds, invitedRoleId,
-			invitedTeamId, themeDisplay);
+			invitedTeamId, serviceContext);
 	}
 
 	public static void addMemberRequests(long userId, long groupId,
 		java.lang.String[] emailAddresses, long invitedRoleId,
-		long invitedTeamId, com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		long invitedTeamId,
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService()
 			.addMemberRequests(userId, groupId, emailAddresses, invitedRoleId,
-			invitedTeamId, themeDisplay);
+			invitedTeamId, serviceContext);
 	}
 
 	public static com.liferay.so.model.MemberRequest getMemberRequest(
