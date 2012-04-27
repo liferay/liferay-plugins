@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -34,67 +35,78 @@ import com.liferay.portlet.social.model.SocialRelationConstants;
 import com.liferay.privatemessaging.NoSuchUserThreadException;
 import com.liferay.privatemessaging.model.UserThread;
 import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
-import com.liferay.util.portlet.PortletProps;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author Scott Lee
  */
 public class PrivateMessagingUtil {
 
-	public static JSONArray getJSONRecipients(long userId)
+	public static JSONObject getJSONRecipients(
+			long userId, String type, String keywords, int start, int end)
 		throws PortalException, SystemException {
 
-		Set<User> users = new HashSet<User>();
+		User user = UserLocalServiceUtil.getUser(userId);
 
-		String autocompleteRecipientType = PortletProps.get(
-			"autocomplete.recipient.type");
+		LinkedHashMap<String, Object> params =
+			new LinkedHashMap<String, Object>();
 
-		if (autocompleteRecipientType.equals("all")) {
-			users.addAll(
-				UserLocalServiceUtil.getUsers(
-					QueryUtil.ALL_POS, QueryUtil.ALL_POS));
-		}
-		else if (autocompleteRecipientType.equals("site")) {
-			List<Group> groups = GroupLocalServiceUtil.getUserGroups(
+		if (type.equals("site")) {
+			List<Group> usersGroups = GroupLocalServiceUtil.getUserGroups(
 				userId, true);
 
-			for (Group group : groups) {
-				users.addAll(
-					UserLocalServiceUtil.getGroupUsers(group.getGroupId()));
+			long[] usersGroupsIds = new long[usersGroups.size()];
+
+			for (int i = 0; i < usersGroups.size(); i++) {
+				Group group = usersGroups.get(i);
+
+				usersGroupsIds[i] = group.getGroupId();
 			}
+
+			params.put("usersGroups", usersGroupsIds);
 		}
-		else {
-			users.addAll(
-				UserLocalServiceUtil.getSocialUsers(
-					userId, SocialRelationConstants.TYPE_BI_CONNECTION,
-					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					new UserFirstNameComparator(true)));
+		else if (!type.equals("all")) {
+			params.put(
+				"socialRelationType",
+				new Long[] {userId, new Long(
+					SocialRelationConstants.TYPE_BI_CONNECTION)});
 		}
+
+		List<User> users = UserLocalServiceUtil.search(
+			user.getCompanyId(), keywords, WorkflowConstants.STATUS_APPROVED,
+			params, start, end, new UserFirstNameComparator(true));
+
+		int total = UserLocalServiceUtil.searchCount(
+			user.getCompanyId(), keywords, WorkflowConstants.STATUS_APPROVED,
+			params);
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
-		for (User user : users) {
-			if (user.isDefaultUser() || (userId == user.getUserId())) {
-				continue;
-			}
+		for (User curUser : users) {
+			JSONObject userJsonObject = JSONFactoryUtil.createJSONObject();
 
 			StringBuilder sb = new StringBuilder();
 
-			sb.append(user.getFullName());
+			sb.append(curUser.getFullName());
 			sb.append(CharPool.SPACE);
 			sb.append(CharPool.LESS_THAN);
-			sb.append(user.getScreenName());
+			sb.append(curUser.getScreenName());
 			sb.append(CharPool.GREATER_THAN);
 
-			jsonArray.put(sb.toString());
+			userJsonObject.put("name", sb.toString());
+
+			jsonArray.put(userJsonObject);
 		}
 
-		return jsonArray;
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		jsonObject.put("total", total);
+		jsonObject.put("users", jsonArray);
+
+		return jsonObject;
 	}
 
 	public static MBMessage getLastThreadMessage(long userId, long mbThreadId)

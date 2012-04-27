@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.CharPool;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -44,6 +45,7 @@ import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
 import com.liferay.privatemessaging.util.PrivateMessagingUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
+import com.liferay.util.portlet.PortletProps;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -226,6 +228,11 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 
 				checkRecipients(resourceRequest, resourceResponse);
 			}
+			else if (Validator.isNotNull(resourceID) &&
+					 resourceID.equals("getUsers")) {
+
+				getUsers(resourceRequest, resourceResponse);
+			}
 			else {
 				super.serveResource(resourceRequest, resourceResponse);
 			}
@@ -284,6 +291,31 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 		}
 
 		writeJSON(resourceRequest, resourceResponse, jsonObject);
+	}
+
+	protected void getUsers(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String keywords = ParamUtil.getString(resourceRequest, "keywords");
+
+		String autocompleteRecipientType = PortletProps.get(
+			"autocomplete.recipient.type");
+		int autocompleteRecipientMax = GetterUtil.getInteger(PortletProps.get(
+			"autocomplete.recipient.max"), 20);
+
+		JSONObject jsonObject = PrivateMessagingUtil.getJSONRecipients(
+			themeDisplay.getUserId(), autocompleteRecipientType, keywords, 0,
+			autocompleteRecipientMax);
+
+		JSONObject results = JSONFactoryUtil.createJSONObject();
+
+		results.put("results", jsonObject);
+
+		writeJSON(resourceRequest, resourceResponse, results);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(

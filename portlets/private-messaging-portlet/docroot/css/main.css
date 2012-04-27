@@ -55,6 +55,10 @@
 		form {
 			margin-left: 60px;
 		}
+
+		.autocomplete-button {
+			margin: 0;
+		}
 	}
 
 	.author-sender {

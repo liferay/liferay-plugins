@@ -152,16 +152,38 @@ if (mbThreadId != 0) {
 	}
 </aui:script>
 
-<aui:script use="aui-autocomplete">
-	var autocomplete = new A.AutoComplete(
-		{
-			dataSource: <%= PrivateMessagingUtil.getJSONRecipients(user.getUserId()) %>,
-			delimChar: ',',
-			typeAhead: true,
-			contentBox: '#<portlet:namespace/>autoCompleteContainer',
-			input: '#<portlet:namespace/>to'
-		}
-	).render();
+<aui:script use='autocomplete'>
+	var to = A.one('#<portlet:namespace/>to');
 
-	autocomplete.overlay.set('zIndex', 1002);
+	to.plug(
+		A.Plugin.AutoComplete,
+		{
+			queryDelimiter: ',',
+			source: '<liferay-portlet:resourceURL id="getUsers" />',
+			requestTemplate: '&keywords={query}',
+			resultListLocator: 'results.users',
+			resultTextLocator: 'name'
+		}
+	);
+
+	to.on(
+		'focus',
+		function () {
+			to.ac.sendRequest('');
+		}
+	);
+
+	var autocompleteButton = new A.ButtonItem(
+		{
+			cssClass: 'autocomplete-button',
+			icon: 'circle-triangle-b',
+			on: {
+				click: function() {
+					to.focus();
+				}
+			}
+		}
+	);
+
+	autocompleteButton.render(to.ancestor('.aui-field-element'));
 </aui:script>
