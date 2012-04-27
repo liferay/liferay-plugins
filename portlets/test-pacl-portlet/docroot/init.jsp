@@ -21,14 +21,13 @@
 
 <%@ page import="com.liferay.chat.NoSuchEntryException" %><%@
 page import="com.liferay.chat.model.Entry" %><%@
-page import="com.liferay.chat.model.Status" %><%@
+page import="com.liferay.chat.model.EntryClp" %><%@
 page import="com.liferay.chat.service.EntryLocalService" %><%@
 page import="com.liferay.chat.service.EntryLocalServiceUtil" %><%@
 page import="com.liferay.chat.service.StatusLocalServiceUtil" %><%@
 page import="com.liferay.portal.kernel.dao.db.DB" %><%@
 page import="com.liferay.portal.kernel.dao.db.DBFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.dao.jdbc.DataAccess" %><%@
-page import="com.liferay.portal.kernel.dao.orm.DynamicQuery" %><%@
 page import="com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %><%@
 page import="com.liferay.portal.kernel.format.PhoneNumberFormatUtil" %><%@
@@ -38,6 +37,7 @@ page import="com.liferay.portal.kernel.util.FileUtil" %><%@
 page import="com.liferay.portal.kernel.util.HttpUtil" %><%@
 page import="com.liferay.portal.kernel.util.OSDetector" %><%@
 page import="com.liferay.portal.kernel.util.PortalClassLoaderUtil" %><%@
+page import="com.liferay.portal.kernel.util.PropsKeys" %><%@
 page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.portal.model.Group" %><%@
 page import="com.liferay.portal.model.Role" %><%@
@@ -57,11 +57,14 @@ page import="com.liferay.testpacl.hook.indexer.UserIndexerPostProcessor" %><%@
 page import="com.liferay.testpacl.model.Foo" %><%@
 page import="com.liferay.testpacl.service.FooLocalService" %><%@
 page import="com.liferay.testpacl.service.FooLocalServiceUtil" %><%@
-page import="com.liferay.testpacl.util.TestPACLUtil" %>
+page import="com.liferay.testpacl.util.TestPACLUtil" %><%@
+page import="com.liferay.util.PwdGenerator" %>
 
 <%@ page import="java.io.File" %><%@
 page import="java.io.IOException" %><%@
 page import="java.io.Writer" %>
+
+<%@ page import="java.lang.reflect.Field" %>
 
 <%@ page import="java.net.ServerSocket" %><%@
 page import="java.net.Socket" %>

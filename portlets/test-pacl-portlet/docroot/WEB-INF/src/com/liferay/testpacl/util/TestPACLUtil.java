@@ -29,6 +29,8 @@ import java.util.Map;
  */
 public class TestPACLUtil {
 
+	public static final String TEST_FIELD = "TEST_FIELD";
+
 	public static Map<String, Boolean> testCurrentThread(long userId) {
 		Map<String, Boolean> results = new HashMap<String, Boolean>();
 
@@ -75,7 +77,7 @@ public class TestPACLUtil {
 
 		final Map<String, Boolean> results = new HashMap<String, Boolean>();
 
-		Thread thread = new Thread () {
+		Thread thread = new Thread() {
 
 			@Override
 			public void run() {
