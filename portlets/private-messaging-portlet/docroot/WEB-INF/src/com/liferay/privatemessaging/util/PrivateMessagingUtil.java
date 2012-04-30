@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.DateUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
@@ -89,7 +90,7 @@ public class PrivateMessagingUtil {
 		for (User curUser : users) {
 			JSONObject userJsonObject = JSONFactoryUtil.createJSONObject();
 
-			StringBuilder sb = new StringBuilder();
+			StringBundler sb = new StringBundler(5);
 
 			sb.append(curUser.getFullName());
 			sb.append(CharPool.SPACE);

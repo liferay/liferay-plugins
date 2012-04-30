@@ -302,14 +302,10 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 
 		String keywords = ParamUtil.getString(resourceRequest, "keywords");
 
-		int autocompleteRecipientMax =
-			PortletPropsValues.AUTOCOMPLETE_RECIPIENT_MAX;
-		String autocompleteRecipientType =
-			PortletPropsValues.AUTOCOMPLETE_RECIPIENT_TYPE;
-
 		JSONObject jsonObject = PrivateMessagingUtil.getJSONRecipients(
-			themeDisplay.getUserId(), autocompleteRecipientType, keywords, 0,
-			autocompleteRecipientMax);
+			themeDisplay.getUserId(),
+			PortletPropsValues.AUTOCOMPLETE_RECIPIENT_TYPE, keywords, 0,
+			PortletPropsValues.AUTOCOMPLETE_RECIPIENT_MAX);
 
 		JSONObject results = JSONFactoryUtil.createJSONObject();
 

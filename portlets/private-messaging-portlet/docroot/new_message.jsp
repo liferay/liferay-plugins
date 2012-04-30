@@ -77,7 +77,19 @@ if (mbThreadId != 0) {
 	</aui:form>
 </aui:layout>
 
-<aui:script use="aui-base,aui-io-request,aui-loading-mask">
+<aui:script>
+	function <portlet:namespace />showMessage(message) {
+		var A = AUI();
+
+		var messageContainer = A.one('#<portlet:namespace />messageContainer');
+
+		if (messageContainer) {
+			messageContainer.html(message);
+		}
+	}
+</aui:script>
+
+<aui:script use="aui-base,aui-io-request,aui-loading-mask,autocomplete">
 	var form = A.one('#<portlet:namespace />fm');
 
 	form.on(
@@ -143,16 +155,6 @@ if (mbThreadId != 0) {
 		}
 	);
 
-	function <portlet:namespace />showMessage(message) {
-		var messageContainer = A.one('#<portlet:namespace />messageContainer');
-
-		if (messageContainer) {
-			messageContainer.html(message);
-		}
-	}
-</aui:script>
-
-<aui:script use='autocomplete'>
 	var to = A.one('#<portlet:namespace/>to');
 
 	to.plug(
