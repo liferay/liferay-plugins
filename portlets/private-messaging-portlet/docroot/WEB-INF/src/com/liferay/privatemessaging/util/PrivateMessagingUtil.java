@@ -51,6 +51,8 @@ public class PrivateMessagingUtil {
 			long userId, String type, String keywords, int start, int end)
 		throws PortalException, SystemException {
 
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
 		User user = UserLocalServiceUtil.getUser(userId);
 
 		LinkedHashMap<String, Object> params =
@@ -73,22 +75,25 @@ public class PrivateMessagingUtil {
 		else if (!type.equals("all")) {
 			params.put(
 				"socialRelationType",
-				new Long[] {userId, new Long(
-					SocialRelationConstants.TYPE_BI_CONNECTION)});
+				new Long[] {
+					userId, new Long(SocialRelationConstants.TYPE_BI_CONNECTION)
+				});
 		}
-
-		List<User> users = UserLocalServiceUtil.search(
-			user.getCompanyId(), keywords, WorkflowConstants.STATUS_APPROVED,
-			params, start, end, new UserFirstNameComparator(true));
 
 		int total = UserLocalServiceUtil.searchCount(
 			user.getCompanyId(), keywords, WorkflowConstants.STATUS_APPROVED,
 			params);
 
+		jsonObject.put("total", total);
+
+		List<User> users = UserLocalServiceUtil.search(
+			user.getCompanyId(), keywords, WorkflowConstants.STATUS_APPROVED,
+			params, start, end, new UserFirstNameComparator(true));
+
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		for (User curUser : users) {
-			JSONObject userJsonObject = JSONFactoryUtil.createJSONObject();
+			JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
 
 			StringBundler sb = new StringBundler(5);
 
@@ -98,14 +103,11 @@ public class PrivateMessagingUtil {
 			sb.append(curUser.getScreenName());
 			sb.append(CharPool.GREATER_THAN);
 
-			userJsonObject.put("name", sb.toString());
+			userJSONObject.put("name", sb.toString());
 
-			jsonArray.put(userJsonObject);
+			jsonArray.put(userJSONObject);
 		}
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		jsonObject.put("total", total);
 		jsonObject.put("users", jsonArray);
 
 		return jsonObject;
