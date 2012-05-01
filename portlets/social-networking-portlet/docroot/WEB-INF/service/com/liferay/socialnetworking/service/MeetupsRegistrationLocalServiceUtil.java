@@ -303,8 +303,10 @@ public class MeetupsRegistrationLocalServiceUtil {
 			comments);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static MeetupsRegistrationLocalService getService() {
@@ -312,7 +314,12 @@ public class MeetupsRegistrationLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					MeetupsRegistrationLocalService.class.getName());
 
-			_service = new MeetupsRegistrationLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof MeetupsRegistrationLocalService) {
+				_service = (MeetupsRegistrationLocalService)invokableLocalService;
+			}
+			else {
+				_service = new MeetupsRegistrationLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(MeetupsRegistrationLocalServiceUtil.class,
 				"_service");

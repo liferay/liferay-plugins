@@ -378,8 +378,10 @@ public class WSRPConsumerPortletLocalServiceUtil {
 				   .updateWSRPConsumerPortlet(wsrpConsumerPortletId, name);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static WSRPConsumerPortletLocalService getService() {
@@ -387,7 +389,12 @@ public class WSRPConsumerPortletLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					WSRPConsumerPortletLocalService.class.getName());
 
-			_service = new WSRPConsumerPortletLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof WSRPConsumerPortletLocalService) {
+				_service = (WSRPConsumerPortletLocalService)invokableLocalService;
+			}
+			else {
+				_service = new WSRPConsumerPortletLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(WSRPConsumerPortletLocalServiceUtil.class,
 				"_service");

@@ -308,8 +308,10 @@ public class AttachmentLocalServiceUtil {
 		return getService().getInputStream(attachmentId);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static AttachmentLocalService getService() {
@@ -317,7 +319,12 @@ public class AttachmentLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					AttachmentLocalService.class.getName());
 
-			_service = new AttachmentLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof AttachmentLocalService) {
+				_service = (AttachmentLocalService)invokableLocalService;
+			}
+			else {
+				_service = new AttachmentLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(AttachmentLocalServiceUtil.class,
 				"_service");

@@ -417,8 +417,10 @@ public class JIRAIssueLocalServiceUtil {
 		getService().updateJIRAIssues(projectId);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static JIRAIssueLocalService getService() {
@@ -426,7 +428,12 @@ public class JIRAIssueLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					JIRAIssueLocalService.class.getName());
 
-			_service = new JIRAIssueLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof JIRAIssueLocalService) {
+				_service = (JIRAIssueLocalService)invokableLocalService;
+			}
+			else {
+				_service = new JIRAIssueLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(JIRAIssueLocalServiceUtil.class,
 				"_service");

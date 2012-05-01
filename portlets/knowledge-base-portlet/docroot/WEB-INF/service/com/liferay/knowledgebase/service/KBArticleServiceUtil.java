@@ -306,8 +306,10 @@ public class KBArticleServiceUtil {
 			.updateKBArticlesPriorities(groupId, resourcePrimKeyToPriorityMap);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static KBArticleService getService() {
@@ -315,7 +317,12 @@ public class KBArticleServiceUtil {
 			InvokableService invokableService = (InvokableService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					KBArticleService.class.getName());
 
-			_service = new KBArticleServiceClp(invokableService);
+			if (invokableService instanceof KBArticleService) {
+				_service = (KBArticleService)invokableService;
+			}
+			else {
+				_service = new KBArticleServiceClp(invokableService);
+			}
 
 			ReferenceRegistry.registerReference(KBArticleServiceUtil.class,
 				"_service");

@@ -178,8 +178,10 @@ public class CalendarBookingServiceUtil {
 			calendarBookingId, status, serviceContext);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static CalendarBookingService getService() {
@@ -187,7 +189,12 @@ public class CalendarBookingServiceUtil {
 			InvokableService invokableService = (InvokableService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					CalendarBookingService.class.getName());
 
-			_service = new CalendarBookingServiceClp(invokableService);
+			if (invokableService instanceof CalendarBookingService) {
+				_service = (CalendarBookingService)invokableService;
+			}
+			else {
+				_service = new CalendarBookingServiceClp(invokableService);
+			}
 
 			ReferenceRegistry.registerReference(CalendarBookingServiceUtil.class,
 				"_service");

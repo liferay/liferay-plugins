@@ -379,8 +379,10 @@ public class MicroblogsEntryLocalServiceUtil {
 			socialRelationType, serviceContext);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static MicroblogsEntryLocalService getService() {
@@ -388,7 +390,12 @@ public class MicroblogsEntryLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					MicroblogsEntryLocalService.class.getName());
 
-			_service = new MicroblogsEntryLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof MicroblogsEntryLocalService) {
+				_service = (MicroblogsEntryLocalService)invokableLocalService;
+			}
+			else {
+				_service = new MicroblogsEntryLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(MicroblogsEntryLocalServiceUtil.class,
 				"_service");

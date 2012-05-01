@@ -328,8 +328,10 @@ public class FooLocalServiceUtil {
 			serviceContext);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static FooLocalService getService() {
@@ -337,7 +339,12 @@ public class FooLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					FooLocalService.class.getName());
 
-			_service = new FooLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof FooLocalService) {
+				_service = (FooLocalService)invokableLocalService;
+			}
+			else {
+				_service = new FooLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(FooLocalServiceUtil.class,
 				"_service");

@@ -95,8 +95,10 @@ public class AppServiceUtil {
 		return getService().updateApp(appId, version, inputStream);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static AppService getService() {
@@ -104,7 +106,12 @@ public class AppServiceUtil {
 			InvokableService invokableService = (InvokableService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					AppService.class.getName());
 
-			_service = new AppServiceClp(invokableService);
+			if (invokableService instanceof AppService) {
+				_service = (AppService)invokableService;
+			}
+			else {
+				_service = new AppServiceClp(invokableService);
+			}
 
 			ReferenceRegistry.registerReference(AppServiceUtil.class, "_service");
 			MethodCache.remove(AppService.class);

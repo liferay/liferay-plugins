@@ -20,10 +20,7 @@
 		<property name="dataSource" ref="liferayDataSource" />
 		<property name="sessionFactory" ref="liferaySessionFactory" />
 	</bean>
-	<bean id="serviceAdvice" class="com.liferay.portal.security.pacl.PACLAdvice">
-		<property name="nextMethodInterceptor" ref="serviceMonitorAdvice" />
-	</bean>
-	<bean id="serviceMonitorAdvice" class="com.liferay.portal.monitoring.statistics.service.ServiceMonitorAdvice">
+	<bean id="serviceAdvice" class="com.liferay.portal.monitoring.statistics.service.ServiceMonitorAdvice">
 		<property name="monitoringDestinationName" value="liferay/monitoring" />
 		<property name="nextMethodInterceptor" ref="asyncAdvice" />
 	</bean>

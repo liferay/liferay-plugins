@@ -328,8 +328,10 @@ public class FolderLocalServiceUtil {
 			remoteMessageCount);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static FolderLocalService getService() {
@@ -337,7 +339,12 @@ public class FolderLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					FolderLocalService.class.getName());
 
-			_service = new FolderLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof FolderLocalService) {
+				_service = (FolderLocalService)invokableLocalService;
+			}
+			else {
+				_service = new FolderLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(FolderLocalServiceUtil.class,
 				"_service");

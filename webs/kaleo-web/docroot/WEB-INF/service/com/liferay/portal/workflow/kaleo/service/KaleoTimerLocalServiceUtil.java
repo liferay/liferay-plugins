@@ -300,8 +300,10 @@ public class KaleoTimerLocalServiceUtil {
 				   .getKaleoTimers(kaleoClassName, kaleoClassPK, blocking);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static KaleoTimerLocalService getService() {
@@ -309,7 +311,12 @@ public class KaleoTimerLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					KaleoTimerLocalService.class.getName());
 
-			_service = new KaleoTimerLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof KaleoTimerLocalService) {
+				_service = (KaleoTimerLocalService)invokableLocalService;
+			}
+			else {
+				_service = new KaleoTimerLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(KaleoTimerLocalServiceUtil.class,
 				"_service");

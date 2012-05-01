@@ -270,8 +270,10 @@ public class AssetLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static AssetLocalService getService() {
@@ -279,7 +281,12 @@ public class AssetLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					AssetLocalService.class.getName());
 
-			_service = new AssetLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof AssetLocalService) {
+				_service = (AssetLocalService)invokableLocalService;
+			}
+			else {
+				_service = new AssetLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(AssetLocalServiceUtil.class,
 				"_service");

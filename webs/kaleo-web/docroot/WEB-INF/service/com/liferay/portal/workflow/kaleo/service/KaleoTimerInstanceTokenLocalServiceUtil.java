@@ -377,8 +377,10 @@ public class KaleoTimerInstanceTokenLocalServiceUtil {
 			completed, blocking, serviceContext);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static KaleoTimerInstanceTokenLocalService getService() {
@@ -386,7 +388,12 @@ public class KaleoTimerInstanceTokenLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					KaleoTimerInstanceTokenLocalService.class.getName());
 
-			_service = new KaleoTimerInstanceTokenLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof KaleoTimerInstanceTokenLocalService) {
+				_service = (KaleoTimerInstanceTokenLocalService)invokableLocalService;
+			}
+			else {
+				_service = new KaleoTimerInstanceTokenLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(KaleoTimerInstanceTokenLocalServiceUtil.class,
 				"_service");

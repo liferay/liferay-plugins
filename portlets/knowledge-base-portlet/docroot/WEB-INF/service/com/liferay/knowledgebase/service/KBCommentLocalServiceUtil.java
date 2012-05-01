@@ -339,8 +339,10 @@ public class KBCommentLocalServiceUtil {
 			helpful, serviceContext);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static KBCommentLocalService getService() {
@@ -348,7 +350,12 @@ public class KBCommentLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					KBCommentLocalService.class.getName());
 
-			_service = new KBCommentLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof KBCommentLocalService) {
+				_service = (KBCommentLocalService)invokableLocalService;
+			}
+			else {
+				_service = new KBCommentLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(KBCommentLocalServiceUtil.class,
 				"_service");

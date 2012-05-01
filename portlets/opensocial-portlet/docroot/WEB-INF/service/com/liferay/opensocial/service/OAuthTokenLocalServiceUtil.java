@@ -327,8 +327,10 @@ public class OAuthTokenLocalServiceUtil {
 		return getService().getOAuthTokens(gadgetKey, serviceName);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static OAuthTokenLocalService getService() {
@@ -336,7 +338,12 @@ public class OAuthTokenLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					OAuthTokenLocalService.class.getName());
 
-			_service = new OAuthTokenLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof OAuthTokenLocalService) {
+				_service = (OAuthTokenLocalService)invokableLocalService;
+			}
+			else {
+				_service = new OAuthTokenLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(OAuthTokenLocalServiceUtil.class,
 				"_service");

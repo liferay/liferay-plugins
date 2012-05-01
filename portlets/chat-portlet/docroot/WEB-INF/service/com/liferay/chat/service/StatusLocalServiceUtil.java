@@ -310,8 +310,10 @@ public class StatusLocalServiceUtil {
 			activePanelId, message, playSound);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static StatusLocalService getService() {
@@ -319,7 +321,12 @@ public class StatusLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					StatusLocalService.class.getName());
 
-			_service = new StatusLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof StatusLocalService) {
+				_service = (StatusLocalService)invokableLocalService;
+			}
+			else {
+				_service = new StatusLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(StatusLocalServiceUtil.class,
 				"_service");

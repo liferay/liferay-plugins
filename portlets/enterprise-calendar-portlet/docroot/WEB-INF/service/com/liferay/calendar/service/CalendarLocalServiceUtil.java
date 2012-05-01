@@ -382,8 +382,10 @@ public class CalendarLocalServiceUtil {
 		getService().updateDefaultCalendar(calendar, defaultCalendar);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static CalendarLocalService getService() {
@@ -391,7 +393,12 @@ public class CalendarLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					CalendarLocalService.class.getName());
 
-			_service = new CalendarLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof CalendarLocalService) {
+				_service = (CalendarLocalService)invokableLocalService;
+			}
+			else {
+				_service = new CalendarLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(CalendarLocalServiceUtil.class,
 				"_service");

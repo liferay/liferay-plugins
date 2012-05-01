@@ -372,8 +372,10 @@ public class MessageLocalServiceUtil {
 			sentDate, subject, body, flags, remoteMessageId);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static MessageLocalService getService() {
@@ -381,7 +383,12 @@ public class MessageLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					MessageLocalService.class.getName());
 
-			_service = new MessageLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof MessageLocalService) {
+				_service = (MessageLocalService)invokableLocalService;
+			}
+			else {
+				_service = new MessageLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(MessageLocalServiceUtil.class,
 				"_service");

@@ -304,8 +304,10 @@ public class KaleoConditionLocalServiceUtil {
 		return getService().getKaleoNodeKaleoCondition(kaleoNodeId);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static KaleoConditionLocalService getService() {
@@ -313,7 +315,12 @@ public class KaleoConditionLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					KaleoConditionLocalService.class.getName());
 
-			_service = new KaleoConditionLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof KaleoConditionLocalService) {
+				_service = (KaleoConditionLocalService)invokableLocalService;
+			}
+			else {
+				_service = new KaleoConditionLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(KaleoConditionLocalServiceUtil.class,
 				"_service");

@@ -288,8 +288,10 @@ public class SVNRepositoryLocalServiceUtil {
 		getService().updateSVNRepository(url);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static SVNRepositoryLocalService getService() {
@@ -297,7 +299,12 @@ public class SVNRepositoryLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					SVNRepositoryLocalService.class.getName());
 
-			_service = new SVNRepositoryLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof SVNRepositoryLocalService) {
+				_service = (SVNRepositoryLocalService)invokableLocalService;
+			}
+			else {
+				_service = new SVNRepositoryLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(SVNRepositoryLocalServiceUtil.class,
 				"_service");

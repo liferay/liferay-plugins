@@ -341,8 +341,10 @@ public class WSRPProducerLocalServiceUtil {
 				   .updateWSRPProducer(wsrpProducerId, name, version, portletIds);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static WSRPProducerLocalService getService() {
@@ -350,7 +352,12 @@ public class WSRPProducerLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					WSRPProducerLocalService.class.getName());
 
-			_service = new WSRPProducerLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof WSRPProducerLocalService) {
+				_service = (WSRPProducerLocalService)invokableLocalService;
+			}
+			else {
+				_service = new WSRPProducerLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(WSRPProducerLocalServiceUtil.class,
 				"_service");

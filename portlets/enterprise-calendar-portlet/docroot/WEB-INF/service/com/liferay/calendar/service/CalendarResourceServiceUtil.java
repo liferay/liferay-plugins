@@ -162,8 +162,10 @@ public class CalendarResourceServiceUtil {
 			descriptionMap, type, active, serviceContext);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static CalendarResourceService getService() {
@@ -171,7 +173,12 @@ public class CalendarResourceServiceUtil {
 			InvokableService invokableService = (InvokableService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					CalendarResourceService.class.getName());
 
-			_service = new CalendarResourceServiceClp(invokableService);
+			if (invokableService instanceof CalendarResourceService) {
+				_service = (CalendarResourceService)invokableService;
+			}
+			else {
+				_service = new CalendarResourceServiceClp(invokableService);
+			}
 
 			ReferenceRegistry.registerReference(CalendarResourceServiceUtil.class,
 				"_service");

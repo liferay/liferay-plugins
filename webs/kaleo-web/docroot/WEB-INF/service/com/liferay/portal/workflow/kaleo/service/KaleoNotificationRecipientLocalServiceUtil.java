@@ -313,8 +313,10 @@ public class KaleoNotificationRecipientLocalServiceUtil {
 		return getService().getKaleoNotificationRecipients(kaleoNotificationId);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static KaleoNotificationRecipientLocalService getService() {
@@ -322,7 +324,12 @@ public class KaleoNotificationRecipientLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					KaleoNotificationRecipientLocalService.class.getName());
 
-			_service = new KaleoNotificationRecipientLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof KaleoNotificationRecipientLocalService) {
+				_service = (KaleoNotificationRecipientLocalService)invokableLocalService;
+			}
+			else {
+				_service = new KaleoNotificationRecipientLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(KaleoNotificationRecipientLocalServiceUtil.class,
 				"_service");

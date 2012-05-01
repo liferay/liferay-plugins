@@ -318,8 +318,10 @@ public class MeetupsEntryLocalServiceUtil {
 			maxAttendees, price, thumbnail);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static MeetupsEntryLocalService getService() {
@@ -327,7 +329,12 @@ public class MeetupsEntryLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					MeetupsEntryLocalService.class.getName());
 
-			_service = new MeetupsEntryLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof MeetupsEntryLocalService) {
+				_service = (MeetupsEntryLocalService)invokableLocalService;
+			}
+			else {
+				_service = new MeetupsEntryLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(MeetupsEntryLocalServiceUtil.class,
 				"_service");

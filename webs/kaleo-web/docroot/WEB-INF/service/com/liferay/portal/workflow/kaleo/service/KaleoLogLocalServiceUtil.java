@@ -417,8 +417,10 @@ public class KaleoLogLocalServiceUtil {
 			logTypes);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static KaleoLogLocalService getService() {
@@ -426,7 +428,12 @@ public class KaleoLogLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					KaleoLogLocalService.class.getName());
 
-			_service = new KaleoLogLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof KaleoLogLocalService) {
+				_service = (KaleoLogLocalService)invokableLocalService;
+			}
+			else {
+				_service = new KaleoLogLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(KaleoLogLocalServiceUtil.class,
 				"_service");

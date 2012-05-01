@@ -331,8 +331,10 @@ public class AccountLocalServiceUtil {
 			sentFolderId, trashFolderId);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static AccountLocalService getService() {
@@ -340,7 +342,12 @@ public class AccountLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					AccountLocalService.class.getName());
 
-			_service = new AccountLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof AccountLocalService) {
+				_service = (AccountLocalService)invokableLocalService;
+			}
+			else {
+				_service = new AccountLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(AccountLocalServiceUtil.class,
 				"_service");

@@ -358,8 +358,10 @@ public class MemberRequestLocalServiceUtil {
 		return getService().updateMemberRequest(key, receiverUserId);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static MemberRequestLocalService getService() {
@@ -367,7 +369,12 @@ public class MemberRequestLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					MemberRequestLocalService.class.getName());
 
-			_service = new MemberRequestLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof MemberRequestLocalService) {
+				_service = (MemberRequestLocalService)invokableLocalService;
+			}
+			else {
+				_service = new MemberRequestLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(MemberRequestLocalServiceUtil.class,
 				"_service");

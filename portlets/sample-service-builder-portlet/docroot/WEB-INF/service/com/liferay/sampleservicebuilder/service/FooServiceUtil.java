@@ -63,8 +63,10 @@ public class FooServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static FooService getService() {
@@ -72,7 +74,12 @@ public class FooServiceUtil {
 			InvokableService invokableService = (InvokableService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					FooService.class.getName());
 
-			_service = new FooServiceClp(invokableService);
+			if (invokableService instanceof FooService) {
+				_service = (FooService)invokableService;
+			}
+			else {
+				_service = new FooServiceClp(invokableService);
+			}
 
 			ReferenceRegistry.registerReference(FooServiceUtil.class, "_service");
 			MethodCache.remove(FooService.class);

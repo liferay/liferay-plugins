@@ -330,8 +330,10 @@ public class OAuthConsumerLocalServiceUtil {
 			consumerSecret, keyType, keyName, callbackURL);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static OAuthConsumerLocalService getService() {
@@ -339,7 +341,12 @@ public class OAuthConsumerLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					OAuthConsumerLocalService.class.getName());
 
-			_service = new OAuthConsumerLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof OAuthConsumerLocalService) {
+				_service = (OAuthConsumerLocalService)invokableLocalService;
+			}
+			else {
+				_service = new OAuthConsumerLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(OAuthConsumerLocalServiceUtil.class,
 				"_service");

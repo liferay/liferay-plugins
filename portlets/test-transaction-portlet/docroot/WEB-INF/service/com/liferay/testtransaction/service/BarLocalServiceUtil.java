@@ -320,8 +320,10 @@ public class BarLocalServiceUtil {
 		getService().testAddClassNameAndBar_Success(text);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static BarLocalService getService() {
@@ -329,7 +331,12 @@ public class BarLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					BarLocalService.class.getName());
 
-			_service = new BarLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof BarLocalService) {
+				_service = (BarLocalService)invokableLocalService;
+			}
+			else {
+				_service = new BarLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(BarLocalServiceUtil.class,
 				"_service");

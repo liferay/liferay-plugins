@@ -75,8 +75,10 @@ public class SocialOfficeServiceUtil {
 		return getService().isSocialOfficeGroup(groupId);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static SocialOfficeService getService() {
@@ -84,7 +86,12 @@ public class SocialOfficeServiceUtil {
 			InvokableService invokableService = (InvokableService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					SocialOfficeService.class.getName());
 
-			_service = new SocialOfficeServiceClp(invokableService);
+			if (invokableService instanceof SocialOfficeService) {
+				_service = (SocialOfficeService)invokableService;
+			}
+			else {
+				_service = new SocialOfficeServiceClp(invokableService);
+			}
 
 			ReferenceRegistry.registerReference(SocialOfficeServiceUtil.class,
 				"_service");
