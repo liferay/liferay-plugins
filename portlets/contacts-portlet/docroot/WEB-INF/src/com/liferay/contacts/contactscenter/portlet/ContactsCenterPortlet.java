@@ -68,6 +68,7 @@ import com.liferay.portal.model.Phone;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroupRole;
 import com.liferay.portal.model.Website;
+import com.liferay.portal.service.EmailAddressServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.UserServiceUtil;
@@ -1065,8 +1066,9 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		List<UserGroupRole> userGroupRoles = UsersAdminUtil.getUserGroupRoles(
 			actionRequest);
-		List<EmailAddress> emailAddresses = UsersAdminUtil.getEmailAddresses(
-			actionRequest);
+		List<EmailAddress> emailAddresses =
+			EmailAddressServiceUtil.getEmailAddresses(
+				Contact.class.getName(), contact.getContactId());
 		List<AnnouncementsDelivery> announcementsDeliveries =
 			AnnouncementsDeliveryLocalServiceUtil.getUserDeliveries(
 				user.getUserId());
