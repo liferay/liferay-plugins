@@ -81,6 +81,10 @@ public class AssetLocalServiceWrapper implements AssetLocalService,
 		return _assetLocalService.deleteAsset(asset);
 	}
 
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _assetLocalService.dynamicQuery();
+	}
+
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
@@ -249,6 +253,12 @@ public class AssetLocalServiceWrapper implements AssetLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_assetLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _assetLocalService.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	/**

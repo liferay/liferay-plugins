@@ -31,12 +31,14 @@ import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
+import com.liferay.portal.service.BaseLocalServiceImpl;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.UserLocalService;
@@ -64,7 +66,7 @@ import javax.sql.DataSource;
  * @see com.liferay.knowledgebase.service.KBCommentLocalServiceUtil
  * @generated
  */
-public abstract class KBCommentLocalServiceBaseImpl
+public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	implements KBCommentLocalService, IdentifiableBean {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -122,6 +124,11 @@ public abstract class KBCommentLocalServiceBaseImpl
 	public KBComment deleteKBComment(KBComment kbComment)
 		throws SystemException {
 		return kbCommentPersistence.remove(kbComment);
+	}
+
+	public DynamicQuery dynamicQuery() {
+		return DynamicQueryFactoryUtil.forClass(KBComment.class,
+			getClassLoader());
 	}
 
 	/**
@@ -589,10 +596,9 @@ public abstract class KBCommentLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
-	protected ClassLoader getClassLoader() {
-		Class<?> clazz = getClass();
-
-		return clazz.getClassLoader();
+	public Object invokeMethod(String name, String[] parameterTypes,
+		Object[] arguments) throws Throwable {
+		return _clpInvoker.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	protected Class<?> getModelClass() {
@@ -653,4 +659,5 @@ public abstract class KBCommentLocalServiceBaseImpl
 	@BeanReference(type = SocialActivityPersistence.class)
 	protected SocialActivityPersistence socialActivityPersistence;
 	private String _beanIdentifier;
+	private KBCommentLocalServiceClpInvoker _clpInvoker = new KBCommentLocalServiceClpInvoker();
 }

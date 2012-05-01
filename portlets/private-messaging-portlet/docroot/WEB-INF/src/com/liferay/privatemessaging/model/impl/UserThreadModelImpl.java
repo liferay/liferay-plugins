@@ -36,6 +36,8 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The base model implementation for the UserThread service. Represents a row in the &quot;PM_UserThread&quot; database table, with each column mapped to a property of this class.
@@ -117,6 +119,80 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 
 	public String getModelClassName() {
 		return UserThread.class.getName();
+	}
+
+	@Override
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("userThreadId", getUserThreadId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("mbThreadId", getMbThreadId());
+		attributes.put("topMBMessageId", getTopMBMessageId());
+		attributes.put("read", getRead());
+		attributes.put("deleted", getDeleted());
+
+		return attributes;
+	}
+
+	@Override
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long userThreadId = (Long)attributes.get("userThreadId");
+
+		if (userThreadId != null) {
+			setUserThreadId(userThreadId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		Long mbThreadId = (Long)attributes.get("mbThreadId");
+
+		if (mbThreadId != null) {
+			setMbThreadId(mbThreadId);
+		}
+
+		Long topMBMessageId = (Long)attributes.get("topMBMessageId");
+
+		if (topMBMessageId != null) {
+			setTopMBMessageId(topMBMessageId);
+		}
+
+		Boolean read = (Boolean)attributes.get("read");
+
+		if (read != null) {
+			setRead(read);
+		}
+
+		Boolean deleted = (Boolean)attributes.get("deleted");
+
+		if (deleted != null) {
+			setDeleted(deleted);
+		}
 	}
 
 	public long getUserThreadId() {

@@ -15,9 +15,9 @@
 package com.liferay.opensocial.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the o auth token local service. This utility wraps {@link com.liferay.opensocial.service.impl.OAuthTokenLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -89,6 +89,10 @@ public class OAuthTokenLocalServiceUtil {
 		com.liferay.opensocial.model.OAuthToken oAuthToken)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().deleteOAuthToken(oAuthToken);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -264,6 +268,12 @@ public class OAuthTokenLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static com.liferay.opensocial.model.OAuthToken addOAuthToken(
 		long userId, java.lang.String gadgetKey, java.lang.String serviceName,
 		long moduleId, java.lang.String accessToken,
@@ -323,17 +333,10 @@ public class OAuthTokenLocalServiceUtil {
 
 	public static OAuthTokenLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					OAuthTokenLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					OAuthTokenLocalService.class.getName(), portletClassLoader);
-
-			_service = new OAuthTokenLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new OAuthTokenLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(OAuthTokenLocalServiceUtil.class,
 				"_service");

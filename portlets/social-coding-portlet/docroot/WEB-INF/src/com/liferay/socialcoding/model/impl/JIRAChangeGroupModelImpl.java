@@ -35,6 +35,8 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The base model implementation for the JIRAChangeGroup service. Represents a row in the &quot;changegroup&quot; database table, with each column mapped to a property of this class.
@@ -109,6 +111,45 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 
 	public String getModelClassName() {
 		return JIRAChangeGroup.class.getName();
+	}
+
+	@Override
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("jiraChangeGroupId", getJiraChangeGroupId());
+		attributes.put("jiraUserId", getJiraUserId());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("jiraIssueId", getJiraIssueId());
+
+		return attributes;
+	}
+
+	@Override
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long jiraChangeGroupId = (Long)attributes.get("jiraChangeGroupId");
+
+		if (jiraChangeGroupId != null) {
+			setJiraChangeGroupId(jiraChangeGroupId);
+		}
+
+		String jiraUserId = (String)attributes.get("jiraUserId");
+
+		if (jiraUserId != null) {
+			setJiraUserId(jiraUserId);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Long jiraIssueId = (Long)attributes.get("jiraIssueId");
+
+		if (jiraIssueId != null) {
+			setJiraIssueId(jiraIssueId);
+		}
 	}
 
 	public long getJiraChangeGroupId() {

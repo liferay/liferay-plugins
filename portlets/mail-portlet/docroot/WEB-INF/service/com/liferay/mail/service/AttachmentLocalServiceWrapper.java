@@ -82,6 +82,10 @@ public class AttachmentLocalServiceWrapper implements AttachmentLocalService,
 		return _attachmentLocalService.deleteAttachment(attachment);
 	}
 
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _attachmentLocalService.dynamicQuery();
+	}
+
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
@@ -251,6 +255,13 @@ public class AttachmentLocalServiceWrapper implements AttachmentLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_attachmentLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _attachmentLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	public com.liferay.mail.model.Attachment addAttachment(long userId,

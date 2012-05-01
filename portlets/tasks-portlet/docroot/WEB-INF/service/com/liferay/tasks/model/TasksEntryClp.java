@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
@@ -28,6 +29,8 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Ryan Park
@@ -59,6 +62,113 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("tasksEntryId", getTasksEntryId());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("title", getTitle());
+		attributes.put("priority", getPriority());
+		attributes.put("assigneeUserId", getAssigneeUserId());
+		attributes.put("resolverUserId", getResolverUserId());
+		attributes.put("dueDate", getDueDate());
+		attributes.put("finishDate", getFinishDate());
+		attributes.put("status", getStatus());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long tasksEntryId = (Long)attributes.get("tasksEntryId");
+
+		if (tasksEntryId != null) {
+			setTasksEntryId(tasksEntryId);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		String title = (String)attributes.get("title");
+
+		if (title != null) {
+			setTitle(title);
+		}
+
+		Integer priority = (Integer)attributes.get("priority");
+
+		if (priority != null) {
+			setPriority(priority);
+		}
+
+		Long assigneeUserId = (Long)attributes.get("assigneeUserId");
+
+		if (assigneeUserId != null) {
+			setAssigneeUserId(assigneeUserId);
+		}
+
+		Long resolverUserId = (Long)attributes.get("resolverUserId");
+
+		if (resolverUserId != null) {
+			setResolverUserId(resolverUserId);
+		}
+
+		Date dueDate = (Date)attributes.get("dueDate");
+
+		if (dueDate != null) {
+			setDueDate(dueDate);
+		}
+
+		Date finishDate = (Date)attributes.get("finishDate");
+
+		if (finishDate != null) {
+			setFinishDate(finishDate);
+		}
+
+		Integer status = (Integer)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
+		}
 	}
 
 	public long getTasksEntryId() {
@@ -213,6 +323,14 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 
 	public java.lang.String getStatusLabel() {
 		throw new UnsupportedOperationException();
+	}
+
+	public BaseModel<?> getTasksEntryRemoteModel() {
+		return _tasksEntryRemoteModel;
+	}
+
+	public void setTasksEntryRemoteModel(BaseModel<?> tasksEntryRemoteModel) {
+		_tasksEntryRemoteModel = tasksEntryRemoteModel;
 	}
 
 	public void persist() throws SystemException {
@@ -437,4 +555,5 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 	private Date _dueDate;
 	private Date _finishDate;
 	private int _status;
+	private BaseModel<?> _tasksEntryRemoteModel;
 }

@@ -15,9 +15,9 @@
 package com.liferay.sampleservicebuilder.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the foo local service. This utility wraps {@link com.liferay.sampleservicebuilder.service.impl.FooLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -89,6 +89,10 @@ public class FooLocalServiceUtil {
 		com.liferay.sampleservicebuilder.model.Foo foo)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().deleteFoo(foo);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -278,6 +282,12 @@ public class FooLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static void addFoo(java.lang.String field1, boolean field2,
 		int field3, java.util.Date field4, java.lang.String field5,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -324,17 +334,10 @@ public class FooLocalServiceUtil {
 
 	public static FooLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					FooLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					FooLocalService.class.getName(), portletClassLoader);
-
-			_service = new FooLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new FooLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(FooLocalServiceUtil.class,
 				"_service");

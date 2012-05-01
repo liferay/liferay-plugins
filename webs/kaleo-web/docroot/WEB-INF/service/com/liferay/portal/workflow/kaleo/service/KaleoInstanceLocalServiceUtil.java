@@ -15,9 +15,9 @@
 package com.liferay.portal.workflow.kaleo.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the kaleo instance local service. This utility wraps {@link com.liferay.portal.workflow.kaleo.service.impl.KaleoInstanceLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -89,6 +89,10 @@ public class KaleoInstanceLocalServiceUtil {
 		com.liferay.portal.workflow.kaleo.model.KaleoInstance kaleoInstance)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().deleteKaleoInstance(kaleoInstance);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -265,6 +269,12 @@ public class KaleoInstanceLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static com.liferay.portal.workflow.kaleo.model.KaleoInstance addKaleoInstance(
 		long kaleoDefinitionId, java.lang.String kaleoDefinitionName,
 		int kaleoDefinitionVersion,
@@ -382,18 +392,10 @@ public class KaleoInstanceLocalServiceUtil {
 
 	public static KaleoInstanceLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					KaleoInstanceLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					KaleoInstanceLocalService.class.getName(),
-					portletClassLoader);
-
-			_service = new KaleoInstanceLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new KaleoInstanceLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(KaleoInstanceLocalServiceUtil.class,
 				"_service");

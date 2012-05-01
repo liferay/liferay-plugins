@@ -15,9 +15,9 @@
 package com.liferay.privatemessaging.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the user thread local service. This utility wraps {@link com.liferay.privatemessaging.service.impl.UserThreadLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -89,6 +89,10 @@ public class UserThreadLocalServiceUtil {
 		com.liferay.privatemessaging.model.UserThread userThread)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().deleteUserThread(userThread);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -264,6 +268,12 @@ public class UserThreadLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static com.liferay.portlet.messageboards.model.MBMessage addPrivateMessage(
 		long userId, long mbThreadId, java.lang.String to,
 		java.lang.String subject, java.lang.String body,
@@ -367,17 +377,10 @@ public class UserThreadLocalServiceUtil {
 
 	public static UserThreadLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					UserThreadLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					UserThreadLocalService.class.getName(), portletClassLoader);
-
-			_service = new UserThreadLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new UserThreadLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(UserThreadLocalServiceUtil.class,
 				"_service");

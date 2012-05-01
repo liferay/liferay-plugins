@@ -15,9 +15,9 @@
 package com.liferay.knowledgebase.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the k b comment local service. This utility wraps {@link com.liferay.knowledgebase.service.impl.KBCommentLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -89,6 +89,10 @@ public class KBCommentLocalServiceUtil {
 		com.liferay.knowledgebase.model.KBComment kbComment)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().deleteKBComment(kbComment);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -280,6 +284,12 @@ public class KBCommentLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static com.liferay.knowledgebase.model.KBComment addKBComment(
 		long userId, long classNameId, long classPK, java.lang.String content,
 		boolean helpful,
@@ -335,17 +345,10 @@ public class KBCommentLocalServiceUtil {
 
 	public static KBCommentLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					KBCommentLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					KBCommentLocalService.class.getName(), portletClassLoader);
-
-			_service = new KBCommentLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new KBCommentLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(KBCommentLocalServiceUtil.class,
 				"_service");

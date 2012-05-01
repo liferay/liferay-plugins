@@ -19,6 +19,7 @@ import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
 import java.io.Serializable;
@@ -26,6 +27,8 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
@@ -56,6 +59,72 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("uuid", getUuid());
+		attributes.put("gadgetId", getGadgetId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("name", getName());
+		attributes.put("url", getUrl());
+		attributes.put("portletCategoryNames", getPortletCategoryNames());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		String uuid = (String)attributes.get("uuid");
+
+		if (uuid != null) {
+			setUuid(uuid);
+		}
+
+		Long gadgetId = (Long)attributes.get("gadgetId");
+
+		if (gadgetId != null) {
+			setGadgetId(gadgetId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		String name = (String)attributes.get("name");
+
+		if (name != null) {
+			setName(name);
+		}
+
+		String url = (String)attributes.get("url");
+
+		if (url != null) {
+			setUrl(url);
+		}
+
+		String portletCategoryNames = (String)attributes.get(
+				"portletCategoryNames");
+
+		if (portletCategoryNames != null) {
+			setPortletCategoryNames(portletCategoryNames);
+		}
 	}
 
 	public String getUuid() {
@@ -120,6 +189,14 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 
 	public void setPortletCategoryNames(String portletCategoryNames) {
 		_portletCategoryNames = portletCategoryNames;
+	}
+
+	public BaseModel<?> getGadgetRemoteModel() {
+		return _gadgetRemoteModel;
+	}
+
+	public void setGadgetRemoteModel(BaseModel<?> gadgetRemoteModel) {
+		_gadgetRemoteModel = gadgetRemoteModel;
 	}
 
 	public void persist() throws SystemException {
@@ -273,4 +350,5 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 	private String _name;
 	private String _url;
 	private String _portletCategoryNames;
+	private BaseModel<?> _gadgetRemoteModel;
 }

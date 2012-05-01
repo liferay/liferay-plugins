@@ -81,6 +81,10 @@ public class FeedLocalServiceWrapper implements FeedLocalService,
 		return _feedLocalService.deleteFeed(feed);
 	}
 
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _feedLocalService.dynamicQuery();
+	}
+
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
@@ -249,6 +253,12 @@ public class FeedLocalServiceWrapper implements FeedLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_feedLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _feedLocalService.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	public void updateFeed(long userId)

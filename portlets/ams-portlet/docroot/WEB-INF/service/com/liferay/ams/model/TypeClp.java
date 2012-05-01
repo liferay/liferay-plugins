@@ -19,11 +19,15 @@ import com.liferay.ams.service.TypeLocalServiceUtil;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
 import java.io.Serializable;
 
 import java.lang.reflect.Proxy;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
@@ -56,6 +60,36 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("typeId", getTypeId());
+		attributes.put("groupId", getGroupId());
+		attributes.put("name", getName());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long typeId = (Long)attributes.get("typeId");
+
+		if (typeId != null) {
+			setTypeId(typeId);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		String name = (String)attributes.get("name");
+
+		if (name != null) {
+			setName(name);
+		}
+	}
+
 	public long getTypeId() {
 		return _typeId;
 	}
@@ -78,6 +112,14 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 
 	public void setName(String name) {
 		_name = name;
+	}
+
+	public BaseModel<?> getTypeRemoteModel() {
+		return _typeRemoteModel;
+	}
+
+	public void setTypeRemoteModel(BaseModel<?> typeRemoteModel) {
+		_typeRemoteModel = typeRemoteModel;
 	}
 
 	public void persist() throws SystemException {
@@ -191,4 +233,5 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 	private long _typeId;
 	private long _groupId;
 	private String _name;
+	private BaseModel<?> _typeRemoteModel;
 }

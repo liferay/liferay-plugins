@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
@@ -28,6 +29,8 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
@@ -59,6 +62,95 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("microblogsEntryId", getMicroblogsEntryId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("content", getContent());
+		attributes.put("type", getType());
+		attributes.put("receiverUserId", getReceiverUserId());
+		attributes.put("receiverMicroblogsEntryId",
+			getReceiverMicroblogsEntryId());
+		attributes.put("socialRelationType", getSocialRelationType());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long microblogsEntryId = (Long)attributes.get("microblogsEntryId");
+
+		if (microblogsEntryId != null) {
+			setMicroblogsEntryId(microblogsEntryId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		String content = (String)attributes.get("content");
+
+		if (content != null) {
+			setContent(content);
+		}
+
+		Integer type = (Integer)attributes.get("type");
+
+		if (type != null) {
+			setType(type);
+		}
+
+		Long receiverUserId = (Long)attributes.get("receiverUserId");
+
+		if (receiverUserId != null) {
+			setReceiverUserId(receiverUserId);
+		}
+
+		Long receiverMicroblogsEntryId = (Long)attributes.get(
+				"receiverMicroblogsEntryId");
+
+		if (receiverMicroblogsEntryId != null) {
+			setReceiverMicroblogsEntryId(receiverMicroblogsEntryId);
+		}
+
+		Integer socialRelationType = (Integer)attributes.get(
+				"socialRelationType");
+
+		if (socialRelationType != null) {
+			setSocialRelationType(socialRelationType);
+		}
 	}
 
 	public long getMicroblogsEntryId() {
@@ -164,6 +256,15 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 
 	public void setSocialRelationType(int socialRelationType) {
 		_socialRelationType = socialRelationType;
+	}
+
+	public BaseModel<?> getMicroblogsEntryRemoteModel() {
+		return _microblogsEntryRemoteModel;
+	}
+
+	public void setMicroblogsEntryRemoteModel(
+		BaseModel<?> microblogsEntryRemoteModel) {
+		_microblogsEntryRemoteModel = microblogsEntryRemoteModel;
 	}
 
 	public void persist() throws SystemException {
@@ -347,4 +448,5 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 	private String _receiverUserUuid;
 	private long _receiverMicroblogsEntryId;
 	private int _socialRelationType;
+	private BaseModel<?> _microblogsEntryRemoteModel;
 }

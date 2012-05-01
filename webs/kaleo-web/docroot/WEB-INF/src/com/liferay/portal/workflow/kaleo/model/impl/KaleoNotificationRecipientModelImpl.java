@@ -35,6 +35,8 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The base model implementation for the KaleoNotificationRecipient service. Represents a row in the &quot;KaleoNotificationRecipient&quot; database table, with each column mapped to a property of this class.
@@ -119,6 +121,110 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 
 	public String getModelClassName() {
 		return KaleoNotificationRecipient.class.getName();
+	}
+
+	@Override
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("kaleoNotificationRecipientId",
+			getKaleoNotificationRecipientId());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("kaleoDefinitionId", getKaleoDefinitionId());
+		attributes.put("kaleoNotificationId", getKaleoNotificationId());
+		attributes.put("recipientClassName", getRecipientClassName());
+		attributes.put("recipientClassPK", getRecipientClassPK());
+		attributes.put("recipientRoleType", getRecipientRoleType());
+		attributes.put("address", getAddress());
+
+		return attributes;
+	}
+
+	@Override
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long kaleoNotificationRecipientId = (Long)attributes.get(
+				"kaleoNotificationRecipientId");
+
+		if (kaleoNotificationRecipientId != null) {
+			setKaleoNotificationRecipientId(kaleoNotificationRecipientId);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		Long kaleoDefinitionId = (Long)attributes.get("kaleoDefinitionId");
+
+		if (kaleoDefinitionId != null) {
+			setKaleoDefinitionId(kaleoDefinitionId);
+		}
+
+		Long kaleoNotificationId = (Long)attributes.get("kaleoNotificationId");
+
+		if (kaleoNotificationId != null) {
+			setKaleoNotificationId(kaleoNotificationId);
+		}
+
+		String recipientClassName = (String)attributes.get("recipientClassName");
+
+		if (recipientClassName != null) {
+			setRecipientClassName(recipientClassName);
+		}
+
+		Long recipientClassPK = (Long)attributes.get("recipientClassPK");
+
+		if (recipientClassPK != null) {
+			setRecipientClassPK(recipientClassPK);
+		}
+
+		Integer recipientRoleType = (Integer)attributes.get("recipientRoleType");
+
+		if (recipientRoleType != null) {
+			setRecipientRoleType(recipientRoleType);
+		}
+
+		String address = (String)attributes.get("address");
+
+		if (address != null) {
+			setAddress(address);
+		}
 	}
 
 	public long getKaleoNotificationRecipientId() {

@@ -84,6 +84,10 @@ public class MeetupsEntryLocalServiceWrapper implements MeetupsEntryLocalService
 		return _meetupsEntryLocalService.deleteMeetupsEntry(meetupsEntry);
 	}
 
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _meetupsEntryLocalService.dynamicQuery();
+	}
+
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
@@ -256,6 +260,13 @@ public class MeetupsEntryLocalServiceWrapper implements MeetupsEntryLocalService
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_meetupsEntryLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _meetupsEntryLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	public com.liferay.socialnetworking.model.MeetupsEntry addMeetupsEntry(

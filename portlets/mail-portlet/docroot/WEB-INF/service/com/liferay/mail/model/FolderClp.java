@@ -19,6 +19,7 @@ import com.liferay.mail.service.FolderLocalServiceUtil;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
@@ -27,6 +28,8 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
@@ -57,6 +60,86 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("folderId", getFolderId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("accountId", getAccountId());
+		attributes.put("fullName", getFullName());
+		attributes.put("displayName", getDisplayName());
+		attributes.put("remoteMessageCount", getRemoteMessageCount());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long folderId = (Long)attributes.get("folderId");
+
+		if (folderId != null) {
+			setFolderId(folderId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		Long accountId = (Long)attributes.get("accountId");
+
+		if (accountId != null) {
+			setAccountId(accountId);
+		}
+
+		String fullName = (String)attributes.get("fullName");
+
+		if (fullName != null) {
+			setFullName(fullName);
+		}
+
+		String displayName = (String)attributes.get("displayName");
+
+		if (displayName != null) {
+			setDisplayName(displayName);
+		}
+
+		Integer remoteMessageCount = (Integer)attributes.get(
+				"remoteMessageCount");
+
+		if (remoteMessageCount != null) {
+			setRemoteMessageCount(remoteMessageCount);
+		}
 	}
 
 	public long getFolderId() {
@@ -145,6 +228,14 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 
 	public void setRemoteMessageCount(int remoteMessageCount) {
 		_remoteMessageCount = remoteMessageCount;
+	}
+
+	public BaseModel<?> getFolderRemoteModel() {
+		return _folderRemoteModel;
+	}
+
+	public void setFolderRemoteModel(BaseModel<?> folderRemoteModel) {
+		_folderRemoteModel = folderRemoteModel;
 	}
 
 	public void persist() throws SystemException {
@@ -315,4 +406,5 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 	private String _fullName;
 	private String _displayName;
 	private int _remoteMessageCount;
+	private BaseModel<?> _folderRemoteModel;
 }

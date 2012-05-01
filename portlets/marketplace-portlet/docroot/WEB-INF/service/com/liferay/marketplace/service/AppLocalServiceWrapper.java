@@ -81,6 +81,10 @@ public class AppLocalServiceWrapper implements AppLocalService,
 		return _appLocalService.deleteApp(app);
 	}
 
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _appLocalService.dynamicQuery();
+	}
+
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
@@ -250,6 +254,12 @@ public class AppLocalServiceWrapper implements AppLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_appLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _appLocalService.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	public com.liferay.marketplace.model.App addApp(long userId,

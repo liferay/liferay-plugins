@@ -18,16 +18,24 @@ import com.liferay.calendar.model.CalendarBookingClp;
 import com.liferay.calendar.model.CalendarClp;
 import com.liferay.calendar.model.CalendarResourceClp;
 
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
+import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.ClassLoaderObjectInputStream;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
 
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import java.lang.reflect.Method;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -92,10 +100,6 @@ public class ClpSerializer {
 		}
 	}
 
-	public static void setClassLoader(ClassLoader classLoader) {
-		_classLoader = classLoader;
-	}
-
 	public static Object translateInput(BaseModel<?> oldModel) {
 		Class<?> oldModelClass = oldModel.getClass();
 
@@ -129,524 +133,33 @@ public class ClpSerializer {
 	}
 
 	public static Object translateInputCalendar(BaseModel<?> oldModel) {
-		CalendarClp oldCplModel = (CalendarClp)oldModel;
+		CalendarClp oldClpModel = (CalendarClp)oldModel;
 
-		Thread currentThread = Thread.currentThread();
+		BaseModel<?> newModel = oldClpModel.getCalendarRemoteModel();
 
-		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
 
-		try {
-			currentThread.setContextClassLoader(_classLoader);
-
-			try {
-				Class<?> newModelClass = Class.forName("com.liferay.calendar.model.impl.CalendarImpl",
-						true, _classLoader);
-
-				Object newModel = newModelClass.newInstance();
-
-				Method method0 = newModelClass.getMethod("setUuid",
-						new Class[] { String.class });
-
-				String value0 = oldCplModel.getUuid();
-
-				method0.invoke(newModel, value0);
-
-				Method method1 = newModelClass.getMethod("setCalendarId",
-						new Class[] { Long.TYPE });
-
-				Long value1 = new Long(oldCplModel.getCalendarId());
-
-				method1.invoke(newModel, value1);
-
-				Method method2 = newModelClass.getMethod("setGroupId",
-						new Class[] { Long.TYPE });
-
-				Long value2 = new Long(oldCplModel.getGroupId());
-
-				method2.invoke(newModel, value2);
-
-				Method method3 = newModelClass.getMethod("setCompanyId",
-						new Class[] { Long.TYPE });
-
-				Long value3 = new Long(oldCplModel.getCompanyId());
-
-				method3.invoke(newModel, value3);
-
-				Method method4 = newModelClass.getMethod("setUserId",
-						new Class[] { Long.TYPE });
-
-				Long value4 = new Long(oldCplModel.getUserId());
-
-				method4.invoke(newModel, value4);
-
-				Method method5 = newModelClass.getMethod("setUserName",
-						new Class[] { String.class });
-
-				String value5 = oldCplModel.getUserName();
-
-				method5.invoke(newModel, value5);
-
-				Method method6 = newModelClass.getMethod("setCreateDate",
-						new Class[] { Date.class });
-
-				Date value6 = oldCplModel.getCreateDate();
-
-				method6.invoke(newModel, value6);
-
-				Method method7 = newModelClass.getMethod("setModifiedDate",
-						new Class[] { Date.class });
-
-				Date value7 = oldCplModel.getModifiedDate();
-
-				method7.invoke(newModel, value7);
-
-				Method method8 = newModelClass.getMethod("setResourceBlockId",
-						new Class[] { Long.TYPE });
-
-				Long value8 = new Long(oldCplModel.getResourceBlockId());
-
-				method8.invoke(newModel, value8);
-
-				Method method9 = newModelClass.getMethod("setCalendarResourceId",
-						new Class[] { Long.TYPE });
-
-				Long value9 = new Long(oldCplModel.getCalendarResourceId());
-
-				method9.invoke(newModel, value9);
-
-				Method method10 = newModelClass.getMethod("setName",
-						new Class[] { String.class });
-
-				String value10 = oldCplModel.getName();
-
-				method10.invoke(newModel, value10);
-
-				Method method11 = newModelClass.getMethod("setDescription",
-						new Class[] { String.class });
-
-				String value11 = oldCplModel.getDescription();
-
-				method11.invoke(newModel, value11);
-
-				Method method12 = newModelClass.getMethod("setColor",
-						new Class[] { Integer.TYPE });
-
-				Integer value12 = new Integer(oldCplModel.getColor());
-
-				method12.invoke(newModel, value12);
-
-				Method method13 = newModelClass.getMethod("setDefaultCalendar",
-						new Class[] { Boolean.TYPE });
-
-				Boolean value13 = new Boolean(oldCplModel.getDefaultCalendar());
-
-				method13.invoke(newModel, value13);
-
-				return newModel;
-			}
-			catch (Exception e) {
-				_log.error(e, e);
-			}
-		}
-		finally {
-			currentThread.setContextClassLoader(contextClassLoader);
-		}
-
-		return oldModel;
+		return newModel;
 	}
 
 	public static Object translateInputCalendarBooking(BaseModel<?> oldModel) {
-		CalendarBookingClp oldCplModel = (CalendarBookingClp)oldModel;
+		CalendarBookingClp oldClpModel = (CalendarBookingClp)oldModel;
 
-		Thread currentThread = Thread.currentThread();
+		BaseModel<?> newModel = oldClpModel.getCalendarBookingRemoteModel();
 
-		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
 
-		try {
-			currentThread.setContextClassLoader(_classLoader);
-
-			try {
-				Class<?> newModelClass = Class.forName("com.liferay.calendar.model.impl.CalendarBookingImpl",
-						true, _classLoader);
-
-				Object newModel = newModelClass.newInstance();
-
-				Method method0 = newModelClass.getMethod("setUuid",
-						new Class[] { String.class });
-
-				String value0 = oldCplModel.getUuid();
-
-				method0.invoke(newModel, value0);
-
-				Method method1 = newModelClass.getMethod("setCalendarBookingId",
-						new Class[] { Long.TYPE });
-
-				Long value1 = new Long(oldCplModel.getCalendarBookingId());
-
-				method1.invoke(newModel, value1);
-
-				Method method2 = newModelClass.getMethod("setGroupId",
-						new Class[] { Long.TYPE });
-
-				Long value2 = new Long(oldCplModel.getGroupId());
-
-				method2.invoke(newModel, value2);
-
-				Method method3 = newModelClass.getMethod("setCompanyId",
-						new Class[] { Long.TYPE });
-
-				Long value3 = new Long(oldCplModel.getCompanyId());
-
-				method3.invoke(newModel, value3);
-
-				Method method4 = newModelClass.getMethod("setUserId",
-						new Class[] { Long.TYPE });
-
-				Long value4 = new Long(oldCplModel.getUserId());
-
-				method4.invoke(newModel, value4);
-
-				Method method5 = newModelClass.getMethod("setUserName",
-						new Class[] { String.class });
-
-				String value5 = oldCplModel.getUserName();
-
-				method5.invoke(newModel, value5);
-
-				Method method6 = newModelClass.getMethod("setCreateDate",
-						new Class[] { Date.class });
-
-				Date value6 = oldCplModel.getCreateDate();
-
-				method6.invoke(newModel, value6);
-
-				Method method7 = newModelClass.getMethod("setModifiedDate",
-						new Class[] { Date.class });
-
-				Date value7 = oldCplModel.getModifiedDate();
-
-				method7.invoke(newModel, value7);
-
-				Method method8 = newModelClass.getMethod("setCalendarId",
-						new Class[] { Long.TYPE });
-
-				Long value8 = new Long(oldCplModel.getCalendarId());
-
-				method8.invoke(newModel, value8);
-
-				Method method9 = newModelClass.getMethod("setCalendarResourceId",
-						new Class[] { Long.TYPE });
-
-				Long value9 = new Long(oldCplModel.getCalendarResourceId());
-
-				method9.invoke(newModel, value9);
-
-				Method method10 = newModelClass.getMethod("setParentCalendarBookingId",
-						new Class[] { Long.TYPE });
-
-				Long value10 = new Long(oldCplModel.getParentCalendarBookingId());
-
-				method10.invoke(newModel, value10);
-
-				Method method11 = newModelClass.getMethod("setTitle",
-						new Class[] { String.class });
-
-				String value11 = oldCplModel.getTitle();
-
-				method11.invoke(newModel, value11);
-
-				Method method12 = newModelClass.getMethod("setDescription",
-						new Class[] { String.class });
-
-				String value12 = oldCplModel.getDescription();
-
-				method12.invoke(newModel, value12);
-
-				Method method13 = newModelClass.getMethod("setLocation",
-						new Class[] { String.class });
-
-				String value13 = oldCplModel.getLocation();
-
-				method13.invoke(newModel, value13);
-
-				Method method14 = newModelClass.getMethod("setType",
-						new Class[] { String.class });
-
-				String value14 = oldCplModel.getType();
-
-				method14.invoke(newModel, value14);
-
-				Method method15 = newModelClass.getMethod("setStartDate",
-						new Class[] { Date.class });
-
-				Date value15 = oldCplModel.getStartDate();
-
-				method15.invoke(newModel, value15);
-
-				Method method16 = newModelClass.getMethod("setEndDate",
-						new Class[] { Date.class });
-
-				Date value16 = oldCplModel.getEndDate();
-
-				method16.invoke(newModel, value16);
-
-				Method method17 = newModelClass.getMethod("setAllDay",
-						new Class[] { Boolean.TYPE });
-
-				Boolean value17 = new Boolean(oldCplModel.getAllDay());
-
-				method17.invoke(newModel, value17);
-
-				Method method18 = newModelClass.getMethod("setRecurrence",
-						new Class[] { String.class });
-
-				String value18 = oldCplModel.getRecurrence();
-
-				method18.invoke(newModel, value18);
-
-				Method method19 = newModelClass.getMethod("setPriority",
-						new Class[] { Integer.TYPE });
-
-				Integer value19 = new Integer(oldCplModel.getPriority());
-
-				method19.invoke(newModel, value19);
-
-				Method method20 = newModelClass.getMethod("setOutOfOffice",
-						new Class[] { Boolean.TYPE });
-
-				Boolean value20 = new Boolean(oldCplModel.getOutOfOffice());
-
-				method20.invoke(newModel, value20);
-
-				Method method21 = newModelClass.getMethod("setFirstReminder",
-						new Class[] { Integer.TYPE });
-
-				Integer value21 = new Integer(oldCplModel.getFirstReminder());
-
-				method21.invoke(newModel, value21);
-
-				Method method22 = newModelClass.getMethod("setSecondReminder",
-						new Class[] { Integer.TYPE });
-
-				Integer value22 = new Integer(oldCplModel.getSecondReminder());
-
-				method22.invoke(newModel, value22);
-
-				Method method23 = newModelClass.getMethod("setRequired",
-						new Class[] { Boolean.TYPE });
-
-				Boolean value23 = new Boolean(oldCplModel.getRequired());
-
-				method23.invoke(newModel, value23);
-
-				Method method24 = newModelClass.getMethod("setRequestMessage",
-						new Class[] { String.class });
-
-				String value24 = oldCplModel.getRequestMessage();
-
-				method24.invoke(newModel, value24);
-
-				Method method25 = newModelClass.getMethod("setResponseMessage",
-						new Class[] { String.class });
-
-				String value25 = oldCplModel.getResponseMessage();
-
-				method25.invoke(newModel, value25);
-
-				Method method26 = newModelClass.getMethod("setStatus",
-						new Class[] { Integer.TYPE });
-
-				Integer value26 = new Integer(oldCplModel.getStatus());
-
-				method26.invoke(newModel, value26);
-
-				Method method27 = newModelClass.getMethod("setStatusByUserId",
-						new Class[] { Long.TYPE });
-
-				Long value27 = new Long(oldCplModel.getStatusByUserId());
-
-				method27.invoke(newModel, value27);
-
-				Method method28 = newModelClass.getMethod("setStatusByUserName",
-						new Class[] { String.class });
-
-				String value28 = oldCplModel.getStatusByUserName();
-
-				method28.invoke(newModel, value28);
-
-				Method method29 = newModelClass.getMethod("setStatusDate",
-						new Class[] { Date.class });
-
-				Date value29 = oldCplModel.getStatusDate();
-
-				method29.invoke(newModel, value29);
-
-				return newModel;
-			}
-			catch (Exception e) {
-				_log.error(e, e);
-			}
-		}
-		finally {
-			currentThread.setContextClassLoader(contextClassLoader);
-		}
-
-		return oldModel;
+		return newModel;
 	}
 
 	public static Object translateInputCalendarResource(BaseModel<?> oldModel) {
-		CalendarResourceClp oldCplModel = (CalendarResourceClp)oldModel;
+		CalendarResourceClp oldClpModel = (CalendarResourceClp)oldModel;
 
-		Thread currentThread = Thread.currentThread();
+		BaseModel<?> newModel = oldClpModel.getCalendarResourceRemoteModel();
 
-		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
 
-		try {
-			currentThread.setContextClassLoader(_classLoader);
-
-			try {
-				Class<?> newModelClass = Class.forName("com.liferay.calendar.model.impl.CalendarResourceImpl",
-						true, _classLoader);
-
-				Object newModel = newModelClass.newInstance();
-
-				Method method0 = newModelClass.getMethod("setUuid",
-						new Class[] { String.class });
-
-				String value0 = oldCplModel.getUuid();
-
-				method0.invoke(newModel, value0);
-
-				Method method1 = newModelClass.getMethod("setCalendarResourceId",
-						new Class[] { Long.TYPE });
-
-				Long value1 = new Long(oldCplModel.getCalendarResourceId());
-
-				method1.invoke(newModel, value1);
-
-				Method method2 = newModelClass.getMethod("setGroupId",
-						new Class[] { Long.TYPE });
-
-				Long value2 = new Long(oldCplModel.getGroupId());
-
-				method2.invoke(newModel, value2);
-
-				Method method3 = newModelClass.getMethod("setCompanyId",
-						new Class[] { Long.TYPE });
-
-				Long value3 = new Long(oldCplModel.getCompanyId());
-
-				method3.invoke(newModel, value3);
-
-				Method method4 = newModelClass.getMethod("setUserId",
-						new Class[] { Long.TYPE });
-
-				Long value4 = new Long(oldCplModel.getUserId());
-
-				method4.invoke(newModel, value4);
-
-				Method method5 = newModelClass.getMethod("setUserName",
-						new Class[] { String.class });
-
-				String value5 = oldCplModel.getUserName();
-
-				method5.invoke(newModel, value5);
-
-				Method method6 = newModelClass.getMethod("setCreateDate",
-						new Class[] { Date.class });
-
-				Date value6 = oldCplModel.getCreateDate();
-
-				method6.invoke(newModel, value6);
-
-				Method method7 = newModelClass.getMethod("setModifiedDate",
-						new Class[] { Date.class });
-
-				Date value7 = oldCplModel.getModifiedDate();
-
-				method7.invoke(newModel, value7);
-
-				Method method8 = newModelClass.getMethod("setResourceBlockId",
-						new Class[] { Long.TYPE });
-
-				Long value8 = new Long(oldCplModel.getResourceBlockId());
-
-				method8.invoke(newModel, value8);
-
-				Method method9 = newModelClass.getMethod("setClassNameId",
-						new Class[] { Long.TYPE });
-
-				Long value9 = new Long(oldCplModel.getClassNameId());
-
-				method9.invoke(newModel, value9);
-
-				Method method10 = newModelClass.getMethod("setClassPK",
-						new Class[] { Long.TYPE });
-
-				Long value10 = new Long(oldCplModel.getClassPK());
-
-				method10.invoke(newModel, value10);
-
-				Method method11 = newModelClass.getMethod("setClassUuid",
-						new Class[] { String.class });
-
-				String value11 = oldCplModel.getClassUuid();
-
-				method11.invoke(newModel, value11);
-
-				Method method12 = newModelClass.getMethod("setDefaultCalendarId",
-						new Class[] { Long.TYPE });
-
-				Long value12 = new Long(oldCplModel.getDefaultCalendarId());
-
-				method12.invoke(newModel, value12);
-
-				Method method13 = newModelClass.getMethod("setCode",
-						new Class[] { String.class });
-
-				String value13 = oldCplModel.getCode();
-
-				method13.invoke(newModel, value13);
-
-				Method method14 = newModelClass.getMethod("setName",
-						new Class[] { String.class });
-
-				String value14 = oldCplModel.getName();
-
-				method14.invoke(newModel, value14);
-
-				Method method15 = newModelClass.getMethod("setDescription",
-						new Class[] { String.class });
-
-				String value15 = oldCplModel.getDescription();
-
-				method15.invoke(newModel, value15);
-
-				Method method16 = newModelClass.getMethod("setType",
-						new Class[] { String.class });
-
-				String value16 = oldCplModel.getType();
-
-				method16.invoke(newModel, value16);
-
-				Method method17 = newModelClass.getMethod("setActive",
-						new Class[] { Boolean.TYPE });
-
-				Boolean value17 = new Boolean(oldCplModel.getActive());
-
-				method17.invoke(newModel, value17);
-
-				return newModel;
-			}
-			catch (Exception e) {
-				_log.error(e, e);
-			}
-		}
-		finally {
-			currentThread.setContextClassLoader(contextClassLoader);
-		}
-
-		return oldModel;
+		return newModel;
 	}
 
 	public static Object translateInput(Object obj) {
@@ -708,543 +221,135 @@ public class ClpSerializer {
 		}
 	}
 
-	public static Object translateOutputCalendar(BaseModel<?> oldModel) {
-		Thread currentThread = Thread.currentThread();
-
-		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
-
-		try {
-			currentThread.setContextClassLoader(_classLoader);
-
+	public static Throwable translateThrowable(Throwable throwable) {
+		if (_useReflectionToTranslateThrowable) {
 			try {
-				CalendarClp newModel = new CalendarClp();
+				if (_classLoader == null) {
+					_classLoader = (ClassLoader)PortletBeanLocatorUtil.locate(_servletContextName,
+							"portletClassLoader");
+				}
 
-				Class<?> oldModelClass = oldModel.getClass();
+				UnsyncByteArrayOutputStream unsyncByteArrayOutputStream = new UnsyncByteArrayOutputStream();
+				ObjectOutputStream objectOutputStream = new ObjectOutputStream(unsyncByteArrayOutputStream);
 
-				Method method0 = oldModelClass.getMethod("getUuid");
+				objectOutputStream.writeObject(throwable);
 
-				String value0 = (String)method0.invoke(oldModel, (Object[])null);
+				objectOutputStream.flush();
+				objectOutputStream.close();
 
-				newModel.setUuid(value0);
+				UnsyncByteArrayInputStream unsyncByteArrayInputStream = new UnsyncByteArrayInputStream(unsyncByteArrayOutputStream.unsafeGetByteArray(),
+						0, unsyncByteArrayOutputStream.size());
+				ObjectInputStream objectInputStream = new ClassLoaderObjectInputStream(unsyncByteArrayInputStream,
+						_classLoader);
 
-				Method method1 = oldModelClass.getMethod("getCalendarId");
+				throwable = (Throwable)objectInputStream.readObject();
 
-				Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
+				objectInputStream.close();
 
-				newModel.setCalendarId(value1);
-
-				Method method2 = oldModelClass.getMethod("getGroupId");
-
-				Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
-
-				newModel.setGroupId(value2);
-
-				Method method3 = oldModelClass.getMethod("getCompanyId");
-
-				Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
-
-				newModel.setCompanyId(value3);
-
-				Method method4 = oldModelClass.getMethod("getUserId");
-
-				Long value4 = (Long)method4.invoke(oldModel, (Object[])null);
-
-				newModel.setUserId(value4);
-
-				Method method5 = oldModelClass.getMethod("getUserName");
-
-				String value5 = (String)method5.invoke(oldModel, (Object[])null);
-
-				newModel.setUserName(value5);
-
-				Method method6 = oldModelClass.getMethod("getCreateDate");
-
-				Date value6 = (Date)method6.invoke(oldModel, (Object[])null);
-
-				newModel.setCreateDate(value6);
-
-				Method method7 = oldModelClass.getMethod("getModifiedDate");
-
-				Date value7 = (Date)method7.invoke(oldModel, (Object[])null);
-
-				newModel.setModifiedDate(value7);
-
-				Method method8 = oldModelClass.getMethod("getResourceBlockId");
-
-				Long value8 = (Long)method8.invoke(oldModel, (Object[])null);
-
-				newModel.setResourceBlockId(value8);
-
-				Method method9 = oldModelClass.getMethod(
-						"getCalendarResourceId");
-
-				Long value9 = (Long)method9.invoke(oldModel, (Object[])null);
-
-				newModel.setCalendarResourceId(value9);
-
-				Method method10 = oldModelClass.getMethod("getName");
-
-				String value10 = (String)method10.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setName(value10);
-
-				Method method10CurrentLanguageId = oldModelClass.getMethod(
-						"getNameCurrentLanguageId");
-
-				String value10CurrentLanguageId = (String)method10CurrentLanguageId.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setNameCurrentLanguageId(value10CurrentLanguageId);
-
-				Method method11 = oldModelClass.getMethod("getDescription");
-
-				String value11 = (String)method11.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setDescription(value11);
-
-				Method method11CurrentLanguageId = oldModelClass.getMethod(
-						"getDescriptionCurrentLanguageId");
-
-				String value11CurrentLanguageId = (String)method11CurrentLanguageId.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setDescriptionCurrentLanguageId(value11CurrentLanguageId);
-
-				Method method12 = oldModelClass.getMethod("getColor");
-
-				Integer value12 = (Integer)method12.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setColor(value12);
-
-				Method method13 = oldModelClass.getMethod("getDefaultCalendar");
-
-				Boolean value13 = (Boolean)method13.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setDefaultCalendar(value13);
-
-				return newModel;
+				return throwable;
 			}
-			catch (Exception e) {
-				_log.error(e, e);
+			catch (SecurityException se) {
+				if (_log.isInfoEnabled()) {
+					_log.info("Do not use reflection to translate throwable");
+				}
+
+				_useReflectionToTranslateThrowable = false;
+			}
+			catch (Throwable throwable2) {
+				_log.error(throwable2, throwable2);
+
+				return throwable2;
 			}
 		}
-		finally {
-			currentThread.setContextClassLoader(contextClassLoader);
+
+		Class<?> clazz = throwable.getClass();
+
+		String className = clazz.getName();
+
+		if (className.equals(PortalException.class.getName())) {
+			return new PortalException();
 		}
 
-		return oldModel;
+		if (className.equals(SystemException.class.getName())) {
+			return new SystemException();
+		}
+
+		if (className.equals(
+					"com.liferay.calendar.CalendarBookingDurationException")) {
+			return new com.liferay.calendar.CalendarBookingDurationException();
+		}
+
+		if (className.equals(
+					"com.liferay.calendar.CalendarBookingEndDateException")) {
+			return new com.liferay.calendar.CalendarBookingEndDateException();
+		}
+
+		if (className.equals(
+					"com.liferay.calendar.CalendarBookingStartDateException")) {
+			return new com.liferay.calendar.CalendarBookingStartDateException();
+		}
+
+		if (className.equals(
+					"com.liferay.calendar.CalendarBookingTitleException")) {
+			return new com.liferay.calendar.CalendarBookingTitleException();
+		}
+
+		if (className.equals("com.liferay.calendar.CalendarNameException")) {
+			return new com.liferay.calendar.CalendarNameException();
+		}
+
+		if (className.equals(
+					"com.liferay.calendar.DuplicateCalendarResourceException")) {
+			return new com.liferay.calendar.DuplicateCalendarResourceException();
+		}
+
+		if (className.equals("com.liferay.calendar.NoSuchCalendarException")) {
+			return new com.liferay.calendar.NoSuchCalendarException();
+		}
+
+		if (className.equals("com.liferay.calendar.NoSuchBookingException")) {
+			return new com.liferay.calendar.NoSuchBookingException();
+		}
+
+		if (className.equals("com.liferay.calendar.NoSuchResourceException")) {
+			return new com.liferay.calendar.NoSuchResourceException();
+		}
+
+		return throwable;
+	}
+
+	public static Object translateOutputCalendar(BaseModel<?> oldModel) {
+		CalendarClp newModel = new CalendarClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setCalendarRemoteModel(oldModel);
+
+		return newModel;
 	}
 
 	public static Object translateOutputCalendarBooking(BaseModel<?> oldModel) {
-		Thread currentThread = Thread.currentThread();
+		CalendarBookingClp newModel = new CalendarBookingClp();
 
-		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+		newModel.setModelAttributes(oldModel.getModelAttributes());
 
-		try {
-			currentThread.setContextClassLoader(_classLoader);
+		newModel.setCalendarBookingRemoteModel(oldModel);
 
-			try {
-				CalendarBookingClp newModel = new CalendarBookingClp();
-
-				Class<?> oldModelClass = oldModel.getClass();
-
-				Method method0 = oldModelClass.getMethod("getUuid");
-
-				String value0 = (String)method0.invoke(oldModel, (Object[])null);
-
-				newModel.setUuid(value0);
-
-				Method method1 = oldModelClass.getMethod("getCalendarBookingId");
-
-				Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
-
-				newModel.setCalendarBookingId(value1);
-
-				Method method2 = oldModelClass.getMethod("getGroupId");
-
-				Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
-
-				newModel.setGroupId(value2);
-
-				Method method3 = oldModelClass.getMethod("getCompanyId");
-
-				Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
-
-				newModel.setCompanyId(value3);
-
-				Method method4 = oldModelClass.getMethod("getUserId");
-
-				Long value4 = (Long)method4.invoke(oldModel, (Object[])null);
-
-				newModel.setUserId(value4);
-
-				Method method5 = oldModelClass.getMethod("getUserName");
-
-				String value5 = (String)method5.invoke(oldModel, (Object[])null);
-
-				newModel.setUserName(value5);
-
-				Method method6 = oldModelClass.getMethod("getCreateDate");
-
-				Date value6 = (Date)method6.invoke(oldModel, (Object[])null);
-
-				newModel.setCreateDate(value6);
-
-				Method method7 = oldModelClass.getMethod("getModifiedDate");
-
-				Date value7 = (Date)method7.invoke(oldModel, (Object[])null);
-
-				newModel.setModifiedDate(value7);
-
-				Method method8 = oldModelClass.getMethod("getCalendarId");
-
-				Long value8 = (Long)method8.invoke(oldModel, (Object[])null);
-
-				newModel.setCalendarId(value8);
-
-				Method method9 = oldModelClass.getMethod(
-						"getCalendarResourceId");
-
-				Long value9 = (Long)method9.invoke(oldModel, (Object[])null);
-
-				newModel.setCalendarResourceId(value9);
-
-				Method method10 = oldModelClass.getMethod(
-						"getParentCalendarBookingId");
-
-				Long value10 = (Long)method10.invoke(oldModel, (Object[])null);
-
-				newModel.setParentCalendarBookingId(value10);
-
-				Method method11 = oldModelClass.getMethod("getTitle");
-
-				String value11 = (String)method11.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setTitle(value11);
-
-				Method method11CurrentLanguageId = oldModelClass.getMethod(
-						"getTitleCurrentLanguageId");
-
-				String value11CurrentLanguageId = (String)method11CurrentLanguageId.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setTitleCurrentLanguageId(value11CurrentLanguageId);
-
-				Method method12 = oldModelClass.getMethod("getDescription");
-
-				String value12 = (String)method12.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setDescription(value12);
-
-				Method method12CurrentLanguageId = oldModelClass.getMethod(
-						"getDescriptionCurrentLanguageId");
-
-				String value12CurrentLanguageId = (String)method12CurrentLanguageId.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setDescriptionCurrentLanguageId(value12CurrentLanguageId);
-
-				Method method13 = oldModelClass.getMethod("getLocation");
-
-				String value13 = (String)method13.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setLocation(value13);
-
-				Method method13CurrentLanguageId = oldModelClass.getMethod(
-						"getLocationCurrentLanguageId");
-
-				String value13CurrentLanguageId = (String)method13CurrentLanguageId.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setLocationCurrentLanguageId(value13CurrentLanguageId);
-
-				Method method14 = oldModelClass.getMethod("getType");
-
-				String value14 = (String)method14.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setType(value14);
-
-				Method method15 = oldModelClass.getMethod("getStartDate");
-
-				Date value15 = (Date)method15.invoke(oldModel, (Object[])null);
-
-				newModel.setStartDate(value15);
-
-				Method method16 = oldModelClass.getMethod("getEndDate");
-
-				Date value16 = (Date)method16.invoke(oldModel, (Object[])null);
-
-				newModel.setEndDate(value16);
-
-				Method method17 = oldModelClass.getMethod("getAllDay");
-
-				Boolean value17 = (Boolean)method17.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setAllDay(value17);
-
-				Method method18 = oldModelClass.getMethod("getRecurrence");
-
-				String value18 = (String)method18.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setRecurrence(value18);
-
-				Method method19 = oldModelClass.getMethod("getPriority");
-
-				Integer value19 = (Integer)method19.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setPriority(value19);
-
-				Method method20 = oldModelClass.getMethod("getOutOfOffice");
-
-				Boolean value20 = (Boolean)method20.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setOutOfOffice(value20);
-
-				Method method21 = oldModelClass.getMethod("getFirstReminder");
-
-				Integer value21 = (Integer)method21.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setFirstReminder(value21);
-
-				Method method22 = oldModelClass.getMethod("getSecondReminder");
-
-				Integer value22 = (Integer)method22.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setSecondReminder(value22);
-
-				Method method23 = oldModelClass.getMethod("getRequired");
-
-				Boolean value23 = (Boolean)method23.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setRequired(value23);
-
-				Method method24 = oldModelClass.getMethod("getRequestMessage");
-
-				String value24 = (String)method24.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setRequestMessage(value24);
-
-				Method method25 = oldModelClass.getMethod("getResponseMessage");
-
-				String value25 = (String)method25.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setResponseMessage(value25);
-
-				Method method26 = oldModelClass.getMethod("getStatus");
-
-				Integer value26 = (Integer)method26.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setStatus(value26);
-
-				Method method27 = oldModelClass.getMethod("getStatusByUserId");
-
-				Long value27 = (Long)method27.invoke(oldModel, (Object[])null);
-
-				newModel.setStatusByUserId(value27);
-
-				Method method28 = oldModelClass.getMethod("getStatusByUserName");
-
-				String value28 = (String)method28.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setStatusByUserName(value28);
-
-				Method method29 = oldModelClass.getMethod("getStatusDate");
-
-				Date value29 = (Date)method29.invoke(oldModel, (Object[])null);
-
-				newModel.setStatusDate(value29);
-
-				return newModel;
-			}
-			catch (Exception e) {
-				_log.error(e, e);
-			}
-		}
-		finally {
-			currentThread.setContextClassLoader(contextClassLoader);
-		}
-
-		return oldModel;
+		return newModel;
 	}
 
 	public static Object translateOutputCalendarResource(BaseModel<?> oldModel) {
-		Thread currentThread = Thread.currentThread();
+		CalendarResourceClp newModel = new CalendarResourceClp();
 
-		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+		newModel.setModelAttributes(oldModel.getModelAttributes());
 
-		try {
-			currentThread.setContextClassLoader(_classLoader);
+		newModel.setCalendarResourceRemoteModel(oldModel);
 
-			try {
-				CalendarResourceClp newModel = new CalendarResourceClp();
-
-				Class<?> oldModelClass = oldModel.getClass();
-
-				Method method0 = oldModelClass.getMethod("getUuid");
-
-				String value0 = (String)method0.invoke(oldModel, (Object[])null);
-
-				newModel.setUuid(value0);
-
-				Method method1 = oldModelClass.getMethod(
-						"getCalendarResourceId");
-
-				Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
-
-				newModel.setCalendarResourceId(value1);
-
-				Method method2 = oldModelClass.getMethod("getGroupId");
-
-				Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
-
-				newModel.setGroupId(value2);
-
-				Method method3 = oldModelClass.getMethod("getCompanyId");
-
-				Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
-
-				newModel.setCompanyId(value3);
-
-				Method method4 = oldModelClass.getMethod("getUserId");
-
-				Long value4 = (Long)method4.invoke(oldModel, (Object[])null);
-
-				newModel.setUserId(value4);
-
-				Method method5 = oldModelClass.getMethod("getUserName");
-
-				String value5 = (String)method5.invoke(oldModel, (Object[])null);
-
-				newModel.setUserName(value5);
-
-				Method method6 = oldModelClass.getMethod("getCreateDate");
-
-				Date value6 = (Date)method6.invoke(oldModel, (Object[])null);
-
-				newModel.setCreateDate(value6);
-
-				Method method7 = oldModelClass.getMethod("getModifiedDate");
-
-				Date value7 = (Date)method7.invoke(oldModel, (Object[])null);
-
-				newModel.setModifiedDate(value7);
-
-				Method method8 = oldModelClass.getMethod("getResourceBlockId");
-
-				Long value8 = (Long)method8.invoke(oldModel, (Object[])null);
-
-				newModel.setResourceBlockId(value8);
-
-				Method method9 = oldModelClass.getMethod("getClassNameId");
-
-				Long value9 = (Long)method9.invoke(oldModel, (Object[])null);
-
-				newModel.setClassNameId(value9);
-
-				Method method10 = oldModelClass.getMethod("getClassPK");
-
-				Long value10 = (Long)method10.invoke(oldModel, (Object[])null);
-
-				newModel.setClassPK(value10);
-
-				Method method11 = oldModelClass.getMethod("getClassUuid");
-
-				String value11 = (String)method11.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setClassUuid(value11);
-
-				Method method12 = oldModelClass.getMethod(
-						"getDefaultCalendarId");
-
-				Long value12 = (Long)method12.invoke(oldModel, (Object[])null);
-
-				newModel.setDefaultCalendarId(value12);
-
-				Method method13 = oldModelClass.getMethod("getCode");
-
-				String value13 = (String)method13.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setCode(value13);
-
-				Method method14 = oldModelClass.getMethod("getName");
-
-				String value14 = (String)method14.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setName(value14);
-
-				Method method14CurrentLanguageId = oldModelClass.getMethod(
-						"getNameCurrentLanguageId");
-
-				String value14CurrentLanguageId = (String)method14CurrentLanguageId.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setNameCurrentLanguageId(value14CurrentLanguageId);
-
-				Method method15 = oldModelClass.getMethod("getDescription");
-
-				String value15 = (String)method15.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setDescription(value15);
-
-				Method method15CurrentLanguageId = oldModelClass.getMethod(
-						"getDescriptionCurrentLanguageId");
-
-				String value15CurrentLanguageId = (String)method15CurrentLanguageId.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setDescriptionCurrentLanguageId(value15CurrentLanguageId);
-
-				Method method16 = oldModelClass.getMethod("getType");
-
-				String value16 = (String)method16.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setType(value16);
-
-				Method method17 = oldModelClass.getMethod("getActive");
-
-				Boolean value17 = (Boolean)method17.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setActive(value17);
-
-				return newModel;
-			}
-			catch (Exception e) {
-				_log.error(e, e);
-			}
-		}
-		finally {
-			currentThread.setContextClassLoader(contextClassLoader);
-		}
-
-		return oldModel;
+		return newModel;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(ClpSerializer.class);
 	private static ClassLoader _classLoader;
 	private static String _servletContextName;
+	private static boolean _useReflectionToTranslateThrowable = true;
 }

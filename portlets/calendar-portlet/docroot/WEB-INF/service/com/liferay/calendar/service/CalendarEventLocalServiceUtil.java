@@ -15,9 +15,9 @@
 package com.liferay.calendar.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the calendar event local service. This utility wraps {@link com.liferay.calendar.service.impl.CalendarEventLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -91,6 +91,10 @@ public class CalendarEventLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().deleteCalendarEvent(calendarEvent);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -282,6 +286,12 @@ public class CalendarEventLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static com.liferay.calendar.model.CalendarEvent addCalendarEvent(
 		long userId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
@@ -332,18 +342,10 @@ public class CalendarEventLocalServiceUtil {
 
 	public static CalendarEventLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					CalendarEventLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					CalendarEventLocalService.class.getName(),
-					portletClassLoader);
-
-			_service = new CalendarEventLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new CalendarEventLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(CalendarEventLocalServiceUtil.class,
 				"_service");

@@ -16,6 +16,10 @@ package com.liferay.socialcoding.model;
 
 import com.liferay.portal.model.ModelWrapper;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * <p>
  * This class is a wrapper for {@link JIRAChangeGroup}.
@@ -37,6 +41,43 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup,
 
 	public String getModelClassName() {
 		return JIRAChangeGroup.class.getName();
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("jiraChangeGroupId", getJiraChangeGroupId());
+		attributes.put("jiraUserId", getJiraUserId());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("jiraIssueId", getJiraIssueId());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long jiraChangeGroupId = (Long)attributes.get("jiraChangeGroupId");
+
+		if (jiraChangeGroupId != null) {
+			setJiraChangeGroupId(jiraChangeGroupId);
+		}
+
+		String jiraUserId = (String)attributes.get("jiraUserId");
+
+		if (jiraUserId != null) {
+			setJiraUserId(jiraUserId);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Long jiraIssueId = (Long)attributes.get("jiraIssueId");
+
+		if (jiraIssueId != null) {
+			setJiraIssueId(jiraIssueId);
+		}
 	}
 
 	/**

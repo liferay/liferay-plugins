@@ -23,6 +23,7 @@
 			<basic name="name" />
 			<basic name="url" />
 			<basic name="portletCategoryNames" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 		</attributes>
@@ -43,6 +44,7 @@
 			<basic name="consumerSecret" />
 			<basic name="keyType" />
 			<transient name="OAuthConsumerId" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 		</attributes>
@@ -68,6 +70,7 @@
 			<basic name="sessionHandle" />
 			<basic name="expiration" />
 			<transient name="OAuthTokenId" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />

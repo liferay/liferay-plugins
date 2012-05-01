@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
@@ -32,6 +33,7 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
@@ -65,6 +67,162 @@ public class CalendarEventClp extends BaseModelImpl<CalendarEvent>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("uuid", getUuid());
+		attributes.put("calendarEventId", getCalendarEventId());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("title", getTitle());
+		attributes.put("description", getDescription());
+		attributes.put("location", getLocation());
+		attributes.put("startDate", getStartDate());
+		attributes.put("endDate", getEndDate());
+		attributes.put("durationHour", getDurationHour());
+		attributes.put("durationMinute", getDurationMinute());
+		attributes.put("allDay", getAllDay());
+		attributes.put("recurrence", getRecurrence());
+		attributes.put("type", getType());
+		attributes.put("remindBy", getRemindBy());
+		attributes.put("firstReminder", getFirstReminder());
+		attributes.put("secondReminder", getSecondReminder());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		String uuid = (String)attributes.get("uuid");
+
+		if (uuid != null) {
+			setUuid(uuid);
+		}
+
+		Long calendarEventId = (Long)attributes.get("calendarEventId");
+
+		if (calendarEventId != null) {
+			setCalendarEventId(calendarEventId);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		String title = (String)attributes.get("title");
+
+		if (title != null) {
+			setTitle(title);
+		}
+
+		String description = (String)attributes.get("description");
+
+		if (description != null) {
+			setDescription(description);
+		}
+
+		String location = (String)attributes.get("location");
+
+		if (location != null) {
+			setLocation(location);
+		}
+
+		Date startDate = (Date)attributes.get("startDate");
+
+		if (startDate != null) {
+			setStartDate(startDate);
+		}
+
+		Date endDate = (Date)attributes.get("endDate");
+
+		if (endDate != null) {
+			setEndDate(endDate);
+		}
+
+		Integer durationHour = (Integer)attributes.get("durationHour");
+
+		if (durationHour != null) {
+			setDurationHour(durationHour);
+		}
+
+		Integer durationMinute = (Integer)attributes.get("durationMinute");
+
+		if (durationMinute != null) {
+			setDurationMinute(durationMinute);
+		}
+
+		Boolean allDay = (Boolean)attributes.get("allDay");
+
+		if (allDay != null) {
+			setAllDay(allDay);
+		}
+
+		String recurrence = (String)attributes.get("recurrence");
+
+		if (recurrence != null) {
+			setRecurrence(recurrence);
+		}
+
+		String type = (String)attributes.get("type");
+
+		if (type != null) {
+			setType(type);
+		}
+
+		Integer remindBy = (Integer)attributes.get("remindBy");
+
+		if (remindBy != null) {
+			setRemindBy(remindBy);
+		}
+
+		Integer firstReminder = (Integer)attributes.get("firstReminder");
+
+		if (firstReminder != null) {
+			setFirstReminder(firstReminder);
+		}
+
+		Integer secondReminder = (Integer)attributes.get("secondReminder");
+
+		if (secondReminder != null) {
+			setSecondReminder(secondReminder);
+		}
 	}
 
 	public String getUuid() {
@@ -425,6 +583,15 @@ public class CalendarEventClp extends BaseModelImpl<CalendarEvent>
 		_secondReminder = secondReminder;
 	}
 
+	public BaseModel<?> getCalendarEventRemoteModel() {
+		return _calendarEventRemoteModel;
+	}
+
+	public void setCalendarEventRemoteModel(
+		BaseModel<?> calendarEventRemoteModel) {
+		_calendarEventRemoteModel = calendarEventRemoteModel;
+	}
+
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			CalendarEventLocalServiceUtil.addCalendarEvent(this);
@@ -690,4 +857,5 @@ public class CalendarEventClp extends BaseModelImpl<CalendarEvent>
 	private int _remindBy;
 	private int _firstReminder;
 	private int _secondReminder;
+	private BaseModel<?> _calendarEventRemoteModel;
 }

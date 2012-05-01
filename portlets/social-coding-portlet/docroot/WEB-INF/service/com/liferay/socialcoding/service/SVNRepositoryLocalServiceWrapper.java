@@ -85,6 +85,10 @@ public class SVNRepositoryLocalServiceWrapper
 		return _svnRepositoryLocalService.deleteSVNRepository(svnRepository);
 	}
 
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _svnRepositoryLocalService.dynamicQuery();
+	}
+
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
@@ -258,6 +262,13 @@ public class SVNRepositoryLocalServiceWrapper
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_svnRepositoryLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _svnRepositoryLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	public com.liferay.socialcoding.model.SVNRepository getSVNRepository(

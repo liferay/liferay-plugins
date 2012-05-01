@@ -31,12 +31,14 @@ import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
+import com.liferay.portal.service.BaseLocalServiceImpl;
 import com.liferay.portal.service.CompanyLocalService;
 import com.liferay.portal.service.CompanyService;
 import com.liferay.portal.service.GroupLocalService;
@@ -85,7 +87,7 @@ import javax.sql.DataSource;
  * @see com.liferay.knowledgebase.service.KBArticleLocalServiceUtil
  * @generated
  */
-public abstract class KBArticleLocalServiceBaseImpl
+public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	implements KBArticleLocalService, IdentifiableBean {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -144,6 +146,11 @@ public abstract class KBArticleLocalServiceBaseImpl
 	public KBArticle deleteKBArticle(KBArticle kbArticle)
 		throws PortalException, SystemException {
 		return kbArticlePersistence.remove(kbArticle);
+	}
+
+	public DynamicQuery dynamicQuery() {
+		return DynamicQueryFactoryUtil.forClass(KBArticle.class,
+			getClassLoader());
 	}
 
 	/**
@@ -1000,10 +1007,9 @@ public abstract class KBArticleLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
-	protected ClassLoader getClassLoader() {
-		Class<?> clazz = getClass();
-
-		return clazz.getClassLoader();
+	public Object invokeMethod(String name, String[] parameterTypes,
+		Object[] arguments) throws Throwable {
+		return _clpInvoker.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	protected Class<?> getModelClass() {
@@ -1106,4 +1112,5 @@ public abstract class KBArticleLocalServiceBaseImpl
 	@BeanReference(type = SocialActivityPersistence.class)
 	protected SocialActivityPersistence socialActivityPersistence;
 	private String _beanIdentifier;
+	private KBArticleLocalServiceClpInvoker _clpInvoker = new KBArticleLocalServiceClpInvoker();
 }

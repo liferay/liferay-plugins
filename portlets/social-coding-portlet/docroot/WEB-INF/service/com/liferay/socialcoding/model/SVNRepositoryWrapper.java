@@ -16,6 +16,9 @@ package com.liferay.socialcoding.model;
 
 import com.liferay.portal.model.ModelWrapper;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * <p>
  * This class is a wrapper for {@link SVNRepository}.
@@ -37,6 +40,36 @@ public class SVNRepositoryWrapper implements SVNRepository,
 
 	public String getModelClassName() {
 		return SVNRepository.class.getName();
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("svnRepositoryId", getSvnRepositoryId());
+		attributes.put("url", getUrl());
+		attributes.put("revisionNumber", getRevisionNumber());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long svnRepositoryId = (Long)attributes.get("svnRepositoryId");
+
+		if (svnRepositoryId != null) {
+			setSvnRepositoryId(svnRepositoryId);
+		}
+
+		String url = (String)attributes.get("url");
+
+		if (url != null) {
+			setUrl(url);
+		}
+
+		Long revisionNumber = (Long)attributes.get("revisionNumber");
+
+		if (revisionNumber != null) {
+			setRevisionNumber(revisionNumber);
+		}
 	}
 
 	/**

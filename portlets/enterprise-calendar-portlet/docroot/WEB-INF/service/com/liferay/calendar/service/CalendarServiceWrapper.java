@@ -31,6 +31,30 @@ public class CalendarServiceWrapper implements CalendarService,
 		_calendarService = calendarService;
 	}
 
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _calendarService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_calendarService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _calendarService.invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public com.liferay.calendar.model.Calendar addCalendar(long groupId,
 		long calendarResourceId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,

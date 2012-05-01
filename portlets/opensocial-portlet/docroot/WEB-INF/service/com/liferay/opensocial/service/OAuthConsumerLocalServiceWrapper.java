@@ -85,6 +85,10 @@ public class OAuthConsumerLocalServiceWrapper
 		return _oAuthConsumerLocalService.deleteOAuthConsumer(oAuthConsumer);
 	}
 
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _oAuthConsumerLocalService.dynamicQuery();
+	}
+
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
@@ -257,6 +261,13 @@ public class OAuthConsumerLocalServiceWrapper
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_oAuthConsumerLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _oAuthConsumerLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	public com.liferay.opensocial.model.OAuthConsumer addOAuthConsumer(

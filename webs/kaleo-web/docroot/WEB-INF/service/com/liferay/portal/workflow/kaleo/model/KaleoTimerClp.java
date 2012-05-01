@@ -17,6 +17,7 @@ package com.liferay.portal.workflow.kaleo.model;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoTimerLocalServiceUtil;
@@ -26,6 +27,8 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
@@ -57,6 +60,134 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("kaleoTimerId", getKaleoTimerId());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("kaleoClassName", getKaleoClassName());
+		attributes.put("kaleoClassPK", getKaleoClassPK());
+		attributes.put("kaleoDefinitionId", getKaleoDefinitionId());
+		attributes.put("name", getName());
+		attributes.put("blocking", getBlocking());
+		attributes.put("description", getDescription());
+		attributes.put("duration", getDuration());
+		attributes.put("scale", getScale());
+		attributes.put("recurrenceDuration", getRecurrenceDuration());
+		attributes.put("recurrenceScale", getRecurrenceScale());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long kaleoTimerId = (Long)attributes.get("kaleoTimerId");
+
+		if (kaleoTimerId != null) {
+			setKaleoTimerId(kaleoTimerId);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		String kaleoClassName = (String)attributes.get("kaleoClassName");
+
+		if (kaleoClassName != null) {
+			setKaleoClassName(kaleoClassName);
+		}
+
+		Long kaleoClassPK = (Long)attributes.get("kaleoClassPK");
+
+		if (kaleoClassPK != null) {
+			setKaleoClassPK(kaleoClassPK);
+		}
+
+		Long kaleoDefinitionId = (Long)attributes.get("kaleoDefinitionId");
+
+		if (kaleoDefinitionId != null) {
+			setKaleoDefinitionId(kaleoDefinitionId);
+		}
+
+		String name = (String)attributes.get("name");
+
+		if (name != null) {
+			setName(name);
+		}
+
+		Boolean blocking = (Boolean)attributes.get("blocking");
+
+		if (blocking != null) {
+			setBlocking(blocking);
+		}
+
+		String description = (String)attributes.get("description");
+
+		if (description != null) {
+			setDescription(description);
+		}
+
+		Double duration = (Double)attributes.get("duration");
+
+		if (duration != null) {
+			setDuration(duration);
+		}
+
+		String scale = (String)attributes.get("scale");
+
+		if (scale != null) {
+			setScale(scale);
+		}
+
+		Double recurrenceDuration = (Double)attributes.get("recurrenceDuration");
+
+		if (recurrenceDuration != null) {
+			setRecurrenceDuration(recurrenceDuration);
+		}
+
+		String recurrenceScale = (String)attributes.get("recurrenceScale");
+
+		if (recurrenceScale != null) {
+			setRecurrenceScale(recurrenceScale);
+		}
 	}
 
 	public long getKaleoTimerId() {
@@ -213,6 +344,14 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 
 	public boolean isRecurring() {
 		throw new UnsupportedOperationException();
+	}
+
+	public BaseModel<?> getKaleoTimerRemoteModel() {
+		return _kaleoTimerRemoteModel;
+	}
+
+	public void setKaleoTimerRemoteModel(BaseModel<?> kaleoTimerRemoteModel) {
+		_kaleoTimerRemoteModel = kaleoTimerRemoteModel;
 	}
 
 	public void persist() throws SystemException {
@@ -447,4 +586,5 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 	private String _scale;
 	private double _recurrenceDuration;
 	private String _recurrenceScale;
+	private BaseModel<?> _kaleoTimerRemoteModel;
 }

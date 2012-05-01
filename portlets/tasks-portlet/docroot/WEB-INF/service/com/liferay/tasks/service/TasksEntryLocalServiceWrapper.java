@@ -86,6 +86,10 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 		return _tasksEntryLocalService.deleteTasksEntry(tasksEntry);
 	}
 
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _tasksEntryLocalService.dynamicQuery();
+	}
+
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
@@ -255,6 +259,13 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_tasksEntryLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _tasksEntryLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	public com.liferay.tasks.model.TasksEntry addTasksEntry(long userId,

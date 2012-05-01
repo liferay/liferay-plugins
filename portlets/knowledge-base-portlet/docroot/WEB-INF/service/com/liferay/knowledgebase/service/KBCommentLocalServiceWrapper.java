@@ -84,6 +84,10 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 		return _kbCommentLocalService.deleteKBComment(kbComment);
 	}
 
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _kbCommentLocalService.dynamicQuery();
+	}
+
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
@@ -271,6 +275,13 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_kbCommentLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _kbCommentLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	public com.liferay.knowledgebase.model.KBComment addKBComment(long userId,

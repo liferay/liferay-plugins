@@ -32,10 +32,10 @@ import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.service.BaseServiceImpl;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.service.UserService;
-import com.liferay.portal.service.base.PrincipalBean;
 import com.liferay.portal.service.persistence.UserPersistence;
 
 import com.liferay.portlet.expando.service.ExpandoValueLocalService;
@@ -56,7 +56,7 @@ import javax.sql.DataSource;
  * @see com.liferay.calendar.service.CalendarResourceServiceUtil
  * @generated
  */
-public abstract class CalendarResourceServiceBaseImpl extends PrincipalBean
+public abstract class CalendarResourceServiceBaseImpl extends BaseServiceImpl
 	implements CalendarResourceService, IdentifiableBean {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -406,10 +406,9 @@ public abstract class CalendarResourceServiceBaseImpl extends PrincipalBean
 		_beanIdentifier = beanIdentifier;
 	}
 
-	protected ClassLoader getClassLoader() {
-		Class<?> clazz = getClass();
-
-		return clazz.getClassLoader();
+	public Object invokeMethod(String name, String[] parameterTypes,
+		Object[] arguments) throws Throwable {
+		return _clpInvoker.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	protected Class<?> getModelClass() {
@@ -474,4 +473,5 @@ public abstract class CalendarResourceServiceBaseImpl extends PrincipalBean
 	@BeanReference(type = ExpandoValuePersistence.class)
 	protected ExpandoValuePersistence expandoValuePersistence;
 	private String _beanIdentifier;
+	private CalendarResourceServiceClpInvoker _clpInvoker = new CalendarResourceServiceClpInvoker();
 }

@@ -83,6 +83,10 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 		return _gadgetLocalService.deleteGadget(gadget);
 	}
 
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _gadgetLocalService.dynamicQuery();
+	}
+
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
@@ -252,6 +256,12 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_gadgetLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _gadgetLocalService.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	public com.liferay.opensocial.model.Gadget addGadget(long companyId,

@@ -82,6 +82,10 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 		return _definitionLocalService.deleteDefinition(definition);
 	}
 
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _definitionLocalService.dynamicQuery();
+	}
+
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
@@ -251,6 +255,13 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_definitionLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _definitionLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	/**

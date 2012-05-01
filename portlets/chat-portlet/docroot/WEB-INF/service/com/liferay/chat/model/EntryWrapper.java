@@ -16,6 +16,9 @@ package com.liferay.chat.model;
 
 import com.liferay.portal.model.ModelWrapper;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * <p>
  * This class is a wrapper for {@link Entry}.
@@ -36,6 +39,50 @@ public class EntryWrapper implements Entry, ModelWrapper<Entry> {
 
 	public String getModelClassName() {
 		return Entry.class.getName();
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("entryId", getEntryId());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("fromUserId", getFromUserId());
+		attributes.put("toUserId", getToUserId());
+		attributes.put("content", getContent());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long entryId = (Long)attributes.get("entryId");
+
+		if (entryId != null) {
+			setEntryId(entryId);
+		}
+
+		Long createDate = (Long)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Long fromUserId = (Long)attributes.get("fromUserId");
+
+		if (fromUserId != null) {
+			setFromUserId(fromUserId);
+		}
+
+		Long toUserId = (Long)attributes.get("toUserId");
+
+		if (toUserId != null) {
+			setToUserId(toUserId);
+		}
+
+		String content = (String)attributes.get("content");
+
+		if (content != null) {
+			setContent(content);
+		}
 	}
 
 	/**

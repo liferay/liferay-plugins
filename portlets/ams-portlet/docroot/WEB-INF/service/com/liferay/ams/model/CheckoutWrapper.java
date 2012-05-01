@@ -16,6 +16,10 @@ package com.liferay.ams.model;
 
 import com.liferay.portal.model.ModelWrapper;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * <p>
  * This class is a wrapper for {@link Checkout}.
@@ -36,6 +40,85 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 
 	public String getModelClassName() {
 		return Checkout.class.getName();
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("checkoutId", getCheckoutId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("assetId", getAssetId());
+		attributes.put("checkOutDate", getCheckOutDate());
+		attributes.put("expectedCheckInDate", getExpectedCheckInDate());
+		attributes.put("actualCheckInDate", getActualCheckInDate());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long checkoutId = (Long)attributes.get("checkoutId");
+
+		if (checkoutId != null) {
+			setCheckoutId(checkoutId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		Long assetId = (Long)attributes.get("assetId");
+
+		if (assetId != null) {
+			setAssetId(assetId);
+		}
+
+		Date checkOutDate = (Date)attributes.get("checkOutDate");
+
+		if (checkOutDate != null) {
+			setCheckOutDate(checkOutDate);
+		}
+
+		Date expectedCheckInDate = (Date)attributes.get("expectedCheckInDate");
+
+		if (expectedCheckInDate != null) {
+			setExpectedCheckInDate(expectedCheckInDate);
+		}
+
+		Date actualCheckInDate = (Date)attributes.get("actualCheckInDate");
+
+		if (actualCheckInDate != null) {
+			setActualCheckInDate(actualCheckInDate);
+		}
 	}
 
 	/**

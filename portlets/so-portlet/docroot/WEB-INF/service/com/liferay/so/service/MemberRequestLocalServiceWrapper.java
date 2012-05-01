@@ -85,6 +85,10 @@ public class MemberRequestLocalServiceWrapper
 		return _memberRequestLocalService.deleteMemberRequest(memberRequest);
 	}
 
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _memberRequestLocalService.dynamicQuery();
+	}
+
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
@@ -257,6 +261,13 @@ public class MemberRequestLocalServiceWrapper
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_memberRequestLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _memberRequestLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	public com.liferay.so.model.MemberRequest addMemberRequest(long userId,

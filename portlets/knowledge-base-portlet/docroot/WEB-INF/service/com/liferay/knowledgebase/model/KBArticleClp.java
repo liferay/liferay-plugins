@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
@@ -29,6 +30,8 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
@@ -59,6 +62,184 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("uuid", getUuid());
+		attributes.put("kbArticleId", getKbArticleId());
+		attributes.put("resourcePrimKey", getResourcePrimKey());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("rootResourcePrimKey", getRootResourcePrimKey());
+		attributes.put("parentResourcePrimKey", getParentResourcePrimKey());
+		attributes.put("version", getVersion());
+		attributes.put("title", getTitle());
+		attributes.put("content", getContent());
+		attributes.put("description", getDescription());
+		attributes.put("priority", getPriority());
+		attributes.put("sections", getSections());
+		attributes.put("viewCount", getViewCount());
+		attributes.put("latest", getLatest());
+		attributes.put("main", getMain());
+		attributes.put("status", getStatus());
+		attributes.put("statusByUserId", getStatusByUserId());
+		attributes.put("statusByUserName", getStatusByUserName());
+		attributes.put("statusDate", getStatusDate());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		String uuid = (String)attributes.get("uuid");
+
+		if (uuid != null) {
+			setUuid(uuid);
+		}
+
+		Long kbArticleId = (Long)attributes.get("kbArticleId");
+
+		if (kbArticleId != null) {
+			setKbArticleId(kbArticleId);
+		}
+
+		Long resourcePrimKey = (Long)attributes.get("resourcePrimKey");
+
+		if (resourcePrimKey != null) {
+			setResourcePrimKey(resourcePrimKey);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		Long rootResourcePrimKey = (Long)attributes.get("rootResourcePrimKey");
+
+		if (rootResourcePrimKey != null) {
+			setRootResourcePrimKey(rootResourcePrimKey);
+		}
+
+		Long parentResourcePrimKey = (Long)attributes.get(
+				"parentResourcePrimKey");
+
+		if (parentResourcePrimKey != null) {
+			setParentResourcePrimKey(parentResourcePrimKey);
+		}
+
+		Integer version = (Integer)attributes.get("version");
+
+		if (version != null) {
+			setVersion(version);
+		}
+
+		String title = (String)attributes.get("title");
+
+		if (title != null) {
+			setTitle(title);
+		}
+
+		String content = (String)attributes.get("content");
+
+		if (content != null) {
+			setContent(content);
+		}
+
+		String description = (String)attributes.get("description");
+
+		if (description != null) {
+			setDescription(description);
+		}
+
+		Double priority = (Double)attributes.get("priority");
+
+		if (priority != null) {
+			setPriority(priority);
+		}
+
+		String sections = (String)attributes.get("sections");
+
+		if (sections != null) {
+			setSections(sections);
+		}
+
+		Integer viewCount = (Integer)attributes.get("viewCount");
+
+		if (viewCount != null) {
+			setViewCount(viewCount);
+		}
+
+		Boolean latest = (Boolean)attributes.get("latest");
+
+		if (latest != null) {
+			setLatest(latest);
+		}
+
+		Boolean main = (Boolean)attributes.get("main");
+
+		if (main != null) {
+			setMain(main);
+		}
+
+		Integer status = (Integer)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
+		}
+
+		Long statusByUserId = (Long)attributes.get("statusByUserId");
+
+		if (statusByUserId != null) {
+			setStatusByUserId(statusByUserId);
+		}
+
+		String statusByUserName = (String)attributes.get("statusByUserName");
+
+		if (statusByUserName != null) {
+			setStatusByUserName(statusByUserName);
+		}
+
+		Date statusDate = (Date)attributes.get("statusDate");
+
+		if (statusDate != null) {
+			setStatusDate(statusDate);
+		}
 	}
 
 	public String getUuid() {
@@ -349,6 +530,14 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		}
 	}
 
+	public BaseModel<?> getKBArticleRemoteModel() {
+		return _kbArticleRemoteModel;
+	}
+
+	public void setKBArticleRemoteModel(BaseModel<?> kbArticleRemoteModel) {
+		_kbArticleRemoteModel = kbArticleRemoteModel;
+	}
+
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			KBArticleLocalServiceUtil.addKBArticle(this);
@@ -634,4 +823,5 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 	private String _statusByUserUuid;
 	private String _statusByUserName;
 	private Date _statusDate;
+	private BaseModel<?> _kbArticleRemoteModel;
 }

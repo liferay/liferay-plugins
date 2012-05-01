@@ -24,6 +24,7 @@
 			</basic>
 			<basic name="remoteAppId" />
 			<basic name="version" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
@@ -37,6 +38,7 @@
 			</basic>
 			<basic name="appId" />
 			<basic name="contextName" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 		</attributes>

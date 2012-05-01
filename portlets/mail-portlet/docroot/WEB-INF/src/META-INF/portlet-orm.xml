@@ -41,6 +41,7 @@
 			<basic name="sentFolderId" />
 			<basic name="trashFolderId" />
 			<basic name="defaultSender" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
@@ -59,6 +60,7 @@
 			<basic name="size">
 				<column name="SIZE_" />
 			</basic>
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
@@ -80,6 +82,7 @@
 			<basic name="fullName" />
 			<basic name="displayName" />
 			<basic name="remoteMessageCount" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
@@ -116,6 +119,7 @@
 				<column name="SIZE_" />
 			</basic>
 			<basic name="remoteMessageId" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />

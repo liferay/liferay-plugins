@@ -17,6 +17,7 @@ package com.liferay.portal.workflow.kaleo.model;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoNotificationRecipientLocalServiceUtil;
@@ -26,6 +27,8 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
@@ -57,6 +60,108 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("kaleoNotificationRecipientId",
+			getKaleoNotificationRecipientId());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("kaleoDefinitionId", getKaleoDefinitionId());
+		attributes.put("kaleoNotificationId", getKaleoNotificationId());
+		attributes.put("recipientClassName", getRecipientClassName());
+		attributes.put("recipientClassPK", getRecipientClassPK());
+		attributes.put("recipientRoleType", getRecipientRoleType());
+		attributes.put("address", getAddress());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long kaleoNotificationRecipientId = (Long)attributes.get(
+				"kaleoNotificationRecipientId");
+
+		if (kaleoNotificationRecipientId != null) {
+			setKaleoNotificationRecipientId(kaleoNotificationRecipientId);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		Long kaleoDefinitionId = (Long)attributes.get("kaleoDefinitionId");
+
+		if (kaleoDefinitionId != null) {
+			setKaleoDefinitionId(kaleoDefinitionId);
+		}
+
+		Long kaleoNotificationId = (Long)attributes.get("kaleoNotificationId");
+
+		if (kaleoNotificationId != null) {
+			setKaleoNotificationId(kaleoNotificationId);
+		}
+
+		String recipientClassName = (String)attributes.get("recipientClassName");
+
+		if (recipientClassName != null) {
+			setRecipientClassName(recipientClassName);
+		}
+
+		Long recipientClassPK = (Long)attributes.get("recipientClassPK");
+
+		if (recipientClassPK != null) {
+			setRecipientClassPK(recipientClassPK);
+		}
+
+		Integer recipientRoleType = (Integer)attributes.get("recipientRoleType");
+
+		if (recipientRoleType != null) {
+			setRecipientRoleType(recipientRoleType);
+		}
+
+		String address = (String)attributes.get("address");
+
+		if (address != null) {
+			setAddress(address);
+		}
 	}
 
 	public long getKaleoNotificationRecipientId() {
@@ -170,6 +275,15 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 
 	public void setAddress(String address) {
 		_address = address;
+	}
+
+	public BaseModel<?> getKaleoNotificationRecipientRemoteModel() {
+		return _kaleoNotificationRecipientRemoteModel;
+	}
+
+	public void setKaleoNotificationRecipientRemoteModel(
+		BaseModel<?> kaleoNotificationRecipientRemoteModel) {
+		_kaleoNotificationRecipientRemoteModel = kaleoNotificationRecipientRemoteModel;
 	}
 
 	public void persist() throws SystemException {
@@ -374,4 +488,5 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 	private long _recipientClassPK;
 	private int _recipientRoleType;
 	private String _address;
+	private BaseModel<?> _kaleoNotificationRecipientRemoteModel;
 }

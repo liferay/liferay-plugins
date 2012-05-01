@@ -15,9 +15,9 @@
 package com.liferay.socialcoding.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the j i r a change item local service. This utility wraps {@link com.liferay.socialcoding.service.impl.JIRAChangeItemLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -89,6 +89,10 @@ public class JIRAChangeItemLocalServiceUtil {
 		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().deleteJIRAChangeItem(jiraChangeItem);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -265,6 +269,12 @@ public class JIRAChangeItemLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> getJIRAChangeItems(
 		long jiraChangeGroupId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -277,18 +287,10 @@ public class JIRAChangeItemLocalServiceUtil {
 
 	public static JIRAChangeItemLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					JIRAChangeItemLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					JIRAChangeItemLocalService.class.getName(),
-					portletClassLoader);
-
-			_service = new JIRAChangeItemLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new JIRAChangeItemLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(JIRAChangeItemLocalServiceUtil.class,
 				"_service");

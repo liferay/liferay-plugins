@@ -30,12 +30,14 @@ import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
+import com.liferay.portal.service.BaseLocalServiceImpl;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.UserLocalService;
@@ -60,8 +62,8 @@ import javax.sql.DataSource;
  * @see com.liferay.opensocial.service.GadgetLocalServiceUtil
  * @generated
  */
-public abstract class GadgetLocalServiceBaseImpl implements GadgetLocalService,
-	IdentifiableBean {
+public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
+	implements GadgetLocalService, IdentifiableBean {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -118,6 +120,10 @@ public abstract class GadgetLocalServiceBaseImpl implements GadgetLocalService,
 	public Gadget deleteGadget(Gadget gadget)
 		throws PortalException, SystemException {
 		return gadgetPersistence.remove(gadget);
+	}
+
+	public DynamicQuery dynamicQuery() {
+		return DynamicQueryFactoryUtil.forClass(Gadget.class, getClassLoader());
 	}
 
 	/**
@@ -511,10 +517,9 @@ public abstract class GadgetLocalServiceBaseImpl implements GadgetLocalService,
 		_beanIdentifier = beanIdentifier;
 	}
 
-	protected ClassLoader getClassLoader() {
-		Class<?> clazz = getClass();
-
-		return clazz.getClassLoader();
+	public Object invokeMethod(String name, String[] parameterTypes,
+		Object[] arguments) throws Throwable {
+		return _clpInvoker.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	protected Class<?> getModelClass() {
@@ -569,4 +574,5 @@ public abstract class GadgetLocalServiceBaseImpl implements GadgetLocalService,
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 	private String _beanIdentifier;
+	private GadgetLocalServiceClpInvoker _clpInvoker = new GadgetLocalServiceClpInvoker();
 }

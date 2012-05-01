@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalServiceUtil;
@@ -30,6 +31,7 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
@@ -63,6 +65,113 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("kaleoDefinitionId", getKaleoDefinitionId());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("name", getName());
+		attributes.put("title", getTitle());
+		attributes.put("description", getDescription());
+		attributes.put("content", getContent());
+		attributes.put("version", getVersion());
+		attributes.put("active", getActive());
+		attributes.put("startKaleoNodeId", getStartKaleoNodeId());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long kaleoDefinitionId = (Long)attributes.get("kaleoDefinitionId");
+
+		if (kaleoDefinitionId != null) {
+			setKaleoDefinitionId(kaleoDefinitionId);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		String name = (String)attributes.get("name");
+
+		if (name != null) {
+			setName(name);
+		}
+
+		String title = (String)attributes.get("title");
+
+		if (title != null) {
+			setTitle(title);
+		}
+
+		String description = (String)attributes.get("description");
+
+		if (description != null) {
+			setDescription(description);
+		}
+
+		String content = (String)attributes.get("content");
+
+		if (content != null) {
+			setContent(content);
+		}
+
+		Integer version = (Integer)attributes.get("version");
+
+		if (version != null) {
+			setVersion(version);
+		}
+
+		Boolean active = (Boolean)attributes.get("active");
+
+		if (active != null) {
+			setActive(active);
+		}
+
+		Long startKaleoNodeId = (Long)attributes.get("startKaleoNodeId");
+
+		if (startKaleoNodeId != null) {
+			setStartKaleoNodeId(startKaleoNodeId);
+		}
 	}
 
 	public long getKaleoDefinitionId() {
@@ -284,6 +393,15 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		throw new UnsupportedOperationException();
 	}
 
+	public BaseModel<?> getKaleoDefinitionRemoteModel() {
+		return _kaleoDefinitionRemoteModel;
+	}
+
+	public void setKaleoDefinitionRemoteModel(
+		BaseModel<?> kaleoDefinitionRemoteModel) {
+		_kaleoDefinitionRemoteModel = kaleoDefinitionRemoteModel;
+	}
+
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			KaleoDefinitionLocalServiceUtil.addKaleoDefinition(this);
@@ -496,4 +614,5 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 	private int _version;
 	private boolean _active;
 	private long _startKaleoNodeId;
+	private BaseModel<?> _kaleoDefinitionRemoteModel;
 }

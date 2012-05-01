@@ -13,6 +13,7 @@
 			<basic name="text">
 				<column name="TEXT_" />
 			</basic>
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 		</attributes>

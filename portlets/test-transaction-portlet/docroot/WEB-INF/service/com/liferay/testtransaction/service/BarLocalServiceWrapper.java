@@ -81,6 +81,10 @@ public class BarLocalServiceWrapper implements BarLocalService,
 		return _barLocalService.deleteBar(bar);
 	}
 
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _barLocalService.dynamicQuery();
+	}
+
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
@@ -250,6 +254,12 @@ public class BarLocalServiceWrapper implements BarLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_barLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _barLocalService.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	public void addBar_Rollback(java.lang.String text)

@@ -16,16 +16,24 @@ package com.liferay.microblogs.service;
 
 import com.liferay.microblogs.model.MicroblogsEntryClp;
 
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
+import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.ClassLoaderObjectInputStream;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
 
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import java.lang.reflect.Method;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -90,10 +98,6 @@ public class ClpSerializer {
 		}
 	}
 
-	public static void setClassLoader(ClassLoader classLoader) {
-		_classLoader = classLoader;
-	}
-
 	public static Object translateInput(BaseModel<?> oldModel) {
 		Class<?> oldModelClass = oldModel.getClass();
 
@@ -119,109 +123,13 @@ public class ClpSerializer {
 	}
 
 	public static Object translateInputMicroblogsEntry(BaseModel<?> oldModel) {
-		MicroblogsEntryClp oldCplModel = (MicroblogsEntryClp)oldModel;
+		MicroblogsEntryClp oldClpModel = (MicroblogsEntryClp)oldModel;
 
-		Thread currentThread = Thread.currentThread();
+		BaseModel<?> newModel = oldClpModel.getMicroblogsEntryRemoteModel();
 
-		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
 
-		try {
-			currentThread.setContextClassLoader(_classLoader);
-
-			try {
-				Class<?> newModelClass = Class.forName("com.liferay.microblogs.model.impl.MicroblogsEntryImpl",
-						true, _classLoader);
-
-				Object newModel = newModelClass.newInstance();
-
-				Method method0 = newModelClass.getMethod("setMicroblogsEntryId",
-						new Class[] { Long.TYPE });
-
-				Long value0 = new Long(oldCplModel.getMicroblogsEntryId());
-
-				method0.invoke(newModel, value0);
-
-				Method method1 = newModelClass.getMethod("setCompanyId",
-						new Class[] { Long.TYPE });
-
-				Long value1 = new Long(oldCplModel.getCompanyId());
-
-				method1.invoke(newModel, value1);
-
-				Method method2 = newModelClass.getMethod("setUserId",
-						new Class[] { Long.TYPE });
-
-				Long value2 = new Long(oldCplModel.getUserId());
-
-				method2.invoke(newModel, value2);
-
-				Method method3 = newModelClass.getMethod("setUserName",
-						new Class[] { String.class });
-
-				String value3 = oldCplModel.getUserName();
-
-				method3.invoke(newModel, value3);
-
-				Method method4 = newModelClass.getMethod("setCreateDate",
-						new Class[] { Date.class });
-
-				Date value4 = oldCplModel.getCreateDate();
-
-				method4.invoke(newModel, value4);
-
-				Method method5 = newModelClass.getMethod("setModifiedDate",
-						new Class[] { Date.class });
-
-				Date value5 = oldCplModel.getModifiedDate();
-
-				method5.invoke(newModel, value5);
-
-				Method method6 = newModelClass.getMethod("setContent",
-						new Class[] { String.class });
-
-				String value6 = oldCplModel.getContent();
-
-				method6.invoke(newModel, value6);
-
-				Method method7 = newModelClass.getMethod("setType",
-						new Class[] { Integer.TYPE });
-
-				Integer value7 = new Integer(oldCplModel.getType());
-
-				method7.invoke(newModel, value7);
-
-				Method method8 = newModelClass.getMethod("setReceiverUserId",
-						new Class[] { Long.TYPE });
-
-				Long value8 = new Long(oldCplModel.getReceiverUserId());
-
-				method8.invoke(newModel, value8);
-
-				Method method9 = newModelClass.getMethod("setReceiverMicroblogsEntryId",
-						new Class[] { Long.TYPE });
-
-				Long value9 = new Long(oldCplModel.getReceiverMicroblogsEntryId());
-
-				method9.invoke(newModel, value9);
-
-				Method method10 = newModelClass.getMethod("setSocialRelationType",
-						new Class[] { Integer.TYPE });
-
-				Integer value10 = new Integer(oldCplModel.getSocialRelationType());
-
-				method10.invoke(newModel, value10);
-
-				return newModel;
-			}
-			catch (Exception e) {
-				_log.error(e, e);
-			}
-		}
-		finally {
-			currentThread.setContextClassLoader(contextClassLoader);
-		}
-
-		return oldModel;
+		return newModel;
 	}
 
 	public static Object translateInput(Object obj) {
@@ -273,103 +181,83 @@ public class ClpSerializer {
 		}
 	}
 
-	public static Object translateOutputMicroblogsEntry(BaseModel<?> oldModel) {
-		Thread currentThread = Thread.currentThread();
-
-		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
-
-		try {
-			currentThread.setContextClassLoader(_classLoader);
-
+	public static Throwable translateThrowable(Throwable throwable) {
+		if (_useReflectionToTranslateThrowable) {
 			try {
-				MicroblogsEntryClp newModel = new MicroblogsEntryClp();
+				if (_classLoader == null) {
+					_classLoader = (ClassLoader)PortletBeanLocatorUtil.locate(_servletContextName,
+							"portletClassLoader");
+				}
 
-				Class<?> oldModelClass = oldModel.getClass();
+				UnsyncByteArrayOutputStream unsyncByteArrayOutputStream = new UnsyncByteArrayOutputStream();
+				ObjectOutputStream objectOutputStream = new ObjectOutputStream(unsyncByteArrayOutputStream);
 
-				Method method0 = oldModelClass.getMethod("getMicroblogsEntryId");
+				objectOutputStream.writeObject(throwable);
 
-				Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
+				objectOutputStream.flush();
+				objectOutputStream.close();
 
-				newModel.setMicroblogsEntryId(value0);
+				UnsyncByteArrayInputStream unsyncByteArrayInputStream = new UnsyncByteArrayInputStream(unsyncByteArrayOutputStream.unsafeGetByteArray(),
+						0, unsyncByteArrayOutputStream.size());
+				ObjectInputStream objectInputStream = new ClassLoaderObjectInputStream(unsyncByteArrayInputStream,
+						_classLoader);
 
-				Method method1 = oldModelClass.getMethod("getCompanyId");
+				throwable = (Throwable)objectInputStream.readObject();
 
-				Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
+				objectInputStream.close();
 
-				newModel.setCompanyId(value1);
-
-				Method method2 = oldModelClass.getMethod("getUserId");
-
-				Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
-
-				newModel.setUserId(value2);
-
-				Method method3 = oldModelClass.getMethod("getUserName");
-
-				String value3 = (String)method3.invoke(oldModel, (Object[])null);
-
-				newModel.setUserName(value3);
-
-				Method method4 = oldModelClass.getMethod("getCreateDate");
-
-				Date value4 = (Date)method4.invoke(oldModel, (Object[])null);
-
-				newModel.setCreateDate(value4);
-
-				Method method5 = oldModelClass.getMethod("getModifiedDate");
-
-				Date value5 = (Date)method5.invoke(oldModel, (Object[])null);
-
-				newModel.setModifiedDate(value5);
-
-				Method method6 = oldModelClass.getMethod("getContent");
-
-				String value6 = (String)method6.invoke(oldModel, (Object[])null);
-
-				newModel.setContent(value6);
-
-				Method method7 = oldModelClass.getMethod("getType");
-
-				Integer value7 = (Integer)method7.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setType(value7);
-
-				Method method8 = oldModelClass.getMethod("getReceiverUserId");
-
-				Long value8 = (Long)method8.invoke(oldModel, (Object[])null);
-
-				newModel.setReceiverUserId(value8);
-
-				Method method9 = oldModelClass.getMethod(
-						"getReceiverMicroblogsEntryId");
-
-				Long value9 = (Long)method9.invoke(oldModel, (Object[])null);
-
-				newModel.setReceiverMicroblogsEntryId(value9);
-
-				Method method10 = oldModelClass.getMethod(
-						"getSocialRelationType");
-
-				Integer value10 = (Integer)method10.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setSocialRelationType(value10);
-
-				return newModel;
+				return throwable;
 			}
-			catch (Exception e) {
-				_log.error(e, e);
+			catch (SecurityException se) {
+				if (_log.isInfoEnabled()) {
+					_log.info("Do not use reflection to translate throwable");
+				}
+
+				_useReflectionToTranslateThrowable = false;
+			}
+			catch (Throwable throwable2) {
+				_log.error(throwable2, throwable2);
+
+				return throwable2;
 			}
 		}
-		finally {
-			currentThread.setContextClassLoader(contextClassLoader);
+
+		Class<?> clazz = throwable.getClass();
+
+		String className = clazz.getName();
+
+		if (className.equals(PortalException.class.getName())) {
+			return new PortalException();
 		}
 
-		return oldModel;
+		if (className.equals(SystemException.class.getName())) {
+			return new SystemException();
+		}
+
+		if (className.equals(
+					"com.liferay.microblogs.UnsupportedMicroblogsEntryException")) {
+			return new com.liferay.microblogs.UnsupportedMicroblogsEntryException();
+		}
+
+		if (className.equals("com.liferay.microblogs.NoSuchEntryException")) {
+			return new com.liferay.microblogs.NoSuchEntryException();
+		}
+
+		return throwable;
+	}
+
+	public static Object translateOutputMicroblogsEntry(BaseModel<?> oldModel) {
+		MicroblogsEntryClp newModel = new MicroblogsEntryClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setMicroblogsEntryRemoteModel(oldModel);
+
+		return newModel;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(ClpSerializer.class);
 	private static ClassLoader _classLoader;
 	private static String _servletContextName;
+	private static boolean _useReflectionToTranslateThrowable = true;
 }

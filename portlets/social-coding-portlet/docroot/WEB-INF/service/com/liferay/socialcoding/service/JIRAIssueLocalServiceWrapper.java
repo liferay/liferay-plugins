@@ -84,6 +84,10 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 		return _jiraIssueLocalService.deleteJIRAIssue(jiraIssue);
 	}
 
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _jiraIssueLocalService.dynamicQuery();
+	}
+
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
@@ -255,6 +259,13 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_jiraIssueLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _jiraIssueLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getAssigneeJIRAIssues(

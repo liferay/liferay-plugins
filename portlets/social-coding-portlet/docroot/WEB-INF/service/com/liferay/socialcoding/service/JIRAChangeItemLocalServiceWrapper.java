@@ -85,6 +85,10 @@ public class JIRAChangeItemLocalServiceWrapper
 		return _jiraChangeItemLocalService.deleteJIRAChangeItem(jiraChangeItem);
 	}
 
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _jiraChangeItemLocalService.dynamicQuery();
+	}
+
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
@@ -258,6 +262,13 @@ public class JIRAChangeItemLocalServiceWrapper
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_jiraChangeItemLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _jiraChangeItemLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	public java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> getJIRAChangeItems(

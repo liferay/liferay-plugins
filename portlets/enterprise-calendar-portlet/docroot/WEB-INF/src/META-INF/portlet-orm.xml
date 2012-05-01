@@ -31,6 +31,7 @@
 			<basic name="defaultCalendar" />
 			<transient name="descriptionCurrentLanguageId" />
 			<transient name="descriptionMap" />
+			<transient name="modelAttributes" />
 			<transient name="nameCurrentLanguageId" />
 			<transient name="nameMap" />
 			<transient name="primaryKey" />
@@ -88,6 +89,7 @@
 			<transient name="descriptionMap" />
 			<transient name="locationCurrentLanguageId" />
 			<transient name="locationMap" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="statusByUserUuid" />
@@ -131,6 +133,7 @@
 			<transient name="className" />
 			<transient name="descriptionCurrentLanguageId" />
 			<transient name="descriptionMap" />
+			<transient name="modelAttributes" />
 			<transient name="nameCurrentLanguageId" />
 			<transient name="nameMap" />
 			<transient name="primaryKey" />

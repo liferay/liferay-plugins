@@ -33,6 +33,9 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * The base model implementation for the Bar service. Represents a row in the &quot;TT_Bar&quot; database table, with each column mapped to a property of this class.
  *
@@ -102,6 +105,31 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 
 	public String getModelClassName() {
 		return Bar.class.getName();
+	}
+
+	@Override
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("barId", getBarId());
+		attributes.put("text", getText());
+
+		return attributes;
+	}
+
+	@Override
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long barId = (Long)attributes.get("barId");
+
+		if (barId != null) {
+			setBarId(barId);
+		}
+
+		String text = (String)attributes.get("text");
+
+		if (text != null) {
+			setText(text);
+		}
 	}
 
 	public long getBarId() {

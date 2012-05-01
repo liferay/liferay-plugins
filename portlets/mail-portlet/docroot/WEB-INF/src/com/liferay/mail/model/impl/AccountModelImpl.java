@@ -36,6 +36,8 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The base model implementation for the Account service. Represents a row in the &quot;Mail_Account&quot; database table, with each column mapped to a property of this class.
@@ -132,6 +134,199 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 
 	public String getModelClassName() {
 		return Account.class.getName();
+	}
+
+	@Override
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("accountId", getAccountId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("address", getAddress());
+		attributes.put("personalName", getPersonalName());
+		attributes.put("protocol", getProtocol());
+		attributes.put("incomingHostName", getIncomingHostName());
+		attributes.put("incomingPort", getIncomingPort());
+		attributes.put("incomingSecure", getIncomingSecure());
+		attributes.put("outgoingHostName", getOutgoingHostName());
+		attributes.put("outgoingPort", getOutgoingPort());
+		attributes.put("outgoingSecure", getOutgoingSecure());
+		attributes.put("login", getLogin());
+		attributes.put("password", getPassword());
+		attributes.put("savePassword", getSavePassword());
+		attributes.put("signature", getSignature());
+		attributes.put("useSignature", getUseSignature());
+		attributes.put("folderPrefix", getFolderPrefix());
+		attributes.put("inboxFolderId", getInboxFolderId());
+		attributes.put("draftFolderId", getDraftFolderId());
+		attributes.put("sentFolderId", getSentFolderId());
+		attributes.put("trashFolderId", getTrashFolderId());
+		attributes.put("defaultSender", getDefaultSender());
+
+		return attributes;
+	}
+
+	@Override
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long accountId = (Long)attributes.get("accountId");
+
+		if (accountId != null) {
+			setAccountId(accountId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		String address = (String)attributes.get("address");
+
+		if (address != null) {
+			setAddress(address);
+		}
+
+		String personalName = (String)attributes.get("personalName");
+
+		if (personalName != null) {
+			setPersonalName(personalName);
+		}
+
+		String protocol = (String)attributes.get("protocol");
+
+		if (protocol != null) {
+			setProtocol(protocol);
+		}
+
+		String incomingHostName = (String)attributes.get("incomingHostName");
+
+		if (incomingHostName != null) {
+			setIncomingHostName(incomingHostName);
+		}
+
+		Integer incomingPort = (Integer)attributes.get("incomingPort");
+
+		if (incomingPort != null) {
+			setIncomingPort(incomingPort);
+		}
+
+		Boolean incomingSecure = (Boolean)attributes.get("incomingSecure");
+
+		if (incomingSecure != null) {
+			setIncomingSecure(incomingSecure);
+		}
+
+		String outgoingHostName = (String)attributes.get("outgoingHostName");
+
+		if (outgoingHostName != null) {
+			setOutgoingHostName(outgoingHostName);
+		}
+
+		Integer outgoingPort = (Integer)attributes.get("outgoingPort");
+
+		if (outgoingPort != null) {
+			setOutgoingPort(outgoingPort);
+		}
+
+		Boolean outgoingSecure = (Boolean)attributes.get("outgoingSecure");
+
+		if (outgoingSecure != null) {
+			setOutgoingSecure(outgoingSecure);
+		}
+
+		String login = (String)attributes.get("login");
+
+		if (login != null) {
+			setLogin(login);
+		}
+
+		String password = (String)attributes.get("password");
+
+		if (password != null) {
+			setPassword(password);
+		}
+
+		Boolean savePassword = (Boolean)attributes.get("savePassword");
+
+		if (savePassword != null) {
+			setSavePassword(savePassword);
+		}
+
+		String signature = (String)attributes.get("signature");
+
+		if (signature != null) {
+			setSignature(signature);
+		}
+
+		Boolean useSignature = (Boolean)attributes.get("useSignature");
+
+		if (useSignature != null) {
+			setUseSignature(useSignature);
+		}
+
+		String folderPrefix = (String)attributes.get("folderPrefix");
+
+		if (folderPrefix != null) {
+			setFolderPrefix(folderPrefix);
+		}
+
+		Long inboxFolderId = (Long)attributes.get("inboxFolderId");
+
+		if (inboxFolderId != null) {
+			setInboxFolderId(inboxFolderId);
+		}
+
+		Long draftFolderId = (Long)attributes.get("draftFolderId");
+
+		if (draftFolderId != null) {
+			setDraftFolderId(draftFolderId);
+		}
+
+		Long sentFolderId = (Long)attributes.get("sentFolderId");
+
+		if (sentFolderId != null) {
+			setSentFolderId(sentFolderId);
+		}
+
+		Long trashFolderId = (Long)attributes.get("trashFolderId");
+
+		if (trashFolderId != null) {
+			setTrashFolderId(trashFolderId);
+		}
+
+		Boolean defaultSender = (Boolean)attributes.get("defaultSender");
+
+		if (defaultSender != null) {
+			setDefaultSender(defaultSender);
+		}
 	}
 
 	public long getAccountId() {

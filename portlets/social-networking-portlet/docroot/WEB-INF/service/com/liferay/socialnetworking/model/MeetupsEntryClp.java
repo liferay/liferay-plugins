@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
@@ -28,6 +29,8 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
@@ -59,6 +62,113 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("meetupsEntryId", getMeetupsEntryId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("title", getTitle());
+		attributes.put("description", getDescription());
+		attributes.put("startDate", getStartDate());
+		attributes.put("endDate", getEndDate());
+		attributes.put("totalAttendees", getTotalAttendees());
+		attributes.put("maxAttendees", getMaxAttendees());
+		attributes.put("price", getPrice());
+		attributes.put("thumbnailId", getThumbnailId());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long meetupsEntryId = (Long)attributes.get("meetupsEntryId");
+
+		if (meetupsEntryId != null) {
+			setMeetupsEntryId(meetupsEntryId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		String title = (String)attributes.get("title");
+
+		if (title != null) {
+			setTitle(title);
+		}
+
+		String description = (String)attributes.get("description");
+
+		if (description != null) {
+			setDescription(description);
+		}
+
+		Date startDate = (Date)attributes.get("startDate");
+
+		if (startDate != null) {
+			setStartDate(startDate);
+		}
+
+		Date endDate = (Date)attributes.get("endDate");
+
+		if (endDate != null) {
+			setEndDate(endDate);
+		}
+
+		Integer totalAttendees = (Integer)attributes.get("totalAttendees");
+
+		if (totalAttendees != null) {
+			setTotalAttendees(totalAttendees);
+		}
+
+		Integer maxAttendees = (Integer)attributes.get("maxAttendees");
+
+		if (maxAttendees != null) {
+			setMaxAttendees(maxAttendees);
+		}
+
+		Double price = (Double)attributes.get("price");
+
+		if (price != null) {
+			setPrice(price);
+		}
+
+		Long thumbnailId = (Long)attributes.get("thumbnailId");
+
+		if (thumbnailId != null) {
+			setThumbnailId(thumbnailId);
+		}
 	}
 
 	public long getMeetupsEntryId() {
@@ -179,6 +289,14 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 
 	public void setThumbnailId(long thumbnailId) {
 		_thumbnailId = thumbnailId;
+	}
+
+	public BaseModel<?> getMeetupsEntryRemoteModel() {
+		return _meetupsEntryRemoteModel;
+	}
+
+	public void setMeetupsEntryRemoteModel(BaseModel<?> meetupsEntryRemoteModel) {
+		_meetupsEntryRemoteModel = meetupsEntryRemoteModel;
 	}
 
 	public void persist() throws SystemException {
@@ -383,4 +501,5 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 	private int _maxAttendees;
 	private double _price;
 	private long _thumbnailId;
+	private BaseModel<?> _meetupsEntryRemoteModel;
 }

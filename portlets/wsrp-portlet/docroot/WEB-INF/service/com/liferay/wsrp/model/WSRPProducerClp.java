@@ -17,6 +17,7 @@ package com.liferay.wsrp.model;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
 import com.liferay.wsrp.service.WSRPProducerLocalServiceUtil;
@@ -26,6 +27,8 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
@@ -57,6 +60,78 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("uuid", getUuid());
+		attributes.put("wsrpProducerId", getWsrpProducerId());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("name", getName());
+		attributes.put("version", getVersion());
+		attributes.put("portletIds", getPortletIds());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		String uuid = (String)attributes.get("uuid");
+
+		if (uuid != null) {
+			setUuid(uuid);
+		}
+
+		Long wsrpProducerId = (Long)attributes.get("wsrpProducerId");
+
+		if (wsrpProducerId != null) {
+			setWsrpProducerId(wsrpProducerId);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		String name = (String)attributes.get("name");
+
+		if (name != null) {
+			setName(name);
+		}
+
+		String version = (String)attributes.get("version");
+
+		if (version != null) {
+			setVersion(version);
+		}
+
+		String portletIds = (String)attributes.get("portletIds");
+
+		if (portletIds != null) {
+			setPortletIds(portletIds);
+		}
 	}
 
 	public String getUuid() {
@@ -133,6 +208,14 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 
 	public java.lang.String getURL(java.lang.String portalURL) {
 		throw new UnsupportedOperationException();
+	}
+
+	public BaseModel<?> getWSRPProducerRemoteModel() {
+		return _wsrpProducerRemoteModel;
+	}
+
+	public void setWSRPProducerRemoteModel(BaseModel<?> wsrpProducerRemoteModel) {
+		_wsrpProducerRemoteModel = wsrpProducerRemoteModel;
 	}
 
 	public void persist() throws SystemException {
@@ -294,4 +377,5 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 	private String _name;
 	private String _version;
 	private String _portletIds;
+	private BaseModel<?> _wsrpProducerRemoteModel;
 }

@@ -17,6 +17,7 @@ package com.liferay.socialcoding.model;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
 import com.liferay.socialcoding.service.SVNRepositoryLocalServiceUtil;
@@ -24,6 +25,9 @@ import com.liferay.socialcoding.service.SVNRepositoryLocalServiceUtil;
 import java.io.Serializable;
 
 import java.lang.reflect.Proxy;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
@@ -57,6 +61,36 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("svnRepositoryId", getSvnRepositoryId());
+		attributes.put("url", getUrl());
+		attributes.put("revisionNumber", getRevisionNumber());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long svnRepositoryId = (Long)attributes.get("svnRepositoryId");
+
+		if (svnRepositoryId != null) {
+			setSvnRepositoryId(svnRepositoryId);
+		}
+
+		String url = (String)attributes.get("url");
+
+		if (url != null) {
+			setUrl(url);
+		}
+
+		Long revisionNumber = (Long)attributes.get("revisionNumber");
+
+		if (revisionNumber != null) {
+			setRevisionNumber(revisionNumber);
+		}
+	}
+
 	public long getSvnRepositoryId() {
 		return _svnRepositoryId;
 	}
@@ -87,6 +121,15 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 
 	public java.lang.String getShortURL() {
 		throw new UnsupportedOperationException();
+	}
+
+	public BaseModel<?> getSVNRepositoryRemoteModel() {
+		return _svnRepositoryRemoteModel;
+	}
+
+	public void setSVNRepositoryRemoteModel(
+		BaseModel<?> svnRepositoryRemoteModel) {
+		_svnRepositoryRemoteModel = svnRepositoryRemoteModel;
 	}
 
 	public void persist() throws SystemException {
@@ -200,4 +243,5 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 	private long _svnRepositoryId;
 	private String _url;
 	private long _revisionNumber;
+	private BaseModel<?> _svnRepositoryRemoteModel;
 }

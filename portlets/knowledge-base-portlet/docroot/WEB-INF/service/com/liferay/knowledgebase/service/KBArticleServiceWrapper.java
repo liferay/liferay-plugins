@@ -31,6 +31,30 @@ public class KBArticleServiceWrapper implements KBArticleService,
 		_kbArticleService = kbArticleService;
 	}
 
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _kbArticleService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_kbArticleService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _kbArticleService.invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public void addAttachment(java.lang.String portletId, long resourcePrimKey,
 		java.lang.String dirName, java.lang.String shortFileName,
 		java.io.InputStream inputStream,

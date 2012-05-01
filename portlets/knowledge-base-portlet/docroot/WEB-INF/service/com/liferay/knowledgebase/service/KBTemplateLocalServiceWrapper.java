@@ -86,6 +86,10 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 		return _kbTemplateLocalService.deleteKBTemplate(kbTemplate);
 	}
 
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _kbTemplateLocalService.dynamicQuery();
+	}
+
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
@@ -274,6 +278,13 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_kbTemplateLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _kbTemplateLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	public com.liferay.knowledgebase.model.KBTemplate addKBTemplate(

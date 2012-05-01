@@ -33,6 +33,9 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * The base model implementation for the JIRAChangeItem service. Represents a row in the &quot;changeitem&quot; database table, with each column mapped to a property of this class.
  *
@@ -106,6 +109,66 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 
 	public String getModelClassName() {
 		return JIRAChangeItem.class.getName();
+	}
+
+	@Override
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("jiraChangeItemId", getJiraChangeItemId());
+		attributes.put("jiraChangeGroupId", getJiraChangeGroupId());
+		attributes.put("field", getField());
+		attributes.put("oldValue", getOldValue());
+		attributes.put("oldString", getOldString());
+		attributes.put("newValue", getNewValue());
+		attributes.put("newString", getNewString());
+
+		return attributes;
+	}
+
+	@Override
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long jiraChangeItemId = (Long)attributes.get("jiraChangeItemId");
+
+		if (jiraChangeItemId != null) {
+			setJiraChangeItemId(jiraChangeItemId);
+		}
+
+		Long jiraChangeGroupId = (Long)attributes.get("jiraChangeGroupId");
+
+		if (jiraChangeGroupId != null) {
+			setJiraChangeGroupId(jiraChangeGroupId);
+		}
+
+		String field = (String)attributes.get("field");
+
+		if (field != null) {
+			setField(field);
+		}
+
+		String oldValue = (String)attributes.get("oldValue");
+
+		if (oldValue != null) {
+			setOldValue(oldValue);
+		}
+
+		String oldString = (String)attributes.get("oldString");
+
+		if (oldString != null) {
+			setOldString(oldString);
+		}
+
+		String newValue = (String)attributes.get("newValue");
+
+		if (newValue != null) {
+			setNewValue(newValue);
+		}
+
+		String newString = (String)attributes.get("newString");
+
+		if (newString != null) {
+			setNewString(newString);
+		}
 	}
 
 	public long getJiraChangeItemId() {

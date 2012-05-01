@@ -15,9 +15,9 @@
 package com.liferay.calendar.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the calendar resource local service. This utility wraps {@link com.liferay.calendar.service.impl.CalendarResourceLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -91,6 +91,10 @@ public class CalendarResourceLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().deleteCalendarResource(calendarResource);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -283,6 +287,12 @@ public class CalendarResourceLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static com.liferay.calendar.model.CalendarResource addCalendarResource(
 		long userId, long groupId, java.lang.String className, long classPK,
 		java.lang.String classUuid, long defaultCalendarId,
@@ -389,18 +399,10 @@ public class CalendarResourceLocalServiceUtil {
 
 	public static CalendarResourceLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					CalendarResourceLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					CalendarResourceLocalService.class.getName(),
-					portletClassLoader);
-
-			_service = new CalendarResourceLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new CalendarResourceLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(CalendarResourceLocalServiceUtil.class,
 				"_service");

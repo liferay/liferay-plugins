@@ -16,6 +16,10 @@ package com.liferay.mail.model;
 
 import com.liferay.portal.model.ModelWrapper;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * <p>
  * This class is a wrapper for {@link Message}.
@@ -36,6 +40,148 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 
 	public String getModelClassName() {
 		return Message.class.getName();
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("messageId", getMessageId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("accountId", getAccountId());
+		attributes.put("folderId", getFolderId());
+		attributes.put("sender", getSender());
+		attributes.put("to", getTo());
+		attributes.put("cc", getCc());
+		attributes.put("bcc", getBcc());
+		attributes.put("sentDate", getSentDate());
+		attributes.put("subject", getSubject());
+		attributes.put("preview", getPreview());
+		attributes.put("body", getBody());
+		attributes.put("flags", getFlags());
+		attributes.put("size", getSize());
+		attributes.put("remoteMessageId", getRemoteMessageId());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long messageId = (Long)attributes.get("messageId");
+
+		if (messageId != null) {
+			setMessageId(messageId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		Long accountId = (Long)attributes.get("accountId");
+
+		if (accountId != null) {
+			setAccountId(accountId);
+		}
+
+		Long folderId = (Long)attributes.get("folderId");
+
+		if (folderId != null) {
+			setFolderId(folderId);
+		}
+
+		String sender = (String)attributes.get("sender");
+
+		if (sender != null) {
+			setSender(sender);
+		}
+
+		String to = (String)attributes.get("to");
+
+		if (to != null) {
+			setTo(to);
+		}
+
+		String cc = (String)attributes.get("cc");
+
+		if (cc != null) {
+			setCc(cc);
+		}
+
+		String bcc = (String)attributes.get("bcc");
+
+		if (bcc != null) {
+			setBcc(bcc);
+		}
+
+		Date sentDate = (Date)attributes.get("sentDate");
+
+		if (sentDate != null) {
+			setSentDate(sentDate);
+		}
+
+		String subject = (String)attributes.get("subject");
+
+		if (subject != null) {
+			setSubject(subject);
+		}
+
+		String preview = (String)attributes.get("preview");
+
+		if (preview != null) {
+			setPreview(preview);
+		}
+
+		String body = (String)attributes.get("body");
+
+		if (body != null) {
+			setBody(body);
+		}
+
+		String flags = (String)attributes.get("flags");
+
+		if (flags != null) {
+			setFlags(flags);
+		}
+
+		Long size = (Long)attributes.get("size");
+
+		if (size != null) {
+			setSize(size);
+		}
+
+		Long remoteMessageId = (Long)attributes.get("remoteMessageId");
+
+		if (remoteMessageId != null) {
+			setRemoteMessageId(remoteMessageId);
+		}
 	}
 
 	/**

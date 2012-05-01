@@ -16,6 +16,10 @@ package com.liferay.sampleservicebuilder.model;
 
 import com.liferay.portal.model.ModelWrapper;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * <p>
  * This class is a wrapper for {@link Foo}.
@@ -36,6 +40,106 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 
 	public String getModelClassName() {
 		return Foo.class.getName();
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("uuid", getUuid());
+		attributes.put("fooId", getFooId());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("field1", getField1());
+		attributes.put("field2", getField2());
+		attributes.put("field3", getField3());
+		attributes.put("field4", getField4());
+		attributes.put("field5", getField5());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		String uuid = (String)attributes.get("uuid");
+
+		if (uuid != null) {
+			setUuid(uuid);
+		}
+
+		Long fooId = (Long)attributes.get("fooId");
+
+		if (fooId != null) {
+			setFooId(fooId);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		String field1 = (String)attributes.get("field1");
+
+		if (field1 != null) {
+			setField1(field1);
+		}
+
+		Boolean field2 = (Boolean)attributes.get("field2");
+
+		if (field2 != null) {
+			setField2(field2);
+		}
+
+		Integer field3 = (Integer)attributes.get("field3");
+
+		if (field3 != null) {
+			setField3(field3);
+		}
+
+		Date field4 = (Date)attributes.get("field4");
+
+		if (field4 != null) {
+			setField4(field4);
+		}
+
+		String field5 = (String)attributes.get("field5");
+
+		if (field5 != null) {
+			setField5(field5);
+		}
 	}
 
 	/**

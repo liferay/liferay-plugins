@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
 import com.liferay.socialcoding.service.JIRAIssueLocalServiceUtil;
@@ -27,6 +28,8 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
@@ -57,6 +60,92 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("jiraIssueId", getJiraIssueId());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("projectId", getProjectId());
+		attributes.put("key", getKey());
+		attributes.put("summary", getSummary());
+		attributes.put("description", getDescription());
+		attributes.put("reporterJiraUserId", getReporterJiraUserId());
+		attributes.put("assigneeJiraUserId", getAssigneeJiraUserId());
+		attributes.put("resolution", getResolution());
+		attributes.put("status", getStatus());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long jiraIssueId = (Long)attributes.get("jiraIssueId");
+
+		if (jiraIssueId != null) {
+			setJiraIssueId(jiraIssueId);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		Long projectId = (Long)attributes.get("projectId");
+
+		if (projectId != null) {
+			setProjectId(projectId);
+		}
+
+		String key = (String)attributes.get("key");
+
+		if (key != null) {
+			setKey(key);
+		}
+
+		String summary = (String)attributes.get("summary");
+
+		if (summary != null) {
+			setSummary(summary);
+		}
+
+		String description = (String)attributes.get("description");
+
+		if (description != null) {
+			setDescription(description);
+		}
+
+		String reporterJiraUserId = (String)attributes.get("reporterJiraUserId");
+
+		if (reporterJiraUserId != null) {
+			setReporterJiraUserId(reporterJiraUserId);
+		}
+
+		String assigneeJiraUserId = (String)attributes.get("assigneeJiraUserId");
+
+		if (assigneeJiraUserId != null) {
+			setAssigneeJiraUserId(assigneeJiraUserId);
+		}
+
+		String resolution = (String)attributes.get("resolution");
+
+		if (resolution != null) {
+			setResolution(resolution);
+		}
+
+		String status = (String)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
+		}
 	}
 
 	public long getJiraIssueId() {
@@ -145,6 +234,14 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 
 	public void setStatus(String status) {
 		_status = status;
+	}
+
+	public BaseModel<?> getJIRAIssueRemoteModel() {
+		return _jiraIssueRemoteModel;
+	}
+
+	public void setJIRAIssueRemoteModel(BaseModel<?> jiraIssueRemoteModel) {
+		_jiraIssueRemoteModel = jiraIssueRemoteModel;
 	}
 
 	public void persist() throws SystemException {
@@ -325,4 +422,5 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 	private String _assigneeJiraUserId;
 	private String _resolution;
 	private String _status;
+	private BaseModel<?> _jiraIssueRemoteModel;
 }

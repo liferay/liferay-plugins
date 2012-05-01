@@ -53,6 +53,7 @@
 			<transient name="className" />
 			<transient name="descriptionCurrentLanguageId" />
 			<transient name="descriptionMap" />
+			<transient name="modelAttributes" />
 			<transient name="nameCurrentLanguageId" />
 			<transient name="nameMap" />
 			<transient name="primaryKey" />
@@ -100,6 +101,7 @@
 			<basic name="secondReminder" />
 			<transient name="descriptionCurrentLanguageId" />
 			<transient name="descriptionMap" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="titleCurrentLanguageId" />
@@ -134,6 +136,7 @@
 			<transient name="className" />
 			<transient name="descriptionCurrentLanguageId" />
 			<transient name="descriptionMap" />
+			<transient name="modelAttributes" />
 			<transient name="nameCurrentLanguageId" />
 			<transient name="nameMap" />
 			<transient name="primaryKey" />

@@ -22,6 +22,7 @@
 			<basic name="twitterUserId" />
 			<basic name="twitterScreenName" />
 			<basic name="lastStatusId" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="twitterUserUuid" />

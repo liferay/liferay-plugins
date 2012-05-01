@@ -23,6 +23,7 @@
 			<basic name="fullName" />
 			<basic name="emailAddress" />
 			<basic name="comments" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />

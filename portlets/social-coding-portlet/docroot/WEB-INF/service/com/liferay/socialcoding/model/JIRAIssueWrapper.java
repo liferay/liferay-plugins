@@ -16,6 +16,10 @@ package com.liferay.socialcoding.model;
 
 import com.liferay.portal.model.ModelWrapper;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * <p>
  * This class is a wrapper for {@link JIRAIssue}.
@@ -36,6 +40,92 @@ public class JIRAIssueWrapper implements JIRAIssue, ModelWrapper<JIRAIssue> {
 
 	public String getModelClassName() {
 		return JIRAIssue.class.getName();
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("jiraIssueId", getJiraIssueId());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("projectId", getProjectId());
+		attributes.put("key", getKey());
+		attributes.put("summary", getSummary());
+		attributes.put("description", getDescription());
+		attributes.put("reporterJiraUserId", getReporterJiraUserId());
+		attributes.put("assigneeJiraUserId", getAssigneeJiraUserId());
+		attributes.put("resolution", getResolution());
+		attributes.put("status", getStatus());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long jiraIssueId = (Long)attributes.get("jiraIssueId");
+
+		if (jiraIssueId != null) {
+			setJiraIssueId(jiraIssueId);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		Long projectId = (Long)attributes.get("projectId");
+
+		if (projectId != null) {
+			setProjectId(projectId);
+		}
+
+		String key = (String)attributes.get("key");
+
+		if (key != null) {
+			setKey(key);
+		}
+
+		String summary = (String)attributes.get("summary");
+
+		if (summary != null) {
+			setSummary(summary);
+		}
+
+		String description = (String)attributes.get("description");
+
+		if (description != null) {
+			setDescription(description);
+		}
+
+		String reporterJiraUserId = (String)attributes.get("reporterJiraUserId");
+
+		if (reporterJiraUserId != null) {
+			setReporterJiraUserId(reporterJiraUserId);
+		}
+
+		String assigneeJiraUserId = (String)attributes.get("assigneeJiraUserId");
+
+		if (assigneeJiraUserId != null) {
+			setAssigneeJiraUserId(assigneeJiraUserId);
+		}
+
+		String resolution = (String)attributes.get("resolution");
+
+		if (resolution != null) {
+			setResolution(resolution);
+		}
+
+		String status = (String)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
+		}
 	}
 
 	/**

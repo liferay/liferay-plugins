@@ -13,6 +13,7 @@
 			<basic name="groupId" />
 			<basic name="companyId" />
 			<basic name="userId" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
@@ -38,6 +39,7 @@
 			<basic name="invitedRoleId" />
 			<basic name="invitedTeamId" />
 			<basic name="status" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="receiverUserUuid" />
@@ -67,6 +69,7 @@
 			<basic name="data">
 				<column name="DATA_" />
 			</basic>
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />

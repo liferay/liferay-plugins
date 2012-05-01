@@ -81,6 +81,10 @@ public class ModuleLocalServiceWrapper implements ModuleLocalService,
 		return _moduleLocalService.deleteModule(module);
 	}
 
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _moduleLocalService.dynamicQuery();
+	}
+
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
@@ -250,6 +254,12 @@ public class ModuleLocalServiceWrapper implements ModuleLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_moduleLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _moduleLocalService.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	public com.liferay.marketplace.model.Module addModule(long userId,

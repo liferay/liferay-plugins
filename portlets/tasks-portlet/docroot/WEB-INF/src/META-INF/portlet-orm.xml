@@ -32,6 +32,7 @@
 			</basic>
 			<basic name="status" />
 			<transient name="assigneeUserUuid" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="resolverUserUuid" />

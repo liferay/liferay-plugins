@@ -16,6 +16,9 @@ package com.liferay.testtransaction.model;
 
 import com.liferay.portal.model.ModelWrapper;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * <p>
  * This class is a wrapper for {@link Bar}.
@@ -36,6 +39,29 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 
 	public String getModelClassName() {
 		return Bar.class.getName();
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("barId", getBarId());
+		attributes.put("text", getText());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long barId = (Long)attributes.get("barId");
+
+		if (barId != null) {
+			setBarId(barId);
+		}
+
+		String text = (String)attributes.get("text");
+
+		if (text != null) {
+			setText(text);
+		}
 	}
 
 	/**

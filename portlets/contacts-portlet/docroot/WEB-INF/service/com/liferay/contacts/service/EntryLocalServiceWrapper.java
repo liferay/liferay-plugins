@@ -81,6 +81,10 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 		return _entryLocalService.deleteEntry(entry);
 	}
 
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _entryLocalService.dynamicQuery();
+	}
+
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
@@ -250,6 +254,12 @@ public class EntryLocalServiceWrapper implements EntryLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_entryLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _entryLocalService.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	public com.liferay.contacts.model.Entry addEntry(long userId,

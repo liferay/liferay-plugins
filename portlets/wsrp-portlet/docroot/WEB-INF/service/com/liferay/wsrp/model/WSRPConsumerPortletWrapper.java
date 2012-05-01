@@ -16,6 +16,10 @@ package com.liferay.wsrp.model;
 
 import com.liferay.portal.model.ModelWrapper;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * <p>
  * This class is a wrapper for {@link WSRPConsumerPortlet}.
@@ -37,6 +41,72 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 
 	public String getModelClassName() {
 		return WSRPConsumerPortlet.class.getName();
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("uuid", getUuid());
+		attributes.put("wsrpConsumerPortletId", getWsrpConsumerPortletId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("wsrpConsumerId", getWsrpConsumerId());
+		attributes.put("name", getName());
+		attributes.put("portletHandle", getPortletHandle());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		String uuid = (String)attributes.get("uuid");
+
+		if (uuid != null) {
+			setUuid(uuid);
+		}
+
+		Long wsrpConsumerPortletId = (Long)attributes.get(
+				"wsrpConsumerPortletId");
+
+		if (wsrpConsumerPortletId != null) {
+			setWsrpConsumerPortletId(wsrpConsumerPortletId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		Long wsrpConsumerId = (Long)attributes.get("wsrpConsumerId");
+
+		if (wsrpConsumerId != null) {
+			setWsrpConsumerId(wsrpConsumerId);
+		}
+
+		String name = (String)attributes.get("name");
+
+		if (name != null) {
+			setName(name);
+		}
+
+		String portletHandle = (String)attributes.get("portletHandle");
+
+		if (portletHandle != null) {
+			setPortletHandle(portletHandle);
+		}
 	}
 
 	/**

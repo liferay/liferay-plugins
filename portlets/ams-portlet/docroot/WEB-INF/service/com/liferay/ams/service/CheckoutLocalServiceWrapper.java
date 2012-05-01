@@ -82,6 +82,10 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 		return _checkoutLocalService.deleteCheckout(checkout);
 	}
 
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _checkoutLocalService.dynamicQuery();
+	}
+
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
@@ -251,6 +255,13 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_checkoutLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _checkoutLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	/**

@@ -86,6 +86,10 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 		return _wsrpConsumerLocalService.deleteWSRPConsumer(wsrpConsumer);
 	}
 
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _wsrpConsumerLocalService.dynamicQuery();
+	}
+
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
@@ -257,6 +261,13 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_wsrpConsumerLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _wsrpConsumerLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	public com.liferay.wsrp.model.WSRPConsumer addWSRPConsumer(long companyId,

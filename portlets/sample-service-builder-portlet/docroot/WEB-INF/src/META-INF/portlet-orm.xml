@@ -30,6 +30,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="field5" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />

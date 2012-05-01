@@ -16,6 +16,10 @@ package com.liferay.socialcoding.model;
 
 import com.liferay.portal.model.ModelWrapper;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * <p>
  * This class is a wrapper for {@link SVNRevision}.
@@ -37,6 +41,57 @@ public class SVNRevisionWrapper implements SVNRevision,
 
 	public String getModelClassName() {
 		return SVNRevision.class.getName();
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("svnRevisionId", getSvnRevisionId());
+		attributes.put("svnUserId", getSvnUserId());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("svnRepositoryId", getSvnRepositoryId());
+		attributes.put("revisionNumber", getRevisionNumber());
+		attributes.put("comments", getComments());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long svnRevisionId = (Long)attributes.get("svnRevisionId");
+
+		if (svnRevisionId != null) {
+			setSvnRevisionId(svnRevisionId);
+		}
+
+		String svnUserId = (String)attributes.get("svnUserId");
+
+		if (svnUserId != null) {
+			setSvnUserId(svnUserId);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Long svnRepositoryId = (Long)attributes.get("svnRepositoryId");
+
+		if (svnRepositoryId != null) {
+			setSvnRepositoryId(svnRepositoryId);
+		}
+
+		Long revisionNumber = (Long)attributes.get("revisionNumber");
+
+		if (revisionNumber != null) {
+			setRevisionNumber(revisionNumber);
+		}
+
+		String comments = (String)attributes.get("comments");
+
+		if (comments != null) {
+			setComments(comments);
+		}
 	}
 
 	/**
