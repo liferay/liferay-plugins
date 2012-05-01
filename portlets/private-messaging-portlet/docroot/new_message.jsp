@@ -161,10 +161,10 @@ if (mbThreadId != 0) {
 		A.Plugin.AutoComplete,
 		{
 			queryDelimiter: ',',
-			source: '<liferay-portlet:resourceURL id="getUsers" />',
 			requestTemplate: '&keywords={query}',
 			resultListLocator: 'results.users',
-			resultTextLocator: 'name'
+			resultTextLocator: 'name',
+			source: '<liferay-portlet:resourceURL id="getUsers" />'
 		}
 	);
 

@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.CharPool;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -31,7 +32,6 @@ import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.security.auth.PrincipalException;
@@ -221,16 +221,13 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 		throws PortletException {
 
 		try {
-			String resourceID = resourceRequest.getResourceID();
+			String resourceID = GetterUtil.getString(
+				resourceRequest.getResourceID());
 
-			if (Validator.isNotNull(resourceID) &&
-				resourceID.equals("checkRecipients")) {
-
+			if (resourceID.equals("checkRecipients")) {
 				checkRecipients(resourceRequest, resourceResponse);
 			}
-			else if (Validator.isNotNull(resourceID) &&
-					 resourceID.equals("getUsers")) {
-
+			else if (resourceID.equals("getUsers")) {
 				getUsers(resourceRequest, resourceResponse);
 			}
 			else {
