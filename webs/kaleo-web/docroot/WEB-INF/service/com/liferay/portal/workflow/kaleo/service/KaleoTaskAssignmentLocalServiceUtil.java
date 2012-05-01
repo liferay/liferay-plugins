@@ -348,14 +348,10 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(KaleoTaskAssignmentLocalService service) {
-		MethodCache.remove(KaleoTaskAssignmentLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(KaleoTaskAssignmentLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(KaleoTaskAssignmentLocalService.class);
 	}
 
 	private static KaleoTaskAssignmentLocalService _service;

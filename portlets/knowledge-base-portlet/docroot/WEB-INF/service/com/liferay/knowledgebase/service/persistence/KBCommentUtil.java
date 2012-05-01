@@ -1012,10 +1012,10 @@ public class KBCommentUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(KBCommentPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(KBCommentUtil.class, "_persistence");
 	}
 
 	private static KBCommentPersistence _persistence;

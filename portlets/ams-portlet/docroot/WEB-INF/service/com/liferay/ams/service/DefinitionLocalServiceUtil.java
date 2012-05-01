@@ -293,14 +293,10 @@ public class DefinitionLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(DefinitionLocalService service) {
-		MethodCache.remove(DefinitionLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(DefinitionLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(DefinitionLocalService.class);
 	}
 
 	private static DefinitionLocalService _service;

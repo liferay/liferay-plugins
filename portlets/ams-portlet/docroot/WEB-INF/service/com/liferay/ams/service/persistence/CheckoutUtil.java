@@ -269,10 +269,10 @@ public class CheckoutUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(CheckoutPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(CheckoutUtil.class, "_persistence");
 	}
 
 	private static CheckoutPersistence _persistence;

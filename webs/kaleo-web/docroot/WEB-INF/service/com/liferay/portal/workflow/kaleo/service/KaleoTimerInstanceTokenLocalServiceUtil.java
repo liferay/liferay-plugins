@@ -396,14 +396,10 @@ public class KaleoTimerInstanceTokenLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(KaleoTimerInstanceTokenLocalService service) {
-		MethodCache.remove(KaleoTimerInstanceTokenLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(KaleoTimerInstanceTokenLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(KaleoTimerInstanceTokenLocalService.class);
 	}
 
 	private static KaleoTimerInstanceTokenLocalService _service;

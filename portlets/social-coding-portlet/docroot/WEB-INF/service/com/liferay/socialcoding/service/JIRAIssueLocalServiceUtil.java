@@ -436,14 +436,10 @@ public class JIRAIssueLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(JIRAIssueLocalService service) {
-		MethodCache.remove(JIRAIssueLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(JIRAIssueLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(JIRAIssueLocalService.class);
 	}
 
 	private static JIRAIssueLocalService _service;

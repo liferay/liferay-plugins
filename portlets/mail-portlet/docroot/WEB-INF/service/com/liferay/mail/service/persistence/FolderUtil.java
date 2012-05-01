@@ -482,10 +482,10 @@ public class FolderUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(FolderPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(FolderUtil.class, "_persistence");
 	}
 
 	private static FolderPersistence _persistence;

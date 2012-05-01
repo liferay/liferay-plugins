@@ -307,14 +307,10 @@ public class FeedLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(FeedLocalService service) {
-		MethodCache.remove(FeedLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(FeedLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(FeedLocalService.class);
 	}
 
 	private static FeedLocalService _service;

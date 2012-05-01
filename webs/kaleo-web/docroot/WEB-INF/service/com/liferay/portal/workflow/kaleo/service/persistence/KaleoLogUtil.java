@@ -1218,10 +1218,10 @@ public class KaleoLogUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(KaleoLogPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(KaleoLogUtil.class, "_persistence");
 	}
 
 	private static KaleoLogPersistence _persistence;

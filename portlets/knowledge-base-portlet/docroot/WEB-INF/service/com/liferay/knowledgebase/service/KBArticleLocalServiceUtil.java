@@ -573,14 +573,10 @@ public class KBArticleLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(KBArticleLocalService service) {
-		MethodCache.remove(KBArticleLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(KBArticleLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(KBArticleLocalService.class);
 	}
 
 	private static KBArticleLocalService _service;

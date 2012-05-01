@@ -563,11 +563,10 @@ public class JIRAChangeGroupUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(JIRAChangeGroupPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(JIRAChangeGroupUtil.class,
-			"_persistence");
 	}
 
 	private static JIRAChangeGroupPersistence _persistence;

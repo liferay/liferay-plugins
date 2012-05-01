@@ -377,14 +377,10 @@ public class MemberRequestLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(MemberRequestLocalService service) {
-		MethodCache.remove(MemberRequestLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(MemberRequestLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(MemberRequestLocalService.class);
 	}
 
 	private static MemberRequestLocalService _service;

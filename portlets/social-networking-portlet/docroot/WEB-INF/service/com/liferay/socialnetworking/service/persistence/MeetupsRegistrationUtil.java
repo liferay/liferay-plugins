@@ -648,11 +648,10 @@ public class MeetupsRegistrationUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(MeetupsRegistrationPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(MeetupsRegistrationUtil.class,
-			"_persistence");
 	}
 
 	private static MeetupsRegistrationPersistence _persistence;

@@ -620,10 +620,10 @@ public class FooUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(FooPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(FooUtil.class, "_persistence");
 	}
 
 	private static FooPersistence _persistence;

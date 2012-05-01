@@ -406,10 +406,10 @@ public class BarUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(BarPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(BarUtil.class, "_persistence");
 	}
 
 	private static BarPersistence _persistence;

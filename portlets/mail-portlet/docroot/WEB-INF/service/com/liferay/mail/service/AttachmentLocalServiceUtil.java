@@ -327,14 +327,10 @@ public class AttachmentLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(AttachmentLocalService service) {
-		MethodCache.remove(AttachmentLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(AttachmentLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(AttachmentLocalService.class);
 	}
 
 	private static AttachmentLocalService _service;

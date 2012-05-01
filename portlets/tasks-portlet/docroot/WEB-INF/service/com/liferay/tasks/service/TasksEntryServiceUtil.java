@@ -117,14 +117,10 @@ public class TasksEntryServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(TasksEntryService service) {
-		MethodCache.remove(TasksEntryService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(TasksEntryServiceUtil.class,
-			"_service");
-		MethodCache.remove(TasksEntryService.class);
 	}
 
 	private static TasksEntryService _service;

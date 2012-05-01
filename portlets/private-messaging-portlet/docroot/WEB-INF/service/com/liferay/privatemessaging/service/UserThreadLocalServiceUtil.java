@@ -390,14 +390,10 @@ public class UserThreadLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(UserThreadLocalService service) {
-		MethodCache.remove(UserThreadLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(UserThreadLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(UserThreadLocalService.class);
 	}
 
 	private static UserThreadLocalService _service;

@@ -300,14 +300,10 @@ public class JIRAChangeItemLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(JIRAChangeItemLocalService service) {
-		MethodCache.remove(JIRAChangeItemLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(JIRAChangeItemLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(JIRAChangeItemLocalService.class);
 	}
 
 	private static JIRAChangeItemLocalService _service;

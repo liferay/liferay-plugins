@@ -323,14 +323,10 @@ public class KaleoConditionLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(KaleoConditionLocalService service) {
-		MethodCache.remove(KaleoConditionLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(KaleoConditionLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(KaleoConditionLocalService.class);
 	}
 
 	private static KaleoConditionLocalService _service;

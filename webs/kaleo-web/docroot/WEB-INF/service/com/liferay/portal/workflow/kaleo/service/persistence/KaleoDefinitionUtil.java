@@ -1057,11 +1057,10 @@ public class KaleoDefinitionUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(KaleoDefinitionPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(KaleoDefinitionUtil.class,
-			"_persistence");
 	}
 
 	private static KaleoDefinitionPersistence _persistence;

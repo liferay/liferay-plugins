@@ -319,14 +319,10 @@ public class KaleoTimerLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(KaleoTimerLocalService service) {
-		MethodCache.remove(KaleoTimerLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(KaleoTimerLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(KaleoTimerLocalService.class);
 	}
 
 	private static KaleoTimerLocalService _service;

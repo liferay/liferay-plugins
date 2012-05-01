@@ -350,14 +350,10 @@ public class AccountLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(AccountLocalService service) {
-		MethodCache.remove(AccountLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(AccountLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(AccountLocalService.class);
 	}
 
 	private static AccountLocalService _service;

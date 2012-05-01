@@ -349,14 +349,10 @@ public class OAuthConsumerLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(OAuthConsumerLocalService service) {
-		MethodCache.remove(OAuthConsumerLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(OAuthConsumerLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(OAuthConsumerLocalService.class);
 	}
 
 	private static OAuthConsumerLocalService _service;

@@ -322,14 +322,10 @@ public class AppLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(AppLocalService service) {
-		MethodCache.remove(AppLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(AppLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(AppLocalService.class);
 	}
 
 	private static AppLocalService _service;

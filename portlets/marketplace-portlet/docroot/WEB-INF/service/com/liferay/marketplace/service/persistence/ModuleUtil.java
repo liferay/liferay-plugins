@@ -764,10 +764,10 @@ public class ModuleUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(ModulePersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(ModuleUtil.class, "_persistence");
 	}
 
 	private static ModulePersistence _persistence;

@@ -1474,11 +1474,10 @@ public class MicroblogsEntryUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(MicroblogsEntryPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(MicroblogsEntryUtil.class,
-			"_persistence");
 	}
 
 	private static MicroblogsEntryPersistence _persistence;

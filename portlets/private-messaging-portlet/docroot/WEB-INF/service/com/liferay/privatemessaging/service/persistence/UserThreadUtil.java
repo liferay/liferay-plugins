@@ -945,10 +945,10 @@ public class UserThreadUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(UserThreadPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(UserThreadUtil.class, "_persistence");
 	}
 
 	private static UserThreadPersistence _persistence;

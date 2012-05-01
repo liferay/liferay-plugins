@@ -398,14 +398,10 @@ public class WSRPConsumerPortletLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(WSRPConsumerPortletLocalService service) {
-		MethodCache.remove(WSRPConsumerPortletLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(WSRPConsumerPortletLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(WSRPConsumerPortletLocalService.class);
 	}
 
 	private static WSRPConsumerPortletLocalService _service;

@@ -422,11 +422,10 @@ public class JIRAChangeItemUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(JIRAChangeItemPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(JIRAChangeItemUtil.class,
-			"_persistence");
 	}
 
 	private static JIRAChangeItemPersistence _persistence;

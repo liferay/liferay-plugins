@@ -841,11 +841,10 @@ public class KaleoNotificationUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(KaleoNotificationPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(KaleoNotificationUtil.class,
-			"_persistence");
 	}
 
 	private static KaleoNotificationPersistence _persistence;
