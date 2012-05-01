@@ -164,14 +164,16 @@ public class KaleoInstanceLocalServiceImpl
 	}
 
 	@Override
-	public void deleteKaleoInstance(long kaleoInstanceId)
+	public KaleoInstance deleteKaleoInstance(long kaleoInstanceId)
 		throws SystemException {
 
+		KaleoInstance kaleoInstance = null;
+
 		try {
-			kaleoInstancePersistence.remove(kaleoInstanceId);
+			kaleoInstance = kaleoInstancePersistence.remove(kaleoInstanceId);
 		}
 		catch (NoSuchInstanceException nsie) {
-			return;
+			return null;
 		}
 
 		// Kaleo instance tokens
@@ -192,6 +194,8 @@ public class KaleoInstanceLocalServiceImpl
 
 		kaleoTimerInstanceTokenLocalService.deleteKaleoTimerInstanceTokens(
 			kaleoInstanceId);
+
+		return kaleoInstance;
 	}
 
 	public List<KaleoInstance> getKaleoInstances(
