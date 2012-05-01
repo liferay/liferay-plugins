@@ -341,11 +341,10 @@ public class SVNRepositoryUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(SVNRepositoryPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(SVNRepositoryUtil.class,
-			"_persistence");
 	}
 
 	private static SVNRepositoryPersistence _persistence;

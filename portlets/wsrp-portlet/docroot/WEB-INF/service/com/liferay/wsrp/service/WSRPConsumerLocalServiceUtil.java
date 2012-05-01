@@ -358,14 +358,10 @@ public class WSRPConsumerLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(WSRPConsumerLocalService service) {
-		MethodCache.remove(WSRPConsumerLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(WSRPConsumerLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(WSRPConsumerLocalService.class);
 	}
 
 	private static WSRPConsumerLocalService _service;

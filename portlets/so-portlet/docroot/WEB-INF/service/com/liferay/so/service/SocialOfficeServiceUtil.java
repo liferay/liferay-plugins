@@ -94,14 +94,10 @@ public class SocialOfficeServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(SocialOfficeService service) {
-		MethodCache.remove(SocialOfficeService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(SocialOfficeServiceUtil.class,
-			"_service");
-		MethodCache.remove(SocialOfficeService.class);
 	}
 
 	private static SocialOfficeService _service;

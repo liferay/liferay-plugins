@@ -785,11 +785,10 @@ public class WSRPProducerUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(WSRPProducerPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(WSRPProducerUtil.class,
-			"_persistence");
 	}
 
 	private static WSRPProducerPersistence _persistence;

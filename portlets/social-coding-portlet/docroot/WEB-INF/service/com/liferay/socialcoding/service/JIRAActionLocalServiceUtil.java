@@ -293,14 +293,10 @@ public class JIRAActionLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(JIRAActionLocalService service) {
-		MethodCache.remove(JIRAActionLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(JIRAActionLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(JIRAActionLocalService.class);
 	}
 
 	private static JIRAActionLocalService _service;

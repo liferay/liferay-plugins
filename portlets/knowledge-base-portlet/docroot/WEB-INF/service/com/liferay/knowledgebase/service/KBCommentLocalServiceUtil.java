@@ -358,14 +358,10 @@ public class KBCommentLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(KBCommentLocalService service) {
-		MethodCache.remove(KBCommentLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(KBCommentLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(KBCommentLocalService.class);
 	}
 
 	private static KBCommentLocalService _service;

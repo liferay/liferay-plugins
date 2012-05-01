@@ -414,10 +414,10 @@ public class AttachmentUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(AttachmentPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(AttachmentUtil.class, "_persistence");
 	}
 
 	private static AttachmentPersistence _persistence;

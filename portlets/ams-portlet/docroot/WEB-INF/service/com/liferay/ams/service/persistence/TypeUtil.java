@@ -265,10 +265,10 @@ public class TypeUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(TypePersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(TypeUtil.class, "_persistence");
 	}
 
 	private static TypePersistence _persistence;

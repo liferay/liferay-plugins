@@ -447,14 +447,10 @@ public class KaleoDefinitionLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(KaleoDefinitionLocalService service) {
-		MethodCache.remove(KaleoDefinitionLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(KaleoDefinitionLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(KaleoDefinitionLocalService.class);
 	}
 
 	private static KaleoDefinitionLocalService _service;

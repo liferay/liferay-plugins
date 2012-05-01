@@ -745,11 +745,10 @@ public class KaleoActionUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(KaleoActionPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(KaleoActionUtil.class,
-			"_persistence");
 	}
 
 	private static KaleoActionPersistence _persistence;

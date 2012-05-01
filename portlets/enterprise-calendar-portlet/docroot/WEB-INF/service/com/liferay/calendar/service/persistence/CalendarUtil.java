@@ -1316,10 +1316,10 @@ public class CalendarUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(CalendarPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(CalendarUtil.class, "_persistence");
 	}
 
 	private static CalendarPersistence _persistence;

@@ -533,10 +533,10 @@ public class OAuthTokenUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(OAuthTokenPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(OAuthTokenUtil.class, "_persistence");
 	}
 
 	private static OAuthTokenPersistence _persistence;

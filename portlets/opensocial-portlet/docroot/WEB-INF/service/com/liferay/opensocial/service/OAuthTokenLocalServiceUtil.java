@@ -346,14 +346,10 @@ public class OAuthTokenLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(OAuthTokenLocalService service) {
-		MethodCache.remove(OAuthTokenLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(OAuthTokenLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(OAuthTokenLocalService.class);
 	}
 
 	private static OAuthTokenLocalService _service;

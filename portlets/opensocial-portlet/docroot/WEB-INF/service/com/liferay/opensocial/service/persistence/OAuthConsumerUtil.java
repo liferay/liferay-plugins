@@ -493,11 +493,10 @@ public class OAuthConsumerUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(OAuthConsumerPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(OAuthConsumerUtil.class,
-			"_persistence");
 	}
 
 	private static OAuthConsumerPersistence _persistence;

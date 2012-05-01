@@ -1967,10 +1967,10 @@ public class JIRAIssueUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(JIRAIssuePersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(JIRAIssueUtil.class, "_persistence");
 	}
 
 	private static JIRAIssuePersistence _persistence;

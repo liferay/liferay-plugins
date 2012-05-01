@@ -414,10 +414,10 @@ public class FeedUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(FeedPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(FeedUtil.class, "_persistence");
 	}
 
 	private static FeedPersistence _persistence;

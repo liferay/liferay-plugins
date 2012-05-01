@@ -887,11 +887,10 @@ public class KaleoTaskInstanceTokenUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(KaleoTaskInstanceTokenPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(KaleoTaskInstanceTokenUtil.class,
-			"_persistence");
 	}
 
 	private static KaleoTaskInstanceTokenPersistence _persistence;

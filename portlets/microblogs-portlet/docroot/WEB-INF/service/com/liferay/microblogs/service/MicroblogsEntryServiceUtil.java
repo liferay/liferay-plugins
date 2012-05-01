@@ -175,14 +175,10 @@ public class MicroblogsEntryServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(MicroblogsEntryService service) {
-		MethodCache.remove(MicroblogsEntryService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(MicroblogsEntryServiceUtil.class,
-			"_service");
-		MethodCache.remove(MicroblogsEntryService.class);
 	}
 
 	private static MicroblogsEntryService _service;

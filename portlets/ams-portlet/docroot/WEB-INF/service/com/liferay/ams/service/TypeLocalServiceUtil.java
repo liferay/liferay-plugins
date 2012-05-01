@@ -289,14 +289,10 @@ public class TypeLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(TypeLocalService service) {
-		MethodCache.remove(TypeLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(TypeLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(TypeLocalService.class);
 	}
 
 	private static TypeLocalService _service;

@@ -339,14 +339,10 @@ public class BarLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(BarLocalService service) {
-		MethodCache.remove(BarLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(BarLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(BarLocalService.class);
 	}
 
 	private static BarLocalService _service;

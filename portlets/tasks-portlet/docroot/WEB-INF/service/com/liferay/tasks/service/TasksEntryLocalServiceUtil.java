@@ -439,14 +439,10 @@ public class TasksEntryLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(TasksEntryLocalService service) {
-		MethodCache.remove(TasksEntryLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(TasksEntryLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(TasksEntryLocalService.class);
 	}
 
 	private static TasksEntryLocalService _service;

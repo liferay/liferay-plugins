@@ -414,11 +414,10 @@ public class ProjectsEntryUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(ProjectsEntryPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(ProjectsEntryUtil.class,
-			"_persistence");
 	}
 
 	private static ProjectsEntryPersistence _persistence;

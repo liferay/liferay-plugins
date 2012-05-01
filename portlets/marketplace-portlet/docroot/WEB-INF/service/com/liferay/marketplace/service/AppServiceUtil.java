@@ -113,13 +113,10 @@ public class AppServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(AppService service) {
-		MethodCache.remove(AppService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(AppServiceUtil.class, "_service");
-		MethodCache.remove(AppService.class);
 	}
 
 	private static AppService _service;

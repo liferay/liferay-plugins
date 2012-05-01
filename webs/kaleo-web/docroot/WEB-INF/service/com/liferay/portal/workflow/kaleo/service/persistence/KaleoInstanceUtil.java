@@ -917,11 +917,10 @@ public class KaleoInstanceUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(KaleoInstancePersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(KaleoInstanceUtil.class,
-			"_persistence");
 	}
 
 	private static KaleoInstancePersistence _persistence;

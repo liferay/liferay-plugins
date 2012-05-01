@@ -1260,11 +1260,10 @@ public class CalendarBookingUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(CalendarBookingPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(CalendarBookingUtil.class,
-			"_persistence");
 	}
 
 	private static CalendarBookingPersistence _persistence;

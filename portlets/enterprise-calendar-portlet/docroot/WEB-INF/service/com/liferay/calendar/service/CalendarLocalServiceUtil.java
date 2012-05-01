@@ -401,14 +401,10 @@ public class CalendarLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(CalendarLocalService service) {
-		MethodCache.remove(CalendarLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(CalendarLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(CalendarLocalService.class);
 	}
 
 	private static CalendarLocalService _service;

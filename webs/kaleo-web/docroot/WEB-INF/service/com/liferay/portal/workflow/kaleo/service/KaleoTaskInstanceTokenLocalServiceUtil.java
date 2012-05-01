@@ -578,14 +578,10 @@ public class KaleoTaskInstanceTokenLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(KaleoTaskInstanceTokenLocalService service) {
-		MethodCache.remove(KaleoTaskInstanceTokenLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(KaleoTaskInstanceTokenLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(KaleoTaskInstanceTokenLocalService.class);
 	}
 
 	private static KaleoTaskInstanceTokenLocalService _service;

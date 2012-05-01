@@ -868,10 +868,10 @@ public class KBTemplateUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(KBTemplatePersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(KBTemplateUtil.class, "_persistence");
 	}
 
 	private static KBTemplatePersistence _persistence;

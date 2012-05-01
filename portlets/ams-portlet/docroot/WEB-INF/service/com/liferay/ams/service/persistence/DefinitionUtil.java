@@ -269,10 +269,10 @@ public class DefinitionUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(DefinitionPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(DefinitionUtil.class, "_persistence");
 	}
 
 	private static DefinitionPersistence _persistence;

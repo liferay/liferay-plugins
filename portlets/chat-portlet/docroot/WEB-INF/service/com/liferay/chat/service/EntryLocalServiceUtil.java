@@ -318,14 +318,10 @@ public class EntryLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(EntryLocalService service) {
-		MethodCache.remove(EntryLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(EntryLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(EntryLocalService.class);
 	}
 
 	private static EntryLocalService _service;

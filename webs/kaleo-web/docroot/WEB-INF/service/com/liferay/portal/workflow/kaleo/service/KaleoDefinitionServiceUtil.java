@@ -94,14 +94,10 @@ public class KaleoDefinitionServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(KaleoDefinitionService service) {
-		MethodCache.remove(KaleoDefinitionService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(KaleoDefinitionServiceUtil.class,
-			"_service");
-		MethodCache.remove(KaleoDefinitionService.class);
 	}
 
 	private static KaleoDefinitionService _service;

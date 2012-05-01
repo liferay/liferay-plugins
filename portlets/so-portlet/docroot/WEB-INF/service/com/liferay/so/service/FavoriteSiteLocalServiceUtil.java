@@ -338,14 +338,10 @@ public class FavoriteSiteLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(FavoriteSiteLocalService service) {
-		MethodCache.remove(FavoriteSiteLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(FavoriteSiteLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(FavoriteSiteLocalService.class);
 	}
 
 	private static FavoriteSiteLocalService _service;

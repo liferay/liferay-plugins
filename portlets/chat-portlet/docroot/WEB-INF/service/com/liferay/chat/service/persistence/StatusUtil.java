@@ -772,10 +772,10 @@ public class StatusUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(StatusPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(StatusUtil.class, "_persistence");
 	}
 
 	private static StatusPersistence _persistence;

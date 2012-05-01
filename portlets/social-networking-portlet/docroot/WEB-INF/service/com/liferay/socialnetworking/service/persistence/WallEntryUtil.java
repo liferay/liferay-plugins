@@ -710,10 +710,10 @@ public class WallEntryUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(WallEntryPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(WallEntryUtil.class, "_persistence");
 	}
 
 	private static WallEntryPersistence _persistence;

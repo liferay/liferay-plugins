@@ -640,11 +640,10 @@ public class CalendarEventUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(CalendarEventPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(CalendarEventUtil.class,
-			"_persistence");
 	}
 
 	private static CalendarEventPersistence _persistence;

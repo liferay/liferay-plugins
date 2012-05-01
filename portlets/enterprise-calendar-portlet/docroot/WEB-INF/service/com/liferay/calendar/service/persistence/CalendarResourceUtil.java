@@ -2436,11 +2436,10 @@ public class CalendarResourceUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(CalendarResourcePersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(CalendarResourceUtil.class,
-			"_persistence");
 	}
 
 	private static CalendarResourcePersistence _persistence;

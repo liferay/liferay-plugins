@@ -772,10 +772,10 @@ public class AppUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(AppPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(AppUtil.class, "_persistence");
 	}
 
 	private static AppPersistence _persistence;

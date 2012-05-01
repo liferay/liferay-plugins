@@ -7740,10 +7740,10 @@ public class KBArticleUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(KBArticlePersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(KBArticleUtil.class, "_persistence");
 	}
 
 	private static KBArticlePersistence _persistence;

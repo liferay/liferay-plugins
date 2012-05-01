@@ -703,10 +703,10 @@ public class JIRAActionUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(JIRAActionPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(JIRAActionUtil.class, "_persistence");
 	}
 
 	private static JIRAActionPersistence _persistence;

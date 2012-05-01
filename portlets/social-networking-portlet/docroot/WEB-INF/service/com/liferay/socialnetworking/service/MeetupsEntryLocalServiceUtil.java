@@ -337,14 +337,10 @@ public class MeetupsEntryLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(MeetupsEntryLocalService service) {
-		MethodCache.remove(MeetupsEntryLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(MeetupsEntryLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(MeetupsEntryLocalService.class);
 	}
 
 	private static MeetupsEntryLocalService _service;

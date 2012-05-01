@@ -1672,10 +1672,10 @@ public class TasksEntryUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(TasksEntryPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(TasksEntryUtil.class, "_persistence");
 	}
 
 	private static TasksEntryPersistence _persistence;

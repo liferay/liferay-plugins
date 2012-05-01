@@ -635,11 +635,10 @@ public class KaleoConditionUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(KaleoConditionPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(KaleoConditionUtil.class,
-			"_persistence");
 	}
 
 	private static KaleoConditionPersistence _persistence;

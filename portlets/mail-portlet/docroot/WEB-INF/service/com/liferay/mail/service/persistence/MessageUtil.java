@@ -631,10 +631,10 @@ public class MessageUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(MessagePersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(MessageUtil.class, "_persistence");
 	}
 
 	private static MessagePersistence _persistence;

@@ -482,10 +482,10 @@ public class EntryUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(EntryPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(EntryUtil.class, "_persistence");
 	}
 
 	private static EntryPersistence _persistence;

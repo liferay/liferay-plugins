@@ -484,10 +484,10 @@ public class AccountUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(AccountPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(AccountUtil.class, "_persistence");
 	}
 
 	private static AccountPersistence _persistence;

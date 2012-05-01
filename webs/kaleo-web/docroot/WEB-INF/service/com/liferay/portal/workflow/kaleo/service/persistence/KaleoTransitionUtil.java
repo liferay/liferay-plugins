@@ -860,11 +860,10 @@ public class KaleoTransitionUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(KaleoTransitionPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(KaleoTransitionUtil.class,
-			"_persistence");
 	}
 
 	private static KaleoTransitionPersistence _persistence;

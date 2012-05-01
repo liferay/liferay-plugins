@@ -725,11 +725,10 @@ public class SVNRevisionUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(SVNRevisionPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(SVNRevisionUtil.class,
-			"_persistence");
 	}
 
 	private static SVNRevisionPersistence _persistence;

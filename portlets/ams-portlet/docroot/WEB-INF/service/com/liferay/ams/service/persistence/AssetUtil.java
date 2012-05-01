@@ -265,10 +265,10 @@ public class AssetUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(AssetPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(AssetUtil.class, "_persistence");
 	}
 
 	private static AssetPersistence _persistence;

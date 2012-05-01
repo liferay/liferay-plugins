@@ -211,14 +211,10 @@ public class CalendarBookingServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(CalendarBookingService service) {
-		MethodCache.remove(CalendarBookingService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(CalendarBookingServiceUtil.class,
-			"_service");
-		MethodCache.remove(CalendarBookingService.class);
 	}
 
 	private static CalendarBookingService _service;

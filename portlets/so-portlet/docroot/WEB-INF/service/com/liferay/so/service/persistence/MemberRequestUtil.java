@@ -720,11 +720,10 @@ public class MemberRequestUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(MemberRequestPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(MemberRequestUtil.class,
-			"_persistence");
 	}
 
 	private static MemberRequestPersistence _persistence;

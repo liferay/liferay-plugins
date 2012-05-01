@@ -448,14 +448,10 @@ public class CalendarBookingLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(CalendarBookingLocalService service) {
-		MethodCache.remove(CalendarBookingLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(CalendarBookingLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(CalendarBookingLocalService.class);
 	}
 
 	private static CalendarBookingLocalService _service;

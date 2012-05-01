@@ -289,14 +289,10 @@ public class AssetLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(AssetLocalService service) {
-		MethodCache.remove(AssetLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(AssetLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(AssetLocalService.class);
 	}
 
 	private static AssetLocalService _service;

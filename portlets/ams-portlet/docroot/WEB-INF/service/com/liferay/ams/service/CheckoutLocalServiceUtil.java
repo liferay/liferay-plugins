@@ -289,14 +289,10 @@ public class CheckoutLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(CheckoutLocalService service) {
-		MethodCache.remove(CheckoutLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(CheckoutLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(CheckoutLocalService.class);
 	}
 
 	private static CheckoutLocalService _service;

@@ -343,14 +343,10 @@ public class KaleoTransitionLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(KaleoTransitionLocalService service) {
-		MethodCache.remove(KaleoTransitionLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(KaleoTransitionLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(KaleoTransitionLocalService.class);
 	}
 
 	private static KaleoTransitionLocalService _service;

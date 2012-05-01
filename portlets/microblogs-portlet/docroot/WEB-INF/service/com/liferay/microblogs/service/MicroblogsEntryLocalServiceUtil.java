@@ -398,14 +398,10 @@ public class MicroblogsEntryLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(MicroblogsEntryLocalService service) {
-		MethodCache.remove(MicroblogsEntryLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(MicroblogsEntryLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(MicroblogsEntryLocalService.class);
 	}
 
 	private static MicroblogsEntryLocalService _service;

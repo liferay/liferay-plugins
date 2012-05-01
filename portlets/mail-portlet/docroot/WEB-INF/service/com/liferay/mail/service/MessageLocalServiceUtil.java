@@ -391,14 +391,10 @@ public class MessageLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(MessageLocalService service) {
-		MethodCache.remove(MessageLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(MessageLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(MessageLocalService.class);
 	}
 
 	private static MessageLocalService _service;

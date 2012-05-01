@@ -904,10 +904,10 @@ public class KaleoNodeUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(KaleoNodePersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(KaleoNodeUtil.class, "_persistence");
 	}
 
 	private static KaleoNodePersistence _persistence;

@@ -325,14 +325,10 @@ public class KBArticleServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(KBArticleService service) {
-		MethodCache.remove(KBArticleService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(KBArticleServiceUtil.class,
-			"_service");
-		MethodCache.remove(KBArticleService.class);
 	}
 
 	private static KBArticleService _service;

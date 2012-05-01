@@ -352,14 +352,10 @@ public class SVNRevisionLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(SVNRevisionLocalService service) {
-		MethodCache.remove(SVNRevisionLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(SVNRevisionLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(SVNRevisionLocalService.class);
 	}
 
 	private static SVNRevisionLocalService _service;

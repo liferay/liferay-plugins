@@ -347,14 +347,10 @@ public class FolderLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(FolderLocalService service) {
-		MethodCache.remove(FolderLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(FolderLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(FolderLocalService.class);
 	}
 
 	private static FolderLocalService _service;

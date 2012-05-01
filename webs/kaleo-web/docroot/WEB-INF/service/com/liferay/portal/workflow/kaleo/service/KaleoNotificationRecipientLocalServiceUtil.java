@@ -332,14 +332,10 @@ public class KaleoNotificationRecipientLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(KaleoNotificationRecipientLocalService service) {
-		MethodCache.remove(KaleoNotificationRecipientLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(KaleoNotificationRecipientLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(KaleoNotificationRecipientLocalService.class);
 	}
 
 	private static KaleoNotificationRecipientLocalService _service;

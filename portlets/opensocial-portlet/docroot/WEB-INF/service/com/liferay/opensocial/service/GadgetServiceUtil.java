@@ -108,13 +108,10 @@ public class GadgetServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(GadgetService service) {
-		MethodCache.remove(GadgetService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(GadgetServiceUtil.class, "_service");
-		MethodCache.remove(GadgetService.class);
 	}
 
 	private static GadgetService _service;

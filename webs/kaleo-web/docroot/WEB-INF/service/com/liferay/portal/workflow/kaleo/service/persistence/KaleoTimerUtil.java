@@ -607,10 +607,10 @@ public class KaleoTimerUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(KaleoTimerPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(KaleoTimerUtil.class, "_persistence");
 	}
 
 	private static KaleoTimerPersistence _persistence;

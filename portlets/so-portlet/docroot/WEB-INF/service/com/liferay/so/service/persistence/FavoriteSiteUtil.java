@@ -565,11 +565,10 @@ public class FavoriteSiteUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(FavoriteSitePersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(FavoriteSiteUtil.class,
-			"_persistence");
 	}
 
 	private static FavoriteSitePersistence _persistence;

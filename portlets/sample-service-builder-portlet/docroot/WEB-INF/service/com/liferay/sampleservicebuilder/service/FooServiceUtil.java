@@ -81,13 +81,10 @@ public class FooServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(FooService service) {
-		MethodCache.remove(FooService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(FooServiceUtil.class, "_service");
-		MethodCache.remove(FooService.class);
 	}
 
 	private static FooService _service;

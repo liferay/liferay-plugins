@@ -838,11 +838,10 @@ public class KaleoTimerInstanceTokenUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(KaleoTimerInstanceTokenPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(KaleoTimerInstanceTokenUtil.class,
-			"_persistence");
 	}
 
 	private static KaleoTimerInstanceTokenPersistence _persistence;

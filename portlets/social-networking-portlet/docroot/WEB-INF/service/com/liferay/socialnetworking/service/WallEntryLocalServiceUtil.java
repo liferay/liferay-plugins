@@ -341,14 +341,10 @@ public class WallEntryLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(WallEntryLocalService service) {
-		MethodCache.remove(WallEntryLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(WallEntryLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(WallEntryLocalService.class);
 	}
 
 	private static WallEntryLocalService _service;

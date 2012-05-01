@@ -793,11 +793,10 @@ public class WSRPConsumerPortletUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(WSRPConsumerPortletPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(WSRPConsumerPortletUtil.class,
-			"_persistence");
 	}
 
 	private static WSRPConsumerPortletPersistence _persistence;

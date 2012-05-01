@@ -719,12 +719,11 @@ public class KaleoNotificationRecipientUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(
 		KaleoNotificationRecipientPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(KaleoNotificationRecipientUtil.class,
-			"_persistence");
 	}
 
 	private static KaleoNotificationRecipientPersistence _persistence;

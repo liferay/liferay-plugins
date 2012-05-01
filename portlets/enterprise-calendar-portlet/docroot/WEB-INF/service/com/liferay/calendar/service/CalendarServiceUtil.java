@@ -173,14 +173,10 @@ public class CalendarServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(CalendarService service) {
-		MethodCache.remove(CalendarService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(CalendarServiceUtil.class,
-			"_service");
-		MethodCache.remove(CalendarService.class);
 	}
 
 	private static CalendarService _service;

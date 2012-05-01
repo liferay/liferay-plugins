@@ -436,14 +436,10 @@ public class KaleoLogLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(KaleoLogLocalService service) {
-		MethodCache.remove(KaleoLogLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(KaleoLogLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(KaleoLogLocalService.class);
 	}
 
 	private static KaleoLogLocalService _service;

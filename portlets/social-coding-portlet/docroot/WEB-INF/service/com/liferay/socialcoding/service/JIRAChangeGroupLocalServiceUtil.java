@@ -294,14 +294,10 @@ public class JIRAChangeGroupLocalServiceUtil {
 		return _service;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setService(JIRAChangeGroupLocalService service) {
-		MethodCache.remove(JIRAChangeGroupLocalService.class);
-
-		_service = service;
-
-		ReferenceRegistry.registerReference(JIRAChangeGroupLocalServiceUtil.class,
-			"_service");
-		MethodCache.remove(JIRAChangeGroupLocalService.class);
 	}
 
 	private static JIRAChangeGroupLocalService _service;

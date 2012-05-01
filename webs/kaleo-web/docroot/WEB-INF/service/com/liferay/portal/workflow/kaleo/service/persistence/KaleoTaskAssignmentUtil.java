@@ -909,11 +909,10 @@ public class KaleoTaskAssignmentUtil {
 		return _persistence;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setPersistence(KaleoTaskAssignmentPersistence persistence) {
-		_persistence = persistence;
-
-		ReferenceRegistry.registerReference(KaleoTaskAssignmentUtil.class,
-			"_persistence");
 	}
 
 	private static KaleoTaskAssignmentPersistence _persistence;
