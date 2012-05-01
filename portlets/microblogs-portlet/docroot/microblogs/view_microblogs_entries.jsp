@@ -25,27 +25,18 @@ PortletURL microblogsEntriesURL = (PortletURL)request.getAttribute(WebKeys.MICRO
 <c:if test="<%= microblogsEntries.isEmpty() %>">
 
 	<%
-	String message = null;
+	String message = LanguageUtil.get(pageContext, "there-are-no-microblog-entries");
 
 	Group group = themeDisplay.getScopeGroup();
 
-	if (!themeDisplay.isSignedIn()) {
-		message = LanguageUtil.get(pageContext, "there-is-not-any-microblog-entry");
-	}
-	else if (group.isUser() && (group.getGroupId() == user.getGroupId())) {
-		message = LanguageUtil.get(pageContext, "you-have-no-microblogs-entry");
-	}
-	else {
-		String userName = null;
-
-		if (group.isUser()) {
-			userName = group.getDescriptiveName(locale);
+	if (group.isUser()) {
+		if (group.getGroupId() == user.getGroupId()) {
+			message = LanguageUtil.get(pageContext, "you-have-no-microblogs-entry");
 		}
 		else {
-			userName = user.getFullName();
-		}
+			message = LanguageUtil.format(pageContext, "x-does-not-have-any-microblog-entry" , new Object[] {user.getFullName()});
 
-		message = LanguageUtil.format(pageContext, "x-does-not-have-any-microblog-entry" , new Object[] {userName});
+		}
 	}
 	%>
 
