@@ -84,13 +84,15 @@ $theme.include($body_top_include)
 	</header>
 
 	<div id="content">
-		<nav class="site-breadcrumbs" id="breadcrumbs">
-			<h1>
-				<span>#language("breadcrumbs")</span>
-			</h1>
+		#if (!$page_group.isUser())
+			<nav class="site-breadcrumbs" id="breadcrumbs">
+				<h1>
+					<span>#language("breadcrumbs")</span>
+				</h1>
 
-			#breadcrumbs()
-		</nav>
+				#breadcrumbs()
+			</nav>
+		#end
 
 		<div id="so-sidebar">
 			#if ($page_group.isUser())
