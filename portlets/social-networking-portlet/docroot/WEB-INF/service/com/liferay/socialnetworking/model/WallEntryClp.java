@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
@@ -28,6 +29,8 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
@@ -58,6 +61,71 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("wallEntryId", getWallEntryId());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("comments", getComments());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long wallEntryId = (Long)attributes.get("wallEntryId");
+
+		if (wallEntryId != null) {
+			setWallEntryId(wallEntryId);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		String comments = (String)attributes.get("comments");
+
+		if (comments != null) {
+			setComments(comments);
+		}
 	}
 
 	public long getWallEntryId() {
@@ -130,6 +198,14 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 
 	public void setComments(String comments) {
 		_comments = comments;
+	}
+
+	public BaseModel<?> getWallEntryRemoteModel() {
+		return _wallEntryRemoteModel;
+	}
+
+	public void setWallEntryRemoteModel(BaseModel<?> wallEntryRemoteModel) {
+		_wallEntryRemoteModel = wallEntryRemoteModel;
 	}
 
 	public void persist() throws SystemException {
@@ -286,4 +362,5 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _comments;
+	private BaseModel<?> _wallEntryRemoteModel;
 }

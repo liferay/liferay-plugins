@@ -15,9 +15,9 @@
 package com.liferay.mail.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the attachment local service. This utility wraps {@link com.liferay.mail.service.impl.AttachmentLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -67,25 +67,32 @@ public class AttachmentLocalServiceUtil {
 	* Deletes the attachment with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param attachmentId the primary key of the attachment
+	* @return the attachment that was removed
 	* @throws PortalException if a attachment with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteAttachment(long attachmentId)
+	public static com.liferay.mail.model.Attachment deleteAttachment(
+		long attachmentId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteAttachment(attachmentId);
+		return getService().deleteAttachment(attachmentId);
 	}
 
 	/**
 	* Deletes the attachment from the database. Also notifies the appropriate model listeners.
 	*
 	* @param attachment the attachment
+	* @return the attachment that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteAttachment(
+	public static com.liferay.mail.model.Attachment deleteAttachment(
 		com.liferay.mail.model.Attachment attachment)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteAttachment(attachment);
+		return getService().deleteAttachment(attachment);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -261,6 +268,12 @@ public class AttachmentLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static com.liferay.mail.model.Attachment addAttachment(long userId,
 		long messageId, java.lang.String contentPath,
 		java.lang.String fileName, long size, java.io.File file)
@@ -301,17 +314,10 @@ public class AttachmentLocalServiceUtil {
 
 	public static AttachmentLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					AttachmentLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					AttachmentLocalService.class.getName(), portletClassLoader);
-
-			_service = new AttachmentLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new AttachmentLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(AttachmentLocalServiceUtil.class,
 				"_service");

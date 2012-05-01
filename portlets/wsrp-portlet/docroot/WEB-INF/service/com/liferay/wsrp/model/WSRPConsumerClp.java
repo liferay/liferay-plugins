@@ -17,6 +17,7 @@ package com.liferay.wsrp.model;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
 import com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil;
@@ -26,6 +27,8 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
@@ -57,6 +60,96 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("uuid", getUuid());
+		attributes.put("wsrpConsumerId", getWsrpConsumerId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("name", getName());
+		attributes.put("url", getUrl());
+		attributes.put("wsdl", getWsdl());
+		attributes.put("registrationContextString",
+			getRegistrationContextString());
+		attributes.put("registrationPropertiesString",
+			getRegistrationPropertiesString());
+		attributes.put("forwardCookies", getForwardCookies());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		String uuid = (String)attributes.get("uuid");
+
+		if (uuid != null) {
+			setUuid(uuid);
+		}
+
+		Long wsrpConsumerId = (Long)attributes.get("wsrpConsumerId");
+
+		if (wsrpConsumerId != null) {
+			setWsrpConsumerId(wsrpConsumerId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		String name = (String)attributes.get("name");
+
+		if (name != null) {
+			setName(name);
+		}
+
+		String url = (String)attributes.get("url");
+
+		if (url != null) {
+			setUrl(url);
+		}
+
+		String wsdl = (String)attributes.get("wsdl");
+
+		if (wsdl != null) {
+			setWsdl(wsdl);
+		}
+
+		String registrationContextString = (String)attributes.get(
+				"registrationContextString");
+
+		if (registrationContextString != null) {
+			setRegistrationContextString(registrationContextString);
+		}
+
+		String registrationPropertiesString = (String)attributes.get(
+				"registrationPropertiesString");
+
+		if (registrationPropertiesString != null) {
+			setRegistrationPropertiesString(registrationPropertiesString);
+		}
+
+		String forwardCookies = (String)attributes.get("forwardCookies");
+
+		if (forwardCookies != null) {
+			setForwardCookies(forwardCookies);
+		}
 	}
 
 	public String getUuid() {
@@ -164,6 +257,14 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 	public void setRegistrationProperties(
 		com.liferay.portal.kernel.util.UnicodeProperties registrationProperties) {
 		throw new UnsupportedOperationException();
+	}
+
+	public BaseModel<?> getWSRPConsumerRemoteModel() {
+		return _wsrpConsumerRemoteModel;
+	}
+
+	public void setWSRPConsumerRemoteModel(BaseModel<?> wsrpConsumerRemoteModel) {
+		_wsrpConsumerRemoteModel = wsrpConsumerRemoteModel;
 	}
 
 	public void persist() throws SystemException {
@@ -341,4 +442,5 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 	private String _registrationContextString;
 	private String _registrationPropertiesString;
 	private String _forwardCookies;
+	private BaseModel<?> _wsrpConsumerRemoteModel;
 }

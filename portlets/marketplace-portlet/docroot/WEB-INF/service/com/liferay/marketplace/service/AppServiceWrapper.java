@@ -31,6 +31,30 @@ public class AppServiceWrapper implements AppService,
 		_appService = appService;
 	}
 
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _appService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_appService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _appService.invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public com.liferay.marketplace.model.App addApp(long remoteAppId,
 		java.lang.String version, java.io.InputStream inputStream)
 		throws com.liferay.portal.kernel.exception.PortalException,

@@ -14,18 +14,26 @@
 
 package com.liferay.tasks.service;
 
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
+import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.ClassLoaderObjectInputStream;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
 
 import com.liferay.tasks.model.TasksEntryClp;
 
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import java.lang.reflect.Method;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -90,10 +98,6 @@ public class ClpSerializer {
 		}
 	}
 
-	public static void setClassLoader(ClassLoader classLoader) {
-		_classLoader = classLoader;
-	}
-
 	public static Object translateInput(BaseModel<?> oldModel) {
 		Class<?> oldModelClass = oldModel.getClass();
 
@@ -119,130 +123,13 @@ public class ClpSerializer {
 	}
 
 	public static Object translateInputTasksEntry(BaseModel<?> oldModel) {
-		TasksEntryClp oldCplModel = (TasksEntryClp)oldModel;
+		TasksEntryClp oldClpModel = (TasksEntryClp)oldModel;
 
-		Thread currentThread = Thread.currentThread();
+		BaseModel<?> newModel = oldClpModel.getTasksEntryRemoteModel();
 
-		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
 
-		try {
-			currentThread.setContextClassLoader(_classLoader);
-
-			try {
-				Class<?> newModelClass = Class.forName("com.liferay.tasks.model.impl.TasksEntryImpl",
-						true, _classLoader);
-
-				Object newModel = newModelClass.newInstance();
-
-				Method method0 = newModelClass.getMethod("setTasksEntryId",
-						new Class[] { Long.TYPE });
-
-				Long value0 = new Long(oldCplModel.getTasksEntryId());
-
-				method0.invoke(newModel, value0);
-
-				Method method1 = newModelClass.getMethod("setGroupId",
-						new Class[] { Long.TYPE });
-
-				Long value1 = new Long(oldCplModel.getGroupId());
-
-				method1.invoke(newModel, value1);
-
-				Method method2 = newModelClass.getMethod("setCompanyId",
-						new Class[] { Long.TYPE });
-
-				Long value2 = new Long(oldCplModel.getCompanyId());
-
-				method2.invoke(newModel, value2);
-
-				Method method3 = newModelClass.getMethod("setUserId",
-						new Class[] { Long.TYPE });
-
-				Long value3 = new Long(oldCplModel.getUserId());
-
-				method3.invoke(newModel, value3);
-
-				Method method4 = newModelClass.getMethod("setUserName",
-						new Class[] { String.class });
-
-				String value4 = oldCplModel.getUserName();
-
-				method4.invoke(newModel, value4);
-
-				Method method5 = newModelClass.getMethod("setCreateDate",
-						new Class[] { Date.class });
-
-				Date value5 = oldCplModel.getCreateDate();
-
-				method5.invoke(newModel, value5);
-
-				Method method6 = newModelClass.getMethod("setModifiedDate",
-						new Class[] { Date.class });
-
-				Date value6 = oldCplModel.getModifiedDate();
-
-				method6.invoke(newModel, value6);
-
-				Method method7 = newModelClass.getMethod("setTitle",
-						new Class[] { String.class });
-
-				String value7 = oldCplModel.getTitle();
-
-				method7.invoke(newModel, value7);
-
-				Method method8 = newModelClass.getMethod("setPriority",
-						new Class[] { Integer.TYPE });
-
-				Integer value8 = new Integer(oldCplModel.getPriority());
-
-				method8.invoke(newModel, value8);
-
-				Method method9 = newModelClass.getMethod("setAssigneeUserId",
-						new Class[] { Long.TYPE });
-
-				Long value9 = new Long(oldCplModel.getAssigneeUserId());
-
-				method9.invoke(newModel, value9);
-
-				Method method10 = newModelClass.getMethod("setResolverUserId",
-						new Class[] { Long.TYPE });
-
-				Long value10 = new Long(oldCplModel.getResolverUserId());
-
-				method10.invoke(newModel, value10);
-
-				Method method11 = newModelClass.getMethod("setDueDate",
-						new Class[] { Date.class });
-
-				Date value11 = oldCplModel.getDueDate();
-
-				method11.invoke(newModel, value11);
-
-				Method method12 = newModelClass.getMethod("setFinishDate",
-						new Class[] { Date.class });
-
-				Date value12 = oldCplModel.getFinishDate();
-
-				method12.invoke(newModel, value12);
-
-				Method method13 = newModelClass.getMethod("setStatus",
-						new Class[] { Integer.TYPE });
-
-				Integer value13 = new Integer(oldCplModel.getStatus());
-
-				method13.invoke(newModel, value13);
-
-				return newModel;
-			}
-			catch (Exception e) {
-				_log.error(e, e);
-			}
-		}
-		finally {
-			currentThread.setContextClassLoader(contextClassLoader);
-		}
-
-		return oldModel;
+		return newModel;
 	}
 
 	public static Object translateInput(Object obj) {
@@ -294,119 +181,82 @@ public class ClpSerializer {
 		}
 	}
 
-	public static Object translateOutputTasksEntry(BaseModel<?> oldModel) {
-		Thread currentThread = Thread.currentThread();
-
-		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
-
-		try {
-			currentThread.setContextClassLoader(_classLoader);
-
+	public static Throwable translateThrowable(Throwable throwable) {
+		if (_useReflectionToTranslateThrowable) {
 			try {
-				TasksEntryClp newModel = new TasksEntryClp();
+				if (_classLoader == null) {
+					_classLoader = (ClassLoader)PortletBeanLocatorUtil.locate(_servletContextName,
+							"portletClassLoader");
+				}
 
-				Class<?> oldModelClass = oldModel.getClass();
+				UnsyncByteArrayOutputStream unsyncByteArrayOutputStream = new UnsyncByteArrayOutputStream();
+				ObjectOutputStream objectOutputStream = new ObjectOutputStream(unsyncByteArrayOutputStream);
 
-				Method method0 = oldModelClass.getMethod("getTasksEntryId");
+				objectOutputStream.writeObject(throwable);
 
-				Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
+				objectOutputStream.flush();
+				objectOutputStream.close();
 
-				newModel.setTasksEntryId(value0);
+				UnsyncByteArrayInputStream unsyncByteArrayInputStream = new UnsyncByteArrayInputStream(unsyncByteArrayOutputStream.unsafeGetByteArray(),
+						0, unsyncByteArrayOutputStream.size());
+				ObjectInputStream objectInputStream = new ClassLoaderObjectInputStream(unsyncByteArrayInputStream,
+						_classLoader);
 
-				Method method1 = oldModelClass.getMethod("getGroupId");
+				throwable = (Throwable)objectInputStream.readObject();
 
-				Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
+				objectInputStream.close();
 
-				newModel.setGroupId(value1);
-
-				Method method2 = oldModelClass.getMethod("getCompanyId");
-
-				Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
-
-				newModel.setCompanyId(value2);
-
-				Method method3 = oldModelClass.getMethod("getUserId");
-
-				Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
-
-				newModel.setUserId(value3);
-
-				Method method4 = oldModelClass.getMethod("getUserName");
-
-				String value4 = (String)method4.invoke(oldModel, (Object[])null);
-
-				newModel.setUserName(value4);
-
-				Method method5 = oldModelClass.getMethod("getCreateDate");
-
-				Date value5 = (Date)method5.invoke(oldModel, (Object[])null);
-
-				newModel.setCreateDate(value5);
-
-				Method method6 = oldModelClass.getMethod("getModifiedDate");
-
-				Date value6 = (Date)method6.invoke(oldModel, (Object[])null);
-
-				newModel.setModifiedDate(value6);
-
-				Method method7 = oldModelClass.getMethod("getTitle");
-
-				String value7 = (String)method7.invoke(oldModel, (Object[])null);
-
-				newModel.setTitle(value7);
-
-				Method method8 = oldModelClass.getMethod("getPriority");
-
-				Integer value8 = (Integer)method8.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setPriority(value8);
-
-				Method method9 = oldModelClass.getMethod("getAssigneeUserId");
-
-				Long value9 = (Long)method9.invoke(oldModel, (Object[])null);
-
-				newModel.setAssigneeUserId(value9);
-
-				Method method10 = oldModelClass.getMethod("getResolverUserId");
-
-				Long value10 = (Long)method10.invoke(oldModel, (Object[])null);
-
-				newModel.setResolverUserId(value10);
-
-				Method method11 = oldModelClass.getMethod("getDueDate");
-
-				Date value11 = (Date)method11.invoke(oldModel, (Object[])null);
-
-				newModel.setDueDate(value11);
-
-				Method method12 = oldModelClass.getMethod("getFinishDate");
-
-				Date value12 = (Date)method12.invoke(oldModel, (Object[])null);
-
-				newModel.setFinishDate(value12);
-
-				Method method13 = oldModelClass.getMethod("getStatus");
-
-				Integer value13 = (Integer)method13.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setStatus(value13);
-
-				return newModel;
+				return throwable;
 			}
-			catch (Exception e) {
-				_log.error(e, e);
+			catch (SecurityException se) {
+				if (_log.isInfoEnabled()) {
+					_log.info("Do not use reflection to translate throwable");
+				}
+
+				_useReflectionToTranslateThrowable = false;
+			}
+			catch (Throwable throwable2) {
+				_log.error(throwable2, throwable2);
+
+				return throwable2;
 			}
 		}
-		finally {
-			currentThread.setContextClassLoader(contextClassLoader);
+
+		Class<?> clazz = throwable.getClass();
+
+		String className = clazz.getName();
+
+		if (className.equals(PortalException.class.getName())) {
+			return new PortalException();
 		}
 
-		return oldModel;
+		if (className.equals(SystemException.class.getName())) {
+			return new SystemException();
+		}
+
+		if (className.equals("com.liferay.tasks.TasksEntryDueDateException")) {
+			return new com.liferay.tasks.TasksEntryDueDateException();
+		}
+
+		if (className.equals("com.liferay.tasks.NoSuchTasksEntryException")) {
+			return new com.liferay.tasks.NoSuchTasksEntryException();
+		}
+
+		return throwable;
+	}
+
+	public static Object translateOutputTasksEntry(BaseModel<?> oldModel) {
+		TasksEntryClp newModel = new TasksEntryClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setTasksEntryRemoteModel(oldModel);
+
+		return newModel;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(ClpSerializer.class);
 	private static ClassLoader _classLoader;
 	private static String _servletContextName;
+	private static boolean _useReflectionToTranslateThrowable = true;
 }

@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
@@ -28,6 +29,8 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
@@ -59,6 +62,79 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("meetupsRegistrationId", getMeetupsRegistrationId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("meetupsEntryId", getMeetupsEntryId());
+		attributes.put("status", getStatus());
+		attributes.put("comments", getComments());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long meetupsRegistrationId = (Long)attributes.get(
+				"meetupsRegistrationId");
+
+		if (meetupsRegistrationId != null) {
+			setMeetupsRegistrationId(meetupsRegistrationId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		Long meetupsEntryId = (Long)attributes.get("meetupsEntryId");
+
+		if (meetupsEntryId != null) {
+			setMeetupsEntryId(meetupsEntryId);
+		}
+
+		Integer status = (Integer)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
+		}
+
+		String comments = (String)attributes.get("comments");
+
+		if (comments != null) {
+			setComments(comments);
+		}
 	}
 
 	public long getMeetupsRegistrationId() {
@@ -139,6 +215,15 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 
 	public void setComments(String comments) {
 		_comments = comments;
+	}
+
+	public BaseModel<?> getMeetupsRegistrationRemoteModel() {
+		return _meetupsRegistrationRemoteModel;
+	}
+
+	public void setMeetupsRegistrationRemoteModel(
+		BaseModel<?> meetupsRegistrationRemoteModel) {
+		_meetupsRegistrationRemoteModel = meetupsRegistrationRemoteModel;
 	}
 
 	public void persist() throws SystemException {
@@ -305,4 +390,5 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 	private long _meetupsEntryId;
 	private int _status;
 	private String _comments;
+	private BaseModel<?> _meetupsRegistrationRemoteModel;
 }

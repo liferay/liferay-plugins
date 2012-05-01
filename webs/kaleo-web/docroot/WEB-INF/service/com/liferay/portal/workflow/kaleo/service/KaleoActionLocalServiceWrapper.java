@@ -60,25 +60,32 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService,
 	* Deletes the kaleo action with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoActionId the primary key of the kaleo action
+	* @return the kaleo action that was removed
 	* @throws PortalException if a kaleo action with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoAction(long kaleoActionId)
+	public com.liferay.portal.workflow.kaleo.model.KaleoAction deleteKaleoAction(
+		long kaleoActionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_kaleoActionLocalService.deleteKaleoAction(kaleoActionId);
+		return _kaleoActionLocalService.deleteKaleoAction(kaleoActionId);
 	}
 
 	/**
 	* Deletes the kaleo action from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoAction the kaleo action
+	* @return the kaleo action that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoAction(
+	public com.liferay.portal.workflow.kaleo.model.KaleoAction deleteKaleoAction(
 		com.liferay.portal.workflow.kaleo.model.KaleoAction kaleoAction)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoActionLocalService.deleteKaleoAction(kaleoAction);
+		return _kaleoActionLocalService.deleteKaleoAction(kaleoAction);
+	}
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _kaleoActionLocalService.dynamicQuery();
 	}
 
 	/**
@@ -253,6 +260,13 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_kaleoActionLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _kaleoActionLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction addKaleoAction(

@@ -15,9 +15,9 @@
 package com.liferay.portal.workflow.kaleo.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the kaleo condition local service. This utility wraps {@link com.liferay.portal.workflow.kaleo.service.impl.KaleoConditionLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -67,25 +67,32 @@ public class KaleoConditionLocalServiceUtil {
 	* Deletes the kaleo condition with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoConditionId the primary key of the kaleo condition
+	* @return the kaleo condition that was removed
 	* @throws PortalException if a kaleo condition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoCondition(long kaleoConditionId)
+	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition deleteKaleoCondition(
+		long kaleoConditionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoCondition(kaleoConditionId);
+		return getService().deleteKaleoCondition(kaleoConditionId);
 	}
 
 	/**
 	* Deletes the kaleo condition from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoCondition the kaleo condition
+	* @return the kaleo condition that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoCondition(
+	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition deleteKaleoCondition(
 		com.liferay.portal.workflow.kaleo.model.KaleoCondition kaleoCondition)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoCondition(kaleoCondition);
+		return getService().deleteKaleoCondition(kaleoCondition);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -262,6 +269,12 @@ public class KaleoConditionLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition addKaleoCondition(
 		long kaleoDefinitionId, long kaleoNodeId,
 		com.liferay.portal.workflow.kaleo.definition.Condition condition,
@@ -297,18 +310,10 @@ public class KaleoConditionLocalServiceUtil {
 
 	public static KaleoConditionLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					KaleoConditionLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					KaleoConditionLocalService.class.getName(),
-					portletClassLoader);
-
-			_service = new KaleoConditionLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new KaleoConditionLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(KaleoConditionLocalServiceUtil.class,
 				"_service");

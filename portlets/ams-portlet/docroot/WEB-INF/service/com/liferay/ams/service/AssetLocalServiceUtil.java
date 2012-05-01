@@ -15,9 +15,9 @@
 package com.liferay.ams.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the asset local service. This utility wraps {@link com.liferay.ams.service.impl.AssetLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -66,24 +66,31 @@ public class AssetLocalServiceUtil {
 	* Deletes the asset with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param assetId the primary key of the asset
+	* @return the asset that was removed
 	* @throws PortalException if a asset with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteAsset(long assetId)
+	public static com.liferay.ams.model.Asset deleteAsset(long assetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteAsset(assetId);
+		return getService().deleteAsset(assetId);
 	}
 
 	/**
 	* Deletes the asset from the database. Also notifies the appropriate model listeners.
 	*
 	* @param asset the asset
+	* @return the asset that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteAsset(com.liferay.ams.model.Asset asset)
+	public static com.liferay.ams.model.Asset deleteAsset(
+		com.liferay.ams.model.Asset asset)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteAsset(asset);
+		return getService().deleteAsset(asset);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -257,23 +264,22 @@ public class AssetLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}
 
 	public static AssetLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					AssetLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					AssetLocalService.class.getName(), portletClassLoader);
-
-			_service = new AssetLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new AssetLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(AssetLocalServiceUtil.class,
 				"_service");

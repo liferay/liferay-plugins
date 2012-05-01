@@ -60,25 +60,32 @@ public class KaleoNodeLocalServiceWrapper implements KaleoNodeLocalService,
 	* Deletes the kaleo node with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoNodeId the primary key of the kaleo node
+	* @return the kaleo node that was removed
 	* @throws PortalException if a kaleo node with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoNode(long kaleoNodeId)
+	public com.liferay.portal.workflow.kaleo.model.KaleoNode deleteKaleoNode(
+		long kaleoNodeId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_kaleoNodeLocalService.deleteKaleoNode(kaleoNodeId);
+		return _kaleoNodeLocalService.deleteKaleoNode(kaleoNodeId);
 	}
 
 	/**
 	* Deletes the kaleo node from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoNode the kaleo node
+	* @return the kaleo node that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoNode(
+	public com.liferay.portal.workflow.kaleo.model.KaleoNode deleteKaleoNode(
 		com.liferay.portal.workflow.kaleo.model.KaleoNode kaleoNode)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoNodeLocalService.deleteKaleoNode(kaleoNode);
+		return _kaleoNodeLocalService.deleteKaleoNode(kaleoNode);
+	}
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _kaleoNodeLocalService.dynamicQuery();
 	}
 
 	/**
@@ -253,6 +260,13 @@ public class KaleoNodeLocalServiceWrapper implements KaleoNodeLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_kaleoNodeLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _kaleoNodeLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode addKaleoNode(

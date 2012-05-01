@@ -15,9 +15,9 @@
 package com.liferay.portal.workflow.kaleo.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the kaleo task instance token local service. This utility wraps {@link com.liferay.portal.workflow.kaleo.service.impl.KaleoTaskInstanceTokenLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -68,26 +68,33 @@ public class KaleoTaskInstanceTokenLocalServiceUtil {
 	* Deletes the kaleo task instance token with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTaskInstanceTokenId the primary key of the kaleo task instance token
+	* @return the kaleo task instance token that was removed
 	* @throws PortalException if a kaleo task instance token with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoTaskInstanceToken(
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken deleteKaleoTaskInstanceToken(
 		long kaleoTaskInstanceTokenId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoTaskInstanceToken(kaleoTaskInstanceTokenId);
+		return getService()
+				   .deleteKaleoTaskInstanceToken(kaleoTaskInstanceTokenId);
 	}
 
 	/**
 	* Deletes the kaleo task instance token from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTaskInstanceToken the kaleo task instance token
+	* @return the kaleo task instance token that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoTaskInstanceToken(
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken deleteKaleoTaskInstanceToken(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoTaskInstanceToken(kaleoTaskInstanceToken);
+		return getService().deleteKaleoTaskInstanceToken(kaleoTaskInstanceToken);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -263,6 +270,12 @@ public class KaleoTaskInstanceTokenLocalServiceUtil {
 	*/
 	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
 		getService().setBeanIdentifier(beanIdentifier);
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken addKaleoTaskInstanceToken(
@@ -552,18 +565,10 @@ public class KaleoTaskInstanceTokenLocalServiceUtil {
 
 	public static KaleoTaskInstanceTokenLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					KaleoTaskInstanceTokenLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					KaleoTaskInstanceTokenLocalService.class.getName(),
-					portletClassLoader);
-
-			_service = new KaleoTaskInstanceTokenLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new KaleoTaskInstanceTokenLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(KaleoTaskInstanceTokenLocalServiceUtil.class,
 				"_service");

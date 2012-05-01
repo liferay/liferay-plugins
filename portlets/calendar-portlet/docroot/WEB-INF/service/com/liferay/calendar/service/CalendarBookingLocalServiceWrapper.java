@@ -61,25 +61,32 @@ public class CalendarBookingLocalServiceWrapper
 	* Deletes the calendar booking with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param calendarBookingId the primary key of the calendar booking
+	* @return the calendar booking that was removed
 	* @throws PortalException if a calendar booking with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteCalendarBooking(long calendarBookingId)
+	public com.liferay.calendar.model.CalendarBooking deleteCalendarBooking(
+		long calendarBookingId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_calendarBookingLocalService.deleteCalendarBooking(calendarBookingId);
+		return _calendarBookingLocalService.deleteCalendarBooking(calendarBookingId);
 	}
 
 	/**
 	* Deletes the calendar booking from the database. Also notifies the appropriate model listeners.
 	*
 	* @param calendarBooking the calendar booking
+	* @return the calendar booking that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteCalendarBooking(
+	public com.liferay.calendar.model.CalendarBooking deleteCalendarBooking(
 		com.liferay.calendar.model.CalendarBooking calendarBooking)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_calendarBookingLocalService.deleteCalendarBooking(calendarBooking);
+		return _calendarBookingLocalService.deleteCalendarBooking(calendarBooking);
+	}
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _calendarBookingLocalService.dynamicQuery();
 	}
 
 	/**
@@ -273,6 +280,13 @@ public class CalendarBookingLocalServiceWrapper
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_calendarBookingLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _calendarBookingLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	public com.liferay.calendar.model.CalendarBooking addCalendarBooking(

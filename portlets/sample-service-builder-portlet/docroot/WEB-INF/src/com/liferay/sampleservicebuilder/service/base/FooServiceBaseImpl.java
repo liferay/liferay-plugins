@@ -21,11 +21,11 @@ import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.service.BaseServiceImpl;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
 import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.service.UserService;
-import com.liferay.portal.service.base.PrincipalBean;
 import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 
@@ -55,7 +55,7 @@ import javax.sql.DataSource;
  * @see com.liferay.sampleservicebuilder.service.FooServiceUtil
  * @generated
  */
-public abstract class FooServiceBaseImpl extends PrincipalBean
+public abstract class FooServiceBaseImpl extends BaseServiceImpl
 	implements FooService, IdentifiableBean {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -379,10 +379,9 @@ public abstract class FooServiceBaseImpl extends PrincipalBean
 		_beanIdentifier = beanIdentifier;
 	}
 
-	protected ClassLoader getClassLoader() {
-		Class<?> clazz = getClass();
-
-		return clazz.getClassLoader();
+	public Object invokeMethod(String name, String[] parameterTypes,
+		Object[] arguments) throws Throwable {
+		return _clpInvoker.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	protected Class<?> getModelClass() {
@@ -445,4 +444,5 @@ public abstract class FooServiceBaseImpl extends PrincipalBean
 	@BeanReference(type = AssetTagPersistence.class)
 	protected AssetTagPersistence assetTagPersistence;
 	private String _beanIdentifier;
+	private FooServiceClpInvoker _clpInvoker = new FooServiceClpInvoker();
 }

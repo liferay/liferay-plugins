@@ -15,9 +15,9 @@
 package com.liferay.socialcoding.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the j i r a issue local service. This utility wraps {@link com.liferay.socialcoding.service.impl.JIRAIssueLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -67,25 +67,32 @@ public class JIRAIssueLocalServiceUtil {
 	* Deletes the j i r a issue with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param jiraIssueId the primary key of the j i r a issue
+	* @return the j i r a issue that was removed
 	* @throws PortalException if a j i r a issue with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteJIRAIssue(long jiraIssueId)
+	public static com.liferay.socialcoding.model.JIRAIssue deleteJIRAIssue(
+		long jiraIssueId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteJIRAIssue(jiraIssueId);
+		return getService().deleteJIRAIssue(jiraIssueId);
 	}
 
 	/**
 	* Deletes the j i r a issue from the database. Also notifies the appropriate model listeners.
 	*
 	* @param jiraIssue the j i r a issue
+	* @return the j i r a issue that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteJIRAIssue(
+	public static com.liferay.socialcoding.model.JIRAIssue deleteJIRAIssue(
 		com.liferay.socialcoding.model.JIRAIssue jiraIssue)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteJIRAIssue(jiraIssue);
+		return getService().deleteJIRAIssue(jiraIssue);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -261,6 +268,12 @@ public class JIRAIssueLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static java.util.List<com.liferay.socialcoding.model.JIRAIssue> getAssigneeJIRAIssues(
 		java.util.Date modifiedDate, long projectId,
 		java.lang.String assigneeJiraUserId, int start, int end)
@@ -410,17 +423,10 @@ public class JIRAIssueLocalServiceUtil {
 
 	public static JIRAIssueLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					JIRAIssueLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					JIRAIssueLocalService.class.getName(), portletClassLoader);
-
-			_service = new JIRAIssueLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new JIRAIssueLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(JIRAIssueLocalServiceUtil.class,
 				"_service");

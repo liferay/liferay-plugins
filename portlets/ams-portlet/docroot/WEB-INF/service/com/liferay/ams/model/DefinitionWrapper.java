@@ -16,6 +16,10 @@ package com.liferay.ams.model;
 
 import com.liferay.portal.model.ModelWrapper;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * <p>
  * This class is a wrapper for {@link Definition}.
@@ -36,6 +40,106 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 
 	public String getModelClassName() {
 		return Definition.class.getName();
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("definitionId", getDefinitionId());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("typeId", getTypeId());
+		attributes.put("manufacturer", getManufacturer());
+		attributes.put("model", getModel());
+		attributes.put("orderDate", getOrderDate());
+		attributes.put("quantity", getQuantity());
+		attributes.put("price", getPrice());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long definitionId = (Long)attributes.get("definitionId");
+
+		if (definitionId != null) {
+			setDefinitionId(definitionId);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		Long typeId = (Long)attributes.get("typeId");
+
+		if (typeId != null) {
+			setTypeId(typeId);
+		}
+
+		String manufacturer = (String)attributes.get("manufacturer");
+
+		if (manufacturer != null) {
+			setManufacturer(manufacturer);
+		}
+
+		String model = (String)attributes.get("model");
+
+		if (model != null) {
+			setModel(model);
+		}
+
+		Date orderDate = (Date)attributes.get("orderDate");
+
+		if (orderDate != null) {
+			setOrderDate(orderDate);
+		}
+
+		Integer quantity = (Integer)attributes.get("quantity");
+
+		if (quantity != null) {
+			setQuantity(quantity);
+		}
+
+		Double price = (Double)attributes.get("price");
+
+		if (price != null) {
+			setPrice(price);
+		}
 	}
 
 	/**

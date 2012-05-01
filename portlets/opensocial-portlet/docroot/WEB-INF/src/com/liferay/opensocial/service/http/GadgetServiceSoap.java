@@ -83,11 +83,14 @@ public class GadgetServiceSoap {
 		}
 	}
 
-	public static void deleteGadget(long gadgetId,
-		com.liferay.portal.service.ServiceContext serviceContext)
+	public static com.liferay.opensocial.model.GadgetSoap deleteGadget(
+		long gadgetId, com.liferay.portal.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
-			GadgetServiceUtil.deleteGadget(gadgetId, serviceContext);
+			com.liferay.opensocial.model.Gadget returnValue = GadgetServiceUtil.deleteGadget(gadgetId,
+					serviceContext);
+
+			return com.liferay.opensocial.model.GadgetSoap.toSoapModel(returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

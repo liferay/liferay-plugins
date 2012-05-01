@@ -37,6 +37,8 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The base model implementation for the WallEntry service. Represents a row in the &quot;SN_WallEntry&quot; database table, with each column mapped to a property of this class.
@@ -115,6 +117,73 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 
 	public String getModelClassName() {
 		return WallEntry.class.getName();
+	}
+
+	@Override
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("wallEntryId", getWallEntryId());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("comments", getComments());
+
+		return attributes;
+	}
+
+	@Override
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long wallEntryId = (Long)attributes.get("wallEntryId");
+
+		if (wallEntryId != null) {
+			setWallEntryId(wallEntryId);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		String comments = (String)attributes.get("comments");
+
+		if (comments != null) {
+			setComments(comments);
+		}
 	}
 
 	public long getWallEntryId() {

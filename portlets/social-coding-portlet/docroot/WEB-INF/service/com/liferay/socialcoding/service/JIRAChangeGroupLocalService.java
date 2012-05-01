@@ -19,6 +19,8 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.service.BaseLocalService;
+import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
 
 /**
@@ -36,7 +38,8 @@ import com.liferay.portal.service.PersistedModelLocalService;
  */
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
-public interface JIRAChangeGroupLocalService extends PersistedModelLocalService {
+public interface JIRAChangeGroupLocalService extends BaseLocalService,
+	InvokableLocalService, PersistedModelLocalService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -67,10 +70,12 @@ public interface JIRAChangeGroupLocalService extends PersistedModelLocalService 
 	* Deletes the j i r a change group with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param jiraChangeGroupId the primary key of the j i r a change group
+	* @return the j i r a change group that was removed
 	* @throws PortalException if a j i r a change group with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteJIRAChangeGroup(long jiraChangeGroupId)
+	public com.liferay.socialcoding.model.JIRAChangeGroup deleteJIRAChangeGroup(
+		long jiraChangeGroupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -78,11 +83,14 @@ public interface JIRAChangeGroupLocalService extends PersistedModelLocalService 
 	* Deletes the j i r a change group from the database. Also notifies the appropriate model listeners.
 	*
 	* @param jiraChangeGroup the j i r a change group
+	* @return the j i r a change group that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteJIRAChangeGroup(
+	public com.liferay.socialcoding.model.JIRAChangeGroup deleteJIRAChangeGroup(
 		com.liferay.socialcoding.model.JIRAChangeGroup jiraChangeGroup)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -235,4 +243,8 @@ public interface JIRAChangeGroupLocalService extends PersistedModelLocalService 
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
 }

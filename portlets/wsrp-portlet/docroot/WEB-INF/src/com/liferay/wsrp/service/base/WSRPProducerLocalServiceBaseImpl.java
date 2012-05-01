@@ -21,15 +21,14 @@ import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
+import com.liferay.portal.service.BaseLocalServiceImpl;
 import com.liferay.portal.service.GroupLocalService;
 import com.liferay.portal.service.GroupService;
 import com.liferay.portal.service.LayoutLocalService;
@@ -71,7 +70,8 @@ import javax.sql.DataSource;
  * @generated
  */
 public abstract class WSRPProducerLocalServiceBaseImpl
-	implements WSRPProducerLocalService, IdentifiableBean {
+	extends BaseLocalServiceImpl implements WSRPProducerLocalService,
+		IdentifiableBean {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -85,26 +85,12 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	 * @return the w s r p producer that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public WSRPProducer addWSRPProducer(WSRPProducer wsrpProducer)
 		throws SystemException {
 		wsrpProducer.setNew(true);
 
-		wsrpProducer = wsrpProducerPersistence.update(wsrpProducer, false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(wsrpProducer);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return wsrpProducer;
+		return wsrpProducerPersistence.update(wsrpProducer, false);
 	}
 
 	/**
@@ -121,50 +107,33 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	 * Deletes the w s r p producer with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param wsrpProducerId the primary key of the w s r p producer
+	 * @return the w s r p producer that was removed
 	 * @throws PortalException if a w s r p producer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteWSRPProducer(long wsrpProducerId)
+	@Indexable(type = IndexableType.DELETE)
+	public WSRPProducer deleteWSRPProducer(long wsrpProducerId)
 		throws PortalException, SystemException {
-		WSRPProducer wsrpProducer = wsrpProducerPersistence.remove(wsrpProducerId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(wsrpProducer);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return wsrpProducerPersistence.remove(wsrpProducerId);
 	}
 
 	/**
 	 * Deletes the w s r p producer from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param wsrpProducer the w s r p producer
+	 * @return the w s r p producer that was removed
 	 * @throws PortalException
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteWSRPProducer(WSRPProducer wsrpProducer)
+	@Indexable(type = IndexableType.DELETE)
+	public WSRPProducer deleteWSRPProducer(WSRPProducer wsrpProducer)
 		throws PortalException, SystemException {
-		wsrpProducerPersistence.remove(wsrpProducer);
+		return wsrpProducerPersistence.remove(wsrpProducer);
+	}
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(wsrpProducer);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+	public DynamicQuery dynamicQuery() {
+		return DynamicQueryFactoryUtil.forClass(WSRPProducer.class,
+			getClassLoader());
 	}
 
 	/**
@@ -304,6 +273,7 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	 * @return the w s r p producer that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public WSRPProducer updateWSRPProducer(WSRPProducer wsrpProducer)
 		throws SystemException {
 		return updateWSRPProducer(wsrpProducer, true);
@@ -317,26 +287,12 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	 * @return the w s r p producer that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public WSRPProducer updateWSRPProducer(WSRPProducer wsrpProducer,
 		boolean merge) throws SystemException {
 		wsrpProducer.setNew(false);
 
-		wsrpProducer = wsrpProducerPersistence.update(wsrpProducer, merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(wsrpProducer);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return wsrpProducer;
+		return wsrpProducerPersistence.update(wsrpProducer, merge);
 	}
 
 	/**
@@ -716,10 +672,9 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
-	protected ClassLoader getClassLoader() {
-		Class<?> clazz = getClass();
-
-		return clazz.getClassLoader();
+	public Object invokeMethod(String name, String[] parameterTypes,
+		Object[] arguments) throws Throwable {
+		return _clpInvoker.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	protected Class<?> getModelClass() {
@@ -787,6 +742,6 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private static Log _log = LogFactoryUtil.getLog(WSRPProducerLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
+	private WSRPProducerLocalServiceClpInvoker _clpInvoker = new WSRPProducerLocalServiceClpInvoker();
 }

@@ -61,25 +61,32 @@ public class OAuthConsumerLocalServiceWrapper
 	* Deletes the o auth consumer with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param oAuthConsumerId the primary key of the o auth consumer
+	* @return the o auth consumer that was removed
 	* @throws PortalException if a o auth consumer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteOAuthConsumer(long oAuthConsumerId)
+	public com.liferay.opensocial.model.OAuthConsumer deleteOAuthConsumer(
+		long oAuthConsumerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_oAuthConsumerLocalService.deleteOAuthConsumer(oAuthConsumerId);
+		return _oAuthConsumerLocalService.deleteOAuthConsumer(oAuthConsumerId);
 	}
 
 	/**
 	* Deletes the o auth consumer from the database. Also notifies the appropriate model listeners.
 	*
 	* @param oAuthConsumer the o auth consumer
+	* @return the o auth consumer that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteOAuthConsumer(
+	public com.liferay.opensocial.model.OAuthConsumer deleteOAuthConsumer(
 		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_oAuthConsumerLocalService.deleteOAuthConsumer(oAuthConsumer);
+		return _oAuthConsumerLocalService.deleteOAuthConsumer(oAuthConsumer);
+	}
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _oAuthConsumerLocalService.dynamicQuery();
 	}
 
 	/**
@@ -254,6 +261,13 @@ public class OAuthConsumerLocalServiceWrapper
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_oAuthConsumerLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _oAuthConsumerLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	public com.liferay.opensocial.model.OAuthConsumer addOAuthConsumer(

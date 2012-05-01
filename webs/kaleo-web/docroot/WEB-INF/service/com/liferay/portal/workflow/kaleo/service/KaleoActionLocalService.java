@@ -19,6 +19,8 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.service.BaseLocalService;
+import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
 
 /**
@@ -36,7 +38,8 @@ import com.liferay.portal.service.PersistedModelLocalService;
  */
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
-public interface KaleoActionLocalService extends PersistedModelLocalService {
+public interface KaleoActionLocalService extends BaseLocalService,
+	InvokableLocalService, PersistedModelLocalService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -67,10 +70,12 @@ public interface KaleoActionLocalService extends PersistedModelLocalService {
 	* Deletes the kaleo action with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoActionId the primary key of the kaleo action
+	* @return the kaleo action that was removed
 	* @throws PortalException if a kaleo action with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoAction(long kaleoActionId)
+	public com.liferay.portal.workflow.kaleo.model.KaleoAction deleteKaleoAction(
+		long kaleoActionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -78,11 +83,14 @@ public interface KaleoActionLocalService extends PersistedModelLocalService {
 	* Deletes the kaleo action from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoAction the kaleo action
+	* @return the kaleo action that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoAction(
+	public com.liferay.portal.workflow.kaleo.model.KaleoAction deleteKaleoAction(
 		com.liferay.portal.workflow.kaleo.model.KaleoAction kaleoAction)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -235,6 +243,10 @@ public interface KaleoActionLocalService extends PersistedModelLocalService {
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction addKaleoAction(
 		java.lang.String kaleoClassName, long kaleoClassPK,

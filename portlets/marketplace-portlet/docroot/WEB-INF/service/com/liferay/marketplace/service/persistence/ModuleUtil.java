@@ -675,14 +675,12 @@ public class ModuleUtil {
 	*
 	* @param appId the app ID
 	* @param contextName the context name
-	* @return the module that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.liferay.marketplace.model.Module removeByA_C(long appId,
-		java.lang.String contextName)
+	public static void removeByA_C(long appId, java.lang.String contextName)
 		throws com.liferay.marketplace.NoSuchModuleException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().removeByA_C(appId, contextName);
+		getPersistence().removeByA_C(appId, contextName);
 	}
 
 	/**

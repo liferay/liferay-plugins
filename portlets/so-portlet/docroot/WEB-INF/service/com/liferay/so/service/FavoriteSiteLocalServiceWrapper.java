@@ -84,6 +84,10 @@ public class FavoriteSiteLocalServiceWrapper implements FavoriteSiteLocalService
 		return _favoriteSiteLocalService.deleteFavoriteSite(favoriteSite);
 	}
 
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _favoriteSiteLocalService.dynamicQuery();
+	}
+
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
@@ -255,6 +259,13 @@ public class FavoriteSiteLocalServiceWrapper implements FavoriteSiteLocalService
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_favoriteSiteLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _favoriteSiteLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	public com.liferay.so.model.FavoriteSite addFavoriteSite(long userId,

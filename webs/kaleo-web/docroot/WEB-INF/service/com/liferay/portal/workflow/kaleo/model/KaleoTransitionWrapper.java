@@ -16,6 +16,10 @@ package com.liferay.portal.workflow.kaleo.model;
 
 import com.liferay.portal.model.ModelWrapper;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * <p>
  * This class is a wrapper for {@link KaleoTransition}.
@@ -37,6 +41,129 @@ public class KaleoTransitionWrapper implements KaleoTransition,
 
 	public String getModelClassName() {
 		return KaleoTransition.class.getName();
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("kaleoTransitionId", getKaleoTransitionId());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("kaleoDefinitionId", getKaleoDefinitionId());
+		attributes.put("kaleoNodeId", getKaleoNodeId());
+		attributes.put("name", getName());
+		attributes.put("description", getDescription());
+		attributes.put("sourceKaleoNodeId", getSourceKaleoNodeId());
+		attributes.put("sourceKaleoNodeName", getSourceKaleoNodeName());
+		attributes.put("targetKaleoNodeId", getTargetKaleoNodeId());
+		attributes.put("targetKaleoNodeName", getTargetKaleoNodeName());
+		attributes.put("defaultTransition", getDefaultTransition());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long kaleoTransitionId = (Long)attributes.get("kaleoTransitionId");
+
+		if (kaleoTransitionId != null) {
+			setKaleoTransitionId(kaleoTransitionId);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		Long kaleoDefinitionId = (Long)attributes.get("kaleoDefinitionId");
+
+		if (kaleoDefinitionId != null) {
+			setKaleoDefinitionId(kaleoDefinitionId);
+		}
+
+		Long kaleoNodeId = (Long)attributes.get("kaleoNodeId");
+
+		if (kaleoNodeId != null) {
+			setKaleoNodeId(kaleoNodeId);
+		}
+
+		String name = (String)attributes.get("name");
+
+		if (name != null) {
+			setName(name);
+		}
+
+		String description = (String)attributes.get("description");
+
+		if (description != null) {
+			setDescription(description);
+		}
+
+		Long sourceKaleoNodeId = (Long)attributes.get("sourceKaleoNodeId");
+
+		if (sourceKaleoNodeId != null) {
+			setSourceKaleoNodeId(sourceKaleoNodeId);
+		}
+
+		String sourceKaleoNodeName = (String)attributes.get(
+				"sourceKaleoNodeName");
+
+		if (sourceKaleoNodeName != null) {
+			setSourceKaleoNodeName(sourceKaleoNodeName);
+		}
+
+		Long targetKaleoNodeId = (Long)attributes.get("targetKaleoNodeId");
+
+		if (targetKaleoNodeId != null) {
+			setTargetKaleoNodeId(targetKaleoNodeId);
+		}
+
+		String targetKaleoNodeName = (String)attributes.get(
+				"targetKaleoNodeName");
+
+		if (targetKaleoNodeName != null) {
+			setTargetKaleoNodeName(targetKaleoNodeName);
+		}
+
+		Boolean defaultTransition = (Boolean)attributes.get("defaultTransition");
+
+		if (defaultTransition != null) {
+			setDefaultTransition(defaultTransition);
+		}
 	}
 
 	/**

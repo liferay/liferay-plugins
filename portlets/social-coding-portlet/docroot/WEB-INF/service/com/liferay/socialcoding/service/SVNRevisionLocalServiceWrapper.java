@@ -60,25 +60,32 @@ public class SVNRevisionLocalServiceWrapper implements SVNRevisionLocalService,
 	* Deletes the s v n revision with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param svnRevisionId the primary key of the s v n revision
+	* @return the s v n revision that was removed
 	* @throws PortalException if a s v n revision with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteSVNRevision(long svnRevisionId)
+	public com.liferay.socialcoding.model.SVNRevision deleteSVNRevision(
+		long svnRevisionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_svnRevisionLocalService.deleteSVNRevision(svnRevisionId);
+		return _svnRevisionLocalService.deleteSVNRevision(svnRevisionId);
 	}
 
 	/**
 	* Deletes the s v n revision from the database. Also notifies the appropriate model listeners.
 	*
 	* @param svnRevision the s v n revision
+	* @return the s v n revision that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteSVNRevision(
+	public com.liferay.socialcoding.model.SVNRevision deleteSVNRevision(
 		com.liferay.socialcoding.model.SVNRevision svnRevision)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_svnRevisionLocalService.deleteSVNRevision(svnRevision);
+		return _svnRevisionLocalService.deleteSVNRevision(svnRevision);
+	}
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _svnRevisionLocalService.dynamicQuery();
 	}
 
 	/**
@@ -252,6 +259,13 @@ public class SVNRevisionLocalServiceWrapper implements SVNRevisionLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_svnRevisionLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _svnRevisionLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	public com.liferay.socialcoding.model.SVNRevision addSVNRevision(

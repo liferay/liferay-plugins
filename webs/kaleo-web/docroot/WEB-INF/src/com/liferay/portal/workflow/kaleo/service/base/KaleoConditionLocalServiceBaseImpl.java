@@ -21,15 +21,14 @@ import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
+import com.liferay.portal.service.BaseLocalServiceImpl;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -92,7 +91,8 @@ import javax.sql.DataSource;
  * @generated
  */
 public abstract class KaleoConditionLocalServiceBaseImpl
-	implements KaleoConditionLocalService, IdentifiableBean {
+	extends BaseLocalServiceImpl implements KaleoConditionLocalService,
+		IdentifiableBean {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -106,26 +106,12 @@ public abstract class KaleoConditionLocalServiceBaseImpl
 	 * @return the kaleo condition that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public KaleoCondition addKaleoCondition(KaleoCondition kaleoCondition)
 		throws SystemException {
 		kaleoCondition.setNew(true);
 
-		kaleoCondition = kaleoConditionPersistence.update(kaleoCondition, false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(kaleoCondition);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return kaleoCondition;
+		return kaleoConditionPersistence.update(kaleoCondition, false);
 	}
 
 	/**
@@ -142,49 +128,32 @@ public abstract class KaleoConditionLocalServiceBaseImpl
 	 * Deletes the kaleo condition with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param kaleoConditionId the primary key of the kaleo condition
+	 * @return the kaleo condition that was removed
 	 * @throws PortalException if a kaleo condition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteKaleoCondition(long kaleoConditionId)
+	@Indexable(type = IndexableType.DELETE)
+	public KaleoCondition deleteKaleoCondition(long kaleoConditionId)
 		throws PortalException, SystemException {
-		KaleoCondition kaleoCondition = kaleoConditionPersistence.remove(kaleoConditionId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(kaleoCondition);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return kaleoConditionPersistence.remove(kaleoConditionId);
 	}
 
 	/**
 	 * Deletes the kaleo condition from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param kaleoCondition the kaleo condition
+	 * @return the kaleo condition that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteKaleoCondition(KaleoCondition kaleoCondition)
+	@Indexable(type = IndexableType.DELETE)
+	public KaleoCondition deleteKaleoCondition(KaleoCondition kaleoCondition)
 		throws SystemException {
-		kaleoConditionPersistence.remove(kaleoCondition);
+		return kaleoConditionPersistence.remove(kaleoCondition);
+	}
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(kaleoCondition);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+	public DynamicQuery dynamicQuery() {
+		return DynamicQueryFactoryUtil.forClass(KaleoCondition.class,
+			getClassLoader());
 	}
 
 	/**
@@ -310,6 +279,7 @@ public abstract class KaleoConditionLocalServiceBaseImpl
 	 * @return the kaleo condition that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public KaleoCondition updateKaleoCondition(KaleoCondition kaleoCondition)
 		throws SystemException {
 		return updateKaleoCondition(kaleoCondition, true);
@@ -323,26 +293,12 @@ public abstract class KaleoConditionLocalServiceBaseImpl
 	 * @return the kaleo condition that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public KaleoCondition updateKaleoCondition(KaleoCondition kaleoCondition,
 		boolean merge) throws SystemException {
 		kaleoCondition.setNew(false);
 
-		kaleoCondition = kaleoConditionPersistence.update(kaleoCondition, merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(kaleoCondition);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return kaleoCondition;
+		return kaleoConditionPersistence.update(kaleoCondition, merge);
 	}
 
 	/**
@@ -1145,10 +1101,9 @@ public abstract class KaleoConditionLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
-	protected ClassLoader getClassLoader() {
-		Class<?> clazz = getClass();
-
-		return clazz.getClassLoader();
+	public Object invokeMethod(String name, String[] parameterTypes,
+		Object[] arguments) throws Throwable {
+		return _clpInvoker.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	protected Class<?> getModelClass() {
@@ -1260,6 +1215,6 @@ public abstract class KaleoConditionLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private static Log _log = LogFactoryUtil.getLog(KaleoConditionLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
+	private KaleoConditionLocalServiceClpInvoker _clpInvoker = new KaleoConditionLocalServiceClpInvoker();
 }

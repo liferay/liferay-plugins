@@ -57,24 +57,31 @@ public class TypeLocalServiceWrapper implements TypeLocalService,
 	* Deletes the type with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param typeId the primary key of the type
+	* @return the type that was removed
 	* @throws PortalException if a type with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteType(long typeId)
+	public com.liferay.ams.model.Type deleteType(long typeId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_typeLocalService.deleteType(typeId);
+		return _typeLocalService.deleteType(typeId);
 	}
 
 	/**
 	* Deletes the type from the database. Also notifies the appropriate model listeners.
 	*
 	* @param type the type
+	* @return the type that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteType(com.liferay.ams.model.Type type)
+	public com.liferay.ams.model.Type deleteType(
+		com.liferay.ams.model.Type type)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_typeLocalService.deleteType(type);
+		return _typeLocalService.deleteType(type);
+	}
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _typeLocalService.dynamicQuery();
 	}
 
 	/**
@@ -245,6 +252,12 @@ public class TypeLocalServiceWrapper implements TypeLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_typeLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _typeLocalService.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	/**

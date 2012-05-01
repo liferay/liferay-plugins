@@ -15,9 +15,9 @@
 package com.liferay.wsrp.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the w s r p producer local service. This utility wraps {@link com.liferay.wsrp.service.impl.WSRPProducerLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -67,27 +67,34 @@ public class WSRPProducerLocalServiceUtil {
 	* Deletes the w s r p producer with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param wsrpProducerId the primary key of the w s r p producer
+	* @return the w s r p producer that was removed
 	* @throws PortalException if a w s r p producer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteWSRPProducer(long wsrpProducerId)
+	public static com.liferay.wsrp.model.WSRPProducer deleteWSRPProducer(
+		long wsrpProducerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteWSRPProducer(wsrpProducerId);
+		return getService().deleteWSRPProducer(wsrpProducerId);
 	}
 
 	/**
 	* Deletes the w s r p producer from the database. Also notifies the appropriate model listeners.
 	*
 	* @param wsrpProducer the w s r p producer
+	* @return the w s r p producer that was removed
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteWSRPProducer(
+	public static com.liferay.wsrp.model.WSRPProducer deleteWSRPProducer(
 		com.liferay.wsrp.model.WSRPProducer wsrpProducer)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteWSRPProducer(wsrpProducer);
+		return getService().deleteWSRPProducer(wsrpProducer);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -279,6 +286,12 @@ public class WSRPProducerLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static com.liferay.wsrp.model.WSRPProducer addWSRPProducer(
 		long userId, long groupId, java.lang.String name,
 		java.lang.String version, java.lang.String portletIds,
@@ -334,17 +347,10 @@ public class WSRPProducerLocalServiceUtil {
 
 	public static WSRPProducerLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					WSRPProducerLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					WSRPProducerLocalService.class.getName(), portletClassLoader);
-
-			_service = new WSRPProducerLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new WSRPProducerLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(WSRPProducerLocalServiceUtil.class,
 				"_service");

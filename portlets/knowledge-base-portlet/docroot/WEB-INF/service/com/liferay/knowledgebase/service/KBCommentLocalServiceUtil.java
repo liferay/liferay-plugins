@@ -15,9 +15,9 @@
 package com.liferay.knowledgebase.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the k b comment local service. This utility wraps {@link com.liferay.knowledgebase.service.impl.KBCommentLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -67,25 +67,32 @@ public class KBCommentLocalServiceUtil {
 	* Deletes the k b comment with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kbCommentId the primary key of the k b comment
+	* @return the k b comment that was removed
 	* @throws PortalException if a k b comment with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKBComment(long kbCommentId)
+	public static com.liferay.knowledgebase.model.KBComment deleteKBComment(
+		long kbCommentId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKBComment(kbCommentId);
+		return getService().deleteKBComment(kbCommentId);
 	}
 
 	/**
 	* Deletes the k b comment from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kbComment the k b comment
+	* @return the k b comment that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKBComment(
+	public static com.liferay.knowledgebase.model.KBComment deleteKBComment(
 		com.liferay.knowledgebase.model.KBComment kbComment)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKBComment(kbComment);
+		return getService().deleteKBComment(kbComment);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -277,6 +284,12 @@ public class KBCommentLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static com.liferay.knowledgebase.model.KBComment addKBComment(
 		long userId, long classNameId, long classPK, java.lang.String content,
 		boolean helpful,
@@ -332,17 +345,10 @@ public class KBCommentLocalServiceUtil {
 
 	public static KBCommentLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					KBCommentLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					KBCommentLocalService.class.getName(), portletClassLoader);
-
-			_service = new KBCommentLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new KBCommentLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(KBCommentLocalServiceUtil.class,
 				"_service");

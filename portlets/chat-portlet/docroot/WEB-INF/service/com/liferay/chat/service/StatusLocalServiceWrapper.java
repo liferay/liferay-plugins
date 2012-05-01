@@ -58,24 +58,31 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	* Deletes the status with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param statusId the primary key of the status
+	* @return the status that was removed
 	* @throws PortalException if a status with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteStatus(long statusId)
+	public com.liferay.chat.model.Status deleteStatus(long statusId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_statusLocalService.deleteStatus(statusId);
+		return _statusLocalService.deleteStatus(statusId);
 	}
 
 	/**
 	* Deletes the status from the database. Also notifies the appropriate model listeners.
 	*
 	* @param status the status
+	* @return the status that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteStatus(com.liferay.chat.model.Status status)
+	public com.liferay.chat.model.Status deleteStatus(
+		com.liferay.chat.model.Status status)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_statusLocalService.deleteStatus(status);
+		return _statusLocalService.deleteStatus(status);
+	}
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _statusLocalService.dynamicQuery();
 	}
 
 	/**
@@ -247,6 +254,12 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_statusLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _statusLocalService.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	public java.util.List<java.lang.Object[]> getAllStatuses(long companyId,

@@ -15,9 +15,9 @@
 package com.liferay.portal.workflow.kaleo.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the kaleo task assignment local service. This utility wraps {@link com.liferay.portal.workflow.kaleo.service.impl.KaleoTaskAssignmentLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -67,25 +67,32 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 	* Deletes the kaleo task assignment with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTaskAssignmentId the primary key of the kaleo task assignment
+	* @return the kaleo task assignment that was removed
 	* @throws PortalException if a kaleo task assignment with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoTaskAssignment(long kaleoTaskAssignmentId)
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment deleteKaleoTaskAssignment(
+		long kaleoTaskAssignmentId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoTaskAssignment(kaleoTaskAssignmentId);
+		return getService().deleteKaleoTaskAssignment(kaleoTaskAssignmentId);
 	}
 
 	/**
 	* Deletes the kaleo task assignment from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTaskAssignment the kaleo task assignment
+	* @return the kaleo task assignment that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoTaskAssignment(
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment deleteKaleoTaskAssignment(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment kaleoTaskAssignment)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoTaskAssignment(kaleoTaskAssignment);
+		return getService().deleteKaleoTaskAssignment(kaleoTaskAssignment);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -262,6 +269,12 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment addKaleoTaskAssignment(
 		java.lang.String kaleoClassName, long kaleoClassPK,
 		long kaleoDefinitionId,
@@ -322,18 +335,10 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 
 	public static KaleoTaskAssignmentLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					KaleoTaskAssignmentLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					KaleoTaskAssignmentLocalService.class.getName(),
-					portletClassLoader);
-
-			_service = new KaleoTaskAssignmentLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new KaleoTaskAssignmentLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(KaleoTaskAssignmentLocalServiceUtil.class,
 				"_service");

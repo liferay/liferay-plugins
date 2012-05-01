@@ -21,15 +21,14 @@ import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
+import com.liferay.portal.service.BaseLocalServiceImpl;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -92,7 +91,8 @@ import javax.sql.DataSource;
  * @generated
  */
 public abstract class KaleoTransitionLocalServiceBaseImpl
-	implements KaleoTransitionLocalService, IdentifiableBean {
+	extends BaseLocalServiceImpl implements KaleoTransitionLocalService,
+		IdentifiableBean {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -106,27 +106,12 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	 * @return the kaleo transition that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public KaleoTransition addKaleoTransition(KaleoTransition kaleoTransition)
 		throws SystemException {
 		kaleoTransition.setNew(true);
 
-		kaleoTransition = kaleoTransitionPersistence.update(kaleoTransition,
-				false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(kaleoTransition);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return kaleoTransition;
+		return kaleoTransitionPersistence.update(kaleoTransition, false);
 	}
 
 	/**
@@ -143,49 +128,32 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	 * Deletes the kaleo transition with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param kaleoTransitionId the primary key of the kaleo transition
+	 * @return the kaleo transition that was removed
 	 * @throws PortalException if a kaleo transition with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteKaleoTransition(long kaleoTransitionId)
+	@Indexable(type = IndexableType.DELETE)
+	public KaleoTransition deleteKaleoTransition(long kaleoTransitionId)
 		throws PortalException, SystemException {
-		KaleoTransition kaleoTransition = kaleoTransitionPersistence.remove(kaleoTransitionId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(kaleoTransition);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return kaleoTransitionPersistence.remove(kaleoTransitionId);
 	}
 
 	/**
 	 * Deletes the kaleo transition from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param kaleoTransition the kaleo transition
+	 * @return the kaleo transition that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteKaleoTransition(KaleoTransition kaleoTransition)
-		throws SystemException {
-		kaleoTransitionPersistence.remove(kaleoTransition);
+	@Indexable(type = IndexableType.DELETE)
+	public KaleoTransition deleteKaleoTransition(
+		KaleoTransition kaleoTransition) throws SystemException {
+		return kaleoTransitionPersistence.remove(kaleoTransition);
+	}
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(kaleoTransition);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+	public DynamicQuery dynamicQuery() {
+		return DynamicQueryFactoryUtil.forClass(KaleoTransition.class,
+			getClassLoader());
 	}
 
 	/**
@@ -311,6 +279,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	 * @return the kaleo transition that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public KaleoTransition updateKaleoTransition(
 		KaleoTransition kaleoTransition) throws SystemException {
 		return updateKaleoTransition(kaleoTransition, true);
@@ -324,28 +293,13 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	 * @return the kaleo transition that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public KaleoTransition updateKaleoTransition(
 		KaleoTransition kaleoTransition, boolean merge)
 		throws SystemException {
 		kaleoTransition.setNew(false);
 
-		kaleoTransition = kaleoTransitionPersistence.update(kaleoTransition,
-				merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(kaleoTransition);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return kaleoTransition;
+		return kaleoTransitionPersistence.update(kaleoTransition, merge);
 	}
 
 	/**
@@ -1148,10 +1102,9 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
-	protected ClassLoader getClassLoader() {
-		Class<?> clazz = getClass();
-
-		return clazz.getClassLoader();
+	public Object invokeMethod(String name, String[] parameterTypes,
+		Object[] arguments) throws Throwable {
+		return _clpInvoker.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	protected Class<?> getModelClass() {
@@ -1263,6 +1216,6 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private static Log _log = LogFactoryUtil.getLog(KaleoTransitionLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
+	private KaleoTransitionLocalServiceClpInvoker _clpInvoker = new KaleoTransitionLocalServiceClpInvoker();
 }

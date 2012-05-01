@@ -17,6 +17,7 @@ package com.liferay.so.model;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
@@ -25,6 +26,9 @@ import com.liferay.so.service.FavoriteSiteLocalServiceUtil;
 import java.io.Serializable;
 
 import java.lang.reflect.Proxy;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
@@ -56,6 +60,43 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("favoriteSiteId", getFavoriteSiteId());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long favoriteSiteId = (Long)attributes.get("favoriteSiteId");
+
+		if (favoriteSiteId != null) {
+			setFavoriteSiteId(favoriteSiteId);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
 	}
 
 	public long getFavoriteSiteId() {
@@ -96,6 +137,14 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
+	}
+
+	public BaseModel<?> getFavoriteSiteRemoteModel() {
+		return _favoriteSiteRemoteModel;
+	}
+
+	public void setFavoriteSiteRemoteModel(BaseModel<?> favoriteSiteRemoteModel) {
+		_favoriteSiteRemoteModel = favoriteSiteRemoteModel;
 	}
 
 	public void persist() throws SystemException {
@@ -220,4 +269,5 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 	private long _companyId;
 	private long _userId;
 	private String _userUuid;
+	private BaseModel<?> _favoriteSiteRemoteModel;
 }

@@ -60,27 +60,34 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	* Deletes the k b article with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kbArticleId the primary key of the k b article
+	* @return the k b article that was removed
 	* @throws PortalException if a k b article with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKBArticle(long kbArticleId)
+	public com.liferay.knowledgebase.model.KBArticle deleteKBArticle(
+		long kbArticleId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_kbArticleLocalService.deleteKBArticle(kbArticleId);
+		return _kbArticleLocalService.deleteKBArticle(kbArticleId);
 	}
 
 	/**
 	* Deletes the k b article from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kbArticle the k b article
+	* @return the k b article that was removed
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKBArticle(
+	public com.liferay.knowledgebase.model.KBArticle deleteKBArticle(
 		com.liferay.knowledgebase.model.KBArticle kbArticle)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_kbArticleLocalService.deleteKBArticle(kbArticle);
+		return _kbArticleLocalService.deleteKBArticle(kbArticle);
+	}
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _kbArticleLocalService.dynamicQuery();
 	}
 
 	/**
@@ -270,6 +277,13 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_kbArticleLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _kbArticleLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	public void addAttachment(java.lang.String dirName,

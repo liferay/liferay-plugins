@@ -31,6 +31,30 @@ public class TasksEntryServiceWrapper implements TasksEntryService,
 		_tasksEntryService = tasksEntryService;
 	}
 
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _tasksEntryService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_tasksEntryService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _tasksEntryService.invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public com.liferay.tasks.model.TasksEntry addTasksEntry(
 		java.lang.String title, int priority, long assigneeUserId,
 		int dueDateMonth, int dueDateDay, int dueDateYear, int dueDateHour,

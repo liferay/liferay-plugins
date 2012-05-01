@@ -815,14 +815,12 @@ public class UserThreadUtil {
 	*
 	* @param userId the user ID
 	* @param mbThreadId the mb thread ID
-	* @return the user thread that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.liferay.privatemessaging.model.UserThread removeByU_M(
-		long userId, long mbThreadId)
+	public static void removeByU_M(long userId, long mbThreadId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.privatemessaging.NoSuchUserThreadException {
-		return getPersistence().removeByU_M(userId, mbThreadId);
+		getPersistence().removeByU_M(userId, mbThreadId);
 	}
 
 	/**

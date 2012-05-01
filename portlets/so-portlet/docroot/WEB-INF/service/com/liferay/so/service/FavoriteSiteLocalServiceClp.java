@@ -14,100 +14,138 @@
 
 package com.liferay.so.service;
 
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
-import com.liferay.portal.kernel.util.MethodHandler;
-import com.liferay.portal.kernel.util.MethodKey;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * @author Brian Wing Shun Chan
  */
 public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
-	public FavoriteSiteLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
-		_classLoaderProxy = classLoaderProxy;
+	public FavoriteSiteLocalServiceClp(
+		InvokableLocalService invokableLocalService) {
+		_invokableLocalService = invokableLocalService;
 
-		_addFavoriteSiteMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-				"addFavoriteSite", com.liferay.so.model.FavoriteSite.class);
+		_methodName0 = "addFavoriteSite";
 
-		_createFavoriteSiteMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-				"createFavoriteSite", long.class);
+		_methodParameterTypes0 = new String[] {
+				"com.liferay.so.model.FavoriteSite"
+			};
 
-		_deleteFavoriteSiteMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-				"deleteFavoriteSite", long.class);
+		_methodName1 = "createFavoriteSite";
 
-		_deleteFavoriteSiteMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-				"deleteFavoriteSite", com.liferay.so.model.FavoriteSite.class);
+		_methodParameterTypes1 = new String[] { "long" };
 
-		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-				"dynamicQuery",
-				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+		_methodName2 = "deleteFavoriteSite";
 
-		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-				"dynamicQuery",
-				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
-				int.class, int.class);
+		_methodParameterTypes2 = new String[] { "long" };
 
-		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-				"dynamicQuery",
-				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
-				int.class, int.class,
-				com.liferay.portal.kernel.util.OrderByComparator.class);
+		_methodName3 = "deleteFavoriteSite";
 
-		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-				"dynamicQueryCount",
-				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+		_methodParameterTypes3 = new String[] {
+				"com.liferay.so.model.FavoriteSite"
+			};
 
-		_fetchFavoriteSiteMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-				"fetchFavoriteSite", long.class);
+		_methodName4 = "dynamicQuery";
 
-		_getFavoriteSiteMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getFavoriteSite", long.class);
+		_methodParameterTypes4 = new String[] {  };
 
-		_getPersistedModelMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getPersistedModel", java.io.Serializable.class);
+		_methodName5 = "dynamicQuery";
 
-		_getFavoriteSitesMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getFavoriteSites", int.class, int.class);
+		_methodParameterTypes5 = new String[] {
+				"com.liferay.portal.kernel.dao.orm.DynamicQuery"
+			};
 
-		_getFavoriteSitesCountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getFavoriteSitesCount");
+		_methodName6 = "dynamicQuery";
 
-		_updateFavoriteSiteMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-				"updateFavoriteSite", com.liferay.so.model.FavoriteSite.class);
+		_methodParameterTypes6 = new String[] {
+				"com.liferay.portal.kernel.dao.orm.DynamicQuery", "int", "int"
+			};
 
-		_updateFavoriteSiteMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-				"updateFavoriteSite", com.liferay.so.model.FavoriteSite.class,
-				boolean.class);
+		_methodName7 = "dynamicQuery";
 
-		_getBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getBeanIdentifier");
+		_methodParameterTypes7 = new String[] {
+				"com.liferay.portal.kernel.dao.orm.DynamicQuery", "int", "int",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			};
 
-		_setBeanIdentifierMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-				"setBeanIdentifier", java.lang.String.class);
+		_methodName8 = "dynamicQueryCount";
 
-		_addFavoriteSiteMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-				"addFavoriteSite", long.class, long.class);
+		_methodParameterTypes8 = new String[] {
+				"com.liferay.portal.kernel.dao.orm.DynamicQuery"
+			};
 
-		_deleteFavoriteSitesMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-				"deleteFavoriteSites", long.class, long.class);
+		_methodName9 = "fetchFavoriteSite";
 
-		_getFavoriteSitesMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getFavoriteSites", long.class, int.class, int.class);
+		_methodParameterTypes9 = new String[] { "long" };
 
-		_getFavoriteSitesMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getFavoriteSites", long.class, java.lang.String.class,
-				int.class, int.class);
+		_methodName10 = "getFavoriteSite";
 
-		_getFavoriteSitesCountMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getFavoriteSitesCount", long.class);
+		_methodParameterTypes10 = new String[] { "long" };
 
-		_getFavoriteSitesCountMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getFavoriteSitesCount", long.class, java.lang.String.class);
+		_methodName11 = "getPersistedModel";
 
-		_isFavoriteSiteMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
-				"isFavoriteSite", long.class);
+		_methodParameterTypes11 = new String[] { "java.io.Serializable" };
 
-		_isFavoriteSiteMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
-				"isFavoriteSite", long.class, long.class);
+		_methodName12 = "getFavoriteSites";
+
+		_methodParameterTypes12 = new String[] { "int", "int" };
+
+		_methodName13 = "getFavoriteSitesCount";
+
+		_methodParameterTypes13 = new String[] {  };
+
+		_methodName14 = "updateFavoriteSite";
+
+		_methodParameterTypes14 = new String[] {
+				"com.liferay.so.model.FavoriteSite"
+			};
+
+		_methodName15 = "updateFavoriteSite";
+
+		_methodParameterTypes15 = new String[] {
+				"com.liferay.so.model.FavoriteSite", "boolean"
+			};
+
+		_methodName16 = "getBeanIdentifier";
+
+		_methodParameterTypes16 = new String[] {  };
+
+		_methodName17 = "setBeanIdentifier";
+
+		_methodParameterTypes17 = new String[] { "java.lang.String" };
+
+		_methodName19 = "addFavoriteSite";
+
+		_methodParameterTypes19 = new String[] { "long", "long" };
+
+		_methodName20 = "deleteFavoriteSites";
+
+		_methodParameterTypes20 = new String[] { "long", "long" };
+
+		_methodName21 = "getFavoriteSites";
+
+		_methodParameterTypes21 = new String[] { "long", "int", "int" };
+
+		_methodName22 = "getFavoriteSites";
+
+		_methodParameterTypes22 = new String[] {
+				"long", "java.lang.String", "int", "int"
+			};
+
+		_methodName23 = "getFavoriteSitesCount";
+
+		_methodParameterTypes23 = new String[] { "long" };
+
+		_methodName24 = "getFavoriteSitesCount";
+
+		_methodParameterTypes24 = new String[] { "long", "java.lang.String" };
+
+		_methodName25 = "isFavoriteSite";
+
+		_methodParameterTypes25 = new String[] { "long" };
+
+		_methodName26 = "isFavoriteSite";
+
+		_methodParameterTypes26 = new String[] { "long", "long" };
 	}
 
 	public com.liferay.so.model.FavoriteSite addFavoriteSite(
@@ -115,13 +153,14 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addFavoriteSiteMethodKey0,
-				ClpSerializer.translateInput(favoriteSite));
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _invokableLocalService.invokeMethod(_methodName0,
+					_methodParameterTypes0,
+					new Object[] { ClpSerializer.translateInput(favoriteSite) });
 		}
 		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -142,13 +181,13 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		long favoriteSiteId) {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_createFavoriteSiteMethodKey1,
-				favoriteSiteId);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _invokableLocalService.invokeMethod(_methodName1,
+					_methodParameterTypes1, new Object[] { favoriteSiteId });
 		}
 		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -167,13 +206,13 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_deleteFavoriteSiteMethodKey2,
-				favoriteSiteId);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _invokableLocalService.invokeMethod(_methodName2,
+					_methodParameterTypes2, new Object[] { favoriteSiteId });
 		}
 		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
@@ -199,13 +238,14 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_deleteFavoriteSiteMethodKey3,
-				ClpSerializer.translateInput(favoriteSite));
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _invokableLocalService.invokeMethod(_methodName3,
+					_methodParameterTypes3,
+					new Object[] { ClpSerializer.translateInput(favoriteSite) });
 		}
 		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -222,19 +262,42 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		return (com.liferay.so.model.FavoriteSite)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName4,
+					_methodParameterTypes4, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.kernel.dao.orm.DynamicQuery)ClpSerializer.translateOutput(returnObj);
+	}
+
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				ClpSerializer.translateInput(dynamicQuery));
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _invokableLocalService.invokeMethod(_methodName5,
+					_methodParameterTypes5,
+					new Object[] { ClpSerializer.translateInput(dynamicQuery) });
 		}
 		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -257,13 +320,20 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				ClpSerializer.translateInput(dynamicQuery), start, end);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _invokableLocalService.invokeMethod(_methodName6,
+					_methodParameterTypes6,
+					new Object[] {
+						ClpSerializer.translateInput(dynamicQuery),
+						
+					start,
+						
+					end
+					});
 		}
 		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -288,14 +358,22 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				ClpSerializer.translateInput(dynamicQuery), start, end,
-				ClpSerializer.translateInput(orderByComparator));
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _invokableLocalService.invokeMethod(_methodName7,
+					_methodParameterTypes7,
+					new Object[] {
+						ClpSerializer.translateInput(dynamicQuery),
+						
+					start,
+						
+					end,
+						
+					ClpSerializer.translateInput(orderByComparator)
+					});
 		}
 		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -317,13 +395,14 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				ClpSerializer.translateInput(dynamicQuery));
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _invokableLocalService.invokeMethod(_methodName8,
+					_methodParameterTypes8,
+					new Object[] { ClpSerializer.translateInput(dynamicQuery) });
 		}
 		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -345,13 +424,13 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_fetchFavoriteSiteMethodKey8,
-				favoriteSiteId);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _invokableLocalService.invokeMethod(_methodName9,
+					_methodParameterTypes9, new Object[] { favoriteSiteId });
 		}
 		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -374,13 +453,13 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getFavoriteSiteMethodKey9,
-				favoriteSiteId);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _invokableLocalService.invokeMethod(_methodName10,
+					_methodParameterTypes10, new Object[] { favoriteSiteId });
 		}
 		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
@@ -407,13 +486,14 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getPersistedModelMethodKey10,
-				ClpSerializer.translateInput(primaryKeyObj));
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _invokableLocalService.invokeMethod(_methodName11,
+					_methodParameterTypes11,
+					new Object[] { ClpSerializer.translateInput(primaryKeyObj) });
 		}
 		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
@@ -439,13 +519,13 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getFavoriteSitesMethodKey11,
-				start, end);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _invokableLocalService.invokeMethod(_methodName12,
+					_methodParameterTypes12, new Object[] { start, end });
 		}
 		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -466,12 +546,13 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getFavoriteSitesCountMethodKey12);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _invokableLocalService.invokeMethod(_methodName13,
+					_methodParameterTypes13, new Object[] {  });
 		}
 		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -493,13 +574,14 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateFavoriteSiteMethodKey13,
-				ClpSerializer.translateInput(favoriteSite));
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _invokableLocalService.invokeMethod(_methodName14,
+					_methodParameterTypes14,
+					new Object[] { ClpSerializer.translateInput(favoriteSite) });
 		}
 		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -521,13 +603,18 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateFavoriteSiteMethodKey14,
-				ClpSerializer.translateInput(favoriteSite), merge);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _invokableLocalService.invokeMethod(_methodName15,
+					_methodParameterTypes15,
+					new Object[] {
+						ClpSerializer.translateInput(favoriteSite),
+						
+					merge
+					});
 		}
 		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -547,12 +634,13 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey15);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _invokableLocalService.invokeMethod(_methodName16,
+					_methodParameterTypes16, new Object[] {  });
 		}
 		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -566,13 +654,14 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 	}
 
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey16,
-				ClpSerializer.translateInput(beanIdentifier));
-
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			_invokableLocalService.invokeMethod(_methodName17,
+				_methodParameterTypes17,
+				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
 		}
 		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -583,19 +672,25 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		}
 	}
 
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		throw new UnsupportedOperationException();
+	}
+
 	public com.liferay.so.model.FavoriteSite addFavoriteSite(long userId,
 		long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addFavoriteSiteMethodKey17,
-				userId, groupId);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19, new Object[] { userId, groupId });
 		}
 		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
@@ -619,13 +714,13 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 	public void deleteFavoriteSites(long userId, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteFavoriteSitesMethodKey18,
-				userId, groupId);
-
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			_invokableLocalService.invokeMethod(_methodName20,
+				_methodParameterTypes20, new Object[] { userId, groupId });
 		}
 		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
@@ -649,13 +744,13 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getFavoriteSitesMethodKey19,
-				userId, start, end);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21, new Object[] { userId, start, end });
 		}
 		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -677,13 +772,22 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getFavoriteSitesMethodKey20,
-				userId, ClpSerializer.translateInput(name), start, end);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22,
+					new Object[] {
+						userId,
+						
+					ClpSerializer.translateInput(name),
+						
+					start,
+						
+					end
+					});
 		}
 		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -704,13 +808,13 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getFavoriteSitesCountMethodKey21,
-				userId);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23, new Object[] { userId });
 		}
 		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -731,13 +835,14 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getFavoriteSitesCountMethodKey22,
-				userId, ClpSerializer.translateInput(name));
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
+					new Object[] { userId, ClpSerializer.translateInput(name) });
 		}
 		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -758,13 +863,13 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_isFavoriteSiteMethodKey23,
-				favoriteSiteId);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25, new Object[] { favoriteSiteId });
 		}
 		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -785,13 +890,13 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_isFavoriteSiteMethodKey24,
-				userId, groupId);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _invokableLocalService.invokeMethod(_methodName26,
+					_methodParameterTypes26, new Object[] { userId, groupId });
 		}
 		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -808,34 +913,57 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		return ((Boolean)returnObj).booleanValue();
 	}
 
-	public ClassLoaderProxy getClassLoaderProxy() {
-		return _classLoaderProxy;
-	}
-
-	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addFavoriteSiteMethodKey0;
-	private MethodKey _createFavoriteSiteMethodKey1;
-	private MethodKey _deleteFavoriteSiteMethodKey2;
-	private MethodKey _deleteFavoriteSiteMethodKey3;
-	private MethodKey _dynamicQueryMethodKey4;
-	private MethodKey _dynamicQueryMethodKey5;
-	private MethodKey _dynamicQueryMethodKey6;
-	private MethodKey _dynamicQueryCountMethodKey7;
-	private MethodKey _fetchFavoriteSiteMethodKey8;
-	private MethodKey _getFavoriteSiteMethodKey9;
-	private MethodKey _getPersistedModelMethodKey10;
-	private MethodKey _getFavoriteSitesMethodKey11;
-	private MethodKey _getFavoriteSitesCountMethodKey12;
-	private MethodKey _updateFavoriteSiteMethodKey13;
-	private MethodKey _updateFavoriteSiteMethodKey14;
-	private MethodKey _getBeanIdentifierMethodKey15;
-	private MethodKey _setBeanIdentifierMethodKey16;
-	private MethodKey _addFavoriteSiteMethodKey17;
-	private MethodKey _deleteFavoriteSitesMethodKey18;
-	private MethodKey _getFavoriteSitesMethodKey19;
-	private MethodKey _getFavoriteSitesMethodKey20;
-	private MethodKey _getFavoriteSitesCountMethodKey21;
-	private MethodKey _getFavoriteSitesCountMethodKey22;
-	private MethodKey _isFavoriteSiteMethodKey23;
-	private MethodKey _isFavoriteSiteMethodKey24;
+	private InvokableLocalService _invokableLocalService;
+	private String _methodName0;
+	private String[] _methodParameterTypes0;
+	private String _methodName1;
+	private String[] _methodParameterTypes1;
+	private String _methodName2;
+	private String[] _methodParameterTypes2;
+	private String _methodName3;
+	private String[] _methodParameterTypes3;
+	private String _methodName4;
+	private String[] _methodParameterTypes4;
+	private String _methodName5;
+	private String[] _methodParameterTypes5;
+	private String _methodName6;
+	private String[] _methodParameterTypes6;
+	private String _methodName7;
+	private String[] _methodParameterTypes7;
+	private String _methodName8;
+	private String[] _methodParameterTypes8;
+	private String _methodName9;
+	private String[] _methodParameterTypes9;
+	private String _methodName10;
+	private String[] _methodParameterTypes10;
+	private String _methodName11;
+	private String[] _methodParameterTypes11;
+	private String _methodName12;
+	private String[] _methodParameterTypes12;
+	private String _methodName13;
+	private String[] _methodParameterTypes13;
+	private String _methodName14;
+	private String[] _methodParameterTypes14;
+	private String _methodName15;
+	private String[] _methodParameterTypes15;
+	private String _methodName16;
+	private String[] _methodParameterTypes16;
+	private String _methodName17;
+	private String[] _methodParameterTypes17;
+	private String _methodName19;
+	private String[] _methodParameterTypes19;
+	private String _methodName20;
+	private String[] _methodParameterTypes20;
+	private String _methodName21;
+	private String[] _methodParameterTypes21;
+	private String _methodName22;
+	private String[] _methodParameterTypes22;
+	private String _methodName23;
+	private String[] _methodParameterTypes23;
+	private String _methodName24;
+	private String[] _methodParameterTypes24;
+	private String _methodName25;
+	private String[] _methodParameterTypes25;
+	private String _methodName26;
+	private String[] _methodParameterTypes26;
 }

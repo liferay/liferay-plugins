@@ -59,24 +59,31 @@ public class AttachmentLocalServiceWrapper implements AttachmentLocalService,
 	* Deletes the attachment with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param attachmentId the primary key of the attachment
+	* @return the attachment that was removed
 	* @throws PortalException if a attachment with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteAttachment(long attachmentId)
+	public com.liferay.mail.model.Attachment deleteAttachment(long attachmentId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_attachmentLocalService.deleteAttachment(attachmentId);
+		return _attachmentLocalService.deleteAttachment(attachmentId);
 	}
 
 	/**
 	* Deletes the attachment from the database. Also notifies the appropriate model listeners.
 	*
 	* @param attachment the attachment
+	* @return the attachment that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteAttachment(com.liferay.mail.model.Attachment attachment)
+	public com.liferay.mail.model.Attachment deleteAttachment(
+		com.liferay.mail.model.Attachment attachment)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_attachmentLocalService.deleteAttachment(attachment);
+		return _attachmentLocalService.deleteAttachment(attachment);
+	}
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _attachmentLocalService.dynamicQuery();
 	}
 
 	/**
@@ -248,6 +255,13 @@ public class AttachmentLocalServiceWrapper implements AttachmentLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_attachmentLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _attachmentLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	public com.liferay.mail.model.Attachment addAttachment(long userId,

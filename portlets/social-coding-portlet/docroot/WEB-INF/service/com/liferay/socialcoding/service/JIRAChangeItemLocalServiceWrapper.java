@@ -61,25 +61,32 @@ public class JIRAChangeItemLocalServiceWrapper
 	* Deletes the j i r a change item with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param jiraChangeItemId the primary key of the j i r a change item
+	* @return the j i r a change item that was removed
 	* @throws PortalException if a j i r a change item with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteJIRAChangeItem(long jiraChangeItemId)
+	public com.liferay.socialcoding.model.JIRAChangeItem deleteJIRAChangeItem(
+		long jiraChangeItemId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_jiraChangeItemLocalService.deleteJIRAChangeItem(jiraChangeItemId);
+		return _jiraChangeItemLocalService.deleteJIRAChangeItem(jiraChangeItemId);
 	}
 
 	/**
 	* Deletes the j i r a change item from the database. Also notifies the appropriate model listeners.
 	*
 	* @param jiraChangeItem the j i r a change item
+	* @return the j i r a change item that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteJIRAChangeItem(
+	public com.liferay.socialcoding.model.JIRAChangeItem deleteJIRAChangeItem(
 		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_jiraChangeItemLocalService.deleteJIRAChangeItem(jiraChangeItem);
+		return _jiraChangeItemLocalService.deleteJIRAChangeItem(jiraChangeItem);
+	}
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _jiraChangeItemLocalService.dynamicQuery();
 	}
 
 	/**
@@ -255,6 +262,13 @@ public class JIRAChangeItemLocalServiceWrapper
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_jiraChangeItemLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _jiraChangeItemLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	public java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> getJIRAChangeItems(

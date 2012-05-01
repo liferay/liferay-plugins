@@ -15,9 +15,9 @@
 package com.liferay.portal.workflow.kaleo.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the kaleo task local service. This utility wraps {@link com.liferay.portal.workflow.kaleo.service.impl.KaleoTaskLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -67,25 +67,32 @@ public class KaleoTaskLocalServiceUtil {
 	* Deletes the kaleo task with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTaskId the primary key of the kaleo task
+	* @return the kaleo task that was removed
 	* @throws PortalException if a kaleo task with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoTask(long kaleoTaskId)
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTask deleteKaleoTask(
+		long kaleoTaskId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoTask(kaleoTaskId);
+		return getService().deleteKaleoTask(kaleoTaskId);
 	}
 
 	/**
 	* Deletes the kaleo task from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTask the kaleo task
+	* @return the kaleo task that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoTask(
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTask deleteKaleoTask(
 		com.liferay.portal.workflow.kaleo.model.KaleoTask kaleoTask)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoTask(kaleoTask);
+		return getService().deleteKaleoTask(kaleoTask);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -262,6 +269,12 @@ public class KaleoTaskLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static com.liferay.portal.workflow.kaleo.model.KaleoTask addKaleoTask(
 		long kaleoDefinitionId, long kaleoNodeId,
 		com.liferay.portal.workflow.kaleo.definition.Task task,
@@ -296,17 +309,10 @@ public class KaleoTaskLocalServiceUtil {
 
 	public static KaleoTaskLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					KaleoTaskLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					KaleoTaskLocalService.class.getName(), portletClassLoader);
-
-			_service = new KaleoTaskLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new KaleoTaskLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(KaleoTaskLocalServiceUtil.class,
 				"_service");

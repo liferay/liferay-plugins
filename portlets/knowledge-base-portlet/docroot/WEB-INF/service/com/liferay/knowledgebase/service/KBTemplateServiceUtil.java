@@ -15,9 +15,9 @@
 package com.liferay.knowledgebase.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableService;
 
 /**
  * The utility for the k b template remote service. This utility wraps {@link com.liferay.knowledgebase.service.impl.KBTemplateServiceImpl} and is the primary access point for service operations in application layer code running on a remote server.
@@ -38,6 +38,31 @@ public class KBTemplateServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.knowledgebase.service.impl.KBTemplateServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
+		getService().setBeanIdentifier(beanIdentifier);
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static com.liferay.knowledgebase.model.KBTemplate addKBTemplate(
 		java.lang.String portletId, java.lang.String title,
 		java.lang.String content,
@@ -48,10 +73,11 @@ public class KBTemplateServiceUtil {
 				   .addKBTemplate(portletId, title, content, serviceContext);
 	}
 
-	public static void deleteKBTemplate(long kbTemplateId)
+	public static com.liferay.knowledgebase.model.KBTemplate deleteKBTemplate(
+		long kbTemplateId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKBTemplate(kbTemplateId);
+		return getService().deleteKBTemplate(kbTemplateId);
 	}
 
 	public static void deleteKBTemplates(long groupId, long[] kbTemplateIds)
@@ -109,17 +135,10 @@ public class KBTemplateServiceUtil {
 
 	public static KBTemplateService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableService invokableService = (InvokableService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					KBTemplateService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					KBTemplateService.class.getName(), portletClassLoader);
-
-			_service = new KBTemplateServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new KBTemplateServiceClp(invokableService);
 
 			ReferenceRegistry.registerReference(KBTemplateServiceUtil.class,
 				"_service");

@@ -35,6 +35,8 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The base model implementation for the KaleoTimer service. Represents a row in the &quot;KaleoTimer&quot; database table, with each column mapped to a property of this class.
@@ -123,6 +125,136 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 
 	public String getModelClassName() {
 		return KaleoTimer.class.getName();
+	}
+
+	@Override
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("kaleoTimerId", getKaleoTimerId());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("kaleoClassName", getKaleoClassName());
+		attributes.put("kaleoClassPK", getKaleoClassPK());
+		attributes.put("kaleoDefinitionId", getKaleoDefinitionId());
+		attributes.put("name", getName());
+		attributes.put("blocking", getBlocking());
+		attributes.put("description", getDescription());
+		attributes.put("duration", getDuration());
+		attributes.put("scale", getScale());
+		attributes.put("recurrenceDuration", getRecurrenceDuration());
+		attributes.put("recurrenceScale", getRecurrenceScale());
+
+		return attributes;
+	}
+
+	@Override
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long kaleoTimerId = (Long)attributes.get("kaleoTimerId");
+
+		if (kaleoTimerId != null) {
+			setKaleoTimerId(kaleoTimerId);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		String kaleoClassName = (String)attributes.get("kaleoClassName");
+
+		if (kaleoClassName != null) {
+			setKaleoClassName(kaleoClassName);
+		}
+
+		Long kaleoClassPK = (Long)attributes.get("kaleoClassPK");
+
+		if (kaleoClassPK != null) {
+			setKaleoClassPK(kaleoClassPK);
+		}
+
+		Long kaleoDefinitionId = (Long)attributes.get("kaleoDefinitionId");
+
+		if (kaleoDefinitionId != null) {
+			setKaleoDefinitionId(kaleoDefinitionId);
+		}
+
+		String name = (String)attributes.get("name");
+
+		if (name != null) {
+			setName(name);
+		}
+
+		Boolean blocking = (Boolean)attributes.get("blocking");
+
+		if (blocking != null) {
+			setBlocking(blocking);
+		}
+
+		String description = (String)attributes.get("description");
+
+		if (description != null) {
+			setDescription(description);
+		}
+
+		Double duration = (Double)attributes.get("duration");
+
+		if (duration != null) {
+			setDuration(duration);
+		}
+
+		String scale = (String)attributes.get("scale");
+
+		if (scale != null) {
+			setScale(scale);
+		}
+
+		Double recurrenceDuration = (Double)attributes.get("recurrenceDuration");
+
+		if (recurrenceDuration != null) {
+			setRecurrenceDuration(recurrenceDuration);
+		}
+
+		String recurrenceScale = (String)attributes.get("recurrenceScale");
+
+		if (recurrenceScale != null) {
+			setRecurrenceScale(recurrenceScale);
+		}
 	}
 
 	public long getKaleoTimerId() {

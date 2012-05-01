@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
@@ -28,6 +29,8 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
@@ -59,6 +62,99 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("memberRequestId", getMemberRequestId());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("key", getKey());
+		attributes.put("receiverUserId", getReceiverUserId());
+		attributes.put("invitedRoleId", getInvitedRoleId());
+		attributes.put("invitedTeamId", getInvitedTeamId());
+		attributes.put("status", getStatus());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long memberRequestId = (Long)attributes.get("memberRequestId");
+
+		if (memberRequestId != null) {
+			setMemberRequestId(memberRequestId);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		String key = (String)attributes.get("key");
+
+		if (key != null) {
+			setKey(key);
+		}
+
+		Long receiverUserId = (Long)attributes.get("receiverUserId");
+
+		if (receiverUserId != null) {
+			setReceiverUserId(receiverUserId);
+		}
+
+		Long invitedRoleId = (Long)attributes.get("invitedRoleId");
+
+		if (invitedRoleId != null) {
+			setInvitedRoleId(invitedRoleId);
+		}
+
+		Long invitedTeamId = (Long)attributes.get("invitedTeamId");
+
+		if (invitedTeamId != null) {
+			setInvitedTeamId(invitedTeamId);
+		}
+
+		Integer status = (Integer)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
+		}
 	}
 
 	public long getMemberRequestId() {
@@ -172,6 +268,15 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 
 	public void setStatus(int status) {
 		_status = status;
+	}
+
+	public BaseModel<?> getMemberRequestRemoteModel() {
+		return _memberRequestRemoteModel;
+	}
+
+	public void setMemberRequestRemoteModel(
+		BaseModel<?> memberRequestRemoteModel) {
+		_memberRequestRemoteModel = memberRequestRemoteModel;
 	}
 
 	public void persist() throws SystemException {
@@ -362,4 +467,5 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 	private long _invitedRoleId;
 	private long _invitedTeamId;
 	private int _status;
+	private BaseModel<?> _memberRequestRemoteModel;
 }

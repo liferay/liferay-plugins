@@ -21,15 +21,14 @@ import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
+import com.liferay.portal.service.BaseLocalServiceImpl;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -92,7 +91,8 @@ import javax.sql.DataSource;
  * @generated
  */
 public abstract class KaleoActionLocalServiceBaseImpl
-	implements KaleoActionLocalService, IdentifiableBean {
+	extends BaseLocalServiceImpl implements KaleoActionLocalService,
+		IdentifiableBean {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -106,26 +106,12 @@ public abstract class KaleoActionLocalServiceBaseImpl
 	 * @return the kaleo action that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public KaleoAction addKaleoAction(KaleoAction kaleoAction)
 		throws SystemException {
 		kaleoAction.setNew(true);
 
-		kaleoAction = kaleoActionPersistence.update(kaleoAction, false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(kaleoAction);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return kaleoAction;
+		return kaleoActionPersistence.update(kaleoAction, false);
 	}
 
 	/**
@@ -142,49 +128,32 @@ public abstract class KaleoActionLocalServiceBaseImpl
 	 * Deletes the kaleo action with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param kaleoActionId the primary key of the kaleo action
+	 * @return the kaleo action that was removed
 	 * @throws PortalException if a kaleo action with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteKaleoAction(long kaleoActionId)
+	@Indexable(type = IndexableType.DELETE)
+	public KaleoAction deleteKaleoAction(long kaleoActionId)
 		throws PortalException, SystemException {
-		KaleoAction kaleoAction = kaleoActionPersistence.remove(kaleoActionId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(kaleoAction);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return kaleoActionPersistence.remove(kaleoActionId);
 	}
 
 	/**
 	 * Deletes the kaleo action from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param kaleoAction the kaleo action
+	 * @return the kaleo action that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteKaleoAction(KaleoAction kaleoAction)
+	@Indexable(type = IndexableType.DELETE)
+	public KaleoAction deleteKaleoAction(KaleoAction kaleoAction)
 		throws SystemException {
-		kaleoActionPersistence.remove(kaleoAction);
+		return kaleoActionPersistence.remove(kaleoAction);
+	}
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(kaleoAction);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+	public DynamicQuery dynamicQuery() {
+		return DynamicQueryFactoryUtil.forClass(KaleoAction.class,
+			getClassLoader());
 	}
 
 	/**
@@ -310,6 +279,7 @@ public abstract class KaleoActionLocalServiceBaseImpl
 	 * @return the kaleo action that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public KaleoAction updateKaleoAction(KaleoAction kaleoAction)
 		throws SystemException {
 		return updateKaleoAction(kaleoAction, true);
@@ -323,26 +293,12 @@ public abstract class KaleoActionLocalServiceBaseImpl
 	 * @return the kaleo action that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public KaleoAction updateKaleoAction(KaleoAction kaleoAction, boolean merge)
 		throws SystemException {
 		kaleoAction.setNew(false);
 
-		kaleoAction = kaleoActionPersistence.update(kaleoAction, merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(kaleoAction);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return kaleoAction;
+		return kaleoActionPersistence.update(kaleoAction, merge);
 	}
 
 	/**
@@ -1145,10 +1101,9 @@ public abstract class KaleoActionLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
-	protected ClassLoader getClassLoader() {
-		Class<?> clazz = getClass();
-
-		return clazz.getClassLoader();
+	public Object invokeMethod(String name, String[] parameterTypes,
+		Object[] arguments) throws Throwable {
+		return _clpInvoker.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	protected Class<?> getModelClass() {
@@ -1260,6 +1215,6 @@ public abstract class KaleoActionLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private static Log _log = LogFactoryUtil.getLog(KaleoActionLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
+	private KaleoActionLocalServiceClpInvoker _clpInvoker = new KaleoActionLocalServiceClpInvoker();
 }

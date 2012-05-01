@@ -15,9 +15,9 @@
 package com.liferay.portal.workflow.kaleo.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the kaleo timer instance token local service. This utility wraps {@link com.liferay.portal.workflow.kaleo.service.impl.KaleoTimerInstanceTokenLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -68,26 +68,34 @@ public class KaleoTimerInstanceTokenLocalServiceUtil {
 	* Deletes the kaleo timer instance token with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTimerInstanceTokenId the primary key of the kaleo timer instance token
+	* @return the kaleo timer instance token that was removed
 	* @throws PortalException if a kaleo timer instance token with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoTimerInstanceToken(
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken deleteKaleoTimerInstanceToken(
 		long kaleoTimerInstanceTokenId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoTimerInstanceToken(kaleoTimerInstanceTokenId);
+		return getService()
+				   .deleteKaleoTimerInstanceToken(kaleoTimerInstanceTokenId);
 	}
 
 	/**
 	* Deletes the kaleo timer instance token from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTimerInstanceToken the kaleo timer instance token
+	* @return the kaleo timer instance token that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoTimerInstanceToken(
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken deleteKaleoTimerInstanceToken(
 		com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken kaleoTimerInstanceToken)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoTimerInstanceToken(kaleoTimerInstanceToken);
+		return getService()
+				   .deleteKaleoTimerInstanceToken(kaleoTimerInstanceToken);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -267,6 +275,12 @@ public class KaleoTimerInstanceTokenLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken addKaleoTimerInstanceToken(
 		long kaleoInstanceTokenId, long kaleoTaskInstanceTokenId,
 		long kaleoTimerId, java.lang.String kaleoTimerName,
@@ -369,18 +383,10 @@ public class KaleoTimerInstanceTokenLocalServiceUtil {
 
 	public static KaleoTimerInstanceTokenLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					KaleoTimerInstanceTokenLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					KaleoTimerInstanceTokenLocalService.class.getName(),
-					portletClassLoader);
-
-			_service = new KaleoTimerInstanceTokenLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new KaleoTimerInstanceTokenLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(KaleoTimerInstanceTokenLocalServiceUtil.class,
 				"_service");

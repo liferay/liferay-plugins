@@ -41,6 +41,7 @@
 			<basic name="statusDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="statusByUserUuid" />
@@ -67,6 +68,8 @@
 			<basic name="classPK" />
 			<basic name="content" />
 			<basic name="helpful" />
+			<transient name="className" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
@@ -90,6 +93,7 @@
 			</basic>
 			<basic name="title" />
 			<basic name="content" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />

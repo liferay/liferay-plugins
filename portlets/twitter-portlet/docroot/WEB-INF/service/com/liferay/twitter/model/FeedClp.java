@@ -17,6 +17,7 @@ package com.liferay.twitter.model;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
@@ -27,6 +28,8 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
@@ -57,6 +60,78 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("feedId", getFeedId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("twitterUserId", getTwitterUserId());
+		attributes.put("twitterScreenName", getTwitterScreenName());
+		attributes.put("lastStatusId", getLastStatusId());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long feedId = (Long)attributes.get("feedId");
+
+		if (feedId != null) {
+			setFeedId(feedId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		Long twitterUserId = (Long)attributes.get("twitterUserId");
+
+		if (twitterUserId != null) {
+			setTwitterUserId(twitterUserId);
+		}
+
+		String twitterScreenName = (String)attributes.get("twitterScreenName");
+
+		if (twitterScreenName != null) {
+			setTwitterScreenName(twitterScreenName);
+		}
+
+		Long lastStatusId = (Long)attributes.get("lastStatusId");
+
+		if (lastStatusId != null) {
+			setLastStatusId(lastStatusId);
+		}
 	}
 
 	public long getFeedId() {
@@ -146,6 +221,14 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 
 	public void setLastStatusId(long lastStatusId) {
 		_lastStatusId = lastStatusId;
+	}
+
+	public BaseModel<?> getFeedRemoteModel() {
+		return _feedRemoteModel;
+	}
+
+	public void setFeedRemoteModel(BaseModel<?> feedRemoteModel) {
+		_feedRemoteModel = feedRemoteModel;
 	}
 
 	public void persist() throws SystemException {
@@ -311,4 +394,5 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 	private String _twitterUserUuid;
 	private String _twitterScreenName;
 	private long _lastStatusId;
+	private BaseModel<?> _feedRemoteModel;
 }

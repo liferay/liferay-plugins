@@ -16,6 +16,10 @@ package com.liferay.knowledgebase.model;
 
 import com.liferay.portal.model.ModelWrapper;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * <p>
  * This class is a wrapper for {@link KBTemplate}.
@@ -36,6 +40,85 @@ public class KBTemplateWrapper implements KBTemplate, ModelWrapper<KBTemplate> {
 
 	public String getModelClassName() {
 		return KBTemplate.class.getName();
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("uuid", getUuid());
+		attributes.put("kbTemplateId", getKbTemplateId());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("title", getTitle());
+		attributes.put("content", getContent());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		String uuid = (String)attributes.get("uuid");
+
+		if (uuid != null) {
+			setUuid(uuid);
+		}
+
+		Long kbTemplateId = (Long)attributes.get("kbTemplateId");
+
+		if (kbTemplateId != null) {
+			setKbTemplateId(kbTemplateId);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		String title = (String)attributes.get("title");
+
+		if (title != null) {
+			setTitle(title);
+		}
+
+		String content = (String)attributes.get("content");
+
+		if (content != null) {
+			setContent(content);
+		}
 	}
 
 	/**

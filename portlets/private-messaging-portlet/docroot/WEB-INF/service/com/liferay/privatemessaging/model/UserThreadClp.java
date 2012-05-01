@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 
@@ -28,6 +29,8 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
@@ -59,6 +62,78 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("userThreadId", getUserThreadId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("mbThreadId", getMbThreadId());
+		attributes.put("topMBMessageId", getTopMBMessageId());
+		attributes.put("read", getRead());
+		attributes.put("deleted", getDeleted());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long userThreadId = (Long)attributes.get("userThreadId");
+
+		if (userThreadId != null) {
+			setUserThreadId(userThreadId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		Long mbThreadId = (Long)attributes.get("mbThreadId");
+
+		if (mbThreadId != null) {
+			setMbThreadId(mbThreadId);
+		}
+
+		Long topMBMessageId = (Long)attributes.get("topMBMessageId");
+
+		if (topMBMessageId != null) {
+			setTopMBMessageId(topMBMessageId);
+		}
+
+		Boolean read = (Boolean)attributes.get("read");
+
+		if (read != null) {
+			setRead(read);
+		}
+
+		Boolean deleted = (Boolean)attributes.get("deleted");
+
+		if (deleted != null) {
+			setDeleted(deleted);
+		}
 	}
 
 	public long getUserThreadId() {
@@ -147,6 +222,14 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 
 	public void setDeleted(boolean deleted) {
 		_deleted = deleted;
+	}
+
+	public BaseModel<?> getUserThreadRemoteModel() {
+		return _userThreadRemoteModel;
+	}
+
+	public void setUserThreadRemoteModel(BaseModel<?> userThreadRemoteModel) {
+		_userThreadRemoteModel = userThreadRemoteModel;
 	}
 
 	public void persist() throws SystemException {
@@ -312,4 +395,5 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 	private long _topMBMessageId;
 	private boolean _read;
 	private boolean _deleted;
+	private BaseModel<?> _userThreadRemoteModel;
 }

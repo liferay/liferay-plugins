@@ -35,6 +35,9 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * The base model implementation for the Status service. Represents a row in the &quot;Chat_Status&quot; database table, with each column mapped to a property of this class.
  *
@@ -111,6 +114,73 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 
 	public String getModelClassName() {
 		return Status.class.getName();
+	}
+
+	@Override
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("statusId", getStatusId());
+		attributes.put("userId", getUserId());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("online", getOnline());
+		attributes.put("awake", getAwake());
+		attributes.put("activePanelId", getActivePanelId());
+		attributes.put("message", getMessage());
+		attributes.put("playSound", getPlaySound());
+
+		return attributes;
+	}
+
+	@Override
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long statusId = (Long)attributes.get("statusId");
+
+		if (statusId != null) {
+			setStatusId(statusId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		Long modifiedDate = (Long)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		Boolean online = (Boolean)attributes.get("online");
+
+		if (online != null) {
+			setOnline(online);
+		}
+
+		Boolean awake = (Boolean)attributes.get("awake");
+
+		if (awake != null) {
+			setAwake(awake);
+		}
+
+		String activePanelId = (String)attributes.get("activePanelId");
+
+		if (activePanelId != null) {
+			setActivePanelId(activePanelId);
+		}
+
+		String message = (String)attributes.get("message");
+
+		if (message != null) {
+			setMessage(message);
+		}
+
+		Boolean playSound = (Boolean)attributes.get("playSound");
+
+		if (playSound != null) {
+			setPlaySound(playSound);
+		}
 	}
 
 	public long getStatusId() {

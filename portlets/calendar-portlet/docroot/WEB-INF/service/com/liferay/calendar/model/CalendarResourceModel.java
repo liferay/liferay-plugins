@@ -201,6 +201,8 @@ public interface CalendarResourceModel extends AttachedModel,
 	 */
 	public String getClassName();
 
+	public void setClassName(String className);
+
 	/**
 	 * Returns the class name ID of this calendar resource.
 	 *

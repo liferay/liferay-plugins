@@ -33,6 +33,9 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * The base model implementation for the Module service. Represents a row in the &quot;Marketplace_Module&quot; database table, with each column mapped to a property of this class.
  *
@@ -105,6 +108,45 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 
 	public String getModelClassName() {
 		return Module.class.getName();
+	}
+
+	@Override
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("uuid", getUuid());
+		attributes.put("moduleId", getModuleId());
+		attributes.put("appId", getAppId());
+		attributes.put("contextName", getContextName());
+
+		return attributes;
+	}
+
+	@Override
+	public void setModelAttributes(Map<String, Object> attributes) {
+		String uuid = (String)attributes.get("uuid");
+
+		if (uuid != null) {
+			setUuid(uuid);
+		}
+
+		Long moduleId = (Long)attributes.get("moduleId");
+
+		if (moduleId != null) {
+			setModuleId(moduleId);
+		}
+
+		Long appId = (Long)attributes.get("appId");
+
+		if (appId != null) {
+			setAppId(appId);
+		}
+
+		String contextName = (String)attributes.get("contextName");
+
+		if (contextName != null) {
+			setContextName(contextName);
+		}
 	}
 
 	public String getUuid() {

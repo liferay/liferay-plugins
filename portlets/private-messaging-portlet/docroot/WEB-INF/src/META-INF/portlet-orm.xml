@@ -24,6 +24,7 @@
 				<column name="READ_" />
 			</basic>
 			<basic name="deleted" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />

@@ -61,25 +61,32 @@ public class KaleoTransitionLocalServiceWrapper
 	* Deletes the kaleo transition with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTransitionId the primary key of the kaleo transition
+	* @return the kaleo transition that was removed
 	* @throws PortalException if a kaleo transition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoTransition(long kaleoTransitionId)
+	public com.liferay.portal.workflow.kaleo.model.KaleoTransition deleteKaleoTransition(
+		long kaleoTransitionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_kaleoTransitionLocalService.deleteKaleoTransition(kaleoTransitionId);
+		return _kaleoTransitionLocalService.deleteKaleoTransition(kaleoTransitionId);
 	}
 
 	/**
 	* Deletes the kaleo transition from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTransition the kaleo transition
+	* @return the kaleo transition that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoTransition(
+	public com.liferay.portal.workflow.kaleo.model.KaleoTransition deleteKaleoTransition(
 		com.liferay.portal.workflow.kaleo.model.KaleoTransition kaleoTransition)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoTransitionLocalService.deleteKaleoTransition(kaleoTransition);
+		return _kaleoTransitionLocalService.deleteKaleoTransition(kaleoTransition);
+	}
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _kaleoTransitionLocalService.dynamicQuery();
 	}
 
 	/**
@@ -256,6 +263,13 @@ public class KaleoTransitionLocalServiceWrapper
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_kaleoTransitionLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _kaleoTransitionLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTransition addKaleoTransition(

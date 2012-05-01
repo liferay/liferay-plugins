@@ -15,9 +15,9 @@
 package com.liferay.portal.workflow.kaleo.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the kaleo transition local service. This utility wraps {@link com.liferay.portal.workflow.kaleo.service.impl.KaleoTransitionLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -67,25 +67,32 @@ public class KaleoTransitionLocalServiceUtil {
 	* Deletes the kaleo transition with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTransitionId the primary key of the kaleo transition
+	* @return the kaleo transition that was removed
 	* @throws PortalException if a kaleo transition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoTransition(long kaleoTransitionId)
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTransition deleteKaleoTransition(
+		long kaleoTransitionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoTransition(kaleoTransitionId);
+		return getService().deleteKaleoTransition(kaleoTransitionId);
 	}
 
 	/**
 	* Deletes the kaleo transition from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTransition the kaleo transition
+	* @return the kaleo transition that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoTransition(
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTransition deleteKaleoTransition(
 		com.liferay.portal.workflow.kaleo.model.KaleoTransition kaleoTransition)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoTransition(kaleoTransition);
+		return getService().deleteKaleoTransition(kaleoTransition);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -262,6 +269,12 @@ public class KaleoTransitionLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static com.liferay.portal.workflow.kaleo.model.KaleoTransition addKaleoTransition(
 		long kaleoDefinitionId, long kaleoNodeId,
 		com.liferay.portal.workflow.kaleo.definition.Transition transition,
@@ -317,18 +330,10 @@ public class KaleoTransitionLocalServiceUtil {
 
 	public static KaleoTransitionLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					KaleoTransitionLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					KaleoTransitionLocalService.class.getName(),
-					portletClassLoader);
-
-			_service = new KaleoTransitionLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new KaleoTransitionLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(KaleoTransitionLocalServiceUtil.class,
 				"_service");

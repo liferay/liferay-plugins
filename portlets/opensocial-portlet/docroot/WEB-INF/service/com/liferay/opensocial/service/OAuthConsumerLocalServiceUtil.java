@@ -15,9 +15,9 @@
 package com.liferay.opensocial.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the o auth consumer local service. This utility wraps {@link com.liferay.opensocial.service.impl.OAuthConsumerLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -67,25 +67,32 @@ public class OAuthConsumerLocalServiceUtil {
 	* Deletes the o auth consumer with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param oAuthConsumerId the primary key of the o auth consumer
+	* @return the o auth consumer that was removed
 	* @throws PortalException if a o auth consumer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteOAuthConsumer(long oAuthConsumerId)
+	public static com.liferay.opensocial.model.OAuthConsumer deleteOAuthConsumer(
+		long oAuthConsumerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteOAuthConsumer(oAuthConsumerId);
+		return getService().deleteOAuthConsumer(oAuthConsumerId);
 	}
 
 	/**
 	* Deletes the o auth consumer from the database. Also notifies the appropriate model listeners.
 	*
 	* @param oAuthConsumer the o auth consumer
+	* @return the o auth consumer that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteOAuthConsumer(
+	public static com.liferay.opensocial.model.OAuthConsumer deleteOAuthConsumer(
 		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteOAuthConsumer(oAuthConsumer);
+		return getService().deleteOAuthConsumer(oAuthConsumer);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -261,6 +268,12 @@ public class OAuthConsumerLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static com.liferay.opensocial.model.OAuthConsumer addOAuthConsumer(
 		long companyId, java.lang.String gadgetKey,
 		java.lang.String serviceName, java.lang.String consumerKey,
@@ -323,18 +336,10 @@ public class OAuthConsumerLocalServiceUtil {
 
 	public static OAuthConsumerLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					OAuthConsumerLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					OAuthConsumerLocalService.class.getName(),
-					portletClassLoader);
-
-			_service = new OAuthConsumerLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new OAuthConsumerLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(OAuthConsumerLocalServiceUtil.class,
 				"_service");

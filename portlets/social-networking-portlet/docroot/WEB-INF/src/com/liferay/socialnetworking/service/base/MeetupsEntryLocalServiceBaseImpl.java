@@ -21,15 +21,14 @@ import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
+import com.liferay.portal.service.BaseLocalServiceImpl;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -66,7 +65,8 @@ import javax.sql.DataSource;
  * @generated
  */
 public abstract class MeetupsEntryLocalServiceBaseImpl
-	implements MeetupsEntryLocalService, IdentifiableBean {
+	extends BaseLocalServiceImpl implements MeetupsEntryLocalService,
+		IdentifiableBean {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -80,26 +80,12 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 * @return the meetups entry that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public MeetupsEntry addMeetupsEntry(MeetupsEntry meetupsEntry)
 		throws SystemException {
 		meetupsEntry.setNew(true);
 
-		meetupsEntry = meetupsEntryPersistence.update(meetupsEntry, false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(meetupsEntry);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return meetupsEntry;
+		return meetupsEntryPersistence.update(meetupsEntry, false);
 	}
 
 	/**
@@ -116,49 +102,32 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 * Deletes the meetups entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param meetupsEntryId the primary key of the meetups entry
+	 * @return the meetups entry that was removed
 	 * @throws PortalException if a meetups entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteMeetupsEntry(long meetupsEntryId)
+	@Indexable(type = IndexableType.DELETE)
+	public MeetupsEntry deleteMeetupsEntry(long meetupsEntryId)
 		throws PortalException, SystemException {
-		MeetupsEntry meetupsEntry = meetupsEntryPersistence.remove(meetupsEntryId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(meetupsEntry);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return meetupsEntryPersistence.remove(meetupsEntryId);
 	}
 
 	/**
 	 * Deletes the meetups entry from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param meetupsEntry the meetups entry
+	 * @return the meetups entry that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteMeetupsEntry(MeetupsEntry meetupsEntry)
+	@Indexable(type = IndexableType.DELETE)
+	public MeetupsEntry deleteMeetupsEntry(MeetupsEntry meetupsEntry)
 		throws SystemException {
-		meetupsEntryPersistence.remove(meetupsEntry);
+		return meetupsEntryPersistence.remove(meetupsEntry);
+	}
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(meetupsEntry);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+	public DynamicQuery dynamicQuery() {
+		return DynamicQueryFactoryUtil.forClass(MeetupsEntry.class,
+			getClassLoader());
 	}
 
 	/**
@@ -284,6 +253,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 * @return the meetups entry that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public MeetupsEntry updateMeetupsEntry(MeetupsEntry meetupsEntry)
 		throws SystemException {
 		return updateMeetupsEntry(meetupsEntry, true);
@@ -297,26 +267,12 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 * @return the meetups entry that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public MeetupsEntry updateMeetupsEntry(MeetupsEntry meetupsEntry,
 		boolean merge) throws SystemException {
 		meetupsEntry.setNew(false);
 
-		meetupsEntry = meetupsEntryPersistence.update(meetupsEntry, merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(meetupsEntry);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return meetupsEntry;
+		return meetupsEntryPersistence.update(meetupsEntry, merge);
 	}
 
 	/**
@@ -606,10 +562,9 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
-	protected ClassLoader getClassLoader() {
-		Class<?> clazz = getClass();
-
-		return clazz.getClassLoader();
+	public Object invokeMethod(String name, String[] parameterTypes,
+		Object[] arguments) throws Throwable {
+		return _clpInvoker.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	protected Class<?> getModelClass() {
@@ -667,6 +622,6 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private static Log _log = LogFactoryUtil.getLog(MeetupsEntryLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
+	private MeetupsEntryLocalServiceClpInvoker _clpInvoker = new MeetupsEntryLocalServiceClpInvoker();
 }

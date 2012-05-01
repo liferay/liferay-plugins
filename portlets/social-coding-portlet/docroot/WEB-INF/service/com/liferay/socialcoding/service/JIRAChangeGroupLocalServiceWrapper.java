@@ -61,25 +61,32 @@ public class JIRAChangeGroupLocalServiceWrapper
 	* Deletes the j i r a change group with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param jiraChangeGroupId the primary key of the j i r a change group
+	* @return the j i r a change group that was removed
 	* @throws PortalException if a j i r a change group with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteJIRAChangeGroup(long jiraChangeGroupId)
+	public com.liferay.socialcoding.model.JIRAChangeGroup deleteJIRAChangeGroup(
+		long jiraChangeGroupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_jiraChangeGroupLocalService.deleteJIRAChangeGroup(jiraChangeGroupId);
+		return _jiraChangeGroupLocalService.deleteJIRAChangeGroup(jiraChangeGroupId);
 	}
 
 	/**
 	* Deletes the j i r a change group from the database. Also notifies the appropriate model listeners.
 	*
 	* @param jiraChangeGroup the j i r a change group
+	* @return the j i r a change group that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteJIRAChangeGroup(
+	public com.liferay.socialcoding.model.JIRAChangeGroup deleteJIRAChangeGroup(
 		com.liferay.socialcoding.model.JIRAChangeGroup jiraChangeGroup)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_jiraChangeGroupLocalService.deleteJIRAChangeGroup(jiraChangeGroup);
+		return _jiraChangeGroupLocalService.deleteJIRAChangeGroup(jiraChangeGroup);
+	}
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _jiraChangeGroupLocalService.dynamicQuery();
 	}
 
 	/**
@@ -256,6 +263,13 @@ public class JIRAChangeGroupLocalServiceWrapper
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_jiraChangeGroupLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _jiraChangeGroupLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	/**

@@ -15,9 +15,9 @@
 package com.liferay.portal.workflow.kaleo.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the kaleo definition local service. This utility wraps {@link com.liferay.portal.workflow.kaleo.service.impl.KaleoDefinitionLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -67,25 +67,32 @@ public class KaleoDefinitionLocalServiceUtil {
 	* Deletes the kaleo definition with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoDefinitionId the primary key of the kaleo definition
+	* @return the kaleo definition that was removed
 	* @throws PortalException if a kaleo definition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoDefinition(long kaleoDefinitionId)
+	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition deleteKaleoDefinition(
+		long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoDefinition(kaleoDefinitionId);
+		return getService().deleteKaleoDefinition(kaleoDefinitionId);
 	}
 
 	/**
 	* Deletes the kaleo definition from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoDefinition the kaleo definition
+	* @return the kaleo definition that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoDefinition(
+	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition deleteKaleoDefinition(
 		com.liferay.portal.workflow.kaleo.model.KaleoDefinition kaleoDefinition)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoDefinition(kaleoDefinition);
+		return getService().deleteKaleoDefinition(kaleoDefinition);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -262,6 +269,12 @@ public class KaleoDefinitionLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static void activateKaleoDefinition(long kaleoDefinitionId,
 		long startKaleoNodeId,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -421,18 +434,10 @@ public class KaleoDefinitionLocalServiceUtil {
 
 	public static KaleoDefinitionLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					KaleoDefinitionLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					KaleoDefinitionLocalService.class.getName(),
-					portletClassLoader);
-
-			_service = new KaleoDefinitionLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new KaleoDefinitionLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(KaleoDefinitionLocalServiceUtil.class,
 				"_service");

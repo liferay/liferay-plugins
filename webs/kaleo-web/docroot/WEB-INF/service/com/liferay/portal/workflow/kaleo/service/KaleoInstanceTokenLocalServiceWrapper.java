@@ -61,25 +61,32 @@ public class KaleoInstanceTokenLocalServiceWrapper
 	* Deletes the kaleo instance token with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoInstanceTokenId the primary key of the kaleo instance token
+	* @return the kaleo instance token that was removed
 	* @throws PortalException if a kaleo instance token with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoInstanceToken(long kaleoInstanceTokenId)
+	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken deleteKaleoInstanceToken(
+		long kaleoInstanceTokenId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_kaleoInstanceTokenLocalService.deleteKaleoInstanceToken(kaleoInstanceTokenId);
+		return _kaleoInstanceTokenLocalService.deleteKaleoInstanceToken(kaleoInstanceTokenId);
 	}
 
 	/**
 	* Deletes the kaleo instance token from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoInstanceToken the kaleo instance token
+	* @return the kaleo instance token that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoInstanceToken(
+	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken deleteKaleoInstanceToken(
 		com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken kaleoInstanceToken)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoInstanceTokenLocalService.deleteKaleoInstanceToken(kaleoInstanceToken);
+		return _kaleoInstanceTokenLocalService.deleteKaleoInstanceToken(kaleoInstanceToken);
+	}
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _kaleoInstanceTokenLocalService.dynamicQuery();
 	}
 
 	/**
@@ -256,6 +263,13 @@ public class KaleoInstanceTokenLocalServiceWrapper
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_kaleoInstanceTokenLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _kaleoInstanceTokenLocalService.invokeMethod(name,
+			parameterTypes, arguments);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken addKaleoInstanceToken(

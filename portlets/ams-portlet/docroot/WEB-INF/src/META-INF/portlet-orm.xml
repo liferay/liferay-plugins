@@ -27,6 +27,7 @@
 			<basic name="active">
 				<column name="ACTIVE_" />
 			</basic>
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
@@ -54,6 +55,7 @@
 			<basic name="actualCheckInDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
@@ -80,6 +82,7 @@
 			</basic>
 			<basic name="quantity" />
 			<basic name="price" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
@@ -90,6 +93,7 @@
 			<id name="typeId" />
 			<basic name="groupId" />
 			<basic name="name" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 		</attributes>

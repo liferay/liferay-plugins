@@ -33,6 +33,9 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * The base model implementation for the SVNRepository service. Represents a row in the &quot;SC_SVNRepository&quot; database table, with each column mapped to a property of this class.
  *
@@ -104,6 +107,38 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository>
 
 	public String getModelClassName() {
 		return SVNRepository.class.getName();
+	}
+
+	@Override
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("svnRepositoryId", getSvnRepositoryId());
+		attributes.put("url", getUrl());
+		attributes.put("revisionNumber", getRevisionNumber());
+
+		return attributes;
+	}
+
+	@Override
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long svnRepositoryId = (Long)attributes.get("svnRepositoryId");
+
+		if (svnRepositoryId != null) {
+			setSvnRepositoryId(svnRepositoryId);
+		}
+
+		String url = (String)attributes.get("url");
+
+		if (url != null) {
+			setUrl(url);
+		}
+
+		Long revisionNumber = (Long)attributes.get("revisionNumber");
+
+		if (revisionNumber != null) {
+			setRevisionNumber(revisionNumber);
+		}
 	}
 
 	public long getSvnRepositoryId() {

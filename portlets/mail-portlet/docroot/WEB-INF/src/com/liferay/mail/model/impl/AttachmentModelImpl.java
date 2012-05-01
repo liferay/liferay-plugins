@@ -35,6 +35,9 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * The base model implementation for the Attachment service. Represents a row in the &quot;Mail_Attachment&quot; database table, with each column mapped to a property of this class.
  *
@@ -110,6 +113,80 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 
 	public String getModelClassName() {
 		return Attachment.class.getName();
+	}
+
+	@Override
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("attachmentId", getAttachmentId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("accountId", getAccountId());
+		attributes.put("folderId", getFolderId());
+		attributes.put("messageId", getMessageId());
+		attributes.put("contentPath", getContentPath());
+		attributes.put("fileName", getFileName());
+		attributes.put("size", getSize());
+
+		return attributes;
+	}
+
+	@Override
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long attachmentId = (Long)attributes.get("attachmentId");
+
+		if (attachmentId != null) {
+			setAttachmentId(attachmentId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		Long accountId = (Long)attributes.get("accountId");
+
+		if (accountId != null) {
+			setAccountId(accountId);
+		}
+
+		Long folderId = (Long)attributes.get("folderId");
+
+		if (folderId != null) {
+			setFolderId(folderId);
+		}
+
+		Long messageId = (Long)attributes.get("messageId");
+
+		if (messageId != null) {
+			setMessageId(messageId);
+		}
+
+		String contentPath = (String)attributes.get("contentPath");
+
+		if (contentPath != null) {
+			setContentPath(contentPath);
+		}
+
+		String fileName = (String)attributes.get("fileName");
+
+		if (fileName != null) {
+			setFileName(fileName);
+		}
+
+		Long size = (Long)attributes.get("size");
+
+		if (size != null) {
+			setSize(size);
+		}
 	}
 
 	public long getAttachmentId() {

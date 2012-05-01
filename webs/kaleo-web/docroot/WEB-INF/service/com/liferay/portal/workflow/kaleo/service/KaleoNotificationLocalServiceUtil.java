@@ -15,9 +15,9 @@
 package com.liferay.portal.workflow.kaleo.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the kaleo notification local service. This utility wraps {@link com.liferay.portal.workflow.kaleo.service.impl.KaleoNotificationLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -67,25 +67,32 @@ public class KaleoNotificationLocalServiceUtil {
 	* Deletes the kaleo notification with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoNotificationId the primary key of the kaleo notification
+	* @return the kaleo notification that was removed
 	* @throws PortalException if a kaleo notification with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoNotification(long kaleoNotificationId)
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNotification deleteKaleoNotification(
+		long kaleoNotificationId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoNotification(kaleoNotificationId);
+		return getService().deleteKaleoNotification(kaleoNotificationId);
 	}
 
 	/**
 	* Deletes the kaleo notification from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoNotification the kaleo notification
+	* @return the kaleo notification that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoNotification(
+	public static com.liferay.portal.workflow.kaleo.model.KaleoNotification deleteKaleoNotification(
 		com.liferay.portal.workflow.kaleo.model.KaleoNotification kaleoNotification)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKaleoNotification(kaleoNotification);
+		return getService().deleteKaleoNotification(kaleoNotification);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -262,6 +269,12 @@ public class KaleoNotificationLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNotification addKaleoNotification(
 		java.lang.String kaleoClassName, long kaleoClassPK,
 		long kaleoDefinitionId, java.lang.String kaleoNodeName,
@@ -300,18 +313,10 @@ public class KaleoNotificationLocalServiceUtil {
 
 	public static KaleoNotificationLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					KaleoNotificationLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					KaleoNotificationLocalService.class.getName(),
-					portletClassLoader);
-
-			_service = new KaleoNotificationLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new KaleoNotificationLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(KaleoNotificationLocalServiceUtil.class,
 				"_service");

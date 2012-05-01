@@ -31,6 +31,30 @@ public class KBTemplateServiceWrapper implements KBTemplateService,
 		_kbTemplateService = kbTemplateService;
 	}
 
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _kbTemplateService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_kbTemplateService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _kbTemplateService.invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public com.liferay.knowledgebase.model.KBTemplate addKBTemplate(
 		java.lang.String portletId, java.lang.String title,
 		java.lang.String content,
@@ -41,10 +65,11 @@ public class KBTemplateServiceWrapper implements KBTemplateService,
 			serviceContext);
 	}
 
-	public void deleteKBTemplate(long kbTemplateId)
+	public com.liferay.knowledgebase.model.KBTemplate deleteKBTemplate(
+		long kbTemplateId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_kbTemplateService.deleteKBTemplate(kbTemplateId);
+		return _kbTemplateService.deleteKBTemplate(kbTemplateId);
 	}
 
 	public void deleteKBTemplates(long groupId, long[] kbTemplateIds)

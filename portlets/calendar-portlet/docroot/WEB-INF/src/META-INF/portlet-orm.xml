@@ -50,8 +50,10 @@
 			<basic name="statusDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<transient name="className" />
 			<transient name="descriptionCurrentLanguageId" />
 			<transient name="descriptionMap" />
+			<transient name="modelAttributes" />
 			<transient name="nameCurrentLanguageId" />
 			<transient name="nameMap" />
 			<transient name="primaryKey" />
@@ -99,6 +101,7 @@
 			<basic name="secondReminder" />
 			<transient name="descriptionCurrentLanguageId" />
 			<transient name="descriptionMap" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="titleCurrentLanguageId" />
@@ -130,8 +133,10 @@
 			<basic name="active">
 				<column name="ACTIVE_" />
 			</basic>
+			<transient name="className" />
 			<transient name="descriptionCurrentLanguageId" />
 			<transient name="descriptionMap" />
+			<transient name="modelAttributes" />
 			<transient name="nameCurrentLanguageId" />
 			<transient name="nameMap" />
 			<transient name="primaryKey" />

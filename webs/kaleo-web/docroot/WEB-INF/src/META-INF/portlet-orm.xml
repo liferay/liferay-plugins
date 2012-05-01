@@ -30,6 +30,7 @@
 			<basic name="script" />
 			<basic name="scriptLanguage" />
 			<basic name="priority" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
@@ -52,6 +53,7 @@
 			<basic name="kaleoNodeId" />
 			<basic name="script" />
 			<basic name="scriptLanguage" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
@@ -79,6 +81,7 @@
 				<column name="ACTIVE_" />
 			</basic>
 			<basic name="startKaleoNodeId" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="titleCurrentLanguageId" />
@@ -110,6 +113,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="workflowContext" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
@@ -139,6 +143,7 @@
 			<basic name="completionDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
@@ -188,6 +193,7 @@
 			</basic>
 			<basic name="duration" />
 			<basic name="workflowContext" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
@@ -217,6 +223,7 @@
 				<column name="INITIAL_" />
 			</basic>
 			<basic name="terminal" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
@@ -245,6 +252,7 @@
 			<basic name="template" />
 			<basic name="templateLanguage" />
 			<basic name="notificationTypes" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
@@ -269,6 +277,7 @@
 			<basic name="recipientClassPK" />
 			<basic name="recipientRoleType" />
 			<basic name="address" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
@@ -291,6 +300,7 @@
 			<basic name="kaleoNodeId" />
 			<basic name="name" />
 			<basic name="description" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
@@ -318,6 +328,7 @@
 			<basic name="assigneeActionId" />
 			<basic name="assigneeScript" />
 			<basic name="assigneeScriptLanguage" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
@@ -348,6 +359,7 @@
 			<basic name="completionDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
@@ -383,6 +395,7 @@
 			</basic>
 			<basic name="workflowContext" />
 			<transient name="completionUserUuid" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
@@ -411,6 +424,7 @@
 			<basic name="scale" />
 			<basic name="recurrenceDuration" />
 			<basic name="recurrenceScale" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
@@ -445,6 +459,7 @@
 			</basic>
 			<basic name="workflowContext" />
 			<transient name="completionUserUuid" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
@@ -472,6 +487,7 @@
 			<basic name="targetKaleoNodeId" />
 			<basic name="targetKaleoNodeName" />
 			<basic name="defaultTransition" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />

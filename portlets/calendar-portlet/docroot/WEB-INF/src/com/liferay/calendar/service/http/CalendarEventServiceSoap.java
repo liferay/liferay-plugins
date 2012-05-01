@@ -105,10 +105,12 @@ public class CalendarEventServiceSoap {
 		}
 	}
 
-	public static void deleteCalendarEvent(long calendarEventId)
-		throws RemoteException {
+	public static com.liferay.calendar.model.CalendarEventSoap deleteCalendarEvent(
+		long calendarEventId) throws RemoteException {
 		try {
-			CalendarEventServiceUtil.deleteCalendarEvent(calendarEventId);
+			com.liferay.calendar.model.CalendarEvent returnValue = CalendarEventServiceUtil.deleteCalendarEvent(calendarEventId);
+
+			return com.liferay.calendar.model.CalendarEventSoap.toSoapModel(returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

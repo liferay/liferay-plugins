@@ -61,25 +61,32 @@ public class KaleoNotificationLocalServiceWrapper
 	* Deletes the kaleo notification with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoNotificationId the primary key of the kaleo notification
+	* @return the kaleo notification that was removed
 	* @throws PortalException if a kaleo notification with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoNotification(long kaleoNotificationId)
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotification deleteKaleoNotification(
+		long kaleoNotificationId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_kaleoNotificationLocalService.deleteKaleoNotification(kaleoNotificationId);
+		return _kaleoNotificationLocalService.deleteKaleoNotification(kaleoNotificationId);
 	}
 
 	/**
 	* Deletes the kaleo notification from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoNotification the kaleo notification
+	* @return the kaleo notification that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoNotification(
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotification deleteKaleoNotification(
 		com.liferay.portal.workflow.kaleo.model.KaleoNotification kaleoNotification)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoNotificationLocalService.deleteKaleoNotification(kaleoNotification);
+		return _kaleoNotificationLocalService.deleteKaleoNotification(kaleoNotification);
+	}
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _kaleoNotificationLocalService.dynamicQuery();
 	}
 
 	/**
@@ -256,6 +263,13 @@ public class KaleoNotificationLocalServiceWrapper
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_kaleoNotificationLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _kaleoNotificationLocalService.invokeMethod(name,
+			parameterTypes, arguments);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotification addKaleoNotification(

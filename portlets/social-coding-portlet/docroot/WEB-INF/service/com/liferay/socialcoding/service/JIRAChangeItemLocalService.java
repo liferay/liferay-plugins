@@ -19,6 +19,8 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.service.BaseLocalService;
+import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
 
 /**
@@ -36,7 +38,8 @@ import com.liferay.portal.service.PersistedModelLocalService;
  */
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
-public interface JIRAChangeItemLocalService extends PersistedModelLocalService {
+public interface JIRAChangeItemLocalService extends BaseLocalService,
+	InvokableLocalService, PersistedModelLocalService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -67,10 +70,12 @@ public interface JIRAChangeItemLocalService extends PersistedModelLocalService {
 	* Deletes the j i r a change item with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param jiraChangeItemId the primary key of the j i r a change item
+	* @return the j i r a change item that was removed
 	* @throws PortalException if a j i r a change item with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteJIRAChangeItem(long jiraChangeItemId)
+	public com.liferay.socialcoding.model.JIRAChangeItem deleteJIRAChangeItem(
+		long jiraChangeItemId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -78,11 +83,14 @@ public interface JIRAChangeItemLocalService extends PersistedModelLocalService {
 	* Deletes the j i r a change item from the database. Also notifies the appropriate model listeners.
 	*
 	* @param jiraChangeItem the j i r a change item
+	* @return the j i r a change item that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteJIRAChangeItem(
+	public com.liferay.socialcoding.model.JIRAChangeItem deleteJIRAChangeItem(
 		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -235,6 +243,10 @@ public interface JIRAChangeItemLocalService extends PersistedModelLocalService {
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> getJIRAChangeItems(

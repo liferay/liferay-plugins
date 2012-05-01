@@ -21,15 +21,14 @@ import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
+import com.liferay.portal.service.BaseLocalServiceImpl;
 import com.liferay.portal.service.ClassNameLocalService;
 import com.liferay.portal.service.ClassNameService;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
@@ -63,8 +62,8 @@ import javax.sql.DataSource;
  * @see com.liferay.testtransaction.service.BarLocalServiceUtil
  * @generated
  */
-public abstract class BarLocalServiceBaseImpl implements BarLocalService,
-	IdentifiableBean {
+public abstract class BarLocalServiceBaseImpl extends BaseLocalServiceImpl
+	implements BarLocalService, IdentifiableBean {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -78,25 +77,11 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 	 * @return the bar that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public Bar addBar(Bar bar) throws SystemException {
 		bar.setNew(true);
 
-		bar = barPersistence.update(bar, false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(bar);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return bar;
+		return barPersistence.update(bar, false);
 	}
 
 	/**
@@ -113,47 +98,29 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 	 * Deletes the bar with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param barId the primary key of the bar
+	 * @return the bar that was removed
 	 * @throws PortalException if a bar with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteBar(long barId) throws PortalException, SystemException {
-		Bar bar = barPersistence.remove(barId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(bar);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+	@Indexable(type = IndexableType.DELETE)
+	public Bar deleteBar(long barId) throws PortalException, SystemException {
+		return barPersistence.remove(barId);
 	}
 
 	/**
 	 * Deletes the bar from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param bar the bar
+	 * @return the bar that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteBar(Bar bar) throws SystemException {
-		barPersistence.remove(bar);
+	@Indexable(type = IndexableType.DELETE)
+	public Bar deleteBar(Bar bar) throws SystemException {
+		return barPersistence.remove(bar);
+	}
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(bar);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+	public DynamicQuery dynamicQuery() {
+		return DynamicQueryFactoryUtil.forClass(Bar.class, getClassLoader());
 	}
 
 	/**
@@ -275,6 +242,7 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 	 * @return the bar that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public Bar updateBar(Bar bar) throws SystemException {
 		return updateBar(bar, true);
 	}
@@ -287,25 +255,11 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 	 * @return the bar that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public Bar updateBar(Bar bar, boolean merge) throws SystemException {
 		bar.setNew(false);
 
-		bar = barPersistence.update(bar, merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(bar);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return bar;
+		return barPersistence.update(bar, merge);
 	}
 
 	/**
@@ -555,10 +509,9 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 		_beanIdentifier = beanIdentifier;
 	}
 
-	protected ClassLoader getClassLoader() {
-		Class<?> clazz = getClass();
-
-		return clazz.getClassLoader();
+	public Object invokeMethod(String name, String[] parameterTypes,
+		Object[] arguments) throws Throwable {
+		return _clpInvoker.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	protected Class<?> getModelClass() {
@@ -612,6 +565,6 @@ public abstract class BarLocalServiceBaseImpl implements BarLocalService,
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private static Log _log = LogFactoryUtil.getLog(BarLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
+	private BarLocalServiceClpInvoker _clpInvoker = new BarLocalServiceClpInvoker();
 }

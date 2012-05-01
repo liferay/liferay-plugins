@@ -31,15 +31,14 @@ import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
+import com.liferay.portal.service.BaseLocalServiceImpl;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -66,8 +65,8 @@ import javax.sql.DataSource;
  * @see com.liferay.mail.service.AccountLocalServiceUtil
  * @generated
  */
-public abstract class AccountLocalServiceBaseImpl implements AccountLocalService,
-	IdentifiableBean {
+public abstract class AccountLocalServiceBaseImpl extends BaseLocalServiceImpl
+	implements AccountLocalService, IdentifiableBean {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -81,25 +80,11 @@ public abstract class AccountLocalServiceBaseImpl implements AccountLocalService
 	 * @return the account that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public Account addAccount(Account account) throws SystemException {
 		account.setNew(true);
 
-		account = accountPersistence.update(account, false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(account);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return account;
+		return accountPersistence.update(account, false);
 	}
 
 	/**
@@ -116,50 +101,32 @@ public abstract class AccountLocalServiceBaseImpl implements AccountLocalService
 	 * Deletes the account with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param accountId the primary key of the account
+	 * @return the account that was removed
 	 * @throws PortalException if a account with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteAccount(long accountId)
+	@Indexable(type = IndexableType.DELETE)
+	public Account deleteAccount(long accountId)
 		throws PortalException, SystemException {
-		Account account = accountPersistence.remove(accountId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(account);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return accountPersistence.remove(accountId);
 	}
 
 	/**
 	 * Deletes the account from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param account the account
+	 * @return the account that was removed
 	 * @throws PortalException
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteAccount(Account account)
+	@Indexable(type = IndexableType.DELETE)
+	public Account deleteAccount(Account account)
 		throws PortalException, SystemException {
-		accountPersistence.remove(account);
+		return accountPersistence.remove(account);
+	}
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(account);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+	public DynamicQuery dynamicQuery() {
+		return DynamicQueryFactoryUtil.forClass(Account.class, getClassLoader());
 	}
 
 	/**
@@ -283,6 +250,7 @@ public abstract class AccountLocalServiceBaseImpl implements AccountLocalService
 	 * @return the account that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public Account updateAccount(Account account) throws SystemException {
 		return updateAccount(account, true);
 	}
@@ -295,26 +263,12 @@ public abstract class AccountLocalServiceBaseImpl implements AccountLocalService
 	 * @return the account that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public Account updateAccount(Account account, boolean merge)
 		throws SystemException {
 		account.setNew(false);
 
-		account = accountPersistence.update(account, merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(account);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return account;
+		return accountPersistence.update(account, merge);
 	}
 
 	/**
@@ -618,10 +572,9 @@ public abstract class AccountLocalServiceBaseImpl implements AccountLocalService
 		_beanIdentifier = beanIdentifier;
 	}
 
-	protected ClassLoader getClassLoader() {
-		Class<?> clazz = getClass();
-
-		return clazz.getClassLoader();
+	public Object invokeMethod(String name, String[] parameterTypes,
+		Object[] arguments) throws Throwable {
+		return _clpInvoker.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	protected Class<?> getModelClass() {
@@ -681,6 +634,6 @@ public abstract class AccountLocalServiceBaseImpl implements AccountLocalService
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private static Log _log = LogFactoryUtil.getLog(AccountLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
+	private AccountLocalServiceClpInvoker _clpInvoker = new AccountLocalServiceClpInvoker();
 }

@@ -17,6 +17,7 @@ package com.liferay.portal.workflow.kaleo.model;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoInstanceTokenLocalServiceUtil;
@@ -26,6 +27,8 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
@@ -57,6 +60,130 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("kaleoInstanceTokenId", getKaleoInstanceTokenId());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("kaleoDefinitionId", getKaleoDefinitionId());
+		attributes.put("kaleoInstanceId", getKaleoInstanceId());
+		attributes.put("parentKaleoInstanceTokenId",
+			getParentKaleoInstanceTokenId());
+		attributes.put("currentKaleoNodeId", getCurrentKaleoNodeId());
+		attributes.put("currentKaleoNodeName", getCurrentKaleoNodeName());
+		attributes.put("className", getClassName());
+		attributes.put("classPK", getClassPK());
+		attributes.put("completed", getCompleted());
+		attributes.put("completionDate", getCompletionDate());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long kaleoInstanceTokenId = (Long)attributes.get("kaleoInstanceTokenId");
+
+		if (kaleoInstanceTokenId != null) {
+			setKaleoInstanceTokenId(kaleoInstanceTokenId);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		Long kaleoDefinitionId = (Long)attributes.get("kaleoDefinitionId");
+
+		if (kaleoDefinitionId != null) {
+			setKaleoDefinitionId(kaleoDefinitionId);
+		}
+
+		Long kaleoInstanceId = (Long)attributes.get("kaleoInstanceId");
+
+		if (kaleoInstanceId != null) {
+			setKaleoInstanceId(kaleoInstanceId);
+		}
+
+		Long parentKaleoInstanceTokenId = (Long)attributes.get(
+				"parentKaleoInstanceTokenId");
+
+		if (parentKaleoInstanceTokenId != null) {
+			setParentKaleoInstanceTokenId(parentKaleoInstanceTokenId);
+		}
+
+		Long currentKaleoNodeId = (Long)attributes.get("currentKaleoNodeId");
+
+		if (currentKaleoNodeId != null) {
+			setCurrentKaleoNodeId(currentKaleoNodeId);
+		}
+
+		String currentKaleoNodeName = (String)attributes.get(
+				"currentKaleoNodeName");
+
+		if (currentKaleoNodeName != null) {
+			setCurrentKaleoNodeName(currentKaleoNodeName);
+		}
+
+		String className = (String)attributes.get("className");
+
+		if (className != null) {
+			setClassName(className);
+		}
+
+		Long classPK = (Long)attributes.get("classPK");
+
+		if (classPK != null) {
+			setClassPK(classPK);
+		}
+
+		Boolean completed = (Boolean)attributes.get("completed");
+
+		if (completed != null) {
+			setCompleted(completed);
+		}
+
+		Date completionDate = (Date)attributes.get("completionDate");
+
+		if (completionDate != null) {
+			setCompletionDate(completionDate);
+		}
 	}
 
 	public long getKaleoInstanceTokenId() {
@@ -226,6 +353,15 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 	public void setCurrentKaleoNode(
 		com.liferay.portal.workflow.kaleo.model.KaleoNode kaleoNode) {
 		throw new UnsupportedOperationException();
+	}
+
+	public BaseModel<?> getKaleoInstanceTokenRemoteModel() {
+		return _kaleoInstanceTokenRemoteModel;
+	}
+
+	public void setKaleoInstanceTokenRemoteModel(
+		BaseModel<?> kaleoInstanceTokenRemoteModel) {
+		_kaleoInstanceTokenRemoteModel = kaleoInstanceTokenRemoteModel;
 	}
 
 	public void persist() throws SystemException {
@@ -453,4 +589,5 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 	private long _classPK;
 	private boolean _completed;
 	private Date _completionDate;
+	private BaseModel<?> _kaleoInstanceTokenRemoteModel;
 }

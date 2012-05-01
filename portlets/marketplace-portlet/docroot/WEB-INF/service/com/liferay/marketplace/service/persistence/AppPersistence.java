@@ -408,11 +408,9 @@ public interface AppPersistence extends BasePersistence<App> {
 	* Removes the app where remoteAppId = &#63; from the database.
 	*
 	* @param remoteAppId the remote app ID
-	* @return the app that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.marketplace.model.App removeByRemoteAppId(
-		long remoteAppId)
+	public void removeByRemoteAppId(long remoteAppId)
 		throws com.liferay.marketplace.NoSuchAppException,
 			com.liferay.portal.kernel.exception.SystemException;
 

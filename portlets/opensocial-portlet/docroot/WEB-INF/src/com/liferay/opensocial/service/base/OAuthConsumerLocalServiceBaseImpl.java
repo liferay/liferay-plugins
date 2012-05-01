@@ -30,15 +30,14 @@ import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
+import com.liferay.portal.service.BaseLocalServiceImpl;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -66,7 +65,8 @@ import javax.sql.DataSource;
  * @generated
  */
 public abstract class OAuthConsumerLocalServiceBaseImpl
-	implements OAuthConsumerLocalService, IdentifiableBean {
+	extends BaseLocalServiceImpl implements OAuthConsumerLocalService,
+		IdentifiableBean {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -80,26 +80,12 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * @return the o auth consumer that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public OAuthConsumer addOAuthConsumer(OAuthConsumer oAuthConsumer)
 		throws SystemException {
 		oAuthConsumer.setNew(true);
 
-		oAuthConsumer = oAuthConsumerPersistence.update(oAuthConsumer, false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(oAuthConsumer);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return oAuthConsumer;
+		return oAuthConsumerPersistence.update(oAuthConsumer, false);
 	}
 
 	/**
@@ -116,49 +102,32 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * Deletes the o auth consumer with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param oAuthConsumerId the primary key of the o auth consumer
+	 * @return the o auth consumer that was removed
 	 * @throws PortalException if a o auth consumer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteOAuthConsumer(long oAuthConsumerId)
+	@Indexable(type = IndexableType.DELETE)
+	public OAuthConsumer deleteOAuthConsumer(long oAuthConsumerId)
 		throws PortalException, SystemException {
-		OAuthConsumer oAuthConsumer = oAuthConsumerPersistence.remove(oAuthConsumerId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(oAuthConsumer);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return oAuthConsumerPersistence.remove(oAuthConsumerId);
 	}
 
 	/**
 	 * Deletes the o auth consumer from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param oAuthConsumer the o auth consumer
+	 * @return the o auth consumer that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteOAuthConsumer(OAuthConsumer oAuthConsumer)
+	@Indexable(type = IndexableType.DELETE)
+	public OAuthConsumer deleteOAuthConsumer(OAuthConsumer oAuthConsumer)
 		throws SystemException {
-		oAuthConsumerPersistence.remove(oAuthConsumer);
+		return oAuthConsumerPersistence.remove(oAuthConsumer);
+	}
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(oAuthConsumer);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+	public DynamicQuery dynamicQuery() {
+		return DynamicQueryFactoryUtil.forClass(OAuthConsumer.class,
+			getClassLoader());
 	}
 
 	/**
@@ -284,6 +253,7 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * @return the o auth consumer that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public OAuthConsumer updateOAuthConsumer(OAuthConsumer oAuthConsumer)
 		throws SystemException {
 		return updateOAuthConsumer(oAuthConsumer, true);
@@ -297,26 +267,12 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * @return the o auth consumer that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public OAuthConsumer updateOAuthConsumer(OAuthConsumer oAuthConsumer,
 		boolean merge) throws SystemException {
 		oAuthConsumer.setNew(false);
 
-		oAuthConsumer = oAuthConsumerPersistence.update(oAuthConsumer, merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(oAuthConsumer);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return oAuthConsumer;
+		return oAuthConsumerPersistence.update(oAuthConsumer, merge);
 	}
 
 	/**
@@ -604,10 +560,9 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
-	protected ClassLoader getClassLoader() {
-		Class<?> clazz = getClass();
-
-		return clazz.getClassLoader();
+	public Object invokeMethod(String name, String[] parameterTypes,
+		Object[] arguments) throws Throwable {
+		return _clpInvoker.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	protected Class<?> getModelClass() {
@@ -665,6 +620,6 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private static Log _log = LogFactoryUtil.getLog(OAuthConsumerLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
+	private OAuthConsumerLocalServiceClpInvoker _clpInvoker = new OAuthConsumerLocalServiceClpInvoker();
 }

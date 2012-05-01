@@ -15,9 +15,9 @@
 package com.liferay.microblogs.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the microblogs entry local service. This utility wraps {@link com.liferay.microblogs.service.impl.MicroblogsEntryLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -91,6 +91,10 @@ public class MicroblogsEntryLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().deleteMicroblogsEntry(microblogsEntry);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -267,6 +271,12 @@ public class MicroblogsEntryLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static com.liferay.microblogs.model.MicroblogsEntry addMicroblogsEntry(
 		long userId, java.lang.String content, int type, long receiverUserId,
 		long receiverMicroblogsEntryId, int socialRelationType,
@@ -375,18 +385,10 @@ public class MicroblogsEntryLocalServiceUtil {
 
 	public static MicroblogsEntryLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					MicroblogsEntryLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					MicroblogsEntryLocalService.class.getName(),
-					portletClassLoader);
-
-			_service = new MicroblogsEntryLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new MicroblogsEntryLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(MicroblogsEntryLocalServiceUtil.class,
 				"_service");

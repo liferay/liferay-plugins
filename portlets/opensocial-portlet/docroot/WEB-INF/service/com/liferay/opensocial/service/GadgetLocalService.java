@@ -19,6 +19,8 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.service.BaseLocalService;
+import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
 
 /**
@@ -36,7 +38,8 @@ import com.liferay.portal.service.PersistedModelLocalService;
  */
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
-public interface GadgetLocalService extends PersistedModelLocalService {
+public interface GadgetLocalService extends BaseLocalService,
+	InvokableLocalService, PersistedModelLocalService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -66,10 +69,11 @@ public interface GadgetLocalService extends PersistedModelLocalService {
 	* Deletes the gadget with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param gadgetId the primary key of the gadget
+	* @return the gadget that was removed
 	* @throws PortalException if a gadget with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteGadget(long gadgetId)
+	public com.liferay.opensocial.model.Gadget deleteGadget(long gadgetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -77,12 +81,16 @@ public interface GadgetLocalService extends PersistedModelLocalService {
 	* Deletes the gadget from the database. Also notifies the appropriate model listeners.
 	*
 	* @param gadget the gadget
+	* @return the gadget that was removed
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteGadget(com.liferay.opensocial.model.Gadget gadget)
+	public com.liferay.opensocial.model.Gadget deleteGadget(
+		com.liferay.opensocial.model.Gadget gadget)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -232,6 +240,10 @@ public interface GadgetLocalService extends PersistedModelLocalService {
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
 
 	public com.liferay.opensocial.model.Gadget addGadget(long companyId,
 		java.lang.String url, java.lang.String portletCategoryNames,

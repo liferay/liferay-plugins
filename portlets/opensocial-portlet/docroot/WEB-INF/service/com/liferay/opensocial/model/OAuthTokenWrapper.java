@@ -16,6 +16,10 @@ package com.liferay.opensocial.model;
 
 import com.liferay.portal.model.ModelWrapper;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * <p>
  * This class is a wrapper for {@link OAuthToken}.
@@ -36,6 +40,113 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 
 	public String getModelClassName() {
 		return OAuthToken.class.getName();
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("oAuthTokenId", getOAuthTokenId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("gadgetKey", getGadgetKey());
+		attributes.put("serviceName", getServiceName());
+		attributes.put("moduleId", getModuleId());
+		attributes.put("accessToken", getAccessToken());
+		attributes.put("tokenName", getTokenName());
+		attributes.put("tokenSecret", getTokenSecret());
+		attributes.put("sessionHandle", getSessionHandle());
+		attributes.put("expiration", getExpiration());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long oAuthTokenId = (Long)attributes.get("oAuthTokenId");
+
+		if (oAuthTokenId != null) {
+			setOAuthTokenId(oAuthTokenId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		String gadgetKey = (String)attributes.get("gadgetKey");
+
+		if (gadgetKey != null) {
+			setGadgetKey(gadgetKey);
+		}
+
+		String serviceName = (String)attributes.get("serviceName");
+
+		if (serviceName != null) {
+			setServiceName(serviceName);
+		}
+
+		Long moduleId = (Long)attributes.get("moduleId");
+
+		if (moduleId != null) {
+			setModuleId(moduleId);
+		}
+
+		String accessToken = (String)attributes.get("accessToken");
+
+		if (accessToken != null) {
+			setAccessToken(accessToken);
+		}
+
+		String tokenName = (String)attributes.get("tokenName");
+
+		if (tokenName != null) {
+			setTokenName(tokenName);
+		}
+
+		String tokenSecret = (String)attributes.get("tokenSecret");
+
+		if (tokenSecret != null) {
+			setTokenSecret(tokenSecret);
+		}
+
+		String sessionHandle = (String)attributes.get("sessionHandle");
+
+		if (sessionHandle != null) {
+			setSessionHandle(sessionHandle);
+		}
+
+		Long expiration = (Long)attributes.get("expiration");
+
+		if (expiration != null) {
+			setExpiration(expiration);
+		}
 	}
 
 	/**

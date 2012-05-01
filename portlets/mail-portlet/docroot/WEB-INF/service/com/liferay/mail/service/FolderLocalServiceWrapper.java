@@ -58,26 +58,33 @@ public class FolderLocalServiceWrapper implements FolderLocalService,
 	* Deletes the folder with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param folderId the primary key of the folder
+	* @return the folder that was removed
 	* @throws PortalException if a folder with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteFolder(long folderId)
+	public com.liferay.mail.model.Folder deleteFolder(long folderId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_folderLocalService.deleteFolder(folderId);
+		return _folderLocalService.deleteFolder(folderId);
 	}
 
 	/**
 	* Deletes the folder from the database. Also notifies the appropriate model listeners.
 	*
 	* @param folder the folder
+	* @return the folder that was removed
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteFolder(com.liferay.mail.model.Folder folder)
+	public com.liferay.mail.model.Folder deleteFolder(
+		com.liferay.mail.model.Folder folder)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_folderLocalService.deleteFolder(folder);
+		return _folderLocalService.deleteFolder(folder);
+	}
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _folderLocalService.dynamicQuery();
 	}
 
 	/**
@@ -248,6 +255,12 @@ public class FolderLocalServiceWrapper implements FolderLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_folderLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _folderLocalService.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	public com.liferay.mail.model.Folder addFolder(long userId, long accountId,

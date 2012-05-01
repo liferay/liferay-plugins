@@ -15,9 +15,9 @@
 package com.liferay.socialcoding.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the s v n repository local service. This utility wraps {@link com.liferay.socialcoding.service.impl.SVNRepositoryLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -67,25 +67,32 @@ public class SVNRepositoryLocalServiceUtil {
 	* Deletes the s v n repository with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param svnRepositoryId the primary key of the s v n repository
+	* @return the s v n repository that was removed
 	* @throws PortalException if a s v n repository with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteSVNRepository(long svnRepositoryId)
+	public static com.liferay.socialcoding.model.SVNRepository deleteSVNRepository(
+		long svnRepositoryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteSVNRepository(svnRepositoryId);
+		return getService().deleteSVNRepository(svnRepositoryId);
 	}
 
 	/**
 	* Deletes the s v n repository from the database. Also notifies the appropriate model listeners.
 	*
 	* @param svnRepository the s v n repository
+	* @return the s v n repository that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteSVNRepository(
+	public static com.liferay.socialcoding.model.SVNRepository deleteSVNRepository(
 		com.liferay.socialcoding.model.SVNRepository svnRepository)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteSVNRepository(svnRepository);
+		return getService().deleteSVNRepository(svnRepository);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -262,6 +269,12 @@ public class SVNRepositoryLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static com.liferay.socialcoding.model.SVNRepository getSVNRepository(
 		java.lang.String url)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -281,18 +294,10 @@ public class SVNRepositoryLocalServiceUtil {
 
 	public static SVNRepositoryLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					SVNRepositoryLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					SVNRepositoryLocalService.class.getName(),
-					portletClassLoader);
-
-			_service = new SVNRepositoryLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new SVNRepositoryLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(SVNRepositoryLocalServiceUtil.class,
 				"_service");

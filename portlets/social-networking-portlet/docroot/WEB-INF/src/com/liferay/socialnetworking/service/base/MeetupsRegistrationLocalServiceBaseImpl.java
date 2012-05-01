@@ -21,15 +21,14 @@ import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
+import com.liferay.portal.service.BaseLocalServiceImpl;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -66,7 +65,8 @@ import javax.sql.DataSource;
  * @generated
  */
 public abstract class MeetupsRegistrationLocalServiceBaseImpl
-	implements MeetupsRegistrationLocalService, IdentifiableBean {
+	extends BaseLocalServiceImpl implements MeetupsRegistrationLocalService,
+		IdentifiableBean {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -80,27 +80,12 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @return the meetups registration that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public MeetupsRegistration addMeetupsRegistration(
 		MeetupsRegistration meetupsRegistration) throws SystemException {
 		meetupsRegistration.setNew(true);
 
-		meetupsRegistration = meetupsRegistrationPersistence.update(meetupsRegistration,
-				false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(meetupsRegistration);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return meetupsRegistration;
+		return meetupsRegistrationPersistence.update(meetupsRegistration, false);
 	}
 
 	/**
@@ -118,49 +103,32 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * Deletes the meetups registration with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param meetupsRegistrationId the primary key of the meetups registration
+	 * @return the meetups registration that was removed
 	 * @throws PortalException if a meetups registration with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteMeetupsRegistration(long meetupsRegistrationId)
-		throws PortalException, SystemException {
-		MeetupsRegistration meetupsRegistration = meetupsRegistrationPersistence.remove(meetupsRegistrationId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(meetupsRegistration);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+	@Indexable(type = IndexableType.DELETE)
+	public MeetupsRegistration deleteMeetupsRegistration(
+		long meetupsRegistrationId) throws PortalException, SystemException {
+		return meetupsRegistrationPersistence.remove(meetupsRegistrationId);
 	}
 
 	/**
 	 * Deletes the meetups registration from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param meetupsRegistration the meetups registration
+	 * @return the meetups registration that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteMeetupsRegistration(
+	@Indexable(type = IndexableType.DELETE)
+	public MeetupsRegistration deleteMeetupsRegistration(
 		MeetupsRegistration meetupsRegistration) throws SystemException {
-		meetupsRegistrationPersistence.remove(meetupsRegistration);
+		return meetupsRegistrationPersistence.remove(meetupsRegistration);
+	}
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(meetupsRegistration);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+	public DynamicQuery dynamicQuery() {
+		return DynamicQueryFactoryUtil.forClass(MeetupsRegistration.class,
+			getClassLoader());
 	}
 
 	/**
@@ -286,6 +254,7 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @return the meetups registration that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public MeetupsRegistration updateMeetupsRegistration(
 		MeetupsRegistration meetupsRegistration) throws SystemException {
 		return updateMeetupsRegistration(meetupsRegistration, true);
@@ -299,28 +268,13 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @return the meetups registration that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public MeetupsRegistration updateMeetupsRegistration(
 		MeetupsRegistration meetupsRegistration, boolean merge)
 		throws SystemException {
 		meetupsRegistration.setNew(false);
 
-		meetupsRegistration = meetupsRegistrationPersistence.update(meetupsRegistration,
-				merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(meetupsRegistration);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return meetupsRegistration;
+		return meetupsRegistrationPersistence.update(meetupsRegistration, merge);
 	}
 
 	/**
@@ -610,10 +564,9 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
-	protected ClassLoader getClassLoader() {
-		Class<?> clazz = getClass();
-
-		return clazz.getClassLoader();
+	public Object invokeMethod(String name, String[] parameterTypes,
+		Object[] arguments) throws Throwable {
+		return _clpInvoker.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	protected Class<?> getModelClass() {
@@ -671,6 +624,6 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private static Log _log = LogFactoryUtil.getLog(MeetupsRegistrationLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
+	private MeetupsRegistrationLocalServiceClpInvoker _clpInvoker = new MeetupsRegistrationLocalServiceClpInvoker();
 }

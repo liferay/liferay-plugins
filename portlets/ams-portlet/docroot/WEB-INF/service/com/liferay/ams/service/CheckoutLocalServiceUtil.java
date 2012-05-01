@@ -15,9 +15,9 @@
 package com.liferay.ams.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the checkout local service. This utility wraps {@link com.liferay.ams.service.impl.CheckoutLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -66,24 +66,31 @@ public class CheckoutLocalServiceUtil {
 	* Deletes the checkout with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param checkoutId the primary key of the checkout
+	* @return the checkout that was removed
 	* @throws PortalException if a checkout with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteCheckout(long checkoutId)
+	public static com.liferay.ams.model.Checkout deleteCheckout(long checkoutId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteCheckout(checkoutId);
+		return getService().deleteCheckout(checkoutId);
 	}
 
 	/**
 	* Deletes the checkout from the database. Also notifies the appropriate model listeners.
 	*
 	* @param checkout the checkout
+	* @return the checkout that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteCheckout(com.liferay.ams.model.Checkout checkout)
+	public static com.liferay.ams.model.Checkout deleteCheckout(
+		com.liferay.ams.model.Checkout checkout)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteCheckout(checkout);
+		return getService().deleteCheckout(checkout);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -257,23 +264,22 @@ public class CheckoutLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}
 
 	public static CheckoutLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					CheckoutLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					CheckoutLocalService.class.getName(), portletClassLoader);
-
-			_service = new CheckoutLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new CheckoutLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(CheckoutLocalServiceUtil.class,
 				"_service");

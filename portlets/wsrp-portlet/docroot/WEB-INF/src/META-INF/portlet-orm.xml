@@ -26,6 +26,7 @@
 			<basic name="registrationContextString" />
 			<basic name="registrationPropertiesString" />
 			<basic name="forwardCookies" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 		</attributes>
@@ -46,6 +47,7 @@
 			<basic name="wsrpConsumerId" />
 			<basic name="name" />
 			<basic name="portletHandle" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 		</attributes>
@@ -67,6 +69,7 @@
 			<basic name="name" />
 			<basic name="version" />
 			<basic name="portletIds" />
+			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 		</attributes>

@@ -60,25 +60,32 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	* Deletes the j i r a issue with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param jiraIssueId the primary key of the j i r a issue
+	* @return the j i r a issue that was removed
 	* @throws PortalException if a j i r a issue with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteJIRAIssue(long jiraIssueId)
+	public com.liferay.socialcoding.model.JIRAIssue deleteJIRAIssue(
+		long jiraIssueId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_jiraIssueLocalService.deleteJIRAIssue(jiraIssueId);
+		return _jiraIssueLocalService.deleteJIRAIssue(jiraIssueId);
 	}
 
 	/**
 	* Deletes the j i r a issue from the database. Also notifies the appropriate model listeners.
 	*
 	* @param jiraIssue the j i r a issue
+	* @return the j i r a issue that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteJIRAIssue(
+	public com.liferay.socialcoding.model.JIRAIssue deleteJIRAIssue(
 		com.liferay.socialcoding.model.JIRAIssue jiraIssue)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_jiraIssueLocalService.deleteJIRAIssue(jiraIssue);
+		return _jiraIssueLocalService.deleteJIRAIssue(jiraIssue);
+	}
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _jiraIssueLocalService.dynamicQuery();
 	}
 
 	/**
@@ -252,6 +259,13 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_jiraIssueLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _jiraIssueLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getAssigneeJIRAIssues(

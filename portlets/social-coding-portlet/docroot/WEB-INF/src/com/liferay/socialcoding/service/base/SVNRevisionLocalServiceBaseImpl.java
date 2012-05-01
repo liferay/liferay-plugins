@@ -21,15 +21,14 @@ import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
+import com.liferay.portal.service.BaseLocalServiceImpl;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -74,7 +73,8 @@ import javax.sql.DataSource;
  * @generated
  */
 public abstract class SVNRevisionLocalServiceBaseImpl
-	implements SVNRevisionLocalService, IdentifiableBean {
+	extends BaseLocalServiceImpl implements SVNRevisionLocalService,
+		IdentifiableBean {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -88,26 +88,12 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	 * @return the s v n revision that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public SVNRevision addSVNRevision(SVNRevision svnRevision)
 		throws SystemException {
 		svnRevision.setNew(true);
 
-		svnRevision = svnRevisionPersistence.update(svnRevision, false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(svnRevision);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return svnRevision;
+		return svnRevisionPersistence.update(svnRevision, false);
 	}
 
 	/**
@@ -124,49 +110,32 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	 * Deletes the s v n revision with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param svnRevisionId the primary key of the s v n revision
+	 * @return the s v n revision that was removed
 	 * @throws PortalException if a s v n revision with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteSVNRevision(long svnRevisionId)
+	@Indexable(type = IndexableType.DELETE)
+	public SVNRevision deleteSVNRevision(long svnRevisionId)
 		throws PortalException, SystemException {
-		SVNRevision svnRevision = svnRevisionPersistence.remove(svnRevisionId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(svnRevision);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return svnRevisionPersistence.remove(svnRevisionId);
 	}
 
 	/**
 	 * Deletes the s v n revision from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param svnRevision the s v n revision
+	 * @return the s v n revision that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteSVNRevision(SVNRevision svnRevision)
+	@Indexable(type = IndexableType.DELETE)
+	public SVNRevision deleteSVNRevision(SVNRevision svnRevision)
 		throws SystemException {
-		svnRevisionPersistence.remove(svnRevision);
+		return svnRevisionPersistence.remove(svnRevision);
+	}
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(svnRevision);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+	public DynamicQuery dynamicQuery() {
+		return DynamicQueryFactoryUtil.forClass(SVNRevision.class,
+			getClassLoader());
 	}
 
 	/**
@@ -292,6 +261,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	 * @return the s v n revision that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public SVNRevision updateSVNRevision(SVNRevision svnRevision)
 		throws SystemException {
 		return updateSVNRevision(svnRevision, true);
@@ -305,26 +275,12 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	 * @return the s v n revision that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public SVNRevision updateSVNRevision(SVNRevision svnRevision, boolean merge)
 		throws SystemException {
 		svnRevision.setNew(false);
 
-		svnRevision = svnRevisionPersistence.update(svnRevision, merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(svnRevision);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return svnRevision;
+		return svnRevisionPersistence.update(svnRevision, merge);
 	}
 
 	/**
@@ -765,10 +721,9 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
-	protected ClassLoader getClassLoader() {
-		Class<?> clazz = getClass();
-
-		return clazz.getClassLoader();
+	public Object invokeMethod(String name, String[] parameterTypes,
+		Object[] arguments) throws Throwable {
+		return _clpInvoker.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	protected Class<?> getModelClass() {
@@ -842,6 +797,6 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private static Log _log = LogFactoryUtil.getLog(SVNRevisionLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
+	private SVNRevisionLocalServiceClpInvoker _clpInvoker = new SVNRevisionLocalServiceClpInvoker();
 }

@@ -19,6 +19,7 @@ import com.liferay.opensocial.service.OAuthConsumerLocalServiceUtil;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
 import java.io.Serializable;
@@ -26,6 +27,8 @@ import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
@@ -57,6 +60,78 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("oAuthConsumerId", getOAuthConsumerId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("gadgetKey", getGadgetKey());
+		attributes.put("serviceName", getServiceName());
+		attributes.put("consumerKey", getConsumerKey());
+		attributes.put("consumerSecret", getConsumerSecret());
+		attributes.put("keyType", getKeyType());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long oAuthConsumerId = (Long)attributes.get("oAuthConsumerId");
+
+		if (oAuthConsumerId != null) {
+			setOAuthConsumerId(oAuthConsumerId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		String gadgetKey = (String)attributes.get("gadgetKey");
+
+		if (gadgetKey != null) {
+			setGadgetKey(gadgetKey);
+		}
+
+		String serviceName = (String)attributes.get("serviceName");
+
+		if (serviceName != null) {
+			setServiceName(serviceName);
+		}
+
+		String consumerKey = (String)attributes.get("consumerKey");
+
+		if (consumerKey != null) {
+			setConsumerKey(consumerKey);
+		}
+
+		String consumerSecret = (String)attributes.get("consumerSecret");
+
+		if (consumerSecret != null) {
+			setConsumerSecret(consumerSecret);
+		}
+
+		String keyType = (String)attributes.get("keyType");
+
+		if (keyType != null) {
+			setKeyType(keyType);
+		}
 	}
 
 	public long getOAuthConsumerId() {
@@ -137,6 +212,15 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 
 	public void setKeyName(java.lang.String keyName) {
 		throw new UnsupportedOperationException();
+	}
+
+	public BaseModel<?> getOAuthConsumerRemoteModel() {
+		return _oAuthConsumerRemoteModel;
+	}
+
+	public void setOAuthConsumerRemoteModel(
+		BaseModel<?> oAuthConsumerRemoteModel) {
+		_oAuthConsumerRemoteModel = oAuthConsumerRemoteModel;
 	}
 
 	public void persist() throws SystemException {
@@ -298,4 +382,5 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 	private String _consumerKey;
 	private String _consumerSecret;
 	private String _keyType;
+	private BaseModel<?> _oAuthConsumerRemoteModel;
 }

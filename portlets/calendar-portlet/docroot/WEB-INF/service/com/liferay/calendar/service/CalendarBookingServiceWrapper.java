@@ -32,6 +32,31 @@ public class CalendarBookingServiceWrapper implements CalendarBookingService,
 		_calendarBookingService = calendarBookingService;
 	}
 
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _calendarBookingService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_calendarBookingService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _calendarBookingService.invokeMethod(name, parameterTypes,
+			arguments);
+	}
+
 	public com.liferay.calendar.model.CalendarBooking addCalendarBooking(
 		long calendarEventId, long calendarResourceId, boolean required,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -41,11 +66,11 @@ public class CalendarBookingServiceWrapper implements CalendarBookingService,
 			calendarResourceId, required, serviceContext);
 	}
 
-	public void deleteCalendarBooking(long calendarResourceId,
-		long calendarBookingId)
+	public com.liferay.calendar.model.CalendarBooking deleteCalendarBooking(
+		long calendarResourceId, long calendarBookingId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_calendarBookingService.deleteCalendarBooking(calendarResourceId,
+		return _calendarBookingService.deleteCalendarBooking(calendarResourceId,
 			calendarBookingId);
 	}
 

@@ -87,6 +87,10 @@ public class MicroblogsEntryLocalServiceWrapper
 		return _microblogsEntryLocalService.deleteMicroblogsEntry(microblogsEntry);
 	}
 
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _microblogsEntryLocalService.dynamicQuery();
+	}
+
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
@@ -261,6 +265,13 @@ public class MicroblogsEntryLocalServiceWrapper
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_microblogsEntryLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _microblogsEntryLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	public com.liferay.microblogs.model.MicroblogsEntry addMicroblogsEntry(

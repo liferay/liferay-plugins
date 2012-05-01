@@ -15,9 +15,9 @@
 package com.liferay.ams.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the definition local service. This utility wraps {@link com.liferay.ams.service.impl.DefinitionLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -67,25 +67,32 @@ public class DefinitionLocalServiceUtil {
 	* Deletes the definition with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param definitionId the primary key of the definition
+	* @return the definition that was removed
 	* @throws PortalException if a definition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteDefinition(long definitionId)
+	public static com.liferay.ams.model.Definition deleteDefinition(
+		long definitionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteDefinition(definitionId);
+		return getService().deleteDefinition(definitionId);
 	}
 
 	/**
 	* Deletes the definition from the database. Also notifies the appropriate model listeners.
 	*
 	* @param definition the definition
+	* @return the definition that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteDefinition(
+	public static com.liferay.ams.model.Definition deleteDefinition(
 		com.liferay.ams.model.Definition definition)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteDefinition(definition);
+		return getService().deleteDefinition(definition);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -261,23 +268,22 @@ public class DefinitionLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}
 
 	public static DefinitionLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					DefinitionLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					DefinitionLocalService.class.getName(), portletClassLoader);
-
-			_service = new DefinitionLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new DefinitionLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(DefinitionLocalServiceUtil.class,
 				"_service");

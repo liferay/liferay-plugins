@@ -15,9 +15,9 @@
 package com.liferay.socialnetworking.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the meetups entry local service. This utility wraps {@link com.liferay.socialnetworking.service.impl.MeetupsEntryLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -67,25 +67,32 @@ public class MeetupsEntryLocalServiceUtil {
 	* Deletes the meetups entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param meetupsEntryId the primary key of the meetups entry
+	* @return the meetups entry that was removed
 	* @throws PortalException if a meetups entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteMeetupsEntry(long meetupsEntryId)
+	public static com.liferay.socialnetworking.model.MeetupsEntry deleteMeetupsEntry(
+		long meetupsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteMeetupsEntry(meetupsEntryId);
+		return getService().deleteMeetupsEntry(meetupsEntryId);
 	}
 
 	/**
 	* Deletes the meetups entry from the database. Also notifies the appropriate model listeners.
 	*
 	* @param meetupsEntry the meetups entry
+	* @return the meetups entry that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteMeetupsEntry(
+	public static com.liferay.socialnetworking.model.MeetupsEntry deleteMeetupsEntry(
 		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteMeetupsEntry(meetupsEntry);
+		return getService().deleteMeetupsEntry(meetupsEntry);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -262,6 +269,12 @@ public class MeetupsEntryLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static com.liferay.socialnetworking.model.MeetupsEntry addMeetupsEntry(
 		long userId, java.lang.String title, java.lang.String description,
 		int startDateMonth, int startDateDay, int startDateYear,
@@ -311,17 +324,10 @@ public class MeetupsEntryLocalServiceUtil {
 
 	public static MeetupsEntryLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					MeetupsEntryLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					MeetupsEntryLocalService.class.getName(), portletClassLoader);
-
-			_service = new MeetupsEntryLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new MeetupsEntryLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(MeetupsEntryLocalServiceUtil.class,
 				"_service");

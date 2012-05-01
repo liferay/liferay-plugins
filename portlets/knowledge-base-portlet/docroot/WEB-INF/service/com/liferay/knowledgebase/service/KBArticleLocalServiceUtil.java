@@ -15,9 +15,9 @@
 package com.liferay.knowledgebase.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the k b article local service. This utility wraps {@link com.liferay.knowledgebase.service.impl.KBArticleLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -67,27 +67,34 @@ public class KBArticleLocalServiceUtil {
 	* Deletes the k b article with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kbArticleId the primary key of the k b article
+	* @return the k b article that was removed
 	* @throws PortalException if a k b article with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKBArticle(long kbArticleId)
+	public static com.liferay.knowledgebase.model.KBArticle deleteKBArticle(
+		long kbArticleId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKBArticle(kbArticleId);
+		return getService().deleteKBArticle(kbArticleId);
 	}
 
 	/**
 	* Deletes the k b article from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kbArticle the k b article
+	* @return the k b article that was removed
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKBArticle(
+	public static com.liferay.knowledgebase.model.KBArticle deleteKBArticle(
 		com.liferay.knowledgebase.model.KBArticle kbArticle)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteKBArticle(kbArticle);
+		return getService().deleteKBArticle(kbArticle);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -277,6 +284,12 @@ public class KBArticleLocalServiceUtil {
 	*/
 	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
 		getService().setBeanIdentifier(beanIdentifier);
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
 	public static void addAttachment(java.lang.String dirName,
@@ -547,17 +560,10 @@ public class KBArticleLocalServiceUtil {
 
 	public static KBArticleLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					KBArticleLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					KBArticleLocalService.class.getName(), portletClassLoader);
-
-			_service = new KBArticleLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new KBArticleLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(KBArticleLocalServiceUtil.class,
 				"_service");

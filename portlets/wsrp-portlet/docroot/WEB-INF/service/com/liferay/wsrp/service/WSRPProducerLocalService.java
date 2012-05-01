@@ -19,6 +19,8 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.service.BaseLocalService;
+import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
 
 /**
@@ -36,7 +38,8 @@ import com.liferay.portal.service.PersistedModelLocalService;
  */
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
-public interface WSRPProducerLocalService extends PersistedModelLocalService {
+public interface WSRPProducerLocalService extends BaseLocalService,
+	InvokableLocalService, PersistedModelLocalService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -67,10 +70,12 @@ public interface WSRPProducerLocalService extends PersistedModelLocalService {
 	* Deletes the w s r p producer with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param wsrpProducerId the primary key of the w s r p producer
+	* @return the w s r p producer that was removed
 	* @throws PortalException if a w s r p producer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteWSRPProducer(long wsrpProducerId)
+	public com.liferay.wsrp.model.WSRPProducer deleteWSRPProducer(
+		long wsrpProducerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -78,13 +83,16 @@ public interface WSRPProducerLocalService extends PersistedModelLocalService {
 	* Deletes the w s r p producer from the database. Also notifies the appropriate model listeners.
 	*
 	* @param wsrpProducer the w s r p producer
+	* @return the w s r p producer that was removed
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteWSRPProducer(
+	public com.liferay.wsrp.model.WSRPProducer deleteWSRPProducer(
 		com.liferay.wsrp.model.WSRPProducer wsrpProducer)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -251,6 +259,10 @@ public interface WSRPProducerLocalService extends PersistedModelLocalService {
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
 
 	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(long userId,
 		long groupId, java.lang.String name, java.lang.String version,

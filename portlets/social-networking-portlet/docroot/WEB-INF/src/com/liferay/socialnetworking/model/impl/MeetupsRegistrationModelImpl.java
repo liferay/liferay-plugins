@@ -37,6 +37,8 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The base model implementation for the MeetupsRegistration service. Represents a row in the &quot;SN_MeetupsRegistration&quot; database table, with each column mapped to a property of this class.
@@ -117,6 +119,81 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 
 	public String getModelClassName() {
 		return MeetupsRegistration.class.getName();
+	}
+
+	@Override
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("meetupsRegistrationId", getMeetupsRegistrationId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("meetupsEntryId", getMeetupsEntryId());
+		attributes.put("status", getStatus());
+		attributes.put("comments", getComments());
+
+		return attributes;
+	}
+
+	@Override
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long meetupsRegistrationId = (Long)attributes.get(
+				"meetupsRegistrationId");
+
+		if (meetupsRegistrationId != null) {
+			setMeetupsRegistrationId(meetupsRegistrationId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		Long meetupsEntryId = (Long)attributes.get("meetupsEntryId");
+
+		if (meetupsEntryId != null) {
+			setMeetupsEntryId(meetupsEntryId);
+		}
+
+		Integer status = (Integer)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
+		}
+
+		String comments = (String)attributes.get("comments");
+
+		if (comments != null) {
+			setComments(comments);
+		}
 	}
 
 	public long getMeetupsRegistrationId() {

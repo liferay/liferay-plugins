@@ -21,15 +21,14 @@ import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
+import com.liferay.portal.service.BaseLocalServiceImpl;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -74,7 +73,8 @@ import javax.sql.DataSource;
  * @generated
  */
 public abstract class JIRAChangeItemLocalServiceBaseImpl
-	implements JIRAChangeItemLocalService, IdentifiableBean {
+	extends BaseLocalServiceImpl implements JIRAChangeItemLocalService,
+		IdentifiableBean {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -88,26 +88,12 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	 * @return the j i r a change item that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public JIRAChangeItem addJIRAChangeItem(JIRAChangeItem jiraChangeItem)
 		throws SystemException {
 		jiraChangeItem.setNew(true);
 
-		jiraChangeItem = jiraChangeItemPersistence.update(jiraChangeItem, false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(jiraChangeItem);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return jiraChangeItem;
+		return jiraChangeItemPersistence.update(jiraChangeItem, false);
 	}
 
 	/**
@@ -124,49 +110,32 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	 * Deletes the j i r a change item with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param jiraChangeItemId the primary key of the j i r a change item
+	 * @return the j i r a change item that was removed
 	 * @throws PortalException if a j i r a change item with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteJIRAChangeItem(long jiraChangeItemId)
+	@Indexable(type = IndexableType.DELETE)
+	public JIRAChangeItem deleteJIRAChangeItem(long jiraChangeItemId)
 		throws PortalException, SystemException {
-		JIRAChangeItem jiraChangeItem = jiraChangeItemPersistence.remove(jiraChangeItemId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(jiraChangeItem);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return jiraChangeItemPersistence.remove(jiraChangeItemId);
 	}
 
 	/**
 	 * Deletes the j i r a change item from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param jiraChangeItem the j i r a change item
+	 * @return the j i r a change item that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteJIRAChangeItem(JIRAChangeItem jiraChangeItem)
+	@Indexable(type = IndexableType.DELETE)
+	public JIRAChangeItem deleteJIRAChangeItem(JIRAChangeItem jiraChangeItem)
 		throws SystemException {
-		jiraChangeItemPersistence.remove(jiraChangeItem);
+		return jiraChangeItemPersistence.remove(jiraChangeItem);
+	}
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(jiraChangeItem);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+	public DynamicQuery dynamicQuery() {
+		return DynamicQueryFactoryUtil.forClass(JIRAChangeItem.class,
+			getClassLoader());
 	}
 
 	/**
@@ -292,6 +261,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	 * @return the j i r a change item that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public JIRAChangeItem updateJIRAChangeItem(JIRAChangeItem jiraChangeItem)
 		throws SystemException {
 		return updateJIRAChangeItem(jiraChangeItem, true);
@@ -305,26 +275,12 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	 * @return the j i r a change item that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public JIRAChangeItem updateJIRAChangeItem(JIRAChangeItem jiraChangeItem,
 		boolean merge) throws SystemException {
 		jiraChangeItem.setNew(false);
 
-		jiraChangeItem = jiraChangeItemPersistence.update(jiraChangeItem, merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(jiraChangeItem);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return jiraChangeItem;
+		return jiraChangeItemPersistence.update(jiraChangeItem, merge);
 	}
 
 	/**
@@ -765,10 +721,9 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
-	protected ClassLoader getClassLoader() {
-		Class<?> clazz = getClass();
-
-		return clazz.getClassLoader();
+	public Object invokeMethod(String name, String[] parameterTypes,
+		Object[] arguments) throws Throwable {
+		return _clpInvoker.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	protected Class<?> getModelClass() {
@@ -842,6 +797,6 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private static Log _log = LogFactoryUtil.getLog(JIRAChangeItemLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
+	private JIRAChangeItemLocalServiceClpInvoker _clpInvoker = new JIRAChangeItemLocalServiceClpInvoker();
 }

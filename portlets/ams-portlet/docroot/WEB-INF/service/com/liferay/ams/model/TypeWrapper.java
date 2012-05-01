@@ -16,6 +16,9 @@ package com.liferay.ams.model;
 
 import com.liferay.portal.model.ModelWrapper;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * <p>
  * This class is a wrapper for {@link Type}.
@@ -36,6 +39,36 @@ public class TypeWrapper implements Type, ModelWrapper<Type> {
 
 	public String getModelClassName() {
 		return Type.class.getName();
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("typeId", getTypeId());
+		attributes.put("groupId", getGroupId());
+		attributes.put("name", getName());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long typeId = (Long)attributes.get("typeId");
+
+		if (typeId != null) {
+			setTypeId(typeId);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		String name = (String)attributes.get("name");
+
+		if (name != null) {
+			setName(name);
+		}
 	}
 
 	/**

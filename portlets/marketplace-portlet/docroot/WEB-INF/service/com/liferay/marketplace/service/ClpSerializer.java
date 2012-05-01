@@ -17,16 +17,24 @@ package com.liferay.marketplace.service;
 import com.liferay.marketplace.model.AppClp;
 import com.liferay.marketplace.model.ModuleClp;
 
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
+import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.ClassLoaderObjectInputStream;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
 
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import java.lang.reflect.Method;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -91,10 +99,6 @@ public class ClpSerializer {
 		}
 	}
 
-	public static void setClassLoader(ClassLoader classLoader) {
-		_classLoader = classLoader;
-	}
-
 	public static Object translateInput(BaseModel<?> oldModel) {
 		Class<?> oldModelClass = oldModel.getClass();
 
@@ -124,152 +128,23 @@ public class ClpSerializer {
 	}
 
 	public static Object translateInputApp(BaseModel<?> oldModel) {
-		AppClp oldCplModel = (AppClp)oldModel;
+		AppClp oldClpModel = (AppClp)oldModel;
 
-		Thread currentThread = Thread.currentThread();
+		BaseModel<?> newModel = oldClpModel.getAppRemoteModel();
 
-		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
 
-		try {
-			currentThread.setContextClassLoader(_classLoader);
-
-			try {
-				Class<?> newModelClass = Class.forName("com.liferay.marketplace.model.impl.AppImpl",
-						true, _classLoader);
-
-				Object newModel = newModelClass.newInstance();
-
-				Method method0 = newModelClass.getMethod("setUuid",
-						new Class[] { String.class });
-
-				String value0 = oldCplModel.getUuid();
-
-				method0.invoke(newModel, value0);
-
-				Method method1 = newModelClass.getMethod("setAppId",
-						new Class[] { Long.TYPE });
-
-				Long value1 = new Long(oldCplModel.getAppId());
-
-				method1.invoke(newModel, value1);
-
-				Method method2 = newModelClass.getMethod("setCompanyId",
-						new Class[] { Long.TYPE });
-
-				Long value2 = new Long(oldCplModel.getCompanyId());
-
-				method2.invoke(newModel, value2);
-
-				Method method3 = newModelClass.getMethod("setUserId",
-						new Class[] { Long.TYPE });
-
-				Long value3 = new Long(oldCplModel.getUserId());
-
-				method3.invoke(newModel, value3);
-
-				Method method4 = newModelClass.getMethod("setUserName",
-						new Class[] { String.class });
-
-				String value4 = oldCplModel.getUserName();
-
-				method4.invoke(newModel, value4);
-
-				Method method5 = newModelClass.getMethod("setCreateDate",
-						new Class[] { Date.class });
-
-				Date value5 = oldCplModel.getCreateDate();
-
-				method5.invoke(newModel, value5);
-
-				Method method6 = newModelClass.getMethod("setModifiedDate",
-						new Class[] { Date.class });
-
-				Date value6 = oldCplModel.getModifiedDate();
-
-				method6.invoke(newModel, value6);
-
-				Method method7 = newModelClass.getMethod("setRemoteAppId",
-						new Class[] { Long.TYPE });
-
-				Long value7 = new Long(oldCplModel.getRemoteAppId());
-
-				method7.invoke(newModel, value7);
-
-				Method method8 = newModelClass.getMethod("setVersion",
-						new Class[] { String.class });
-
-				String value8 = oldCplModel.getVersion();
-
-				method8.invoke(newModel, value8);
-
-				return newModel;
-			}
-			catch (Exception e) {
-				_log.error(e, e);
-			}
-		}
-		finally {
-			currentThread.setContextClassLoader(contextClassLoader);
-		}
-
-		return oldModel;
+		return newModel;
 	}
 
 	public static Object translateInputModule(BaseModel<?> oldModel) {
-		ModuleClp oldCplModel = (ModuleClp)oldModel;
+		ModuleClp oldClpModel = (ModuleClp)oldModel;
 
-		Thread currentThread = Thread.currentThread();
+		BaseModel<?> newModel = oldClpModel.getModuleRemoteModel();
 
-		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
 
-		try {
-			currentThread.setContextClassLoader(_classLoader);
-
-			try {
-				Class<?> newModelClass = Class.forName("com.liferay.marketplace.model.impl.ModuleImpl",
-						true, _classLoader);
-
-				Object newModel = newModelClass.newInstance();
-
-				Method method0 = newModelClass.getMethod("setUuid",
-						new Class[] { String.class });
-
-				String value0 = oldCplModel.getUuid();
-
-				method0.invoke(newModel, value0);
-
-				Method method1 = newModelClass.getMethod("setModuleId",
-						new Class[] { Long.TYPE });
-
-				Long value1 = new Long(oldCplModel.getModuleId());
-
-				method1.invoke(newModel, value1);
-
-				Method method2 = newModelClass.getMethod("setAppId",
-						new Class[] { Long.TYPE });
-
-				Long value2 = new Long(oldCplModel.getAppId());
-
-				method2.invoke(newModel, value2);
-
-				Method method3 = newModelClass.getMethod("setContextName",
-						new Class[] { String.class });
-
-				String value3 = oldCplModel.getContextName();
-
-				method3.invoke(newModel, value3);
-
-				return newModel;
-			}
-			catch (Exception e) {
-				_log.error(e, e);
-			}
-		}
-		finally {
-			currentThread.setContextClassLoader(contextClassLoader);
-		}
-
-		return oldModel;
+		return newModel;
 	}
 
 	public static Object translateInput(Object obj) {
@@ -326,137 +201,100 @@ public class ClpSerializer {
 		}
 	}
 
-	public static Object translateOutputApp(BaseModel<?> oldModel) {
-		Thread currentThread = Thread.currentThread();
-
-		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
-
-		try {
-			currentThread.setContextClassLoader(_classLoader);
-
+	public static Throwable translateThrowable(Throwable throwable) {
+		if (_useReflectionToTranslateThrowable) {
 			try {
-				AppClp newModel = new AppClp();
+				if (_classLoader == null) {
+					_classLoader = (ClassLoader)PortletBeanLocatorUtil.locate(_servletContextName,
+							"portletClassLoader");
+				}
 
-				Class<?> oldModelClass = oldModel.getClass();
+				UnsyncByteArrayOutputStream unsyncByteArrayOutputStream = new UnsyncByteArrayOutputStream();
+				ObjectOutputStream objectOutputStream = new ObjectOutputStream(unsyncByteArrayOutputStream);
 
-				Method method0 = oldModelClass.getMethod("getUuid");
+				objectOutputStream.writeObject(throwable);
 
-				String value0 = (String)method0.invoke(oldModel, (Object[])null);
+				objectOutputStream.flush();
+				objectOutputStream.close();
 
-				newModel.setUuid(value0);
+				UnsyncByteArrayInputStream unsyncByteArrayInputStream = new UnsyncByteArrayInputStream(unsyncByteArrayOutputStream.unsafeGetByteArray(),
+						0, unsyncByteArrayOutputStream.size());
+				ObjectInputStream objectInputStream = new ClassLoaderObjectInputStream(unsyncByteArrayInputStream,
+						_classLoader);
 
-				Method method1 = oldModelClass.getMethod("getAppId");
+				throwable = (Throwable)objectInputStream.readObject();
 
-				Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
+				objectInputStream.close();
 
-				newModel.setAppId(value1);
-
-				Method method2 = oldModelClass.getMethod("getCompanyId");
-
-				Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
-
-				newModel.setCompanyId(value2);
-
-				Method method3 = oldModelClass.getMethod("getUserId");
-
-				Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
-
-				newModel.setUserId(value3);
-
-				Method method4 = oldModelClass.getMethod("getUserName");
-
-				String value4 = (String)method4.invoke(oldModel, (Object[])null);
-
-				newModel.setUserName(value4);
-
-				Method method5 = oldModelClass.getMethod("getCreateDate");
-
-				Date value5 = (Date)method5.invoke(oldModel, (Object[])null);
-
-				newModel.setCreateDate(value5);
-
-				Method method6 = oldModelClass.getMethod("getModifiedDate");
-
-				Date value6 = (Date)method6.invoke(oldModel, (Object[])null);
-
-				newModel.setModifiedDate(value6);
-
-				Method method7 = oldModelClass.getMethod("getRemoteAppId");
-
-				Long value7 = (Long)method7.invoke(oldModel, (Object[])null);
-
-				newModel.setRemoteAppId(value7);
-
-				Method method8 = oldModelClass.getMethod("getVersion");
-
-				String value8 = (String)method8.invoke(oldModel, (Object[])null);
-
-				newModel.setVersion(value8);
-
-				return newModel;
+				return throwable;
 			}
-			catch (Exception e) {
-				_log.error(e, e);
+			catch (SecurityException se) {
+				if (_log.isInfoEnabled()) {
+					_log.info("Do not use reflection to translate throwable");
+				}
+
+				_useReflectionToTranslateThrowable = false;
+			}
+			catch (Throwable throwable2) {
+				_log.error(throwable2, throwable2);
+
+				return throwable2;
 			}
 		}
-		finally {
-			currentThread.setContextClassLoader(contextClassLoader);
+
+		Class<?> clazz = throwable.getClass();
+
+		String className = clazz.getName();
+
+		if (className.equals(PortalException.class.getName())) {
+			return new PortalException();
 		}
 
-		return oldModel;
+		if (className.equals(SystemException.class.getName())) {
+			return new SystemException();
+		}
+
+		if (className.equals("com.liferay.marketplace.AppVersionException")) {
+			return new com.liferay.marketplace.AppVersionException();
+		}
+
+		if (className.equals("com.liferay.marketplace.DuplicateAppException")) {
+			return new com.liferay.marketplace.DuplicateAppException();
+		}
+
+		if (className.equals("com.liferay.marketplace.NoSuchAppException")) {
+			return new com.liferay.marketplace.NoSuchAppException();
+		}
+
+		if (className.equals("com.liferay.marketplace.NoSuchModuleException")) {
+			return new com.liferay.marketplace.NoSuchModuleException();
+		}
+
+		return throwable;
+	}
+
+	public static Object translateOutputApp(BaseModel<?> oldModel) {
+		AppClp newModel = new AppClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setAppRemoteModel(oldModel);
+
+		return newModel;
 	}
 
 	public static Object translateOutputModule(BaseModel<?> oldModel) {
-		Thread currentThread = Thread.currentThread();
+		ModuleClp newModel = new ModuleClp();
 
-		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+		newModel.setModelAttributes(oldModel.getModelAttributes());
 
-		try {
-			currentThread.setContextClassLoader(_classLoader);
+		newModel.setModuleRemoteModel(oldModel);
 
-			try {
-				ModuleClp newModel = new ModuleClp();
-
-				Class<?> oldModelClass = oldModel.getClass();
-
-				Method method0 = oldModelClass.getMethod("getUuid");
-
-				String value0 = (String)method0.invoke(oldModel, (Object[])null);
-
-				newModel.setUuid(value0);
-
-				Method method1 = oldModelClass.getMethod("getModuleId");
-
-				Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
-
-				newModel.setModuleId(value1);
-
-				Method method2 = oldModelClass.getMethod("getAppId");
-
-				Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
-
-				newModel.setAppId(value2);
-
-				Method method3 = oldModelClass.getMethod("getContextName");
-
-				String value3 = (String)method3.invoke(oldModel, (Object[])null);
-
-				newModel.setContextName(value3);
-
-				return newModel;
-			}
-			catch (Exception e) {
-				_log.error(e, e);
-			}
-		}
-		finally {
-			currentThread.setContextClassLoader(contextClassLoader);
-		}
-
-		return oldModel;
+		return newModel;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(ClpSerializer.class);
 	private static ClassLoader _classLoader;
 	private static String _servletContextName;
+	private static boolean _useReflectionToTranslateThrowable = true;
 }

@@ -58,26 +58,33 @@ public class AccountLocalServiceWrapper implements AccountLocalService,
 	* Deletes the account with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param accountId the primary key of the account
+	* @return the account that was removed
 	* @throws PortalException if a account with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteAccount(long accountId)
+	public com.liferay.mail.model.Account deleteAccount(long accountId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_accountLocalService.deleteAccount(accountId);
+		return _accountLocalService.deleteAccount(accountId);
 	}
 
 	/**
 	* Deletes the account from the database. Also notifies the appropriate model listeners.
 	*
 	* @param account the account
+	* @return the account that was removed
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteAccount(com.liferay.mail.model.Account account)
+	public com.liferay.mail.model.Account deleteAccount(
+		com.liferay.mail.model.Account account)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_accountLocalService.deleteAccount(account);
+		return _accountLocalService.deleteAccount(account);
+	}
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _accountLocalService.dynamicQuery();
 	}
 
 	/**
@@ -249,6 +256,12 @@ public class AccountLocalServiceWrapper implements AccountLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_accountLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _accountLocalService.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	public com.liferay.mail.model.Account addAccount(long userId,

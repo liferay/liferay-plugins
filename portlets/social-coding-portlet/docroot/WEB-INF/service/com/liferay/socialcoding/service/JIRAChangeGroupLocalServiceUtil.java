@@ -15,9 +15,9 @@
 package com.liferay.socialcoding.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the j i r a change group local service. This utility wraps {@link com.liferay.socialcoding.service.impl.JIRAChangeGroupLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -67,25 +67,32 @@ public class JIRAChangeGroupLocalServiceUtil {
 	* Deletes the j i r a change group with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param jiraChangeGroupId the primary key of the j i r a change group
+	* @return the j i r a change group that was removed
 	* @throws PortalException if a j i r a change group with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteJIRAChangeGroup(long jiraChangeGroupId)
+	public static com.liferay.socialcoding.model.JIRAChangeGroup deleteJIRAChangeGroup(
+		long jiraChangeGroupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteJIRAChangeGroup(jiraChangeGroupId);
+		return getService().deleteJIRAChangeGroup(jiraChangeGroupId);
 	}
 
 	/**
 	* Deletes the j i r a change group from the database. Also notifies the appropriate model listeners.
 	*
 	* @param jiraChangeGroup the j i r a change group
+	* @return the j i r a change group that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteJIRAChangeGroup(
+	public static com.liferay.socialcoding.model.JIRAChangeGroup deleteJIRAChangeGroup(
 		com.liferay.socialcoding.model.JIRAChangeGroup jiraChangeGroup)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteJIRAChangeGroup(jiraChangeGroup);
+		return getService().deleteJIRAChangeGroup(jiraChangeGroup);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -262,24 +269,22 @@ public class JIRAChangeGroupLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}
 
 	public static JIRAChangeGroupLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					JIRAChangeGroupLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					JIRAChangeGroupLocalService.class.getName(),
-					portletClassLoader);
-
-			_service = new JIRAChangeGroupLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new JIRAChangeGroupLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(JIRAChangeGroupLocalServiceUtil.class,
 				"_service");

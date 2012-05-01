@@ -28,16 +28,20 @@ import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
+import com.liferay.portal.service.BaseLocalServiceImpl;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
+import com.liferay.portal.service.ResourceService;
 import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.service.UserService;
+import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 
 import java.io.Serializable;
@@ -58,8 +62,8 @@ import javax.sql.DataSource;
  * @see com.liferay.marketplace.service.ModuleLocalServiceUtil
  * @generated
  */
-public abstract class ModuleLocalServiceBaseImpl implements ModuleLocalService,
-	IdentifiableBean {
+public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
+	implements ModuleLocalService, IdentifiableBean {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -114,6 +118,10 @@ public abstract class ModuleLocalServiceBaseImpl implements ModuleLocalService,
 	@Indexable(type = IndexableType.DELETE)
 	public Module deleteModule(Module module) throws SystemException {
 		return modulePersistence.remove(module);
+	}
+
+	public DynamicQuery dynamicQuery() {
+		return DynamicQueryFactoryUtil.forClass(Module.class, getClassLoader());
 	}
 
 	/**
@@ -386,6 +394,42 @@ public abstract class ModuleLocalServiceBaseImpl implements ModuleLocalService,
 	}
 
 	/**
+	 * Returns the resource remote service.
+	 *
+	 * @return the resource remote service
+	 */
+	public ResourceService getResourceService() {
+		return resourceService;
+	}
+
+	/**
+	 * Sets the resource remote service.
+	 *
+	 * @param resourceService the resource remote service
+	 */
+	public void setResourceService(ResourceService resourceService) {
+		this.resourceService = resourceService;
+	}
+
+	/**
+	 * Returns the resource persistence.
+	 *
+	 * @return the resource persistence
+	 */
+	public ResourcePersistence getResourcePersistence() {
+		return resourcePersistence;
+	}
+
+	/**
+	 * Sets the resource persistence.
+	 *
+	 * @param resourcePersistence the resource persistence
+	 */
+	public void setResourcePersistence(ResourcePersistence resourcePersistence) {
+		this.resourcePersistence = resourcePersistence;
+	}
+
+	/**
 	 * Returns the user local service.
 	 *
 	 * @return the user local service
@@ -467,10 +511,9 @@ public abstract class ModuleLocalServiceBaseImpl implements ModuleLocalService,
 		_beanIdentifier = beanIdentifier;
 	}
 
-	protected ClassLoader getClassLoader() {
-		Class<?> clazz = getClass();
-
-		return clazz.getClassLoader();
+	public Object invokeMethod(String name, String[] parameterTypes,
+		Object[] arguments) throws Throwable {
+		return _clpInvoker.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	protected Class<?> getModelClass() {
@@ -514,6 +557,10 @@ public abstract class ModuleLocalServiceBaseImpl implements ModuleLocalService,
 	protected CounterLocalService counterLocalService;
 	@BeanReference(type = ResourceLocalService.class)
 	protected ResourceLocalService resourceLocalService;
+	@BeanReference(type = ResourceService.class)
+	protected ResourceService resourceService;
+	@BeanReference(type = ResourcePersistence.class)
+	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserLocalService.class)
 	protected UserLocalService userLocalService;
 	@BeanReference(type = UserService.class)
@@ -521,4 +568,5 @@ public abstract class ModuleLocalServiceBaseImpl implements ModuleLocalService,
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 	private String _beanIdentifier;
+	private ModuleLocalServiceClpInvoker _clpInvoker = new ModuleLocalServiceClpInvoker();
 }

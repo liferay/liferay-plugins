@@ -15,9 +15,9 @@
 package com.liferay.portal.workflow.kaleo.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the kaleo task assignment instance local service. This utility wraps {@link com.liferay.portal.workflow.kaleo.service.impl.KaleoTaskAssignmentInstanceLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -69,28 +69,34 @@ public class KaleoTaskAssignmentInstanceLocalServiceUtil {
 	* Deletes the kaleo task assignment instance with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTaskAssignmentInstanceId the primary key of the kaleo task assignment instance
+	* @return the kaleo task assignment instance that was removed
 	* @throws PortalException if a kaleo task assignment instance with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoTaskAssignmentInstance(
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance deleteKaleoTaskAssignmentInstance(
 		long kaleoTaskAssignmentInstanceId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService()
-			.deleteKaleoTaskAssignmentInstance(kaleoTaskAssignmentInstanceId);
+		return getService()
+				   .deleteKaleoTaskAssignmentInstance(kaleoTaskAssignmentInstanceId);
 	}
 
 	/**
 	* Deletes the kaleo task assignment instance from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTaskAssignmentInstance the kaleo task assignment instance
+	* @return the kaleo task assignment instance that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteKaleoTaskAssignmentInstance(
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance deleteKaleoTaskAssignmentInstance(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService()
-			.deleteKaleoTaskAssignmentInstance(kaleoTaskAssignmentInstance);
+		return getService()
+				   .deleteKaleoTaskAssignmentInstance(kaleoTaskAssignmentInstance);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -272,6 +278,12 @@ public class KaleoTaskAssignmentInstanceLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance addKaleoTaskAssignmentInstance(
 		long groupId,
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken,
@@ -356,18 +368,10 @@ public class KaleoTaskAssignmentInstanceLocalServiceUtil {
 
 	public static KaleoTaskAssignmentInstanceLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					KaleoTaskAssignmentInstanceLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					KaleoTaskAssignmentInstanceLocalService.class.getName(),
-					portletClassLoader);
-
-			_service = new KaleoTaskAssignmentInstanceLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new KaleoTaskAssignmentInstanceLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(KaleoTaskAssignmentInstanceLocalServiceUtil.class,
 				"_service");

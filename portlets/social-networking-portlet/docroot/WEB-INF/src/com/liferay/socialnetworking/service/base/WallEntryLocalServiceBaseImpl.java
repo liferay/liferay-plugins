@@ -21,15 +21,14 @@ import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
+import com.liferay.portal.service.BaseLocalServiceImpl;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -65,7 +64,7 @@ import javax.sql.DataSource;
  * @see com.liferay.socialnetworking.service.WallEntryLocalServiceUtil
  * @generated
  */
-public abstract class WallEntryLocalServiceBaseImpl
+public abstract class WallEntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	implements WallEntryLocalService, IdentifiableBean {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -80,26 +79,12 @@ public abstract class WallEntryLocalServiceBaseImpl
 	 * @return the wall entry that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public WallEntry addWallEntry(WallEntry wallEntry)
 		throws SystemException {
 		wallEntry.setNew(true);
 
-		wallEntry = wallEntryPersistence.update(wallEntry, false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(wallEntry);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return wallEntry;
+		return wallEntryPersistence.update(wallEntry, false);
 	}
 
 	/**
@@ -116,48 +101,32 @@ public abstract class WallEntryLocalServiceBaseImpl
 	 * Deletes the wall entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param wallEntryId the primary key of the wall entry
+	 * @return the wall entry that was removed
 	 * @throws PortalException if a wall entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteWallEntry(long wallEntryId)
+	@Indexable(type = IndexableType.DELETE)
+	public WallEntry deleteWallEntry(long wallEntryId)
 		throws PortalException, SystemException {
-		WallEntry wallEntry = wallEntryPersistence.remove(wallEntryId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(wallEntry);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return wallEntryPersistence.remove(wallEntryId);
 	}
 
 	/**
 	 * Deletes the wall entry from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param wallEntry the wall entry
+	 * @return the wall entry that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteWallEntry(WallEntry wallEntry) throws SystemException {
-		wallEntryPersistence.remove(wallEntry);
+	@Indexable(type = IndexableType.DELETE)
+	public WallEntry deleteWallEntry(WallEntry wallEntry)
+		throws SystemException {
+		return wallEntryPersistence.remove(wallEntry);
+	}
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(wallEntry);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+	public DynamicQuery dynamicQuery() {
+		return DynamicQueryFactoryUtil.forClass(WallEntry.class,
+			getClassLoader());
 	}
 
 	/**
@@ -282,6 +251,7 @@ public abstract class WallEntryLocalServiceBaseImpl
 	 * @return the wall entry that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public WallEntry updateWallEntry(WallEntry wallEntry)
 		throws SystemException {
 		return updateWallEntry(wallEntry, true);
@@ -295,26 +265,12 @@ public abstract class WallEntryLocalServiceBaseImpl
 	 * @return the wall entry that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public WallEntry updateWallEntry(WallEntry wallEntry, boolean merge)
 		throws SystemException {
 		wallEntry.setNew(false);
 
-		wallEntry = wallEntryPersistence.update(wallEntry, merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(wallEntry);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return wallEntry;
+		return wallEntryPersistence.update(wallEntry, merge);
 	}
 
 	/**
@@ -604,10 +560,9 @@ public abstract class WallEntryLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
-	protected ClassLoader getClassLoader() {
-		Class<?> clazz = getClass();
-
-		return clazz.getClassLoader();
+	public Object invokeMethod(String name, String[] parameterTypes,
+		Object[] arguments) throws Throwable {
+		return _clpInvoker.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	protected Class<?> getModelClass() {
@@ -665,6 +620,6 @@ public abstract class WallEntryLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	private static Log _log = LogFactoryUtil.getLog(WallEntryLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
+	private WallEntryLocalServiceClpInvoker _clpInvoker = new WallEntryLocalServiceClpInvoker();
 }

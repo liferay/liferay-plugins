@@ -19,6 +19,8 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.service.BaseLocalService;
+import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
 
 /**
@@ -36,8 +38,8 @@ import com.liferay.portal.service.PersistedModelLocalService;
  */
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
-public interface KaleoNotificationRecipientLocalService
-	extends PersistedModelLocalService {
+public interface KaleoNotificationRecipientLocalService extends BaseLocalService,
+	InvokableLocalService, PersistedModelLocalService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -68,10 +70,11 @@ public interface KaleoNotificationRecipientLocalService
 	* Deletes the kaleo notification recipient with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoNotificationRecipientId the primary key of the kaleo notification recipient
+	* @return the kaleo notification recipient that was removed
 	* @throws PortalException if a kaleo notification recipient with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoNotificationRecipient(
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient deleteKaleoNotificationRecipient(
 		long kaleoNotificationRecipientId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -80,11 +83,14 @@ public interface KaleoNotificationRecipientLocalService
 	* Deletes the kaleo notification recipient from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoNotificationRecipient the kaleo notification recipient
+	* @return the kaleo notification recipient that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoNotificationRecipient(
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient deleteKaleoNotificationRecipient(
 		com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient kaleoNotificationRecipient)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -237,6 +243,10 @@ public interface KaleoNotificationRecipientLocalService
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient addKaleoNotificationRecipient(
 		long kaleoDefinitionId, long kaleoNotificationId,

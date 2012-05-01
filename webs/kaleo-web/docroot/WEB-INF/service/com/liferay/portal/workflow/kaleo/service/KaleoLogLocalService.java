@@ -19,6 +19,8 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.service.BaseLocalService;
+import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
 
 /**
@@ -36,7 +38,8 @@ import com.liferay.portal.service.PersistedModelLocalService;
  */
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
-public interface KaleoLogLocalService extends PersistedModelLocalService {
+public interface KaleoLogLocalService extends BaseLocalService,
+	InvokableLocalService, PersistedModelLocalService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -67,10 +70,12 @@ public interface KaleoLogLocalService extends PersistedModelLocalService {
 	* Deletes the kaleo log with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoLogId the primary key of the kaleo log
+	* @return the kaleo log that was removed
 	* @throws PortalException if a kaleo log with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoLog(long kaleoLogId)
+	public com.liferay.portal.workflow.kaleo.model.KaleoLog deleteKaleoLog(
+		long kaleoLogId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -78,11 +83,14 @@ public interface KaleoLogLocalService extends PersistedModelLocalService {
 	* Deletes the kaleo log from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoLog the kaleo log
+	* @return the kaleo log that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoLog(
+	public com.liferay.portal.workflow.kaleo.model.KaleoLog deleteKaleoLog(
 		com.liferay.portal.workflow.kaleo.model.KaleoLog kaleoLog)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -234,6 +242,10 @@ public interface KaleoLogLocalService extends PersistedModelLocalService {
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoLog addActionExecutionKaleoLog(
 		com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken kaleoInstanceToken,

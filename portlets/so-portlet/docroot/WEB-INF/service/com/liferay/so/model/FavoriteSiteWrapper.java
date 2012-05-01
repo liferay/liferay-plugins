@@ -16,6 +16,9 @@ package com.liferay.so.model;
 
 import com.liferay.portal.model.ModelWrapper;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * <p>
  * This class is a wrapper for {@link FavoriteSite}.
@@ -37,6 +40,43 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 
 	public String getModelClassName() {
 		return FavoriteSite.class.getName();
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("favoriteSiteId", getFavoriteSiteId());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long favoriteSiteId = (Long)attributes.get("favoriteSiteId");
+
+		if (favoriteSiteId != null) {
+			setFavoriteSiteId(favoriteSiteId);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
 	}
 
 	/**

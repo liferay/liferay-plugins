@@ -15,9 +15,9 @@
 package com.liferay.wsrp.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the w s r p consumer portlet local service. This utility wraps {@link com.liferay.wsrp.service.impl.WSRPConsumerPortletLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -67,27 +67,34 @@ public class WSRPConsumerPortletLocalServiceUtil {
 	* Deletes the w s r p consumer portlet with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param wsrpConsumerPortletId the primary key of the w s r p consumer portlet
+	* @return the w s r p consumer portlet that was removed
 	* @throws PortalException if a w s r p consumer portlet with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteWSRPConsumerPortlet(long wsrpConsumerPortletId)
+	public static com.liferay.wsrp.model.WSRPConsumerPortlet deleteWSRPConsumerPortlet(
+		long wsrpConsumerPortletId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteWSRPConsumerPortlet(wsrpConsumerPortletId);
+		return getService().deleteWSRPConsumerPortlet(wsrpConsumerPortletId);
 	}
 
 	/**
 	* Deletes the w s r p consumer portlet from the database. Also notifies the appropriate model listeners.
 	*
 	* @param wsrpConsumerPortlet the w s r p consumer portlet
+	* @return the w s r p consumer portlet that was removed
 	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteWSRPConsumerPortlet(
+	public static com.liferay.wsrp.model.WSRPConsumerPortlet deleteWSRPConsumerPortlet(
 		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteWSRPConsumerPortlet(wsrpConsumerPortlet);
+		return getService().deleteWSRPConsumerPortlet(wsrpConsumerPortlet);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -264,6 +271,12 @@ public class WSRPConsumerPortletLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet addWSRPConsumerPortlet(
 		long wsrpConsumerId, java.lang.String name,
 		java.lang.String portletHandle, java.lang.String userToken,
@@ -372,18 +385,10 @@ public class WSRPConsumerPortletLocalServiceUtil {
 
 	public static WSRPConsumerPortletLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					WSRPConsumerPortletLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					WSRPConsumerPortletLocalService.class.getName(),
-					portletClassLoader);
-
-			_service = new WSRPConsumerPortletLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new WSRPConsumerPortletLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(WSRPConsumerPortletLocalServiceUtil.class,
 				"_service");

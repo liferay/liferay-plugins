@@ -45,6 +45,7 @@ import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
+import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
@@ -1522,14 +1523,13 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	 * Removes the app where remoteAppId = &#63; from the database.
 	 *
 	 * @param remoteAppId the remote app ID
-	 * @return the app that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public App removeByRemoteAppId(long remoteAppId)
+	public void removeByRemoteAppId(long remoteAppId)
 		throws NoSuchAppException, SystemException {
 		App app = findByRemoteAppId(remoteAppId);
 
-		return remove(app);
+		remove(app);
 	}
 
 	/**
@@ -1787,6 +1787,8 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	protected AppPersistence appPersistence;
 	@BeanReference(type = ModulePersistence.class)
 	protected ModulePersistence modulePersistence;
+	@BeanReference(type = ResourcePersistence.class)
+	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 	private static final String _SQL_SELECT_APP = "SELECT app FROM App app";

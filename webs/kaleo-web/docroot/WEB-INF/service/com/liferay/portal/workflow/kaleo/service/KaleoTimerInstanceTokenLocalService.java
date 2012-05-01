@@ -19,6 +19,8 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.service.BaseLocalService;
+import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
 
 /**
@@ -36,8 +38,8 @@ import com.liferay.portal.service.PersistedModelLocalService;
  */
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
-public interface KaleoTimerInstanceTokenLocalService
-	extends PersistedModelLocalService {
+public interface KaleoTimerInstanceTokenLocalService extends BaseLocalService,
+	InvokableLocalService, PersistedModelLocalService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -68,10 +70,12 @@ public interface KaleoTimerInstanceTokenLocalService
 	* Deletes the kaleo timer instance token with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTimerInstanceTokenId the primary key of the kaleo timer instance token
+	* @return the kaleo timer instance token that was removed
 	* @throws PortalException if a kaleo timer instance token with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoTimerInstanceToken(long kaleoTimerInstanceTokenId)
+	public com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken deleteKaleoTimerInstanceToken(
+		long kaleoTimerInstanceTokenId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -79,11 +83,14 @@ public interface KaleoTimerInstanceTokenLocalService
 	* Deletes the kaleo timer instance token from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoTimerInstanceToken the kaleo timer instance token
+	* @return the kaleo timer instance token that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoTimerInstanceToken(
+	public com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken deleteKaleoTimerInstanceToken(
 		com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken kaleoTimerInstanceToken)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -236,6 +243,10 @@ public interface KaleoTimerInstanceTokenLocalService
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken addKaleoTimerInstanceToken(
 		long kaleoInstanceTokenId, long kaleoTaskInstanceTokenId,

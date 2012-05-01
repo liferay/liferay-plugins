@@ -84,6 +84,10 @@ public class UserThreadLocalServiceWrapper implements UserThreadLocalService,
 		return _userThreadLocalService.deleteUserThread(userThread);
 	}
 
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _userThreadLocalService.dynamicQuery();
+	}
+
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
 	*
@@ -255,6 +259,13 @@ public class UserThreadLocalServiceWrapper implements UserThreadLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_userThreadLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _userThreadLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	public com.liferay.portlet.messageboards.model.MBMessage addPrivateMessage(

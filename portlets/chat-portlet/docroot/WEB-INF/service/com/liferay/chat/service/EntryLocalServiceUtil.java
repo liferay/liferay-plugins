@@ -15,9 +15,9 @@
 package com.liferay.chat.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the entry local service. This utility wraps {@link com.liferay.chat.service.impl.EntryLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -66,24 +66,31 @@ public class EntryLocalServiceUtil {
 	* Deletes the entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param entryId the primary key of the entry
+	* @return the entry that was removed
 	* @throws PortalException if a entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteEntry(long entryId)
+	public static com.liferay.chat.model.Entry deleteEntry(long entryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteEntry(entryId);
+		return getService().deleteEntry(entryId);
 	}
 
 	/**
 	* Deletes the entry from the database. Also notifies the appropriate model listeners.
 	*
 	* @param entry the entry
+	* @return the entry that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteEntry(com.liferay.chat.model.Entry entry)
+	public static com.liferay.chat.model.Entry deleteEntry(
+		com.liferay.chat.model.Entry entry)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteEntry(entry);
+		return getService().deleteEntry(entry);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -257,6 +264,12 @@ public class EntryLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static com.liferay.chat.model.Entry addEntry(long createDate,
 		long fromUserId, long toUserId, java.lang.String content)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -292,17 +305,10 @@ public class EntryLocalServiceUtil {
 
 	public static EntryLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					EntryLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					EntryLocalService.class.getName(), portletClassLoader);
-
-			_service = new EntryLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new EntryLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(EntryLocalServiceUtil.class,
 				"_service");

@@ -31,6 +31,30 @@ public class GadgetServiceWrapper implements GadgetService,
 		_gadgetService = gadgetService;
 	}
 
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _gadgetService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_gadgetService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _gadgetService.invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public com.liferay.opensocial.model.Gadget addGadget(long companyId,
 		java.lang.String url, java.lang.String portletCategoryNames,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -40,11 +64,11 @@ public class GadgetServiceWrapper implements GadgetService,
 			serviceContext);
 	}
 
-	public void deleteGadget(long gadgetId,
+	public com.liferay.opensocial.model.Gadget deleteGadget(long gadgetId,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_gadgetService.deleteGadget(gadgetId, serviceContext);
+		return _gadgetService.deleteGadget(gadgetId, serviceContext);
 	}
 
 	public void updateGadget(long gadgetId,

@@ -15,9 +15,9 @@
 package com.liferay.so.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the favorite site local service. This utility wraps {@link com.liferay.so.service.impl.FavoriteSiteLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -89,6 +89,10 @@ public class FavoriteSiteLocalServiceUtil {
 		com.liferay.so.model.FavoriteSite favoriteSite)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().deleteFavoriteSite(favoriteSite);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -264,6 +268,12 @@ public class FavoriteSiteLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static com.liferay.so.model.FavoriteSite addFavoriteSite(
 		long userId, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -315,17 +325,10 @@ public class FavoriteSiteLocalServiceUtil {
 
 	public static FavoriteSiteLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					FavoriteSiteLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					FavoriteSiteLocalService.class.getName(), portletClassLoader);
-
-			_service = new FavoriteSiteLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new FavoriteSiteLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(FavoriteSiteLocalServiceUtil.class,
 				"_service");

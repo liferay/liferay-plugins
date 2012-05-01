@@ -59,24 +59,31 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 	* Deletes the definition with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param definitionId the primary key of the definition
+	* @return the definition that was removed
 	* @throws PortalException if a definition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteDefinition(long definitionId)
+	public com.liferay.ams.model.Definition deleteDefinition(long definitionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_definitionLocalService.deleteDefinition(definitionId);
+		return _definitionLocalService.deleteDefinition(definitionId);
 	}
 
 	/**
 	* Deletes the definition from the database. Also notifies the appropriate model listeners.
 	*
 	* @param definition the definition
+	* @return the definition that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteDefinition(com.liferay.ams.model.Definition definition)
+	public com.liferay.ams.model.Definition deleteDefinition(
+		com.liferay.ams.model.Definition definition)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_definitionLocalService.deleteDefinition(definition);
+		return _definitionLocalService.deleteDefinition(definition);
+	}
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _definitionLocalService.dynamicQuery();
 	}
 
 	/**
@@ -248,6 +255,13 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_definitionLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _definitionLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	/**

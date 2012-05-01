@@ -15,9 +15,9 @@
 package com.liferay.so.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * The utility for the projects entry local service. This utility wraps {@link com.liferay.so.service.impl.ProjectsEntryLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -89,6 +89,10 @@ public class ProjectsEntryLocalServiceUtil {
 		com.liferay.so.model.ProjectsEntry projectsEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().deleteProjectsEntry(projectsEntry);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
 	}
 
 	/**
@@ -264,6 +268,12 @@ public class ProjectsEntryLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static com.liferay.so.model.ProjectsEntry addProjectsEntry(
 		long userId, java.lang.String title, java.lang.String description,
 		int startDateMonth, int startDateDay, int startDateYear,
@@ -306,18 +316,10 @@ public class ProjectsEntryLocalServiceUtil {
 
 	public static ProjectsEntryLocalService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					ProjectsEntryLocalService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					ProjectsEntryLocalService.class.getName(),
-					portletClassLoader);
-
-			_service = new ProjectsEntryLocalServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new ProjectsEntryLocalServiceClp(invokableLocalService);
 
 			ReferenceRegistry.registerReference(ProjectsEntryLocalServiceUtil.class,
 				"_service");

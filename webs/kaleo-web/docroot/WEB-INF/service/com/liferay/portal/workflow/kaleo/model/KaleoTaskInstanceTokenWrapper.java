@@ -16,6 +16,10 @@ package com.liferay.portal.workflow.kaleo.model;
 
 import com.liferay.portal.model.ModelWrapper;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * <p>
  * This class is a wrapper for {@link KaleoTaskInstanceToken}.
@@ -38,6 +42,149 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 
 	public String getModelClassName() {
 		return KaleoTaskInstanceToken.class.getName();
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("kaleoTaskInstanceTokenId", getKaleoTaskInstanceTokenId());
+		attributes.put("groupId", getGroupId());
+		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
+		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("kaleoDefinitionId", getKaleoDefinitionId());
+		attributes.put("kaleoInstanceId", getKaleoInstanceId());
+		attributes.put("kaleoInstanceTokenId", getKaleoInstanceTokenId());
+		attributes.put("kaleoTaskId", getKaleoTaskId());
+		attributes.put("kaleoTaskName", getKaleoTaskName());
+		attributes.put("className", getClassName());
+		attributes.put("classPK", getClassPK());
+		attributes.put("completionUserId", getCompletionUserId());
+		attributes.put("completed", getCompleted());
+		attributes.put("completionDate", getCompletionDate());
+		attributes.put("dueDate", getDueDate());
+		attributes.put("workflowContext", getWorkflowContext());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		Long kaleoTaskInstanceTokenId = (Long)attributes.get(
+				"kaleoTaskInstanceTokenId");
+
+		if (kaleoTaskInstanceTokenId != null) {
+			setKaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
+		}
+
+		Long companyId = (Long)attributes.get("companyId");
+
+		if (companyId != null) {
+			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
+		}
+
+		Date createDate = (Date)attributes.get("createDate");
+
+		if (createDate != null) {
+			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
+		}
+
+		Long kaleoDefinitionId = (Long)attributes.get("kaleoDefinitionId");
+
+		if (kaleoDefinitionId != null) {
+			setKaleoDefinitionId(kaleoDefinitionId);
+		}
+
+		Long kaleoInstanceId = (Long)attributes.get("kaleoInstanceId");
+
+		if (kaleoInstanceId != null) {
+			setKaleoInstanceId(kaleoInstanceId);
+		}
+
+		Long kaleoInstanceTokenId = (Long)attributes.get("kaleoInstanceTokenId");
+
+		if (kaleoInstanceTokenId != null) {
+			setKaleoInstanceTokenId(kaleoInstanceTokenId);
+		}
+
+		Long kaleoTaskId = (Long)attributes.get("kaleoTaskId");
+
+		if (kaleoTaskId != null) {
+			setKaleoTaskId(kaleoTaskId);
+		}
+
+		String kaleoTaskName = (String)attributes.get("kaleoTaskName");
+
+		if (kaleoTaskName != null) {
+			setKaleoTaskName(kaleoTaskName);
+		}
+
+		String className = (String)attributes.get("className");
+
+		if (className != null) {
+			setClassName(className);
+		}
+
+		Long classPK = (Long)attributes.get("classPK");
+
+		if (classPK != null) {
+			setClassPK(classPK);
+		}
+
+		Long completionUserId = (Long)attributes.get("completionUserId");
+
+		if (completionUserId != null) {
+			setCompletionUserId(completionUserId);
+		}
+
+		Boolean completed = (Boolean)attributes.get("completed");
+
+		if (completed != null) {
+			setCompleted(completed);
+		}
+
+		Date completionDate = (Date)attributes.get("completionDate");
+
+		if (completionDate != null) {
+			setCompletionDate(completionDate);
+		}
+
+		Date dueDate = (Date)attributes.get("dueDate");
+
+		if (dueDate != null) {
+			setDueDate(dueDate);
+		}
+
+		String workflowContext = (String)attributes.get("workflowContext");
+
+		if (workflowContext != null) {
+			setWorkflowContext(workflowContext);
+		}
 	}
 
 	/**

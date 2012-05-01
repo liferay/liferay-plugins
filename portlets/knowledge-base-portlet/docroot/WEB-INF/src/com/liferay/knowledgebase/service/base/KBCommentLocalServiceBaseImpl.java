@@ -31,15 +31,14 @@ import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.PersistedModel;
+import com.liferay.portal.service.BaseLocalServiceImpl;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ResourceLocalService;
 import com.liferay.portal.service.ResourceService;
@@ -69,7 +68,7 @@ import javax.sql.DataSource;
  * @see com.liferay.knowledgebase.service.KBCommentLocalServiceUtil
  * @generated
  */
-public abstract class KBCommentLocalServiceBaseImpl
+public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	implements KBCommentLocalService, IdentifiableBean {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -84,26 +83,12 @@ public abstract class KBCommentLocalServiceBaseImpl
 	 * @return the k b comment that was added
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public KBComment addKBComment(KBComment kbComment)
 		throws SystemException {
 		kbComment.setNew(true);
 
-		kbComment = kbCommentPersistence.update(kbComment, false);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(kbComment);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return kbComment;
+		return kbCommentPersistence.update(kbComment, false);
 	}
 
 	/**
@@ -120,48 +105,32 @@ public abstract class KBCommentLocalServiceBaseImpl
 	 * Deletes the k b comment with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param kbCommentId the primary key of the k b comment
+	 * @return the k b comment that was removed
 	 * @throws PortalException if a k b comment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteKBComment(long kbCommentId)
+	@Indexable(type = IndexableType.DELETE)
+	public KBComment deleteKBComment(long kbCommentId)
 		throws PortalException, SystemException {
-		KBComment kbComment = kbCommentPersistence.remove(kbCommentId);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(kbComment);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+		return kbCommentPersistence.remove(kbCommentId);
 	}
 
 	/**
 	 * Deletes the k b comment from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param kbComment the k b comment
+	 * @return the k b comment that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteKBComment(KBComment kbComment) throws SystemException {
-		kbCommentPersistence.remove(kbComment);
+	@Indexable(type = IndexableType.DELETE)
+	public KBComment deleteKBComment(KBComment kbComment)
+		throws SystemException {
+		return kbCommentPersistence.remove(kbComment);
+	}
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.delete(kbComment);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
+	public DynamicQuery dynamicQuery() {
+		return DynamicQueryFactoryUtil.forClass(KBComment.class,
+			getClassLoader());
 	}
 
 	/**
@@ -300,6 +269,7 @@ public abstract class KBCommentLocalServiceBaseImpl
 	 * @return the k b comment that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public KBComment updateKBComment(KBComment kbComment)
 		throws SystemException {
 		return updateKBComment(kbComment, true);
@@ -313,26 +283,12 @@ public abstract class KBCommentLocalServiceBaseImpl
 	 * @return the k b comment that was updated
 	 * @throws SystemException if a system exception occurred
 	 */
+	@Indexable(type = IndexableType.REINDEX)
 	public KBComment updateKBComment(KBComment kbComment, boolean merge)
 		throws SystemException {
 		kbComment.setNew(false);
 
-		kbComment = kbCommentPersistence.update(kbComment, merge);
-
-		Indexer indexer = IndexerRegistryUtil.getIndexer(getModelClassName());
-
-		if (indexer != null) {
-			try {
-				indexer.reindex(kbComment);
-			}
-			catch (SearchException se) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(se, se);
-				}
-			}
-		}
-
-		return kbComment;
+		return kbCommentPersistence.update(kbComment, merge);
 	}
 
 	/**
@@ -678,10 +634,9 @@ public abstract class KBCommentLocalServiceBaseImpl
 		_beanIdentifier = beanIdentifier;
 	}
 
-	protected ClassLoader getClassLoader() {
-		Class<?> clazz = getClass();
-
-		return clazz.getClassLoader();
+	public Object invokeMethod(String name, String[] parameterTypes,
+		Object[] arguments) throws Throwable {
+		return _clpInvoker.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	protected Class<?> getModelClass() {
@@ -745,6 +700,6 @@ public abstract class KBCommentLocalServiceBaseImpl
 	protected SocialActivityLocalService socialActivityLocalService;
 	@BeanReference(type = SocialActivityPersistence.class)
 	protected SocialActivityPersistence socialActivityPersistence;
-	private static Log _log = LogFactoryUtil.getLog(KBCommentLocalServiceBaseImpl.class);
 	private String _beanIdentifier;
+	private KBCommentLocalServiceClpInvoker _clpInvoker = new KBCommentLocalServiceClpInvoker();
 }

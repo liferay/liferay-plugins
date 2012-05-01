@@ -16,6 +16,9 @@ package com.liferay.marketplace.model;
 
 import com.liferay.portal.model.ModelWrapper;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * <p>
  * This class is a wrapper for {@link Module}.
@@ -36,6 +39,43 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 
 	public String getModelClassName() {
 		return Module.class.getName();
+	}
+
+	public Map<String, Object> getModelAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+
+		attributes.put("uuid", getUuid());
+		attributes.put("moduleId", getModuleId());
+		attributes.put("appId", getAppId());
+		attributes.put("contextName", getContextName());
+
+		return attributes;
+	}
+
+	public void setModelAttributes(Map<String, Object> attributes) {
+		String uuid = (String)attributes.get("uuid");
+
+		if (uuid != null) {
+			setUuid(uuid);
+		}
+
+		Long moduleId = (Long)attributes.get("moduleId");
+
+		if (moduleId != null) {
+			setModuleId(moduleId);
+		}
+
+		Long appId = (Long)attributes.get("appId");
+
+		if (appId != null) {
+			setAppId(appId);
+		}
+
+		String contextName = (String)attributes.get("contextName");
+
+		if (contextName != null) {
+			setContextName(contextName);
+		}
 	}
 
 	/**

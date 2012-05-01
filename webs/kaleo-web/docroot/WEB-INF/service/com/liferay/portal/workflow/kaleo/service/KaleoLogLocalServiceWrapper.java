@@ -60,25 +60,32 @@ public class KaleoLogLocalServiceWrapper implements KaleoLogLocalService,
 	* Deletes the kaleo log with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoLogId the primary key of the kaleo log
+	* @return the kaleo log that was removed
 	* @throws PortalException if a kaleo log with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoLog(long kaleoLogId)
+	public com.liferay.portal.workflow.kaleo.model.KaleoLog deleteKaleoLog(
+		long kaleoLogId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_kaleoLogLocalService.deleteKaleoLog(kaleoLogId);
+		return _kaleoLogLocalService.deleteKaleoLog(kaleoLogId);
 	}
 
 	/**
 	* Deletes the kaleo log from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoLog the kaleo log
+	* @return the kaleo log that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoLog(
+	public com.liferay.portal.workflow.kaleo.model.KaleoLog deleteKaleoLog(
 		com.liferay.portal.workflow.kaleo.model.KaleoLog kaleoLog)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoLogLocalService.deleteKaleoLog(kaleoLog);
+		return _kaleoLogLocalService.deleteKaleoLog(kaleoLog);
+	}
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _kaleoLogLocalService.dynamicQuery();
 	}
 
 	/**
@@ -252,6 +259,13 @@ public class KaleoLogLocalServiceWrapper implements KaleoLogLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_kaleoLogLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _kaleoLogLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoLog addActionExecutionKaleoLog(

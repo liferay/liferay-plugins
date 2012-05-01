@@ -15,9 +15,9 @@
 package com.liferay.tasks.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ClassLoaderProxy;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.InvokableService;
 
 /**
  * The utility for the tasks entry remote service. This utility wraps {@link com.liferay.tasks.service.impl.TasksEntryServiceImpl} and is the primary access point for service operations in application layer code running on a remote server.
@@ -38,6 +38,31 @@ public class TasksEntryServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.tasks.service.impl.TasksEntryServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+
+	/**
+	* Returns the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
+		getService().setBeanIdentifier(beanIdentifier);
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
 	public static com.liferay.tasks.model.TasksEntry addTasksEntry(
 		java.lang.String title, int priority, long assigneeUserId,
 		int dueDateMonth, int dueDateDay, int dueDateYear, int dueDateHour,
@@ -79,17 +104,10 @@ public class TasksEntryServiceUtil {
 
 	public static TasksEntryService getService() {
 		if (_service == null) {
-			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+			InvokableService invokableService = (InvokableService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					TasksEntryService.class.getName());
-			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					TasksEntryService.class.getName(), portletClassLoader);
-
-			_service = new TasksEntryServiceClp(classLoaderProxy);
-
-			ClpSerializer.setClassLoader(portletClassLoader);
+			_service = new TasksEntryServiceClp(invokableService);
 
 			ReferenceRegistry.registerReference(TasksEntryServiceUtil.class,
 				"_service");

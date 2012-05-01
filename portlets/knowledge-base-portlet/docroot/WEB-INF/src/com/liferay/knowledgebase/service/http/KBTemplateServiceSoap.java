@@ -83,10 +83,12 @@ public class KBTemplateServiceSoap {
 		}
 	}
 
-	public static void deleteKBTemplate(long kbTemplateId)
-		throws RemoteException {
+	public static com.liferay.knowledgebase.model.KBTemplateSoap deleteKBTemplate(
+		long kbTemplateId) throws RemoteException {
 		try {
-			KBTemplateServiceUtil.deleteKBTemplate(kbTemplateId);
+			com.liferay.knowledgebase.model.KBTemplate returnValue = KBTemplateServiceUtil.deleteKBTemplate(kbTemplateId);
+
+			return com.liferay.knowledgebase.model.KBTemplateSoap.toSoapModel(returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

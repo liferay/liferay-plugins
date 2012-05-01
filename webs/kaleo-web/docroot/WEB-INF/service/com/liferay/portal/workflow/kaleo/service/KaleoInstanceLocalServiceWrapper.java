@@ -61,25 +61,32 @@ public class KaleoInstanceLocalServiceWrapper
 	* Deletes the kaleo instance with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoInstanceId the primary key of the kaleo instance
+	* @return the kaleo instance that was removed
 	* @throws PortalException if a kaleo instance with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoInstance(long kaleoInstanceId)
+	public com.liferay.portal.workflow.kaleo.model.KaleoInstance deleteKaleoInstance(
+		long kaleoInstanceId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_kaleoInstanceLocalService.deleteKaleoInstance(kaleoInstanceId);
+		return _kaleoInstanceLocalService.deleteKaleoInstance(kaleoInstanceId);
 	}
 
 	/**
 	* Deletes the kaleo instance from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoInstance the kaleo instance
+	* @return the kaleo instance that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteKaleoInstance(
+	public com.liferay.portal.workflow.kaleo.model.KaleoInstance deleteKaleoInstance(
 		com.liferay.portal.workflow.kaleo.model.KaleoInstance kaleoInstance)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_kaleoInstanceLocalService.deleteKaleoInstance(kaleoInstance);
+		return _kaleoInstanceLocalService.deleteKaleoInstance(kaleoInstance);
+	}
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _kaleoInstanceLocalService.dynamicQuery();
 	}
 
 	/**
@@ -255,6 +262,13 @@ public class KaleoInstanceLocalServiceWrapper
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_kaleoInstanceLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _kaleoInstanceLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance addKaleoInstance(

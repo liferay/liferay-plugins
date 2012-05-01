@@ -60,25 +60,32 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 	* Deletes the wall entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param wallEntryId the primary key of the wall entry
+	* @return the wall entry that was removed
 	* @throws PortalException if a wall entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteWallEntry(long wallEntryId)
+	public com.liferay.socialnetworking.model.WallEntry deleteWallEntry(
+		long wallEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_wallEntryLocalService.deleteWallEntry(wallEntryId);
+		return _wallEntryLocalService.deleteWallEntry(wallEntryId);
 	}
 
 	/**
 	* Deletes the wall entry from the database. Also notifies the appropriate model listeners.
 	*
 	* @param wallEntry the wall entry
+	* @return the wall entry that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteWallEntry(
+	public com.liferay.socialnetworking.model.WallEntry deleteWallEntry(
 		com.liferay.socialnetworking.model.WallEntry wallEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		_wallEntryLocalService.deleteWallEntry(wallEntry);
+		return _wallEntryLocalService.deleteWallEntry(wallEntry);
+	}
+
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _wallEntryLocalService.dynamicQuery();
 	}
 
 	/**
@@ -252,6 +259,13 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_wallEntryLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _wallEntryLocalService.invokeMethod(name, parameterTypes,
+			arguments);
 	}
 
 	public com.liferay.socialnetworking.model.WallEntry addWallEntry(
