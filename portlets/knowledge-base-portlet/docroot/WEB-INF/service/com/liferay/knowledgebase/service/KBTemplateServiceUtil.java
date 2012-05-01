@@ -129,8 +129,10 @@ public class KBTemplateServiceUtil {
 			serviceContext);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static KBTemplateService getService() {
@@ -138,7 +140,12 @@ public class KBTemplateServiceUtil {
 			InvokableService invokableService = (InvokableService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					KBTemplateService.class.getName());
 
-			_service = new KBTemplateServiceClp(invokableService);
+			if (invokableService instanceof KBTemplateService) {
+				_service = (KBTemplateService)invokableService;
+			}
+			else {
+				_service = new KBTemplateServiceClp(invokableService);
+			}
 
 			ReferenceRegistry.registerReference(KBTemplateServiceUtil.class,
 				"_service");

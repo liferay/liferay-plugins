@@ -356,8 +356,10 @@ public class KBTemplateLocalServiceUtil {
 			guestPermissions);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static KBTemplateLocalService getService() {
@@ -365,7 +367,12 @@ public class KBTemplateLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					KBTemplateLocalService.class.getName());
 
-			_service = new KBTemplateLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof KBTemplateLocalService) {
+				_service = (KBTemplateLocalService)invokableLocalService;
+			}
+			else {
+				_service = new KBTemplateLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(KBTemplateLocalServiceUtil.class,
 				"_service");

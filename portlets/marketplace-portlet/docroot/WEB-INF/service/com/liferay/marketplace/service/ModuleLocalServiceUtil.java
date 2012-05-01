@@ -290,8 +290,10 @@ public class ModuleLocalServiceUtil {
 		return getService().getModules(appId);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static ModuleLocalService getService() {
@@ -299,7 +301,12 @@ public class ModuleLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					ModuleLocalService.class.getName());
 
-			_service = new ModuleLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof ModuleLocalService) {
+				_service = (ModuleLocalService)invokableLocalService;
+			}
+			else {
+				_service = new ModuleLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(ModuleLocalServiceUtil.class,
 				"_service");

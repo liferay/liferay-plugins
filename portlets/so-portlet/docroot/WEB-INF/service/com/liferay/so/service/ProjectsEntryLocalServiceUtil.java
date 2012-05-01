@@ -310,8 +310,10 @@ public class ProjectsEntryLocalServiceUtil {
 			endDateDay, endDateYear, current, data);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static ProjectsEntryLocalService getService() {
@@ -319,7 +321,12 @@ public class ProjectsEntryLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					ProjectsEntryLocalService.class.getName());
 
-			_service = new ProjectsEntryLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof ProjectsEntryLocalService) {
+				_service = (ProjectsEntryLocalService)invokableLocalService;
+			}
+			else {
+				_service = new ProjectsEntryLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(ProjectsEntryLocalServiceUtil.class,
 				"_service");

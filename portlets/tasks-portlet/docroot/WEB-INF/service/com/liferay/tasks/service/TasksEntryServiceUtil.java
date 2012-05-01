@@ -98,8 +98,10 @@ public class TasksEntryServiceUtil {
 			serviceContext);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static TasksEntryService getService() {
@@ -107,7 +109,12 @@ public class TasksEntryServiceUtil {
 			InvokableService invokableService = (InvokableService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					TasksEntryService.class.getName());
 
-			_service = new TasksEntryServiceClp(invokableService);
+			if (invokableService instanceof TasksEntryService) {
+				_service = (TasksEntryService)invokableService;
+			}
+			else {
+				_service = new TasksEntryServiceClp(invokableService);
+			}
 
 			ReferenceRegistry.registerReference(TasksEntryServiceUtil.class,
 				"_service");

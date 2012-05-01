@@ -342,8 +342,10 @@ public class WSRPConsumerLocalServiceUtil {
 			url, forwardCookies, userToken);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static WSRPConsumerLocalService getService() {
@@ -351,7 +353,12 @@ public class WSRPConsumerLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					WSRPConsumerLocalService.class.getName());
 
-			_service = new WSRPConsumerLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof WSRPConsumerLocalService) {
+				_service = (WSRPConsumerLocalService)invokableLocalService;
+			}
+			else {
+				_service = new WSRPConsumerLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(WSRPConsumerLocalServiceUtil.class,
 				"_service");

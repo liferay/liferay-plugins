@@ -319,8 +319,10 @@ public class FavoriteSiteLocalServiceUtil {
 		return getService().isFavoriteSite(userId, groupId);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static FavoriteSiteLocalService getService() {
@@ -328,7 +330,12 @@ public class FavoriteSiteLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					FavoriteSiteLocalService.class.getName());
 
-			_service = new FavoriteSiteLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof FavoriteSiteLocalService) {
+				_service = (FavoriteSiteLocalService)invokableLocalService;
+			}
+			else {
+				_service = new FavoriteSiteLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(FavoriteSiteLocalServiceUtil.class,
 				"_service");

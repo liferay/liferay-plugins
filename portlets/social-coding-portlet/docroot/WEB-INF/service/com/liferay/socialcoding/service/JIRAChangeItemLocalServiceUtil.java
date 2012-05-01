@@ -281,8 +281,10 @@ public class JIRAChangeItemLocalServiceUtil {
 		return getService().getJIRAChangeItems(jiraChangeGroupId);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static JIRAChangeItemLocalService getService() {
@@ -290,7 +292,12 @@ public class JIRAChangeItemLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					JIRAChangeItemLocalService.class.getName());
 
-			_service = new JIRAChangeItemLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof JIRAChangeItemLocalService) {
+				_service = (JIRAChangeItemLocalService)invokableLocalService;
+			}
+			else {
+				_service = new JIRAChangeItemLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(JIRAChangeItemLocalServiceUtil.class,
 				"_service");

@@ -270,8 +270,10 @@ public class TypeLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static TypeLocalService getService() {
@@ -279,7 +281,12 @@ public class TypeLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					TypeLocalService.class.getName());
 
-			_service = new TypeLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof TypeLocalService) {
+				_service = (TypeLocalService)invokableLocalService;
+			}
+			else {
+				_service = new TypeLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(TypeLocalServiceUtil.class,
 				"_service");

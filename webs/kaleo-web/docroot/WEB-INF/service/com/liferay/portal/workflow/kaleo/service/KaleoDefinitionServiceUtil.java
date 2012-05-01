@@ -75,8 +75,10 @@ public class KaleoDefinitionServiceUtil {
 		return getService().getKaleoDefinitions(companyId, start, end);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static KaleoDefinitionService getService() {
@@ -84,7 +86,12 @@ public class KaleoDefinitionServiceUtil {
 			InvokableService invokableService = (InvokableService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					KaleoDefinitionService.class.getName());
 
-			_service = new KaleoDefinitionServiceClp(invokableService);
+			if (invokableService instanceof KaleoDefinitionService) {
+				_service = (KaleoDefinitionService)invokableService;
+			}
+			else {
+				_service = new KaleoDefinitionServiceClp(invokableService);
+			}
 
 			ReferenceRegistry.registerReference(KaleoDefinitionServiceUtil.class,
 				"_service");

@@ -120,8 +120,10 @@ public class CalendarEventServiceUtil {
 			secondReminder, serviceContext);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static CalendarEventService getService() {
@@ -129,7 +131,12 @@ public class CalendarEventServiceUtil {
 			InvokableService invokableService = (InvokableService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					CalendarEventService.class.getName());
 
-			_service = new CalendarEventServiceClp(invokableService);
+			if (invokableService instanceof CalendarEventService) {
+				_service = (CalendarEventService)invokableService;
+			}
+			else {
+				_service = new CalendarEventServiceClp(invokableService);
+			}
 
 			ReferenceRegistry.registerReference(CalendarEventServiceUtil.class,
 				"_service");

@@ -322,8 +322,10 @@ public class WallEntryLocalServiceUtil {
 		return getService().updateWallEntry(wallEntryId, comments);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static WallEntryLocalService getService() {
@@ -331,7 +333,12 @@ public class WallEntryLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					WallEntryLocalService.class.getName());
 
-			_service = new WallEntryLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof WallEntryLocalService) {
+				_service = (WallEntryLocalService)invokableLocalService;
+			}
+			else {
+				_service = new WallEntryLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(WallEntryLocalServiceUtil.class,
 				"_service");

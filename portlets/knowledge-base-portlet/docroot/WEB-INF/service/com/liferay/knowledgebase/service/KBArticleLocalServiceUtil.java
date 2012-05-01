@@ -554,8 +554,10 @@ public class KBArticleLocalServiceUtil {
 		getService().updateViewCount(userId, resourcePrimKey, viewCount);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static KBArticleLocalService getService() {
@@ -563,7 +565,12 @@ public class KBArticleLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					KBArticleLocalService.class.getName());
 
-			_service = new KBArticleLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof KBArticleLocalService) {
+				_service = (KBArticleLocalService)invokableLocalService;
+			}
+			else {
+				_service = new KBArticleLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(KBArticleLocalServiceUtil.class,
 				"_service");

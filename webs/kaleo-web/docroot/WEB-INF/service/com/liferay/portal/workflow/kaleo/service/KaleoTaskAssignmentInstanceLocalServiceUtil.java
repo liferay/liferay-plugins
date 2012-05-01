@@ -362,8 +362,10 @@ public class KaleoTaskAssignmentInstanceLocalServiceUtil {
 				   .getKaleoTaskAssignmentInstances(kaleoTaskInstanceTokenId);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static KaleoTaskAssignmentInstanceLocalService getService() {
@@ -371,7 +373,12 @@ public class KaleoTaskAssignmentInstanceLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					KaleoTaskAssignmentInstanceLocalService.class.getName());
 
-			_service = new KaleoTaskAssignmentInstanceLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof KaleoTaskAssignmentInstanceLocalService) {
+				_service = (KaleoTaskAssignmentInstanceLocalService)invokableLocalService;
+			}
+			else {
+				_service = new KaleoTaskAssignmentInstanceLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(KaleoTaskAssignmentInstanceLocalServiceUtil.class,
 				"_service");

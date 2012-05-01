@@ -2,9 +2,6 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-lazy-init="true" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	<bean id="com.liferay.socialcoding.service.JIRAActionLocalService" class="com.liferay.socialcoding.service.impl.JIRAActionLocalServiceImpl" />
-	<bean id="com.liferay.socialcoding.service.JIRAActionLocalServiceUtil" class="com.liferay.socialcoding.service.JIRAActionLocalServiceUtil">
-		<property name="service" ref="com.liferay.socialcoding.service.JIRAActionLocalService" />
-	</bean>
 	<bean id="com.liferay.socialcoding.service.persistence.JIRAActionPersistence" class="com.liferay.socialcoding.service.persistence.JIRAActionPersistenceImpl" parent="basePersistence">
 		<property name="dataSource" ref="jiraDataSource" />
 		<property name="sessionFactory" ref="jiraSessionFactory" />
@@ -14,9 +11,6 @@
 		<property name="sessionFactory" ref="jiraSessionFactory" />
 	</bean>
 	<bean id="com.liferay.socialcoding.service.JIRAChangeGroupLocalService" class="com.liferay.socialcoding.service.impl.JIRAChangeGroupLocalServiceImpl" />
-	<bean id="com.liferay.socialcoding.service.JIRAChangeGroupLocalServiceUtil" class="com.liferay.socialcoding.service.JIRAChangeGroupLocalServiceUtil">
-		<property name="service" ref="com.liferay.socialcoding.service.JIRAChangeGroupLocalService" />
-	</bean>
 	<bean id="com.liferay.socialcoding.service.persistence.JIRAChangeGroupPersistence" class="com.liferay.socialcoding.service.persistence.JIRAChangeGroupPersistenceImpl" parent="basePersistence">
 		<property name="dataSource" ref="jiraDataSource" />
 		<property name="sessionFactory" ref="jiraSessionFactory" />
@@ -26,17 +20,11 @@
 		<property name="sessionFactory" ref="jiraSessionFactory" />
 	</bean>
 	<bean id="com.liferay.socialcoding.service.JIRAChangeItemLocalService" class="com.liferay.socialcoding.service.impl.JIRAChangeItemLocalServiceImpl" />
-	<bean id="com.liferay.socialcoding.service.JIRAChangeItemLocalServiceUtil" class="com.liferay.socialcoding.service.JIRAChangeItemLocalServiceUtil">
-		<property name="service" ref="com.liferay.socialcoding.service.JIRAChangeItemLocalService" />
-	</bean>
 	<bean id="com.liferay.socialcoding.service.persistence.JIRAChangeItemPersistence" class="com.liferay.socialcoding.service.persistence.JIRAChangeItemPersistenceImpl" parent="basePersistence">
 		<property name="dataSource" ref="jiraDataSource" />
 		<property name="sessionFactory" ref="jiraSessionFactory" />
 	</bean>
 	<bean id="com.liferay.socialcoding.service.JIRAIssueLocalService" class="com.liferay.socialcoding.service.impl.JIRAIssueLocalServiceImpl" />
-	<bean id="com.liferay.socialcoding.service.JIRAIssueLocalServiceUtil" class="com.liferay.socialcoding.service.JIRAIssueLocalServiceUtil">
-		<property name="service" ref="com.liferay.socialcoding.service.JIRAIssueLocalService" />
-	</bean>
 	<bean id="com.liferay.socialcoding.service.persistence.JIRAIssuePersistence" class="com.liferay.socialcoding.service.persistence.JIRAIssuePersistenceImpl" parent="basePersistence">
 		<property name="dataSource" ref="jiraDataSource" />
 		<property name="sessionFactory" ref="jiraSessionFactory" />
@@ -46,13 +34,7 @@
 		<property name="sessionFactory" ref="jiraSessionFactory" />
 	</bean>
 	<bean id="com.liferay.socialcoding.service.SVNRepositoryLocalService" class="com.liferay.socialcoding.service.impl.SVNRepositoryLocalServiceImpl" />
-	<bean id="com.liferay.socialcoding.service.SVNRepositoryLocalServiceUtil" class="com.liferay.socialcoding.service.SVNRepositoryLocalServiceUtil">
-		<property name="service" ref="com.liferay.socialcoding.service.SVNRepositoryLocalService" />
-	</bean>
 	<bean id="com.liferay.socialcoding.service.persistence.SVNRepositoryPersistence" class="com.liferay.socialcoding.service.persistence.SVNRepositoryPersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.socialcoding.service.SVNRevisionLocalService" class="com.liferay.socialcoding.service.impl.SVNRevisionLocalServiceImpl" />
-	<bean id="com.liferay.socialcoding.service.SVNRevisionLocalServiceUtil" class="com.liferay.socialcoding.service.SVNRevisionLocalServiceUtil">
-		<property name="service" ref="com.liferay.socialcoding.service.SVNRevisionLocalService" />
-	</bean>
 	<bean id="com.liferay.socialcoding.service.persistence.SVNRevisionPersistence" class="com.liferay.socialcoding.service.persistence.SVNRevisionPersistenceImpl" parent="basePersistence" />
 </beans>

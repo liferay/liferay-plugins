@@ -89,8 +89,10 @@ public class GadgetServiceUtil {
 		getService().updateGadget(gadgetId, portletCategoryNames, serviceContext);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static GadgetService getService() {
@@ -98,7 +100,12 @@ public class GadgetServiceUtil {
 			InvokableService invokableService = (InvokableService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					GadgetService.class.getName());
 
-			_service = new GadgetServiceClp(invokableService);
+			if (invokableService instanceof GadgetService) {
+				_service = (GadgetService)invokableService;
+			}
+			else {
+				_service = new GadgetServiceClp(invokableService);
+			}
 
 			ReferenceRegistry.registerReference(GadgetServiceUtil.class,
 				"_service");

@@ -270,8 +270,10 @@ public class CheckoutLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static CheckoutLocalService getService() {
@@ -279,7 +281,12 @@ public class CheckoutLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					CheckoutLocalService.class.getName());
 
-			_service = new CheckoutLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof CheckoutLocalService) {
+				_service = (CheckoutLocalService)invokableLocalService;
+			}
+			else {
+				_service = new CheckoutLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(CheckoutLocalServiceUtil.class,
 				"_service");

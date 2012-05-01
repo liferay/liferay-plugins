@@ -371,8 +371,10 @@ public class UserThreadLocalServiceUtil {
 		getService().markUserThreadAsUnread(userId, mbThreadId);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static UserThreadLocalService getService() {
@@ -380,7 +382,12 @@ public class UserThreadLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					UserThreadLocalService.class.getName());
 
-			_service = new UserThreadLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof UserThreadLocalService) {
+				_service = (UserThreadLocalService)invokableLocalService;
+			}
+			else {
+				_service = new UserThreadLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(UserThreadLocalServiceUtil.class,
 				"_service");

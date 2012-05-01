@@ -288,8 +288,10 @@ public class FeedLocalServiceUtil {
 		getService().updateFeeds(companyId);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public static void clearService() {
-		_service = null;
 	}
 
 	public static FeedLocalService getService() {
@@ -297,7 +299,12 @@ public class FeedLocalServiceUtil {
 			InvokableLocalService invokableLocalService = (InvokableLocalService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
 					FeedLocalService.class.getName());
 
-			_service = new FeedLocalServiceClp(invokableLocalService);
+			if (invokableLocalService instanceof FeedLocalService) {
+				_service = (FeedLocalService)invokableLocalService;
+			}
+			else {
+				_service = new FeedLocalServiceClp(invokableLocalService);
+			}
 
 			ReferenceRegistry.registerReference(FeedLocalServiceUtil.class,
 				"_service");
