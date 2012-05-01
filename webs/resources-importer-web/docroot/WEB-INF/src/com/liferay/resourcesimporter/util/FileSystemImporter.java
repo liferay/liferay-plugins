@@ -133,27 +133,7 @@ public class FileSystemImporter extends BaseImporter {
 
 			String content = new String(FileUtil.getBytes(file));
 
-			Locale locale = LocaleUtil.getDefault();
-
-			String defaultLocale = locale.toString();
-
-			StringBundler sb = new StringBundler(13);
-
-			sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-			sb.append("<root available-locales=\"");
-			sb.append(defaultLocale);
-			sb.append("\" default-locale=\"");
-			sb.append(defaultLocale);
-			sb.append("\">");
-			sb.append("<static-content language-id=\"");
-			sb.append(defaultLocale);
-			sb.append("\">");
-			sb.append("<![CDATA[");
-			sb.append(content);
-			sb.append("]]>");
-			sb.append("</static-content></root>");
-
-			content = sb.toString();
+			content = wrapJournalArticleContent(content);
 
 			ServiceContext serviceContext = new ServiceContext();
 
@@ -307,14 +287,14 @@ public class FileSystemImporter extends BaseImporter {
 		LayoutTypePortlet layoutTypePortlet =
 			(LayoutTypePortlet)layout.getLayoutType();
 
-		String portletId = portletJSONObject.getString("portletId");
+		String rootPortletId = portletJSONObject.getString("portletId");
 
-		if (Validator.isNull(portletId)) {
+		if (Validator.isNull(rootPortletId)) {
 			throw new ImporterException("portletId is not specified");
 		}
 
-		portletId = layoutTypePortlet.addPortletId(
-			userId, portletId, columnId, -1, false);
+		String portletId = layoutTypePortlet.addPortletId(
+			userId, rootPortletId, columnId, -1, false);
 
 		JSONObject portletPreferencesJSONObject =
 			portletJSONObject.getJSONObject("portletPreferences");
@@ -336,7 +316,7 @@ public class FileSystemImporter extends BaseImporter {
 
 			String value = portletPreferencesJSONObject.getString(key);
 
-			if (portletId.startsWith(PortletKeys.JOURNAL_CONTENT) &&
+			if (rootPortletId.equals(PortletKeys.JOURNAL_CONTENT) &&
 				key.equals("articleId")) {
 
 				value = getJournalArticleId(value);
@@ -529,6 +509,26 @@ public class FileSystemImporter extends BaseImporter {
 			LayoutSetLocalServiceUtil.updateLookAndFeel(
 				groupId, true, themeId, null, null, false);
 		}
+	}
+
+	protected String wrapJournalArticleContent(String content) {
+		StringBundler sb = new StringBundler(13);
+
+		sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+		sb.append("<root available-locales=\"");
+		sb.append(LocaleUtil.getDefault());
+		sb.append("\" default-locale=\"");
+		sb.append(LocaleUtil.getDefault());
+		sb.append("\">");
+		sb.append("<static-content language-id=\"");
+		sb.append(LocaleUtil.getDefault());
+		sb.append("\">");
+		sb.append("<![CDATA[");
+		sb.append(content);
+		sb.append("]]>");
+		sb.append("</static-content></root>");
+
+		return sb.toString();
 	}
 
 	private String _defaultLayoutTemplateId;
