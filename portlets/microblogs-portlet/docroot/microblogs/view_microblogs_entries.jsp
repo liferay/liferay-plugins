@@ -31,11 +31,10 @@ PortletURL microblogsEntriesURL = (PortletURL)request.getAttribute(WebKeys.MICRO
 
 	if (group.isUser()) {
 		if (group.getGroupId() == user.getGroupId()) {
-			message = LanguageUtil.get(pageContext, "you-have-no-microblogs-entry");
+			message = LanguageUtil.get(pageContext, "you-do-not-have-any-microblog-entries");
 		}
 		else {
-			message = LanguageUtil.format(pageContext, "x-does-not-have-any-microblog-entry" , new Object[] {user.getFullName()});
-
+			message = LanguageUtil.format(pageContext, "x-does-not-have-any-microblog-entries" , new Object[] {user.getFullName()});
 		}
 	}
 	%>
