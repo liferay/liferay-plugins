@@ -29,6 +29,12 @@ page import="com.liferay.portal.kernel.dao.db.DB" %><%@
 page import="com.liferay.portal.kernel.dao.db.DBFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.dao.jdbc.DataAccess" %><%@
 page import="com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil" %><%@
+page import="com.liferay.portal.kernel.dao.orm.EntityCache" %><%@
+page import="com.liferay.portal.kernel.dao.orm.EntityCacheUtil" %><%@
+page import="com.liferay.portal.kernel.dao.orm.FinderCache" %><%@
+page import="com.liferay.portal.kernel.dao.orm.FinderCacheUtil" %><%@
+page import="com.liferay.portal.kernel.dao.orm.PortalCustomSQL" %><%@
+page import="com.liferay.portal.kernel.dao.orm.PortalCustomSQLUtil" %><%@
 page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %><%@
 page import="com.liferay.portal.kernel.format.PhoneNumberFormatUtil" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
@@ -67,7 +73,9 @@ page import="java.io.Writer" %>
 <%@ page import="java.lang.reflect.Field" %>
 
 <%@ page import="java.net.ServerSocket" %><%@
-page import="java.net.Socket" %>
+page import="java.net.Socket" %><%@
+page import="java.net.URL" %><%@
+page import="java.net.URLClassLoader" %>
 
 <%@ page import="java.sql.Connection" %><%@
 page import="java.sql.PreparedStatement" %><%@
