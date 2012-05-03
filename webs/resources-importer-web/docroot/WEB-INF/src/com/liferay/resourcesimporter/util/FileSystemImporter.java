@@ -17,6 +17,7 @@ package com.liferay.resourcesimporter.util;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
@@ -38,6 +39,7 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.util.DLUtil;
 import com.liferay.portlet.journal.model.JournalArticle;
 import com.liferay.portlet.journal.model.JournalArticleConstants;
 import com.liferay.portlet.journal.model.JournalStructure;
@@ -55,6 +57,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.portlet.PortletPreferences;
 
@@ -112,9 +116,11 @@ public class FileSystemImporter extends BaseImporter {
 
 			serviceContext.setScopeGroupId(groupId);
 
-			DLAppLocalServiceUtil.addFileEntry(
+			FileEntry fileEntry = DLAppLocalServiceUtil.addFileEntry(
 				userId, groupId, 0, file.getName(), mimeType, file.getName(),
 				StringPool.BLANK, StringPool.BLANK, bytes, serviceContext);
+
+			_fileEntriesMap.put(file.getName(), fileEntry);
 		}
 	}
 
@@ -133,7 +139,7 @@ public class FileSystemImporter extends BaseImporter {
 
 			String content = new String(FileUtil.getBytes(file));
 
-			content = wrapJournalArticleContent(content);
+			content = processJournalArticleContent(content);
 
 			ServiceContext serviceContext = new ServiceContext();
 
@@ -473,6 +479,52 @@ public class FileSystemImporter extends BaseImporter {
 		return filesList.toArray(new File[filesList.size()]);
 	}
 
+	protected String processJournalArticleContent(String content)
+		throws Exception {
+
+		Matcher fileEntryMatcher = _fileEntryPattern.matcher(content);
+
+		while (fileEntryMatcher.find()) {
+			String fileName = fileEntryMatcher.group(1);
+
+			FileEntry fileEntry = _fileEntriesMap.get(fileName);
+
+			String fileEntryURL = StringPool.BLANK;
+
+			if (fileEntry != null) {
+				fileEntryURL = DLUtil.getPreviewURL(
+					fileEntry, fileEntry.getFileVersion(), null,
+					StringPool.BLANK);
+			}
+
+			content = fileEntryMatcher.replaceFirst(fileEntryURL);
+
+			fileEntryMatcher.reset(content);
+		}
+
+		if (content.contains("<?xml version=\"1.0\" encoding=\"UTF-8\"?>")) {
+			return content;
+		}
+
+		StringBundler sb = new StringBundler(13);
+
+		sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+		sb.append("<root available-locales=\"");
+		sb.append(LocaleUtil.getDefault());
+		sb.append("\" default-locale=\"");
+		sb.append(LocaleUtil.getDefault());
+		sb.append("\">");
+		sb.append("<static-content language-id=\"");
+		sb.append(LocaleUtil.getDefault());
+		sb.append("\">");
+		sb.append("<![CDATA[");
+		sb.append(content);
+		sb.append("]]>");
+		sb.append("</static-content></root>");
+
+		return sb.toString();
+	}
+
 	protected void updateLayoutSetThemeId(JSONObject sitemapJSONObject)
 		throws Exception {
 
@@ -511,26 +563,10 @@ public class FileSystemImporter extends BaseImporter {
 		}
 	}
 
-	protected String wrapJournalArticleContent(String content) {
-		StringBundler sb = new StringBundler(13);
-
-		sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-		sb.append("<root available-locales=\"");
-		sb.append(LocaleUtil.getDefault());
-		sb.append("\" default-locale=\"");
-		sb.append(LocaleUtil.getDefault());
-		sb.append("\">");
-		sb.append("<static-content language-id=\"");
-		sb.append(LocaleUtil.getDefault());
-		sb.append("\">");
-		sb.append("<![CDATA[");
-		sb.append(content);
-		sb.append("]]>");
-		sb.append("</static-content></root>");
-
-		return sb.toString();
-	}
-
 	private String _defaultLayoutTemplateId;
+	private Map<String, FileEntry> _fileEntriesMap =
+		new HashMap<String, FileEntry>();
+	private Pattern _fileEntryPattern = Pattern.compile(
+		"\\[\\$FILE=([^\\$]+)\\$\\]");
 
 }
