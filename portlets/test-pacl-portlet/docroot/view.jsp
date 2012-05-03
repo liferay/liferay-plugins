@@ -21,7 +21,7 @@
 />
 
 <p>
-	<h3>Get Class Loader: JDK</h3>
+	<h3>Get</h3>
 </p>
 
 <p>
@@ -64,6 +64,66 @@
 				Class<?> clazz = entryLocalService.getClass();
 
 				clazz.getClassLoader();
+			}
+
+		};
+		%>
+
+	com.liferay.portal.kernel.portlet.PortletClassLoaderUtil#getClassLoader("1_WAR_chatportlet")=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				PortletClassLoaderUtil.getClassLoader("1_WAR_chatportlet");
+			}
+
+		};
+		%>
+
+	com.liferay.portal.kernel.portlet.PortletClassLoaderUtil#getClassLoader("1_WAR_flashportlet")=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				PortletClassLoaderUtil.getClassLoader("1_WAR_flashportlet");
+			}
+
+		};
+		%>
+
+	com.liferay.portal.kernel.portlet.PortletClassLoaderUtil#getClassLoader("chat-portlet")=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				PortletClassLoaderUtil.getClassLoader("chat-portlet");
+			}
+
+		};
+		%>
+
+	com.liferay.portal.kernel.portlet.PortletClassLoaderUtil#getClassLoader("flash-portlet")=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				PortletClassLoaderUtil.getClassLoader("flash-portlet");
+			}
+
+		};
+		%>
+
+	com.liferay.portal.kernel.util.PortalClassLoaderUtil#getClassLoader=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				PortalClassLoaderUtil.getClassLoader();
 			}
 
 		};
@@ -200,65 +260,17 @@
 </p>
 
 <p>
-	<h3>Get Class Loader: Portal</h3>
+	<h3>Set</h3>
 </p>
 
 <p>
-	PortalClassLoaderUtil#getClassLoader=
+	java.net.URLClassLoader=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, true) {
 
 			protected void test() throws Exception {
-				PortalClassLoaderUtil.getClassLoader();
-			}
-
-		};
-		%>
-
-	PortletClassLoaderUtil#getClassLoader("1_WAR_chatportlet")=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
-
-			protected void test() throws Exception {
-				PortletClassLoaderUtil.getClassLoader("1_WAR_chatportlet");
-			}
-
-		};
-		%>
-
-	PortletClassLoaderUtil#getClassLoader("1_WAR_flashportlet")=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
-
-			protected void test() throws Exception {
-				PortletClassLoaderUtil.getClassLoader("1_WAR_flashportlet");
-			}
-
-		};
-		%>
-
-	PortletClassLoaderUtil#getClassLoader("chat-portlet")=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
-
-			protected void test() throws Exception {
-				PortletClassLoaderUtil.getClassLoader("chat-portlet");
-			}
-
-		};
-		%>
-
-	PortletClassLoaderUtil#getClassLoader("flash-portlet")=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
-
-			protected void test() throws Exception {
-				PortletClassLoaderUtil.getClassLoader("flash-portlet");
+				new URLClassLoader(new URL[0], ClassLoader.getSystemClassLoader());
 			}
 
 		};
@@ -1408,6 +1420,62 @@
 
 			protected void test() throws Exception {
 				FooLocalServiceUtil.getReleaseInfo_GetBuildNumber();
+			}
+
+		};
+		%>
+
+</p>
+
+<liferay-ui:header
+	title="Set Bean Property"
+/>
+
+<p>
+
+	EntityCacheUtil#setEntityCache=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				EntityCacheUtil entityCacheUtil = new EntityCacheUtil();
+
+				EntityCache entityCache = entityCacheUtil.getEntityCache();
+
+				entityCacheUtil.setEntityCache(entityCache);
+			}
+
+		};
+		%>
+
+	FinderCacheUtil#setFinderCache=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				FinderCacheUtil finderCacheUtil = new FinderCacheUtil();
+
+				FinderCache finderCache = finderCacheUtil.getFinderCache();
+
+				finderCacheUtil.setFinderCache(finderCache);
+			}
+
+		};
+		%>
+
+	PortalCustomSQLUtil#setPortalCustomSQL=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				PortalCustomSQLUtil portalCustomSQLUtil = new PortalCustomSQLUtil();
+
+				PortalCustomSQL portalCustomSQL = portalCustomSQLUtil.getPortalCustomSQL();
+
+				portalCustomSQLUtil.setPortalCustomSQL(portalCustomSQL);
 			}
 
 		};
