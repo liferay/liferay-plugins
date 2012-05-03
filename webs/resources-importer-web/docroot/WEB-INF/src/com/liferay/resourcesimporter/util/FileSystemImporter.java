@@ -120,7 +120,7 @@ public class FileSystemImporter extends BaseImporter {
 				userId, groupId, 0, file.getName(), mimeType, file.getName(),
 				StringPool.BLANK, StringPool.BLANK, bytes, serviceContext);
 
-			_fileEntriesMap.put(file.getName(), fileEntry);
+			_fileEntries.put(file.getName(), fileEntry);
 		}
 	}
 
@@ -482,12 +482,12 @@ public class FileSystemImporter extends BaseImporter {
 	protected String processJournalArticleContent(String content)
 		throws Exception {
 
-		Matcher fileEntryMatcher = _fileEntryPattern.matcher(content);
+		Matcher matcher = _fileEntryPattern.matcher(content);
 
-		while (fileEntryMatcher.find()) {
-			String fileName = fileEntryMatcher.group(1);
+		while (matcher.find()) {
+			String fileName = matcher.group(1);
 
-			FileEntry fileEntry = _fileEntriesMap.get(fileName);
+			FileEntry fileEntry = _fileEntries.get(fileName);
 
 			String fileEntryURL = StringPool.BLANK;
 
@@ -497,9 +497,9 @@ public class FileSystemImporter extends BaseImporter {
 					StringPool.BLANK);
 			}
 
-			content = fileEntryMatcher.replaceFirst(fileEntryURL);
+			content = matcher.replaceFirst(fileEntryURL);
 
-			fileEntryMatcher.reset(content);
+			matcher.reset(content);
 		}
 
 		if (content.contains("<?xml version=\"1.0\" encoding=\"UTF-8\"?>")) {
@@ -564,7 +564,7 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	private String _defaultLayoutTemplateId;
-	private Map<String, FileEntry> _fileEntriesMap =
+	private Map<String, FileEntry> _fileEntries =
 		new HashMap<String, FileEntry>();
 	private Pattern _fileEntryPattern = Pattern.compile(
 		"\\[\\$FILE=([^\\$]+)\\$\\]");
