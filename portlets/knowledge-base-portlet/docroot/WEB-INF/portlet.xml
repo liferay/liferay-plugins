@@ -14,7 +14,7 @@
 			<value>true</value>
 		</init-param>
 		<init-param>
-			<name>jsp-path</name>
+			<name>template-path</name>
 			<value>/admin/</value>
 		</init-param>
 		<init-param>
@@ -99,7 +99,7 @@
 			<value>true</value>
 		</init-param>
 		<init-param>
-			<name>jsp-path</name>
+			<name>template-path</name>
 			<value>/display/</value>
 		</init-param>
 		<init-param>
@@ -222,7 +222,7 @@
 			<value>true</value>
 		</init-param>
 		<init-param>
-			<name>jsp-path</name>
+			<name>template-path</name>
 			<value>/article/</value>
 		</init-param>
 		<init-param>
@@ -307,7 +307,7 @@
 			<value>true</value>
 		</init-param>
 		<init-param>
-			<name>jsp-path</name>
+			<name>template-path</name>
 			<value>/section/</value>
 		</init-param>
 		<init-param>
@@ -420,7 +420,7 @@
 			<value>true</value>
 		</init-param>
 		<init-param>
-			<name>jsp-path</name>
+			<name>template-path</name>
 			<value>/search/</value>
 		</init-param>
 		<init-param>
