@@ -12,8 +12,9 @@
  * details.
  */
 
-package com.liferay.testpacl.hook.filter;
+package com.liferay.testpacl.servlet.filters;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.Filter;
@@ -26,9 +27,14 @@ import javax.servlet.ServletResponse;
 /**
  * @author Brian Wing Shun Chan
  */
-public class FailureFilter implements Filter {
+public class TestPACLFilter implements Filter {
+
+	public TestPACLFilter() {
+		testWriteFile();
+	}
 
 	public void destroy() {
+		testWriteFile();
 	}
 
 	public void doFilter(
@@ -36,14 +42,25 @@ public class FailureFilter implements Filter {
 			FilterChain filterChain)
 		throws IOException, ServletException {
 
-		if (true) {
-			throw new ServletException("Hook servlet filters is not protected");
-		}
+		testWriteFile();
 
 		filterChain.doFilter(servletRequest, servletResponse);
 	}
 
-	public void init(FilterConfig filterConfig) throws ServletException {
+	public void init(FilterConfig filterConfig) {
+		testWriteFile();
+	}
+
+	protected void testWriteFile() {
+		File file = new File("../webapps/chat-portlet/css/main.css");
+
+		try {
+			file.exists();
+
+			throw new RuntimeException("File is not protected");
+		}
+		catch (SecurityException se) {
+		}
 	}
 
 }

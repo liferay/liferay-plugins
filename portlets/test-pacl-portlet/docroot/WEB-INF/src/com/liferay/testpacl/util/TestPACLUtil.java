@@ -21,6 +21,8 @@ import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.service.PortalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
+import java.io.File;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -96,6 +98,18 @@ public class TestPACLUtil {
 		}
 
 		return results;
+	}
+
+	public static void testWriteFile() {
+		File file = new File("../webapps/chat-portlet/css/main.css");
+
+		try {
+			file.exists();
+
+			throw new RuntimeException("File is not protected");
+		}
+		catch (SecurityException se) {
+		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(TestPACLUtil.class);

@@ -5,4 +5,20 @@
 		<param-name>portalContextConfigLocation</param-name>
 		<param-value>/WEB-INF/classes/META-INF/messaging-spring.xml</param-value>
 	</context-param>
+	<filter>
+		<filter-name>Test PACL Filter</filter-name>
+		<filter-class>com.liferay.testpacl.servlet.filters.TestPACLFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>Test PACL Filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<listener>
+		<listener-class>com.liferay.testpacl.servlet.TestPACLServletContextListener</listener-class>
+	</listener>
+	<servlet>
+		<servlet-name>Test PACL Servlet</servlet-name>
+		<servlet-class>com.liferay.testpacl.servlet.TestPACLServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
 </web-app>

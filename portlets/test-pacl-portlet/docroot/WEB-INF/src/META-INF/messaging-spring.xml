@@ -13,10 +13,18 @@
 	<bean id="destination.test_pacl" class="com.liferay.portal.kernel.messaging.SerialDestination">
 		<property name="name" value="liferay/test_pacl" />
 	</bean>
+	<bean id="destination.test_pacl_listen_failure" class="com.liferay.portal.kernel.messaging.SerialDestination">
+		<property name="name" value="liferay/test_pacl_listen_failure" />
+	</bean>
+	<bean id="destination.test_pacl_listen_success" class="com.liferay.portal.kernel.messaging.SerialDestination">
+		<property name="name" value="liferay/test_pacl_listen_success" />
+	</bean>
 
 	<!-- Listeners -->
 
 	<bean id="messageListener.test_pacl" class="com.liferay.testpacl.messaging.TestPACLMessageListener" />
+	<bean id="messageListener.test_pacl_listen_failure" class="com.liferay.testpacl.messaging.TestPACLListenFailureMessageListener" />
+	<bean id="messageListener.test_pacl_listen_success" class="com.liferay.testpacl.messaging.TestPACLListenSuccessMessageListener" />
 
 	<!-- Configurator -->
 
@@ -24,6 +32,8 @@
 		<property name="destinations">
 			<list>
 				<ref bean="destination.test_pacl" />
+				<ref bean="destination.test_pacl_listen_failure" />
+				<ref bean="destination.test_pacl_listen_success" />
 			</list>
 		</property>
 		<property name="messageListeners">
@@ -31,6 +41,16 @@
 				<entry key="liferay/test_pacl">
 					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
 						<ref bean="messageListener.test_pacl" />
+					</list>
+				</entry>
+				<entry key="liferay/test_pacl_listen_success">
+					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
+						<ref bean="messageListener.test_pacl_listen_failure" />
+					</list>
+				</entry>
+				<entry key="liferay/test_pacl_listen_success">
+					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
+						<ref bean="messageListener.test_pacl_listen_success" />
 					</list>
 				</entry>
 			</map>
