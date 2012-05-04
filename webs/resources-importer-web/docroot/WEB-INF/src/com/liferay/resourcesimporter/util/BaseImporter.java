@@ -45,10 +45,15 @@ public abstract class BaseImporter implements Importer {
 		Group group = layoutSetPrototype.getGroup();
 
 		groupId = group.getGroupId();
+		layoutSetPrototypeId = layoutSetPrototype.getLayoutSetPrototypeId();
 	}
 
 	public long getGroupId() {
 		return groupId;
+	}
+
+	public long getLayoutSetPrototypeId() {
+		return layoutSetPrototypeId;
 	}
 
 	public void setCompanyId(long companyId) {
@@ -71,6 +76,7 @@ public abstract class BaseImporter implements Importer {
 
 	protected long companyId;
 	protected long groupId;
+	protected long layoutSetPrototypeId;
 	protected Map<Locale, String> layoutSetPrototypeNameMap;
 	protected File resourcesDir;
 	protected String servletContextName;
