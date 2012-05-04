@@ -137,13 +137,13 @@ public class LayoutUtil {
 			else if (portletId.startsWith(PortletKeys.MESSAGE_BOARDS)) {
 				configureMessageBoards(layout);
 			}
-			else if (portletId.contains("_WAR_microblogsportlet") ||
-					 portletId.equals("1_WAR_privatemessagingportlet") ||
-					 portletId.contains("1_WAR_tasksportlet") ||
-					 portletId.equals(PortletKeys.CALENDAR) ||
+			else if (portletId.equals(PortletKeys.CALENDAR) ||
 					 portletId.equals(PortletKeys.DOCUMENT_LIBRARY) ||
 					 portletId.equals(PortletKeys.BLOGS) ||
-					 portletId.equals(PortletKeys.WIKI)) {
+					 portletId.equals(PortletKeys.WIKI) ||
+					 portletId.contains("_WAR_microblogsportlet") ||
+					 portletId.equals("1_WAR_privatemessagingportlet") ||
+					 portletId.contains("1_WAR_tasksportlet")) {
 
 				removePortletBorder(layout, portletId);
 			}
