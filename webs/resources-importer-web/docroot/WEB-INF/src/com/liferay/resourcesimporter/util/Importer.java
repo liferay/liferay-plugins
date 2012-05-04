@@ -28,6 +28,8 @@ public interface Importer {
 
 	public long getGroupId();
 
+	public long getLayoutSetPrototypeId();
+
 	public void importResources() throws Exception;
 
 	public void setCompanyId(long companyId);

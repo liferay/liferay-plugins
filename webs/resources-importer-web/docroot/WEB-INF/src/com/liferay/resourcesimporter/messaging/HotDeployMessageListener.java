@@ -132,12 +132,14 @@ public class HotDeployMessageListener extends BaseMessageListener {
 				importer.importResources();
 
 				Message newMessage = new Message();
-				
-				newMessage.put("groupId", importer.getGroupId());
+
+				newMessage.put("companyId", company.getCompanyId());
+				newMessage.put(
+					"layoutSetPrototypeId", importer.getLayoutSetPrototypeId());
 				newMessage.put("servletContextName", servletContextName);
 
 				MessageBusUtil.sendMessage(
-					"liferay/resources_importer", newMessage);				
+					"liferay/resources_importer", newMessage);
 			}
 			finally {
 				CompanyThreadLocal.setCompanyId(companyId);
