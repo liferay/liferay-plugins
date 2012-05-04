@@ -48,6 +48,7 @@ import com.liferay.privatemessaging.model.UserThread;
 import com.liferay.privatemessaging.portlet.PrivateMessagingPortlet;
 import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
 import com.liferay.privatemessaging.service.base.UserThreadLocalServiceBaseImpl;
+import com.liferay.privatemessaging.util.PortletKeys;
 import com.liferay.privatemessaging.util.PrivateMessagingConstants;
 
 import java.io.InputStream;
@@ -454,7 +455,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		notificationEventJSONObject.put("entryKeyName", "mbThreadId");
 		notificationEventJSONObject.put("mvcPath", "/view.jsp");
 		notificationEventJSONObject.put(
-			"portletId", "1_WAR_privatemessagingportlet");
+			"portletId", PortletKeys.SO_PRIVATE_MESSAGING);
 		notificationEventJSONObject.put("title", "x-sent-you-a-message");
 		notificationEventJSONObject.put("userId", mbMessage.getUserId());
 
