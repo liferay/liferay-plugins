@@ -14,12 +14,6 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<listener>
-		<listener-class>com.liferay.portal.kernel.servlet.PortletContextListener</listener-class>
-	</listener>
-	<listener>
-		<listener-class>com.liferay.portal.kernel.spring.context.PortletContextLoaderListener</listener-class>
-	</listener>
-	<listener>
 		<listener-class>com.liferay.opensocial.servlet.OpenSocialServletContextListener</listener-class>
 	</listener>
 	<jsp-config>
