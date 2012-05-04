@@ -920,6 +920,80 @@
 </p>
 
 <liferay-ui:header
+	title="Message Bus"
+/>
+
+<p>
+	<h3>Listen</h3>
+</p>
+
+<p>
+	liferay/test_pacl_listen_failure=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				Object value = MessageBusUtil.sendSynchronousMessage("liferay/test_pacl_listen_failure", "Listen Failure");
+
+				if (value != null) {
+					throw new Exception("Message bus destination is not protected");
+				}
+			}
+
+		};
+		%>
+
+	liferay/test_pacl_listen_success=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				Object value = MessageBusUtil.sendSynchronousMessage("liferay/test_pacl_listen_success", "Listen Success");
+
+				if ((value == null) || !value.equals("Listen Success")) {
+					throw new Exception("Message bus destination is not registered");
+				}
+			}
+
+		};
+		%>
+
+</p>
+
+<p>
+	<h3>Send</h3>
+</p>
+
+<p>
+	liferay/test_pacl_send_failure=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				MessageBusUtil.sendMessage("liferay/test_pacl_send_failure", "Send Failure");
+			}
+
+		};
+		%>
+
+	liferay/test_pacl_send_success=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				MessageBusUtil.sendMessage("liferay/test_pacl_send_success", "Send Success");
+			}
+
+		};
+		%>
+
+</p>
+
+<liferay-ui:header
 	title="Reflection"
 />
 

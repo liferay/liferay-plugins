@@ -27,7 +27,6 @@ import com.liferay.testpacl.service.FooLocalServiceUtil;
 import com.liferay.testpacl.util.TestPACLUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
-import java.io.File;
 import java.io.IOException;
 
 import java.lang.reflect.Field;
@@ -42,12 +41,12 @@ import javax.portlet.RenderResponse;
 public class TestPACLPortlet extends MVCPortlet {
 
 	public TestPACLPortlet() {
-		testWriteFile();
+		TestPACLUtil.testWriteFile();
 	}
 
 	@Override
 	public void destroy() {
-		testWriteFile();
+		TestPACLUtil.testWriteFile();
 	}
 
 	@Override
@@ -56,6 +55,8 @@ public class TestPACLPortlet extends MVCPortlet {
 		throws IOException, PortletException {
 
 		try{
+			TestPACLUtil.testWriteFile();
+
 			testGetClassLoaderBlogsEntryLocalService();
 			testGetClassLoaderEntryLocalService();
 			testGetClassLoaderFooLocalService();
@@ -71,6 +72,13 @@ public class TestPACLPortlet extends MVCPortlet {
 		}
 
 		include(viewTemplate, renderRequest, renderResponse);
+	}
+
+	@Override
+	public void init() throws PortletException {
+		super.init();
+
+		TestPACLUtil.testWriteFile();
 	}
 
 	protected void assertEquals(Object expected, Object actual) {
@@ -162,18 +170,6 @@ public class TestPACLPortlet extends MVCPortlet {
 			field.setAccessible(false);
 
 			throw new RuntimeException("Reflection is not protected");
-		}
-		catch (SecurityException se) {
-		}
-	}
-
-	protected void testWriteFile() {
-		File file = new File("../webapps/chat-portlet/css/main.css");
-
-		try {
-			file.exists();
-
-			throw new RuntimeException("File is not protected");
 		}
 		catch (SecurityException se) {
 		}
