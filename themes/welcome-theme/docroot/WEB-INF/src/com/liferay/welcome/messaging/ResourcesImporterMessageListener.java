@@ -81,7 +81,7 @@ public class ResourcesImporterMessageListener extends BaseMessageListener {
 
 		if (_log.isInfoEnabled()) {
 			_log.info(
-				"Apply content and pages from layoutSetPrototype " +
+				"Apply content and pages from layout set prototype " +
 					layoutSetPrototypeId + " onto the Guest group");
 		}
 
@@ -103,15 +103,12 @@ public class ResourcesImporterMessageListener extends BaseMessageListener {
 			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
 	}
 
-	private static final String _CLASS_NAME =
-		"com.liferay.portlet.sites.util.SitesUtil";
-
 	private static Log _log = LogFactoryUtil.getLog(
 		ResourcesImporterMessageListener.class);
 
 	private static MethodKey _mergeLayoutSetProtypeLayoutsMethodKey =
 		new MethodKey(
-			_CLASS_NAME, "mergeLayoutSetProtypeLayouts", Group.class,
-			LayoutSet.class);
+			"com.liferay.portlet.sites.util.SitesUtil",
+			"mergeLayoutSetProtypeLayouts", Group.class, LayoutSet.class);
 
 }
