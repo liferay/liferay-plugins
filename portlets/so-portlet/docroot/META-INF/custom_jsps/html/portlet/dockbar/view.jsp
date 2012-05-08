@@ -82,7 +82,12 @@
 						<div class="aui-menu-content" id="<portlet:namespace />userMenuContent">
 							<ul>
 								<li class="aui-menu-item first profile">
-									<a href="<%= user.getDisplayURL(themeDisplay) %>">
+
+									<%
+									portletURL.setParameter("privateLayout", Boolean.FALSE.toString());
+									%>
+
+									<a href="<%= portletURL %>">
 										<liferay-ui:icon
 											message="my-profile"
 											src='/html/icons/users_admin.png'
