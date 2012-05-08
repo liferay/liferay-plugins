@@ -196,9 +196,7 @@ html body {
 	margin: 0;
 }
 
-.ie7 .buddy-list .panel-content .online-users li,
-.ie8 .buddy-list .panel-content .online-users li,
-.ie9 .buddy-list .panel-content .online-users li {
+.ie .buddy-list .panel-content .online-users li {
 	width: 202px;
 }
 
