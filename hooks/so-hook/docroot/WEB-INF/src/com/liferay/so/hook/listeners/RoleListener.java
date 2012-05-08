@@ -18,7 +18,6 @@
 package com.liferay.so.hook.listeners;
 
 import com.liferay.portal.ModelListenerException;
-import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
@@ -28,17 +27,14 @@ import com.liferay.portal.model.UserGroup;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portlet.expando.model.ExpandoTableConstants;
-import com.liferay.portlet.expando.model.ExpandoValue;
-import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 import com.liferay.so.util.LayoutSetPrototypeUtil;
 import com.liferay.so.util.RoleConstants;
+import com.liferay.so.util.SocialOfficeUtil;
 
 import java.util.List;
 
 /**
  * @author Jonathan Lee
- * @author Eudaldo Alonso
  */
 public class RoleListener extends BaseModelListener<Role> {
 
@@ -82,12 +78,12 @@ public class RoleListener extends BaseModelListener<Role> {
 					for (User user : users) {
 						Group userGroup = user.getGroup();
 
-						LayoutSetPrototypeUtil.updateLayoutStePrototype(
+						LayoutSetPrototypeUtil.updateLayoutSetPrototype(
 							userGroup, false);
-						LayoutSetPrototypeUtil.updateLayoutStePrototype(
+						LayoutSetPrototypeUtil.updateLayoutSetPrototype(
 							userGroup, true);
 
-						enableSocialOffice(userGroup);
+						SocialOfficeUtil.enableSocialOffice(userGroup);
 					}
 				}
 			}
@@ -142,7 +138,7 @@ public class RoleListener extends BaseModelListener<Role> {
 						LayoutSetPrototypeUtil.removeLayoutSetPrototype(
 							userGroup, true);
 
-						disableSocialOffice(userGroup);
+						SocialOfficeUtil.disableSocialOffice(userGroup);
 					}
 				}
 			}
@@ -150,41 +146,6 @@ public class RoleListener extends BaseModelListener<Role> {
 		catch (Exception e) {
 			throw new ModelListenerException(e);
 		}
-	}
-
-	protected void disableSocialOffice(Group group) throws Exception {
-		UnicodeProperties typeSettingsProperties =
-			group.getTypeSettingsProperties();
-
-		typeSettingsProperties.remove("customJspServletContextName");
-
-		GroupLocalServiceUtil.updateGroup(
-			group.getGroupId(), typeSettingsProperties.toString());
-
-		ExpandoValue expandoValue = ExpandoValueLocalServiceUtil.getValue(
-			group.getCompanyId(), Group.class.getName(),
-			ExpandoTableConstants.DEFAULT_TABLE_NAME, "socialOfficeEnabled",
-			group.getGroupId());
-
-		expandoValue.setBoolean(false);
-
-		ExpandoValueLocalServiceUtil.updateExpandoValue(expandoValue);
-	}
-
-	protected void enableSocialOffice(Group group) throws Exception {
-		UnicodeProperties typeSettingsProperties =
-			group.getTypeSettingsProperties();
-
-		typeSettingsProperties.setProperty(
-			"customJspServletContextName", "so-hook");
-
-		GroupLocalServiceUtil.updateGroup(
-			group.getGroupId(), typeSettingsProperties.toString());
-
-		ExpandoValueLocalServiceUtil.addValue(
-			group.getCompanyId(), Group.class.getName(),
-			ExpandoTableConstants.DEFAULT_TABLE_NAME, "socialOfficeEnabled",
-			group.getGroupId(), true);
 	}
 
 }

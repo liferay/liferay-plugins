@@ -17,7 +17,7 @@
 
 package com.liferay.so.util;
 
-/*
+/**
  * @author Eudaldo Alonso
  */
 public class SocialOfficeConstants {
