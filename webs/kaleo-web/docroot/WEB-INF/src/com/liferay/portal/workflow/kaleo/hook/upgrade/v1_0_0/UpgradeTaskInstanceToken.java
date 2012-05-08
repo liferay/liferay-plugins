@@ -119,7 +119,7 @@ public class UpgradeTaskInstanceToken extends UpgradeProcess {
 			sb.append("select KaleoNode.type_, ");
 			sb.append("KaleoInstanceToken.kaleoInstanceTokenId ");
 			sb.append("from KaleoNode inner join KaleoInstanceToken on ");
-			sb.append("(Kaleonode.kaleoNodeId = ");
+			sb.append("(KaleoNode.kaleoNodeId = ");
 			sb.append("KaleoInstanceToken.currentKaleoNodeId) ");
 			sb.append("where KaleoInstanceToken.kaleoInstanceTokenId = ");
 			sb.append("(select parentKaleoInstanceTokenId from ");
