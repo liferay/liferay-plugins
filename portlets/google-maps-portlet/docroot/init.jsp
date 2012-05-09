@@ -50,6 +50,7 @@ boolean mapInputEnabled = GetterUtil.getBoolean(preferences.getValue("mapInputEn
 String directionsAddress = preferences.getValue("directionsAddress", StringPool.BLANK);
 boolean directionsInputEnabled = GetterUtil.getBoolean(preferences.getValue("directionsInputEnabled", StringPool.BLANK));
 boolean showDirectionSteps = GetterUtil.getBoolean(preferences.getValue("showDirectionSteps", StringPool.BLANK));
+boolean showGoogleMapsLink = GetterUtil.getBoolean(preferences.getValue("showGoogleMapsLink", StringPool.BLANK));
 
 boolean enableChangingTravellingMode = false;
 

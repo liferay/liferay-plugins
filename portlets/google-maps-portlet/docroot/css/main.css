@@ -8,6 +8,11 @@
 			min-width: 40px;
 		}
 	}
+
+	.google-maps-link {
+		text-align: right;
+		padding-top: 1em;
+	}
 }
 
 .ie6 .google-maps-portlet .maps-content img {

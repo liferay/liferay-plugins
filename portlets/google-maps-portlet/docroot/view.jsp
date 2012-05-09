@@ -78,6 +78,12 @@ directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("di
 				<div class="maps-content" id="<portlet:namespace />map" style="height: <%= height %>px; width: 100%;"></div>
 
 				<div id="<portlet:namespace />warningsPanel"></div>
+
+				<c:if test="<%= showGoogleMapsLink %>">
+					<div class="google-maps-link">
+						<aui:a href="javascript:;" id="openInGoogleMapsLink" label="open-in-google-maps" target="_blank" />
+					</div>
+				</c:if>
 			</aui:fieldset>
 		</aui:form>
 
@@ -166,6 +172,27 @@ directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("di
 							<portlet:namespace />getMap();
 						},
 						'down:13'
+					);
+				}
+
+				var openInGoogleMapsLink = A.one('#<portlet:namespace />openInGoogleMapsLink');
+
+				if (openInGoogleMapsLink) {
+					openInGoogleMapsLink.on(
+						'click',
+						function(event) {
+							event.preventDefault();
+
+							var mapAddress = <portlet:namespace />getMapAddress();
+							var directionsAddress = A.one('#<portlet:namespace />directionsAddress').val();
+
+			                if (directionsAddress) {
+								window.open("http://maps.google.com/maps?f=q&hl=en&q=" + encodeURIComponent(mapAddress) + "+to+" + encodeURIComponent(directionsAddress));
+							}
+							else {
+								window.open("http://maps.google.com/maps?q=" + encodeURIComponent(mapAddress));
+							}
+						}
 					);
 				}
 
