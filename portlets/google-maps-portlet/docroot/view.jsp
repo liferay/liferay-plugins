@@ -34,16 +34,18 @@ directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("di
 
 		<aui:form name="fm">
 			<aui:fieldset>
-				<c:if test="<%= mapInputEnabled %>">
-					<aui:input cssClass="address-field" inlineField="<%= true %>" label="" name="mapAddress" type="text" value="<%= mapAddress %>" />
-
-					<aui:button name="getMapButton" value="get-map" />
+				<c:if test="<%= directionsInputEnabled %>">
+					<aui:input cssClass="address-field" inlineField="<%= true %>" label='<%= directionsInputEnabled ? "from" : StringPool.BLANK %>' name="directionsAddress" type="text" value="<%= directionsAddress %>" />
 				</c:if>
 
-				<c:if test="<%= directionsInputEnabled %>">
-					<aui:input cssClass="address-field" inlineField="<%= true %>" label="" name="directionsAddress" type="text" value="<%= directionsAddress %>" />
+				<c:if test="<%= mapInputEnabled %>">
+					<aui:input cssClass="address-field" inlineField="<%= true %>" label='<%= directionsInputEnabled ? "to" : StringPool.BLANK %>' name="mapAddress" type="text" value="<%= mapAddress %>" />
 
-					<aui:button name="getDirectionsButton" value="get-directions" />
+					<c:if test="<%= directionsInputEnabled %>">
+						<aui:button name="getDirectionsButton" value="get-directions" />
+					</c:if>
+
+					<aui:button name="getMapButton" value="get-map" />
 				</c:if>
 
 				<div style="padding-top: 5px;"></div>

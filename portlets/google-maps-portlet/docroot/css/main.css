@@ -1,6 +1,12 @@
 .google-maps-portlet {
-	.address-field input {
-		width: 350px;
+	.address-field {
+		input {
+			width: 350px;
+		}
+
+		label {
+			min-width: 40px;
+		}
 	}
 }
 
