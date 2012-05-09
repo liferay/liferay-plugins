@@ -23,12 +23,6 @@ directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("di
 
 <c:choose>
 	<c:when test="<%= Validator.isNotNull(mapAddress) %>">
-		<style>
-			.ie6 .maps-content img {
-				behavior: expression(this.pngSet=true);
-			}
-		</style>
-
 		<c:choose>
 			<c:when test="<%= PortalUtil.isSecure(request) %>">
 				<script src="https://maps-api-ssl.google.com/maps/api/js?v=3&sensor=true" type="text/javascript"></script>
@@ -38,29 +32,27 @@ directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("di
 			</c:otherwise>
 		</c:choose>
 
-		<form name="<portlet:namespace />fm">
+		<aui:form name="fm">
+			<aui:fieldset>
+				<c:if test="<%= mapInputEnabled %>">
+					<aui:input cssClass="address-field" inlineField="<%= true %>" label="" name="mapAddress" type="text" value="<%= mapAddress %>" />
 
-		<c:if test="<%= mapInputEnabled %>">
-			<input class="lfr-input-text" name="<portlet:namespace />mapAddress" onKeyPress="if (event.keyCode == 13) { <portlet:namespace />getMap(); return false; }" type="text" value="<%= mapAddress %>" />
+					<aui:button name="getMapButton" value="get-map" />
+				</c:if>
 
-			<input type="button" value="<liferay-ui:message key="get-map" />" onClick="<portlet:namespace />getMap();" />
-		</c:if>
+				<c:if test="<%= directionsInputEnabled %>">
+					<aui:input cssClass="address-field" inlineField="<%= true %>" label="" name="directionsAddress" type="text" value="<%= directionsAddress %>" />
 
-		<c:if test="<%= directionsInputEnabled %>">
-			<input class="lfr-input-text" name="<portlet:namespace />directionsAddress" onKeyPress="if (event.keyCode == 13) { <portlet:namespace />getDirections(); return false; }" type="text" value="<%= directionsAddress %>" />
+					<aui:button name="getDirectionsButton" value="get-directions" />
+				</c:if>
 
-			<input type="button" value="<liferay-ui:message key="get-directions" />" onClick="<portlet:namespace />getDirections();" />
-		</c:if>
+				<div style="padding-top: 5px;"></div>
 
-		<c:if test="<%= mapInputEnabled || directionsInputEnabled %>">
-			<div style="padding-top: 5px;"></div>
-		</c:if>
+				<div class="maps-content" id="<portlet:namespace />map" style="height: <%= height %>px; width: 100%;"></div>
+			</aui:fieldset>
+		</aui:form>
 
-		<div class="maps-content" id="<portlet:namespace />map" style="height: <%= height %>px; width: 100%;"></div>
-
-		</form>
-
-		<aui:script>
+		<aui:script use="aui-base,aui-io-request">
 			var <portlet:namespace />map;
 			var <portlet:namespace />geocoder;
 
@@ -73,6 +65,71 @@ directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("di
 				<portlet:namespace />map = new google.maps.Map(document.getElementById("<portlet:namespace />map"), myOptions);
 
 				<portlet:namespace />geocoder = new google.maps.Geocoder();
+
+				var rendererOptions = {
+					map: <portlet:namespace />map
+				}
+
+				var getDirectionsButton = A.one('#<portlet:namespace />getDirectionsButton');
+
+				if (getDirectionsButton) {
+					getDirectionsButton.on(
+						'click',
+						function(event) {
+							<portlet:namespace />getDirections();
+						}
+					);
+				}
+
+				var travellingMode = A.one('#<portlet:namespace />travellingMode');
+
+				if (travellingMode) {
+					travellingMode.on(
+						'change',
+						function(event) {
+							<portlet:namespace />getDirections();
+						}
+					);
+				}
+
+				var getMapButton = A.one('#<portlet:namespace />getMapButton');
+
+				if (getMapButton) {
+					getMapButton.on(
+						'click',
+						function(event) {
+							<portlet:namespace />getMap();
+						}
+					);
+				}
+
+				var directionsAddress = A.one('#<portlet:namespace />directionsAddress');
+
+				if (directionsAddress) {
+					directionsAddress.on(
+						'keyPress',
+						function(event) {
+							if (event.keyCode == 13) {
+								<portlet:namespace />getDirections();
+								return false;
+							}
+						}
+					);
+				}
+
+				var mapAddress = A.one('#<portlet:namespace />directionsAddress');
+
+				if (mapAddress) {
+					mapAddress.on(
+						'keyPress',
+						function(event) {
+							if (event.keyCode == 13) {
+								<portlet:namespace />getMap();
+								return false;
+							}
+						}
+					);
+				}
 
 				<portlet:namespace />getAddress("<%= mapAddress %>");
 			}
@@ -142,41 +199,27 @@ directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("di
 				return mapAddress;
 			}
 
-			Liferay.provide(
-				window,
-				'<portlet:namespace />saveDirectionsAddress',
-				function(address) {
-					var A = AUI();
-
-					A.io.request(
-						'<portlet:actionURL><portlet:param name="<%= Constants.CMD %>" value="saveDirectionsAddress" /></portlet:actionURL>',
-						{
-							data: {
-								directionsAddress: address
-							}
+			function <portlet:namespace />saveDirectionsAddress(address) {
+				A.io.request(
+					'<portlet:actionURL><portlet:param name="<%= Constants.CMD %>" value="saveDirectionsAddress" /></portlet:actionURL>',
+					{
+						data: {
+							directionsAddress: address
 						}
-					);
-				},
-				['aui-io-request']
-			);
+					}
+				);
+			}
 
-			Liferay.provide(
-				window,
-				'<portlet:namespace />saveMapAddress',
-				function(address) {
-					var A = AUI();
-
-					A.io.request(
-						'<portlet:actionURL><portlet:param name="<%= Constants.CMD %>" value="saveMapAddress" /></portlet:actionURL>',
-						{
-							data: {
-								mapAddress: address
-							}
+			function <portlet:namespace />saveMapAddress(address) {
+				A.io.request(
+					'<portlet:actionURL><portlet:param name="<%= Constants.CMD %>" value="saveMapAddress" /></portlet:actionURL>',
+					{
+						data: {
+							mapAddress: address
 						}
-					);
-				},
-				['aui-io-request']
-			);
+					}
+				);
+			}
 		</aui:script>
 	</c:when>
 	<c:otherwise>

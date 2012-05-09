@@ -1,0 +1,9 @@
+.google-maps-portlet {
+	.address-field input {
+		width: 350px;
+	}
+}
+
+.ie6 .google-maps-portlet .maps-content img {
+	behavior: expression(this.pngSet=true);
+}
