@@ -49,6 +49,7 @@ String mapAddress = preferences.getValue("mapAddress", StringPool.BLANK);
 boolean mapInputEnabled = GetterUtil.getBoolean(preferences.getValue("mapInputEnabled", StringPool.BLANK));
 String directionsAddress = preferences.getValue("directionsAddress", StringPool.BLANK);
 boolean directionsInputEnabled = GetterUtil.getBoolean(preferences.getValue("directionsInputEnabled", StringPool.BLANK));
+boolean showDirectionSteps = GetterUtil.getBoolean(preferences.getValue("showDirectionSteps", StringPool.BLANK));
 
 boolean enableChangingTravellingMode = false;
 

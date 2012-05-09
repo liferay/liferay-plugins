@@ -245,7 +245,9 @@ directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("di
 
 							<portlet:namespace />directionsDisplay.setDirections(response);
 
-							<portlet:namespace />showSteps(response);
+							<c:if test="<%= showDirectionSteps%>">
+								<portlet:namespace />showSteps(response);
+							</c:if>
 
 							<portlet:namespace />saveDirectionsAddress(directionsAddress);
 						}
