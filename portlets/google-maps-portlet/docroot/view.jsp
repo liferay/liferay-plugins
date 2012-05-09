@@ -35,28 +35,56 @@ directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("di
 		<aui:form name="fm">
 			<aui:fieldset>
 				<c:if test="<%= directionsInputEnabled %>">
-					<aui:input cssClass="address-field" inlineField="<%= true %>" label='<%= directionsInputEnabled ? "from" : StringPool.BLANK %>' name="directionsAddress" type="text" value="<%= directionsAddress %>" />
+					<aui:input cssClass="address-field" inlineField="<%= true %>" label='<%= mapInputEnabled ? "from" : "directions-from" %>' name="directionsAddress" type="text" value="<%= directionsAddress %>" />
+				</c:if>
+
+				<c:choose>
+					<c:when test="<%= mapInputEnabled %>">
+						<aui:input cssClass="address-field" inlineField="<%= true %>" label='<%= directionsInputEnabled ? "to" : StringPool.BLANK %>' name="mapAddress" type="text" value="<%= mapAddress %>" />
+					</c:when>
+					<c:otherwise>
+						<aui:input name="mapAddress" type="hidden" value="<%= directionsAddress %>" />
+					</c:otherwise>
+				</c:choose>
+
+				<c:if test="<%= directionsInputEnabled %>">
+					<aui:button name="getDirectionsButton" value="get-directions" />
+
+					<c:choose>
+						<c:when test="<%= enableChangingTravellingMode %>">
+							<aui:select inlineField="<%= true %>" label="" name="travellingMode">
+								<aui:option label="<%= GoogleMapsConstants.DRIVING %>" />
+								<aui:option label="<%= GoogleMapsConstants.WALKING %>" />
+								<aui:option label="<%= GoogleMapsConstants.BICYCLING %>" />
+							</aui:select>
+						</c:when>
+						<c:otherwise>
+							<aui:input name="travellingMode" type="hidden" value="<%= GoogleMapsConstants.DRIVING %>" />
+						</c:otherwise>
+					</c:choose>
 				</c:if>
 
 				<c:if test="<%= mapInputEnabled %>">
-					<aui:input cssClass="address-field" inlineField="<%= true %>" label='<%= directionsInputEnabled ? "to" : StringPool.BLANK %>' name="mapAddress" type="text" value="<%= mapAddress %>" />
-
-					<c:if test="<%= directionsInputEnabled %>">
-						<aui:button name="getDirectionsButton" value="get-directions" />
-					</c:if>
-
 					<aui:button name="getMapButton" value="get-map" />
 				</c:if>
 
 				<div style="padding-top: 5px;"></div>
 
 				<div class="maps-content" id="<portlet:namespace />map" style="height: <%= height %>px; width: 100%;"></div>
+
+				<div id="<portlet:namespace />warningsPanel"></div>
 			</aui:fieldset>
 		</aui:form>
 
 		<aui:script use="aui-base,aui-io-request">
-			var <portlet:namespace />map;
+			var <portlet:namespace />directionDisplay;
+			var <portlet:namespace />directionsService;
 			var <portlet:namespace />geocoder;
+			var <portlet:namespace />map;
+			var <portlet:namespace />markersArray = [];
+			var <portlet:namespace />stepDisplay;
+			var <portlet:namespace />marker;
+			var <portlet:namespace />infoWindow;
 
 			function <portlet:namespace />load() {
 				var myOptions = {
@@ -65,12 +93,15 @@ directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("di
 		  		}
 
 				<portlet:namespace />map = new google.maps.Map(document.getElementById("<portlet:namespace />map"), myOptions);
-
 				<portlet:namespace />geocoder = new google.maps.Geocoder();
+				<portlet:namespace />directionsService = new google.maps.DirectionsService();
 
 				var rendererOptions = {
 					map: <portlet:namespace />map
 				}
+
+				<portlet:namespace />directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
+				<portlet:namespace />stepDisplay = new google.maps.InfoWindow();
 
 				var getDirectionsButton = A.one('#<portlet:namespace />getDirectionsButton');
 
@@ -109,31 +140,38 @@ directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("di
 
 				if (directionsAddress) {
 					directionsAddress.on(
-						'keyPress',
+						'key',
 						function(event) {
-							if (event.keyCode == 13) {
-								<portlet:namespace />getDirections();
-								return false;
-							}
-						}
+							event.preventDefault();
+
+							<portlet:namespace />getDirections();
+						},
+						'down:13'
 					);
 				}
 
-				var mapAddress = A.one('#<portlet:namespace />directionsAddress');
+				var mapAddress = A.one('#<portlet:namespace />mapAddress');
 
 				if (mapAddress) {
 					mapAddress.on(
-						'keyPress',
+						'key',
 						function(event) {
-							if (event.keyCode == 13) {
-								<portlet:namespace />getMap();
-								return false;
-							}
-						}
+							event.preventDefault();
+
+							<portlet:namespace />getMap();
+						},
+						'down:13'
 					);
 				}
 
-				<portlet:namespace />getAddress("<%= mapAddress %>");
+				<c:choose>
+					<c:when test="<%= directionsInputEnabled %>">
+						<portlet:namespace />getDirections();
+					</c:when>
+					<c:otherwise>
+						<portlet:namespace />getAddress("<%= mapAddress %>");
+					</c:otherwise>
+				</c:choose>
 			}
 
 			<portlet:namespace />load();
@@ -149,22 +187,33 @@ directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("di
 
 							<portlet:namespace />map.setCenter(location);
 
-							var marker = new google.maps.Marker(
-								{
-									map: <portlet:namespace />map,
-									position: location
-								}
-							);
+							if (!<portlet:namespace />marker) {
+								<portlet:namespace />marker = new google.maps.Marker(
+									{
+										map: <portlet:namespace />map,
+										position: location
+									}
+								);
+							}
+							else {
+								<portlet:namespace />marker.setMap(<portlet:namespace />map);
+								<portlet:namespace />marker.setPosition(location);
+							}
 
-							var infowindow = new google.maps.InfoWindow(
-								{
-									content: address
-								}
-							);
+							if (!<portlet:namespace />infoWindow) {
+								<portlet:namespace />infoWindow = new google.maps.InfoWindow(
+									{
+										content: address
+									}
+								);
+							}
+							else {
+								<portlet:namespace />infoWindow.setContent(address);
+							}
 
-							infowindow.setPosition(location);
+							<portlet:namespace />infoWindow.setPosition(location);
 
-							infowindow.open(<portlet:namespace />map, marker);
+							<portlet:namespace />infoWindow.open(<portlet:namespace />map, <portlet:namespace />marker);
 						}
 						else {
 							//alert(status);
@@ -175,16 +224,86 @@ directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("di
 
 			function <portlet:namespace />getDirections() {
 				var mapAddress = <portlet:namespace />getMapAddress();
-				var directionsAddress = document.<portlet:namespace />fm.<portlet:namespace />directionsAddress.value;
+				var directionsAddress = A.one('#<portlet:namespace />directionsAddress').val();
 
-				<portlet:namespace />saveDirectionsAddress(directionsAddress);
+				var travellingMode = A.one('#<portlet:namespace />travellingMode').val();
 
-				window.open("http://maps.google.com/maps?f=q&hl=en&q=" + encodeURIComponent(document.<portlet:namespace />fm.<portlet:namespace />directionsAddress.value) + "+to+" + encodeURIComponent(mapAddress));
+				var request = {
+					destination: directionsAddress,
+					origin: mapAddress,
+					travelMode: google.maps.TravelMode[travellingMode.toUpperCase()]
+				};
+
+				<portlet:namespace />removeMarkers();
+
+				<portlet:namespace />directionsService.route(
+					request,
+					function(response, status) {
+						if (status == google.maps.DirectionsStatus.OK) {
+							var warnings = document.getElementById("<portlet:namespace />warningsPanel");
+							warnings.innerHTML = "" + response.routes[0].warnings + "";
+
+							<portlet:namespace />directionsDisplay.setDirections(response);
+
+							<portlet:namespace />showSteps(response);
+
+							<portlet:namespace />saveDirectionsAddress(directionsAddress);
+						}
+						else {
+							//alert(status);
+						}
+					}
+				);
+			}
+
+			function <portlet:namespace />showSteps(directionResult) {
+
+				// For each step, place a marker, and add the text to the marker's info window.
+
+				var myRoute = directionResult.routes[0].legs[0];
+
+				for (var i = 0; i < myRoute.steps.length; i++) {
+					var marker = new google.maps.Marker(
+						{
+							position: myRoute.steps[i].start_point,
+							map: <portlet:namespace />map
+						}
+					);
+
+					<portlet:namespace />attachInstructionText(marker, myRoute.steps[i].instructions);
+
+					<portlet:namespace />markersArray.push(marker);
+				}
+			}
+
+			function <portlet:namespace />attachInstructionText(marker, text) {
+				google.maps.event.addListener(
+					marker,
+					'click',
+					function() {
+						<portlet:namespace />stepDisplay.setContent(text);
+
+						<portlet:namespace />stepDisplay.open(<portlet:namespace />map, marker);
+					}
+				);
+			}
+
+			function <portlet:namespace />removeMarkers() {
+				if (<portlet:namespace />markersArray){
+					for (i in <portlet:namespace />markersArray) {
+						<portlet:namespace />markersArray[i].setMap(null);
+					}
+				}
+
+				if (<portlet:namespace />marker) {
+					<portlet:namespace />marker.setMap(null);
+				}
 			}
 
 			function <portlet:namespace />getMap() {
 				var mapAddress = <portlet:namespace />getMapAddress();
 
+				<portlet:namespace />removeMarkers();
 				<portlet:namespace />getAddress(mapAddress);
 				<portlet:namespace />saveMapAddress(mapAddress);
 

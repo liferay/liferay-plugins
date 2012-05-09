@@ -23,7 +23,8 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.portal.kernel.util.Constants" %><%@
+<%@ page import="com.liferay.googlemaps.portlet.GoogleMapsConstants" %><%@
+page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
@@ -48,6 +49,13 @@ String mapAddress = preferences.getValue("mapAddress", StringPool.BLANK);
 boolean mapInputEnabled = GetterUtil.getBoolean(preferences.getValue("mapInputEnabled", StringPool.BLANK));
 String directionsAddress = preferences.getValue("directionsAddress", StringPool.BLANK);
 boolean directionsInputEnabled = GetterUtil.getBoolean(preferences.getValue("directionsInputEnabled", StringPool.BLANK));
+
+boolean enableChangingTravellingMode = false;
+
+if (directionsInputEnabled) {
+	enableChangingTravellingMode = GetterUtil.getBoolean(preferences.getValue("enableChangingTravellingMode", StringPool.BLANK));
+}
+
 int height = GetterUtil.getInteger(preferences.getValue("height", StringPool.BLANK), 300);
 
 String sesMapAddress = (String)session.getAttribute(renderResponse.getNamespace() + "mapAddress");

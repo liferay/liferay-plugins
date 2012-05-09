@@ -30,6 +30,8 @@
 
 		<aui:input name="preferences--directionsInputEnabled--" type="checkbox" value="<%= directionsInputEnabled %>" />
 
+		<aui:input name="preferences--enableChangingTravellingMode--" type="checkbox" value="<%= enableChangingTravellingMode %>" />
+
 		<aui:input name="preferences--height--" size="4" suffix="px" type="text" value="<%= height %>" />
 	</aui:fieldset>
 
