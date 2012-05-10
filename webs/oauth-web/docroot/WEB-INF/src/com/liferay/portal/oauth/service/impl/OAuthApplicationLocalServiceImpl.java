@@ -14,6 +14,11 @@
 
 package com.liferay.portal.oauth.service.impl;
 
+import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.DigesterUtil;
+import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
+import com.liferay.portal.oauth.model.OAuthApplication;
 import com.liferay.portal.oauth.service.base.OAuthApplicationLocalServiceBaseImpl;
 
 /**
@@ -37,4 +42,32 @@ public class OAuthApplicationLocalServiceImpl
 	 *
 	 * Never reference this interface directly. Always use {@link com.liferay.portal.oauth.service.OAuthApplicationLocalServiceUtil} to access the o auth application local service.
 	 */
+	public OAuthApplication addOAuthApplication(
+			int accessLevel, String callbackURL, String description,
+			String name, long ownerId, String website)
+		throws SystemException {
+		OAuthApplication oaa = createOAuthApplication(
+			CounterLocalServiceUtil.increment());
+
+		oaa.setConsumerKey(PortalUUIDUtil.generate());
+		oaa.setAccessLevel(accessLevel);
+		oaa.setCallBackURL(callbackURL);
+		oaa.setName(name);
+		oaa.setDescription(description);
+		oaa.setOwnerId(ownerId);
+		oaa.setWebsite(website);
+		
+		String secretSeed = oaa.getConsumerKey()
+				.concat(Long.toString(System.nanoTime()));
+		
+		oaa.setConsumerSecret(DigesterUtil.digestHex(secretSeed));
+
+		return updateOAuthApplication(oaa, true);
+	}
+
+	public OAuthApplication getOAuthApplicationByConsumerKey(String consumerKey)
+		throws SystemException{
+
+		return oAuthApplicationPersistence.fetchByConsumerKey(consumerKey);
+	}
 }
