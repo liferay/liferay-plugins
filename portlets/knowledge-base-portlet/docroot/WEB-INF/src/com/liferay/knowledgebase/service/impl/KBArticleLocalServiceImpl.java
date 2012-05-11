@@ -1309,7 +1309,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		if (serviceContext.isCommandAdd()) {
 			subject = AdminUtil.getEmailKBArticleAddedSubject(preferences);
-			body = AdminUtil.getEmailKBArticleUpdatedBody(preferences);
+			body = AdminUtil.getEmailKBArticleAddedBody(preferences);
 		}
 		else {
 			subject = AdminUtil.getEmailKBArticleUpdatedSubject(preferences);
