@@ -350,13 +350,11 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 				"portletId");
 			long entryId = notificationEventJSONObject.getLong("entryId");
 
-			if (portletId.equals(PortletKeys.SO_PRIVATE_MESSAGING) &&
+			if (portletId.equals(PortletKeys.PRIVATE_MESSAGING) &&
 				(entryId == mbThreadId)) {
 
-				String uuid = notificationEvent.getUuid();
-
 				ChannelHubManagerUtil.deleteUserNotificiationEvent(
-					companyId, userId, uuid);
+					companyId, userId, notificationEvent.getUuid());
 			}
 		}
 	}

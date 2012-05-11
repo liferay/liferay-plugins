@@ -19,7 +19,7 @@ package com.liferay.privatemessaging.util;
  */
 public class PortletKeys extends com.liferay.portal.util.PortletKeys {
 
-	public static final String SO_PRIVATE_MESSAGING =
+	public static final String PRIVATE_MESSAGING =
 		"1_WAR_privatemessagingportlet";
 
 }
