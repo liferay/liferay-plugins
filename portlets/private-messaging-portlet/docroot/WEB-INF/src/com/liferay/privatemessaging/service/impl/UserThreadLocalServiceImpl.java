@@ -455,7 +455,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		notificationEventJSONObject.put("entryKeyName", "mbThreadId");
 		notificationEventJSONObject.put("mvcPath", "/view.jsp");
 		notificationEventJSONObject.put(
-			"portletId", PortletKeys.SO_PRIVATE_MESSAGING);
+			"portletId", PortletKeys.PRIVATE_MESSAGING);
 		notificationEventJSONObject.put("title", "x-sent-you-a-message");
 		notificationEventJSONObject.put("userId", mbMessage.getUserId());
 
