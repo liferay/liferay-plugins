@@ -352,9 +352,6 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 
 				String uuid = notificationEvent.getUuid();
 
-				ChannelHubManagerUtil.confirmDelivery(
-					companyId, userId, uuid, true);
-
 				ChannelHubManagerUtil.deleteUserNotificiationEvent(
 					companyId, userId, uuid);
 			}
