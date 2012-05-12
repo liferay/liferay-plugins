@@ -89,8 +89,8 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 
 			try {
 				removeNotification(
-					themeDisplay.getCompanyId(), mbThreadId,
-					themeDisplay.getUserId());
+					themeDisplay.getCompanyId(), themeDisplay.getUserId(),
+					mbThreadId);
 			}
 			catch (ChannelException ce) {
 			}
@@ -326,7 +326,7 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 	}
 
 	protected void removeNotification(
-			long companyId, long mbThreadId, long userId)
+			long companyId, long userId, long mbThreadId)
 		throws ChannelException {
 
 		List<NotificationEvent> notificationEvents = null;
