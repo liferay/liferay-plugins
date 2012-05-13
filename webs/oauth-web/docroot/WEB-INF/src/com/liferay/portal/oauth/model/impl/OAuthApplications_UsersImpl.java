@@ -23,12 +23,14 @@ package com.liferay.portal.oauth.model.impl;
  *
  * @author Brian Wing Shun Chan
  */
-public class OAuthApplications_UsersImpl extends OAuthApplications_UsersBaseImpl {
-	/*
+public class OAuthApplications_UsersImpl
+	extends OAuthApplications_UsersBaseImpl {
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never reference this class directly. All methods that expect a o auth applications_ users model instance should use the {@link com.liferay.portal.oauth.model.OAuthApplications_Users} interface instead.
 	 */
 	public OAuthApplications_UsersImpl() {
 	}
+
 }
