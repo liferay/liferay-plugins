@@ -15,11 +15,8 @@
 package com.liferay.portal.oauth.service.impl;
 
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.model.User;
-import com.liferay.portal.oauth.model.OAuthApplication;
 import com.liferay.portal.oauth.model.OAuthApplications_Users;
 import com.liferay.portal.oauth.model.impl.OAuthApplications_UsersImpl;
-import com.liferay.portal.oauth.service.OAuthApplications_UsersLocalService;
 import com.liferay.portal.oauth.service.base.OAuthApplications_UsersLocalServiceBaseImpl;
 
 /**
@@ -38,7 +35,7 @@ import com.liferay.portal.oauth.service.base.OAuthApplications_UsersLocalService
  */
 public class OAuthApplications_UsersLocalServiceImpl
 	extends OAuthApplications_UsersLocalServiceBaseImpl {
-	/*
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never reference this interface directly. Always use {@link com.liferay.portal.oauth.service.OAuthApplications_UsersLocalServiceUtil} to access the o auth applications_ users local service.
@@ -89,4 +86,5 @@ public class OAuthApplications_UsersLocalServiceImpl
 
 		return oAuthApplications_users;
 	}
+
 }
