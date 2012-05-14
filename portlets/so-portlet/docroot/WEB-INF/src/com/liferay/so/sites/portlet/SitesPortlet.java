@@ -504,8 +504,8 @@ public class SitesPortlet extends MVCPortlet {
 			Group.class.getName(), actionRequest);
 
 		Group group = GroupServiceUtil.addGroup(
-			name, description, type, StringPool.BLANK, true, true,
-			serviceContext);
+			GroupConstants.DEFAULT_PARENT_GROUP_ID, name, description, type,
+			StringPool.BLANK, true, true, serviceContext);
 
 		long layoutSetPrototypeId = ParamUtil.getLong(
 			actionRequest, "layoutSetPrototypeId");
