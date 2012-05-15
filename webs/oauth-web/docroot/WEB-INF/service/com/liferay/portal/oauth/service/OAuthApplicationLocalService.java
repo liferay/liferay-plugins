@@ -248,6 +248,11 @@ public interface OAuthApplicationLocalService extends BaseLocalService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
+	/**
+	* NOTE FOR DEVELOPERS:
+	*
+	* Never reference this interface directly. Always use {@link com.liferay.portal.oauth.service.OAuthApplicationLocalServiceUtil} to access the o auth application local service.
+	*/
 	public com.liferay.portal.oauth.model.OAuthApplication addOAuthApplication(
 		int accessLevel, java.lang.String callbackURL,
 		java.lang.String description, java.lang.String name, long ownerId,

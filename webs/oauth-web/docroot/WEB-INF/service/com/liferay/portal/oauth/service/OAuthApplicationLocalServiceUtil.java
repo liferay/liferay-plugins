@@ -275,6 +275,11 @@ public class OAuthApplicationLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	/**
+	* NOTE FOR DEVELOPERS:
+	*
+	* Never reference this interface directly. Always use {@link com.liferay.portal.oauth.service.OAuthApplicationLocalServiceUtil} to access the o auth application local service.
+	*/
 	public static com.liferay.portal.oauth.model.OAuthApplication addOAuthApplication(
 		int accessLevel, java.lang.String callbackURL,
 		java.lang.String description, java.lang.String name, long ownerId,
