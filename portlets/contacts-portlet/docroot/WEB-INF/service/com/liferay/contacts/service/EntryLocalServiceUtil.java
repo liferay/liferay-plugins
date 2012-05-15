@@ -15,7 +15,6 @@
 package com.liferay.contacts.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -324,10 +323,8 @@ public class EntryLocalServiceUtil {
 				   .updateEntry(entryId, fullName, emailAddress, comments);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static EntryLocalService getService() {
@@ -344,7 +341,6 @@ public class EntryLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(EntryLocalServiceUtil.class,
 				"_service");
-			MethodCache.remove(EntryLocalService.class);
 		}
 
 		return _service;

@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -300,10 +299,8 @@ public class KaleoTimerLocalServiceUtil {
 				   .getKaleoTimers(kaleoClassName, kaleoClassPK, blocking);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static KaleoTimerLocalService getService() {
@@ -320,7 +317,6 @@ public class KaleoTimerLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(KaleoTimerLocalServiceUtil.class,
 				"_service");
-			MethodCache.remove(KaleoTimerLocalService.class);
 		}
 
 		return _service;

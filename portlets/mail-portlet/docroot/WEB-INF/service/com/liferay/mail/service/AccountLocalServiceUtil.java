@@ -15,7 +15,6 @@
 package com.liferay.mail.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -331,10 +330,8 @@ public class AccountLocalServiceUtil {
 			sentFolderId, trashFolderId);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static AccountLocalService getService() {
@@ -351,7 +348,6 @@ public class AccountLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(AccountLocalServiceUtil.class,
 				"_service");
-			MethodCache.remove(AccountLocalService.class);
 		}
 
 		return _service;

@@ -15,7 +15,6 @@
 package com.liferay.ams.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -270,10 +269,8 @@ public class CheckoutLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static CheckoutLocalService getService() {
@@ -290,7 +287,6 @@ public class CheckoutLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(CheckoutLocalServiceUtil.class,
 				"_service");
-			MethodCache.remove(CheckoutLocalService.class);
 		}
 
 		return _service;

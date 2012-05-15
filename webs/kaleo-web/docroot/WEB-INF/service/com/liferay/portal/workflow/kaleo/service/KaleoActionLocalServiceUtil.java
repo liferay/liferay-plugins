@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -305,10 +304,8 @@ public class KaleoActionLocalServiceUtil {
 				   .getKaleoActions(kaleoClassName, kaleoClassPK, executionType);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static KaleoActionLocalService getService() {
@@ -325,7 +322,6 @@ public class KaleoActionLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(KaleoActionLocalServiceUtil.class,
 				"_service");
-			MethodCache.remove(KaleoActionLocalService.class);
 		}
 
 		return _service;

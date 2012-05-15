@@ -15,7 +15,6 @@
 package com.liferay.chat.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -310,10 +309,8 @@ public class StatusLocalServiceUtil {
 			activePanelId, message, playSound);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static StatusLocalService getService() {
@@ -330,7 +327,6 @@ public class StatusLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(StatusLocalServiceUtil.class,
 				"_service");
-			MethodCache.remove(StatusLocalService.class);
 		}
 
 		return _service;

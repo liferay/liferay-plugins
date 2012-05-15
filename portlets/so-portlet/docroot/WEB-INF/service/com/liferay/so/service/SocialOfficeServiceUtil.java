@@ -15,7 +15,6 @@
 package com.liferay.so.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableService;
 
@@ -75,10 +74,8 @@ public class SocialOfficeServiceUtil {
 		return getService().isSocialOfficeGroup(groupId);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static SocialOfficeService getService() {
@@ -95,7 +92,6 @@ public class SocialOfficeServiceUtil {
 
 			ReferenceRegistry.registerReference(SocialOfficeServiceUtil.class,
 				"_service");
-			MethodCache.remove(SocialOfficeService.class);
 		}
 
 		return _service;

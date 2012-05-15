@@ -15,7 +15,6 @@
 package com.liferay.sampleservicebuilder.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableService;
 
@@ -63,10 +62,8 @@ public class FooServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static FooService getService() {
@@ -82,7 +79,6 @@ public class FooServiceUtil {
 			}
 
 			ReferenceRegistry.registerReference(FooServiceUtil.class, "_service");
-			MethodCache.remove(FooService.class);
 		}
 
 		return _service;

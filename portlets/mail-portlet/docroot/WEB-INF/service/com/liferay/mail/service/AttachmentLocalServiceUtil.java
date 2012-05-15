@@ -15,7 +15,6 @@
 package com.liferay.mail.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -308,10 +307,8 @@ public class AttachmentLocalServiceUtil {
 		return getService().getInputStream(attachmentId);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static AttachmentLocalService getService() {
@@ -328,7 +325,6 @@ public class AttachmentLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(AttachmentLocalServiceUtil.class,
 				"_service");
-			MethodCache.remove(AttachmentLocalService.class);
 		}
 
 		return _service;

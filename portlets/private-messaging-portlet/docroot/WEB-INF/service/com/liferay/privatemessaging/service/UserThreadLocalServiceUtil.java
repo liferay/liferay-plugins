@@ -15,7 +15,6 @@
 package com.liferay.privatemessaging.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -371,10 +370,8 @@ public class UserThreadLocalServiceUtil {
 		getService().markUserThreadAsUnread(userId, mbThreadId);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static UserThreadLocalService getService() {
@@ -391,7 +388,6 @@ public class UserThreadLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(UserThreadLocalServiceUtil.class,
 				"_service");
-			MethodCache.remove(UserThreadLocalService.class);
 		}
 
 		return _service;

@@ -15,7 +15,6 @@
 package com.liferay.knowledgebase.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableService;
 
@@ -306,10 +305,8 @@ public class KBArticleServiceUtil {
 			.updateKBArticlesPriorities(groupId, resourcePrimKeyToPriorityMap);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static KBArticleService getService() {
@@ -326,7 +323,6 @@ public class KBArticleServiceUtil {
 
 			ReferenceRegistry.registerReference(KBArticleServiceUtil.class,
 				"_service");
-			MethodCache.remove(KBArticleService.class);
 		}
 
 		return _service;

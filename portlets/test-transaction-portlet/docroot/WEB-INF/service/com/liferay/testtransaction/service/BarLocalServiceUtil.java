@@ -15,7 +15,6 @@
 package com.liferay.testtransaction.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -320,10 +319,8 @@ public class BarLocalServiceUtil {
 		getService().testAddClassNameAndBar_Success(text);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static BarLocalService getService() {
@@ -340,7 +337,6 @@ public class BarLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(BarLocalServiceUtil.class,
 				"_service");
-			MethodCache.remove(BarLocalService.class);
 		}
 
 		return _service;
