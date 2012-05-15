@@ -78,19 +78,13 @@
 		<column name="parentCalendarBookingId" type="long" />
 		<column name="title" type="String" localized="true" />
 		<column name="description" type="String" localized="true" />
-		<column name="location" type="String" localized="true" />
-		<column name="type" type="String" />
+		<column name="location" type="String" />
 		<column name="startDate" type="Date" />
 		<column name="endDate" type="Date" />
 		<column name="allDay" type="boolean" />
 		<column name="recurrence" type="String" />
-		<column name="priority" type="int" />
-		<column name="outOfOffice" type="boolean" />
 		<column name="firstReminder" type="int" />
 		<column name="secondReminder" type="int" />
-		<column name="required" type="boolean" />
-		<column name="requestMessage" type="String" />
-		<column name="responseMessage" type="String" />
 		<column name="status" type="int" />
 		<column name="statusByUserId" type="long" />
 		<column name="statusByUserName" type="String" />
@@ -111,6 +105,13 @@
 		<finder name="CalendarResourceId" return-type="Collection">
 			<finder-column name="calendarResourceId" />
 		</finder>
+		<finder name="ParentCalendarBookingId" return-type="Collection">
+			<finder-column name="parentCalendarBookingId" />
+		</finder>
+		<finder name="C_P" return-type="CalendarBooking" unique="true">
+			<finder-column name="calendarId" />
+			<finder-column name="parentCalendarBookingId" />
+		</finder>
 		<finder name="C_S" return-type="Collection">
 			<finder-column name="calendarResourceId" />
 			<finder-column name="status" />
@@ -119,6 +120,10 @@
 			<finder-column name="calendarId" />
 			<finder-column name="startDate" />
 			<finder-column name="endDate" />
+		</finder>
+		<finder name="P_S" return-type="Collection">
+			<finder-column name="parentCalendarBookingId" />
+			<finder-column name="status" />
 		</finder>
 
 		<!-- References -->
