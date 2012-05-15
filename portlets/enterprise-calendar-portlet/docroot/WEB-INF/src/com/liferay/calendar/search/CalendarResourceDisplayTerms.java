@@ -33,6 +33,8 @@ public class CalendarResourceDisplayTerms extends DisplayTerms {
 
 	public static final String NAME = "name";
 
+	public static final String SCOPE = "scope";
+
 	public static final String TYPE = "type";
 
 	public CalendarResourceDisplayTerms(PortletRequest portletRequest) {
@@ -42,6 +44,7 @@ public class CalendarResourceDisplayTerms extends DisplayTerms {
 		code = ParamUtil.getString(portletRequest, CODE);
 		description = ParamUtil.getString(portletRequest, DESCRIPTION);
 		name = ParamUtil.getString(portletRequest, NAME);
+		scope = ParamUtil.getLong(portletRequest, SCOPE);
 		type = ParamUtil.getString(portletRequest, TYPE);
 	}
 
@@ -57,6 +60,10 @@ public class CalendarResourceDisplayTerms extends DisplayTerms {
 		return name;
 	}
 
+	public long getScope() {
+		return scope;
+	}
+
 	public String getType() {
 		return type;
 	}
@@ -69,6 +76,7 @@ public class CalendarResourceDisplayTerms extends DisplayTerms {
 	protected String code;
 	protected String description;
 	protected String name;
+	protected long scope;
 	protected String type;
 
 }

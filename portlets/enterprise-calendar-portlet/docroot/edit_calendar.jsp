@@ -47,18 +47,10 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 		<aui:input name="color" type="hidden" />
 
 		<aui:field-wrapper inlineLabel="left" label="color">
-			<span class="color-picker-element" id="<portlet:namespace />colorPicker">
-			</span>
-
-			<span
-				class="color-box color-picker-element"
-				id="<portlet:namespace />colorBox"
-				style='background-color:<%= calendar != null ? ColorUtil.toHexString(calendar.getColor()) : "#0000FF" %>'
-			>
-			</span>
+			<div class="calendar-portlet-colors" id="<portlet:namespace />colorPicker"></div>
 		</aui:field-wrapper>
 
-		<aui:input inlineLabel="left" name="defaultCalendar" type="checkbox" value="<%= (calendar == null) ? true : calendar.isDefaultCalendar() %>" />
+		<aui:input name="defaultCalendar" type="checkbox" value="<%= (calendar == null) ? false : calendar.isDefaultCalendar() %>" />
 
 		<c:if test="<%= calendar == null %>">
 			<aui:field-wrapper label="permissions">
@@ -81,23 +73,18 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 	}
 
 	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />name);
+</aui:script>
 
-	AUI().ready('aui-color-picker-grid-plugin', function(A) {
-
-		var colorPicker = new A.ColorPicker().plug(
-			A.Plugin.ColorPickerGrid,
-			{
-			}
-		).render('#<portlet:namespace />colorPicker');
-
-		var colorBox = A.one('#<portlet:namespace />colorBox');
-		var colorField = A.one('#<portlet:namespace />color');
-
-		colorPicker.on('colorChange', function(event) {
-			var rgb = colorPicker.get('rgb');
-
-			colorBox.setStyle('backgroundColor', 'rgb(' + [rgb.r, rgb.g, rgb.b].join(',') + ')');
-			colorField.setAttribute("value", parseInt(colorPicker.get('hex'), 16));
-		});
-	});
+<aui:script use="liferay-calendar-simple-color-picker">
+	window.<portlet:namespace />colorPicker = new Liferay.SimpleColorPicker(
+		{
+			color: '<%= ColorUtil.toHexString((calendar != null) ? calendar.getColor() : PortletPropsValues.CALENDAR_COLOR_DEFAULT) %>',
+			on: {
+				colorChange: function(event) {
+					A.one('#<portlet:namespace />color').val(parseInt(event.newVal.substring(1), 16));
+				}
+			},
+			render: '#<portlet:namespace />colorPicker'
+		}
+	);
 </aui:script>

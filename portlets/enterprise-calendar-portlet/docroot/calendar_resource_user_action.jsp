@@ -17,21 +17,23 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String tabs1 = ParamUtil.getString(request, "tabs1", "calendar");
+ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
-portletURL.setParameter("tabs1", tabs1);
+User rowUser = (User)row.getObject();
 %>
 
-<liferay-ui:tabs
-	names="calendar,resources"
-	url="<%= portletURL.toString() %>"
-/>
+<liferay-ui:icon-menu>
 
-<c:choose>
-	<c:when test='<%= tabs1.equals("calendar") %>'>
-		<liferay-util:include page="/view_calendar.jsp" servletContext="<%= application %>" />
-	</c:when>
-	<c:when test='<%= tabs1.equals("resources") %>'>
-		<liferay-util:include page="/view_calendar_resources.jsp" servletContext="<%= application %>" />
-	</c:when>
-</c:choose>
+	<portlet:renderURL var="calendarsURL">
+		<portlet:param name="jspPage" value="/view_calendars.jsp" />
+		<portlet:param name="redirect" value="<%= currentURL %>" />
+		<portlet:param name="classNameId" value="<%= String.valueOf(userClassNameId) %>" />
+		<portlet:param name="classPK" value="<%= String.valueOf(rowUser.getUserId()) %>" />
+	</portlet:renderURL>
+
+	<liferay-ui:icon
+		image="calendar"
+		message="view-calendars"
+		url="<%= calendarsURL %>"
+	/>
+</liferay-ui:icon-menu>

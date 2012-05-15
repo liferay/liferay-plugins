@@ -44,8 +44,8 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 	iteratorURL="<%= portletURL %>"
 >
 	<liferay-ui:search-container-results
-		results="<%= CalendarServiceUtil.search(themeDisplay.getCompanyId(), new long[] {themeDisplay.getScopeGroupId()}, new long[] {calendarResource.getCalendarResourceId()}, null, false, searchContainer.getStart(), searchContainer.getEnd(), new CalendarNameComparator(true)) %>"
-		total="<%= CalendarServiceUtil.searchCount(themeDisplay.getCompanyId(), new long[] {themeDisplay.getScopeGroupId()}, new long[] {calendarResource.getCalendarResourceId()}, null, false) %>"
+		results="<%= CalendarServiceUtil.search(themeDisplay.getCompanyId(), new long[] {calendarResource.getGroupId()}, new long[] {calendarResource.getCalendarResourceId()}, null, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new CalendarNameComparator(true)) %>"
+		total="<%= CalendarServiceUtil.searchCount(themeDisplay.getCompanyId(), new long[] {calendarResource.getGroupId()}, new long[] {calendarResource.getCalendarResourceId()}, null, false) %>"
 	/>
 
 	<liferay-ui:search-container-row
@@ -67,7 +67,7 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 			align="center"
 			name="color"
 		>
-			<span class="color-area color-picker-element" style="background-color: <%= ColorUtil.toHexString(calendar.getColor()) %>;"></span>
+			<span class="calendar-portlet-color-box" style="background-color:<%= ColorUtil.toHexString(calendar.getColor()) %>;"></span>
 		</liferay-ui:search-container-column-text>
 
 		<liferay-ui:search-container-column-text name="default">

@@ -27,8 +27,6 @@
 		<aui:input name="preferences--navigationHeaderDateFormat--" type="text" value="<%= navigationHeaderDateFormat %>" />
 
 		<aui:input name="preferences--isoTimeFormat--" type="checkbox" value="<%= isoTimeFormat %>" />
-
-		<aui:input name="preferences--rememberLastDate--" type="checkbox" value="<%= rememberLastDate %>" />
 	</aui:fieldset>
 
 	<aui:button-row>

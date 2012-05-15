@@ -11,4 +11,22 @@
 			<taglib-location>/WEB-INF/tld/c.tld</taglib-location>
 		</taglib>
 	</jsp-config>
+
+	<servlet>
+		<servlet-name>JSON Web Service Servlet</servlet-name>
+			<servlet-class>com.liferay.portal.kernel.servlet.PortalClassLoaderServlet</servlet-class>
+			<init-param>
+				<param-name>servlet-class</param-name>
+				<param-value>com.liferay.portal.jsonwebservice.JSONWebServiceServlet</param-value>
+			</init-param>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>JSON Web Service Servlet</servlet-name>
+		<url-pattern>/api/jsonws/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>JSON Web Service Servlet</servlet-name>
+		<url-pattern>/api/secure/jsonws/*</url-pattern>
+	</servlet-mapping>
 </web-app>

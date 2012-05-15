@@ -51,5 +51,10 @@ CalendarResourceDisplayTerms displayTerms = new CalendarResourceDisplayTerms(ren
 			<aui:option label="yes" value="true" />
 			<aui:option label="no" value="false" />
 		</aui:select>
+
+		<aui:select name="<%= displayTerms.SCOPE %>" value="<%= displayTerms.getScope() %>">
+			<aui:option label="current" value="<%= themeDisplay.getScopeGroupId() %>" />
+			<aui:option label="global" value="<%= themeDisplay.getCompanyGroupId() %>" />
+		</aui:select>
 	</aui:fieldset>
 </liferay-ui:search-toggle>

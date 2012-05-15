@@ -16,13 +16,16 @@
 
 <%@ include file="/init.jsp" %>
 
+<%
+CalendarResourceDisplayTerms displayTerms = new CalendarResourceDisplayTerms(renderRequest);
+%>
+
 <liferay-portlet:renderURL varImpl="searchURL">
 	<portlet:param name="mvcPath" value="/view_calendar_resources.jsp" />
 </liferay-portlet:renderURL>
 
 <aui:form action="<%= searchURL %>" method="get" name="fm">
 	<liferay-portlet:renderURLParams varImpl="searchURL" />
-	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 
 	<liferay-ui:search-form
 		page="/calendar_resource_search.jsp"
@@ -47,52 +50,17 @@
 	<portlet:param name="mvcPath" value="/view_calendar_resources.jsp" />
 </liferay-portlet:renderURL>
 
-<liferay-ui:search-container searchContainer="<%= new CalendarResourceSearch(renderRequest, iteratorURL) %>">
-	<liferay-ui:search-container-results>
-		<%@ include file="/calendar_resource_search_results.jspf" %>
-	</liferay-ui:search-container-results>
+<c:choose>
+	<c:when test="<%= displayTerms.getScope() == themeDisplay.getCompanyGroupId() %>">
+		<h3><liferay-ui:message key="users" /></h3>
 
-	<liferay-ui:search-container-row
-		className="com.liferay.calendar.model.CalendarResource"
-		keyProperty="calendarResourceId"
-		modelVar="resource"
-	>
-		<liferay-ui:search-container-column-text
-			name="code"
-			orderable="<%= true %>"
-		/>
+		<%@ include file="/calendar_resource_user_search_container.jspf" %>
 
-		<liferay-ui:search-container-column-text
-			name="name"
-			orderable="<%= true %>"
-			value="<%= resource.getName(locale) %>"
-		/>
+		<h3><liferay-ui:message key="sites" /></h3>
 
-		<liferay-ui:search-container-column-text
-			name="description"
-			value="<%= StringUtil.shorten(resource.getDescription(locale)) %>"
-		/>
-
-		<liferay-ui:search-container-column-text
-			name="type"
-		/>
-
-		<liferay-ui:search-container-column-text name="active">
-			<c:choose>
-				<c:when test="<%= resource.isActive() %>">
-					<liferay-ui:message key="yes" />
-				</c:when>
-				<c:otherwise>
-					<liferay-ui:message key="no" />
-				</c:otherwise>
-			</c:choose>
-		</liferay-ui:search-container-column-text>
-
-		<liferay-ui:search-container-column-jsp
-			align="right"
-			path="/calendar_resource_action.jsp"
-		/>
-	</liferay-ui:search-container-row>
-
-	<liferay-ui:search-iterator />
-</liferay-ui:search-container>
+		<%@ include file="/calendar_resource_group_search_container.jspf" %>
+	</c:when>
+	<c:otherwise>
+		<%@ include file="/calendar_resource_search_container.jspf" %>
+	</c:otherwise>
+</c:choose>

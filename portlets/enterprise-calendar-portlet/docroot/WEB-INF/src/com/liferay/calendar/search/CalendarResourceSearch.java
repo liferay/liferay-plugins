@@ -58,11 +58,12 @@ public class CalendarResourceSearch extends SearchContainer<CalendarResource> {
 		"no-calendar-resources-were-found";
 
 	public CalendarResourceSearch(
-		PortletRequest portletRequest, PortletURL iteratorURL) {
+		PortletRequest portletRequest, PortletURL iteratorURL,
+		String curParam) {
 
 		super(
 			portletRequest, new CalendarResourceDisplayTerms(portletRequest),
-			new CalendarResourceSearchTerms(portletRequest), DEFAULT_CUR_PARAM,
+			new CalendarResourceSearchTerms(portletRequest), curParam,
 			DEFAULT_DELTA, iteratorURL, null, EMPTY_RESULTS_MESSAGE);
 
 		CalendarResourceDisplayTerms displayTerms =
@@ -78,6 +79,11 @@ public class CalendarResourceSearch extends SearchContainer<CalendarResource> {
 			displayTerms.getDescription());
 		iteratorURL.setParameter(
 			CalendarResourceDisplayTerms.NAME, displayTerms.getName());
+		iteratorURL.setParameter(
+			CalendarResourceDisplayTerms.SCOPE,
+			String.valueOf(displayTerms.getScope()));
+		iteratorURL.setParameter(
+			CalendarResourceDisplayTerms.TYPE, displayTerms.getType());
 
 		try {
 			PortalPreferences preferences =

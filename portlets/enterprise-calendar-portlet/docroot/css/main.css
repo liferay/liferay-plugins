@@ -1,19 +1,247 @@
-.enterprise-calendar-portlet .color-box {
-    width: 20px;
-    height: 20px;
+@import "compass/css3";
+
+.calendar-portlet-wrapper {
+	background: #FFF;
 }
 
-.enterprise-calendar-portlet .color-area {
-    width: 80%;
-    height: 80%;
+.calendar-portlet-column-options {
+	margin-left: -235px;
+	width: 235px;
 }
 
-.enterprise-calendar-portlet .color-picker-element {
-    display: inline-block;
-    vertical-align: middle;
+.calendar-portlet-column-parent .aui-fieldset-content {
+	padding-left: 235px;
 }
 
-.ie .enterprise-calendar-portlet .color-picker-element {
-    display: inline;
-    zoom: 1;
+.calendar-portlet-column-parent .aui-fieldset-content .aui-fieldset-content {
+	padding-left: 0;
+}
+
+.calendar-portlet-event-recorder table td {
+	padding: 5px;
+}
+
+.calendar-portlet-event-recorder .aui-scheduler-event-recorder-overlay-body {
+	margin: 15px 0;
+}
+
+.calendar-portlet-event-loading {
+	@include opacity(0.5);
+}
+
+.calendar-portlet-event-pending {
+	@include opacity(0.8);
+}
+
+.calendar-portlet-invite-resources-input {
+	margin: 2px 0;
+	width: 350px;
+}
+
+.calendar-portlet-add-calendars-input {
+	margin: 2px 0;
+	width: 200px;
+}
+
+.calendar-booking-invitations .aui-calendar-list-empty-message {
+	margin: 4px 0 0 4px;
+}
+
+.aui-calendar-list-empty-message {
+	color: #666;
+	margin-top: 4px;
+}
+
+.aui-calendar-list-item {
+	color: #222;
+	cursor: pointer;
+	font-size: 12px;
+	line-height: 30px;
+	padding: 0 5px;
+	position: relative;
+	white-space: nowrap;
+}
+
+.aui-calendar-list-item-hover, .aui-calendar-list-item-active {
+	background-color: #DCE3EA;
+}
+
+.aui-calendar-list-item-hover .aui-calendar-list-item-arrow, .aui-calendar-list-item-active .aui-calendar-list-item-arrow {
+	display: block;
+}
+
+.aui-calendar-list-item-arrow:hover, .aui-calendar-list-item-active .aui-calendar-list-item-arrow {
+	background-position: 0 -11px;
+}
+
+.aui-calendar-list-item-arrow {
+	background: url(../images/arrow.png) no-repeat 0 0;
+	border: 1px solid #B5B5B5;
+	display: none;
+	height: 11px;
+	overflow: hidden;
+	position: absolute;
+	right: 5px;
+	text-indent: -100px;
+	top: 9px;
+	vertical-align: middle;
+	width: 11px;
+}
+
+.aui-calendar-list-item-color {
+	border: 1px solid #DCDCDC;
+	display: inline-block;
+	height: 11px;
+	margin-right: 4px;
+	position: relative;
+	top: 2px;
+	width: 11px;
+}
+
+.aui-calendar-list-item-label {
+	line-height: 13px;
+}
+
+.aui-calendar-list-item-hidden .aui-calendar-list-item-label {
+	color: #555;
+}
+
+.calendar-portlet-list-header {
+	color: #222;
+	cursor: pointer;
+	display: block;
+	font-size: 13px;
+	font-weight: normal;
+	line-height: 30px;
+	margin: 0;
+	padding: 2px 0;
+	position: relative;
+	text-decoration: none;
+}
+
+.calendar-portlet-list-header .aui-calendar-list-item-arrow {
+	display: block;
+	top: 11px;
+}
+
+.calendar-portlet-list-header:hover {
+	background-color: #DCE3EA;
+	color: #222;
+}
+
+.calendar-portlet-calendar-list {
+	margin-left: 11px;
+}
+
+.calendar-portlet-list-text {
+	vertical-align: middle;
+}
+
+.calendar-portlet-list-arrow {
+	background: url(@theme_image_path@/aui/icon_sprite.png) -34px -18px;
+	display: inline-block;
+	height: 12px;
+	vertical-align: middle;
+	width: 12px;
+}
+
+.aui-toggler-header-expanded .calendar-portlet-list-arrow {
+	background-position: -66px -18px;
+}
+
+.aui-simple-menu {
+	position: absolute;
+}
+
+.aui-simple-menu-hidden {
+	display: none;
+}
+
+.aui-simple-menu-content {
+	background: none repeat scroll 0 0 #FFF;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	font-size: 13px;
+	margin: 0;
+	outline: medium none;
+	padding: 6px 0;
+}
+
+.aui-simple-menu-item {
+	color: #333;
+	cursor: pointer;
+	list-style-type: none;
+	padding: 6px 7em 6px 30px;
+	white-space: nowrap;
+}
+
+.aui-simple-menu-item:hover {
+	background-color: #EEE;
+	border: dotted #EEE;
+	border-width: 1px 0;
+	padding-bottom: 5px;
+	padding-top: 5px;
+}
+
+.aui-simple-menu-separator {
+	border-top: 1px solid #EBEBEB;
+	font-size: 0;
+	height: 0;
+	margin: 6px 0;
+}
+
+.aui-simple-menu-item-hidden {
+	display: none;
+}
+
+.aui-simple-color-picker {
+	white-space: normal;
+}
+
+.aui-simple-color-picker-item {
+	border: 1px solid;
+	cursor: pointer;
+	display: inline-block;
+	height: 14px;
+	margin: 0 4px 4px 0;
+	width: 14px;
+}
+
+.aui-simple-color-picker-item:hover, .aui-simple-color-picker-item-selected {
+	border-color: #000 !important;
+}
+
+.calendar-portlet-colors {
+	width: 240px;
+}
+
+.calendar-portlet-color-box {
+	display: inline-block;
+	height: 80%;
+	vertical-align: middle;
+	width: 80%;
+}
+
+.calendar-booking-invitations .aui-field-label {
+	margin-left: 15px;
+}
+
+.aui-calendar-list-item-arrow, .aui-calendar-list-item-color, .aui-simple-color-picker-item {
+	@include border-radius(1px);
+}
+
+.aui-simple-menu-item {
+	@include transition(background .13s);
+}
+
+.aui-simple-menu-item:hover {
+	@include transition(background 0s);
+}
+
+.aui-simple-color-picker-item {
+	@include transition(border-color .13s);
+}
+
+.aui-simple-color-picker-item:hover, .aui-simple-color-picker-item-selected {
+	@include transition(border-color 0s);
 }
