@@ -20,7 +20,7 @@ import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 import com.liferay.calendar.service.base.CalendarBookingLocalServiceBaseImpl;
-import com.liferay.calendar.util.CalendarUtil;
+import com.liferay.calendar.util.JCalendarUtil;
 import com.liferay.calendar.workflow.CalendarBookingApprovalWorkflow;
 import com.liferay.calendar.workflow.CalendarBookingWorkflowConstants;
 import com.liferay.portal.kernel.bean.BeanReference;
@@ -56,7 +56,6 @@ public class CalendarBookingLocalServiceImpl
 
 		User user = userPersistence.findByPrimaryKey(userId);
 		Calendar calendar = calendarPersistence.findByPrimaryKey(calendarId);
-		Date now = new Date();
 
 		TimeZone timeZone = user.getTimeZone();
 
@@ -71,18 +70,15 @@ public class CalendarBookingLocalServiceImpl
 			timeZone = creatorUser.getTimeZone();
 		}
 
-		java.util.Calendar startDateCal = CalendarUtil.getCalendar(
+		java.util.Calendar startDateJCalendar = JCalendarUtil.getJCalendar(
 			startDate, timeZone);
-
-		java.util.Calendar endDateCal = CalendarUtil.getCalendar(
+		java.util.Calendar endDateJCalendar = JCalendarUtil.getJCalendar(
 			endDate, timeZone);
 
 		if (allDay) {
-			startDateCal = CalendarUtil.toMidnight(startDateCal);
-			endDateCal = CalendarUtil.toLastHour(endDateCal);
+			startDateJCalendar = toMidnightJCalendar(startDateJCalendar);
+			endDateJCalendar = toLastHourJCalendar(endDateJCalendar);
 		}
-
-		validate(titleMap, startDateCal, endDateCal);
 
 		if (firstReminder < secondReminder) {
 			int originalSecondReminder = secondReminder;
@@ -90,6 +86,10 @@ public class CalendarBookingLocalServiceImpl
 			secondReminder = firstReminder;
 			firstReminder = originalSecondReminder;
 		}
+
+		Date now = new Date();
+
+		validate(titleMap, startDateJCalendar, endDateJCalendar);
 
 		long calendarBookingId = counterLocalService.increment();
 
@@ -106,25 +106,31 @@ public class CalendarBookingLocalServiceImpl
 		calendarBooking.setCalendarId(calendarId);
 		calendarBooking.setCalendarResourceId(calendar.getCalendarResourceId());
 
-		int status = CalendarBookingWorkflowConstants.STATUS_PENDING;
-
-		if (parentCalendarBookingId == 0) {
-			parentCalendarBookingId = calendarBookingId;
-
-			status = CalendarBookingWorkflowConstants.STATUS_APPROVED;
+		if (parentCalendarBookingId > 0) {
+			calendarBooking.setParentCalendarBookingId(parentCalendarBookingId);
+		}
+		else {
+			calendarBooking.setParentCalendarBookingId(calendarBookingId);
 		}
 
-		calendarBooking.setParentCalendarBookingId(parentCalendarBookingId);
 		calendarBooking.setTitleMap(titleMap);
 		calendarBooking.setDescriptionMap(descriptionMap);
 		calendarBooking.setLocation(location);
-		calendarBooking.setStartDate(startDateCal.getTime());
-		calendarBooking.setEndDate(endDateCal.getTime());
+		calendarBooking.setStartDate(startDateJCalendar.getTime());
+		calendarBooking.setEndDate(endDateJCalendar.getTime());
 		calendarBooking.setAllDay(allDay);
 		calendarBooking.setRecurrence(recurrence);
 		calendarBooking.setFirstReminder(firstReminder);
 		calendarBooking.setSecondReminder(secondReminder);
+
+		int status = CalendarBookingWorkflowConstants.STATUS_PENDING;
+
+		if (parentCalendarBookingId == 0) {
+			status = CalendarBookingWorkflowConstants.STATUS_APPROVED;
+		}
+
 		calendarBooking.setStatus(status);
+
 		calendarBooking.setStatusDate(serviceContext.getModifiedDate(now));
 
 		calendarBookingPersistence.update(calendarBooking, false);
@@ -150,14 +156,6 @@ public class CalendarBookingLocalServiceImpl
 			secondReminder, serviceContext);
 	}
 
-	public int countByParentCalendarBookingId(
-			long calendarId, long parentCalendarBookingId)
-		throws PortalException, SystemException {
-
-		return calendarBookingPersistence.countByC_P(
-			calendarId, parentCalendarBookingId);
-	}
-
 	@Override
 	public CalendarBooking deleteCalendarBooking(
 			CalendarBooking calendarBooking)
@@ -167,13 +165,13 @@ public class CalendarBookingLocalServiceImpl
 
 		calendarBookingPersistence.remove(calendarBooking);
 
-		// Invited calendar bookings
+		// Calendar bookings
 
-		List<CalendarBooking> invitedBookings = getByParentCalendarBookingId(
+		List<CalendarBooking> childCalendarBookings = getChildCalendarBookings(
 			calendarBooking.getCalendarBookingId());
 
-		for (CalendarBooking invitedBooking : invitedBookings) {
-			deleteCalendarBooking(invitedBooking);
+		for (CalendarBooking childCalendarBooking : childCalendarBookings) {
+			deleteCalendarBooking(childCalendarBooking);
 		}
 
 		return calendarBooking;
@@ -202,35 +200,19 @@ public class CalendarBookingLocalServiceImpl
 		}
 	}
 
-	public CalendarBooking fetchByC_P(
-			long calendarId, long parentCalendarBookingId)
-		throws SystemException {
-
-		return calendarBookingPersistence.fetchByC_P(
-			calendarId, parentCalendarBookingId);
-	}
-
-	public List<CalendarBooking> findByP_S(
-			long parentCalendarBookingId, int status)
-		throws SystemException {
-
-		return calendarBookingPersistence.findByP_S(
-			parentCalendarBookingId, status);
-	}
-
-	public List<CalendarBooking> getByParentCalendarBookingId(
-			long parentCalendarBookingId)
-		throws SystemException {
-
-		return calendarBookingPersistence.findByParentCalendarBookingId(
-			parentCalendarBookingId);
-	}
-
 	@Override
 	public CalendarBooking getCalendarBooking(long calendarBookingId)
 		throws PortalException, SystemException {
 
 		return calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
+	}
+
+	public CalendarBooking getCalendarBooking(
+			long calendarId, long parentCalendarBookingId)
+		throws PortalException, SystemException {
+
+		return calendarBookingPersistence.findByC_P(
+			calendarId, parentCalendarBookingId);
 	}
 
 	public List<CalendarBooking> getCalendarBookings(long calendarId)
@@ -247,16 +229,40 @@ public class CalendarBookingLocalServiceImpl
 			calendarId, startDate, endDate);
 	}
 
+	public int getCalendarBookingsCount(
+			long calendarId, long parentCalendarBookingId)
+		throws SystemException {
+
+		return calendarBookingPersistence.countByC_P(
+			calendarId, parentCalendarBookingId);
+	}
+
+	public List<CalendarBooking> getChildCalendarBookings(
+			long calendarBookingId)
+		throws SystemException {
+
+		return calendarBookingPersistence.findByParentCalendarBookingId(
+			calendarBookingId);
+	}
+
+	public List<CalendarBooking> getChildCalendarBookings(
+			long parentCalendarBookingId, int status)
+		throws SystemException {
+
+		return calendarBookingPersistence.findByP_S(
+			parentCalendarBookingId, status);
+	}
+
 	public List<CalendarBooking> search(
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,
-			String keywords, Date startDate, Date endDate, int[] status,
+			String keywords, Date startDate, Date endDate, int[] statuses,
 			int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 
 		return calendarBookingFinder.findByKeywords(
 			companyId, groupIds, calendarIds, calendarResourceIds,
-			parentCalendarBookingId, keywords, startDate, endDate, status,
+			parentCalendarBookingId, keywords, startDate, endDate, statuses,
 			start, end, orderByComparator);
 	}
 
@@ -264,38 +270,38 @@ public class CalendarBookingLocalServiceImpl
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,
 			String title, String description, String location, Date startDate,
-			Date endDate, int[] status, boolean andOperator, int start, int end,
-			OrderByComparator orderByComparator)
+			Date endDate, int[] statuses, boolean andOperator, int start,
+			int end, OrderByComparator orderByComparator)
 		throws SystemException {
 
 		return calendarBookingFinder.findByC_G_C_C_P_T_D_L_S_E_S(
 			companyId, groupIds, calendarIds, calendarResourceIds,
 			parentCalendarBookingId, title, description, location, startDate,
-			endDate, status, andOperator, start, end, orderByComparator);
+			endDate, statuses, andOperator, start, end, orderByComparator);
 	}
 
 	public int searchCount(
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,
-			String keywords, Date startDate, Date endDate, int[] status)
+			String keywords, Date startDate, Date endDate, int[] statuses)
 		throws SystemException {
 
 		return calendarBookingFinder.countByKeywords(
 			companyId, groupIds, calendarIds, calendarResourceIds,
-			parentCalendarBookingId, keywords, startDate, endDate, status);
+			parentCalendarBookingId, keywords, startDate, endDate, statuses);
 	}
 
 	public int searchCount(
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,
 			String title, String description, String location, Date startDate,
-			Date endDate, int[] status, boolean andOperator)
+			Date endDate, int[] statuses, boolean andOperator)
 		throws SystemException {
 
 		return calendarBookingFinder.countByC_G_C_C_P_T_D_L_S_E_S(
 			companyId, groupIds, calendarIds, calendarResourceIds,
 			parentCalendarBookingId, title, description, location, startDate,
-			endDate, status, andOperator);
+			endDate, statuses, andOperator);
 	}
 
 	public CalendarBooking updateCalendarBooking(
@@ -308,25 +314,19 @@ public class CalendarBookingLocalServiceImpl
 
 		// Calendar booking
 
+		User user = userPersistence.findByPrimaryKey(userId);
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
 
-		User user = userPersistence.findByPrimaryKey(userId);
-
-		TimeZone timeZone = user.getTimeZone();
-
-		java.util.Calendar startDateCal = CalendarUtil.getCalendar(
-			startDate, timeZone);
-
-		java.util.Calendar endDateCal = CalendarUtil.getCalendar(
-			endDate, timeZone);
+		java.util.Calendar startDateJCalendar = JCalendarUtil.getJCalendar(
+			startDate, user.getTimeZone());
+		java.util.Calendar endDateJCalendar = JCalendarUtil.getJCalendar(
+			endDate, user.getTimeZone());
 
 		if (allDay) {
-			startDateCal = CalendarUtil.toMidnight(startDateCal);
-			endDateCal = CalendarUtil.toLastHour(endDateCal);
+			startDateJCalendar = toMidnightJCalendar(startDateJCalendar);
+			endDateJCalendar = toLastHourJCalendar(endDateJCalendar);
 		}
-
-		validate(titleMap, startDateCal, endDateCal);
 
 		if (firstReminder < secondReminder) {
 			int originalSecondReminder = secondReminder;
@@ -334,6 +334,8 @@ public class CalendarBookingLocalServiceImpl
 			secondReminder = firstReminder;
 			firstReminder = originalSecondReminder;
 		}
+
+		validate(titleMap, startDateJCalendar, endDateJCalendar);
 
 		calendarBooking.setCompanyId(user.getCompanyId());
 		calendarBooking.setUserId(user.getUserId());
@@ -343,8 +345,8 @@ public class CalendarBookingLocalServiceImpl
 		calendarBooking.setTitleMap(titleMap);
 		calendarBooking.setDescriptionMap(descriptionMap);
 		calendarBooking.setLocation(location);
-		calendarBooking.setStartDate(startDateCal.getTime());
-		calendarBooking.setEndDate(endDateCal.getTime());
+		calendarBooking.setStartDate(startDateJCalendar.getTime());
+		calendarBooking.setEndDate(endDateJCalendar.getTime());
 		calendarBooking.setAllDay(allDay);
 		calendarBooking.setRecurrence(recurrence);
 		calendarBooking.setFirstReminder(firstReminder);
@@ -381,6 +383,34 @@ public class CalendarBookingLocalServiceImpl
 		calendarBookingPersistence.update(calendarBooking, false);
 
 		return calendarBooking;
+	}
+
+	protected java.util.Calendar toLastHourJCalendar(
+		java.util.Calendar jCalendar) {
+
+		java.util.Calendar lastHourJCalendar =
+			(java.util.Calendar)jCalendar.clone();
+
+		lastHourJCalendar.set(java.util.Calendar.HOUR_OF_DAY, 23);
+		lastHourJCalendar.set(java.util.Calendar.MINUTE, 59);
+		lastHourJCalendar.set(java.util.Calendar.SECOND, 59);
+		lastHourJCalendar.set(java.util.Calendar.MILLISECOND, 999);
+
+		return lastHourJCalendar;
+	}
+
+	protected java.util.Calendar toMidnightJCalendar(
+		java.util.Calendar jCalendar) {
+
+		java.util.Calendar midnightJCalendar =
+			(java.util.Calendar)jCalendar.clone();
+
+		midnightJCalendar.set(java.util.Calendar.HOUR_OF_DAY, 0);
+		midnightJCalendar.set(java.util.Calendar.MINUTE, 0);
+		midnightJCalendar.set(java.util.Calendar.SECOND, 0);
+		midnightJCalendar.set(java.util.Calendar.MILLISECOND, 0);
+
+		return midnightJCalendar;
 	}
 
 	protected void validate(

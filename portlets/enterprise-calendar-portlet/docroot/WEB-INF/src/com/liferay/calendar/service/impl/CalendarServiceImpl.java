@@ -40,9 +40,9 @@ import java.util.Map;
 public class CalendarServiceImpl extends CalendarServiceBaseImpl {
 
 	public Calendar addCalendar(
-			long userId, long groupId, long calendarResourceId,
-			Map<Locale, String> nameMap, Map<Locale, String> descriptionMap,
-			int color, boolean defaultCalendar, ServiceContext serviceContext)
+			long groupId, long calendarResourceId, Map<Locale, String> nameMap,
+			Map<Locale, String> descriptionMap, int color,
+			boolean defaultCalendar, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		CalendarResourcePermission.check(
@@ -50,8 +50,8 @@ public class CalendarServiceImpl extends CalendarServiceBaseImpl {
 			ActionKeys.ADD_CALENDAR);
 
 		return calendarLocalService.addCalendar(
-			userId, groupId, calendarResourceId, nameMap, descriptionMap, color,
-			defaultCalendar, serviceContext);
+			getUserId(), groupId, calendarResourceId, nameMap, descriptionMap,
+			color, defaultCalendar, serviceContext);
 	}
 
 	public Calendar deleteCalendar(long calendarId)
@@ -63,8 +63,19 @@ public class CalendarServiceImpl extends CalendarServiceBaseImpl {
 		return calendarLocalService.deleteCalendar(calendarId);
 	}
 
-	public Calendar fetchCalendar(long calendarId) throws SystemException {
-		return calendarLocalService.fetchCalendar(calendarId);
+	public Calendar fetchCalendar(long calendarId)
+		throws PortalException, SystemException {
+
+		Calendar calendar = calendarPersistence.fetchByPrimaryKey(calendarId);
+
+		if (calendar == null) {
+			return null;
+		}
+
+		CalendarPermission.check(
+			getPermissionChecker(), calendar, ActionKeys.VIEW);
+
+		return calendar;
 	}
 
 	public Calendar getCalendar(long calendarId)
@@ -197,14 +208,14 @@ public class CalendarServiceImpl extends CalendarServiceBaseImpl {
 			calendarId, nameMap, descriptionMap, color, serviceContext);
 	}
 
-	public Calendar updateCalendarColor(
+	public Calendar updateColor(
 			long calendarId, int color, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		CalendarPermission.check(
 			getPermissionChecker(), calendarId, ActionKeys.UPDATE);
 
-		return calendarLocalService.updateCalendarColor(
+		return calendarLocalService.updateColor(
 			calendarId, color, serviceContext);
 	}
 

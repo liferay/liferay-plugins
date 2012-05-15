@@ -113,10 +113,8 @@ public class CalendarPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			Calendar.class.getName(), actionRequest);
-
 		long calendarId = ParamUtil.getLong(actionRequest, "calendarId");
+
 		long calendarResourceId = ParamUtil.getLong(
 			actionRequest, "calendarResourceId");
 		Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(
@@ -127,15 +125,17 @@ public class CalendarPortlet extends MVCPortlet {
 		boolean defaultCalendar = ParamUtil.getBoolean(
 			actionRequest, "defaultCalendar", false);
 
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			Calendar.class.getName(), actionRequest);
+
 		if (calendarId <= 0) {
 			CalendarResource calendarResource =
 				CalendarResourceServiceUtil.getCalendarResource(
 					calendarResourceId);
 
 			CalendarServiceUtil.addCalendar(
-				serviceContext.getUserId(), calendarResource.getGroupId(),
-				calendarResourceId, nameMap, descriptionMap, color,
-				defaultCalendar, serviceContext);
+				calendarResource.getGroupId(), calendarResourceId, nameMap,
+				descriptionMap, color, defaultCalendar, serviceContext);
 		}
 		else {
 			CalendarServiceUtil.updateCalendar(

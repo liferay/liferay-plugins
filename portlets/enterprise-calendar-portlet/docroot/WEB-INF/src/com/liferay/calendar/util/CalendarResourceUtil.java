@@ -21,8 +21,6 @@ import com.liferay.calendar.util.comparator.CalendarResourceCodeComparator;
 import com.liferay.calendar.util.comparator.CalendarResourceNameComparator;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.Group;
@@ -45,119 +43,61 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class CalendarResourceUtil {
 
-	public static CalendarResource fetchOrCreateGroupResource(
-			HttpServletRequest request, long groupId) {
-
-		CalendarResource calendarResource = null;
-
-		try {
-			Group group = GroupLocalServiceUtil.getGroup(groupId);
-
-			if (group.isUser()) {
-				return null;
-			}
-
-			long classNameId = PortalUtil.getClassNameId(Group.class);
-
-			calendarResource =
-				CalendarResourceLocalServiceUtil.fetchCalendarResource(
-					classNameId, groupId);
-
-			if (calendarResource == null) {
-				ServiceContext serviceContext =
-					ServiceContextFactory.getInstance(request);
-
-				Map<Locale, String> nameMap = new HashMap<Locale, String>();
-
-				nameMap.put(LocaleUtil.getDefault(), group.getName());
-
-				Map<Locale, String> descriptionMap =
-					new HashMap<Locale, String>();
-
-				calendarResource =
-					CalendarResourceLocalServiceUtil.addCalendarResource(
-						serviceContext.getUserId(), 0, Group.class.getName(),
-						groupId, null, 0, group.getName(), nameMap,
-						descriptionMap, null, true, serviceContext);
-			}
-		} catch (Exception e) {
-			if (_log.isInfoEnabled()) {
-				_log.info(
-					"Unable to create calendar resource for groupId: " +
-						groupId);
-			}
-		}
-
-		return calendarResource;
-	}
-
-	public static CalendarResource fetchOrCreateResource(
+	public static CalendarResource getCalendarResource(
 			HttpServletRequest request, long classNameId, long classPK)
 		throws PortalException, SystemException {
 
-		long userClassNameId = PortalUtil.getClassNameId(User.class);
 		long groupClassNameId = PortalUtil.getClassNameId(Group.class);
 
-		CalendarResource calendarResource = null;
+		if (classNameId == groupClassNameId) {
+			return CalendarResourceUtil.getGroupCalendarResource(
+				request, classPK);
+		}
+
+		long userClassNameId = PortalUtil.getClassNameId(User.class);
 
 		if (classNameId == userClassNameId) {
-			calendarResource =
-				CalendarResourceUtil.fetchOrCreateUserResource(
-					request, classPK);
-		}
-		else if (classNameId == groupClassNameId) {
-			calendarResource =
-				CalendarResourceUtil.fetchOrCreateGroupResource(
-					request, classPK);
-		}
-		else {
-			calendarResource =
-				CalendarResourceServiceUtil.fetchCalendarResource(
-					classNameId, classPK);
+			return CalendarResourceUtil.getUserCalendarResource(
+				request, classPK);
 		}
 
-		return calendarResource;
+		return CalendarResourceServiceUtil.fetchCalendarResource(
+			classNameId, classPK);
 	}
 
-	public static CalendarResource fetchOrCreateUserResource(
-			HttpServletRequest request, long userId) {
+	public static CalendarResource getGroupCalendarResource(
+			HttpServletRequest request, long groupId)
+		throws PortalException, SystemException {
 
-		CalendarResource calendarResource = null;
+		Group group = GroupLocalServiceUtil.getGroup(groupId);
 
-		try {
-			long classNameId = PortalUtil.getClassNameId(User.class);
-
-			calendarResource =
-				CalendarResourceLocalServiceUtil.fetchCalendarResource(
-					classNameId, userId);
-
-			if (calendarResource == null) {
-				User user = UserLocalServiceUtil.getUser(userId);
-
-				ServiceContext serviceContext =
-					ServiceContextFactory.getInstance(request);
-
-				Map<Locale, String> nameMap = new HashMap<Locale, String>();
-
-				nameMap.put(LocaleUtil.getDefault(), user.getFullName());
-
-				Map<Locale, String> descriptionMap =
-					new HashMap<Locale, String>();
-
-				calendarResource =
-					CalendarResourceLocalServiceUtil.addCalendarResource(
-						serviceContext.getUserId(), 0, User.class.getName(),
-						userId, null, 0, user.getFirstName(), nameMap,
-						descriptionMap, null, true, serviceContext);
-			}
-		} catch (Exception e) {
-			if (_log.isInfoEnabled()) {
-				_log.info(
-					"Unable to create calendar resource for userId: " + userId);
-			}
+		if (group.isUser()) {
+			return null;
 		}
 
-		return calendarResource;
+		long classNameId = PortalUtil.getClassNameId(Group.class);
+
+		CalendarResource calendarResource =
+			CalendarResourceLocalServiceUtil.fetchCalendarResource(
+				classNameId, groupId);
+
+		if (calendarResource != null) {
+			return calendarResource;
+		}
+
+		Map<Locale, String> nameMap = new HashMap<Locale, String>();
+
+		nameMap.put(LocaleUtil.getDefault(), group.getName());
+
+		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			request);
+
+		return CalendarResourceLocalServiceUtil.addCalendarResource(
+			serviceContext.getUserId(), 0, Group.class.getName(), groupId, null,
+			0, group.getName(), nameMap, descriptionMap, null, true,
+			serviceContext);
 	}
 
 	public static OrderByComparator getOrderByComparator(
@@ -181,6 +121,35 @@ public class CalendarResourceUtil {
 		return orderByComparator;
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(CalendarResourceUtil.class);
+	public static CalendarResource getUserCalendarResource(
+			HttpServletRequest request, long userId)
+		throws PortalException, SystemException {
+
+		long classNameId = PortalUtil.getClassNameId(User.class);
+
+		CalendarResource calendarResource =
+			CalendarResourceLocalServiceUtil.fetchCalendarResource(
+				classNameId, userId);
+
+		if (calendarResource != null) {
+			return calendarResource;
+		}
+
+		User user = UserLocalServiceUtil.getUser(userId);
+
+		Map<Locale, String> nameMap = new HashMap<Locale, String>();
+
+		nameMap.put(LocaleUtil.getDefault(), user.getFullName());
+
+		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			request);
+
+		return CalendarResourceLocalServiceUtil.addCalendarResource(
+			serviceContext.getUserId(), 0, User.class.getName(), userId, null,
+			0, user.getFirstName(), nameMap, descriptionMap, null, true,
+			serviceContext);
+	}
 
 }

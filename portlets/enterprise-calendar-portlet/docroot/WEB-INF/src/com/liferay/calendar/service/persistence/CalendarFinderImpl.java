@@ -240,6 +240,10 @@ public class CalendarFinderImpl
 			boolean inlineSQLHelper)
 		throws SystemException {
 
+		if (groupIds == null) {
+			groupIds = new long[0];
+		}
+
 		names = CustomSQLUtil.keywords(names);
 		descriptions = CustomSQLUtil.keywords(descriptions, false);
 
@@ -249,10 +253,6 @@ public class CalendarFinderImpl
 			session = openSession();
 
 			String sql = CustomSQLUtil.get(COUNT_BY_C_G_C_N_D);
-
-			if (groupIds == null) {
-				groupIds = new long[] {};
-			}
 
 			if (inlineSQLHelper) {
 				sql = InlineSQLHelperUtil.replacePermissionCheck(
@@ -316,6 +316,10 @@ public class CalendarFinderImpl
 			boolean inlineSQLHelper)
 		throws SystemException {
 
+		if (groupIds == null) {
+			groupIds = new long[0];
+		}
+
 		names = CustomSQLUtil.keywords(names);
 		descriptions = CustomSQLUtil.keywords(descriptions, false);
 
@@ -325,10 +329,6 @@ public class CalendarFinderImpl
 			session = openSession();
 
 			String sql = CustomSQLUtil.get(FIND_BY_C_G_C_N_D);
-
-			if (groupIds == null) {
-				groupIds = new long[] {};
-			}
 
 			if (inlineSQLHelper) {
 				sql = InlineSQLHelperUtil.replacePermissionCheck(

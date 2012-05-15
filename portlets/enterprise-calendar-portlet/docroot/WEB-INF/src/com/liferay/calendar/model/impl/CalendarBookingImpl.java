@@ -20,7 +20,7 @@ import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 import com.liferay.calendar.service.CalendarLocalServiceUtil;
 import com.liferay.calendar.service.CalendarResourceLocalServiceUtil;
-import com.liferay.calendar.util.CalendarUtil;
+import com.liferay.calendar.util.JCalendarUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
@@ -75,15 +75,15 @@ public class CalendarBookingImpl
 
 		User user = UserLocalServiceUtil.getUser(getUserId());
 
-		java.util.Calendar userDate = CalendarFactoryUtil.getCalendar(
+		java.util.Calendar userJCalendar = CalendarFactoryUtil.getCalendar(
 			user.getTimeZone());
 
-		userDate.setTime(date);
+		userJCalendar.setTime(date);
 
-		java.util.Calendar utcDate = CalendarUtil.getCalendar(
-			userDate, TimeZoneUtil.getTimeZone(StringPool.UTC));
+		java.util.Calendar utcUserJCalendar = JCalendarUtil.getJCalendar(
+			userJCalendar, TimeZoneUtil.getTimeZone(StringPool.UTC));
 
-		return utcDate.getTime();
+		return utcUserJCalendar.getTime();
 	}
 
 }

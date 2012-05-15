@@ -52,6 +52,7 @@ public class CalendarResourceLocalServiceImpl
 
 		// Calendar resource
 
+		User user = userPersistence.findByPrimaryKey(userId);
 		long calendarResourceId = counterLocalService.increment();
 
 		if (Validator.isNull(className)) {
@@ -72,8 +73,6 @@ public class CalendarResourceLocalServiceImpl
 		if (globalUserId > 0) {
 			userId = globalUserId;
 		}
-
-		User user = userPersistence.findByPrimaryKey(userId);
 
 		Date now = new Date();
 
@@ -110,6 +109,7 @@ public class CalendarResourceLocalServiceImpl
 		}
 
 		calendarResource.setDefaultCalendarId(defaultCalendarId);
+
 		calendarResource.setCode(code);
 		calendarResource.setNameMap(nameMap);
 		calendarResource.setDescriptionMap(descriptionMap);
@@ -284,29 +284,33 @@ public class CalendarResourceLocalServiceImpl
 	protected long getGlobalResourceUserId(long classNameId, long classPK)
 		throws PortalException, SystemException {
 
-		long userId = 0;
-		long userClassNameId = PortalUtil.getClassNameId(User.class);
 		long groupClassNameId = PortalUtil.getClassNameId(Group.class);
 
 		if (classNameId == groupClassNameId) {
 			Group group = GroupLocalServiceUtil.getGroup(classPK);
 
-			userId = group.getCreatorUserId();
-		}
-		else if (classNameId == userClassNameId) {
-			userId = classPK;
+			return group.getCreatorUserId();
 		}
 
-		return userId;
+		long userClassNameId = PortalUtil.getClassNameId(User.class);
+
+		if (classNameId == userClassNameId) {
+			return classPK;
+		}
+
+		return 0;
 	}
 
 	protected boolean isGlobalResource(long classNameId) {
-		long userClassNameId = PortalUtil.getClassNameId(User.class);
 		long groupClassNameId = PortalUtil.getClassNameId(Group.class);
 
-		if ((classNameId == groupClassNameId) ||
-			(classNameId == userClassNameId)) {
+		if (classNameId == groupClassNameId) {
+			return true;
+		}
 
+		long userClassNameId = PortalUtil.getClassNameId(User.class);
+
+		if (classNameId == userClassNameId) {
 			return true;
 		}
 
@@ -319,7 +323,7 @@ public class CalendarResourceLocalServiceImpl
 		CalendarResource calendarResource =
 			calendarResourcePersistence.fetchByC_C(classNameId, classPK);
 
-		if (Validator.isNotNull(calendarResource)) {
+		if (calendarResource != null) {
 			throw new DuplicateCalendarResourceException();
 		}
 	}

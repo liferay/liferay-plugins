@@ -50,6 +50,10 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 
 		User user = userPersistence.findByPrimaryKey(userId);
 
+		if (color <= 0) {
+			color = PortletPropsValues.CALENDAR_COLOR_DEFAULT;
+		}
+
 		Date now = new Date();
 
 		validate(nameMap);
@@ -68,11 +72,6 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		calendar.setCalendarResourceId(calendarResourceId);
 		calendar.setNameMap(nameMap);
 		calendar.setDescriptionMap(descriptionMap);
-
-		if (color <= 0) {
-			color = PortletPropsValues.CALENDAR_COLOR_DEFAULT;
-		}
-
 		calendar.setColor(color);
 		calendar.setDefaultCalendar(defaultCalendar);
 
@@ -97,7 +96,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 			}
 
 			CalendarResource calendarResource =
-				calendarResourceLocalService.fetchCalendarResource(
+				calendarResourcePersistence.fetchByPrimaryKey(
 					calendarResourceId);
 
 			if (calendarResource != null) {
@@ -146,7 +145,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 
 	@Override
 	public Calendar getCalendar(long calendarId)
-			throws PortalException, SystemException {
+		throws PortalException, SystemException {
 
 		return calendarPersistence.findByPrimaryKey(calendarId);
 	}
@@ -209,16 +208,15 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 
 		Calendar calendar = calendarPersistence.findByPrimaryKey(calendarId);
 
+		if (color <= 0) {
+			color = PortletPropsValues.CALENDAR_COLOR_DEFAULT;
+		}
+
 		validate(nameMap);
 
 		calendar.setModifiedDate(serviceContext.getModifiedDate(null));
 		calendar.setNameMap(nameMap);
 		calendar.setDescriptionMap(descriptionMap);
-
-		if (color <= 0) {
-			color = PortletPropsValues.CALENDAR_COLOR_DEFAULT;
-		}
-
 		calendar.setColor(color);
 		calendar.setDefaultCalendar(defaultCalendar);
 
@@ -266,7 +264,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 			calendar.isDefaultCalendar(), serviceContext);
 	}
 
-	public Calendar updateCalendarColor(
+	public Calendar updateColor(
 			long calendarId, int color, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
