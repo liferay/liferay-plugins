@@ -16,6 +16,8 @@ package com.liferay.portal.oauth.service.impl;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.DigesterUtil;
+import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.oauth.model.OAuthApplication;
 import com.liferay.portal.oauth.service.base.OAuthApplicationLocalServiceBaseImpl;
 
@@ -47,12 +49,18 @@ public class OAuthApplicationLocalServiceImpl
 		OAuthApplication oaa = createOAuthApplication(
 			CounterLocalServiceUtil.increment());
 
+		oaa.setConsumerKey(PortalUUIDUtil.generate());
 		oaa.setAccessLevel(accessLevel);
 		oaa.setCallBackURL(callbackURL);
 		oaa.setName(name);
 		oaa.setDescription(description);
 		oaa.setOwnerId(ownerId);
 		oaa.setWebsite(website);
+		
+		String secretSeed = oaa.getConsumerKey()
+				.concat(Long.toString(System.nanoTime()));
+		
+		oaa.setConsumerSecret(DigesterUtil.digestHex(secretSeed));
 
 		return updateOAuthApplication(oaa, true);
 	}
