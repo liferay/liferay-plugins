@@ -64,8 +64,8 @@ public interface CalendarService extends BaseService, InvokableService {
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
-	public com.liferay.calendar.model.Calendar addCalendar(long userId,
-		long groupId, long calendarResourceId,
+	public com.liferay.calendar.model.Calendar addCalendar(long groupId,
+		long calendarResourceId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		int color, boolean defaultCalendar,
@@ -79,7 +79,8 @@ public interface CalendarService extends BaseService, InvokableService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.calendar.model.Calendar fetchCalendar(long calendarId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.calendar.model.Calendar getCalendar(long calendarId)
@@ -166,9 +167,8 @@ public interface CalendarService extends BaseService, InvokableService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public com.liferay.calendar.model.Calendar updateCalendarColor(
-		long calendarId, int color,
-		com.liferay.portal.service.ServiceContext serviceContext)
+	public com.liferay.calendar.model.Calendar updateColor(long calendarId,
+		int color, com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 }

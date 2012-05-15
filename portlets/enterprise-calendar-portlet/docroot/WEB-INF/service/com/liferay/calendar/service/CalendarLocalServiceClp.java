@@ -169,7 +169,7 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName28 = "updateCalendarColor";
+		_methodName28 = "updateColor";
 
 		_methodParameterTypes28 = new String[] {
 				"long", "int", "com.liferay.portal.service.ServiceContext"
@@ -1100,9 +1100,8 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 		return (com.liferay.calendar.model.Calendar)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.liferay.calendar.model.Calendar updateCalendarColor(
-		long calendarId, int color,
-		com.liferay.portal.service.ServiceContext serviceContext)
+	public com.liferay.calendar.model.Calendar updateColor(long calendarId,
+		int color, com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;

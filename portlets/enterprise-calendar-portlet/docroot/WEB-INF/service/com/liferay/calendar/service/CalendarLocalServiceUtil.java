@@ -376,13 +376,12 @@ public class CalendarLocalServiceUtil {
 			serviceContext);
 	}
 
-	public static com.liferay.calendar.model.Calendar updateCalendarColor(
+	public static com.liferay.calendar.model.Calendar updateColor(
 		long calendarId, int color,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .updateCalendarColor(calendarId, color, serviceContext);
+		return getService().updateColor(calendarId, color, serviceContext);
 	}
 
 	public static void updateDefaultCalendar(

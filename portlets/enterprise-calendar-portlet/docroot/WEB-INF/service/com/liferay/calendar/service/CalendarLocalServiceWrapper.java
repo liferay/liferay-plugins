@@ -360,12 +360,11 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 			descriptionMap, color, serviceContext);
 	}
 
-	public com.liferay.calendar.model.Calendar updateCalendarColor(
-		long calendarId, int color,
-		com.liferay.portal.service.ServiceContext serviceContext)
+	public com.liferay.calendar.model.Calendar updateColor(long calendarId,
+		int color, com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _calendarLocalService.updateCalendarColor(calendarId, color,
+		return _calendarLocalService.updateColor(calendarId, color,
 			serviceContext);
 	}
 

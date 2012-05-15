@@ -63,7 +63,7 @@ public class CalendarServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
-	public static com.liferay.calendar.model.Calendar addCalendar(long userId,
+	public static com.liferay.calendar.model.Calendar addCalendar(
 		long groupId, long calendarResourceId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
@@ -72,7 +72,7 @@ public class CalendarServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .addCalendar(userId, groupId, calendarResourceId, nameMap,
+				   .addCalendar(groupId, calendarResourceId, nameMap,
 			descriptionMap, color, defaultCalendar, serviceContext);
 	}
 
@@ -85,7 +85,8 @@ public class CalendarServiceUtil {
 
 	public static com.liferay.calendar.model.Calendar fetchCalendar(
 		long calendarId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService().fetchCalendar(calendarId);
 	}
 
@@ -210,13 +211,12 @@ public class CalendarServiceUtil {
 			serviceContext);
 	}
 
-	public static com.liferay.calendar.model.Calendar updateCalendarColor(
+	public static com.liferay.calendar.model.Calendar updateColor(
 		long calendarId, int color,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .updateCalendarColor(calendarId, color, serviceContext);
+		return getService().updateColor(calendarId, color, serviceContext);
 	}
 
 	/**

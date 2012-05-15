@@ -187,7 +187,7 @@ public class CalendarLocalServiceClpInvoker {
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName71 = "updateCalendarColor";
+		_methodName71 = "updateColor";
 
 		_methodParameterTypes71 = new String[] {
 				"long", "int", "com.liferay.portal.service.ServiceContext"
@@ -402,7 +402,7 @@ public class CalendarLocalServiceClpInvoker {
 
 		if (_methodName71.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
-			return CalendarLocalServiceUtil.updateCalendarColor(((Long)arguments[0]).longValue(),
+			return CalendarLocalServiceUtil.updateColor(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				(com.liferay.portal.service.ServiceContext)arguments[2]);
 		}

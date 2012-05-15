@@ -34,7 +34,7 @@ public class CalendarServiceClp implements CalendarService {
 		_methodName3 = "addCalendar";
 
 		_methodParameterTypes3 = new String[] {
-				"long", "long", "long", "java.util.Map", "java.util.Map", "int",
+				"long", "long", "java.util.Map", "java.util.Map", "int",
 				"boolean", "com.liferay.portal.service.ServiceContext"
 			};
 
@@ -123,7 +123,7 @@ public class CalendarServiceClp implements CalendarService {
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName17 = "updateCalendarColor";
+		_methodName17 = "updateColor";
 
 		_methodParameterTypes17 = new String[] {
 				"long", "int", "com.liferay.portal.service.ServiceContext"
@@ -177,8 +177,8 @@ public class CalendarServiceClp implements CalendarService {
 		throw new UnsupportedOperationException();
 	}
 
-	public com.liferay.calendar.model.Calendar addCalendar(long userId,
-		long groupId, long calendarResourceId,
+	public com.liferay.calendar.model.Calendar addCalendar(long groupId,
+		long calendarResourceId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		int color, boolean defaultCalendar,
@@ -191,9 +191,7 @@ public class CalendarServiceClp implements CalendarService {
 			returnObj = _invokableService.invokeMethod(_methodName3,
 					_methodParameterTypes3,
 					new Object[] {
-						userId,
-						
-					groupId,
+						groupId,
 						
 					calendarResourceId,
 						
@@ -264,7 +262,8 @@ public class CalendarServiceClp implements CalendarService {
 	}
 
 	public com.liferay.calendar.model.Calendar fetchCalendar(long calendarId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
@@ -273,6 +272,10 @@ public class CalendarServiceClp implements CalendarService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
 
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
@@ -826,9 +829,8 @@ public class CalendarServiceClp implements CalendarService {
 		return (com.liferay.calendar.model.Calendar)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.liferay.calendar.model.Calendar updateCalendarColor(
-		long calendarId, int color,
-		com.liferay.portal.service.ServiceContext serviceContext)
+	public com.liferay.calendar.model.Calendar updateColor(long calendarId,
+		int color, com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;

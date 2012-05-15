@@ -34,7 +34,7 @@ public class CalendarServiceClpInvoker {
 		_methodName42 = "addCalendar";
 
 		_methodParameterTypes42 = new String[] {
-				"long", "long", "long", "java.util.Map", "java.util.Map", "int",
+				"long", "long", "java.util.Map", "java.util.Map", "int",
 				"boolean", "com.liferay.portal.service.ServiceContext"
 			};
 
@@ -123,7 +123,7 @@ public class CalendarServiceClpInvoker {
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName56 = "updateCalendarColor";
+		_methodName56 = "updateColor";
 
 		_methodParameterTypes56 = new String[] {
 				"long", "int", "com.liferay.portal.service.ServiceContext"
@@ -146,12 +146,11 @@ public class CalendarServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes42, parameterTypes)) {
 			return CalendarServiceUtil.addCalendar(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
-				((Long)arguments[2]).longValue(),
+				(java.util.Map<java.util.Locale, java.lang.String>)arguments[2],
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[3],
-				(java.util.Map<java.util.Locale, java.lang.String>)arguments[4],
-				((Integer)arguments[5]).intValue(),
-				((Boolean)arguments[6]).booleanValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[7]);
+				((Integer)arguments[4]).intValue(),
+				((Boolean)arguments[5]).booleanValue(),
+				(com.liferay.portal.service.ServiceContext)arguments[6]);
 		}
 
 		if (_methodName43.equals(name) &&
@@ -270,7 +269,7 @@ public class CalendarServiceClpInvoker {
 
 		if (_methodName56.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
-			return CalendarServiceUtil.updateCalendarColor(((Long)arguments[0]).longValue(),
+			return CalendarServiceUtil.updateColor(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				(com.liferay.portal.service.ServiceContext)arguments[2]);
 		}

@@ -33,7 +33,8 @@
 		</responseFlow>
 	</transport>
 	<service name="Plugin_Calendar_CalendarBookingService" provider="java:RPC" style="rpc" use="encoded">
-		<arrayMapping xmlns:ns="urn:http.service.calendar.liferay.com" xmlns:cmp-ns="http://model.calendar.liferay.com" qname="ns:ArrayOf_tns3_CalendarBookingSoap" type="java:com.liferay.calendar.model.CalendarBookingSoap[]" innerType="cmp-ns:CalendarBookingSoap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<arrayMapping xmlns:ns="urn:http.service.calendar.liferay.com" xmlns:cmp-ns="http://model.calendar.liferay.com" qname="ns:ArrayOf_tns6_CalendarBookingSoap" type="java:com.liferay.calendar.model.CalendarBookingSoap[]" innerType="cmp-ns:CalendarBookingSoap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<arrayMapping xmlns:ns="urn:http.service.calendar.liferay.com" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_int" type="java:int[]" innerType="cmp-ns:int" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
 		<arrayMapping xmlns:ns="urn:http.service.calendar.liferay.com" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_long" type="java:long[]" innerType="cmp-ns:long" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
 		<arrayMapping xmlns:ns="urn:http.service.calendar.liferay.com" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_string" type="java:java.lang.String[]" innerType="cmp-ns:string" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
 		<typeMapping xmlns:ns="http://model.calendar.liferay.com" qname="ns:CalendarBookingSoap" type="java:com.liferay.calendar.model.CalendarBookingSoap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
@@ -42,7 +43,21 @@
 		<typeMapping xmlns:ns="http://util.kernel.portal.liferay.com" qname="ns:OrderByComparator" type="java:com.liferay.portal.kernel.util.OrderByComparator" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
 		<typeMapping xmlns:ns="http://xml.apache.org/xml-soap" qname="ns:mapItem" type="java:org.apache.xml.xml_soap.MapItem" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
 		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="http://model.calendar.liferay.com" name="addCalendarBooking" qname="operNS:addCalendarBooking" returnQName="addCalendarBookingReturn" returnType="rtns:CalendarBookingSoap" soapAction="">
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="userId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="calendarId" type="tns:long"></parameter>
+			<parameter xmlns:tns="urn:http.service.calendar.liferay.com" qname="titleMapLanguageIds" type="tns:ArrayOf_xsd_string"></parameter>
+			<parameter xmlns:tns="urn:http.service.calendar.liferay.com" qname="titleMapValues" type="tns:ArrayOf_xsd_string"></parameter>
+			<parameter xmlns:tns="urn:http.service.calendar.liferay.com" qname="descriptionMapLanguageIds" type="tns:ArrayOf_xsd_string"></parameter>
+			<parameter xmlns:tns="urn:http.service.calendar.liferay.com" qname="descriptionMapValues" type="tns:ArrayOf_xsd_string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="location" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="startDate" type="tns:dateTime"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="endDate" type="tns:dateTime"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="allDay" type="tns:boolean"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="recurrence" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="firstReminder" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="secondReminder" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://service.portal.liferay.com" qname="serviceContext" type="tns:ServiceContext"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="http://model.calendar.liferay.com" name="addCalendarBooking" qname="operNS:addCalendarBooking" returnQName="addCalendarBookingReturn" returnType="rtns:CalendarBookingSoap" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="calendarId" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="parentCalendarBookingId" type="tns:long"></parameter>
 			<parameter xmlns:tns="urn:http.service.calendar.liferay.com" qname="titleMapLanguageIds" type="tns:ArrayOf_xsd_string"></parameter>
@@ -61,14 +76,33 @@
 		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="http://model.calendar.liferay.com" name="deleteCalendarBooking" qname="operNS:deleteCalendarBooking" returnQName="deleteCalendarBookingReturn" returnType="rtns:CalendarBookingSoap" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="calendarBookingId" type="tns:long"></parameter>
 		</operation>
+		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="http://model.calendar.liferay.com" name="fetchCalendarBooking" qname="operNS:fetchCalendarBooking" returnQName="fetchCalendarBookingReturn" returnType="rtns:CalendarBookingSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="calendarBookingId" type="tns:long"></parameter>
+		</operation>
 		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="http://model.calendar.liferay.com" name="getCalendarBooking" qname="operNS:getCalendarBooking" returnQName="getCalendarBookingReturn" returnType="rtns:CalendarBookingSoap" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="calendarBookingId" type="tns:long"></parameter>
 		</operation>
-		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="urn:http.service.calendar.liferay.com" xmlns:tns2="http://model.calendar.liferay.com" name="getCalendarBookings" qname="operNS:getCalendarBookings" returnQName="getCalendarBookingsReturn" returnType="rtns:ArrayOf_tns3_CalendarBookingSoap" returnItemType="tns2:CalendarBookingSoap" soapAction="">
+		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="http://model.calendar.liferay.com" name="getCalendarBooking" qname="operNS:getCalendarBooking" returnQName="getCalendarBookingReturn" returnType="rtns:CalendarBookingSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="calendarId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="parentCalendarBookingId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="urn:http.service.calendar.liferay.com" xmlns:tns2="http://model.calendar.liferay.com" name="getCalendarBookings" qname="operNS:getCalendarBookings" returnQName="getCalendarBookingsReturn" returnType="rtns:ArrayOf_tns6_CalendarBookingSoap" returnItemType="tns2:CalendarBookingSoap" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="calendarId" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="startDate" type="tns:dateTime"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="endDate" type="tns:dateTime"></parameter>
 		</operation>
+		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="urn:http.service.calendar.liferay.com" xmlns:tns2="http://model.calendar.liferay.com" name="getChildCalendarBookings" qname="operNS:getChildCalendarBookings" returnQName="getChildCalendarBookingsReturn" returnType="rtns:ArrayOf_tns6_CalendarBookingSoap" returnItemType="tns2:CalendarBookingSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="parentCalendarBookingId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="urn:http.service.calendar.liferay.com" xmlns:tns2="http://model.calendar.liferay.com" name="getChildCalendarBookings" qname="operNS:getChildCalendarBookings" returnQName="getChildCalendarBookingsReturn" returnType="rtns:ArrayOf_tns6_CalendarBookingSoap" returnItemType="tns2:CalendarBookingSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="parentCalendarBookingId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="status" type="tns:int"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" name="invokeTransition" qname="operNS:invokeTransition" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="calendarBookingId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="transitionName" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://service.portal.liferay.com" qname="serviceContext" type="tns:ServiceContext"></parameter>
+		</operation>
 		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="searchCount" qname="operNS:searchCount" returnQName="searchCountReturn" returnType="rtns:int" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
 			<parameter xmlns:tns="urn:http.service.calendar.liferay.com" qname="groupIds" type="tns:ArrayOf_xsd_long"></parameter>
@@ -78,8 +112,7 @@
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="keywords" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="startDate" type="tns:dateTime"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="endDate" type="tns:dateTime"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="priority" type="tns:int"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="status" type="tns:int"></parameter>
+			<parameter xmlns:tns="urn:http.service.calendar.liferay.com" qname="statuses" type="tns:ArrayOf_xsd_int"></parameter>
 		</operation>
 		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="searchCount" qname="operNS:searchCount" returnQName="searchCountReturn" returnType="rtns:int" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
@@ -90,14 +123,12 @@
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="title" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="description" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="location" type="tns:string"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="type" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="startDate" type="tns:dateTime"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="endDate" type="tns:dateTime"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="priority" type="tns:int"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="status" type="tns:int"></parameter>
+			<parameter xmlns:tns="urn:http.service.calendar.liferay.com" qname="statuses" type="tns:ArrayOf_xsd_int"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="andOperator" type="tns:boolean"></parameter>
 		</operation>
-		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="urn:http.service.calendar.liferay.com" xmlns:tns2="http://model.calendar.liferay.com" name="search" qname="operNS:search" returnQName="searchReturn" returnType="rtns:ArrayOf_tns3_CalendarBookingSoap" returnItemType="tns2:CalendarBookingSoap" soapAction="">
+		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="urn:http.service.calendar.liferay.com" xmlns:tns2="http://model.calendar.liferay.com" name="search" qname="operNS:search" returnQName="searchReturn" returnType="rtns:ArrayOf_tns6_CalendarBookingSoap" returnItemType="tns2:CalendarBookingSoap" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
 			<parameter xmlns:tns="urn:http.service.calendar.liferay.com" qname="groupIds" type="tns:ArrayOf_xsd_long"></parameter>
 			<parameter xmlns:tns="urn:http.service.calendar.liferay.com" qname="calendarIds" type="tns:ArrayOf_xsd_long"></parameter>
@@ -106,13 +137,12 @@
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="keywords" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="startDate" type="tns:dateTime"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="endDate" type="tns:dateTime"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="priority" type="tns:int"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="status" type="tns:int"></parameter>
+			<parameter xmlns:tns="urn:http.service.calendar.liferay.com" qname="statuses" type="tns:ArrayOf_xsd_int"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="start" type="tns:int"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
 			<parameter xmlns:tns="http://util.kernel.portal.liferay.com" qname="orderByComparator" type="tns:OrderByComparator"></parameter>
 		</operation>
-		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="urn:http.service.calendar.liferay.com" xmlns:tns2="http://model.calendar.liferay.com" name="search" qname="operNS:search" returnQName="searchReturn" returnType="rtns:ArrayOf_tns3_CalendarBookingSoap" returnItemType="tns2:CalendarBookingSoap" soapAction="">
+		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="urn:http.service.calendar.liferay.com" xmlns:tns2="http://model.calendar.liferay.com" name="search" qname="operNS:search" returnQName="searchReturn" returnType="rtns:ArrayOf_tns6_CalendarBookingSoap" returnItemType="tns2:CalendarBookingSoap" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
 			<parameter xmlns:tns="urn:http.service.calendar.liferay.com" qname="groupIds" type="tns:ArrayOf_xsd_long"></parameter>
 			<parameter xmlns:tns="urn:http.service.calendar.liferay.com" qname="calendarIds" type="tns:ArrayOf_xsd_long"></parameter>
@@ -121,18 +151,15 @@
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="title" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="description" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="location" type="tns:string"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="type" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="startDate" type="tns:dateTime"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="endDate" type="tns:dateTime"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="priority" type="tns:int"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="status" type="tns:int"></parameter>
+			<parameter xmlns:tns="urn:http.service.calendar.liferay.com" qname="statuses" type="tns:ArrayOf_xsd_int"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="andOperator" type="tns:boolean"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="start" type="tns:int"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
 			<parameter xmlns:tns="http://util.kernel.portal.liferay.com" qname="orderByComparator" type="tns:OrderByComparator"></parameter>
 		</operation>
 		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="http://model.calendar.liferay.com" name="updateCalendarBooking" qname="operNS:updateCalendarBooking" returnQName="updateCalendarBookingReturn" returnType="rtns:CalendarBookingSoap" soapAction="">
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="userId" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="calendarBookingId" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="calendarId" type="tns:long"></parameter>
 			<parameter xmlns:tns="urn:http.service.calendar.liferay.com" qname="titleMapLanguageIds" type="tns:ArrayOf_xsd_string"></parameter>
@@ -149,7 +176,7 @@
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="secondReminder" type="tns:int"></parameter>
 			<parameter xmlns:tns="http://service.portal.liferay.com" qname="serviceContext" type="tns:ServiceContext"></parameter>
 		</operation>
-		<parameter name="allowedMethods" value="addCalendarBooking deleteCalendarBooking getCalendarBooking getCalendarBookings search searchCount updateCalendarBooking" />
+		<parameter name="allowedMethods" value="addCalendarBooking deleteCalendarBooking fetchCalendarBooking getCalendarBooking getCalendarBookings getChildCalendarBookings invokeTransition search searchCount updateCalendarBooking" />
 		<parameter name="className" value="com.liferay.calendar.service.http.CalendarBookingServiceSoap" />
 		<parameter name="schemaUnqualified" value="http://model.calendar.liferay.com,http://model.portal.liferay.com,http://service.portal.liferay.com,http://util.kernel.portal.liferay.com,http://xml.apache.org/xml-soap,urn:http.service.calendar.liferay.com" />
 		<parameter name="typeMappingVersion" value="1.2" />
@@ -159,7 +186,7 @@
 		<parameter name="wsdlTargetNamespace" value="urn:http.service.calendar.liferay.com" />
 	</service>
 	<service name="Plugin_Calendar_CalendarResourceService" provider="java:RPC" style="rpc" use="encoded">
-		<arrayMapping xmlns:ns="urn:http.service.calendar.liferay.com" xmlns:cmp-ns="http://model.calendar.liferay.com" qname="ns:ArrayOf_tns3_CalendarResourceSoap" type="java:com.liferay.calendar.model.CalendarResourceSoap[]" innerType="cmp-ns:CalendarResourceSoap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<arrayMapping xmlns:ns="urn:http.service.calendar.liferay.com" xmlns:cmp-ns="http://model.calendar.liferay.com" qname="ns:ArrayOf_tns2_CalendarResourceSoap" type="java:com.liferay.calendar.model.CalendarResourceSoap[]" innerType="cmp-ns:CalendarResourceSoap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
 		<arrayMapping xmlns:ns="urn:http.service.calendar.liferay.com" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_long" type="java:long[]" innerType="cmp-ns:long" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
 		<arrayMapping xmlns:ns="urn:http.service.calendar.liferay.com" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_string" type="java:java.lang.String[]" innerType="cmp-ns:string" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
 		<typeMapping xmlns:ns="http://model.calendar.liferay.com" qname="ns:CalendarResourceSoap" type="java:com.liferay.calendar.model.CalendarResourceSoap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
@@ -185,6 +212,10 @@
 		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="http://model.calendar.liferay.com" name="deleteCalendarResource" qname="operNS:deleteCalendarResource" returnQName="deleteCalendarResourceReturn" returnType="rtns:CalendarResourceSoap" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="calendarResourceId" type="tns:long"></parameter>
 		</operation>
+		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="http://model.calendar.liferay.com" name="fetchCalendarResource" qname="operNS:fetchCalendarResource" returnQName="fetchCalendarResourceReturn" returnType="rtns:CalendarResourceSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="classNameId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="classPK" type="tns:long"></parameter>
+		</operation>
 		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="http://model.calendar.liferay.com" name="getCalendarResource" qname="operNS:getCalendarResource" returnQName="getCalendarResourceReturn" returnType="rtns:CalendarResourceSoap" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="calendarResourceId" type="tns:long"></parameter>
 		</operation>
@@ -206,7 +237,7 @@
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="active" type="tns:boolean"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="andOperator" type="tns:boolean"></parameter>
 		</operation>
-		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="urn:http.service.calendar.liferay.com" xmlns:tns2="http://model.calendar.liferay.com" name="search" qname="operNS:search" returnQName="searchReturn" returnType="rtns:ArrayOf_tns3_CalendarResourceSoap" returnItemType="tns2:CalendarResourceSoap" soapAction="">
+		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="urn:http.service.calendar.liferay.com" xmlns:tns2="http://model.calendar.liferay.com" name="search" qname="operNS:search" returnQName="searchReturn" returnType="rtns:ArrayOf_tns2_CalendarResourceSoap" returnItemType="tns2:CalendarResourceSoap" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
 			<parameter xmlns:tns="urn:http.service.calendar.liferay.com" qname="groupIds" type="tns:ArrayOf_xsd_long"></parameter>
 			<parameter xmlns:tns="urn:http.service.calendar.liferay.com" qname="classNameIds" type="tns:ArrayOf_xsd_long"></parameter>
@@ -217,7 +248,7 @@
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
 			<parameter xmlns:tns="http://util.kernel.portal.liferay.com" qname="orderByComparator" type="tns:OrderByComparator"></parameter>
 		</operation>
-		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="urn:http.service.calendar.liferay.com" xmlns:tns2="http://model.calendar.liferay.com" name="search" qname="operNS:search" returnQName="searchReturn" returnType="rtns:ArrayOf_tns3_CalendarResourceSoap" returnItemType="tns2:CalendarResourceSoap" soapAction="">
+		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="urn:http.service.calendar.liferay.com" xmlns:tns2="http://model.calendar.liferay.com" name="search" qname="operNS:search" returnQName="searchReturn" returnType="rtns:ArrayOf_tns2_CalendarResourceSoap" returnItemType="tns2:CalendarResourceSoap" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
 			<parameter xmlns:tns="urn:http.service.calendar.liferay.com" qname="groupIds" type="tns:ArrayOf_xsd_long"></parameter>
 			<parameter xmlns:tns="urn:http.service.calendar.liferay.com" qname="classNameIds" type="tns:ArrayOf_xsd_long"></parameter>
@@ -254,7 +285,7 @@
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="active" type="tns:boolean"></parameter>
 			<parameter xmlns:tns="http://service.portal.liferay.com" qname="serviceContext" type="tns:ServiceContext"></parameter>
 		</operation>
-		<parameter name="allowedMethods" value="addCalendarResource deleteCalendarResource getCalendarResource search searchCount updateCalendarResource" />
+		<parameter name="allowedMethods" value="addCalendarResource deleteCalendarResource fetchCalendarResource getCalendarResource search searchCount updateCalendarResource" />
 		<parameter name="className" value="com.liferay.calendar.service.http.CalendarResourceServiceSoap" />
 		<parameter name="schemaUnqualified" value="http://model.calendar.liferay.com,http://model.portal.liferay.com,http://service.portal.liferay.com,http://util.kernel.portal.liferay.com,http://xml.apache.org/xml-soap,urn:http.service.calendar.liferay.com" />
 		<parameter name="typeMappingVersion" value="1.2" />
@@ -264,7 +295,7 @@
 		<parameter name="wsdlTargetNamespace" value="urn:http.service.calendar.liferay.com" />
 	</service>
 	<service name="Plugin_Calendar_CalendarService" provider="java:RPC" style="rpc" use="encoded">
-		<arrayMapping xmlns:ns="urn:http.service.calendar.liferay.com" xmlns:cmp-ns="http://model.calendar.liferay.com" qname="ns:ArrayOf_tns3_CalendarSoap" type="java:com.liferay.calendar.model.CalendarSoap[]" innerType="cmp-ns:CalendarSoap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<arrayMapping xmlns:ns="urn:http.service.calendar.liferay.com" xmlns:cmp-ns="http://model.calendar.liferay.com" qname="ns:ArrayOf_tns6_CalendarSoap" type="java:com.liferay.calendar.model.CalendarSoap[]" innerType="cmp-ns:CalendarSoap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
 		<arrayMapping xmlns:ns="urn:http.service.calendar.liferay.com" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_long" type="java:long[]" innerType="cmp-ns:long" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
 		<arrayMapping xmlns:ns="urn:http.service.calendar.liferay.com" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_string" type="java:java.lang.String[]" innerType="cmp-ns:string" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
 		<typeMapping xmlns:ns="http://model.calendar.liferay.com" qname="ns:CalendarSoap" type="java:com.liferay.calendar.model.CalendarSoap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
@@ -284,6 +315,9 @@
 			<parameter xmlns:tns="http://service.portal.liferay.com" qname="serviceContext" type="tns:ServiceContext"></parameter>
 		</operation>
 		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="http://model.calendar.liferay.com" name="deleteCalendar" qname="operNS:deleteCalendar" returnQName="deleteCalendarReturn" returnType="rtns:CalendarSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="calendarId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="http://model.calendar.liferay.com" name="fetchCalendar" qname="operNS:fetchCalendar" returnQName="fetchCalendarReturn" returnType="rtns:CalendarSoap" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="calendarId" type="tns:long"></parameter>
 		</operation>
 		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="http://model.calendar.liferay.com" name="getCalendar" qname="operNS:getCalendar" returnQName="getCalendarReturn" returnType="rtns:CalendarSoap" soapAction="">
@@ -321,7 +355,7 @@
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="andOperator" type="tns:boolean"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="actionId" type="tns:string"></parameter>
 		</operation>
-		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="urn:http.service.calendar.liferay.com" xmlns:tns2="http://model.calendar.liferay.com" name="search" qname="operNS:search" returnQName="searchReturn" returnType="rtns:ArrayOf_tns3_CalendarSoap" returnItemType="tns2:CalendarSoap" soapAction="">
+		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="urn:http.service.calendar.liferay.com" xmlns:tns2="http://model.calendar.liferay.com" name="search" qname="operNS:search" returnQName="searchReturn" returnType="rtns:ArrayOf_tns6_CalendarSoap" returnItemType="tns2:CalendarSoap" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
 			<parameter xmlns:tns="urn:http.service.calendar.liferay.com" qname="groupIds" type="tns:ArrayOf_xsd_long"></parameter>
 			<parameter xmlns:tns="urn:http.service.calendar.liferay.com" qname="calendarResourceIds" type="tns:ArrayOf_xsd_long"></parameter>
@@ -331,7 +365,7 @@
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
 			<parameter xmlns:tns="http://util.kernel.portal.liferay.com" qname="orderByComparator" type="tns:OrderByComparator"></parameter>
 		</operation>
-		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="urn:http.service.calendar.liferay.com" xmlns:tns2="http://model.calendar.liferay.com" name="search" qname="operNS:search" returnQName="searchReturn" returnType="rtns:ArrayOf_tns3_CalendarSoap" returnItemType="tns2:CalendarSoap" soapAction="">
+		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="urn:http.service.calendar.liferay.com" xmlns:tns2="http://model.calendar.liferay.com" name="search" qname="operNS:search" returnQName="searchReturn" returnType="rtns:ArrayOf_tns6_CalendarSoap" returnItemType="tns2:CalendarSoap" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
 			<parameter xmlns:tns="urn:http.service.calendar.liferay.com" qname="groupIds" type="tns:ArrayOf_xsd_long"></parameter>
 			<parameter xmlns:tns="urn:http.service.calendar.liferay.com" qname="calendarResourceIds" type="tns:ArrayOf_xsd_long"></parameter>
@@ -342,7 +376,7 @@
 			<parameter xmlns:tns="http://util.kernel.portal.liferay.com" qname="orderByComparator" type="tns:OrderByComparator"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="actionId" type="tns:string"></parameter>
 		</operation>
-		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="urn:http.service.calendar.liferay.com" xmlns:tns2="http://model.calendar.liferay.com" name="search" qname="operNS:search" returnQName="searchReturn" returnType="rtns:ArrayOf_tns3_CalendarSoap" returnItemType="tns2:CalendarSoap" soapAction="">
+		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="urn:http.service.calendar.liferay.com" xmlns:tns2="http://model.calendar.liferay.com" name="search" qname="operNS:search" returnQName="searchReturn" returnType="rtns:ArrayOf_tns6_CalendarSoap" returnItemType="tns2:CalendarSoap" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
 			<parameter xmlns:tns="urn:http.service.calendar.liferay.com" qname="groupIds" type="tns:ArrayOf_xsd_long"></parameter>
 			<parameter xmlns:tns="urn:http.service.calendar.liferay.com" qname="calendarResourceIds" type="tns:ArrayOf_xsd_long"></parameter>
@@ -353,7 +387,7 @@
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
 			<parameter xmlns:tns="http://util.kernel.portal.liferay.com" qname="orderByComparator" type="tns:OrderByComparator"></parameter>
 		</operation>
-		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="urn:http.service.calendar.liferay.com" xmlns:tns2="http://model.calendar.liferay.com" name="search" qname="operNS:search" returnQName="searchReturn" returnType="rtns:ArrayOf_tns3_CalendarSoap" returnItemType="tns2:CalendarSoap" soapAction="">
+		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="urn:http.service.calendar.liferay.com" xmlns:tns2="http://model.calendar.liferay.com" name="search" qname="operNS:search" returnQName="searchReturn" returnType="rtns:ArrayOf_tns6_CalendarSoap" returnItemType="tns2:CalendarSoap" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
 			<parameter xmlns:tns="urn:http.service.calendar.liferay.com" qname="groupIds" type="tns:ArrayOf_xsd_long"></parameter>
 			<parameter xmlns:tns="urn:http.service.calendar.liferay.com" qname="calendarResourceIds" type="tns:ArrayOf_xsd_long"></parameter>
@@ -384,7 +418,12 @@
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="defaultCalendar" type="tns:boolean"></parameter>
 			<parameter xmlns:tns="http://service.portal.liferay.com" qname="serviceContext" type="tns:ServiceContext"></parameter>
 		</operation>
-		<parameter name="allowedMethods" value="addCalendar deleteCalendar getCalendar search searchCount updateCalendar" />
+		<operation xmlns:operNS="urn:http.service.calendar.liferay.com" xmlns:rtns="http://model.calendar.liferay.com" name="updateColor" qname="operNS:updateColor" returnQName="updateColorReturn" returnType="rtns:CalendarSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="calendarId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="color" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://service.portal.liferay.com" qname="serviceContext" type="tns:ServiceContext"></parameter>
+		</operation>
+		<parameter name="allowedMethods" value="addCalendar deleteCalendar fetchCalendar getCalendar search searchCount updateCalendar updateColor" />
 		<parameter name="className" value="com.liferay.calendar.service.http.CalendarServiceSoap" />
 		<parameter name="schemaUnqualified" value="http://model.calendar.liferay.com,http://model.portal.liferay.com,http://service.portal.liferay.com,http://util.kernel.portal.liferay.com,http://xml.apache.org/xml-soap,urn:http.service.calendar.liferay.com" />
 		<parameter name="typeMappingVersion" value="1.2" />

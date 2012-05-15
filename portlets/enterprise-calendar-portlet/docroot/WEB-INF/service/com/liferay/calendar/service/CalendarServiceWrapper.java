@@ -55,17 +55,16 @@ public class CalendarServiceWrapper implements CalendarService,
 		return _calendarService.invokeMethod(name, parameterTypes, arguments);
 	}
 
-	public com.liferay.calendar.model.Calendar addCalendar(long userId,
-		long groupId, long calendarResourceId,
+	public com.liferay.calendar.model.Calendar addCalendar(long groupId,
+		long calendarResourceId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		int color, boolean defaultCalendar,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _calendarService.addCalendar(userId, groupId,
-			calendarResourceId, nameMap, descriptionMap, color,
-			defaultCalendar, serviceContext);
+		return _calendarService.addCalendar(groupId, calendarResourceId,
+			nameMap, descriptionMap, color, defaultCalendar, serviceContext);
 	}
 
 	public com.liferay.calendar.model.Calendar deleteCalendar(long calendarId)
@@ -75,7 +74,8 @@ public class CalendarServiceWrapper implements CalendarService,
 	}
 
 	public com.liferay.calendar.model.Calendar fetchCalendar(long calendarId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return _calendarService.fetchCalendar(calendarId);
 	}
 
@@ -191,13 +191,11 @@ public class CalendarServiceWrapper implements CalendarService,
 			descriptionMap, color, serviceContext);
 	}
 
-	public com.liferay.calendar.model.Calendar updateCalendarColor(
-		long calendarId, int color,
-		com.liferay.portal.service.ServiceContext serviceContext)
+	public com.liferay.calendar.model.Calendar updateColor(long calendarId,
+		int color, com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _calendarService.updateCalendarColor(calendarId, color,
-			serviceContext);
+		return _calendarService.updateColor(calendarId, color, serviceContext);
 	}
 
 	/**

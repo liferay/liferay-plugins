@@ -1,5 +1,3 @@
-create index IX_B7A032D1 on Calendar (calendarId);
-create index IX_9D93B5B3 on Calendar (groupId, calendarId);
 create index IX_B53EB0E1 on Calendar (groupId, calendarResourceId);
 create index IX_97FC174E on Calendar (groupId, calendarResourceId, defaultCalendar);
 create index IX_F0FAF226 on Calendar (resourceBlockId);
