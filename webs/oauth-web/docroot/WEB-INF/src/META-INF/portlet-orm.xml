@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete/>
+		<persistence-unit-defaults>
+			<access>PROPERTY</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="com.liferay.portal.oauth.model.impl.OAuthApplicationModelImpl">
+		<attributes>
+			<id name="applicationId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="ownerId" />
+			<basic name="name" />
+			<basic name="description" />
+			<basic name="website" />
+			<basic name="consumerKey" />
+			<basic name="consumerSecret" />
+			<basic name="callBackURL" />
+			<basic name="accessLevel" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.portal.oauth.model.impl.OAuthApplications_UsersModelImpl">
+		<attributes>
+			<id name="oaauid" />
+			<basic name="accessToken" />
+			<basic name="accessSecret" />
+			<basic name="applicationId" />
+			<basic name="authorized" />
+			<basic name="userId" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="com.liferay.portal.oauth.model.impl.OAuthApplicationImpl" name="OAuthApplication">
+		<table name="OAuthApplication" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.portal.oauth.model.impl.OAuthApplications_UsersImpl" name="OAuthApplications_Users">
+		<table name="OAuthApplications_Users" />
+		<attributes />
+	</entity>
+</entity-mappings>
