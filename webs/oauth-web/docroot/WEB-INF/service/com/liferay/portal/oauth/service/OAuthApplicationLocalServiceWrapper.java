@@ -272,6 +272,11 @@ public class OAuthApplicationLocalServiceWrapper
 			arguments);
 	}
 
+	/**
+	* Add info about new application that should use OAuth feature. Method will generate new
+	* consumer key and secret that will be used by this application to do authorized access
+	* to portal resources.
+	*/
 	public com.liferay.portal.oauth.model.OAuthApplication addOAuthApplication(
 		int accessLevel, java.lang.String callbackURL,
 		java.lang.String description, java.lang.String name, long ownerId,
@@ -281,10 +286,36 @@ public class OAuthApplicationLocalServiceWrapper
 			callbackURL, description, name, ownerId, website);
 	}
 
+	public int countByName(java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _oAuthApplicationLocalService.countByName(name);
+	}
+
+	public int countByNameAndOwner(java.lang.String name, long ownerId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _oAuthApplicationLocalService.countByNameAndOwner(name, ownerId);
+	}
+
 	public com.liferay.portal.oauth.model.OAuthApplication getOAuthApplicationByConsumerKey(
 		java.lang.String consumerKey)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _oAuthApplicationLocalService.getOAuthApplicationByConsumerKey(consumerKey);
+	}
+
+	public java.util.List<com.liferay.portal.oauth.model.OAuthApplication> findByName(
+		java.lang.String name, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _oAuthApplicationLocalService.findByName(name, start, end,
+			orderByComparator);
+	}
+
+	public java.util.List<com.liferay.portal.oauth.model.OAuthApplication> findByNameAndOwner(
+		java.lang.String name, long ownerId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _oAuthApplicationLocalService.findByNameAndOwner(name, ownerId,
+			start, end, orderByComparator);
 	}
 
 	/**

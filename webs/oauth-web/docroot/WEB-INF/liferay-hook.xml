@@ -3,6 +3,10 @@
 <hook>
 	<portal-properties>portal.properties</portal-properties>
 	<custom-jsp-dir>/META-INF/custom_jsps</custom-jsp-dir>
+	<service>
+	    <service-type>com.liferay.portal.service.CompanyLocalService</service-type>
+	    <service-impl>com.liferay.portal.oauth.hook.service.impl.CompanyLocalServiceImpl</service-impl>
+    	</service>
 	<struts-action>
 		<struts-action-path>/portal/oauth/request_token</struts-action-path>
 		<struts-action-impl>com.liferay.portal.oauth.action.OAuthRequestTokenAction</struts-action-impl>
