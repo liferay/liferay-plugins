@@ -61,9 +61,6 @@
 			<basic name="title" />
 			<basic name="description" />
 			<basic name="location" />
-			<basic name="type">
-				<column name="TYPE_" />
-			</basic>
 			<basic name="startDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
@@ -72,13 +69,8 @@
 			</basic>
 			<basic name="allDay" />
 			<basic name="recurrence" />
-			<basic name="priority" />
-			<basic name="outOfOffice" />
 			<basic name="firstReminder" />
 			<basic name="secondReminder" />
-			<basic name="required" />
-			<basic name="requestMessage" />
-			<basic name="responseMessage" />
 			<basic name="status" />
 			<basic name="statusByUserId" />
 			<basic name="statusByUserName" />
@@ -87,8 +79,6 @@
 			</basic>
 			<transient name="descriptionCurrentLanguageId" />
 			<transient name="descriptionMap" />
-			<transient name="locationCurrentLanguageId" />
-			<transient name="locationMap" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />

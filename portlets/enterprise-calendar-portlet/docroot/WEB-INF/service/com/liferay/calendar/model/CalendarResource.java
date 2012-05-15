@@ -32,4 +32,5 @@ public interface CalendarResource extends CalendarResourceModel,
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.calendar.model.impl.CalendarResourceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public boolean isGlobal();
 }

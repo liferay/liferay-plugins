@@ -169,9 +169,15 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName28 = "updateDefaultCalendar";
+		_methodName28 = "updateCalendarColor";
 
 		_methodParameterTypes28 = new String[] {
+				"long", "int", "com.liferay.portal.service.ServiceContext"
+			};
+
+		_methodName29 = "updateDefaultCalendar";
+
+		_methodParameterTypes29 = new String[] {
 				"com.liferay.calendar.model.Calendar", "boolean"
 			};
 	}
@@ -1094,12 +1100,53 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 		return (com.liferay.calendar.model.Calendar)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.calendar.model.Calendar updateCalendarColor(
+		long calendarId, int color,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName28,
+					_methodParameterTypes28,
+					new Object[] {
+						calendarId,
+						
+					color,
+						
+					ClpSerializer.translateInput(serviceContext)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.calendar.model.Calendar)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public void updateDefaultCalendar(
 		com.liferay.calendar.model.Calendar calendar, boolean defaultCalendar)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName28,
-				_methodParameterTypes28,
+			_invokableLocalService.invokeMethod(_methodName29,
+				_methodParameterTypes29,
 				new Object[] {
 					ClpSerializer.translateInput(calendar),
 					
@@ -1180,4 +1227,6 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 	private String[] _methodParameterTypes27;
 	private String _methodName28;
 	private String[] _methodParameterTypes28;
+	private String _methodName29;
+	private String[] _methodParameterTypes29;
 }

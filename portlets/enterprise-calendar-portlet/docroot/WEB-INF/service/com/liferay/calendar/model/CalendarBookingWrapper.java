@@ -60,18 +60,12 @@ public class CalendarBookingWrapper implements CalendarBooking,
 		attributes.put("title", getTitle());
 		attributes.put("description", getDescription());
 		attributes.put("location", getLocation());
-		attributes.put("type", getType());
 		attributes.put("startDate", getStartDate());
 		attributes.put("endDate", getEndDate());
 		attributes.put("allDay", getAllDay());
 		attributes.put("recurrence", getRecurrence());
-		attributes.put("priority", getPriority());
-		attributes.put("outOfOffice", getOutOfOffice());
 		attributes.put("firstReminder", getFirstReminder());
 		attributes.put("secondReminder", getSecondReminder());
-		attributes.put("required", getRequired());
-		attributes.put("requestMessage", getRequestMessage());
-		attributes.put("responseMessage", getResponseMessage());
 		attributes.put("status", getStatus());
 		attributes.put("statusByUserId", getStatusByUserId());
 		attributes.put("statusByUserName", getStatusByUserName());
@@ -166,12 +160,6 @@ public class CalendarBookingWrapper implements CalendarBooking,
 			setLocation(location);
 		}
 
-		String type = (String)attributes.get("type");
-
-		if (type != null) {
-			setType(type);
-		}
-
 		Date startDate = (Date)attributes.get("startDate");
 
 		if (startDate != null) {
@@ -196,18 +184,6 @@ public class CalendarBookingWrapper implements CalendarBooking,
 			setRecurrence(recurrence);
 		}
 
-		Integer priority = (Integer)attributes.get("priority");
-
-		if (priority != null) {
-			setPriority(priority);
-		}
-
-		Boolean outOfOffice = (Boolean)attributes.get("outOfOffice");
-
-		if (outOfOffice != null) {
-			setOutOfOffice(outOfOffice);
-		}
-
 		Integer firstReminder = (Integer)attributes.get("firstReminder");
 
 		if (firstReminder != null) {
@@ -218,24 +194,6 @@ public class CalendarBookingWrapper implements CalendarBooking,
 
 		if (secondReminder != null) {
 			setSecondReminder(secondReminder);
-		}
-
-		Boolean required = (Boolean)attributes.get("required");
-
-		if (required != null) {
-			setRequired(required);
-		}
-
-		String requestMessage = (String)attributes.get("requestMessage");
-
-		if (requestMessage != null) {
-			setRequestMessage(requestMessage);
-		}
-
-		String responseMessage = (String)attributes.get("responseMessage");
-
-		if (responseMessage != null) {
-			setResponseMessage(responseMessage);
 		}
 
 		Integer status = (Integer)attributes.get("status");
@@ -763,139 +721,12 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	}
 
 	/**
-	* Returns the localized location of this calendar booking in the language. Uses the default language if no localization exists for the requested language.
-	*
-	* @param locale the locale of the language
-	* @return the localized location of this calendar booking
-	*/
-	public java.lang.String getLocation(java.util.Locale locale) {
-		return _calendarBooking.getLocation(locale);
-	}
-
-	/**
-	* Returns the localized location of this calendar booking in the language, optionally using the default language if no localization exists for the requested language.
-	*
-	* @param locale the local of the language
-	* @param useDefault whether to use the default language if no localization exists for the requested language
-	* @return the localized location of this calendar booking. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
-	*/
-	public java.lang.String getLocation(java.util.Locale locale,
-		boolean useDefault) {
-		return _calendarBooking.getLocation(locale, useDefault);
-	}
-
-	/**
-	* Returns the localized location of this calendar booking in the language. Uses the default language if no localization exists for the requested language.
-	*
-	* @param languageId the ID of the language
-	* @return the localized location of this calendar booking
-	*/
-	public java.lang.String getLocation(java.lang.String languageId) {
-		return _calendarBooking.getLocation(languageId);
-	}
-
-	/**
-	* Returns the localized location of this calendar booking in the language, optionally using the default language if no localization exists for the requested language.
-	*
-	* @param languageId the ID of the language
-	* @param useDefault whether to use the default language if no localization exists for the requested language
-	* @return the localized location of this calendar booking
-	*/
-	public java.lang.String getLocation(java.lang.String languageId,
-		boolean useDefault) {
-		return _calendarBooking.getLocation(languageId, useDefault);
-	}
-
-	public java.lang.String getLocationCurrentLanguageId() {
-		return _calendarBooking.getLocationCurrentLanguageId();
-	}
-
-	public java.lang.String getLocationCurrentValue() {
-		return _calendarBooking.getLocationCurrentValue();
-	}
-
-	/**
-	* Returns a map of the locales and localized locations of this calendar booking.
-	*
-	* @return the locales and localized locations of this calendar booking
-	*/
-	public java.util.Map<java.util.Locale, java.lang.String> getLocationMap() {
-		return _calendarBooking.getLocationMap();
-	}
-
-	/**
 	* Sets the location of this calendar booking.
 	*
 	* @param location the location of this calendar booking
 	*/
 	public void setLocation(java.lang.String location) {
 		_calendarBooking.setLocation(location);
-	}
-
-	/**
-	* Sets the localized location of this calendar booking in the language.
-	*
-	* @param location the localized location of this calendar booking
-	* @param locale the locale of the language
-	*/
-	public void setLocation(java.lang.String location, java.util.Locale locale) {
-		_calendarBooking.setLocation(location, locale);
-	}
-
-	/**
-	* Sets the localized location of this calendar booking in the language, and sets the default locale.
-	*
-	* @param location the localized location of this calendar booking
-	* @param locale the locale of the language
-	* @param defaultLocale the default locale
-	*/
-	public void setLocation(java.lang.String location, java.util.Locale locale,
-		java.util.Locale defaultLocale) {
-		_calendarBooking.setLocation(location, locale, defaultLocale);
-	}
-
-	public void setLocationCurrentLanguageId(java.lang.String languageId) {
-		_calendarBooking.setLocationCurrentLanguageId(languageId);
-	}
-
-	/**
-	* Sets the localized locations of this calendar booking from the map of locales and localized locations.
-	*
-	* @param locationMap the locales and localized locations of this calendar booking
-	*/
-	public void setLocationMap(
-		java.util.Map<java.util.Locale, java.lang.String> locationMap) {
-		_calendarBooking.setLocationMap(locationMap);
-	}
-
-	/**
-	* Sets the localized locations of this calendar booking from the map of locales and localized locations, and sets the default locale.
-	*
-	* @param locationMap the locales and localized locations of this calendar booking
-	* @param defaultLocale the default locale
-	*/
-	public void setLocationMap(
-		java.util.Map<java.util.Locale, java.lang.String> locationMap,
-		java.util.Locale defaultLocale) {
-		_calendarBooking.setLocationMap(locationMap, defaultLocale);
-	}
-
-	/**
-	* Returns the type of this calendar booking.
-	*
-	* @return the type of this calendar booking
-	*/
-	public java.lang.String getType() {
-		return _calendarBooking.getType();
-	}
-
-	/**
-	* Sets the type of this calendar booking.
-	*
-	* @param type the type of this calendar booking
-	*/
-	public void setType(java.lang.String type) {
-		_calendarBooking.setType(type);
 	}
 
 	/**
@@ -980,51 +811,6 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	}
 
 	/**
-	* Returns the priority of this calendar booking.
-	*
-	* @return the priority of this calendar booking
-	*/
-	public int getPriority() {
-		return _calendarBooking.getPriority();
-	}
-
-	/**
-	* Sets the priority of this calendar booking.
-	*
-	* @param priority the priority of this calendar booking
-	*/
-	public void setPriority(int priority) {
-		_calendarBooking.setPriority(priority);
-	}
-
-	/**
-	* Returns the out of office of this calendar booking.
-	*
-	* @return the out of office of this calendar booking
-	*/
-	public boolean getOutOfOffice() {
-		return _calendarBooking.getOutOfOffice();
-	}
-
-	/**
-	* Returns <code>true</code> if this calendar booking is out of office.
-	*
-	* @return <code>true</code> if this calendar booking is out of office; <code>false</code> otherwise
-	*/
-	public boolean isOutOfOffice() {
-		return _calendarBooking.isOutOfOffice();
-	}
-
-	/**
-	* Sets whether this calendar booking is out of office.
-	*
-	* @param outOfOffice the out of office of this calendar booking
-	*/
-	public void setOutOfOffice(boolean outOfOffice) {
-		_calendarBooking.setOutOfOffice(outOfOffice);
-	}
-
-	/**
 	* Returns the first reminder of this calendar booking.
 	*
 	* @return the first reminder of this calendar booking
@@ -1058,69 +844,6 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	*/
 	public void setSecondReminder(int secondReminder) {
 		_calendarBooking.setSecondReminder(secondReminder);
-	}
-
-	/**
-	* Returns the required of this calendar booking.
-	*
-	* @return the required of this calendar booking
-	*/
-	public boolean getRequired() {
-		return _calendarBooking.getRequired();
-	}
-
-	/**
-	* Returns <code>true</code> if this calendar booking is required.
-	*
-	* @return <code>true</code> if this calendar booking is required; <code>false</code> otherwise
-	*/
-	public boolean isRequired() {
-		return _calendarBooking.isRequired();
-	}
-
-	/**
-	* Sets whether this calendar booking is required.
-	*
-	* @param required the required of this calendar booking
-	*/
-	public void setRequired(boolean required) {
-		_calendarBooking.setRequired(required);
-	}
-
-	/**
-	* Returns the request message of this calendar booking.
-	*
-	* @return the request message of this calendar booking
-	*/
-	public java.lang.String getRequestMessage() {
-		return _calendarBooking.getRequestMessage();
-	}
-
-	/**
-	* Sets the request message of this calendar booking.
-	*
-	* @param requestMessage the request message of this calendar booking
-	*/
-	public void setRequestMessage(java.lang.String requestMessage) {
-		_calendarBooking.setRequestMessage(requestMessage);
-	}
-
-	/**
-	* Returns the response message of this calendar booking.
-	*
-	* @return the response message of this calendar booking
-	*/
-	public java.lang.String getResponseMessage() {
-		return _calendarBooking.getResponseMessage();
-	}
-
-	/**
-	* Sets the response message of this calendar booking.
-	*
-	* @param responseMessage the response message of this calendar booking
-	*/
-	public void setResponseMessage(java.lang.String responseMessage) {
-		_calendarBooking.setResponseMessage(responseMessage);
 	}
 
 	/**
@@ -1332,10 +1055,38 @@ public class CalendarBookingWrapper implements CalendarBooking,
 		_calendarBooking.persist();
 	}
 
+	public com.liferay.calendar.model.Calendar getCalendar()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarBooking.getCalendar();
+	}
+
 	public com.liferay.calendar.model.CalendarResource getCalendarResource()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _calendarBooking.getCalendarResource();
+	}
+
+	public com.liferay.calendar.model.CalendarBooking getParentCalendarBooking()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarBooking.getParentCalendarBooking();
+	}
+
+	public java.util.Date getUTCEndDate()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarBooking.getUTCEndDate();
+	}
+
+	public java.util.Date getUTCStartDate()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarBooking.getUTCStartDate();
+	}
+
+	public boolean isMasterBooking() {
+		return _calendarBooking.isMasterBooking();
 	}
 
 	/**

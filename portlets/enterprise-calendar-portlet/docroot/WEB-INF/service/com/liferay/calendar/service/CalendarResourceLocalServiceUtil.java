@@ -384,15 +384,6 @@ public class CalendarResourceLocalServiceUtil {
 			descriptionMap, type, active, serviceContext);
 	}
 
-	public static com.liferay.calendar.model.CalendarResource updateDefaultCalendarId(
-		long calendarResourceId, long defaultCalendarId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .updateDefaultCalendarId(calendarResourceId,
-			defaultCalendarId);
-	}
-
 	/**
 	 * @deprecated
 	 */

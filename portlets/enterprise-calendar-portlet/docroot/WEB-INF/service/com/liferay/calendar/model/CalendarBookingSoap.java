@@ -45,18 +45,12 @@ public class CalendarBookingSoap implements Serializable {
 		soapModel.setTitle(model.getTitle());
 		soapModel.setDescription(model.getDescription());
 		soapModel.setLocation(model.getLocation());
-		soapModel.setType(model.getType());
 		soapModel.setStartDate(model.getStartDate());
 		soapModel.setEndDate(model.getEndDate());
 		soapModel.setAllDay(model.getAllDay());
 		soapModel.setRecurrence(model.getRecurrence());
-		soapModel.setPriority(model.getPriority());
-		soapModel.setOutOfOffice(model.getOutOfOffice());
 		soapModel.setFirstReminder(model.getFirstReminder());
 		soapModel.setSecondReminder(model.getSecondReminder());
-		soapModel.setRequired(model.getRequired());
-		soapModel.setRequestMessage(model.getRequestMessage());
-		soapModel.setResponseMessage(model.getResponseMessage());
 		soapModel.setStatus(model.getStatus());
 		soapModel.setStatusByUserId(model.getStatusByUserId());
 		soapModel.setStatusByUserName(model.getStatusByUserName());
@@ -227,14 +221,6 @@ public class CalendarBookingSoap implements Serializable {
 		_location = location;
 	}
 
-	public String getType() {
-		return _type;
-	}
-
-	public void setType(String type) {
-		_type = type;
-	}
-
 	public Date getStartDate() {
 		return _startDate;
 	}
@@ -271,26 +257,6 @@ public class CalendarBookingSoap implements Serializable {
 		_recurrence = recurrence;
 	}
 
-	public int getPriority() {
-		return _priority;
-	}
-
-	public void setPriority(int priority) {
-		_priority = priority;
-	}
-
-	public boolean getOutOfOffice() {
-		return _outOfOffice;
-	}
-
-	public boolean isOutOfOffice() {
-		return _outOfOffice;
-	}
-
-	public void setOutOfOffice(boolean outOfOffice) {
-		_outOfOffice = outOfOffice;
-	}
-
 	public int getFirstReminder() {
 		return _firstReminder;
 	}
@@ -305,34 +271,6 @@ public class CalendarBookingSoap implements Serializable {
 
 	public void setSecondReminder(int secondReminder) {
 		_secondReminder = secondReminder;
-	}
-
-	public boolean getRequired() {
-		return _required;
-	}
-
-	public boolean isRequired() {
-		return _required;
-	}
-
-	public void setRequired(boolean required) {
-		_required = required;
-	}
-
-	public String getRequestMessage() {
-		return _requestMessage;
-	}
-
-	public void setRequestMessage(String requestMessage) {
-		_requestMessage = requestMessage;
-	}
-
-	public String getResponseMessage() {
-		return _responseMessage;
-	}
-
-	public void setResponseMessage(String responseMessage) {
-		_responseMessage = responseMessage;
 	}
 
 	public int getStatus() {
@@ -381,18 +319,12 @@ public class CalendarBookingSoap implements Serializable {
 	private String _title;
 	private String _description;
 	private String _location;
-	private String _type;
 	private Date _startDate;
 	private Date _endDate;
 	private boolean _allDay;
 	private String _recurrence;
-	private int _priority;
-	private boolean _outOfOffice;
 	private int _firstReminder;
 	private int _secondReminder;
-	private boolean _required;
-	private String _requestMessage;
-	private String _responseMessage;
 	private int _status;
 	private long _statusByUserId;
 	private String _statusByUserName;

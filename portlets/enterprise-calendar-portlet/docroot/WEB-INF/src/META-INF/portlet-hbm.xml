@@ -42,18 +42,12 @@
 		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="location" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="type" type="com.liferay.portal.dao.orm.hibernate.StringType" column="type_" />
 		<property name="startDate" type="org.hibernate.type.TimestampType" />
 		<property name="endDate" type="org.hibernate.type.TimestampType" />
 		<property name="allDay" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="recurrence" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="priority" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
-		<property name="outOfOffice" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="firstReminder" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="secondReminder" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
-		<property name="required" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="requestMessage" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="responseMessage" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="statusByUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="statusByUserName" type="com.liferay.portal.dao.orm.hibernate.StringType" />

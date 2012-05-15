@@ -81,6 +81,12 @@ public interface CalendarResourceService extends BaseService, InvokableService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.calendar.model.CalendarResource fetchCalendarResource(
+		long classNameId, long classPK)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.calendar.model.CalendarResource getCalendarResource(
 		long calendarResourceId)
 		throws com.liferay.portal.kernel.exception.PortalException,

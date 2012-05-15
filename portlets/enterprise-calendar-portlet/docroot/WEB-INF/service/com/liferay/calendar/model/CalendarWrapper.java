@@ -739,6 +739,12 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 		_calendar.persist();
 	}
 
+	public com.liferay.calendar.model.CalendarResource getCalendarResource()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendar.getCalendarResource();
+	}
+
 	/**
 	 * @deprecated Renamed to {@link #getWrappedModel}
 	 */

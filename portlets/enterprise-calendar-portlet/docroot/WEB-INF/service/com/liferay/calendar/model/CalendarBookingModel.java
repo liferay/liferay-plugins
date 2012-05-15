@@ -441,58 +441,8 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @return the location of this calendar booking
 	 */
+	@AutoEscape
 	public String getLocation();
-
-	/**
-	 * Returns the localized location of this calendar booking in the language. Uses the default language if no localization exists for the requested language.
-	 *
-	 * @param locale the locale of the language
-	 * @return the localized location of this calendar booking
-	 */
-	@AutoEscape
-	public String getLocation(Locale locale);
-
-	/**
-	 * Returns the localized location of this calendar booking in the language, optionally using the default language if no localization exists for the requested language.
-	 *
-	 * @param locale the local of the language
-	 * @param useDefault whether to use the default language if no localization exists for the requested language
-	 * @return the localized location of this calendar booking. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
-	 */
-	@AutoEscape
-	public String getLocation(Locale locale, boolean useDefault);
-
-	/**
-	 * Returns the localized location of this calendar booking in the language. Uses the default language if no localization exists for the requested language.
-	 *
-	 * @param languageId the ID of the language
-	 * @return the localized location of this calendar booking
-	 */
-	@AutoEscape
-	public String getLocation(String languageId);
-
-	/**
-	 * Returns the localized location of this calendar booking in the language, optionally using the default language if no localization exists for the requested language.
-	 *
-	 * @param languageId the ID of the language
-	 * @param useDefault whether to use the default language if no localization exists for the requested language
-	 * @return the localized location of this calendar booking
-	 */
-	@AutoEscape
-	public String getLocation(String languageId, boolean useDefault);
-
-	@AutoEscape
-	public String getLocationCurrentLanguageId();
-
-	@AutoEscape
-	public String getLocationCurrentValue();
-
-	/**
-	 * Returns a map of the locales and localized locations of this calendar booking.
-	 *
-	 * @return the locales and localized locations of this calendar booking
-	 */
-	public Map<Locale, String> getLocationMap();
 
 	/**
 	 * Sets the location of this calendar booking.
@@ -500,56 +450,6 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 * @param location the location of this calendar booking
 	 */
 	public void setLocation(String location);
-
-	/**
-	 * Sets the localized location of this calendar booking in the language.
-	 *
-	 * @param location the localized location of this calendar booking
-	 * @param locale the locale of the language
-	 */
-	public void setLocation(String location, Locale locale);
-
-	/**
-	 * Sets the localized location of this calendar booking in the language, and sets the default locale.
-	 *
-	 * @param location the localized location of this calendar booking
-	 * @param locale the locale of the language
-	 * @param defaultLocale the default locale
-	 */
-	public void setLocation(String location, Locale locale, Locale defaultLocale);
-
-	public void setLocationCurrentLanguageId(String languageId);
-
-	/**
-	 * Sets the localized locations of this calendar booking from the map of locales and localized locations.
-	 *
-	 * @param locationMap the locales and localized locations of this calendar booking
-	 */
-	public void setLocationMap(Map<Locale, String> locationMap);
-
-	/**
-	 * Sets the localized locations of this calendar booking from the map of locales and localized locations, and sets the default locale.
-	 *
-	 * @param locationMap the locales and localized locations of this calendar booking
-	 * @param defaultLocale the default locale
-	 */
-	public void setLocationMap(Map<Locale, String> locationMap,
-		Locale defaultLocale);
-
-	/**
-	 * Returns the type of this calendar booking.
-	 *
-	 * @return the type of this calendar booking
-	 */
-	@AutoEscape
-	public String getType();
-
-	/**
-	 * Sets the type of this calendar booking.
-	 *
-	 * @param type the type of this calendar booking
-	 */
-	public void setType(String type);
 
 	/**
 	 * Returns the start date of this calendar booking.
@@ -616,41 +516,6 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	public void setRecurrence(String recurrence);
 
 	/**
-	 * Returns the priority of this calendar booking.
-	 *
-	 * @return the priority of this calendar booking
-	 */
-	public int getPriority();
-
-	/**
-	 * Sets the priority of this calendar booking.
-	 *
-	 * @param priority the priority of this calendar booking
-	 */
-	public void setPriority(int priority);
-
-	/**
-	 * Returns the out of office of this calendar booking.
-	 *
-	 * @return the out of office of this calendar booking
-	 */
-	public boolean getOutOfOffice();
-
-	/**
-	 * Returns <code>true</code> if this calendar booking is out of office.
-	 *
-	 * @return <code>true</code> if this calendar booking is out of office; <code>false</code> otherwise
-	 */
-	public boolean isOutOfOffice();
-
-	/**
-	 * Sets whether this calendar booking is out of office.
-	 *
-	 * @param outOfOffice the out of office of this calendar booking
-	 */
-	public void setOutOfOffice(boolean outOfOffice);
-
-	/**
 	 * Returns the first reminder of this calendar booking.
 	 *
 	 * @return the first reminder of this calendar booking
@@ -677,57 +542,6 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 * @param secondReminder the second reminder of this calendar booking
 	 */
 	public void setSecondReminder(int secondReminder);
-
-	/**
-	 * Returns the required of this calendar booking.
-	 *
-	 * @return the required of this calendar booking
-	 */
-	public boolean getRequired();
-
-	/**
-	 * Returns <code>true</code> if this calendar booking is required.
-	 *
-	 * @return <code>true</code> if this calendar booking is required; <code>false</code> otherwise
-	 */
-	public boolean isRequired();
-
-	/**
-	 * Sets whether this calendar booking is required.
-	 *
-	 * @param required the required of this calendar booking
-	 */
-	public void setRequired(boolean required);
-
-	/**
-	 * Returns the request message of this calendar booking.
-	 *
-	 * @return the request message of this calendar booking
-	 */
-	@AutoEscape
-	public String getRequestMessage();
-
-	/**
-	 * Sets the request message of this calendar booking.
-	 *
-	 * @param requestMessage the request message of this calendar booking
-	 */
-	public void setRequestMessage(String requestMessage);
-
-	/**
-	 * Returns the response message of this calendar booking.
-	 *
-	 * @return the response message of this calendar booking
-	 */
-	@AutoEscape
-	public String getResponseMessage();
-
-	/**
-	 * Sets the response message of this calendar booking.
-	 *
-	 * @param responseMessage the response message of this calendar booking
-	 */
-	public void setResponseMessage(String responseMessage);
 
 	/**
 	 * Returns the status of this calendar booking.

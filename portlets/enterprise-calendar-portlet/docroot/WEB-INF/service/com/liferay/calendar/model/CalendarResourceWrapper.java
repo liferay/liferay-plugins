@@ -854,6 +854,10 @@ public class CalendarResourceWrapper implements CalendarResource,
 		_calendarResource.persist();
 	}
 
+	public boolean isGlobal() {
+		return _calendarResource.isGlobal();
+	}
+
 	/**
 	 * @deprecated Renamed to {@link #getWrappedModel}
 	 */

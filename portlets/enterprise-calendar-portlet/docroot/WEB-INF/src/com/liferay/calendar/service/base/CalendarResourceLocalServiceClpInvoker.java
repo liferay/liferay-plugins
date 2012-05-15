@@ -189,10 +189,6 @@ public class CalendarResourceLocalServiceClpInvoker {
 				"java.lang.String", "boolean",
 				"com.liferay.portal.service.ServiceContext"
 			};
-
-		_methodName70 = "updateDefaultCalendarId";
-
-		_methodParameterTypes70 = new String[] { "long", "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -403,12 +399,6 @@ public class CalendarResourceLocalServiceClpInvoker {
 				(com.liferay.portal.service.ServiceContext)arguments[6]);
 		}
 
-		if (_methodName70.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
-			return CalendarResourceLocalServiceUtil.updateDefaultCalendarId(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue());
-		}
-
 		throw new UnsupportedOperationException();
 	}
 
@@ -472,6 +462,4 @@ public class CalendarResourceLocalServiceClpInvoker {
 	private String[] _methodParameterTypes68;
 	private String _methodName69;
 	private String[] _methodParameterTypes69;
-	private String _methodName70;
-	private String[] _methodParameterTypes70;
 }

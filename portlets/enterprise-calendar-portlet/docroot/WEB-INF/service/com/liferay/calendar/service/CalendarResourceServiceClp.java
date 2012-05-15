@@ -44,52 +44,56 @@ public class CalendarResourceServiceClp implements CalendarResourceService {
 
 		_methodParameterTypes4 = new String[] { "long" };
 
-		_methodName5 = "getCalendarResource";
+		_methodName5 = "fetchCalendarResource";
 
-		_methodParameterTypes5 = new String[] { "long" };
+		_methodParameterTypes5 = new String[] { "long", "long" };
 
-		_methodName6 = "search";
+		_methodName6 = "getCalendarResource";
 
-		_methodParameterTypes6 = new String[] {
+		_methodParameterTypes6 = new String[] { "long" };
+
+		_methodName7 = "search";
+
+		_methodParameterTypes7 = new String[] {
 				"long", "long[][]", "long[][]", "java.lang.String", "boolean",
 				"boolean", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName7 = "search";
+		_methodName8 = "search";
 
-		_methodParameterTypes7 = new String[] {
+		_methodParameterTypes8 = new String[] {
 				"long", "long[][]", "long[][]", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"boolean", "boolean", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName8 = "searchCount";
-
-		_methodParameterTypes8 = new String[] {
-				"long", "long[][]", "long[][]", "java.lang.String", "boolean"
-			};
-
 		_methodName9 = "searchCount";
 
 		_methodParameterTypes9 = new String[] {
+				"long", "long[][]", "long[][]", "java.lang.String", "boolean"
+			};
+
+		_methodName10 = "searchCount";
+
+		_methodParameterTypes10 = new String[] {
 				"long", "long[][]", "long[][]", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"boolean", "boolean"
 			};
 
-		_methodName10 = "updateCalendarResource";
+		_methodName11 = "updateCalendarResource";
 
-		_methodParameterTypes10 = new String[] {
+		_methodParameterTypes11 = new String[] {
 				"long", "long", "java.lang.String", "java.util.Map",
 				"java.util.Map", "java.lang.String", "boolean",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName11 = "updateCalendarResource";
+		_methodName12 = "updateCalendarResource";
 
-		_methodParameterTypes11 = new String[] {
+		_methodParameterTypes12 = new String[] {
 				"long", "java.lang.String", "java.util.Map", "java.util.Map",
 				"java.lang.String", "boolean",
 				"com.liferay.portal.service.ServiceContext"
@@ -238,6 +242,40 @@ public class CalendarResourceServiceClp implements CalendarResourceService {
 		return (com.liferay.calendar.model.CalendarResource)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.calendar.model.CalendarResource fetchCalendarResource(
+		long classNameId, long classPK)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName5,
+					_methodParameterTypes5,
+					new Object[] { classNameId, classPK });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.calendar.model.CalendarResource)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public com.liferay.calendar.model.CalendarResource getCalendarResource(
 		long calendarResourceId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -245,8 +283,8 @@ public class CalendarResourceServiceClp implements CalendarResourceService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName5,
-					_methodParameterTypes5, new Object[] { calendarResourceId });
+			returnObj = _invokableService.invokeMethod(_methodName6,
+					_methodParameterTypes6, new Object[] { calendarResourceId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -280,8 +318,8 @@ public class CalendarResourceServiceClp implements CalendarResourceService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName6,
-					_methodParameterTypes6,
+			returnObj = _invokableService.invokeMethod(_methodName7,
+					_methodParameterTypes7,
 					new Object[] {
 						companyId,
 						
@@ -331,8 +369,8 @@ public class CalendarResourceServiceClp implements CalendarResourceService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName7,
-					_methodParameterTypes7,
+			returnObj = _invokableService.invokeMethod(_methodName8,
+					_methodParameterTypes8,
 					new Object[] {
 						companyId,
 						
@@ -384,8 +422,8 @@ public class CalendarResourceServiceClp implements CalendarResourceService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName8,
-					_methodParameterTypes8,
+			returnObj = _invokableService.invokeMethod(_methodName9,
+					_methodParameterTypes9,
 					new Object[] {
 						companyId,
 						
@@ -425,8 +463,8 @@ public class CalendarResourceServiceClp implements CalendarResourceService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName9,
-					_methodParameterTypes9,
+			returnObj = _invokableService.invokeMethod(_methodName10,
+					_methodParameterTypes10,
 					new Object[] {
 						companyId,
 						
@@ -477,8 +515,8 @@ public class CalendarResourceServiceClp implements CalendarResourceService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName10,
-					_methodParameterTypes10,
+			returnObj = _invokableService.invokeMethod(_methodName11,
+					_methodParameterTypes11,
 					new Object[] {
 						calendarResourceId,
 						
@@ -531,8 +569,8 @@ public class CalendarResourceServiceClp implements CalendarResourceService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName11,
-					_methodParameterTypes11,
+			returnObj = _invokableService.invokeMethod(_methodName12,
+					_methodParameterTypes12,
 					new Object[] {
 						calendarResourceId,
 						
@@ -595,4 +633,6 @@ public class CalendarResourceServiceClp implements CalendarResourceService {
 	private String[] _methodParameterTypes10;
 	private String _methodName11;
 	private String[] _methodParameterTypes11;
+	private String _methodName12;
+	private String[] _methodParameterTypes12;
 }

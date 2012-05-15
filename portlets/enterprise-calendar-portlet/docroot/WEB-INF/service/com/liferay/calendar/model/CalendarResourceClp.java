@@ -556,6 +556,10 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 		_active = active;
 	}
 
+	public boolean isGlobal() {
+		throw new UnsupportedOperationException();
+	}
+
 	public BaseModel<?> getCalendarResourceRemoteModel() {
 		return _calendarResourceRemoteModel;
 	}

@@ -86,6 +86,13 @@ public class CalendarResourceServiceUtil {
 		return getService().deleteCalendarResource(calendarResourceId);
 	}
 
+	public static com.liferay.calendar.model.CalendarResource fetchCalendarResource(
+		long classNameId, long classPK)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchCalendarResource(classNameId, classPK);
+	}
+
 	public static com.liferay.calendar.model.CalendarResource getCalendarResource(
 		long calendarResourceId)
 		throws com.liferay.portal.kernel.exception.PortalException,

@@ -79,6 +79,14 @@ public class CalendarResourceServiceWrapper implements CalendarResourceService,
 		return _calendarResourceService.deleteCalendarResource(calendarResourceId);
 	}
 
+	public com.liferay.calendar.model.CalendarResource fetchCalendarResource(
+		long classNameId, long classPK)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResourceService.fetchCalendarResource(classNameId,
+			classPK);
+	}
+
 	public com.liferay.calendar.model.CalendarResource getCalendarResource(
 		long calendarResourceId)
 		throws com.liferay.portal.kernel.exception.PortalException,

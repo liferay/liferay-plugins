@@ -377,14 +377,6 @@ public class CalendarResourceLocalServiceWrapper
 			code, nameMap, descriptionMap, type, active, serviceContext);
 	}
 
-	public com.liferay.calendar.model.CalendarResource updateDefaultCalendarId(
-		long calendarResourceId, long defaultCalendarId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _calendarResourceLocalService.updateDefaultCalendarId(calendarResourceId,
-			defaultCalendarId);
-	}
-
 	/**
 	 * @deprecated Renamed to {@link #getWrappedService}
 	 */

@@ -35,7 +35,7 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 	Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(61);
+		StringBundler sb = new StringBundler(49);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -65,8 +65,6 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 		sb.append(description);
 		sb.append(", location=");
 		sb.append(location);
-		sb.append(", type=");
-		sb.append(type);
 		sb.append(", startDate=");
 		sb.append(startDate);
 		sb.append(", endDate=");
@@ -75,20 +73,10 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 		sb.append(allDay);
 		sb.append(", recurrence=");
 		sb.append(recurrence);
-		sb.append(", priority=");
-		sb.append(priority);
-		sb.append(", outOfOffice=");
-		sb.append(outOfOffice);
 		sb.append(", firstReminder=");
 		sb.append(firstReminder);
 		sb.append(", secondReminder=");
 		sb.append(secondReminder);
-		sb.append(", required=");
-		sb.append(required);
-		sb.append(", requestMessage=");
-		sb.append(requestMessage);
-		sb.append(", responseMessage=");
-		sb.append(responseMessage);
 		sb.append(", status=");
 		sb.append(status);
 		sb.append(", statusByUserId=");
@@ -163,13 +151,6 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 			calendarBookingImpl.setLocation(location);
 		}
 
-		if (type == null) {
-			calendarBookingImpl.setType(StringPool.BLANK);
-		}
-		else {
-			calendarBookingImpl.setType(type);
-		}
-
 		if (startDate == Long.MIN_VALUE) {
 			calendarBookingImpl.setStartDate(null);
 		}
@@ -193,26 +174,8 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 			calendarBookingImpl.setRecurrence(recurrence);
 		}
 
-		calendarBookingImpl.setPriority(priority);
-		calendarBookingImpl.setOutOfOffice(outOfOffice);
 		calendarBookingImpl.setFirstReminder(firstReminder);
 		calendarBookingImpl.setSecondReminder(secondReminder);
-		calendarBookingImpl.setRequired(required);
-
-		if (requestMessage == null) {
-			calendarBookingImpl.setRequestMessage(StringPool.BLANK);
-		}
-		else {
-			calendarBookingImpl.setRequestMessage(requestMessage);
-		}
-
-		if (responseMessage == null) {
-			calendarBookingImpl.setResponseMessage(StringPool.BLANK);
-		}
-		else {
-			calendarBookingImpl.setResponseMessage(responseMessage);
-		}
-
 		calendarBookingImpl.setStatus(status);
 		calendarBookingImpl.setStatusByUserId(statusByUserId);
 
@@ -249,18 +212,12 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 	public String title;
 	public String description;
 	public String location;
-	public String type;
 	public long startDate;
 	public long endDate;
 	public boolean allDay;
 	public String recurrence;
-	public int priority;
-	public boolean outOfOffice;
 	public int firstReminder;
 	public int secondReminder;
-	public boolean required;
-	public String requestMessage;
-	public String responseMessage;
 	public int status;
 	public long statusByUserId;
 	public String statusByUserName;
