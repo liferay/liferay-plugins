@@ -15,7 +15,6 @@
 package com.liferay.tasks.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableService;
 
@@ -98,10 +97,8 @@ public class TasksEntryServiceUtil {
 			serviceContext);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static TasksEntryService getService() {
@@ -118,7 +115,6 @@ public class TasksEntryServiceUtil {
 
 			ReferenceRegistry.registerReference(TasksEntryServiceUtil.class,
 				"_service");
-			MethodCache.remove(TasksEntryService.class);
 		}
 
 		return _service;

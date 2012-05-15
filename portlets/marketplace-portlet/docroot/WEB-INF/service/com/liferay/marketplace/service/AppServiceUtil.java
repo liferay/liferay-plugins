@@ -15,7 +15,6 @@
 package com.liferay.marketplace.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableService;
 
@@ -95,10 +94,8 @@ public class AppServiceUtil {
 		return getService().updateApp(appId, version, inputStream);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static AppService getService() {
@@ -114,7 +111,6 @@ public class AppServiceUtil {
 			}
 
 			ReferenceRegistry.registerReference(AppServiceUtil.class, "_service");
-			MethodCache.remove(AppService.class);
 		}
 
 		return _service;

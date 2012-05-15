@@ -15,7 +15,6 @@
 package com.liferay.twitter.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -288,10 +287,8 @@ public class FeedLocalServiceUtil {
 		getService().updateFeeds(companyId);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static FeedLocalService getService() {
@@ -308,7 +305,6 @@ public class FeedLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(FeedLocalServiceUtil.class,
 				"_service");
-			MethodCache.remove(FeedLocalService.class);
 		}
 
 		return _service;

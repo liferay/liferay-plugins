@@ -15,7 +15,6 @@
 package com.liferay.wsrp.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -339,10 +338,8 @@ public class WSRPConsumerLocalServiceUtil {
 			url, forwardCookies);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static WSRPConsumerLocalService getService() {
@@ -359,7 +356,6 @@ public class WSRPConsumerLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(WSRPConsumerLocalServiceUtil.class,
 				"_service");
-			MethodCache.remove(WSRPConsumerLocalService.class);
 		}
 
 		return _service;

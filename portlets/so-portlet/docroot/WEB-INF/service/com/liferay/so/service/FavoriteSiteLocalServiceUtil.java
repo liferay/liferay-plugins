@@ -15,7 +15,6 @@
 package com.liferay.so.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -319,10 +318,8 @@ public class FavoriteSiteLocalServiceUtil {
 		return getService().isFavoriteSite(userId, groupId);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static FavoriteSiteLocalService getService() {
@@ -339,7 +336,6 @@ public class FavoriteSiteLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(FavoriteSiteLocalServiceUtil.class,
 				"_service");
-			MethodCache.remove(FavoriteSiteLocalService.class);
 		}
 
 		return _service;

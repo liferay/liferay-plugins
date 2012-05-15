@@ -15,7 +15,6 @@
 package com.liferay.microblogs.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -379,10 +378,8 @@ public class MicroblogsEntryLocalServiceUtil {
 			socialRelationType, serviceContext);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static MicroblogsEntryLocalService getService() {
@@ -399,7 +396,6 @@ public class MicroblogsEntryLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(MicroblogsEntryLocalServiceUtil.class,
 				"_service");
-			MethodCache.remove(MicroblogsEntryLocalService.class);
 		}
 
 		return _service;

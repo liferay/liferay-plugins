@@ -15,7 +15,6 @@
 package com.liferay.so.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -358,10 +357,8 @@ public class MemberRequestLocalServiceUtil {
 		return getService().updateMemberRequest(key, receiverUserId);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static MemberRequestLocalService getService() {
@@ -378,7 +375,6 @@ public class MemberRequestLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(MemberRequestLocalServiceUtil.class,
 				"_service");
-			MethodCache.remove(MemberRequestLocalService.class);
 		}
 
 		return _service;

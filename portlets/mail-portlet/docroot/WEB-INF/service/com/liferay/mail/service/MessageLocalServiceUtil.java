@@ -15,7 +15,6 @@
 package com.liferay.mail.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -372,10 +371,8 @@ public class MessageLocalServiceUtil {
 			sentDate, subject, body, flags, remoteMessageId);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static MessageLocalService getService() {
@@ -392,7 +389,6 @@ public class MessageLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(MessageLocalServiceUtil.class,
 				"_service");
-			MethodCache.remove(MessageLocalService.class);
 		}
 
 		return _service;

@@ -15,7 +15,6 @@
 package com.liferay.calendar.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableService;
 
@@ -169,10 +168,8 @@ public class CalendarResourceServiceUtil {
 			descriptionMap, type, active, serviceContext);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static CalendarResourceService getService() {
@@ -189,7 +186,6 @@ public class CalendarResourceServiceUtil {
 
 			ReferenceRegistry.registerReference(CalendarResourceServiceUtil.class,
 				"_service");
-			MethodCache.remove(CalendarResourceService.class);
 		}
 
 		return _service;

@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableService;
 
@@ -75,10 +74,8 @@ public class KaleoDefinitionServiceUtil {
 		return getService().getKaleoDefinitions(companyId, start, end);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static KaleoDefinitionService getService() {
@@ -95,7 +92,6 @@ public class KaleoDefinitionServiceUtil {
 
 			ReferenceRegistry.registerReference(KaleoDefinitionServiceUtil.class,
 				"_service");
-			MethodCache.remove(KaleoDefinitionService.class);
 		}
 
 		return _service;

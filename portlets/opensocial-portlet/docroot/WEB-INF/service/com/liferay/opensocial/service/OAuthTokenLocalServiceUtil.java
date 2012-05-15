@@ -15,7 +15,6 @@
 package com.liferay.opensocial.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -327,10 +326,8 @@ public class OAuthTokenLocalServiceUtil {
 		return getService().getOAuthTokens(gadgetKey, serviceName);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static OAuthTokenLocalService getService() {
@@ -347,7 +344,6 @@ public class OAuthTokenLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(OAuthTokenLocalServiceUtil.class,
 				"_service");
-			MethodCache.remove(OAuthTokenLocalService.class);
 		}
 
 		return _service;

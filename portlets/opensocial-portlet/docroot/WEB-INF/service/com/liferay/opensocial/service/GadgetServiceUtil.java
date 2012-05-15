@@ -15,7 +15,6 @@
 package com.liferay.opensocial.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableService;
 
@@ -89,10 +88,8 @@ public class GadgetServiceUtil {
 		getService().updateGadget(gadgetId, portletCategoryNames, serviceContext);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static GadgetService getService() {
@@ -109,7 +106,6 @@ public class GadgetServiceUtil {
 
 			ReferenceRegistry.registerReference(GadgetServiceUtil.class,
 				"_service");
-			MethodCache.remove(GadgetService.class);
 		}
 
 		return _service;

@@ -15,7 +15,6 @@
 package com.liferay.knowledgebase.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -339,10 +338,8 @@ public class KBCommentLocalServiceUtil {
 			helpful, serviceContext);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static KBCommentLocalService getService() {
@@ -359,7 +356,6 @@ public class KBCommentLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(KBCommentLocalServiceUtil.class,
 				"_service");
-			MethodCache.remove(KBCommentLocalService.class);
 		}
 
 		return _service;

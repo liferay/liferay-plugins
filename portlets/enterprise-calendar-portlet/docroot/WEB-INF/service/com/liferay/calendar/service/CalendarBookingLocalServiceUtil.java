@@ -15,7 +15,6 @@
 package com.liferay.calendar.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -452,10 +451,8 @@ public class CalendarBookingLocalServiceUtil {
 			serviceContext);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static CalendarBookingLocalService getService() {
@@ -472,7 +469,6 @@ public class CalendarBookingLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(CalendarBookingLocalServiceUtil.class,
 				"_service");
-			MethodCache.remove(CalendarBookingLocalService.class);
 		}
 
 		return _service;

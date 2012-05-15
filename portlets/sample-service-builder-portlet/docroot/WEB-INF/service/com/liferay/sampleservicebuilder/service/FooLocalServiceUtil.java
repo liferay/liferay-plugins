@@ -15,7 +15,6 @@
 package com.liferay.sampleservicebuilder.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -328,10 +327,8 @@ public class FooLocalServiceUtil {
 			serviceContext);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static FooLocalService getService() {
@@ -348,7 +345,6 @@ public class FooLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(FooLocalServiceUtil.class,
 				"_service");
-			MethodCache.remove(FooLocalService.class);
 		}
 
 		return _service;

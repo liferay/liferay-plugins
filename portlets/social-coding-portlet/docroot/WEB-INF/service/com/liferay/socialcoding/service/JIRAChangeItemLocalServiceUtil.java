@@ -15,7 +15,6 @@
 package com.liferay.socialcoding.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -281,10 +280,8 @@ public class JIRAChangeItemLocalServiceUtil {
 		return getService().getJIRAChangeItems(jiraChangeGroupId);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static JIRAChangeItemLocalService getService() {
@@ -301,7 +298,6 @@ public class JIRAChangeItemLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(JIRAChangeItemLocalServiceUtil.class,
 				"_service");
-			MethodCache.remove(JIRAChangeItemLocalService.class);
 		}
 
 		return _service;
