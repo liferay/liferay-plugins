@@ -15,7 +15,6 @@
 package com.liferay.portal.oauth.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -277,6 +276,11 @@ public class OAuthApplications_UsersLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	/**
+	* NOTE FOR DEVELOPERS:
+	*
+	* Never reference this interface directly. Always use {@link com.liferay.portal.oauth.service.OAuthApplications_UsersLocalServiceUtil} to access the o auth applications_ users local service.
+	*/
 	public static com.liferay.portal.oauth.model.OAuthApplications_Users updateOAuthApplications_Users(
 		long oAuthApplicationId, long userId, boolean authorized)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -294,10 +298,8 @@ public class OAuthApplications_UsersLocalServiceUtil {
 			accessToken, accessSecret);
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static OAuthApplications_UsersLocalService getService() {
@@ -314,7 +316,6 @@ public class OAuthApplications_UsersLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(OAuthApplications_UsersLocalServiceUtil.class,
 				"_service");
-			MethodCache.remove(OAuthApplications_UsersLocalService.class);
 		}
 
 		return _service;

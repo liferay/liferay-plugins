@@ -31,6 +31,7 @@ import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.oauth.model.OAuthApplication;
 import com.liferay.portal.oauth.service.OAuthApplicationLocalService;
 import com.liferay.portal.oauth.service.OAuthApplications_UsersLocalService;
+import com.liferay.portal.oauth.service.persistence.OAuthApplicationFinder;
 import com.liferay.portal.oauth.service.persistence.OAuthApplicationPersistence;
 import com.liferay.portal.oauth.service.persistence.OAuthApplications_UsersPersistence;
 import com.liferay.portal.service.BaseLocalServiceImpl;
@@ -120,8 +121,10 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
+		Class<?> clazz = getClass();
+
 		return DynamicQueryFactoryUtil.forClass(OAuthApplication.class,
-			getClassLoader());
+			clazz.getClassLoader());
 	}
 
 	/**
@@ -306,6 +309,25 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	public void setOAuthApplicationPersistence(
 		OAuthApplicationPersistence oAuthApplicationPersistence) {
 		this.oAuthApplicationPersistence = oAuthApplicationPersistence;
+	}
+
+	/**
+	 * Returns the o auth application finder.
+	 *
+	 * @return the o auth application finder
+	 */
+	public OAuthApplicationFinder getOAuthApplicationFinder() {
+		return oAuthApplicationFinder;
+	}
+
+	/**
+	 * Sets the o auth application finder.
+	 *
+	 * @param oAuthApplicationFinder the o auth application finder
+	 */
+	public void setOAuthApplicationFinder(
+		OAuthApplicationFinder oAuthApplicationFinder) {
+		this.oAuthApplicationFinder = oAuthApplicationFinder;
 	}
 
 	/**
@@ -501,6 +523,8 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	protected OAuthApplicationLocalService oAuthApplicationLocalService;
 	@BeanReference(type = OAuthApplicationPersistence.class)
 	protected OAuthApplicationPersistence oAuthApplicationPersistence;
+	@BeanReference(type = OAuthApplicationFinder.class)
+	protected OAuthApplicationFinder oAuthApplicationFinder;
 	@BeanReference(type = OAuthApplications_UsersLocalService.class)
 	protected OAuthApplications_UsersLocalService oAuthApplications_UsersLocalService;
 	@BeanReference(type = OAuthApplications_UsersPersistence.class)

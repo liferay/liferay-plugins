@@ -248,14 +248,35 @@ public interface OAuthApplicationLocalService extends BaseLocalService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
+	/**
+	* Add info about new application that should use OAuth feature. Method will generate new
+	* consumer key and secret that will be used by this application to do authorized access
+	* to portal resources.
+	*/
 	public com.liferay.portal.oauth.model.OAuthApplication addOAuthApplication(
 		int accessLevel, java.lang.String callbackURL,
 		java.lang.String description, java.lang.String name, long ownerId,
 		java.lang.String website)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public int countByName(java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public int countByNameAndOwner(java.lang.String name, long ownerId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.oauth.model.OAuthApplication getOAuthApplicationByConsumerKey(
 		java.lang.String consumerKey)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.portal.oauth.model.OAuthApplication> findByName(
+		java.lang.String name, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.portal.oauth.model.OAuthApplication> findByNameAndOwner(
+		java.lang.String name, long ownerId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 }

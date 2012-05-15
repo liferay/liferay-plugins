@@ -15,7 +15,6 @@
 package com.liferay.portal.oauth.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
 
@@ -275,6 +274,11 @@ public class OAuthApplicationLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	/**
+	* Add info about new application that should use OAuth feature. Method will generate new
+	* consumer key and secret that will be used by this application to do authorized access
+	* to portal resources.
+	*/
 	public static com.liferay.portal.oauth.model.OAuthApplication addOAuthApplication(
 		int accessLevel, java.lang.String callbackURL,
 		java.lang.String description, java.lang.String name, long ownerId,
@@ -285,16 +289,40 @@ public class OAuthApplicationLocalServiceUtil {
 			name, ownerId, website);
 	}
 
+	public static int countByName(java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().countByName(name);
+	}
+
+	public static int countByNameAndOwner(java.lang.String name, long ownerId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().countByNameAndOwner(name, ownerId);
+	}
+
 	public static com.liferay.portal.oauth.model.OAuthApplication getOAuthApplicationByConsumerKey(
 		java.lang.String consumerKey)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getOAuthApplicationByConsumerKey(consumerKey);
 	}
 
-	/**
-	 * @deprecated
-	 */
+	public static java.util.List<com.liferay.portal.oauth.model.OAuthApplication> findByName(
+		java.lang.String name, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().findByName(name, start, end, orderByComparator);
+	}
+
+	public static java.util.List<com.liferay.portal.oauth.model.OAuthApplication> findByNameAndOwner(
+		java.lang.String name, long ownerId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .findByNameAndOwner(name, ownerId, start, end,
+			orderByComparator);
+	}
+
 	public static void clearService() {
+		_service = null;
 	}
 
 	public static OAuthApplicationLocalService getService() {
@@ -311,7 +339,6 @@ public class OAuthApplicationLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(OAuthApplicationLocalServiceUtil.class,
 				"_service");
-			MethodCache.remove(OAuthApplicationLocalService.class);
 		}
 
 		return _service;
