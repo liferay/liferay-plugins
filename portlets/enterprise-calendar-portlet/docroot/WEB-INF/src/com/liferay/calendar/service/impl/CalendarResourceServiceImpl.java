@@ -62,6 +62,24 @@ public class CalendarResourceServiceImpl
 			calendarResourceId);
 	}
 
+	public CalendarResource fetchCalendarResource(
+			long classNameId, long classPK)
+		throws PortalException, SystemException {
+
+		CalendarResource calendarResource =
+			calendarResourceLocalService.fetchCalendarResource(
+				classNameId, classPK);
+
+		if (calendarResource == null) {
+			return null;
+		}
+
+		CalendarResourcePermission.check(
+			getPermissionChecker(), calendarResource, ActionKeys.VIEW);
+
+		return calendarResource;
+	}
+
 	public CalendarResource getCalendarResource(long calendarResourceId)
 		throws PortalException, SystemException {
 

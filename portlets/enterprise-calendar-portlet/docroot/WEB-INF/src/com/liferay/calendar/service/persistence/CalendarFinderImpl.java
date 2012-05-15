@@ -250,6 +250,10 @@ public class CalendarFinderImpl
 
 			String sql = CustomSQLUtil.get(COUNT_BY_C_G_C_N_D);
 
+			if (groupIds == null) {
+				groupIds = new long[] {};
+			}
+
 			if (inlineSQLHelper) {
 				sql = InlineSQLHelperUtil.replacePermissionCheck(
 					sql, Calendar.class.getName(), "Calendar.calendarId",
@@ -321,6 +325,10 @@ public class CalendarFinderImpl
 			session = openSession();
 
 			String sql = CustomSQLUtil.get(FIND_BY_C_G_C_N_D);
+
+			if (groupIds == null) {
+				groupIds = new long[] {};
+			}
 
 			if (inlineSQLHelper) {
 				sql = InlineSQLHelperUtil.replacePermissionCheck(

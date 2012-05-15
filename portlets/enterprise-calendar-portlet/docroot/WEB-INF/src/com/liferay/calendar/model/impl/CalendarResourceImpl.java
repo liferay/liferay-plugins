@@ -14,12 +14,26 @@
 
 package com.liferay.calendar.model.impl;
 
+import com.liferay.calendar.model.CalendarResource;
+import com.liferay.portal.util.PortalUtil;
+
 /**
  * @author Eduardo Lundgren
  */
 public class CalendarResourceImpl extends CalendarResourceBaseImpl {
 
 	public CalendarResourceImpl() {
+	}
+
+	public boolean isGlobal() {
+		long calendarResourceClassNameId = PortalUtil.getClassNameId(
+			CalendarResource.class);
+
+		if (calendarResourceClassNameId == getClassNameId()) {
+			return false;
+		}
+
+		return true;
 	}
 
 }

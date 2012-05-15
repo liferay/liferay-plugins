@@ -19,14 +19,15 @@ import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.base.CalendarResourceLocalServiceBaseImpl;
-import com.liferay.calendar.util.CalendarResourceUtil;
 import com.liferay.calendar.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 
@@ -58,11 +59,14 @@ public class CalendarResourceLocalServiceImpl
 			classPK = calendarResourceId;
 		}
 
+		long classNameId = PortalUtil.getClassNameId(className);
+
 		long globalUserId = 0;
 
-		if (CalendarResourceUtil.isGlobalResource(className)) {
-			globalUserId = CalendarResourceUtil.getGlobalResourceUserId(
-				className, classPK);
+		if (isGlobalResource(classNameId)) {
+			globalUserId = getGlobalResourceUserId(classNameId, classPK);
+
+			groupId = getGlobalResourceGroupId(serviceContext.getCompanyId());
 		}
 
 		if (globalUserId > 0) {
@@ -71,7 +75,6 @@ public class CalendarResourceLocalServiceImpl
 
 		User user = userPersistence.findByPrimaryKey(userId);
 
-		long classNameId = PortalUtil.getClassNameId(className);
 		Date now = new Date();
 
 		validate(classNameId, classPK);
@@ -96,6 +99,16 @@ public class CalendarResourceLocalServiceImpl
 		}
 
 		calendarResource.setClassUuid(classUuid);
+
+		if (defaultCalendarId <= 0) {
+			Calendar calendar = calendarLocalService.addCalendar(
+				userId, groupId, calendarResourceId, nameMap, descriptionMap,
+				PortletPropsValues.CALENDAR_COLOR_DEFAULT, true,
+				serviceContext);
+
+			defaultCalendarId = calendar.getCalendarId();
+		}
+
 		calendarResource.setDefaultCalendarId(defaultCalendarId);
 		calendarResource.setCode(code);
 		calendarResource.setNameMap(nameMap);
@@ -109,18 +122,6 @@ public class CalendarResourceLocalServiceImpl
 
 		resourceLocalService.addModelResources(
 			calendarResource, serviceContext);
-
-		// Calendar
-
-		if (defaultCalendarId <= 0) {
-			Calendar calendar = calendarLocalService.addCalendar(
-				userId, groupId, calendarResourceId, nameMap, descriptionMap,
-				PortletPropsValues.CALENDAR_COLOR_DEFAULT, true,
-				serviceContext);
-
-			updateDefaultCalendarId(
-				calendarResourceId, calendar.getCalendarId());
-		}
 
 		return calendarResource;
 	}
@@ -272,18 +273,44 @@ public class CalendarResourceLocalServiceImpl
 			nameMap, descriptionMap, type, active, serviceContext);
 	}
 
-	public CalendarResource updateDefaultCalendarId(
-			long calendarResourceId, long defaultCalendarId)
+	protected long getGlobalResourceGroupId(long companyId)
 		throws PortalException, SystemException {
 
-		CalendarResource calendarResource =
-			calendarResourcePersistence.findByPrimaryKey(calendarResourceId);
+		Group companyGroup = GroupLocalServiceUtil.getCompanyGroup(companyId);
 
-		calendarResource.setDefaultCalendarId(defaultCalendarId);
+		return companyGroup.getGroupId();
+	}
 
-		calendarResourcePersistence.update(calendarResource, false);
+	protected long getGlobalResourceUserId(long classNameId, long classPK)
+		throws PortalException, SystemException {
 
-		return calendarResource;
+		long userId = 0;
+		long userClassNameId = PortalUtil.getClassNameId(User.class);
+		long groupClassNameId = PortalUtil.getClassNameId(Group.class);
+
+		if (classNameId == groupClassNameId) {
+			Group group = GroupLocalServiceUtil.getGroup(classPK);
+
+			userId = group.getCreatorUserId();
+		}
+		else if (classNameId == userClassNameId) {
+			userId = classPK;
+		}
+
+		return userId;
+	}
+
+	protected boolean isGlobalResource(long classNameId) {
+		long userClassNameId = PortalUtil.getClassNameId(User.class);
+		long groupClassNameId = PortalUtil.getClassNameId(Group.class);
+
+		if ((classNameId == groupClassNameId) ||
+			(classNameId == userClassNameId)) {
+
+			return true;
+		}
+
+		return false;
 	}
 
 	protected void validate(long classNameId, long classPK)
