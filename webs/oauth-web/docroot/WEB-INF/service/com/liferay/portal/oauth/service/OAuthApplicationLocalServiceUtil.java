@@ -275,6 +275,22 @@ public class OAuthApplicationLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static com.liferay.portal.oauth.model.OAuthApplication addOAuthApplication(
+		int accessLevel, java.lang.String callbackURL,
+		java.lang.String description, java.lang.String name, long ownerId,
+		java.lang.String website)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .addOAuthApplication(accessLevel, callbackURL, description,
+			name, ownerId, website);
+	}
+
+	public static com.liferay.portal.oauth.model.OAuthApplication getOAuthApplicationByConsumerKey(
+		java.lang.String consumerKey)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getOAuthApplicationByConsumerKey(consumerKey);
+	}
+
 	/**
 	 * @deprecated
 	 */

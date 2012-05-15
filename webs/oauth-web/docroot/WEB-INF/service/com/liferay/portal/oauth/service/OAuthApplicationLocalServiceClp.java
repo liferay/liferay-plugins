@@ -113,6 +113,17 @@ public class OAuthApplicationLocalServiceClp
 		_methodName17 = "setBeanIdentifier";
 
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
+
+		_methodName19 = "addOAuthApplication";
+
+		_methodParameterTypes19 = new String[] {
+				"int", "java.lang.String", "java.lang.String",
+				"java.lang.String", "long", "java.lang.String"
+			};
+
+		_methodName20 = "getOAuthApplicationByConsumerKey";
+
+		_methodParameterTypes20 = new String[] { "java.lang.String" };
 	}
 
 	public com.liferay.portal.oauth.model.OAuthApplication addOAuthApplication(
@@ -649,6 +660,78 @@ public class OAuthApplicationLocalServiceClp
 		throw new UnsupportedOperationException();
 	}
 
+	public com.liferay.portal.oauth.model.OAuthApplication addOAuthApplication(
+		int accessLevel, java.lang.String callbackURL,
+		java.lang.String description, java.lang.String name, long ownerId,
+		java.lang.String website)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19,
+					new Object[] {
+						accessLevel,
+						
+					ClpSerializer.translateInput(callbackURL),
+						
+					ClpSerializer.translateInput(description),
+						
+					ClpSerializer.translateInput(name),
+						
+					ownerId,
+						
+					ClpSerializer.translateInput(website)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.oauth.model.OAuthApplication)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public com.liferay.portal.oauth.model.OAuthApplication getOAuthApplicationByConsumerKey(
+		java.lang.String consumerKey)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20,
+					new Object[] { ClpSerializer.translateInput(consumerKey) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.oauth.model.OAuthApplication)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -686,4 +769,8 @@ public class OAuthApplicationLocalServiceClp
 	private String[] _methodParameterTypes16;
 	private String _methodName17;
 	private String[] _methodParameterTypes17;
+	private String _methodName19;
+	private String[] _methodParameterTypes19;
+	private String _methodName20;
+	private String[] _methodParameterTypes20;
 }

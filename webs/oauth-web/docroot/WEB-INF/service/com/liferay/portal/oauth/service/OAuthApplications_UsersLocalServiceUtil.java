@@ -277,6 +277,23 @@ public class OAuthApplications_UsersLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static com.liferay.portal.oauth.model.OAuthApplications_Users updateOAuthApplications_Users(
+		long oAuthApplicationId, long userId, boolean authorized)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .updateOAuthApplications_Users(oAuthApplicationId, userId,
+			authorized);
+	}
+
+	public static com.liferay.portal.oauth.model.OAuthApplications_Users updateOAuthApplications_Users(
+		long oAuthApplicationId, long userId, java.lang.String accessToken,
+		java.lang.String accessSecret)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .updateOAuthApplications_Users(oAuthApplicationId, userId,
+			accessToken, accessSecret);
+	}
+
 	/**
 	 * @deprecated
 	 */

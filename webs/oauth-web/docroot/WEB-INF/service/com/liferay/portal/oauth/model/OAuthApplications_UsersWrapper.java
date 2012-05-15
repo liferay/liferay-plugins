@@ -291,7 +291,8 @@ public class OAuthApplications_UsersWrapper implements OAuthApplications_Users,
 		return new OAuthApplications_UsersWrapper((OAuthApplications_Users)_oAuthApplications_Users.clone());
 	}
 
-	public int compareTo(OAuthApplications_Users oAuthApplications_Users) {
+	public int compareTo(
+		com.liferay.portal.oauth.model.OAuthApplications_Users oAuthApplications_Users) {
 		return _oAuthApplications_Users.compareTo(oAuthApplications_Users);
 	}
 
@@ -300,11 +301,11 @@ public class OAuthApplications_UsersWrapper implements OAuthApplications_Users,
 		return _oAuthApplications_Users.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<OAuthApplications_Users> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<com.liferay.portal.oauth.model.OAuthApplications_Users> toCacheModel() {
 		return _oAuthApplications_Users.toCacheModel();
 	}
 
-	public OAuthApplications_Users toEscapedModel() {
+	public com.liferay.portal.oauth.model.OAuthApplications_Users toEscapedModel() {
 		return new OAuthApplications_UsersWrapper(_oAuthApplications_Users.toEscapedModel());
 	}
 

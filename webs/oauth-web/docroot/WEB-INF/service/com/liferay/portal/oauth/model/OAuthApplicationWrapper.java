@@ -482,7 +482,8 @@ public class OAuthApplicationWrapper implements OAuthApplication,
 		return new OAuthApplicationWrapper((OAuthApplication)_oAuthApplication.clone());
 	}
 
-	public int compareTo(OAuthApplication oAuthApplication) {
+	public int compareTo(
+		com.liferay.portal.oauth.model.OAuthApplication oAuthApplication) {
 		return _oAuthApplication.compareTo(oAuthApplication);
 	}
 
@@ -491,11 +492,11 @@ public class OAuthApplicationWrapper implements OAuthApplication,
 		return _oAuthApplication.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<OAuthApplication> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<com.liferay.portal.oauth.model.OAuthApplication> toCacheModel() {
 		return _oAuthApplication.toCacheModel();
 	}
 
-	public OAuthApplication toEscapedModel() {
+	public com.liferay.portal.oauth.model.OAuthApplication toEscapedModel() {
 		return new OAuthApplicationWrapper(_oAuthApplication.toEscapedModel());
 	}
 
