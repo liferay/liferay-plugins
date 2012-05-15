@@ -24,7 +24,8 @@ import com.liferay.portal.kernel.util.StringPool;
 public class ColorUtil {
 
 	public static String toHexString(int color) {
-		return StringPool.POUND.concat(Integer.toHexString(color));
+		return StringPool.POUND.concat(
+			String.format("%06X", (0xFFFFFF & color)));
 	}
 
 }
