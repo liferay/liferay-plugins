@@ -42,6 +42,10 @@ public class KBArticleAssetRenderer extends BaseAssetRenderer {
 	public KBArticleAssetRenderer(KBArticle kbArticle) {
 		_kbArticle = kbArticle;
 	}
+	
+	public String getAssetRendererFactoryClassName() {
+		return KBArticleAssetRendererFactory.CLASS_NAME;
+	}
 
 	public long getClassPK() {
 		return _kbArticle.getClassPK();
