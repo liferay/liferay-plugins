@@ -44,9 +44,9 @@ for (long calendarId : calendarIds) {
 	}
 }
 
-JSONArray groupCalendarsJSONArray = CalendarUtil.toCalendarJSONArray(request, groupCalendars);
-JSONArray userCalendarsJSONArray = CalendarUtil.toCalendarJSONArray(request, userCalendars);
-JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarJSONArray(request, otherCalendars);
+JSONArray groupCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDisplay, groupCalendars);
+JSONArray userCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDisplay, userCalendars);
+JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDisplay, otherCalendars);
 %>
 
 <aui:fieldset cssClass="calendar-portlet-column-parent">
@@ -98,10 +98,10 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarJSONArray(request, ot
 
 <aui:script use="aui-toggler,liferay-calendar-list,liferay-scheduler,liferay-store,json">
 	Liferay.CalendarUtil.PORTLET_NAMESPACE = '<portlet:namespace />';
-	Liferay.CalendarUtil.USER_TIMEZONE_OFFSET = <%= CalendarUtil.getTimeZoneOffset(timeZone) %>;
+	Liferay.CalendarUtil.USER_TIMEZONE_OFFSET = <%= JCalendarUtil.getTimeZoneOffset(timeZone) %>;
 
 	<c:if test="<%= userCalendars != null %>">
-		Liferay.CalendarUtil.DEFAULT_CALENDAR = <%=CalendarUtil.toCalendarJSONObject(request, userCalendars.get(0)) %>;
+		Liferay.CalendarUtil.DEFAULT_CALENDAR = <%=CalendarUtil.toCalendarJSONObject(themeDisplay, userCalendars.get(0)) %>;
 	</c:if>
 
 	var syncVisibleCalendarsMap = function() {

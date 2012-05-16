@@ -37,8 +37,8 @@ long endDate = ParamUtil.getLong(request, "endDate", defaultEndDate.getTimeInMil
 long startDate = ParamUtil.getLong(request, "startDate", now.getTimeInMillis());
 boolean allDay = ParamUtil.getBoolean(request, "allDay", false);
 
-java.util.Calendar startDateCal = CalendarUtil.getCalendar(startDate, timeZone);
-java.util.Calendar endDateCal = CalendarUtil.getCalendar(endDate, timeZone);
+java.util.Calendar startDateCal = JCalendarUtil.getJCalendar(startDate, timeZone);
+java.util.Calendar endDateCal = JCalendarUtil.getJCalendar(endDate, timeZone);
 
 if (!allDay) {
 	com.liferay.portal.kernel.util.CalendarUtil.roundByMinutes(startDateCal, 30);
@@ -55,18 +55,18 @@ if (calendarBooking != null) {
 	startDateCal.setTime(calendarBooking.getStartDate());
 	endDateCal.setTime(calendarBooking.getEndDate());
 
-	acceptedCalendarsJSONArray = CalendarUtil.toCalendarBookingsJSON(
-		request, CalendarBookingServiceUtil.findByP_S(
+	acceptedCalendarsJSONArray = CalendarUtil.toCalendarBookingsJSONArray(
+		themeDisplay, CalendarBookingServiceUtil.getChildCalendarBookings(
 			calendarBooking.getParentCalendarBookingId(),
 			CalendarBookingWorkflowConstants.STATUS_APPROVED));
 
-	declinedCalendarsJSONArray = CalendarUtil.toCalendarBookingsJSON(
-		request, CalendarBookingServiceUtil.findByP_S(
+	declinedCalendarsJSONArray = CalendarUtil.toCalendarBookingsJSONArray(
+		themeDisplay, CalendarBookingServiceUtil.getChildCalendarBookings(
 			calendarBooking.getParentCalendarBookingId(),
 			CalendarBookingWorkflowConstants.STATUS_DENIED));
 
-	pendingCalendarsJSONArray = CalendarUtil.toCalendarBookingsJSON(
-		request, CalendarBookingServiceUtil.findByP_S(
+	pendingCalendarsJSONArray = CalendarUtil.toCalendarBookingsJSONArray(
+		themeDisplay, CalendarBookingServiceUtil.getChildCalendarBookings(
 			calendarBooking.getParentCalendarBookingId(),
 			CalendarBookingWorkflowConstants.STATUS_PENDING));
 
@@ -79,7 +79,7 @@ if (acceptedCalendarsJSONArray.length() == 0) {
 	Calendar calendar = CalendarServiceUtil.fetchCalendar(calendarId);
 
 	if (calendar != null) {
-		acceptedCalendarsJSONArray.put(CalendarUtil.toCalendarJSONObject(request, calendar));
+		acceptedCalendarsJSONArray.put(CalendarUtil.toCalendarJSONObject(themeDisplay, calendar));
 	}
 }
 %>

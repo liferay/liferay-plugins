@@ -42,6 +42,7 @@ page import="com.liferay.calendar.util.ActionKeys" %><%@
 page import="com.liferay.calendar.util.CalendarResourceUtil" %><%@
 page import="com.liferay.calendar.util.CalendarUtil" %><%@
 page import="com.liferay.calendar.util.ColorUtil" %><%@
+page import="com.liferay.calendar.util.JCalendarUtil" %><%@
 page import="com.liferay.calendar.util.PortletPropsValues" %><%@
 page import="com.liferay.calendar.util.WebKeys" %><%@
 page import="com.liferay.calendar.util.comparator.CalendarNameComparator" %><%@
@@ -100,13 +101,13 @@ if (Validator.isNotNull(portletResource)) {
 	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-CalendarResource groupCalendarResource = CalendarResourceUtil.fetchOrCreateGroupResource(request, scopeGroupId);
+CalendarResource groupCalendarResource = CalendarResourceUtil.getGroupCalendarResource(request, scopeGroupId);
 
 CalendarResource userCalendarResource = null;
 Calendar userDefaultCalendar = null;
 
 if (themeDisplay.isSignedIn()) {
-	userCalendarResource = CalendarResourceUtil.fetchOrCreateUserResource(request, themeDisplay.getUserId());
+	userCalendarResource = CalendarResourceUtil.getUserCalendarResource(request, themeDisplay.getUserId());
 
 	if (userCalendarResource != null) {
 		userDefaultCalendar = CalendarServiceUtil.getCalendar(userCalendarResource.getDefaultCalendarId());

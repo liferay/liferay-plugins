@@ -28,6 +28,7 @@ import com.liferay.calendar.service.permission.CalendarPermission;
 import com.liferay.calendar.util.ActionKeys;
 import com.liferay.calendar.util.CalendarResourceUtil;
 import com.liferay.calendar.util.CalendarUtil;
+import com.liferay.calendar.util.JCalendarUtil;
 import com.liferay.calendar.util.WebKeys;
 import com.liferay.calendar.util.comparator.CalendarResourceNameComparator;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
@@ -143,7 +144,7 @@ public class CalendarPortlet extends MVCPortlet {
 						calendarResourceId);
 			}
 			else if ((classNameId > 0) && (classPK > 0)) {
-				calendarResource = CalendarResourceUtil.fetchOrCreateResource(
+				calendarResource = CalendarResourceUtil.getCalendarResource(
 					PortalUtil.getHttpServletRequest(renderRequest),
 					classNameId, classPK);
 			}
@@ -252,10 +253,8 @@ public class CalendarPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			Calendar.class.getName(), actionRequest);
-
 		long calendarId = ParamUtil.getLong(actionRequest, "calendarId");
+
 		long calendarResourceId = ParamUtil.getLong(
 			actionRequest, "calendarResourceId");
 		Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(
@@ -324,7 +323,7 @@ public class CalendarPortlet extends MVCPortlet {
 			startDateHour += 12;
 		}
 
-		java.util.Calendar startDate = CalendarUtil.getCalendar(
+		java.util.Calendar startDate = JCalendarUtil.getJCalendar(
 			utcTimeZone, startDateYear, startDateMonth, startDateDay,
 			startDateHour, startDateMinute, 0, 0);
 
@@ -340,7 +339,7 @@ public class CalendarPortlet extends MVCPortlet {
 			endDateHour += 12;
 		}
 
-		java.util.Calendar endDate = CalendarUtil.getCalendar(
+		java.util.Calendar endDate = JCalendarUtil.getJCalendar(
 			utcTimeZone, endDateYear, endDateMonth, endDateDay, endDateHour,
 			endDateMinute, 0, 0);
 
@@ -349,17 +348,16 @@ public class CalendarPortlet extends MVCPortlet {
 		if (calendarBookingId > 0) {
 			calendarBooking =
 				CalendarBookingServiceUtil.updateCalendarBooking(
-					user.getUserId(), calendarBookingId, calendarId, titleMap,
-					descriptionMap, location, status, startDate.getTime(),
-					endDate.getTime(), allDay, recurrence, 0, 0,
-					serviceContext);
+					calendarBookingId, calendarId, titleMap, descriptionMap,
+					location, status, startDate.getTime(), endDate.getTime(),
+					allDay, recurrence, 0, 0, serviceContext);
 		}
 		else {
 			calendarBooking =
 				CalendarBookingServiceUtil.addCalendarBooking(
-					user.getUserId(), calendarId, titleMap, descriptionMap,
-					location, startDate.getTime(), endDate.getTime(), allDay,
-					recurrence, 0, 0, serviceContext);
+					calendarId, titleMap, descriptionMap, location,
+					startDate.getTime(), endDate.getTime(), allDay, recurrence,
+					0, 0, serviceContext);
 		}
 
 		if (calendarBooking.isMasterBooking()) {
@@ -422,7 +420,7 @@ public class CalendarPortlet extends MVCPortlet {
 			actionRequest, "invitedCalendarIds");
 
 		List<CalendarBooking> calendarBookings =
-			CalendarBookingServiceUtil.getByParentCalendarBookingId(
+			CalendarBookingServiceUtil.getChildCalendarBookings(
 				parentCalendarBooking.getCalendarBookingId());
 
 		for (CalendarBooking calendarBooking : calendarBookings) {
@@ -436,9 +434,8 @@ public class CalendarPortlet extends MVCPortlet {
 
 		for (long calendarId : invitedCalendarIds) {
 			int total =
-				CalendarBookingLocalServiceUtil.countByParentCalendarBookingId(
-						calendarId,
-						parentCalendarBooking.getCalendarBookingId());
+				CalendarBookingLocalServiceUtil.getCalendarBookingsCount(
+					calendarId, parentCalendarBooking.getCalendarBookingId());
 
 			if (total == 0) {
 				CalendarBookingLocalServiceUtil.addCalendarBooking(
@@ -463,7 +460,7 @@ public class CalendarPortlet extends MVCPortlet {
 		throws PortalException, SystemException {
 
 		CalendarResource calendarResource =
-			CalendarResourceUtil.fetchOrCreateResource(
+			CalendarResourceUtil.getCalendarResource(
 				request, classNameId, classPK);
 
 		if (calendarResource != null) {
@@ -483,7 +480,7 @@ public class CalendarPortlet extends MVCPortlet {
 						permissionChecker, calendar, ActionKeys.VIEW)) {
 
 					JSONObject jsonObject = CalendarUtil.toCalendarJSONObject(
-						request, calendar);
+						themeDisplay, calendar);
 
 					jsonArray.put(jsonObject);
 				}

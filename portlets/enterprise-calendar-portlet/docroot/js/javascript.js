@@ -244,7 +244,7 @@
 							parentCalendarBookingId: -1,
 							start: Workflow.STATUS_APPROVED,
 							startDate: startDate.getTime(),
-							status: status.join(',')
+							statuses: status.join(',')
 						}
 					},
 					{
@@ -1085,7 +1085,7 @@
 
 						CalendarUtil.invoke(
 							{
-								'/enterprise-calendar-portlet/calendar/update-calendar-color': {
+								'/enterprise-calendar-portlet/calendar/update-color': {
 									calendarId: instance.get('calendarId'),
 									color: parseInt(event.newVal.substr(1), 16)
 								}
