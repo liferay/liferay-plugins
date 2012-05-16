@@ -36,11 +36,10 @@ public class JCalendarUtil {
 
 	public static Calendar getJCalendar(Calendar jCalendar, TimeZone timeZone) {
 		return getJCalendar(
-			timeZone, jCalendar.get(Calendar.YEAR),
-			jCalendar.get(Calendar.MONTH), jCalendar.get(Calendar.DATE),
-			jCalendar.get(Calendar.HOUR_OF_DAY), jCalendar.get(Calendar.MINUTE),
-			jCalendar.get(Calendar.SECOND),
-			jCalendar.get(Calendar.MILLISECOND));
+			jCalendar.get(Calendar.YEAR), jCalendar.get(Calendar.MONTH),
+			jCalendar.get(Calendar.DATE), jCalendar.get(Calendar.HOUR_OF_DAY),
+			jCalendar.get(Calendar.MINUTE), jCalendar.get(Calendar.SECOND),
+			jCalendar.get(Calendar.MILLISECOND), timeZone);
 	}
 
 	public static Calendar getJCalendar(Date date, TimeZone timeZone) {
@@ -52,13 +51,9 @@ public class JCalendarUtil {
 		return getJCalendar(jCalendar, timeZone);
 	}
 
-	public static Calendar getJCalendar(long time, TimeZone timeZone) {
-		return getJCalendar(new Date(time), timeZone);
-	}
-
 	public static Calendar getJCalendar(
-		TimeZone timeZone, int year, int month, int day, int hour, int minutes,
-		int seconds, int milliseconds) {
+		int year, int month, int day, int hour, int minutes, int seconds,
+		int milliseconds, TimeZone timeZone) {
 
 		Calendar jCalendar = CalendarFactoryUtil.getCalendar(timeZone);
 
@@ -71,6 +66,10 @@ public class JCalendarUtil {
 		jCalendar.set(Calendar.MILLISECOND, milliseconds);
 
 		return jCalendar;
+	}
+
+	public static Calendar getJCalendar(long time, TimeZone timeZone) {
+		return getJCalendar(new Date(time), timeZone);
 	}
 
 	public static int getTimeZoneOffset(TimeZone timeZone) {
