@@ -118,7 +118,7 @@ public class AdminPortlet extends MVCPortlet {
 			doUpdateWSRPConsumer(actionRequest, actionResponse);
 		}
 		catch (PortalException pe) {
-			SessionErrors.add(actionRequest, pe.getClass().getName());
+			SessionErrors.add(actionRequest, pe.getClass());
 		}
 	}
 
@@ -132,7 +132,7 @@ public class AdminPortlet extends MVCPortlet {
 			doUpdateWSRPConsumerPortlet(actionRequest, actionResponse);
 		}
 		catch (PortalException pe) {
-			SessionErrors.add(actionRequest, pe.getClass().getName());
+			SessionErrors.add(actionRequest, pe.getClass());
 		}
 	}
 
@@ -146,7 +146,7 @@ public class AdminPortlet extends MVCPortlet {
 			doUpdateWSRPConsumerRegistration(actionRequest, actionResponse);
 		}
 		catch (PortalException pe) {
-			SessionErrors.add(actionRequest, pe.getClass().getName());
+			SessionErrors.add(actionRequest, pe.getClass());
 		}
 	}
 
@@ -160,7 +160,7 @@ public class AdminPortlet extends MVCPortlet {
 			doUpdateWSRPProducer(actionRequest, actionResponse);
 		}
 		catch (PortalException pe) {
-			SessionErrors.add(actionRequest, pe.getClass().getName());
+			SessionErrors.add(actionRequest, pe.getClass());
 		}
 	}
 

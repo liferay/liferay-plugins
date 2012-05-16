@@ -224,7 +224,7 @@ public class TasksPortlet extends MVCPortlet {
 
 			actionResponse.setRenderParameters(actionRequest.getParameterMap());
 
-			SessionErrors.add(actionRequest, ate.getClass().getName(), ate);
+			SessionErrors.add(actionRequest, ate.getClass(), ate);
 		}
 	}
 

@@ -50,7 +50,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			WikiNodeServiceUtil.getNode(selNodeId);
 		}
 		catch (NoSuchNodeException nsne) {
-			SessionErrors.add(actionRequest, nsne.getClass().getName());
+			SessionErrors.add(actionRequest, nsne.getClass());
 		}
 	}
 

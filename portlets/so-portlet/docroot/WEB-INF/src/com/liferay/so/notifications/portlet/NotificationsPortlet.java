@@ -176,7 +176,7 @@ public class NotificationsPortlet extends MVCPortlet {
 			if ((e instanceof MemberRequestAlreadyUsedException) ||
 				(e instanceof MemberRequestInvalidUserException)) {
 
-				SessionErrors.add(actionRequest, e.getClass().getName(), e);
+				SessionErrors.add(actionRequest, e.getClass(), e);
 			}
 			else {
 				throw e;
