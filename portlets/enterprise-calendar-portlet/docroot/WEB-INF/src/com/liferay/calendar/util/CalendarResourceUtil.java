@@ -35,7 +35,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.portlet.PortletRequest;
 
 /**
  * @author Eduardo Lundgren
@@ -44,21 +44,21 @@ import javax.servlet.http.HttpServletRequest;
 public class CalendarResourceUtil {
 
 	public static CalendarResource getCalendarResource(
-			HttpServletRequest request, long classNameId, long classPK)
+			PortletRequest portletRequest, long classNameId, long classPK)
 		throws PortalException, SystemException {
 
 		long groupClassNameId = PortalUtil.getClassNameId(Group.class);
 
 		if (classNameId == groupClassNameId) {
 			return CalendarResourceUtil.getGroupCalendarResource(
-				request, classPK);
+				portletRequest, classPK);
 		}
 
 		long userClassNameId = PortalUtil.getClassNameId(User.class);
 
 		if (classNameId == userClassNameId) {
 			return CalendarResourceUtil.getUserCalendarResource(
-				request, classPK);
+				portletRequest, classPK);
 		}
 
 		return CalendarResourceServiceUtil.fetchCalendarResource(
@@ -66,7 +66,7 @@ public class CalendarResourceUtil {
 	}
 
 	public static CalendarResource getGroupCalendarResource(
-			HttpServletRequest request, long groupId)
+			PortletRequest portletRequest, long groupId)
 		throws PortalException, SystemException {
 
 		Group group = GroupLocalServiceUtil.getGroup(groupId);
@@ -92,7 +92,7 @@ public class CalendarResourceUtil {
 		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			request);
+			portletRequest);
 
 		return CalendarResourceLocalServiceUtil.addCalendarResource(
 			serviceContext.getUserId(), 0, Group.class.getName(), groupId, null,
@@ -122,7 +122,7 @@ public class CalendarResourceUtil {
 	}
 
 	public static CalendarResource getUserCalendarResource(
-			HttpServletRequest request, long userId)
+			PortletRequest portletRequest, long userId)
 		throws PortalException, SystemException {
 
 		long classNameId = PortalUtil.getClassNameId(User.class);
@@ -144,7 +144,7 @@ public class CalendarResourceUtil {
 		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			request);
+			portletRequest);
 
 		return CalendarResourceLocalServiceUtil.addCalendarResource(
 			serviceContext.getUserId(), 0, User.class.getName(), userId, null,

@@ -31,8 +31,10 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 		<tpl if="values.permissions.MANAGE_BOOKINGS">
 			<input class="aui-scheduler-event-recorder-overlay-content" name="content" value="{content}" />
 		</tpl>
+
 		<tpl if="!values.permissions.MANAGE_BOOKINGS">
 			<input name="content" type="hidden" value="{content}" />
+
 			<div class="aui-scheduler-event-recorder-overlay-content">{content}</div>
 		</tpl>
 	</div>
@@ -51,6 +53,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 					<label class="aui-scheduler-event-recorder-overlay-date">{date}</label>
 				</td>
 			</tr>
+
 			<tpl if="values.editing">
 				<tpl if="values.permissions.MANAGE_BOOKINGS">
 					<tr class="calendar-portlet-event-recorder-calendar-row">
@@ -73,6 +76,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 					</tr>
 				</tpl>
 			</tpl>
+
 			<tpl if="!values.editing">
 				<tr class="calendar-portlet-event-recorder-status-row">
 					<td><liferay-ui:message key="calendar" />:</td>

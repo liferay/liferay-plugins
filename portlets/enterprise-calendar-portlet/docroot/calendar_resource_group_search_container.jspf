@@ -24,7 +24,7 @@
 		<%
 		CalendarResourceSearchTerms searchTerms = (CalendarResourceSearchTerms)searchContainer.getSearchTerms();
 
-		String[] params = new String[] { "site:" + Boolean.TRUE + ":boolean" };
+		String[] params = {"site:true:boolean"};
 
 		if (searchTerms.isAdvancedSearch()) {
 			results = GroupServiceUtil.search(themeDisplay.getCompanyId(), searchTerms.getName(), searchTerms.getDescription(), params, searchContainer.getStart(), searchContainer.getEnd());

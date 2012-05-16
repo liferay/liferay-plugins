@@ -54,17 +54,22 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 		<div id="<portlet:namespace />calendarListContainer">
 			<a class="aui-toggler-header-expanded calendar-portlet-list-header" href="javascript:void(0);">
 				<span class="calendar-portlet-list-arrow"></span>
+
 				<span class="calendar-portlet-list-text"><liferay-ui:message key="my-calendars" /></span>
+
 				<c:if test="<%= userCalendarResource != null %>">
 					<span class="aui-calendar-list-item-arrow" data-calendarResourceId="<%= userCalendarResource.getCalendarResourceId() %>" tabindex="0"></span>
 				</c:if>
 			</a>
+
 			<div class="calendar-portlet-calendar-list" id="<portlet:namespace />myCalendarList"></div>
 
 			<a class="calendar-portlet-list-header aui-toggler-header-expanded" href="javascript:void(0);">
 				<span class="calendar-portlet-list-arrow"></span>
+
 				<span class="calendar-portlet-list-text"><liferay-ui:message key="other-calendars" /></span>
 			</a>
+
 			<div class="calendar-portlet-calendar-list" id="<portlet:namespace />otherCalendarList">
 				<input class="calendar-portlet-add-calendars-input" id="<portlet:namespace />addOtherCalendar" placeholder="<liferay-ui:message key="add-other-calendars" />" type="text" />
 			</div>
@@ -72,12 +77,14 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 			<c:if test="<%= groupCalendarResource != null %>">
 				<a class="aui-toggler-header-expanded calendar-portlet-list-header" href="javascript:void(0);">
 					<span class="calendar-portlet-list-arrow"></span>
+
 					<span class="calendar-portlet-list-text"><liferay-ui:message key="current-site-calendars" /></span>
 
 					<c:if test="<%= CalendarResourcePermission.contains(permissionChecker, groupCalendarResource, ActionKeys.VIEW) %>">
 						<span class="aui-calendar-list-item-arrow" data-calendarResourceId="<%= groupCalendarResource.getCalendarResourceId() %>" tabindex="0"></span>
 					</c:if>
 				</a>
+
 				<div class="calendar-portlet-calendar-list" id="<portlet:namespace />siteCalendarList"></div>
 			</c:if>
 		</div>
@@ -197,7 +204,7 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 
 	<portlet:renderURL var="editCalendarBookingURL">
 		<portlet:param name="jspPage" value="/edit_calendar_booking.jsp" />
-		<portlet:param name="redirect" value="<%= portletURL.toString() %>" />
+		<portlet:param name="redirect" value="<%= String.valueOf(renderResponse.createRenderURL()) %>" />
 		<portlet:param name="activeView" value="{activeView}" />
 		<portlet:param name="allDay" value="{allDay}" />
 		<portlet:param name="calendarBookingId" value="{calendarBookingId}" />
@@ -246,7 +253,7 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 
 					var calendar = event.target;
 
-					Liferay.Store('view-calendar.jsp-scheduler-calendar:visible' + calendar.get('calendarId'), event.newVal);
+					Liferay.Store('enterprise-calendar-portlet-calendar-' + calendar.get('calendarId') + '-visible', event.newVal);
 				}
 			},
 			portletNamespace: '<portlet:namespace />',
@@ -268,7 +275,7 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 		}
 	);
 
-	<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="calendarResources" var="calendarResourcesURL"></liferay-portlet:resourceURL>
+	<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="calendarResources" var="calendarResourcesURL" />
 
 	var addOtherCalendarInput = A.one('#<portlet:namespace />addOtherCalendar');
 
@@ -282,7 +289,7 @@ protected void updateCalendarsJSONArrayVisibility(HttpServletRequest request, JS
 
 		long calendarId = jsonObject.getLong("calendarId");
 
-		jsonObject.put("visible", GetterUtil.getBoolean(SessionClicks.get(request, "view-calendar.jsp-scheduler-calendar:visible" + calendarId, "true")));
+		jsonObject.put("visible", GetterUtil.getBoolean(SessionClicks.get(request, "enterprise-calendar-portlet-calendar-" + calendarId + "-visible", "true")));
 	}
 }
 %>

@@ -19,7 +19,7 @@
 <%
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
-User rowUser = (User)row.getObject();
+User curUser = (User)row.getObject();
 %>
 
 <liferay-ui:icon-menu>
@@ -27,8 +27,8 @@ User rowUser = (User)row.getObject();
 	<portlet:renderURL var="calendarsURL">
 		<portlet:param name="jspPage" value="/view_calendars.jsp" />
 		<portlet:param name="redirect" value="<%= currentURL %>" />
-		<portlet:param name="classNameId" value="<%= String.valueOf(userClassNameId) %>" />
-		<portlet:param name="classPK" value="<%= String.valueOf(rowUser.getUserId()) %>" />
+		<portlet:param name="classNameId" value="<%= String.valueOf(PortalUtil.getClassNameId(User.class)) %>" />
+		<portlet:param name="classPK" value="<%= String.valueOf(curUser.getUserId()) %>" />
 	</portlet:renderURL>
 
 	<liferay-ui:icon

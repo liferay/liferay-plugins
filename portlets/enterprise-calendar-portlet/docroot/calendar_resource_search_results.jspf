@@ -17,8 +17,8 @@
 <%
 CalendarResourceSearchTerms searchTerms = (CalendarResourceSearchTerms)searchContainer.getSearchTerms();
 
-long[] groupIds = new long[] {themeDisplay.getScopeGroupId()};
-long[] classNameIds = new long[] {calendarResourceClassNameId};
+long[] groupIds = {themeDisplay.getScopeGroupId()};
+long[] classNameIds = {PortalUtil.getClassNameId(CalendarResource.class)};
 
 if (searchTerms.isAdvancedSearch()) {
 	results = CalendarResourceServiceUtil.search(themeDisplay.getCompanyId(), groupIds, classNameIds, searchTerms.getCode(), searchTerms.getName(), searchTerms.getDescription(), searchTerms.getType(), searchTerms.isActive(), searchTerms.isAndOperator(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());

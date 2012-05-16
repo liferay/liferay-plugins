@@ -72,7 +72,6 @@ page import="com.liferay.portal.service.UserLocalServiceUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
 page import="com.liferay.portal.util.SessionClicks" %><%@
 page import="com.liferay.portal.util.comparator.UserScreenNameComparator" %><%@
-page import="com.liferay.portlet.PortalPreferences" %><%@
 page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
 
 <%@ page import="java.util.ArrayList" %><%@
@@ -87,10 +86,6 @@ page import="javax.portlet.PortletURL" %>
 <liferay-theme:defineObjects />
 
 <%
-PortalPreferences portalPreferences = PortletPreferencesFactoryUtil.getPortalPreferences(request);
-
-PortletURL portletURL = renderResponse.createRenderURL();
-
 String currentURL = PortalUtil.getCurrentURL(request);
 
 PortletPreferences preferences = renderRequest.getPreferences();
@@ -101,26 +96,22 @@ if (Validator.isNotNull(portletResource)) {
 	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-CalendarResource groupCalendarResource = CalendarResourceUtil.getGroupCalendarResource(request, scopeGroupId);
+CalendarResource groupCalendarResource = CalendarResourceUtil.getGroupCalendarResource(liferayPortletRequest, scopeGroupId);
 
 CalendarResource userCalendarResource = null;
 Calendar userDefaultCalendar = null;
 
 if (themeDisplay.isSignedIn()) {
-	userCalendarResource = CalendarResourceUtil.getUserCalendarResource(request, themeDisplay.getUserId());
+	userCalendarResource = CalendarResourceUtil.getUserCalendarResource(liferayPortletRequest, themeDisplay.getUserId());
 
 	if (userCalendarResource != null) {
 		userDefaultCalendar = CalendarServiceUtil.getCalendar(userCalendarResource.getDefaultCalendarId());
 	}
 }
 
-long calendarResourceClassNameId = PortalUtil.getClassNameId(CalendarResource.class);
-long groupClassNameId = PortalUtil.getClassNameId(Group.class);
-long userClassNameId = PortalUtil.getClassNameId(User.class);
-
 String dayViewHeaderDateFormat = preferences.getValue("dayViewHeaderDateFormat", "%d %A");
 String navigationHeaderDateFormat = preferences.getValue("navigationHeaderDateFormat", "%A - %d %b %Y");
-boolean isoTimeFormat = GetterUtil.getBoolean(preferences.getValue("isoTimeFormat", StringPool.BLANK));
+boolean isoTimeFormat = GetterUtil.getBoolean(preferences.getValue("isoTimeFormat", null));
 
 TimeZone utcTimeZone = TimeZone.getTimeZone(StringPool.UTC);
 

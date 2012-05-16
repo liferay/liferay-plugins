@@ -19,6 +19,8 @@
 <%
 String tabs1 = ParamUtil.getString(request, "tabs1", "calendar");
 
+PortletURL portletURL = renderResponse.createRenderURL();
+
 portletURL.setParameter("tabs1", tabs1);
 %>
 

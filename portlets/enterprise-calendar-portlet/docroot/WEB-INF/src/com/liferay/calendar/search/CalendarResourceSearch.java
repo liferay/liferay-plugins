@@ -58,8 +58,8 @@ public class CalendarResourceSearch extends SearchContainer<CalendarResource> {
 		"no-calendar-resources-were-found";
 
 	public CalendarResourceSearch(
-		PortletRequest portletRequest, PortletURL iteratorURL,
-		String curParam) {
+		PortletRequest portletRequest, String curParam,
+		PortletURL iteratorURL) {
 
 		super(
 			portletRequest, new CalendarResourceDisplayTerms(portletRequest),

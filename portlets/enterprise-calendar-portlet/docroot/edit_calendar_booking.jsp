@@ -20,58 +20,55 @@
 String redirect = ParamUtil.getString(request, "redirect");
 
 String activeView = ParamUtil.getString(request, "activeView", "week");
-long currentDate = ParamUtil.getLong(request, "currentDate", now.getTimeInMillis());
 
 redirect = HttpUtil.setParameter(redirect, renderResponse.getNamespace() + "activeView", activeView);
-redirect = HttpUtil.setParameter(redirect, renderResponse.getNamespace() + "currentDate", currentDate);
 
-java.util.Calendar defaultEndDate = (java.util.Calendar)now.clone();
-defaultEndDate.add(java.util.Calendar.HOUR, 1);
+long currentDate = ParamUtil.getLong(request, "currentDate", now.getTimeInMillis());
+
+redirect = HttpUtil.setParameter(redirect, renderResponse.getNamespace() + "currentDate", currentDate);
 
 CalendarBooking calendarBooking = (CalendarBooking)request.getAttribute(WebKeys.CALENDAR_BOOKING);
 
-String title = BeanParamUtil.getString(calendarBooking, request, "titleCurrentValue");
 long calendarBookingId = BeanParamUtil.getLong(calendarBooking, request, "calendarBookingId");
-long calendarId = BeanParamUtil.getLong(calendarBooking, request, "calendarId", userDefaultCalendar.getCalendarId());
-long endDate = ParamUtil.getLong(request, "endDate", defaultEndDate.getTimeInMillis());
-long startDate = ParamUtil.getLong(request, "startDate", now.getTimeInMillis());
-boolean allDay = ParamUtil.getBoolean(request, "allDay", false);
 
-java.util.Calendar startDateCal = JCalendarUtil.getJCalendar(startDate, timeZone);
-java.util.Calendar endDateCal = JCalendarUtil.getJCalendar(endDate, timeZone);
+long calendarId = BeanParamUtil.getLong(calendarBooking, request, "calendarId", userDefaultCalendar.getCalendarId());
+String title = BeanParamUtil.getString(calendarBooking, request, "titleCurrentValue");
+
+long startDate = ParamUtil.getLong(request, "startDate", now.getTimeInMillis());
+
+java.util.Calendar startDateJCalendar = JCalendarUtil.getJCalendar(startDate, timeZone);
+
+java.util.Calendar defaultEndDateJCalendar = (java.util.Calendar)now.clone();
+
+defaultEndDateJCalendar.add(java.util.Calendar.HOUR, 1);
+
+long endDate = ParamUtil.getLong(request, "endDate", defaultEndDateJCalendar.getTimeInMillis());
+
+java.util.Calendar endDateJCalendar = JCalendarUtil.getJCalendar(endDate, timeZone);
+
+boolean allDay = ParamUtil.getBoolean(request, "allDay");
 
 if (!allDay) {
-	com.liferay.portal.kernel.util.CalendarUtil.roundByMinutes(startDateCal, 30);
-	com.liferay.portal.kernel.util.CalendarUtil.roundByMinutes(endDateCal, 30);
+	com.liferay.portal.kernel.util.CalendarUtil.roundByMinutes(startDateJCalendar, 30);
+	com.liferay.portal.kernel.util.CalendarUtil.roundByMinutes(endDateJCalendar, 30);
 }
 
 JSONArray acceptedCalendarsJSONArray = JSONFactoryUtil.createJSONArray();
 JSONArray declinedCalendarsJSONArray = JSONFactoryUtil.createJSONArray();
 JSONArray pendingCalendarsJSONArray = JSONFactoryUtil.createJSONArray();
 
-boolean canInvite = true;
+boolean invitable = true;
 
 if (calendarBooking != null) {
-	startDateCal.setTime(calendarBooking.getStartDate());
-	endDateCal.setTime(calendarBooking.getEndDate());
+	startDateJCalendar.setTime(calendarBooking.getStartDate());
+	endDateJCalendar.setTime(calendarBooking.getEndDate());
 
-	acceptedCalendarsJSONArray = CalendarUtil.toCalendarBookingsJSONArray(
-		themeDisplay, CalendarBookingServiceUtil.getChildCalendarBookings(
-			calendarBooking.getParentCalendarBookingId(),
-			CalendarBookingWorkflowConstants.STATUS_APPROVED));
-
-	declinedCalendarsJSONArray = CalendarUtil.toCalendarBookingsJSONArray(
-		themeDisplay, CalendarBookingServiceUtil.getChildCalendarBookings(
-			calendarBooking.getParentCalendarBookingId(),
-			CalendarBookingWorkflowConstants.STATUS_DENIED));
-
-	pendingCalendarsJSONArray = CalendarUtil.toCalendarBookingsJSONArray(
-		themeDisplay, CalendarBookingServiceUtil.getChildCalendarBookings(
-			calendarBooking.getParentCalendarBookingId(),
-			CalendarBookingWorkflowConstants.STATUS_PENDING));
+	acceptedCalendarsJSONArray = CalendarUtil.toCalendarBookingsJSONArray(themeDisplay, CalendarBookingServiceUtil.getChildCalendarBookings(calendarBooking.getParentCalendarBookingId(), CalendarBookingWorkflowConstants.STATUS_APPROVED));
+	declinedCalendarsJSONArray = CalendarUtil.toCalendarBookingsJSONArray(themeDisplay, CalendarBookingServiceUtil.getChildCalendarBookings(calendarBooking.getParentCalendarBookingId(), CalendarBookingWorkflowConstants.STATUS_DENIED));
+	pendingCalendarsJSONArray = CalendarUtil.toCalendarBookingsJSONArray(themeDisplay, CalendarBookingServiceUtil.getChildCalendarBookings(calendarBooking.getParentCalendarBookingId(), CalendarBookingWorkflowConstants.STATUS_PENDING));
 
 	if (!calendarBooking.isMasterBooking()) {
-		canInvite = false;
+		invitable = false;
 	}
 }
 
@@ -99,14 +96,14 @@ if (acceptedCalendarsJSONArray.length() == 0) {
 
 	<aui:input name="calendarBookingId" type="hidden" value="<%= calendarBookingId %>" />
 	<aui:input name="calendarId" type="hidden" value="<%= calendarId %>" />
-	<aui:input name="invitedCalendarIds" type="hidden" />
+	<aui:input name="childCalendarIds" type="hidden" />
 
 	<aui:fieldset>
 		<aui:input name="title" />
 
-		<aui:input name="startDate" value="<%= startDateCal %>" />
+		<aui:input name="startDate" value="<%= startDateJCalendar %>" />
 
-		<aui:input name="endDate" value="<%= endDateCal %>" />
+		<aui:input name="endDate" value="<%= endDateJCalendar %>" />
 
 		<aui:input name="allDay" />
 	</aui:fieldset>
@@ -126,7 +123,7 @@ if (acceptedCalendarsJSONArray.length() == 0) {
 		refresh="<%= false %>"
 	>
 		<liferay-ui:section>
-			<c:if test="<%= canInvite %>">
+			<c:if test="<%= invitable %>">
 				<aui:input inputCssClass="calendar-portlet-invite-resources-input" label="invite-resource" name="inviteResource" placeholder="add-guests-groups-rooms" type="text" />
 
 				<div class="separator"><!-- --></div>
@@ -135,24 +132,21 @@ if (acceptedCalendarsJSONArray.length() == 0) {
 			<aui:layout cssClass="calendar-booking-invitations">
 				<aui:column columnWidth="33" first="true">
 					<label class="aui-field-label">
-						<liferay-ui:message key="pending" />
-						(<span id="<portlet:namespace />pendingCounter"><%= pendingCalendarsJSONArray.length() %></span>)
+						<liferay-ui:message key="pending" /> (<span id="<portlet:namespace />pendingCounter"><%= pendingCalendarsJSONArray.length() %></span>)
 					</label>
 
 					<div class="calendar-portlet-calendar-list" id="<portlet:namespace />calendarListPending"></div>
 				</aui:column>
 				<aui:column columnWidth="33">
 					<label class="aui-field-label">
-						<liferay-ui:message key="accepted" />
-						(<span id="<portlet:namespace />acceptedCounter"><%= acceptedCalendarsJSONArray.length() %></span>)
+						<liferay-ui:message key="accepted" /> (<span id="<portlet:namespace />acceptedCounter"><%= acceptedCalendarsJSONArray.length() %></span>)
 					</label>
 
 					<div class="calendar-portlet-calendar-list" id="<portlet:namespace />calendarListAccepted"></div>
 				</aui:column>
 				<aui:column columnWidth="33" last="true">
 					<label class="aui-field-label">
-						<liferay-ui:message key="declined" />
-						(<span id="<portlet:namespace />declinedCounter"><%= declinedCalendarsJSONArray.length() %></span>)
+						<liferay-ui:message key="declined" /> (<span id="<portlet:namespace />declinedCounter"><%= declinedCalendarsJSONArray.length() %></span>)
 					</label>
 
 					<div class="calendar-portlet-calendar-list" id="<portlet:namespace />calendarListDeclined"></div>
@@ -175,8 +169,8 @@ if (acceptedCalendarsJSONArray.length() == 0) {
 		function() {
 			var A = AUI();
 
-			<c:if test="<%= canInvite %>">
-				A.one('#<portlet:namespace />invitedCalendarIds').val(A.JSON.stringify(A.Object.keys(Liferay.CalendarUtil.visibleCalendars)));
+			<c:if test="<%= invitable %>">
+				A.one('#<portlet:namespace />childCalendarIds').val(A.JSON.stringify(A.Object.keys(Liferay.CalendarUtil.visibleCalendars)));
 			</c:if>
 
 			submitForm(document.<portlet:namespace />fm);
@@ -219,7 +213,7 @@ if (acceptedCalendarsJSONArray.length() == 0) {
 				},
 				id: 'check-availability'
 			}
-			<c:if test="<%= canInvite %>">
+			<c:if test="<%= invitable %>">
 				,{
 					caption: '<liferay-ui:message key="remove" />',
 					fn: function(event) {
@@ -233,7 +227,7 @@ if (acceptedCalendarsJSONArray.length() == 0) {
 				}
 			</c:if>
 		],
-		<c:if test="<%= canInvite %>">
+		<c:if test="<%= invitable %>">
 			on: {
 				visibleChange: function(event) {
 					var instance = this;
@@ -317,7 +311,7 @@ if (acceptedCalendarsJSONArray.length() == 0) {
 
 	syncVisibleCalendarsMap();
 
-	<c:if test="<%= canInvite %>">
+	<c:if test="<%= invitable %>">
 		<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="calendarResources" var="calendarResourcesURL"></liferay-portlet:resourceURL>
 
 		var inviteResourcesInput = A.one('#<portlet:namespace />inviteResource');

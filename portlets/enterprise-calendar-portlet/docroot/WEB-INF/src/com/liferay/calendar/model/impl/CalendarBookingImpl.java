@@ -67,7 +67,11 @@ public class CalendarBookingImpl
 	}
 
 	public boolean isMasterBooking() {
-		return (getParentCalendarBookingId() == getCalendarBookingId());
+		if (getParentCalendarBookingId() == getCalendarBookingId()) {
+			return true;
+		}
+
+		return false;
 	}
 
 	protected Date getUTCDate(Date date)
