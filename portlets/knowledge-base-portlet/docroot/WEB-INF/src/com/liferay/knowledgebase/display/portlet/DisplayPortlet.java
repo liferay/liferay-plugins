@@ -220,7 +220,7 @@ public class DisplayPortlet extends MVCPortlet {
 				e instanceof NoSuchTemplateException ||
 				e instanceof PrincipalException) {
 
-				SessionErrors.add(renderRequest, e.getClass().getName());
+				SessionErrors.add(renderRequest, e.getClass());
 			}
 			else {
 				throw new PortletException(e);

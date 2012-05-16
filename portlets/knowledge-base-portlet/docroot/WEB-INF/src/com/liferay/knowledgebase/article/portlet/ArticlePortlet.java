@@ -194,7 +194,7 @@ public class ArticlePortlet extends MVCPortlet {
 			if (e instanceof NoSuchArticleException ||
 				e instanceof PrincipalException) {
 
-				SessionErrors.add(renderRequest, e.getClass().getName());
+				SessionErrors.add(renderRequest, e.getClass());
 
 				PortletConfig portletConfig = getPortletConfig();
 
