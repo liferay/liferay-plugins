@@ -103,6 +103,7 @@ page import="javax.portlet.WindowState" %>
 <%
 WindowState windowState = renderRequest.getWindowState();
 
+String currentURL = PortalUtil.getCurrentURL(request);
 
 PortletPreferences preferences = renderRequest.getPreferences();
 
@@ -111,8 +112,6 @@ String portletResource = ParamUtil.getString(request, "portletResource");
 if (Validator.isNotNull(portletResource)) {
 	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
-
-String currentURL = PortalUtil.getCurrentURL(request);
 
 int displayStyle = PrefsParamUtil.getInteger(preferences, request, "displayStyle", ContactsConstants.DISPLAY_STYLE_FULL);
 
