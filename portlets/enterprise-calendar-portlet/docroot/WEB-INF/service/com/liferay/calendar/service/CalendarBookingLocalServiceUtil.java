@@ -294,6 +294,7 @@ public class CalendarBookingLocalServiceUtil {
 
 	public static com.liferay.calendar.model.CalendarBooking addCalendarBooking(
 		long userId, long calendarId, long parentCalendarBookingId,
+		long[] childCalendarBookingIds,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String location, java.util.Date startDate,
@@ -304,23 +305,7 @@ public class CalendarBookingLocalServiceUtil {
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addCalendarBooking(userId, calendarId,
-			parentCalendarBookingId, titleMap, descriptionMap, location,
-			startDate, endDate, allDay, recurrence, firstReminder,
-			secondReminder, serviceContext);
-	}
-
-	public static com.liferay.calendar.model.CalendarBooking addCalendarBooking(
-		long userId, long calendarId,
-		java.util.Map<java.util.Locale, java.lang.String> titleMap,
-		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		java.lang.String location, java.util.Date startDate,
-		java.util.Date endDate, boolean allDay, java.lang.String recurrence,
-		int firstReminder, int secondReminder,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .addCalendarBooking(userId, calendarId, titleMap,
+			parentCalendarBookingId, childCalendarBookingIds, titleMap,
 			descriptionMap, location, startDate, endDate, allDay, recurrence,
 			firstReminder, secondReminder, serviceContext);
 	}
@@ -426,19 +411,20 @@ public class CalendarBookingLocalServiceUtil {
 
 	public static com.liferay.calendar.model.CalendarBooking updateCalendarBooking(
 		long userId, long calendarBookingId, long calendarId,
+		long[] childCalendarBookingIds,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		java.lang.String location, int status, java.util.Date startDate,
+		java.lang.String location, java.util.Date startDate,
 		java.util.Date endDate, boolean allDay, java.lang.String recurrence,
-		int firstReminder, int secondReminder,
+		int firstReminder, int secondReminder, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .updateCalendarBooking(userId, calendarBookingId,
-			calendarId, titleMap, descriptionMap, location, status, startDate,
-			endDate, allDay, recurrence, firstReminder, secondReminder,
-			serviceContext);
+			calendarId, childCalendarBookingIds, titleMap, descriptionMap,
+			location, startDate, endDate, allDay, recurrence, firstReminder,
+			secondReminder, status, serviceContext);
 	}
 
 	public static com.liferay.calendar.model.CalendarBooking updateStatus(
