@@ -624,6 +624,18 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	background-color: #CCC;
 }
 
+.rtl .aui-toolbar-content, .rtl .portlet-layout, .rtl .toolbar, .rtl .contacts-portlet .toolbar .toolbar-content {
+	direction: ltr;
+}
+
+.rtl .contacts-portlet .toolbar .toolbar-content .aui-column {
+	float: left;
+}
+
+.rtl .portlet-layout .portlet-column .portlet-content, .rtl .toolbar .aui-toolbar-content, .rtl .contacts-portlet .toolbar .toolbar-content .aui-column-content {
+	direction: rtl;
+}
+
 /* ---------- Tabs ---------- */
 
 .aui-tabview-list {
