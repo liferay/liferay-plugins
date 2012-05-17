@@ -42,7 +42,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 
 	public CalendarBooking addCalendarBooking(
 			long calendarId, long parentCalendarBookingId,
-			long[] childCalendarBookingIds, Map<Locale, String> titleMap,
+			long[] childCalendarIds, Map<Locale, String> titleMap,
 			Map<Locale, String> descriptionMap, String location, Date startDate,
 			Date endDate, boolean allDay, String recurrence, int firstReminder,
 			int secondReminder, ServiceContext serviceContext)
@@ -52,10 +52,9 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			getPermissionChecker(), calendarId, ActionKeys.MANAGE_BOOKINGS);
 
 		return calendarBookingLocalService.addCalendarBooking(
-			getUserId(), calendarId, parentCalendarBookingId,
-			childCalendarBookingIds, titleMap, descriptionMap, location,
-			startDate, endDate, allDay, recurrence, firstReminder,
-			secondReminder, serviceContext);
+			getUserId(), calendarId, parentCalendarBookingId, childCalendarIds,
+			titleMap, descriptionMap, location, startDate, endDate, allDay,
+			recurrence, firstReminder, secondReminder, serviceContext);
 	}
 
 	public CalendarBooking deleteCalendarBooking(long calendarBookingId)
@@ -231,18 +230,18 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 	}
 
 	public CalendarBooking updateCalendarBooking(
-			long calendarBookingId, long calendarId,
-			long[] childCalendarBookingIds, Map<Locale, String> titleMap,
-			Map<Locale, String> descriptionMap, String location, Date startDate,
-			Date endDate, boolean allDay, String recurrence, int firstReminder,
-			int secondReminder, int status, ServiceContext serviceContext)
+			long calendarBookingId, long calendarId, long[] childCalendarIds,
+			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
+			String location, Date startDate, Date endDate, boolean allDay,
+			String recurrence, int firstReminder, int secondReminder,
+			int status, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		CalendarPermission.check(
 			getPermissionChecker(), calendarId, ActionKeys.MANAGE_BOOKINGS);
 
 		return calendarBookingLocalService.updateCalendarBooking(
-			getUserId(), calendarBookingId, calendarId, childCalendarBookingIds,
+			getUserId(), calendarBookingId, calendarId, childCalendarIds,
 			titleMap, descriptionMap, location, startDate, endDate, allDay,
 			recurrence, firstReminder, secondReminder, status, serviceContext);
 	}

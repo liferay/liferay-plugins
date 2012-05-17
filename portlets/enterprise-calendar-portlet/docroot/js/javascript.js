@@ -54,15 +54,16 @@
 						'/enterprise-calendar-portlet/calendarbooking/add-calendar-booking': {
 							allDay: schedulerEvent.get('allDay'),
 							calendarId: schedulerEvent.get('calendarId'),
+							childCalendarIds: '',
 							descriptionMap: instance.getLocalizationMap(schedulerEvent.get('description')),
 							endDate: CalendarUtil.toUTCTimeZone(schedulerEvent.get('endDate')).getTime(),
 							firstReminder: 0,
 							location: schedulerEvent.get('location'),
+							parentCalendarBookingId: schedulerEvent.get('parentCalendarBookingId'),
 							recurrence: schedulerEvent.get('repeat'),
 							secondReminder: 0,
 							startDate: CalendarUtil.toUTCTimeZone(schedulerEvent.get('startDate')).getTime(),
-							titleMap: instance.getLocalizationMap(schedulerEvent.get('content')),
-							userId: USER_ID
+							titleMap: instance.getLocalizationMap(schedulerEvent.get('content'))
 						}
 					},
 					{
