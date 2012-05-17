@@ -267,7 +267,7 @@ public interface CalendarBookingLocalService extends BaseLocalService,
 
 	public com.liferay.calendar.model.CalendarBooking addCalendarBooking(
 		long userId, long calendarId, long parentCalendarBookingId,
-		long[] childCalendarBookingIds,
+		long[] childCalendarIds,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String location, java.util.Date startDate,
@@ -349,7 +349,7 @@ public interface CalendarBookingLocalService extends BaseLocalService,
 
 	public com.liferay.calendar.model.CalendarBooking updateCalendarBooking(
 		long userId, long calendarBookingId, long calendarId,
-		long[] childCalendarBookingIds,
+		long[] childCalendarIds,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String location, java.util.Date startDate,

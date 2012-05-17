@@ -293,7 +293,7 @@ public class CalendarBookingLocalServiceWrapper
 
 	public com.liferay.calendar.model.CalendarBooking addCalendarBooking(
 		long userId, long calendarId, long parentCalendarBookingId,
-		long[] childCalendarBookingIds,
+		long[] childCalendarIds,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String location, java.util.Date startDate,
@@ -303,9 +303,9 @@ public class CalendarBookingLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _calendarBookingLocalService.addCalendarBooking(userId,
-			calendarId, parentCalendarBookingId, childCalendarBookingIds,
-			titleMap, descriptionMap, location, startDate, endDate, allDay,
-			recurrence, firstReminder, secondReminder, serviceContext);
+			calendarId, parentCalendarBookingId, childCalendarIds, titleMap,
+			descriptionMap, location, startDate, endDate, allDay, recurrence,
+			firstReminder, secondReminder, serviceContext);
 	}
 
 	public void deleteCalendarBookings(long calendarId)
@@ -406,7 +406,7 @@ public class CalendarBookingLocalServiceWrapper
 
 	public com.liferay.calendar.model.CalendarBooking updateCalendarBooking(
 		long userId, long calendarBookingId, long calendarId,
-		long[] childCalendarBookingIds,
+		long[] childCalendarIds,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String location, java.util.Date startDate,
@@ -416,7 +416,7 @@ public class CalendarBookingLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _calendarBookingLocalService.updateCalendarBooking(userId,
-			calendarBookingId, calendarId, childCalendarBookingIds, titleMap,
+			calendarBookingId, calendarId, childCalendarIds, titleMap,
 			descriptionMap, location, startDate, endDate, allDay, recurrence,
 			firstReminder, secondReminder, status, serviceContext);
 	}

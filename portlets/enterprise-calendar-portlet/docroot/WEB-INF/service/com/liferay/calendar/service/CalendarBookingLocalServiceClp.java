@@ -780,7 +780,7 @@ public class CalendarBookingLocalServiceClp
 
 	public com.liferay.calendar.model.CalendarBooking addCalendarBooking(
 		long userId, long calendarId, long parentCalendarBookingId,
-		long[] childCalendarBookingIds,
+		long[] childCalendarIds,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String location, java.util.Date startDate,
@@ -801,7 +801,7 @@ public class CalendarBookingLocalServiceClp
 						
 					parentCalendarBookingId,
 						
-					ClpSerializer.translateInput(childCalendarBookingIds),
+					ClpSerializer.translateInput(childCalendarIds),
 						
 					ClpSerializer.translateInput(titleMap),
 						
@@ -1287,7 +1287,7 @@ public class CalendarBookingLocalServiceClp
 
 	public com.liferay.calendar.model.CalendarBooking updateCalendarBooking(
 		long userId, long calendarBookingId, long calendarId,
-		long[] childCalendarBookingIds,
+		long[] childCalendarIds,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String location, java.util.Date startDate,
@@ -1308,7 +1308,7 @@ public class CalendarBookingLocalServiceClp
 						
 					calendarId,
 						
-					ClpSerializer.translateInput(childCalendarBookingIds),
+					ClpSerializer.translateInput(childCalendarIds),
 						
 					ClpSerializer.translateInput(titleMap),
 						

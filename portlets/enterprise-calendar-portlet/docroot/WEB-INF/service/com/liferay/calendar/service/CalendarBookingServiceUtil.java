@@ -63,8 +63,7 @@ public class CalendarBookingServiceUtil {
 	}
 
 	public static com.liferay.calendar.model.CalendarBooking addCalendarBooking(
-		long calendarId, long parentCalendarBookingId,
-		long[] childCalendarBookingIds,
+		long calendarId, long parentCalendarBookingId, long[] childCalendarIds,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String location, java.util.Date startDate,
@@ -75,9 +74,9 @@ public class CalendarBookingServiceUtil {
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addCalendarBooking(calendarId, parentCalendarBookingId,
-			childCalendarBookingIds, titleMap, descriptionMap, location,
-			startDate, endDate, allDay, recurrence, firstReminder,
-			secondReminder, serviceContext);
+			childCalendarIds, titleMap, descriptionMap, location, startDate,
+			endDate, allDay, recurrence, firstReminder, secondReminder,
+			serviceContext);
 	}
 
 	public static com.liferay.calendar.model.CalendarBooking deleteCalendarBooking(
@@ -198,8 +197,7 @@ public class CalendarBookingServiceUtil {
 	}
 
 	public static com.liferay.calendar.model.CalendarBooking updateCalendarBooking(
-		long calendarBookingId, long calendarId,
-		long[] childCalendarBookingIds,
+		long calendarBookingId, long calendarId, long[] childCalendarIds,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String location, java.util.Date startDate,
@@ -210,9 +208,9 @@ public class CalendarBookingServiceUtil {
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .updateCalendarBooking(calendarBookingId, calendarId,
-			childCalendarBookingIds, titleMap, descriptionMap, location,
-			startDate, endDate, allDay, recurrence, firstReminder,
-			secondReminder, status, serviceContext);
+			childCalendarIds, titleMap, descriptionMap, location, startDate,
+			endDate, allDay, recurrence, firstReminder, secondReminder, status,
+			serviceContext);
 	}
 
 	public static void clearService() {

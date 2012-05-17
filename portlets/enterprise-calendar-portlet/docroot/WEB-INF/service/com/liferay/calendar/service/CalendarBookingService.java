@@ -65,8 +65,7 @@ public interface CalendarBookingService extends BaseService, InvokableService {
 		throws java.lang.Throwable;
 
 	public com.liferay.calendar.model.CalendarBooking addCalendarBooking(
-		long calendarId, long parentCalendarBookingId,
-		long[] childCalendarBookingIds,
+		long calendarId, long parentCalendarBookingId, long[] childCalendarIds,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String location, java.util.Date startDate,
@@ -163,8 +162,7 @@ public interface CalendarBookingService extends BaseService, InvokableService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.calendar.model.CalendarBooking updateCalendarBooking(
-		long calendarBookingId, long calendarId,
-		long[] childCalendarBookingIds,
+		long calendarBookingId, long calendarId, long[] childCalendarIds,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String location, java.util.Date startDate,

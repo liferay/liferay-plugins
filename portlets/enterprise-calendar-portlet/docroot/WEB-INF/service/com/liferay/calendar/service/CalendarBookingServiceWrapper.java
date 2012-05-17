@@ -58,8 +58,7 @@ public class CalendarBookingServiceWrapper implements CalendarBookingService,
 	}
 
 	public com.liferay.calendar.model.CalendarBooking addCalendarBooking(
-		long calendarId, long parentCalendarBookingId,
-		long[] childCalendarBookingIds,
+		long calendarId, long parentCalendarBookingId, long[] childCalendarIds,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String location, java.util.Date startDate,
@@ -69,7 +68,7 @@ public class CalendarBookingServiceWrapper implements CalendarBookingService,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _calendarBookingService.addCalendarBooking(calendarId,
-			parentCalendarBookingId, childCalendarBookingIds, titleMap,
+			parentCalendarBookingId, childCalendarIds, titleMap,
 			descriptionMap, location, startDate, endDate, allDay, recurrence,
 			firstReminder, secondReminder, serviceContext);
 	}
@@ -188,8 +187,7 @@ public class CalendarBookingServiceWrapper implements CalendarBookingService,
 	}
 
 	public com.liferay.calendar.model.CalendarBooking updateCalendarBooking(
-		long calendarBookingId, long calendarId,
-		long[] childCalendarBookingIds,
+		long calendarBookingId, long calendarId, long[] childCalendarIds,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String location, java.util.Date startDate,
@@ -199,8 +197,8 @@ public class CalendarBookingServiceWrapper implements CalendarBookingService,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _calendarBookingService.updateCalendarBooking(calendarBookingId,
-			calendarId, childCalendarBookingIds, titleMap, descriptionMap,
-			location, startDate, endDate, allDay, recurrence, firstReminder,
+			calendarId, childCalendarIds, titleMap, descriptionMap, location,
+			startDate, endDate, allDay, recurrence, firstReminder,
 			secondReminder, status, serviceContext);
 	}
 
