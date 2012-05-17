@@ -46,8 +46,8 @@ public class CalendarBookingLocalServiceImpl
 	extends CalendarBookingLocalServiceBaseImpl {
 
 	public CalendarBooking addCalendarBooking(
-			long userId, long calendarId, long parentCalendarBookingId,
-			long[] childCalendarIds, Map<Locale, String> titleMap,
+			long userId, long calendarId, long[] childCalendarIds,
+			long parentCalendarBookingId, Map<Locale, String> titleMap,
 			Map<Locale, String> descriptionMap, String location, Date startDate,
 			Date endDate, boolean allDay, String recurrence, int firstReminder,
 			int secondReminder, ServiceContext serviceContext)
@@ -412,8 +412,8 @@ public class CalendarBookingLocalServiceImpl
 			}
 
 			addCalendarBooking(
-				calendarBooking.getUserId(), calendarId,
-				calendarBooking.getCalendarBookingId(), new long[0],
+				calendarBooking.getUserId(), calendarId, new long[0],
+				calendarBooking.getCalendarBookingId(),
 				calendarBooking.getTitleMap(),
 				calendarBooking.getDescriptionMap(),
 				calendarBooking.getLocation(),

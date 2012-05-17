@@ -121,7 +121,7 @@ public class CalendarBookingLocalServiceClp
 		_methodName20 = "addCalendarBooking";
 
 		_methodParameterTypes20 = new String[] {
-				"long", "long", "long", "long[][]", "java.util.Map",
+				"long", "long", "long[][]", "long", "java.util.Map",
 				"java.util.Map", "java.lang.String", "java.util.Date",
 				"java.util.Date", "boolean", "java.lang.String", "int", "int",
 				"com.liferay.portal.service.ServiceContext"
@@ -779,8 +779,8 @@ public class CalendarBookingLocalServiceClp
 	}
 
 	public com.liferay.calendar.model.CalendarBooking addCalendarBooking(
-		long userId, long calendarId, long parentCalendarBookingId,
-		long[] childCalendarIds,
+		long userId, long calendarId, long[] childCalendarIds,
+		long parentCalendarBookingId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String location, java.util.Date startDate,
@@ -799,9 +799,9 @@ public class CalendarBookingLocalServiceClp
 						
 					calendarId,
 						
-					parentCalendarBookingId,
-						
 					ClpSerializer.translateInput(childCalendarIds),
+						
+					parentCalendarBookingId,
 						
 					ClpSerializer.translateInput(titleMap),
 						

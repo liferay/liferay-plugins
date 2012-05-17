@@ -34,7 +34,7 @@ public class CalendarBookingServiceClpInvoker {
 		_methodName44 = "addCalendarBooking";
 
 		_methodParameterTypes44 = new String[] {
-				"long", "long", "long[][]", "java.util.Map", "java.util.Map",
+				"long", "long[][]", "long", "java.util.Map", "java.util.Map",
 				"java.lang.String", "java.util.Date", "java.util.Date",
 				"boolean", "java.lang.String", "int", "int",
 				"com.liferay.portal.service.ServiceContext"
@@ -136,7 +136,7 @@ public class CalendarBookingServiceClpInvoker {
 		if (_methodName44.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes44, parameterTypes)) {
 			return CalendarBookingServiceUtil.addCalendarBooking(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue(), (long[])arguments[2],
+				(long[])arguments[1], ((Long)arguments[2]).longValue(),
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[3],
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[4],
 				(java.lang.String)arguments[5], (java.util.Date)arguments[6],

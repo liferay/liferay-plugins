@@ -70,7 +70,7 @@ import java.util.Map;
  */
 public class CalendarBookingServiceSoap {
 	public static com.liferay.calendar.model.CalendarBookingSoap addCalendarBooking(
-		long calendarId, long parentCalendarBookingId, long[] childCalendarIds,
+		long calendarId, long[] childCalendarIds, long parentCalendarBookingId,
 		java.lang.String[] titleMapLanguageIds,
 		java.lang.String[] titleMapValues,
 		java.lang.String[] descriptionMapLanguageIds,
@@ -86,7 +86,7 @@ public class CalendarBookingServiceSoap {
 					descriptionMapValues);
 
 			com.liferay.calendar.model.CalendarBooking returnValue = CalendarBookingServiceUtil.addCalendarBooking(calendarId,
-					parentCalendarBookingId, childCalendarIds, titleMap,
+					childCalendarIds, parentCalendarBookingId, titleMap,
 					descriptionMap, location, startDate, endDate, allDay,
 					recurrence, firstReminder, secondReminder, serviceContext);
 

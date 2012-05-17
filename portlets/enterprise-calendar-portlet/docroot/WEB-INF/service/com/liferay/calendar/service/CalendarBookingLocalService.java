@@ -266,8 +266,8 @@ public interface CalendarBookingLocalService extends BaseLocalService,
 		throws java.lang.Throwable;
 
 	public com.liferay.calendar.model.CalendarBooking addCalendarBooking(
-		long userId, long calendarId, long parentCalendarBookingId,
-		long[] childCalendarIds,
+		long userId, long calendarId, long[] childCalendarIds,
+		long parentCalendarBookingId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String location, java.util.Date startDate,
