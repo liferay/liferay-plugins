@@ -41,8 +41,8 @@ import java.util.Map;
 public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 
 	public CalendarBooking addCalendarBooking(
-			long calendarId, long parentCalendarBookingId,
-			long[] childCalendarIds, Map<Locale, String> titleMap,
+			long calendarId, long[] childCalendarIds,
+			long parentCalendarBookingId, Map<Locale, String> titleMap,
 			Map<Locale, String> descriptionMap, String location, Date startDate,
 			Date endDate, boolean allDay, String recurrence, int firstReminder,
 			int secondReminder, ServiceContext serviceContext)
@@ -52,7 +52,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			getPermissionChecker(), calendarId, ActionKeys.MANAGE_BOOKINGS);
 
 		return calendarBookingLocalService.addCalendarBooking(
-			getUserId(), calendarId, parentCalendarBookingId, childCalendarIds,
+			getUserId(), calendarId, childCalendarIds, parentCalendarBookingId,
 			titleMap, descriptionMap, location, startDate, endDate, allDay,
 			recurrence, firstReminder, secondReminder, serviceContext);
 	}
