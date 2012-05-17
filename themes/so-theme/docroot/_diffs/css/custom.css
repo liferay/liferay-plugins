@@ -337,6 +337,10 @@ a:focus .opens-new-window-accessible {
 				padding: 3px 3px 3px 25px;
 			}
 		}
+
+		.aui-toolbar {
+			white-space: normal;
+		}
 	}
 
 	#socialOfficeMembership {
@@ -1278,6 +1282,10 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 				background: #EEE;
 			}
 		}
+	}
+
+	.contacts-search {
+		width: auto;
 	}
 }
 
