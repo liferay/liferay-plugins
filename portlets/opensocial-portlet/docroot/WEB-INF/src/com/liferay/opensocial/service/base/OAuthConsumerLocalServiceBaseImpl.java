@@ -126,8 +126,10 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
+		Class<?> clazz = getClass();
+
 		return DynamicQueryFactoryUtil.forClass(OAuthConsumer.class,
-			getClassLoader());
+			clazz.getClassLoader());
 	}
 
 	/**

@@ -134,8 +134,10 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
+		Class<?> clazz = getClass();
+
 		return DynamicQueryFactoryUtil.forClass(JIRAChangeItem.class,
-			getClassLoader());
+			clazz.getClassLoader());
 	}
 
 	/**

@@ -152,8 +152,10 @@ public abstract class KaleoTimerLocalServiceBaseImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
+		Class<?> clazz = getClass();
+
 		return DynamicQueryFactoryUtil.forClass(KaleoTimer.class,
-			getClassLoader());
+			clazz.getClassLoader());
 	}
 
 	/**

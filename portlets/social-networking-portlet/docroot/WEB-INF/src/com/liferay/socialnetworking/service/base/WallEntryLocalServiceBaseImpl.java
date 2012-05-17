@@ -125,8 +125,10 @@ public abstract class WallEntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
+		Class<?> clazz = getClass();
+
 		return DynamicQueryFactoryUtil.forClass(WallEntry.class,
-			getClassLoader());
+			clazz.getClassLoader());
 	}
 
 	/**

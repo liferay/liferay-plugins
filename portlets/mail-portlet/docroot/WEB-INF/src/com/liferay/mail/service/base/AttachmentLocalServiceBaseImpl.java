@@ -127,8 +127,10 @@ public abstract class AttachmentLocalServiceBaseImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
+		Class<?> clazz = getClass();
+
 		return DynamicQueryFactoryUtil.forClass(Attachment.class,
-			getClassLoader());
+			clazz.getClassLoader());
 	}
 
 	/**

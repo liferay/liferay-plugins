@@ -117,7 +117,10 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
-		return DynamicQueryFactoryUtil.forClass(Feed.class, getClassLoader());
+		Class<?> clazz = getClass();
+
+		return DynamicQueryFactoryUtil.forClass(Feed.class,
+			clazz.getClassLoader());
 	}
 
 	/**

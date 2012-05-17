@@ -133,8 +133,10 @@ public abstract class JIRAIssueLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
+		Class<?> clazz = getClass();
+
 		return DynamicQueryFactoryUtil.forClass(JIRAIssue.class,
-			getClassLoader());
+			clazz.getClassLoader());
 	}
 
 	/**

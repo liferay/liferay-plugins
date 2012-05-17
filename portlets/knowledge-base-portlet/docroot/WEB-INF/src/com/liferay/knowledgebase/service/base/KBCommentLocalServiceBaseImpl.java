@@ -129,8 +129,10 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
+		Class<?> clazz = getClass();
+
 		return DynamicQueryFactoryUtil.forClass(KBComment.class,
-			getClassLoader());
+			clazz.getClassLoader());
 	}
 
 	/**

@@ -156,8 +156,10 @@ public abstract class KaleoTaskAssignmentLocalServiceBaseImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
+		Class<?> clazz = getClass();
+
 		return DynamicQueryFactoryUtil.forClass(KaleoTaskAssignment.class,
-			getClassLoader());
+			clazz.getClassLoader());
 	}
 
 	/**

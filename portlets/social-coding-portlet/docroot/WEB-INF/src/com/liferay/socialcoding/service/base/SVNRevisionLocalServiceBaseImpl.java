@@ -134,8 +134,10 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
+		Class<?> clazz = getClass();
+
 		return DynamicQueryFactoryUtil.forClass(SVNRevision.class,
-			getClassLoader());
+			clazz.getClassLoader());
 	}
 
 	/**

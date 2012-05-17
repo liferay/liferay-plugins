@@ -127,8 +127,10 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
+		Class<?> clazz = getClass();
+
 		return DynamicQueryFactoryUtil.forClass(MeetupsRegistration.class,
-			getClassLoader());
+			clazz.getClassLoader());
 	}
 
 	/**

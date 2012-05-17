@@ -125,8 +125,10 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
+		Class<?> clazz = getClass();
+
 		return DynamicQueryFactoryUtil.forClass(MicroblogsEntry.class,
-			getClassLoader());
+			clazz.getClassLoader());
 	}
 
 	/**
