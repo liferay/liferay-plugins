@@ -100,6 +100,9 @@ public class CalendarResourceLocalServiceImpl
 		calendarResource.setClassUuid(classUuid);
 
 		if (defaultCalendarId <= 0) {
+			serviceContext.setAddGroupPermissions(true);
+			serviceContext.setAddGuestPermissions(true);
+
 			Calendar calendar = calendarLocalService.addCalendar(
 				userId, groupId, calendarResourceId, nameMap, descriptionMap,
 				PortletPropsValues.CALENDAR_COLOR_DEFAULT, true,
