@@ -41,7 +41,7 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 	</div>
 
 	<div class="section-container">
-		<div class="section site-information" data-title='<%= LanguageUtil.get(pageContext, "add-site-information")%>' data-step='<%= LanguageUtil.format(pageContext, "step-x-of-x", new Integer[] {1, 3})%>'>
+		<div class="section site-information" data-title='<%= LanguageUtil.get(pageContext, "add-site-information") %>' data-step='<%= LanguageUtil.format(pageContext, "step-x-of-x", new Integer[] {1, 2}) %>'>
 			<aui:fieldset>
 				<aui:input name="name" />
 
@@ -53,15 +53,14 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 		LayoutSetPrototype defaultLayoutSetPrototype = null;
 		%>
 
-		<div class="section site-settings aui-helper-hidden" data-title='<%= LanguageUtil.get(pageContext, "add-site-settings")%>' data-step='<%= LanguageUtil.format(pageContext, "step-x-of-x", new Integer[] {2, 3})%>'>
-			<aui:column columnWidth="<%= 50 %>" first="<%= true %>">
+		<div class="section site-settings aui-helper-hidden" data-title='<%= LanguageUtil.get(pageContext, "add-site-settings") %>' data-step='<%= LanguageUtil.format(pageContext, "step-x-of-x", new Integer[] {2, 2}) %>'>
+			<div class="site-options">
 
 				<%
 				List<LayoutSetPrototype> layoutSetPrototypes = LayoutSetPrototypeServiceUtil.search(company.getCompanyId(), Boolean.TRUE, null);
 				%>
 
-				<aui:fieldset>
-					<aui:select id="layoutSetPrototypeSelect" label="default-pages" name="layoutSetPrototypeId">
+				<aui:select id="layoutSetPrototypeSelect" label="default-pages" name="layoutSetPrototypeId">
 						<aui:option label="none" selected="<%= true %>" value="0" />
 
 						<%
@@ -89,36 +88,32 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 						}
 						%>
 
-					</aui:select>
+				</aui:select>
 
-					<aui:select label="visibility" name="privateLayout">
-						<aui:option label="public" value="<%= Boolean.FALSE.toString() %>" />
-						<aui:option label="private" value="<%= Boolean.TRUE.toString() %>" />
-					</aui:select>
+				<aui:select id="typeSelect" label="type" name="type">
+					<aui:option label="<%= GroupConstants.getTypeLabel(GroupConstants.TYPE_SITE_OPEN) %>" value="<%= GroupConstants.TYPE_SITE_OPEN %>" />
+					<aui:option label="<%= GroupConstants.getTypeLabel(GroupConstants.TYPE_SITE_PUBLIC_RESTRICTED) %>" value="<%= GroupConstants.TYPE_SITE_PUBLIC_RESTRICTED %>" />
+					<aui:option label="<%= GroupConstants.getTypeLabel(GroupConstants.TYPE_SITE_PRIVATE_RESTRICTED) %>" value="<%= GroupConstants.TYPE_SITE_PRIVATE_RESTRICTED %>" />
+					<aui:option label="<%= GroupConstants.getTypeLabel(GroupConstants.TYPE_SITE_PRIVATE) %>" value="<%= GroupConstants.TYPE_SITE_PRIVATE %>" />
+				</aui:select>
+			</div>
 
-					<aui:select name="membershipType">
-						<aui:option label="open" value="<%= GroupConstants.TYPE_SITE_OPEN %>" />
-						<aui:option label="restricted" value="<%= GroupConstants.TYPE_SITE_RESTRICTED %>" />
-						<aui:option label="private" value="<%= GroupConstants.TYPE_SITE_PRIVATE %>" />
-					</aui:select>
-				</aui:fieldset>
-			</aui:column>
+			<div class="template-details">
+				<h3 class="name"><%= defaultLayoutSetPrototype.getName(locale) %></h3>
 
-			<aui:column columnWidth="<%= 50 %>">
-				<div class="portlet-msg-info">
-					<div class="template-details">
-						<c:if test="<%= defaultLayoutSetPrototype != null %>">
-							<h3 class="name"><%= defaultLayoutSetPrototype.getName(locale) %></h3>
+				<p class="description">
+					<%= defaultLayoutSetPrototype.getDescription() %>
+				</p>
 
-							<p class="description">
-								<%= defaultLayoutSetPrototype.getDescription() %>
-							</p>
+				<aui:layout>
+					<aui:column columnWidth="<%= 30 %>" first="<%= true %>">
 
-							<span>
-								<liferay-ui:message key="included-pages" />:
-							</span>
+						<span class="included-pages"><liferay-ui:message key="included-pages" />:</span>
 
-							<ul class="pages">
+						<aui:input name="deleteLayoutIds" type="hidden" />
+
+						<div class="delete-layouts-container">
+							<c:if test="<%= defaultLayoutSetPrototype != null %>">
 
 								<%
 								Group layoutSetPrototypeGroup = defaultLayoutSetPrototype.getGroup();
@@ -128,57 +123,36 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 								for (Layout prototypeLayout : prototypeLayouts) {
 								%>
 
-									<li><%= prototypeLayout.getName(locale) %></li>
+									<div class="page">
+										<input checked data-layoutId="<%= prototypeLayout.getLayoutId() %>" id="layout<%= prototypeLayout.getLayoutId() %>" type="checkbox" />
+
+										<label for="layout<%= prototypeLayout.getLayoutId() %>"><%= prototypeLayout.getName(locale) %></label>
+									</div>
 
 								<%
 								}
 								%>
 
-							</ul>
-						</c:if>
+							</c:if>
+						</div>
+					</aui:column>
+					<aui:column columnWidth="<%= 70 %>">
+						<div class="type-details">
+							<div class="permission">
+								<liferay-ui:message key="permissions" />:
+							</div>
 
-						<div style="clear: both;"></div>
-					</div>
-				</div>
-			</aui:column>
-		</div>
-
-		<div class="section site-customization aui-helper-hidden" data-title='<%= LanguageUtil.get(pageContext, "add-site-customization")%>' data-step='<%= LanguageUtil.format(pageContext, "step-x-of-x", new Integer[] {3, 3})%>'>
-			<div class="tip portlet-msg-info">
-				<liferay-ui:message key="uncheck-the-pages-to-exclude-from-your-site" />
-			</div>
-
-			<aui:input name="deleteLayoutIds" type="hidden" />
-
-			<div class="delete-layouts-container">
-				<c:if test="<%= defaultLayoutSetPrototype != null %>">
-
-					<%
-					Group layoutSetPrototypeGroup = defaultLayoutSetPrototype.getGroup();
-
-					List<Layout> prototypeLayouts = LayoutLocalServiceUtil.getLayouts(layoutSetPrototypeGroup.getGroupId(), true, 0);
-
-					for (Layout prototypeLayout : prototypeLayouts) {
-					%>
-
-						<span class="page">
-							<input checked data-layoutId="<%= prototypeLayout.getLayoutId() %>" id="layout<%= prototypeLayout.getLayoutId() %>" type="checkbox" />
-
-							<label for="layout<%= prototypeLayout.getLayoutId() %>"><%= prototypeLayout.getName(locale) %></label>
-						</span>
-
-					<%
-					}
-					%>
-
-				</c:if>
+							<div class="message">
+								<liferay-ui:message key="open-site-is-listed-pages-are-public-and-users-are-free-to-join-to-collaborate" />
+							</div>
+						</div>
+					</aui:column>
+				</aui:layout>
 			</div>
 		</div>
 	</div>
 
-	<div style="clear: both;"></div>
-
-	<aui:button-row>
+	<aui:button-row cssClass="dialog-footer">
 		<div class="buttons-left">
 			<aui:button disabled="<%= true %>" id="previous" onClick='<%= renderResponse.getNamespace() + "previous()" %>' value="previous" />
 
@@ -187,7 +161,7 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 
 		<div id="<portlet:namespace />step" class="step">
 			<span>
-				<liferay-ui:message key="step-x-of-x" arguments="<%= new Integer[] {1, 3}%>" />
+				<liferay-ui:message key="step-x-of-x" arguments="<%= new Integer[] {1, 2}%>" />
 			</span>
 		</div>
 
@@ -375,26 +349,16 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 
 							var layouts = data.layouts;
 
-							var listBuffer = [];
-
-							for (var i in layouts) {
-								var layout = layouts[i];
-
-								listBuffer.push('<li>' + layout.name + '</li>');
-							}
-
-							pages.html(listBuffer.join(''));
-
 							var inputBuffer = [];
 
 							for (var i in layouts) {
 								var layout = layouts[i];
 
 								inputBuffer.push(
-									'<span class="page">' +
+									'<div class="page">' +
 										'<input checked data-layoutId="' + layout.layoutId + '" id="layout' + layout.layoutId + '" type="checkbox" />' +
 										'<label for="layout' + layout.layoutId + '">' + layout.name + '</label>' +
-									'</span>');
+									'</div>');
 							}
 
 							deleteLayoutsContainer.html(inputBuffer.join(''));
@@ -406,6 +370,32 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 					dataType: 'JSON'
 				}
 			);
+		}
+	);
+
+	var typeSelect = A.one('.so-portlet-sites-dialog #<portlet:namespace />typeSelect');
+
+	typeSelect.on(
+		'change',
+		function(event) {
+			var type = typeSelect.get("value");
+
+			var message = "";
+
+			if (type == <%= GroupConstants.TYPE_SITE_OPEN %>) {
+				message = '<%= UnicodeLanguageUtil.get(pageContext, "open-site-is-listed-pages-are-public-and-users-are-free-to-join-to-collaborate") %>';
+			}
+			else if (type == <%= GroupConstants.TYPE_SITE_PUBLIC_RESTRICTED %>) {
+				message = '<%= UnicodeLanguageUtil.get(pageContext, "public-restricted-site-is-listed-pages-are-public-and-users-must-request-to-join-to-collaborate") %>';
+			}
+			else if (type == <%= GroupConstants.TYPE_SITE_PRIVATE_RESTRICTED %>) {
+				message = '<%= UnicodeLanguageUtil.get(pageContext, "private-restricted-site-is-listed-pages-are-private-and-users-must-request-to-join-to-collaborate") %>';
+			}
+			else if (type == <%= GroupConstants.TYPE_SITE_PRIVATE %>) {
+				message = '<%= UnicodeLanguageUtil.get(pageContext, "private-site-is-not-listed-pages-are-private-and-users-may-join-by-invitation-only-to-view-and-collaborate") %>';
+			}
+
+			A.one('.so-portlet-sites-dialog .type-details .message').html(message);
 		}
 	);
 </aui:script>

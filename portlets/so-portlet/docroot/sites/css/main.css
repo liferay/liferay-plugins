@@ -177,12 +177,9 @@
 			background-image: url(@portal_ctx@/html/icons/social_office.png);
 		}
 	}
+
 	.aui-field {
 		margin: 10px 0;
-	}
-
-	.aui-field-select {
-		display: block;
 	}
 
 	.buttons-left {
@@ -234,11 +231,10 @@
 	}
 
 	.step {
-		color: #AAAAAA;
+		color: #AAA;
 		display: inline-block;
 		font-weight: bold;
-		margin-left: 5em;
-		text-shadow: 1px 1px 1px #DDDDDD;
+		text-shadow: 1px 1px 1px #DDD;
 
 		span {
 			display: block;
@@ -260,5 +256,48 @@
 				padding-right: 0;
 			}
 		}
+	}
+
+	.site-settings {
+		padding: 10px 0 10px;
+
+		.name {
+			padding-top: 20px;
+		}
+
+		.included-pages, .permission {
+			font-weight: bold;
+		}
+
+		.template-details .aui-column-content {
+			padding: 5px 10px 15px;
+		}
+
+		.aui-field {
+			margin: 0;
+		}
+
+		.aui-field-label, .aui-field-select, .aui-field-content {
+			display: inline;
+		}
+
+		.aui-field-content:after, .aui-button-holder:after {
+			clear: none;
+			display: none;
+		}
+
+		.aui-field-select {
+			padding-right: 10px;
+		}
+
+		.page label {
+			display: inline-block;
+			padding-left: 2px;
+		}
+	}
+
+	.dialog-footer {
+		display: block;
+		text-align: center;
 	}
 }
