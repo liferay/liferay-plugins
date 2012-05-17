@@ -17,6 +17,99 @@
 <%@ include file="/init.jsp" %>
 
 <liferay-ui:header
+	title="Bean Property"
+/>
+
+<p>
+	<h3>Get</h3>
+</p>
+
+<p>
+
+	JournalContentUtil#getJournalContent=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				JournalContentUtil.getJournalContent();
+			}
+
+		};
+		%>
+
+	RuntimePageUtil#getRuntimePage=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				RuntimePageUtil.getRuntimePage();
+			}
+
+		};
+		%>
+
+</p>
+
+<p>
+	<h3>Set</h3>
+</p>
+
+<p>
+
+	EntityCacheUtil#setEntityCache=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				EntityCacheUtil entityCacheUtil = new EntityCacheUtil();
+
+				EntityCache entityCache = entityCacheUtil.getEntityCache();
+
+				entityCacheUtil.setEntityCache(entityCache);
+			}
+
+		};
+		%>
+
+	FinderCacheUtil#setFinderCache=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				FinderCacheUtil finderCacheUtil = new FinderCacheUtil();
+
+				FinderCache finderCache = finderCacheUtil.getFinderCache();
+
+				finderCacheUtil.setFinderCache(finderCache);
+			}
+
+		};
+		%>
+
+	PortalCustomSQLUtil#setPortalCustomSQL=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				PortalCustomSQLUtil portalCustomSQLUtil = new PortalCustomSQLUtil();
+
+				PortalCustomSQL portalCustomSQL = portalCustomSQLUtil.getPortalCustomSQL();
+
+				portalCustomSQLUtil.setPortalCustomSQL(portalCustomSQL);
+			}
+
+		};
+		%>
+
+</p>
+
+
+<liferay-ui:header
 	title="Class Loader"
 />
 
@@ -1494,62 +1587,6 @@
 
 			protected void test() throws Exception {
 				FooLocalServiceUtil.getReleaseInfo_GetBuildNumber();
-			}
-
-		};
-		%>
-
-</p>
-
-<liferay-ui:header
-	title="Set Bean Property"
-/>
-
-<p>
-
-	EntityCacheUtil#setEntityCache=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
-
-			protected void test() throws Exception {
-				EntityCacheUtil entityCacheUtil = new EntityCacheUtil();
-
-				EntityCache entityCache = entityCacheUtil.getEntityCache();
-
-				entityCacheUtil.setEntityCache(entityCache);
-			}
-
-		};
-		%>
-
-	FinderCacheUtil#setFinderCache=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
-
-			protected void test() throws Exception {
-				FinderCacheUtil finderCacheUtil = new FinderCacheUtil();
-
-				FinderCache finderCache = finderCacheUtil.getFinderCache();
-
-				finderCacheUtil.setFinderCache(finderCache);
-			}
-
-		};
-		%>
-
-	PortalCustomSQLUtil#setPortalCustomSQL=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
-
-			protected void test() throws Exception {
-				PortalCustomSQLUtil portalCustomSQLUtil = new PortalCustomSQLUtil();
-
-				PortalCustomSQL portalCustomSQL = portalCustomSQLUtil.getPortalCustomSQL();
-
-				portalCustomSQLUtil.setPortalCustomSQL(portalCustomSQL);
 			}
 
 		};
