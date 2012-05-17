@@ -34,7 +34,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
-import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutSet;
 import com.liferay.portal.model.LayoutSetPrototype;
@@ -56,6 +55,7 @@ import com.liferay.portal.util.comparator.GroupNameComparator;
 import com.liferay.so.service.FavoriteSiteLocalServiceUtil;
 import com.liferay.so.service.SocialOfficeServiceUtil;
 import com.liferay.so.sites.util.SitesUtil;
+import com.liferay.so.util.GroupConstants;
 import com.liferay.so.util.WebKeys;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
@@ -504,10 +504,22 @@ public class SitesPortlet extends MVCPortlet {
 
 		String name = ParamUtil.getString(actionRequest, "name");
 		String description = ParamUtil.getString(actionRequest, "description");
-		int membershipType = ParamUtil.getInteger(
-			actionRequest, "membershipType");
-		boolean privateLayout = ParamUtil.getBoolean(
-			actionRequest, "privateLayout");
+		long layoutSetPrototypeId = ParamUtil.getLong(
+			actionRequest, "layoutSetPrototypeId");
+		int type = ParamUtil.getInteger(actionRequest, "type");
+
+		boolean privateLayout = false;
+
+		if (type == GroupConstants.TYPE_SITE_PRIVATE_RESTRICTED) {
+			privateLayout = true;
+			type = GroupConstants.TYPE_SITE_RESTRICTED;
+		}
+		else if (type == GroupConstants.TYPE_SITE_PUBLIC_RESTRICTED) {
+			type = GroupConstants.TYPE_SITE_RESTRICTED;
+		}
+		else if (type == GroupConstants.TYPE_SITE_PRIVATE) {
+			privateLayout = true;
+		}
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			Group.class.getName(), actionRequest);
@@ -515,9 +527,6 @@ public class SitesPortlet extends MVCPortlet {
 		Group group = GroupServiceUtil.addGroup(
 			name, description, type, StringPool.BLANK, true, true,
 			serviceContext);
-
-		long layoutSetPrototypeId = ParamUtil.getLong(
-			actionRequest, "layoutSetPrototypeId");
 
 		long publicLayoutSetPrototypeId = 0;
 		long privateLayoutSetPrototypeId = 0;

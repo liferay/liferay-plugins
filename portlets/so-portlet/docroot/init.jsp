@@ -56,7 +56,6 @@ page import="com.liferay.portal.kernel.util.UnicodeProperties" %><%@
 page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.portal.kernel.workflow.WorkflowConstants" %><%@
 page import="com.liferay.portal.model.Group" %><%@
-page import="com.liferay.portal.model.GroupConstants" %><%@
 page import="com.liferay.portal.model.Layout" %><%@
 page import="com.liferay.portal.model.LayoutSetPrototype" %><%@
 page import="com.liferay.portal.model.Portlet" %><%@
@@ -96,6 +95,7 @@ page import="com.liferay.so.service.MemberRequestLocalServiceUtil" %><%@
 page import="com.liferay.so.service.ProjectsEntryLocalServiceUtil" %><%@
 page import="com.liferay.so.service.SocialOfficeServiceUtil" %><%@
 page import="com.liferay.so.sites.util.SitesUtil" %><%@
+page import="com.liferay.so.util.GroupConstants" %><%@
 page import="com.liferay.so.util.PortletKeys" %><%@
 page import="com.liferay.so.util.RoleConstants" %>
 
