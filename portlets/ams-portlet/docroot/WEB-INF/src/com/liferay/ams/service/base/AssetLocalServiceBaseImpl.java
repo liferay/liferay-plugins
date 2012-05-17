@@ -122,7 +122,10 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
-		return DynamicQueryFactoryUtil.forClass(Asset.class, getClassLoader());
+		Class<?> clazz = getClass();
+
+		return DynamicQueryFactoryUtil.forClass(Asset.class,
+			clazz.getClassLoader());
 	}
 
 	/**

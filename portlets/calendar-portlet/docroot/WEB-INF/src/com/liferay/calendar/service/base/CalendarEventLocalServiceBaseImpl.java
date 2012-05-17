@@ -131,8 +131,10 @@ public abstract class CalendarEventLocalServiceBaseImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
+		Class<?> clazz = getClass();
+
 		return DynamicQueryFactoryUtil.forClass(CalendarEvent.class,
-			getClassLoader());
+			clazz.getClassLoader());
 	}
 
 	/**

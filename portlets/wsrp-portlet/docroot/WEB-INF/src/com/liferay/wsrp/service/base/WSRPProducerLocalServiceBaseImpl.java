@@ -130,8 +130,10 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
+		Class<?> clazz = getClass();
+
 		return DynamicQueryFactoryUtil.forClass(WSRPProducer.class,
-			getClassLoader());
+			clazz.getClassLoader());
 	}
 
 	/**

@@ -132,8 +132,10 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
+		Class<?> clazz = getClass();
+
 		return DynamicQueryFactoryUtil.forClass(KBTemplate.class,
-			getClassLoader());
+			clazz.getClassLoader());
 	}
 
 	/**

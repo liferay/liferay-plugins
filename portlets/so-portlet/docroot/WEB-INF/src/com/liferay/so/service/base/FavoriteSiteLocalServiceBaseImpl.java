@@ -131,8 +131,10 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
+		Class<?> clazz = getClass();
+
 		return DynamicQueryFactoryUtil.forClass(FavoriteSite.class,
-			getClassLoader());
+			clazz.getClassLoader());
 	}
 
 	/**

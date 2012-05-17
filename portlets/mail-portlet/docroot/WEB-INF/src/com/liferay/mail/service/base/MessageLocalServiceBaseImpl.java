@@ -124,7 +124,10 @@ public abstract class MessageLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
-		return DynamicQueryFactoryUtil.forClass(Message.class, getClassLoader());
+		Class<?> clazz = getClass();
+
+		return DynamicQueryFactoryUtil.forClass(Message.class,
+			clazz.getClassLoader());
 	}
 
 	/**

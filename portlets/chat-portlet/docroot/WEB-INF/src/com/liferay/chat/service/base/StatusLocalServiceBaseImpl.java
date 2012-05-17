@@ -120,7 +120,10 @@ public abstract class StatusLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
-		return DynamicQueryFactoryUtil.forClass(Status.class, getClassLoader());
+		Class<?> clazz = getClass();
+
+		return DynamicQueryFactoryUtil.forClass(Status.class,
+			clazz.getClassLoader());
 	}
 
 	/**

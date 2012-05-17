@@ -150,8 +150,10 @@ public abstract class KaleoActionLocalServiceBaseImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
+		Class<?> clazz = getClass();
+
 		return DynamicQueryFactoryUtil.forClass(KaleoAction.class,
-			getClassLoader());
+			clazz.getClassLoader());
 	}
 
 	/**

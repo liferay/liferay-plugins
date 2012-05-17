@@ -124,8 +124,10 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
+		Class<?> clazz = getClass();
+
 		return DynamicQueryFactoryUtil.forClass(OAuthToken.class,
-			getClassLoader());
+			clazz.getClassLoader());
 	}
 
 	/**

@@ -119,7 +119,10 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
-		return DynamicQueryFactoryUtil.forClass(Module.class, getClassLoader());
+		Class<?> clazz = getClass();
+
+		return DynamicQueryFactoryUtil.forClass(Module.class,
+			clazz.getClassLoader());
 	}
 
 	/**

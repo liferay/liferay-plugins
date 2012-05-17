@@ -126,8 +126,10 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
+		Class<?> clazz = getClass();
+
 		return DynamicQueryFactoryUtil.forClass(CalendarBooking.class,
-			getClassLoader());
+			clazz.getClassLoader());
 	}
 
 	/**

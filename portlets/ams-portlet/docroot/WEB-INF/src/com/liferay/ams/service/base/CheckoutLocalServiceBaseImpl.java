@@ -122,7 +122,10 @@ public abstract class CheckoutLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
-		return DynamicQueryFactoryUtil.forClass(Checkout.class, getClassLoader());
+		Class<?> clazz = getClass();
+
+		return DynamicQueryFactoryUtil.forClass(Checkout.class,
+			clazz.getClassLoader());
 	}
 
 	/**

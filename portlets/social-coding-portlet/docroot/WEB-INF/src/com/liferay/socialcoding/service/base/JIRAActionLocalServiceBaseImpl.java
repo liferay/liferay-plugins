@@ -132,8 +132,10 @@ public abstract class JIRAActionLocalServiceBaseImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
+		Class<?> clazz = getClass();
+
 		return DynamicQueryFactoryUtil.forClass(JIRAAction.class,
-			getClassLoader());
+			clazz.getClassLoader());
 	}
 
 	/**

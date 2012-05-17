@@ -119,8 +119,10 @@ public abstract class UserThreadLocalServiceBaseImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
+		Class<?> clazz = getClass();
+
 		return DynamicQueryFactoryUtil.forClass(UserThread.class,
-			getClassLoader());
+			clazz.getClassLoader());
 	}
 
 	/**

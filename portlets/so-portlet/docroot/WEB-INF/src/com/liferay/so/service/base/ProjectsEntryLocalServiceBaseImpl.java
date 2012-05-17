@@ -125,8 +125,10 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
+		Class<?> clazz = getClass();
+
 		return DynamicQueryFactoryUtil.forClass(ProjectsEntry.class,
-			getClassLoader());
+			clazz.getClassLoader());
 	}
 
 	/**

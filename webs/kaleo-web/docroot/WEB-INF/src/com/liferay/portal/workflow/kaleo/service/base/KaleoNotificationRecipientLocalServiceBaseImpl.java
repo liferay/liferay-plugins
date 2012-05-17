@@ -158,8 +158,10 @@ public abstract class KaleoNotificationRecipientLocalServiceBaseImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
+		Class<?> clazz = getClass();
+
 		return DynamicQueryFactoryUtil.forClass(KaleoNotificationRecipient.class,
-			getClassLoader());
+			clazz.getClassLoader());
 	}
 
 	/**

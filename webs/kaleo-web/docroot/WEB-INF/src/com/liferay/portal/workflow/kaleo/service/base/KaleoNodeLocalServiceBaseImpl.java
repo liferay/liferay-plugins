@@ -149,8 +149,10 @@ public abstract class KaleoNodeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
+		Class<?> clazz = getClass();
+
 		return DynamicQueryFactoryUtil.forClass(KaleoNode.class,
-			getClassLoader());
+			clazz.getClassLoader());
 	}
 
 	/**

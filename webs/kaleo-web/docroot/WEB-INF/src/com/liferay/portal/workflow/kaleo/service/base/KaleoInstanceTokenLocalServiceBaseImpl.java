@@ -151,8 +151,10 @@ public abstract class KaleoInstanceTokenLocalServiceBaseImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
+		Class<?> clazz = getClass();
+
 		return DynamicQueryFactoryUtil.forClass(KaleoInstanceToken.class,
-			getClassLoader());
+			clazz.getClassLoader());
 	}
 
 	/**

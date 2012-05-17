@@ -134,8 +134,10 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
+		Class<?> clazz = getClass();
+
 		return DynamicQueryFactoryUtil.forClass(MemberRequest.class,
-			getClassLoader());
+			clazz.getClassLoader());
 	}
 
 	/**

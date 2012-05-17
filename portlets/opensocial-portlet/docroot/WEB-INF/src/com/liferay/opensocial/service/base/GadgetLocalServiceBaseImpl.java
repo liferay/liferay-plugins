@@ -123,7 +123,10 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
-		return DynamicQueryFactoryUtil.forClass(Gadget.class, getClassLoader());
+		Class<?> clazz = getClass();
+
+		return DynamicQueryFactoryUtil.forClass(Gadget.class,
+			clazz.getClassLoader());
 	}
 
 	/**

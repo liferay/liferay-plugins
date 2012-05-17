@@ -118,7 +118,10 @@ public abstract class BarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	public DynamicQuery dynamicQuery() {
-		return DynamicQueryFactoryUtil.forClass(Bar.class, getClassLoader());
+		Class<?> clazz = getClass();
+
+		return DynamicQueryFactoryUtil.forClass(Bar.class,
+			clazz.getClassLoader());
 	}
 
 	/**
