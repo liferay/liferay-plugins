@@ -25,7 +25,6 @@
 </p>
 
 <p>
-
 	JournalContentUtil#getJournalContent=
 
 		<%
@@ -473,6 +472,141 @@
 
 			protected void test() throws Exception {
 				FooLocalServiceUtil.dynamicQuery();
+			}
+
+		};
+		%>
+
+</p>
+
+<liferay-ui:header
+	title="Expando Bridge"
+/>
+
+<p>
+	Group#getExpandoBridge=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				Group group = themeDisplay.getScopeGroup();
+
+				group.getExpandoBridge();
+			}
+
+		};
+		%>
+
+	Group#setExpandoBridgeAttributes=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				Group group = themeDisplay.getScopeGroup();
+
+				ServiceContext serviceContext = new ServiceContext();
+
+				group.setExpandoBridgeAttributes(serviceContext);
+			}
+
+		};
+		%>
+
+	GroupWrapper#getExpandoBridge=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				Group group = themeDisplay.getScopeGroup();
+
+				group = new GroupWrapper(group);
+
+				group.getExpandoBridge();
+			}
+
+		};
+		%>
+
+	GroupWrapper#setExpandoBridgeAttributes=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				Group group = themeDisplay.getScopeGroup();
+
+				group = new GroupWrapper(group);
+
+				ServiceContext serviceContext = new ServiceContext();
+
+				group.setExpandoBridgeAttributes(serviceContext);
+			}
+
+		};
+		%>
+
+	User#getExpandoBridge=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				User user = themeDisplay.getUser();
+
+				user.getExpandoBridge();
+			}
+
+		};
+		%>
+
+	User#setExpandoBridgeAttributes=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				User user = themeDisplay.getUser();
+
+				ServiceContext serviceContext = new ServiceContext();
+
+				user.setExpandoBridgeAttributes(serviceContext);
+			}
+
+		};
+		%>
+
+	UserWrapper#getExpandoBridge=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				User user = themeDisplay.getUser();
+
+				user = new UserWrapper(user);
+
+				user.getExpandoBridge();
+			}
+
+		};
+		%>
+
+	UserWrapper#setExpandoBridgeAttributes=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				User user = themeDisplay.getUser();
+
+				user = new UserWrapper(user);
+
+				ServiceContext serviceContext = new ServiceContext();
+
+				user.setExpandoBridgeAttributes(serviceContext);
 			}
 
 		};
