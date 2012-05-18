@@ -14,10 +14,15 @@
 
 package com.liferay.testpacl.util;
 
+import com.liferay.portal.kernel.deploy.DeployManagerUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
+import com.liferay.portal.kernel.util.ReleaseInfo;
+import com.liferay.portal.kernel.util.ServerDetector;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.service.PortalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
@@ -101,7 +106,8 @@ public class TestPACLUtil {
 	}
 
 	public static void testWriteFile() {
-		File file = new File("../webapps/chat-portlet/css/main.css");
+		File file = new File(
+			translateFileName("../webapps/chat-portlet/css/main.css"));
 
 		try {
 			file.exists();
@@ -110,6 +116,45 @@ public class TestPACLUtil {
 		}
 		catch (SecurityException se) {
 		}
+	}
+
+	public static String translateFileName(String fileName) {
+		if (fileName.startsWith("../webapps")) {
+			String installedDir = StringPool.BLANK;
+
+			try {
+				installedDir = DeployManagerUtil.getInstalledDir();
+			}
+			catch (Exception e) {
+				_log.error(e, e);
+			}
+
+			fileName = StringUtil.replace(fileName, "../webapps", installedDir);
+
+			if (ServerDetector.isGeronimo()) {
+				String geronimoHome = System.getProperty(
+					"org.apache.geronimo.home.dir");
+				String version = ReleaseInfo.getVersion();
+
+				fileName = StringUtil.replace(
+					fileName, installedDir + "/chat-portlet/",
+					geronimoHome + "/repository/liferay/chat-portlet/" +
+						version + ".1/chat-portlet-" + version + ".1.car/");
+			}
+			else if (ServerDetector.isJBoss()) {
+				fileName = StringUtil.replace(
+					fileName, "/chat-portlet/", "/chat-portlet.war/");
+			}
+			else if (ServerDetector.isWebSphere()) {
+				fileName = StringUtil.replace(
+					fileName, installedDir + "/chat-portlet/",
+					System.getenv("USER_INSTALL_ROOT") +
+						"/installedApps/liferay-cell/chat-portlet.ear" +
+							"/chat-portlet.war/");
+			}
+		}
+
+		return fileName;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(TestPACLUtil.class);
