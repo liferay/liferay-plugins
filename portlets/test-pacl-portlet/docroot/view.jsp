@@ -950,7 +950,7 @@
 	new JNDISecurityExceptionTest(out, themeDisplay, false) {
 
 		protected void test() throws Exception {
-			testBind("test-pacl:matthew", "Matthew");
+			testBind("test-pacl-matthew", "Matthew");
 		}
 
 	};
@@ -958,7 +958,7 @@
 	new JNDISecurityExceptionTest(out, themeDisplay, true) {
 
 		protected void test() throws Exception {
-			testBind("test-pacl:Matthew", "Matthew");
+			testBind("test-pacl-Matthew", "Matthew");
 		}
 
 	};
@@ -966,7 +966,7 @@
 	new JNDISecurityExceptionTest(out, themeDisplay, false) {
 
 		protected void test() throws Exception {
-			testBind("test-pacl:mark", "Mark");
+			testBind("test-pacl-mark", "Mark");
 		}
 
 	};
@@ -974,7 +974,7 @@
 	new JNDISecurityExceptionTest(out, themeDisplay, false) {
 
 		protected void test() throws Exception {
-			testBind("test-pacl:Mark", "Mark");
+			testBind("test-pacl-Mark", "Mark");
 		}
 
 	};
@@ -982,7 +982,7 @@
 	new JNDISecurityExceptionTest(out, themeDisplay, false) {
 
 		protected void test() throws Exception {
-			testBind("test-pacl:luke", "Luke");
+			testBind("test-pacl-luke", "Luke");
 		}
 
 	};
@@ -990,7 +990,7 @@
 	new JNDISecurityExceptionTest(out, themeDisplay, false) {
 
 		protected void test() throws Exception {
-			testBind("test-pacl:Luke", "Luke");
+			testBind("test-pacl-Luke", "Luke");
 		}
 
 	};
@@ -998,7 +998,7 @@
 	new JNDISecurityExceptionTest(out, themeDisplay, false) {
 
 		protected void test() throws Exception {
-			testBind("test-pacl:john 3:16", "John");
+			testBind("test-pacl-john 3:16", "John");
 		}
 
 	};
@@ -1022,7 +1022,7 @@
 	new JNDISecurityExceptionTest(out, themeDisplay, false) {
 
 		protected void test() throws Exception {
-			testLookup("test-pacl:matthew", "Matthew");
+			testLookup("test-pacl-matthew", "Matthew");
 		}
 
 	};
@@ -1031,7 +1031,7 @@
 
 		protected void test() throws Exception {
 			try {
-				testLookup("test-pacl:matthew", "Matthew 1:1");
+				testLookup("test-pacl-matthew", "Matthew 1:1");
 			}
 			catch (ExpectedTestException ete) {
 			}
@@ -1042,7 +1042,7 @@
 	new JNDISecurityExceptionTest(out, themeDisplay, false) {
 
 		protected void test() throws Exception {
-			testLookup("test-pacl:mark", "Mark");
+			testLookup("test-pacl-mark", "Mark");
 		}
 
 	};
@@ -1050,7 +1050,7 @@
 	new JNDISecurityExceptionTest(out, themeDisplay, false) {
 
 		protected void test() throws Exception {
-			testLookup("test-pacl:Mark", "Mark");
+			testLookup("test-pacl-Mark", "Mark");
 		}
 
 	};
@@ -1058,7 +1058,7 @@
 	new JNDISecurityExceptionTest(out, themeDisplay, false) {
 
 		protected void test() throws Exception {
-			testLookup("test-pacl:luke", "Luke");
+			testLookup("test-pacl-luke", "Luke");
 		}
 
 	};
@@ -1066,7 +1066,7 @@
 	new JNDISecurityExceptionTest(out, themeDisplay, false) {
 
 		protected void test() throws Exception {
-			testLookup("test-pacl:Luke", "Luke");
+			testLookup("test-pacl-Luke", "Luke");
 		}
 
 	};
@@ -1074,7 +1074,7 @@
 	new JNDISecurityExceptionTest(out, themeDisplay, false) {
 
 		protected void test() throws Exception {
-			testLookup("test-pacl:john 3:16", "John");
+			testLookup("test-pacl-john 3:16", "John");
 		}
 
 	};
@@ -1090,7 +1090,7 @@
 	new JNDISecurityExceptionTest(out, themeDisplay, false) {
 
 		protected void test() throws Exception {
-			testUnbind("test-pacl:matthew");
+			testUnbind("test-pacl-matthew");
 		}
 
 	};
@@ -1098,7 +1098,7 @@
 	new JNDISecurityExceptionTest(out, themeDisplay, true) {
 
 		protected void test() throws Exception {
-			testUnbind("test-pacl:Matthew");
+			testUnbind("test-pacl-Matthew");
 		}
 
 	};
@@ -1106,7 +1106,7 @@
 	new JNDISecurityExceptionTest(out, themeDisplay, false) {
 
 		protected void test() throws Exception {
-			testUnbind("test-pacl:mark");
+			testUnbind("test-pacl-mark");
 		}
 
 	};
@@ -1114,7 +1114,7 @@
 	new JNDISecurityExceptionTest(out, themeDisplay, false) {
 
 		protected void test() throws Exception {
-			testUnbind("test-pacl:Mark");
+			testUnbind("test-pacl-Mark");
 		}
 
 	};
@@ -1122,7 +1122,7 @@
 	new JNDISecurityExceptionTest(out, themeDisplay, false) {
 
 		protected void test() throws Exception {
-			testUnbind("test-pacl:luke");
+			testUnbind("test-pacl-luke");
 		}
 
 	};
@@ -1130,7 +1130,7 @@
 	new JNDISecurityExceptionTest(out, themeDisplay, false) {
 
 		protected void test() throws Exception {
-			testUnbind("test-pacl:Luke");
+			testUnbind("test-pacl-Luke");
 		}
 
 	};
@@ -1138,7 +1138,7 @@
 	new JNDISecurityExceptionTest(out, themeDisplay, false) {
 
 		protected void test() throws Exception {
-			testUnbind("test-pacl:john 3:16");
+			testUnbind("test-pacl-john 3:16");
 		}
 
 	};
@@ -2421,6 +2421,8 @@ private class FileSecurityExceptionTest extends SecurityExceptionTest {
 	}
 
 	protected void testDeleteWithFile(String fileName) throws Exception {
+		fileName = TestPACLUtil.translateFileName(fileName);
+
 		writer.write(fileName);
 		writer.write("=");
 
@@ -2455,6 +2457,8 @@ private class FileSecurityExceptionTest extends SecurityExceptionTest {
 	}
 
 	protected void testDeleteWithFileUtil(String fileName) throws Exception {
+		fileName = TestPACLUtil.translateFileName(fileName);
+
 		writer.write(fileName);
 		writer.write("=");
 
@@ -2498,6 +2502,8 @@ private class FileSecurityExceptionTest extends SecurityExceptionTest {
 	}
 
 	protected void testReadWithFile(String fileName) throws Exception {
+		fileName = TestPACLUtil.translateFileName(fileName);
+
 		writer.write(fileName);
 		writer.write("=");
 
@@ -2512,6 +2518,8 @@ private class FileSecurityExceptionTest extends SecurityExceptionTest {
 	}
 
 	protected void testReadWithFileUtil(String fileName) throws Exception {
+		fileName = TestPACLUtil.translateFileName(fileName);
+
 		writer.write(fileName);
 		writer.write("=");
 
@@ -2519,6 +2527,8 @@ private class FileSecurityExceptionTest extends SecurityExceptionTest {
 	}
 
 	protected void testWriteWithFile(String fileName) throws Exception {
+		fileName = TestPACLUtil.translateFileName(fileName);
+
 		writer.write(fileName);
 		writer.write("=");
 
@@ -2533,6 +2543,8 @@ private class FileSecurityExceptionTest extends SecurityExceptionTest {
 	}
 
 	protected void testWriteWithFileUtil(String fileName) throws Exception {
+		fileName = TestPACLUtil.translateFileName(fileName);
+
 		writer.write(fileName);
 		writer.write("=");
 
