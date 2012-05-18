@@ -325,17 +325,15 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-					OAuthConsumer.class.getName(), getPrimaryKey());
-		}
-
-		return _expandoBridge;
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
+			OAuthConsumer.class.getName(), getPrimaryKey());
 	}
 
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		getExpandoBridge().setAttributes(serviceContext);
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
 	}
 
 	@Override
@@ -570,7 +568,6 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	private String _consumerKey;
 	private String _consumerSecret;
 	private String _keyType;
-	private transient ExpandoBridge _expandoBridge;
 	private long _columnBitmask;
 	private OAuthConsumer _escapedModelProxy;
 }

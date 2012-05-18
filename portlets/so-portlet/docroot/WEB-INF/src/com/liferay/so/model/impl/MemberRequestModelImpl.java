@@ -408,17 +408,15 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-					MemberRequest.class.getName(), getPrimaryKey());
-		}
-
-		return _expandoBridge;
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
+			MemberRequest.class.getName(), getPrimaryKey());
 	}
 
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		getExpandoBridge().setAttributes(serviceContext);
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
 	}
 
 	@Override
@@ -685,7 +683,6 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	private int _status;
 	private int _originalStatus;
 	private boolean _setOriginalStatus;
-	private transient ExpandoBridge _expandoBridge;
 	private long _columnBitmask;
 	private MemberRequest _escapedModelProxy;
 }

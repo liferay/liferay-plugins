@@ -654,17 +654,15 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-					Account.class.getName(), getPrimaryKey());
-		}
-
-		return _expandoBridge;
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
+			Account.class.getName(), getPrimaryKey());
 	}
 
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		getExpandoBridge().setAttributes(serviceContext);
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
 	}
 
 	@Override
@@ -1103,7 +1101,6 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 	private long _sentFolderId;
 	private long _trashFolderId;
 	private boolean _defaultSender;
-	private transient ExpandoBridge _expandoBridge;
 	private long _columnBitmask;
 	private Account _escapedModelProxy;
 }

@@ -473,17 +473,15 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-					Foo.class.getName(), getPrimaryKey());
-		}
-
-		return _expandoBridge;
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
+			Foo.class.getName(), getPrimaryKey());
 	}
 
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		getExpandoBridge().setAttributes(serviceContext);
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
 	}
 
 	@Override
@@ -769,7 +767,6 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	private int _field3;
 	private Date _field4;
 	private String _field5;
-	private transient ExpandoBridge _expandoBridge;
 	private long _columnBitmask;
 	private Foo _escapedModelProxy;
 }

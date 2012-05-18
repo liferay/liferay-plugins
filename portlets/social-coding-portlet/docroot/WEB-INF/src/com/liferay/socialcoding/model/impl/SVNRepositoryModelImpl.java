@@ -197,17 +197,15 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(0,
-					SVNRepository.class.getName(), getPrimaryKey());
-		}
-
-		return _expandoBridge;
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+			SVNRepository.class.getName(), getPrimaryKey());
 	}
 
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		getExpandoBridge().setAttributes(serviceContext);
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
 	}
 
 	@Override
@@ -341,7 +339,6 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository>
 	private String _url;
 	private String _originalUrl;
 	private long _revisionNumber;
-	private transient ExpandoBridge _expandoBridge;
 	private long _columnBitmask;
 	private SVNRepository _escapedModelProxy;
 }

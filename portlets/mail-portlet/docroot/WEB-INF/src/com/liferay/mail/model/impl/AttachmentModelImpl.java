@@ -308,17 +308,15 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-					Attachment.class.getName(), getPrimaryKey());
-		}
-
-		return _expandoBridge;
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
+			Attachment.class.getName(), getPrimaryKey());
 	}
 
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		getExpandoBridge().setAttributes(serviceContext);
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
 	}
 
 	@Override
@@ -524,7 +522,6 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 	private String _contentPath;
 	private String _fileName;
 	private long _size;
-	private transient ExpandoBridge _expandoBridge;
 	private long _columnBitmask;
 	private Attachment _escapedModelProxy;
 }

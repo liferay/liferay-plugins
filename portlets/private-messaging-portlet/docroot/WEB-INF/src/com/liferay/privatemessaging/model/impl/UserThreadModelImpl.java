@@ -350,17 +350,15 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-					UserThread.class.getName(), getPrimaryKey());
-		}
-
-		return _expandoBridge;
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
+			UserThread.class.getName(), getPrimaryKey());
 	}
 
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		getExpandoBridge().setAttributes(serviceContext);
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
 	}
 
 	@Override
@@ -587,7 +585,6 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	private boolean _deleted;
 	private boolean _originalDeleted;
 	private boolean _setOriginalDeleted;
-	private transient ExpandoBridge _expandoBridge;
 	private long _columnBitmask;
 	private UserThread _escapedModelProxy;
 }

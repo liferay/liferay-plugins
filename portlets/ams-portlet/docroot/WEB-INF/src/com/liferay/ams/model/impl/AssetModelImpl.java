@@ -309,17 +309,15 @@ public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-					Asset.class.getName(), getPrimaryKey());
-		}
-
-		return _expandoBridge;
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
+			Asset.class.getName(), getPrimaryKey());
 	}
 
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		getExpandoBridge().setAttributes(serviceContext);
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
 	}
 
 	@Override
@@ -547,6 +545,5 @@ public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 	private String _serialNumber;
 	private Date _inactiveDate;
 	private boolean _active;
-	private transient ExpandoBridge _expandoBridge;
 	private Asset _escapedModelProxy;
 }

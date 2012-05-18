@@ -359,17 +359,15 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-					Definition.class.getName(), getPrimaryKey());
-		}
-
-		return _expandoBridge;
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
+			Definition.class.getName(), getPrimaryKey());
 	}
 
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		getExpandoBridge().setAttributes(serviceContext);
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
 	}
 
 	@Override
@@ -633,6 +631,5 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 	private Date _orderDate;
 	private int _quantity;
 	private double _price;
-	private transient ExpandoBridge _expandoBridge;
 	private Definition _escapedModelProxy;
 }

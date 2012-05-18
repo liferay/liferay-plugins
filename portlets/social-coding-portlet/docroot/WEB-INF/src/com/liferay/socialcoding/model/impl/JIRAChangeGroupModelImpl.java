@@ -230,17 +230,15 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(0,
-					JIRAChangeGroup.class.getName(), getPrimaryKey());
-		}
-
-		return _expandoBridge;
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+			JIRAChangeGroup.class.getName(), getPrimaryKey());
 	}
 
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		getExpandoBridge().setAttributes(serviceContext);
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
 	}
 
 	@Override
@@ -400,7 +398,6 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 	private long _jiraIssueId;
 	private long _originalJiraIssueId;
 	private boolean _setOriginalJiraIssueId;
-	private transient ExpandoBridge _expandoBridge;
 	private long _columnBitmask;
 	private JIRAChangeGroup _escapedModelProxy;
 }

@@ -492,17 +492,15 @@ public class KaleoTaskAssignmentInstanceModelImpl extends BaseModelImpl<KaleoTas
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-					KaleoTaskAssignmentInstance.class.getName(), getPrimaryKey());
-		}
-
-		return _expandoBridge;
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
+			KaleoTaskAssignmentInstance.class.getName(), getPrimaryKey());
 	}
 
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		getExpandoBridge().setAttributes(serviceContext);
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
 	}
 
 	@Override
@@ -843,7 +841,6 @@ public class KaleoTaskAssignmentInstanceModelImpl extends BaseModelImpl<KaleoTas
 	private long _assigneeClassPK;
 	private boolean _completed;
 	private Date _completionDate;
-	private transient ExpandoBridge _expandoBridge;
 	private long _columnBitmask;
 	private KaleoTaskAssignmentInstance _escapedModelProxy;
 }

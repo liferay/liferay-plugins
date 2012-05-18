@@ -414,17 +414,15 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(0,
-					JIRAIssue.class.getName(), getPrimaryKey());
-		}
-
-		return _expandoBridge;
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+			JIRAIssue.class.getName(), getPrimaryKey());
 	}
 
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		getExpandoBridge().setAttributes(serviceContext);
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
 	}
 
 	@Override
@@ -709,7 +707,6 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 	private String _resolution;
 	private String _status;
 	private String _originalStatus;
-	private transient ExpandoBridge _expandoBridge;
 	private long _columnBitmask;
 	private JIRAIssue _escapedModelProxy;
 }

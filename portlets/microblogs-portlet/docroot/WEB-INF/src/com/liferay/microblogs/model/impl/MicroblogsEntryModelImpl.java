@@ -468,17 +468,15 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-					MicroblogsEntry.class.getName(), getPrimaryKey());
-		}
-
-		return _expandoBridge;
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
+			MicroblogsEntry.class.getName(), getPrimaryKey());
 	}
 
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		getExpandoBridge().setAttributes(serviceContext);
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
 	}
 
 	@Override
@@ -744,7 +742,6 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 	private long _originalReceiverMicroblogsEntryId;
 	private boolean _setOriginalReceiverMicroblogsEntryId;
 	private int _socialRelationType;
-	private transient ExpandoBridge _expandoBridge;
 	private long _columnBitmask;
 	private MicroblogsEntry _escapedModelProxy;
 }

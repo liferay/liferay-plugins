@@ -412,17 +412,15 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-					MeetupsEntry.class.getName(), getPrimaryKey());
-		}
-
-		return _expandoBridge;
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
+			MeetupsEntry.class.getName(), getPrimaryKey());
 	}
 
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		getExpandoBridge().setAttributes(serviceContext);
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
 	}
 
 	@Override
@@ -718,7 +716,6 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 	private int _maxAttendees;
 	private double _price;
 	private long _thumbnailId;
-	private transient ExpandoBridge _expandoBridge;
 	private long _columnBitmask;
 	private MeetupsEntry _escapedModelProxy;
 }

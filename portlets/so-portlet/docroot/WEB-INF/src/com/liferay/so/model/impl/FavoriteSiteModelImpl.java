@@ -230,17 +230,15 @@ public class FavoriteSiteModelImpl extends BaseModelImpl<FavoriteSite>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-					FavoriteSite.class.getName(), getPrimaryKey());
-		}
-
-		return _expandoBridge;
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
+			FavoriteSite.class.getName(), getPrimaryKey());
 	}
 
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		getExpandoBridge().setAttributes(serviceContext);
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
 	}
 
 	@Override
@@ -390,7 +388,6 @@ public class FavoriteSiteModelImpl extends BaseModelImpl<FavoriteSite>
 	private String _userUuid;
 	private long _originalUserId;
 	private boolean _setOriginalUserId;
-	private transient ExpandoBridge _expandoBridge;
 	private long _columnBitmask;
 	private FavoriteSite _escapedModelProxy;
 }

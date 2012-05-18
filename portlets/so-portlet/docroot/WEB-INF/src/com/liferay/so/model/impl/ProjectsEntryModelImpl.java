@@ -356,17 +356,15 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-					ProjectsEntry.class.getName(), getPrimaryKey());
-		}
-
-		return _expandoBridge;
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
+			ProjectsEntry.class.getName(), getPrimaryKey());
 	}
 
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		getExpandoBridge().setAttributes(serviceContext);
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
 	}
 
 	@Override
@@ -630,7 +628,6 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 	private Date _startDate;
 	private Date _endDate;
 	private String _data;
-	private transient ExpandoBridge _expandoBridge;
 	private long _columnBitmask;
 	private ProjectsEntry _escapedModelProxy;
 }

@@ -488,17 +488,15 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-					KaleoTimer.class.getName(), getPrimaryKey());
-		}
-
-		return _expandoBridge;
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
+			KaleoTimer.class.getName(), getPrimaryKey());
 	}
 
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		getExpandoBridge().setAttributes(serviceContext);
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
 	}
 
 	@Override
@@ -837,7 +835,6 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 	private String _scale;
 	private double _recurrenceDuration;
 	private String _recurrenceScale;
-	private transient ExpandoBridge _expandoBridge;
 	private long _columnBitmask;
 	private KaleoTimer _escapedModelProxy;
 }

@@ -428,17 +428,15 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-					KaleoNode.class.getName(), getPrimaryKey());
-		}
-
-		return _expandoBridge;
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
+			KaleoNode.class.getName(), getPrimaryKey());
 	}
 
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		getExpandoBridge().setAttributes(serviceContext);
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
 	}
 
 	@Override
@@ -738,7 +736,6 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 	private String _type;
 	private boolean _initial;
 	private boolean _terminal;
-	private transient ExpandoBridge _expandoBridge;
 	private long _columnBitmask;
 	private KaleoNode _escapedModelProxy;
 }
