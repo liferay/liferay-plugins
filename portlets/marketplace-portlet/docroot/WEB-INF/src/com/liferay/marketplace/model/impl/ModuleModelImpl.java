@@ -238,17 +238,15 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(0,
-					Module.class.getName(), getPrimaryKey());
-		}
-
-		return _expandoBridge;
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+			Module.class.getName(), getPrimaryKey());
 	}
 
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		getExpandoBridge().setAttributes(serviceContext);
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
 	}
 
 	@Override
@@ -409,7 +407,6 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 	private boolean _setOriginalAppId;
 	private String _contextName;
 	private String _originalContextName;
-	private transient ExpandoBridge _expandoBridge;
 	private long _columnBitmask;
 	private Module _escapedModelProxy;
 }

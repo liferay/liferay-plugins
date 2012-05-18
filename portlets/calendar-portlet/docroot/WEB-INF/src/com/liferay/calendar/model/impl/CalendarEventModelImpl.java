@@ -786,17 +786,15 @@ public class CalendarEventModelImpl extends BaseModelImpl<CalendarEvent>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-					CalendarEvent.class.getName(), getPrimaryKey());
-		}
-
-		return _expandoBridge;
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
+			CalendarEvent.class.getName(), getPrimaryKey());
 	}
 
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		getExpandoBridge().setAttributes(serviceContext);
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
 	}
 
 	@Override
@@ -1196,7 +1194,6 @@ public class CalendarEventModelImpl extends BaseModelImpl<CalendarEvent>
 	private int _remindBy;
 	private int _firstReminder;
 	private int _secondReminder;
-	private transient ExpandoBridge _expandoBridge;
 	private long _columnBitmask;
 	private CalendarEvent _escapedModelProxy;
 }

@@ -301,17 +301,15 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-					Checkout.class.getName(), getPrimaryKey());
-		}
-
-		return _expandoBridge;
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
+			Checkout.class.getName(), getPrimaryKey());
 	}
 
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		getExpandoBridge().setAttributes(serviceContext);
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
 	}
 
 	@Override
@@ -547,6 +545,5 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 	private Date _checkOutDate;
 	private Date _expectedCheckInDate;
 	private Date _actualCheckInDate;
-	private transient ExpandoBridge _expandoBridge;
 	private Checkout _escapedModelProxy;
 }

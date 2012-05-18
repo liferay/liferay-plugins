@@ -341,17 +341,15 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-					Feed.class.getName(), getPrimaryKey());
-		}
-
-		return _expandoBridge;
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
+			Feed.class.getName(), getPrimaryKey());
 	}
 
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		getExpandoBridge().setAttributes(serviceContext);
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
 	}
 
 	@Override
@@ -581,7 +579,6 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	private String _twitterScreenName;
 	private String _originalTwitterScreenName;
 	private long _lastStatusId;
-	private transient ExpandoBridge _expandoBridge;
 	private long _columnBitmask;
 	private Feed _escapedModelProxy;
 }

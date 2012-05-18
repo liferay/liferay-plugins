@@ -369,17 +369,15 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-					Gadget.class.getName(), getPrimaryKey());
-		}
-
-		return _expandoBridge;
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
+			Gadget.class.getName(), getPrimaryKey());
 	}
 
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		getExpandoBridge().setAttributes(serviceContext);
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
 	}
 
 	@Override
@@ -605,7 +603,6 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	private String _url;
 	private String _originalUrl;
 	private String _portletCategoryNames;
-	private transient ExpandoBridge _expandoBridge;
 	private long _columnBitmask;
 	private Gadget _escapedModelProxy;
 }

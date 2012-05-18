@@ -451,17 +451,15 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-					KBComment.class.getName(), getPrimaryKey());
-		}
-
-		return _expandoBridge;
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
+			KBComment.class.getName(), getPrimaryKey());
 	}
 
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		getExpandoBridge().setAttributes(serviceContext);
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
 	}
 
 	@Override
@@ -745,7 +743,6 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 	private boolean _setOriginalClassPK;
 	private String _content;
 	private boolean _helpful;
-	private transient ExpandoBridge _expandoBridge;
 	private long _columnBitmask;
 	private KBComment _escapedModelProxy;
 }
