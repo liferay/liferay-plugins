@@ -41,7 +41,7 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 	</div>
 
 	<div class="section-container">
-		<div class="section site-information" data-title='<%= LanguageUtil.get(pageContext, "add-site-information") %>' data-step='<%= LanguageUtil.format(pageContext, "step-x-of-x", new Integer[] {1, 2}) %>'>
+		<div class="section site-information" data-step='<%= LanguageUtil.format(pageContext, "step-x-of-x", new Integer[] {1, 2}) %>' data-title='<%= LanguageUtil.get(pageContext, "add-site-information") %>'>
 			<aui:fieldset>
 				<aui:input name="name" />
 
@@ -53,7 +53,7 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 		LayoutSetPrototype defaultLayoutSetPrototype = null;
 		%>
 
-		<div class="section site-settings aui-helper-hidden" data-title='<%= LanguageUtil.get(pageContext, "add-site-settings") %>' data-step='<%= LanguageUtil.format(pageContext, "step-x-of-x", new Integer[] {2, 2}) %>'>
+		<div class="section site-settings aui-helper-hidden" data-step='<%= LanguageUtil.format(pageContext, "step-x-of-x", new Integer[] {2, 2}) %>' data-title='<%= LanguageUtil.get(pageContext, "add-site-settings") %>'>
 			<div class="site-options">
 
 				<%
@@ -61,32 +61,32 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 				%>
 
 				<aui:select id="layoutSetPrototypeSelect" label="default-pages" name="layoutSetPrototypeId">
-						<aui:option label="none" selected="<%= true %>" value="0" />
+					<aui:option label="none" selected="<%= true %>" value="0" />
 
-						<%
-						for (LayoutSetPrototype layoutSetPrototype : layoutSetPrototypes) {
-							UnicodeProperties settingsProperties = layoutSetPrototype.getSettingsProperties();
+					<%
+					for (LayoutSetPrototype layoutSetPrototype : layoutSetPrototypes) {
+						UnicodeProperties settingsProperties = layoutSetPrototype.getSettingsProperties();
 
-							String customJspServletContextName = settingsProperties.getProperty("customJspServletContextName", StringPool.BLANK);
+						String customJspServletContextName = settingsProperties.getProperty("customJspServletContextName", StringPool.BLANK);
 
-							if (!customJspServletContextName.equals("so-hook")) {
-								continue;
-							}
-
-							String layoutSetPrototypeKey = (String)layoutSetPrototype.getExpandoBridge().getAttribute(SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY);
-
-							boolean layoutSetPrototypeSite = layoutSetPrototypeKey.equals(SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_SITE);
-
-							if (layoutSetPrototypeSite) {
-								defaultLayoutSetPrototype = layoutSetPrototype;
-							}
-						%>
-
-							<aui:option selected="<%= layoutSetPrototypeSite %>" value="<%= layoutSetPrototype.getLayoutSetPrototypeId() %>"><%= layoutSetPrototype.getName(user.getLanguageId()) %></aui:option>
-
-						<%
+						if (!customJspServletContextName.equals("so-hook")) {
+							continue;
 						}
-						%>
+
+						String layoutSetPrototypeKey = (String)layoutSetPrototype.getExpandoBridge().getAttribute(SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY);
+
+						boolean layoutSetPrototypeSite = layoutSetPrototypeKey.equals(SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_SITE);
+
+						if (layoutSetPrototypeSite) {
+							defaultLayoutSetPrototype = layoutSetPrototype;
+						}
+					%>
+
+						<aui:option selected="<%= layoutSetPrototypeSite %>" value="<%= layoutSetPrototype.getLayoutSetPrototypeId() %>"><%= layoutSetPrototype.getName(user.getLanguageId()) %></aui:option>
+
+					<%
+					}
+					%>
 
 				</aui:select>
 
@@ -107,7 +107,6 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 
 				<aui:layout>
 					<aui:column columnWidth="<%= 30 %>" first="<%= true %>">
-
 						<span class="included-pages"><liferay-ui:message key="included-pages" />:</span>
 
 						<aui:input name="deleteLayoutIds" type="hidden" />
@@ -136,6 +135,7 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 							</c:if>
 						</div>
 					</aui:column>
+
 					<aui:column columnWidth="<%= 70 %>">
 						<div class="type-details">
 							<div class="permission">
@@ -143,7 +143,7 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 							</div>
 
 							<div class="message">
-								<liferay-ui:message key="open-site-is-listed-pages-are-public-and-users-are-free-to-join-to-collaborate" />
+								<liferay-ui:message key="open-sites-are-listed-pages-are-public-and-users-are-free-to-join-and-collaborate" />
 							</div>
 						</div>
 					</aui:column>
@@ -159,9 +159,9 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 			<aui:button id="next" onClick='<%= renderResponse.getNamespace() + "next()" %>' value="next" />
 		</div>
 
-		<div id="<portlet:namespace />step" class="step">
+		<div class="step" id="<portlet:namespace />step">
 			<span>
-				<liferay-ui:message key="step-x-of-x" arguments="<%= new Integer[] {1, 2}%>" />
+				<liferay-ui:message arguments="<%= new Integer[] {1, 2}%>" key="step-x-of-x" />
 			</span>
 		</div>
 
@@ -383,16 +383,16 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 			var message = "";
 
 			if (type == <%= GroupConstants.TYPE_SITE_OPEN %>) {
-				message = '<%= UnicodeLanguageUtil.get(pageContext, "open-site-is-listed-pages-are-public-and-users-are-free-to-join-to-collaborate") %>';
+				message = '<%= UnicodeLanguageUtil.get(pageContext, "open-sites-are-listed-pages-are-public-and-users-are-free-to-join-and-collaborate") %>';
 			}
 			else if (type == <%= GroupConstants.TYPE_SITE_PUBLIC_RESTRICTED %>) {
-				message = '<%= UnicodeLanguageUtil.get(pageContext, "public-restricted-site-is-listed-pages-are-public-and-users-must-request-to-join-to-collaborate") %>';
+				message = '<%= UnicodeLanguageUtil.get(pageContext, "public-restricted-sites-are-listed-pages-are-public-and-users-must-request-to-join-and-collaborate") %>';
 			}
 			else if (type == <%= GroupConstants.TYPE_SITE_PRIVATE_RESTRICTED %>) {
-				message = '<%= UnicodeLanguageUtil.get(pageContext, "private-restricted-site-is-listed-pages-are-private-and-users-must-request-to-join-to-collaborate") %>';
+				message = '<%= UnicodeLanguageUtil.get(pageContext, "private-restricted-sites-are-listed-pages-are-private-and-users-must-request-to-join-and-collaborate") %>';
 			}
 			else if (type == <%= GroupConstants.TYPE_SITE_PRIVATE %>) {
-				message = '<%= UnicodeLanguageUtil.get(pageContext, "private-site-is-not-listed-pages-are-private-and-users-may-join-by-invitation-only-to-view-and-collaborate") %>';
+				message = '<%= UnicodeLanguageUtil.get(pageContext, "private-sites-are-not-listed-pages-are-private-and-users-must-be-invited-to-collaborate") %>';
 			}
 
 			A.one('.so-portlet-sites-dialog .type-details .message').html(message);
