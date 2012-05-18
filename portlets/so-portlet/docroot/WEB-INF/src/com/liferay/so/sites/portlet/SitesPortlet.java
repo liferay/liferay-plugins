@@ -506,13 +506,15 @@ public class SitesPortlet extends MVCPortlet {
 		String description = ParamUtil.getString(actionRequest, "description");
 		long layoutSetPrototypeId = ParamUtil.getLong(
 			actionRequest, "layoutSetPrototypeId");
+
 		int type = ParamUtil.getInteger(actionRequest, "type");
 
 		boolean privateLayout = false;
 
 		if (type == GroupConstants.TYPE_SITE_PRIVATE_RESTRICTED) {
-			privateLayout = true;
 			type = GroupConstants.TYPE_SITE_RESTRICTED;
+
+			privateLayout = true;
 		}
 		else if (type == GroupConstants.TYPE_SITE_PUBLIC_RESTRICTED) {
 			type = GroupConstants.TYPE_SITE_RESTRICTED;
