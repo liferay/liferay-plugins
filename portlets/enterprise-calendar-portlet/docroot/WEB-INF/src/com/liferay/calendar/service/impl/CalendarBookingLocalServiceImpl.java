@@ -357,6 +357,32 @@ public class CalendarBookingLocalServiceImpl
 		return calendarBooking;
 	}
 
+	public CalendarBooking updateCalendarBooking(
+			long userId, long calendarBookingId, long calendarId,
+			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
+			String location, Date startDate, Date endDate, boolean allDay,
+			String recurrence, int firstReminder, int secondReminder,
+			int status, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		List<CalendarBooking> childCalendarBookings =
+			calendarBookingPersistence.findByParentCalendarBookingId(
+				calendarBookingId);
+
+		long[] childCalendarIds = new long[childCalendarBookings.size()];
+
+		for (int i = 0; i < childCalendarIds.length; i++) {
+			CalendarBooking calendarBooking = childCalendarBookings.get(i);
+
+			childCalendarIds[i] = calendarBooking.getCalendarId();
+		}
+
+		return updateCalendarBooking(
+			userId, calendarBookingId, calendarId, childCalendarIds, titleMap,
+			descriptionMap, location, startDate, endDate, allDay, recurrence,
+			firstReminder, secondReminder, status, serviceContext);
+	}
+
 	public CalendarBooking updateStatus(
 			long userId, long calendarBookingId, int status,
 			ServiceContext serviceContext)

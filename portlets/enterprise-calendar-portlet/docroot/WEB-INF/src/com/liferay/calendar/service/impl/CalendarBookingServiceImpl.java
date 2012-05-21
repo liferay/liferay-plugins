@@ -246,6 +246,23 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			recurrence, firstReminder, secondReminder, status, serviceContext);
 	}
 
+	public CalendarBooking updateCalendarBooking(
+			long calendarBookingId, long calendarId,
+			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
+			String location, Date startDate, Date endDate, boolean allDay,
+			String recurrence, int firstReminder, int secondReminder,
+			int status, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		CalendarPermission.check(
+			getPermissionChecker(), calendarId, ActionKeys.MANAGE_BOOKINGS);
+
+		return calendarBookingLocalService.updateCalendarBooking(
+			getUserId(), calendarBookingId, calendarId, titleMap,
+			descriptionMap, location, startDate, endDate, allDay, recurrence,
+			firstReminder, secondReminder, status, serviceContext);
+	}
+
 	protected CalendarBooking filterCalendarBooking(
 			CalendarBooking calendarBooking)
 		throws PortalException, SystemException {
