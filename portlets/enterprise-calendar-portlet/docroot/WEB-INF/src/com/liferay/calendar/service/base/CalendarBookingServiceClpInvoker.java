@@ -114,6 +114,15 @@ public class CalendarBookingServiceClpInvoker {
 		_methodName57 = "updateCalendarBooking";
 
 		_methodParameterTypes57 = new String[] {
+				"long", "long", "java.util.Map", "java.util.Map",
+				"java.lang.String", "java.util.Date", "java.util.Date",
+				"boolean", "java.lang.String", "int", "int", "int",
+				"com.liferay.portal.service.ServiceContext"
+			};
+
+		_methodName58 = "updateCalendarBooking";
+
+		_methodParameterTypes58 = new String[] {
 				"long", "long", "long[][]", "java.util.Map", "java.util.Map",
 				"java.lang.String", "java.util.Date", "java.util.Date",
 				"boolean", "java.lang.String", "int", "int", "int",
@@ -242,6 +251,22 @@ public class CalendarBookingServiceClpInvoker {
 		if (_methodName57.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
 			return CalendarBookingServiceUtil.updateCalendarBooking(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				(java.util.Map<java.util.Locale, java.lang.String>)arguments[2],
+				(java.util.Map<java.util.Locale, java.lang.String>)arguments[3],
+				(java.lang.String)arguments[4], (java.util.Date)arguments[5],
+				(java.util.Date)arguments[6],
+				((Boolean)arguments[7]).booleanValue(),
+				(java.lang.String)arguments[8],
+				((Integer)arguments[9]).intValue(),
+				((Integer)arguments[10]).intValue(),
+				((Integer)arguments[11]).intValue(),
+				(com.liferay.portal.service.ServiceContext)arguments[12]);
+		}
+
+		if (_methodName58.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
+			return CalendarBookingServiceUtil.updateCalendarBooking(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(), (long[])arguments[2],
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[3],
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[4],
@@ -290,4 +315,6 @@ public class CalendarBookingServiceClpInvoker {
 	private String[] _methodParameterTypes56;
 	private String _methodName57;
 	private String[] _methodParameterTypes57;
+	private String _methodName58;
+	private String[] _methodParameterTypes58;
 }
