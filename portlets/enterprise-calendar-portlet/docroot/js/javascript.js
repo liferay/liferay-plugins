@@ -598,11 +598,6 @@
 		var SchedulerEvent = A.Component.create(
 			{
 				ATTRS: {
-					allDay: {
-						setter: A.DataType.Boolean.parse,
-						value: false
-					},
-
 					calendarBookingId: {
 						setter: toNumber,
 						value: 0
@@ -718,11 +713,6 @@
 		var SchedulerEventRecorder = A.Component.create(
 			{
 				ATTRS: {
-					allDay: {
-						setter: A.DataType.Boolean.parse,
-						value: false
-					},
-
 					calendarId: {
 						setter: toNumber,
 						value: 0
@@ -798,14 +788,6 @@
 						var instance = this;
 
 						return false;
-					},
-
-					populateForm: function() {
-						var instance = this;
-
-						instance._syncViewDefData();
-
-						SchedulerEventRecorder.superclass.populateForm.apply(this, arguments);
 					},
 
 					_handleAcceptEvent: function(event) {
@@ -988,20 +970,6 @@
 						var estimatedOverlayWidth = 50 + toolbar.get('boundingBox').get('offsetWidth');
 
 						overlay.set('width', Math.max(300, estimatedOverlayWidth));
-					},
-
-					_syncViewDefData: function() {
-						var instance = this;
-
-						var scheduler = instance.get('scheduler');
-						var activeViewName = scheduler.get('activeView').get('name');
-
-						if (activeViewName === 'month') {
-							instance.set('allDay', true);
-						}
-						else {
-							instance.set('allDay', false);
-						}
 					}
 				}
 			}
