@@ -35,24 +35,28 @@ directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("di
 		<aui:form name="fm">
 			<aui:fieldset>
 				<c:choose>
-					<c:when test="<%= directionsInputEnabled %>">
-						<aui:input cssClass="address-field" inlineField="<%= true %>" label='<%= mapInputEnabled ? "from" : "directions-from" %>' name="directionsAddress" type="text" value="<%= directionsAddress %>" />
-					</c:when>
-					<c:otherwise>
-						<aui:input name="directionsAddress" type="hidden" value="<%= directionsAddress %>" />
-					</c:otherwise>
-				</c:choose>
-
-				<c:choose>
 					<c:when test="<%= mapInputEnabled %>">
-						<aui:input cssClass="address-field" inlineField="<%= true %>" label='<%= directionsInputEnabled ? "to" : StringPool.BLANK %>' name="mapAddress" type="text" value="<%= mapAddress %>" />
+						<aui:input cssClass="address-field" inlineField="<%= true %>" label='<%= mapInputEnabled ? "from" : "directions-from" %>' name="mapAddress" type="text" value="<%= mapAddress %>" />
 					</c:when>
 					<c:otherwise>
 						<aui:input name="mapAddress" type="hidden" value="<%= mapAddress %>" />
 					</c:otherwise>
 				</c:choose>
 
-				<c:if test="<%= directionsInputEnabled %>">
+				<c:choose>
+					<c:when test="<%= directionsInputEnabled %>">
+						<aui:input cssClass="address-field" inlineField="<%= true %>" label='<%= directionsInputEnabled ? "to" : StringPool.BLANK %>' name="directionsAddress" type="text" value="<%= directionsAddress %>" />
+					</c:when>
+					<c:otherwise>
+						<aui:input name="directionsAddress" type="hidden" value="<%= directionsAddress %>" />
+					</c:otherwise>
+				</c:choose>
+
+				<c:if test="<%= mapInputEnabled %>">
+					<aui:button name="getMapButton" value="get-map" />
+				</c:if>
+
+				<c:if test="<%= Validator.isNotNull(directionsAddress) %>">
 					<aui:button name="getDirectionsButton" value="get-directions" />
 				</c:if>
 
@@ -68,10 +72,6 @@ directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("di
 						<aui:input name="travellingMode" type="hidden" value="<%= GoogleMapsConstants.DRIVING %>" />
 					</c:otherwise>
 				</c:choose>
-
-				<c:if test="<%= mapInputEnabled %>">
-					<aui:button name="getMapButton" value="get-map" />
-				</c:if>
 
 				<div style="padding-top: 5px;"></div>
 
