@@ -72,79 +72,78 @@ if (user2 != null) {
 
 	contactsToolbarChildren.push(
 		{
-			cssClass: '<%= showAddAsConnectionButton ? "" : "aui-helper-hidden" %>',
 			handler: function(event) {
 				<portlet:namespace />relationAction(event, '<portlet:actionURL name="requestSocialRelation"><portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_BI_CONNECTION) %>" /></portlet:actionURL>');
 			},
 			icon: 'add-coworker',
 			id: '<portlet:namespace />addConnectionButton',
-			label: '<%= UnicodeLanguageUtil.get(pageContext, "add-connection") %>'
+			label: '<%= UnicodeLanguageUtil.get(pageContext, "add-connection") %>',
+			visible: <%= showAddAsConnectionButton %>
 		}
 	);
 
 	contactsToolbarChildren.push(
 		{
-			cssClass: '<%= showRemoveAsConnectionButton ? "" : "aui-helper-hidden" %>',
 			handler: function(event) {
 				<portlet:namespace />relationAction(event, '<portlet:actionURL name="deleteSocialRelation"><portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_BI_CONNECTION) %>" /></portlet:actionURL>');
 			},
 			icon: 'remove-coworker',
 			id: '<portlet:namespace />removeConnectionButton',
-			label: '<%= UnicodeLanguageUtil.get(pageContext, "remove-connection") %>'
+			label: '<%= UnicodeLanguageUtil.get(pageContext, "remove-connection") %>',
+			visible: <%= showRemoveAsConnectionButton %>
 		}
 	);
 
 	contactsToolbarChildren.push(
 		{
-			cssClass: '<%= showFollowButton ? "" : "aui-helper-hidden" %>',
 			handler: function(event) {
 				<portlet:namespace />relationAction(event, '<portlet:actionURL name="addSocialRelation"><portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_FOLLOWER) %>" /></portlet:actionURL>');
 			},
 			icon: 'follow',
 			id: '<portlet:namespace />followButton',
-			label: '<%= UnicodeLanguageUtil.get(pageContext, "follow") %>'
+			label: '<%= UnicodeLanguageUtil.get(pageContext, "follow") %>',
+			visible: <%= showFollowButton %>
 		}
 	);
 
 	contactsToolbarChildren.push(
 		{
-			cssClass: '<%= showUnFollowButton ? "" : "aui-helper-hidden" %>',
 			handler: function(event) {
 				<portlet:namespace />relationAction(event, '<portlet:actionURL name="deleteSocialRelation"><portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_FOLLOWER) %>" /></portlet:actionURL>');
 			},
 			icon: 'unfollow',
 			id: '<portlet:namespace />unfollowButton',
-			label: '<%= UnicodeLanguageUtil.get(pageContext, "unfollow") %>'
+			label: '<%= UnicodeLanguageUtil.get(pageContext, "unfollow") %>',
+			visible: <%= showUnFollowButton %>,
 		}
 	);
 
 	contactsToolbarChildren.push(
 		{
-			cssClass: '<%= showBlockButton ? "" : "aui-helper-hidden" %>',
 			handler: function(event) {
 				<portlet:namespace />relationAction(event, '<portlet:actionURL name="addSocialRelation"><portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_ENEMY) %>" /></portlet:actionURL>');
 			},
 			icon: 'block',
 			id: '<portlet:namespace />blockButton',
-			label: '<%= UnicodeLanguageUtil.get(pageContext, "block") %>'
+			label: '<%= UnicodeLanguageUtil.get(pageContext, "block") %>',
+			visible: <%= showBlockButton %>
 		}
 	);
 
 	contactsToolbarChildren.push(
 		{
-			cssClass: '<%= showUnBlockButton ? "" : "aui-helper-hidden" %>',
 			handler: function(event) {
 				<portlet:namespace />relationAction(event, '<portlet:actionURL name="deleteSocialRelation"><portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_ENEMY) %>" /></portlet:actionURL>');
 			},
 			icon: 'unblock',
 			id: '<portlet:namespace />unblockButton',
-			label: '<%= UnicodeLanguageUtil.get(pageContext, "unblock") %>'
+			label: '<%= UnicodeLanguageUtil.get(pageContext, "unblock") %>',
+			visible: <%= showUnBlockButton %>
 		}
 	);
 
 	contactsToolbarChildren.push(
 		{
-			cssClass: '<%= (user2 == null) ? "aui-helper-hidden" : "" %>',
 			handler: function(event) {
 				<c:choose>
 					<c:when test="<%= (user2 == null) %>">
