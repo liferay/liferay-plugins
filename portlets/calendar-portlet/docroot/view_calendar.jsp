@@ -253,7 +253,7 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 
 					var calendar = event.target;
 
-					Liferay.Store('enterprise-calendar-portlet-calendar-' + calendar.get('calendarId') + '-visible', event.newVal);
+					Liferay.Store('calendar-portlet-calendar-' + calendar.get('calendarId') + '-visible', event.newVal);
 				}
 			},
 			portletNamespace: '<portlet:namespace />',
@@ -289,7 +289,7 @@ protected void updateCalendarsJSONArrayVisibility(HttpServletRequest request, JS
 
 		long calendarId = jsonObject.getLong("calendarId");
 
-		jsonObject.put("visible", GetterUtil.getBoolean(SessionClicks.get(request, "enterprise-calendar-portlet-calendar-" + calendarId + "-visible", "true")));
+		jsonObject.put("visible", GetterUtil.getBoolean(SessionClicks.get(request, "calendar-portlet-calendar-" + calendarId + "-visible", "true")));
 	}
 }
 %>

@@ -20,6 +20,6 @@ package com.liferay.calendar.util;
  */
 public class PortletKeys extends com.liferay.portal.util.PortletKeys {
 
-	public static final String CALENDAR = "1_WAR_enterprisecalendarportlet";
+	public static final String CALENDAR = "1_WAR_calendarportlet";
 
 }

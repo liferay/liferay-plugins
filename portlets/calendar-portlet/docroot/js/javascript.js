@@ -51,7 +51,7 @@
 
 				instance.invoke(
 					{
-						'/enterprise-calendar-portlet/calendarbooking/add-calendar-booking': {
+						'/calendar-portlet/calendarbooking/add-calendar-booking': {
 							allDay: schedulerEvent.get('allDay'),
 							calendarId: schedulerEvent.get('calendarId'),
 							childCalendarIds: '',
@@ -169,7 +169,7 @@
 
 				instance.invoke(
 					{
-						'/enterprise-calendar-portlet/calendarbooking/delete-calendar-booking': {
+						'/calendar-portlet/calendarbooking/delete-calendar-booking': {
 							calendarBookingId: schedulerEvent.get('calendarBookingId')
 						}
 					},
@@ -233,7 +233,7 @@
 
 				instance.invoke(
 					{
-						'$booking = /enterprise-calendar-portlet/calendarbooking/search': {
+						'$booking = /calendar-portlet/calendarbooking/search': {
 							calendarIds: calendarIds.join(','),
 							calendarResourceIds: '',
 							companyId: COMPANY_ID,
@@ -327,7 +327,7 @@
 
 				instance.invoke(
 					{
-						'/enterprise-calendar-portlet/calendarbooking/invoke-transition': {
+						'/calendar-portlet/calendarbooking/invoke-transition': {
 							calendarBookingId: schedulerEvent.get('calendarBookingId'),
 							transitionName: CalendarUtil.getStatusLabel(status).toLowerCase(),
 							userId: USER_ID
@@ -425,7 +425,7 @@
 
 				instance.invoke(
 					{
-						'/enterprise-calendar-portlet/calendarbooking/update-calendar-booking': {
+						'/calendar-portlet/calendarbooking/update-calendar-booking': {
 							allDay: schedulerEvent.get('allDay'),
 							calendarBookingId: schedulerEvent.get('calendarBookingId'),
 							calendarId: schedulerEvent.get('calendarId'),
@@ -1054,7 +1054,7 @@
 
 						CalendarUtil.invoke(
 							{
-								'/enterprise-calendar-portlet/calendar/update-color': {
+								'/calendar-portlet/calendar/update-color': {
 									calendarId: instance.get('calendarId'),
 									color: parseInt(event.newVal.substr(1), 16)
 								}
