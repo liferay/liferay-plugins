@@ -116,10 +116,11 @@
 
 					instance.set('hiddenItems', hiddenItems);
 
+					<portlet:namespace />colorPicker.set('host', instance);
+
 					<portlet:namespace />colorPicker.setAttrs(
 						{
 							color: calendar.get('color'),
-							host: instance,
 							visible: true
 						}
 					);
