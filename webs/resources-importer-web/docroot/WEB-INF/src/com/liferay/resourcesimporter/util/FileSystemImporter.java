@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -138,6 +139,8 @@ public class FileSystemImporter extends BaseImporter {
 			Map<Locale, String> titleMap = getNameMap(title);
 
 			String content = new String(FileUtil.getBytes(file));
+
+			content = HtmlUtil.escape(content);
 
 			content = processJournalArticleContent(content);
 
@@ -502,7 +505,7 @@ public class FileSystemImporter extends BaseImporter {
 			matcher.reset(content);
 		}
 
-		if (content.contains("<?xml version=\"1.0\" encoding=\"UTF-8\"?>")) {
+		if (content.contains("<?xml version=\"1.0\"")) {
 			return content;
 		}
 
