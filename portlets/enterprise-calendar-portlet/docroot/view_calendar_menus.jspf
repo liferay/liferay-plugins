@@ -119,16 +119,14 @@
 					<portlet:namespace />colorPicker.setAttrs(
 						{
 							color: calendar.get('color'),
-							host: instance
+							host: instance,
+							visible: true
 						}
 					);
 
-					window.<portlet:namespace />colorPicker.set('host', instance);
-					window.<portlet:namespace />colorPicker.set('color', calendar.get('color'));
-
 					var colorPickerContainer = instance.get('boundingBox').one('.calendar-portlet-color-picker');
 
-					window.<portlet:namespace />colorPicker.render(colorPickerContainer);
+					colorPickerContainer.append(window.<portlet:namespace />colorPicker.get('boundingBox'));
 				}
 			}
 		}
@@ -146,11 +144,14 @@
 						var calendarList = simpleMenu.get('host');
 
 						calendarList.activeItem.set('color', event.newVal);
+
+						simpleMenu.set('visible', false);
 					}
 				}
-			}
+			},
+			visible: false
 		}
-	);
+	).render();
 
 	A.one('#<portlet:namespace />calendarListContainer').delegate(
 		'click',
