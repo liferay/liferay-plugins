@@ -37,7 +37,7 @@ List<Calendar> otherCalendars = new ArrayList<Calendar>();
 long[] calendarIds = StringUtil.split(SessionClicks.get(request, "otherCalendars", StringPool.BLANK), 0L);
 
 for (long calendarId : calendarIds) {
-	Calendar calendar = CalendarServiceUtil.fetchCalendar(calendarId);
+	Calendar calendar = CalendarLocalServiceUtil.fetchCalendar(calendarId);
 
 	if ((calendar != null) && (CalendarPermission.contains(permissionChecker, calendar, ActionKeys.VIEW))) {
 		otherCalendars.add(calendar);
