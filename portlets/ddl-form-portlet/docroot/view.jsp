@@ -45,7 +45,7 @@ try {
 				<liferay-ui:error exception="<%= StorageFieldRequiredException.class %>" message="please-fill-out-all-required-fields" />
 
 				<c:choose>
-					<c:when test="<%= themeDisplay.isSignedIn() %>">
+					<c:when test="<%= themeDisplay.isSignedIn() || multipleSubmissions %>">
 						<c:choose>
 							<c:when test="<%= multipleSubmissions || !(DDLFormUtil.hasSubmitted(request, recordSet.getRecordSetId())) %>">
 								<aui:fieldset>
