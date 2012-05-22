@@ -958,6 +958,11 @@ AUI.add(
 						if (user.block) {
 							blockButton.hide();
 							unblockButton.show();
+
+							addConnectionButton.hide();
+							removeConnectionButton.hide();
+							followButton.hide();
+							unfollowButton.hide();
 						}
 						else {
 							blockButton.show();
