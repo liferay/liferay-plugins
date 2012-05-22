@@ -365,14 +365,14 @@ public class CalendarBookingLocalServiceImpl
 			int status, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		List<CalendarBooking> childCalendarBookings =
+		List<CalendarBooking> calendarBookings =
 			calendarBookingPersistence.findByParentCalendarBookingId(
 				calendarBookingId);
 
-		long[] childCalendarIds = new long[childCalendarBookings.size()];
+		long[] childCalendarIds = new long[calendarBookings.size()];
 
 		for (int i = 0; i < childCalendarIds.length; i++) {
-			CalendarBooking calendarBooking = childCalendarBookings.get(i);
+			CalendarBooking calendarBooking = calendarBookings.get(i);
 
 			childCalendarIds[i] = calendarBooking.getCalendarId();
 		}
