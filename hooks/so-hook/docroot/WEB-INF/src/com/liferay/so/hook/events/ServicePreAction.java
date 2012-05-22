@@ -34,8 +34,15 @@ import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.util.PortletKeys;
+import com.liferay.portlet.PortletURLFactoryUtil;
 
 import java.util.List;
+
+import javax.portlet.PortletMode;
+import javax.portlet.PortletRequest;
+import javax.portlet.PortletURL;
+import javax.portlet.WindowState;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -80,7 +87,8 @@ public class ServicePreAction extends Action {
 		}
 		else if (isDirectoryView(request, currentURL)) {
 			redirect = getUserRedirect(
-				themeDisplay, ParamUtil.getLong(request, "_11_p_u_i_d"));
+				themeDisplay, request,
+				ParamUtil.getLong(request, "_11_p_u_i_d"));
 		}
 
 		if (Validator.isNotNull(redirect)) {
@@ -114,7 +122,8 @@ public class ServicePreAction extends Action {
 			Group group = GroupLocalServiceUtil.getGroup(groupId);
 
 			if (group.isUser()) {
-				return getUserRedirect(themeDisplay, group.getClassPK());
+				return getUserRedirect(
+					themeDisplay, request, group.getClassPK());
 			}
 
 			return getGroupRedirect(themeDisplay, group.getGroupId());
@@ -123,13 +132,29 @@ public class ServicePreAction extends Action {
 		return null;
 	}
 
-	protected String getUserRedirect(ThemeDisplay themeDisplay, long userId)
+	protected String getUserRedirect(
+			ThemeDisplay themeDisplay, HttpServletRequest request, long userId)
 		throws Exception {
 
 		User user = UserLocalServiceUtil.getUser(userId);
 
-		return themeDisplay.getPathFriendlyURLPublic() + "/" +
-			user.getScreenName() + "/so/profile";
+		if (!user.hasPrivateLayouts()) {
+			return null;
+		}
+
+		PortletURL portletURL = PortletURLFactoryUtil.create(
+			request, PortletKeys.SITE_REDIRECTOR, themeDisplay.getPlid(),
+			PortletRequest.ACTION_PHASE);
+
+		portletURL.setWindowState(WindowState.NORMAL);
+		portletURL.setPortletMode(PortletMode.VIEW);
+
+		portletURL.setParameter(
+			"groupId", String.valueOf(user.getGroup().getGroupId()));
+		portletURL.setParameter("privateLayout", Boolean.TRUE.toString());
+		portletURL.setParameter("struts_action", "/my_sites/view");
+
+		return portletURL.toString();
 	}
 
 	protected boolean isDirectoryView(
