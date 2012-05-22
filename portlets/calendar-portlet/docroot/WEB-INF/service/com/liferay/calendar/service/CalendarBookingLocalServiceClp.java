@@ -194,19 +194,19 @@ public class CalendarBookingLocalServiceClp
 		_methodName32 = "updateCalendarBooking";
 
 		_methodParameterTypes32 = new String[] {
-				"long", "long", "long", "java.util.Map", "java.util.Map",
-				"java.lang.String", "java.util.Date", "java.util.Date",
-				"boolean", "java.lang.String", "int", "int", "int",
-				"com.liferay.portal.service.ServiceContext"
+				"long", "long", "long", "long[][]", "java.util.Map",
+				"java.util.Map", "java.lang.String", "java.util.Date",
+				"java.util.Date", "boolean", "java.lang.String", "int", "int",
+				"int", "com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName33 = "updateCalendarBooking";
 
 		_methodParameterTypes33 = new String[] {
-				"long", "long", "long", "long[][]", "java.util.Map",
-				"java.util.Map", "java.lang.String", "java.util.Date",
-				"java.util.Date", "boolean", "java.lang.String", "int", "int",
-				"int", "com.liferay.portal.service.ServiceContext"
+				"long", "long", "long", "java.util.Map", "java.util.Map",
+				"java.lang.String", "java.util.Date", "java.util.Date",
+				"boolean", "java.lang.String", "int", "int", "int",
+				"com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName34 = "updateStatus";
@@ -1296,6 +1296,7 @@ public class CalendarBookingLocalServiceClp
 
 	public com.liferay.calendar.model.CalendarBooking updateCalendarBooking(
 		long userId, long calendarBookingId, long calendarId,
+		long[] childCalendarIds,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String location, java.util.Date startDate,
@@ -1315,6 +1316,8 @@ public class CalendarBookingLocalServiceClp
 					calendarBookingId,
 						
 					calendarId,
+						
+					ClpSerializer.translateInput(childCalendarIds),
 						
 					ClpSerializer.translateInput(titleMap),
 						
@@ -1364,7 +1367,6 @@ public class CalendarBookingLocalServiceClp
 
 	public com.liferay.calendar.model.CalendarBooking updateCalendarBooking(
 		long userId, long calendarBookingId, long calendarId,
-		long[] childCalendarIds,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String location, java.util.Date startDate,
@@ -1384,8 +1386,6 @@ public class CalendarBookingLocalServiceClp
 					calendarBookingId,
 						
 					calendarId,
-						
-					ClpSerializer.translateInput(childCalendarIds),
 						
 					ClpSerializer.translateInput(titleMap),
 						

@@ -1,4 +1,4 @@
-Liferay.Service.register("Liferay.Service.Calendar", "com.liferay.calendar.service", "enterprise-calendar-portlet");
+Liferay.Service.register("Liferay.Service.Calendar", "com.liferay.calendar.service", "calendar-portlet");
 
 Liferay.Service.registerClass(
 	Liferay.Service.Calendar, "Calendar",

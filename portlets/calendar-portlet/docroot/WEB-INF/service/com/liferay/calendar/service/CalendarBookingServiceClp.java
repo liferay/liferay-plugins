@@ -114,7 +114,7 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 		_methodName16 = "updateCalendarBooking";
 
 		_methodParameterTypes16 = new String[] {
-				"long", "long", "java.util.Map", "java.util.Map",
+				"long", "long", "long[][]", "java.util.Map", "java.util.Map",
 				"java.lang.String", "java.util.Date", "java.util.Date",
 				"boolean", "java.lang.String", "int", "int", "int",
 				"com.liferay.portal.service.ServiceContext"
@@ -123,7 +123,7 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 		_methodName17 = "updateCalendarBooking";
 
 		_methodParameterTypes17 = new String[] {
-				"long", "long", "long[][]", "java.util.Map", "java.util.Map",
+				"long", "long", "java.util.Map", "java.util.Map",
 				"java.lang.String", "java.util.Date", "java.util.Date",
 				"boolean", "java.lang.String", "int", "int", "int",
 				"com.liferay.portal.service.ServiceContext"
@@ -769,7 +769,7 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 	}
 
 	public com.liferay.calendar.model.CalendarBooking updateCalendarBooking(
-		long calendarBookingId, long calendarId,
+		long calendarBookingId, long calendarId, long[] childCalendarIds,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String location, java.util.Date startDate,
@@ -787,6 +787,8 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 						calendarBookingId,
 						
 					calendarId,
+						
+					ClpSerializer.translateInput(childCalendarIds),
 						
 					ClpSerializer.translateInput(titleMap),
 						
@@ -835,7 +837,7 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 	}
 
 	public com.liferay.calendar.model.CalendarBooking updateCalendarBooking(
-		long calendarBookingId, long calendarId, long[] childCalendarIds,
+		long calendarBookingId, long calendarId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String location, java.util.Date startDate,
@@ -853,8 +855,6 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 						calendarBookingId,
 						
 					calendarId,
-						
-					ClpSerializer.translateInput(childCalendarIds),
 						
 					ClpSerializer.translateInput(titleMap),
 						
