@@ -71,6 +71,7 @@
 			SELECT
 				id, name, portalUser
 			FROM
+			(
 				SELECT
 					userId as id, lastName as name, 1 as portalUser
 				FROM
