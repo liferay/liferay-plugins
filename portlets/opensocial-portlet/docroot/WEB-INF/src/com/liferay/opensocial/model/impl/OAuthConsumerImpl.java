@@ -19,8 +19,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 /**
  * @author Michael Young
  */
-public class OAuthConsumerImpl
-	extends OAuthConsumerBaseImpl {
+public class OAuthConsumerImpl extends OAuthConsumerBaseImpl {
 
 	public OAuthConsumerImpl() {
 	}

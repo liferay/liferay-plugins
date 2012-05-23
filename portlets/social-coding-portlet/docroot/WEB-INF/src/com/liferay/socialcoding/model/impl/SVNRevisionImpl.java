@@ -30,8 +30,7 @@ import java.text.MessageFormat;
 /**
  * @author Brian Wing Shun Chan
  */
-public class SVNRevisionImpl
-	extends SVNRevisionBaseImpl {
+public class SVNRevisionImpl extends SVNRevisionBaseImpl {
 
 	public SVNRevisionImpl() {
 	}

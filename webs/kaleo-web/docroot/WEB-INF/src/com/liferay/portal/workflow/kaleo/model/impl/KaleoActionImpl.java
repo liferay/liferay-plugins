@@ -17,8 +17,7 @@ package com.liferay.portal.workflow.kaleo.model.impl;
 /**
  * @author Brian Wing Shun Chan
  */
-public class KaleoActionImpl
-	extends KaleoActionBaseImpl {
+public class KaleoActionImpl extends KaleoActionBaseImpl {
 
 	public KaleoActionImpl() {
 	}

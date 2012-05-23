@@ -17,8 +17,7 @@ package com.liferay.microblogs.model.impl;
 /**
  * @author Brian Wing Shun Chan
  */
-public class MicroblogsEntryImpl
-	extends MicroblogsEntryBaseImpl {
+public class MicroblogsEntryImpl extends MicroblogsEntryBaseImpl {
 
 	public MicroblogsEntryImpl() {
 	}

@@ -17,8 +17,7 @@ package com.liferay.socialnetworking.model.impl;
 /**
  * @author Brian Wing Shun Chan
  */
-public class MeetupsRegistrationImpl
-	extends MeetupsRegistrationBaseImpl {
+public class MeetupsRegistrationImpl extends MeetupsRegistrationBaseImpl {
 
 	public MeetupsRegistrationImpl() {
 	}

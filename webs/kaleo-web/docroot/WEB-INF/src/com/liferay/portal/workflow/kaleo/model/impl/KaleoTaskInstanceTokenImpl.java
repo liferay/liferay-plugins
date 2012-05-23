@@ -28,8 +28,7 @@ import java.util.List;
 /**
  * @author Brian Wing Shun Chan
  */
-public class KaleoTaskInstanceTokenImpl
-	extends KaleoTaskInstanceTokenBaseImpl {
+public class KaleoTaskInstanceTokenImpl extends KaleoTaskInstanceTokenBaseImpl {
 
 	public KaleoTaskInstanceTokenImpl() {
 	}

@@ -23,8 +23,7 @@ import com.liferay.portal.workflow.kaleo.service.KaleoNodeLocalServiceUtil;
 /**
  * @author Brian Wing Shun Chan
  */
-public class KaleoDefinitionImpl
-	extends KaleoDefinitionBaseImpl {
+public class KaleoDefinitionImpl extends KaleoDefinitionBaseImpl {
 
 	public KaleoDefinitionImpl() {
 	}

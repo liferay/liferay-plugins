@@ -19,8 +19,7 @@ import com.liferay.socialcoding.svn.util.SVNConstants;
 /**
  * @author Brian Wing Shun Chan
  */
-public class SVNRepositoryImpl
-	extends SVNRepositoryBaseImpl {
+public class SVNRepositoryImpl extends SVNRepositoryBaseImpl {
 
 	public SVNRepositoryImpl() {
 	}

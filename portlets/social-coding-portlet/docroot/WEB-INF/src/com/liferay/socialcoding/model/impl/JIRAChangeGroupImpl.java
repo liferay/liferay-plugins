@@ -17,8 +17,7 @@ package com.liferay.socialcoding.model.impl;
 /**
  * @author Brian Wing Shun Chan
  */
-public class JIRAChangeGroupImpl
-	extends JIRAChangeGroupBaseImpl {
+public class JIRAChangeGroupImpl extends JIRAChangeGroupBaseImpl {
 
 	public JIRAChangeGroupImpl() {
 	}
