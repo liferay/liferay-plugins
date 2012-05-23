@@ -99,6 +99,10 @@ public class KBArticleAssetRenderer extends BaseAssetRenderer {
 		return _kbArticle.getUserId();
 	}
 
+	public String getUserName() {
+		return _kbArticle.getUserName();
+	}
+
 	public String getUuid() {
 		return _kbArticle.getUuid();
 	}
