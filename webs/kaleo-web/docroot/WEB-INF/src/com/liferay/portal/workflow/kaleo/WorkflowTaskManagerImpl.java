@@ -642,6 +642,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		return _taskManager.updateDueDate(
 			workflowTaskInstanceId, comment, dueDate, serviceContext);
 	}
+
 	protected List<WorkflowTask> toWorkflowTasks(
 			List<KaleoTaskInstanceToken> kaleoTaskInstanceTokens)
 		throws PortalException, SystemException {

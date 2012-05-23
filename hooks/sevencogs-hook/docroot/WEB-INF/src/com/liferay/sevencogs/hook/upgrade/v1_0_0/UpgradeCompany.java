@@ -203,6 +203,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		return DLAppLocalServiceUtil.addFolder(
 			userId, groupId, 0, name, description, serviceContext);
 	}
+
 	protected JournalArticle addJournalArticle(
 			long userId, long groupId, String title, String fileName,
 			ServiceContext serviceContext)
