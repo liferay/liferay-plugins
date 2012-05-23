@@ -106,7 +106,7 @@ public class SitesUtil {
 		LinkedHashMap<String, Object> params =
 			new LinkedHashMap<String, Object>();
 
-		params.put("active", Boolean.TRUE);		
+		params.put("active", Boolean.TRUE);
 		params.put("pageCount", Boolean.TRUE);
 		params.put("usersGroups", userId);
 

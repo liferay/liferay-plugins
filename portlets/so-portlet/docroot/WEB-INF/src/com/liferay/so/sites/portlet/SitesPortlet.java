@@ -325,7 +325,7 @@ public class SitesPortlet extends MVCPortlet {
 
 					String comments = LanguageUtil.format(
 						themeDisplay.getLocale(), "x-wishes-to-join-x",
-						new Object[]{
+						new Object[] {
 							user.getFullName(),
 							group.getDescriptiveName()});
 
