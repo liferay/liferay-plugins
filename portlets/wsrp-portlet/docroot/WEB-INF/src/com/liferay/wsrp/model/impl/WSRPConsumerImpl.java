@@ -27,8 +27,7 @@ import oasis.names.tc.wsrp.v2.types.RegistrationContext;
 /**
  * @author Brian Wing Shun Chan
  */
-public class WSRPConsumerImpl
-	extends WSRPConsumerBaseImpl {
+public class WSRPConsumerImpl extends WSRPConsumerBaseImpl {
 
 	public WSRPConsumerImpl() {
 	}

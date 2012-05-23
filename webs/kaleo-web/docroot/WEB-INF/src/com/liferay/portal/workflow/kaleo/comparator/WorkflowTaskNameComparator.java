@@ -19,8 +19,7 @@ import com.liferay.portal.kernel.workflow.comparator.BaseWorkflowTaskNameCompara
 /**
  * @author Shuyang Zhou
  */
-public class WorkflowTaskNameComparator
-	extends BaseWorkflowTaskNameComparator {
+public class WorkflowTaskNameComparator extends BaseWorkflowTaskNameComparator {
 
 	public static final String ORDER_BY_ASC = "name ASC, kaleoTaskId ASC";
 

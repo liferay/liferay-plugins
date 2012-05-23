@@ -20,8 +20,7 @@ package com.liferay.so.model.impl;
 /**
  * @author Brian Wing Shun Chan
  */
-public class ProjectsEntryImpl
-	extends ProjectsEntryBaseImpl {
+public class ProjectsEntryImpl extends ProjectsEntryBaseImpl {
 
 	public ProjectsEntryImpl() {
 	}

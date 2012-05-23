@@ -17,8 +17,7 @@ package com.liferay.wsrp.model.impl;
 /**
  * @author Brian Wing Shun Chan
  */
-public class WSRPConsumerPortletImpl
-	extends WSRPConsumerPortletBaseImpl {
+public class WSRPConsumerPortletImpl extends WSRPConsumerPortletBaseImpl {
 
 	public WSRPConsumerPortletImpl() {
 	}

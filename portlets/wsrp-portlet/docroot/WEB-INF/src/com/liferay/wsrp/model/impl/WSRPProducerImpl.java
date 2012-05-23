@@ -17,8 +17,7 @@ package com.liferay.wsrp.model.impl;
 /**
  * @author Brian Wing Shun Chan
  */
-public class WSRPProducerImpl
-	extends WSRPProducerBaseImpl {
+public class WSRPProducerImpl extends WSRPProducerBaseImpl {
 
 	public WSRPProducerImpl() {
 	}

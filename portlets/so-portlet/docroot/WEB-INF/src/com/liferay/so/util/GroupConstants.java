@@ -20,8 +20,7 @@ package com.liferay.so.util;
 /**
  * @author Jonathan Lee
  */
-public class GroupConstants
-	extends com.liferay.portal.model.GroupConstants {
+public class GroupConstants extends com.liferay.portal.model.GroupConstants {
 
 	public static final int TYPE_SITE_PRIVATE_RESTRICTED = 102;
 

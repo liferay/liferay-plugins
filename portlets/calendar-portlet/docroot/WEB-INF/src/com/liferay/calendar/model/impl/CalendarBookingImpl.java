@@ -34,8 +34,7 @@ import java.util.Date;
 /**
  * @author Eduardo Lundgren
  */
-public class CalendarBookingImpl
-	extends CalendarBookingBaseImpl {
+public class CalendarBookingImpl extends CalendarBookingBaseImpl {
 
 	public CalendarBookingImpl() {
 	}
