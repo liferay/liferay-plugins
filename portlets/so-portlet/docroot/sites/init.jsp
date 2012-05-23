@@ -19,7 +19,9 @@
 
 <%@ include file="/init.jsp" %>
 
-<%@ page import="com.liferay.so.service.FavoriteSiteLocalServiceUtil" %><%@
+<%@ page import="com.liferay.portal.model.MembershipRequestConstants" %><%@
+page import="com.liferay.portal.service.MembershipRequestLocalServiceUtil" %><%@
+page import="com.liferay.so.service.FavoriteSiteLocalServiceUtil" %><%@
 page import="com.liferay.so.util.SocialOfficeConstants" %>
 
 <%

@@ -106,6 +106,8 @@ public class SitesUtil {
 		LinkedHashMap<String, Object> params =
 			new LinkedHashMap<String, Object>();
 
+		params.put("active", Boolean.TRUE);		
+		params.put("pageCount", Boolean.TRUE);
 		params.put("usersGroups", userId);
 
 		List<Group> usersGroups = GroupLocalServiceUtil.search(
@@ -125,6 +127,8 @@ public class SitesUtil {
 		types.add(GroupConstants.TYPE_SITE_OPEN);
 		types.add(GroupConstants.TYPE_SITE_RESTRICTED);
 
+		params.put("active", Boolean.TRUE);
+		params.put("pageCount", Boolean.TRUE);
 		params.put("types", types);
 
 		List<Group> visibleGroup = GroupLocalServiceUtil.search(
@@ -153,6 +157,8 @@ public class SitesUtil {
 				new LinkedHashMap<String, Object>();
 
 			params.put("usersGroups", userId);
+			params.put("pageCount", Boolean.TRUE);
+			params.put("active", Boolean.TRUE);
 
 			return GroupLocalServiceUtil.searchCount(
 				comapnyId, keywords, null, params);
@@ -167,6 +173,8 @@ public class SitesUtil {
 			types.add(GroupConstants.TYPE_SITE_RESTRICTED);
 
 			params.put("types", types);
+			params.put("pageCount", Boolean.TRUE);
+			params.put("active", Boolean.TRUE);
 
 			int groupsCount = GroupLocalServiceUtil.searchCount(
 				comapnyId, keywords, null, params);
@@ -179,6 +187,7 @@ public class SitesUtil {
 
 			types.add(GroupConstants.TYPE_SITE_PRIVATE);
 
+			params.put("pageCount", Boolean.TRUE);
 			params.put("types", types);
 
 			return groupsCount + GroupLocalServiceUtil.searchCount(

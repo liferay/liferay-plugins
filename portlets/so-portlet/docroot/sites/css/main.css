@@ -145,8 +145,12 @@
 				float: right;
 			}
 
-			.join a {
+			.join a, .request a {
 				background: url(@theme_image_path@/common/join.png) no-repeat 0 50%;
+			}
+
+			.requested a {
+				background: url(@theme_image_path@/common/checked.png) no-repeat 0 50%;
 			}
 
 			.leave a {
