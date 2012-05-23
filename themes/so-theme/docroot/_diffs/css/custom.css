@@ -1993,6 +1993,10 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 }
 
+.aui-dialog-iframe-popup .results-header {
+	display: table-row;
+}
+
 /* Faceted Search */
 
 .portlet-search {
