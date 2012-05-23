@@ -75,6 +75,7 @@ public class SolrServerWrapper {
 			if (sse.getRootCause() instanceof IOException) {
 				_solrServerFactory.killServer(this);
 			}
+
 			throw sse;
 		}
 	}
