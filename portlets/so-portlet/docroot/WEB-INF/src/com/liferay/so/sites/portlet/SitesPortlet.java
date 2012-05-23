@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.dao.search.DAOParamUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -37,6 +38,7 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutSet;
 import com.liferay.portal.model.LayoutSetPrototype;
+import com.liferay.portal.model.MembershipRequestConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
@@ -45,13 +47,14 @@ import com.liferay.portal.service.GroupServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetPrototypeServiceUtil;
+import com.liferay.portal.service.MembershipRequestLocalServiceUtil;
 import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.permission.GroupPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortletKeys;
-import com.liferay.portal.util.comparator.GroupNameComparator;
 import com.liferay.so.service.FavoriteSiteLocalServiceUtil;
 import com.liferay.so.service.SocialOfficeServiceUtil;
 import com.liferay.so.sites.util.SitesUtil;
@@ -60,7 +63,6 @@ import com.liferay.so.util.WebKeys;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.portlet.ActionRequest;
@@ -208,59 +210,27 @@ public class SitesPortlet extends MVCPortlet {
 		List<Group> groups = null;
 		int groupsCount = 0;
 
-		if (directory) {
-			if (searchTab.equals("my-favorites")) {
-				groups = SitesUtil.getFavoriteSitesGroups(
-					themeDisplay.getUserId(), keywords, start, end);
-				groupsCount = SitesUtil.getFavoriteSitesGroupsCount(
-					themeDisplay.getUserId(), keywords);
-			}
-			else {
-				LinkedHashMap<String, Object> params =
-					new LinkedHashMap<String, Object>();
-
-				if (searchTab.equals("my-sites")) {
-					params.put("usersGroups", themeDisplay.getUserId());
-				}
-				else {
-					List<Integer> types = new ArrayList<Integer>();
-
-					types.add(GroupConstants.TYPE_SITE_OPEN);
-					types.add(GroupConstants.TYPE_SITE_RESTRICTED);
-
-					params.put("types", types);
-				}
-
-				groups = GroupLocalServiceUtil.search(
-					themeDisplay.getCompanyId(), keywords, null, params, start,
-					end, new GroupNameComparator(true));
-				groupsCount = GroupLocalServiceUtil.searchCount(
-					themeDisplay.getCompanyId(), keywords, null, params);
-			}
+		if (searchTab.equals("my-sites")) {
+			groups = SitesUtil.getVisibleSites(
+				themeDisplay.getCompanyId(), themeDisplay.getUserId(),
+				keywords, true, maxResultSize);
+			groupsCount = SitesUtil.getVisibleSitesCount(
+				themeDisplay.getCompanyId(), themeDisplay.getUserId(),
+				keywords, true);
+		}
+		else if (searchTab.equals("my-favorites")) {
+			groups = SitesUtil.getFavoriteSitesGroups(
+				themeDisplay.getUserId(), keywords, 0, maxResultSize);
+			groupsCount = SitesUtil.getFavoriteSitesGroupsCount(
+				themeDisplay.getUserId(), keywords);
 		}
 		else {
-			if (searchTab.equals("my-sites")) {
-				groups = SitesUtil.getVisibleSites(
-					themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-					keywords, true, maxResultSize);
-				groupsCount = SitesUtil.getVisibleSitesCount(
-					themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-					keywords, true);
-			}
-			else if (searchTab.equals("my-favorites")) {
-				groups = SitesUtil.getFavoriteSitesGroups(
-					themeDisplay.getUserId(), keywords, 0, maxResultSize);
-				groupsCount = SitesUtil.getFavoriteSitesGroupsCount(
-					themeDisplay.getUserId(), keywords);
-			}
-			else {
-				groups = SitesUtil.getVisibleSites(
-					themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-					keywords, false, maxResultSize);
-				groupsCount = SitesUtil.getVisibleSitesCount(
-					themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-					keywords, false);
-			}
+			groups = SitesUtil.getVisibleSites(
+				themeDisplay.getCompanyId(), themeDisplay.getUserId(),
+				keywords, false, maxResultSize);
+			groupsCount = SitesUtil.getVisibleSitesCount(
+				themeDisplay.getCompanyId(), themeDisplay.getUserId(),
+				keywords, false);
 		}
 
 		jsonObject.put("count", groupsCount);
@@ -328,11 +298,48 @@ public class SitesPortlet extends MVCPortlet {
 				groupJSONObject.put(
 					"joinUrl", siteAssignmentsPortletURL.toString());
 			}
-			else if (member &&
-					 ((group.getType() != GroupConstants.TYPE_SITE_PRIVATE) ||
-					  GroupPermissionUtil.contains(
-							permissionChecker, group.getGroupId(),
-							ActionKeys.ASSIGN_MEMBERS))) {
+			else if (!GroupLocalServiceUtil.hasUserGroup(
+					themeDisplay.getUserId(), group.getGroupId()) &&
+				(group.getType() == GroupConstants.TYPE_SITE_RESTRICTED)) {
+
+				if (!MembershipRequestLocalServiceUtil.hasMembershipRequest(
+						themeDisplay.getUserId(), group.getGroupId(),
+						MembershipRequestConstants.STATUS_PENDING)) {
+
+					PortletURL membershipRequestURL =
+						liferayPortletResponse.createActionURL(
+							PortletKeys.SITES_ADMIN);
+
+					membershipRequestURL.setWindowState(WindowState.NORMAL);
+
+					membershipRequestURL.setParameter(
+						"struts_action",
+						"/sites_admin/post_membership_request");
+					membershipRequestURL.setParameter(
+						"redirect", themeDisplay.getURLCurrent());
+					membershipRequestURL.setParameter(
+						"groupId", String.valueOf(group.getGroupId()));
+
+					User user = UserLocalServiceUtil.getUser(
+						themeDisplay.getUserId());
+
+					String comments = LanguageUtil.format(
+						themeDisplay.getLocale(), "x-wishes-to-join-x",
+						new Object[]{
+							user.getFullName(),
+							group.getDescriptiveName()});
+
+					membershipRequestURL.setParameter("comments", comments);
+
+					groupJSONObject.put(
+						"requestUrl", membershipRequestURL.toString());
+				}
+				else {
+					groupJSONObject.put("membershipRequested", true);
+				}
+			}
+			else if (GroupLocalServiceUtil.hasUserGroup(
+						themeDisplay.getUserId(), group.getGroupId())) {
 
 				siteAssignmentsPortletURL.setParameter(
 					"removeUserIds", String.valueOf(themeDisplay.getUserId()));
