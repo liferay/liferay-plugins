@@ -87,8 +87,8 @@ public class ServicePreAction extends Action {
 		}
 		else if (isDirectoryView(request, currentURL)) {
 			redirect = getUserRedirect(
-					ParamUtil.getLong(request, "_11_p_u_i_d"),
-					themeDisplay.getPlid(), request);
+				request, ParamUtil.getLong(request, "_11_p_u_i_d"),
+				themeDisplay.getPlid());
 		}
 
 		if (Validator.isNotNull(redirect)) {
@@ -123,7 +123,7 @@ public class ServicePreAction extends Action {
 
 			if (group.isUser()) {
 				return getUserRedirect(
-					group.getClassPK(), themeDisplay.getPlid(), request);
+					request, group.getClassPK(), themeDisplay.getPlid());
 			}
 
 			return getGroupRedirect(themeDisplay, group.getGroupId());
@@ -133,7 +133,7 @@ public class ServicePreAction extends Action {
 	}
 
 	protected String getUserRedirect(
-			long userId, long plid, HttpServletRequest request)
+			HttpServletRequest request, long userId, long plid)
 		throws Exception {
 
 		User user = UserLocalServiceUtil.getUser(userId);
@@ -146,19 +146,19 @@ public class ServicePreAction extends Action {
 			request, PortletKeys.SITE_REDIRECTOR, plid,
 			PortletRequest.ACTION_PHASE);
 
-		portletURL.setWindowState(WindowState.NORMAL);
-		portletURL.setPortletMode(PortletMode.VIEW);
-
+		portletURL.setParameter("struts_action", "/my_sites/view");
 		portletURL.setParameter(
 			"groupId", String.valueOf(user.getGroup().getGroupId()));
 		portletURL.setParameter("privateLayout", Boolean.TRUE.toString());
-		portletURL.setParameter("struts_action", "/my_sites/view");
+		portletURL.setPortletMode(PortletMode.VIEW);
+		portletURL.setWindowState(WindowState.NORMAL);
 
 		return portletURL.toString();
 	}
 
 	protected boolean isDirectoryView(
-		HttpServletRequest request, String currentURL) throws Exception {
+			HttpServletRequest request, String currentURL)
+		throws Exception {
 
 		String action = ParamUtil.getString(request, "_11_struts_action");
 
