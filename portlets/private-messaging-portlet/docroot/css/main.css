@@ -1,6 +1,10 @@
 @import "compass";
 
 .private-messaging-portlet {
+	.aui-dialog-content .aui-panel-bd {
+		padding: 0;
+	}
+
 	.header-title {
 		font-weight: normal;
 		margin: 0;
@@ -51,10 +55,6 @@
 
 	.message-body-container .message-body-container-content {
 		padding: 10px;
-
-		form {
-			margin-left: 60px;
-		}
 
 		.autocomplete-button {
 			margin: 0;

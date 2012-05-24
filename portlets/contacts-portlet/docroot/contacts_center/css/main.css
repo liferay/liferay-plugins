@@ -383,6 +383,10 @@ $toolbar-bg: #DCE3EA;
 				background-image: url(@theme_image_path@/social/follow.png);
 			}
 
+			.aui-icon-send-email {
+				background-image: url(@theme_image_path@/mail/compose.png);
+			}
+
 			.aui-icon-unblock {
 				background-image: url(@theme_image_path@/social/unblock.png);
 			}
