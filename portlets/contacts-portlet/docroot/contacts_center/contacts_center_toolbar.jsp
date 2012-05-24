@@ -173,6 +173,54 @@ if (user2 != null) {
 		);
 	</c:if>
 
+	<%
+	ServletContext servletContext = ServletContextPool.get("private-messaging-portlet");
+	%>
+
+	<c:if test="<%= Validator.isNotNull(servletContext) && (user2 == null || (user2.getUserId() != themeDisplay.getUserId())) %>">
+		contactsToolbarChildren.push(
+			{
+				handler: function(event) {
+					var uri = '<liferay-portlet:renderURL portletName="1_WAR_privatemessagingportlet" windowState="<%= LiferayWindowState.POP_UP.toString() %>"><portlet:param name="mvcPath" value="/new_message.jsp" /></liferay-portlet:renderURL>';
+
+					<c:choose>
+						<c:when test="<%= user2 != null %>">
+							var userIds = [<%= user2.getUserId() %>];
+						</c:when>
+						<c:otherwise>
+							var userIds = A.all('.lfr-contact-grid-item input').val();
+						</c:otherwise>
+					</c:choose>
+
+					new A.Dialog(
+						{
+							align: {
+								node: null,
+								points: ['tc', 'tc']
+							},
+							cssClass: 'private-messaging-portlet',
+							destroyOnClose: true,
+							modal: true,
+							title: '<%= UnicodeLanguageUtil.get(pageContext, "new-message") %>',
+							width: 600
+						}
+					).plug(
+						A.Plugin.IO,
+						{
+							data: {
+								userIds: userIds.join()
+							},
+							uri: uri
+						}
+					).render();
+				},
+				icon: 'send-email',
+				id: '<portlet:namespace />sendEmailButton',
+				label: '<%= UnicodeLanguageUtil.get(pageContext, "send-email") %>'
+			}
+		);
+	</c:if>
+
 	var contactsToolbar = new A.Toolbar(
 		{
 			activeState: false,
