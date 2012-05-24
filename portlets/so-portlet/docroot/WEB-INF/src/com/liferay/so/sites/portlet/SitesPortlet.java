@@ -212,11 +212,11 @@ public class SitesPortlet extends MVCPortlet {
 
 		if (searchTab.equals("my-sites")) {
 			groups = SitesUtil.getVisibleSites(
-				themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-				keywords, true, maxResultSize);
+				themeDisplay.getCompanyId(), themeDisplay.getUserId(), keywords,
+				true, maxResultSize);
 			groupsCount = SitesUtil.getVisibleSitesCount(
-				themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-				keywords, true);
+				themeDisplay.getCompanyId(), themeDisplay.getUserId(), keywords,
+				true);
 		}
 		else if (searchTab.equals("my-favorites")) {
 			groups = SitesUtil.getFavoriteSitesGroups(
@@ -226,11 +226,11 @@ public class SitesPortlet extends MVCPortlet {
 		}
 		else {
 			groups = SitesUtil.getVisibleSites(
-				themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-				keywords, false, maxResultSize);
+				themeDisplay.getCompanyId(), themeDisplay.getUserId(), keywords,
+				false, maxResultSize);
 			groupsCount = SitesUtil.getVisibleSitesCount(
-				themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-				keywords, false);
+				themeDisplay.getCompanyId(), themeDisplay.getUserId(), keywords,
+				false);
 		}
 
 		jsonObject.put("count", groupsCount);
@@ -253,13 +253,12 @@ public class SitesPortlet extends MVCPortlet {
 				PortletURL portletURL = liferayPortletResponse.createActionURL(
 					PortletKeys.SITE_REDIRECTOR);
 
-				portletURL.setWindowState(WindowState.NORMAL);
-
 				portletURL.setParameter("struts_action", "/my_sites/view");
 				portletURL.setParameter(
 					"groupId", String.valueOf(group.getGroupId()));
 				portletURL.setParameter(
 					"privateLayout", String.valueOf(!group.hasPublicLayouts()));
+				portletURL.setWindowState(WindowState.NORMAL);
 
 				groupJSONObject.put("url", portletURL.toString());
 			}
@@ -274,8 +273,6 @@ public class SitesPortlet extends MVCPortlet {
 			PortletURL siteAssignmentsPortletURL =
 				liferayPortletResponse.createActionURL(PortletKeys.SITES_ADMIN);
 
-			siteAssignmentsPortletURL.setWindowState(WindowState.NORMAL);
-
 			siteAssignmentsPortletURL.setParameter(
 				"struts_action", "/sites_admin/edit_site_assignments");
 			siteAssignmentsPortletURL.setParameter(
@@ -284,6 +281,7 @@ public class SitesPortlet extends MVCPortlet {
 				"redirect", themeDisplay.getURLCurrent());
 			siteAssignmentsPortletURL.setParameter(
 				"groupId", String.valueOf(group.getGroupId()));
+			siteAssignmentsPortletURL.setWindowState(WindowState.NORMAL);
 
 			boolean member = GroupLocalServiceUtil.hasUserGroup(
 				themeDisplay.getUserId(), group.getGroupId());
@@ -309,8 +307,6 @@ public class SitesPortlet extends MVCPortlet {
 						liferayPortletResponse.createActionURL(
 							PortletKeys.SITES_ADMIN);
 
-					membershipRequestURL.setWindowState(WindowState.NORMAL);
-
 					membershipRequestURL.setParameter(
 						"struts_action",
 						"/sites_admin/post_membership_request");
@@ -325,11 +321,12 @@ public class SitesPortlet extends MVCPortlet {
 					String comments = LanguageUtil.format(
 						themeDisplay.getLocale(), "x-wishes-to-join-x",
 						new Object[] {
-							user.getFullName(),
-							group.getDescriptiveName()
+							user.getFullName(), group.getDescriptiveName()
 						});
 
 					membershipRequestURL.setParameter("comments", comments);
+
+					membershipRequestURL.setWindowState(WindowState.NORMAL);
 
 					groupJSONObject.put(
 						"requestUrl", membershipRequestURL.toString());
