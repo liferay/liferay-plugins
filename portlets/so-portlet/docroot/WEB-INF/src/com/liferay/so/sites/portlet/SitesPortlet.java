@@ -298,9 +298,8 @@ public class SitesPortlet extends MVCPortlet {
 				groupJSONObject.put(
 					"joinUrl", siteAssignmentsPortletURL.toString());
 			}
-			else if (!GroupLocalServiceUtil.hasUserGroup(
-					themeDisplay.getUserId(), group.getGroupId()) &&
-				(group.getType() == GroupConstants.TYPE_SITE_RESTRICTED)) {
+			else if (!member &&
+					 (group.getType() == GroupConstants.TYPE_SITE_RESTRICTED)) {
 
 				if (!MembershipRequestLocalServiceUtil.hasMembershipRequest(
 						themeDisplay.getUserId(), group.getGroupId(),
@@ -327,7 +326,8 @@ public class SitesPortlet extends MVCPortlet {
 						themeDisplay.getLocale(), "x-wishes-to-join-x",
 						new Object[] {
 							user.getFullName(),
-							group.getDescriptiveName()});
+							group.getDescriptiveName()
+						});
 
 					membershipRequestURL.setParameter("comments", comments);
 
