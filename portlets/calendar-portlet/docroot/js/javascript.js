@@ -84,6 +84,7 @@
 								}
 								else {
 									schedulerEvent.set('calendarBookingId', data.calendarBookingId);
+									schedulerEvent.set('calendarId', data.calendarId);
 									schedulerEvent.set('calendarResourceId', data.calendarResourceId);
 									schedulerEvent.set('parentCalendarBookingId', data.parentCalendarBookingId);
 									schedulerEvent.set('status', data.status);
@@ -452,6 +453,26 @@
 							if (data) {
 								if (data.exception) {
 									return;
+								}
+								else {
+									schedulerEvent.set('calendarBookingId', data.calendarBookingId);
+									schedulerEvent.set('calendarResourceId', data.calendarResourceId);
+									schedulerEvent.set('parentCalendarBookingId', data.parentCalendarBookingId);
+									schedulerEvent.set('status', data.status);
+
+									var oldCalendar = CalendarUtil.visibleCalendars[schedulerEvent.get('calendarId')];
+
+									if (oldCalendar) {
+										oldCalendar.removeEvent(schedulerEvent);
+									}
+
+									var newCalendar = CalendarUtil.visibleCalendars[data.calendarId];
+
+									if (newCalendar) {
+										newCalendar.addEvent(schedulerEvent);
+									}
+
+									schedulerEvent.set('calendarId', data.calendarId);
 								}
 							}
 						}

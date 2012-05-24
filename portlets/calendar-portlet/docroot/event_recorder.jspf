@@ -54,34 +54,23 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 				</td>
 			</tr>
 
-			<tpl if="values.editing">
-				<tpl if="values.permissions.MANAGE_BOOKINGS">
-					<tr class="calendar-portlet-event-recorder-calendar-row">
-						<td><liferay-ui:message key="calendar" />:</td>
-						<td>
-							<select id="<portlet:namespace />eventRecorderCalendar" name="calendarId">
-
-								<%
-								for (Calendar calendar : manageableCalendars) {
-								%>
-
-									<option value="<%= calendar.getCalendarId() %>"><%= calendar.getName(locale) %></option>
-
-								<%
-								}
-								%>
-
-							</select>
-						</td>
-					</tr>
-				</tpl>
-			</tpl>
-
-			<tpl if="!values.editing">
-				<tr class="calendar-portlet-event-recorder-status-row">
+			<tpl if="values.permissions.MANAGE_BOOKINGS">
+				<tr class="calendar-portlet-event-recorder-calendar-row">
 					<td><liferay-ui:message key="calendar" />:</td>
 					<td>
-						<label>{[ values.calendar.get('name') ]}</label>
+						<select id="<portlet:namespace />eventRecorderCalendar" name="calendarId">
+
+							<%
+							for (Calendar calendar : manageableCalendars) {
+							%>
+
+								<option value="<%= calendar.getCalendarId() %>"><%= calendar.getName(locale) %></option>
+
+							<%
+							}
+							%>
+
+						</select>
 					</td>
 				</tr>
 			</tpl>

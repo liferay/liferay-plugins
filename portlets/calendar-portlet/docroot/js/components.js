@@ -311,6 +311,22 @@
 							instance.set('calendars', []);
 						},
 
+						getCalendar: function(calendarId) {
+							var instance = this;
+
+							var calendars = instance.get('calendars');
+
+							for (var i = 0; i < calendars.length; i++) {
+								var calendar = calendars[i];
+
+								if (calendar.get('calendarId') === calendarId) {
+									return calendar;
+								}
+							}
+
+							return null;
+						},
+
 						getCalendarByNode: function(node) {
 							var instance = this;
 
@@ -332,7 +348,13 @@
 
 							var calendars = instance.get('calendars');
 
-							AArray.remove(calendars, AArray.indexOf(calendars, calendar));
+							if (calendars.length > 0) {
+								var index = AArray.indexOf(calendars, calendar);
+
+								if (index > -1) {
+									AArray.remove(calendars, index);
+								}
+							}
 
 							instance.set('calendars', calendars);
 						},
