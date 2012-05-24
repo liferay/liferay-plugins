@@ -122,9 +122,12 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 		<aui:input name="startDate" value="<%= startDateJCalendar %>" />
 
-		<aui:input name="endDate" value="<%= endDateJCalendar %>" />
-
 		<aui:input name="allDay" />
+
+		<div id="<portlet:namespace />endDateContainer">
+			<aui:input name="endDate" value="<%= endDateJCalendar %>" />
+		</div>
+
 	</aui:fieldset>
 
 	<aui:fieldset>
@@ -247,6 +250,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 	);
 
 	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />title);
+	Liferay.Util.toggleBoxes('<portlet:namespace />allDayCheckbox','<portlet:namespace />endDateContainer', true);
 
 	<c:if test="<%= calendarBooking == null %>">
 		document.<portlet:namespace />fm.<portlet:namespace />title_<%= LanguageUtil.getLanguageId(request) %>.value = decodeURIComponent('<%= HtmlUtil.escapeURL(title) %>');
