@@ -109,7 +109,6 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 				if ((calendarBooking != null) && (calendar.getCalendarId() != calendarId) && (CalendarBookingLocalServiceUtil.getCalendarBookingsCount(calendar.getCalendarId(), calendarBooking.getParentCalendarBookingId()) > 0)) {
 					continue;
 				}
-
 			%>
 
 				<aui:option selected="<%= calendar.getCalendarId() == calendarId %>" value="<%= calendar.getCalendarId() %>"><%= calendar.getName(locale) %></aui:option>

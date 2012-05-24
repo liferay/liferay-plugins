@@ -127,7 +127,7 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 			boundingBox: '#<portlet:namespace />myCalendarList',
 
 			<%
-			updateCalendarsJSONArrayVisibility(request, userCalendarsJSONArray);
+			updateCalendarsJSONArray(request, userCalendarsJSONArray);
 			%>
 
 			calendars: <%= userCalendarsJSONArray %>,
@@ -151,7 +151,7 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 			boundingBox: '#<portlet:namespace />otherCalendarList',
 
 			<%
-			updateCalendarsJSONArrayVisibility(request, otherCalendarsJSONArray);
+			updateCalendarsJSONArray(request, otherCalendarsJSONArray);
 			%>
 
 			calendars: <%= otherCalendarsJSONArray %>,
@@ -167,7 +167,7 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 			boundingBox: '#<portlet:namespace />siteCalendarList',
 
 			<%
-			updateCalendarsJSONArrayVisibility(request, groupCalendarsJSONArray);
+			updateCalendarsJSONArray(request, groupCalendarsJSONArray);
 			%>
 
 			calendars: <%= groupCalendarsJSONArray %>,
@@ -283,12 +283,13 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 </aui:script>
 
 <%!
-protected void updateCalendarsJSONArrayVisibility(HttpServletRequest request, JSONArray calendarsJSONArray) {
+protected void updateCalendarsJSONArray(HttpServletRequest request, JSONArray calendarsJSONArray) {
 	for (int i = 0; i < calendarsJSONArray.length(); i++) {
 		JSONObject jsonObject = calendarsJSONArray.getJSONObject(i);
 
 		long calendarId = jsonObject.getLong("calendarId");
 
+		jsonObject.put("color", GetterUtil.getString(SessionClicks.get(request, "calendar-portlet-calendar-" + calendarId + "-color", jsonObject.getString("color"))));
 		jsonObject.put("visible", GetterUtil.getBoolean(SessionClicks.get(request, "calendar-portlet-calendar-" + calendarId + "-visible", "true")));
 	}
 }

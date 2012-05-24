@@ -167,6 +167,11 @@ public class CalendarUtil {
 				permissionChecker, calendar, ActionKeys.MANAGE_BOOKINGS));
 
 		jsonObject.put(
+			ActionKeys.UPDATE,
+			CalendarPermission.contains(
+				permissionChecker, calendar, ActionKeys.UPDATE));
+
+		jsonObject.put(
 			ActionKeys.VIEW,
 			CalendarPermission.contains(
 				permissionChecker, calendar, ActionKeys.VIEW));

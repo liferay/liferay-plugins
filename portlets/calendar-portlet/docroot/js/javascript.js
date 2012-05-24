@@ -1073,14 +1073,22 @@
 
 						Calendar.superclass._afterColorChange.apply(instance, arguments);
 
-						CalendarUtil.invoke(
-							{
-								'/calendar-portlet/calendar/update-color': {
-									calendarId: instance.get('calendarId'),
-									color: parseInt(event.newVal.substr(1), 16)
+						var calendarId = instance.get('calendarId');
+						var color = event.newVal;
+
+						if (instance.get('permissions.UPDATE')) {
+							CalendarUtil.invoke(
+								{
+									'/calendar-portlet/calendar/update-color': {
+										calendarId: calendarId,
+										color: parseInt(color.substr(1), 16)
+									}
 								}
-							}
-						);
+							);
+						}
+						else {
+							Liferay.Store('calendar-portlet-calendar-' + calendarId + '-color', color);
+						}
 					}
 				}
 			}
