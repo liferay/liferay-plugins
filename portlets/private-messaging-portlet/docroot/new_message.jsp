@@ -33,6 +33,28 @@ if (mbThreadId != 0) {
 
 	to = ListUtil.toString(userThreads, "userId", ", ");
 }
+
+long[] userIds = StringUtil.split(ParamUtil.getString(request, "userIds"), 0L);
+
+StringBundler sb = new StringBundler();
+
+for (long userId : userIds) {
+	try {
+		User user2 = UserLocalServiceUtil.getUser(userId);
+
+		sb.append(user2.getFullName());
+		sb.append(CharPool.SPACE);
+		sb.append(CharPool.LESS_THAN);
+		sb.append(user2.getScreenName());
+		sb.append(CharPool.GREATER_THAN);
+		sb.append(StringPool.COMMA);
+		sb.append(CharPool.SPACE);
+	}
+	catch (Exception e) {
+	}
+}
+
+to = sb.toString() + to;
 %>
 
 <div id="<portlet:namespace />messageContainer"></div>
@@ -89,7 +111,7 @@ if (mbThreadId != 0) {
 	}
 </aui:script>
 
-<aui:script use="aui-base,aui-io-request,aui-loading-mask,autocomplete">
+<aui:script use="aui-button-item,aui-io-request,aui-loading-mask,autocomplete">
 	var form = A.one('#<portlet:namespace />fm');
 
 	form.on(
