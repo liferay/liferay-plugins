@@ -115,10 +115,10 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 					extraData.getJSONArray("jiraChangeItems"), themeDisplay));
 		}
 		else if (activityType == JIRAActivityKeys.ADD_COMMENT) {
-			sb.append(HtmlUtil.escape(cleanContent(jiraAction.getBody())));
+			sb.append(HtmlUtil.escape(jiraAction.getBody()));
 		}
 		else if (activityType == JIRAActivityKeys.ADD_ISSUE) {
-			sb.append(HtmlUtil.escape(cleanContent(jiraIssue.getSummary())));
+			sb.append(HtmlUtil.escape(jiraIssue.getSummary()));
 		}
 
 		sb.append("</a>");

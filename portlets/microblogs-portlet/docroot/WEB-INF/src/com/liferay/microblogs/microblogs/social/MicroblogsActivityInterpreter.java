@@ -86,7 +86,7 @@ public class MicroblogsActivityInterpreter
 			}
 		}
 
-		sb.append(cleanContent(microblogsEntry.getContent()));
+		sb.append(HtmlUtil.escape(microblogsEntry.getContent()));
 
 		String title = sb.toString();
 

@@ -87,7 +87,7 @@ public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 		sb.append("<a href=\"");
 		sb.append(link);
 		sb.append("\">");
-		sb.append(HtmlUtil.escape(cleanContent(wallEntry.getComments())));
+		sb.append(HtmlUtil.escape(wallEntry.getComments()));
 		sb.append("</a>");
 
 		String body = sb.toString();
