@@ -30,7 +30,7 @@ a:hover {
 	position: static;
 }
 
-#skip-to-content, #navigation h1, .opens-new-window-accessible, #toggleFluid span, .site-breadcrumbs h1 {
+#skip-to-content, #navigation h1, .opens-new-window-accessible, #toggleFluid span {
 	clip: rect(0 0 0 0);
 	position: absolute;
 	text-indent: -9999em;
@@ -829,24 +829,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 	.results-header {
 		display: none;
-	}
-}
-
-/* Breadcrumbs */
-
-.site-breadcrumbs {
-	background: $gray-light;
-	border: 1px solid $gray-dark;
-	border-width: 0 1px 1px 0;
-
-	ul {
-		margin: 0;
-	}
-
-	ul li a {
-		background: url(../images/custom/breadcrumb_divider_bg.png) right -13px no-repeat;
-		display: block;
-		padding: 8px 23px 7px 16px;
 	}
 }
 

@@ -59,16 +59,6 @@ $theme.include($body_top_include)
 	</header>
 
 	<div id="content">
-		#if (!$page_group.isUser() && $is_signed_in)
-			<nav class="site-breadcrumbs" id="breadcrumbs">
-				<h1>
-					<span>#language("breadcrumbs")</span>
-				</h1>
-
-				#breadcrumbs()
-			</nav>
-		#end
-
 		<div id="so-sidebar">
 			#if ($page_group.isUser())
 				<div class="$user_detail_class">
