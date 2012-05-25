@@ -33,6 +33,7 @@ import com.liferay.portal.EmailAddressException;
 import com.liferay.portal.NoSuchCountryException;
 import com.liferay.portal.NoSuchListTypeException;
 import com.liferay.portal.NoSuchRegionException;
+import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.PhoneNumberException;
 import com.liferay.portal.ReservedUserEmailAddressException;
 import com.liferay.portal.ReservedUserScreenNameException;
@@ -240,6 +241,40 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		writeJSON(resourceRequest, resourceResponse, contactListJSONObject);
 	}
 
+	public void getSelectedContacts(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long[] userIds = StringUtil.split(
+			ParamUtil.getString(resourceRequest, "userIds"), 0L);
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+		for (long userId : userIds) {
+			try {
+				JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
+
+				userJSONObject.put("success", true);
+				userJSONObject.put(
+					"user",
+					getUserJSONObject(resourceResponse, themeDisplay, userId));
+
+				jsonArray.put(userJSONObject);
+			}
+			catch (NoSuchUserException nsue) {
+			}
+		}
+
+		jsonObject.put("contacts", jsonArray);
+
+		writeJSON(resourceRequest, resourceResponse, jsonObject);
+	}
+
 	@Override
 	public void processAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
@@ -337,6 +372,9 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			}
 			else if (resourceID.equals("getContacts")) {
 				getContacts(resourceRequest, resourceResponse);
+			}
+			else if (resourceID.equals("getSelectedContacts")) {
+				getSelectedContacts(resourceRequest, resourceResponse);
 			}
 			else {
 				super.serveResource(resourceRequest, resourceResponse);
