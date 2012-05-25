@@ -129,7 +129,7 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 		}
 
 		String articleTitle = wrapLink(
-			link, HtmlUtil.escape(cleanContent(kbArticle.getTitle())));
+			link, HtmlUtil.escape(kbArticle.getTitle()));
 
 		Object[] titleArguments = {creatorUserName, articleTitle, groupName};
 
@@ -209,11 +209,10 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 		String entityTitle = null;
 
 		if (kbArticle != null) {
-			entityTitle = wrapLink(
-				link, HtmlUtil.escape(cleanContent(kbArticle.getTitle())));
+			entityTitle = wrapLink(link, HtmlUtil.escape(kbArticle.getTitle()));
 		}
 		else if (kbTemplate != null) {
-			entityTitle = HtmlUtil.escape(cleanContent(kbTemplate.getTitle()));
+			entityTitle = HtmlUtil.escape(kbTemplate.getTitle());
 		}
 
 		Object[] titleArguments = {creatorUserName, entityTitle, groupName};
@@ -280,8 +279,7 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 			}
 		}
 
-		String articleTitle = HtmlUtil.escape(
-			cleanContent(kbTemplate.getTitle()));
+		String articleTitle = HtmlUtil.escape(kbTemplate.getTitle());
 
 		Object[] titleArguments = {creatorUserName, articleTitle, groupName};
 

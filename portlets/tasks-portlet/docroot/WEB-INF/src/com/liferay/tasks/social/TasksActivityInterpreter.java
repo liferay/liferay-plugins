@@ -100,7 +100,7 @@ public class TasksActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(cleanContent(tasksEntry.getTitle()));
+		sb.append(HtmlUtil.escape(tasksEntry.getTitle()));
 
 		String body = sb.toString();
 
