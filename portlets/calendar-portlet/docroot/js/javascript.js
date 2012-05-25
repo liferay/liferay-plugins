@@ -118,7 +118,7 @@
 				return events;
 			},
 
-			createCalendarListAutoComplete: function(resourceURL, calendarList, input) {
+			createCalendarsAutoComplete: function(resourceURL, input, afterSelectFn) {
 				var instance = this;
 
 				input.plug(
@@ -126,11 +126,7 @@
 					{
 						activateFirstItem: true,
 						after: {
-							select: function(event) {
-								calendarList.add(event.result.raw);
-
-								input.val(STR_BLANK);
-							}
+							select: afterSelectFn
 						},
 						maxResults: 20,
 						requestTemplate: '&' + Liferay.CalendarUtil.PORTLET_NAMESPACE + 'keywords={query}',

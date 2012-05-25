@@ -279,7 +279,15 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 
 	var addOtherCalendarInput = A.one('#<portlet:namespace />addOtherCalendar');
 
-	Liferay.CalendarUtil.createCalendarListAutoComplete('<%= calendarResourcesURL %>', <portlet:namespace />otherCalendarList, addOtherCalendarInput);
+	Liferay.CalendarUtil.createCalendarsAutoComplete(
+		'<%= calendarResourcesURL %>',
+		addOtherCalendarInput,
+		function(event) {
+			window.<portlet:namespace />otherCalendarList.add(event.result.raw);
+
+			addOtherCalendarInput.val('');
+		}
+	);
 </aui:script>
 
 <%!
