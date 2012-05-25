@@ -9,6 +9,10 @@ AUI.add(
 
 		var ParseContent = A.Plugin.ParseContent;
 
+		var CSS_SELECTED_CHECKBOX = 'input[type="checkbox"]:not(:disabled):checked';
+
+		var CSS_NOT_SELECTED_CHECKBOX = 'input[type="checkbox"]:not(:disabled):not(:checked)';
+
 		var STR_UNDEFINED = 'undefined';
 
 		var TPL_BLOCK_IMG =
@@ -136,6 +140,8 @@ AUI.add(
 					initializer: function(config) {
 						var instance = this;
 
+						instance._config = config;
+
 						instance._namespace = config.namespace;
 
 						instance._contactCenterToolbar = instance.byId('contactCenterToolbarButtons');
@@ -154,6 +160,12 @@ AUI.add(
 						instance._sendEmailButton = instance.byId('sendEmailButton');
 						instance._unblockButton = instance.byId('unblockButton');
 						instance._unfollowButton = instance.byId('unfollowButton');
+
+						instance._contactsCheckBox = A.one('.contacts-result');
+
+						instance._checkAll = instance.byId('checkAll');
+
+						instance._checkAll.on('click', instance._onCheckAll, instance);
 
 						instance._buttonAddConnectionUserIds = [];
 						instance._buttonBlockUserIds = [];
@@ -198,6 +210,21 @@ AUI.add(
 						instance._updateToolbarButtonsAdd(data);
 
 						instance._messageContainer.empty();
+
+						instance._checkAll.set('checked', (instance._contactsCheckBox.all(CSS_NOT_SELECTED_CHECKBOX).size() <= 0));
+					},
+
+					addContactResults: function(data) {
+						var instance = this;
+
+						var contacts = data.contacts;
+
+						Array.map(
+							contacts,
+							function(contact) {
+								instance.addContactResult(contact);
+							}
+						);
 					},
 
 					closePopup: function() {
@@ -227,7 +254,20 @@ AUI.add(
 							}
 
 							instance._messageContainer.empty();
+
+							instance._checkAll.set('checked', false);
 						}
+					},
+
+					deleteContactResults: function(userIds) {
+						var instance = this;
+
+						Array.map(
+							userIds,
+							function(userId) {
+								instance.deleteContactResult(userId);
+							}
+						);
 					},
 
 					renderContent: function(data, clear) {
@@ -396,6 +436,8 @@ AUI.add(
 						instance._contactCenterToolbar.hide();
 
 						instance._numSelectedContacts = 0;
+
+						instance._checkAll.set('checked', false);
 					},
 
 					_createDataSource: function(url) {
@@ -553,6 +595,51 @@ AUI.add(
 									autoLoad: false
 								}
 							).render();
+						}
+					},
+
+					_onCheckAll: function(event) {
+						var instance = this;
+
+						var config = instance._config;
+
+						var checkBox = event.target;
+
+						if (checkBox.get('checked')) {
+							var contacts = instance._contactsCheckBox.all(CSS_NOT_SELECTED_CHECKBOX);
+
+							if (contacts.size() > 0) {
+								contacts.set('checked', true);
+
+								var userIds = contacts.val();
+
+								A.io.request(
+									config.getSelectedContactsURL,
+									{
+										after: {
+											failure: function(event, id, obj) {
+												instance.showMessage(false);
+											},
+											success: function(event, id, obj) {
+												instance.addContactResults(this.get('responseData'));
+											}
+										},
+										data: {
+											userIds: userIds.join()
+										},
+										dataType: 'json'
+									}
+								);
+							}
+						}
+						else {
+							var contacts = instance._contactsCheckBox.all(CSS_SELECTED_CHECKBOX);
+
+							if (contacts.size() > 0) {
+								contacts.set('checked', false);
+
+								instance.deleteContactResults(contacts.val());
+							}
 						}
 					},
 
@@ -768,6 +855,10 @@ AUI.add(
 						var buffer = instance._renderResult(data, true, ' ');
 
 						event.currentTarget._listNode.html(buffer.join(''));
+
+						instance._contactsCheckBox = A.one('.contacts-result');
+
+						instance._checkAll.set('checked', (instance._contactsCheckBox.all(CSS_NOT_SELECTED_CHECKBOX).size() <= 0));
 					},
 
 					_updateToolbarButtonsAdd: function(data) {
