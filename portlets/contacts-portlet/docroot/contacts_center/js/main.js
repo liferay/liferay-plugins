@@ -334,7 +334,7 @@ AUI.add(
 							else {
 								instance._clearContactResult();
 
-								A.Array.map(
+								Array.map(
 									contacts,
 									function(contact) {
 										instance.addContactResult(contact);
@@ -750,7 +750,7 @@ AUI.add(
 							}
 
 							buffer.push(
-								A.Array.map(
+								Array.map(
 									results,
 									function(result) {
 										var displayLastNameAnchor = false;
