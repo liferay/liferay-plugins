@@ -59,7 +59,6 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.io.IOException;
-
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -256,6 +255,15 @@ public class CalendarPortlet extends MVCPortlet {
 		boolean allDay = ParamUtil.getBoolean(actionRequest, "allDay");
 		String recurrence = ParamUtil.getString(actionRequest, "recurrence");
 		int status = ParamUtil.getInteger(actionRequest, "status");
+		boolean reminder = ParamUtil.getBoolean(actionRequest, "reminder");
+		int firstReminder = ParamUtil.getInteger(
+			actionRequest, "firstReminder");
+		int secondReminder = ParamUtil.getInteger(
+			actionRequest, "secondReminder");
+		if (!reminder) {
+			firstReminder = 0;
+			secondReminder = 0;
+		}
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			CalendarBooking.class.getName(), actionRequest);
@@ -266,14 +274,15 @@ public class CalendarPortlet extends MVCPortlet {
 				CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT,
 				titleMap, descriptionMap, location,
 				startDateJCalendar.getTime(), endDateJCalendar.getTime(),
-				allDay, recurrence, 0, 0, serviceContext);
+				allDay, recurrence, firstReminder, secondReminder,
+				serviceContext);
 		}
 		else {
 			CalendarBookingServiceUtil.updateCalendarBooking(
 				calendarBookingId, calendarId, childCalendarIds, titleMap,
 				descriptionMap, location, startDateJCalendar.getTime(),
-				endDateJCalendar.getTime(), allDay, recurrence, 0, 0, status,
-				serviceContext);
+				endDateJCalendar.getTime(), allDay, recurrence, firstReminder,
+				secondReminder, status, serviceContext);
 		}
 	}
 

@@ -33,7 +33,7 @@ import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.sql.Timestamp;
-
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -54,6 +54,9 @@ public class CalendarBookingFinderImpl
 	public static final String FIND_BY_C_G_C_C_P_T_D_L_S_E_S =
 		CalendarBookingFinder.class.getName() +
 			".findByC_G_C_C_P_T_D_L_S_E_S";
+
+	public static final String FIND_BY_FUTURE_REMINDERS =
+		CalendarBookingFinder.class.getName() + ".findByFutureReminders";
 
 	public int countByKeywords(
 			long companyId, long[] groupIds, long[] calendarIds,
@@ -225,6 +228,40 @@ public class CalendarBookingFinderImpl
 			parentCalendarBookingId, titles, descriptions, locations, startDate,
 			endDate, statuses, andOperator, start, end, orderByComparator,
 			true);
+	}
+
+	public List<CalendarBooking> findByFutureReminders()
+					throws SystemException {
+
+		Calendar calendar = Calendar.getInstance();
+
+		calendar.add(Calendar.HOUR, -24);
+
+		Timestamp calendar_TS = CalendarUtil.getTimestamp(calendar.getTime());
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = CustomSQLUtil.get(FIND_BY_FUTURE_REMINDERS);
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addEntity("CalendarBooking", CalendarBookingImpl.class);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(calendar_TS);
+
+			return q.list(true);
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally {
+			closeSession(session);
+		}
 	}
 
 	public List<CalendarBooking> findByKeywords(

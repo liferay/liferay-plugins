@@ -25,14 +25,21 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.UniqueList;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.theme.ThemeDisplay;
-
+import com.liferay.portal.util.PortalUtil;
+import com.liferay.util.ContentUtil;
+import com.liferay.util.UniqueList;
+import com.liferay.util.portlet.PortletProps;
 import java.util.List;
+
+import javax.portlet.PortletPreferences;
 
 /**
  * @author Eduardo Lundgren
@@ -40,6 +47,113 @@ import java.util.List;
  * @author Fabio Pezzutto
  */
 public class CalendarUtil {
+
+	public static String getEmailBookingNotificationBody(
+		PortletPreferences preferences) {
+
+		String emailBookingNotificationBody = preferences.getValue(
+			"emailBookingNotificationBody", StringPool.BLANK);
+
+		if (Validator.isNotNull(emailBookingNotificationBody)) {
+			return emailBookingNotificationBody;
+		}
+		else {
+			return ContentUtil.get(PortletProps.get(
+				PortletPropsKeys.CALENDAR_EMAIL_BOOKING_NOTIFICATION_BODY));
+		}
+	}
+
+	public static boolean getEmailBookingNotificationEnabled(
+		PortletPreferences preferences) {
+
+		String emailBookingNotificationEnabled = preferences.getValue(
+			"emailBookingNotificationEnabled", StringPool.BLANK);
+
+		if (Validator.isNotNull(emailBookingNotificationEnabled)) {
+			return GetterUtil.getBoolean(emailBookingNotificationEnabled);
+		}
+		else {
+			return
+				PortletPropsValues.CALENDAR_EMAIL_BOOKING_NOTIFICATION_ENABLED;
+		}
+	}
+
+	public static String getEmailBookingNotificationSubject(
+		PortletPreferences preferences) {
+
+		String emailBookingNotificationSubject = preferences.getValue(
+			"emailBookingNotificationSubject", StringPool.BLANK);
+
+		if (Validator.isNotNull(emailBookingNotificationSubject)) {
+			return emailBookingNotificationSubject;
+		}
+		else {
+			return ContentUtil.get(PortletProps.get(
+				PortletPropsKeys.CALENDAR_EMAIL_BOOKING_NOTIFICATION_SUBJECT));
+		}
+	}
+
+	public static String getEmailBookingReminderBody(
+		PortletPreferences preferences) {
+
+		String emailBookingReminderBody = preferences.getValue(
+			"emailBookingReminderBody", StringPool.BLANK);
+
+		if (Validator.isNotNull(emailBookingReminderBody)) {
+			return emailBookingReminderBody;
+		}
+		else {
+			return ContentUtil.get(PortletProps.get(
+				PortletPropsKeys.CALENDAR_EMAIL_BOOKING_REMINDER_BODY));
+		}
+	}
+
+	public static boolean getEmailBookingReminderEnabled(
+		PortletPreferences preferences) {
+
+		String emailBookingReminderEnabled = preferences.getValue(
+			"emailBookingReminderEnabled", StringPool.BLANK);
+
+		if (Validator.isNotNull(emailBookingReminderEnabled)) {
+			return GetterUtil.getBoolean(emailBookingReminderEnabled);
+		}
+		else {
+			return PortletPropsValues.CALENDAR_EMAIL_BOOKING_REMINDER_ENABLED;
+		}
+	}
+
+	public static String getEmailBookingReminderSubject(
+		PortletPreferences preferences) {
+
+		String emailBookingReminderSubject = preferences.getValue(
+			"emailBookingReminderSubject", StringPool.BLANK);
+
+		if (Validator.isNotNull(emailBookingReminderSubject)) {
+			return emailBookingReminderSubject;
+		}
+		else {
+			return ContentUtil.get(PortletProps.get(
+				PortletPropsKeys.CALENDAR_EMAIL_BOOKING_REMINDER_SUBJECT));
+		}
+	}
+
+	public static String getEmailFromAddress(
+			PortletPreferences preferences, long companyId)
+		throws SystemException {
+
+		return PortalUtil.getEmailFromAddress(
+			preferences, companyId,
+			PortletPropsValues.CALENDAR_EMAIL_FROM_ADDRESS);
+	}
+
+	public static String getEmailFromName(
+			PortletPreferences preferences, long companyId)
+		throws SystemException {
+
+		return PortalUtil.getEmailFromName(
+			preferences, companyId,
+			PortletPropsValues.CALENDAR_EMAIL_FROM_NAME);
+	}
 
 	public static OrderByComparator getOrderByComparator(
 		String orderByCol, String orderByType) {

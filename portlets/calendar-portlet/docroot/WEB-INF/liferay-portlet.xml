@@ -4,7 +4,18 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
-		<configuration-action-class>com.liferay.portal.kernel.portlet.DefaultConfigurationAction</configuration-action-class>
+		<configuration-action-class>com.liferay.calendar.action.ConfigurationActionImpl</configuration-action-class>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.calendar.messaging.CheckBookingMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<simple>
+					<property-key>calendar.booking.check.interval</property-key>
+					<time-unit>minute</time-unit>
+				</simple>
+			</trigger>
+		</scheduler-entry>
+		<preferences-unique-per-layout>false</preferences-unique-per-layout>
+		<preferences-owned-by-group>true</preferences-owned-by-group>
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<header-portlet-javascript>/js/components.js</header-portlet-javascript>
 		<header-portlet-javascript>/js/javascript.js</header-portlet-javascript>

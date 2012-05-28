@@ -50,6 +50,19 @@
 				[$ORDER_BY$]
 		]]>
 	</sql>
+	<sql id="com.liferay.calendar.service.persistence.CalendarBookingFinder.findByFutureReminders">
+		<![CDATA[
+			SELECT
+				{CalendarBooking.*}
+			FROM
+				CalendarBooking
+			WHERE
+				(startDate >= ?) AND
+				(firstReminder > 0) AND
+				(secondReminder > 0) AND
+				(status = 0)
+		]]>
+	</sql>
 	<sql id="com.liferay.calendar.service.persistence.CalendarFinder.countByC_G_C_N_D">
 		<![CDATA[
 			SELECT

@@ -639,11 +639,11 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		_statusDate = statusDate;
 	}
 
-	public java.util.Date getUTCStartDate() {
+	public com.liferay.calendar.model.Calendar getCalendar() {
 		throw new UnsupportedOperationException();
 	}
 
-	public java.util.Date getUTCEndDate() {
+	public com.liferay.calendar.model.CalendarResource getCalendarResource() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -651,11 +651,11 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		throw new UnsupportedOperationException();
 	}
 
-	public com.liferay.calendar.model.Calendar getCalendar() {
+	public java.util.Date getUTCEndDate() {
 		throw new UnsupportedOperationException();
 	}
 
-	public com.liferay.calendar.model.CalendarResource getCalendarResource() {
+	public java.util.Date getUTCStartDate() {
 		throw new UnsupportedOperationException();
 	}
 
