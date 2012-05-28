@@ -310,6 +310,12 @@ public class CalendarBookingLocalServiceUtil {
 			secondReminder, serviceContext);
 	}
 
+	public static void checkBookings()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().checkBookings();
+	}
+
 	public static void deleteCalendarBookings(long calendarId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

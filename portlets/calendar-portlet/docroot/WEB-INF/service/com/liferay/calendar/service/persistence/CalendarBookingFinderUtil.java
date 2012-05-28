@@ -140,6 +140,11 @@ public class CalendarBookingFinderUtil {
 			start, end, orderByComparator);
 	}
 
+	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByFutureReminders()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getFinder().findByFutureReminders();
+	}
+
 	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByKeywords(
 		long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,

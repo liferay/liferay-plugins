@@ -308,6 +308,12 @@ public class CalendarBookingLocalServiceWrapper
 			firstReminder, secondReminder, serviceContext);
 	}
 
+	public void checkBookings()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_calendarBookingLocalService.checkBookings();
+	}
+
 	public void deleteCalendarBookings(long calendarId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
