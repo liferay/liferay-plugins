@@ -272,6 +272,10 @@ public class FileSystemImporter extends BaseImporter {
 			Layout layout, String columnId, JSONArray columnJSONArray)
 		throws Exception {
 
+		if (columnJSONArray == null) {
+			return;
+		}
+
 		for (int i = 0; i < columnJSONArray.length(); i++) {
 			JSONObject portletJSONObject = columnJSONArray.getJSONObject(i);
 
@@ -336,6 +340,10 @@ public class FileSystemImporter extends BaseImporter {
 
 	protected void addLayoutColumns(Layout layout, JSONArray columnsJSONArray)
 		throws Exception {
+
+		if (columnsJSONArray == null) {
+			return;
+		}
 
 		for (int i = 0; i < columnsJSONArray.length(); i++) {
 			JSONArray columnJSONArray = columnsJSONArray.getJSONArray(i);
