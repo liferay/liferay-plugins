@@ -45,8 +45,13 @@ try {
 				<liferay-ui:error exception="<%= StorageFieldRequiredException.class %>" message="please-fill-out-all-required-fields" />
 
 				<c:choose>
-					<c:when test="<%= themeDisplay.isSignedIn() || multipleSubmissions %>">
+					<c:when test="<%= (themeDisplay.isSignedIn() || multipleSubmissions) && permissionChecker.hasPermission(scopeGroupId, DDLRecordSet.class.getName(), recordSetId, ActionKeys.VIEW) %>">
 						<c:choose>
+							<c:when test="<%= !permissionChecker.hasPermission(scopeGroupId, DDLRecordSet.class.getName(), recordSetId, ActionKeys.ADD_RECORD) %>">
+								<div class="portlet-msg-info">
+									<liferay-ui:message key="you-do-not-have-the-required-permissions" />
+								</div>
+							</c:when>
 							<c:when test="<%= multipleSubmissions || !(DDLFormUtil.hasSubmitted(request, recordSet.getRecordSetId())) %>">
 								<aui:fieldset>
 
@@ -80,7 +85,7 @@ try {
 					</c:when>
 					<c:otherwise>
 						<div class="portlet-msg-info">
-							<liferay-ui:message key="you-must-be-authenticated-to-use-this-portlet" />
+							<liferay-ui:message key="you-must-be-authenticated-to-use-this-portlet-or-you-dont-have-the-necessary-permissions" />
 						</div>
 					</c:otherwise>
 				</c:choose>
