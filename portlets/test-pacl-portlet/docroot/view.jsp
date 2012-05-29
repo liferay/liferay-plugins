@@ -2393,6 +2393,27 @@
 	UserLocalServiceUtil#getUser=<%= _assertTrue(results.get("UserLocalServiceUtil#getUser")) %>
 </p>
 
+<p>
+	<h3>Portal Executor Manager</h3>
+</p>
+
+<p>
+
+	PortalExecutorManagerUtil.shutdown("liferay/hot_deploy");=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				PortalExecutorManagerUtil.shutdown("liferay/hot_deploy");
+			}
+
+		};
+		%>
+
+
+</p>
+
 <%!
 private static String _assertEquals(Object expected, Object actual) {
 	return _assertTrue(Validator.equals(expected, actual));
