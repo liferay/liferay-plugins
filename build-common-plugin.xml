@@ -49,7 +49,7 @@
 	</target>
 
 	<target name="build-client">
-		<property name="client.url" value="http://localhost:8080/${plugin.name}/axis" />
+		<property name="client.url" value="http://localhost:8080/${plugin.name}/api/axis" />
 
 		<echo message="Make sure the server is listening on ${client.url}." />
 		<echo message="" />
