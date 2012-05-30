@@ -1933,6 +1933,128 @@
 
 </p>
 
+<p>
+	<h3>Accept</h3>
+	<i>Test accept after listen because we need to have a listening socket before being able to accept.</i>
+</p>
+
+<p>
+	localhost:4320=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				ServerSocket serverSocket = new ServerSocket(4316);
+
+				serverSocket.setSoTimeout(1000);
+
+				final InetSocketAddress host = new InetSocketAddress("localhost", 4316);
+
+				Socket clientSocket = null;
+
+				try {
+					Runnable client = new Runnable() {
+						public void run() {
+							try {
+								Socket socket = new Socket();
+
+								InetSocketAddress client = new InetSocketAddress("localhost", 4320);
+
+								socket.bind(client);
+
+								try {
+									socket.connect(host , 500);
+								}
+								finally {
+									if (socket != null) {
+										socket.close();
+									}
+								}
+							}
+							catch (Exception e) {
+								e.printStackTrace();
+							}
+						}
+					};
+
+					Thread clientThread = new Thread(client);
+
+					clientThread.start();
+
+					clientSocket = serverSocket.accept();
+				}
+				finally {
+					if (clientSocket != null) {
+						clientSocket.close();
+					}
+				}
+
+				serverSocket.close();
+			}
+
+		};
+		%>
+
+	localhost:4321=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				ServerSocket serverSocket = new ServerSocket(4316);
+
+				serverSocket.setSoTimeout(1000);
+
+				final InetSocketAddress host = new InetSocketAddress("localhost", 4316);
+
+				Socket clientSocket = null;
+
+				try {
+					Runnable client = new Runnable() {
+						public void run() {
+							try {
+								Socket socket = new Socket();
+
+								InetSocketAddress client = new InetSocketAddress("localhost", 4321);
+
+								socket.bind(client);
+
+								try {
+									socket.connect(host , 500);
+								}
+								finally {
+									if (socket != null) {
+										socket.close();
+									}
+								}
+							}
+							catch (Exception e) {
+								e.printStackTrace();
+							}
+						}
+					};
+
+					Thread clientThread = new Thread(client);
+
+					clientThread.start();
+
+					clientSocket = serverSocket.accept();
+				}
+				finally {
+					if (clientSocket != null) {
+						clientSocket.close();
+					}
+				}
+
+				serverSocket.close();
+			}
+
+		};
+		%>
+
+</p>
+
 <liferay-ui:header
 	title="SQL"
 />
