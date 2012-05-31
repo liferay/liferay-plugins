@@ -79,6 +79,12 @@ public class WebFormPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
+		String portletId = PortalUtil.getPortletId(actionRequest);
+
+		PortletPermissionUtil.check(
+			themeDisplay.getPermissionChecker(), themeDisplay.getPlid(),
+			portletId, ActionKeys.CONFIGURATION);
+
 		PortletPreferences preferences =
 			PortletPreferencesFactoryUtil.getPortletSetup(actionRequest);
 
