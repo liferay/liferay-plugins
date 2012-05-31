@@ -171,7 +171,7 @@
 		<reference package-path="com.liferay.portlet.ratings" entity="RatingsStats" />
 		<reference package-path="com.liferay.portlet.social" entity="SocialActivity" />
 	</entity>
-	<entity name="KBComment" uuid="true" local-service="true" remote-service="false">
+	<entity name="KBComment" uuid="true" local-service="true" remote-service="true">
 
 		<!-- PK fields -->
 

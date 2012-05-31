@@ -1,3 +1,5 @@
+<%@ page
+		import="com.liferay.knowledgebase.service.permission.KBCommentPermission" %>
 <%--
 /**
  * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
@@ -58,7 +60,7 @@ KBComment kbComment = (KBComment)request.getAttribute("article_comment.jsp-kb_co
 				<%= LanguageUtil.format(pageContext, "posted-on-x", dateFormatDateTime.format(kbComment.getModifiedDate())) %>
 			</div>
 
-			<c:if test="<%= (user.getUserId() == kbComment.getUserId()) || KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.UPDATE) %>">
+			<c:if test="<%= KBCommentPermission.contains(permissionChecker, kbComment, ActionKeys.DELETE) %>">
 				<br />
 
 				<%
