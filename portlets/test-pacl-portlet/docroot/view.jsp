@@ -1328,6 +1328,37 @@
 </p>
 
 <liferay-ui:header
+	title="Search Engines"
+/>
+
+<p>
+	SYSTEM_ENGINE=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				SearchEngineUtil.getSearchEngine("SYSTEM_ENGINE");
+			}
+
+		};
+		%>
+
+	GENERIC_ENGINE=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				SearchEngineUtil.getSearchEngine("GENERIC_ENGINE");
+			}
+
+		};
+		%>
+
+</p>
+
+<liferay-ui:header
 	title="Services: Chat Portlet"
 />
 
