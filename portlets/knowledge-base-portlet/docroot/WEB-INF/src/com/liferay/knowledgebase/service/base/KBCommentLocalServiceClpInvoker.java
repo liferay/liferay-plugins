@@ -108,55 +108,55 @@ public class KBCommentLocalServiceClpInvoker {
 				"com.liferay.knowledgebase.model.KBComment", "boolean"
 			};
 
-		_methodName53 = "getBeanIdentifier";
+		_methodName55 = "getBeanIdentifier";
 
-		_methodParameterTypes53 = new String[] {  };
+		_methodParameterTypes55 = new String[] {  };
 
-		_methodName54 = "setBeanIdentifier";
+		_methodName56 = "setBeanIdentifier";
 
-		_methodParameterTypes54 = new String[] { "java.lang.String" };
+		_methodParameterTypes56 = new String[] { "java.lang.String" };
 
-		_methodName59 = "addKBComment";
+		_methodName61 = "addKBComment";
 
-		_methodParameterTypes59 = new String[] {
+		_methodParameterTypes61 = new String[] {
 				"long", "long", "long", "java.lang.String", "boolean",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName60 = "deleteKBComment";
+		_methodName62 = "deleteKBComment";
 
-		_methodParameterTypes60 = new String[] {
+		_methodParameterTypes62 = new String[] {
 				"com.liferay.knowledgebase.model.KBComment"
 			};
 
-		_methodName61 = "deleteKBComment";
+		_methodName63 = "deleteKBComment";
 
-		_methodParameterTypes61 = new String[] { "long" };
+		_methodParameterTypes63 = new String[] { "long" };
 
-		_methodName62 = "deleteKBComments";
+		_methodName64 = "deleteKBComments";
 
-		_methodParameterTypes62 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes64 = new String[] { "java.lang.String", "long" };
 
-		_methodName63 = "getKBComment";
+		_methodName65 = "getKBComment";
 
-		_methodParameterTypes63 = new String[] {
+		_methodParameterTypes65 = new String[] {
 				"long", "java.lang.String", "long"
 			};
 
-		_methodName64 = "getKBComments";
+		_methodName66 = "getKBComments";
 
-		_methodParameterTypes64 = new String[] {
+		_methodParameterTypes66 = new String[] {
 				"java.lang.String", "long", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName65 = "getKBCommentsCount";
+		_methodName67 = "getKBCommentsCount";
 
-		_methodParameterTypes65 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes67 = new String[] { "java.lang.String", "long" };
 
-		_methodName66 = "updateKBComment";
+		_methodName68 = "updateKBComment";
 
-		_methodParameterTypes66 = new String[] {
+		_methodParameterTypes68 = new String[] {
 				"long", "long", "long", "java.lang.String", "boolean",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -257,18 +257,18 @@ public class KBCommentLocalServiceClpInvoker {
 				((Boolean)arguments[1]).booleanValue());
 		}
 
-		if (_methodName53.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
+		if (_methodName55.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
 			return KBCommentLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName54.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
+		if (_methodName56.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
 			KBCommentLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 		}
 
-		if (_methodName59.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
+		if (_methodName61.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
 			return KBCommentLocalServiceUtil.addKBComment(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
@@ -277,30 +277,30 @@ public class KBCommentLocalServiceClpInvoker {
 				(com.liferay.portal.service.ServiceContext)arguments[5]);
 		}
 
-		if (_methodName60.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
-			return KBCommentLocalServiceUtil.deleteKBComment((com.liferay.knowledgebase.model.KBComment)arguments[0]);
-		}
-
-		if (_methodName61.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
-			return KBCommentLocalServiceUtil.deleteKBComment(((Long)arguments[0]).longValue());
-		}
-
 		if (_methodName62.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
-			KBCommentLocalServiceUtil.deleteKBComments((java.lang.String)arguments[0],
-				((Long)arguments[1]).longValue());
+			return KBCommentLocalServiceUtil.deleteKBComment((com.liferay.knowledgebase.model.KBComment)arguments[0]);
 		}
 
 		if (_methodName63.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
-			return KBCommentLocalServiceUtil.getKBComment(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1], ((Long)arguments[2]).longValue());
+			return KBCommentLocalServiceUtil.deleteKBComment(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName64.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
+			KBCommentLocalServiceUtil.deleteKBComments((java.lang.String)arguments[0],
+				((Long)arguments[1]).longValue());
+		}
+
+		if (_methodName65.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
+			return KBCommentLocalServiceUtil.getKBComment(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1], ((Long)arguments[2]).longValue());
+		}
+
+		if (_methodName66.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
 			return KBCommentLocalServiceUtil.getKBComments((java.lang.String)arguments[0],
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
@@ -308,14 +308,14 @@ public class KBCommentLocalServiceClpInvoker {
 				(com.liferay.portal.kernel.util.OrderByComparator)arguments[4]);
 		}
 
-		if (_methodName65.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
+		if (_methodName67.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
 			return KBCommentLocalServiceUtil.getKBCommentsCount((java.lang.String)arguments[0],
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName66.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
+		if (_methodName68.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
 			return KBCommentLocalServiceUtil.updateKBComment(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
@@ -361,14 +361,10 @@ public class KBCommentLocalServiceClpInvoker {
 	private String[] _methodParameterTypes15;
 	private String _methodName16;
 	private String[] _methodParameterTypes16;
-	private String _methodName53;
-	private String[] _methodParameterTypes53;
-	private String _methodName54;
-	private String[] _methodParameterTypes54;
-	private String _methodName59;
-	private String[] _methodParameterTypes59;
-	private String _methodName60;
-	private String[] _methodParameterTypes60;
+	private String _methodName55;
+	private String[] _methodParameterTypes55;
+	private String _methodName56;
+	private String[] _methodParameterTypes56;
 	private String _methodName61;
 	private String[] _methodParameterTypes61;
 	private String _methodName62;
@@ -381,4 +377,8 @@ public class KBCommentLocalServiceClpInvoker {
 	private String[] _methodParameterTypes65;
 	private String _methodName66;
 	private String[] _methodParameterTypes66;
+	private String _methodName67;
+	private String[] _methodParameterTypes67;
+	private String _methodName68;
+	private String[] _methodParameterTypes68;
 }

@@ -16,9 +16,11 @@ package com.liferay.knowledgebase.model.impl;
 
 import com.liferay.knowledgebase.model.KBComment;
 import com.liferay.knowledgebase.model.KBCommentModel;
+import com.liferay.knowledgebase.model.KBCommentSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
@@ -37,8 +39,10 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -54,6 +58,7 @@ import java.util.Map;
  * @see com.liferay.knowledgebase.model.KBCommentModel
  * @generated
  */
+@JSON(strict = true)
 public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 	implements KBCommentModel {
 	/*
@@ -97,6 +102,48 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 	public static long GROUPID_COLUMN_BITMASK = 4L;
 	public static long USERID_COLUMN_BITMASK = 8L;
 	public static long UUID_COLUMN_BITMASK = 16L;
+
+	/**
+	 * Converts the soap model instance into a normal model instance.
+	 *
+	 * @param soapModel the soap model instance to convert
+	 * @return the normal model instance
+	 */
+	public static KBComment toModel(KBCommentSoap soapModel) {
+		KBComment model = new KBCommentImpl();
+
+		model.setUuid(soapModel.getUuid());
+		model.setKbCommentId(soapModel.getKbCommentId());
+		model.setGroupId(soapModel.getGroupId());
+		model.setCompanyId(soapModel.getCompanyId());
+		model.setUserId(soapModel.getUserId());
+		model.setUserName(soapModel.getUserName());
+		model.setCreateDate(soapModel.getCreateDate());
+		model.setModifiedDate(soapModel.getModifiedDate());
+		model.setClassNameId(soapModel.getClassNameId());
+		model.setClassPK(soapModel.getClassPK());
+		model.setContent(soapModel.getContent());
+		model.setHelpful(soapModel.getHelpful());
+
+		return model;
+	}
+
+	/**
+	 * Converts the soap model instances into normal model instances.
+	 *
+	 * @param soapModels the soap model instances to convert
+	 * @return the normal model instances
+	 */
+	public static List<KBComment> toModels(KBCommentSoap[] soapModels) {
+		List<KBComment> models = new ArrayList<KBComment>(soapModels.length);
+
+		for (KBCommentSoap soapModel : soapModels) {
+			models.add(toModel(soapModel));
+		}
+
+		return models;
+	}
+
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.knowledgebase.model.KBComment"));
 
@@ -222,6 +269,7 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		}
 	}
 
+	@JSON
 	public String getUuid() {
 		if (_uuid == null) {
 			return StringPool.BLANK;
@@ -243,6 +291,7 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		return GetterUtil.getString(_originalUuid);
 	}
 
+	@JSON
 	public long getKbCommentId() {
 		return _kbCommentId;
 	}
@@ -251,6 +300,7 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		_kbCommentId = kbCommentId;
 	}
 
+	@JSON
 	public long getGroupId() {
 		return _groupId;
 	}
@@ -271,6 +321,7 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		return _originalGroupId;
 	}
 
+	@JSON
 	public long getCompanyId() {
 		return _companyId;
 	}
@@ -279,6 +330,7 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		_companyId = companyId;
 	}
 
+	@JSON
 	public long getUserId() {
 		return _userId;
 	}
@@ -307,6 +359,7 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		return _originalUserId;
 	}
 
+	@JSON
 	public String getUserName() {
 		if (_userName == null) {
 			return StringPool.BLANK;
@@ -320,6 +373,7 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		_userName = userName;
 	}
 
+	@JSON
 	public Date getCreateDate() {
 		return _createDate;
 	}
@@ -328,6 +382,7 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		_createDate = createDate;
 	}
 
+	@JSON
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
@@ -356,6 +411,7 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		setClassNameId(classNameId);
 	}
 
+	@JSON
 	public long getClassNameId() {
 		return _classNameId;
 	}
@@ -376,6 +432,7 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		return _originalClassNameId;
 	}
 
+	@JSON
 	public long getClassPK() {
 		return _classPK;
 	}
@@ -396,6 +453,7 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		return _originalClassPK;
 	}
 
+	@JSON
 	public String getContent() {
 		if (_content == null) {
 			return StringPool.BLANK;
@@ -409,6 +467,7 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		_content = content;
 	}
 
+	@JSON
 	public boolean getHelpful() {
 		return _helpful;
 	}

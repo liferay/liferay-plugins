@@ -21,9 +21,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * This class is used by SOAP remote services.
+ * This class is used by SOAP remote services, specifically {@link com.liferay.knowledgebase.service.http.KBCommentServiceSoap}.
  *
  * @author    Brian Wing Shun Chan
+ * @see       com.liferay.knowledgebase.service.http.KBCommentServiceSoap
  * @generated
  */
 public class KBCommentSoap implements Serializable {
