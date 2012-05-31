@@ -42,6 +42,7 @@ page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.messaging.Message" %><%@
 page import="com.liferay.portal.kernel.messaging.MessageBusUtil" %><%@
 page import="com.liferay.portal.kernel.portlet.PortletClassLoaderUtil" %><%@
+page import="com.liferay.portal.kernel.search.SearchEngineUtil" %><%@
 page import="com.liferay.portal.kernel.util.FileUtil" %><%@
 page import="com.liferay.portal.kernel.util.HttpUtil" %><%@
 page import="com.liferay.portal.kernel.util.OSDetector" %><%@
