@@ -467,11 +467,11 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		_statusDate = statusDate;
 	}
 
-	public java.lang.String getAttachmentsDirName() {
+	public boolean isFirstVersion() {
 		throw new UnsupportedOperationException();
 	}
 
-	public java.lang.String[] getAttachmentsFileNames() {
+	public java.lang.String getAttachmentsDirName() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -479,11 +479,11 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		throw new UnsupportedOperationException();
 	}
 
-	public boolean isFirstVersion() {
+	public boolean isRoot() {
 		throw new UnsupportedOperationException();
 	}
 
-	public boolean isRoot() {
+	public java.lang.String[] getAttachmentsFileNames() {
 		throw new UnsupportedOperationException();
 	}
 
