@@ -47,6 +47,7 @@ page import="com.liferay.knowledgebase.service.KBTemplateServiceUtil" %><%@
 page import="com.liferay.knowledgebase.service.permission.AdminPermission" %><%@
 page import="com.liferay.knowledgebase.service.permission.DisplayPermission" %><%@
 page import="com.liferay.knowledgebase.service.permission.KBArticlePermission" %><%@
+page import="com.liferay.knowledgebase.service.permission.KBCommentPermission" %><%@
 page import="com.liferay.knowledgebase.service.permission.KBTemplatePermission" %><%@
 page import="com.liferay.knowledgebase.util.ActionKeys" %><%@
 page import="com.liferay.knowledgebase.util.KnowledgeBaseUtil" %><%@
