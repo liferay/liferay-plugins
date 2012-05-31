@@ -11,7 +11,6 @@
 </head>
 
 <body class="$css_class">
-
 $theme.include($body_top_include)
 
 #if ($is_signed_in)
@@ -36,7 +35,7 @@ $theme.include($body_top_include)
 			</h1>
 
 			<h2 class="page-title">
-				<span>$the_title</span>
+				<span>Welcome to Liferay Portal</span>
 			</h2>
 		</div>
 
@@ -62,9 +61,41 @@ $theme.include($body_top_include)
 	</div>
 
 	<footer id="footer" role="contentinfo">
-		<div></div>
-		<div></div>
-		<div></div>
+		<div id="getting-started" class="column-1">
+			<div class="footer-column-content">
+				<span class="footer-logo"></span>
+
+				<div class="footer-box">
+					<h3>Want Easy Social Collaboration?</h3>
+
+					<a href="http://liferay.com/eloqua-test?wh=14">Get Social Office &#9658;</a>
+				</div>
+			</div>
+		</div>
+
+		<div id="ide" class="column-2">
+			<div class="footer-column-content">
+				<span class="footer-logo"></span>
+
+				<div class="footer-box">
+					<h3>Need Help Getting Started?</h3>
+
+					<a href="http://liferay.com/eloqua-test?wh=15">Click here &#9658;</a>
+				</div>
+			</div>
+		</div>
+
+		<div id="social-office" class="column-3">
+			<div class="footer-column-content">
+				<span class="footer-logo"></span>
+
+				<div class="footer-box">
+					<h3>Develop Faster.</h3>
+
+					<a href="http://liferay.com/eloqua-test?wh=16">Click here &#9658;</a>
+				</div>
+			</div>
+		</div>
 	</footer>
 </div>
 
