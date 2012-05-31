@@ -15,3 +15,7 @@
 		display: none;
 	}
 }
+
+.aui-dialog-iframe-popup .events-display-portlet .results-header {
+	display: table-row;
+}
