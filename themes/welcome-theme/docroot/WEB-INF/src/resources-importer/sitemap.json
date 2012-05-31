@@ -1,83 +1,83 @@
 {
-	"layoutTemplateId": "2_columns_ii",
+	"layoutTemplateId": "1_column",
 	"layouts": [
 		{
 			"columns": [
 				[
-					{
-						"portletId": "56",
-						"portletPreferences": {
-							"articleId": "Navigation Liferay Portal Liferay Marketplace.html",
-							"groupId": "${groupId}",
-							"portletSetupShowBorders": "false"
-						}
-					}
-				],
-				[
-					"Liferay Marketplace.html"
+					"A Foundation for Apps.html"
 				]
 			],
 			"friendlyURL": "/home",
-			"name": "Welcome to Liferay Portal",
+			"name": "What We Do",
 			"layouts": [
 				{
 					"columns": [
-						[
-							"Navigation Liferay Portal Dynamic Websites.html"
-						],
 						[
 							"Dynamic Websites.html"
 						]
 					],
 					"friendlyURL": "/dynamic-websites",
-					"name": "Welcome to Liferay Portal",
+					"name": "Dynamic Websites",
 					"title": "Liferay Portal: Dynamic Websites"
 				},
 				{
 					"columns": [
 						[
-							"Navigation Liferay Portal Document Management.html"
-						],
-						[
-							"Document Management.html"
+							"Centralized Document Management.html"
 						]
 					],
-					"friendlyURL": "/document-management",
-					"name": "Welcome to Liferay Portal",
-					"title": "Liferay Portal: Document Management"
+					"friendlyURL": "/centralized-document-management",
+					"name": "Centralized Document Management",
+					"title": "Liferay Portal: Centralized Document Management"
 				},
 				{
 					"columns": [
 						[
-							"Navigation Liferay Portal Desktop and Mobile Access.html"
-						],
+							"Intuitive Team Collaboration.html"
+						]
+					],
+					"friendlyURL": "/intuitive-team-collaboration",
+					"name": "Intuitive Team Collaboration",
+					"title": "Liferay Portal: Intuitive Team Collaboration"
+				},
+				{
+					"columns": [
 						[
-							"Desktop Mobile Access.html"
+							"Tools for Business.html"
+						]
+					],
+					"friendlyURL": "/tools-for-business",
+					"name": "Tools for Business",
+					"title": "Liferay Portal: Tools for Business"
+				},
+				{
+					"columns": [
+						[
+							"Desktop and Mobile Access.html"
 						]
 					],
 					"friendlyURL": "/desktop-and-mobile-access",
-					"name": "Welcome to Liferay Portal",
+					"name": "Desktop and Mobile Access",
 					"title": "Liferay Portal: Desktop and Mobile Access"
 				},
 				{
 					"columns": [
 						[
-							"Navigation Enterprise Edition Data Lists and Forms.html"
-						],
-						[
-							"Data Lists and Forms.html"
+							"Liferay Marketplace.html"
 						]
 					],
-					"friendlyURL": "/data-lists-and-forms",
-					"name": "Welcome to Liferay Portal",
-					"title": "Liferay Portal: Data Lists and Forms"
+					"friendlyURL": "/liferay-marketplace",
+					"name": "Liferay Marketplace",
+					"title": "Liferay Portal: Liferay Marketplace"
 				}
 			],
-			"title": "Liferay Portal: Marketplace"
+			"title": "Liferay Portal: What We Do"
 		},
 		{
 			"columns": [
-				[]
+				[
+					"Users.html"
+				]
 			],
 			"friendlyURL": "/users",
 			"layoutTemplateId": "1_column",
@@ -86,11 +86,55 @@
 		},
 		{
 			"columns": [
-				[]
+				[
+					"Liferay Benefits.html"
+				]
 			],
-			"friendlyURL": "/enterprise",
-			"name": "Enterprise Edition",
-			"title": "Liferay Enterprise"
+			"friendlyURL": "/liferay-benefits",
+			"name": "Liferay Benefits",
+			"layouts": [
+				{
+					"columns": [
+						[
+							"Ready to Go.html"
+						]
+					],
+					"friendlyURL": "/ready-to-go",
+					"name": "Ready to Go",
+					"title": "Liferay Portal: Ready to Go"
+				},
+				{
+					"columns": [
+						[
+							"Ready to Grow.html"
+						]
+					],
+					"friendlyURL": "/ready-to-grow",
+					"name": "Ready to Grow",
+					"title": "Liferay Portal: Ready to Grow"
+				},
+				{
+					"columns": [
+						[
+							"Approved by IT.html"
+						]
+					],
+					"friendlyURL": "/approved-by-it",
+					"name": "Approved by IT",
+					"title": "Liferay Portal: Approved by IT"
+				},
+				{
+					"columns": [
+						[
+							"Open-For Business.html"
+						]
+					],
+					"friendlyURL": "/open-for-business",
+					"name": "Open-For Business",
+					"title": "Liferay Portal: Open-For Business"
+				}
+			],
+			"title": "Liferay Benefits"
 		}
 	]
 }
