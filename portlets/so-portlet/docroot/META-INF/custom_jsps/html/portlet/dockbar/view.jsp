@@ -29,18 +29,22 @@
 		</liferay-util:buffer>
 
 		<%
-		if ((layout != null) && layout.getGroup().isControlPanel() && (themeDisplay.getRefererPlid() > 0)) {
-			Layout refererLayout = LayoutLocalServiceUtil.fetchLayout(themeDisplay.getRefererPlid());
+		if (layout != null) {
+			Group group = layout.getGroup();
 
-			if (refererLayout != null) {
-				Group refererGroup = refererLayout.getGroup();
+			if (group.isControlPanel() && (themeDisplay.getRefererPlid() > 0)) {
+				Layout refererLayout = LayoutLocalServiceUtil.fetchLayout(themeDisplay.getRefererPlid());
 
-				if (refererGroup.isUser() && (refererGroup.getClassPK() == user.getUserId())) {
-					if (refererLayout.isPublicLayout()) {
-						html = html.replaceFirst(LanguageUtil.get(pageContext, "my-public-pages"), LanguageUtil.get(pageContext, "profile"));
-					}
-					else {
-						html = html.replaceFirst(LanguageUtil.get(pageContext, "my-private-pages"), LanguageUtil.get(pageContext, "dashboard"));
+				if (refererLayout != null) {
+					Group refererGroup = refererLayout.getGroup();
+
+					if (refererGroup.isUser() && (refererGroup.getClassPK() == user.getUserId())) {
+						if (refererLayout.isPublicLayout()) {
+							html = html.replaceFirst(LanguageUtil.get(pageContext, "my-public-pages"), LanguageUtil.get(pageContext, "profile"));
+						}
+						else {
+							html = html.replaceFirst(LanguageUtil.get(pageContext, "my-private-pages"), LanguageUtil.get(pageContext, "dashboard"));
+						}
 					}
 				}
 			}
