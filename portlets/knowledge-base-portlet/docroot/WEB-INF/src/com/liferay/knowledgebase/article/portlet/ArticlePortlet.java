@@ -423,7 +423,7 @@ public class ArticlePortlet extends MVCPortlet {
 				helpful, serviceContext);
 		}
 		else if (cmd.equals(Constants.UPDATE)) {
-			KBCommentLocalServiceUtil.updateKBComment(
+			KBCommentServiceUtil.updateKBComment(
 				kbCommentId, classNameId, classPK, content, helpful,
 				serviceContext);
 		}

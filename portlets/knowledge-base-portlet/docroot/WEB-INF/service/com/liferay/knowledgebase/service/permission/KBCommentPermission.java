@@ -45,7 +45,7 @@ public class KBCommentPermission {
 	public static boolean contains(
 			PermissionChecker permissionChecker, KBComment kbComment,
 			String actionId)
-		throws SystemException, PortalException {
+		throws PortalException, SystemException {
 
 		if (permissionChecker.getUserId() == kbComment.getUserId()) {
 			return true;
