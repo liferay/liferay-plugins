@@ -28,30 +28,24 @@
 			<liferay-util:include page="/html/portlet/dockbar/view.portal.jsp" />
 		</liferay-util:buffer>
 
-		<c:if test="<%= (layout != null) && layout.getGroup().isControlPanel() %>">
+		<%
+		if ((layout != null) && layout.getGroup().isControlPanel() && (themeDisplay.getRefererPlid() > 0)) {
+			Layout refererLayout = LayoutLocalServiceUtil.fetchLayout(themeDisplay.getRefererPlid());
 
-			<%
-			if (themeDisplay.getRefererPlid() > 0) {
-				Layout refererLayout = LayoutLocalServiceUtil.fetchLayout(themeDisplay.getRefererPlid());
+			if (refererLayout != null) {
+				Group refererGroup = refererLayout.getGroup();
 
-				if (refererLayout != null) {
-					Group refererGroup = refererLayout.getGroup();
-
-					if (refererGroup.isUser() && (refererGroup.getClassPK() == user.getUserId())) {
-						if (refererLayout.isPublicLayout()) {
-							html = html.replaceFirst(LanguageUtil.get(pageContext, "my-public-pages"), LanguageUtil.get(pageContext, "profile"));
-						}
-						else {
-							html = html.replaceFirst(LanguageUtil.get(pageContext, "my-private-pages"), LanguageUtil.get(pageContext, "dashboard"));
-						}
+				if (refererGroup.isUser() && (refererGroup.getClassPK() == user.getUserId())) {
+					if (refererLayout.isPublicLayout()) {
+						html = html.replaceFirst(LanguageUtil.get(pageContext, "my-public-pages"), LanguageUtil.get(pageContext, "profile"));
+					}
+					else {
+						html = html.replaceFirst(LanguageUtil.get(pageContext, "my-private-pages"), LanguageUtil.get(pageContext, "dashboard"));
 					}
 				}
 			}
-			%>
+		}
 
-		</c:if>
-
-		<%
 		int x = html.indexOf("<li class=\"user-avatar \" id=\"_145_userAvatar\">");
 		int y = html.indexOf("<div class=\"dockbar-messages\"");
 		%>
