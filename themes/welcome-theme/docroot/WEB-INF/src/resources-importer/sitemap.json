@@ -1,96 +1,35 @@
 {
-	"layoutTemplateId": "2_columns_ii",
+	"layoutTemplateId": "1_column",
 	"layouts": [
 		{
 			"columns": [
 				[
-					{
-						"portletId": "56",
-						"portletPreferences": {
-							"articleId": "Navigation Liferay Portal Liferay Marketplace.html",
-							"groupId": "${groupId}",
-							"portletSetupShowBorders": "false"
-						}
-					}
-				],
-				[
-					"Liferay Marketplace.html"
+					"What do we do.xml"
 				]
 			],
 			"friendlyURL": "/home",
-			"name": "Welcome to Liferay Portal",
-			"layouts": [
-				{
-					"columns": [
-						[
-							"Navigation Liferay Portal Dynamic Websites.html"
-						],
-						[
-							"Dynamic Websites.html"
-						]
-					],
-					"friendlyURL": "/dynamic-websites",
-					"name": "Welcome to Liferay Portal",
-					"title": "Liferay Portal: Dynamic Websites"
-				},
-				{
-					"columns": [
-						[
-							"Navigation Liferay Portal Document Management.html"
-						],
-						[
-							"Document Management.html"
-						]
-					],
-					"friendlyURL": "/document-management",
-					"name": "Welcome to Liferay Portal",
-					"title": "Liferay Portal: Document Management"
-				},
-				{
-					"columns": [
-						[
-							"Navigation Liferay Portal Desktop and Mobile Access.html"
-						],
-						[
-							"Desktop Mobile Access.html"
-						]
-					],
-					"friendlyURL": "/desktop-and-mobile-access",
-					"name": "Welcome to Liferay Portal",
-					"title": "Liferay Portal: Desktop and Mobile Access"
-				},
-				{
-					"columns": [
-						[
-							"Navigation Enterprise Edition Data Lists and Forms.html"
-						],
-						[
-							"Data Lists and Forms.html"
-						]
-					],
-					"friendlyURL": "/data-lists-and-forms",
-					"name": "Welcome to Liferay Portal",
-					"title": "Liferay Portal: Data Lists and Forms"
-				}
-			],
-			"title": "Liferay Portal: Marketplace"
+			"name": "What We Do",
+			"title": "Liferay Portal: What We Do"
 		},
 		{
 			"columns": [
-				[]
+				[
+					"Who is using Liferay.html"
+				]
 			],
-			"friendlyURL": "/users",
-			"layoutTemplateId": "1_column",
+			"friendlyURL": "/whos-using-liferay",
 			"name": "Who's Using Liferay",
 			"title": "Liferay Users"
 		},
 		{
 			"columns": [
-				[]
+				[
+					"Liferay Benefits.xml"
+				]
 			],
-			"friendlyURL": "/enterprise",
-			"name": "Enterprise Edition",
-			"title": "Liferay Enterprise"
+			"friendlyURL": "/liferay-benefits",
+			"name": "Liferay Benefits",
+			"title": "Liferay Benefits"
 		}
 	]
 }
