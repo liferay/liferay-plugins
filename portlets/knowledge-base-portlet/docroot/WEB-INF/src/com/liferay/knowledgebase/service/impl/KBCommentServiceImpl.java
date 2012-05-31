@@ -20,6 +20,7 @@ import com.liferay.knowledgebase.service.permission.KBCommentPermission;
 import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.service.ServiceContext;
 
 /**
  * The implementation of the k b comment remote service.
@@ -38,7 +39,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 
 	public KBComment deleteKBComment(KBComment kbComment)
-		throws SystemException, PortalException {
+		throws PortalException, SystemException {
 
 		KBCommentPermission.check(
 			getPermissionChecker(), kbComment, ActionKeys.DELETE);
@@ -53,6 +54,22 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 			kbCommentId);
 
 		return deleteKBComment(kbComment);
+	}
+
+	public KBComment updateKBComment(
+			long kbCommentId, long classNameId, long classPK, String content,
+			boolean helpful, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		KBComment kbComment = kbCommentPersistence.findByPrimaryKey(
+			kbCommentId);
+
+		KBCommentPermission.check(
+			getPermissionChecker(), kbComment, ActionKeys.UPDATE);
+
+		return kbCommentLocalService.updateKBComment(
+			kbCommentId, classNameId, classPK, content, helpful,
+			serviceContext);
 	}
 
 }

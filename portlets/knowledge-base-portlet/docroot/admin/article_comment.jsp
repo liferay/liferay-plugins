@@ -1,5 +1,3 @@
-<%@ page
-		import="com.liferay.knowledgebase.service.permission.KBCommentPermission" %>
 <%--
 /**
  * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
