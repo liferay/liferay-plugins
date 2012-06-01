@@ -1,3 +1,0 @@
-#set($cur-url = $stringUtil.split($layout.getFriendlyURL(), "/"))
-
-#set($css_class = $css_class + " " + $cur-url.get(1) + " ")
