@@ -1733,6 +1733,121 @@
 />
 
 <p>
+	<h3>Accept</h3>
+</p>
+
+<p>
+	localhost:4320=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				ServerSocket serverSocket = new ServerSocket(4316);
+
+				serverSocket.setSoTimeout(1000);
+
+				try {
+					Runnable runnable = new Runnable() {
+
+						public void run() {
+							Socket socket = new Socket();
+
+							try {
+								socket.setSoLinger(true, 0);
+
+								socket.bind(new InetSocketAddress("localhost", 4320));
+
+								socket.connect(new InetSocketAddress("localhost", 4316), 500);
+							}
+							catch (Exception e) {
+								throw new RuntimeException(e);
+							}
+							finally {
+								try {
+									socket.close();
+								}
+								catch (Exception e) {
+									throw new RuntimeException(e);
+								}
+							}
+						}
+
+					};
+
+					Thread thread = new Thread(runnable);
+
+					thread.start();
+
+					Socket socket = serverSocket.accept();
+
+					socket.close();
+				}
+				finally {
+					serverSocket.close();
+				}
+			}
+
+		};
+		%>
+
+	localhost:4321=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				ServerSocket serverSocket = new ServerSocket(4316);
+
+				serverSocket.setSoTimeout(1000);
+
+				try {
+					Runnable runnable = new Runnable() {
+
+						public void run() {
+							Socket socket = new Socket();
+
+							try {
+								socket.setSoLinger(true, 0);
+
+								socket.bind(new InetSocketAddress("localhost", 4321));
+
+								socket.connect(new InetSocketAddress("localhost", 4316), 500);
+							}
+							catch (Exception e) {
+								throw new RuntimeException(e);
+							}
+							finally {
+								try {
+									socket.close();
+								}
+								catch (Exception e) {
+									throw new RuntimeException(e);
+								}
+							}
+						}
+
+					};
+
+					Thread thread = new Thread(runnable);
+
+					thread.start();
+
+					Socket socket = serverSocket.accept();
+
+					socket.close();
+				}
+				finally {
+					serverSocket.close();
+				}
+			}
+
+		};
+		%>
+
+</p>
+
+<p>
 	<h3>Connect</h3>
 </p>
 
@@ -1924,128 +2039,6 @@
 
 			protected void test() throws Exception {
 				ServerSocket serverSocket = new ServerSocket(4321);
-
-				serverSocket.close();
-			}
-
-		};
-		%>
-
-</p>
-
-<p>
-	<h3>Accept</h3>
-	<i>Test accept after listen because we need to have a listening socket before being able to accept.</i>
-</p>
-
-<p>
-	localhost:4320=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
-
-			protected void test() throws Exception {
-				ServerSocket serverSocket = new ServerSocket(4316);
-
-				serverSocket.setSoTimeout(1000);
-
-				final InetSocketAddress host = new InetSocketAddress("localhost", 4316);
-
-				Socket clientSocket = null;
-
-				try {
-					Runnable client = new Runnable() {
-						public void run() {
-							try {
-								Socket socket = new Socket();
-
-								InetSocketAddress client = new InetSocketAddress("localhost", 4320);
-
-								socket.bind(client);
-
-								try {
-									socket.connect(host , 500);
-								}
-								finally {
-									if (socket != null) {
-										socket.close();
-									}
-								}
-							}
-							catch (Exception e) {
-								e.printStackTrace();
-							}
-						}
-					};
-
-					Thread clientThread = new Thread(client);
-
-					clientThread.start();
-
-					clientSocket = serverSocket.accept();
-				}
-				finally {
-					if (clientSocket != null) {
-						clientSocket.close();
-					}
-				}
-
-				serverSocket.close();
-			}
-
-		};
-		%>
-
-	localhost:4321=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
-
-			protected void test() throws Exception {
-				ServerSocket serverSocket = new ServerSocket(4316);
-
-				serverSocket.setSoTimeout(1000);
-
-				final InetSocketAddress host = new InetSocketAddress("localhost", 4316);
-
-				Socket clientSocket = null;
-
-				try {
-					Runnable client = new Runnable() {
-						public void run() {
-							try {
-								Socket socket = new Socket();
-
-								InetSocketAddress client = new InetSocketAddress("localhost", 4321);
-
-								socket.bind(client);
-
-								try {
-									socket.connect(host , 500);
-								}
-								finally {
-									if (socket != null) {
-										socket.close();
-									}
-								}
-							}
-							catch (Exception e) {
-								e.printStackTrace();
-							}
-						}
-					};
-
-					Thread clientThread = new Thread(client);
-
-					clientThread.start();
-
-					clientSocket = serverSocket.accept();
-				}
-				finally {
-					if (clientSocket != null) {
-						clientSocket.close();
-					}
-				}
 
 				serverSocket.close();
 			}
