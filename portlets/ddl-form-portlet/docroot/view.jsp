@@ -85,7 +85,7 @@ try {
 					</c:when>
 					<c:otherwise>
 						<div class="portlet-msg-info">
-							<liferay-ui:message key="you-must-be-authenticated-to-use-this-portlet-or-you-dont-have-the-necessary-permissions" />
+							<liferay-ui:message key="you-do-not-have-the-required-permissions" />
 						</div>
 					</c:otherwise>
 				</c:choose>
