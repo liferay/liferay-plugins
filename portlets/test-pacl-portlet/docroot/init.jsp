@@ -81,8 +81,7 @@ page import="java.io.Writer" %>
 
 <%@ page import="java.lang.reflect.Field" %>
 
-<%@page import="java.net.InetAddress" %><%@
-page import="java.net.InetSocketAddress" %><%@
+<%@ page import="java.net.InetSocketAddress" %><%@
 page import="java.net.ServerSocket" %><%@
 page import="java.net.Socket" %><%@
 page import="java.net.URL" %><%@
