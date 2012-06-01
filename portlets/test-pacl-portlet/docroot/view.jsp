@@ -1328,22 +1328,10 @@
 </p>
 
 <liferay-ui:header
-	title="Search Engines"
+	title="Search Engine"
 />
 
 <p>
-	SYSTEM_ENGINE=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, false) {
-
-			protected void test() throws Exception {
-				SearchEngineUtil.getSearchEngine("SYSTEM_ENGINE");
-			}
-
-		};
-		%>
-
 	GENERIC_ENGINE=
 
 		<%
@@ -1351,6 +1339,18 @@
 
 			protected void test() throws Exception {
 				SearchEngineUtil.getSearchEngine("GENERIC_ENGINE");
+			}
+
+		};
+		%>
+
+	SYSTEM_ENGINE=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				SearchEngineUtil.getSearchEngine("SYSTEM_ENGINE");
 			}
 
 		};
