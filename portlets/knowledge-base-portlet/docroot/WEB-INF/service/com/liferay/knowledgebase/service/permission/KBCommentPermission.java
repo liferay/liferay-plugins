@@ -27,8 +27,7 @@ import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 
 /**
- * @author Peter Shin
- * @author Brian Wing Shun Chan
+ * @author Shinn Lok
  */
 public class KBCommentPermission {
 
@@ -51,27 +50,29 @@ public class KBCommentPermission {
 			return true;
 		}
 
-		if (actionId.equals(ActionKeys.DELETE)) {
-			String className = kbComment.getClassName();
+		if (!actionId.equals(ActionKeys.DELETE)) {
+			return false;
+		}
 
-			if (className.equals(KBArticle.class.getName())) {
-				KBArticle kbArticle =
-					KBArticleLocalServiceUtil.getLatestKBArticle(
-						kbComment.getClassPK(), WorkflowConstants.STATUS_ANY);
+		String className = kbComment.getClassName();
 
-				return permissionChecker.hasPermission(
-					kbArticle.getGroupId(), KBArticle.class.getName(),
-					kbArticle.getPrimaryKey(), ActionKeys.UPDATE);
-			}
-			else if (className.equals(KBTemplate.class.getName())) {
-				KBTemplate kbTemplate =
-					KBTemplateLocalServiceUtil.getKBTemplate(
-						kbComment.getClassPK());
+		if (className.equals(KBArticle.class.getName())) {
+			KBArticle kbArticle =
+				KBArticleLocalServiceUtil.getLatestKBArticle(
+					kbComment.getClassPK(), WorkflowConstants.STATUS_ANY);
 
-				return permissionChecker.hasPermission(
-					kbTemplate.getGroupId(), KBTemplate.class.getName(),
-					kbTemplate.getPrimaryKey(), ActionKeys.UPDATE);
-			}
+			return permissionChecker.hasPermission(
+				kbArticle.getGroupId(), KBArticle.class.getName(),
+				kbArticle.getPrimaryKey(), ActionKeys.UPDATE);
+		}
+		else if (className.equals(KBTemplate.class.getName())) {
+			KBTemplate kbTemplate =
+				KBTemplateLocalServiceUtil.getKBTemplate(
+					kbComment.getClassPK());
+
+			return permissionChecker.hasPermission(
+				kbTemplate.getGroupId(), KBTemplate.class.getName(),
+				kbTemplate.getPrimaryKey(), ActionKeys.UPDATE);
 		}
 
 		return false;
