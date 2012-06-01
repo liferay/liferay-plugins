@@ -177,7 +177,7 @@
 								postMessage = "write-on-my-wall";
 							}
 							else {
-								postMessage = LanguageUtil.format(pageContext, "write-on-x-wall", wallUser.getFirstName());
+								postMessage = LanguageUtil.format(pageContext, "write-on-x-wall", HtmlUtil.escape(wallUser.getFirstName()));
 							}
 
 							String postHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + wallLayoutFriendlyURL + "/-/wall";
