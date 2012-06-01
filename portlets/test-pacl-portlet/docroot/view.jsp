@@ -2398,8 +2398,7 @@
 </p>
 
 <p>
-
-	PortalExecutorManagerUtil.shutdown("liferay/hot_deploy");=
+	PortalExecutorManagerUtil.shutdown("liferay/hot_deploy")=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, true) {
@@ -2410,7 +2409,6 @@
 
 		};
 		%>
-
 
 </p>
 
