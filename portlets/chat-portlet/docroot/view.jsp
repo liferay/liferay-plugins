@@ -91,7 +91,7 @@
 												<img alt="" src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= portraitId %>">
 
 												<div class="name">
-													<%= fullName %>
+													<%= HtmlUtil.escape(fullName) %>
 												</div>
 											</li>
 
