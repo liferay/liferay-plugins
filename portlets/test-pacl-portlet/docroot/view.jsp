@@ -37,13 +37,13 @@
 		};
 		%>
 
-	RuntimePageUtil#getRuntimePage=
+	LanguageUtil#getLanguage=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, false) {
 
 			protected void test() throws Exception {
-				RuntimePageUtil.getRuntimePage();
+				LanguageUtil.getLanguage();
 			}
 
 		};
