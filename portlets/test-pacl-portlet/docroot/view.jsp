@@ -2225,55 +2225,63 @@
 
 </p>
 
-<p>
-	<h3>Replace</h3>
-</p>
+<%
+DB db = DBFactoryUtil.getDB();
 
-<p>
+String dbType = db.getType();
+%>
 
-	<%
-	new SQLSecurityExceptionTest(out, themeDisplay, true) {
+<c:if test="<%= !dbType.equals(DB.TYPE_HYPERSONIC) %>">
+	<p>
+		<h3>Replace</h3>
+	</p>
 
-		protected void test() throws Exception {
-			testPreparedStatement("replace TestPACL_ReplaceFailure (userId) values (1)");
-		}
+	<p>
 
-	};
+		<%
+		new SQLSecurityExceptionTest(out, themeDisplay, true) {
 
-	new SQLSecurityExceptionTest(out, themeDisplay, true) {
+			protected void test() throws Exception {
+				testPreparedStatement("replace TestPACL_ReplaceFailure (userId) values (1)");
+			}
 
-		protected void test() throws Exception {
-			testStatement("replace TestPACL_ReplaceFailure (userId) values (1)");
-		}
+		};
 
-	};
+		new SQLSecurityExceptionTest(out, themeDisplay, true) {
 
-	new SQLSecurityExceptionTest(out, themeDisplay, false) {
+			protected void test() throws Exception {
+				testStatement("replace TestPACL_ReplaceFailure (userId) values (1)");
+			}
 
-		protected void test() throws Exception {
-			executePreparedStatement("create table TestPACL_ReplaceSuccess (userId bigint)");
+		};
 
-			testPreparedStatement("replace TestPACL_ReplaceSuccess (userId) values (1)");
+		new SQLSecurityExceptionTest(out, themeDisplay, false) {
 
-			executePreparedStatement("drop table TestPACL_ReplaceSuccess");
-		}
+			protected void test() throws Exception {
+				executePreparedStatement("create table TestPACL_ReplaceSuccess (userId bigint)");
 
-	};
+				testPreparedStatement("replace TestPACL_ReplaceSuccess (userId) values (1)");
 
-	new SQLSecurityExceptionTest(out, themeDisplay, false) {
+				executePreparedStatement("drop table TestPACL_ReplaceSuccess");
+			}
 
-		protected void test() throws Exception {
-			executeStatement("create table TestPACL_ReplaceSuccess (userId bigint)");
+		};
 
-			testStatement("replace TestPACL_ReplaceSuccess (userId) values (1)");
+		new SQLSecurityExceptionTest(out, themeDisplay, false) {
 
-			executeStatement("drop table TestPACL_ReplaceSuccess");
-		}
+			protected void test() throws Exception {
+				executeStatement("create table TestPACL_ReplaceSuccess (userId bigint)");
 
-	};
-	%>
+				testStatement("replace TestPACL_ReplaceSuccess (userId) values (1)");
 
-</p>
+				executeStatement("drop table TestPACL_ReplaceSuccess");
+			}
+
+		};
+		%>
+
+	</p>
+</c:if>
 
 <p>
 	<h3>Select</h3>
