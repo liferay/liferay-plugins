@@ -154,7 +154,7 @@ public class WURFLHolderImpl implements WURFLHolder {
 			PortletPropsValues.WURFL_DATABASE_PATCHES);
 
 		for (String fileName : fileNames) {
-			File file = new File(fileName);
+			File file = new File(PortletPropsValues.WURFL_DATABASE_PATCHES, fileName);
 
 			FileInputStream fileInputStream = new FileInputStream(file);
 
