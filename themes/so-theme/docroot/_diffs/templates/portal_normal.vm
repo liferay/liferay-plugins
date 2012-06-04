@@ -34,6 +34,59 @@ $theme.include($body_top_include)
 					<a href="$community_default_url" title='#language("go-to") $community_name'>
 						<span>$community_name</span>
 					</a>
+
+					#if ($is_signed_in)
+						<div class="member-button">
+							#set ($member = $user_local_service.hasGroupUser($page_group.getGroupId(), $user_id))
+							#set ($membership_request = $membership_request_local_service.hasMembershipRequest($user_id, $page_group.getGroupId(), 0))
+
+							#if (!$member)
+								#if ($page_group.getType() == 1)
+									#set ($join_url = $portletURLFactory.create($request, "134", $page.getPlid(), "ACTION_PHASE"))
+
+									$join_url.setWindowState("normal")
+									$join_url.setParameter("struts_action", "/sites_admin/edit_site_assignments")
+									$join_url.setParameter("cmd", "group_users")
+									$join_url.setParameter("redirect", "$community_default_url")
+									$join_url.setParameter("groupId", "$page_group.getGroupId()")
+									$join_url.setParameter("addUserIds", "$user_id")
+
+									<form action="$join_url" id="socialOfficeMembership" method="Post" name="joinFm">
+										<input type="submit" value='#language("join")' />
+									</form>
+								#elseif (($page_group.getType() == 2) && !$membership_request)
+									#set ($membership_request_url = $portletURLFactory.create($request, "134", $page.getPlid(), "ACTION_PHASE"))
+
+									$membership_request_url.setWindowState("normal")
+									$membership_request_url.setParameter("struts_action", "/sites_admin/post_membership_request")
+									$membership_request_url.setParameter("redirect", "$community_default_url")
+									$membership_request_url.setParameter("groupId", "$page_group.getGroupId()")
+									$membership_request_url.setParameter("comments", '#language("x-wishes-to-join-x" $user_name $community_name')
+
+									<form action="$membership_request_url" id="socialOfficeMembership" method="Post" name="membershipRequestFm">
+										<input type="submit" value='#language("request-membership")' />
+									</form>
+								#elseif ($membership_request)
+									<span class="action requested">
+										<a>#language("membership-requested")</a>
+									</span>
+								#end
+							#else
+								#set ($leave_url = $portletURLFactory.create($request, "134", $page.getPlid(), "ACTION_PHASE"))
+
+								$leave_url.setWindowState("normal")
+								$leave_url.setParameter("struts_action", "/sites_admin/edit_site_assignments")
+								$leave_url.setParameter("cmd", "group_users")
+								$leave_url.setParameter("redirect", "$community_default_url")
+								$leave_url.setParameter("groupId", "$page_group.getGroupId()")
+								$leave_url.setParameter("removeUserIds", "$user_id")
+
+								<form action="$leave_url" id="socialOfficeMembership" method="Post" name="leaveFm">
+									<input type="submit" value='#language("leave")' />
+								</form>
+							#end
+						</div>
+					#end
 				</div>
 
 			#end
@@ -74,32 +127,6 @@ $theme.include($body_top_include)
 
 			#if ($has_navigation)
 				#parse ("$full_templates_path/navigation.vm")
-			#end
-
-			#if (($page_group.getType() == 1) && $is_signed_in)
-				#set ($site_membership_url = $portletURLFactory.create($request, "174", $page.getPlid(), "ACTION_PHASE"))
-
-				$site_membership_url.setWindowState("normal")
-				$site_membership_url.setParameter("struts_action", "/sites_admin/edit_site_assignments")
-				$site_membership_url.setParameter("cmd", "group_users")
-				$site_membership_url.setParameter("redirect", "$community_default_url")
-				$site_membership_url.setParameter("groupId", "$page_group.getGroupId()")
-
-				#if (!$user_local_service.hasGroupUser($page_group.getGroupId(), $user_id))
-					$site_membership_url.setParameter("addUserIds", "$user_id")
-
-					#set ($site_membership_action = "join")
-				#else
-					$site_membership_url.setParameter("removeUserIds", "$user_id")
-
-					#set ($site_membership_action = "leave")
-				#end
-
-				#set ($site_membership_url = $htmlUtil.escape($site_membership_url.toString()))
-
-				<form action="$site_membership_url" id="socialOfficeMembership" method="Post" name="membershipFm">
-					<input type="submit" value='#language("$site_membership_action")' />
-				</form>
 			#end
 
 			#if ($page_group.isUser())
