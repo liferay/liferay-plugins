@@ -309,7 +309,7 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		_status = status;
 	}
 
-	public java.lang.String getAssigneeFullName() {
+	public java.lang.String getReporterFullName() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -317,11 +317,11 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		throw new UnsupportedOperationException();
 	}
 
-	public java.lang.String getReporterFullName() {
+	public java.lang.String getStatusLabel() {
 		throw new UnsupportedOperationException();
 	}
 
-	public java.lang.String getStatusLabel() {
+	public java.lang.String getAssigneeFullName() {
 		throw new UnsupportedOperationException();
 	}
 

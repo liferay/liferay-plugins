@@ -206,11 +206,11 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		_keyType = keyType;
 	}
 
-	public java.lang.String getKeyName() {
+	public void setKeyName(java.lang.String keyName) {
 		throw new UnsupportedOperationException();
 	}
 
-	public void setKeyName(java.lang.String keyName) {
+	public java.lang.String getKeyName() {
 		throw new UnsupportedOperationException();
 	}
 

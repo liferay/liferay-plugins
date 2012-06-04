@@ -403,11 +403,11 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 		throw new UnsupportedOperationException();
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken getKaleoTaskInstanceToken() {
+	public com.liferay.portal.workflow.kaleo.model.KaleoTimer getKaleoTimer() {
 		throw new UnsupportedOperationException();
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoTimer getKaleoTimer() {
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken getKaleoTaskInstanceToken() {
 		throw new UnsupportedOperationException();
 	}
 

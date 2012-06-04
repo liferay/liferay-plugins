@@ -165,11 +165,11 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 		throw new UnsupportedOperationException();
 	}
 
-	public com.liferay.socialcoding.model.SVNRepository getSVNRepository() {
+	public java.lang.String getWebRevisionNumberURL() {
 		throw new UnsupportedOperationException();
 	}
 
-	public java.lang.String getWebRevisionNumberURL() {
+	public com.liferay.socialcoding.model.SVNRepository getSVNRepository() {
 		throw new UnsupportedOperationException();
 	}
 

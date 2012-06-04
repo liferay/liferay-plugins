@@ -365,11 +365,11 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		_remoteMessageId = remoteMessageId;
 	}
 
-	public long getGroupId() {
+	public boolean hasFlag(int flag) {
 		throw new UnsupportedOperationException();
 	}
 
-	public boolean hasFlag(int flag) {
+	public long getGroupId() {
 		throw new UnsupportedOperationException();
 	}
 

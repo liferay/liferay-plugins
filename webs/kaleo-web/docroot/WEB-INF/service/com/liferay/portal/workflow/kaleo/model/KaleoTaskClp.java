@@ -243,11 +243,11 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		_description = description;
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoNode getKaleoNode() {
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments() {
 		throw new UnsupportedOperationException();
 	}
 
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments() {
+	public com.liferay.portal.workflow.kaleo.model.KaleoNode getKaleoNode() {
 		throw new UnsupportedOperationException();
 	}
 
