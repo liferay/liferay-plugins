@@ -1,1 +1,1 @@
-create index IX_B9C78948 on TT_Bar (text_);
+create index IX_AEFF307C on TestTransaction_Bar (text_);

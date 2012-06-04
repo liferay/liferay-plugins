@@ -3,7 +3,7 @@
 
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.liferay.testtransaction.model.Bar" />
-	<class name="com.liferay.testtransaction.model.impl.BarImpl" table="TT_Bar">
+	<class name="com.liferay.testtransaction.model.impl.BarImpl" table="TestTransaction_Bar">
 		<cache usage="read-write" />
 		<id name="barId" type="long">
 			<generator class="assigned" />
