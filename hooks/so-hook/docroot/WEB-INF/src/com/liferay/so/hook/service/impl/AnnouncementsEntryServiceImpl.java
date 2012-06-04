@@ -125,13 +125,6 @@ public class AnnouncementsEntryServiceImpl
 		notificationEventJSONObject.put(
 			"userId", announcementEntry.getUserId());
 
-		NotificationEvent notificationEvent =
-			NotificationEventFactoryUtil.createNotificationEvent(
-				System.currentTimeMillis(), "6_WAR_soportlet",
-				notificationEventJSONObject);
-
-		notificationEvent.setDeliveryRequired(0);
-
 		List<User> users = Collections.emptyList();
 
 		if (announcementEntry.getClassNameId() == 0) {
@@ -161,6 +154,13 @@ public class AnnouncementsEntryServiceImpl
 		}
 
 		for (User user : users) {
+			NotificationEvent notificationEvent =
+				NotificationEventFactoryUtil.createNotificationEvent(
+					System.currentTimeMillis(), "6_WAR_soportlet",
+					notificationEventJSONObject);
+
+			notificationEvent.setDeliveryRequired(0);
+
 			ChannelHubManagerUtil.sendNotificationEvent(
 				user.getCompanyId(), user.getUserId(), notificationEvent);
 		}
