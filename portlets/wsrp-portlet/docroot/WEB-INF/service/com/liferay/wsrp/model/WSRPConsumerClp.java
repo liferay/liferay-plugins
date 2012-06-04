@@ -241,7 +241,8 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 		_forwardCookies = forwardCookies;
 	}
 
-	public oasis.names.tc.wsrp.v2.types.RegistrationContext getRegistrationContext() {
+	public void setRegistrationContext(
+		oasis.names.tc.wsrp.v2.types.RegistrationContext registrationContext) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -249,13 +250,12 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 		throw new UnsupportedOperationException();
 	}
 
-	public void setRegistrationContext(
-		oasis.names.tc.wsrp.v2.types.RegistrationContext registrationContext) {
+	public void setRegistrationProperties(
+		com.liferay.portal.kernel.util.UnicodeProperties registrationProperties) {
 		throw new UnsupportedOperationException();
 	}
 
-	public void setRegistrationProperties(
-		com.liferay.portal.kernel.util.UnicodeProperties registrationProperties) {
+	public oasis.names.tc.wsrp.v2.types.RegistrationContext getRegistrationContext() {
 		throw new UnsupportedOperationException();
 	}
 

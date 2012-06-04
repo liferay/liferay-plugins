@@ -326,19 +326,7 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		_completionDate = completionDate;
 	}
 
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken> getChildrenKaleoInstanceTokens() {
-		throw new UnsupportedOperationException();
-	}
-
-	public com.liferay.portal.workflow.kaleo.model.KaleoNode getCurrentKaleoNode() {
-		throw new UnsupportedOperationException();
-	}
-
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken> getIncompleteChildrenKaleoInstanceTokens() {
-		throw new UnsupportedOperationException();
-	}
-
-	public com.liferay.portal.workflow.kaleo.model.KaleoInstance getKaleoInstance() {
+	public boolean hasIncompleteChildrenKaleoInstanceToken() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -346,12 +334,24 @@ public class KaleoInstanceTokenClp extends BaseModelImpl<KaleoInstanceToken>
 		throw new UnsupportedOperationException();
 	}
 
-	public boolean hasIncompleteChildrenKaleoInstanceToken() {
+	public void setCurrentKaleoNode(
+		com.liferay.portal.workflow.kaleo.model.KaleoNode kaleoNode) {
 		throw new UnsupportedOperationException();
 	}
 
-	public void setCurrentKaleoNode(
-		com.liferay.portal.workflow.kaleo.model.KaleoNode kaleoNode) {
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken> getChildrenKaleoInstanceTokens() {
+		throw new UnsupportedOperationException();
+	}
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoInstance getKaleoInstance() {
+		throw new UnsupportedOperationException();
+	}
+
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken> getIncompleteChildrenKaleoInstanceTokens() {
+		throw new UnsupportedOperationException();
+	}
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoNode getCurrentKaleoNode() {
 		throw new UnsupportedOperationException();
 	}
 

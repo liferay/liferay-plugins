@@ -338,11 +338,11 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		_recurrenceScale = recurrenceScale;
 	}
 
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskReassignments() {
+	public boolean isRecurring() {
 		throw new UnsupportedOperationException();
 	}
 
-	public boolean isRecurring() {
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskReassignments() {
 		throw new UnsupportedOperationException();
 	}
 

@@ -214,6 +214,10 @@ public class AppClp extends BaseModelImpl<App> implements App {
 		_version = version;
 	}
 
+	public boolean isDownloaded() {
+		throw new UnsupportedOperationException();
+	}
+
 	public java.lang.String getFileDir() {
 		throw new UnsupportedOperationException();
 	}
@@ -222,15 +226,11 @@ public class AppClp extends BaseModelImpl<App> implements App {
 		throw new UnsupportedOperationException();
 	}
 
-	public java.lang.String getFilePath() {
-		throw new UnsupportedOperationException();
-	}
-
-	public boolean isDownloaded() {
-		throw new UnsupportedOperationException();
-	}
-
 	public boolean isInstalled() {
+		throw new UnsupportedOperationException();
+	}
+
+	public java.lang.String getFilePath() {
 		throw new UnsupportedOperationException();
 	}
 
