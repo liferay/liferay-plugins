@@ -315,7 +315,7 @@
 								}
 							}
 						},
-						request: '?cmd=' + A.JSON.stringify(service) + '&p_auth=' + Liferay.authToken
+						request: '?p_auth=' + Liferay.authToken + '&cmd=' + A.JSON.stringify(service);
 					}
 				);
 			},
