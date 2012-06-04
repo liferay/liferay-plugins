@@ -123,6 +123,33 @@ a:focus .opens-new-window-accessible {
 	position: relative;
 }
 
+.member-button {
+	font-size: 0;
+	line-height: 0;
+	margin-bottom: 10px;
+
+	span {
+		a {
+			color: #2571AD !important;
+			font: bold 12px/1.5em "Helvetica",Arial,sans-serif;
+
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	}
+
+	input {
+		background: none repeat scroll 0 0 transparent !important;
+		border: 0 none !important;
+		border-radius: 0 0 0 0 !important;
+		box-shadow: 0 0 !important;
+		color: #2571AD;
+		font: bold 12px/1.5em "Helvetica",Arial,sans-serif;
+		padding: 0;
+	}
+}
+
 #page-search, #sign-in {
 	position: absolute;
 	right: 0;
@@ -341,11 +368,6 @@ a:focus .opens-new-window-accessible {
 		.aui-toolbar {
 			white-space: normal;
 		}
-	}
-
-	#socialOfficeMembership {
-		padding: 4px 10px;
-		text-align: right;
 	}
 }
 
