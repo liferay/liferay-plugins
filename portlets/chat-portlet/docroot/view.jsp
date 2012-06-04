@@ -82,16 +82,13 @@
 											String middleName = (String)buddy[3];
 											String lastName = (String)buddy[4];
 											long portraitId = (Long)buddy[5];
-											boolean awake = (Boolean)buddy[6];
-
-											String fullName = ContactConstants.getFullName(firstName, middleName, lastName);
 										%>
 
 											<li class="user active" userId="<%= userId %>">
 												<img alt="" src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= portraitId %>">
 
 												<div class="name">
-													<%= HtmlUtil.escape(fullName) %>
+													<%= HtmlUtil.escape(ContactConstants.getFullName(firstName, middleName, lastName)) %>
 												</div>
 											</li>
 
