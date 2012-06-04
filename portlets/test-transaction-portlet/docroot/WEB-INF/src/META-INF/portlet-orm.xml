@@ -19,7 +19,7 @@
 		</attributes>
 	</mapped-superclass>
 	<entity class="com.liferay.testtransaction.model.impl.BarImpl" name="Bar">
-		<table name="TT_Bar" />
+		<table name="TestTransaction_Bar" />
 		<attributes />
 	</entity>
 </entity-mappings>

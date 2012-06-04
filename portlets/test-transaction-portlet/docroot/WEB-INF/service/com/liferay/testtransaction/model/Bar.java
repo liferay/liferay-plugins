@@ -17,7 +17,7 @@ package com.liferay.testtransaction.model;
 import com.liferay.portal.model.PersistedModel;
 
 /**
- * The extended model interface for the Bar service. Represents a row in the &quot;TT_Bar&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the Bar service. Represents a row in the &quot;TestTransaction_Bar&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see BarModel
