@@ -99,8 +99,6 @@ directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("di
 					},
 					namespace: '<portlet:namespace />',
 					portletId: '<%= portletDisplay.getId() %>',
-					saveDirectionsAddressURL: '<portlet:actionURL><portlet:param name="<%= Constants.CMD %>" value="saveDirectionsAddress" /></portlet:actionURL>',
-					saveMapAddressURL: '<portlet:actionURL><portlet:param name="<%= Constants.CMD %>" value="saveMapAddress" /></portlet:actionURL>',
 					showDirectionSteps: <%= showDirectionSteps %>
 				}
 			);

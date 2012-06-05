@@ -62,16 +62,4 @@ if (directionsInputEnabled) {
 }
 
 int height = GetterUtil.getInteger(preferences.getValue("height", StringPool.BLANK), 300);
-
-String sesMapAddress = (String)session.getAttribute(renderResponse.getNamespace() + "mapAddress");
-
-if (sesMapAddress != null) {
-	mapAddress = sesMapAddress;
-}
-
-String sesDirectionsAddress = (String)session.getAttribute(renderResponse.getNamespace() + "directionsAddress");
-
-if (sesDirectionsAddress != null) {
-	directionsAddress = sesDirectionsAddress;
-}
 %>

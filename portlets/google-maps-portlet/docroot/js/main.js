@@ -157,8 +157,6 @@ AUI.add(
 
 						instance._getAddress(mapAddress);
 
-						instance._saveMapAddress(mapAddress);
-
 						return mapAddress;
 					},
 
@@ -271,8 +269,6 @@ AUI.add(
 							if (instance._config.showDirectionSteps) {
 								instance._showSteps(response);
 							}
-
-							instance._saveDirectionsAddress(directionsAddress);
 						}
 					},
 
@@ -288,32 +284,6 @@ AUI.add(
 						if (instance._marker) {
 							instance._marker.setMap(null);
 						}
-					},
-
-					_saveDirectionsAddress: function(address) {
-						var instance = this;
-
-						A.io.request(
-							instance._config.saveDirectionsAddressURL,
-							{
-								data: {
-									directionsAddress: address
-								}
-							}
-						);
-					},
-
-					_saveMapAddress: function(address) {
-						var instance = this;
-
-						A.io.request(
-							instance._config.saveMapAddressURL,
-							{
-								data: {
-									mapAddress: address
-								}
-							}
-						);
 					},
 
 					_showSteps: function(directionResult) {
