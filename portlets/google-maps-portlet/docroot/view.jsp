@@ -25,10 +25,10 @@ directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("di
 	<c:when test="<%= Validator.isNotNull(mapAddress) %>">
 		<c:choose>
 			<c:when test="<%= PortalUtil.isSecure(request) %>">
-				<script src="https://maps-api-ssl.google.com/maps/api/js?v=3&sensor=true" type="text/javascript"></script>
+				<script src="https://maps-api-ssl.google.com/maps/api/js?v=3&sensor=true&language=<%= themeDisplay.getLanguageId() %>" type="text/javascript"></script>
 			</c:when>
 			<c:otherwise>
-				<script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
+				<script src="http://maps.google.com/maps/api/js?sensor=true&language=<%= themeDisplay.getLanguageId() %>" type="text/javascript"></script>
 			</c:otherwise>
 		</c:choose>
 
