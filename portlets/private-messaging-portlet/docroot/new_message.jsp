@@ -36,7 +36,7 @@ if (mbThreadId != 0) {
 
 long[] userIds = StringUtil.split(ParamUtil.getString(request, "userIds"), 0L);
 
-StringBundler sb = new StringBundler();
+StringBundler sb = new StringBundler(userIds.length * 6);
 
 for (long userId : userIds) {
 	try {
@@ -47,8 +47,7 @@ for (long userId : userIds) {
 		sb.append(CharPool.LESS_THAN);
 		sb.append(user2.getScreenName());
 		sb.append(CharPool.GREATER_THAN);
-		sb.append(StringPool.COMMA);
-		sb.append(CharPool.SPACE);
+		sb.append(StringPool.COMMA_AND_SPACE);
 	}
 	catch (Exception e) {
 	}

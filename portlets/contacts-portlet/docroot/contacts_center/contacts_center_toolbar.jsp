@@ -214,9 +214,9 @@ if (user2 != null) {
 						}
 					).render();
 				},
-				icon: 'send-email',
-				id: '<portlet:namespace />sendEmailButton',
-				label: '<%= UnicodeLanguageUtil.get(pageContext, "send-email") %>'
+				icon: 'send-message',
+				id: '<portlet:namespace />sendMessageButton',
+				label: '<%= UnicodeLanguageUtil.get(pageContext, "send-message") %>'
 			}
 		);
 	</c:if>
