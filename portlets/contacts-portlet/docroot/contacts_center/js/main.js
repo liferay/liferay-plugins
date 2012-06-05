@@ -157,7 +157,7 @@ AUI.add(
 						instance._exportButton = instance.byId('exportButton');
 						instance._followButton = instance.byId('followButton');
 						instance._removeConnectionButton = instance.byId('removeConnectionButton');
-						instance._sendEmailButton = instance.byId('sendEmailButton');
+						instance._sendMessageButton = instance.byId('sendMessageButton');
 						instance._unblockButton = instance.byId('unblockButton');
 						instance._unfollowButton = instance.byId('unfollowButton');
 
@@ -429,8 +429,8 @@ AUI.add(
 
 						A.all('.contacts-portlet .aui-toolbar-content button').hide();
 
-						if (instance._sendEmailButton) {
-							instance._sendEmailButton.show();
+						if (instance._sendMessageButton) {
+							instance._sendMessageButton.show();
 						}
 
 						instance._contactCenterToolbar.hide();
