@@ -106,6 +106,14 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 	<aui:fieldset>
 		<aui:input name="title" />
 
+		<aui:input name="startDate" value="<%= startDateJCalendar %>" />
+
+		<div id="<portlet:namespace />endDateContainer">
+			<aui:input name="endDate" value="<%= endDateJCalendar %>" />
+		</div>
+
+		<aui:input name="allDay" />
+
 		<aui:select label="calendar" name="calendarId">
 
 			<%
@@ -122,15 +130,6 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 			%>
 
 		</aui:select>
-
-		<aui:input name="startDate" value="<%= startDateJCalendar %>" />
-
-		<aui:input name="allDay" />
-
-		<div id="<portlet:namespace />endDateContainer">
-			<aui:input name="endDate" value="<%= endDateJCalendar %>" />
-		</div>
-
 	</aui:fieldset>
 
 	<aui:fieldset>
@@ -200,7 +199,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 				A.Array.remove(childCalendarIds, A.Array.indexOf(childCalendarIds, calendarId));
 
-				A.one('#<portlet:namespace />childCalendarIds').val(A.JSON.stringify(childCalendarIds));
+				A.one('#<portlet:namespace />childCalendarIds').val(childCalendarIds.join(','));
 			</c:if>
 
 			submitForm(document.<portlet:namespace />fm);
@@ -209,7 +208,8 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 	);
 
 	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />title);
-	Liferay.Util.toggleBoxes('<portlet:namespace />allDayCheckbox','<portlet:namespace />endDateContainer', true);
+
+	Liferay.Util.toggleBoxes('<portlet:namespace />allDayCheckbox', '<portlet:namespace />endDateContainer', true);
 
 	<c:if test="<%= calendarBooking == null %>">
 		document.<portlet:namespace />fm.<portlet:namespace />title_<%= LanguageUtil.getLanguageId(request) %>.value = decodeURIComponent('<%= HtmlUtil.escapeURL(title) %>');
@@ -217,7 +217,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 </aui:script>
 
 <aui:script use="json,liferay-calendar-list,liferay-calendar-simple-menu">
-	var ownerCalendarId = <%= calendarId %>;
+	var defaultCalendarId = <%= calendarId %>;
 
 	var removeCalendarResource = function(calendarList, calendar, menu) {
 		calendarList.remove(calendar);
@@ -271,7 +271,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 						var hiddenItems = [];
 
-						if (calendar.get('calendarId') === ownerCalendarId) {
+						if (calendar.get('calendarId') === defaultCalendarId) {
 							hiddenItems.push('remove');
 						}
 
@@ -345,46 +345,24 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 	syncVisibleCalendarsMap();
 
 	<c:if test="<%= invitable %>">
-		var autoInvitedOwner = true;
-		var ownerCalendarList = window.<portlet:namespace />calendarListPending;
-
-		<c:if test="<%= (calendar != null) && (calendar.getUserId() == themeDisplay.getUserId()) %>">
-			ownerCalendarList = window.<portlet:namespace />calendarListAccepted;
-		</c:if>
-
 		A.one('#<portlet:namespace />calendarId').on(
 			'valueChange',
 			function(event) {
 				var calendarId = parseInt(event.target.val(), 10);
 
-				var calendar = A.Array.find(
-					<%= CalendarUtil.toCalendarsJSONArray(themeDisplay, manageableCalendars) %>,
-					function(item, index, collection) {
-						return item.calendarId === calendarId;
+				var calendarJSON = Liferay.CalendarUtil.getCalendarJSONById(<%= CalendarUtil.toCalendarsJSONArray(themeDisplay, manageableCalendars) %>, calendarId);
+
+				A.Array.each(
+					[ <portlet:namespace />calendarListAccepted, <portlet:namespace />calendarListDeclined, <portlet:namespace />calendarListPending ],
+					function(calendarList) {
+						calendarList.remove(calendarList.getCalendar(calendarId));
+						calendarList.remove(calendarList.getCalendar(defaultCalendarId));
 					}
 				);
 
-				if (autoInvitedOwner) {
-					ownerCalendarList.remove(ownerCalendarList.getCalendar(ownerCalendarId));
-				}
+				<portlet:namespace />calendarListPending.add(calendarJSON);
 
-				if (calendar.userId === <%= themeDisplay.getUserId() %>) {
-					ownerCalendarList = window.<portlet:namespace />calendarListAccepted;
-				}
-				else {
-					ownerCalendarList = window.<portlet:namespace />calendarListPending;
-				}
-
-				if (ownerCalendarList.getCalendar(calendarId)) {
-					autoInvitedOwner = false;
-				}
-				else {
-					autoInvitedOwner = true;
-
-					ownerCalendarList.add(calendar);
-				}
-
-				ownerCalendarId = calendarId;
+				defaultCalendarId = calendarId;
 			}
 		);
 
@@ -398,16 +376,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 			function(event) {
 				var calendar = event.result.raw;
 
-				var calendarList;
-
-				if (calendar.userId === <%= themeDisplay.getUserId() %>) {
-					calendarList = window.<portlet:namespace />calendarListAccepted;
-				}
-				else {
-					calendarList = window.<portlet:namespace />calendarListPending;
-				}
-
-				calendarList.add(calendar);
+				<portlet:namespace />calendarListPending.add(calendar);
 
 				inviteResourcesInput.val('');
 			}

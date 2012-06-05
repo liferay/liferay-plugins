@@ -375,15 +375,16 @@ public class CalendarBookingLocalServiceImpl
 		long[] childCalendarIds = new long[childCalendarBookings.size()];
 
 		for (int i = 0; i < childCalendarIds.length; i++) {
-			CalendarBooking curCalendarBooking = childCalendarBookings.get(i);
+			CalendarBooking childCalendarBooking = childCalendarBookings.get(i);
 
-			long curCalendarBookingId = curCalendarBooking.getCalendarId();
+			if (childCalendarBooking.getCalendarId() ==
+					calendarBooking.getCalendarId()) {
 
-			if (curCalendarBookingId == calendarBooking.getCalendarId()) {
-				curCalendarBookingId = calendarId;
+				childCalendarIds[i] = calendarId;
 			}
-
-			childCalendarIds[i] = curCalendarBookingId;
+			else {
+				childCalendarIds[i] = childCalendarBooking.getCalendarId();
+			}
 		}
 
 		return updateCalendarBooking(
