@@ -1,4 +1,12 @@
 .google-maps-portlet {
+	.address-container {
+		float: left;
+
+		&.two-lines {
+			float: none;
+		}
+	}
+
 	.address-field {
 		input {
 			width: 350px;
@@ -7,6 +15,11 @@
 		label {
 			min-width: 40px;
 		}
+	}
+
+	.button-container {
+		position: relative;
+		left: 10px;
 	}
 
 	.google-maps-link {

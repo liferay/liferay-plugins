@@ -29,40 +29,46 @@
 
 		<aui:form name="fm">
 			<aui:fieldset>
-				<c:choose>
-					<c:when test="<%= mapInputEnabled %>">
-						<aui:input cssClass="address-field" inlineField="<%= true %>" label="from" name="mapAddress" type="text" value="<%= mapAddress %>" />
-					</c:when>
-					<c:otherwise>
-						<c:if test="<%= Validator.isNotNull(mapAddress) && (Validator.isNotNull(directionsAddress) || directionsInputEnabled) %>">
-							<aui:field-wrapper label="from"><%= mapAddress %></aui:field-wrapper>
-						</c:if>
+				<div class='address-container <%= (directionsInputEnabled || Validator.isNotNull(directionsAddress)) ? "two-lines" : StringPool.BLANK %>'>
+					<c:choose>
+						<c:when test="<%= mapInputEnabled %>">
+							<aui:input cssClass="address-field" inlineField="<%= true %>" label="from" name="mapAddress" type="text" value="<%= mapAddress %>" />
+						</c:when>
+						<c:otherwise>
+							<c:if test="<%= Validator.isNotNull(mapAddress) && (Validator.isNotNull(directionsAddress) || directionsInputEnabled) %>">
+								<aui:field-wrapper inlineField="<%= true %>" label="from"><%= mapAddress %></aui:field-wrapper>
+							</c:if>
 
-						<aui:input name="mapAddress" type="hidden" value="<%= mapAddress %>" />
-					</c:otherwise>
-				</c:choose>
+							<aui:input name="mapAddress" type="hidden" value="<%= mapAddress %>" />
+						</c:otherwise>
+					</c:choose>
+				</div>
 
-				<c:choose>
-					<c:when test="<%= directionsInputEnabled %>">
-						<aui:input cssClass="address-field" inlineField="<%= true %>" label="to" name="directionsAddress" type="text" value="<%= directionsAddress %>" />
-					</c:when>
-					<c:otherwise>
-						<c:if test="<%= Validator.isNotNull(directionsAddress) %>">
-							<aui:field-wrapper label="to"><%= directionsAddress %></aui:field-wrapper>
-						</c:if>
+				<div class="address-container">
+					<c:choose>
+						<c:when test="<%= directionsInputEnabled %>">
+							<aui:input cssClass="address-field" inlineField="<%= true %>" label="to" name="directionsAddress" type="text" value="<%= directionsAddress %>" />
+						</c:when>
+						<c:otherwise>
+							<c:if test="<%= Validator.isNotNull(directionsAddress) %>">
+								<aui:field-wrapper inlineField="<%= true %>" label="to"><%= directionsAddress %></aui:field-wrapper>
+							</c:if>
 
-						<aui:input name="directionsAddress" type="hidden" value="<%= directionsAddress %>" />
-					</c:otherwise>
-				</c:choose>
+							<aui:input name="directionsAddress" type="hidden" value="<%= directionsAddress %>" />
+						</c:otherwise>
+					</c:choose>
+				</div>
 
-				<c:choose>
-					<c:when test="<%= Validator.isNotNull(directionsAddress) || directionsInputEnabled %>">
-						<aui:button name="getDirectionsButton" value="get-directions" />
-					</c:when>
-					<c:when test="<%= mapInputEnabled %>">
-						<aui:button name="getMapButton" value="get-map" />
-					</c:when>
-				</c:choose>
+				<div class="button-container">
+					<c:choose>
+						<c:when test="<%= directionsInputEnabled || (mapInputEnabled && (Validator.isNotNull(directionsAddress))) %>">
+							<aui:button name="getDirectionsButton" value="get-directions" />
+						</c:when>
+						<c:when test="<%= mapInputEnabled %>">
+							<aui:button name="getMapButton" value="get-map" />
+						</c:when>
+					</c:choose>
+				</div>
 
 				<c:choose>
 					<c:when test="<%= enableChangingTravellingMode %>">
