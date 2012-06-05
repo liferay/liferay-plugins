@@ -34,9 +34,9 @@ if (mbThreadId != 0) {
 	to = ListUtil.toString(userThreads, "userId", ", ");
 }
 
-long[] userIds = StringUtil.split(ParamUtil.getString(request, "userIds"), 0L);
-
 StringBundler sb = new StringBundler(userIds.length * 6);
+
+long[] userIds = StringUtil.split(ParamUtil.getString(request, "userIds"), 0L);
 
 for (long userId : userIds) {
 	try {
