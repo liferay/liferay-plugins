@@ -313,7 +313,7 @@
 								}
 							}
 						},
-						request: '?p_auth=' + Liferay.authToken + '&cmd=' + A.JSON.stringify(service);
+						request: '?p_auth=' + Liferay.authToken + '&cmd=' + A.JSON.stringify(service)
 					}
 				);
 			},
