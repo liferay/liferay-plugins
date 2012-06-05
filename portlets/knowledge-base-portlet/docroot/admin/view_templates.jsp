@@ -89,7 +89,7 @@
 				<aui:button-row>
 					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_TEMPLATE) %>">
 						<liferay-portlet:renderURL var="addKBTemplateURL">
-							<portlet:param name="mvcPath" value='<%= jspPath + "edit_template.jsp" %>' />
+							<portlet:param name="mvcPath" value='<%= templatePath + "edit_template.jsp" %>' />
 							<portlet:param name="redirect" value="<%= redirect %>" />
 						</liferay-portlet:renderURL>
 

@@ -27,7 +27,7 @@ KBTemplate kbTemplate = (KBTemplate)row.getObject();
 <liferay-ui:icon-menu cssClass="kb-template-action">
 	<c:if test="<%= KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.VIEW) %>">
 		<liferay-portlet:renderURL var="viewURL">
-			<portlet:param name="mvcPath" value='<%= jspPath + "view_template.jsp" %>' />
+			<portlet:param name="mvcPath" value='<%= templatePath + "view_template.jsp" %>' />
 			<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
 		</liferay-portlet:renderURL>
 
@@ -40,7 +40,7 @@ KBTemplate kbTemplate = (KBTemplate)row.getObject();
 
 	<c:if test="<%= KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.UPDATE) %>">
 		<liferay-portlet:renderURL var="editURL">
-			<portlet:param name="mvcPath" value='<%= jspPath + "edit_template.jsp" %>' />
+			<portlet:param name="mvcPath" value='<%= templatePath + "edit_template.jsp" %>' />
 			<portlet:param name="redirect" value="<%= redirect %>" />
 			<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
 		</liferay-portlet:renderURL>
