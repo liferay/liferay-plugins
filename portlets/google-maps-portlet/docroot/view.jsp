@@ -18,15 +18,6 @@
 
 <c:choose>
 	<c:when test="<%= Validator.isNotNull(mapAddress) %>">
-		<c:choose>
-			<c:when test="<%= PortalUtil.isSecure(request) %>">
-				<script src="https://maps-api-ssl.google.com/maps/api/js?v=3&sensor=true&language=<%= themeDisplay.getLanguageId() %>" type="text/javascript"></script>
-			</c:when>
-			<c:otherwise>
-				<script src="http://maps.google.com/maps/api/js?sensor=true&language=<%= themeDisplay.getLanguageId() %>" type="text/javascript"></script>
-			</c:otherwise>
-		</c:choose>
-
 		<aui:form name="fm">
 			<aui:fieldset>
 				<div class='address-container <%= (directionsInputEnabled || Validator.isNotNull(directionsAddress)) ? "two-lines" : StringPool.BLANK %>'>
@@ -98,20 +89,45 @@
 		</aui:form>
 
 		<aui:script use="liferay-google-maps">
-			new Liferay.Portlet.GoogleMaps(
-				{
-					directionsAddress: '<%= directionsAddress %>',
-					mapAddress: '<%= mapAddress %>',
-					mapInputEnabled: <%= mapInputEnabled %>,
-					mapParams: {
-						mapTypeId: google.maps.MapTypeId.ROADMAP,
-						zoom: 8
-					},
-					namespace: '<portlet:namespace />',
-					portletId: '<%= portletDisplay.getId() %>',
-					showDirectionSteps: <%= showDirectionSteps %>
+			var initGoogleMaps = function() {
+				new Liferay.Portlet.GoogleMaps(
+					{
+						directionsAddress: '<%= directionsAddress %>',
+						mapAddress: '<%= mapAddress %>',
+						mapInputEnabled: <%= mapInputEnabled %>,
+						mapParams: {
+							mapTypeId: google.maps.MapTypeId.ROADMAP,
+							zoom: 8
+						},
+						namespace: '<portlet:namespace />',
+						portletId: '<%= portletDisplay.getId() %>',
+						showDirectionSteps: <%= showDirectionSteps %>
+					}
+				);
+			};
+
+			Liferay.namespace('GOOGLE_MAPS')['initGoogleMaps'] = initGoogleMaps;
+
+			var Lang = A.Lang;
+
+			if ((typeof google != 'undefined') && Lang.isObject(google.maps)) {
+				initGoogleMaps();
+			}
+			else {
+				var script = document.createElement("script");
+				script.type = "text/javascript";
+
+				<%
+				String googleMapsURL = "http://maps.google.com/maps/api/js";
+
+				if (PortalUtil.isSecure(request)) {
+					googleMapsURL = "https://maps-api-ssl.google.com/maps/api/js";
 				}
-			);
+				%>
+
+				script.src = "<%= googleMapsURL %>?sensor=true&language=<%= themeDisplay.getLanguageId() %>&callback=Liferay.GOOGLE_MAPS.initGoogleMaps";
+				A.config.doc.body.appendChild(script);
+			}
 		</aui:script>
 	</c:when>
 	<c:otherwise>
