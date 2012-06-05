@@ -52,13 +52,14 @@ directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("di
 					</c:otherwise>
 				</c:choose>
 
-				<c:if test="<%= mapInputEnabled %>">
-					<aui:button name="getMapButton" value="get-map" />
-				</c:if>
-
-				<c:if test="<%= Validator.isNotNull(directionsAddress) %>">
-					<aui:button name="getDirectionsButton" value="get-directions" />
-				</c:if>
+				<c:choose>
+					<c:when test="<%= Validator.isNotNull(directionsAddress) || directionsInputEnabled %>">
+						<aui:button name="getDirectionsButton" value="get-directions" />
+					</c:when>
+					<c:otherwise>
+						<aui:button name="getMapButton" value="get-map" />
+					</c:otherwise>
+				</c:choose>
 
 				<c:choose>
 					<c:when test="<%= enableChangingTravellingMode %>">
