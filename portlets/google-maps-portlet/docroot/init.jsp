@@ -61,5 +61,5 @@ if (directionsInputEnabled) {
 	enableChangingTravellingMode = GetterUtil.getBoolean(preferences.getValue("enableChangingTravellingMode", StringPool.BLANK));
 }
 
-int height = GetterUtil.getInteger(preferences.getValue("height", StringPool.BLANK), 300);
+int height = GetterUtil.getInteger(preferences.getValue("height", StringPool.BLANK), 400);
 %>
