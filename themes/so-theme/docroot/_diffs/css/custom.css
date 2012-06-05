@@ -562,6 +562,15 @@ button, input[type=submit], input[type=button], input[type=reset], .aui-panel-hd
 	}
 }
 
+.aui-buttonitem-content {
+	line-height: 1.5em;
+	padding: 3px 2px;
+}
+
+.firefox .aui-buttonitem-content {
+	padding: 3px 0;
+}
+
 .aui-panel-hd button, .aui-panel-hd .aui-button, .aui-panel-hd .aui-state-default, .aui-textboxlistentry-holder .aui-field-input-text, .microblogs-portlet .autocomplete input[type=text] {
 	border-color: transparent;
 }
