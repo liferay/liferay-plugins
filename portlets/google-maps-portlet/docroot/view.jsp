@@ -16,11 +16,6 @@
 
 <%@ include file="/init.jsp" %>
 
-<%
-mapAddress = GetterUtil.getString((String)portletSession.getAttribute("mapAddress"), mapAddress);
-directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("directionsAddress"), directionsAddress);
-%>
-
 <c:choose>
 	<c:when test="<%= Validator.isNotNull(mapAddress) %>">
 		<c:choose>
@@ -36,18 +31,26 @@ directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("di
 			<aui:fieldset>
 				<c:choose>
 					<c:when test="<%= mapInputEnabled %>">
-						<aui:input cssClass="address-field" inlineField="<%= true %>" label='<%= mapInputEnabled ? "from" : "directions-from" %>' name="mapAddress" type="text" value="<%= mapAddress %>" />
+						<aui:input cssClass="address-field" inlineField="<%= true %>" label="from" name="mapAddress" type="text" value="<%= mapAddress %>" />
 					</c:when>
 					<c:otherwise>
+						<c:if test="<%= Validator.isNotNull(mapAddress) && (Validator.isNotNull(directionsAddress) || directionsInputEnabled) %>">
+							<aui:field-wrapper label="from"><%= mapAddress %></aui:field-wrapper>
+						</c:if>
+
 						<aui:input name="mapAddress" type="hidden" value="<%= mapAddress %>" />
 					</c:otherwise>
 				</c:choose>
 
 				<c:choose>
 					<c:when test="<%= directionsInputEnabled %>">
-						<aui:input cssClass="address-field" inlineField="<%= true %>" label='<%= directionsInputEnabled ? "to" : StringPool.BLANK %>' name="directionsAddress" type="text" value="<%= directionsAddress %>" />
+						<aui:input cssClass="address-field" inlineField="<%= true %>" label="to" name="directionsAddress" type="text" value="<%= directionsAddress %>" />
 					</c:when>
 					<c:otherwise>
+						<c:if test="<%= Validator.isNotNull(directionsAddress) %>">
+							<aui:field-wrapper label="to"><%= directionsAddress %></aui:field-wrapper>
+						</c:if>
+
 						<aui:input name="directionsAddress" type="hidden" value="<%= directionsAddress %>" />
 					</c:otherwise>
 				</c:choose>
@@ -56,9 +59,9 @@ directionsAddress = GetterUtil.getString((String)portletSession.getAttribute("di
 					<c:when test="<%= Validator.isNotNull(directionsAddress) || directionsInputEnabled %>">
 						<aui:button name="getDirectionsButton" value="get-directions" />
 					</c:when>
-					<c:otherwise>
+					<c:when test="<%= mapInputEnabled %>">
 						<aui:button name="getMapButton" value="get-map" />
-					</c:otherwise>
+					</c:when>
 				</c:choose>
 
 				<c:choose>
