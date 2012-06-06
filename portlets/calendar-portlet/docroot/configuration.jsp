@@ -119,12 +119,6 @@ String emailBookingNotificationBody = ParamUtil.getString(request, "emailBooking
 						<%= company.getVirtualHostname() %>
 					</dd>
 					<dt>
-						[$PORTLET_NAME$]
-					</dt>
-					<dd>
-						<%= PortalUtil.getPortletTitle(renderResponse) %>
-					</dd>
-					<dt>
 						[$TO_ADDRESS$]
 					</dt>
 					<dd>

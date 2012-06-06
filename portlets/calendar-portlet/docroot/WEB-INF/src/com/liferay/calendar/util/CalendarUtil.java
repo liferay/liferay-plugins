@@ -17,6 +17,7 @@ package com.liferay.calendar.util;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.CalendarResource;
+import com.liferay.calendar.service.CalendarLocalServiceUtil;
 import com.liferay.calendar.service.CalendarResourceLocalServiceUtil;
 import com.liferay.calendar.service.permission.CalendarPermission;
 import com.liferay.calendar.util.comparator.CalendarNameComparator;
@@ -31,12 +32,20 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.Role;
+import com.liferay.portal.model.RoleConstants;
+import com.liferay.portal.model.User;
+import com.liferay.portal.model.UserGroupRole;
 import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.ContentUtil;
 import com.liferay.util.UniqueList;
 import com.liferay.util.portlet.PortletProps;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.portlet.PortletPreferences;
@@ -47,6 +56,40 @@ import javax.portlet.PortletPreferences;
  * @author Fabio Pezzutto
  */
 public class CalendarUtil {
+
+	public static List<User> getBookingNotificationRecipients(
+			CalendarBooking calendarBooking)
+		throws SystemException, PortalException {
+
+		Calendar calendar = CalendarLocalServiceUtil.getCalendar(
+			calendarBooking.getCalendarId());
+
+		List<Role> roles = CalendarLocalServiceUtil.getCalendarPermissionRoles(
+			calendar.getCompanyId(), calendar.getResourceBlockId(),
+			ActionKeys.MANAGE_BOOKINGS);
+
+		List<User> manageBookingUsers = new ArrayList<User>();
+
+		for (Role role : roles) {
+
+			if (role.getType() == RoleConstants.TYPE_REGULAR) {
+				manageBookingUsers.addAll(
+					UserLocalServiceUtil.getRoleUsers(role.getRoleId()));
+			}
+			else {
+
+				List<UserGroupRole> userGroupRoles =
+					UserGroupRoleLocalServiceUtil.getUserGroupRolesByGroupAndRole(
+						calendar.getGroupId(), role.getRoleId());
+
+				for (UserGroupRole userGroupRole : userGroupRoles) {
+					manageBookingUsers.add(userGroupRole.getUser());
+				}
+			}
+		}
+
+		return manageBookingUsers;
+	}
 
 	public static String getEmailBookingNotificationBody(
 		PortletPreferences preferences) {

@@ -147,61 +147,61 @@ User bookingUser = UserLocalServiceUtil.getUser(BeanParamUtil.getLong(calendarBo
 
 				<aui:input name="location" />
 			</liferay-ui:panel>
+
+			<liferay-ui:panel collapsible="<%= true %>" extended="<%= false %>" id="calendarBookingReminderSectionPanel" persistState="<%= true %>" title="reminder">
+				<span class="aui-field-row">
+					<span class="aui-field-content">
+						<aui:input
+							name="reminder"
+							checked="<%= !reminderActive %>"
+							type="radio"
+							value="<%= StringPool.FALSE %>"
+							label="do-not-send-a-reminder"
+						/>
+					</span>
+				</span>
+				<span class="aui-field-row">
+					<aui:input
+						name="reminder"
+						checked="<%= reminderActive %>"
+						type="radio"
+						label=''
+						value="<%= StringPool.TRUE %>"
+						inlineField="true"
+					/>
+
+					<aui:select inlineField="<%= true %>" inlineLabel="left" label="remind-me" name="firstReminder">
+
+						<%
+						for (int i = 0; i < CalendarBookingConstants.REMINDERS.length; i++) {
+						%>
+
+							<aui:option selected="<%= (firstReminder == CalendarBookingConstants.REMINDERS[i]) %>" value="<%= CalendarBookingConstants.REMINDERS[i] %>"><%= LanguageUtil.getTimeDescription(pageContext, CalendarBookingConstants.REMINDERS[i]) %></aui:option>
+
+						<%
+						}
+						%>
+
+					</aui:select>
+
+					<aui:select inlineField="<%= true %>" inlineLabel="left" label="before-and-again" name="secondReminder" suffix="before-the-event-by">
+
+						<%
+						for (int i = 0; i < CalendarBookingConstants.REMINDERS.length; i++) {
+						%>
+
+							<aui:option selected="<%= (secondReminder == CalendarBookingConstants.REMINDERS[i]) %>" value="<%= CalendarBookingConstants.REMINDERS[i] %>"><%= LanguageUtil.getTimeDescription(pageContext, CalendarBookingConstants.REMINDERS[i]) %></aui:option>
+
+						<%
+						}
+						%>
+
+					</aui:select>
+
+					<%= bookingUser.getEmailAddress() %>
+				</span>
+			</liferay-ui:panel>
 		</liferay-ui:panel-container>
-	</aui:fieldset>
-
-	<aui:fieldset label="reminder">
-		<span class="aui-field-row">
-			<span class="aui-field-content">
-				<aui:input
-					name="reminder"
-					checked="<%= !reminderActive %>"
-					type="radio"
-					value="<%= StringPool.FALSE %>"
-					label="do-not-send-a-reminder"
-				/>
-			</span>
-		</span>
-		<span class="aui-field-row">
-			<aui:input
-				name="reminder"
-				checked="<%= reminderActive %>"
-				type="radio"
-				label=''
-				value="<%= StringPool.TRUE %>"
-				inlineField="true"
-			/>
-
-			<aui:select inlineField="<%= true %>" inlineLabel="left" label="remind-me" name="firstReminder">
-
-				<%
-				for (int i = 0; i < CalendarBookingConstants.REMINDERS.length; i++) {
-				%>
-
-					<aui:option selected="<%= (firstReminder == CalendarBookingConstants.REMINDERS[i]) %>" value="<%= CalendarBookingConstants.REMINDERS[i] %>"><%= LanguageUtil.getTimeDescription(pageContext, CalendarBookingConstants.REMINDERS[i]) %></aui:option>
-
-				<%
-				}
-				%>
-
-			</aui:select>
-
-			<aui:select inlineField="<%= true %>" inlineLabel="left" label="before-and-again" name="secondReminder" suffix="before-the-event-by">
-
-				<%
-				for (int i = 0; i < CalendarBookingConstants.REMINDERS.length; i++) {
-				%>
-
-					<aui:option selected="<%= (secondReminder == CalendarBookingConstants.REMINDERS[i]) %>" value="<%= CalendarBookingConstants.REMINDERS[i] %>"><%= LanguageUtil.getTimeDescription(pageContext, CalendarBookingConstants.REMINDERS[i]) %></aui:option>
-
-				<%
-				}
-				%>
-
-			</aui:select>
-
-			<%= bookingUser.getEmailAddress() %>
-		</span>
 	</aui:fieldset>
 
 	<liferay-ui:tabs
