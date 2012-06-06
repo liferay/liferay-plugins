@@ -304,6 +304,14 @@ public class CalendarLocalServiceUtil {
 			descriptionMap, color, defaultCalendar, serviceContext);
 	}
 
+	public static java.util.List<com.liferay.portal.model.Role> getCalendarPermissionRoles(
+		long companyId, long resourceBlockId, java.lang.String actionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getCalendarPermissionRoles(companyId, resourceBlockId,
+			actionId);
+	}
+
 	public static java.util.List<com.liferay.calendar.model.Calendar> getCalendarResourceCalendars(
 		long groupId, long calendarResourceId)
 		throws com.liferay.portal.kernel.exception.SystemException {

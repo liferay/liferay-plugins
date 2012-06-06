@@ -30,7 +30,6 @@ import com.liferay.calendar.workflow.CalendarBookingWorkflowConstants;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.mail.MailMessage;
@@ -43,8 +42,10 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
+import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
+import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -59,6 +60,8 @@ import java.util.TimeZone;
 
 import javax.mail.internet.InternetAddress;
 import javax.portlet.PortletPreferences;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Eduardo Lundgren
@@ -518,7 +521,7 @@ public class CalendarBookingLocalServiceImpl
 				calendarBooking.getFirstReminder(),
 				calendarBooking.getSecondReminder(), serviceContext);
 
-			sendBookingNotification(
+			sendBookingNotifications(
 				childCalendarBooking, calendarId, serviceContext);
 		}
 	}
@@ -545,10 +548,6 @@ public class CalendarBookingLocalServiceImpl
 			Company company = CompanyLocalServiceUtil.getCompany(
 				user.getCompanyId());
 
-			String portletName = LanguageUtil.get(
-				user.getLocale(), PortalUtil.getPortletTitle(
-					PortletKeys.CALENDAR, user));
-
 			String fromName = CalendarUtil.getEmailFromName(
 				preferences, calendarBooking.getCompanyId());
 			String fromAddress = CalendarUtil.getEmailFromAddress(
@@ -569,15 +568,14 @@ public class CalendarBookingLocalServiceImpl
 				new String[] {
 					"[$BOOKING_LOCATION$]", "[$BOOKING_START_DATE$]",
 					"[$BOOKING_TITLE$]", "[$FROM_ADDRESS$]", "[$FROM_NAME$]",
-					"[$PORTAL_URL$]", "[$PORTLET_NAME$]", "[$TO_ADDRESS$]",
-					"[$TO_NAME$]"
+					"[$PORTAL_URL$]", "[$TO_ADDRESS$]", "[$TO_NAME$]"
 				},
 				new String[] {
 					calendarBooking.getLocation(),
 					dateFormatDateTime.format(startDate.getTime()),
 					calendarBooking.getTitle(), fromAddress, fromName,
 					company.getPortalURL(calendarBooking.getGroupId()),
-					portletName, HtmlUtil.escape(toAddress),
+					HtmlUtil.escape(toAddress),
 					HtmlUtil.escape(toName),
 				});
 
@@ -595,8 +593,7 @@ public class CalendarBookingLocalServiceImpl
 					calendarBooking.getTitle(user.getLocale()), fromAddress,
 					fromName,
 					company.getPortalURL(calendarBooking.getGroupId()),
-					portletName, HtmlUtil.escape(toAddress),
-					HtmlUtil.escape(toName),
+					HtmlUtil.escape(toAddress), HtmlUtil.escape(toName),
 				});
 
 			InternetAddress from = new InternetAddress(
@@ -643,28 +640,21 @@ public class CalendarBookingLocalServiceImpl
 		}
 	}
 
-	protected void sendBookingNotification(
+	protected void sendBookingNotifications(
 			CalendarBooking calendarBooking, long calendarId,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		Calendar calendar = calendarPersistence.findByPrimaryKey(
-			calendarId);
+		List<User> users = CalendarUtil.getBookingNotificationRecipients(
+			calendarBooking);
 
-		CalendarResource calendarResource =
-			calendarResourcePersistence.findByPrimaryKey(
-				calendar.getCalendarResourceId());
+		HttpServletRequest request = serviceContext.getRequest();
 
-		if (calendarResource.getClassNameId() !=
-				PortalUtil.getClassNameId(User.class)) {
-			return;
-		}
+		ServletContext servletContext =
+			request.getSession().getServletContext();
 
-		User user = userPersistence.findByPrimaryKey(
-			calendarResource.getClassPK());
-
-		java.util.Calendar startDate = JCalendarUtil.getJCalendar(
-			calendarBooking.getStartDate(), user.getTimeZone());
+		Portlet portlet = PortletLocalServiceUtil.getPortletById(
+			serviceContext.getPortletId());
 
 		long ownerId = calendarBooking.getGroupId();
 		int ownerType = PortletKeys.PREFS_OWNER_TYPE_GROUP;
@@ -676,55 +666,60 @@ public class CalendarBookingLocalServiceImpl
 				calendarBooking.getCompanyId(), ownerId, ownerType, plid,
 				portletId);
 
-		Company company = CompanyLocalServiceUtil.getCompany(
-			user.getCompanyId());
+		for (User user : users) {
 
-		String portletName = LanguageUtil.get(
-			user.getLocale(), PortalUtil.getPortletTitle(
-				PortletKeys.CALENDAR, user));
+			java.util.Calendar startDate = JCalendarUtil.getJCalendar(
+				calendarBooking.getStartDate(), user.getTimeZone());
 
-		String fromName = CalendarUtil.getEmailFromName(
-			preferences, calendarBooking.getCompanyId());
-		String fromAddress = CalendarUtil.getEmailFromAddress(
-			preferences, calendarBooking.getCompanyId());
+			Company company = CompanyLocalServiceUtil.getCompany(
+				user.getCompanyId());
 
-		String toName = user.getFullName();
-		String toAddress = user.getEmailAddress();
+			String portletName = PortalUtil.getPortletTitle(
+				portlet, servletContext, user.getLocale());
 
-		String subject = CalendarUtil.getEmailBookingReminderSubject(
-			preferences);
-		String body = CalendarUtil.getEmailBookingReminderBody(preferences);
+			String fromName = CalendarUtil.getEmailFromName(
+				preferences, calendarBooking.getCompanyId());
+			String fromAddress = CalendarUtil.getEmailFromAddress(
+				preferences, calendarBooking.getCompanyId());
 
-		Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(
-			user.getLocale(), user.getTimeZone());
+			String toName = user.getFullName();
+			String toAddress = user.getEmailAddress();
 
-		SubscriptionSender subscriptionSender = new SubscriptionSender();
+			String subject = CalendarUtil.getEmailBookingReminderSubject(
+				preferences);
+			String body = CalendarUtil.getEmailBookingReminderBody(preferences);
 
-		subscriptionSender.setBody(body);
-		subscriptionSender.setCompanyId(calendarBooking.getCompanyId());
-		subscriptionSender.setContextAttributes(
-			"[$BOOKING_LOCATION$]", calendarBooking.getLocation(),
-			"[$BOOKING_START_DATE$]",
-			dateFormatDateTime.format(startDate.getTime()),
-			"[$BOOKING_TITLE$]", calendarBooking.getTitle(user.getLocale()),
-			"[$FROM_ADDRESS$]", fromAddress, "[$FROM_NAME$]", fromName,
-			"[$PORTAL_URL$]",
-			company.getPortalURL(calendarBooking.getGroupId()),
-			"[$PORTLET_NAME$]", portletName, "[$TO_ADDRESS$]", toAddress,
-			"[$TO_NAME$]", toName);
-		subscriptionSender.setFrom(fromAddress, fromName);
-		subscriptionSender.setHtmlFormat(true);
-		subscriptionSender.setMailId(
-			"calendar_booking", calendarBooking.getCalendarBookingId());
-		subscriptionSender.setPortletId(PortletKeys.CALENDAR);
-		subscriptionSender.setScopeGroupId(calendarBooking.getGroupId());
-		subscriptionSender.setServiceContext(serviceContext);
-		subscriptionSender.setSubject(subject);
-		subscriptionSender.setUserId(user.getUserId());
+			Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(
+				user.getLocale(), user.getTimeZone());
 
-		subscriptionSender.addRuntimeSubscribers(toAddress, toName);
+			SubscriptionSender subscriptionSender = new SubscriptionSender();
 
-		subscriptionSender.flushNotificationsAsync();
+			subscriptionSender.setBody(body);
+			subscriptionSender.setCompanyId(calendarBooking.getCompanyId());
+			subscriptionSender.setContextAttributes(
+				"[$BOOKING_LOCATION$]", calendarBooking.getLocation(),
+				"[$BOOKING_START_DATE$]",
+				dateFormatDateTime.format(startDate.getTime()),
+				"[$BOOKING_TITLE$]", calendarBooking.getTitle(user.getLocale()),
+				"[$FROM_ADDRESS$]", fromAddress, "[$FROM_NAME$]", fromName,
+				"[$PORTAL_URL$]",
+				company.getPortalURL(calendarBooking.getGroupId()),
+				"[$PORTLET_NAME$]", portletName, "[$TO_ADDRESS$]", toAddress,
+				"[$TO_NAME$]", toName);
+			subscriptionSender.setFrom(fromAddress, fromName);
+			subscriptionSender.setHtmlFormat(true);
+			subscriptionSender.setMailId(
+				"calendar_booking", calendarBooking.getCalendarBookingId());
+			subscriptionSender.setPortletId(PortletKeys.CALENDAR);
+			subscriptionSender.setScopeGroupId(calendarBooking.getGroupId());
+			subscriptionSender.setServiceContext(serviceContext);
+			subscriptionSender.setSubject(subject);
+			subscriptionSender.setUserId(user.getUserId());
+
+			subscriptionSender.addRuntimeSubscribers(toAddress, toName);
+
+			subscriptionSender.flushNotificationsAsync();
+		}
 	}
 
 	protected java.util.Calendar toLastHourJCalendar(

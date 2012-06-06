@@ -139,6 +139,13 @@ public class CalendarFinderUtil {
 			names, descriptions, andOperator, start, end, orderByComparator);
 	}
 
+	public static java.util.List<com.liferay.portal.model.Role> findPermissionRoles(
+		long companyId, long resourceBlockId, java.lang.String actionId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getFinder()
+				   .findPermissionRoles(companyId, resourceBlockId, actionId);
+	}
+
 	public static CalendarFinder getFinder() {
 		if (_finder == null) {
 			_finder = (CalendarFinder)PortletBeanLocatorUtil.locate(com.liferay.calendar.service.ClpSerializer.getServletContextName(),
