@@ -316,15 +316,19 @@
 
 							var calendars = instance.get('calendars');
 
-							for (var i = 0; i < calendars.length; i++) {
-								var calendar = calendars[i];
+							var calendar = null;
 
-								if (calendar.get('calendarId') === calendarId) {
-									return calendar;
+							for (var i = 0; i < calendars.length; i++) {
+								var cal = calendars[i];
+
+								if (cal.get('calendarId') === calendarId) {
+									calendar = cal;
+
+									break;
 								}
 							}
 
-							return null;
+							return calendar;
 						},
 
 						getCalendarByNode: function(node) {

@@ -361,11 +361,13 @@
 				var instance = this;
 
 				var newCalendarId = data.calendarId;
+
 				var oldCalendarId = schedulerEvent.get('calendarId');
 
 				schedulerEvent.set('calendarBookingId', data.calendarBookingId);
 				schedulerEvent.set('calendarResourceId', data.calendarResourceId);
 				schedulerEvent.set('parentCalendarBookingId', data.parentCalendarBookingId);
+
 				schedulerEvent.set('status', data.status);
 
 				var oldCalendar = instance.visibleCalendars[oldCalendarId];
@@ -1080,6 +1082,7 @@
 						Calendar.superclass._afterColorChange.apply(instance, arguments);
 
 						var calendarId = instance.get('calendarId');
+
 						var color = event.newVal;
 
 						if (instance.get('permissions.UPDATE')) {
