@@ -34,6 +34,7 @@ page import="com.liferay.portal.kernel.util.ListUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.PortalClassLoaderUtil" %><%@
 page import="com.liferay.portal.kernel.util.PrefsParamUtil" %><%@
+page import="com.liferay.portal.kernel.util.StringPool" %><%@
 page import="com.liferay.portal.kernel.util.StringUtil" %><%@
 page import="com.liferay.portal.kernel.util.Time" %><%@
 page import="com.liferay.portal.kernel.util.Validator" %><%@
@@ -46,7 +47,7 @@ page import="com.liferay.portal.util.PortletKeys" %><%@
 page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %><%@
 page import="com.liferay.portlet.PortletURLFactoryUtil" %><%@
 page import="com.liferay.portlet.calendar.model.CalEvent" %><%@
-page import="com.liferay.portlet.calendar.service.CalEventLocalServiceUtil" %>
+page import="com.liferay.portlet.calendar.service.CalEventServiceUtil" %>
 
 <%@ page import="java.lang.reflect.Constructor" %>
 

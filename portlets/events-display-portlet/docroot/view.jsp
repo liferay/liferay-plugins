@@ -37,7 +37,7 @@ Calendar curCal = (Calendar)cal.clone();
 
 for (int i = 0; i < maxDaysDisplayed; i++) {
 	for (Group curGroup : groups) {
-		events.addAll(CalEventLocalServiceUtil.getEvents(curGroup.getGroupId(), curCal));
+		events.addAll(CalEventServiceUtil.getEvents(curGroup.getGroupId(), curCal, StringPool.BLANK));
 	}
 
 	curCal.add(Calendar.DATE, 1);
