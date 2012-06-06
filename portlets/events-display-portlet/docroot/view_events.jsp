@@ -62,11 +62,9 @@ List<CalEvent> events = (List<CalEvent>)request.getAttribute("view.jsp-events");
 				eventURL.setWindowState(LiferayWindowState.NORMAL);
 				eventURL.setPortletMode(PortletMode.VIEW);
 
-				eventURL.setParameter("struts_action", "/calendar/view");
-				eventURL.setParameter("tabs1", "day");
-				eventURL.setParameter("month", String.valueOf(cal.get(Calendar.MONTH)));
-				eventURL.setParameter("day", String.valueOf(cal.get(Calendar.DATE)));
-				eventURL.setParameter("year", String.valueOf(cal.get(Calendar.YEAR)));
+				eventURL.setParameter("struts_action", "/calendar/view_event");
+				eventURL.setParameter("eventId", String.valueOf(event.getEventId()));
+				eventURL.setParameter("redirect", PortalUtil.getCurrentURL(request));
 
 				eventHREF = eventURL.toString();
 			}
