@@ -35,6 +35,10 @@ $toolbar-bg: #DCE3EA;
 			}
 		}
 
+		.contact-group-filter-select select {
+			width: 170px;
+		}
+
 		.contact-group-filter-content {
 			padding: 5px 0 1px 5px;
 		}
