@@ -822,8 +822,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 		return new CalendarResourceWrapper((CalendarResource)_calendarResource.clone());
 	}
 
-	public int compareTo(
-		com.liferay.calendar.model.CalendarResource calendarResource) {
+	public int compareTo(CalendarResource calendarResource) {
 		return _calendarResource.compareTo(calendarResource);
 	}
 
@@ -832,11 +831,11 @@ public class CalendarResourceWrapper implements CalendarResource,
 		return _calendarResource.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<com.liferay.calendar.model.CalendarResource> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<CalendarResource> toCacheModel() {
 		return _calendarResource.toCacheModel();
 	}
 
-	public com.liferay.calendar.model.CalendarResource toEscapedModel() {
+	public CalendarResource toEscapedModel() {
 		return new CalendarResourceWrapper(_calendarResource.toEscapedModel());
 	}
 
