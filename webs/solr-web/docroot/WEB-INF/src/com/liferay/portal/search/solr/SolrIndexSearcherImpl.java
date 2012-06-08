@@ -54,7 +54,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -222,24 +221,21 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 			return StringPool.BLANK;
 		}
 
-		String key = (String)solrDocument.getFieldValue(Field.UID);
-
-		Locale defaultLocale = LocaleUtil.getDefault();
-
-		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
+		String defaultLanguageId = LocaleUtil.toLanguageId(
+			LocaleUtil.getDefault());
 
 		String queryLanguageId = LocaleUtil.toLanguageId(
 			queryConfig.getLocale());
 
-		boolean isLocalizedSearch = true;
+		boolean localizedSearch = true;
 
 		if (queryLanguageId.equals(defaultLanguageId)) {
-			isLocalizedSearch = false;
+			localizedSearch = false;
 		}
 
-		String snippetField = Field.CONTENT;
+		String snippetField = StringPool.BLANK;
 
-		if (isLocalizedSearch) {
+		if (localizedSearch) {
 			String localizedName = DocumentImpl.getLocalizedName(
 				queryConfig.getLocale(), Field.CONTENT);
 
@@ -247,6 +243,11 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 				snippetField = localizedName;
 			}
 		}
+		else {
+			snippetField = Field.CONTENT;
+		}
+
+		String key = (String)solrDocument.getFieldValue(Field.UID);
 
 		List<String> snippets = highlights.get(key).get(snippetField);
 
@@ -293,16 +294,14 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		}
 
 		Map<String, Map<String, List<String>>> highlights =
-						queryResponse.getHighlighting();
+			queryResponse.getHighlighting();
 
 		List<Document> listDocuments = new ArrayList<Document>();
 		List<Float> listScores = new ArrayList<Float>();
 		List<String> listSnippets = new ArrayList<String>();
 
 		float maxScore = -1;
-
 		Set<String> queryTerms = new HashSet<String>();
-
 		int subsetTotal = 0;
 
 		for (SolrDocument solrDocument : solrDocumentList) {
@@ -322,60 +321,57 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 				document.add(field);
 			}
 
-			float score = 1;
-
-			if (queryConfig.isScoreEnabled()) {
-				score = GetterUtil.getFloat(
-					String.valueOf(solrDocument.getFieldValue("score")));
-			}
-
-			String snippet;
+			String snippet = StringPool.BLANK;
 
 			if (queryConfig.isHighlightEnabled()) {
 				snippet = getSnippet(
-						solrDocument, queryTerms, highlights, queryConfig);
+					solrDocument, queryTerms, highlights, queryConfig);
 
-				if (snippet.equals(StringPool.BLANK)) {
+				if (Validator.isNull(snippet)) {
 					continue;
 				}
 			}
-			else {
-				snippet = StringPool.BLANK;
-			}
 
 			listDocuments.add(document);
-			listScores.add(score);
-			listSnippets.add(snippet);
 
-			if (score > maxScore) {
-				maxScore = score;
+			if (queryConfig.isScoreEnabled()) {
+				float score = GetterUtil.getFloat(
+					String.valueOf(solrDocument.getFieldValue("score")));
+
+				if (score > maxScore) {
+					maxScore = score;
+				}
+
+				listScores.add(score);
 			}
+
+			listSnippets.add(snippet);
 
 			subsetTotal++;
 		}
 
-		Document[] documents = listDocuments.toArray(new Document[subsetTotal]);
-
-		if (queryConfig.isScoreEnabled() && (subsetTotal > 0)) {
-			for (Float score : listScores) {
-				score = score / maxScore;
-			}
-		}
+		hits.setDocs(listDocuments.toArray(new Document[subsetTotal]));
+		hits.setLength(subsetTotal);
+		hits.setQuery(query);
+		hits.setQueryTerms(queryTerms.toArray(new String[queryTerms.size()]));
 
 		Float[] scores = listScores.toArray(new Float[subsetTotal]);
 
-		String[] snippets = listSnippets.toArray(new String[subsetTotal]);
+		if (queryConfig.isScoreEnabled() && (subsetTotal > 0) &&
+			(maxScore > 0)) {
+
+			for (int i = 0; i < scores.length; i++) {
+				scores[i] = scores[i] / maxScore;
+			}
+		}
+
+		hits.setScores(scores);
 
 		float searchTime =
 			(float)(System.currentTimeMillis() - startTime) / Time.SECOND;
 
-		hits.setDocs(documents);
-		hits.setLength(documents.length);
-		hits.setQuery(query);
-		hits.setQueryTerms(queryTerms.toArray(new String[queryTerms.size()]));
-		hits.setScores(scores);
 		hits.setSearchTime(searchTime);
-		hits.setSnippets(snippets);
+		hits.setSnippets(listSnippets.toArray(new String[subsetTotal]));
 		hits.setStart(startTime);
 
 		return hits;
