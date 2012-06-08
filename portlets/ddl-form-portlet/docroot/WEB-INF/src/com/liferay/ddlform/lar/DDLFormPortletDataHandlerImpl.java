@@ -16,8 +16,6 @@ package com.liferay.ddlform.lar;
 
 import com.liferay.portal.kernel.lar.BasePortletDataHandler;
 import com.liferay.portal.kernel.lar.PortletDataContext;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -51,10 +49,10 @@ public class DDLFormPortletDataHandlerImpl extends BasePortletDataHandler {
 			PortletPreferences portletPreferences)
 		throws Exception {
 
-		portletPreferences.setValue("recordSetId", StringPool.BLANK);
 		portletPreferences.setValue("detailDDMTemplateId", StringPool.BLANK);
 		portletPreferences.setValue(
 			"multipleSubmissions", Boolean.FALSE.toString());
+		portletPreferences.setValue("recordSetId", StringPool.BLANK);
 
 		return portletPreferences;
 	}
@@ -70,19 +68,15 @@ public class DDLFormPortletDataHandlerImpl extends BasePortletDataHandler {
 			portletDataContext.getScopeGroupId());
 
 		long recordSetId = GetterUtil.getLong(
-			portletPreferences.getValue("recordSetId", null), 0);
+			portletPreferences.getValue("recordSetId", null));
 
 		if (recordSetId == 0) {
-			if (_log.isDebugEnabled()) {
-				_log.debug("No record set found for " + portletId);
-			}
-
 			return StringPool.BLANK;
 		}
 
 		Document document = SAXReaderUtil.createDocument();
 
-		Element rootElement = document.addElement("record-set-data");
+		Element rootElement = document.addElement("record-sets");
 
 		DDLRecordSet recordSet = DDLRecordSetLocalServiceUtil.getRecordSet(
 			recordSetId);
@@ -125,10 +119,22 @@ public class DDLFormPortletDataHandlerImpl extends BasePortletDataHandler {
 				portletDataContext, recordSetElement);
 		}
 
-		long importedRecordSetId = GetterUtil.getLong(
-			portletPreferences.getValue("recordSetId", null));
+		Map<Long, Long> templateIds =
+			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
+				DDMTemplate.class);
+
 		long importedDetailDDMTemplateId = GetterUtil.getLong(
 			portletPreferences.getValue("detailDDMTemplateId", null));
+
+		long detailDDMTemplateId = MapUtil.getLong(
+			templateIds, importedDetailDDMTemplateId,
+			importedDetailDDMTemplateId);
+
+		portletPreferences.setValue(
+			"detailDDMTemplateId", String.valueOf(detailDDMTemplateId));
+
+		long importedRecordSetId = GetterUtil.getLong(
+			portletPreferences.getValue("recordSetId", null));
 
 		Map<Long, Long> recordSetIds =
 			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
@@ -137,23 +143,11 @@ public class DDLFormPortletDataHandlerImpl extends BasePortletDataHandler {
 		long recordSetId = MapUtil.getLong(
 			recordSetIds, importedRecordSetId, importedRecordSetId);
 
-		Map<Long, Long> templateIds =
-			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
-				DDMTemplate.class);
-
-		long detailDDMTemplateId = MapUtil.getLong(
-			templateIds, importedDetailDDMTemplateId,
-			importedDetailDDMTemplateId);
-
 		portletPreferences.setValue("recordSetId", String.valueOf(recordSetId));
-		portletPreferences.setValue(
-			"detailDDMTemplateId", String.valueOf(detailDDMTemplateId));
 
 		return portletPreferences;
 	}
 
 	private static final boolean _ALWAYS_EXPORTABLE = true;
 
-	private static Log _log = LogFactoryUtil.getLog(
-		DDLFormPortletDataHandlerImpl.class);
 }
