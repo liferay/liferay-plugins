@@ -973,6 +973,15 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	}
 
 	/**
+	* Returns <code>true</code> if this calendar booking is in the Recycle Bin.
+	*
+	* @return <code>true</code> if this calendar booking is in the Recycle Bin; <code>false</code> otherwise
+	*/
+	public boolean isInTrash() {
+		return _calendarBooking.isInTrash();
+	}
+
+	/**
 	* Returns <code>true</code> if this calendar booking is pending.
 	*
 	* @return <code>true</code> if this calendar booking is pending; <code>false</code> otherwise

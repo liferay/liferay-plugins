@@ -480,6 +480,13 @@ public interface KBArticleModel extends BaseModel<KBArticle>, GroupedModel,
 	public boolean isExpired();
 
 	/**
+	 * Returns <code>true</code> if this k b article is in the Recycle Bin.
+	 *
+	 * @return <code>true</code> if this k b article is in the Recycle Bin; <code>false</code> otherwise
+	 */
+	public boolean isInTrash();
+
+	/**
 	 * Returns <code>true</code> if this k b article is pending.
 	 *
 	 * @return <code>true</code> if this k b article is pending; <code>false</code> otherwise
