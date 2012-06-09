@@ -211,23 +211,26 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 	}
 
 	protected String getSnippet(
-		SolrDocument solrDocument, Set<String> queryTerms,
-		Map<String, Map<String, List<String>>> highlights,
-		QueryConfig queryConfig) {
+		SolrDocument solrDocument, QueryConfig queryConfig,
+		Set<String> queryTerms,
+		Map<String, Map<String, List<String>>> highlights) {
 
 		if (Validator.isNull(highlights)) {
 			return StringPool.BLANK;
 		}
 
-		String defaultLanguageId = LocaleUtil.toLanguageId(
-			LocaleUtil.getDefault());
+		String key = (String)solrDocument.getFieldValue(Field.UID);
 
-		String queryLanguageId = LocaleUtil.toLanguageId(
-			queryConfig.getLocale());
+		Map<String, List<String>> uidHighlights = highlights.get(key);
 
 		boolean localizedSearch = true;
 
-		if (queryLanguageId.equals(defaultLanguageId)) {
+		String defaultLanguageId = LocaleUtil.toLanguageId(
+			LocaleUtil.getDefault());
+		String queryLanguageId = LocaleUtil.toLanguageId(
+			queryConfig.getLocale());
+
+		if (defaultLanguageId.equals(queryLanguageId)) {
 			localizedSearch = false;
 		}
 
@@ -245,9 +248,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 			snippetField = Field.CONTENT;
 		}
 
-		String key = (String)solrDocument.getFieldValue(Field.UID);
-
-		List<String> snippets = highlights.get(key).get(snippetField);
+		List<String> snippets = uidHighlights.get(snippetField);
 
 		String snippet = StringUtil.merge(snippets, "...");
 
@@ -258,7 +259,9 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 			snippet = StringPool.BLANK;
 		}
 
-		Matcher matcher = Pattern.compile("<em>(.*?)</em>").matcher(snippet);
+		Pattern pattern = Pattern.compile("<em>(.*?)</em>");
+
+		Matcher matcher = pattern.matcher(snippet);
 
 		while (matcher.find()) {
 			queryTerms.add(matcher.group(1));
@@ -291,12 +294,9 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 			return subset(solrQuery, query, queryConfig, queryResponse, false);
 		}
 
-		Map<String, Map<String, List<String>>> highlights =
-			queryResponse.getHighlighting();
-
-		List<Document> listDocuments = new ArrayList<Document>();
-		List<Float> listScores = new ArrayList<Float>();
-		List<String> listSnippets = new ArrayList<String>();
+		List<Document> documents = new ArrayList<Document>();
+		List<Float> scores = new ArrayList<Float>();
+		List<String> snippets = new ArrayList<String>();
 
 		float maxScore = -1;
 		Set<String> queryTerms = new HashSet<String>();
@@ -323,14 +323,15 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 			if (queryConfig.isHighlightEnabled()) {
 				snippet = getSnippet(
-					solrDocument, queryTerms, highlights, queryConfig);
+					solrDocument, queryConfig, queryTerms,
+					queryResponse.getHighlighting());
 
 				if (Validator.isNull(snippet)) {
 					continue;
 				}
 			}
 
-			listDocuments.add(document);
+			documents.add(document);
 
 			if (queryConfig.isScoreEnabled()) {
 				float score = GetterUtil.getFloat(
@@ -340,36 +341,36 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 					maxScore = score;
 				}
 
-				listScores.add(score);
+				scores.add(score);
 			}
 
-			listSnippets.add(snippet);
+			snippets.add(snippet);
 
 			subsetTotal++;
 		}
 
-		hits.setDocs(listDocuments.toArray(new Document[subsetTotal]));
+		hits.setDocs(documents.toArray(new Document[subsetTotal]));
 		hits.setLength(subsetTotal);
 		hits.setQuery(query);
 		hits.setQueryTerms(queryTerms.toArray(new String[queryTerms.size()]));
 
-		Float[] scores = listScores.toArray(new Float[subsetTotal]);
+		Float[] scoresArray = scores.toArray(new Float[subsetTotal]);
 
 		if (queryConfig.isScoreEnabled() && (subsetTotal > 0) &&
 			(maxScore > 0)) {
 
-			for (int i = 0; i < scores.length; i++) {
-				scores[i] = scores[i] / maxScore;
+			for (int i = 0; i < scoresArray.length; i++) {
+				scoresArray[i] = scoresArray[i] / maxScore;
 			}
 		}
 
-		hits.setScores(scores);
+		hits.setScores(scoresArray);
 
 		float searchTime =
 			(float)(System.currentTimeMillis() - startTime) / Time.SECOND;
 
 		hits.setSearchTime(searchTime);
-		hits.setSnippets(listSnippets.toArray(new String[subsetTotal]));
+		hits.setSnippets(snippets.toArray(new String[subsetTotal]));
 		hits.setStart(startTime);
 
 		return hits;
@@ -388,6 +389,11 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		solrQuery.setHighlightSnippets(queryConfig.getHighlightSnippetSize());
 		solrQuery.setIncludeScore(queryConfig.isScoreEnabled());
 
+		String localizedName = DocumentImpl.getLocalizedName(
+			queryConfig.getLocale(), Field.CONTENT);
+
+		solrQuery.setParam("hl.fl", Field.CONTENT, localizedName);
+
 		QueryTranslatorUtil.translateForSolr(query);
 
 		String queryString = query.toString();
@@ -402,11 +408,6 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		sb.append(companyId);
 
 		solrQuery.setQuery(sb.toString());
-
-		String localizedName = DocumentImpl.getLocalizedName(
-			queryConfig.getLocale(), Field.CONTENT);
-
-		solrQuery.setParam("hl.fl", Field.CONTENT, localizedName);
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS)) {
 			solrQuery.setRows(0);
