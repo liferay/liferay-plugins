@@ -401,30 +401,36 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			notification.addRecipients(addressRecipient);
 		}
 
-		List<Element> roleReceipientElements = recipientsElement.elements(
-			"role");
+		Element rolesElement = recipientsElement.element("roles");
 
-		for (Element roleAssignmentElement : roleReceipientElements) {
-			long roleId = GetterUtil.getLong(
-				roleAssignmentElement.elementText("role-id"));
-			String roleType = roleAssignmentElement.elementText("role-type");
-			String name = roleAssignmentElement.elementText("name");
+		if (rolesElement != null) {
+			List<Element> roleReceipientElements = rolesElement.elements(
+				"role");
 
-			RoleRecipient roleRecipient = null;
+			for (Element roleReceipientElement : roleReceipientElements) {
+				long roleId = GetterUtil.getLong(
+					roleReceipientElement.elementText("role-id"));
+				String roleType = roleReceipientElement.elementText(
+					"role-type");
+				String name = roleReceipientElement.elementText("name");
 
-			if (roleId > 0) {
-				roleRecipient = new RoleRecipient(roleId, roleType);
+				RoleRecipient roleRecipient = null;
+
+				if (roleId > 0) {
+					roleRecipient = new RoleRecipient(roleId, roleType);
+				}
+				else {
+
+					roleRecipient = new RoleRecipient(name, roleType);
+
+					boolean autoCreate = GetterUtil.getBoolean(
+						roleReceipientElement.elementText("auto-create"), true);
+
+					roleRecipient.setAutoCreate(autoCreate);
+				}
+
+				notification.addRecipients(roleRecipient);
 			}
-			else {
-				roleRecipient = new RoleRecipient(name, roleType);
-
-				boolean autoCreate = GetterUtil.getBoolean(
-					roleAssignmentElement.elementText("auto-create"), true);
-
-				roleRecipient.setAutoCreate(autoCreate);
-			}
-
-			notification.addRecipients(roleRecipient);
 		}
 
 		List<Element> userRecipientElements = recipientsElement.elements(
