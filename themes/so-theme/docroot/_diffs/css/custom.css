@@ -98,7 +98,7 @@ a:focus .opens-new-window-accessible {
 		float: left;
 		font-size: 2.2em;
 		font-weight: bold;
-		line-height: 1.5em;
+		line-height: 1em;
 		overflow: hidden;
 		padding: 22px 20px 0;
 		text-overflow: ellipsis;
@@ -108,6 +108,13 @@ a:focus .opens-new-window-accessible {
 			color: $red;
 		}
 	}
+
+	.member-button {
+		a {
+			color: #2571AD;
+			font-size: 0.4em;
+		}
+}
 
 	h3.page-title {
 		display: none;
@@ -121,33 +128,6 @@ a:focus .opens-new-window-accessible {
 #heading, #footer {
 	margin: 0 auto;
 	position: relative;
-}
-
-.member-button {
-	font-size: 0;
-	line-height: 0;
-	margin-bottom: 10px;
-
-	span {
-		a {
-			color: #2571AD !important;
-			font: bold 12px/1.5em "Helvetica",Arial,sans-serif;
-
-			&:hover {
-				text-decoration: none;
-			}
-		}
-	}
-
-	input {
-		background: none repeat scroll 0 0 transparent !important;
-		border: 0 none !important;
-		border-radius: 0 0 0 0 !important;
-		box-shadow: 0 0 !important;
-		color: #2571AD;
-		font: bold 12px/1.5em "Helvetica",Arial,sans-serif;
-		padding: 0;
-	}
 }
 
 #page-search, #sign-in {
