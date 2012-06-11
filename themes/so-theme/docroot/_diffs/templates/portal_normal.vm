@@ -36,7 +36,7 @@ $theme.include($body_top_include)
 					</a>
 
 					#if ($is_signed_in)
-						<div class="member-button">
+						<div class="member-button" id="memberButton">
 							#set ($member = $user_local_service.hasGroupUser($page_group.getGroupId(), $user_id))
 							#set ($membership_request = $membership_request_local_service.hasMembershipRequest($user_id, $page_group.getGroupId(), 0))
 
@@ -51,9 +51,9 @@ $theme.include($body_top_include)
 									$join_url.setParameter("groupId", "$page_group.getGroupId()")
 									$join_url.setParameter("addUserIds", "$user_id")
 
-									<form action="$join_url" id="socialOfficeMembership" method="Post" name="joinFm">
-										<input type="submit" value='#language("join")' />
-									</form>
+									<span class="action request">
+										<a href="$join_url">#language("join-site")</a>
+									</span>
 								#elseif (($page_group.getType() == 2) && !$membership_request)
 									#set ($membership_request_url = $portletURLFactory.create($request, "134", $page.getPlid(), "ACTION_PHASE"))
 
@@ -63,32 +63,18 @@ $theme.include($body_top_include)
 									$membership_request_url.setParameter("groupId", "$page_group.getGroupId()")
 									$membership_request_url.setParameter("comments", '#language("x-wishes-to-join-x" $user_name $community_name')
 
-									<form action="$membership_request_url" id="socialOfficeMembership" method="Post" name="membershipRequestFm">
-										<input type="submit" value='#language("request-membership")' />
-									</form>
+									<span class="action request">
+										<a href="$membership_request_url">#language("request-membership")</a>
+									</span>
 								#elseif ($membership_request)
 									<span class="action requested">
 										<a>#language("membership-requested")</a>
 									</span>
 								#end
-							#else
-								#set ($leave_url = $portletURLFactory.create($request, "134", $page.getPlid(), "ACTION_PHASE"))
-
-								$leave_url.setWindowState("normal")
-								$leave_url.setParameter("struts_action", "/sites_admin/edit_site_assignments")
-								$leave_url.setParameter("cmd", "group_users")
-								$leave_url.setParameter("redirect", "$community_default_url")
-								$leave_url.setParameter("groupId", "$page_group.getGroupId()")
-								$leave_url.setParameter("removeUserIds", "$user_id")
-
-								<form action="$leave_url" id="socialOfficeMembership" method="Post" name="leaveFm">
-									<input type="submit" value='#language("leave")' />
-								</form>
 							#end
 						</div>
 					#end
 				</div>
-
 			#end
 
 			<h3 class="page-title">
