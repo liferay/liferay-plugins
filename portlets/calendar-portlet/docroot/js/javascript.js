@@ -266,17 +266,20 @@
 			getStatusLabel: function(statusId) {
 				var status = String.valueOf(statusId);
 
-				if (Liferay.Workflow.STATUS_APPROVED === statusId) {
+				if (CalendarWorkflow.STATUS_APPROVED === statusId) {
 					status = Liferay.Language.get('accepted');
 				}
-				else if (Liferay.Workflow.STATUS_DRAFT === statusId) {
+				else if (CalendarWorkflow.STATUS_DENIED === statusId) {
+					status = Liferay.Language.get('declined');
+				}
+				else if (CalendarWorkflow.STATUS_DRAFT === statusId) {
 					status = Liferay.Language.get('draft');
 				}
-				else if (Liferay.Workflow.STATUS_PENDING === statusId) {
-					status = Liferay.Language.get('pending');
+				else if (CalendarWorkflow.STATUS_MAYBE === statusId) {
+					status = Liferay.Language.get('maybe');
 				}
-				else if (Liferay.Workflow.STATUS_DENIED === statusId) {
-					status = Liferay.Language.get('declined');
+				else if (CalendarWorkflow.STATUS_PENDING === statusId) {
+					status = Liferay.Language.get('pending');
 				}
 
 				return status;
@@ -491,6 +494,14 @@
 
 		Liferay.CalendarUtil = CalendarUtil;
 
+		var CalendarWorkflow = {
+			STATUS_MAYBE: 8
+		};
+
+		A.mix(CalendarWorkflow, Workflow);
+
+		Liferay.CalendarWorkflow = CalendarWorkflow;
+
 		var Scheduler = A.Component.create(
 			{
 				ATTRS: {
@@ -550,7 +561,7 @@
 						CalendarUtil.getEvents(
 							startDate,
 							endDate,
-							[Workflow.STATUS_APPROVED, Workflow.STATUS_PENDING],
+							[CalendarWorkflow.STATUS_APPROVED, CalendarWorkflow.STATUS_MAYBE, CalendarWorkflow.STATUS_PENDING],
 							A.bind(instance.loadCalendarBookingsJSON, instance)
 						);
 					},
@@ -730,8 +741,9 @@
 
 						var node = instance.get('node');
 
-						node.toggleClass('calendar-portlet-event-pending', (val === Workflow.STATUS_PENDING));
-						node.toggleClass('calendar-portlet-event-approved', (val === Workflow.STATUS_APPROVED));
+						node.toggleClass('calendar-portlet-event-approved', (val === CalendarWorkflow.STATUS_APPROVED));
+						node.toggleClass('calendar-portlet-event-maybe', (val === CalendarWorkflow.STATUS_MAYBE));
+						node.toggleClass('calendar-portlet-event-pending', (val === CalendarWorkflow.STATUS_PENDING));
 					}
 				}
 			}
@@ -759,7 +771,7 @@
 
 					status: {
 						setter: toNumber,
-						value: Liferay.Workflow.STATUS_DRAFT
+						value: CalendarWorkflow.STATUS_DRAFT
 					},
 
 					toolbar: {
@@ -819,23 +831,33 @@
 						return false;
 					},
 
-					_handleAcceptEvent: function(event) {
+					_handleEventAcceptResponse: function(event) {
 						var instance = this;
 
 						var schedulerEvent = instance.get('event');
 
 						if (schedulerEvent) {
-							CalendarUtil.invokeTransition(schedulerEvent, Liferay.Workflow.STATUS_APPROVED);
+							CalendarUtil.invokeTransition(schedulerEvent, CalendarWorkflow.STATUS_APPROVED);
 						}
 					},
 
-					_handleDeclineEvent: function(event) {
+					_handleEventDeclineResponse: function(event) {
 						var instance = this;
 
 						var schedulerEvent = instance.get('event');
 
 						if (schedulerEvent) {
-							CalendarUtil.invokeTransition(schedulerEvent, Liferay.Workflow.STATUS_DENIED);
+							CalendarUtil.invokeTransition(schedulerEvent, CalendarWorkflow.STATUS_DENIED);
+						}
+					},
+
+					_handleEventMaybeResponse: function(event) {
+						var instance = this;
+
+						var schedulerEvent = instance.get('event');
+
+						if (schedulerEvent) {
+							CalendarUtil.invokeTransition(schedulerEvent, CalendarWorkflow.STATUS_MAYBE);
 						}
 					},
 
@@ -958,7 +980,7 @@
 
 						toolbar.add(
 							{
-								handler: A.bind(instance._handleAcceptEvent, instance),
+								handler: A.bind(instance._handleEventAcceptResponse, instance),
 								icon: 'circle-check',
 								id: 'acceptBtn',
 								label: Liferay.Language.get('accept')
@@ -967,7 +989,16 @@
 
 						toolbar.add(
 							{
-								handler: A.bind(instance._handleDeclineEvent, instance),
+								handler: A.bind(instance._handleEventMaybeResponse, instance),
+								icon: 'help',
+								id: 'maybeBtn',
+								label: Liferay.Language.get('maybe')
+							}
+						);
+
+						toolbar.add(
+							{
+								handler: A.bind(instance._handleEventDeclineResponse, instance),
 								icon: 'circle-close',
 								id: 'declineBtn',
 								label: Liferay.Language.get('decline')
@@ -979,6 +1010,7 @@
 							toolbar.remove('declineBtn');
 							toolbar.remove('deleteBtn');
 							toolbar.remove('editDetailsBtn');
+							toolbar.remove('maybeBtn');
 							toolbar.remove('saveBtn');
 						}
 
@@ -986,12 +1018,17 @@
 							toolbar.remove('deleteBtn');
 						}
 
-						if (status === Liferay.Workflow.STATUS_DRAFT) {
+						if (status === CalendarWorkflow.STATUS_DRAFT) {
 							toolbar.remove('declineBtn');
+							toolbar.remove('maybeBtn');
 						}
 
-						if (status === Liferay.Workflow.STATUS_APPROVED ||
-							status === Liferay.Workflow.STATUS_DRAFT) {
+						if (status === CalendarWorkflow.STATUS_MAYBE) {
+							toolbar.remove('maybeBtn');
+						}
+
+						if (status === CalendarWorkflow.STATUS_APPROVED ||
+							status === CalendarWorkflow.STATUS_DRAFT) {
 
 							toolbar.remove('acceptBtn');
 						}
