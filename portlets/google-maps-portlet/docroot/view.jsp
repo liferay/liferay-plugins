@@ -89,45 +89,22 @@
 		</aui:form>
 
 		<aui:script use="liferay-google-maps">
-			var initGoogleMaps = function() {
-				new Liferay.Portlet.GoogleMaps(
-					{
-						directionsAddress: '<%= directionsAddress %>',
-						mapAddress: '<%= mapAddress %>',
-						mapInputEnabled: <%= mapInputEnabled %>,
-						mapParams: {
-							mapTypeId: google.maps.MapTypeId.ROADMAP,
-							zoom: 8
-						},
-						namespace: '<portlet:namespace />',
-						portletId: '<%= portletDisplay.getId() %>',
-						showDirectionSteps: <%= showDirectionSteps %>
-					}
-				);
-			};
-
-			Liferay.namespace('GOOGLE_MAPS')['initGoogleMaps'] = initGoogleMaps;
-
-			var Lang = A.Lang;
-
-			if ((typeof google != 'undefined') && Lang.isObject(google.maps)) {
-				initGoogleMaps();
-			}
-			else {
-				var script = document.createElement("script");
-				script.type = "text/javascript";
-
-				<%
-				String googleMapsURL = "http://maps.google.com/maps/api/js";
-
-				if (PortalUtil.isSecure(request)) {
-					googleMapsURL = "https://maps-api-ssl.google.com/maps/api/js";
+			new Liferay.Portlet.GoogleMaps(
+				{
+					directionsAddress: '<%= directionsAddress %>',
+					isSecure: '<%= PortalUtil.isSecure(request)%>',
+					languageId: '<%= themeDisplay.getLanguageId() %>',
+					mapAddress: '<%= mapAddress %>',
+					mapInputEnabled: <%= mapInputEnabled %>,
+					mapParams: {
+						mapTypeId: Liferay.Portlet.GoogleMaps.MAP_TYPE_ROADMAP,
+						zoom: 8
+					},
+					namespace: '<portlet:namespace />',
+					portletId: '<%= portletDisplay.getId() %>',
+					showDirectionSteps: <%= showDirectionSteps %>
 				}
-				%>
-
-				script.src = "<%= googleMapsURL %>?sensor=true&language=<%= themeDisplay.getLanguageId() %>&callback=Liferay.GOOGLE_MAPS.initGoogleMaps";
-				A.config.doc.body.appendChild(script);
-			}
+			);
 		</aui:script>
 	</c:when>
 	<c:otherwise>

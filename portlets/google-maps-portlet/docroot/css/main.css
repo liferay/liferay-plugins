@@ -27,7 +27,3 @@
 		padding-top: 1em;
 	}
 }
-
-.ie6 .google-maps-portlet .maps-content img {
-	behavior: expression(this.pngSet=true);
-}

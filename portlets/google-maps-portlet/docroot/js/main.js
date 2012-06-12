@@ -1,7 +1,7 @@
 AUI.add(
 	'liferay-google-maps',
 	function(A) {
-		var KEY_DONW_ENTER = 'down:13';
+		var KEY_DOWN_ENTER = 'down:13';
 
 		var STR_CLICK = 'click';
 
@@ -13,33 +13,35 @@ AUI.add(
 
 		var STR_TRAVELLING_MODE = 'travellingMode';
 
+		var WIN = A.config.win;
+
+		var MAP_TYPE_ROADMAP = 0;
+
+		var MAP_TYPE_SATELLITE = 1;
+
+		var MAP_TYPE_HYBRID = 2;
+
+		var MAP_TYPE_TERRAIN = 3;
+
 		var GoogleMaps = A.Component.create(
 			{
 				AUGMENTS: [Liferay.PortletBase],
 
-				EXTENDS: A.Base,
-
 				NAME: 'googlemaps',
+
+				EXTENDS:A.Widget,
 
 				prototype: {
 					initializer: function(config) {
 						var instance = this;
 
+						instance._config = config;
+
 						instance._markersArray = [];
+					},
 
-						instance._map = new google.maps.Map(instance.byId('map').getDOMNode(), config.mapParams);
-
-						instance._geocoder = new google.maps.Geocoder();
-
-						instance._directionsService = new google.maps.DirectionsService();
-
-						instance._directionsDisplay = new google.maps.DirectionsRenderer(
-							{
-								map: instance._map
-							}
-						);
-
-						instance._stepDisplay = new google.maps.InfoWindow();
+					bindUI: function() {
+						var instance = this;
 
 						var eventHandles = [];
 
@@ -71,7 +73,7 @@ AUI.add(
 
 						if (directionsAddressNode) {
 							eventHandles.push(
-								directionsAddressNode.on(STR_KEY, A.bind(instance._onDirectionsAddressKeyDown, instance), KEY_DONW_ENTER)
+								directionsAddressNode.on(STR_KEY, A.bind(instance._onDirectionsAddressKeyDown, instance), KEY_DOWN_ENTER)
 							);
 						}
 
@@ -79,7 +81,7 @@ AUI.add(
 
 						if (mapAddressNode) {
 							eventHandles.push(
-								mapAddressNode.on(STR_KEY, A.bind(instance._onMapAddressKeyDown, instance), KEY_DONW_ENTER)
+								mapAddressNode.on(STR_KEY, A.bind(instance._onMapAddressKeyDown, instance), KEY_DOWN_ENTER)
 							);
 						}
 
@@ -91,16 +93,7 @@ AUI.add(
 							);
 						}
 
-						eventHandles.push(Liferay.on(config.portletId + ':portletRefreshed', A.bind(instance.destructor, instance)));
-
-						instance._config = config;
-
-						if (config.directionsAddress) {
-							instance._getDirections();
-						}
-						else {
-							instance._getAddress(config.mapAddress);
-						}
+						eventHandles.push(Liferay.on(instance._config.portletId + ':portletRefreshed', A.bind(instance.destructor, instance)));
 
 						instance._eventHandles = eventHandles;
 					},
@@ -109,6 +102,18 @@ AUI.add(
 						var instance = this;
 
 						A.Array.invoke(instance._eventHandles, 'detach');
+					},
+
+					renderUI: function() {
+						var instance = this;
+						debugger;
+
+						if (instance._isGoogleMapLoaded()) {
+							instance._renderMap();
+						}
+						else {
+							Liferay.namespace('GOOGLE_MAPS')['onGoogleMapsLoaded'] = A.bind(instance._renderMap, instance);
+						}
 					},
 
 					_attachInstructionText: function(marker, text) {
@@ -148,6 +153,24 @@ AUI.add(
 						instance._directionsService.route(request, A.rbind(instance._onRoute, instance, directionsAddress));
 					},
 
+					_getGoogleMapType: function(type) {
+						var mapTypeId = google.maps.MapTypeId;
+
+						var gooleMapsTypeId = mapTypeId.ROADMAP;
+
+						if (type == MAP_TYPE_SATELLITE) {
+							gooleMapsTypeId = mapTypeId.SATELLITE;
+						}
+						else if (MAP_TYPE_HYBRID) {
+							gooleMapsTypeId = mapTypeId.HYBRID;
+						}
+						else if (MAP_TYPE_TERRAIN) {
+							gooleMapsTypeId = mapTypeId.TERRAIN;
+						}
+
+						return gooleMapsTypeId;
+					},
+
 					_getMap: function() {
 						var instance = this;
 
@@ -172,6 +195,28 @@ AUI.add(
 						}
 							
 						return mapAddress;
+					},
+
+					_initGoogleMaps: function() {
+						debugger;
+						var instance = this;
+
+						var script = document.createElement("script");
+						script.type = "text/javascript";
+
+						var googleMapsURL = "http://maps.google.com/maps/api/js";
+
+						if (instance._config.isSecure) {
+							googleMapsURL = "https://maps-api-ssl.google.com/maps/api/js";
+						}
+
+						script.src = googleMapsURL + '?sensor=true&language=' + instance._config.languageId + '&callback=Liferay.GOOGLE_MAPS.onGoogleMapsLoaded';
+
+						A.config.doc.body.appendChild(script);
+					},
+
+					_isGoogleMapLoaded: function() {
+						return (typeof google != 'undefined') && A.Lang.isObject(google.maps);
 					},
 
 					_onAddressGeocoded: function(results, status, address) {
@@ -248,12 +293,15 @@ AUI.add(
 
 						var directionsAddress = instance.byId(STR_DIRECTION_ADDRESS).val();
 
+						var encodedMapAddress = encodeURIComponent(mapAddress);
+
+						var url = 'http://maps.google.com/maps?q=' + encodedMapAddress;
+
 						if (directionsAddress) {
-							window.open('http://maps.google.com/maps?f=q&hl=en&q=' + encodeURIComponent(mapAddress) + '+to+' + encodeURIComponent(directionsAddress));
+							url = 'http://maps.google.com/maps?f=q&hl=en&q=' + encodedMapAddress + '+to+' + encodeURIComponent(directionsAddress);
 						}
-						else {
-							window.open('http://maps.google.com/maps?q=' + encodeURIComponent(mapAddress));
-						}
+
+						WIN.open(url);
 					},
 
 					_onRoute: function(response, status, directionsAddress) {
@@ -275,10 +323,12 @@ AUI.add(
 					_removeMarkers: function() {
 						var instance = this;
 
-						var length = instance._markersArray.length;
+						var markersArray = instance._markersArray;
+
+						var length = markersArray.length;
 
 						for (var i = 0; i < length; i++) {
-							instance._markersArray[i].setMap(null);
+							markersArray[i].setMap(null);
 						}
 
 						if (instance._marker) {
@@ -286,8 +336,43 @@ AUI.add(
 						}
 					},
 
+					_renderMap: function() {
+						debugger;
+						var instance = this;
+
+						var mapParams = A.merge(
+							instance._config.mapParams,
+							{
+								mapTypeId: _getGoogleMapType(instance._config.mapParams.mapTypeId)
+							}
+						);
+
+						instance._map = new google.maps.Map(instance.byId('map').getDOMNode(), mapParams);
+
+						instance._geocoder = new google.maps.Geocoder();
+
+						instance._directionsService = new google.maps.DirectionsService();
+
+						instance._directionsDisplay = new google.maps.DirectionsRenderer(
+							{
+								map: instance._map
+							}
+						);
+
+						instance._stepDisplay = new google.maps.InfoWindow();
+
+						if (instance._config.directionsAddress) {
+							instance._getDirections();
+						}
+						else {
+							instance._getAddress(instance._config.mapAddress);
+						}
+					},
+
 					_showSteps: function(directionResult) {
 						var instance = this;
+
+						var markersArray = instance._markersArray;
 
 						// For each step, place a marker, and add the text to the marker's info window.
 
@@ -305,12 +390,17 @@ AUI.add(
 
 							instance._attachInstructionText(marker, myRoute.steps[i].instructions);
 
-							instance._markersArray.push(marker);
+							markersArray.push(marker);
 						}
 					}
 				}
 			}
 		);
+
+		GoogleMaps.MAP_TYPE_ROADMAP = MAP_TYPE_ROADMAP;
+		GoogleMaps.MAP_TYPE_SATELLITE = MAP_TYPE_SATELLITE;
+		GoogleMaps.MAP_TYPE_HYBRID = MAP_TYPE_HYBRID;
+		GoogleMaps.MAP_TYPE_TERRAIN = MAP_TYPE_TERRAIN;
 
 		Liferay.Portlet.GoogleMaps = GoogleMaps;
 	},
