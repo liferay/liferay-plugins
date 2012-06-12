@@ -367,7 +367,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 			calendars: <%= maybeCalendarsJSONArray %>,
 			simpleMenu: calendarsMenu,
 			strings: {
-				emptyMessage: '<liferay-ui:message key="no-unresolved-invites" />'
+				emptyMessage: '<liferay-ui:message key="no-outstanding-invites" />'
 			}
 		}
 	).render();
