@@ -163,8 +163,14 @@
 		<java
 			classname="com.liferay.portal.tools.servicebuilder.ServiceBuilder"
 			classpathref="service.classpath"
+			fork="true"
+			newenvironment="true"
 			outputproperty="service.test.output"
 		>
+			<jvmarg value="-Xms512m" />
+			<jvmarg value="-Xmx1024m" />
+			<jvmarg value="-Xss2048k" />
+			<jvmarg value="-XX:MaxPermSize=512m" />
 			<arg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
 			<arg value="-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Log4JLogger" />
 			<arg value="service.input.file=${service.input.file}" />
