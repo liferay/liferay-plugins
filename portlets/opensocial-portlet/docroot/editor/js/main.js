@@ -2099,10 +2099,10 @@ AUI.add(
 
 						instance._loadingMask.show();
 
-						Liferay.Service.OpenSocial.Gadget.deleteGadget(
+						Liferay.Service(
+							'/opensocial-portlet.gadget/delete-gadget',
 							{
-								gadgetId: gadgetId,
-								serviceContext: '{}'
+								gadgetId: gadgetId
 							},
 							function(response) {
 								instance._loadingMask.hide();
