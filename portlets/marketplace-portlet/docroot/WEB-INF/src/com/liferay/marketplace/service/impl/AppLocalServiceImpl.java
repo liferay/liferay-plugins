@@ -20,6 +20,7 @@ import com.liferay.marketplace.model.App;
 import com.liferay.marketplace.model.Module;
 import com.liferay.marketplace.service.base.AppLocalServiceBaseImpl;
 import com.liferay.portal.kernel.deploy.DeployManagerUtil;
+import com.liferay.portal.kernel.deploy.auto.context.AutoDeploymentContext;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -169,7 +170,13 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 				String contextName = getContextName(fileName);
 
-				DeployManagerUtil.deploy(pluginPackageFile, contextName);
+				AutoDeploymentContext autoDeploymentContext =
+					new AutoDeploymentContext();
+
+				autoDeploymentContext.setContext(contextName);
+				autoDeploymentContext.setFileToDeploy(pluginPackageFile);
+
+				DeployManagerUtil.deploy(autoDeploymentContext);
 
 				moduleLocalService.addModule(
 					app.getUserId(), app.getAppId(), contextName);
