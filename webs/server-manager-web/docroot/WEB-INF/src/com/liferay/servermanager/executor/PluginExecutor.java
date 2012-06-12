@@ -15,6 +15,7 @@
 package com.liferay.servermanager.executor;
 
 import com.liferay.portal.kernel.deploy.DeployManagerUtil;
+import com.liferay.portal.kernel.deploy.auto.context.AutoDeploymentContext;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -54,15 +55,22 @@ public class PluginExecutor extends BaseExecutor {
 			Queue<String> arguments)
 		throws Exception {
 
+		AutoDeploymentContext autoDeploymentContext =
+			new AutoDeploymentContext();
+
+		String context = arguments.poll();
+
+		autoDeploymentContext.setContext(context);
+
 		File tempFile = getTempFile(request, responseJSONObject);
 
 		if (tempFile == null) {
 			return;
 		}
 
-		String context = arguments.poll();
+		autoDeploymentContext.setFile(tempFile);
 
-		DeployManagerUtil.deploy(tempFile, context);
+		DeployManagerUtil.deploy(autoDeploymentContext);
 
 		boolean success = FileUtils.deleteQuietly(tempFile.getParentFile());
 

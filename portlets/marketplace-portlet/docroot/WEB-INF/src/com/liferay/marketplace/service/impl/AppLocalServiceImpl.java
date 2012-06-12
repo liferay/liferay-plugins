@@ -153,7 +153,14 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 			while (enu.hasMoreElements()) {
 				ZipEntry zipEntry = enu.nextElement();
 
+				AutoDeploymentContext autoDeploymentContext =
+					new AutoDeploymentContext();
+
 				String fileName = zipEntry.getName();
+
+				String contextName = getContextName(fileName);
+
+				autoDeploymentContext.setContext(contextName);
 
 				if (_log.isInfoEnabled()) {
 					_log.info(
@@ -168,13 +175,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 				FileUtil.write(pluginPackageFile, inputStream);
 
-				String contextName = getContextName(fileName);
-
-				AutoDeploymentContext autoDeploymentContext =
-					new AutoDeploymentContext();
-
-				autoDeploymentContext.setContext(contextName);
-				autoDeploymentContext.setFileToDeploy(pluginPackageFile);
+				autoDeploymentContext.setFile(pluginPackageFile);
 
 				DeployManagerUtil.deploy(autoDeploymentContext);
 
