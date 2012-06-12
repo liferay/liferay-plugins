@@ -73,9 +73,10 @@ public class RoleRecipient extends Recipient {
 		if (Validator.isNotNull(_roleName)) {
 			return _roleName.hashCode();
 		}
-		else {
-			return String.valueOf(_roleId).hashCode();
-		}
+
+		String roleIdString = String.valueOf(_roleId);
+
+		return roleIdString.hashCode();
 	}
 
 	public boolean isAutoCreate() {
