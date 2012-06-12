@@ -63,8 +63,8 @@ List<CalEvent> events = (List<CalEvent>)request.getAttribute("view.jsp-events");
 				eventURL.setPortletMode(PortletMode.VIEW);
 
 				eventURL.setParameter("struts_action", "/calendar/view_event");
-				eventURL.setParameter("eventId", String.valueOf(event.getEventId()));
 				eventURL.setParameter("redirect", PortalUtil.getCurrentURL(request));
+				eventURL.setParameter("eventId", String.valueOf(event.getEventId()));
 
 				eventHREF = eventURL.toString();
 			}
