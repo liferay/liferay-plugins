@@ -232,14 +232,14 @@ pageContext.setAttribute("portletURL", portletURL);
 					},
 				</c:if>
 				{
-					label: '<liferay-ui:message key="site-directory" unicode="<%= true %>" />',
+					label: '<liferay-ui:message key="sites-directory" unicode="<%= true %>" />',
 					on: {
 						click: function(event) {
 							<liferay-portlet:renderURL var="viewSitesURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 								<portlet:param name="mvcPath" value="/sites/view_sites.jsp" />
 							</liferay-portlet:renderURL>
 
-							Liferay.SO.Sites.displayPopup('<%= viewSitesURL %>', '<liferay-ui:message key="site-directory" unicode="<%= true %>" />');
+							Liferay.SO.Sites.displayPopup('<%= viewSitesURL %>', '<liferay-ui:message key="sites-directory" unicode="<%= true %>" />');
 						}
 					}
 				}
