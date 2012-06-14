@@ -92,19 +92,19 @@
 			new Liferay.Portlet.GoogleMaps(
 				{
 					directionsAddress: '<%= directionsAddress %>',
-					isSecure: '<%= PortalUtil.isSecure(request)%>',
+					
+					<c:if test="<%= PortalUtil.isSecure(request) %>">
+					googleMapsURL: 'https://maps-api-ssl.google.com/maps/api/js',
+					</c:if>
+
 					languageId: '<%= themeDisplay.getLanguageId() %>',
 					mapAddress: '<%= mapAddress %>',
 					mapInputEnabled: <%= mapInputEnabled %>,
-					mapParams: {
-						mapTypeId: Liferay.Portlet.GoogleMaps.MAP_TYPE_ROADMAP,
-						zoom: 8
-					},
 					namespace: '<portlet:namespace />',
 					portletId: '<%= portletDisplay.getId() %>',
 					showDirectionSteps: <%= showDirectionSteps %>
 				}
-			);
+			).render();
 		</aui:script>
 	</c:when>
 	<c:otherwise>
