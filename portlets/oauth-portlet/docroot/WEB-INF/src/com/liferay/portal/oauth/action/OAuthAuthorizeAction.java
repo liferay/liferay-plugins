@@ -63,16 +63,6 @@ public class OAuthAuthorizeAction extends BaseStrutsAction{
 					OAuthConstants.AUTHORIZED))) {
 
 					return returnToConsumer(request, response, accessor);
-				}else {
-					String callback = request.getParameter(
-						OAuthConstants.OAUTH_CALLBACK);
-					if ((callback == null) || (callback.length() <= 0)) {
-						callback = OAuthConstants.NONE;
-					}
-
-					request.setAttribute(OAuthWebKeys.CALLBACK, callback);
-					request.setAttribute(
-						OAuthWebKeys.TOKEN, accessor.getRequestToken());
 				}
 			}
 			else if (cmd.equals(Constants.UPDATE)) {
@@ -144,7 +134,7 @@ public class OAuthAuthorizeAction extends BaseStrutsAction{
 			}
 
 			response.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
-			response.setHeader("Location", callback);
+			response.setHeader(OAuthConstants.LOCATION, callback);
 		}
 
 		return null;
@@ -167,12 +157,21 @@ public class OAuthAuthorizeAction extends BaseStrutsAction{
 			request.setAttribute(
 				OAuthWebKeys.DESCRIPTION, accessor.getConsumer()
 				.getOAuthApplication().getDescription());
+			request.setAttribute(
+					OAuthWebKeys.TOKEN, accessor.getRequestToken());
 		}
+
+		String callback = request.getParameter(OAuthConstants.OAUTH_CALLBACK);
+		if ((callback == null) || (callback.length() <= 0)) {
+			callback = OAuthConstants.NONE;
+		}
+
+		request.setAttribute(OAuthWebKeys.CALLBACK, callback);
 
 		return VIEW_URL;
 
 	}
 
-	private static final String VIEW_URL = "/portal/oauth/authorize.jsp";
+	private static final String VIEW_URL = "portal.oauth_authorize";
 
 }

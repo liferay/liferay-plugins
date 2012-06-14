@@ -1,5 +1,3 @@
-<%@page import="com.liferay.portal.oauth.model.OAuthApplication"%>
-<%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
 <%@page import="com.liferay.portal.kernel.util.WebKeys"%>
 <%@page import="com.liferay.portal.kernel.dao.search.ResultRow"%>
 

@@ -2,4 +2,5 @@
 
 <custom-sql>
 	<sql file="custom-sql/oauthapplication.xml" />
+	<sql file="custom-sql/oauthapplicationsusers.xml" />
 </custom-sql>

@@ -21,8 +21,10 @@ import com.liferay.portal.kernel.util.DigesterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
+import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.oauth.model.OAuthApplication;
+import com.liferay.portal.oauth.model.OAuthApplications_Users;
 import com.liferay.portal.oauth.service.base.OAuthApplicationLocalServiceBaseImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.oauth.OAuthConstants;
@@ -103,6 +105,47 @@ public class OAuthApplicationLocalServiceImpl
 
 		return application;
 	}
+	
+	/**
+	 * Delete OAuth application designated by applicationId. Method will
+	 * delete all application user's authorizations, application and
+	 * corresponding resource entries.
+	 */
+	public OAuthApplication deleteApplication(
+			long applicationId, long userId, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		// Application user's authorizations
+		oAuthApplications_UsersPersistence
+			.removeByApplicationId(applicationId);
+		
+		// TODO remove resorces when ivica is done with his code...
+		
+		
+		// Application
+
+		User user = userPersistence.findByPrimaryKey(userId);
+
+		Date now = new Date();
+
+		OAuthApplication application =
+				oAuthApplicationPersistence.findByPrimaryKey(applicationId);
+
+		application.setUserId(user.getUserId());
+		application.setUserName(user.getFullName());
+		application.setModifiedDate(serviceContext.getModifiedDate(now));
+		
+		// Resources
+
+		resourceLocalService.deleteResource(
+				application, ResourceConstants.SCOPE_COMPANY);
+		
+		// Application
+		
+		application = oAuthApplicationPersistence.remove(application);
+
+		return application;
+	}
 
 	public OAuthApplication getApplication(String consumerKey)
 		throws SystemException {
@@ -115,6 +158,15 @@ public class OAuthApplicationLocalServiceImpl
 
 		return oAuthApplicationPersistence.findByCompanyId(companyId);
 	}
+	
+	public List<OAuthApplication> getApplications(
+			long companyId, int start, int end,
+			OrderByComparator orderByComparator)
+			throws SystemException {
+
+			return oAuthApplicationPersistence.filterFindByCompanyId(
+					companyId, start, end, orderByComparator);
+		}
 
 	public List<OAuthApplication> getApplications(
 			long companyId, String name, int start, int end,
@@ -132,8 +184,7 @@ public class OAuthApplicationLocalServiceImpl
 		return oAuthApplicationPersistence.findByC_N(companyId, name);
 	}
 
-	public List<OAuthApplication> getApplicationsByON(
-			long ownerId, String name)
+	public List<OAuthApplication> getApplicationsByON(long ownerId, String name)
 		throws SystemException {
 
 		return oAuthApplicationPersistence.findByO_N(ownerId, name);
@@ -147,6 +198,15 @@ public class OAuthApplicationLocalServiceImpl
 		return oAuthApplicationPersistence.findByO_N(
 			ownerId, name, start, end, orderByComparator);
 	}
+	
+	public List<OAuthApplication> getApplicationsByOwner(
+			long ownerId, int start, int end,
+			OrderByComparator orderByComparator)
+		throws SystemException {
+
+		return oAuthApplicationPersistence.findByOwnerId(
+					ownerId, start, end, orderByComparator);
+	}
 
 	public int getApplicationsByCNCount(long companyId, String name)
 		throws SystemException {
@@ -159,6 +219,12 @@ public class OAuthApplicationLocalServiceImpl
 
 		return oAuthApplicationPersistence.countByO_N(ownerId, name);
 	}
+	
+	public int getApplicationsByOwnerCount(long ownerId)
+			throws SystemException {
+
+			return oAuthApplicationPersistence.countByOwnerId(ownerId);
+		}
 
 	public int getApplicationsCount(long companyId) throws SystemException {
 		return oAuthApplicationPersistence.countByCompanyId(companyId);
@@ -189,6 +255,47 @@ public class OAuthApplicationLocalServiceImpl
 		if (!Validator.isUrl(website)) {
 			throw new PortalException(new MalformedURLException(website));
 		}
+	}
+	
+	/**
+	 * Update existing application that should use OAuth feature. If changed
+	 * method will update name, description, website, callbackURL and
+	 * access level.
+	 */
+	public OAuthApplication updateApplication(
+			long applicationId, long userId, String name, String description,
+			String website, String callBackURL, int accessLevel,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		// Application
+
+		User user = userPersistence.findByPrimaryKey(userId);
+
+		validate(name, website, callBackURL);
+
+		Date now = new Date();
+
+		OAuthApplication application =
+				oAuthApplicationPersistence.findByPrimaryKey(applicationId);
+
+		application.setUserId(user.getUserId());
+		application.setUserName(user.getFullName());
+		application.setModifiedDate(serviceContext.getModifiedDate(now));
+		application.setName(name);
+		application.setDescription(description);
+		application.setWebsite(website);
+		application.setCallBackURL(callBackURL);
+		
+		// TODO: Ray/Mike - we probably shouldn't allow access level change? 
+		application.setAccessLevel(accessLevel);
+
+		oAuthApplicationPersistence.update(application, true);
+
+		// Resources
+		// TODO: Ray/Mike does update requires resource updates?
+
+		return application;
 	}
 
 }

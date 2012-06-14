@@ -40,15 +40,15 @@
 			<finder-column name="ownerId" />
 		</finder>
 		<finder name="Website" return-type="Collection">
-			<finder-column name="website" />
+			<finder-column name="website" comparator="LIKE"/>
 		</finder>
 		<finder name="C_N" return-type="Collection">
 			<finder-column name="companyId" />
-			<finder-column name="name" />
+			<finder-column name="name" comparator="LIKE" />
 		</finder>
 		<finder name="O_N" return-type="Collection" >
 			<finder-column name="ownerId" />
-			<finder-column name="name" />
+			<finder-column name="name" comparator="LIKE" />
 		</finder>
 	</entity>
 	<entity name="OAuthApplications_Users" local-service="true" remote-service="false">
@@ -71,8 +71,18 @@
 			<finder-column name="applicationId" />
 			<finder-column name="userId" />
 		</finder>
-		<finder name="AccessToken" return-type="OAuthApplications_Users" unique="true">
+		<finder name="A_A" return-type="Collection" >
+			<finder-column name="applicationId" />
+			<finder-column name="authorized" />
+		</finder>
+		<finder name="AccessToken" return-type="Collection">
 			<finder-column name="accessToken" />
+		</finder>
+		<finder name="ApplicationId" return-type="Collection" >
+			<finder-column name="applicationId" />
+		</finder>
+		<finder name="UserId" return-type="Collection" >
+			<finder-column name="userId" />
 		</finder>
 	</entity>
 </service-builder>

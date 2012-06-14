@@ -14,11 +14,19 @@
 	<portlet>
 		<portlet-name>2</portlet-name>
 		<icon>/icon.png</icon>
-		<control-panel-entry-category>profile</control-panel-entry-category>
+		<control-panel-entry-category>my</control-panel-entry-category>
 		<instanceable>false</instanceable>
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 		<css-class-wrapper>oauth-authorizations-portlet</css-class-wrapper>
+	</portlet>
+	<portlet>
+		<portlet-name>3</portlet-name>
+		<icon>/icon.png</icon>
+		<instanceable>false</instanceable>
+		<header-portlet-css>/css/main.css</header-portlet-css>
+		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
+		<css-class-wrapper>oauth-simulations-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
