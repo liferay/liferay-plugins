@@ -1,6 +1,20 @@
 package com.liferay.portlet.oauth.mvc;
 
+import com.liferay.portal.RequiredFieldException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.oauth.model.OAuthApplication;
+import com.liferay.portal.oauth.service.OAuthApplicationLocalServiceUtil;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextFactory;
+import com.liferay.portlet.oauth.OAuthConstants;
+import com.liferay.util.bridges.mvc.MVCPortlet;
+
 import java.io.IOException;
+
 import java.net.MalformedURLException;
 
 import javax.portlet.ActionRequest;
@@ -9,179 +23,160 @@ import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
-import com.liferay.portal.RequiredFieldException;
-import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.servlet.SessionErrors;
-import com.liferay.portal.kernel.servlet.SessionMessages;
-import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.oauth.model.OAuthApplication;
-import com.liferay.portal.oauth.service.OAuthApplicationLocalServiceUtil;
-import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.oauth.OAuthConstants;
-import com.liferay.util.bridges.mvc.MVCPortlet;
-
 public class OAuthApplicationAdminPortlet extends MVCPortlet {
-	
+
 	@Override
-	public void render(RenderRequest request, RenderResponse response)
-			throws PortletException, IOException {
-		long applicationId = ParamUtil.getLong(request,
-				OAuthConstants.WEB_APP_ID);
-		
-		if (0 != applicationId) {
+	public void render(
+			RenderRequest renderRequest, RenderResponse renberResponse)
+		throws PortletException, IOException {
+
+		long applicationId = ParamUtil.getLong(
+			renderRequest, OAuthConstants.WEB_APP_ID);
+
+		if (applicationId > 0) {
 			try {
-				OAuthApplication app = OAuthApplicationLocalServiceUtil
-										.fetchOAuthApplication(applicationId);
-				
-				request.setAttribute(OAuthConstants.WEB_APP_BEAN, app);
+				OAuthApplication application =
+					OAuthApplicationLocalServiceUtil.fetchOAuthApplication(
+						applicationId);
+
+				renderRequest.setAttribute(
+					OAuthConstants.WEB_APP_BEAN, application);
 			}
 			catch (Exception e) {
 				if (e instanceof SystemException) {
-					SessionErrors.add(request, e.getClass().getName(), e);
+					SessionErrors.add(renderRequest, e.getClass().getName(), e);
 				}
 				else {
 					throw new PortletException(e.fillInStackTrace());
 				}
 			}
-			
 		}
-		super.render(request, response);
+
+		super.render(renderRequest, renberResponse);
 	}
-	
-	public void deleteOAuthApp(ActionRequest actionRequest,
-			ActionResponse actionResponse)
+
+	public void deleteOAuthApp(
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
-		long applicationId = ParamUtil.getLong(actionRequest,
-				OAuthConstants.WEB_APP_ID);
-		
+
+		long applicationId = ParamUtil.getLong(
+			actionRequest, OAuthConstants.WEB_APP_ID);
+
 		try {
-			if (0 != applicationId) {
-				OAuthApplicationLocalServiceUtil.
-					deleteOAuthApplication(applicationId);
+			if (applicationId > 0) {
+
+				// TODO Make sure to create a real delete method which can
+				// remove associations (like resources) in a transaction.
+
+				OAuthApplicationLocalServiceUtil.deleteOAuthApplication(
+					applicationId);
 			}
 			else {
-				SessionErrors.add(actionRequest,
-						"cant-complete-operation-without-id");
+				SessionErrors.add(
+					actionRequest, "cant-complete-operation-without-id");
 			}
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			if (e instanceof SystemException) {
-				SessionErrors.add(actionRequest,
-						e.getClass().getName(), e);
+				SessionErrors.add(
+					actionRequest, e.getClass().getName(), e);
 			}
 			else {
 				throw new PortletException(e.fillInStackTrace());
 			}
 		}
 	}
-	
-	public void editOAuthApp(ActionRequest actionRequest,
-			ActionResponse actionResponse)
+
+	public void editOAuthApp(
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
-		long applicationId = ParamUtil.getLong(actionRequest,
-				OAuthConstants.WEB_APP_ID);
-		
-		if (0 != applicationId) {
+
+		long applicationId = ParamUtil.getLong(
+			actionRequest, OAuthConstants.WEB_APP_ID);
+
+		if (applicationId > 0) {
 			try {
-				OAuthApplication app = OAuthApplicationLocalServiceUtil
-										.fetchOAuthApplication(applicationId);
-				
-				extractData(actionRequest, app);
-				
-				OAuthApplicationLocalServiceUtil.updateOAuthApplication(app);
-				
-				actionRequest.setAttribute(OAuthConstants.WEB_APP_BEAN, app);
+				OAuthApplication application =
+					OAuthApplicationLocalServiceUtil.fetchOAuthApplication(
+						applicationId);
+
+				// TODO write real application update method (because we may
+				// have to update other entities in a transaction)
+
+				OAuthApplicationLocalServiceUtil.updateOAuthApplication(
+					application);
+
+				// TODO This won't work because there is a redirect after
+				// actions to avoid Back button issues.
+
+				actionRequest.setAttribute(
+					OAuthConstants.WEB_APP_BEAN, application);
 			}
 			catch (Exception e) {
 				if (e instanceof SystemException) {
-					SessionErrors.add(actionRequest,
-							e.getClass().getName(), e);
+					SessionErrors.add(
+						actionRequest, e.getClass().getName(), e);
 				}
 				else {
-					throw new PortletException(e.fillInStackTrace());
+					throw new PortletException(e);
 				}
 			}
 		}
 		else {
-			SessionErrors.add(actionRequest,
-					"cant-complete-operation-without-id");
+			SessionErrors.add(
+				actionRequest, "cant-complete-operation-without-id");
 		}
 	}
 
-	public void addOAuthApp(ActionRequest actionRequest,
-			ActionResponse actionResponse)
+	public void addOAuthApp(
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
-		OAuthApplication app = 
-				OAuthApplicationLocalServiceUtil.createOAuthApplication(0L);
-		
+
+		String name = ParamUtil.getString(
+			actionRequest, OAuthConstants.WEB_APP_NAME);
+		String description = ParamUtil.getString(
+			actionRequest, OAuthConstants.WEB_APP_DESCRIPTION);
+		String website = ParamUtil.getString(
+			actionRequest, OAuthConstants.WEB_APP_WEBSITE);
+		String callBackURL = ParamUtil.getString(
+			actionRequest, OAuthConstants.WEB_APP_CALLBACKURL);
+		int accessLevel = ParamUtil.getInteger(
+			actionRequest, OAuthConstants.WEB_APP_ACCESS_TYPE,
+			OAuthConstants.ACCESS_TYPE_READ);
+
 		try {
-			extractData(actionRequest, app);
-			
-			
-			if (Validator.isNull(app.getName())) {
-				throw new RequiredFieldException("required-field",
-						OAuthConstants.WEB_APP_NAME_ID);
-			}
-			if (Validator.isNull(app.getCallBackURL())) {
-				throw new RequiredFieldException("required-field",
-						OAuthConstants.WEB_APP_CALLBACKURL_ID);
-			}
-			if (!Validator.isUrl(app.getCallBackURL())) {
-				throw new MalformedURLException();
-			}
-			if (Validator.isNull(app.getWebsite())) {
-				throw new RequiredFieldException("required-field",
-						OAuthConstants.WEB_APP_WEBSITE_ID);
-			}
-			if (!Validator.isUrl(app.getWebsite())) {
-				throw new MalformedURLException();
-			}
-			
-			app = OAuthApplicationLocalServiceUtil
-						.addOAuthApplication(app.getAccessLevel(),
-								app.getCallBackURL(), app.getDescription(),
-								app.getName(), app.getOwnerId(),
-								app.getWebsite());
-			
-			SessionMessages.add(actionRequest,
-					OAuthConstants.WEB_APP_REQ_PROCESSED);
+
+			// TODO always use a ServiceContext with adds and updates.
+
+			ServiceContext serviceContext = ServiceContextFactory.getInstance(
+				actionRequest);
+
+			OAuthApplication application =
+				OAuthApplicationLocalServiceUtil.addApplication(
+					serviceContext.getUserId(), name, description, website,
+					callBackURL, accessLevel, serviceContext);
+
+			// TODO this won't work see above
+
+			actionRequest.setAttribute(
+				OAuthConstants.WEB_APP_BEAN, application);
 		}
 		catch (Exception e) {
 			if (e instanceof SystemException) {
-				e.printStackTrace();
-			} else if (e instanceof RequiredFieldException ||
-						e instanceof MalformedURLException) {
+				_log.error(e, e);
+			}
+			else if (e instanceof RequiredFieldException ||
+					 e instanceof MalformedURLException) {
+
 				SessionErrors.add(actionRequest, e.getClass().getName(), e);
 			}
 			else {
 				throw new PortletException(e.fillInStackTrace());
 			}
 		}
-		
-		actionRequest.setAttribute(OAuthConstants.WEB_APP_BEAN, app);
-		
-	}
-	
-	
-	
-	@Override
-	public void processAction(ActionRequest actionRequest,
-			ActionResponse actionResponse) throws IOException, PortletException {
-		super.processAction(actionRequest, actionResponse);
 	}
 
-	protected void extractData(ActionRequest actionRequest, OAuthApplication app) {
-		app.setAccessLevel(ParamUtil.getInteger(
-				actionRequest, OAuthConstants.WEB_APP_ACCESS_TYPE,
-				OAuthConstants.ACCESS_TYPE_READ));
-		app.setOwnerId(PortalUtil.getUserId(actionRequest));
-		app.setCallBackURL(ParamUtil.getString(
-				actionRequest, OAuthConstants.WEB_APP_CALLBACKURL));
-		app.setDescription(ParamUtil.getString(
-				actionRequest, OAuthConstants.WEB_APP_DESCRIPTION));
-		app.setName(ParamUtil.getString(
-				actionRequest, OAuthConstants.WEB_APP_NAME));
-		app.setWebsite(ParamUtil.getString(
-				actionRequest, OAuthConstants.WEB_APP_WEBSITE));
-	}
+	private static Log _log = LogFactoryUtil.getLog(
+		OAuthApplicationAdminPortlet.class);
+
 }

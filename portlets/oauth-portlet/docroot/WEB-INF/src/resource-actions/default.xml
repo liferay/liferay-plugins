@@ -3,7 +3,7 @@
 
 <resource-action-mapping>
 	<portlet-resource>
-		<portlet-name>OAuth Admin</portlet-name>
+		<portlet-name>1</portlet-name>
 		<permissions>
 			<supports>
 				<action-key>ACCESS_IN_CONTROL_PANEL</action-key>
@@ -22,7 +22,7 @@
 		</permissions>
 	</portlet-resource>
 	<portlet-resource>
-		<portlet-name>OAuth Authorizations</portlet-name>
+		<portlet-name>2</portlet-name>
 		<permissions>
 			<supports>
 				<action-key>ACCESS_IN_CONTROL_PANEL</action-key>
@@ -43,7 +43,7 @@
 	<model-resource>
 		<model-name>com.liferay.portlet.oauth</model-name>
 		<portlet-ref>
-			<portlet-name>OAuth Admin</portlet-name>
+			<portlet-name>1</portlet-name>
 		</portlet-ref>
 		<permissions>
 			<supports>
@@ -67,7 +67,7 @@
 	<model-resource>
 		<model-name>com.liferay.portal.oauth.model.OAuthApplication</model-name>
 		<portlet-ref>
-			<portlet-name>OAuth Admin</portlet-name>
+			<portlet-name>1</portlet-name>
 		</portlet-ref>
 		<permissions>
 			<supports>
@@ -89,7 +89,7 @@
 	<model-resource>
 		<model-name>com.liferay.portal.oauth.model.OAuthApplications_Users</model-name>
 		<portlet-ref>
-			<portlet-name>OAuth Admin</portlet-name>
+			<portlet-name>1</portlet-name>
 		</portlet-ref>
 		<permissions>
 			<supports>
