@@ -9,7 +9,7 @@
 		<instanceable>false</instanceable>
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
-		<css-class-wrapper>oauth admin-portlet</css-class-wrapper>
+		<css-class-wrapper>oauth-admin-portlet</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
@@ -18,15 +18,11 @@
 		<instanceable>false</instanceable>
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
-		<css-class-wrapper>oauth authorizations-portlet</css-class-wrapper>
+		<css-class-wrapper>oauth-authorizations-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
 		<role-link>Administrator</role-link>
-	</role-mapper>
-	<role-mapper>
-		<role-name>oauth-user</role-name>
-		<role-link>OAuth User</role-link>
 	</role-mapper>
 	<role-mapper>
 		<role-name>guest</role-name>

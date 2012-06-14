@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-	<bean id="com.liferay.portal.oauth.service.OAuthApplicationLocalService" class="com.liferay.portal.oauth.service.impl.OAuthApplicationLocalServiceImpl" />
-	<bean id="com.liferay.portal.oauth.service.persistence.OAuthApplicationPersistence" class="com.liferay.portal.oauth.service.persistence.OAuthApplicationPersistenceImpl" parent="basePersistence" />
-	<bean id="com.liferay.portal.oauth.service.persistence.OAuthApplicationFinder" class="com.liferay.portal.oauth.service.persistence.OAuthApplicationFinderImpl" parent="basePersistence" />
-	<bean id="com.liferay.portal.oauth.service.OAuthApplications_UsersLocalService" class="com.liferay.portal.oauth.service.impl.OAuthApplications_UsersLocalServiceImpl" />
-	<bean id="com.liferay.portal.oauth.service.persistence.OAuthApplications_UsersPersistence" class="com.liferay.portal.oauth.service.persistence.OAuthApplications_UsersPersistenceImpl" parent="basePersistence" />
-</beans>
