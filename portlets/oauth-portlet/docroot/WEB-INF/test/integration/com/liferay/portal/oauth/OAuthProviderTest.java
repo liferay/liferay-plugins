@@ -1,0 +1,262 @@
+/**
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.portal.oauth;
+
+import com.liferay.counter.service.persistence.CounterUtil;
+import com.liferay.portal.kernel.util.PropertiesUtil;
+import junit.framework.Assert;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.model.Token;
+import org.scribe.model.Verifier;
+import org.scribe.oauth.OAuthService;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.sql.*;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
+
+/**
+ * To run this test you need to have installed one of Firefox versions:
+ * 3.0, 3.6, 5, 6, 7, or 8. If your installation is not in default installation
+ * directory(depends on OS) you can set VM option "webdriver.firefox.bin" to
+ * set alternative path to Firefox while running this test
+ *
+ * @author Ivica Cardic
+ */
+public class OAuthProviderTest {
+
+	@After
+	public void after() throws Exception {
+		_driver.quit();
+
+		cleanData();
+
+		_connection.close();
+	}
+
+	@Before
+	public void before() throws Exception {
+		loadProperties();
+
+		openConnection();
+
+		cleanData();
+
+		prepareData();
+
+		_driver = new FirefoxDriver();
+		_driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+	}
+
+	@Test
+	public void testGetAccessToken() {
+		goToLoginPage();
+	}
+
+	@Test
+	public void testGetAccessTokenWithCallbackUrl() {
+		for (int i  = 0; i < data.length; i++){
+			OAuthService service = new ServiceBuilder()
+					.provider(LiferayApi.class)
+					.apiKey((String)data[i][8])
+					.apiSecret((String)data[i][9])
+					.build();
+
+			Token requestToken = service.getRequestToken();
+
+			Assert.assertNotNull(requestToken.getToken());
+
+			//currently redirect after login doesn't work so the login page is
+			//explicitly called first before calling authorization page
+			if(i == 0){
+				goToLoginPage();
+			}
+
+			goToAuthorizationPage(requestToken);
+
+			WebElement element = _driver.findElement(By.id("authorize"));
+			element.submit();
+
+			String[] params = extractParams(_driver.getCurrentUrl());
+
+			Assert.assertNotNull(params[0]);
+			Assert.assertNotNull(params[1]);
+
+			Verifier verifier = new Verifier(params[1]);
+
+			Token accessToken = service.getAccessToken(requestToken, verifier);
+
+			Assert.assertNotNull(accessToken.getToken());
+		}
+	}
+
+	public static String getString(String key){
+		return (String)_properties.get(key);
+	}
+
+	private void goToLoginPage(){
+		String url = (String)_properties.get("portal.default.url");
+		_driver.get(url);
+
+		WebElement element = _driver.findElement(By.name("_58_login"));
+		element.clear();
+
+		String login = (String)_properties.get("portal.default.login");
+		element.sendKeys(login);
+
+		element = _driver.findElement(By.name("_58_password"));
+
+		String password = (String)_properties.get("portal.default.password");
+		element.sendKeys(password);
+
+		element.submit();
+	}
+
+	private void goToAuthorizationPage(Token requestToken){
+		String authorizationUrl = LiferayApi.AUTHORIZE_URL.replace(
+				"%s", requestToken.getToken());
+
+		_driver.get(authorizationUrl);
+	}
+
+	private String[] extractParams(String url) {
+		int beginIndex = url.indexOf("oauth_token");
+		int endIndex = url.length();
+
+		url = url.substring(beginIndex, endIndex);
+
+		beginIndex = "oauth_token=".length();
+		endIndex = url.indexOf("&oauth_verifier");
+
+		String oauthToken =url.substring(beginIndex, endIndex);
+
+		beginIndex = url.indexOf("&oauth_verifier");
+		endIndex = url.length();
+
+		url = url.substring(beginIndex, endIndex);
+
+		beginIndex = "oauth_verifier=".length();
+		endIndex = url.length();
+
+		String oauthVerifier =url.substring(beginIndex, endIndex);
+
+		return new String[]{oauthToken, oauthVerifier};
+	}
+
+	private void prepareData() throws Exception {
+		for (int i = 0; i<data.length; i++){
+			PreparedStatement pstmt = _connection.prepareStatement(
+					INSERT_STATEMENT_OAUTHAPPLICATION);
+
+			pstmt.setInt(1, (Integer)data[i][0]);
+			pstmt.setInt(2, (Integer)data[i][1]);
+			pstmt.setInt(3, (Integer)data[i][2]);
+			pstmt.setString(4, (String) data[i][3]);
+			pstmt.setDate(5, new Date(System.currentTimeMillis()));
+			pstmt.setDate(6, new Date(System.currentTimeMillis()));
+			pstmt.setInt(7, (Integer)data[i][4]);
+			pstmt.setString(8, (String)data[i][5]);
+			pstmt.setString(9, (String)data[i][6]);
+			pstmt.setString(10, (String)data[i][7]);
+			pstmt.setString(11, (String)data[i][8]);
+			pstmt.setString(12, (String)data[i][9]);
+			pstmt.setString(13, (String)data[i][10]);
+			pstmt.setInt(14, (Integer)data[i][11]);
+
+			pstmt.executeUpdate();
+
+			pstmt.close();
+		}
+	}
+
+	private void cleanData() throws Exception{
+		for (int i = 0; i<data.length; i++){
+			PreparedStatement pstmt = _connection.prepareStatement(
+					DELETE_STATEMENT_OAUTHAPPLICATION);
+
+			pstmt.setInt(1, (Integer)data[i][0]);
+
+			pstmt.executeUpdate();
+
+			pstmt.close();
+
+			pstmt = _connection.prepareStatement(
+					DELETE_STATEMENT_OAUTHAPPLICATIONS_USERS);
+
+			pstmt.setInt(1, (Integer)data[i][0]);
+
+			pstmt.executeUpdate();
+
+			pstmt.close();
+		}
+	}
+
+	private void openConnection() throws Exception {
+		String className = (String)_properties.get(
+				"jdbc.default.driverClassName");
+		String url = (String)_properties.get("jdbc.default.url");
+		String username =  (String)_properties.get("jdbc.default.username");
+		String password = (String)_properties.get("jdbc.default.password");
+
+		Class.forName(className);
+
+		_connection = DriverManager.getConnection(url, username, password);
+	}
+
+	private void loadProperties() throws Exception{
+		_properties = new Properties();
+		InputStream in = this.getClass().getResourceAsStream(
+				"/portal-test.properties");
+		_properties.load(in);
+	}
+
+	private static final String INSERT_STATEMENT_OAUTHAPPLICATION =
+			"INSERT INTO oauth_oauthapplication VALUES " +
+			"(? ,? ,? ,? ,? ,? , ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String DELETE_STATEMENT_OAUTHAPPLICATION =
+			"delete from oauth_oauthapplication where applicationId=?";
+	private static final String DELETE_STATEMENT_OAUTHAPPLICATIONS_USERS =
+			"delete from oauth_oauthapplications_users where applicationId=?";
+
+	Object[][] data = {
+		{
+			20000, 10152, 10194, "test@liferay.com", 10194, "application1",
+			"this is a test application1", "http://liferay.com",
+			"af91876b105c6834ec", "521b0a6b31a3f8", "http://liferay.com", 0
+		},
+		{
+			20001, 10152, 10194, "test@liferay.com", 10194, "application2",
+			"this is a test application2", "http://liferay.com",
+			"13a795dcbd0acd97816", "a5385e50e6812", "http://liferay.com", 0
+		}
+	};
+
+	private WebDriver _driver;
+	private static Properties _properties;
+	private Connection _connection;
+
+}

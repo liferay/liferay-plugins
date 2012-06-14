@@ -1,9 +1,6 @@
-<%@page import="com.liferay.portal.kernel.language.LanguageUtil"%>
+<%@page import="com.liferay.portal.oauth.service.OAuthApplications_UsersLocalServiceUtil"%>
 <%@page import="com.liferay.portal.kernel.servlet.SessionMessages"%>
-<%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
-<%@page import="com.liferay.portal.oauth.model.OAuthApplication"%>
 <%@page import="com.liferay.portal.oauth.service.OAuthApplicationLocalServiceUtil"%>
-<%@page import="com.liferay.portlet.oauth.OAuthConstants"%>
 <%@page import="com.liferay.portlet.oauth.search.OAuthApplicationSearchTerms"%>
 <%@page import="com.liferay.portlet.oauth.search.OAuthApplicationDisplayTerms"%>
 <%@page import="com.liferay.portlet.oauth.search.OAuthApplicationSearch"%>
@@ -46,11 +43,11 @@ String replaceParm0 = "{0}";
 		int oAuthAppsCnt = 0;
 		
 		if (adminUser) {
-			oAuthApps = OAuthApplicationLocalServiceUtil.findByName(name, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
-			oAuthAppsCnt = OAuthApplicationLocalServiceUtil.countByName(name);
+			oAuthApps = OAuthApplicationLocalServiceUtil.getApplicationsByCN(themeDisplay.getCompanyId(), name);
+			oAuthAppsCnt = OAuthApplicationLocalServiceUtil.getApplicationsByCNCount(themeDisplay.getCompanyId(), name);
 		} else {
-			oAuthApps = OAuthApplicationLocalServiceUtil.findByNameAndOwner(name, themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
-			oAuthAppsCnt = OAuthApplicationLocalServiceUtil.countByNameAndOwner(name, themeDisplay.getUserId());
+			oAuthApps = OAuthApplicationLocalServiceUtil.getApplicationsByON(themeDisplay.getUserId(), name, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
+			oAuthAppsCnt = OAuthApplicationLocalServiceUtil.getApplicationsByONCount(themeDisplay.getUserId(), name);
 		}
 	%>
 	
@@ -64,6 +61,10 @@ String replaceParm0 = "{0}";
 		keyProperty="applicationId"
 		modelVar="app">
 		
+		<%
+		int authorizationsCount = OAuthApplications_UsersLocalServiceUtil.countByApplicationId(app.getApplicationId());
+		%>
+		
 		<liferay-ui:search-container-column-text
 					name="id"
 					value="<%= Long.toString(app.getApplicationId()) %>"
@@ -76,14 +77,16 @@ String replaceParm0 = "{0}";
 				/>
 		<liferay-ui:search-container-column-text
 					name="website"
-					orderable="<%= false %>"
 				/>
 		<liferay-ui:search-container-column-text
 					name="access-level"
-					orderable="<%= false %>"
 				>
 				<liferay-ui:message key="<%= OAuthConstants.WEB_APP_LANG_KEY_ACCESS_TYPE_SHORT.replace(replaceParm0, Integer.toString(app.getAccessLevel())) %>" />
 		</liferay-ui:search-container-column-text>
+		<liferay-ui:search-container-column-text
+					name="authorizations-count-short"
+					value="<%= Integer.toString(authorizationsCount) %>"
+				/>
 		<liferay-ui:search-container-column-jsp
 					align="right"
 					path="/html/admin/actions.jsp"

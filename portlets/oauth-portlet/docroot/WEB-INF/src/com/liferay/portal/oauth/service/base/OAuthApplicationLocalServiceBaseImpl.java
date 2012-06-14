@@ -32,6 +32,7 @@ import com.liferay.portal.oauth.model.OAuthApplication;
 import com.liferay.portal.oauth.service.OAuthApplicationLocalService;
 import com.liferay.portal.oauth.service.OAuthApplications_UsersLocalService;
 import com.liferay.portal.oauth.service.persistence.OAuthApplicationPersistence;
+import com.liferay.portal.oauth.service.persistence.OAuthApplications_UsersFinder;
 import com.liferay.portal.oauth.service.persistence.OAuthApplications_UsersPersistence;
 import com.liferay.portal.service.BaseLocalServiceImpl;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
@@ -349,6 +350,25 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	}
 
 	/**
+	 * Returns the o auth applications_ users finder.
+	 *
+	 * @return the o auth applications_ users finder
+	 */
+	public OAuthApplications_UsersFinder getOAuthApplications_UsersFinder() {
+		return oAuthApplications_UsersFinder;
+	}
+
+	/**
+	 * Sets the o auth applications_ users finder.
+	 *
+	 * @param oAuthApplications_UsersFinder the o auth applications_ users finder
+	 */
+	public void setOAuthApplications_UsersFinder(
+		OAuthApplications_UsersFinder oAuthApplications_UsersFinder) {
+		this.oAuthApplications_UsersFinder = oAuthApplications_UsersFinder;
+	}
+
+	/**
 	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
@@ -507,6 +527,8 @@ public abstract class OAuthApplicationLocalServiceBaseImpl
 	protected OAuthApplications_UsersLocalService oAuthApplications_UsersLocalService;
 	@BeanReference(type = OAuthApplications_UsersPersistence.class)
 	protected OAuthApplications_UsersPersistence oAuthApplications_UsersPersistence;
+	@BeanReference(type = OAuthApplications_UsersFinder.class)
+	protected OAuthApplications_UsersFinder oAuthApplications_UsersFinder;
 	@BeanReference(type = CounterLocalService.class)
 	protected CounterLocalService counterLocalService;
 	@BeanReference(type = ResourceLocalService.class)

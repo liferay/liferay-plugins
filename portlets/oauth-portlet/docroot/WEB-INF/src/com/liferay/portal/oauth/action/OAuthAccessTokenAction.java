@@ -16,7 +16,6 @@ package com.liferay.portal.oauth.action;
 
 import com.liferay.portal.kernel.struts.BaseStrutsAction;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.model.User;
 import com.liferay.portal.oauth.OAuthAccessor;
 import com.liferay.portal.oauth.OAuthMessage;
 import com.liferay.portal.oauth.OAuthProblemException;
@@ -60,11 +59,10 @@ public class OAuthAccessTokenAction extends BaseStrutsAction {
 					OAuthProblemException.PERMISSION_DENIED);
 			}
 
-			User user = themeDisplay.getUser();
+			long userId = (Long)accessor.getProperty(OAuthConstants.USER);
 
 			// generate access token and secret
-			OAuthProviderManagerUtil.generateAccessToken(
-				accessor, user.getUserId());
+			OAuthProviderManagerUtil.generateAccessToken(accessor, userId);
 
 			response.setContentType("text/plain");
 

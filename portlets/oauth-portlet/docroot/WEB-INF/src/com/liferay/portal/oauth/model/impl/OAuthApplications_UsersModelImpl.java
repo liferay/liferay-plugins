@@ -82,7 +82,8 @@ public class OAuthApplications_UsersModelImpl extends BaseModelImpl<OAuthApplica
 			true);
 	public static long ACCESSTOKEN_COLUMN_BITMASK = 1L;
 	public static long APPLICATIONID_COLUMN_BITMASK = 2L;
-	public static long USERID_COLUMN_BITMASK = 4L;
+	public static long AUTHORIZED_COLUMN_BITMASK = 4L;
+	public static long USERID_COLUMN_BITMASK = 8L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.portal.oauth.model.OAuthApplications_Users"));
 
@@ -239,7 +240,19 @@ public class OAuthApplications_UsersModelImpl extends BaseModelImpl<OAuthApplica
 	}
 
 	public void setAuthorized(boolean authorized) {
+		_columnBitmask |= AUTHORIZED_COLUMN_BITMASK;
+
+		if (!_setOriginalAuthorized) {
+			_setOriginalAuthorized = true;
+
+			_originalAuthorized = _authorized;
+		}
+
 		_authorized = authorized;
+	}
+
+	public boolean getOriginalAuthorized() {
+		return _originalAuthorized;
 	}
 
 	public long getUserId() {
@@ -368,6 +381,10 @@ public class OAuthApplications_UsersModelImpl extends BaseModelImpl<OAuthApplica
 
 		oAuthApplications_UsersModelImpl._setOriginalApplicationId = false;
 
+		oAuthApplications_UsersModelImpl._originalAuthorized = oAuthApplications_UsersModelImpl._authorized;
+
+		oAuthApplications_UsersModelImpl._setOriginalAuthorized = false;
+
 		oAuthApplications_UsersModelImpl._originalUserId = oAuthApplications_UsersModelImpl._userId;
 
 		oAuthApplications_UsersModelImpl._setOriginalUserId = false;
@@ -476,6 +493,8 @@ public class OAuthApplications_UsersModelImpl extends BaseModelImpl<OAuthApplica
 	private long _originalApplicationId;
 	private boolean _setOriginalApplicationId;
 	private boolean _authorized;
+	private boolean _originalAuthorized;
+	private boolean _setOriginalAuthorized;
 	private long _userId;
 	private String _userUuid;
 	private long _originalUserId;

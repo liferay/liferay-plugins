@@ -625,7 +625,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns all the o auth applications where website = &#63;.
+	* Returns all the o auth applications where website LIKE &#63;.
 	*
 	* @param website the website
 	* @return the matching o auth applications
@@ -638,7 +638,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns a range of all the o auth applications where website = &#63;.
+	* Returns a range of all the o auth applications where website LIKE &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -657,7 +657,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns an ordered range of all the o auth applications where website = &#63;.
+	* Returns an ordered range of all the o auth applications where website LIKE &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -679,7 +679,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns the first o auth application in the ordered set where website = &#63;.
+	* Returns the first o auth application in the ordered set where website LIKE &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -700,7 +700,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns the last o auth application in the ordered set where website = &#63;.
+	* Returns the last o auth application in the ordered set where website LIKE &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -721,7 +721,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns the o auth applications before and after the current o auth application in the ordered set where website = &#63;.
+	* Returns the o auth applications before and after the current o auth application in the ordered set where website LIKE &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -745,7 +745,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns all the o auth applications that the user has permission to view where website = &#63;.
+	* Returns all the o auth applications that the user has permission to view where website LIKE &#63;.
 	*
 	* @param website the website
 	* @return the matching o auth applications that the user has permission to view
@@ -758,7 +758,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns a range of all the o auth applications that the user has permission to view where website = &#63;.
+	* Returns a range of all the o auth applications that the user has permission to view where website LIKE &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -777,7 +777,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns an ordered range of all the o auth applications that the user has permissions to view where website = &#63;.
+	* Returns an ordered range of all the o auth applications that the user has permissions to view where website LIKE &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -799,7 +799,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns the o auth applications before and after the current o auth application in the ordered set of o auth applications that the user has permission to view where website = &#63;.
+	* Returns the o auth applications before and after the current o auth application in the ordered set of o auth applications that the user has permission to view where website LIKE &#63;.
 	*
 	* @param applicationId the primary key of the current o auth application
 	* @param website the website
@@ -819,7 +819,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns all the o auth applications where companyId = &#63; and name = &#63;.
+	* Returns all the o auth applications where companyId = &#63; and name LIKE &#63;.
 	*
 	* @param companyId the company ID
 	* @param name the name
@@ -833,7 +833,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns a range of all the o auth applications where companyId = &#63; and name = &#63;.
+	* Returns a range of all the o auth applications where companyId = &#63; and name LIKE &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -853,7 +853,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns an ordered range of all the o auth applications where companyId = &#63; and name = &#63;.
+	* Returns an ordered range of all the o auth applications where companyId = &#63; and name LIKE &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -876,7 +876,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns the first o auth application in the ordered set where companyId = &#63; and name = &#63;.
+	* Returns the first o auth application in the ordered set where companyId = &#63; and name LIKE &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -899,7 +899,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns the last o auth application in the ordered set where companyId = &#63; and name = &#63;.
+	* Returns the last o auth application in the ordered set where companyId = &#63; and name LIKE &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -922,7 +922,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns the o auth applications before and after the current o auth application in the ordered set where companyId = &#63; and name = &#63;.
+	* Returns the o auth applications before and after the current o auth application in the ordered set where companyId = &#63; and name LIKE &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -947,7 +947,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns all the o auth applications that the user has permission to view where companyId = &#63; and name = &#63;.
+	* Returns all the o auth applications that the user has permission to view where companyId = &#63; and name LIKE &#63;.
 	*
 	* @param companyId the company ID
 	* @param name the name
@@ -961,7 +961,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns a range of all the o auth applications that the user has permission to view where companyId = &#63; and name = &#63;.
+	* Returns a range of all the o auth applications that the user has permission to view where companyId = &#63; and name LIKE &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -981,7 +981,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns an ordered range of all the o auth applications that the user has permissions to view where companyId = &#63; and name = &#63;.
+	* Returns an ordered range of all the o auth applications that the user has permissions to view where companyId = &#63; and name LIKE &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -1005,7 +1005,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns the o auth applications before and after the current o auth application in the ordered set of o auth applications that the user has permission to view where companyId = &#63; and name = &#63;.
+	* Returns the o auth applications before and after the current o auth application in the ordered set of o auth applications that the user has permission to view where companyId = &#63; and name LIKE &#63;.
 	*
 	* @param applicationId the primary key of the current o auth application
 	* @param companyId the company ID
@@ -1026,7 +1026,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns all the o auth applications where ownerId = &#63; and name = &#63;.
+	* Returns all the o auth applications where ownerId = &#63; and name LIKE &#63;.
 	*
 	* @param ownerId the owner ID
 	* @param name the name
@@ -1040,7 +1040,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns a range of all the o auth applications where ownerId = &#63; and name = &#63;.
+	* Returns a range of all the o auth applications where ownerId = &#63; and name LIKE &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -1060,7 +1060,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns an ordered range of all the o auth applications where ownerId = &#63; and name = &#63;.
+	* Returns an ordered range of all the o auth applications where ownerId = &#63; and name LIKE &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -1083,7 +1083,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns the first o auth application in the ordered set where ownerId = &#63; and name = &#63;.
+	* Returns the first o auth application in the ordered set where ownerId = &#63; and name LIKE &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -1105,7 +1105,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns the last o auth application in the ordered set where ownerId = &#63; and name = &#63;.
+	* Returns the last o auth application in the ordered set where ownerId = &#63; and name LIKE &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -1127,7 +1127,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns the o auth applications before and after the current o auth application in the ordered set where ownerId = &#63; and name = &#63;.
+	* Returns the o auth applications before and after the current o auth application in the ordered set where ownerId = &#63; and name LIKE &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -1152,7 +1152,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns all the o auth applications that the user has permission to view where ownerId = &#63; and name = &#63;.
+	* Returns all the o auth applications that the user has permission to view where ownerId = &#63; and name LIKE &#63;.
 	*
 	* @param ownerId the owner ID
 	* @param name the name
@@ -1166,7 +1166,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns a range of all the o auth applications that the user has permission to view where ownerId = &#63; and name = &#63;.
+	* Returns a range of all the o auth applications that the user has permission to view where ownerId = &#63; and name LIKE &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -1186,7 +1186,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns an ordered range of all the o auth applications that the user has permissions to view where ownerId = &#63; and name = &#63;.
+	* Returns an ordered range of all the o auth applications that the user has permissions to view where ownerId = &#63; and name LIKE &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -1209,7 +1209,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns the o auth applications before and after the current o auth application in the ordered set of o auth applications that the user has permission to view where ownerId = &#63; and name = &#63;.
+	* Returns the o auth applications before and after the current o auth application in the ordered set of o auth applications that the user has permission to view where ownerId = &#63; and name LIKE &#63;.
 	*
 	* @param applicationId the primary key of the current o auth application
 	* @param ownerId the owner ID
@@ -1315,7 +1315,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Removes all the o auth applications where website = &#63; from the database.
+	* Removes all the o auth applications where website LIKE &#63; from the database.
 	*
 	* @param website the website
 	* @throws SystemException if a system exception occurred
@@ -1326,7 +1326,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Removes all the o auth applications where companyId = &#63; and name = &#63; from the database.
+	* Removes all the o auth applications where companyId = &#63; and name LIKE &#63; from the database.
 	*
 	* @param companyId the company ID
 	* @param name the name
@@ -1338,7 +1338,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Removes all the o auth applications where ownerId = &#63; and name = &#63; from the database.
+	* Removes all the o auth applications where ownerId = &#63; and name LIKE &#63; from the database.
 	*
 	* @param ownerId the owner ID
 	* @param name the name
@@ -1420,7 +1420,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns the number of o auth applications where website = &#63;.
+	* Returns the number of o auth applications where website LIKE &#63;.
 	*
 	* @param website the website
 	* @return the number of matching o auth applications
@@ -1432,7 +1432,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns the number of o auth applications that the user has permission to view where website = &#63;.
+	* Returns the number of o auth applications that the user has permission to view where website LIKE &#63;.
 	*
 	* @param website the website
 	* @return the number of matching o auth applications that the user has permission to view
@@ -1444,7 +1444,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns the number of o auth applications where companyId = &#63; and name = &#63;.
+	* Returns the number of o auth applications where companyId = &#63; and name LIKE &#63;.
 	*
 	* @param companyId the company ID
 	* @param name the name
@@ -1457,7 +1457,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns the number of o auth applications that the user has permission to view where companyId = &#63; and name = &#63;.
+	* Returns the number of o auth applications that the user has permission to view where companyId = &#63; and name LIKE &#63;.
 	*
 	* @param companyId the company ID
 	* @param name the name
@@ -1470,7 +1470,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns the number of o auth applications where ownerId = &#63; and name = &#63;.
+	* Returns the number of o auth applications where ownerId = &#63; and name LIKE &#63;.
 	*
 	* @param ownerId the owner ID
 	* @param name the name
@@ -1483,7 +1483,7 @@ public class OAuthApplicationUtil {
 	}
 
 	/**
-	* Returns the number of o auth applications that the user has permission to view where ownerId = &#63; and name = &#63;.
+	* Returns the number of o auth applications that the user has permission to view where ownerId = &#63; and name LIKE &#63;.
 	*
 	* @param ownerId the owner ID
 	* @param name the name

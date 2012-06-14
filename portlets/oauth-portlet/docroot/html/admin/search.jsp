@@ -1,4 +1,3 @@
-<%@page import="com.liferay.portal.kernel.util.GetterUtil"%>
 <%@page import="com.liferay.portlet.oauth.search.OAuthApplicationDisplayTerms"%>
 <%@page import="com.liferay.portlet.oauth.search.OAuthApplicationSearch"%>
 
@@ -16,3 +15,4 @@ OAuthApplicationDisplayTerms displayTerms = (OAuthApplicationDisplayTerms)search
 
 	<aui:button type="submit" value="search" />
 </span>
+<div class="separator"><!-- --></div>

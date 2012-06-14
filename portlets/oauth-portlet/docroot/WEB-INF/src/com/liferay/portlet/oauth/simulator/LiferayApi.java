@@ -1,4 +1,4 @@
-package com.liferay.portal.oauth;
+package com.liferay.portlet.oauth.simulator;
 
 import org.scribe.builder.api.DefaultApi10a;
 

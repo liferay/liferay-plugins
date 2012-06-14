@@ -78,4 +78,47 @@
 			<role-name>user</role-name>
 		</security-role-ref>
 	</portlet>
+	<portlet>
+		<portlet-name>3</portlet-name>
+		<display-name>3</display-name>
+		<portlet-class>
+			com.liferay.portlet.oauth.mvc.OAuthSimulatorPortlet
+		</portlet-class>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/html/simulator/view.jsp</value>
+		</init-param>
+		<init-param>
+			<name>config-jsp</name>
+			<value>/html/simulator/config.jsp</value>
+		</init-param>
+		<init-param>
+			<name>copy-request-parameters</name>
+			<value>true</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+			<portlet-mode>config</portlet-mode>
+		</supports>
+		<resource-bundle>content.Simulations</resource-bundle>
+		<portlet-info>
+			<title>OAUTH SIMULATION</title>
+			<short-title>OAUTH SIMULATION</short-title>
+			<keywords>OAUTH SIMULATION</keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
 </portlet-app>

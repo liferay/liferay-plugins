@@ -37,10 +37,6 @@ import net.oauth.server.OAuthServlet;
 import org.apache.commons.codec.digest.DigestUtils;
 
 /**
- * Utility methods for providers that store consumers, tokens and secrets in
- * local cache (HashSet). Consumer key is used as the name, and its
- * credentials are stored in HashSet.
- *
  * @author Ivica Cardic
  */
 public class OAuthProviderManagerImpl implements OAuthProviderManager {
@@ -95,6 +91,10 @@ public class OAuthProviderManagerImpl implements OAuthProviderManager {
 		String secretData = consumerKey + System.nanoTime() + token;
 		String secret = DigestUtils.md5Hex(secretData);
 
+		accessor.setAccessToken(token);
+		accessor.setTokenSecret(secret);
+		accessor.setRequestToken(null);
+
 		OAuthApplication oAuthApplication =
 			accessor.getConsumer().getOAuthApplication();
 
@@ -116,8 +116,6 @@ public class OAuthProviderManagerImpl implements OAuthProviderManager {
 
 	/**
 	 * Generate a fresh request token and secret for a consumer.
-	 *
-	 * @throws net.oauth.OAuthException
 	 */
 	public void generateRequestToken(OAuthAccessor accessor) {
 
@@ -185,9 +183,9 @@ public class OAuthProviderManagerImpl implements OAuthProviderManager {
 	public OAuthConsumer getConsumer(OAuthMessage requestMessage)
 		throws OAuthException, OAuthProblemException {
 
-		OAuthConsumer consumer = null;
+		OAuthConsumer consumer;
 
-		String consumerKey = null;
+		String consumerKey;
 
 		try {
 			consumerKey = requestMessage.getConsumerKey();
@@ -196,7 +194,7 @@ public class OAuthProviderManagerImpl implements OAuthProviderManager {
 			throw new OAuthException(e);
 		}
 
-		OAuthApplication oAuthApplication = null;
+		OAuthApplication oAuthApplication;
 
 		try {
 			oAuthApplication = OAuthApplicationLocalServiceUtil.getApplication(
@@ -226,7 +224,7 @@ public class OAuthProviderManagerImpl implements OAuthProviderManager {
 			Exception e, boolean sendBody)
 		throws IOException, ServletException {
 
-		String realm = (request.isSecure())?"https://":"http://";
+		String realm = (request.isSecure()) ? "https://":"http://";
 		realm += request.getLocalName();
 
 		if (e.getCause() != null) {
@@ -237,7 +235,7 @@ public class OAuthProviderManagerImpl implements OAuthProviderManager {
 	}
 
 	/**
-	 * Set the access token
+	 * Mark user as authorized
 	 */
 	public void markAsAuthorized(OAuthAccessor accessor, long userId)
 		throws SystemException {

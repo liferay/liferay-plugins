@@ -1,10 +1,9 @@
 package com.liferay.portlet.oauth.search;
 
-import javax.portlet.PortletRequest;
-
 import com.liferay.portal.kernel.dao.search.DisplayTerms;
 import com.liferay.portal.kernel.util.ParamUtil;
 
+import javax.portlet.PortletRequest;
 public class OAuthApplicationDisplayTerms extends DisplayTerms {
 	public static final String DESCRIPTION = "description";
 

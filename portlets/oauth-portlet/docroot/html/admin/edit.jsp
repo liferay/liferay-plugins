@@ -1,9 +1,3 @@
-<%@page import="java.net.MalformedURLException"%>
-<%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
-<%@page import="com.liferay.portal.oauth.model.OAuthApplication"%>
-<%@page import="com.liferay.portal.RequiredFieldException" %>
-<%@page import="com.liferay.portlet.oauth.OAuthConstants"%>
-
 <%@ include file="/html/init.jsp" %>
 
 <%
@@ -28,7 +22,6 @@ String backURL = ParamUtil.getString(request, "referer");
 	<portlet:param name="jspPage" value="/html/admin/edit.jsp"/>
 	<portlet:param name="referer" value="<%= backURL %>"/>
 </liferay-portlet:actionURL>
-
 
 <aui:a href="<%= backURL %>" >back</aui:a>
 <aui:form action="<%= addApplicationURL %>" method="post">
