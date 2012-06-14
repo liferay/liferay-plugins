@@ -196,6 +196,7 @@
 			<arg value="service.bean.locator.util=com.liferay.util.bean.PortletBeanLocatorUtil" />
 			<arg value="service.props.util=com.liferay.util.service.ServiceProps" />
 			<arg value="service.plugin.name=${plugin.name}" />
+			<arg value="service.target.entity.name=${service.target.entity.name}" />
 		</java>
 
 		<echo>${service.test.output}</echo>
