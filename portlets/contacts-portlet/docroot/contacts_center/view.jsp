@@ -97,6 +97,8 @@ portletURL.setWindowState(WindowState.NORMAL);
 
 			<aui:layout cssClass="contacts-result-container lfr-app-column-view">
 				<aui:column columnWidth="30" cssClass="contacts-list" first="<%= true %>">
+					<aui:button name="checkAll" type="checkbox" />
+
 					<c:if test="<%= !userPublicPage %>">
 						<aui:layout cssClass="contact-group-filter">
 							<aui:select cssClass="contact-group-filter-select" inlineField="true" label="" name="filterBy">
