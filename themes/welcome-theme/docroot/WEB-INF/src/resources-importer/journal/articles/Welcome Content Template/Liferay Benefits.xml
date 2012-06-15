@@ -38,7 +38,7 @@
 		<dynamic-element instance-id="0stopvdI" name="action-link-url" type="text" index-type="">
 			<dynamic-content><![CDATA[//liferay.com/eloqua-test?wh=12]]></dynamic-content>
 		</dynamic-element>
-		<dynamic-content><![CDATA[Approved By IT]]></dynamic-content>
+		<dynamic-content><![CDATA[Approved by IT]]></dynamic-content>
 	</dynamic-element>
 	<dynamic-element instance-id="ICAJilfL" name="links" type="text" index-type="">
 		<dynamic-element instance-id="Q20qsDlX" name="bg-image" type="document_library" index-type="">
@@ -47,6 +47,6 @@
 		<dynamic-element instance-id="2vjBgvkJ" name="action-link-url" type="text" index-type="">
 			<dynamic-content><![CDATA[//liferay.com/eloqua-test?wh=13]]></dynamic-content>
 		</dynamic-element>
-		<dynamic-content><![CDATA[Open—For Business]]></dynamic-content>
+		<dynamic-content><![CDATA[Open for Business]]></dynamic-content>
 	</dynamic-element>
 </root>

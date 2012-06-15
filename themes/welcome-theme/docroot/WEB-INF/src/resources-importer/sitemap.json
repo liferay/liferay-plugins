@@ -4,10 +4,10 @@
 		{
 			"columns": [
 				[
-					"What do we do.xml"
+					"What We Do.xml"
 				]
 			],
-			"friendlyURL": "/home",
+			"friendlyURL": "/what-we-do",
 			"name": "What We Do",
 			"title": "Liferay Portal: What We Do"
 		},
@@ -17,8 +17,8 @@
 					"Who is using Liferay.html"
 				]
 			],
-			"friendlyURL": "/whos-using-liferay",
-			"name": "Who's Using Liferay",
+			"friendlyURL": "/who-is-using-liferay",
+			"name": "Who Is Using Liferay",
 			"title": "Liferay Users"
 		},
 		{
