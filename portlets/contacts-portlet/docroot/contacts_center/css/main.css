@@ -214,7 +214,7 @@ $toolbar-bg: #DCE3EA;
 	}
 
 	.personal-contact-list .contacts-result-content {
-		top: 0;
+		top: 38px;
 	}
 
 	.my-contacts {
