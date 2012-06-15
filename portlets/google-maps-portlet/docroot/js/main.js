@@ -205,10 +205,10 @@ AUI.add(
 						if (type == MAP_TYPE_SATELLITE) {
 							googleMapsType = mapType.SATELLITE;
 						}
-						else if (MAP_TYPE_HYBRID) {
+						else if (type == MAP_TYPE_HYBRID) {
 							googleMapsType = mapType.HYBRID;
 						}
-						else if (MAP_TYPE_TERRAIN) {
+						else if (type == MAP_TYPE_TERRAIN) {
 							googleMapsType = mapType.TERRAIN;
 						}
 
