@@ -11,6 +11,7 @@
 </head>
 
 <body class="$css_class">
+
 $theme.include($body_top_include)
 
 #if ($is_signed_in)
@@ -61,7 +62,7 @@ $theme.include($body_top_include)
 	</div>
 
 	<footer id="footer" role="contentinfo">
-		<div id="getting-started" class="column-1">
+		<div class="column-1" id="getting-started">
 			<div class="footer-column-content">
 				<span class="footer-logo"></span>
 
@@ -73,7 +74,7 @@ $theme.include($body_top_include)
 			</div>
 		</div>
 
-		<div id="ide" class="column-2">
+		<div class="column-2" id="ide">
 			<div class="footer-column-content">
 				<span class="footer-logo"></span>
 
@@ -85,7 +86,7 @@ $theme.include($body_top_include)
 			</div>
 		</div>
 
-		<div id="social-office" class="column-3">
+		<div class="column-3" id="social-office">
 			<div class="footer-column-content">
 				<span class="footer-logo"></span>
 
