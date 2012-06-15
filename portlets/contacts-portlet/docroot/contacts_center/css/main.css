@@ -315,7 +315,7 @@ $toolbar-bg: #DCE3EA;
 	}
 
 	.search-column {
-		width: 250px;
+		width: 240px;
 	}
 
 	.section {
@@ -353,7 +353,7 @@ $toolbar-bg: #DCE3EA;
 			float: left;
 			padding-left: 10px;
 			padding-top: 5px;
-			width: 70%;
+			width: 67%;
 
 			.aui-icon-remove-coworker {
 				background-image: url(@theme_image_path@/social/remove_coworker.png);
