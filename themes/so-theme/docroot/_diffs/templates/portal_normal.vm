@@ -42,7 +42,7 @@ $theme.include($body_top_include)
 
 							#if (!$member)
 								#if ($page_group.getType() == 1)
-									#set ($join_url = $portletURLFactory.create($request, "134", $page.getPlid(), "ACTION_PHASE"))
+									#set ($join_url = $portletURLFactory.create($request, "174", $page.getPlid(), "ACTION_PHASE"))
 
 									$join_url.setWindowState("normal")
 									$join_url.setParameter("struts_action", "/sites_admin/edit_site_assignments")
@@ -55,7 +55,7 @@ $theme.include($body_top_include)
 										<a href="$join_url">#language("join-site")</a>
 									</span>
 								#elseif (($page_group.getType() == 2) && !$membership_request)
-									#set ($membership_request_url = $portletURLFactory.create($request, "134", $page.getPlid(), "ACTION_PHASE"))
+									#set ($membership_request_url = $portletURLFactory.create($request, "174", $page.getPlid(), "ACTION_PHASE"))
 
 									$membership_request_url.setWindowState("normal")
 									$membership_request_url.setParameter("struts_action", "/sites_admin/post_membership_request")
