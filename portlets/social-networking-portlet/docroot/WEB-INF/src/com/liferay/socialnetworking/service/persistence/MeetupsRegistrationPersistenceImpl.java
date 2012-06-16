@@ -366,6 +366,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		if (isNew || !MeetupsRegistrationModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
+
 		else {
 			if ((meetupsRegistrationModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MEETUPSENTRYID.getColumnBitmask()) != 0) {
@@ -430,6 +431,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_ME, args);
+
 				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_ME, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_ME,
