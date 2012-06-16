@@ -342,6 +342,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 		if (isNew || !OAuthConsumerModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
+
 		else {
 			if ((oAuthConsumerModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GADGETKEY.getColumnBitmask()) != 0) {
@@ -385,6 +386,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_S, args);
+
 				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_S, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_S,

@@ -379,6 +379,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		if (isNew || !GadgetModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
+
 		else {
 			if ((gadgetModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID.getColumnBitmask()) != 0) {
@@ -457,6 +458,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_U, args);
+
 				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_U, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_U,

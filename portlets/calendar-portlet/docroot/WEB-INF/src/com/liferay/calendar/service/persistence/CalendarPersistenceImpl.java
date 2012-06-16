@@ -426,6 +426,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 		if (isNew || !CalendarModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
+
 		else {
 			if ((calendarModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_RESOURCEBLOCKID.getColumnBitmask()) != 0) {
@@ -547,6 +548,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
+
 				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,

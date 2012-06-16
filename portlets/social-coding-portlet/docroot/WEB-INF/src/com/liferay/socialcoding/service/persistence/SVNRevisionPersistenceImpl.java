@@ -349,6 +349,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		if (isNew || !SVNRevisionModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
+
 		else {
 			if ((svnRevisionModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_SVNUSERID.getColumnBitmask()) != 0) {

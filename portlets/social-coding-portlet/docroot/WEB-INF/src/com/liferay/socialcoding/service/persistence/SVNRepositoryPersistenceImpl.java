@@ -329,6 +329,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_URL, args);
+
 				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_URL, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_URL,

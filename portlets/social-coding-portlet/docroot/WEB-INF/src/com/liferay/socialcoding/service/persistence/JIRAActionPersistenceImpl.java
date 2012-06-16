@@ -346,6 +346,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		if (isNew || !JIRAActionModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
+
 		else {
 			if ((jiraActionModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRAUSERID.getColumnBitmask()) != 0) {

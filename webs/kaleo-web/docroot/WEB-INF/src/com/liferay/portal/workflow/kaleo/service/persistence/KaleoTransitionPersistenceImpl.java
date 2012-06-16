@@ -411,6 +411,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		if (isNew || !KaleoTransitionModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
+
 		else {
 			if ((kaleoTransitionModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID.getColumnBitmask()) != 0) {
@@ -504,6 +505,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KNI_N, args);
+
 				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KNI_N, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KNI_N,
@@ -522,6 +524,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KNI_DT, args);
+
 				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KNI_DT, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KNI_DT,

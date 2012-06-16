@@ -335,6 +335,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		if (isNew || !FolderModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
+
 		else {
 			if ((folderModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ACCOUNTID.getColumnBitmask()) != 0) {
@@ -377,6 +378,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_A_F, args);
+
 				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_F, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_F,

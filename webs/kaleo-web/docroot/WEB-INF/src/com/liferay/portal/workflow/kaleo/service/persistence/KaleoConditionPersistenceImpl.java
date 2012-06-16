@@ -355,6 +355,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		if (isNew || !KaleoConditionModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
+
 		else {
 			if ((kaleoConditionModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID.getColumnBitmask()) != 0) {
@@ -417,6 +418,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KALEONODEID,
 					args);
+
 				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID,
 					args);
 

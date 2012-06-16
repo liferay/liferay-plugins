@@ -428,6 +428,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		if (isNew || !KaleoDefinitionModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
+
 		else {
 			if ((kaleoDefinitionModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID.getColumnBitmask()) != 0) {
@@ -544,6 +545,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_N_V, args);
+
 				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_N_V, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_N_V,

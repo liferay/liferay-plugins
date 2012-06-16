@@ -357,6 +357,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		if (isNew || !WSRPConsumerModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
+
 		else {
 			if ((wsrpConsumerModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID.getColumnBitmask()) != 0) {

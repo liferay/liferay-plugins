@@ -336,6 +336,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 		if (isNew || !JIRAChangeGroupModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
+
 		else {
 			if ((jiraChangeGroupModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRAUSERID.getColumnBitmask()) != 0) {

@@ -370,6 +370,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		if (isNew || !KaleoNotificationModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
+
 		else {
 			if ((kaleoNotificationModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID.getColumnBitmask()) != 0) {

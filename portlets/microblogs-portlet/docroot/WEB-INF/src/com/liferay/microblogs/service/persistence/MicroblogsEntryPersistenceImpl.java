@@ -400,6 +400,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		if (isNew || !MicroblogsEntryModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
+
 		else {
 			if ((microblogsEntryModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID.getColumnBitmask()) != 0) {

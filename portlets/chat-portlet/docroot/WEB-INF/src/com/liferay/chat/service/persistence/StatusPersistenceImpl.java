@@ -363,6 +363,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		if (isNew || !StatusModelImpl.COLUMN_BITMASK_ENABLED) {
 			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
+
 		else {
 			if ((statusModelImpl.getColumnBitmask() &
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MODIFIEDDATE.getColumnBitmask()) != 0) {
@@ -439,6 +440,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
+
 				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID, args);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
