@@ -615,6 +615,26 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 }
 
+.aui-form-validator-stack-error {
+	background: transparent url(../images/messages/error.png) no-repeat;
+	height: 16px;
+	position: absolute;
+	right: 4px;
+	top: 6px;
+	width: 16px;
+	z-index: 1;
+}
+
+.aui-form-validator-error-container .aui-field-element {
+	padding-right: 0;
+}
+
+.aui-form-validator-message {
+	background-color: rgba(51, 51, 51, .8);
+	right: 0;
+	width: 200px;
+}
+
 .results-row.alt td {
 	border-width: 1px;
 }
@@ -2130,6 +2150,74 @@ body.so-layout-fluid, body.so-layout-fluid-ad {
 	}
 }
 
+/* Login Screen */
+
+#loginPage {
+	.portlet {
+		border-bottom-width: 0;
+	}
+
+	.login-holder, .portlet-login {
+		margin: 15px auto;
+	}
+
+	.login-holder {
+		left: 0;
+		position: absolute;
+		right: 0;
+		top: 17.5%;
+	}
+
+	.company-title {
+		text-align: center;
+	}
+
+	.portlet-login {
+		background: $gray-light;
+		padding: 4px;
+		position: relative;
+		width: 260px;
+
+		.portlet-topper {
+			display: none;
+		}
+
+		.portlet-content {
+			padding-bottom: 0;
+		}
+
+		.aui-field-input-text {
+			width: 225px;
+		}
+
+		.navigation {
+			background: $gray-light;
+			border: 1px solid $gray;
+			left: 0;
+			margin-top: 4em;
+			position: absolute;
+			right: 0;
+			top: 100%;
+
+			.taglib-icon-list li {
+				display: block;
+				margin: 0;
+
+				a {
+					display: block;
+					padding: 2px;
+					white-space: pre;
+
+					&:hover {
+						background-color: #FFF;
+						text-decoration: none;
+					}
+				}
+			}
+		}
+	}
+}
+
 /* Extras */
 
 .lfr-dockbar-pinned .dockbar {
@@ -2144,7 +2232,7 @@ input[type=text], input[type=password], textarea, .aui-field-select select, .aui
 	@include box-shadow(0 1px 3px #C9C9C9 inset);
 }
 
-button, input[type=button], input[type=reset], input[type=submit], .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .aui-dialog-hd, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-button-disabled button, .aui-button-disabled button:focus, .aui-button-disabled button:hover, .contacts-portlet .social-relations a:hover, .invite-members, .lfr-actions.lfr-extended, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .aui-button-input, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .microblogs-portlet .microblogs-countdown, .portlet-document-library .select-documents, .portlet-document-library-display .select-documents, .portlet-message-boards .edit-controls, .results-header th, .tasks-dialog .control a.taglib-icon, .thread-controls a:hover, .top-links-navigation a:hover, #toggleFluid, .portlet-wiki .top-links-nodes .top-link-node a.node-current {
+button, input[type=button], input[type=reset], input[type=submit], .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .aui-dialog-hd, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-button-disabled button, .aui-button-disabled button:focus, .aui-button-disabled button:hover, .contacts-portlet .social-relations a:hover, .invite-members, .lfr-actions.lfr-extended, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .aui-button-input, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .microblogs-portlet .microblogs-countdown, .portlet-document-library .select-documents, .portlet-document-library-display .select-documents, .portlet-message-boards .edit-controls, .results-header th, .tasks-dialog .control a.taglib-icon, .thread-controls a:hover, .top-links-navigation a:hover, .aui-form-validator-message, #toggleFluid {
 	@include border-radius(3px);
 }
 
@@ -2152,7 +2240,7 @@ button, input[type=button], input[type=reset], input[type=submit], .aui-panel-hd
 	@include box-shadow(0 1px 0 #F4F3F3 inset, 0 -1px 0 #D9D8D8 inset);
 }
 
-.aui-dialog-content, .aui-underlay-content {
+.aui-dialog-content, .aui-underlay-content, #loginPage .portlet-login {
 	@include box-shadow(0 0 9px -3px #000, 0 20px 29px -22px rgba(0, 0, 0, 0.6));
 }
 
@@ -2170,7 +2258,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 	@include box-shadow(0 3px 10px -6px rgba(0, 0, 0, .5));
 }
 
-.portlet-blogs .lfr-meta-actions, .user-tags li a {
+.portlet-blogs .lfr-meta-actions, .user-tags li a, #loginPage .portlet-login, #loginPage .portlet-login .navigation {
 	@include border-radius(4px);
 }
 
