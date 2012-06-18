@@ -93,23 +93,34 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 	</aui:column>
 
 	<aui:column columnWidth="100">
-		<div class="calendar-portlet-wrapper" id="<portlet:namespace />scheduler"></div>
+		<liferay-util:include page="/scheduler.jsp" servletContext="<%= application %>">
+			<liferay-util:param name="activeView" value="<%= activeView %>" />
+			<liferay-util:param name="currentDate" value="<%= String.valueOf(currentDate) %>" />
+
+			<portlet:renderURL copyCurrentRenderParameters="<%= false %>" var="editCalendarBookingURL">
+				<portlet:param name="jspPage" value="/edit_calendar_booking.jsp" />
+				<portlet:param name="redirect" value="<%= String.valueOf(renderResponse.createRenderURL()) %>" />
+				<portlet:param name="activeView" value="{activeView}" />
+				<portlet:param name="allDay" value="{allDay}" />
+				<portlet:param name="calendarBookingId" value="{calendarBookingId}" />
+				<portlet:param name="calendarId" value="{calendarId}" />
+				<portlet:param name="currentDate" value="{currentDate}" />
+				<portlet:param name="endDate" value="{endDate}" />
+				<portlet:param name="startDate" value="{startDate}" />
+				<portlet:param name="titleCurrentValue" value="{titleCurrentValue}" />
+			</portlet:renderURL>
+
+			<liferay-util:param name="editCalendarBookingURL" value="<%= editCalendarBookingURL %>" />
+			<liferay-util:param name="readOnly" value="<%= String.valueOf(false) %>" />
+		</liferay-util:include>
 	</aui:column>
 </aui:fieldset>
-
-<script id="<portlet:namespace />eventRecorderTpl" type="text/x-alloy-template">
-	<%@ include file="/event_recorder.jspf" %>
-</script>
 
 <%@ include file="/view_calendar_menus.jspf" %>
 
 <aui:script use="aui-toggler,liferay-calendar-list,liferay-scheduler,liferay-store,json">
-	Liferay.CalendarUtil.NOTIFICATION_DEFAULT_TYPE = '<%= PortletPropsValues.CALENDAR_NOTIFICATION_DEFAULT_TYPE %>';
-	Liferay.CalendarUtil.PORTLET_NAMESPACE = '<portlet:namespace />';
-	Liferay.CalendarUtil.USER_TIMEZONE_OFFSET = <%= JCalendarUtil.getTimeZoneOffset(timeZone) %>;
-
 	<c:if test="<%= userCalendars != null %>">
-		Liferay.CalendarUtil.DEFAULT_CALENDAR = <%=CalendarUtil.toCalendarJSONObject(themeDisplay, userCalendars.get(0)) %>;
+		Liferay.CalendarUtil.DEFAULT_CALENDAR = <%= CalendarUtil.toCalendarJSONObject(themeDisplay, userCalendars.get(0)) %>;
 	</c:if>
 
 	var syncVisibleCalendarsMap = function() {
@@ -178,92 +189,15 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 
 	syncVisibleCalendarsMap();
 
-	window.<portlet:namespace />dayView = new A.SchedulerDayView(
+	<portlet:namespace />scheduler.on(
 		{
-			headerDateFormat: '<%= dayViewHeaderDateFormat %>',
-			height: 700,
-			isoTime: <%= isoTimeFormat %>,
-			navigationDateFormat: '<%= navigationHeaderDateFormat %>'
-		}
-	);
+			'scheduler-calendar:visibleChange': function(event) {
+				var instance = this;
 
-	window.<portlet:namespace />weekView = new A.SchedulerWeekView(
-		{
-			headerDateFormat: '<%= dayViewHeaderDateFormat %>',
-			height: 700,
-			isoTime: <%= isoTimeFormat %>,
-			navigationDateFormat: '<%= navigationHeaderDateFormat %>'
-		}
-	);
+				var calendar = event.target;
 
-	window.<portlet:namespace />monthView = new A.SchedulerMonthView(
-		{
-			height: 700,
-			navigationDateFormat: '<%= navigationHeaderDateFormat %>'
-		}
-	);
-
-	<portlet:renderURL var="editCalendarBookingURL">
-		<portlet:param name="jspPage" value="/edit_calendar_booking.jsp" />
-		<portlet:param name="redirect" value="<%= String.valueOf(renderResponse.createRenderURL()) %>" />
-		<portlet:param name="activeView" value="{activeView}" />
-		<portlet:param name="allDay" value="{allDay}" />
-		<portlet:param name="calendarBookingId" value="{calendarBookingId}" />
-		<portlet:param name="calendarId" value="{calendarId}" />
-		<portlet:param name="currentDate" value="{currentDate}" />
-		<portlet:param name="endDate" value="{endDate}" />
-		<portlet:param name="startDate" value="{startDate}" />
-		<portlet:param name="titleCurrentValue" value="{titleCurrentValue}" />
-	</portlet:renderURL>
-
-	window.<portlet:namespace />recorder = new Liferay.SchedulerEventRecorder(
-		{
-			calendarId: <%= userDefaultCalendar.getCalendarId() %>,
-			duration: 30,
-			editCalendarBookingURL: '<%= editCalendarBookingURL %>',
-			portletNamespace: '<portlet:namespace />',
-			template: new A.Template(A.one('#<portlet:namespace />eventRecorderTpl').text())
-		}
-	);
-
-	var activeView;
-
-	<c:choose>
-		<c:when test='<%= activeView.equals("day") %>'>
-			activeView = window.<portlet:namespace />dayView;
-		</c:when>
-		<c:when test='<%= activeView.equals("month") %>'>
-			activeView = window.<portlet:namespace />monthView;
-		</c:when>
-		<c:otherwise>
-			activeView = window.<portlet:namespace />weekView;
-		</c:otherwise>
-	</c:choose>
-
-	window.<portlet:namespace />scheduler = new Liferay.Scheduler(
-		{
-			activeView: activeView,
-			boundingBox: '#<portlet:namespace />scheduler',
-			currentDate: new Date(<%= currentDate %>),
-			eventClass: Liferay.SchedulerEvent,
-			eventRecorder: window.<portlet:namespace />recorder,
-			events: A.Object.values(Liferay.CalendarUtil.visibleCalendars),
-			on: {
-				'scheduler-calendar:visibleChange': function(event) {
-					var instance = this;
-
-					var calendar = event.target;
-
-					Liferay.Store('calendar-portlet-calendar-' + calendar.get('calendarId') + '-visible', event.newVal);
-				}
-			},
-			portletNamespace: '<portlet:namespace />',
-			render: true,
-			views: [
-				window.<portlet:namespace />weekView,
-				window.<portlet:namespace />dayView,
-				window.<portlet:namespace />monthView
-			]
+				Liferay.Store('calendar-portlet-calendar-' + calendar.get('calendarId') + '-visible', event.newVal);
+			}
 		}
 	);
 

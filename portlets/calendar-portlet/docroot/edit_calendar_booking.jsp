@@ -202,6 +202,24 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 					<div class="calendar-portlet-calendar-list" id="<portlet:namespace />calendarListDeclined"></div>
 				</aui:column>
+
+				<aui:column columnWidth="100">
+					<a class="aui-toggler-header-collapsed calendar-portlet-list-header" href="javascript:void(0);" id="<portlet:namespace />checkAvailability">
+						<span class="calendar-portlet-list-arrow"></span>
+
+						<span class="calendar-portlet-list-text"><liferay-ui:message key="resources-availability" /></span>
+					</a>
+
+					<div class="aui-toggler-content-collapsed" id="<portlet:namespace />schedulerContainer">
+						<div id="<portlet:namespace />message"></div>
+
+						<liferay-util:include page="/scheduler.jsp" servletContext="<%= application %>">
+							<liferay-util:param name="activeView" value="<%= activeView %>" />
+							<liferay-util:param name="currentDate" value="<%= String.valueOf(currentDate) %>" />
+							<liferay-util:param name="readOnly" value="<%= String.valueOf(true) %>" />
+						</liferay-util:include>
+					</div>
+				</aui:column>
 			</aui:layout>
 		</liferay-ui:section>
 	</liferay-ui:tabs>
@@ -246,6 +264,9 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 </aui:script>
 
 <aui:script use="aui-dialog,json,liferay-calendar-list,liferay-calendar-simple-menu">
+	Liferay.CalendarUtil.PORTLET_NAMESPACE = '<portlet:namespace />';
+	Liferay.CalendarUtil.USER_TIMEZONE_OFFSET = <%= JCalendarUtil.getTimeZoneOffset(timeZone) %>;
+
 	var <portlet:namespace />count = A.one('#<portlet:namespace />count');
 	var <portlet:namespace />endsRadio = A.all('[name=<portlet:namespace />ends]');
 	var <portlet:namespace />frequency = A.one('#<portlet:namespace />frequency');
@@ -429,7 +450,32 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 			window.<portlet:namespace />calendarListMaybe,
 			window.<portlet:namespace />calendarListPending
 		);
+
+		A.each(
+			Liferay.CalendarUtil.visibleCalendars,
+			function(item, index, collection) {
+				item.set('disabled', true);
+			}
+		);
 	}
+
+	window.<portlet:namespace />toggler = new A.Toggler(
+		{
+			after: {
+				expandedChange: function(event) {
+					if (event.newVal) {
+						var activeView = <portlet:namespace />scheduler.get('activeView');
+
+						activeView._fillHeight();
+					}
+				}
+			},
+			animated: true,
+			content: '#<portlet:namespace />schedulerContainer',
+			expanded: false,
+			header: '#<portlet:namespace />checkAvailability'
+		}
+	);
 
 	var calendarsMenu = {
 		items: [
@@ -437,6 +483,23 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 				caption: '<liferay-ui:message key="check-availability" />',
 				fn: function(event) {
 					var instance = this;
+
+					A.each(
+						Liferay.CalendarUtil.visibleCalendars,
+						function(item, index, collection) {
+							item.set('visible', false);
+						}
+					);
+
+					var calendarList = instance.get('host');
+
+					calendarList.activeItem.set('visible', true);
+
+					if (!<portlet:namespace />toggler.get('expanded')) {
+						<portlet:namespace />toggler.expand();
+					}
+
+					instance.hide();
 
 					return false;
 				},
@@ -487,6 +550,8 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 					A.one('#<portlet:namespace />pendingCounter').html(event.newVal.length);
 
 					syncVisibleCalendarsMap();
+
+					window.<portlet:namespace />scheduler.loadCalendarBookings();
 				}
 			},
 			boundingBox: '#<portlet:namespace />calendarListPending',
@@ -507,6 +572,8 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 					A.one('#<portlet:namespace />acceptedCounter').html(event.newVal.length);
 
 					syncVisibleCalendarsMap();
+
+					window.<portlet:namespace />scheduler.loadCalendarBookings();
 				}
 			},
 			boundingBox: '#<portlet:namespace />calendarListAccepted',
@@ -527,6 +594,8 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 					A.one('#<portlet:namespace />declinedCounter').html(event.newVal.length);
 
 					syncVisibleCalendarsMap();
+
+					window.<portlet:namespace />scheduler.loadCalendarBookings();
 				}
 			},
 			boundingBox: '#<portlet:namespace />calendarListDeclined',
@@ -547,6 +616,8 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 					A.one('#<portlet:namespace />maybeCounter').html(event.newVal.length);
 
 					syncVisibleCalendarsMap();
+
+					window.<portlet:namespace />scheduler.loadCalendarBookings();
 				}
 			},
 			boundingBox: '#<portlet:namespace />calendarListMaybe',
@@ -559,6 +630,57 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 	).render();
 
 	syncVisibleCalendarsMap();
+
+	var formNode = A.one(document.<portlet:namespace />fm);
+
+	var currentEvent = new Liferay.SchedulerEvent(
+		{
+			after: {
+				endDateChange: function(event) {
+					Liferay.CalendarUtil.syncDatePickerFields(formNode, 'endDate', event.newVal);
+				},
+				startDateChange: function(event) {
+					Liferay.CalendarUtil.syncDatePickerFields(formNode, 'startDate', event.newVal);
+				}
+			},
+			color: '#F8F8F8',
+			content: '',
+			endDate: Liferay.CalendarUtil.toUserTimeZone(new Date(<%= endDate %>)),
+			on: {
+				startDateChange: function(event) {
+					event.stopPropagation();
+				}
+			},
+			scheduler: window.<portlet:namespace />scheduler,
+			startDate: Liferay.CalendarUtil.toUserTimeZone(new Date(<%= startDate %>))
+		}
+	);
+
+	Liferay.CalendarUtil.linkDatePickerToEvent(formNode, 'endDate', currentEvent);
+	Liferay.CalendarUtil.linkDatePickerToEvent(formNode, 'startDate', currentEvent);
+
+	window.<portlet:namespace />scheduler.after(
+		{
+			eventsChange: function(event) {
+				var instance = this;
+
+				var events = event.newVal;
+
+				A.Array.each(
+					events,
+					function(item, index, collection) {
+						if (item.get('calendarBookingId') === <%= calendarBookingId %>) {
+							A.Array.removeItem(events, item);
+						}
+					}
+				);
+
+				events.push(currentEvent);
+			}
+		}
+	);
+
+	currentEvent.get('node').addClass('calendar-portlet-editting-event');
 
 	<c:if test="<%= invitable %>">
 		A.one('#<portlet:namespace />calendarId').on(
@@ -591,6 +713,8 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 			inviteResourcesInput,
 			function(event) {
 				var calendar = event.result.raw;
+
+				calendar.disabled = true;
 
 				<portlet:namespace />calendarListPending.add(calendar);
 

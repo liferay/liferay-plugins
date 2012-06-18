@@ -503,6 +503,45 @@
 				);
 			},
 
+			linkDatePickerToEvent: function(formNode, dateAttrName, schedulerEvent) {
+				var instance = this;
+
+				formNode.delegate(
+					'change',
+					function(event) {
+						var target = event.currentTarget;
+
+						var date = schedulerEvent.get(dateAttrName);
+						var name = target.attr('name');
+						var value = toNumber(target.val());
+
+						if (Lang.String.endsWith(name, 'Year')) {
+							date.setFullYear(value);
+						}
+						else if (Lang.String.endsWith(name, 'Month')) {
+							date.setMonth(value);
+						}
+						else if (Lang.String.endsWith(name, 'Day')) {
+							date.setDate(value);
+						}
+						else if (Lang.String.endsWith(name, 'Hour')) {
+							date.setHours(value + (date.getHours() > 12 ? 12 : 0));
+						}
+						else if (Lang.String.endsWith(name, 'Minute')) {
+							date.setMinutes(value);
+						}
+						else if (Lang.String.endsWith(name, 'AmPm')) {
+							date.setHours(date.getHours() + (value === 1 ? 12 : -12));
+						}
+
+						schedulerEvent.set(dateAttrName, date);
+
+						schedulerEvent.get('scheduler').syncEventsUI();
+					},
+					'[name*=' + dateAttrName + ']'
+				);
+			},
+
 			message: function(msg) {
 				var instance = this;
 
@@ -535,6 +574,57 @@
 				}
 
 				schedulerEvent.set('calendarId', newCalendarId);
+			},
+
+			syncDatePickerFields: function(formNode, name, date) {
+				var instance = this;
+
+				var amPmNode = formNode.one('select[name$=' + name + 'AmPm]');
+				var dayNode = formNode.one('select[name$=' + name + 'Day]');
+				var hourNode = formNode.one('select[name$=' + name + 'Hour]');
+				var minuteNode = formNode.one('select[name$=' + name + 'Minute]');
+				var monthNode = formNode.one('select[name$=' + name + 'Month]');
+				var yearNode = formNode.one('select[name$=' + name + 'Year]');
+
+				var selectOption = function(node, value) {
+					node.all('option').attr('selected', false);
+
+					var optionNode = node.one('option[value=' + value + ']');
+
+					if (optionNode) {
+						optionNode.attr('selected', true);
+					}
+				};
+
+				var datePicker = A.Widget.getByNode(yearNode.ancestor('.yui3-widget'));
+
+				if (A.instanceOf(datePicker, A.DatePickerSelect)) {
+					datePicker.calendar.set('dates', [date]);
+					datePicker.syncUI();
+				}
+				else {
+					selectOption(dayNode, date.getDate());
+					selectOption(monthNode, date.getMonth());
+					selectOption(yearNode, date.getFullYear());
+				}
+
+				var hours = date.getHours();
+				var amPm = 0;
+
+				if (hours >= 12) {
+					amPm = 1;
+
+					if (hours > 12) {
+						hours -= 12;
+					}
+				}
+				else if (hours === 0) {
+					hours = 12;
+				}
+
+				selectOption(hourNode, hours);
+				selectOption(minuteNode, date.getMinutes());
+				selectOption(amPmNode, amPm);
 			},
 
 			syncVisibleCalendarsMap: function() {
