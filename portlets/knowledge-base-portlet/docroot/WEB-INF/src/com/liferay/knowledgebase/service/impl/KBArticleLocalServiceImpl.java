@@ -52,8 +52,10 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StreamUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.UnmodifiableList;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -62,6 +64,7 @@ import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Subscription;
+import com.liferay.portal.model.Ticket;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextUtil;
@@ -70,6 +73,7 @@ import com.liferay.portal.util.SubscriptionSender;
 import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.documentlibrary.DuplicateDirectoryException;
 import com.liferay.portlet.documentlibrary.DuplicateFileException;
+import com.liferay.portlet.documentlibrary.FileNameException;
 import com.liferay.portlet.documentlibrary.NoSuchDirectoryException;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 
@@ -95,6 +99,10 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			String dirName, String shortFileName, InputStream inputStream,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
+
+		if (!isValidDirName(dirName)) {
+			throw new FileNameException();
+		}
 
 		if (!DLStoreUtil.hasDirectory(
 				serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
@@ -723,12 +731,28 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			long resourcePrimKey, String dirName, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		if (Validator.isNotNull(dirName)) {
+		if (isValidDirName(dirName)) {
 			return dirName;
 		}
 
-		dirName =
-			"knowledgebase/temp/attachments/" + counterLocalService.increment();
+		Ticket ticket = ticketLocalService.addTicket(
+			serviceContext.getCompanyId(), User.class.getName(),
+			serviceContext.getUserId(), 0, null, getTicketExpirationDate(),
+			serviceContext);
+
+		StringBundler sb = new StringBundler(5);
+
+		sb.append(_TEMP_DIR_NAME_PREFIX);
+		sb.append(StringPool.SLASH);
+		sb.append(counterLocalService.increment());
+		sb.append(StringPool.SLASH);
+		sb.append(ticket.getKey());
+
+		dirName = sb.toString();
+
+		ticket.setExtraInfo(dirName);
+
+		ticketLocalService.updateTicket(ticket);
 
 		DLStoreUtil.addDirectory(
 			serviceContext.getCompanyId(), CompanyConstants.SYSTEM, dirName);
@@ -1067,15 +1091,26 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		for (String fileName : fileNames) {
 			InputStream inputStream = null;
 
+			String kbArticleFileName = kbArticle.getAttachmentsDirName().concat(
+				StringPool.SLASH).concat(FileUtil.getShortFileName(fileName));
+
 			try {
 				inputStream = DLStoreUtil.getFileAsStream(
 					serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
 					fileName);
 
-				addAttachment(
-					kbArticle.getAttachmentsDirName(),
-					FileUtil.getShortFileName(fileName), inputStream,
-					serviceContext);
+				if (!DLStoreUtil.hasDirectory(
+						serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
+						dirName)) {
+
+					DLStoreUtil.addDirectory(
+						serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
+						dirName);
+				}
+
+				DLStoreUtil.addFile(
+					serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
+					kbArticleFileName, inputStream);
 			}
 			catch (DuplicateFileException dfe) {
 				_log.error("File already exists for " + dfe.getMessage());
@@ -1083,6 +1118,13 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			finally {
 				StreamUtil.cleanUp(inputStream);
 			}
+		}
+
+		Ticket ticket = ticketLocalService.fetchTicket(
+			StringUtil.extractLast(dirName, StringPool.SLASH));
+
+		if (ticket != null) {
+			ticketLocalService.deleteTicket(ticket);
 		}
 	}
 
@@ -1176,14 +1218,13 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	protected void checkAttachments(long companyId)
 		throws PortalException, SystemException {
 
-		String dirName =
-			"knowledgebase/temp/attachments/" + counterLocalService.increment();
+		String dirName = _TEMP_DIR_NAME_PREFIX.concat(StringPool.SLASH).concat(
+			String.valueOf(counterLocalService.increment()));
 
 		DLStoreUtil.addDirectory(companyId, CompanyConstants.SYSTEM, dirName);
 
 		String[] fileNames = DLStoreUtil.getFileNames(
-			companyId, CompanyConstants.SYSTEM,
-			"knowledgebase/temp/attachments");
+			companyId, CompanyConstants.SYSTEM, _TEMP_DIR_NAME_PREFIX);
 
 		Arrays.sort(fileNames);
 
@@ -1302,6 +1343,34 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			parentResourcePrimKey, WorkflowConstants.STATUS_ANY);
 
 		return kbArticle.getRootResourcePrimKey();
+	}
+
+	protected Date getTicketExpirationDate() {
+		return new Date(System.currentTimeMillis() + _TICKET_EXPIRATION);
+	}
+
+	protected boolean isValidDirName(String s) throws SystemException {
+		String key = StringUtil.extractLast(s, StringPool.SLASH);
+
+		if (key == null) {
+			return false;
+		}
+
+		Ticket ticket = ticketLocalService.fetchTicket(key);
+
+		if (ticket == null) {
+			return false;
+		}
+
+		if (!Validator.equals(ticket.getExtraInfo(), s)) {
+			return false;
+		}
+
+		ticket.setExpirationDate(getTicketExpirationDate());
+
+		ticket = ticketLocalService.updateTicket(ticket);
+
+		return true;
 	}
 
 	protected void notifySubscribers(
@@ -1503,6 +1572,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			throw new KBArticleContentException();
 		}
 	}
+
+	private static final String _TEMP_DIR_NAME_PREFIX =
+		"knowledgebase/temp/attachments";
+
+	private static final long _TICKET_EXPIRATION = Time.HOUR;
 
 	private static Log _log = LogFactoryUtil.getLog(
 		KBArticleLocalServiceImpl.class);
