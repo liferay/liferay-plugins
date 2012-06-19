@@ -230,6 +230,7 @@ public class FileSystemImporter extends BaseImporter {
 
 		String name = layoutJSONObject.getString("name");
 		String title = layoutJSONObject.getString("title");
+		boolean hidden = layoutJSONObject.getBoolean("hidden");
 
 		String friendlyURL = layoutJSONObject.getString("friendlyURL");
 
@@ -238,8 +239,6 @@ public class FileSystemImporter extends BaseImporter {
 
 			friendlyURL = StringPool.SLASH + friendlyURL;
 		}
-
-		boolean hidden = layoutJSONObject.getBoolean("hidden");
 
 		Layout layout = LayoutLocalServiceUtil.addLayout(
 			userId, groupId, true, parentLayoutId, name, title,
