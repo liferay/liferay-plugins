@@ -239,9 +239,11 @@ public class FileSystemImporter extends BaseImporter {
 			friendlyURL = StringPool.SLASH + friendlyURL;
 		}
 
+		boolean hidden = layoutJSONObject.getBoolean("hidden");
+
 		Layout layout = LayoutLocalServiceUtil.addLayout(
 			userId, groupId, true, parentLayoutId, name, title,
-			StringPool.BLANK, LayoutConstants.TYPE_PORTLET, false, friendlyURL,
+			StringPool.BLANK, LayoutConstants.TYPE_PORTLET, hidden, friendlyURL,
 			new ServiceContext());
 
 		LayoutTypePortlet layoutTypePortlet =
