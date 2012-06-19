@@ -37,12 +37,13 @@ boolean hasExistingRecipients = false;
 </aui:layout>
 
 <%
-String subject = HtmlUtil.escape(PrivateMessagingUtil.getThreadSubject(mbThreadId));
+String subject = PrivateMessagingUtil.getThreadSubject(mbThreadId);
 %>
 
 <liferay-ui:header
 	backLabel="messages"
 	backURL="<%= backURL.toString() %>"
+	escapeXml="<%= true %>"
 	title="<%= subject %>"
 />
 
@@ -292,7 +293,7 @@ String subject = HtmlUtil.escape(PrivateMessagingUtil.getThreadSubject(mbThreadI
 
 	var imageGallery = new A.ImageGallery(
 		{
-			caption: '<%= subject %>',
+			caption: '<%= HtmlUtil.escapeJS(subject) %>',
 			delay: 2000,
 			links: '.body .image-thumbnail a',
 			maxHeight: (viewportRegion.height * 0.7),
