@@ -57,11 +57,14 @@ $theme.include($body_top_include)
 								#elseif (($page_group.getType() == 2) && !$membership_request)
 									#set ($membership_request_url = $portletURLFactory.create($request, "174", $page.getPlid(), "ACTION_PHASE"))
 
+									#set ($arguments = [$user_name, $community_name])
+									#set ($comments = $languageUtil.format($locale, "x-wishes-to-join-x", $arguments.toArray()))
+
 									$membership_request_url.setWindowState("normal")
 									$membership_request_url.setParameter("struts_action", "/sites_admin/post_membership_request")
 									$membership_request_url.setParameter("redirect", "$community_default_url")
 									$membership_request_url.setParameter("groupId", "$page_group.getGroupId()")
-									$membership_request_url.setParameter("comments", '#language("x-wishes-to-join-x" $user_name $community_name')
+									$membership_request_url.setParameter("comments", "$comments")
 
 									<span class="action request">
 										<a href="$membership_request_url">#language("request-membership")</a>
