@@ -18,6 +18,8 @@ import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.notification.NotificationType;
+import com.liferay.calendar.recurrence.Recurrence;
+import com.liferay.calendar.recurrence.RecurrenceSerializer;
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 import com.liferay.calendar.service.CalendarLocalServiceUtil;
 import com.liferay.calendar.service.CalendarResourceLocalServiceUtil;
@@ -27,6 +29,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.TimeZoneUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
@@ -62,6 +65,14 @@ public class CalendarBookingImpl extends CalendarBookingBaseImpl {
 			getParentCalendarBookingId());
 	}
 
+	public Recurrence getRecurrenceObj() {
+		if ((_recurrenceObj == null) && isRecurring()) {
+			_recurrenceObj = RecurrenceSerializer.deserialize(getRecurrence());
+		}
+
+		return _recurrenceObj;
+	}
+
 	public NotificationType getSecondReminderNotificationType() {
 		return NotificationType.parse(getSecondReminderType());
 	}
@@ -76,6 +87,14 @@ public class CalendarBookingImpl extends CalendarBookingBaseImpl {
 
 	public boolean isMasterBooking() {
 		if (getParentCalendarBookingId() == getCalendarBookingId()) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean isRecurring() {
+		if (Validator.isNotNull(getRecurrence())) {
 			return true;
 		}
 
@@ -97,5 +116,7 @@ public class CalendarBookingImpl extends CalendarBookingBaseImpl {
 
 		return utcUserJCalendar.getTime();
 	}
+
+	private Recurrence _recurrenceObj;
 
 }

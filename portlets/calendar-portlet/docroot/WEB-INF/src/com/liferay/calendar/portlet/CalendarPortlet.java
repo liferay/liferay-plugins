@@ -22,6 +22,10 @@ import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.CalendarBookingConstants;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.notification.NotificationTemplateContextFactory;
+import com.liferay.calendar.recurrence.Frequency;
+import com.liferay.calendar.recurrence.Recurrence;
+import com.liferay.calendar.recurrence.RecurrenceSerializer;
+import com.liferay.calendar.recurrence.Weekday;
 import com.liferay.calendar.service.CalendarBookingServiceUtil;
 import com.liferay.calendar.service.CalendarLocalServiceUtil;
 import com.liferay.calendar.service.CalendarResourceServiceUtil;
@@ -40,12 +44,14 @@ import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.TimeZoneUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
@@ -63,6 +69,7 @@ import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.io.IOException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -81,6 +88,7 @@ import javax.portlet.ResourceResponse;
  * @author Eduardo Lundgren
  * @author Fabio Pezzutto
  * @author Andrea Di Giorgi
+ * @author Marcellus Tavares
  */
 public class CalendarPortlet extends MVCPortlet {
 
@@ -264,7 +272,7 @@ public class CalendarPortlet extends MVCPortlet {
 		java.util.Calendar endDateJCalendar = getJCalendar(
 			actionRequest, "endDate");
 		boolean allDay = ParamUtil.getBoolean(actionRequest, "allDay");
-		String recurrence = ParamUtil.getString(actionRequest, "recurrence");
+		String recurrence = getRecurrence(actionRequest);
 		int status = ParamUtil.getInteger(actionRequest, "status");
 
 		long[] reminders = getReminders(actionRequest);
@@ -462,6 +470,66 @@ public class CalendarPortlet extends MVCPortlet {
 		return new String[] {
 			firstReminderType, secondReminderType
 		};
+	}
+
+	protected String getRecurrence(ActionRequest actionRequest) {
+		boolean repeat = ParamUtil.getBoolean(actionRequest, "repeat");
+
+		if (repeat == false) {
+			return null;
+		}
+
+		Frequency frequency = Frequency.parse(
+			ParamUtil.getString(actionRequest, "frequency"));
+		int interval = ParamUtil.getInteger(actionRequest, "interval");
+		String ends = ParamUtil.getString(actionRequest, "ends");
+
+		int count = 0;
+
+		if (Validator.equals(ends, "after")) {
+			count = ParamUtil.getInteger(actionRequest, "count");
+		}
+
+		java.util.Calendar until = null;
+
+		if (Validator.equals(ends, "on")) {
+			int untilDateDay = ParamUtil.getInteger(
+				actionRequest, "untilDateDay");
+			int untilDateMonth = ParamUtil.getInteger(
+				actionRequest, "untilDateMonth");
+			int untilDateYear = ParamUtil.getInteger(
+				actionRequest, "untilDateYear");
+
+			until = CalendarFactoryUtil.getCalendar();
+
+			until.set(java.util.Calendar.DATE, untilDateDay);
+			until.set(java.util.Calendar.MONTH, untilDateMonth);
+			until.set(java.util.Calendar.YEAR, untilDateYear);
+
+		}
+
+		List<Weekday> weekdays = new ArrayList<Weekday>();
+
+		if (frequency == Frequency.WEEKLY) {
+			for (Weekday weekday : Weekday.values()) {
+				boolean checked = ParamUtil.getBoolean(
+					actionRequest, weekday.getValue());
+
+				if (checked) {
+					weekdays.add(weekday);
+				}
+			}
+		}
+
+		Recurrence recurrence = new Recurrence();
+
+		recurrence.setFrequency(frequency);
+		recurrence.setInterval(interval);
+		recurrence.setWeekdays(weekdays);
+		recurrence.setCount(count);
+		recurrence.setUntil(until);
+
+		return RecurrenceSerializer.serialize(recurrence);
 	}
 
 	@Override
