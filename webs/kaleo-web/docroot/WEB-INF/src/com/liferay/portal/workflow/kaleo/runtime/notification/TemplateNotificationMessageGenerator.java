@@ -14,6 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.runtime.notification;
 
+import com.liferay.portal.kernel.template.StringTemplateResource;
 import com.liferay.portal.kernel.template.Template;
 import com.liferay.portal.kernel.template.TemplateContextType;
 import com.liferay.portal.kernel.template.TemplateManagerUtil;
@@ -61,7 +62,8 @@ public class TemplateNotificationMessageGenerator
 				notificationName + kaleoClassName + kaleoClassPK;
 
 			Template template = TemplateManagerUtil.getTemplate(
-				templateManagerName, templateId, notificationTemplate,
+				templateManagerName,
+				new StringTemplateResource(templateId, notificationTemplate),
 				TemplateContextType.RESTRICTED);
 
 			populateContextVariables(template, executionContext);
