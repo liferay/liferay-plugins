@@ -1136,8 +1136,13 @@ public class CalendarBookingWrapper implements CalendarBooking,
 		return _calendarBooking.getParentCalendarBooking();
 	}
 
+<<<<<<< HEAD
 	public com.liferay.calendar.notification.NotificationType getSecondReminderNotificationType() {
 		return _calendarBooking.getSecondReminderNotificationType();
+=======
+	public com.liferay.calendar.recurrence.Recurrence getRecurrenceObj() {
+		return _calendarBooking.getRecurrenceObj();
+>>>>>>> LPS-27329  Add event recurrence support - regenerate
 	}
 
 	public java.util.Date getUTCEndDate()
@@ -1154,6 +1159,10 @@ public class CalendarBookingWrapper implements CalendarBooking,
 
 	public boolean isMasterBooking() {
 		return _calendarBooking.isMasterBooking();
+	}
+
+	public boolean isRecurring() {
+		return _calendarBooking.isRecurring();
 	}
 
 	/**
