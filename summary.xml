@@ -169,31 +169,6 @@
 		</releng>
 	</plugin>
 	<plugin>
-		<artifact-id>sevencogs-hook</artifact-id>
-		<name>7Cogs</name>
-		<type>hook</type>
-		<tags></tags>
-		<short-description>This hook contains custom configuration used for Liferay's demo website.</short-description>
-		<long-description></long-description>
-		<change-log></change-log>
-		<page-url>http://www.liferay.com</page-url>
-		<author>Liferay, Inc.</author>
-		<licenses>LGPL</licenses>
-		<releng>
-			<bundle>false</bundle>
-			<category></category>
-			<compatibility>6.1.1</compatibility>
-			<demo-url></demo-url>
-			<icon>hooks/sevencogs-hook/docroot/WEB-INF/releng/icons/90x90.png</icon>
-			<labs>true</labs>
-			<marketplace>true</marketplace>
-			<parent-app></parent-app>
-			<public>true</public>
-			<standalone-app>true</standalone-app>
-			<supported>true</supported>
-		</releng>
-	</plugin>
-	<plugin>
 		<artifact-id>so-hook</artifact-id>
 		<name>Social Office</name>
 		<type>hook</type>
@@ -2281,6 +2256,30 @@
 		</releng>
 	</plugin>
 	<plugin>
+		<artifact-id>test-pacl-portlet</artifact-id>
+		<name>Test Portal Access Control List</name>
+		<type>portlet</type>
+		<tags>test</tags>
+		<short-description></short-description>
+		<long-description></long-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>LGPL</licenses>
+		<releng>
+			<bundle>false</bundle>
+			<category></category>
+			<compatibility></compatibility>
+			<demo-url></demo-url>
+			<labs>true</labs>
+			<marketplace>false</marketplace>
+			<parent-app></parent-app>
+			<public>true</public>
+			<standalone-app>false</standalone-app>
+			<supported>false</supported>
+		</releng>
+	</plugin>
+	<plugin>
 		<artifact-id>test-transaction-portlet</artifact-id>
 		<name>Test Transaction</name>
 		<type>portlet</type>
@@ -3209,31 +3208,6 @@
 		</releng>
 	</plugin>
 	<plugin>
-		<artifact-id>sevencogs-theme</artifact-id>
-		<name>7Cogs</name>
-		<type>theme</type>
-		<tags></tags>
-		<short-description></short-description>
-		<long-description></long-description>
-		<change-log></change-log>
-		<page-url>http://www.liferay.com</page-url>
-		<author>Liferay, Inc.</author>
-		<licenses>LGPL</licenses>
-		<releng>
-			<bundle>false</bundle>
-			<category></category>
-			<compatibility>6.1.1</compatibility>
-			<demo-url></demo-url>
-			<icon>themes/sevencogs-theme/docroot/WEB-INF/releng/icons/90x90.png</icon>
-			<labs>true</labs>
-			<marketplace>true</marketplace>
-			<parent-app></parent-app>
-			<public>true</public>
-			<standalone-app>true</standalone-app>
-			<supported>true</supported>
-		</releng>
-	</plugin>
-	<plugin>
 		<artifact-id>so-theme</artifact-id>
 		<name>Social Office</name>
 		<type>theme</type>
@@ -3365,7 +3339,7 @@
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
-			<bundle>false</bundle>
+			<bundle>true</bundle>
 			<category></category>
 			<compatibility>6.1.1</compatibility>
 			<demo-url></demo-url>
