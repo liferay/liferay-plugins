@@ -14,164 +14,70 @@
 
 package com.liferay.portal.oauth.action;
 
-import com.liferay.portal.kernel.servlet.SessionErrors;
-import com.liferay.portal.kernel.servlet.SessionMessages;
+import com.liferay.portal.kernel.portlet.WindowStateFactory;
 import com.liferay.portal.kernel.struts.BaseStrutsAction;
-import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.oauth.OAuthAccessor;
-import com.liferay.portal.oauth.OAuthMessage;
-import com.liferay.portal.oauth.OAuthProblemException;
-import com.liferay.portal.oauth.OAuthProviderManagerUtil;
-import com.liferay.portal.oauth.util.OAuthConstants;
-import com.liferay.portal.oauth.util.OAuthWebKeys;
-import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.PortletURLFactoryUtil;
+import com.liferay.portlet.oauth.OAuthConstants;
+
+import javax.portlet.PortletMode;
+import javax.portlet.PortletRequest;
+import javax.portlet.PortletURL;
+import javax.portlet.WindowState;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  * Authorization request handler action.
  *
  * @author Ivica Cardic
  */
-public class OAuthAuthorizeAction extends BaseStrutsAction{
+public class OAuthAuthorizeAction extends BaseStrutsAction {
 
 	@Override
 	public String execute(
 			HttpServletRequest request, HttpServletResponse response)
 		throws Exception {
 
-		String cmd = ParamUtil.getString(request, Constants.CMD);
+		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
+				WebKeys.THEME_DISPLAY);
 
-		OAuthMessage requestMessage = OAuthProviderManagerUtil.getMessage(
-			request, null);
+		String redirect;
 
-		OAuthAccessor accessor = null;
+		PortletURL portletURL = PortletURLFactoryUtil.create(
+				request, PORTLET_ID, themeDisplay.getPlid(),
+				PortletRequest.RENDER_PHASE);
 
-		try {
-			accessor = OAuthProviderManagerUtil.getAccessor(requestMessage);
+		portletURL.setWindowState(getWindowState(request));
+		portletURL.setPortletMode(PortletMode.VIEW);
+		portletURL.setParameter(
+			OAuthConstants.OAUTH_TOKEN,
+			request.getParameter(OAuthConstants.OAUTH_TOKEN));
+		portletURL.setParameter("saveLastPath", "0");
 
-			if (Validator.isNull(cmd)) {
-				if (Boolean.TRUE.equals(accessor.getProperty(
-					OAuthConstants.AUTHORIZED))) {
+		redirect = portletURL.toString();
 
-					return returnToConsumer(request, response, accessor);
-				}
-			}
-			else if (cmd.equals(Constants.UPDATE)) {
-				ThemeDisplay themeDisplay =
-					(ThemeDisplay)request.getAttribute(WebKeys.THEME_DISPLAY);
-
-				OAuthProviderManagerUtil.markAsAuthorized(
-					accessor, themeDisplay.getUserId());
-
-				return returnToConsumer(request, response, accessor);
-			}
-		}
-		catch (Exception e) {
-			if (e instanceof PrincipalException) {
-				SessionErrors.add(request, e.getClass().getName());
-			} else if (e instanceof OAuthProblemException) {
-				SessionErrors.add(
-					request, ((OAuthProblemException) e).getProblem());
-			}
-			else {
-				PortalUtil.sendError(e, request, response);
-
-				return null;
-			}
-		}
-
-		return sendToAuthorizePage(request, response, accessor);
-	}
-
-	private String returnToConsumer(
-			HttpServletRequest request, HttpServletResponse response,
-			OAuthAccessor accessor)
-		throws Exception{
-
-		// send the user back to site's callBackUrl
-		String callback = request.getParameter(OAuthConstants.OAUTH_CALLBACK);
-
-		if (OAuthConstants.NONE.equals(callback)
-			&& (accessor.getConsumer().getCallbackURL() != null)
-			&& (accessor.getConsumer().getCallbackURL().length() > 0)) {
-
-			// first check if we have something in our properties file
-			callback = accessor.getConsumer().getCallbackURL();
-		}
-
-		String token = accessor.getRequestToken();
-
-		// for now use md5 of name + current time + token as secret
-		String secretData = callback + System.nanoTime() + token;
-		String verifier = DigestUtils.md5Hex(secretData);
-
-		if (token != null) {
-			if (OAuthConstants.NONE.equals(callback) ) {
-				SessionMessages.add(
-					request, OAuthConstants.SUCCESS_AUTHORIZATION);
-
-				request.setAttribute(OAuthWebKeys.VERIFIER, verifier);
-
-				return sendToAuthorizePage(request, response, accessor);
-			} else {
-				// if callback is not passed in, use the callback from config
-				if ((callback == null) || (callback.length() <=0)) {
-					callback = accessor.getConsumer().getCallbackURL();
-				}
-
-				callback = OAuthProviderManagerUtil.addParameters(
-					callback, OAuthConstants.OAUTH_TOKEN, token,
-					OAuthConstants.OAUTH_VERIFIER, verifier);
-			}
-
-			response.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
-			response.setHeader(OAuthConstants.LOCATION, callback);
-		}
+		response.sendRedirect(redirect);
 
 		return null;
 	}
 
-	private String sendToAuthorizePage(
-		HttpServletRequest request, HttpServletResponse response,
-		OAuthAccessor accessor) {
+	protected WindowState getWindowState(HttpServletRequest request) {
+		WindowState windowState = WindowState.MAXIMIZED;
 
-		if (accessor != null) {
-			request.setAttribute(
-				OAuthWebKeys.NAME, accessor.getConsumer()
-				.getOAuthApplication().getName());
-			request.setAttribute(
-				OAuthWebKeys.WEB_SITE, accessor.getConsumer()
-				.getOAuthApplication().getWebsite());
-			request.setAttribute(
-				OAuthWebKeys.ACCESS_LEVEL, accessor.getConsumer()
-				.getOAuthApplication().getAccessLevel());
-			request.setAttribute(
-				OAuthWebKeys.DESCRIPTION, accessor.getConsumer()
-				.getOAuthApplication().getDescription());
-			request.setAttribute(
-					OAuthWebKeys.TOKEN, accessor.getRequestToken());
+		String windowStateString = ParamUtil.getString(request, "windowState");
+
+		if (Validator.isNotNull(windowStateString)) {
+			windowState = WindowStateFactory.getWindowState(windowStateString);
 		}
 
-		String callback = request.getParameter(OAuthConstants.OAUTH_CALLBACK);
-		if ((callback == null) || (callback.length() <= 0)) {
-			callback = OAuthConstants.NONE;
-		}
-
-		request.setAttribute(OAuthWebKeys.CALLBACK, callback);
-
-		return VIEW_URL;
-
+		return windowState;
 	}
 
-	private static final String VIEW_URL = "portal.oauth_authorize";
+	private static final String PORTLET_ID = "4_WAR_oauthportlet";
 
 }

@@ -14,8 +14,14 @@
 
 package com.liferay.portal.oauth;
 
-import com.liferay.counter.service.persistence.CounterUtil;
-import com.liferay.portal.kernel.util.PropertiesUtil;
+import java.io.InputStream;
+
+import java.sql.*;
+
+import java.util.List;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
+
 import junit.framework.Assert;
 
 import org.junit.After;
@@ -28,16 +34,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import org.scribe.builder.ServiceBuilder;
+import org.scribe.exceptions.OAuthException;
 import org.scribe.model.Token;
 import org.scribe.model.Verifier;
 import org.scribe.oauth.OAuthService;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.sql.*;
-import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 /**
  * To run this test you need to have installed one of Firefox versions:
@@ -48,12 +48,16 @@ import java.util.concurrent.TimeUnit;
  * @author Ivica Cardic
  */
 public class OAuthProviderTest {
+	public static String getString(String key) {
+		return (String)_properties.get(key);
+	}
 
 	@After
 	public void after() throws Exception {
 		_driver.quit();
 
-		cleanData();
+		clearData(dataWithoutCallback);
+		clearData(dataWithCallback);
 
 		_connection.close();
 	}
@@ -64,41 +68,68 @@ public class OAuthProviderTest {
 
 		openConnection();
 
-		cleanData();
+		clearData(dataWithoutCallback);
+		clearData(dataWithCallback);
 
-		prepareData();
+		prepareData(dataWithoutCallback);
+		prepareData(dataWithCallback);
 
 		_driver = new FirefoxDriver();
 		_driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 	}
 
 	@Test
-	public void testGetAccessToken() {
-		goToLoginPage();
-	}
-
-	@Test
-	public void testGetAccessTokenWithCallbackUrl() {
-		for (int i  = 0; i < data.length; i++){
-			OAuthService service = new ServiceBuilder()
-					.provider(LiferayApi.class)
-					.apiKey((String)data[i][8])
-					.apiSecret((String)data[i][9])
-					.build();
+	public void testGetAccessTokenWithoutCallback() throws Exception {
+		for (int i = 0; i < dataWithoutCallback.length; i++) {
+			OAuthService service = buildOAuthService(dataWithoutCallback, i);
 
 			Token requestToken = service.getRequestToken();
 
 			Assert.assertNotNull(requestToken.getToken());
 
-			//currently redirect after login doesn't work so the login page is
-			//explicitly called first before calling authorization page
-			if(i == 0){
-				goToLoginPage();
-			}
+			goToAuthorizationPage(requestToken);
+
+			if (i == 0)
+				redirectedToLoginPage();
+
+			WebElement element = _driver.findElement(
+					By.id("_4_WAR_oauthportlet_authorize"));
+			element.submit();
+
+			element = _driver.findElement(By.className("portlet-msg-info"));
+
+			String text = element.getText();
+
+			String verifierString = text.substring(
+					text.lastIndexOf(":") + 1, text.length());
+
+			Assert.assertNotNull(verifierString);
+
+			Verifier verifier = new Verifier(verifierString);
+
+			Token accessToken = service.getAccessToken(requestToken, verifier);
+
+			Assert.assertNotNull(accessToken.getToken());
+		}
+	}
+
+	@Test
+	public void testGetAccessTokenWithCallbackUrl() throws Exception {
+		for (int i = 0; i < dataWithCallback.length; i++) {
+			OAuthService service = buildOAuthService(dataWithCallback, i);
+
+			Token requestToken = service.getRequestToken();
+
+			Assert.assertNotNull(requestToken.getToken());
 
 			goToAuthorizationPage(requestToken);
 
-			WebElement element = _driver.findElement(By.id("authorize"));
+			if (i == 0) {
+				redirectedToLoginPage();
+			}
+
+			WebElement element = _driver.findElement(
+					By.id("_4_WAR_oauthportlet_authorize"));
 			element.submit();
 
 			String[] params = extractParams(_driver.getCurrentUrl());
@@ -114,33 +145,110 @@ public class OAuthProviderTest {
 		}
 	}
 
-	public static String getString(String key){
-		return (String)_properties.get(key);
+	@Test
+	public void testAlreadyAuthorized() throws Exception {
+		for (int i = 0; i < dataWithCallback.length; i++) {
+			OAuthService service = buildOAuthService(dataWithCallback, i);
+
+			Token requestToken = service.getRequestToken();
+
+			goToAuthorizationPage(requestToken);
+
+			if (i == 0) {
+				redirectedToLoginPage();
+			}
+
+			WebElement element = _driver.findElement(
+				By.id(OAUTH_PORTLET_ID));
+			element.submit();
+
+			goToAuthorizationPage(requestToken);
+
+			List<WebElement> elements = _driver.findElements(
+				By.className("portlet-msg-error"));
+
+			for(WebElement webElement : elements){
+				if(webElement.getText().contains("You are already authorized.")){
+					return;
+				}
+			}
+
+			Assert.fail();
+		}
 	}
 
-	private void goToLoginPage(){
-		String url = (String)_properties.get("portal.default.url");
-		_driver.get(url);
+	@Test
+	public void testTokenExpired() throws Exception {
+		for (int i = 0; i < dataWithCallback.length; i++) {
+			OAuthService service = buildOAuthService(dataWithCallback, i);
 
-		WebElement element = _driver.findElement(By.name("_58_login"));
-		element.clear();
+			Token requestToken = service.getRequestToken();
 
-		String login = (String)_properties.get("portal.default.login");
-		element.sendKeys(login);
+			goToAuthorizationPage(requestToken);
 
-		element = _driver.findElement(By.name("_58_password"));
+			if (i == 0) {
+				redirectedToLoginPage();
+			}
 
-		String password = (String)_properties.get("portal.default.password");
-		element.sendKeys(password);
+			WebElement element = _driver.findElement(
+				By.id(OAUTH_PORTLET_ID));
+			element.submit();
 
-		element.submit();
+			String[] params = extractParams(_driver.getCurrentUrl());
+
+			Verifier verifier = new Verifier(params[1]);
+
+			service.getAccessToken(requestToken, verifier);
+
+			goToAuthorizationPage(requestToken);
+
+			List<WebElement> elements = _driver.findElements(
+				By.className("portlet-msg-error"));
+
+			for(WebElement webElement : elements){
+				if(webElement.getText().contains(
+					"Your token has been expired.")){
+
+					return;
+				}
+			}
+
+			Assert.fail();
+		}
 	}
 
-	private void goToAuthorizationPage(Token requestToken){
-		String authorizationUrl = LiferayApi.AUTHORIZE_URL.replace(
-				"%s", requestToken.getToken());
+	private OAuthService buildOAuthService(Object[][] data, int index){
+		OAuthService service = new ServiceBuilder()
+			.provider(LiferayApi.class)
+			.apiKey((String) data[index][8])
+			.apiSecret((String) data[index][9])
+			.build();
 
-		_driver.get(authorizationUrl);
+		return service;
+	}
+
+
+
+	private void clearData(Object[][] data) throws Exception {
+		for (int i = 0; i< data.length; i++) {
+			PreparedStatement pstmt = _connection.prepareStatement(
+				DELETE_STATEMENT_OAUTHAPPLICATION);
+
+			pstmt.setInt(1, (Integer) data[i][0]);
+
+			pstmt.executeUpdate();
+
+			pstmt.close();
+
+			pstmt = _connection.prepareStatement(
+				DELETE_STATEMENT_OAUTHAPPLICATIONS_USERS);
+
+			pstmt.setInt(1, (Integer) data[i][0]);
+
+			pstmt.executeUpdate();
+
+			pstmt.close();
+		}
 	}
 
 	private String[] extractParams(String url) {
@@ -167,57 +275,23 @@ public class OAuthProviderTest {
 		return new String[]{oauthToken, oauthVerifier};
 	}
 
-	private void prepareData() throws Exception {
-		for (int i = 0; i<data.length; i++){
-			PreparedStatement pstmt = _connection.prepareStatement(
-					INSERT_STATEMENT_OAUTHAPPLICATION);
+	private void goToAuthorizationPage(Token requestToken) {
+		String authorizationUrl = LiferayApi.AUTHORIZE_URL.replace(
+			"%s", requestToken.getToken());
 
-			pstmt.setInt(1, (Integer)data[i][0]);
-			pstmt.setInt(2, (Integer)data[i][1]);
-			pstmt.setInt(3, (Integer)data[i][2]);
-			pstmt.setString(4, (String) data[i][3]);
-			pstmt.setDate(5, new Date(System.currentTimeMillis()));
-			pstmt.setDate(6, new Date(System.currentTimeMillis()));
-			pstmt.setInt(7, (Integer)data[i][4]);
-			pstmt.setString(8, (String)data[i][5]);
-			pstmt.setString(9, (String)data[i][6]);
-			pstmt.setString(10, (String)data[i][7]);
-			pstmt.setString(11, (String)data[i][8]);
-			pstmt.setString(12, (String)data[i][9]);
-			pstmt.setString(13, (String)data[i][10]);
-			pstmt.setInt(14, (Integer)data[i][11]);
-
-			pstmt.executeUpdate();
-
-			pstmt.close();
-		}
+		_driver.get(authorizationUrl);
 	}
 
-	private void cleanData() throws Exception{
-		for (int i = 0; i<data.length; i++){
-			PreparedStatement pstmt = _connection.prepareStatement(
-					DELETE_STATEMENT_OAUTHAPPLICATION);
-
-			pstmt.setInt(1, (Integer)data[i][0]);
-
-			pstmt.executeUpdate();
-
-			pstmt.close();
-
-			pstmt = _connection.prepareStatement(
-					DELETE_STATEMENT_OAUTHAPPLICATIONS_USERS);
-
-			pstmt.setInt(1, (Integer)data[i][0]);
-
-			pstmt.executeUpdate();
-
-			pstmt.close();
-		}
+	private void loadProperties() throws Exception {
+		_properties = new Properties();
+		InputStream in = this.getClass().getResourceAsStream(
+			"/portal-test.properties");
+		_properties.load(in);
 	}
 
 	private void openConnection() throws Exception {
 		String className = (String)_properties.get(
-				"jdbc.default.driverClassName");
+			"jdbc.default.driverClassName");
 		String url = (String)_properties.get("jdbc.default.url");
 		String username =  (String)_properties.get("jdbc.default.username");
 		String password = (String)_properties.get("jdbc.default.password");
@@ -227,36 +301,90 @@ public class OAuthProviderTest {
 		_connection = DriverManager.getConnection(url, username, password);
 	}
 
-	private void loadProperties() throws Exception{
-		_properties = new Properties();
-		InputStream in = this.getClass().getResourceAsStream(
-				"/portal-test.properties");
-		_properties.load(in);
+	private void prepareData(Object[][] data) throws Exception {
+		for (int i = 0; i< data.length; i++) {
+			PreparedStatement pstmt = _connection.prepareStatement(
+				INSERT_STATEMENT_OAUTHAPPLICATION);
+
+			pstmt.setInt(1, (Integer) data[i][0]);
+			pstmt.setInt(2, (Integer) data[i][1]);
+			pstmt.setInt(3, (Integer) data[i][2]);
+			pstmt.setString(4, (String) data[i][3]);
+			pstmt.setDate(5, new Date(System.currentTimeMillis()));
+			pstmt.setDate(6, new Date(System.currentTimeMillis()));
+			pstmt.setInt(7, (Integer) data[i][4]);
+			pstmt.setString(8, (String) data[i][5]);
+			pstmt.setString(9, (String) data[i][6]);
+			pstmt.setString(10, (String) data[i][7]);
+			pstmt.setString(11, (String) data[i][8]);
+			pstmt.setString(12, (String) data[i][9]);
+			pstmt.setString(13, (String) data[i][10]);
+			pstmt.setInt(14, (Integer) data[i][11]);
+
+			pstmt.executeUpdate();
+
+			pstmt.close();
+		}
 	}
 
-	private static final String INSERT_STATEMENT_OAUTHAPPLICATION =
-			"INSERT INTO oauth_oauthapplication VALUES " +
-			"(? ,? ,? ,? ,? ,? , ?, ?, ?, ?, ?, ?, ?, ?)";
-	private static final String DELETE_STATEMENT_OAUTHAPPLICATION =
-			"delete from oauth_oauthapplication where applicationId=?";
-	private static final String DELETE_STATEMENT_OAUTHAPPLICATIONS_USERS =
-			"delete from oauth_oauthapplications_users where applicationId=?";
+	private void redirectedToLoginPage() {
+		//String url = (String)_properties.get("portal.default.url");
+		//_driver.get(url);
 
-	Object[][] data = {
+		WebElement element = _driver.findElement(By.name("_58_login"));
+		element.clear();
+
+		String login = (String)_properties.get("portal.default.login");
+		element.sendKeys(login);
+
+		element = _driver.findElement(By.name("_58_password"));
+
+		String password = (String)_properties.get("portal.default.password");
+		element.sendKeys(password);
+
+		element.submit();
+	}
+
+	private static final String DELETE_STATEMENT_OAUTHAPPLICATION =
+			"delete from oauthapplication where applicationId=?";
+	private static final String DELETE_STATEMENT_OAUTHAPPLICATIONS_USERS =
+			"delete from oauthapplications_users where applicationId=?";
+	private static final String INSERT_STATEMENT_OAUTHAPPLICATION =
+		"INSERT INTO oauthapplication VALUES " +
+			"(? ,? ,? ,? ,? ,? , ?, ?, ?, ?, ?, ?, ?, ?)";
+
+	private static final String OAUTH_PORTLET_ID =
+		"_4_WAR_oauthportlet_authorize";
+
+	Object[][] dataWithoutCallback = {
 		{
 			20000, 10152, 10194, "test@liferay.com", 10194, "application1",
 			"this is a test application1", "http://liferay.com",
-			"af91876b105c6834ec", "521b0a6b31a3f8", "http://liferay.com", 0
+			"af91876b105c6834ec", "521b0a6b31a3f8", null, 0
 		},
 		{
 			20001, 10152, 10194, "test@liferay.com", 10194, "application2",
 			"this is a test application2", "http://liferay.com",
-			"13a795dcbd0acd97816", "a5385e50e6812", "http://liferay.com", 0
+			"13a795dcbd0acd97816", "a5385e50e6812", null, 0
 		}
 	};
 
-	private WebDriver _driver;
+	Object[][] dataWithCallback = {
+		{
+			20002, 10152, 10194, "test@liferay.com", 10194, "application3",
+			"this is a test application3", "http://liferay.com",
+			"af91876uubfc6834ec", "521b0poj31a3f8", "http://liferay.com", 0
+		},
+		{
+			20003, 10152, 10194, "test@liferay.com", 10194, "application4",
+			"this is a test application4", "http://liferay.com",
+			"13a795dvcd0acd97816", "a5385jbde6812", "http://liferay.com", 0
+		}
+	};
+
 	private static Properties _properties;
+
 	private Connection _connection;
+	private WebDriver _driver;
 
 }

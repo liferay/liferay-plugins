@@ -3,13 +3,16 @@
 <hook>
 	<portal-properties>portal.properties</portal-properties>
 	<language-properties>content/Language.properties</language-properties>
-	<custom-jsp-dir>/META-INF/custom_jsps</custom-jsp-dir>
 	<struts-action>
 		<struts-action-path>/portal/oauth/request_token</struts-action-path>
 		<struts-action-impl>com.liferay.portal.oauth.action.OAuthRequestTokenAction</struts-action-impl>
 	</struts-action>
+    <struts-action>
+        <struts-action-path>/portal/oauth/authorize</struts-action-path>
+        <struts-action-impl>com.liferay.portal.oauth.action.OAuthPreAuthorizeAction</struts-action-impl>
+    </struts-action>
 	<struts-action>
-		<struts-action-path>/portal/oauth/authorize</struts-action-path>
+		<struts-action-path>/portal/oauth/authorize/private</struts-action-path>
 		<struts-action-impl>com.liferay.portal.oauth.action.OAuthAuthorizeAction</struts-action-impl>
 	</struts-action>
 	<struts-action>

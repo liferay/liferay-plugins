@@ -3,6 +3,10 @@
 <%@page import="com.liferay.portal.oauth.model.OAuthApplication"%>
 <%@page import="com.liferay.portal.RequiredFieldException" %>
 <%@page import="com.liferay.portal.theme.ThemeDisplay"%>
+<%@page import="com.liferay.portal.oauth.OAuthProblemException" %>
+<%@page import="com.liferay.portal.oauth.OAuthAccessor" %>
+<%@page import="com.liferay.portlet.oauth.OAuthWebKeys" %>
+<%@page import="com.liferay.portal.kernel.servlet.SessionErrors" %>
 
 <%@page import="com.liferay.portlet.oauth.OAuthConstants"%>
 <%@page import="com.liferay.portlet.PortletURLUtil"%>

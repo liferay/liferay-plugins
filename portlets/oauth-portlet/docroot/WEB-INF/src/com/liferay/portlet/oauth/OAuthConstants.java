@@ -15,6 +15,16 @@
 package com.liferay.portlet.oauth;
 
 public class OAuthConstants {
+
+public static final String AUTHORIZED = "authorized";
+public static final String OAUTH_CALLBACK = "oauth_callback";
+public static final String ALREADY_AUTHORIZED = "already-authorized";
+public static final String NONE = "none";
+public static final String OAUTH_TOKEN = "oauth_token";
+public static final String OAUTH_TOKEN_SECRET = "oauth_token_secret";
+public static final String OAUTH_VERIFIER = "oauth_verifier";
+public static final String USER = "user";
+
 public static final String WEB_APP_BEAN = "oAuthApplication";
 public static final String WEB_APP_ID = "applicationId";
 public static final String WEB_APP_NAME = "name";
