@@ -1,9 +1,0 @@
-<div class="lfc-single-image">
-	#if ($link.getData() != "")
-		<a href="$link.getData()">
-	#end
-		<img alt="" src="$image.getData()" />
-	#if ($link.getData() != "")
-		</a>
-	#end
-</div>
