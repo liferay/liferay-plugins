@@ -241,6 +241,10 @@
 	border-width: 2px !important;
 }
 
+.calendar-portlet-recurrence-summary {
+	font-style: italic;
+}
+
 .calendar-portlet-wrapper .aui-scheduler-event-disabled {
 	@include opacity(0.8);
 }

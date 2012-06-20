@@ -95,7 +95,7 @@
 				MONTHLY: 'MONTHLY',
 				YEARLY: 'YEARLY'
 			},
-			
+
 			MONTHS: {
 				0: Liferay.Language.get('january'),
 				1: Liferay.Language.get('frebruary'),
@@ -110,7 +110,7 @@
 				10: Liferay.Language.get('november'),
 				11: Liferay.Language.get('december')
 			},
-			
+
 			WEEKDAYS: {
 				SU: Liferay.Language.get('sunday'),
 				MO: Liferay.Language.get('monday'),
@@ -120,7 +120,7 @@
 				FR: Liferay.Language.get('friday'),
 				SA: Liferay.Language.get('saturday')
 			},
-			
+
 			dataSource: null,
 			invokerURL: '/api/secure/jsonws/invoke',
 			visibleCalendars: {},
@@ -335,29 +335,6 @@
 				);
 			},
 
-			getIntervalLabel: function(frequency) {
-				var instance = this;
-
-				var FREQUENCY = instance.FREQUENCY;
-
-				var interval = String.valueOf(frequency);
-
-				if (FREQUENCY.DAILY === frequency) {
-					interval = Liferay.Language.get('days');
-				}
-				else if (FREQUENCY.MONTHLY === frequency) {
-					interval = Liferay.Language.get('months');
-				}
-				else if (FREQUENCY.WEEKLY === frequency) {
-					interval = Liferay.Language.get('weeks');
-				}
-				else if (FREQUENCY.YEARLY === frequency) {
-					interval = Liferay.Language.get('years');
-				}
-
-				return interval;
-			},
-
 			getLocalizationMap: function(value) {
 				var instance = this;
 
@@ -387,51 +364,6 @@
 				}
 
 				return status;
-			},
-
-			getSummary : function(recurrence) {
-				var instance = this;
-
-				var MONTHS = instance.MONTHS;
-
-				var summary = [];
-
-				if (recurrence.interval == 1) {
-					summary.push(recurrence.frequency);
-				}
-				else {
-					summary.push(Liferay.Language.get('every'));
-					summary.push(STR_SPACE);
-					summary.push(recurrence.interval);
-					summary.push(STR_SPACE);
-					summary.push(instance.getIntervalLabel(recurrence.frequency));
-				}
-				
-				if ((recurrence.frequency == instance.FREQUENCY.WEEKLY) && (recurrence.weekdays.length > 0)) {
-					summary.push(STR_SPACE);
-					summary.push(Liferay.Language.get('on'));
-					summary.push(STR_SPACE);
-					summary.push(recurrence.weekdays.join(STR_COMMA_SPACE));
-				}
-
-				if ((recurrence.endsIndex == 1) && recurrence.count) {
-					summary.push(STR_COMMA_SPACE);
-					summary.push(recurrence.count);
-					summary.push(STR_SPACE);
-					summary.push(Liferay.Language.get('times'));
-				}
-				else if (recurrence.endsIndex == 2) {
-					summary.push(STR_COMMA_SPACE);
-					summary.push(Liferay.Language.get('until'));
-					summary.push(STR_SPACE);
-					summary.push(MONTHS[recurrence.until.getMonth()]);
-					summary.push(STR_SPACE);
-					summary.push(recurrence.until.getDate());
-					summary.push(STR_COMMA_SPACE);
-					summary.push(recurrence.until.getFullYear());
-				}
-
-			    return summary.join(STR_BLANK);
 			},
 
 			invoke: function(service, callback) {
@@ -506,10 +438,12 @@
 			linkDatePickerToEvent: function(formNode, dateAttrName, schedulerEvent) {
 				var instance = this;
 
-				formNode.delegate(
+				var selectNodes = formNode.all('select[name*=' + dateAttrName + ']');
+
+				selectNodes.on(
 					'change',
 					function(event) {
-						var target = event.currentTarget;
+						var target = event.target;
 
 						var date = schedulerEvent.get(dateAttrName);
 						var name = target.attr('name');
@@ -537,8 +471,7 @@
 						schedulerEvent.set(dateAttrName, date);
 
 						schedulerEvent.get('scheduler').syncEventsUI();
-					},
-					'[name*=' + dateAttrName + ']'
+					}
 				);
 			},
 
@@ -596,17 +529,10 @@
 					}
 				};
 
-				var datePicker = A.Widget.getByNode(yearNode.ancestor('.yui3-widget'));
+				var datePicker = window[instance.PORTLET_NAMESPACE + name + 'LiferayInputDateDatePickerComponent']();
 
-				if (A.instanceOf(datePicker, A.DatePickerSelect)) {
-					datePicker.calendar.set('dates', [date]);
-					datePicker.syncUI();
-				}
-				else {
-					selectOption(dayNode, date.getDate());
-					selectOption(monthNode, date.getMonth());
-					selectOption(yearNode, date.getFullYear());
-				}
+				datePicker.calendar.set('dates', [date]);
+				datePicker.syncUI();
 
 				var hours = date.getHours();
 				var amPm = 0;

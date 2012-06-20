@@ -129,6 +129,18 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 		</div>
 
 		<aui:input name="allDay" />
+
+		<aui:field-wrapper inlineField="<%= true %>">
+			<aui:input checked="<%= recurring %>" name="repeat" type="checkbox" />
+
+			<div id="<portlet:namespace />summaryContainer">
+				<span class="calendar-portlet-recurrence-summary" id="<portlet:namespace />summary"></span>
+
+				<a href="javascript:void(0);" id="<portlet:namespace />summaryEditLink">
+					<liferay-ui:message key="edit" />
+				</a>
+			</div>
+		</aui:field-wrapper>
 	</aui:fieldset>
 
 	<aui:fieldset>
@@ -224,14 +236,14 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 		</liferay-ui:section>
 	</liferay-ui:tabs>
 
-	<%@ include file="/calendar_booking_recurrence_container.jspf" %>
-
 	<aui:button-row>
 		<aui:button type="submit" />
 
 		<aui:button href="<%= redirect %>" type="cancel" />
 	</aui:button-row>
 </aui:form>
+
+<%@ include file="/calendar_booking_recurrence_container.jspf" %>
 
 <aui:script>
 	Liferay.provide(
@@ -257,181 +269,16 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />title);
 
 	Liferay.Util.toggleBoxes('<portlet:namespace />allDayCheckbox', '<portlet:namespace />endDateContainer', true);
+	Liferay.Util.toggleBoxes('<portlet:namespace />repeatCheckbox', '<portlet:namespace />summaryContainer');
 
 	<c:if test="<%= calendarBooking == null %>">
 		document.<portlet:namespace />fm.<portlet:namespace />title_<%= LanguageUtil.getLanguageId(request) %>.value = decodeURIComponent('<%= HtmlUtil.escapeURL(title) %>');
 	</c:if>
 </aui:script>
 
-<aui:script use="aui-dialog,json,liferay-calendar-list,liferay-calendar-simple-menu">
+<aui:script use="json,liferay-calendar-list,liferay-calendar-simple-menu">
 	Liferay.CalendarUtil.PORTLET_NAMESPACE = '<portlet:namespace />';
 	Liferay.CalendarUtil.USER_TIMEZONE_OFFSET = <%= JCalendarUtil.getTimeZoneOffset(timeZone) %>;
-
-	var <portlet:namespace />count = A.one('#<portlet:namespace />count');
-	var <portlet:namespace />endsRadio = A.all('[name=<portlet:namespace />ends]');
-	var <portlet:namespace />frequency = A.one('#<portlet:namespace />frequency');
-	var <portlet:namespace />interval = A.one('#<portlet:namespace />interval');
-	var <portlet:namespace />intervalLabel = A.one('#<portlet:namespace />intervalLabel');
-	var <portlet:namespace />recurrenceContainer = A.one('#<portlet:namespace />recurrenceContainer');
-	var <portlet:namespace />repeatCheckbox = A.one('#<portlet:namespace />repeatCheckbox');
-	var <portlet:namespace />summary = A.one('#<portlet:namespace />summary');
-	var <portlet:namespace />summaryContainer = A.one('#<portlet:namespace />summaryContainer');
-	var <portlet:namespace />summaryEditLink = A.one('#<portlet:namespace />summaryEditLink');
-	var <portlet:namespace />summaryPreview = A.one('#<portlet:namespace />summaryPreview');
-	var <portlet:namespace />untilDateDay = A.one('#<portlet:namespace />untilDateDay');
-	var <portlet:namespace />untilDateMonth = A.one('#<portlet:namespace />untilDateMonth');
-	var <portlet:namespace />untilDateYear = A.one('#<portlet:namespace />untilDateYear');
-	var <portlet:namespace />weeklyView = A.one('#<portlet:namespace />view<%= Frequency.WEEKLY %>');
-
-	var <portlet:namespace />recurrenceDialog = new A.Dialog(
-		{
-			bodyContent: <portlet:namespace />recurrenceContainer,
-			buttons: [
-				{
-					handler: function() {
-						<portlet:namespace />summary.setContent(<portlet:namespace />summaryPreview.text());
-
-						<portlet:namespace />summaryContainer.show();
-
-						this.hide();
-					},
-					label: Liferay.Language.get('done')
-				},
-				{
-					handler: function() {
-						if (!<portlet:namespace />summary.text()) {
-							<portlet:namespace />repeatCheckbox.set('checked', false);
-						}
-
-						this.hide();
-					},
-					label: Liferay.Language.get('cancel')
-				}
-			],
-			centered: true,
-			modal: true,
-			title: Liferay.Language.get('repeat'),
-			visible : false,
-			width: 400
-		}
-	).render('#<portlet:namespace />fm');
-
-	function <portlet:namespace />updateSummaryPreview() {
-		var weekdays = [];
-
-		if (<portlet:namespace />frequency.val() == '<%= Frequency.WEEKLY %>') {
-			for (var i in Liferay.CalendarUtil.WEEKDAYS) {
-				if (A.one('#<portlet:namespace />' + i).val() == 'true') {
-						weekdays.push(Liferay.CalendarUtil.WEEKDAYS[i]);
-				}
-			}
-		}
-
-		var count;
-		var until;
-
-		var endsIndex = A.Array.indexOf(<portlet:namespace />endsRadio.get('checked'), true);
-
-		if (endsIndex == 1) {
-			count = <portlet:namespace />count.val();
-		}
-		else if (endsIndex == 2) {
-			var untilDateYear = <portlet:namespace />untilDateYear.val();
-			var untilDateMonth = <portlet:namespace />untilDateMonth.val();
-			var untilDateDay = <portlet:namespace />untilDateDay.val();
-
-			until = new Date(untilDateYear, untilDateMonth, untilDateDay);
-		}
-
-		var recurrence = {
-			count: count,
-			endsIndex: endsIndex,
-			frequency: <portlet:namespace />frequency.val(),
-			interval: <portlet:namespace />interval.val(),
-			until: until,
-			weekdays: weekdays
-		}
-
-		var summary = Liferay.CalendarUtil.getSummary(recurrence);
-
-		<portlet:namespace />summaryPreview.setContent(summary);
-	}
-
-	function <portlet:namespace />updateView(frequency) {
-		if (frequency == '<%= Frequency.WEEKLY %>') {
-			<portlet:namespace />weeklyView.show();
-		}
-		else {
-			<portlet:namespace />weeklyView.hide();
-		}
-
-		var intervalLabel = Liferay.CalendarUtil.getIntervalLabel(frequency);
-
-		<portlet:namespace />intervalLabel.setContent(intervalLabel);
-	}
-
-	<portlet:namespace />recurrenceContainer.delegate(
-		'change',
-		function(event) {
-			var target = event.target;
-
-			if (target.test('#<portlet:namespace />frequency')) {
-				<portlet:namespace />updateView(target.val());
-			}
-
-			var selectedIndex = A.Array.indexOf(<portlet:namespace />endsRadio.get('checked'), true);
-
-			<portlet:namespace />count.set('disabled', true);
-			<portlet:namespace />untilDateDay.set('disabled', true);
-			<portlet:namespace />untilDateMonth.set('disabled', true);
-			<portlet:namespace />untilDateYear.set('disabled', true);
-
-			if (selectedIndex == 1) {
-				<portlet:namespace />count.set('disabled', false);
-			}
-			else if (selectedIndex == 2) {
-				<portlet:namespace />untilDateDay.set('disabled', false);
-				<portlet:namespace />untilDateMonth.set('disabled', false);
-				<portlet:namespace />untilDateYear.set('disabled', false);
-			}
-
-			<portlet:namespace />updateSummaryPreview();
-		},
-		'select,input'
-	);
-
-	<portlet:namespace />repeatCheckbox.on(
-		'click',
-		function(event) {
-			if (event.currentTarget.get('checked')) {
-				if (<portlet:namespace />summary.text()) {
-					<portlet:namespace />summaryContainer.show();
-				}
-				else {
-					<portlet:namespace />recurrenceDialog.show()
-				}
-			}
-			else {
-				<portlet:namespace />summaryContainer.hide();
-			}
-		}
-	);
-
-	<portlet:namespace />summaryEditLink.on(
-		'click',
-		function(event) {
-			<portlet:namespace />recurrenceDialog.show();
-		}
-	);
-
-	<portlet:namespace />updateSummaryPreview();
-	<portlet:namespace />updateView(<portlet:namespace />frequency.val());
-
-	<c:if test="<%= recurring %>">
-		var summary = <portlet:namespace />summaryPreview.text();
-
-		<portlet:namespace />summary.setContent(summary);
-	</c:if>
 
 	var defaultCalendarId = <%= calendarId %>;
 
