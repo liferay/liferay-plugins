@@ -18,8 +18,4 @@
 		<servlet-name>JSON Web Service Servlet</servlet-name>
 		<url-pattern>/api/jsonws/*</url-pattern>
 	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>JSON Web Service Servlet</servlet-name>
-		<url-pattern>/api/secure/jsonws/*</url-pattern>
-	</servlet-mapping>
 </web-app>

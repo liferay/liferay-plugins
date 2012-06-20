@@ -58,7 +58,7 @@ private URL _getURL(String remoteUser, String serviceName) throws Exception {
 	if (false) {
 		String password = "test";
 
-		url = "http://" + remoteUser + ":" + password + "@localhost:8080/api/secure/axis/" + serviceName;
+		url = "http://" + remoteUser + ":" + password + "@localhost:8080/api/axis/" + serviceName;
 	}
 
 	return new URL(url);

@@ -90,7 +90,7 @@
 			USER_TIMEZONE_OFFSET: 0,
 
 			dataSource: null,
-			invokerURL: '/api/secure/jsonws/invoke',
+			invokerURL: '/api/jsonws/invoke',
 			visibleCalendars: {},
 
 			addEvent: function(schedulerEvent) {
