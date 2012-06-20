@@ -19,13 +19,16 @@ import com.liferay.portal.kernel.oauth.OAuthException;
 import com.liferay.portal.oauth.model.OAuthApplication;
 import com.liferay.portal.oauth.service.OAuthApplicationLocalServiceUtil;
 import com.liferay.portal.oauth.service.OAuthApplications_UsersLocalServiceUtil;
-import com.liferay.portal.oauth.util.OAuthConstants;
+import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.oauth.OAuthConstants;
 
 import java.io.IOException;
 import java.io.OutputStream;
 
 import java.util.Collection;
 import java.util.HashSet;
+
+import javax.portlet.PortletRequest;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -75,7 +78,7 @@ public class OAuthProviderManagerImpl implements OAuthProviderManager {
 	 * @throws net.oauth.OAuthException
 	 */
 	public void generateAccessToken(OAuthAccessor accessor, long userId)
-		throws SystemException{
+		throws SystemException {
 
 		// generate oauth_token and oauth_secret
 		String consumerKey = accessor.getConsumer().getOAuthApplication()
@@ -217,6 +220,14 @@ public class OAuthProviderManagerImpl implements OAuthProviderManager {
 
 	public OAuthMessage getMessage(HttpServletRequest request, String url) {
 		return new OAuthMessageImpl(OAuthServlet.getMessage(request, url));
+	}
+
+	public OAuthMessage getMessage(PortletRequest request, String url) {
+		HttpServletRequest httpServletRequest =
+			PortalUtil.getHttpServletRequest(request);
+
+		return new OAuthMessageImpl(
+			OAuthServlet.getMessage(httpServletRequest, url));
 	}
 
 	public void handleException(

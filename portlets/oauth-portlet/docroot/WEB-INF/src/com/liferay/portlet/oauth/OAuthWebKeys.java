@@ -12,20 +12,12 @@
  * details.
  */
 
-package com.liferay.portal.oauth.util;
+package com.liferay.portlet.oauth;
 
 /**
  * @author Ivica Cardic
  */
-public class OAuthConstants {
-	public static final String AUTHORIZED = "authorized";
-	public static final String LOCATION = "Location";
-	public static final String NONE = "none";
-	public static final String OAUTH_CALLBACK = "oauth_callback";
-	public static final String OAUTH_TOKEN = "oauth_token";
-	public static final String OAUTH_TOKEN_SECRET = "oauth_token_secret";
-	public static final String OAUTH_VERIFIER = "oauth_verifier";
-	public static final String SUCCESS_AUTHORIZATION = "success_authorization";
-	public static final String USER = "user";
-
+public class OAuthWebKeys {
+	public static final String OAUTH_ACCESSOR = "OAUTH_ACCESSOR";
+	public static final String VERIFIER = "VERIFIER";
 }

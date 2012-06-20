@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.oauth.OAuthException;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import javax.portlet.PortletRequest;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,6 +50,8 @@ public interface OAuthProviderManager {
 		throws OAuthException, OAuthProblemException;
 
 	public OAuthMessage getMessage(HttpServletRequest request, String url);
+
+	public OAuthMessage getMessage(PortletRequest request, String url);
 
 	public void handleException(
 		HttpServletRequest request, HttpServletResponse response, Exception e,

@@ -15,13 +15,11 @@
 package com.liferay.portal.oauth.action;
 
 import com.liferay.portal.kernel.struts.BaseStrutsAction;
-import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.oauth.OAuthAccessor;
 import com.liferay.portal.oauth.OAuthMessage;
 import com.liferay.portal.oauth.OAuthProblemException;
 import com.liferay.portal.oauth.OAuthProviderManagerUtil;
-import com.liferay.portal.oauth.util.OAuthConstants;
-import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portlet.oauth.OAuthConstants;
 
 import java.io.OutputStream;
 
@@ -40,10 +38,7 @@ public class OAuthAccessTokenAction extends BaseStrutsAction {
 			HttpServletRequest request, HttpServletResponse response)
 		throws Exception {
 
-		ThemeDisplay themeDisplay =
-			(ThemeDisplay)request.getAttribute(WebKeys.THEME_DISPLAY);
-
-		try{
+		try {
 			OAuthMessage requestMessage = OAuthProviderManagerUtil.getMessage(
 				request, null);
 
