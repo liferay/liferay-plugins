@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-
-<root>
-	<dynamic-element name="image" type="image" repeatable="false" />
-	<dynamic-element name="link" type="text" repeatable="false" />
-</root>
