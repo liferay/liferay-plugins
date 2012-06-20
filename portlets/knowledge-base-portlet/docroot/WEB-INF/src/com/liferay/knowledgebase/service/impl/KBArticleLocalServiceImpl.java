@@ -159,7 +159,18 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		// Resources
 
-		resourceLocalService.addModelResources(kbArticle, serviceContext);
+		if (serviceContext.isAddGroupPermissions() ||
+			serviceContext.isAddGuestPermissions()) {
+
+			addKBArticleResources(
+				kbArticle, serviceContext.isAddGroupPermissions(),
+				serviceContext.isAddGuestPermissions());
+		}
+		else {
+			addKBArticleResources(
+				kbArticle, serviceContext.getGroupPermissions(),
+				serviceContext.getGuestPermissions());
+		}
 
 		// Asset
 
@@ -178,6 +189,52 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			resourcePrimKey, kbArticle, serviceContext);
 
 		return kbArticle;
+	}
+
+	public void addKBArticleResources(
+			KBArticle kbArticle, boolean addGroupPermissions,
+			boolean addGuestPermissions)
+		throws PortalException, SystemException {
+
+		resourceLocalService.addResources(
+			kbArticle.getCompanyId(), kbArticle.getGroupId(),
+			kbArticle.getUserId(), KBArticle.class.getName(),
+			kbArticle.getResourcePrimKey(), false, addGroupPermissions,
+			addGuestPermissions);
+	}
+
+	public void addKBArticleResources(
+			KBArticle kbArticle, String[] groupPermissions,
+			String[] guestPermissions)
+		throws PortalException, SystemException {
+
+		resourceLocalService.addModelResources(
+			kbArticle.getCompanyId(), kbArticle.getGroupId(),
+			kbArticle.getUserId(), KBArticle.class.getName(),
+			kbArticle.getResourcePrimKey(), groupPermissions, guestPermissions);
+	}
+
+	public void addKBArticleResources(
+			long kbArticleId, boolean addGroupPermissions,
+			boolean addGuestPermissions)
+		throws PortalException, SystemException {
+
+		KBArticle kbArticle = kbArticlePersistence.findByPrimaryKey(
+			kbArticleId);
+
+		addKBArticleResources(
+			kbArticle, addGroupPermissions, addGuestPermissions);
+	}
+
+	public void addKBArticleResources(
+			long kbArticleId, String[] groupPermissions,
+			String[] guestPermissions)
+		throws PortalException, SystemException {
+
+		KBArticle kbArticle = kbArticlePersistence.findByPrimaryKey(
+			kbArticleId);
+
+		addKBArticleResources(kbArticle, groupPermissions, guestPermissions);
 	}
 
 	public void checkAttachments() throws PortalException, SystemException {
