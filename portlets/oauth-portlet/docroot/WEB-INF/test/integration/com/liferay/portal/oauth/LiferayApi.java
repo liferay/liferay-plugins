@@ -19,7 +19,7 @@ import org.scribe.builder.api.DefaultApi10a;
 /**
  * @author Ivica Cardic
  */
-public class LiferayApi extends DefaultApi10a{
+public class LiferayApi extends DefaultApi10a {
 
 	public static final String AUTHORIZE_URL =
 			OAuthProviderTest.getString("portal.default.url") +

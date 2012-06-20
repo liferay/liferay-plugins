@@ -18,6 +18,8 @@ package com.liferay.portlet.oauth;
  * @author Ivica Cardic
  */
 public class OAuthWebKeys {
+
 	public static final String OAUTH_ACCESSOR = "OAUTH_ACCESSOR";
 	public static final String VERIFIER = "VERIFIER";
+
 }

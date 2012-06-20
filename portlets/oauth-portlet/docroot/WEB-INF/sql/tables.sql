@@ -1,4 +1,4 @@
-create table OAuth_OAuthApplication (
+create table OAuthApplication (
 	applicationId LONG not null primary key,
 	companyId LONG,
 	userId LONG,
@@ -15,7 +15,7 @@ create table OAuth_OAuthApplication (
 	accessLevel INTEGER
 );
 
-create table OAuth_OAuthApplications_Users (
+create table OAuthApplications_Users (
 	oaauid LONG not null primary key,
 	accessToken VARCHAR(75) null,
 	accessSecret VARCHAR(75) null,

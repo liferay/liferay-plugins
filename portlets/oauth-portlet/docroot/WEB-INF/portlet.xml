@@ -4,13 +4,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>1</display-name>
-		<portlet-class>
-			com.liferay.portlet.oauth.mvc.OAuthApplicationAdminPortlet
-		</portlet-class>
-		<init-param>
-			<name>view-jsp</name>
-			<value>/html/admin/view.jsp</value>
-		</init-param>
+		<portlet-class>com.liferay.portlet.oauth.mvc.OAuthApplicationAdminPortlet</portlet-class>
 		<init-param>
 			<name>config-jsp</name>
 			<value>/html/admin/config.jsp</value>
@@ -18,6 +12,10 @@
 		<init-param>
 			<name>copy-request-parameters</name>
 			<value>true</value>
+		</init-param>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/html/admin/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
@@ -38,13 +36,7 @@
 	<portlet>
 		<portlet-name>2</portlet-name>
 		<display-name>2</display-name>
-		<portlet-class>
-			com.liferay.portlet.oauth.mvc.OAuthApplicationAuthorizationPortlet
-		</portlet-class>
-		<init-param>
-			<name>view-jsp</name>
-			<value>/html/authorization/view.jsp</value>
-		</init-param>
+		<portlet-class>com.liferay.portlet.oauth.mvc.OAuthApplicationAuthorizationPortlet</portlet-class>
 		<init-param>
 			<name>config-jsp</name>
 			<value>/html/authorization/config.jsp</value>
@@ -52,6 +44,10 @@
 		<init-param>
 			<name>copy-request-parameters</name>
 			<value>true</value>
+		</init-param>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/html/authorization/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
@@ -81,13 +77,7 @@
 	<portlet>
 		<portlet-name>3</portlet-name>
 		<display-name>3</display-name>
-		<portlet-class>
-			com.liferay.portlet.oauth.mvc.OAuthSimulatorPortlet
-		</portlet-class>
-		<init-param>
-			<name>view-jsp</name>
-			<value>/html/simulator/view.jsp</value>
-		</init-param>
+		<portlet-class>com.liferay.portlet.oauth.mvc.OAuthSimulatorPortlet</portlet-class>
 		<init-param>
 			<name>config-jsp</name>
 			<value>/html/simulator/config.jsp</value>
@@ -95,6 +85,10 @@
 		<init-param>
 			<name>copy-request-parameters</name>
 			<value>true</value>
+		</init-param>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/html/simulator/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>

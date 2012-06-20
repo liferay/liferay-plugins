@@ -12,14 +12,14 @@
 	<sql id="com.liferay.portal.oauth.service.persistence.OAuthApplications_UsersFinder.countByO_A">
 		<![CDATA[
 			SELECT
-				COUNT(oau) AS COUNT_VALUE
+				COUNT(*) AS COUNT_VALUE
 			FROM
-				OAuthApplications_Users oau,
-				OAuthApplication oa
+				OAuthApplications_Users,
+				OAuthApplication
 			WHERE
-				(oa.ownerId = ?) AND
-				(oa.applicationId = oau.applicationId) AND
-				(oau.authorized = ?)
+				(OAuthApplication.ownerId = ?) AND
+				(OAuthApplication.applicationId = OAuthApplications_Users.applicationId) AND
+				(OAuthApplications_Users.authorized = ?)
 		]]>
 	</sql>
 	<sql id="com.liferay.portal.oauth.service.persistence.OAuthApplications_UsersFinder.findAll">
@@ -33,14 +33,14 @@
 	<sql id="com.liferay.portal.oauth.service.persistence.OAuthApplications_UsersFinder.findByO_A">
 		<![CDATA[
 			SELECT
-				oau
+				{OAuthApplications_Users.*}
 			FROM
-				OAuthApplications_Users oau,
-				OAuthApplication oa
+				OAuthApplications_Users,
+				OAuthApplication
 			WHERE
-				(oa.ownerId = ?) AND
-				(oa.applicationId = oau.applicationId) AND
-				(oau.authorized = ?)
+				(OAuthApplication.ownerId = ?) AND
+				(OAuthApplication.applicationId = OAuthApplications_Users.applicationId) AND
+				(OAuthApplications_Users.authorized = ?)
 		]]>
 	</sql>
 </custom-sql>

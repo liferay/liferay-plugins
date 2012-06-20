@@ -14,11 +14,13 @@
 
 package com.liferay.portal.oauth;
 
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.oauth.OAuthException;
 import com.liferay.portal.oauth.model.OAuthApplication;
 import com.liferay.portal.oauth.service.OAuthApplicationLocalServiceUtil;
 import com.liferay.portal.oauth.service.OAuthApplications_UsersLocalServiceUtil;
+import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.oauth.OAuthConstants;
 
@@ -63,9 +65,11 @@ public class OAuthProviderManagerImpl implements OAuthProviderManager {
 		throws OAuthException {
 
 		try {
-			OAuth.formEncode(OAuth.newList(
-				OAuthConstants.OAUTH_TOKEN, oauthToken,
-				OAuthConstants.OAUTH_TOKEN_SECRET, tokenSecret), out);
+			OAuth.formEncode(
+					OAuth.newList(
+							OAuthConstants.OAUTH_TOKEN, oauthToken,
+							OAuthConstants.OAUTH_TOKEN_SECRET,
+							tokenSecret), out);
 		}
 		catch (IOException e) {
 			throw new OAuthException(e);
@@ -99,7 +103,7 @@ public class OAuthProviderManagerImpl implements OAuthProviderManager {
 		accessor.setRequestToken(null);
 
 		OAuthApplication oAuthApplication =
-			accessor.getConsumer().getOAuthApplication();
+				accessor.getConsumer().getOAuthApplication();
 
 		OAuthApplications_UsersLocalServiceUtil
 			.updateOAuthApplications_Users(
@@ -257,6 +261,27 @@ public class OAuthProviderManagerImpl implements OAuthProviderManager {
 		OAuthApplications_UsersLocalServiceUtil
 			.updateOAuthApplications_Users(
 				oAuthApplication.getApplicationId(), userId, true);
+
+		// first remove the accessor from cache
+		ALL_TOKENS.remove(accessor);
+
+		accessor.setProperty("user", userId);
+		accessor.setProperty(OAuthConstants.AUTHORIZED, Boolean.TRUE);
+
+		// update token in local cache
+		ALL_TOKENS.add(accessor);
+	}
+
+	public void markAsAuthorized(
+			OAuthAccessor accessor, long userId, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+		OAuthApplication oAuthApplication =
+				accessor.getConsumer().getOAuthApplication();
+
+		OAuthApplications_UsersLocalServiceUtil
+			.updateOAuthApplications_Users(
+					true, oAuthApplication.getApplicationId(), userId, null,
+					null, serviceContext);
 
 		// first remove the accessor from cache
 		ALL_TOKENS.remove(accessor);
