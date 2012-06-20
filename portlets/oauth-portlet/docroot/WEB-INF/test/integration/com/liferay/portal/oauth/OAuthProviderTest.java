@@ -34,7 +34,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import org.scribe.builder.ServiceBuilder;
-import org.scribe.exceptions.OAuthException;
 import org.scribe.model.Token;
 import org.scribe.model.Verifier;
 import org.scribe.oauth.OAuthService;
@@ -48,6 +47,7 @@ import org.scribe.oauth.OAuthService;
  * @author Ivica Cardic
  */
 public class OAuthProviderTest {
+
 	public static String getString(String key) {
 		return (String)_properties.get(key);
 	}
@@ -79,37 +79,34 @@ public class OAuthProviderTest {
 	}
 
 	@Test
-	public void testGetAccessTokenWithoutCallback() throws Exception {
-		for (int i = 0; i < dataWithoutCallback.length; i++) {
-			OAuthService service = buildOAuthService(dataWithoutCallback, i);
+	public void testAlreadyAuthorized() throws Exception {
+		for (int i = 0; i < dataWithCallback.length; i++) {
+			OAuthService service = buildOAuthService(dataWithCallback, i);
 
 			Token requestToken = service.getRequestToken();
 
-			Assert.assertNotNull(requestToken.getToken());
+			goToAuthorizationPage(requestToken);
+
+			if (i == 0) {
+				redirectedToLoginPage();
+			}
+
+			WebElement element = _driver.findElement(By.id(OAUTH_PORTLET_ID));
+			element.submit();
 
 			goToAuthorizationPage(requestToken);
 
-			if (i == 0)
-				redirectedToLoginPage();
+			List<WebElement> elements = _driver.findElements(
+				By.className("portlet-msg-error"));
 
-			WebElement element = _driver.findElement(
-					By.id("_4_WAR_oauthportlet_authorize"));
-			element.submit();
+			for (WebElement webElement : elements) {
+				if (webElement.getText().
+						contains("You are already authorized.")) {
+					return;
+				}
+			}
 
-			element = _driver.findElement(By.className("portlet-msg-info"));
-
-			String text = element.getText();
-
-			String verifierString = text.substring(
-					text.lastIndexOf(":") + 1, text.length());
-
-			Assert.assertNotNull(verifierString);
-
-			Verifier verifier = new Verifier(verifierString);
-
-			Token accessToken = service.getAccessToken(requestToken, verifier);
-
-			Assert.assertNotNull(accessToken.getToken());
+			Assert.fail();
 		}
 	}
 
@@ -146,11 +143,13 @@ public class OAuthProviderTest {
 	}
 
 	@Test
-	public void testAlreadyAuthorized() throws Exception {
-		for (int i = 0; i < dataWithCallback.length; i++) {
-			OAuthService service = buildOAuthService(dataWithCallback, i);
+	public void testGetAccessTokenWithoutCallback() throws Exception {
+		for (int i = 0; i < dataWithoutCallback.length; i++) {
+			OAuthService service = buildOAuthService(dataWithoutCallback, i);
 
 			Token requestToken = service.getRequestToken();
+
+			Assert.assertNotNull(requestToken.getToken());
 
 			goToAuthorizationPage(requestToken);
 
@@ -159,21 +158,23 @@ public class OAuthProviderTest {
 			}
 
 			WebElement element = _driver.findElement(
-				By.id(OAUTH_PORTLET_ID));
+					By.id("_4_WAR_oauthportlet_authorize"));
 			element.submit();
 
-			goToAuthorizationPage(requestToken);
+			element = _driver.findElement(By.className("portlet-msg-info"));
 
-			List<WebElement> elements = _driver.findElements(
-				By.className("portlet-msg-error"));
+			String text = element.getText();
 
-			for(WebElement webElement : elements){
-				if(webElement.getText().contains("You are already authorized.")){
-					return;
-				}
-			}
+			String verifierString = text.substring(
+					text.lastIndexOf(":") + 1, text.length());
 
-			Assert.fail();
+			Assert.assertNotNull(verifierString);
+
+			Verifier verifier = new Verifier(verifierString);
+
+			Token accessToken = service.getAccessToken(requestToken, verifier);
+
+			Assert.assertNotNull(accessToken.getToken());
 		}
 	}
 
@@ -190,8 +191,7 @@ public class OAuthProviderTest {
 				redirectedToLoginPage();
 			}
 
-			WebElement element = _driver.findElement(
-				By.id(OAUTH_PORTLET_ID));
+			WebElement element = _driver.findElement(By.id(OAUTH_PORTLET_ID));
 			element.submit();
 
 			String[] params = extractParams(_driver.getCurrentUrl());
@@ -205,9 +205,9 @@ public class OAuthProviderTest {
 			List<WebElement> elements = _driver.findElements(
 				By.className("portlet-msg-error"));
 
-			for(WebElement webElement : elements){
-				if(webElement.getText().contains(
-					"Your token has been expired.")){
+			for (WebElement webElement : elements) {
+				if (webElement.getText().contains(
+					"Your token has been expired.")) {
 
 					return;
 				}
@@ -217,7 +217,7 @@ public class OAuthProviderTest {
 		}
 	}
 
-	private OAuthService buildOAuthService(Object[][] data, int index){
+	private OAuthService buildOAuthService(Object[][] data, int index) {
 		OAuthService service = new ServiceBuilder()
 			.provider(LiferayApi.class)
 			.apiKey((String) data[index][8])
@@ -226,8 +226,6 @@ public class OAuthProviderTest {
 
 		return service;
 	}
-
-
 
 	private void clearData(Object[][] data) throws Exception {
 		for (int i = 0; i< data.length; i++) {

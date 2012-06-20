@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.oauth.OAuthException;
 /**
  * @author Ivica Cardic
  */
-public class SimpleOAuthValidator implements OAuthValidator{
+public class SimpleOAuthValidator implements OAuthValidator {
 
 	public void validateMessage(
 			OAuthMessage oAuthMessage, OAuthAccessor oAuthAccessor)

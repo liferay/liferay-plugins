@@ -19,13 +19,13 @@ import java.io.IOException;
 /**
  * @author Ivica Cardic
  */
-public class OAuthMessageImpl implements OAuthMessage{
+public class OAuthMessageImpl implements OAuthMessage {
 
 	public OAuthMessageImpl(net.oauth.OAuthMessage oAuthMessage) {
 		this._oAuthMessage = oAuthMessage;
 	}
 
-	public String getConsumerKey() throws IOException{
+	public String getConsumerKey() throws IOException {
 		return _oAuthMessage.getConsumerKey();
 	}
 
@@ -33,7 +33,7 @@ public class OAuthMessageImpl implements OAuthMessage{
 		return _oAuthMessage.getParameter(name);
 	}
 
-	public String getToken() throws IOException{
+	public String getToken() throws IOException {
 		return _oAuthMessage.getToken();
 	}
 

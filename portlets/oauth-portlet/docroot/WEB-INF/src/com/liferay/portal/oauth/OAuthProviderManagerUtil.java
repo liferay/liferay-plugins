@@ -14,8 +14,10 @@
 
 package com.liferay.portal.oauth;
 
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.oauth.OAuthException;
+import com.liferay.portal.service.ServiceContext;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -95,6 +97,13 @@ public class OAuthProviderManagerUtil {
 		throws OAuthException, SystemException {
 
 		getOAuthProviderManager().markAsAuthorized(accessor, userId);
+	}
+
+	public static void markAsAuthorized(
+			OAuthAccessor accessor, long userId, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+		getOAuthProviderManager().markAsAuthorized(
+				accessor, userId, serviceContext);
 	}
 
 	public static void validateMessage(

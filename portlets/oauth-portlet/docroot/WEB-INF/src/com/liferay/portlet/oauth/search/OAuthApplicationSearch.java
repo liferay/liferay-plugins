@@ -1,3 +1,17 @@
+/**
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
 package com.liferay.portlet.oauth.search;
 
 import com.liferay.portal.kernel.dao.search.SearchContainer;
@@ -18,6 +32,12 @@ import java.util.Map;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
+
+/**
+ *
+ * @author Igor Beslic
+ *
+ */
 public class OAuthApplicationSearch extends SearchContainer<OAuthApplication> {
 	public static final String ORDER_BY_ASC = "name ASC";
 
@@ -33,22 +53,23 @@ public class OAuthApplicationSearch extends SearchContainer<OAuthApplication> {
 		headerNames.add(OAuthConstants.WEB_APP_WEBSITE);
 		headerNames.add(OAuthConstants.WEB_APP_CALLBACKURL);
 
-		orderableHeaders.put(OAuthConstants.WEB_APP_NAME, OAuthConstants.WEB_APP_NAME);
+		orderableHeaders.put(
+				OAuthConstants.WEB_APP_NAME, OAuthConstants.WEB_APP_NAME);
 	}
 
-	public OAuthApplicationSearch(PortletRequest portletRequest,
-			PortletURL iteratorURL) {
-		super(portletRequest,
-				new OAuthApplicationDisplayTerms(portletRequest),
-				new OAuthApplicationSearchTerms(portletRequest),
-				DEFAULT_CUR_PARAM, DEFAULT_DELTA, iteratorURL, headerNames,
-				OAuthConstants.EMPTY_RESULTS_MESSAGE);
+	public OAuthApplicationSearch(
+			PortletRequest portletRequest, PortletURL iteratorURL) {
+		super(
+			portletRequest, new OAuthApplicationDisplayTerms(portletRequest),
+			new OAuthApplicationSearchTerms(portletRequest), DEFAULT_CUR_PARAM,
+			DEFAULT_DELTA, iteratorURL, headerNames,
+			OAuthConstants.EMPTY_RESULTS_MESSAGE);
 
 		OAuthApplicationDisplayTerms displayTerms =
 				(OAuthApplicationDisplayTerms)getDisplayTerms();
 
-		iteratorURL.setParameter(OAuthApplicationDisplayTerms.NAME,
-				displayTerms.getName());
+		iteratorURL.setParameter(
+			OAuthApplicationDisplayTerms.NAME, displayTerms.getName());
 
 		try {
 			PortalPreferences preferences =
@@ -93,8 +114,8 @@ public class OAuthApplicationSearch extends SearchContainer<OAuthApplication> {
 
 	protected OrderByComparator getOAuthApplicationOrderByComparator(
 			final String orderByColumn, final String orderByType) {
-		return getOAuthApplicationOrderByComparator("asc".equals(orderByType),
-				orderByColumn);
+		return getOAuthApplicationOrderByComparator(
+				"asc".equals(orderByType), orderByColumn);
 	}
 
 	protected OrderByComparator getOAuthApplicationOrderByComparator(
@@ -137,11 +158,14 @@ public class OAuthApplicationSearch extends SearchContainer<OAuthApplication> {
 				return _ascending;
 			}
 
-			boolean _ascending = ascending;
-			String _orderByColumn = orderByColumn;
+			private boolean _ascending = ascending;
+
+			private String _orderByColumn = orderByColumn;
+
 		};
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(OAuthApplicationSearch.class);
+	private static Log _log = LogFactoryUtil.getLog(
+			OAuthApplicationSearch.class);
 
 }
