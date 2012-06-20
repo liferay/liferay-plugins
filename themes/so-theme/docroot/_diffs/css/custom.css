@@ -2173,7 +2173,6 @@ body.so-layout-fluid, body.so-layout-fluid-ad {
 	}
 
 	.portlet-login {
-		background: $gray-light;
 		padding: 4px;
 		position: relative;
 		width: 260px;
@@ -2191,7 +2190,6 @@ body.so-layout-fluid, body.so-layout-fluid-ad {
 		}
 
 		.navigation {
-			background: $gray-light;
 			border: 1px solid $gray;
 			left: 0;
 			margin-top: 4em;
@@ -2215,6 +2213,10 @@ body.so-layout-fluid, body.so-layout-fluid-ad {
 				}
 			}
 		}
+	}
+
+	.portlet-login, .portlet-login .navigation {
+		background: $gray-light;
 	}
 }
 
