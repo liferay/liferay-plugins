@@ -93,9 +93,8 @@
 						users.add(user);
 					}
 
-					User curUser = null;
 					for (int i = 0; i < users.size(); i++) {
-						curUser = users.get(i);
+						User curUser = users.get(i);
 					%>
 
 							<c:choose>
