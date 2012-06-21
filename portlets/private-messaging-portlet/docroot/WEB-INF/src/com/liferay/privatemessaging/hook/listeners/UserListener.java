@@ -31,14 +31,15 @@ public class UserListener extends BaseModelListener<User> {
 		try {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Updating private message username for user " +
+					"Updating private messages user name for user " +
 						user.getUserId());
 			}
 
 			UserThreadLocalServiceUtil.updateUserName(user);
-		}catch (Exception e) {
+		}
+		catch (Exception e) {
 			_log.error(
-				"Unable to update private message username for user " +
+				"Unable to update private messages user name for user " +
 					user.getUserId());
 		}
 	}

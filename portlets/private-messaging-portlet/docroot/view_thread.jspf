@@ -16,6 +16,8 @@
 
 <%
 UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
+
+boolean hasExistingRecipients = false;
 %>
 
 <portlet:renderURL var="backURL" windowState="<%= WindowState.NORMAL.toString() %>" />
@@ -36,8 +38,6 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 
 <%
 String subject = HtmlUtil.escape(PrivateMessagingUtil.getThreadSubject(mbThreadId));
-
-boolean hasExistingRecipients = false;
 %>
 
 <liferay-ui:header
@@ -142,6 +142,7 @@ boolean hasExistingRecipients = false;
 
 			if (curUser == null) {
 				curUser = UserLocalServiceUtil.createUser(mbMessage.getUserId());
+
 				curUser.setFirstName(mbMessage.getUserName());
 				curUser.setStatus(WorkflowConstants.STATUS_INACTIVE);
 			}
