@@ -1030,6 +1030,10 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		padding: 10px;
 	}
 
+	.portlet-body {
+		overflow-x: hidden;
+	}
+
 	.portlet-msg-success {
 		border-width: 0;
 		margin: -10px -10px 10px;
@@ -1068,6 +1072,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 	.entry {
 		position: relative;
+		width: 512px;
 	}
 
 	.entry-date, .entry-title h2 {
@@ -2084,6 +2089,12 @@ body.so-layout-fluid, body.so-layout-fluid-ad {
 
 	#content #so-context, .site-breadcrumbs {
 		border-right-width: 0;
+	}
+
+	.portlet-blogs {
+		.entry {
+			width: auto;
+		}
 	}
 }
 
