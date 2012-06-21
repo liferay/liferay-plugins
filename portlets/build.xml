@@ -80,6 +80,7 @@
 								</copy>
 							</then>
 						</if>
+
 						<copy overwrite="true" todir="${portlet.dir}">
 							<fileset
 								dir="${project.dir}/tools/portlet_${portlet.framework}_tmpl"
@@ -90,27 +91,32 @@
 
 				<if>
 					<or>
-						<equals arg1="${portlet.framework}" arg2="jsf" />
 						<equals arg1="${portlet.framework}" arg2="icefaces" />
+						<equals arg1="${portlet.framework}" arg2="jsf" />
 						<equals arg1="${portlet.framework}" arg2="liferay_faces_alloy" />
 						<equals arg1="${portlet.framework}" arg2="primefaces" />
 						<equals arg1="${portlet.framework}" arg2="richfaces" />
 					</or>
 					<then>
-						<echo file="${portlet.dir}/docroot/WEB-INF/liferay-plugin-package.properties" append="true">
-
-portal-dependency-jars=commons-beanutils.jar,commons-collections.jar,commons-digester.jar,commons-lang.jar</echo>
 						<if>
-							<not>
-								<equals arg1="${portlet.framework}" arg2="icefaces" />
-							</not>
+							<equals arg1="${portlet.framework}" arg2="icefaces" />
 							<then>
-								<echo file="${portlet.dir}/docroot/WEB-INF/liferay-plugin-package.properties" append="true">,commons-io.jar,commons-fileupload.jar</echo>
-							</then>
-						</if>
-						<echo file="${portlet.dir}/docroot/WEB-INF/liferay-plugin-package.properties" append="true">
+								<echo file="${portlet.dir}/docroot/WEB-INF/liferay-plugin-package.properties" append="true">
 
-speed-filters-enabled=false</echo>
+portal-dependency-jars=commons-beanutils.jar,commons-collections.jar,commons-digester.jar,commons-fileupload.jar,commons-io.jar,commons-lang.jar
+
+speed-filters-enabled=false
+								</echo>
+							</then>
+							<else>
+								<echo file="${portlet.dir}/docroot/WEB-INF/liferay-plugin-package.properties" append="true">
+
+portal-dependency-jars=commons-beanutils.jar,commons-collections.jar,commons-digester.jar,commons-lang.jar
+
+speed-filters-enabled=false
+								</echo>
+							</else>
+						</if>
 
 						<replace file="${portlet.dir}/docroot/WEB-INF/liferay-portlet.xml">
 							<replacetoken><![CDATA[</instanceable>]]></replacetoken>
