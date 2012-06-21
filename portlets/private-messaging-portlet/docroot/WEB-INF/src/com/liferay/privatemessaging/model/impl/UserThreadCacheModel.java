@@ -15,6 +15,7 @@
 package com.liferay.privatemessaging.model.impl;
 
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 
 import com.liferay.privatemessaging.model.UserThread;
@@ -34,7 +35,7 @@ public class UserThreadCacheModel implements CacheModel<UserThread>,
 	Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{userThreadId=");
 		sb.append(userThreadId);
@@ -42,6 +43,8 @@ public class UserThreadCacheModel implements CacheModel<UserThread>,
 		sb.append(companyId);
 		sb.append(", userId=");
 		sb.append(userId);
+		sb.append(", userName=");
+		sb.append(userName);
 		sb.append(", createDate=");
 		sb.append(createDate);
 		sb.append(", modifiedDate=");
@@ -65,6 +68,13 @@ public class UserThreadCacheModel implements CacheModel<UserThread>,
 		userThreadImpl.setUserThreadId(userThreadId);
 		userThreadImpl.setCompanyId(companyId);
 		userThreadImpl.setUserId(userId);
+
+		if (userName == null) {
+			userThreadImpl.setUserName(StringPool.BLANK);
+		}
+		else {
+			userThreadImpl.setUserName(userName);
+		}
 
 		if (createDate == Long.MIN_VALUE) {
 			userThreadImpl.setCreateDate(null);
@@ -93,6 +103,7 @@ public class UserThreadCacheModel implements CacheModel<UserThread>,
 	public long userThreadId;
 	public long companyId;
 	public long userId;
+	public String userName;
 	public long createDate;
 	public long modifiedDate;
 	public long mbThreadId;

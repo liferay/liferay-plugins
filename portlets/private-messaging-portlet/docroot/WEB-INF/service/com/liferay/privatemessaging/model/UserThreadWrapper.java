@@ -48,6 +48,7 @@ public class UserThreadWrapper implements UserThread, ModelWrapper<UserThread> {
 		attributes.put("userThreadId", getUserThreadId());
 		attributes.put("companyId", getCompanyId());
 		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("mbThreadId", getMbThreadId());
@@ -75,6 +76,12 @@ public class UserThreadWrapper implements UserThread, ModelWrapper<UserThread> {
 
 		if (userId != null) {
 			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
 		}
 
 		Date createDate = (Date)attributes.get("createDate");
@@ -204,6 +211,24 @@ public class UserThreadWrapper implements UserThread, ModelWrapper<UserThread> {
 	*/
 	public void setUserUuid(java.lang.String userUuid) {
 		_userThread.setUserUuid(userUuid);
+	}
+
+	/**
+	* Returns the user name of this user thread.
+	*
+	* @return the user name of this user thread
+	*/
+	public java.lang.String getUserName() {
+		return _userThread.getUserName();
+	}
+
+	/**
+	* Sets the user name of this user thread.
+	*
+	* @param userName the user name of this user thread
+	*/
+	public void setUserName(java.lang.String userName) {
+		_userThread.setUserName(userName);
 	}
 
 	/**

@@ -533,6 +533,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		userThreadImpl.setUserThreadId(userThread.getUserThreadId());
 		userThreadImpl.setCompanyId(userThread.getCompanyId());
 		userThreadImpl.setUserId(userThread.getUserId());
+		userThreadImpl.setUserName(userThread.getUserName());
 		userThreadImpl.setCreateDate(userThread.getCreateDate());
 		userThreadImpl.setModifiedDate(userThread.getModifiedDate());
 		userThreadImpl.setMbThreadId(userThread.getMbThreadId());

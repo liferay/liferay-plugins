@@ -303,6 +303,12 @@ public class UserThreadLocalServiceWrapper implements UserThreadLocalService,
 		_userThreadLocalService.deleteUser(userId);
 	}
 
+	public void updateUserName(com.liferay.portal.model.User user)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_userThreadLocalService.updateUserName(user);
+	}
+
 	public void deleteUserThread(long userId, long mbThreadId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
