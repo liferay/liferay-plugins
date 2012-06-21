@@ -33,6 +33,7 @@ public class UserThreadSoap implements Serializable {
 		soapModel.setUserThreadId(model.getUserThreadId());
 		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setUserId(model.getUserId());
+		soapModel.setUserName(model.getUserName());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
 		soapModel.setMbThreadId(model.getMbThreadId());
@@ -115,6 +116,14 @@ public class UserThreadSoap implements Serializable {
 		_userId = userId;
 	}
 
+	public String getUserName() {
+		return _userName;
+	}
+
+	public void setUserName(String userName) {
+		_userName = userName;
+	}
+
 	public Date getCreateDate() {
 		return _createDate;
 	}
@@ -174,6 +183,7 @@ public class UserThreadSoap implements Serializable {
 	private long _userThreadId;
 	private long _companyId;
 	private long _userId;
+	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _mbThreadId;

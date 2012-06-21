@@ -14,7 +14,9 @@
 
 package com.liferay.privatemessaging.model;
 
+import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.model.AuditedModel;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.ServiceContext;
@@ -38,7 +40,7 @@ import java.util.Date;
  * @see com.liferay.privatemessaging.model.impl.UserThreadModelImpl
  * @generated
  */
-public interface UserThreadModel extends BaseModel<UserThread> {
+public interface UserThreadModel extends AuditedModel, BaseModel<UserThread> {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -115,6 +117,21 @@ public interface UserThreadModel extends BaseModel<UserThread> {
 	 * @param userUuid the user uuid of this user thread
 	 */
 	public void setUserUuid(String userUuid);
+
+	/**
+	 * Returns the user name of this user thread.
+	 *
+	 * @return the user name of this user thread
+	 */
+	@AutoEscape
+	public String getUserName();
+
+	/**
+	 * Sets the user name of this user thread.
+	 *
+	 * @param userName the user name of this user thread
+	 */
+	public void setUserName(String userName);
 
 	/**
 	 * Returns the create date of this user thread.

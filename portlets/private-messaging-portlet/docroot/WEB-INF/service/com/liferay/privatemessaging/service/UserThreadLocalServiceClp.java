@@ -177,6 +177,10 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 		_methodName32 = "markUserThreadAsUnread";
 
 		_methodParameterTypes32 = new String[] { "long", "long" };
+
+		_methodName33 = "updateUserName";
+
+		_methodParameterTypes33 = new String[] { "com.liferay.portal.model.User" };
 	}
 
 	public com.liferay.privatemessaging.model.UserThread addUserThread(
@@ -1146,6 +1150,35 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 		}
 	}
 
+	public void updateUserName(com.liferay.portal.model.User user)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName33,
+				_methodParameterTypes33,
+				new Object[] { ClpSerializer.translateInput(user) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -1211,4 +1244,6 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 	private String[] _methodParameterTypes31;
 	private String _methodName32;
 	private String[] _methodParameterTypes32;
+	private String _methodName33;
+	private String[] _methodParameterTypes33;
 }

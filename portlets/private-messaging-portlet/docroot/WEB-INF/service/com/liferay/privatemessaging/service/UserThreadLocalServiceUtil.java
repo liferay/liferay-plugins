@@ -370,6 +370,12 @@ public class UserThreadLocalServiceUtil {
 		getService().markUserThreadAsUnread(userId, mbThreadId);
 	}
 
+	public static void updateUserName(com.liferay.portal.model.User user)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().updateUserName(user);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

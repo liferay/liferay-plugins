@@ -70,6 +70,7 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		attributes.put("userThreadId", getUserThreadId());
 		attributes.put("companyId", getCompanyId());
 		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("mbThreadId", getMbThreadId());
@@ -97,6 +98,12 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 
 		if (userId != null) {
 			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
 		}
 
 		Date createDate = (Date)attributes.get("createDate");
@@ -166,6 +173,14 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
+	}
+
+	public String getUserName() {
+		return _userName;
+	}
+
+	public void setUserName(String userName) {
+		_userName = userName;
 	}
 
 	public Date getCreateDate() {
@@ -254,6 +269,7 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		clone.setUserThreadId(getUserThreadId());
 		clone.setCompanyId(getCompanyId());
 		clone.setUserId(getUserId());
+		clone.setUserName(getUserName());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
 		clone.setMbThreadId(getMbThreadId());
@@ -311,7 +327,7 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{userThreadId=");
 		sb.append(getUserThreadId());
@@ -319,6 +335,8 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		sb.append(getCompanyId());
 		sb.append(", userId=");
 		sb.append(getUserId());
+		sb.append(", userName=");
+		sb.append(getUserName());
 		sb.append(", createDate=");
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
@@ -337,7 +355,7 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(34);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.privatemessaging.model.UserThread");
@@ -354,6 +372,10 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		sb.append(
 			"<column><column-name>userId</column-name><column-value><![CDATA[");
 		sb.append(getUserId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>userName</column-name><column-value><![CDATA[");
+		sb.append(getUserName());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>createDate</column-name><column-value><![CDATA[");
@@ -389,6 +411,7 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 	private long _companyId;
 	private long _userId;
 	private String _userUuid;
+	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _mbThreadId;

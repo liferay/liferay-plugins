@@ -364,6 +364,12 @@ public class UserThreadLocalServiceWrapper implements UserThreadLocalService,
 		_userThreadLocalService.markUserThreadAsUnread(userId, mbThreadId);
 	}
 
+	public void updateUserName(com.liferay.portal.model.User user)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_userThreadLocalService.updateUserName(user);
+	}
+
 	/**
 	 * @deprecated Renamed to {@link #getWrappedService}
 	 */
