@@ -97,20 +97,20 @@
 						User curUser = users.get(i);
 					%>
 
-							<c:choose>
-								<c:when test="<%= curUser.isActive() %>">
-									<span class="author-sender"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
-								</c:when>
-								<c:otherwise>
-									<liferay-ui:icon-help message="deleted-user">
-										<span class="author-sender line-through"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
-									</liferay-ui:icon-help>
-								</c:otherwise>
-							</c:choose>
+						<c:choose>
+							<c:when test="<%= curUser.isActive() %>">
+								<span class="author-sender"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
+							</c:when>
+							<c:otherwise>
+								<liferay-ui:icon-help message="deleted-user">
+									<span class="author-sender line-through"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
+								</liferay-ui:icon-help>
+							</c:otherwise>
+						</c:choose>
 
-							<c:if test="<%= i != users.size() - 1 %>">
-								,
-							</c:if>
+						<c:if test="<%= i != users.size() - 1 %>">
+							,
+						</c:if>
 
 					<%
 					}

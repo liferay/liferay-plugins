@@ -233,6 +233,7 @@ public class PrivateMessagingUtil {
 
 			if (user == null) {
 				user = UserLocalServiceUtil.createUser(mbMessage.getUserId());
+
 				user.setFirstName(mbMessage.getUserName());
 				user.setStatus(WorkflowConstants.STATUS_INACTIVE);
 			}
@@ -256,6 +257,7 @@ public class PrivateMessagingUtil {
 
 			if (user == null) {
 				user = UserLocalServiceUtil.createUser(userThread.getUserId());
+
 				user.setFirstName(userThread.getUserName());
 				user.setStatus(WorkflowConstants.STATUS_INACTIVE);
 			}
