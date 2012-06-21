@@ -3533,7 +3533,7 @@
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<releng>
-			<bundle>false</bundle>
+			<bundle>true</bundle>
 			<category></category>
 			<compatibility>6.1.1</compatibility>
 			<demo-url></demo-url>
