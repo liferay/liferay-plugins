@@ -4,6 +4,7 @@
 #set ($logo = "logo")
 
 #set ($user_profile_url = $community_default_public_url)
+#set ($user_dashboard_url = $site_default_url)
 #set ($user_dashboard_portlet_url = $site_default_url)
 #set ($colorSchemeId = $theme_display.getColorSchemeId())
 
