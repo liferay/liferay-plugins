@@ -93,15 +93,25 @@
 						users.add(user);
 					}
 
+					User curUser = null;
 					for (int i = 0; i < users.size(); i++) {
-						User curUser = users.get(i);
+						curUser = users.get(i);
 					%>
 
-						<span class="author-sender"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
+							<c:choose>
+								<c:when test="<%= curUser.isActive() %>">
+									<span class="author-sender"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
+								</c:when>
+								<c:otherwise>
+									<liferay-ui:icon-help message="deleted-user">
+										<span class="author-sender line-through"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
+									</liferay-ui:icon-help>
+								</c:otherwise>
+							</c:choose>
 
-						<c:if test="<%= i != users.size() - 1 %>">
-							,
-						</c:if>
+							<c:if test="<%= i != users.size() - 1 %>">
+								,
+							</c:if>
 
 					<%
 					}

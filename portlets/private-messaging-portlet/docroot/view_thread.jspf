@@ -36,6 +36,8 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 
 <%
 String subject = HtmlUtil.escape(PrivateMessagingUtil.getThreadSubject(mbThreadId));
+
+boolean hasExistingRecipients = false;
 %>
 
 <liferay-ui:header
@@ -52,10 +54,14 @@ String subject = HtmlUtil.escape(PrivateMessagingUtil.getThreadSubject(mbThreadI
 
 	for (int i = 0; i < users.size(); i++) {
 		User curUser = users.get(i);
+
+		if (!hasExistingRecipients) {
+			hasExistingRecipients = curUser.isActive();
+		}
 	%>
 
 		<c:choose>
-			<c:when test="<%= LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED %>">
+			<c:when test="<%= LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED && curUser.isActive() %>">
 				<liferay-portlet:actionURL portletName="<%= PortletKeys.MY_SITES %>" var="publicPagesURL">
 					<portlet:param name="struts_action" value="/my_sites/view" />
 					<portlet:param name="groupId" value="<%= String.valueOf(curUser.getGroup().getGroupId()) %>" />
@@ -65,7 +71,16 @@ String subject = HtmlUtil.escape(PrivateMessagingUtil.getThreadSubject(mbThreadI
 				<a class="profile-link" href="<%= publicPagesURL %>"><%= curUser.getFullName() %></a>
 			</c:when>
 			<c:otherwise>
-				<span class="profile-link"><%= curUser.getFullName() %></span>
+				<c:choose>
+					<c:when test="<%= curUser.isActive() %>">
+						<span class="profile-link"><%= curUser.getFullName() %></span>
+					</c:when>
+					<c:otherwise>
+						<liferay-ui:icon-help message="deleted-user">
+							<span class="profile-link line-through"><%= curUser.getFullName() %></span>
+						</liferay-ui:icon-help>
+					</c:otherwise>
+				</c:choose>
 			</c:otherwise>
 		</c:choose>
 
@@ -77,6 +92,8 @@ String subject = HtmlUtil.escape(PrivateMessagingUtil.getThreadSubject(mbThreadI
 	}
 	%>
 
+	<liferay-ui:message key="and" />
+
 	<c:choose>
 		<c:when test="<%= LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED %>">
 			<liferay-portlet:actionURL portletName="<%= PortletKeys.MY_SITES %>" var="selfPublicPagesURL">
@@ -85,10 +102,10 @@ String subject = HtmlUtil.escape(PrivateMessagingUtil.getThreadSubject(mbThreadI
 				<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
 			</liferay-portlet:actionURL>
 
-			<liferay-ui:message key="and" /> <a class="profile-link" href="<%= selfPublicPagesURL %>"><liferay-ui:message key="you" /></a>
+			<a class="profile-link" href="<%= selfPublicPagesURL %>"><liferay-ui:message key="you" /></a>
 		</c:when>
 		<c:otherwise>
-			<liferay-ui:message key="and" /> <span class="profile-link"><liferay-ui:message key="you" /></span>
+			<span class="profile-link"><liferay-ui:message key="you" /></span>
 		</c:otherwise>
 	</c:choose>
 </aui:layout>
@@ -121,12 +138,18 @@ String subject = HtmlUtil.escape(PrivateMessagingUtil.getThreadSubject(mbThreadI
 			/>
 
 			<%
-			User curUser = UserLocalServiceUtil.getUser(mbMessage.getUserId());
+			User curUser = UserLocalServiceUtil.fetchUser(mbMessage.getUserId());
+
+			if (curUser == null) {
+				curUser = UserLocalServiceUtil.createUser(mbMessage.getUserId());
+				curUser.setFirstName(mbMessage.getUserName());
+				curUser.setStatus(WorkflowConstants.STATUS_INACTIVE);
+			}
 			%>
 
 			<div class="message">
 				<c:choose>
-					<c:when test="<%= LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED %>">
+					<c:when test="<%= LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED && curUser.isActive() %>">
 						<liferay-portlet:actionURL portletName="<%= PortletKeys.MY_SITES %>" var="publicPagesURL">
 							<portlet:param name="struts_action" value="/my_sites/view" />
 							<portlet:param name="groupId" value="<%= String.valueOf(curUser.getGroup().getGroupId()) %>" />
@@ -138,9 +161,20 @@ String subject = HtmlUtil.escape(PrivateMessagingUtil.getThreadSubject(mbThreadI
 						</span>
 					</c:when>
 					<c:otherwise>
-						<span class="name">
-							<span class="profile-link"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
-						</span>
+						<c:choose>
+							<c:when test="<%= curUser.isActive() %>">
+								<span class="name">
+									<span class="profile-link"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
+								</span>
+							</c:when>
+							<c:otherwise>
+								<span class="name">
+									<liferay-ui:icon-help message="deleted-user">
+										<span class="profile-link line-through"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
+									</liferay-ui:icon-help>
+								</span>
+							</c:otherwise>
+						</c:choose>
 					</c:otherwise>
 				</c:choose>
 
@@ -210,35 +244,37 @@ String subject = HtmlUtil.escape(PrivateMessagingUtil.getThreadSubject(mbThreadI
 	<liferay-ui:search-iterator />
 </liferay-ui:search-container>
 
-<aui:layout cssClass="message-body-container">
-	<liferay-portlet:renderURL var="backToThreadURL" windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="mbThreadId" value="<%= String.valueOf(mbThreadId) %>" /></liferay-portlet:renderURL>
+<c:if test="<%= hasExistingRecipients %>">
+	<aui:layout cssClass="message-body-container">
+		<liferay-portlet:renderURL var="backToThreadURL" windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="mbThreadId" value="<%= String.valueOf(mbThreadId) %>" /></liferay-portlet:renderURL>
 
-	<form enctype="multipart/form-data" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />sendPrivateMessage(); return false;">
-		<aui:input name="redirect" type="hidden" value="<%= backToThreadURL %>" />
-		<aui:input name="userId" type="hidden" value="<%= user.getUserId() %>" />
-		<aui:input name="mbThreadId" type="hidden" value="<%= mbThreadId %>" />
+		<form enctype="multipart/form-data" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />sendPrivateMessage(); return false;">
+			<aui:input name="redirect" type="hidden" value="<%= backToThreadURL %>" />
+			<aui:input name="userId" type="hidden" value="<%= user.getUserId() %>" />
+			<aui:input name="mbThreadId" type="hidden" value="<%= mbThreadId %>" />
 
-		<div>
-			<textarea class="message-body" name="<portlet:namespace />body"></textarea>
-		</div>
+			<div>
+				<textarea class="message-body" name="<portlet:namespace />body"></textarea>
+			</div>
 
-		<div>
-			<label class="aui-field-label">
-				<liferay-ui:message key="attachments" />
-			</label>
+			<div>
+				<label class="aui-field-label">
+					<liferay-ui:message key="attachments" />
+				</label>
 
-			<aui:input label="" name="msgFile1" type="file" />
+				<aui:input label="" name="msgFile1" type="file" />
 
-			<aui:input label="" name="msgFile2" type="file" />
+				<aui:input label="" name="msgFile2" type="file" />
 
-			<aui:input label="" name="msgFile3" type="file" />
-		</div>
+				<aui:input label="" name="msgFile3" type="file" />
+			</div>
 
-		<aui:button-row>
-			<aui:button name="send" type="submit" value="send" />
-		</aui:button-row>
-	</form>
-</aui:layout>
+			<aui:button-row>
+				<aui:button name="send" type="submit" value="send" />
+			</aui:button-row>
+		</form>
+	</aui:layout>
+</c:if>
 
 <aui:layout cssClass="controls">
 	<aui:button cssClass="back-button" href="<%= backURL %>" value="back-to-messages" />

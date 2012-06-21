@@ -134,6 +134,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 
 		userThread.setCompanyId(user.getCompanyId());
 		userThread.setUserId(userId);
+		userThread.setUserName(user.getFullName());
 		userThread.setCreateDate(new Date());
 		userThread.setModifiedDate(new Date());
 		userThread.setMbThreadId(mbThreadId);
@@ -154,6 +155,19 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 			MBThreadLocalServiceUtil.deleteMBThread(userThread.getMbThreadId());
 
 			userThreadPersistence.remove(userThread.getUserThreadId());
+		}
+	}
+
+	public void updateUserName(User user)
+		throws PortalException, SystemException {
+
+		List<UserThread> userThreads = userThreadPersistence.findByUserId(
+			user.getUserId());
+
+		for (UserThread userThread : userThreads) {
+			userThread.setUserName(user.getFullName());
+
+			userThreadPersistence.update(userThread, false);
 		}
 	}
 
