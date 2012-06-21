@@ -1091,7 +1091,9 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		for (String fileName : fileNames) {
 			InputStream inputStream = null;
 
-			String kbArticleFileName = kbArticle.getAttachmentsDirName().concat(
+			String attachmentsDirName = kbArticle.getAttachmentsDirName();
+
+			String fullFileName = attachmentsDirName.concat(
 				StringPool.SLASH).concat(FileUtil.getShortFileName(fileName));
 
 			try {
@@ -1110,7 +1112,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 				DLStoreUtil.addFile(
 					serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
-					kbArticleFileName, inputStream);
+					fullFileName, inputStream);
 			}
 			catch (DuplicateFileException dfe) {
 				_log.error("File already exists for " + dfe.getMessage());
@@ -1349,8 +1351,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		return new Date(System.currentTimeMillis() + _TICKET_EXPIRATION);
 	}
 
-	protected boolean isValidDirName(String s) throws SystemException {
-		String key = StringUtil.extractLast(s, StringPool.SLASH);
+	protected boolean isValidDirName(String dirName) throws SystemException {
+		String key = StringUtil.extractLast(dirName, StringPool.SLASH);
 
 		if (key == null) {
 			return false;
@@ -1362,7 +1364,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			return false;
 		}
 
-		if (!Validator.equals(ticket.getExtraInfo(), s)) {
+		if (!Validator.equals(ticket.getExtraInfo(), dirName)) {
 			return false;
 		}
 
