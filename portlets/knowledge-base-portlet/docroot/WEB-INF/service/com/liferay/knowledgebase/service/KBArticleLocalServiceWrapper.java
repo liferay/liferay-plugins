@@ -307,6 +307,40 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 			dirName, serviceContext);
 	}
 
+	public void addKBArticleResources(
+		com.liferay.knowledgebase.model.KBArticle kbArticle,
+		boolean addGroupPermissions, boolean addGuestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_kbArticleLocalService.addKBArticleResources(kbArticle,
+			addGroupPermissions, addGuestPermissions);
+	}
+
+	public void addKBArticleResources(
+		com.liferay.knowledgebase.model.KBArticle kbArticle,
+		java.lang.String[] groupPermissions, java.lang.String[] guestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_kbArticleLocalService.addKBArticleResources(kbArticle,
+			groupPermissions, guestPermissions);
+	}
+
+	public void addKBArticleResources(long kbArticleId,
+		boolean addGroupPermissions, boolean addGuestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_kbArticleLocalService.addKBArticleResources(kbArticleId,
+			addGroupPermissions, addGuestPermissions);
+	}
+
+	public void addKBArticleResources(long kbArticleId,
+		java.lang.String[] groupPermissions, java.lang.String[] guestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_kbArticleLocalService.addKBArticleResources(kbArticleId,
+			groupPermissions, guestPermissions);
+	}
+
 	public void checkAttachments()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
