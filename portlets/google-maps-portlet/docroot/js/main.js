@@ -2,8 +2,7 @@ AUI.add(
 	'liferay-google-maps',
 	function(A) {
 		var Lang = A.Lang;
-		var WIN = A.config.win;
-		
+
 		var KEY_DOWN_ENTER = 'down:13';
 
 		var MAP_TYPE_HYBRID = 2;
@@ -21,8 +20,10 @@ AUI.add(
 		var STR_KEY = 'key';
 
 		var STR_MAP_ADDRESS = 'mapAddress';
-		
+
 		var STR_TRAVELLING_MODE = 'travellingMode';
+
+		var WIN = A.config.win;
 
 		var GoogleMaps = A.Component.create(
 			{
@@ -44,12 +45,12 @@ AUI.add(
 						getter: '_getMapAddress',
 						validator: Lang.isString
 					},
-					
+
 					mapInputEnabled: {
 						validator: Lang.isBoolean,
 						value: false
 					},
-					
+
 					mapParams: {
 						validator: Lang.isObject,
 						value: {
@@ -57,15 +58,15 @@ AUI.add(
 							zoom: 8
 						}
 					},
-					
+
 					namespace: {
 						validator: Lang.isString
 					},
-					
+
 					portletId: {
 						validator: Lang.isNumber
 					},
-					
+
 					showDirectionSteps: {
 						validator: Lang.isBoolean,
 						value: false
@@ -73,7 +74,7 @@ AUI.add(
 				},
 
 				AUGMENTS: [Liferay.PortletBase],
-				
+
 				EXTENDS: A.Widget,
 
 				NAME: 'googlemaps',
@@ -230,12 +231,10 @@ AUI.add(
 					_getMapAddress: function(value) {
 						var instance = this;
 
-						if (!Lang.isValue(value)) {
-							if (instance.get('mapInputEnabled')) {
-								var mapAddressNode = instance.byId(STR_MAP_ADDRESS);
+						if (!Lang.isValue(value) && instance.get('mapInputEnabled')) {
+							var mapAddressNode = instance.byId(STR_MAP_ADDRESS);
 
-								value = mapAddressNode.val();
-							}
+							value = mapAddressNode.val();
 						}
 
 						return value;
@@ -244,7 +243,7 @@ AUI.add(
 					_initGoogleMaps: function() {
 						var instance = this;
 
-						Liferay.namespace('GOOGLE_MAPS')['onGoogleMapsLoaded'] = A.bind(instance._renderMap, instance);
+						Liferay.namespace('GOOGLE_MAPS').onGoogleMapsLoaded = A.bind(instance._renderMap, instance);
 
 						var googleMapsURL = instance.get('googleMapsURL');
 
@@ -260,13 +259,15 @@ AUI.add(
 					_onAddressGeocoded: function(results, status, address) {
 						var instance = this;
 
-						if (status == google.maps.GeocoderStatus.OK) {
+						var googleMaps = google.maps;
+
+						if (status == googleMaps.GeocoderStatus.OK) {
 							var location = results[0].geometry.location;
 
 							instance._map.setCenter(location);
 
 							if (!instance._marker) {
-								instance._marker = new google.maps.Marker(
+								instance._marker = new googleMaps.Marker(
 									{
 										map: instance._map,
 										position: location
@@ -280,7 +281,7 @@ AUI.add(
 							}
 
 							if (!instance._infoWindow) {
-								instance._infoWindow = new google.maps.InfoWindow(
+								instance._infoWindow = new googleMaps.InfoWindow(
 									{
 										content: address
 									}
@@ -386,19 +387,21 @@ AUI.add(
 							}
 						);
 
-						instance._map = new google.maps.Map(instance.byId('map').getDOMNode(), mapParams);
+						var googleMaps = google.maps;
 
-						instance._geocoder = new google.maps.Geocoder();
+						instance._map = new googleMaps.Map(instance.byId('map').getDOMNode(), mapParams);
 
-						instance._directionsService = new google.maps.DirectionsService();
+						instance._geocoder = new googleMaps.Geocoder();
 
-						instance._directionsDisplay = new google.maps.DirectionsRenderer(
+						instance._directionsService = new googleMaps.DirectionsService();
+
+						instance._directionsDisplay = new googleMaps.DirectionsRenderer(
 							{
 								map: instance._map
 							}
 						);
 
-						instance._stepDisplay = new google.maps.InfoWindow();
+						instance._stepDisplay = new googleMaps.InfoWindow();
 
 						if (instance.get(STR_DIRECTION_ADDRESS)) {
 							instance._getDirections();
@@ -419,8 +422,10 @@ AUI.add(
 
 						var stepsCount = myRoute.steps.length;
 
+						var googleMaps = google.maps;
+
 						for (var i = 0; i < stepsCount; i++) {
-							var marker = new google.maps.Marker(
+							var marker = new googleMaps.Marker(
 								{
 									position: myRoute.steps[i].start_point,
 									map: instance._map
@@ -445,6 +450,6 @@ AUI.add(
 	},
 	'',
 	{
-		requires: ['aui-dialog','aui-io-request','get','liferay-portlet-base']
+		requires: ['aui-dialog', 'aui-io-request', 'get', 'liferay-portlet-base']
 	}
 );

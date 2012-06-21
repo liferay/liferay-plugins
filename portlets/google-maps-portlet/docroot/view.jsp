@@ -89,9 +89,9 @@
 			new Liferay.Portlet.GoogleMaps(
 				{
 					directionsAddress: '<%= directionsAddress %>',
-					
+
 					<c:if test="<%= PortalUtil.isSecure(request) %>">
-					googleMapsURL: 'https://maps-api-ssl.google.com/maps/api/js',
+						googleMapsURL: 'https://maps-api-ssl.google.com/maps/api/js',
 					</c:if>
 
 					languageId: '<%= themeDisplay.getLanguageId() %>',
