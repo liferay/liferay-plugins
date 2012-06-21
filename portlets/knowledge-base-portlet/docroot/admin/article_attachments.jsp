@@ -31,7 +31,7 @@ String[] fileNames = kbArticle.getAttachmentsFileNames();
 
 			<div>
 				<liferay-portlet:resourceURL id="attachment" var="clipURL">
-					<portlet:param name="companyId" value="<%= String.valueOf(company.getCompanyId()) %>" />
+					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 					<portlet:param name="fileName" value="<%= fileName %>" />
 				</liferay-portlet:resourceURL>
 

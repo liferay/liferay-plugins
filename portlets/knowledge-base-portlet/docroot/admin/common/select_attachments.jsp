@@ -73,7 +73,7 @@ if (DLStoreUtil.hasDirectory(company.getCompanyId(), CompanyConstants.SYSTEM, di
 				stringKey="<%= true %>"
 			>
 				<liferay-portlet:resourceURL id="attachment" var="rowURL">
-					<portlet:param name="companyId" value="<%= String.valueOf(company.getCompanyId()) %>" />
+					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 					<portlet:param name="fileName" value="<%= fileName %>" />
 				</liferay-portlet:resourceURL>
 

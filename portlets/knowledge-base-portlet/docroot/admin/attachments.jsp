@@ -38,7 +38,7 @@ if (Validator.isNotNull(dirName) && DLStoreUtil.hasDirectory(company.getCompanyI
 
 		<div>
 			<liferay-portlet:resourceURL id="attachment" var="clipURL">
-				<portlet:param name="companyId" value="<%= String.valueOf(company.getCompanyId()) %>" />
+				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 				<portlet:param name="fileName" value="<%= fileName %>" />
 			</liferay-portlet:resourceURL>
 
