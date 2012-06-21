@@ -14,6 +14,7 @@
 
 package com.liferay.privatemessaging.hook.listeners;
 
+import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.model.BaseModelListener;
@@ -24,6 +25,23 @@ import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
  * @author Scott Lee
  */
 public class UserListener extends BaseModelListener<User> {
+
+	@Override
+	public void onAfterUpdate(User user) throws ModelListenerException {
+		try {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					"Updating private message username for user " +
+						user.getUserId());
+			}
+
+			UserThreadLocalServiceUtil.updateUserName(user);
+		}catch (Exception e) {
+			_log.error(
+				"Unable to update private message username for user " +
+					user.getUserId());
+		}
+	}
 
 	@Override
 	public void onBeforeRemove(User user) {

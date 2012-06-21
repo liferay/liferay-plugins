@@ -164,4 +164,8 @@
 	.messages .last-thread, .thread .message {
 		margin-left: 60px;
 	}
+
+	.line-through {
+		text-decoration: line-through;
+	}
 }
