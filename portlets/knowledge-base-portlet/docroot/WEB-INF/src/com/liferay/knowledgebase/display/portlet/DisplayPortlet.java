@@ -235,12 +235,17 @@ public class DisplayPortlet extends MVCPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
-		long companyId = ParamUtil.getLong(resourceRequest, "companyId");
+		long resourcePrimKey = ParamUtil.getLong(
+			resourceRequest, "resourcePrimKey");
+
 		String fileName = ParamUtil.getString(resourceRequest, "fileName");
+
+		KBArticle kbArticle = KBArticleServiceUtil.getLatestKBArticle(
+			resourcePrimKey, WorkflowConstants.STATUS_ANY);
 
 		String shortFileName = FileUtil.getShortFileName(fileName);
 		InputStream is = DLStoreUtil.getFileAsStream(
-			companyId, CompanyConstants.SYSTEM, fileName);
+			kbArticle.getCompanyId(), CompanyConstants.SYSTEM, fileName);
 		String contentType = MimeTypesUtil.getContentType(fileName);
 
 		PortletResponseUtil.sendFile(
