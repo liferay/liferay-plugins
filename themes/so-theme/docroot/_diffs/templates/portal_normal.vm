@@ -14,7 +14,29 @@
 
 $theme.include($body_top_include)
 
-#if (!$login_screen)
+#if ($login_screen)
+	<div id="loginPage">
+		<div class="login-holder">
+			<div class="company-title">
+				<a class="$logo_css_class" href="$site_default_url" title='#language("go-to") #language("dashboard")'>
+					<img alt="$logo_description" height="$site_logo_height" src="$site_logo" width="$site_logo_width" />
+				</a>
+			</div>
+
+			#set ($instance_id = "siGo")
+			#set ($login_portlet = "58")
+
+			$velocityPortletPreferences.setValue("displayStyle", "0")
+			$velocityPortletPreferences.setValue("portletSetupShowBorders", "false")
+
+			$theme.runtime($login_portlet, "", $velocityPortletPreferences.toString())
+
+			#set ($queryString = "param1=value1&param2=value2")
+
+			$velocityPortletPreferences.reset()
+		</div>
+	</div>
+#else
 	#if ($is_signed_in)
 		#dockbar()
 	#end
@@ -143,30 +165,6 @@ $theme.include($body_top_include)
 			</p>
 		</footer>
 	</div>
-#end
-
-#if ($login_screen)
-<div id="loginPage">
-	<div class="login-holder">
-		<div class="company-title">
-			<a class="$logo_css_class" href="$site_default_url" title='#language("go-to") #language("dashboard")'>
-				<img alt="$logo_description" height="$site_logo_height" src="$site_logo" width="$site_logo_width" />
-			</a>
-		</div>
-
-		#set ($instance_id = "siGo")
-		#set ($login_portlet = "58")
-
-		$velocityPortletPreferences.setValue("displayStyle", "0")
-		$velocityPortletPreferences.setValue("portletSetupShowBorders", "false")
-
-		$theme.runtime($login_portlet, "", $velocityPortletPreferences.toString())
-
-		#set ($queryString = "param1=value1&param2=value2")
-
-		$velocityPortletPreferences.reset()
-	</div>
-</div>
 #end
 
 $theme.include($body_bottom_include)
