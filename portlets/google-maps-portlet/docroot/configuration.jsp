@@ -24,13 +24,19 @@
 	<aui:fieldset>
 		<aui:input cssClass="lfr-input-text-container" name="preferences--mapAddress--" type="text" value="<%= mapAddress %>" />
 
-		<aui:input name="preferences--mapInputEnabled--" type="checkbox" value="<%= mapInputEnabled %>" />
+		<aui:input label="allow-map-address-to-be-edited" name="preferences--mapInputEnabled--" type="checkbox" value="<%= mapInputEnabled %>" />
 
 		<aui:input cssClass="lfr-input-text-container" name="preferences--directionsAddress--" type="text" value="<%= directionsAddress %>" />
 
-		<aui:input name="preferences--directionsInputEnabled--" type="checkbox" value="<%= directionsInputEnabled %>" />
+		<aui:input label="allow-directions-address-to-be-edited" name="preferences--directionsInputEnabled--" type="checkbox" value="<%= directionsInputEnabled %>" />
+
+		<aui:input name="preferences--showDirectionSteps--" type="checkbox" value="<%= showDirectionSteps %>" />
+
+		<aui:input name="preferences--enableChangingTravelingMode--" type="checkbox" value="<%= enableChangingTravelingMode %>" />
 
 		<aui:input name="preferences--height--" size="4" suffix="px" type="text" value="<%= height %>" />
+
+		<aui:input name="preferences--showGoogleMapsLink--" type="checkbox" value="<%= showGoogleMapsLink %>" />
 	</aui:fieldset>
 
 	<aui:button-row>

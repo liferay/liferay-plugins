@@ -20,10 +20,12 @@
 
 <%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
 <%@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
+<%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.portal.kernel.util.Constants" %><%@
+<%@ page import="com.liferay.googlemaps.portlet.GoogleMapsConstants" %><%@
+page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
@@ -35,6 +37,8 @@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
 
 <portlet:defineObjects />
 
+<liferay-theme:defineObjects />
+
 <%
 PortletPreferences preferences = renderRequest.getPreferences();
 
@@ -44,21 +48,18 @@ if (Validator.isNotNull(portletResource)) {
 	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-String mapAddress = preferences.getValue("mapAddress", StringPool.BLANK);
-boolean mapInputEnabled = GetterUtil.getBoolean(preferences.getValue("mapInputEnabled", StringPool.BLANK));
-String directionsAddress = preferences.getValue("directionsAddress", StringPool.BLANK);
-boolean directionsInputEnabled = GetterUtil.getBoolean(preferences.getValue("directionsInputEnabled", StringPool.BLANK));
-int height = GetterUtil.getInteger(preferences.getValue("height", StringPool.BLANK), 300);
+String directionsAddress = GetterUtil.getString(preferences.getValue("directionsAddress", null));
+boolean directionsInputEnabled = GetterUtil.getBoolean(preferences.getValue("directionsInputEnabled", null));
+String mapAddress = GetterUtil.getString(preferences.getValue("mapAddress", null));
+boolean mapInputEnabled = GetterUtil.getBoolean(preferences.getValue("mapInputEnabled", null));
 
-String sesMapAddress = (String)session.getAttribute(renderResponse.getNamespace() + "mapAddress");
+boolean enableChangingTravelingMode = false;
 
-if (sesMapAddress != null) {
-	mapAddress = sesMapAddress;
+if (directionsInputEnabled) {
+	enableChangingTravelingMode = GetterUtil.getBoolean(preferences.getValue("enableChangingTravelingMode", null));
 }
 
-String sesDirectionsAddress = (String)session.getAttribute(renderResponse.getNamespace() + "directionsAddress");
-
-if (sesDirectionsAddress != null) {
-	directionsAddress = sesDirectionsAddress;
-}
+int height = GetterUtil.getInteger(preferences.getValue("height", null), 400);
+boolean showDirectionSteps = GetterUtil.getBoolean(preferences.getValue("showDirectionSteps", null));
+boolean showGoogleMapsLink = GetterUtil.getBoolean(preferences.getValue("showGoogleMapsLink", null));
 %>
