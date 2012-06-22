@@ -60,10 +60,10 @@ public class UpgradeUser extends UpgradeProcess {
 				}
 
 				Role role = RoleLocalServiceUtil.getRole(
-						user.getCompanyId(), "Social Office User");
+					user.getCompanyId(), "Social Office User");
 
 				UserLocalServiceUtil.addRoleUsers(
-						role.getRoleId(), new long[]{user.getUserId()});
+					role.getRoleId(), new long[]{user.getUserId()});
 
 				updateUserGroup(group);
 				updateSocialRelations(user);
