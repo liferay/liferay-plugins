@@ -13,8 +13,8 @@
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/commons-logging.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/jstl-api.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/jstl-impl.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/portal/liferay-rhino.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/log4j.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/lib/portal/rhino.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/portal-service/portal-service.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/util-java/util-java.jar" />

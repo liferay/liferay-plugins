@@ -497,9 +497,10 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	* Removes the status where userId = &#63; from the database.
 	*
 	* @param userId the user ID
+	* @return the status that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByUserId(long userId)
+	public com.liferay.chat.model.Status removeByUserId(long userId)
 		throws com.liferay.chat.NoSuchStatusException,
 			com.liferay.portal.kernel.exception.SystemException;
 

@@ -587,12 +587,14 @@ public class MemberRequestUtil {
 	* Removes the member request where key = &#63; from the database.
 	*
 	* @param key the key
+	* @return the member request that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByKey(java.lang.String key)
+	public static com.liferay.so.model.MemberRequest removeByKey(
+		java.lang.String key)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchMemberRequestException {
-		getPersistence().removeByKey(key);
+		return getPersistence().removeByKey(key);
 	}
 
 	/**
@@ -624,13 +626,14 @@ public class MemberRequestUtil {
 	* @param groupId the group ID
 	* @param receiverUserId the receiver user ID
 	* @param status the status
+	* @return the member request that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByG_R_S(long groupId, long receiverUserId,
-		int status)
+	public static com.liferay.so.model.MemberRequest removeByG_R_S(
+		long groupId, long receiverUserId, int status)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.so.NoSuchMemberRequestException {
-		getPersistence().removeByG_R_S(groupId, receiverUserId, status);
+		return getPersistence().removeByG_R_S(groupId, receiverUserId, status);
 	}
 
 	/**

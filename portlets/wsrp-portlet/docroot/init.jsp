@@ -77,6 +77,4 @@ page import="oasis.names.tc.wsrp.v2.types.ServiceDescription" %>
 
 <%
 String currentURL = PortalUtil.getCurrentURL(request);
-
-String userToken = WSRPConsumerManager.getUserToken(renderRequest);
 %>

@@ -223,9 +223,11 @@ public interface FeedPersistence extends BasePersistence<Feed> {
 	*
 	* @param companyId the company ID
 	* @param twitterUserId the twitter user ID
+	* @return the feed that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByC_TWUI(long companyId, long twitterUserId)
+	public com.liferay.twitter.model.Feed removeByC_TWUI(long companyId,
+		long twitterUserId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.twitter.NoSuchFeedException;
 
@@ -234,9 +236,11 @@ public interface FeedPersistence extends BasePersistence<Feed> {
 	*
 	* @param companyId the company ID
 	* @param twitterScreenName the twitter screen name
+	* @return the feed that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByC_TSN(long companyId, java.lang.String twitterScreenName)
+	public com.liferay.twitter.model.Feed removeByC_TSN(long companyId,
+		java.lang.String twitterScreenName)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.twitter.NoSuchFeedException;
 

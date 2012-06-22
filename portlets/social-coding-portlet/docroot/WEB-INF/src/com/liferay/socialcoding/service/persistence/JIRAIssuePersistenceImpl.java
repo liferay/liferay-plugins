@@ -5253,13 +5253,14 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 * Removes the j i r a issue where key = &#63; from the database.
 	 *
 	 * @param key the key
+	 * @return the j i r a issue that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByKey(String key)
+	public JIRAIssue removeByKey(String key)
 		throws NoSuchJIRAIssueException, SystemException {
 		JIRAIssue jiraIssue = findByKey(key);
 
-		remove(jiraIssue);
+		return remove(jiraIssue);
 	}
 
 	/**

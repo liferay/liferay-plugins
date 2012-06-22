@@ -61,6 +61,7 @@ import java.util.regex.Pattern;
 
 import org.apache.solr.client.solrj.SolrQuery.ORDER;
 import org.apache.solr.client.solrj.SolrQuery;
+import org.apache.solr.client.solrj.SolrRequest.METHOD;
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.response.FacetField;
 import org.apache.solr.client.solrj.response.QueryResponse;
@@ -96,7 +97,8 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 			SolrQuery solrQuery = translateQuery(
 				companyId, query, sorts, start, end);
 
-			QueryResponse queryResponse = _solrServer.query(solrQuery);
+			QueryResponse queryResponse = _solrServer.query(
+				solrQuery, METHOD.POST);
 
 			boolean allResults = false;
 
@@ -176,7 +178,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 		solrQuery.setFacetLimit(-1);
 
-		QueryResponse queryResponse = _solrServer.query(solrQuery);
+		QueryResponse queryResponse = _solrServer.query(solrQuery, METHOD.POST);
 
 		boolean allResults = false;
 

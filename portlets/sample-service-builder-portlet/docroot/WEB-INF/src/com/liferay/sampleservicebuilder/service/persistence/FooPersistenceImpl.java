@@ -1562,13 +1562,14 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @return the foo that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByUUID_G(String uuid, long groupId)
+	public Foo removeByUUID_G(String uuid, long groupId)
 		throws NoSuchFooException, SystemException {
 		Foo foo = findByUUID_G(uuid, groupId);
 
-		remove(foo);
+		return remove(foo);
 	}
 
 	/**

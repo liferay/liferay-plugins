@@ -116,14 +116,14 @@ public class WSRPConsumerPortletLocalServiceClpInvoker {
 
 		_methodParameterTypes50 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName51 = "addWSRPConsumerPortlet";
 
 		_methodParameterTypes51 = new String[] {
 				"java.lang.String", "java.lang.String", "java.lang.String",
-				"java.lang.String", "com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName52 = "deleteWSRPConsumerPortlet";
@@ -178,7 +178,7 @@ public class WSRPConsumerPortletLocalServiceClpInvoker {
 
 		_methodParameterTypes63 = new String[] {
 				"long", "long", "long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "java.lang.String"
+				"java.lang.String"
 			};
 
 		_methodName64 = "initWSRPConsumerPortlets";
@@ -293,16 +293,14 @@ public class WSRPConsumerPortletLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
 			return WSRPConsumerPortletLocalServiceUtil.addWSRPConsumerPortlet(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
-				(java.lang.String)arguments[3],
-				(com.liferay.portal.service.ServiceContext)arguments[4]);
+				(com.liferay.portal.service.ServiceContext)arguments[3]);
 		}
 
 		if (_methodName51.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
 			return WSRPConsumerPortletLocalServiceUtil.addWSRPConsumerPortlet((java.lang.String)arguments[0],
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
-				(java.lang.String)arguments[3],
-				(com.liferay.portal.service.ServiceContext)arguments[4]);
+				(com.liferay.portal.service.ServiceContext)arguments[3]);
 		}
 
 		if (_methodName52.equals(name) &&
@@ -370,7 +368,7 @@ public class WSRPConsumerPortletLocalServiceClpInvoker {
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
 				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
-				(java.lang.String)arguments[5], (java.lang.String)arguments[6]);
+				(java.lang.String)arguments[5]);
 		}
 
 		if (_methodName64.equals(name) &&

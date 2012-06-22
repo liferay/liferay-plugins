@@ -541,12 +541,14 @@ public class AppUtil {
 	* Removes the app where remoteAppId = &#63; from the database.
 	*
 	* @param remoteAppId the remote app ID
+	* @return the app that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByRemoteAppId(long remoteAppId)
+	public static com.liferay.marketplace.model.App removeByRemoteAppId(
+		long remoteAppId)
 		throws com.liferay.marketplace.NoSuchAppException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByRemoteAppId(remoteAppId);
+		return getPersistence().removeByRemoteAppId(remoteAppId);
 	}
 
 	/**

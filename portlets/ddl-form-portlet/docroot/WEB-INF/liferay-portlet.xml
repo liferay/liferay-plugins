@@ -8,6 +8,7 @@
 		<configuration-action-class>com.liferay.portal.kernel.portlet.DefaultConfigurationAction</configuration-action-class>
 		<portlet-data-handler-class>com.liferay.ddlform.lar.DDLFormPortletDataHandlerImpl</portlet-data-handler-class>
 		<instanceable>true</instanceable>
+		<scopeable>true</scopeable>
 		<css-class-wrapper>ddl-form-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>

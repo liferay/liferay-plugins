@@ -1641,14 +1641,16 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 *
 	 * @param wsrpConsumerId the wsrp consumer ID
 	 * @param portletHandle the portlet handle
+	 * @return the w s r p consumer portlet that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByW_P(long wsrpConsumerId, String portletHandle)
+	public WSRPConsumerPortlet removeByW_P(long wsrpConsumerId,
+		String portletHandle)
 		throws NoSuchConsumerPortletException, SystemException {
 		WSRPConsumerPortlet wsrpConsumerPortlet = findByW_P(wsrpConsumerId,
 				portletHandle);
 
-		remove(wsrpConsumerPortlet);
+		return remove(wsrpConsumerPortlet);
 	}
 
 	/**

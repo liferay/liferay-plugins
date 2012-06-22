@@ -29,7 +29,6 @@
 page import="com.liferay.opensocial.GadgetPortletCategoryNamesException" %><%@
 page import="com.liferay.opensocial.GadgetURLException" %><%@
 page import="com.liferay.opensocial.NoSuchGadgetException" %><%@
-page import="com.liferay.opensocial.NoSuchOAuthConsumerException" %><%@
 page import="com.liferay.opensocial.model.Gadget" %><%@
 page import="com.liferay.opensocial.model.OAuthConsumer" %><%@
 page import="com.liferay.opensocial.model.OAuthConsumerConstants" %><%@
@@ -41,7 +40,6 @@ page import="com.liferay.opensocial.shindig.util.ShindigUtil" %><%@
 page import="com.liferay.opensocial.util.ActionKeys" %><%@
 page import="com.liferay.opensocial.util.PortletPropsValues" %><%@
 page import="com.liferay.opensocial.util.WebKeys" %><%@
-page import="com.liferay.portal.kernel.bean.BeanParamUtil" %><%@
 page import="com.liferay.portal.kernel.dao.search.ResultRow" %><%@
 page import="com.liferay.portal.kernel.json.JSONObject" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@

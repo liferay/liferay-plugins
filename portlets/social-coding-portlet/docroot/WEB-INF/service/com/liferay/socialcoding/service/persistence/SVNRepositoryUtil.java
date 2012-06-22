@@ -286,12 +286,14 @@ public class SVNRepositoryUtil {
 	* Removes the s v n repository where url = &#63; from the database.
 	*
 	* @param url the url
+	* @return the s v n repository that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByUrl(java.lang.String url)
+	public static com.liferay.socialcoding.model.SVNRepository removeByUrl(
+		java.lang.String url)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchSVNRepositoryException {
-		getPersistence().removeByUrl(url);
+		return getPersistence().removeByUrl(url);
 	}
 
 	/**

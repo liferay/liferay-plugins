@@ -3,8 +3,4 @@
 
 <project name="test-clp-portlet" basedir="." default="deploy">
 	<import file="../build-common-portlet.xml" />
-
-	<target name="compile">
-		<antcall target="build-common-plugin.compile" />
-	</target>
 </project>

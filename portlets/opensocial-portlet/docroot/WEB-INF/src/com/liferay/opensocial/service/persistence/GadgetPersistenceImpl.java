@@ -2229,13 +2229,14 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 *
 	 * @param companyId the company ID
 	 * @param url the url
+	 * @return the gadget that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByC_U(long companyId, String url)
+	public Gadget removeByC_U(long companyId, String url)
 		throws NoSuchGadgetException, SystemException {
 		Gadget gadget = findByC_U(companyId, url);
 
-		remove(gadget);
+		return remove(gadget);
 	}
 
 	/**

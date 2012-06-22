@@ -1355,15 +1355,16 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @param serviceName the service name
 	 * @param moduleId the module ID
 	 * @param tokenName the token name
+	 * @return the o auth token that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByU_G_S_M_T(long userId, String gadgetKey,
+	public OAuthToken removeByU_G_S_M_T(long userId, String gadgetKey,
 		String serviceName, long moduleId, String tokenName)
 		throws NoSuchOAuthTokenException, SystemException {
 		OAuthToken oAuthToken = findByU_G_S_M_T(userId, gadgetKey, serviceName,
 				moduleId, tokenName);
 
-		remove(oAuthToken);
+		return remove(oAuthToken);
 	}
 
 	/**

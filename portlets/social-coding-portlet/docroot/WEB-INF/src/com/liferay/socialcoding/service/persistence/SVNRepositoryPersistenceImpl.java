@@ -727,13 +727,14 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 * Removes the s v n repository where url = &#63; from the database.
 	 *
 	 * @param url the url
+	 * @return the s v n repository that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByUrl(String url)
+	public SVNRepository removeByUrl(String url)
 		throws NoSuchSVNRepositoryException, SystemException {
 		SVNRepository svnRepository = findByUrl(url);
 
-		remove(svnRepository);
+		return remove(svnRepository);
 	}
 
 	/**

@@ -1158,13 +1158,14 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 *
 	 * @param userId the user ID
 	 * @param emailAddress the email address
+	 * @return the entry that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByU_EA(long userId, String emailAddress)
+	public Entry removeByU_EA(long userId, String emailAddress)
 		throws NoSuchEntryException, SystemException {
 		Entry entry = findByU_EA(userId, emailAddress);
 
-		remove(entry);
+		return remove(entry);
 	}
 
 	/**

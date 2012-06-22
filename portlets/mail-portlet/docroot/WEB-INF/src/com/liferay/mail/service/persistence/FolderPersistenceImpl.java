@@ -1164,13 +1164,14 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 *
 	 * @param accountId the account ID
 	 * @param fullName the full name
+	 * @return the folder that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByA_F(long accountId, String fullName)
+	public Folder removeByA_F(long accountId, String fullName)
 		throws NoSuchFolderException, SystemException {
 		Folder folder = findByA_F(accountId, fullName);
 
-		remove(folder);
+		return remove(folder);
 	}
 
 	/**

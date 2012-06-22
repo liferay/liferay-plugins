@@ -116,7 +116,7 @@ public class WSRPConsumerLocalServiceClpInvoker {
 
 		_methodParameterTypes50 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "java.lang.String", "java.lang.String",
+				"java.lang.String", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -147,22 +147,22 @@ public class WSRPConsumerLocalServiceClpInvoker {
 		_methodParameterTypes56 = new String[] {
 				"long", "java.lang.String",
 				"com.liferay.portal.kernel.util.UnicodeProperties",
-				"java.lang.String", "java.lang.String"
+				"java.lang.String"
 			};
 
 		_methodName57 = "restartConsumer";
 
-		_methodParameterTypes57 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes57 = new String[] { "long" };
 
 		_methodName58 = "updateServiceDescription";
 
-		_methodParameterTypes58 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes58 = new String[] { "long" };
 
 		_methodName59 = "updateWSRPConsumer";
 
 		_methodParameterTypes59 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "java.lang.String", "java.lang.String"
+				"java.lang.String", "java.lang.String"
 			};
 	}
 
@@ -270,8 +270,7 @@ public class WSRPConsumerLocalServiceClpInvoker {
 			return WSRPConsumerLocalServiceUtil.addWSRPConsumer(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
-				(java.lang.String)arguments[5],
-				(com.liferay.portal.service.ServiceContext)arguments[6]);
+				(com.liferay.portal.service.ServiceContext)arguments[5]);
 		}
 
 		if (_methodName51.equals(name) &&
@@ -306,27 +305,24 @@ public class WSRPConsumerLocalServiceClpInvoker {
 			return WSRPConsumerLocalServiceUtil.registerWSRPConsumer(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				(com.liferay.portal.kernel.util.UnicodeProperties)arguments[2],
-				(java.lang.String)arguments[3], (java.lang.String)arguments[4]);
+				(java.lang.String)arguments[3]);
 		}
 
 		if (_methodName57.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
-			WSRPConsumerLocalServiceUtil.restartConsumer(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1]);
+			WSRPConsumerLocalServiceUtil.restartConsumer(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName58.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
-			WSRPConsumerLocalServiceUtil.updateServiceDescription(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1]);
+			WSRPConsumerLocalServiceUtil.updateServiceDescription(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName59.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
 			return WSRPConsumerLocalServiceUtil.updateWSRPConsumer(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
-				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
-				(java.lang.String)arguments[5]);
+				(java.lang.String)arguments[3], (java.lang.String)arguments[4]);
 		}
 
 		throw new UnsupportedOperationException();

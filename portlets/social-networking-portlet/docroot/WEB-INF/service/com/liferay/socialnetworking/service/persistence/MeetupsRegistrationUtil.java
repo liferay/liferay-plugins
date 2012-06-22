@@ -557,12 +557,14 @@ public class MeetupsRegistrationUtil {
 	*
 	* @param userId the user ID
 	* @param meetupsEntryId the meetups entry ID
+	* @return the meetups registration that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByU_ME(long userId, long meetupsEntryId)
+	public static com.liferay.socialnetworking.model.MeetupsRegistration removeByU_ME(
+		long userId, long meetupsEntryId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialnetworking.NoSuchMeetupsRegistrationException {
-		getPersistence().removeByU_ME(userId, meetupsEntryId);
+		return getPersistence().removeByU_ME(userId, meetupsEntryId);
 	}
 
 	/**

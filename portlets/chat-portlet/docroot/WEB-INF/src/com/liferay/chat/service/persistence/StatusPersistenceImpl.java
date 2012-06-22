@@ -1894,13 +1894,14 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 * Removes the status where userId = &#63; from the database.
 	 *
 	 * @param userId the user ID
+	 * @return the status that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByUserId(long userId)
+	public Status removeByUserId(long userId)
 		throws NoSuchStatusException, SystemException {
 		Status status = findByUserId(userId);
 
-		remove(status);
+		return remove(status);
 	}
 
 	/**

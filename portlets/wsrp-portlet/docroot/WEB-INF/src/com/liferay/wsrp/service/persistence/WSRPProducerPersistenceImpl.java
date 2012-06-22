@@ -1593,13 +1593,14 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @return the w s r p producer that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByUUID_G(String uuid, long groupId)
+	public WSRPProducer removeByUUID_G(String uuid, long groupId)
 		throws NoSuchProducerException, SystemException {
 		WSRPProducer wsrpProducer = findByUUID_G(uuid, groupId);
 
-		remove(wsrpProducer);
+		return remove(wsrpProducer);
 	}
 
 	/**

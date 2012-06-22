@@ -536,9 +536,11 @@ public interface KaleoTimerInstanceTokenPersistence extends BasePersistence<Kale
 	*
 	* @param kaleoInstanceTokenId the kaleo instance token ID
 	* @param kaleoTimerId the kaleo timer ID
+	* @return the kaleo timer instance token that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByKITI_KTI(long kaleoInstanceTokenId, long kaleoTimerId)
+	public com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken removeByKITI_KTI(
+		long kaleoInstanceTokenId, long kaleoTimerId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException;
 

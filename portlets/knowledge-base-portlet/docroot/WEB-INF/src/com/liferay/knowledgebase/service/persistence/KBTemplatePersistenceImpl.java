@@ -1902,13 +1902,14 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @return the k b template that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByUUID_G(String uuid, long groupId)
+	public KBTemplate removeByUUID_G(String uuid, long groupId)
 		throws NoSuchTemplateException, SystemException {
 		KBTemplate kbTemplate = findByUUID_G(uuid, groupId);
 
-		remove(kbTemplate);
+		return remove(kbTemplate);
 	}
 
 	/**

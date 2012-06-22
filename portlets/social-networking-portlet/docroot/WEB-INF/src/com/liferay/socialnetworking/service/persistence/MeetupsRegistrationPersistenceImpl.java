@@ -1604,14 +1604,15 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 *
 	 * @param userId the user ID
 	 * @param meetupsEntryId the meetups entry ID
+	 * @return the meetups registration that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByU_ME(long userId, long meetupsEntryId)
+	public MeetupsRegistration removeByU_ME(long userId, long meetupsEntryId)
 		throws NoSuchMeetupsRegistrationException, SystemException {
 		MeetupsRegistration meetupsRegistration = findByU_ME(userId,
 				meetupsEntryId);
 
-		remove(meetupsRegistration);
+		return remove(meetupsRegistration);
 	}
 
 	/**

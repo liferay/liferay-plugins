@@ -257,6 +257,71 @@
 		</java>
 	</target>
 
+	<target name="build-wsdl">
+		<for param="wsdl.full.path">
+			<path>
+				<fileset dir="." includes="docroot/WEB-INF/wsdl/*.wsdl" />
+			</path>
+			<sequential>
+				<tstamp>
+					<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
+				</tstamp>
+
+				<mkdir dir="${tstamp.value}" />
+
+				<taskdef classpathref="portal.classpath" resource="axis-tasks.properties" />
+
+				<axis-wsdl2java
+					output="${tstamp.value}"
+					url="@{wsdl.full.path}"
+				/>
+
+				<path id="plugin-lib.classpath">
+					<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+					<pathelement location="docroot/WEB-INF/classes" />
+				</path>
+
+				<antcall target="compile-java">
+					<param name="javac.classpathref" value="plugin.classpath" />
+					<param name="javac.destdir" value="${tstamp.value}" />
+					<param name="javac.srcdir" value="${tstamp.value}" />
+					<reference refid="plugin-lib.classpath" torefid="plugin-lib.classpath" />
+				</antcall>
+
+				<antelope:stringutil string="@{wsdl.full.path}" property="wsdl.name.beginindex">
+					<antelope:lastindexof string="${file.separator}" />
+				</antelope:stringutil>
+
+				<antelope:math
+					datatype="int"
+					operand1="${wsdl.name.beginindex}"
+					operand2="1"
+					operation="+"
+					result="wsdl.name.beginindex"
+				/>
+
+				<antelope:stringutil string="@{wsdl.full.path}" property="wsdl.file">
+					<antelope:substring beginindex="${wsdl.name.beginindex}" />
+				</antelope:stringutil>
+
+				<antelope:stringutil string="@{wsdl.full.path}" property="wsdl.name.endindex">
+					<antelope:lastindexof string="." />
+				</antelope:stringutil>
+
+				<antelope:stringutil string="@{wsdl.full.path}" property="wsdl.name">
+					<antelope:substring beginindex="${wsdl.name.beginindex}" endindex="${wsdl.name.endindex}" />
+				</antelope:stringutil>
+
+				<jar
+					basedir="${tstamp.value}"
+					jarfile="docroot/WEB-INF/lib/${wsdl.name}-ws.jar"
+				/>
+
+				<delete dir="${tstamp.value}" />
+			</sequential>
+		</for>
+	</target>
+
 	<target name="clean" description="clean">
 		<delete dir="docroot/WEB-INF/classes" />
 
@@ -456,37 +521,60 @@ Please find a solution that does not require portal-impl.jar.
 	</target>
 
 	<target name="compile-test">
-		<mkdir dir="test-classes" />
-		<mkdir dir="test-results" />
+		<antcall target="compile-test-integration" inheritall="false" />
+		<antcall target="compile-test-unit" inheritall="false" />
+	</target>
 
-		<copy todir="test-classes">
-			<fileset dir="test" includes="**/*.png,**/*.properties,**/*.xml" />
-		</copy>
-
+	<target name="compile-test-cmd">
 		<if>
-			<available file="tmp" />
+			<available file="test/${test.type}" type="dir" />
 			<then>
-				<path id="plugin-lib.classpath">
-					<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
-					<fileset dir="tmp/WEB-INF/lib" includes="*.jar" />
-					<pathelement location="docroot/WEB-INF/classes" />
-					<pathelement location="tmp/WEB-INF/classes" />
-				</path>
-			</then>
-			<else>
-				<path id="plugin-lib.classpath">
-					<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
-					<pathelement location="docroot/WEB-INF/classes" />
-				</path>
-			</else>
-		</if>
+				<mkdir dir="test-classes/${test.type}" />
+				<mkdir dir="test-results/${test.type}" />
 
-		<antcall target="compile-java">
-			<param name="javac.classpathref" value="test.classpath" />
-			<param name="javac.destdir" value="test-classes" />
-			<param name="javac.srcdir" value="test" />
-			<reference refid="plugin-lib.classpath" torefid="plugin-lib.classpath" />
-		</antcall>
+				<copy todir="test-classes/${test.type}">
+					<fileset dir="test" includes="*.properties" />
+					<fileset dir="test/${test.type}" includes="**/*.png,**/*.properties,**/*.xml" />
+				</copy>
+
+				<if>
+					<available file="tmp" />
+					<then>
+						<path id="plugin-lib.classpath">
+							<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+							<fileset dir="tmp/WEB-INF/lib" includes="*.jar" />
+							<pathelement location="docroot/WEB-INF/classes" />
+							<pathelement location="tmp/WEB-INF/classes" />
+						</path>
+					</then>
+					<else>
+						<path id="plugin-lib.classpath">
+							<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+							<pathelement location="docroot/WEB-INF/classes" />
+						</path>
+					</else>
+				</if>
+
+				<antcall target="compile-java">
+					<param name="javac.classpathref" value="test.classpath" />
+					<param name="javac.destdir" value="test-classes/${test.type}" />
+					<param name="javac.srcdir" value="test/${test.type}" />
+					<reference refid="plugin-lib.classpath" torefid="plugin-lib.classpath" />
+				</antcall>
+			</then>
+		</if>
+	</target>
+
+	<target name="compile-test-integration">
+		<ant target="compile-test-cmd">
+			<property name="test.type" value="integration" />
+		</ant>
+	</target>
+
+	<target name="compile-test-unit">
+		<ant target="compile-test-cmd">
+			<property name="test.type" value="unit" />
+		</ant>
 	</target>
 
 	<target name="deploy" depends="war">
@@ -651,6 +739,29 @@ Please find a solution that does not require portal-impl.jar.
 		</if>
 	</target>
 
+	<target name="format-wsdl">
+		<for param="wsdl.full.path">
+			<path>
+				<fileset
+					dir="."
+					includes="docroot/WEB-INF/wsdl/*.wsdl"
+				/>
+			</path>
+			<sequential>
+				<java
+					classname="com.liferay.portal.tools.XMLFormatter"
+					classpathref="portal.classpath"
+					fork="true"
+					newenvironment="true"
+				>
+					<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+					<jvmarg value="-Dxml.formatter.file=@{wsdl.full.path}" />
+					<jvmarg value="-Dxml.formatter.strip.comments=true" />
+				</java>
+			</sequential>
+		</for>
+	</target>
+
 	<target name="merge" if="original.war.file">
 		<if>
 			<not>
@@ -709,16 +820,6 @@ Please find a solution that does not require portal-impl.jar.
 		<antcall target="compile" />
 		<antcall target="compile-test" />
 
-		<fileset dir="test-classes" id="test.suite.classes">
-			<include name="**/*TestSuite.class" />
-		</fileset>
-
-		<pathconvert
-			property="test.suite.classes.available"
-			refid="test.suite.classes"
-			setonempty="false"
-		/>
-
 		<if>
 			<available file="tmp" />
 			<then>
@@ -737,63 +838,89 @@ Please find a solution that does not require portal-impl.jar.
 			</else>
 		</if>
 
+		<antcall target="test-integration" inheritrefs="true" />
+		<antcall target="test-unit" inheritrefs="true" />
+	</target>
+
+	<target name="test-class" depends="compile,compile-test">
 		<if>
-			<not>
-				<isset property="test.suite.classes.available" />
-			</not>
+			<available file="test/integration" type="dir" />
 			<then>
-				<junit dir="${project.dir}" fork="on" forkmode="once" haltonfailure="${junit.halt.on.failure}" printsummary="on">
+				<resourcecount property="test.integration.count">
+					<fileset dir="test-classes/integration" includes="**/${class}.class" />
+				</resourcecount>
+			</then>
+		</if>
+
+		<if>
+			<available file="test/unit" type="dir" />
+			<then>
+				<resourcecount property="test.unit.count">
+					<fileset dir="test-classes/unit" includes="**/${class}.class" />
+				</resourcecount>
+			</then>
+		</if>
+
+		<if>
+			<equals arg1="${test.integration.count}" arg2="1" />
+			<then>
+				<var name="test.type" value="integration" />
+			</then>
+			<elseif>
+				<equals arg1="${test.unit.count}" arg2="1" />
+				<then>
+					<var name="test.type" value="unit" />
+				</then>
+			</elseif>
+			<else>
+				<var name="test.type" value="" />
+			</else>
+		</if>
+
+		<ant target="test-cmd">
+			<property name="test.type" value="${test.type}" />
+		</ant>
+	</target>
+
+	<target name="test-cmd">
+		<if>
+			<available file="test/${test.type}" type="dir" />
+			<then>
+				<junit dir="${project.dir}" fork="on" forkmode="once" outputtoformatters="false" printsummary="on" showoutput="true">
 					<sysproperty key="net.sourceforge.cobertura.datafile" file="test-coverage/cobertura.ser" />
 					<jvmarg line="${junit.debug.jpda}" />
 					<jvmarg value="-Xmx1024m" />
 					<jvmarg value="-XX:MaxPermSize=256m" />
-					<jvmarg value="-Duser.timezone=GMT" />
 					<jvmarg value="-Dexternal-properties=${test.properties}" />
+					<jvmarg value="-Dfile.encoding=UTF-8" />
+					<jvmarg value="-Djava.net.preferIPv4Stack=true" />
+					<jvmarg value="-Duser.timezone=GMT" />
 					<classpath location="test-coverage" />
 					<classpath refid="test.classpath" />
 					<formatter type="brief" usefile="false" />
 					<formatter type="xml" />
-					<batchtest todir="test-results">
-						<fileset dir="test-classes" includes="**/*Test.class" />
+					<batchtest todir="test-results/${test.type}">
+						<fileset dir="test-classes/${test.type}" includes="**/${class}.class" />
 					</batchtest>
 				</junit>
 			</then>
-			<else>
-				<junit dir="${project.dir}" fork="on" forkmode="once" haltonfailure="${junit.halt.on.failure}" printsummary="on">
-					<sysproperty key="net.sourceforge.cobertura.datafile" file="test-coverage/cobertura.ser" />
-					<jvmarg line="${junit.debug.jpda}" />
-					<jvmarg value="-Xmx1024m" />
-					<jvmarg value="-XX:MaxPermSize=256m" />
-					<jvmarg value="-Duser.timezone=GMT" />
-					<jvmarg value="-Dexternal-properties=${test.properties}" />
-					<classpath location="test-coverage" />
-					<classpath refid="test.classpath" />
-					<formatter type="brief" usefile="false" />
-					<formatter type="xml" />
-					<batchtest todir="test-results">
-						<fileset dir="test-classes" includes="**/*TestSuite.class" />
-					</batchtest>
-				</junit>
-			</else>
 		</if>
 	</target>
 
-	<target name="test-class" depends="compile,compile-test" if="class">
-		<junit dir="${project.dir}" fork="on" forkmode="once" outputtoformatters="false" printsummary="on" showoutput="true">
-			<sysproperty key="net.sourceforge.cobertura.datafile" file="test-coverage/cobertura.ser" />
-			<jvmarg line="${junit.debug.jpda}" />
-			<jvmarg value="-Xmx1024m" />
-			<jvmarg value="-XX:MaxPermSize=256m" />
-			<jvmarg value="-Duser.timezone=GMT" />
-			<jvmarg value="-Dexternal-properties=${test.properties}" />
-			<classpath location="test-coverage" />
-			<classpath refid="test.classpath" />
-			<formatter type="brief" usefile="false" />
-			<formatter type="xml" />
-			<batchtest todir="test-results">
-				<fileset dir="test-classes" includes="**/${class}.class" />
-			</batchtest>
-		</junit>
+	<target name="test-integration" depends="compile,compile-test-integration">
+		<property name="class" value="*Test" />
+
+		<ant target="test-cmd" inheritrefs="true">
+			<property name="test.type" value="integration" />
+		</ant>
+	</target>
+
+	<target name="test-unit" depends="compile,compile-test-unit">
+		<property name="class" value="*Test" />
+
+		<ant target="test-cmd" inheritrefs="true">
+			<property name="test.type" value="unit" />
+		</ant>
 	</target>
 
 	<target name="war" depends="compile">

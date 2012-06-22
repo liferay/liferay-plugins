@@ -710,13 +710,15 @@ public class KaleoTimerInstanceTokenUtil {
 	*
 	* @param kaleoInstanceTokenId the kaleo instance token ID
 	* @param kaleoTimerId the kaleo timer ID
+	* @return the kaleo timer instance token that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByKITI_KTI(long kaleoInstanceTokenId,
-		long kaleoTimerId)
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken removeByKITI_KTI(
+		long kaleoInstanceTokenId, long kaleoTimerId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException {
-		getPersistence().removeByKITI_KTI(kaleoInstanceTokenId, kaleoTimerId);
+		return getPersistence()
+				   .removeByKITI_KTI(kaleoInstanceTokenId, kaleoTimerId);
 	}
 
 	/**

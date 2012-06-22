@@ -740,12 +740,14 @@ public class KaleoTransitionUtil {
 	*
 	* @param kaleoNodeId the kaleo node ID
 	* @param name the name
+	* @return the kaleo transition that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByKNI_N(long kaleoNodeId, java.lang.String name)
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTransition removeByKNI_N(
+		long kaleoNodeId, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchTransitionException {
-		getPersistence().removeByKNI_N(kaleoNodeId, name);
+		return getPersistence().removeByKNI_N(kaleoNodeId, name);
 	}
 
 	/**
@@ -753,13 +755,14 @@ public class KaleoTransitionUtil {
 	*
 	* @param kaleoNodeId the kaleo node ID
 	* @param defaultTransition the default transition
+	* @return the kaleo transition that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByKNI_DT(long kaleoNodeId,
-		boolean defaultTransition)
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTransition removeByKNI_DT(
+		long kaleoNodeId, boolean defaultTransition)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchTransitionException {
-		getPersistence().removeByKNI_DT(kaleoNodeId, defaultTransition);
+		return getPersistence().removeByKNI_DT(kaleoNodeId, defaultTransition);
 	}
 
 	/**

@@ -1168,13 +1168,14 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	 *
 	 * @param userId the user ID
 	 * @param address the address
+	 * @return the account that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByU_A(long userId, String address)
+	public Account removeByU_A(long userId, String address)
 		throws NoSuchAccountException, SystemException {
 		Account account = findByU_A(userId, address);
 
-		remove(account);
+		return remove(account);
 	}
 
 	/**

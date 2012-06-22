@@ -6292,12 +6292,14 @@ public class KBArticleUtil {
 	*
 	* @param uuid the uuid
 	* @param groupId the group ID
+	* @return the k b article that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByUUID_G(java.lang.String uuid, long groupId)
+	public static com.liferay.knowledgebase.model.KBArticle removeByUUID_G(
+		java.lang.String uuid, long groupId)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByUUID_G(uuid, groupId);
+		return getPersistence().removeByUUID_G(uuid, groupId);
 	}
 
 	/**
@@ -6328,12 +6330,14 @@ public class KBArticleUtil {
 	*
 	* @param resourcePrimKey the resource prim key
 	* @param version the version
+	* @return the k b article that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByR_V(long resourcePrimKey, int version)
+	public static com.liferay.knowledgebase.model.KBArticle removeByR_V(
+		long resourcePrimKey, int version)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByR_V(resourcePrimKey, version);
+		return getPersistence().removeByR_V(resourcePrimKey, version);
 	}
 
 	/**

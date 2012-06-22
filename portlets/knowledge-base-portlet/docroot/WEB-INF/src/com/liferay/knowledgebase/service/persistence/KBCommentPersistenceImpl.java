@@ -2651,13 +2651,14 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @return the k b comment that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByUUID_G(String uuid, long groupId)
+	public KBComment removeByUUID_G(String uuid, long groupId)
 		throws NoSuchCommentException, SystemException {
 		KBComment kbComment = findByUUID_G(uuid, groupId);
 
-		remove(kbComment);
+		return remove(kbComment);
 	}
 
 	/**
@@ -2706,13 +2707,14 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 * @param userId the user ID
 	 * @param classNameId the class name ID
 	 * @param classPK the class p k
+	 * @return the k b comment that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByU_C_C(long userId, long classNameId, long classPK)
+	public KBComment removeByU_C_C(long userId, long classNameId, long classPK)
 		throws NoSuchCommentException, SystemException {
 		KBComment kbComment = findByU_C_C(userId, classNameId, classPK);
 
-		remove(kbComment);
+		return remove(kbComment);
 	}
 
 	/**

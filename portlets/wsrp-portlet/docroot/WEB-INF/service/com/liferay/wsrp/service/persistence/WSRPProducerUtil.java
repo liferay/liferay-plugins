@@ -541,12 +541,14 @@ public class WSRPProducerUtil {
 	*
 	* @param uuid the uuid
 	* @param groupId the group ID
+	* @return the w s r p producer that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByUUID_G(java.lang.String uuid, long groupId)
+	public static com.liferay.wsrp.model.WSRPProducer removeByUUID_G(
+		java.lang.String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.wsrp.NoSuchProducerException {
-		getPersistence().removeByUUID_G(uuid, groupId);
+		return getPersistence().removeByUUID_G(uuid, groupId);
 	}
 
 	/**

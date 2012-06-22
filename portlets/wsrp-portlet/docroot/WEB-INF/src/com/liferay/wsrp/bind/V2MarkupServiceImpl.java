@@ -65,7 +65,6 @@ import oasis.names.tc.wsrp.v2.types.HandleEventsResponse;
 import oasis.names.tc.wsrp.v2.types.InitCookie;
 import oasis.names.tc.wsrp.v2.types.InteractionParams;
 import oasis.names.tc.wsrp.v2.types.MarkupContext;
-import oasis.names.tc.wsrp.v2.types.MarkupParams;
 import oasis.names.tc.wsrp.v2.types.MarkupResponse;
 import oasis.names.tc.wsrp.v2.types.MimeRequest;
 import oasis.names.tc.wsrp.v2.types.NamedString;
@@ -269,6 +268,10 @@ public class V2MarkupServiceImpl
 
 		ResourceParams resourceParams = getResource.getResourceParams();
 
+		UploadContext[] uploadContexts = resourceParams.getUploadContexts();
+
+		processUploadContexts(uploadContexts, httpOptions);
+
 		NamedString[] formParameters = resourceParams.getFormParameters();
 
 		if (formParameters != null) {
@@ -391,52 +394,12 @@ public class V2MarkupServiceImpl
 		RuntimeContext runtimeContext =
 			performBlockingInteraction.getRuntimeContext();
 
-		PortletContext portletContext =
-			performBlockingInteraction.getPortletContext();
-
 		InteractionParams interactionParams =
 			performBlockingInteraction.getInteractionParams();
 
 		UploadContext[] uploadContexts = interactionParams.getUploadContexts();
 
-		if (uploadContexts != null) {
-			for (UploadContext uploadContext : uploadContexts) {
-				NamedString mimeAttribute = uploadContext.getMimeAttributes(0);
-
-				String[] mimeAttributeValues = StringUtil.split(
-					mimeAttribute.getValue(), StringPool.SEMICOLON);
-
-				String name = StringUtil.replace(
-					mimeAttributeValues[1], "name=", StringPool.BLANK);
-
-				name = StringUtil.trim(name);
-
-				String fileName = StringUtil.replace(
-					mimeAttributeValues[2], "filename=", StringPool.BLANK);
-
-				fileName = StringUtil.trim(fileName);
-
-				String contentType = uploadContext.getMimeType();
-
-				String charSet = null;
-
-				if (contentType.contains(StringPool.SEMICOLON)) {
-					int pos = contentType.indexOf(StringPool.SEMICOLON);
-
-					charSet = contentType.substring(pos + 1);
-					charSet = StringUtil.trim(charSet);
-
-					contentType = contentType.substring(0, pos);
-				}
-
-				httpOptions.addFilePart(
-					name, fileName, uploadContext.getUploadData(), contentType,
-					charSet);
-			}
-		}
-
-		MarkupParams markupParams =
-			performBlockingInteraction.getMarkupParams();
+		processUploadContexts(uploadContexts, httpOptions);
 
 		NamedString[] formParameters = interactionParams.getFormParameters();
 
@@ -662,8 +625,8 @@ public class V2MarkupServiceImpl
 			for (Cookie cookie : forwardCookies) {
 				String cookieName = cookie.getName();
 
-				if (!cookieName.equalsIgnoreCase("cookie_support") ||
-					!cookieName.equalsIgnoreCase("guest_language_id") ||
+				if (!cookieName.equalsIgnoreCase("cookie_support") &&
+					!cookieName.equalsIgnoreCase("guest_language_id") &&
 					!cookieName.equalsIgnoreCase("jsessionid")) {
 
 					if (Validator.isNull(cookie.getDomain())) {
@@ -858,6 +821,48 @@ public class V2MarkupServiceImpl
 		String windowState = mimeRequest.getWindowState();
 
 		return windowState.substring(5);
+	}
+
+	protected void processUploadContexts(
+		UploadContext[] uploadContexts, Http.Options httpOptions) {
+
+		if (uploadContexts == null) {
+			return;
+		}
+
+		for (UploadContext uploadContext : uploadContexts) {
+			NamedString mimeAttribute = uploadContext.getMimeAttributes(0);
+
+			String[] mimeAttributeValues = StringUtil.split(
+				mimeAttribute.getValue(), StringPool.SEMICOLON);
+
+			String name = StringUtil.replace(
+				mimeAttributeValues[1], "name=", StringPool.BLANK);
+
+			name = StringUtil.trim(name);
+
+			String fileName = StringUtil.replace(
+				mimeAttributeValues[2], "filename=", StringPool.BLANK);
+
+			fileName = StringUtil.trim(fileName);
+
+			String contentType = uploadContext.getMimeType();
+
+			String charSet = null;
+
+			if (contentType.contains(StringPool.SEMICOLON)) {
+				int pos = contentType.indexOf(StringPool.SEMICOLON);
+
+				charSet = contentType.substring(pos + 1);
+				charSet = StringUtil.trim(charSet);
+
+				contentType = contentType.substring(0, pos);
+			}
+
+			httpOptions.addFilePart(
+				name, fileName, uploadContext.getUploadData(), contentType,
+				charSet);
+		}
 	}
 
 	private static final String _PATH_WIDGET = "/widget/c/portal/layout";

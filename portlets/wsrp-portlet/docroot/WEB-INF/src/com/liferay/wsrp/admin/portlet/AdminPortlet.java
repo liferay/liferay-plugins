@@ -32,7 +32,6 @@ import com.liferay.wsrp.model.WSRPProducer;
 import com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 import com.liferay.wsrp.service.WSRPProducerLocalServiceUtil;
-import com.liferay.wsrp.util.WSRPConsumerManager;
 import com.liferay.wsrp.util.WebKeys;
 
 import javax.portlet.ActionRequest;
@@ -186,9 +185,7 @@ public class AdminPortlet extends MVCPortlet {
 		long wsrpConsumerId = ParamUtil.getLong(
 			actionRequest, "wsrpConsumerId");
 
-		String userToken = WSRPConsumerManager.getUserToken(actionRequest);
-
-		WSRPConsumerLocalServiceUtil.restartConsumer(wsrpConsumerId, userToken);
+		WSRPConsumerLocalServiceUtil.restartConsumer(wsrpConsumerId);
 	}
 
 	protected void doUpdateServiceDescription(
@@ -198,10 +195,7 @@ public class AdminPortlet extends MVCPortlet {
 		long wsrpConsumerId = ParamUtil.getLong(
 			actionRequest, "wsrpConsumerId");
 
-		String userToken = WSRPConsumerManager.getUserToken(actionRequest);
-
-		WSRPConsumerLocalServiceUtil.updateServiceDescription(
-			wsrpConsumerId, userToken);
+		WSRPConsumerLocalServiceUtil.updateServiceDescription(wsrpConsumerId);
 	}
 
 	protected void doUpdateWSRPConsumer(
@@ -220,20 +214,17 @@ public class AdminPortlet extends MVCPortlet {
 		String forwardCookies = ParamUtil.getString(
 			actionRequest, "forwardCookies");
 
-		String userToken = WSRPConsumerManager.getUserToken(actionRequest);
-
 		if (wsrpConsumerId <= 0) {
 			ServiceContext serviceContext = ServiceContextFactory.getInstance(
 				WSRPConsumer.class.getName(), actionRequest);
 
 			WSRPConsumerLocalServiceUtil.addWSRPConsumer(
 				themeDisplay.getCompanyId(), adminPortletId, name, url,
-				forwardCookies, userToken, serviceContext);
+				forwardCookies, serviceContext);
 		}
 		else {
 			WSRPConsumerLocalServiceUtil.updateWSRPConsumer(
-				wsrpConsumerId, adminPortletId, name, url, forwardCookies,
-				userToken);
+				wsrpConsumerId, adminPortletId, name, url, forwardCookies);
 		}
 	}
 
@@ -250,14 +241,12 @@ public class AdminPortlet extends MVCPortlet {
 		String portletHandle = ParamUtil.getString(
 			actionRequest, "portletHandle");
 
-		String userToken = WSRPConsumerManager.getUserToken(actionRequest);
-
 		if (wsrpConsumerPortletId <= 0) {
 			ServiceContext serviceContext = ServiceContextFactory.getInstance(
 				WSRPConsumerPortlet.class.getName(), actionRequest);
 
 			WSRPConsumerPortletLocalServiceUtil.addWSRPConsumerPortlet(
-				wsrpConsumerId, name, portletHandle, userToken, serviceContext);
+				wsrpConsumerId, name, portletHandle, serviceContext);
 		}
 		else {
 			WSRPConsumerPortletLocalServiceUtil.updateWSRPConsumerPortlet(
@@ -301,11 +290,9 @@ public class AdminPortlet extends MVCPortlet {
 		String registrationHandle = ParamUtil.getString(
 			actionRequest, "registrationHandle");
 
-		String userToken = WSRPConsumerManager.getUserToken(actionRequest);
-
 		WSRPConsumerLocalServiceUtil.registerWSRPConsumer(
 			wsrpConsumerId, adminPortletId, registrationProperties,
-			registrationHandle, userToken);
+			registrationHandle);
 	}
 
 	protected void doUpdateWSRPProducer(

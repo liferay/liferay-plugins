@@ -5278,9 +5278,11 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*
 	* @param uuid the uuid
 	* @param groupId the group ID
+	* @return the k b article that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByUUID_G(java.lang.String uuid, long groupId)
+	public com.liferay.knowledgebase.model.KBArticle removeByUUID_G(
+		java.lang.String uuid, long groupId)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -5308,9 +5310,11 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*
 	* @param resourcePrimKey the resource prim key
 	* @param version the version
+	* @return the k b article that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByR_V(long resourcePrimKey, int version)
+	public com.liferay.knowledgebase.model.KBArticle removeByR_V(
+		long resourcePrimKey, int version)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException;
 

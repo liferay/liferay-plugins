@@ -146,7 +146,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 				<aui:button-row cssClass="float-container">
 					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) %>">
 						<liferay-portlet:renderURL var="addKBArticleURL">
-							<portlet:param name="mvcPath" value='<%= jspPath + "edit_article.jsp" %>' />
+							<portlet:param name="mvcPath" value='<%= templatePath + "edit_article.jsp" %>' />
 							<portlet:param name="redirect" value="<%= redirect %>" />
 						</liferay-portlet:renderURL>
 
@@ -205,7 +205,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 
 				<div class="portlet-msg-info">
 					<liferay-portlet:renderURL var="viewKBArticleURL">
-						<portlet:param name="mvcPath" value='<%= jspPath + "view_article.jsp" %>' />
+						<portlet:param name="mvcPath" value='<%= templatePath + "view_article.jsp" %>' />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
 					</liferay-portlet:renderURL>
 

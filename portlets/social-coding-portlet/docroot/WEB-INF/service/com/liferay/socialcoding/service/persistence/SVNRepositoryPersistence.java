@@ -187,9 +187,11 @@ public interface SVNRepositoryPersistence extends BasePersistence<SVNRepository>
 	* Removes the s v n repository where url = &#63; from the database.
 	*
 	* @param url the url
+	* @return the s v n repository that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByUrl(java.lang.String url)
+	public com.liferay.socialcoding.model.SVNRepository removeByUrl(
+		java.lang.String url)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchSVNRepositoryException;
 

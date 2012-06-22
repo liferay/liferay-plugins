@@ -118,14 +118,14 @@ public class WSRPConsumerPortletLocalServiceClp
 
 		_methodParameterTypes19 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName20 = "addWSRPConsumerPortlet";
 
 		_methodParameterTypes20 = new String[] {
 				"java.lang.String", "java.lang.String", "java.lang.String",
-				"java.lang.String", "com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName21 = "deleteWSRPConsumerPortlet";
@@ -170,7 +170,7 @@ public class WSRPConsumerPortletLocalServiceClp
 
 		_methodParameterTypes30 = new String[] {
 				"long", "long", "long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "java.lang.String"
+				"java.lang.String"
 			};
 
 		_methodName31 = "initWSRPConsumerPortlets";
@@ -730,7 +730,7 @@ public class WSRPConsumerPortletLocalServiceClp
 
 	public com.liferay.wsrp.model.WSRPConsumerPortlet addWSRPConsumerPortlet(
 		long wsrpConsumerId, java.lang.String name,
-		java.lang.String portletHandle, java.lang.String userToken,
+		java.lang.String portletHandle,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -745,8 +745,6 @@ public class WSRPConsumerPortletLocalServiceClp
 					ClpSerializer.translateInput(name),
 						
 					ClpSerializer.translateInput(portletHandle),
-						
-					ClpSerializer.translateInput(userToken),
 						
 					ClpSerializer.translateInput(serviceContext)
 					});
@@ -776,7 +774,7 @@ public class WSRPConsumerPortletLocalServiceClp
 
 	public com.liferay.wsrp.model.WSRPConsumerPortlet addWSRPConsumerPortlet(
 		java.lang.String wsrpConsumerUuid, java.lang.String name,
-		java.lang.String portletHandle, java.lang.String userToken,
+		java.lang.String portletHandle,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -791,8 +789,6 @@ public class WSRPConsumerPortletLocalServiceClp
 					ClpSerializer.translateInput(name),
 						
 					ClpSerializer.translateInput(portletHandle),
-						
-					ClpSerializer.translateInput(userToken),
 						
 					ClpSerializer.translateInput(serviceContext)
 					});
@@ -1084,8 +1080,7 @@ public class WSRPConsumerPortletLocalServiceClp
 
 	public void initWSRPConsumerPortlet(long companyId, long wsrpConsumerId,
 		long wsrpConsumerPortletId, java.lang.String wsrpConsumerPortletUuid,
-		java.lang.String name, java.lang.String portletHandle,
-		java.lang.String userToken)
+		java.lang.String name, java.lang.String portletHandle)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
@@ -1102,9 +1097,7 @@ public class WSRPConsumerPortletLocalServiceClp
 					
 				ClpSerializer.translateInput(name),
 					
-				ClpSerializer.translateInput(portletHandle),
-					
-				ClpSerializer.translateInput(userToken)
+				ClpSerializer.translateInput(portletHandle)
 				});
 		}
 		catch (Throwable t) {

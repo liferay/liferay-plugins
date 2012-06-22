@@ -85,11 +85,11 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 	public Foo deleteFoo(long fooId) throws SystemException {
 		Foo foo = fooPersistence.fetchByPrimaryKey(fooId);
 
-		if (foo != null) {
-			deleteFoo(foo);
+		if (foo == null) {
+			return null;
 		}
 
-		return foo;
+		return deleteFoo(foo);
 	}
 
 	public List<Foo> getFoos(int start, int end, OrderByComparator obc)

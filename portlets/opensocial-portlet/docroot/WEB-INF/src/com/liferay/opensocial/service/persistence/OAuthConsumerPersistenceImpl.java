@@ -1215,13 +1215,14 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	 *
 	 * @param gadgetKey the gadget key
 	 * @param serviceName the service name
+	 * @return the o auth consumer that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByG_S(String gadgetKey, String serviceName)
+	public OAuthConsumer removeByG_S(String gadgetKey, String serviceName)
 		throws NoSuchOAuthConsumerException, SystemException {
 		OAuthConsumer oAuthConsumer = findByG_S(gadgetKey, serviceName);
 
-		remove(oAuthConsumer);
+		return remove(oAuthConsumer);
 	}
 
 	/**

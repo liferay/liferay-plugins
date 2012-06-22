@@ -34,7 +34,7 @@
 	>
 
 		<%
-		if (!WSRPConsumerManagerFactory.testWSRPConsumerManager(consumer, userToken)) {
+		if (!WSRPConsumerManagerFactory.testWSRPConsumerManager(consumer)) {
 			row.setRestricted(true);
 		}
 		%>

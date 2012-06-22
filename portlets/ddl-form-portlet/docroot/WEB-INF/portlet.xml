@@ -6,6 +6,10 @@
 		<display-name>Dynamic Data List Form</display-name>
 		<portlet-class>com.liferay.ddlform.portlet.DDLFormPortlet</portlet-class>
 		<init-param>
+			<name>ddm-resource</name>
+			<value>com.liferay.portlet.dynamicdatalists</value>
+		</init-param>
+		<init-param>
 			<name>view-template</name>
 			<value>/view.jsp</value>
 		</init-param>

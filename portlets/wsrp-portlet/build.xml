@@ -9,7 +9,7 @@
 	producers.
 	-->
 
-	<target name="build-oasis-wsrp">
+	<target name="build-wsdl">
 		<taskdef classpathref="portal.classpath" resource="axis-tasks.properties" />
 
 		<mkdir dir="docroot/WEB-INF/lib" />
@@ -78,28 +78,5 @@
 		/>
 
 		<delete dir="${tstamp.value}" />
-	</target>
-
-	<target name="format-xml">
-		<for param="xml.file">
-			<path>
-				<fileset
-					dir="."
-					includes="docroot/WEB-INF/wsdl/*"
-				/>
-			</path>
-			<sequential>
-				<java
-					classname="com.liferay.portal.tools.XMLFormatter"
-					classpathref="portal.classpath"
-					fork="true"
-					newenvironment="true"
-				>
-					<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-					<jvmarg value="-Dxml.formatter.file=@{xml.file}" />
-					<jvmarg value="-Dxml.formatter.strip.comments=true" />
-				</java>
-			</sequential>
-		</for>
 	</target>
 </project>

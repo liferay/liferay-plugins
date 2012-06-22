@@ -49,7 +49,13 @@ public class SolrFacetFieldCollector implements FacetCollector {
 	public TermCollector getTermCollector(String term) {
 		Count count = _counts.get(term);
 
-		return new SolrTermCollector(term, (int)count.getCount());
+		int occurences = 0;
+
+		if (count != null) {
+			occurences = (int)count.getCount();
+		}
+
+		return new SolrTermCollector(term, occurences);
 	}
 
 	public List<TermCollector> getTermCollectors() {

@@ -701,12 +701,14 @@ public class KaleoTaskInstanceTokenUtil {
 	*
 	* @param kaleoInstanceId the kaleo instance ID
 	* @param kaleoTaskId the kaleo task ID
+	* @return the kaleo task instance token that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByKII_KTI(long kaleoInstanceId, long kaleoTaskId)
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken removeByKII_KTI(
+		long kaleoInstanceId, long kaleoTaskId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException {
-		getPersistence().removeByKII_KTI(kaleoInstanceId, kaleoTaskId);
+		return getPersistence().removeByKII_KTI(kaleoInstanceId, kaleoTaskId);
 	}
 
 	/**

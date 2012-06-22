@@ -78,15 +78,13 @@ int oAuthServiceCount = 0;
 
 		String serviceName = oAuthService.getName();
 
-		OAuthConsumer oAuthConsumer = null;
+		long oAuthConsumerId = 0;
 
-		try {
-			oAuthConsumer = OAuthConsumerLocalServiceUtil.getOAuthConsumer(gadgetKey, serviceName);
-		}
-		catch (NoSuchOAuthConsumerException nsoace) {
-		}
+		OAuthConsumer oAuthConsumer = OAuthConsumerLocalServiceUtil.fetchOAuthConsumer(gadgetKey, serviceName);
 
-		long oAuthConsumerId = BeanParamUtil.getLong(oAuthConsumer, request, "oAuthConsumerId");
+		if (oAuthConsumer != null) {
+			oAuthConsumerId = oAuthConsumer.getOAuthConsumerId();
+		}
 	%>
 
 		<h3><%= serviceName %></h3>

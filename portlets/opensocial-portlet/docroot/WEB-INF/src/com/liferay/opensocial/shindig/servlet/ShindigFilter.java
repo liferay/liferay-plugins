@@ -14,11 +14,14 @@
 
 package com.liferay.opensocial.shindig.servlet;
 
+import com.google.inject.Injector;
+
 import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.CookieKeys;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.ServerDetector;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
@@ -37,11 +40,16 @@ import com.liferay.util.EncryptorException;
 import java.io.IOException;
 
 import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.UnavailableException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.apache.shindig.common.servlet.GuiceServletContextListener;
 import org.apache.shindig.common.servlet.InjectedFilter;
 
 /**
@@ -58,6 +66,14 @@ public class ShindigFilter extends InjectedFilter {
 			FilterChain filterChain)
 		throws IOException, ServletException {
 
+		if (injector == null) {
+			HttpServletRequest request = (HttpServletRequest)servletRequest;
+
+			HttpSession session = request.getSession();
+
+			_init(session.getServletContext());
+		}
+
 		PermissionChecker permissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
 
@@ -65,13 +81,27 @@ public class ShindigFilter extends InjectedFilter {
 			setPermissionChecker(servletRequest);
 		}
 
-		String host = servletRequest.getServerName().concat(
-			StringPool.COLON).concat(
-				String.valueOf(servletRequest.getServerPort()));
+		String serverName = servletRequest.getServerName();
+
+		String host = serverName.concat(StringPool.COLON).concat(
+			String.valueOf(servletRequest.getServerPort()));
 
 		ShindigUtil.setHost(host);
 
 		filterChain.doFilter(servletRequest, servletResponse);
+	}
+
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {
+
+		// LPS-23577
+
+		if (ServerDetector.isWebSphere()) {
+			injector = null;
+		}
+		else {
+			super.init(filterConfig);
+		}
 	}
 
 	protected boolean setPermissionChecker(ServletRequest servletRequest) {
@@ -138,6 +168,24 @@ public class ShindigFilter extends InjectedFilter {
 		}
 
 		return true;
+	}
+
+	private void _init(ServletContext servletContext) throws ServletException {
+		injector = (Injector)servletContext.getAttribute(
+			GuiceServletContextListener.INJECTOR_ATTRIBUTE);
+
+		if (injector == null) {
+			injector = (Injector)servletContext.getAttribute(
+				GuiceServletContextListener.INJECTOR_NAME);
+
+			if (injector == null) {
+				throw new UnavailableException(
+					"Guice injector is not available. Please register " +
+						GuiceServletContextListener.class.getName() + ".");
+			}
+		}
+
+		injector.injectMembers(this);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(ShindigFilter.class);

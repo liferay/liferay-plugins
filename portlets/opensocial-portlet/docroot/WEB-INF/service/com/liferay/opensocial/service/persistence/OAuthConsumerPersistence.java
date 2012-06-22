@@ -305,10 +305,11 @@ public interface OAuthConsumerPersistence extends BasePersistence<OAuthConsumer>
 	*
 	* @param gadgetKey the gadget key
 	* @param serviceName the service name
+	* @return the o auth consumer that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByG_S(java.lang.String gadgetKey,
-		java.lang.String serviceName)
+	public com.liferay.opensocial.model.OAuthConsumer removeByG_S(
+		java.lang.String gadgetKey, java.lang.String serviceName)
 		throws com.liferay.opensocial.NoSuchOAuthConsumerException,
 			com.liferay.portal.kernel.exception.SystemException;
 

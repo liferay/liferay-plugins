@@ -299,11 +299,8 @@ public class ConsumerPortlet extends GenericPortlet {
 			WSRPConsumerLocalServiceUtil.getWSRPConsumer(
 				wsrpConsumerPortlet.getWsrpConsumerId());
 
-		String userToken = WSRPConsumerManager.getUserToken(actionRequest);
-
 		WSRPConsumerManager wsrpConsumerManager =
-			WSRPConsumerManagerFactory.getWSRPConsumerManager(
-				wsrpConsumer, userToken);
+			WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
 
 		InteractionParams interactionParams = new InteractionParams();
 		MarkupParams markupParams = new MarkupParams();
@@ -352,11 +349,8 @@ public class ConsumerPortlet extends GenericPortlet {
 			WSRPConsumerLocalServiceUtil.getWSRPConsumer(
 				wsrpConsumerPortlet.getWsrpConsumerId());
 
-		String userToken = WSRPConsumerManager.getUserToken(eventRequest);
-
 		WSRPConsumerManager wsrpConsumerManager =
-			WSRPConsumerManagerFactory.getWSRPConsumerManager(
-				wsrpConsumer, userToken);
+			WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
 
 		EventParams eventParams = new EventParams();
 		MarkupParams markupParams = new MarkupParams();
@@ -523,11 +517,8 @@ public class ConsumerPortlet extends GenericPortlet {
 			WSRPConsumerLocalServiceUtil.getWSRPConsumer(
 				wsrpConsumerPortlet.getWsrpConsumerId());
 
-		String userToken = WSRPConsumerManager.getUserToken(portletRequest);
-
 		WSRPConsumerManager wsrpConsumerManager =
-			WSRPConsumerManagerFactory.getWSRPConsumerManager(
-				wsrpConsumer, userToken);
+			WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
 
 		MarkupParams markupParams = new MarkupParams();
 		PortletContext portletContext = new PortletContext();
@@ -741,11 +732,8 @@ public class ConsumerPortlet extends GenericPortlet {
 			WSRPConsumerLocalServiceUtil.getWSRPConsumer(
 				wsrpConsumerPortlet.getWsrpConsumerId());
 
-		String userToken = WSRPConsumerManager.getUserToken(resourceRequest);
-
 		WSRPConsumerManager wsrpConsumerManager =
-			WSRPConsumerManagerFactory.getWSRPConsumerManager(
-				wsrpConsumer, userToken);
+			WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
 
 		PortletContext portletContext = new PortletContext();
 		ResourceParams resourceParams = new ResourceParams();

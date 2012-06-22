@@ -2435,13 +2435,14 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 *
 	 * @param userId the user ID
 	 * @param mbThreadId the mb thread ID
+	 * @return the user thread that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByU_M(long userId, long mbThreadId)
+	public UserThread removeByU_M(long userId, long mbThreadId)
 		throws NoSuchUserThreadException, SystemException {
 		UserThread userThread = findByU_M(userId, mbThreadId);
 
-		remove(userThread);
+		return remove(userThread);
 	}
 
 	/**

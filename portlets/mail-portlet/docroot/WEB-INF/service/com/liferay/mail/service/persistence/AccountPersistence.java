@@ -295,9 +295,11 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	*
 	* @param userId the user ID
 	* @param address the address
+	* @return the account that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByU_A(long userId, java.lang.String address)
+	public com.liferay.mail.model.Account removeByU_A(long userId,
+		java.lang.String address)
 		throws com.liferay.mail.NoSuchAccountException,
 			com.liferay.portal.kernel.exception.SystemException;
 

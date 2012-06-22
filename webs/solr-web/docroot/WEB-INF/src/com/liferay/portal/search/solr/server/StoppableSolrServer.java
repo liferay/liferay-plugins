@@ -12,26 +12,15 @@
  * details.
  */
 
-package com.liferay.wsrp.util;
+package com.liferay.portal.search.solr.server;
+
+import org.apache.solr.client.solrj.SolrServer;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Raymond Augé
  */
-public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
+public abstract class StoppableSolrServer extends SolrServer {
 
-	public static final String COOKIE = "COOKIE";
-
-	public static final String COOKIES = "COOKIES";
-
-	public static final String MARKUP_CONTEXT = "MARKUP_CONTEXT";
-
-	public static final String MARKUP_SERVICE = "MARKUP_SERVICE";
-
-	public static final String PORTLET_CONTEXT = "PORTLET_CONTEXT";
-
-	public static final String SESSION_CONTEXT = "SESSION_CONTEXT";
-
-	public static final String WSRP_CONSUMER_MANAGERS =
-		"WSRP_CONSUMER_MANAGERS";
+	public abstract void stop();
 
 }

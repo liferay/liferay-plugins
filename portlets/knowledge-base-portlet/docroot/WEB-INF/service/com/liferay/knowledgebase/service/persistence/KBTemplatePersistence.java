@@ -470,9 +470,11 @@ public interface KBTemplatePersistence extends BasePersistence<KBTemplate> {
 	*
 	* @param uuid the uuid
 	* @param groupId the group ID
+	* @return the k b template that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByUUID_G(java.lang.String uuid, long groupId)
+	public com.liferay.knowledgebase.model.KBTemplate removeByUUID_G(
+		java.lang.String uuid, long groupId)
 		throws com.liferay.knowledgebase.NoSuchTemplateException,
 			com.liferay.portal.kernel.exception.SystemException;
 

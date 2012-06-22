@@ -1334,9 +1334,11 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* Removes the j i r a issue where key = &#63; from the database.
 	*
 	* @param key the key
+	* @return the j i r a issue that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByKey(java.lang.String key)
+	public com.liferay.socialcoding.model.JIRAIssue removeByKey(
+		java.lang.String key)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialcoding.NoSuchJIRAIssueException;
 

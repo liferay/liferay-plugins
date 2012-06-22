@@ -947,13 +947,14 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 *
 	 * @param companyId the company ID
 	 * @param twitterUserId the twitter user ID
+	 * @return the feed that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByC_TWUI(long companyId, long twitterUserId)
+	public Feed removeByC_TWUI(long companyId, long twitterUserId)
 		throws NoSuchFeedException, SystemException {
 		Feed feed = findByC_TWUI(companyId, twitterUserId);
 
-		remove(feed);
+		return remove(feed);
 	}
 
 	/**
@@ -961,13 +962,14 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 *
 	 * @param companyId the company ID
 	 * @param twitterScreenName the twitter screen name
+	 * @return the feed that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByC_TSN(long companyId, String twitterScreenName)
+	public Feed removeByC_TSN(long companyId, String twitterScreenName)
 		throws NoSuchFeedException, SystemException {
 		Feed feed = findByC_TSN(companyId, twitterScreenName);
 
-		remove(feed);
+		return remove(feed);
 	}
 
 	/**

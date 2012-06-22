@@ -20428,13 +20428,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
+	 * @return the k b article that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByUUID_G(String uuid, long groupId)
+	public KBArticle removeByUUID_G(String uuid, long groupId)
 		throws NoSuchArticleException, SystemException {
 		KBArticle kbArticle = findByUUID_G(uuid, groupId);
 
-		remove(kbArticle);
+		return remove(kbArticle);
 	}
 
 	/**
@@ -20469,13 +20470,14 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 *
 	 * @param resourcePrimKey the resource prim key
 	 * @param version the version
+	 * @return the k b article that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByR_V(long resourcePrimKey, int version)
+	public KBArticle removeByR_V(long resourcePrimKey, int version)
 		throws NoSuchArticleException, SystemException {
 		KBArticle kbArticle = findByR_V(resourcePrimKey, version);
 
-		remove(kbArticle);
+		return remove(kbArticle);
 	}
 
 	/**

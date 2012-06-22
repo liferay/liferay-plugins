@@ -60,8 +60,7 @@ public class WSRPConsumerLocalServiceImpl
 
 	public WSRPConsumer addWSRPConsumer(
 			long companyId, String adminPortletId, String name, String url,
-			String forwardCookies, String userToken,
-			ServiceContext serviceContext)
+			String forwardCookies, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		Date now = new Date();
@@ -79,7 +78,7 @@ public class WSRPConsumerLocalServiceImpl
 		wsrpConsumer.setModifiedDate(now);
 		wsrpConsumer.setName(name);
 		wsrpConsumer.setUrl(url);
-		wsrpConsumer.setWsdl(getWSDL(wsrpConsumer, forwardCookies, userToken));
+		wsrpConsumer.setWsdl(getWSDL(wsrpConsumer, forwardCookies));
 
 		wsrpConsumerPersistence.update(wsrpConsumer, false);
 
@@ -134,8 +133,7 @@ public class WSRPConsumerLocalServiceImpl
 
 	public WSRPConsumer registerWSRPConsumer(
 			long wsrpConsumerId, String adminPortletId,
-			UnicodeProperties registrationProperties, String registrationHandle,
-			String userToken)
+			UnicodeProperties registrationProperties, String registrationHandle)
 		throws PortalException, SystemException {
 
 		WSRPConsumer wsrpConsumer = wsrpConsumerPersistence.findByPrimaryKey(
@@ -146,8 +144,7 @@ public class WSRPConsumerLocalServiceImpl
 		if (registrationProperties != null) {
 			try {
 				registrationContext = register(
-					wsrpConsumer, adminPortletId, registrationProperties,
-					userToken);
+					wsrpConsumer, adminPortletId, registrationProperties);
 			}
 			catch (PortalException pe) {
 				throw pe;
@@ -175,7 +172,7 @@ public class WSRPConsumerLocalServiceImpl
 	}
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public void restartConsumer(long wsrpConsumerId, String userToken)
+	public void restartConsumer(long wsrpConsumerId)
 		throws PortalException, SystemException {
 
 		WSRPConsumer wsrpConsumer = wsrpConsumerPersistence.findByPrimaryKey(
@@ -186,8 +183,7 @@ public class WSRPConsumerLocalServiceImpl
 				wsrpConsumer.getUrl());
 
 			WSRPConsumerManager wsrpConsumerManager =
-				WSRPConsumerManagerFactory.getWSRPConsumerManager(
-					wsrpConsumer, userToken);
+				WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
 
 			RegistrationContext registrationContext =
 				wsrpConsumer.getRegistrationContext();
@@ -210,7 +206,7 @@ public class WSRPConsumerLocalServiceImpl
 
 				wsrpConsumerPortletLocalService.initWSRPConsumerPortlet(
 					companyId, wsrpConsumerId, wsrpConsumerPortletId,
-					wsrpConsumerPortletUuid, name, portletHandle, userToken);
+					wsrpConsumerPortletUuid, name, portletHandle);
 			}
 		}
 		catch (PortalException pe) {
@@ -224,7 +220,7 @@ public class WSRPConsumerLocalServiceImpl
 		}
 	}
 
-	public void updateServiceDescription(long wsrpConsumerId, String userToken)
+	public void updateServiceDescription(long wsrpConsumerId)
 		throws PortalException, SystemException {
 
 		WSRPConsumer wsrpConsumer = wsrpConsumerPersistence.findByPrimaryKey(
@@ -235,8 +231,7 @@ public class WSRPConsumerLocalServiceImpl
 				wsrpConsumer.getUrl());
 
 			WSRPConsumerManager wsrpConsumerManager =
-				WSRPConsumerManagerFactory.getWSRPConsumerManager(
-					wsrpConsumer, userToken);
+				WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
 
 			RegistrationContext registrationContext =
 				wsrpConsumer.getRegistrationContext();
@@ -256,7 +251,7 @@ public class WSRPConsumerLocalServiceImpl
 
 	public WSRPConsumer updateWSRPConsumer(
 			long wsrpConsumerId, String adminPortletId, String name, String url,
-			String forwardCookies, String userToken)
+			String forwardCookies)
 		throws PortalException, SystemException {
 
 		validate(name);
@@ -269,15 +264,14 @@ public class WSRPConsumerLocalServiceImpl
 		wsrpConsumer.setModifiedDate(new Date());
 		wsrpConsumer.setName(name);
 		wsrpConsumer.setUrl(url);
-		wsrpConsumer.setWsdl(getWSDL(wsrpConsumer, forwardCookies, userToken));
+		wsrpConsumer.setWsdl(getWSDL(wsrpConsumer, forwardCookies));
 
 		wsrpConsumerPersistence.update(wsrpConsumer, false);
 
 		return wsrpConsumer;
 	}
 
-	protected String getWSDL(
-			WSRPConsumer wsrpConsumer, String forwardCookies, String userToken)
+	protected String getWSDL(WSRPConsumer wsrpConsumer, String forwardCookies)
 		throws PortalException {
 
 		try {
@@ -288,8 +282,7 @@ public class WSRPConsumerLocalServiceImpl
 			wsrpConsumer.setForwardCookies(forwardCookies);
 
 			WSRPConsumerManager wsrpConsumerManager =
-				WSRPConsumerManagerFactory.getWSRPConsumerManager(
-					wsrpConsumer, userToken);
+				WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
 
 			return wsrpConsumerManager.getWsdl();
 		}
@@ -300,12 +293,11 @@ public class WSRPConsumerLocalServiceImpl
 
 	protected RegistrationContext register(
 			WSRPConsumer wsrpConsumer, String adminPortletId,
-			UnicodeProperties registrationProperties, String userToken)
+			UnicodeProperties registrationProperties)
 		throws Exception {
 
 		WSRPConsumerManager wsrpConsumerManager =
-			WSRPConsumerManagerFactory.getWSRPConsumerManager(
-				wsrpConsumer, userToken);
+			WSRPConsumerManagerFactory.getWSRPConsumerManager(wsrpConsumer);
 
 		WSRP_v2_Registration_PortType registrationService =
 			wsrpConsumerManager.getRegistrationService();

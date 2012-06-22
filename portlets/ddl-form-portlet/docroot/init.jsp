@@ -89,5 +89,7 @@ long detailDDMTemplateId = GetterUtil.getLong(preferences.getValue("detailDDMTem
 
 boolean multipleSubmissions = GetterUtil.getBoolean(preferences.getValue("multipleSubmissions", null));
 
+String ddmResource = portletConfig.getInitParameter("ddm-resource");
+
 Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
 %>

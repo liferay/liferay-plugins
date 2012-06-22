@@ -296,9 +296,11 @@ public interface FolderPersistence extends BasePersistence<Folder> {
 	*
 	* @param accountId the account ID
 	* @param fullName the full name
+	* @return the folder that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByA_F(long accountId, java.lang.String fullName)
+	public com.liferay.mail.model.Folder removeByA_F(long accountId,
+		java.lang.String fullName)
 		throws com.liferay.mail.NoSuchFolderException,
 			com.liferay.portal.kernel.exception.SystemException;
 

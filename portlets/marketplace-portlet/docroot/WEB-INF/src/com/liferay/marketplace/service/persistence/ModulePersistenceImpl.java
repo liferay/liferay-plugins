@@ -1989,13 +1989,14 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	 *
 	 * @param appId the app ID
 	 * @param contextName the context name
+	 * @return the module that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByA_C(long appId, String contextName)
+	public Module removeByA_C(long appId, String contextName)
 		throws NoSuchModuleException, SystemException {
 		Module module = findByA_C(appId, contextName);
 
-		remove(module);
+		return remove(module);
 	}
 
 	/**

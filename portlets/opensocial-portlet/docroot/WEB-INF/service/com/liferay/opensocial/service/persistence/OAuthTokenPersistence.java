@@ -326,10 +326,12 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	* @param serviceName the service name
 	* @param moduleId the module ID
 	* @param tokenName the token name
+	* @return the o auth token that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByU_G_S_M_T(long userId, java.lang.String gadgetKey,
-		java.lang.String serviceName, long moduleId, java.lang.String tokenName)
+	public com.liferay.opensocial.model.OAuthToken removeByU_G_S_M_T(
+		long userId, java.lang.String gadgetKey, java.lang.String serviceName,
+		long moduleId, java.lang.String tokenName)
 		throws com.liferay.opensocial.NoSuchOAuthTokenException,
 			com.liferay.portal.kernel.exception.SystemException;
 

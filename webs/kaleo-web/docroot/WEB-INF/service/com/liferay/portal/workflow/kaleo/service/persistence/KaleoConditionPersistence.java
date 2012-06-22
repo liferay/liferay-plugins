@@ -414,9 +414,11 @@ public interface KaleoConditionPersistence extends BasePersistence<KaleoConditio
 	* Removes the kaleo condition where kaleoNodeId = &#63; from the database.
 	*
 	* @param kaleoNodeId the kaleo node ID
+	* @return the kaleo condition that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByKaleoNodeId(long kaleoNodeId)
+	public com.liferay.portal.workflow.kaleo.model.KaleoCondition removeByKaleoNodeId(
+		long kaleoNodeId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchConditionException;
 

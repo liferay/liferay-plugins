@@ -1560,13 +1560,14 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 *
 	 * @param folderId the folder ID
 	 * @param remoteMessageId the remote message ID
+	 * @return the message that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByF_R(long folderId, long remoteMessageId)
+	public Message removeByF_R(long folderId, long remoteMessageId)
 		throws NoSuchMessageException, SystemException {
 		Message message = findByF_R(folderId, remoteMessageId);
 
-		remove(message);
+		return remove(message);
 	}
 
 	/**

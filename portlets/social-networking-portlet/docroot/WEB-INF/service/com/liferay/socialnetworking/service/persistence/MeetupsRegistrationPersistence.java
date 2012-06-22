@@ -416,9 +416,11 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 	*
 	* @param userId the user ID
 	* @param meetupsEntryId the meetups entry ID
+	* @return the meetups registration that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByU_ME(long userId, long meetupsEntryId)
+	public com.liferay.socialnetworking.model.MeetupsRegistration removeByU_ME(
+		long userId, long meetupsEntryId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.socialnetworking.NoSuchMeetupsRegistrationException;
 

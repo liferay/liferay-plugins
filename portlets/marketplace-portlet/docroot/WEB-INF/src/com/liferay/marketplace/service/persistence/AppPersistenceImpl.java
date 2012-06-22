@@ -1525,13 +1525,14 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	 * Removes the app where remoteAppId = &#63; from the database.
 	 *
 	 * @param remoteAppId the remote app ID
+	 * @return the app that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByRemoteAppId(long remoteAppId)
+	public App removeByRemoteAppId(long remoteAppId)
 		throws NoSuchAppException, SystemException {
 		App app = findByRemoteAppId(remoteAppId);
 
-		remove(app);
+		return remove(app);
 	}
 
 	/**

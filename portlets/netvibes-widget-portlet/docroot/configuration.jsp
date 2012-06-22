@@ -47,6 +47,7 @@ String htmlAttributes =
 
 	<liferay-ui:search-container
 		headerNames="thumbnail,description"
+		id="widgetsSearchContainer"
 		iteratorURL="<%= iteratorURL %>"
 	>
 		<liferay-ui:search-form
