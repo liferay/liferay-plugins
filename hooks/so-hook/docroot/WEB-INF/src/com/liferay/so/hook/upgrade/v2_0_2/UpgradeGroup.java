@@ -44,9 +44,10 @@ public class UpgradeGroup extends UpgradeProcess {
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		for (Group group : groups) {
-			if (!group.isRegularSite()) {
+			if (!group.isRegularSite() || group.isGuest()) {
 				continue;
 			}
+
 			boolean privateLayout = group.hasPrivateLayouts();
 
 			LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
@@ -58,28 +59,18 @@ public class UpgradeGroup extends UpgradeProcess {
 				continue;
 			}
 
-			String friendlyURL = group.getFriendlyURL();
-
-			if (friendlyURL.equals("/guest")) {
-				continue;
-			}
-
 			LayoutLocalServiceUtil.deleteLayouts(
 				group.getGroupId(), privateLayout, new ServiceContext());
 
 			LayoutSetPrototypeUtil.updateLayoutSetPrototype(
-				group, SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_SITE,
-				privateLayout);
-
-			layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
-				group.getGroupId(), privateLayout);
+				group, privateLayout,
+				SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_SITE);
 
 			PortalClassInvoker.invoke(
 				true, _mergeLayoutSetProtypeLayoutsMethodKey, group, layoutSet);
 
 			SocialOfficeUtil.enableSocialOffice(group);
 		}
-
 	}
 
 	private static final String _CLASS_NAME =
