@@ -556,6 +556,14 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 		_active = active;
 	}
 
+	public boolean isUser() {
+		throw new UnsupportedOperationException();
+	}
+
+	public boolean isGroup() {
+		throw new UnsupportedOperationException();
+	}
+
 	public boolean isGlobal() {
 		throw new UnsupportedOperationException();
 	}

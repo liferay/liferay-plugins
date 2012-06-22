@@ -40,8 +40,10 @@
 		<field name="endDate" type="Date" />
 		<field name="allDay" type="boolean" />
 		<field name="recurrence" type="String" />
-		<field name="firstReminder" type="int" />
-		<field name="secondReminder" type="int" />
+		<field name="firstReminder" type="long" />
+		<field name="firstReminderType" type="String" />
+		<field name="secondReminder" type="long" />
+		<field name="secondReminderType" type="String" />
 		<field name="status" type="int" />
 		<field name="statusByUserId" type="long" />
 		<field name="statusByUserName" type="String" />

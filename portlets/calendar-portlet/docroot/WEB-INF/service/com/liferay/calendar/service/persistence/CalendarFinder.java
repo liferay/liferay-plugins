@@ -85,8 +85,4 @@ public interface CalendarFinder {
 		boolean andOperator, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public java.util.List<com.liferay.portal.model.Role> findPermissionRoles(
-		long companyId, long resourceBlockId, java.lang.String actionId)
-		throws com.liferay.portal.kernel.exception.SystemException;
 }

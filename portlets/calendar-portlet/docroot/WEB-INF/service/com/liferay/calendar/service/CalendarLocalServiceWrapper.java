@@ -295,13 +295,6 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 			defaultCalendar, serviceContext);
 	}
 
-	public java.util.List<com.liferay.portal.model.Role> getCalendarPermissionRoles(
-		long companyId, long resourceBlockId, java.lang.String actionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _calendarLocalService.getCalendarPermissionRoles(companyId,
-			resourceBlockId, actionId);
-	}
-
 	public java.util.List<com.liferay.calendar.model.Calendar> getCalendarResourceCalendars(
 		long groupId, long calendarResourceId)
 		throws com.liferay.portal.kernel.exception.SystemException {

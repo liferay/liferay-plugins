@@ -39,9 +39,13 @@ public interface CalendarBooking extends CalendarBookingModel, PersistedModel {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	public com.liferay.calendar.notification.NotificationType getFirstReminderNotificationType();
+
 	public com.liferay.calendar.model.CalendarBooking getParentCalendarBooking()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.calendar.notification.NotificationType getSecondReminderNotificationType();
 
 	public java.util.Date getUTCEndDate()
 		throws com.liferay.portal.kernel.exception.PortalException,

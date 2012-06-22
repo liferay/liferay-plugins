@@ -46,8 +46,10 @@
 		<property name="endDate" type="org.hibernate.type.TimestampType" />
 		<property name="allDay" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="recurrence" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="firstReminder" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
-		<property name="secondReminder" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="firstReminder" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="firstReminderType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="secondReminder" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="secondReminderType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="statusByUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="statusByUserName" type="com.liferay.portal.dao.orm.hibernate.StringType" />

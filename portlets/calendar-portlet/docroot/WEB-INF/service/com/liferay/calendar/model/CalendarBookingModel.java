@@ -520,28 +520,58 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @return the first reminder of this calendar booking
 	 */
-	public int getFirstReminder();
+	public long getFirstReminder();
 
 	/**
 	 * Sets the first reminder of this calendar booking.
 	 *
 	 * @param firstReminder the first reminder of this calendar booking
 	 */
-	public void setFirstReminder(int firstReminder);
+	public void setFirstReminder(long firstReminder);
+
+	/**
+	 * Returns the first reminder type of this calendar booking.
+	 *
+	 * @return the first reminder type of this calendar booking
+	 */
+	@AutoEscape
+	public String getFirstReminderType();
+
+	/**
+	 * Sets the first reminder type of this calendar booking.
+	 *
+	 * @param firstReminderType the first reminder type of this calendar booking
+	 */
+	public void setFirstReminderType(String firstReminderType);
 
 	/**
 	 * Returns the second reminder of this calendar booking.
 	 *
 	 * @return the second reminder of this calendar booking
 	 */
-	public int getSecondReminder();
+	public long getSecondReminder();
 
 	/**
 	 * Sets the second reminder of this calendar booking.
 	 *
 	 * @param secondReminder the second reminder of this calendar booking
 	 */
-	public void setSecondReminder(int secondReminder);
+	public void setSecondReminder(long secondReminder);
+
+	/**
+	 * Returns the second reminder type of this calendar booking.
+	 *
+	 * @return the second reminder type of this calendar booking
+	 */
+	@AutoEscape
+	public String getSecondReminderType();
+
+	/**
+	 * Sets the second reminder type of this calendar booking.
+	 *
+	 * @param secondReminderType the second reminder type of this calendar booking
+	 */
+	public void setSecondReminderType(String secondReminderType);
 
 	/**
 	 * Returns the status of this calendar booking.

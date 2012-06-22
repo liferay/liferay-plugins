@@ -36,7 +36,8 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 		_methodParameterTypes3 = new String[] {
 				"long", "long[][]", "long", "java.util.Map", "java.util.Map",
 				"java.lang.String", "java.util.Date", "java.util.Date",
-				"boolean", "java.lang.String", "int", "int",
+				"boolean", "java.lang.String", "long", "java.lang.String",
+				"long", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -116,7 +117,8 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 		_methodParameterTypes16 = new String[] {
 				"long", "long", "long[][]", "java.util.Map", "java.util.Map",
 				"java.lang.String", "java.util.Date", "java.util.Date",
-				"boolean", "java.lang.String", "int", "int", "int",
+				"boolean", "java.lang.String", "long", "java.lang.String",
+				"long", "java.lang.String", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -125,7 +127,8 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 		_methodParameterTypes17 = new String[] {
 				"long", "long", "java.util.Map", "java.util.Map",
 				"java.lang.String", "java.util.Date", "java.util.Date",
-				"boolean", "java.lang.String", "int", "int", "int",
+				"boolean", "java.lang.String", "long", "java.lang.String",
+				"long", "java.lang.String", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
 	}
@@ -183,7 +186,8 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String location, java.util.Date startDate,
 		java.util.Date endDate, boolean allDay, java.lang.String recurrence,
-		int firstReminder, int secondReminder,
+		long firstReminder, java.lang.String firstReminderType,
+		long secondReminder, java.lang.String secondReminderType,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -215,7 +219,11 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 						
 					firstReminder,
 						
+					ClpSerializer.translateInput(firstReminderType),
+						
 					secondReminder,
+						
+					ClpSerializer.translateInput(secondReminderType),
 						
 					ClpSerializer.translateInput(serviceContext)
 					});
@@ -774,7 +782,8 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String location, java.util.Date startDate,
 		java.util.Date endDate, boolean allDay, java.lang.String recurrence,
-		int firstReminder, int secondReminder, int status,
+		long firstReminder, java.lang.String firstReminderType,
+		long secondReminder, java.lang.String secondReminderType, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -806,7 +815,11 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 						
 					firstReminder,
 						
+					ClpSerializer.translateInput(firstReminderType),
+						
 					secondReminder,
+						
+					ClpSerializer.translateInput(secondReminderType),
 						
 					status,
 						
@@ -842,7 +855,8 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String location, java.util.Date startDate,
 		java.util.Date endDate, boolean allDay, java.lang.String recurrence,
-		int firstReminder, int secondReminder, int status,
+		long firstReminder, java.lang.String firstReminderType,
+		long secondReminder, java.lang.String secondReminderType, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -872,7 +886,11 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 						
 					firstReminder,
 						
+					ClpSerializer.translateInput(firstReminderType),
+						
 					secondReminder,
+						
+					ClpSerializer.translateInput(secondReminderType),
 						
 					status,
 						

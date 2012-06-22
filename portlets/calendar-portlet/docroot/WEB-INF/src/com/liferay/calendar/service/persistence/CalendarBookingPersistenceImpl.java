@@ -795,7 +795,9 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 		calendarBookingImpl.setAllDay(calendarBooking.isAllDay());
 		calendarBookingImpl.setRecurrence(calendarBooking.getRecurrence());
 		calendarBookingImpl.setFirstReminder(calendarBooking.getFirstReminder());
+		calendarBookingImpl.setFirstReminderType(calendarBooking.getFirstReminderType());
 		calendarBookingImpl.setSecondReminder(calendarBooking.getSecondReminder());
+		calendarBookingImpl.setSecondReminderType(calendarBooking.getSecondReminderType());
 		calendarBookingImpl.setStatus(calendarBooking.getStatus());
 		calendarBookingImpl.setStatusByUserId(calendarBooking.getStatusByUserId());
 		calendarBookingImpl.setStatusByUserName(calendarBooking.getStatusByUserName());

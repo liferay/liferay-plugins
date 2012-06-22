@@ -90,14 +90,16 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 			{ "endDate", Types.TIMESTAMP },
 			{ "allDay", Types.BOOLEAN },
 			{ "recurrence", Types.VARCHAR },
-			{ "firstReminder", Types.INTEGER },
-			{ "secondReminder", Types.INTEGER },
+			{ "firstReminder", Types.BIGINT },
+			{ "firstReminderType", Types.VARCHAR },
+			{ "secondReminder", Types.BIGINT },
+			{ "secondReminderType", Types.VARCHAR },
 			{ "status", Types.INTEGER },
 			{ "statusByUserId", Types.BIGINT },
 			{ "statusByUserName", Types.VARCHAR },
 			{ "statusDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table CalendarBooking (uuid_ VARCHAR(75) null,calendarBookingId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,calendarId LONG,calendarResourceId LONG,parentCalendarBookingId LONG,title STRING null,description STRING null,location VARCHAR(75) null,startDate DATE null,endDate DATE null,allDay BOOLEAN,recurrence VARCHAR(75) null,firstReminder INTEGER,secondReminder INTEGER,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table CalendarBooking (uuid_ VARCHAR(75) null,calendarBookingId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,calendarId LONG,calendarResourceId LONG,parentCalendarBookingId LONG,title STRING null,description STRING null,location VARCHAR(75) null,startDate DATE null,endDate DATE null,allDay BOOLEAN,recurrence VARCHAR(75) null,firstReminder LONG,firstReminderType VARCHAR(75) null,secondReminder LONG,secondReminderType VARCHAR(75) null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table CalendarBooking";
 	public static final String ORDER_BY_JPQL = " ORDER BY calendarBooking.startDate ASC, calendarBooking.title ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY CalendarBooking.startDate ASC, CalendarBooking.title ASC";
@@ -151,7 +153,9 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		model.setAllDay(soapModel.getAllDay());
 		model.setRecurrence(soapModel.getRecurrence());
 		model.setFirstReminder(soapModel.getFirstReminder());
+		model.setFirstReminderType(soapModel.getFirstReminderType());
 		model.setSecondReminder(soapModel.getSecondReminder());
+		model.setSecondReminderType(soapModel.getSecondReminderType());
 		model.setStatus(soapModel.getStatus());
 		model.setStatusByUserId(soapModel.getStatusByUserId());
 		model.setStatusByUserName(soapModel.getStatusByUserName());
@@ -230,7 +234,9 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		attributes.put("allDay", getAllDay());
 		attributes.put("recurrence", getRecurrence());
 		attributes.put("firstReminder", getFirstReminder());
+		attributes.put("firstReminderType", getFirstReminderType());
 		attributes.put("secondReminder", getSecondReminder());
+		attributes.put("secondReminderType", getSecondReminderType());
 		attributes.put("status", getStatus());
 		attributes.put("statusByUserId", getStatusByUserId());
 		attributes.put("statusByUserName", getStatusByUserName());
@@ -350,16 +356,28 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 			setRecurrence(recurrence);
 		}
 
-		Integer firstReminder = (Integer)attributes.get("firstReminder");
+		Long firstReminder = (Long)attributes.get("firstReminder");
 
 		if (firstReminder != null) {
 			setFirstReminder(firstReminder);
 		}
 
-		Integer secondReminder = (Integer)attributes.get("secondReminder");
+		String firstReminderType = (String)attributes.get("firstReminderType");
+
+		if (firstReminderType != null) {
+			setFirstReminderType(firstReminderType);
+		}
+
+		Long secondReminder = (Long)attributes.get("secondReminder");
 
 		if (secondReminder != null) {
 			setSecondReminder(secondReminder);
+		}
+
+		String secondReminderType = (String)attributes.get("secondReminderType");
+
+		if (secondReminderType != null) {
+			setSecondReminderType(secondReminderType);
 		}
 
 		Integer status = (Integer)attributes.get("status");
@@ -828,21 +846,49 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	}
 
 	@JSON
-	public int getFirstReminder() {
+	public long getFirstReminder() {
 		return _firstReminder;
 	}
 
-	public void setFirstReminder(int firstReminder) {
+	public void setFirstReminder(long firstReminder) {
 		_firstReminder = firstReminder;
 	}
 
 	@JSON
-	public int getSecondReminder() {
+	public String getFirstReminderType() {
+		if (_firstReminderType == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _firstReminderType;
+		}
+	}
+
+	public void setFirstReminderType(String firstReminderType) {
+		_firstReminderType = firstReminderType;
+	}
+
+	@JSON
+	public long getSecondReminder() {
 		return _secondReminder;
 	}
 
-	public void setSecondReminder(int secondReminder) {
+	public void setSecondReminder(long secondReminder) {
 		_secondReminder = secondReminder;
+	}
+
+	@JSON
+	public String getSecondReminderType() {
+		if (_secondReminderType == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _secondReminderType;
+		}
+	}
+
+	public void setSecondReminderType(String secondReminderType) {
+		_secondReminderType = secondReminderType;
 	}
 
 	@JSON
@@ -1011,7 +1057,9 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		calendarBookingImpl.setAllDay(getAllDay());
 		calendarBookingImpl.setRecurrence(getRecurrence());
 		calendarBookingImpl.setFirstReminder(getFirstReminder());
+		calendarBookingImpl.setFirstReminderType(getFirstReminderType());
 		calendarBookingImpl.setSecondReminder(getSecondReminder());
+		calendarBookingImpl.setSecondReminderType(getSecondReminderType());
 		calendarBookingImpl.setStatus(getStatus());
 		calendarBookingImpl.setStatusByUserId(getStatusByUserId());
 		calendarBookingImpl.setStatusByUserName(getStatusByUserName());
@@ -1215,7 +1263,23 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 
 		calendarBookingCacheModel.firstReminder = getFirstReminder();
 
+		calendarBookingCacheModel.firstReminderType = getFirstReminderType();
+
+		String firstReminderType = calendarBookingCacheModel.firstReminderType;
+
+		if ((firstReminderType != null) && (firstReminderType.length() == 0)) {
+			calendarBookingCacheModel.firstReminderType = null;
+		}
+
 		calendarBookingCacheModel.secondReminder = getSecondReminder();
+
+		calendarBookingCacheModel.secondReminderType = getSecondReminderType();
+
+		String secondReminderType = calendarBookingCacheModel.secondReminderType;
+
+		if ((secondReminderType != null) && (secondReminderType.length() == 0)) {
+			calendarBookingCacheModel.secondReminderType = null;
+		}
 
 		calendarBookingCacheModel.status = getStatus();
 
@@ -1243,7 +1307,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(49);
+		StringBundler sb = new StringBundler(53);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -1283,8 +1347,12 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		sb.append(getRecurrence());
 		sb.append(", firstReminder=");
 		sb.append(getFirstReminder());
+		sb.append(", firstReminderType=");
+		sb.append(getFirstReminderType());
 		sb.append(", secondReminder=");
 		sb.append(getSecondReminder());
+		sb.append(", secondReminderType=");
+		sb.append(getSecondReminderType());
 		sb.append(", status=");
 		sb.append(getStatus());
 		sb.append(", statusByUserId=");
@@ -1299,7 +1367,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(76);
+		StringBundler sb = new StringBundler(82);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.calendar.model.CalendarBooking");
@@ -1382,8 +1450,16 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		sb.append(getFirstReminder());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>firstReminderType</column-name><column-value><![CDATA[");
+		sb.append(getFirstReminderType());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>secondReminder</column-name><column-value><![CDATA[");
 		sb.append(getSecondReminder());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>secondReminderType</column-name><column-value><![CDATA[");
+		sb.append(getSecondReminderType());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>status</column-name><column-value><![CDATA[");
@@ -1445,8 +1521,10 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	private Date _originalEndDate;
 	private boolean _allDay;
 	private String _recurrence;
-	private int _firstReminder;
-	private int _secondReminder;
+	private long _firstReminder;
+	private String _firstReminderType;
+	private long _secondReminder;
+	private String _secondReminderType;
 	private int _status;
 	private int _originalStatus;
 	private boolean _setOriginalStatus;

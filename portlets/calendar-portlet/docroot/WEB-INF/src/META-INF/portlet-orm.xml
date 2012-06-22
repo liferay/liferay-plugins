@@ -70,7 +70,9 @@
 			<basic name="allDay" />
 			<basic name="recurrence" />
 			<basic name="firstReminder" />
+			<basic name="firstReminderType" />
 			<basic name="secondReminder" />
+			<basic name="secondReminderType" />
 			<basic name="status" />
 			<basic name="statusByUserId" />
 			<basic name="statusByUserName" />

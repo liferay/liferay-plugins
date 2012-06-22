@@ -65,7 +65,9 @@ public class CalendarBookingWrapper implements CalendarBooking,
 		attributes.put("allDay", getAllDay());
 		attributes.put("recurrence", getRecurrence());
 		attributes.put("firstReminder", getFirstReminder());
+		attributes.put("firstReminderType", getFirstReminderType());
 		attributes.put("secondReminder", getSecondReminder());
+		attributes.put("secondReminderType", getSecondReminderType());
 		attributes.put("status", getStatus());
 		attributes.put("statusByUserId", getStatusByUserId());
 		attributes.put("statusByUserName", getStatusByUserName());
@@ -184,16 +186,28 @@ public class CalendarBookingWrapper implements CalendarBooking,
 			setRecurrence(recurrence);
 		}
 
-		Integer firstReminder = (Integer)attributes.get("firstReminder");
+		Long firstReminder = (Long)attributes.get("firstReminder");
 
 		if (firstReminder != null) {
 			setFirstReminder(firstReminder);
 		}
 
-		Integer secondReminder = (Integer)attributes.get("secondReminder");
+		String firstReminderType = (String)attributes.get("firstReminderType");
+
+		if (firstReminderType != null) {
+			setFirstReminderType(firstReminderType);
+		}
+
+		Long secondReminder = (Long)attributes.get("secondReminder");
 
 		if (secondReminder != null) {
 			setSecondReminder(secondReminder);
+		}
+
+		String secondReminderType = (String)attributes.get("secondReminderType");
+
+		if (secondReminderType != null) {
+			setSecondReminderType(secondReminderType);
 		}
 
 		Integer status = (Integer)attributes.get("status");
@@ -815,7 +829,7 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	*
 	* @return the first reminder of this calendar booking
 	*/
-	public int getFirstReminder() {
+	public long getFirstReminder() {
 		return _calendarBooking.getFirstReminder();
 	}
 
@@ -824,8 +838,26 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	*
 	* @param firstReminder the first reminder of this calendar booking
 	*/
-	public void setFirstReminder(int firstReminder) {
+	public void setFirstReminder(long firstReminder) {
 		_calendarBooking.setFirstReminder(firstReminder);
+	}
+
+	/**
+	* Returns the first reminder type of this calendar booking.
+	*
+	* @return the first reminder type of this calendar booking
+	*/
+	public java.lang.String getFirstReminderType() {
+		return _calendarBooking.getFirstReminderType();
+	}
+
+	/**
+	* Sets the first reminder type of this calendar booking.
+	*
+	* @param firstReminderType the first reminder type of this calendar booking
+	*/
+	public void setFirstReminderType(java.lang.String firstReminderType) {
+		_calendarBooking.setFirstReminderType(firstReminderType);
 	}
 
 	/**
@@ -833,7 +865,7 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	*
 	* @return the second reminder of this calendar booking
 	*/
-	public int getSecondReminder() {
+	public long getSecondReminder() {
 		return _calendarBooking.getSecondReminder();
 	}
 
@@ -842,8 +874,26 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	*
 	* @param secondReminder the second reminder of this calendar booking
 	*/
-	public void setSecondReminder(int secondReminder) {
+	public void setSecondReminder(long secondReminder) {
 		_calendarBooking.setSecondReminder(secondReminder);
+	}
+
+	/**
+	* Returns the second reminder type of this calendar booking.
+	*
+	* @return the second reminder type of this calendar booking
+	*/
+	public java.lang.String getSecondReminderType() {
+		return _calendarBooking.getSecondReminderType();
+	}
+
+	/**
+	* Sets the second reminder type of this calendar booking.
+	*
+	* @param secondReminderType the second reminder type of this calendar booking
+	*/
+	public void setSecondReminderType(java.lang.String secondReminderType) {
+		_calendarBooking.setSecondReminderType(secondReminderType);
 	}
 
 	/**
@@ -1032,7 +1082,8 @@ public class CalendarBookingWrapper implements CalendarBooking,
 		return new CalendarBookingWrapper((CalendarBooking)_calendarBooking.clone());
 	}
 
-	public int compareTo(CalendarBooking calendarBooking) {
+	public int compareTo(
+		com.liferay.calendar.model.CalendarBooking calendarBooking) {
 		return _calendarBooking.compareTo(calendarBooking);
 	}
 
@@ -1041,11 +1092,11 @@ public class CalendarBookingWrapper implements CalendarBooking,
 		return _calendarBooking.hashCode();
 	}
 
-	public com.liferay.portal.model.CacheModel<CalendarBooking> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<com.liferay.calendar.model.CalendarBooking> toCacheModel() {
 		return _calendarBooking.toCacheModel();
 	}
 
-	public CalendarBooking toEscapedModel() {
+	public com.liferay.calendar.model.CalendarBooking toEscapedModel() {
 		return new CalendarBookingWrapper(_calendarBooking.toEscapedModel());
 	}
 
@@ -1075,10 +1126,18 @@ public class CalendarBookingWrapper implements CalendarBooking,
 		return _calendarBooking.getCalendarResource();
 	}
 
+	public com.liferay.calendar.notification.NotificationType getFirstReminderNotificationType() {
+		return _calendarBooking.getFirstReminderNotificationType();
+	}
+
 	public com.liferay.calendar.model.CalendarBooking getParentCalendarBooking()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _calendarBooking.getParentCalendarBooking();
+	}
+
+	public com.liferay.calendar.notification.NotificationType getSecondReminderNotificationType() {
+		return _calendarBooking.getSecondReminderNotificationType();
 	}
 
 	public java.util.Date getUTCEndDate()
