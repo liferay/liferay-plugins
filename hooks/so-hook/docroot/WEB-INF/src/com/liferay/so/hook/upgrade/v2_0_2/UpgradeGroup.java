@@ -66,6 +66,9 @@ public class UpgradeGroup extends UpgradeProcess {
 				group, privateLayout,
 				SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_SITE);
 
+			layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
+				group.getGroupId(), privateLayout);
+
 			PortalClassInvoker.invoke(
 				true, _mergeLayoutSetProtypeLayoutsMethodKey, group, layoutSet);
 
