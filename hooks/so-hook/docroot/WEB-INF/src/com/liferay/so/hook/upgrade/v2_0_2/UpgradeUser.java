@@ -49,9 +49,8 @@ public class UpgradeUser extends UpgradeProcess {
 
 				Group group = user.getGroup();
 
-				LayoutSet layoutSet =
-						LayoutSetLocalServiceUtil.getLayoutSet(
-							group.getGroupId(), false);
+				LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
+					group.getGroupId(), false);
 
 				String themeId = layoutSet.getThemeId();
 
@@ -63,7 +62,7 @@ public class UpgradeUser extends UpgradeProcess {
 					user.getCompanyId(), "Social Office User");
 
 				UserLocalServiceUtil.addRoleUsers(
-					role.getRoleId(), new long[]{user.getUserId()});
+					role.getRoleId(), new long[] {user.getUserId()});
 
 				updateUserGroup(group);
 				updateSocialRelations(user);
@@ -73,7 +72,7 @@ public class UpgradeUser extends UpgradeProcess {
 		}
 	}
 
-	protected void updateSocialRelations(User user) throws Exception{
+	protected void updateSocialRelations(User user) throws Exception {
 		List<User> socialUsers = UserLocalServiceUtil.getSocialUsers(
 			user.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
@@ -90,8 +89,8 @@ public class UpgradeUser extends UpgradeProcess {
 			group.getGroupId(), false, new ServiceContext());
 
 		LayoutSetPrototypeUtil.updateLayoutSetPrototype(
-			group, SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_USER_PUBLIC,
-			false);
+			group, false,
+			SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_USER_PUBLIC);
 
 		LayoutSet publicLayoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
 			group.getGroupId(), false);
@@ -101,11 +100,11 @@ public class UpgradeUser extends UpgradeProcess {
 			publicLayoutSet);
 
 		LayoutLocalServiceUtil.deleteLayouts(
-				group.getGroupId(), true, new ServiceContext());
+			group.getGroupId(), true, new ServiceContext());
 
 		LayoutSetPrototypeUtil.updateLayoutSetPrototype(
-			group, SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_USER_PRIVATE,
-			true);
+			group, true,
+			SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_USER_PRIVATE);
 
 		LayoutSet privateLayoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
 			group.getGroupId(), true);
@@ -124,4 +123,5 @@ public class UpgradeUser extends UpgradeProcess {
 		new MethodKey(
 			_CLASS_NAME, "mergeLayoutSetProtypeLayouts", Group.class,
 				LayoutSet.class);
+
 }

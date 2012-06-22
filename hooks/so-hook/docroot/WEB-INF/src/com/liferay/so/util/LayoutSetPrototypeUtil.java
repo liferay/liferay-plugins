@@ -55,22 +55,22 @@ public class LayoutSetPrototypeUtil {
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		for (ExpandoValue expandoValue : expandoValues) {
-			String curLayoutSetPrototypeKey = expandoValue.getString();
-
-			if (curLayoutSetPrototypeKey.equals(layoutSetPrototypeKey)) {
-				LayoutSetPrototype layoutSetPrototype =
-					LayoutSetPrototypeLocalServiceUtil.getLayoutSetPrototype(
-						expandoValue.getClassPK());
-
-				return layoutSetPrototype;
+			if (!layoutSetPrototypeKey.equals(expandoValue.getString())) {
+				continue;
 			}
+
+			LayoutSetPrototype layoutSetPrototype =
+				LayoutSetPrototypeLocalServiceUtil.getLayoutSetPrototype(
+					expandoValue.getClassPK());
+
+			return layoutSetPrototype;
 		}
 
 		return null;
 	}
 
 	public static void removeLayoutSetPrototype(
-			Group group, String layoutSetPrototypeKey, boolean privateLayout)
+			Group group, boolean privateLayout, String layoutSetPrototypeKey)
 		throws PortalException, SystemException {
 
 		LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
@@ -122,7 +122,7 @@ public class LayoutSetPrototypeUtil {
 	}
 
 	public static void updateLayoutSetPrototype(
-			Group group, String layoutSetPrototypeKey, boolean privateLayout)
+			Group group, boolean privateLayout, String layoutSetPrototypeKey)
 		throws PortalException, SystemException {
 
 		LayoutSetPrototype layoutSetPrototype = fetchLayoutSetPrototype(

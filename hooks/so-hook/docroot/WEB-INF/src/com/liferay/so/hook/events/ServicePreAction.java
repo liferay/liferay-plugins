@@ -21,8 +21,8 @@ import com.liferay.portal.kernel.events.Action;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
@@ -59,27 +59,36 @@ public class ServicePreAction extends Action {
 			HttpServletRequest request, HttpServletResponse response)
 		throws Exception {
 
+		String currentURL = PortalUtil.getCurrentURL(request);
+
+		if (!currentURL.equals("/user")) {
+			return;
+		}
+
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		String currentURL = PortalUtil.getCurrentURL(request);
+		User user = themeDisplay.getUser();
 
-		User user = UserLocalServiceUtil.getUser(themeDisplay.getUserId());
-
-		if (currentURL.equals("/user") && user.hasPrivateLayouts()) {
-			PortletURL portletURL = PortletURLFactoryUtil.create(
-				request, PortletKeys.SITE_REDIRECTOR, themeDisplay.getPlid(),
-				PortletRequest.ACTION_PHASE);
-
-			portletURL.setParameter("struts_action", "/my_sites/view");
-			portletURL.setParameter(
-				"groupId", String.valueOf(user.getGroup().getGroupId()));
-			portletURL.setParameter("privateLayout", String.valueOf(true));
-			portletURL.setPortletMode(PortletMode.VIEW);
-			portletURL.setWindowState(WindowState.NORMAL);
-
-			response.sendRedirect(portletURL.toString());
+		if (!user.hasPrivateLayouts()) {
+			return;
 		}
+
+		PortletURL portletURL = PortletURLFactoryUtil.create(
+			request, PortletKeys.SITE_REDIRECTOR, themeDisplay.getPlid(),
+			PortletRequest.ACTION_PHASE);
+
+		portletURL.setParameter("struts_action", "/my_sites/view");
+
+		Group group = user.getGroup();
+
+		portletURL.setParameter("groupId", String.valueOf(group.getGroupId()));
+
+		portletURL.setParameter("privateLayout", Boolean.TRUE.toString());
+		portletURL.setPortletMode(PortletMode.VIEW);
+		portletURL.setWindowState(WindowState.NORMAL);
+
+		response.sendRedirect(portletURL.toString());
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(ServicePreAction.class);

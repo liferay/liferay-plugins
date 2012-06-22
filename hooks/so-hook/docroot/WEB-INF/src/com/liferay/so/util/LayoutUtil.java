@@ -151,7 +151,7 @@ public class LayoutUtil {
 	}
 
 	public static void addResources(Layout layout, String portletId)
-		throws Exception{
+		throws Exception {
 
 		String rootPortletId = PortletConstants.getRootPortletId(portletId);
 
