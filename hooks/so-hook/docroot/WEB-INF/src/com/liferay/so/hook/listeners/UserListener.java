@@ -26,6 +26,7 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.so.util.LayoutSetPrototypeUtil;
+import com.liferay.so.util.SocialOfficeConstants;
 import com.liferay.so.util.SocialOfficeUtil;
 
 /**
@@ -55,8 +56,14 @@ public class UserListener extends BaseModelListener<User> {
 				expandoBridge.getAttribute("socialOfficeEnabled"));
 
 			if (hasRole && !socialOfficeEnabled) {
-				LayoutSetPrototypeUtil.updateLayoutSetPrototype(group, false);
-				LayoutSetPrototypeUtil.updateLayoutSetPrototype(group, true);
+				LayoutSetPrototypeUtil.updateLayoutSetPrototype(
+					group,
+					SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_USER_PUBLIC,
+					false);
+				LayoutSetPrototypeUtil.updateLayoutSetPrototype(
+					group,
+					SocialOfficeConstants.
+						LAYOUT_SET_PROTOTYPE_KEY_USER_PRIVATE, true);
 
 				SocialOfficeUtil.enableSocialOffice(group);
 			}
@@ -89,8 +96,14 @@ public class UserListener extends BaseModelListener<User> {
 				expandoBridge.getAttribute("socialOfficeEnabled"));
 
 			if (!hasRole && socialOfficeEnabled) {
-				LayoutSetPrototypeUtil.removeLayoutSetPrototype(group, false);
-				LayoutSetPrototypeUtil.removeLayoutSetPrototype(group, true);
+				LayoutSetPrototypeUtil.removeLayoutSetPrototype(
+					group,
+					SocialOfficeConstants.
+						LAYOUT_SET_PROTOTYPE_KEY_USER_PUBLIC, false);
+				LayoutSetPrototypeUtil.removeLayoutSetPrototype(
+					group,
+					SocialOfficeConstants.
+						LAYOUT_SET_PROTOTYPE_KEY_USER_PRIVATE, true);
 
 				SocialOfficeUtil.disableSocialOffice(group);
 			}

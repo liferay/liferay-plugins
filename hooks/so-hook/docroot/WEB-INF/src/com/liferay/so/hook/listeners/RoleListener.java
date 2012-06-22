@@ -29,6 +29,7 @@ import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.so.util.LayoutSetPrototypeUtil;
 import com.liferay.so.util.RoleConstants;
+import com.liferay.so.util.SocialOfficeConstants;
 import com.liferay.so.util.SocialOfficeUtil;
 
 import java.util.List;
@@ -79,9 +80,13 @@ public class RoleListener extends BaseModelListener<Role> {
 						Group userGroup = user.getGroup();
 
 						LayoutSetPrototypeUtil.updateLayoutSetPrototype(
-							userGroup, false);
+							userGroup,
+							SocialOfficeConstants.
+								LAYOUT_SET_PROTOTYPE_KEY_USER_PUBLIC, false);
 						LayoutSetPrototypeUtil.updateLayoutSetPrototype(
-							userGroup, true);
+							userGroup,
+							SocialOfficeConstants.
+								LAYOUT_SET_PROTOTYPE_KEY_USER_PRIVATE, true);
 
 						SocialOfficeUtil.enableSocialOffice(userGroup);
 					}
@@ -134,9 +139,11 @@ public class RoleListener extends BaseModelListener<Role> {
 						Group userGroup = user.getGroup();
 
 						LayoutSetPrototypeUtil.removeLayoutSetPrototype(
-							userGroup, false);
+							userGroup, SocialOfficeConstants.
+								LAYOUT_SET_PROTOTYPE_KEY_USER_PUBLIC, false);
 						LayoutSetPrototypeUtil.removeLayoutSetPrototype(
-							userGroup, true);
+							userGroup, SocialOfficeConstants.
+								LAYOUT_SET_PROTOTYPE_KEY_USER_PRIVATE, true);
 
 						SocialOfficeUtil.disableSocialOffice(userGroup);
 					}
