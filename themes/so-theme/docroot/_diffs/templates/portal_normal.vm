@@ -23,17 +23,29 @@ $theme.include($body_top_include)
 				</a>
 			</div>
 
-			#set ($instance_id = "siGo")
-			#set ($login_portlet = "58")
+			#if (!$is_signed_in)
+				#set ($instance_id = "siGo")
+				#set ($login_portlet = "58")
 
-			$velocityPortletPreferences.setValue("displayStyle", "0")
-			$velocityPortletPreferences.setValue("portletSetupShowBorders", "false")
+				$velocityPortletPreferences.setValue("displayStyle", "0")
+				$velocityPortletPreferences.setValue("portletSetupShowBorders", "false")
 
-			$theme.runtime($login_portlet, "", $velocityPortletPreferences.toString())
+				$theme.runtime($login_portlet, "", $velocityPortletPreferences.toString())
 
-			#set ($queryString = "param1=value1&param2=value2")
+				#set ($queryString = "param1=value1&param2=value2")
 
-			$velocityPortletPreferences.reset()
+				$velocityPortletPreferences.reset()
+			#else
+				#set ($user_portrait_url = $user.getPortraitURL($themeDisplay))
+
+				<div class="signed-in-as portlet-login">
+					<div class="profile-image">
+						<a href="$user_dashboard_url"><img src="$user.getPortraitURL($themeDisplay)" alt="$user_name"></a>
+					</div>
+
+					<a class="user-name aui-state-default aui-buttonitem-content" href="$user_dashboard_url"><span class="aui-button-label">#language("dashboard")</span></a>
+				</div>
+			#end
 		</div>
 	</div>
 #else
