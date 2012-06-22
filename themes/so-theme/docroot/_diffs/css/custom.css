@@ -5,6 +5,7 @@ $fixed-width: 980px;
 $gray: #CECECE;
 $gray-dark: #C7D0DA;
 $gray-light: #F4F4F4;
+$button-text-color: #34404F;
 $navigation-width: 200px;
 $red: #8F0920;
 
@@ -544,7 +545,7 @@ input[type=text], textarea, input[type=password], .aui-field-select select, .aui
 	vertical-align: top;
 }
 
-button, input[type=submit], input[type=button], input[type=reset], .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .aui-dialog-hd, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .aui-button-input, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .results-header th, .contacts-portlet .social-relations a:hover, .top-links-navigation a:hover, .lfr-actions.lfr-extended, .invite-members, .thread-controls a:hover, .edit-controls a:hover, .portlet-document-library .select-documents, .portlet-document-library-display .select-documents, .tasks-dialog .control a.taglib-icon, #toggleFluid {
+button, input[type=submit], input[type=button], input[type=reset], .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .aui-dialog-hd, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .aui-button-input, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .results-header th, .contacts-portlet .social-relations a:hover, .top-links-navigation a:hover, .lfr-actions.lfr-extended, .invite-members, .thread-controls a:hover, .edit-controls a:hover, .portlet-document-library .select-documents, .portlet-document-library-display .select-documents, .tasks-dialog .control a.taglib-icon, #toggleFluid, .portlet-wiki .top-links-nodes .top-link-node a.node-current {
 	background: #E9E8E8;
 	border: 1px solid $gray;
 	text-shadow: none;
@@ -1241,7 +1242,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 	.social-relations a {
 		border: 1px solid transparent;
-		color: #34404F;
+		color: $button-text-color;
 		display: inline-block;
 		font-weight: bold;
 		line-height: 1em;
@@ -1573,7 +1574,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 	.control a.taglib-icon {
 		border: 1px solid auto;
-		color: #34404F;
+		color: $button-text-color;
 		display: inline-block;
 		font-weight: bold;
 		padding: 5px;
@@ -1666,7 +1667,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 
 	.lfr-header-row-content .parent-folder-title, .portlet-document-library-display .lfr-header-row-content .parent-folder-title {
-		color: #34404F;
+		color: $button-text-color;
 		text-shadow: none;
 	}
 
@@ -1797,7 +1798,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 	a {
 		border: 1px solid transparent;
-		color: #34404F;
+		color: $button-text-color;
 		display: inline-block;
 		font-weight: bold;
 		line-height: 1em;
@@ -1818,6 +1819,37 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		border-right: 0;
 		margin: 0;
 		padding: 0;
+	}
+}
+
+/* Wiki */
+
+.portlet-wiki {
+	.top-links-container .top-links-nodes {
+		background-color: #FFF;
+		border-width: 0 0 1px;
+		float: none;
+		margin: 0;
+		padding: 4px;
+
+		li {
+			border-right-width: 0;
+			display: inline;
+			padding: 0;
+
+			a {
+				display: inline-block;
+				padding: 4px 8px;
+
+				&.node-current {
+					color: $button-text-color;
+				}
+			}
+		}
+	}
+
+	.createpage {
+		color: $red;
 	}
 }
 
@@ -2112,11 +2144,11 @@ input[type=text], input[type=password], textarea, .aui-field-select select, .aui
 	@include box-shadow(0 1px 3px #C9C9C9 inset);
 }
 
-button, input[type=button], input[type=reset], input[type=submit], .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .aui-dialog-hd, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-button-disabled button, .aui-button-disabled button:focus, .aui-button-disabled button:hover, .contacts-portlet .social-relations a:hover, .invite-members, .lfr-actions.lfr-extended, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .aui-button-input, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .microblogs-portlet .microblogs-countdown, .portlet-document-library .select-documents, .portlet-document-library-display .select-documents, .portlet-message-boards .edit-controls, .results-header th, .tasks-dialog .control a.taglib-icon, .thread-controls a:hover, .top-links-navigation a:hover, #toggleFluid {
+button, input[type=button], input[type=reset], input[type=submit], .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .aui-dialog-hd, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-button-disabled button, .aui-button-disabled button:focus, .aui-button-disabled button:hover, .contacts-portlet .social-relations a:hover, .invite-members, .lfr-actions.lfr-extended, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .aui-button-input, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .microblogs-portlet .microblogs-countdown, .portlet-document-library .select-documents, .portlet-document-library-display .select-documents, .portlet-message-boards .edit-controls, .results-header th, .tasks-dialog .control a.taglib-icon, .thread-controls a:hover, .top-links-navigation a:hover, #toggleFluid, .portlet-wiki .top-links-nodes .top-link-node a.node-current {
 	@include border-radius(3px);
 }
 
-button, input[type=button], input[type=reset], input[type=submit], .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .aui-dialog-hd, .aui-button-disabled input[type], .aui-button-disabled input[type]:focus, .aui-button-disabled input[type]:hover, .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .contacts-portlet .social-relations a:hover, .edit-controls a:hover, .invite-members, .lfr-actions.lfr-extended, .lfr-header-row .aui-button-input, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .portlet-document-library .select-documents, .portlet-document-library-display .select-documents, .results-header th, .so-layout-fluid-ad #toggleFluid, .tasks-dialog .control a.taglib-icon, .thread-controls a:hover, #toggleFluid, .top-links-navigation a:hover {
+button, input[type=button], input[type=reset], input[type=submit], .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .aui-dialog-hd, .aui-button-disabled input[type], .aui-button-disabled input[type]:focus, .aui-button-disabled input[type]:hover, .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .contacts-portlet .social-relations a:hover, .edit-controls a:hover, .invite-members, .lfr-actions.lfr-extended, .lfr-header-row .aui-button-input, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .portlet-document-library .select-documents, .portlet-document-library-display .select-documents, .results-header th, .so-layout-fluid-ad #toggleFluid, .tasks-dialog .control a.taglib-icon, .thread-controls a:hover, #toggleFluid, .top-links-navigation a:hover, .portlet-wiki .top-links-nodes .top-link-node a.node-current {
 	@include box-shadow(0 1px 0 #F4F3F3 inset, 0 -1px 0 #D9D8D8 inset);
 }
 
@@ -2128,7 +2160,7 @@ button, input[type=button], input[type=reset], input[type=submit], .aui-panel-hd
 	@include box-shadow(0 3px 2px #DDD);
 }
 
-input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .contacts-portlet .social-relations a:hover, .edit-controls a:hover, .invite-members:hover, .lfr-actions.lfr-extended:hover, .tasks-dialog .control a.taglib-icon:hover, .thread-controls a:hover, .top-links-navigation a:hover {
+input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .contacts-portlet .social-relations a:hover, .edit-controls a:hover, .invite-members:hover, .lfr-actions.lfr-extended:hover, .tasks-dialog .control a.taglib-icon:hover, .thread-controls a:hover, .top-links-navigation a:hover, .portlet-wiki .top-links-nodes .top-link-node a.node-current {
 	&:active {
 		@include box-shadow(0 1px 1px #C9C9C9 inset);
 	}
