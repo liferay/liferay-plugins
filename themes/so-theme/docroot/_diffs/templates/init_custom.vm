@@ -13,9 +13,9 @@
 #end
 
 #if ($is_signed_in)
-	#set ($liferay_toggle_controls = $sessionClicks.get($request, "liferay_toggle_controls", "noPrefs"))
+	#set ($liferay_toggle_controls = $sessionClicks.get($request, "liferay_toggle_controls", ""))
 
-	#if ($liferay_toggle_controls == "noPrefs")
+	#if ($liferay_toggle_controls == "")
 		$sessionClicks.put($request, "liferay_toggle_controls", "hidden")
 		#set ($liferay_toggle_controls = "hidden")
 		#set ($css_class = $css_class.replaceAll("controls-visible", "controls-hidden"))
