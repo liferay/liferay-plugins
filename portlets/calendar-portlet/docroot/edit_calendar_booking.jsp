@@ -30,6 +30,11 @@ redirect = HttpUtil.setParameter(redirect, renderResponse.getNamespace() + "curr
 CalendarBooking calendarBooking = (CalendarBooking)request.getAttribute(WebKeys.CALENDAR_BOOKING);
 
 long calendarBookingId = BeanParamUtil.getLong(calendarBooking, request, "calendarBookingId");
+long firstReminder = BeanParamUtil.getLong(calendarBooking, request, "firstReminder");
+long secondReminder = BeanParamUtil.getLong(calendarBooking, request, "secondReminder");
+
+String firstReminderType = BeanParamUtil.getString(calendarBooking, request, "firstReminderType", PortletPropsValues.CALENDAR_NOTIFICATION_DEFAULT_TYPE);
+String secondReminderType = BeanParamUtil.getString(calendarBooking, request, "secondReminderType", PortletPropsValues.CALENDAR_NOTIFICATION_DEFAULT_TYPE);
 
 long calendarId = BeanParamUtil.getLong(calendarBooking, request, "calendarId", userDefaultCalendar.getCalendarId());
 String title = BeanParamUtil.getString(calendarBooking, request, "titleCurrentValue");
@@ -87,12 +92,6 @@ else if (calendar != null) {
 }
 
 List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.getCompanyId(), null, null, null, true, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new CalendarNameComparator(true), ActionKeys.MANAGE_BOOKINGS);
-
-boolean reminderActive = (calendarBooking !=  null) && ((calendarBooking.getFirstReminder() > 0) || (calendarBooking.getSecondReminder() > 0));
-int firstReminder = BeanParamUtil.getInteger(calendarBooking, request, "firstReminder", (int)Time.MINUTE * 15);
-int secondReminder = BeanParamUtil.getInteger(calendarBooking, request, "secondReminder", (int)Time.MINUTE * 5);
-User bookingUser = UserLocalServiceUtil.getUser(BeanParamUtil.getLong(calendarBooking, request, "userId", user.getUserId()));
-
 %>
 
 <liferay-ui:header
@@ -121,85 +120,35 @@ User bookingUser = UserLocalServiceUtil.getUser(BeanParamUtil.getLong(calendarBo
 		</div>
 
 		<aui:input name="allDay" />
-
-		<aui:select label="calendar" name="calendarId">
-
-			<%
-			for (Calendar curCalendar : manageableCalendars) {
-				if ((calendarBooking != null) && (curCalendar.getCalendarId() != calendarId) && (CalendarBookingLocalServiceUtil.getCalendarBookingsCount(curCalendar.getCalendarId(), calendarBooking.getParentCalendarBookingId()) > 0)) {
-					continue;
-				}
-			%>
-
-				<aui:option selected="<%= curCalendar.getCalendarId() == calendarId %>" value="<%= curCalendar.getCalendarId() %>"><%= curCalendar.getName(locale) %></aui:option>
-
-			<%
-			}
-			%>
-
-		</aui:select>
 	</aui:fieldset>
 
 	<aui:fieldset>
 		<liferay-ui:panel-container extended="<%= false %>" id="templateDetailsPanelContainer" persistState="<%= true %>">
 			<liferay-ui:panel collapsible="<%= true %>" extended="<%= false %>" id="calendarBookingDetailsSectionPanel" persistState="<%= true %>" title="details">
+				<aui:select label="calendar" name="calendarId">
+
+					<%
+					for (Calendar curCalendar : manageableCalendars) {
+						if ((calendarBooking != null) && (curCalendar.getCalendarId() != calendarId) && (CalendarBookingLocalServiceUtil.getCalendarBookingsCount(curCalendar.getCalendarId(), calendarBooking.getParentCalendarBookingId()) > 0)) {
+							continue;
+						}
+					%>
+
+						<aui:option selected="<%= curCalendar.getCalendarId() == calendarId %>" value="<%= curCalendar.getCalendarId() %>"><%= curCalendar.getName(locale) %></aui:option>
+
+					<%
+					}
+					%>
+
+				</aui:select>
+
 				<aui:input name="description" />
 
 				<aui:input name="location" />
 			</liferay-ui:panel>
 
-			<liferay-ui:panel collapsible="<%= true %>" extended="<%= false %>" id="calendarBookingReminderSectionPanel" persistState="<%= true %>" title="reminder">
-				<span class="aui-field-row">
-					<span class="aui-field-content">
-						<aui:input
-							name="reminder"
-							checked="<%= !reminderActive %>"
-							type="radio"
-							value="<%= StringPool.FALSE %>"
-							label="do-not-send-a-reminder"
-						/>
-					</span>
-				</span>
-				<span class="aui-field-row">
-					<aui:input
-						name="reminder"
-						checked="<%= reminderActive %>"
-						type="radio"
-						label=''
-						value="<%= StringPool.TRUE %>"
-						inlineField="true"
-					/>
-
-					<aui:select inlineField="<%= true %>" inlineLabel="left" label="remind-me" name="firstReminder">
-
-						<%
-						for (int i = 0; i < CalendarBookingConstants.REMINDERS.length; i++) {
-						%>
-
-							<aui:option selected="<%= (firstReminder == CalendarBookingConstants.REMINDERS[i]) %>" value="<%= CalendarBookingConstants.REMINDERS[i] %>"><%= LanguageUtil.getTimeDescription(pageContext, CalendarBookingConstants.REMINDERS[i]) %></aui:option>
-
-						<%
-						}
-						%>
-
-					</aui:select>
-
-					<aui:select inlineField="<%= true %>" inlineLabel="left" label="before-and-again" name="secondReminder" suffix="before-the-event-by">
-
-						<%
-						for (int i = 0; i < CalendarBookingConstants.REMINDERS.length; i++) {
-						%>
-
-							<aui:option selected="<%= (secondReminder == CalendarBookingConstants.REMINDERS[i]) %>" value="<%= CalendarBookingConstants.REMINDERS[i] %>"><%= LanguageUtil.getTimeDescription(pageContext, CalendarBookingConstants.REMINDERS[i]) %></aui:option>
-
-						<%
-						}
-						%>
-
-					</aui:select>
-
-					<%= bookingUser.getEmailAddress() %>
-				</span>
+			<liferay-ui:panel collapsible="<%= true %>" extended="<%= false %>" id="calendarBookingReminderSectionPanel" persistState="<%= true %>" title="reminders">
+				<div id="<portlet:namespace />reminders"></div>
 			</liferay-ui:panel>
 		</liferay-ui:panel-container>
 	</aui:fieldset>
@@ -285,7 +234,7 @@ User bookingUser = UserLocalServiceUtil.getUser(BeanParamUtil.getLong(calendarBo
 	</c:if>
 </aui:script>
 
-<aui:script use="json,liferay-calendar-list,liferay-calendar-simple-menu">
+<aui:script use="json,liferay-calendar-list,liferay-calendar-reminders,liferay-calendar-simple-menu">
 	var defaultCalendarId = <%= calendarId %>;
 
 	var removeCalendarResource = function(calendarList, calendar, menu) {
@@ -472,4 +421,21 @@ User bookingUser = UserLocalServiceUtil.getUser(BeanParamUtil.getLong(calendarBo
 			}
 		);
 	</c:if>
+
+	window.<portlet:namespace />reminders = new Liferay.Reminders(
+		{
+			portletNamespace: '<portlet:namespace />',
+			render: '#<portlet:namespace />reminders',
+			values: [
+				{
+					interval: <%= firstReminder %>,
+					type: '<%= HtmlUtil.escape(firstReminderType) %>'
+				},
+				{
+					interval: <%= secondReminder %>,
+					type: '<%= HtmlUtil.escape(secondReminderType) %>'
+				}
+			]
+		}
+	);
 </aui:script>

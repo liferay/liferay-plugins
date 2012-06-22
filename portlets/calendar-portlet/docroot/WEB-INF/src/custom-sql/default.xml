@@ -96,30 +96,6 @@
 				[$ORDER_BY$]
 		]]>
 	</sql>
-	<sql id="com.liferay.calendar.service.persistence.CalendarFinder.findPermissionRoles">
-		<![CDATA[
-			SELECT
-				Role_.roleId AS roleId
-			FROM
-				ResourceBlockPermission
-			INNER JOIN
-				ResourceBlock ON
-					(ResourceBlock.resourceBlockId = ResourceBlockPermission.ResourceBlockId)
-			INNER JOIN
-				Role_ ON
-					(Role_.roleId = ResourceBlockPermission.roleId)
-			INNER JOIN
-				ResourceAction ON
-					(ResourceAction.name = ResourceBlock.name)
-			WHERE
-				(ResourceBlock.companyId = ?) AND
-				(ResourceBlock.name = ?) AND
-				(ResourceBlock.resourceBlockId = ?) AND
-				(ResourceAction.actionId = ?) AND
-				(MOD(INTEGER_DIV(ResourceBlockPermission.actionIds, ResourceAction.bitwisevalue), 2) = 1)
-			ORDER BY Role_.name ASC
-		]]>
-	</sql>
 	<sql id="com.liferay.calendar.service.persistence.CalendarResourceFinder.countByC_G_C_C_N_D_T_A">
 		<![CDATA[
 			SELECT

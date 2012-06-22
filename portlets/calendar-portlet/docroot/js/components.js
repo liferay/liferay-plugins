@@ -675,4 +675,127 @@
 			requires: ['aui-base', 'aui-template']
 		}
 	);
+
+	AUI.add(
+		'liferay-calendar-reminders',
+		function(A) {
+			var Lang = A.Lang;
+
+			var TPL_REMINDER_SECTION = '<div class="calendar-portlet-reminder-section">' +
+											'<input class="calendar-portlet-reminder-check" name="{portletNamespace}reminder{i}" type="checkbox" <tpl if="!disabled">checked="checked"</tpl> /> ' +
+											'<input name="{portletNamespace}reminderValue{i}" type="text" size="5" value="{time.value}" <tpl if="disabled">disabled="disabled"</tpl> /> ' +
+											'<select name="{portletNamespace}reminderDuration{i}" <tpl if="disabled">disabled="disabled"</tpl>>' +
+												'<option value="60" <tpl if="time.desc == \'minutes\'">selected="selected"</tpl>>{minutes}</option>' +
+												'<option value="3600" <tpl if="time.desc == \'hours\'">selected="selected"</tpl>>{hours}</option>' +
+												'<option value="86400" <tpl if="time.desc == \'days\'">selected="selected"</tpl>>{days}</option>' +
+												'<option value="604800" <tpl if="time.desc == \'weeks\'">selected="selected"</tpl>>{weeks}</option>' +
+											'</select>' +
+											'<select name="{portletNamespace}reminderType{i}" <tpl if="disabled">disabled="disabled"</tpl>>' +
+												'<option value="email">{email}</option>' +
+											'</select>' +
+										'</div>';
+
+			var Reminders = A.Component.create({
+				NAME: 'reminders',
+
+				ATTRS: {
+					portletNamespace: {
+						value: ''
+					},
+
+					strings: {
+						value: {
+							email: Liferay.Language.get('email'),
+							minutes: Liferay.Language.get('minutes'),
+							hours: Liferay.Language.get('hours'),
+							days: Liferay.Language.get('days'),
+							weeks: Liferay.Language.get('weeks')
+						}
+					},
+
+					values: {
+						value: [
+							{
+								interval: 10,
+								type: Liferay.CalendarUtil.NOTIFICATION_DEFAULT_TYPE
+							},
+							{
+								interval: 60,
+								type: Liferay.CalendarUtil.NOTIFICATION_DEFAULT_TYPE
+							}
+						],
+						validator: Lang.isArray
+					}
+				},
+
+				UI_ATTRS: ['values'],
+
+				prototype: {
+					initializer: function() {
+						var instance = this;
+
+						instance.tplReminder = new A.Template(TPL_REMINDER_SECTION);
+					},
+
+					bindUI: function() {
+						var instance = this;
+
+						var boundingBox = instance.get('boundingBox');
+
+						boundingBox.delegate('change', A.bind(instance._onChangeCheckbox, instance), '.calendar-portlet-reminder-check');
+					},
+
+					_onChangeCheckbox: function(event) {
+						var instance = this;
+
+						var target = event.target;
+						var checked = target.get('checked');
+						var elements = target.siblings('input[type=text],select');
+
+						elements.set('disabled', !checked);
+
+						if (checked) {
+							elements.first().selectText();
+						}
+					},
+
+					_uiSetValues: function(val) {
+						var instance = this;
+
+						var boundingBox = instance.get('boundingBox');
+						var portletNamespace = instance.get('portletNamespace');
+						var strings = instance.get('strings');
+
+						var buffer = [];
+
+						for (var i = 0; i < val.length; i++) {
+							var value = val[i];
+
+							buffer.push(
+								instance.tplReminder.parse(
+									A.merge(
+										strings,
+										{
+											disabled: !value.interval,
+											i: i,
+											portletNamespace: portletNamespace,
+											time: Liferay.Time.getDescription(value.interval)
+										}
+									)
+								)
+							);
+						}
+
+						boundingBox.setContent(buffer.join(STR_BLANK));
+					}
+				}
+			});
+
+			Liferay.Reminders = Reminders;
+		},
+		'',
+		{
+			requires: ['aui-base']
+		}
+	);
 }());

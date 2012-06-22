@@ -145,6 +145,10 @@
 	width: 12px;
 }
 
+.calendar-portlet-reminder-section {
+	padding: 1px;
+}
+
 .aui-toggler-header-expanded .calendar-portlet-list-arrow {
 	background-position: -66px -18px;
 }

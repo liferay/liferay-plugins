@@ -104,6 +104,7 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 <%@ include file="/view_calendar_menus.jspf" %>
 
 <aui:script use="aui-toggler,liferay-calendar-list,liferay-scheduler,liferay-store,json">
+	Liferay.CalendarUtil.NOTIFICATION_DEFAULT_TYPE = '<%= PortletPropsValues.CALENDAR_NOTIFICATION_DEFAULT_TYPE %>';
 	Liferay.CalendarUtil.PORTLET_NAMESPACE = '<portlet:namespace />';
 	Liferay.CalendarUtil.USER_TIMEZONE_OFFSET = <%= JCalendarUtil.getTimeZoneOffset(timeZone) %>;
 
