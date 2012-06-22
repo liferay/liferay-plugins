@@ -75,7 +75,7 @@ AUI().use(
 
 								event.cfg.data = {
 									directory: data.directory || false,
-									end: data.end || 0,
+									end: data.end || 10,
 									keywords: data.keywords || '',
 									searchTab: data.searchTab || tabs1,
 									start: data.start || 0

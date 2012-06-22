@@ -29,13 +29,13 @@ List<Group> groups = null;
 int groupsCount = 0;
 
 if (tabs1.equals("my-sites")) {
-	groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchKeywords, true, maxResultSize);
+	groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchKeywords, true, 0, maxResultSize);
 	groupsCount = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchKeywords, true);
 
 	if (groupsCount == 0) {
 		tabs1 = "all-sites";
 
-		groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchKeywords, false, maxResultSize);
+		groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchKeywords, false, 0, maxResultSize);
 		groupsCount = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchKeywords, false);
 	}
 }
@@ -44,7 +44,7 @@ else if (tabs1.equals("my-favorites")) {
 	groupsCount = SitesUtil.getFavoriteSitesGroupsCount(themeDisplay.getUserId(), searchKeywords);
 }
 else {
-	groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchKeywords, false, maxResultSize);
+	groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchKeywords, false, 0, maxResultSize);
 	groupsCount = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), searchKeywords, false);
 }
 %>
@@ -379,6 +379,9 @@ else {
 	var getRequestTemplate = function(targetPage) {
 		var start = (targetPage - 1) * <%= maxResultSize %>;
 		var end = start + <%= maxResultSize %>;
+
+		console.log(start);
+		console.log(end);
 
 		return function(query) {
 			return {
