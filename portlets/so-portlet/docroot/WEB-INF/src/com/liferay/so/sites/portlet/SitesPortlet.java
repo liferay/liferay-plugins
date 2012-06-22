@@ -184,7 +184,7 @@ public class SitesPortlet extends MVCPortlet {
 		throws Exception {
 
 		boolean directory = ParamUtil.getBoolean(resourceRequest, "directory");
-		int end = ParamUtil.getInteger(resourceRequest, "end");
+		int end = ParamUtil.getInteger(resourceRequest, "end", 10);
 		String keywords = DAOParamUtil.getLike(resourceRequest, "keywords");
 		int maxResultSize = ParamUtil.getInteger(
 			resourceRequest, "maxResultSize", 10);
@@ -213,21 +213,21 @@ public class SitesPortlet extends MVCPortlet {
 		if (searchTab.equals("my-sites")) {
 			groups = SitesUtil.getVisibleSites(
 				themeDisplay.getCompanyId(), themeDisplay.getUserId(), keywords,
-				true, maxResultSize);
+				true, start, end);
 			groupsCount = SitesUtil.getVisibleSitesCount(
 				themeDisplay.getCompanyId(), themeDisplay.getUserId(), keywords,
 				true);
 		}
 		else if (searchTab.equals("my-favorites")) {
 			groups = SitesUtil.getFavoriteSitesGroups(
-				themeDisplay.getUserId(), keywords, 0, maxResultSize);
+				themeDisplay.getUserId(), keywords, 0, end);
 			groupsCount = SitesUtil.getFavoriteSitesGroupsCount(
 				themeDisplay.getUserId(), keywords);
 		}
 		else {
 			groups = SitesUtil.getVisibleSites(
 				themeDisplay.getCompanyId(), themeDisplay.getUserId(), keywords,
-				false, maxResultSize);
+				false, start, end);
 			groupsCount = SitesUtil.getVisibleSitesCount(
 				themeDisplay.getCompanyId(), themeDisplay.getUserId(), keywords,
 				false);

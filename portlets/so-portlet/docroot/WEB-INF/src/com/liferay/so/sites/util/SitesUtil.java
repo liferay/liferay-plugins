@@ -69,11 +69,11 @@ public class SitesUtil {
 
 	public static List<Group> getVisibleSites(
 		long companyId, long userId, String keywords, boolean usersSites,
-		int maxResultSize) {
+		int start, int end) {
 
 		try {
 			return doGetVisibleSites(
-				companyId, userId, keywords, usersSites, maxResultSize);
+				companyId, userId, keywords, usersSites, start, end);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -98,54 +98,42 @@ public class SitesUtil {
 
 	protected static List<Group> doGetVisibleSites(
 			long companyId, long userId, String keywords, boolean usersSites,
-			int maxResultSize)
+			int start, int end)
 		throws Exception {
 
-		List<Group> groups = new ArrayList<Group>(maxResultSize);
+		if (usersSites) {
+			LinkedHashMap<String, Object> params =
+				new LinkedHashMap<String, Object>();
 
-		LinkedHashMap<String, Object> params =
-			new LinkedHashMap<String, Object>();
+			params.put("active", Boolean.TRUE);
+			params.put("pageCount", Boolean.TRUE);
+			params.put("usersGroups", userId);
 
-		params.put("active", Boolean.TRUE);
-		params.put("pageCount", Boolean.TRUE);
-		params.put("usersGroups", userId);
+			List<Group> groups = GroupLocalServiceUtil.search(
+				companyId, keywords, null, params, start, end,
+				new GroupNameComparator(true));
 
-		List<Group> usersGroups = GroupLocalServiceUtil.search(
-			companyId, keywords, null, params, 0, maxResultSize,
-			new GroupNameComparator(true));
-
-		groups.addAll(usersGroups);
-
-		if (usersSites || (groups.size() >= maxResultSize)) {
 			return groups;
 		}
+		else {
+			LinkedHashMap<String, Object> params =
+				new LinkedHashMap<String, Object>();
 
-		params.clear();
+			List<Integer> types = new ArrayList<Integer>();
 
-		List<Integer> types = new ArrayList<Integer>();
+			types.add(GroupConstants.TYPE_SITE_OPEN);
+			types.add(GroupConstants.TYPE_SITE_RESTRICTED);
 
-		types.add(GroupConstants.TYPE_SITE_OPEN);
-		types.add(GroupConstants.TYPE_SITE_RESTRICTED);
+			params.put("active", Boolean.TRUE);
+			params.put("pageCount", Boolean.TRUE);
+			params.put("types", types);
 
-		params.put("active", Boolean.TRUE);
-		params.put("pageCount", Boolean.TRUE);
-		params.put("types", types);
+			List<Group> groups = GroupLocalServiceUtil.search(
+				companyId, keywords, null, params, start, end,
+				new GroupNameComparator(true));
 
-		List<Group> visibleGroup = GroupLocalServiceUtil.search(
-			companyId, keywords, null, params, 0, maxResultSize,
-			new GroupNameComparator(true));
-
-		for (Group group : visibleGroup) {
-			if (!usersGroups.contains(group)) {
-				groups.add(group);
-			}
-
-			if (groups.size() > maxResultSize) {
-				break;
-			}
+			return groups;
 		}
-
-		return groups;
 	}
 
 	protected static int doGetVisibleSitesCount(
