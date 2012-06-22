@@ -1,0 +1,127 @@
+/**
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ *
+ * This file is part of Liferay Social Office. Liferay Social Office is free
+ * software: you can redistribute it and/or modify it under the terms of the GNU
+ * Affero General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ *
+ * Liferay Social Office is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License
+ * for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
+ */
+
+package com.liferay.so.hook.upgrade.v2_0_2;
+
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.util.MethodKey;
+import com.liferay.portal.kernel.util.PortalClassInvoker;
+import com.liferay.portal.model.*;
+import com.liferay.portal.service.*;
+import com.liferay.portlet.social.model.SocialRelationConstants;
+import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
+import com.liferay.so.util.LayoutSetPrototypeUtil;
+import com.liferay.so.util.SocialOfficeConstants;
+import com.liferay.so.util.SocialOfficeUtil;
+
+import java.util.List;
+
+/**
+ * @author Jonathan Lee
+ */
+public class UpgradeUser extends UpgradeProcess {
+
+	@Override
+	protected void doUpgrade() throws Exception {
+		List<User> users = UserLocalServiceUtil.getUsers(
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+
+		for (User user : users) {
+			try {
+				if (user.isDefaultUser()) {
+					continue;
+				}
+
+				Group group = user.getGroup();
+
+				LayoutSet layoutSet =
+						LayoutSetLocalServiceUtil.getLayoutSet(
+							group.getGroupId(), false);
+
+				String themeId = layoutSet.getThemeId();
+
+				if (!themeId.equals("so_WAR_sotheme")) {
+					return;
+				}
+
+				Role role = RoleLocalServiceUtil.getRole(
+						user.getCompanyId(), "Social Office User");
+
+				UserLocalServiceUtil.addRoleUsers(
+						role.getRoleId(), new long[]{user.getUserId()});
+
+				updateUserGroup(group);
+				updateSocialRelations(user);
+			}
+			catch (Exception e) {
+			}
+		}
+	}
+
+	protected void updateSocialRelations(User user) throws Exception{
+		List<User> socialUsers = UserLocalServiceUtil.getSocialUsers(
+			user.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+
+		for (User socialUser : socialUsers) {
+			SocialRelationLocalServiceUtil.addRelation(
+				user.getUserId(), socialUser.getUserId(),
+				SocialRelationConstants.TYPE_BI_CONNECTION);
+		}
+	}
+
+	protected void updateUserGroup(Group group) throws Exception {
+		LayoutLocalServiceUtil.deleteLayouts(
+			group.getGroupId(), false, new ServiceContext());
+
+		LayoutSetPrototypeUtil.updateLayoutSetPrototype(
+			group, SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_USER_PUBLIC,
+			false);
+
+		LayoutSet publicLayoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
+			group.getGroupId(), false);
+
+		PortalClassInvoker.invoke(
+			true, _mergeLayoutSetProtypeLayoutsMethodKey, group,
+			publicLayoutSet);
+
+		LayoutLocalServiceUtil.deleteLayouts(
+				group.getGroupId(), true, new ServiceContext());
+
+		LayoutSetPrototypeUtil.updateLayoutSetPrototype(
+			group, SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_USER_PRIVATE,
+			true);
+
+		LayoutSet privateLayoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
+			group.getGroupId(), true);
+
+		PortalClassInvoker.invoke(
+			true, _mergeLayoutSetProtypeLayoutsMethodKey, group,
+			privateLayoutSet);
+
+		SocialOfficeUtil.enableSocialOffice(group);
+	}
+
+	private static final String _CLASS_NAME =
+		"com.liferay.portlet.sites.util.SitesUtil";
+
+	private static MethodKey _mergeLayoutSetProtypeLayoutsMethodKey =
+		new MethodKey(
+			_CLASS_NAME, "mergeLayoutSetProtypeLayouts", Group.class,
+				LayoutSet.class);
+}
