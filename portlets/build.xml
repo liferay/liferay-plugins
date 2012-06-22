@@ -99,7 +99,12 @@
 					</or>
 					<then>
 						<if>
-							<equals arg1="${portlet.framework}" arg2="icefaces" />
+							<or>
+								<equals arg1="${portlet.framework}" arg2="jsf" />
+								<equals arg1="${portlet.framework}" arg2="liferay_faces_alloy" />
+								<equals arg1="${portlet.framework}" arg2="primefaces" />
+								<equals arg1="${portlet.framework}" arg2="richfaces" />
+							</or>
 							<then>
 								<echo file="${portlet.dir}/docroot/WEB-INF/liferay-plugin-package.properties" append="true">
 
