@@ -3,14 +3,13 @@
 
 #set ($logo = "logo")
 
-#set ($user_profile_url = $community_default_public_url)
-#set ($user_dashboard_url = $site_default_url)
 #set ($user_dashboard_portlet_url = $site_default_url)
-#set ($colorSchemeId = $theme_display.getColorSchemeId())
+#set ($user_dashboard_url = $site_default_url)
+#set ($user_profile_url = $community_default_public_url)
 
 #set ($login_screen = false)
 
-#if ($colorSchemeId == "login_screen")
+#if ($theme_display.getColorSchemeId() == "login_screen")
 	#set ($login_screen = true)
 #end
 

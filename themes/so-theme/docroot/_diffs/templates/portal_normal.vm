@@ -18,21 +18,16 @@ $theme.include($body_top_include)
 	<div id="loginPage">
 		<div class="login-holder">
 			<div class="company-title">
-				<a class="$logo_css_class" href="$site_default_url" title='#language("go-to") #language("dashboard")'>
+				<a class="$logo_css_class" href="$site_default_url" title="#language("go-to") #language("dashboard")">
 					<img alt="$logo_description" height="$site_logo_height" src="$site_logo" width="$site_logo_width" />
 				</a>
 			</div>
 
 			#if (!$is_signed_in)
-				#set ($instance_id = "siGo")
-				#set ($login_portlet = "58")
-
 				$velocityPortletPreferences.setValue("displayStyle", "0")
 				$velocityPortletPreferences.setValue("portletSetupShowBorders", "false")
 
-				$theme.runtime($login_portlet, "", $velocityPortletPreferences.toString())
-
-				#set ($queryString = "param1=value1&param2=value2")
+				$theme.runtime("58", "", $velocityPortletPreferences.toString())
 
 				$velocityPortletPreferences.reset()
 			#else
