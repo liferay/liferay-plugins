@@ -19,14 +19,15 @@ import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.base.CalendarLocalServiceBaseImpl;
 import com.liferay.calendar.util.PortletPropsValues;
+import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ResourceConstants;
-import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.RoleLocalService;
 import com.liferay.portal.service.ServiceContext;
 
 import java.util.Date;
@@ -149,14 +150,6 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		return calendarPersistence.findByPrimaryKey(calendarId);
-	}
-
-	public List<Role> getCalendarPermissionRoles(
-			long companyId, long resourceBlockId, String actionId)
-		throws SystemException {
-
-		return calendarFinder.findPermissionRoles(
-			companyId, resourceBlockId, actionId);
 	}
 
 	public List<Calendar> getCalendarResourceCalendars(
@@ -304,5 +297,8 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 			throw new CalendarNameException();
 		}
 	}
+
+	@BeanReference(type = RoleLocalService.class)
+	protected RoleLocalService roleLocalService;
 
 }

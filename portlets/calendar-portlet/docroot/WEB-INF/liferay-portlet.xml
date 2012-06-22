@@ -9,7 +9,7 @@
 			<scheduler-event-listener-class>com.liferay.calendar.messaging.CheckBookingMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<simple>
-					<property-key>calendar.booking.check.interval</property-key>
+					<property-key>calendar.notification.check.interval</property-key>
 					<time-unit>minute</time-unit>
 				</simple>
 			</trigger>

@@ -33,7 +33,7 @@ import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.sql.Timestamp;
-import java.util.Calendar;
+
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -230,14 +230,8 @@ public class CalendarBookingFinderImpl
 			true);
 	}
 
-	public List<CalendarBooking> findByFutureReminders()
-					throws SystemException {
-
-		Calendar calendar = Calendar.getInstance();
-
-		calendar.add(Calendar.HOUR, -24);
-
-		Timestamp calendar_TS = CalendarUtil.getTimestamp(calendar.getTime());
+	public List<CalendarBooking> findByFutureReminders(Date startDate)
+		throws SystemException {
 
 		Session session = null;
 
@@ -252,7 +246,7 @@ public class CalendarBookingFinderImpl
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
-			qPos.add(calendar_TS);
+			qPos.add(startDate);
 
 			return q.list(true);
 		}

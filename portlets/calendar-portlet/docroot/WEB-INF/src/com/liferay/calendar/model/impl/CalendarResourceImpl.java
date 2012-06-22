@@ -15,6 +15,8 @@
 package com.liferay.calendar.model.impl;
 
 import com.liferay.calendar.model.CalendarResource;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
 
 /**
@@ -34,6 +36,26 @@ public class CalendarResourceImpl extends CalendarResourceBaseImpl {
 		}
 
 		return true;
+	}
+
+	public boolean isGroup() {
+		long groupClassNameId = PortalUtil.getClassNameId(Group.class);
+
+		if (groupClassNameId == getClassNameId()) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean isUser() {
+		long userClassNameId = PortalUtil.getClassNameId(User.class);
+
+		if (userClassNameId == getClassNameId()) {
+			return true;
+		}
+
+		return false;
 	}
 
 }

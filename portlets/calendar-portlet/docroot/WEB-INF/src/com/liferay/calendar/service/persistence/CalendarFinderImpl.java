@@ -27,13 +27,10 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.Role;
 import com.liferay.portal.security.permission.InlineSQLHelperUtil;
-import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -50,9 +47,6 @@ public class CalendarFinderImpl
 
 	public static final String FIND_BY_C_G_C_N_D =
 		CalendarFinder.class.getName() + ".findByC_G_C_N_D";
-
-	public static final String FIND_PERMISSION_ROLES =
-		CalendarFinder.class.getName() + ".findPermissionRoles";
 
 	public int countByKeywords(
 			long companyId, long[] groupIds, long[] calendarResourceIds,
@@ -238,54 +232,6 @@ public class CalendarFinderImpl
 		return doFindByC_G_C_N_D(
 			companyId, groupIds, calendarResourceIds, names, descriptions,
 			andOperator, start, end, orderByComparator, false);
-	}
-
-	public List<Role> findPermissionRoles(
-			long companyId, long resourceBlockId, String actionId)
-		throws SystemException {
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			String sql = CustomSQLUtil.get(FIND_PERMISSION_ROLES);
-
-			SQLQuery q = session.createSQLQuery(sql);
-
-			//q.addEntity("Role", Role.class);
-			q.addScalar("roleId", Type.LONG);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(companyId);
-			qPos.add(Calendar.class.getName());
-			qPos.add(resourceBlockId);
-			qPos.add(actionId);
-
-			List<Role> roles = new ArrayList<Role>();
-
-			Iterator<Long> itr = q.iterate();
-
-			Role role;
-			Long roleId;
-			while (itr.hasNext()) {
-				roleId = itr.next();
-
-				if (roleId != null) {
-					role = RoleLocalServiceUtil.getRole(roleId.longValue());
-					roles.add(role);
-				}
-			}
-
-			return roles;
-		}
-		catch (Exception e) {
-			throw new SystemException(e);
-		}
-		finally {
-			closeSession(session);
-		}
 	}
 
 	protected int doCountByC_G_C_N_D(

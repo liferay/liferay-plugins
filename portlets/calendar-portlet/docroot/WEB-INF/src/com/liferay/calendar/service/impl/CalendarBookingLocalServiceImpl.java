@@ -18,50 +18,28 @@ import com.liferay.calendar.CalendarBookingDurationException;
 import com.liferay.calendar.CalendarBookingTitleException;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
-import com.liferay.calendar.model.CalendarResource;
+import com.liferay.calendar.notification.NotificationType;
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 import com.liferay.calendar.service.base.CalendarBookingLocalServiceBaseImpl;
-import com.liferay.calendar.util.CalendarUtil;
 import com.liferay.calendar.util.JCalendarUtil;
-import com.liferay.calendar.util.PortletKeys;
+import com.liferay.calendar.util.NotificationUtil;
 import com.liferay.calendar.util.PortletPropsValues;
 import com.liferay.calendar.workflow.CalendarBookingApprovalWorkflow;
 import com.liferay.calendar.workflow.CalendarBookingWorkflowConstants;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.mail.MailMessage;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.CalendarFactoryUtil;
-import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.Company;
-import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.CompanyLocalServiceUtil;
-import com.liferay.portal.service.PortletLocalServiceUtil;
-import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.util.PortalUtil;
-import com.liferay.portal.util.SubscriptionSender;
 
-import java.text.Format;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
-
-import javax.mail.internet.InternetAddress;
-import javax.portlet.PortletPreferences;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Eduardo Lundgren
@@ -74,8 +52,9 @@ public class CalendarBookingLocalServiceImpl
 			long userId, long calendarId, long[] childCalendarIds,
 			long parentCalendarBookingId, Map<Locale, String> titleMap,
 			Map<Locale, String> descriptionMap, String location, Date startDate,
-			Date endDate, boolean allDay, String recurrence, int firstReminder,
-			int secondReminder, ServiceContext serviceContext)
+			Date endDate, boolean allDay, String recurrence, long firstReminder,
+			String firstReminderType, long secondReminder,
+			String secondReminderType, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// Calendar booking
@@ -107,7 +86,7 @@ public class CalendarBookingLocalServiceImpl
 		}
 
 		if (firstReminder < secondReminder) {
-			int originalSecondReminder = secondReminder;
+			long originalSecondReminder = secondReminder;
 
 			secondReminder = firstReminder;
 			firstReminder = originalSecondReminder;
@@ -147,7 +126,9 @@ public class CalendarBookingLocalServiceImpl
 		calendarBooking.setAllDay(allDay);
 		calendarBooking.setRecurrence(recurrence);
 		calendarBooking.setFirstReminder(firstReminder);
+		calendarBooking.setFirstReminderType(firstReminderType);
 		calendarBooking.setSecondReminder(secondReminder);
+		calendarBooking.setSecondReminderType(secondReminderType);
 
 		int status = CalendarBookingWorkflowConstants.STATUS_PENDING;
 
@@ -172,40 +153,21 @@ public class CalendarBookingLocalServiceImpl
 		return calendarBooking;
 	}
 
-	public void checkBookings() throws PortalException, SystemException {
-		List<CalendarBooking> calendarBookings =
-			calendarBookingFinder.findByFutureReminders();
+	public void checkCalendarBookings()
+		throws PortalException, SystemException {
 
-		for (CalendarBooking calendarBooking : calendarBookings) {
+		try {
+			Date now = new Date();
 
-			Calendar calendar = calendarPersistence.findByPrimaryKey(
-				calendarBooking.getCalendarId());
+			List<CalendarBooking> calendarBookings =
+				calendarBookingFinder.findByFutureReminders(now);
 
-			CalendarResource calendarResource =
-				calendarResourcePersistence.findByPrimaryKey(
-					calendar.getCalendarResourceId());
-
-			if (calendarResource.getClassNameId() !=
-					PortalUtil.getClassNameId(User.class)) {
-				return;
+			for (CalendarBooking calendarBooking : calendarBookings) {
+				NotificationUtil.notifyCalendarBookingReminders(
+					calendarBooking);
 			}
-
-			User user = userPersistence.fetchByPrimaryKey(
-				calendarResource.getUserId());
-
-			if (user == null) {
-				deleteCalendarBooking(calendarBooking);
-
-				return;
-			}
-
-			java.util.Calendar now = CalendarFactoryUtil.getCalendar(
-				user.getTimeZone());
-
-			java.util.Calendar startDate = JCalendarUtil.getJCalendar(
-				calendarBooking.getStartDate(), user.getTimeZone());
-
-			remindUser(calendarBooking, user, startDate, now);
+		}
+		catch (Exception e) {
 		}
 	}
 
@@ -361,8 +323,10 @@ public class CalendarBookingLocalServiceImpl
 			long userId, long calendarBookingId, long calendarId,
 			long[] childCalendarIds, Map<Locale, String> titleMap,
 			Map<Locale, String> descriptionMap, String location, Date startDate,
-			Date endDate, boolean allDay, String recurrence, int firstReminder,
-			int secondReminder, int status, ServiceContext serviceContext)
+			Date endDate, boolean allDay, String recurrence, long firstReminder,
+			String firstReminderType, long secondReminder,
+			String secondReminderType, int status,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// Calendar booking
@@ -382,7 +346,7 @@ public class CalendarBookingLocalServiceImpl
 		}
 
 		if (firstReminder < secondReminder) {
-			int originalSecondReminder = secondReminder;
+			long originalSecondReminder = secondReminder;
 
 			secondReminder = firstReminder;
 			firstReminder = originalSecondReminder;
@@ -403,7 +367,9 @@ public class CalendarBookingLocalServiceImpl
 		calendarBooking.setAllDay(allDay);
 		calendarBooking.setRecurrence(recurrence);
 		calendarBooking.setFirstReminder(firstReminder);
+		calendarBooking.setFirstReminderType(firstReminderType);
 		calendarBooking.setSecondReminder(secondReminder);
+		calendarBooking.setSecondReminderType(secondReminderType);
 
 		calendarBookingPersistence.update(calendarBooking, false);
 
@@ -423,8 +389,9 @@ public class CalendarBookingLocalServiceImpl
 			long userId, long calendarBookingId, long calendarId,
 			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
 			String location, Date startDate, Date endDate, boolean allDay,
-			String recurrence, int firstReminder, int secondReminder,
-			int status, ServiceContext serviceContext)
+			String recurrence, long firstReminder, String firstReminderType,
+			long secondReminder, String secondReminderType, int status,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		CalendarBooking calendarBooking =
@@ -452,7 +419,8 @@ public class CalendarBookingLocalServiceImpl
 		return updateCalendarBooking(
 			userId, calendarBookingId, calendarId, childCalendarIds, titleMap,
 			descriptionMap, location, startDate, endDate, allDay, recurrence,
-			firstReminder, secondReminder, status, serviceContext);
+			firstReminder, firstReminderType, secondReminder,
+			secondReminderType, status, serviceContext);
 	}
 
 	public CalendarBooking updateStatus(
@@ -519,206 +487,19 @@ public class CalendarBookingLocalServiceImpl
 				calendarBooking.getUTCEndDate(), calendarBooking.getAllDay(),
 				calendarBooking.getRecurrence(),
 				calendarBooking.getFirstReminder(),
-				calendarBooking.getSecondReminder(), serviceContext);
+				calendarBooking.getFirstReminderType(),
+				calendarBooking.getSecondReminder(),
+				calendarBooking.getSecondReminderType(), serviceContext);
 
-			sendBookingNotifications(
-				childCalendarBooking, calendarId, serviceContext);
-		}
-	}
+			try {
+				NotificationType notificationType = NotificationType.parse(
+					PortletPropsValues.CALENDAR_NOTIFICATION_DEFAULT_TYPE);
 
-	protected void remindUser(
-			CalendarBooking calendarBooking, User user,
-			java.util.Calendar startDate) {
-
-		try {
-			long ownerId = calendarBooking.getGroupId();
-			int ownerType = PortletKeys.PREFS_OWNER_TYPE_GROUP;
-			long plid = PortletKeys.PREFS_PLID_SHARED;
-			String portletId = PortletKeys.CALENDAR;
-
-			PortletPreferences preferences =
-				PortletPreferencesLocalServiceUtil.getPreferences(
-					calendarBooking.getCompanyId(), ownerId, ownerType, plid,
-					portletId);
-
-			if (!CalendarUtil.getEmailBookingReminderEnabled(preferences)) {
-				return;
+				NotificationUtil.notifyCalendarBookingInvites(
+					childCalendarBooking, notificationType);
 			}
-
-			Company company = CompanyLocalServiceUtil.getCompany(
-				user.getCompanyId());
-
-			String fromName = CalendarUtil.getEmailFromName(
-				preferences, calendarBooking.getCompanyId());
-			String fromAddress = CalendarUtil.getEmailFromAddress(
-				preferences, calendarBooking.getCompanyId());
-
-			String toName = user.getFullName();
-			String toAddress = user.getEmailAddress();
-
-			String subject = CalendarUtil.getEmailBookingReminderSubject(
-				preferences);
-			String body = CalendarUtil.getEmailBookingReminderBody(preferences);
-
-			Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(
-				user.getLocale(), user.getTimeZone());
-
-			subject = StringUtil.replace(
-				subject,
-				new String[] {
-					"[$BOOKING_LOCATION$]", "[$BOOKING_START_DATE$]",
-					"[$BOOKING_TITLE$]", "[$FROM_ADDRESS$]", "[$FROM_NAME$]",
-					"[$PORTAL_URL$]", "[$TO_ADDRESS$]", "[$TO_NAME$]"
-				},
-				new String[] {
-					calendarBooking.getLocation(),
-					dateFormatDateTime.format(startDate.getTime()),
-					calendarBooking.getTitle(user.getLocale()), fromAddress,
-					fromName,
-					company.getPortalURL(calendarBooking.getGroupId()),
-					HtmlUtil.escape(toAddress),
-					HtmlUtil.escape(toName),
-				});
-
-			body = StringUtil.replace(
-				body,
-				new String[] {
-					"[$BOOKING_LOCATION$]", "[$BOOKING_START_DATE$]",
-					"[$BOOKING_TITLE$]", "[$FROM_ADDRESS$]", "[$FROM_NAME$]",
-					"[$PORTAL_URL$]", "[$TO_ADDRESS$]", "[$TO_NAME$]"
-				},
-				new String[] {
-					calendarBooking.getLocation(),
-					dateFormatDateTime.format(startDate.getTime()),
-					calendarBooking.getTitle(user.getLocale()), fromAddress,
-					fromName,
-					company.getPortalURL(calendarBooking.getGroupId()),
-					HtmlUtil.escape(toAddress), HtmlUtil.escape(toName),
-				});
-
-			InternetAddress from = new InternetAddress(
-				fromAddress, fromName);
-
-			InternetAddress to = new InternetAddress(toAddress, toName);
-
-			MailMessage message = new MailMessage(
-				from, to, subject, body, true);
-
-			mailService.sendEmail(message);
-		}
-		catch (Exception e) {
-			_log.error(e);
-		}
-	}
-
-	protected void remindUser(
-			CalendarBooking calendarBooking, User user,
-			java.util.Calendar startCalendar, java.util.Calendar nowCalendar) {
-
-		Date startDate = startCalendar.getTime();
-
-		long startTime = startDate.getTime();
-
-		Date nowDate = nowCalendar.getTime();
-
-		long nowTime = nowDate.getTime();
-
-		if (startTime < nowTime) {
-			return;
-		}
-
-		long diff = (startTime - nowTime) / _CALENDAR_BOOKING_CHECK_INTERVAL;
-
-		if ((diff ==
-				(calendarBooking.getFirstReminder() /
-					_CALENDAR_BOOKING_CHECK_INTERVAL)) ||
-			(diff ==
-				(calendarBooking.getSecondReminder() /
-					_CALENDAR_BOOKING_CHECK_INTERVAL))) {
-
-			remindUser(calendarBooking, user, startCalendar);
-		}
-	}
-
-	protected void sendBookingNotifications(
-			CalendarBooking calendarBooking, long calendarId,
-			ServiceContext serviceContext)
-		throws PortalException, SystemException {
-
-		List<User> users = CalendarUtil.getBookingNotificationRecipients(
-			calendarBooking);
-
-		HttpServletRequest request = serviceContext.getRequest();
-
-		ServletContext servletContext =
-			request.getSession().getServletContext();
-
-		Portlet portlet = PortletLocalServiceUtil.getPortletById(
-			serviceContext.getPortletId());
-
-		long ownerId = calendarBooking.getGroupId();
-		int ownerType = PortletKeys.PREFS_OWNER_TYPE_GROUP;
-		long plid = PortletKeys.PREFS_PLID_SHARED;
-		String portletId = PortletKeys.CALENDAR;
-
-		PortletPreferences preferences =
-			PortletPreferencesLocalServiceUtil.getPreferences(
-				calendarBooking.getCompanyId(), ownerId, ownerType, plid,
-				portletId);
-
-		for (User user : users) {
-
-			java.util.Calendar startDate = JCalendarUtil.getJCalendar(
-				calendarBooking.getStartDate(), user.getTimeZone());
-
-			Company company = CompanyLocalServiceUtil.getCompany(
-				user.getCompanyId());
-
-			String portletName = PortalUtil.getPortletTitle(
-				portlet, servletContext, user.getLocale());
-
-			String fromName = CalendarUtil.getEmailFromName(
-				preferences, calendarBooking.getCompanyId());
-			String fromAddress = CalendarUtil.getEmailFromAddress(
-				preferences, calendarBooking.getCompanyId());
-
-			String toName = user.getFullName();
-			String toAddress = user.getEmailAddress();
-
-			String subject = CalendarUtil.getEmailBookingReminderSubject(
-				preferences);
-			String body = CalendarUtil.getEmailBookingReminderBody(preferences);
-
-			Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(
-				user.getLocale(), user.getTimeZone());
-
-			SubscriptionSender subscriptionSender = new SubscriptionSender();
-
-			subscriptionSender.setBody(body);
-			subscriptionSender.setCompanyId(calendarBooking.getCompanyId());
-			subscriptionSender.setContextAttributes(
-				"[$BOOKING_LOCATION$]", calendarBooking.getLocation(),
-				"[$BOOKING_START_DATE$]",
-				dateFormatDateTime.format(startDate.getTime()),
-				"[$BOOKING_TITLE$]", calendarBooking.getTitle(user.getLocale()),
-				"[$FROM_ADDRESS$]", fromAddress, "[$FROM_NAME$]", fromName,
-				"[$PORTAL_URL$]",
-				company.getPortalURL(calendarBooking.getGroupId()),
-				"[$PORTLET_NAME$]", portletName, "[$TO_ADDRESS$]", toAddress,
-				"[$TO_NAME$]", toName);
-			subscriptionSender.setFrom(fromAddress, fromName);
-			subscriptionSender.setHtmlFormat(true);
-			subscriptionSender.setMailId(
-				"calendar_booking", calendarBooking.getCalendarBookingId());
-			subscriptionSender.setPortletId(PortletKeys.CALENDAR);
-			subscriptionSender.setScopeGroupId(calendarBooking.getGroupId());
-			subscriptionSender.setServiceContext(serviceContext);
-			subscriptionSender.setSubject(subject);
-			subscriptionSender.setUserId(user.getUserId());
-
-			subscriptionSender.addRuntimeSubscribers(toAddress, toName);
-
-			subscriptionSender.flushNotificationsAsync();
+			catch (Exception e) {
+			}
 		}
 	}
 
@@ -766,11 +547,5 @@ public class CalendarBookingLocalServiceImpl
 
 	@BeanReference(type = CalendarBookingApprovalWorkflow.class)
 	protected CalendarBookingApprovalWorkflow calendarBookingApprovalWorkflow;
-
-	private static final long _CALENDAR_BOOKING_CHECK_INTERVAL =
-		PortletPropsValues.CALENDAR_BOOKING_CHECK_INTERVAL * Time.MINUTE;;
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		CalendarBookingLocalServiceImpl.class);
 
 }

@@ -1,3 +1,17 @@
+/**
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
 package com.liferay.calendar.action;
 
 import com.liferay.portal.kernel.portlet.DefaultConfigurationAction;
@@ -9,7 +23,10 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
 
-
+/**
+ * @author Eduardo Lundgren
+ * @author Fabio Pezzutto
+ */
 public class ConfigurationActionImpl extends DefaultConfigurationAction {
 
 	@Override
@@ -23,31 +40,11 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		if (tabs2.equals("email-from")) {
 			validateEmailFrom(actionRequest);
 		}
-		else if (tabs2.equals("booking-reminder-email")) {
-			validateEmailBookingReminder(actionRequest);
-		}
-		else if (tabs2.equals("booking-notification-email")) {
-			validateEmailBookingNotification(actionRequest);
+		else if (tabs2.equals("templates")) {
+			validateTemplate(actionRequest);
 		}
 
 		super.processAction(portletConfig, actionRequest, actionResponse);
-	}
-
-	protected void validateEmailBookingNotification(
-			ActionRequest actionRequest)
-		throws Exception {
-
-		String emailBookingNotificationSubject = getParameter(
-			actionRequest, "emailBookingNotificationSubject");
-		String emailBookingNotificationBody = getParameter(
-			actionRequest, "emailBookingNotificationBody");
-
-		if (Validator.isNull(emailBookingNotificationSubject)) {
-			SessionErrors.add(actionRequest, "emailBookingNotificationSubject");
-		}
-		else if (Validator.isNull(emailBookingNotificationBody)) {
-			SessionErrors.add(actionRequest, "emailBookingNotificationBody");
-		}
 	}
 
 	protected void validateEmailFrom(ActionRequest actionRequest)
@@ -65,20 +62,24 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		}
 	}
 
-	protected void validateEmailBookingReminder(
-			ActionRequest actionRequest)
+	protected void validateTemplate(ActionRequest actionRequest)
 		throws Exception {
 
-		String emailBookingReminderSubject = getParameter(
-			actionRequest, "emailBookingReminderSubject");
-		String emailBookingReminderBody = getParameter(
-			actionRequest, "emailBookingReminderBody");
+		String templateBodyParameterName = ParamUtil.getString(
+			actionRequest, "templateBodyParameterName");
+		String templateSubjectParameterName = ParamUtil.getString(
+			actionRequest, "templateSubjectParameterName");
 
-		if (Validator.isNull(emailBookingReminderSubject)) {
-			SessionErrors.add(actionRequest, "emailBookingReminderSubject");
+		String templateBody = getParameter(
+			actionRequest, templateBodyParameterName);
+		String templateSubject = getParameter(
+			actionRequest, templateSubjectParameterName);
+
+		if (Validator.isNull(templateBody)) {
+			SessionErrors.add(actionRequest, "templateSubject");
 		}
-		else if (Validator.isNull(emailBookingReminderBody)) {
-			SessionErrors.add(actionRequest, "emailBookingReminderBody");
+		else if (Validator.isNull(templateSubject)) {
+			SessionErrors.add(actionRequest, "templateBody");
 		}
 	}
 

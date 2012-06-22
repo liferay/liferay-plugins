@@ -12,21 +12,36 @@
  * details.
  */
 
-package com.liferay.calendar.messaging;
-
-import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
-import com.liferay.portal.kernel.messaging.BaseMessageListener;
-import com.liferay.portal.kernel.messaging.Message;
+package com.liferay.calendar.notification;
 
 /**
- * @author Fabio Pezzutto
  * @author Eduardo Lundgren
  */
-public class CheckBookingMessageListener extends BaseMessageListener {
+public enum NotificationType {
+
+	EMAIL("email");
+
+	public static NotificationType parse(String value) {
+		if (EMAIL.getValue().equals(value)) {
+			return EMAIL;
+		}
+
+		throw new IllegalArgumentException("Invalid value " + value);
+	}
+
+	public String getValue() {
+		return _value;
+	}
 
 	@Override
-	protected void doReceive(Message message) throws Exception {
-		CalendarBookingLocalServiceUtil.checkCalendarBookings();
+	public String toString() {
+		return _value;
 	}
+
+	private NotificationType(String value) {
+		_value = value;
+	}
+
+	private String _value;
 
 }

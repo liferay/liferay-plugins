@@ -12,21 +12,29 @@
  * details.
  */
 
-package com.liferay.calendar.messaging;
+package com.liferay.calendar.notification;
 
-import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
-import com.liferay.portal.kernel.messaging.BaseMessageListener;
-import com.liferay.portal.kernel.messaging.Message;
+import com.liferay.portal.kernel.exception.PortalException;
 
 /**
- * @author Fabio Pezzutto
  * @author Eduardo Lundgren
  */
-public class CheckBookingMessageListener extends BaseMessageListener {
+public class NotificationMessageSenderException extends PortalException {
 
-	@Override
-	protected void doReceive(Message message) throws Exception {
-		CalendarBookingLocalServiceUtil.checkCalendarBookings();
+	public NotificationMessageSenderException() {
+		super();
+	}
+
+	public NotificationMessageSenderException(String msg) {
+		super(msg);
+	}
+
+	public NotificationMessageSenderException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
+
+	public NotificationMessageSenderException(Throwable cause) {
+		super(cause);
 	}
 
 }

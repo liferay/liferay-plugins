@@ -17,6 +17,7 @@ package com.liferay.calendar.model.impl;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.CalendarResource;
+import com.liferay.calendar.notification.NotificationType;
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 import com.liferay.calendar.service.CalendarLocalServiceUtil;
 import com.liferay.calendar.service.CalendarResourceLocalServiceUtil;
@@ -50,11 +51,19 @@ public class CalendarBookingImpl extends CalendarBookingBaseImpl {
 			getCalendarResourceId());
 	}
 
+	public NotificationType getFirstReminderNotificationType() {
+		return NotificationType.parse(getFirstReminderType());
+	}
+
 	public CalendarBooking getParentCalendarBooking()
 		throws PortalException, SystemException {
 
 		return CalendarBookingLocalServiceUtil.getCalendarBooking(
 			getParentCalendarBookingId());
+	}
+
+	public NotificationType getSecondReminderNotificationType() {
+		return NotificationType.parse(getSecondReminderType());
 	}
 
 	public Date getUTCEndDate() throws PortalException, SystemException {
