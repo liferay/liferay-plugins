@@ -61,7 +61,10 @@ $theme.include($body_top_include)
 									$membership_request_url.setParameter("struts_action", "/sites_admin/post_membership_request")
 									$membership_request_url.setParameter("redirect", $community_default_url)
 									$membership_request_url.setParameter("groupId", "$page_group.getGroupId()")
-									$membership_request_url.setParameter("comments", $languageUtil.format($locale, "x-wishes-to-join-x", [$user_name, $community_name].toArray()))
+
+									#set ($arguments = [$user_name, $community_name])
+
+									$membership_request_url.setParameter("comments", $languageUtil.format($locale, "x-wishes-to-join-x", $arguments.toArray()))
 
 									<span class="action request">
 										<a href="$membership_request_url">#language("request-membership")</a>
