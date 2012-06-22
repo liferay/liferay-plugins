@@ -2215,8 +2215,29 @@ body.so-layout-fluid, body.so-layout-fluid-ad {
 		}
 	}
 
-	.portlet-login, .portlet-login .navigation {
+	.portlet-login, .portlet-login .navigation, .signed-in-as {
 		background: $gray-light;
+	}
+
+	.signed-in-as {
+		padding: 10px;
+		text-align: center;
+		width: 100px;
+
+		.profile-image img {
+			width: 100px;
+			margin-bottom: .5em;
+		}
+
+		.user-name {
+			color: #34404F;
+			font-weight: bold;
+			padding: 4px 8px;
+
+			&:hover {
+				text-decoration: none;
+			}
+		}
 	}
 }
 
@@ -2250,7 +2271,7 @@ button, input[type=button], input[type=reset], input[type=submit], .aui-panel-hd
 	@include box-shadow(0 3px 2px #DDD);
 }
 
-input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .contacts-portlet .social-relations a:hover, .edit-controls a:hover, .invite-members:hover, .lfr-actions.lfr-extended:hover, .tasks-dialog .control a.taglib-icon:hover, .thread-controls a:hover, .top-links-navigation a:hover, .portlet-wiki .top-links-nodes .top-link-node a.node-current {
+input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .contacts-portlet .social-relations a:hover, .edit-controls a:hover, .invite-members:hover, .lfr-actions.lfr-extended:hover, .tasks-dialog .control a.taglib-icon:hover, .thread-controls a:hover, .top-links-navigation a:hover, .portlet-wiki .top-links-nodes .top-link-node a.node-current, .signed-in-as .user-name {
 	&:active {
 		@include box-shadow(0 1px 1px #C9C9C9 inset);
 	}
