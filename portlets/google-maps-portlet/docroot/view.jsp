@@ -23,9 +23,9 @@
 				<aui:layout>
 					<c:choose>
 						<c:when test="<%= mapInputEnabled %>">
-							<aui:input cssClass="address-field" inlineField="<%= true %>" label='<%= (directionsInputEnabled || Validator.isNotNull(directionsAddress)) ? "from" : StringPool.BLANK  %>' name="mapAddress" type="text" value="<%= mapAddress %>" />
+							<aui:input cssClass="address-field" inlineField="<%= true %>" label='<%= (directionsInputEnabled || Validator.isNotNull(directionsAddress)) ? "from" : StringPool.BLANK %>' name="mapAddress" type="text" value="<%= mapAddress %>" />
 
-							<c:if test="<%= !directionsInputEnabled && !(mapInputEnabled && (Validator.isNotNull(directionsAddress))) %>">
+							<c:if test="<%= !directionsInputEnabled && !mapInputEnabled && Validator.isNotNull(directionsAddress) %>">
 								<aui:button name="getMapButton" value="get-map" />
 							</c:if>
 						</c:when>
@@ -54,19 +54,19 @@
 					</c:choose>
 
 					<c:choose>
-						<c:when test="<%= enableChangingTravellingMode %>">
-							<aui:select inlineField="<%= true %>" label="" name="travellingMode">
+						<c:when test="<%= enableChangingTravelingMode %>">
+							<aui:select inlineField="<%= true %>" label="" name="travelingMode">
 								<aui:option label="<%= GoogleMapsConstants.DRIVING %>" />
 								<aui:option label="<%= GoogleMapsConstants.WALKING %>" />
 								<aui:option label="<%= GoogleMapsConstants.BICYCLING %>" />
 							</aui:select>
 						</c:when>
 						<c:otherwise>
-							<aui:input name="travellingMode" type="hidden" value="<%= GoogleMapsConstants.DRIVING %>" />
+							<aui:input name="travelingMode" type="hidden" value="<%= GoogleMapsConstants.DRIVING %>" />
 						</c:otherwise>
 					</c:choose>
 
-					<c:if test="<%= directionsInputEnabled || (mapInputEnabled && (Validator.isNotNull(directionsAddress))) %>">
+					<c:if test="<%= directionsInputEnabled || (mapInputEnabled && Validator.isNotNull(directionsAddress)) %>">
 						<aui:button name="getDirectionsButton" value="get-directions" />
 					</c:if>
 				</aui:layout>

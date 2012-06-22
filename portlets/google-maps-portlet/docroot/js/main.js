@@ -21,7 +21,7 @@ AUI.add(
 
 		var STR_MAP_ADDRESS = 'mapAddress';
 
-		var STR_TRAVELLING_MODE = 'travellingMode';
+		var STR_TRAVELING_MODE = 'travelingMode';
 
 		var WIN = A.config.win;
 
@@ -99,11 +99,11 @@ AUI.add(
 							);
 						}
 
-						var travellingModeNode = instance.byId(STR_TRAVELLING_MODE);
+						var travelingModeNode = instance.byId(STR_TRAVELING_MODE);
 
-						if (travellingModeNode) {
+						if (travelingModeNode) {
 							eventHandles.push(
-								travellingModeNode.on('change', instance._getDirections, instance)
+								travelingModeNode.on('change', instance._getDirections, instance)
 							);
 						}
 
@@ -185,12 +185,12 @@ AUI.add(
 
 						var directionsAddress = instance.byId(STR_DIRECTION_ADDRESS).val();
 
-						var travellingMode = instance.byId(STR_TRAVELLING_MODE).val();
+						var travelingMode = instance.byId(STR_TRAVELING_MODE).val();
 
 						var request = {
 							destination: directionsAddress,
 							origin: mapAddress,
-							travelMode: google.maps.TravelMode[travellingMode.toUpperCase()]
+							travelMode: google.maps.TravelMode[travelingMode.toUpperCase()]
 						};
 
 						instance._removeMarkers();
