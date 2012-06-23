@@ -1,17 +1,22 @@
 (function() {
-	var STR_BLANK = '';
-	var STR_DASH = '-';
-	var STR_SPACE = ' ';
+	var Workflow = Liferay.Workflow;
 
 	var toNumber = function(val) {
 		return parseInt(val, 10) || 0;
 	};
 
-	var Workflow = Liferay.Workflow;
+	var STR_BLANK = '';
+
+	var STR_DASH = '-';
+
+	var STR_SPACE = ' ';
 
 	var COMPANY_GROUP_ID = toNumber(themeDisplay.getCompanyGroupId());
+
 	var COMPANY_ID = toNumber(themeDisplay.getCompanyId());
+
 	var GROUP_ID = toNumber(themeDisplay.getScopeGroupId());
+
 	var USER_ID = toNumber(themeDisplay.getUserId());
 
 	AUI.add(
@@ -39,13 +44,13 @@
 		};
 
 		var Time = {
-			DAY: 864E5,
-			HOUR: 36E5,
-			MINUTE: 6E4,
-			SECOND: 1E3,
-			WEEK: 6048E5,
+			DAY: 86400000,
+			HOUR: 3600000,
+			MINUTE: 60000,
+			SECOND: 1000,
+			WEEK: 604800000,
 
-			TIME_DESC: [ 'weeks', 'days', 'hours', 'minutes' ],
+			TIME_DESC: ['weeks', 'days', 'hours', 'minutes'],
 
 			getDescription: function(milliseconds) {
 				var instance = this;
@@ -60,7 +65,7 @@
 							value = milliseconds/item;
 							desc = Time.TIME_DESC[index];
 
-							return (milliseconds%item === 0);
+							return (milliseconds % item === 0);
 						}
 					);
 				}
@@ -626,7 +631,6 @@
 						if (instance.get('rendered')) {
 							instance.syncEventsUI();
 						}
-
 
 						CalendarUtil.message('');
 					},

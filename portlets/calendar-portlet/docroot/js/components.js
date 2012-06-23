@@ -1,8 +1,12 @@
 (function() {
 	var STR_BLANK = '';
+
 	var STR_DASH = '-';
+
 	var STR_DOT = '.';
+
 	var STR_PLUS = '+';
+
 	var STR_SPACE = ' ';
 
 	AUI.add(
@@ -17,7 +21,9 @@
 			var owns = A.Object.owns;
 
 			var CSS_SIMPLE_MENU_ITEM = getClassName('simple-menu', 'item');
+
 			var CSS_SIMPLE_MENU_ITEM_HIDDEN = getClassName('simple-menu', 'item', 'hidden');
+
 			var CSS_SIMPLE_MENU_SEPARATOR = getClassName('simple-menu', 'separator');
 
 			var TPL_SIMPLE_MENU_ITEM = '<li class="{cssClass}" data-id="{id}">{caption}</li>';
@@ -202,14 +208,21 @@
 			var	getClassName = A.getClassName;
 
 			var STR_CALENDAR_LIST = 'calendar-list';
+
 			var STR_ITEM = 'item';
 
 			var CSS_CALENDAR_LIST_EMPTY_MESSAGE = getClassName(STR_CALENDAR_LIST, 'empty', 'message');
+
 			var CSS_CALENDAR_LIST_ITEM = getClassName(STR_CALENDAR_LIST, STR_ITEM);
+
 			var CSS_CALENDAR_LIST_ITEM_ACTIVE = getClassName(STR_CALENDAR_LIST, STR_ITEM, 'active');
+
 			var CSS_CALENDAR_LIST_ITEM_ARROW = getClassName(STR_CALENDAR_LIST, STR_ITEM, 'arrow');
+
 			var CSS_CALENDAR_LIST_ITEM_COLOR = getClassName(STR_CALENDAR_LIST, STR_ITEM, 'color');
+
 			var CSS_CALENDAR_LIST_ITEM_HOVER = getClassName(STR_CALENDAR_LIST, STR_ITEM, 'hover');
+
 			var CSS_CALENDAR_LIST_ITEM_LABEL = getClassName(STR_CALENDAR_LIST, STR_ITEM, 'label');
 
 			var TPL_CALENDAR_LIST_EMPTY_MESSAGE = '<div class="' + CSS_CALENDAR_LIST_EMPTY_MESSAGE + '">{message}</div>';
@@ -226,8 +239,6 @@
 
 			var CalendarList = A.Component.create(
 				{
-					NAME: 'calendar-list',
-
 					ATTRS: {
 						calendars: {
 							setter: '_setCalendars',
@@ -247,6 +258,8 @@
 							}
 						}
 					},
+
+					NAME: 'calendar-list',
 
 					UI_ATTRS: ['calendars'],
 
@@ -570,6 +583,7 @@
 			var	getClassName = A.getClassName;
 
 			var	CSS_SIMPLE_COLOR_PICKER_ITEM = getClassName('simple-color-picker', 'item');
+
 			var	CSS_SIMPLE_COLOR_PICKER_ITEM_SELECTED = getClassName('simple-color-picker', 'item', 'selected');
 
 			var TPL_SIMPLE_COLOR_PICKER_ITEM = new A.Template(
@@ -682,114 +696,118 @@
 			var Lang = A.Lang;
 
 			var TPL_REMINDER_SECTION = '<div class="calendar-portlet-reminder-section">' +
-											'<input class="calendar-portlet-reminder-check" name="{portletNamespace}reminder{i}" type="checkbox" <tpl if="!disabled">checked="checked"</tpl> /> ' +
-											'<input name="{portletNamespace}reminderValue{i}" type="text" size="5" value="{time.value}" <tpl if="disabled">disabled="disabled"</tpl> /> ' +
-											'<select name="{portletNamespace}reminderDuration{i}" <tpl if="disabled">disabled="disabled"</tpl>>' +
-												'<option value="60" <tpl if="time.desc == \'minutes\'">selected="selected"</tpl>>{minutes}</option>' +
-												'<option value="3600" <tpl if="time.desc == \'hours\'">selected="selected"</tpl>>{hours}</option>' +
-												'<option value="86400" <tpl if="time.desc == \'days\'">selected="selected"</tpl>>{days}</option>' +
-												'<option value="604800" <tpl if="time.desc == \'weeks\'">selected="selected"</tpl>>{weeks}</option>' +
-											'</select>' +
-											'<select name="{portletNamespace}reminderType{i}" <tpl if="disabled">disabled="disabled"</tpl>>' +
-												'<option value="email">{email}</option>' +
-											'</select>' +
-										'</div>';
+				'<input class="calendar-portlet-reminder-check" name="{portletNamespace}reminder{i}" type="checkbox" <tpl if="!disabled">checked="checked"</tpl> /> ' +
+				'<input name="{portletNamespace}reminderValue{i}" type="text" size="5" value="{time.value}" <tpl if="disabled">disabled="disabled"</tpl> /> ' +
+				'<select name="{portletNamespace}reminderDuration{i}" <tpl if="disabled">disabled="disabled"</tpl>>' +
+					'<option value="60" <tpl if="time.desc == \'minutes\'">selected="selected"</tpl>>{minutes}</option>' +
+					'<option value="3600" <tpl if="time.desc == \'hours\'">selected="selected"</tpl>>{hours}</option>' +
+					'<option value="86400" <tpl if="time.desc == \'days\'">selected="selected"</tpl>>{days}</option>' +
+					'<option value="604800" <tpl if="time.desc == \'weeks\'">selected="selected"</tpl>>{weeks}</option>' +
+				'</select>' +
+				'<select name="{portletNamespace}reminderType{i}" <tpl if="disabled">disabled="disabled"</tpl>>' +
+					'<option value="email">{email}</option>' +
+				'</select>' +
+			'</div>';
 
-			var Reminders = A.Component.create({
-				NAME: 'reminders',
+			var Reminders = A.Component.create(
+				{
+					ATTRS: {
+						portletNamespace: {
+							value: ''
+						},
 
-				ATTRS: {
-					portletNamespace: {
-						value: ''
-					},
-
-					strings: {
-						value: {
-							email: Liferay.Language.get('email'),
-							minutes: Liferay.Language.get('minutes'),
-							hours: Liferay.Language.get('hours'),
-							days: Liferay.Language.get('days'),
-							weeks: Liferay.Language.get('weeks')
-						}
-					},
-
-					values: {
-						value: [
-							{
-								interval: 10,
-								type: Liferay.CalendarUtil.NOTIFICATION_DEFAULT_TYPE
-							},
-							{
-								interval: 60,
-								type: Liferay.CalendarUtil.NOTIFICATION_DEFAULT_TYPE
+						strings: {
+							value: {
+								email: Liferay.Language.get('email'),
+								minutes: Liferay.Language.get('minutes'),
+								hours: Liferay.Language.get('hours'),
+								days: Liferay.Language.get('days'),
+								weeks: Liferay.Language.get('weeks')
 							}
-						],
-						validator: Lang.isArray
-					}
-				},
+						},
 
-				UI_ATTRS: ['values'],
-
-				prototype: {
-					initializer: function() {
-						var instance = this;
-
-						instance.tplReminder = new A.Template(TPL_REMINDER_SECTION);
-					},
-
-					bindUI: function() {
-						var instance = this;
-
-						var boundingBox = instance.get('boundingBox');
-
-						boundingBox.delegate('change', A.bind(instance._onChangeCheckbox, instance), '.calendar-portlet-reminder-check');
-					},
-
-					_onChangeCheckbox: function(event) {
-						var instance = this;
-
-						var target = event.target;
-						var checked = target.get('checked');
-						var elements = target.siblings('input[type=text],select');
-
-						elements.set('disabled', !checked);
-
-						if (checked) {
-							elements.first().selectText();
+						values: {
+							value: [
+								{
+									interval: 10,
+									type: Liferay.CalendarUtil.NOTIFICATION_DEFAULT_TYPE
+								},
+								{
+									interval: 60,
+									type: Liferay.CalendarUtil.NOTIFICATION_DEFAULT_TYPE
+								}
+							],
+							validator: Lang.isArray
 						}
 					},
 
-					_uiSetValues: function(val) {
-						var instance = this;
+					NAME: 'reminders',
 
-						var boundingBox = instance.get('boundingBox');
-						var portletNamespace = instance.get('portletNamespace');
-						var strings = instance.get('strings');
+					UI_ATTRS: ['values'],
 
-						var buffer = [];
+					prototype: {
+						initializer: function() {
+							var instance = this;
 
-						for (var i = 0; i < val.length; i++) {
-							var value = val[i];
+							instance.tplReminder = new A.Template(TPL_REMINDER_SECTION);
+						},
 
-							buffer.push(
-								instance.tplReminder.parse(
-									A.merge(
-										strings,
-										{
-											disabled: !value.interval,
-											i: i,
-											portletNamespace: portletNamespace,
-											time: Liferay.Time.getDescription(value.interval)
-										}
+						bindUI: function() {
+							var instance = this;
+
+							var boundingBox = instance.get('boundingBox');
+
+							boundingBox.delegate('change', instance._onChangeCheckbox, '.calendar-portlet-reminder-check', instance);
+						},
+
+						_onChangeCheckbox: function(event) {
+							var instance = this;
+
+							var target = event.target;
+							var checked = target.get('checked');
+							var elements = target.siblings('input[type=text],select');
+
+							elements.set('disabled', !checked);
+
+							if (checked) {
+								elements.first().selectText();
+							}
+						},
+
+						_uiSetValues: function(val) {
+							var instance = this;
+
+							var boundingBox = instance.get('boundingBox');
+							var portletNamespace = instance.get('portletNamespace');
+							var strings = instance.get('strings');
+
+							var buffer = [];
+
+							var tplReminder = instance.tplReminder;
+
+							for (var i = 0; i < val.length; i++) {
+								var value = val[i];
+
+								buffer.push(
+									tplReminder.parse(
+										A.merge(
+											strings,
+											{
+												disabled: !value.interval,
+												i: i,
+												portletNamespace: portletNamespace,
+												time: Liferay.Time.getDescription(value.interval)
+											}
+										)
 									)
-								)
-							);
-						}
+								);
+							}
 
-						boundingBox.setContent(buffer.join(STR_BLANK));
+							boundingBox.setContent(buffer.join(STR_BLANK));
+						}
 					}
 				}
-			});
+			);
 
 			Liferay.Reminders = Reminders;
 		},

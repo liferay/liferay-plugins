@@ -100,12 +100,12 @@ String templateSubject = PrefsParamUtil.getString(preferences, request, template
 
 				</aui:select>
 
-				<aui:input cssClass="lfr-input-text-container" label="subject" name='<%= \"preferences--\" + templateSubjectParameterName + \"--\" %>' type="text" value="<%= templateSubject %>" />
+				<aui:input cssClass="lfr-input-text-container" label="subject" name='<%= "preferences--" + templateSubjectParameterName + "--" %>' type="text" value="<%= templateSubject %>" />
 
 				<aui:field-wrapper label="body">
 					<liferay-ui:input-editor editorImpl="ckeditor" />
 
-					<aui:input name='<%= \"preferences--\" + templateBodyParameterName + \"--\" %>' type="hidden" value="<%= templateBody %>" />
+					<aui:input name='<%= "preferences--" + templateBodyParameterName + "--" %>' type="hidden" value="<%= templateBody %>" />
 				</aui:field-wrapper>
 			</aui:fieldset>
 
@@ -191,15 +191,21 @@ var notificationType = A.one('#<portlet:namespace />notificationType');
 var notificationTemplateType = A.one('#<portlet:namespace />notificationTemplateType');
 
 if (notificationType) {
-	notificationType.on('change', function(event) {
-		<portlet:namespace />changeTemplate('notificationType', event.currentTarget.val());
-	});
+	notificationType.on(
+		'change',
+		function(event) {
+			<portlet:namespace />changeTemplate('notificationType', event.currentTarget.val());
+		}
+	);
 }
 
 if (notificationTemplateType) {
-	notificationTemplateType.on('change', function(event) {
-		<portlet:namespace />changeTemplate('notificationTemplateType', event.currentTarget.val());
-	});
+	notificationTemplateType.on(
+		'change',
+		function(event) {
+			<portlet:namespace />changeTemplate('notificationTemplateType', event.currentTarget.val());
+		}
+	);
 }
 </aui:script>
 
