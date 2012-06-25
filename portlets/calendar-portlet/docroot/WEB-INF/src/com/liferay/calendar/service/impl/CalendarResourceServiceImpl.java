@@ -38,9 +38,9 @@ public class CalendarResourceServiceImpl
 
 	public CalendarResource addCalendarResource(
 			long groupId, String className, long classPK, String classUuid,
-			long defaultCalendarId, String code, boolean autoGenerateCode,
-			Map<Locale, String> nameMap, Map<Locale, String> descriptionMap,
-			String type, boolean active, ServiceContext serviceContext)
+			long defaultCalendarId, String code, Map<Locale, String> nameMap,
+			Map<Locale, String> descriptionMap, String type, boolean active,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		CalendarPortletPermission.check(
@@ -48,8 +48,8 @@ public class CalendarResourceServiceImpl
 
 		return calendarResourceLocalService.addCalendarResource(
 			getUserId(), groupId, className, classPK, classUuid,
-			defaultCalendarId, code, autoGenerateCode, nameMap, descriptionMap,
-			type, active, serviceContext);
+			defaultCalendarId, code, nameMap, descriptionMap, type, active,
+			serviceContext);
 	}
 
 	public CalendarResource deleteCalendarResource(long calendarResourceId)

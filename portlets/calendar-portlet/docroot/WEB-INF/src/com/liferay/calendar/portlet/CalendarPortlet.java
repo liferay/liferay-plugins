@@ -310,10 +310,8 @@ public class CalendarPortlet extends MVCPortlet {
 		String type = ParamUtil.getString(actionRequest, "type");
 		boolean active = ParamUtil.getBoolean(actionRequest, "active");
 
-		boolean autoGenerateCode = false;
-
 		if (PortletPropsValues.CALENDAR_RESOURCE_FORCE_AUTOGENERATE_CODE) {
-			autoGenerateCode = true;
+			code = null;
 		}
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
@@ -322,9 +320,8 @@ public class CalendarPortlet extends MVCPortlet {
 		if (calendarResourceId <= 0) {
 			CalendarResourceServiceUtil.addCalendarResource(
 				serviceContext.getScopeGroupId(), null, 0,
-				PortalUUIDUtil.generate(), defaultCalendarId, code,
-				autoGenerateCode, nameMap, descriptionMap, type, active,
-				serviceContext);
+				PortalUUIDUtil.generate(), defaultCalendarId, code, nameMap,
+				descriptionMap, type, active, serviceContext);
 		}
 		else {
 			CalendarResourceServiceUtil.updateCalendarResource(

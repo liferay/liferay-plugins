@@ -49,16 +49,14 @@ public class CalendarResourceLocalServiceImpl
 	public CalendarResource addCalendarResource(
 			long userId, long groupId, String className, long classPK,
 			String classUuid, long defaultCalendarId, String code,
-			boolean autoGenerateCode, Map<Locale, String> nameMap,
-			Map<Locale, String> descriptionMap, String type, boolean active,
-			ServiceContext serviceContext)
+			Map<Locale, String> nameMap, Map<Locale, String> descriptionMap,
+			String type, boolean active, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// Calendar resource
 
 		User user = userPersistence.findByPrimaryKey(userId);
 		long calendarResourceId = counterLocalService.increment();
-		code = code.trim().toUpperCase();
 
 		if (Validator.isNull(className)) {
 			className = CalendarResource.class.getName();
@@ -67,11 +65,14 @@ public class CalendarResourceLocalServiceImpl
 
 		long classNameId = PortalUtil.getClassNameId(className);
 
-		validate(groupId, classNameId, classPK, code, autoGenerateCode);
-
-		if (autoGenerateCode) {
-			code = String.valueOf(counterLocalService.increment());
+		if (Validator.isNull(code)) {
+			code = String.valueOf(calendarResourceId);
 		}
+		else {
+			code = code.trim().toUpperCase();
+		}
+
+		validate(groupId, classNameId, classPK, code);
 
 		long globalUserId = 0;
 
@@ -329,13 +330,10 @@ public class CalendarResourceLocalServiceImpl
 	}
 
 	protected void validate(
-			long groupId, long classNameId, long classPK, String code,
-			boolean autoGenerateCode)
+			long groupId, long classNameId, long classPK, String code)
 		throws PortalException, SystemException {
 
-		if (!autoGenerateCode) {
-			validate(groupId, code);
-		}
+		validate(groupId, code);
 
 		CalendarResource calendarResource =
 			calendarResourcePersistence.fetchByC_C(classNameId, classPK);
