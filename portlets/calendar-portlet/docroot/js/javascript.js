@@ -822,6 +822,11 @@
 						value: STR_BLANK
 					},
 
+					editingEvent: {
+						validator: isBoolean,
+						value: false
+					},
+
 					firstReminder: {
 						setter: toNumber,
 						value: 60
@@ -892,7 +897,7 @@
 						var node = instance.get('node');
 						var scheduler = instance.get('scheduler');
 
-						if (scheduler) {
+						if (scheduler && !instance.get('editingEvent')) {
 							var activeViewName = scheduler.get('activeView').get('name');
 
 							if ((activeViewName === 'month') && !instance.get('allDay')) {

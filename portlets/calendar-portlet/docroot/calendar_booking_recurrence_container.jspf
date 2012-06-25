@@ -44,123 +44,115 @@ if (recurrence != null) {
 }
 %>
 
-<div id="<portlet:namespace />recurrenceContainer">
+<div class="aui-helper-hidden calendar-portlet-recurrence-container" id="<portlet:namespace />recurrenceContainer">
 	<table>
-		<tbody>
-			<tr>
-				<th>
-					<liferay-ui:message key="repeats" />
-				</th>
-				<td>
-					<aui:select label="" name="frequency">
+		<tr>
+			<th>
+				<liferay-ui:message key="repeats" />
+			</th>
+			<td>
+				<aui:select label="" name="frequency">
+
+					<%
+					for (Frequency frequency : Frequency.values()) {
+					%>
+
+						<aui:option selected="<%= (selectedFrequency == frequency) %>" value="<%= String.valueOf(frequency) %>"><%= LanguageUtil.get(locale, String.valueOf(frequency).toLowerCase()) %></aui:option>
+
+					<%
+					}
+					%>
+
+				</aui:select>
+			</td>
+		</tr>
+		<tr class="calendar-portlet-interval-view" id="<portlet:namespace />intervalContainer">
+			<th>
+				<liferay-ui:message key="repeat-every" />
+			</th>
+			<td>
+				<aui:field-wrapper inlineField="<%= true %>" label="">
+					<aui:select label="" name="interval">
 
 						<%
-						for (Frequency frequency : Frequency.values()) {
+						for (int i = 1; i <= 30; i++) {
 						%>
 
-							<aui:option selected="<%= (selectedFrequency == frequency) %>" value="<%= String.valueOf(frequency) %>"><%= LanguageUtil.get(locale, String.valueOf(frequency).toLowerCase()) %></aui:option>
+							<aui:option selected="<%= (interval == i) %>" value="<%= i %>"><%= i %></aui:option>
 
 						<%
 						}
 						%>
 
 					</aui:select>
-				</td>
-			</tr>
-		</tbody>
-		<tbody class="calendar-portlet-interval-view" id="<portlet:namespace />intervalContainer">
-			<tr>
-				<th>
-					<liferay-ui:message key="repeat-every" />
-				</th>
-				<td>
-					<aui:field-wrapper inlineField="<%= true %>" label="">
-						<aui:select label="" name="interval">
 
-							<%
-							for (int i = 1; i <= 30; i++) {
-							%>
+					<span id="<portlet:namespace />intervalLabel"></span>
+				</aui:field-wrapper>
+			</td>
+		</tr>
+		<tr class="calendar-portlet-interval-view <%= (selectedFrequency == Frequency.WEEKLY) ? "" : "aui-helper-hidden" %>" id="<portlet:namespace />view<%= Frequency.WEEKLY %>">
+			<th>
+				<liferay-ui:message key="repeat-on" />
+			</th>
+			<td>
+				<aui:field-wrapper inlineField="<%= true %>" label="">
 
-								<aui:option selected="<%= (interval == i) %>" value="<%= i %>"><%= i %></aui:option>
+					<%
+					for (Weekday weekday : Weekday.values()) {
+					%>
 
-							<%
-							}
-							%>
+						<aui:input checked="<%= (weekdays.contains(weekday)) %>" label="<%= weekday.getValue() %>" name='<%= "weekDay" + weekday.getValue() %>' type="checkbox" />
 
-						</aui:select>
+					<%
+					}
+					%>
 
-						<span id="<portlet:namespace />intervalLabel"></span>
-					</aui:field-wrapper>
-				</td>
-			</tr>
-		</tbody>
-		<tbody class="calendar-portlet-interval-view <%= (selectedFrequency == Frequency.WEEKLY) ? "" : "aui-helper-hidden" %>" id="<portlet:namespace />view<%= Frequency.WEEKLY %>">
-			<tr>
-				<th>
-					<liferay-ui:message key="repeat-on" />
-				</th>
-				<td>
-					<aui:field-wrapper inlineField="<%= true %>" label="">
+				</aui:field-wrapper>
+			</td>
+		</tr>
+		<tr>
+			<th>
+				<liferay-ui:message key="ends" />
+			</th>
+			<td>
+				<aui:input checked="<%= (afterChecked == false) && (onChecked == false) %>" label="never" name="ends" type="radio" value="never" />
 
-						<%
-						for (Weekday weekday : Weekday.values()) {
-						%>
+				<aui:field-wrapper inlineField="<%= true %>" label="">
+					<aui:input checked="<%= afterChecked %>" label="after" name="ends" type="radio" value="after" />
 
-							<aui:input checked="<%= (weekdays.contains(weekday)) %>" label="<%= weekday.getValue() %>" name='<%= "weekDay" + weekday.getValue() %>' type="checkbox" />
+					<aui:input disabled="<%= (afterChecked == false) %>" label="" name="count" type="text" value="<%= afterChecked ? count : StringPool.BLANK %>" />
 
-						<%
-						}
-						%>
+					<liferay-ui:message key="ocurrences" />
+				</aui:field-wrapper>
 
-					</aui:field-wrapper>
-				</td>
-			</tr>
-		</tbody>
-		<tbody>
-			<tr>
-				<th>
-					<liferay-ui:message key="ends" />
-				</th>
-				<td>
-					<aui:input checked="<%= (afterChecked == false) && (onChecked == false) %>" label="never" name="ends" type="radio" value="never" />
+				<aui:field-wrapper inlineField="<%= true %>" label="">
+					<aui:input checked="<%= onChecked %>" inlineField="<%= true %>" label="on" name="ends" type="radio" value="on" />
 
-					<aui:field-wrapper inlineField="<%= true %>" label="">
-						<aui:input checked="<%= afterChecked %>" label="after" name="ends" type="radio" value="after" />
-
-						<aui:input disabled="<%= (afterChecked == false) %>" label="" name="count" type="text" value="<%= afterChecked ? count : StringPool.BLANK %>" />
-
-						<liferay-ui:message key="ocurrences" />
-					</aui:field-wrapper>
-
-					<aui:field-wrapper inlineField="<%= true %>" label="">
-						<aui:input checked="<%= onChecked %>" inlineField="<%= true %>" label="on" name="ends" type="radio" value="on" />
-
-						<div style="display: inline-block;">
-							<liferay-ui:input-date
-								dayParam="untilDateDay"
-								dayValue="<%= untilDate.get(java.util.Calendar.DATE) %>"
-								disabled="<%= (onChecked == false) %>"
-								monthParam="untilDateMonth"
-								monthValue="<%= untilDate.get(java.util.Calendar.MONTH) %>"
-								name="untilDate"
-								yearParam="untilDateYear"
-								yearRangeEnd="<%= startDateJCalendar.get(java.util.Calendar.YEAR) + 100 %>"
-								yearRangeStart="<%= startDateJCalendar.get(java.util.Calendar.YEAR) - 100 %>"
-								yearValue="<%= untilDate.get(java.util.Calendar.YEAR) %>"
-							/>
-						</div>
-					</aui:field-wrapper>
-				</td>
-			</tr>
-			<tr>
-				<th>
-					<liferay-ui:message key="summary" />
-				</th>
-				<td>
-					<span id="<portlet:namespace />summaryPreview" style="font-weight: bold;"></span>
-				</td>
-			</tr>
-		</tbody>
+					<div style="display: inline-block;">
+						<liferay-ui:input-date
+							dayParam="untilDateDay"
+							dayValue="<%= untilDate.get(java.util.Calendar.DATE) %>"
+							disabled="<%= (onChecked == false) %>"
+							monthParam="untilDateMonth"
+							monthValue="<%= untilDate.get(java.util.Calendar.MONTH) %>"
+							name="untilDate"
+							yearParam="untilDateYear"
+							yearRangeEnd="<%= startDateJCalendar.get(java.util.Calendar.YEAR) + 100 %>"
+							yearRangeStart="<%= startDateJCalendar.get(java.util.Calendar.YEAR) - 100 %>"
+							yearValue="<%= untilDate.get(java.util.Calendar.YEAR) %>"
+						/>
+					</div>
+				</aui:field-wrapper>
+			</td>
+		</tr>
+		<tr>
+			<th>
+				<liferay-ui:message key="summary" />
+			</th>
+			<td>
+				<span id="<portlet:namespace />summaryPreview" style="font-weight: bold;"></span>
+			</td>
+		</tr>
 	</table>
 </div>
 
@@ -241,6 +233,11 @@ if (recurrence != null) {
 
 	var recurrenceDialog = new A.Dialog(
 		{
+			after: {
+				render: function(event) {
+					recurrenceContainerNode.show();
+				}
+			},
 			bodyContent: recurrenceContainerNode,
 			buttons: [
 				{

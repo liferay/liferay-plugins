@@ -236,9 +236,8 @@
 	width: 80%;
 }
 
-.calendar-portlet-editting-event {
-	border-style: dashed !important;
-	border-width: 2px !important;
+.calendar-portlet-recurrence-container th {
+	width: 22%;
 }
 
 .calendar-portlet-recurrence-summary {
