@@ -143,6 +143,12 @@ $toolbar-bg: #DCE3EA;
 				background-color: #E8EFF4;
 			}
 		}
+
+		.portlet-msg-success {
+			@include border-radius(0);
+			border-width: 0 0 1px;
+			margin: 0;
+		}
 	}
 
 	.contacts-result, .my-contacts {
@@ -151,9 +157,15 @@ $toolbar-bg: #DCE3EA;
 			height: 35px;
 			padding: 5px;
 
-			.lfr-contact-thumb img {
-				width: 35px;
+			.lfr-contact-thumb {
+				height: 35px;
+				overflow: hidden;
+
+				img {
+					width: 35px;
+				}
 			}
+
 		}
 	}
 
@@ -269,10 +281,6 @@ $toolbar-bg: #DCE3EA;
 
 	.contacts-result-container .contacts-container {
 		min-height: 600px;
-
-		.contacts-container-content {
-			padding: 10px;
-		}
 	}
 
 	.contacts-result-container-content {
@@ -300,6 +308,7 @@ $toolbar-bg: #DCE3EA;
 	.social-relations {
 		background-color: #E9E8E8;
 		padding: 4px 8px;
+		min-height: 17px;
 		width: auto;
 
 		a {
