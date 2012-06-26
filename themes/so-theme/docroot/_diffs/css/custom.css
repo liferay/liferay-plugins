@@ -31,7 +31,7 @@ a:hover {
 	position: static;
 }
 
-#skip-to-content, #navigation h1, .opens-new-window-accessible, #toggleFluid span {
+#navigation h1, #skip-to-content, #toggleFluid span, .opens-new-window-accessible {
 	clip: rect(0 0 0 0);
 	position: absolute;
 	text-indent: -9999em;
@@ -43,7 +43,7 @@ a:focus .opens-new-window-accessible {
 	text-indent: 0;
 }
 
-#content:after, #banner:after, #footer, .contacts-portlet .members-container:after, .portlet-msg-info:after, .portlet-toolbar:after, .so-portlet-activities .activity-item:after, .taglib-header:after, .tasks-portlet:after {
+#banner:after, #content:after, #footer, .contacts-portlet .members-container:after, .portlet-msg-info:after, .portlet-toolbar:after, .so-portlet-activities .activity-item:after, .taglib-header:after, .tasks-portlet:after {
 	clear: both;
 	content: "";
 	display: block;
@@ -110,11 +110,9 @@ a:focus .opens-new-window-accessible {
 		}
 	}
 
-	.member-button {
-		a {
-			color: #2571AD;
-			font-size: 0.4em;
-		}
+	.member-button a {
+		color: #2571AD;
+		font-size: 0.4em;
 	}
 
 	h3.page-title {
@@ -144,13 +142,57 @@ a:focus .opens-new-window-accessible {
 		margin-left: 3px;
 	}
 
-	select, input[type="image"] {
+	input[type="image"], select {
 		display: none;
 	}
 }
 
 #sign-in {
+	right: 30px;
 	top: 30px;
+}
+
+/* ---------- Layout ---------- */
+
+#content {
+	padding-left: 200px;
+	position: relative;
+
+	#so-context {
+		border: 1px solid $gray-dark;
+		border-width: 0 1px 1px 0;
+		position: relative;
+		zoom: 1;
+	}
+
+	.portlet-layout {
+		.portlet-column-only {
+			background: #FFF;
+			border-right: 1px solid $gray-dark;
+			position: relative;
+			z-index: 2;
+
+			.portlet-column-content {
+				border-bottom: 1px solid $gray-dark;
+			}
+		}
+
+		.portlet-column:before {
+			bottom: 0;
+			content: "";
+			border-right: 1px solid $gray-dark;
+			position: absolute;
+			top: 0;
+		}
+
+		.portlet-column-content {
+			padding: 0;
+		}
+	}
+
+	#columns-1 .portlet-column-only .portlet-column-content {
+		border-bottom-width: 0;
+	}
 }
 
 /* ---------- Navigation ---------- */
@@ -194,7 +236,57 @@ a:focus .opens-new-window-accessible {
 	}
 }
 
+
+/* ---------- Portlets ---------- */
+
+.portlet {
+	border-bottom: 1px solid $gray-dark;
+	margin-bottom: -1px;
+	position: relative;
+
+	.portlet-content {
+		padding: 0 10px 10px;
+	}
+
+	.portlet-topper {
+		color: #929292;
+		padding: 3px 5px;
+
+		.portlet-title .icon, .portlet-topper-toolbar {
+			display: none;
+		}
+
+		.portlet-topper-toolbar {
+			right: 0;
+			top: -2px;
+		}
+	}
+}
+
+/* Portlet Controls */
+
+.controls-hidden .delete-tab {
+	display: none;
+}
+
+.controls-visible .portlet .portlet-topper .portlet-topper-toolbar {
+	display: block;
+}
+
 /* ---------- Sidebar ---------- */
+
+#so-sidebar .search input[type=image], .aui-dialog .sidebar {
+	display: none;
+}
+
+#wrapper .sidebar h2 {
+	border: none;
+	font-size: 12px;
+	margin: 1em 0;
+	padding: 0;
+}
+
+/* User Detail Structure */
 
 .so-user-detail {
 	display: table-cell;
@@ -236,7 +328,7 @@ a:focus .opens-new-window-accessible {
 	width: 200px;
 	z-index: 1;
 
-	.portlet-msg, .portlet-msg-info, .portlet-msg-error, .portlet-msg-alert, .portlet-msg-success {
+	.portlet-msg, .portlet-msg-alert, .portlet-msg-error, .portlet-msg-info, .portlet-msg-success {
 		margin: 0 0 10px;
 	}
 
@@ -352,82 +444,48 @@ a:focus .opens-new-window-accessible {
 	}
 }
 
-/* ---------- Portal tool tips ---------- */
-
-.portal-tool-tip {
-	font-size: 1.2em;
-}
-
-.controls-visible .portlet-borderless-container {
-	min-height: 20px;
-}
-
-/* ---------- Layout ---------- */
-
-#content {
-	padding-left: 200px;
-	position: relative;
-
-	#so-context {
-		border: 1px solid $gray-dark;
-		border-width: 0 1px 1px 0;
-		position: relative;
-		zoom: 1;
+.so-portlet-sites-dialog {
+	.aui-button-holder {
+		margin: 0 -10px -10px;
 	}
 
-	.portlet-layout {
-		.portlet-column-only {
-			background: #FFF;
-			border-right: 1px solid $gray-dark;
-			position: relative;
-			z-index: 2;
+	.template-details {
+		background: $gray-light;
+		border: 1px solid #C0C2C5;
+		padding: 1em;
 
-			.portlet-column-content {
-				border-bottom: 1px solid $gray-dark;
-			}
+		h3.name, ul.pages {
+			margin: 0;
 		}
 
-		.portlet-column:before {
-			bottom: 0;
-			content: "";
-			border-right: 1px solid $gray-dark;
-			position: absolute;
-			top: 0;
-		}
-
-		.portlet-column-content {
-			padding: 0;
+		ul.pages li {
+			float: left;
+			list-style: none;
+			padding-right: 1em;
 		}
 	}
 
-	#columns-1 .portlet-column-only .portlet-column-content {
-		border-bottom-width: 0;
-	}
-}
-
-/* ---------- Portlets ---------- */
-
-.portlet {
-	border-bottom: 1px solid $gray-dark;
-	margin-bottom: -1px;
-	position: relative;
-
-	.portlet-content {
-		padding: 0 10px 10px;
-	}
-
-	.portlet-topper {
-		color: #929292;
-		padding: 3px 5px;
-
-		.portlet-title .icon, .portlet-topper-toolbar {
-			display: none;
+	.site-customization {
+		.set-label {
+			font-weight: bold;
 		}
 
-		.portlet-topper-toolbar {
-			right: 0;
-			top: -2px;
+		.tip {
+			margin-bottom: 1em;
 		}
+
+		.page {
+			display: block;
+			float: left;
+			width: 125px;
+		}
+	}
+
+	.aui-button-holder {
+		background: #EEE;
+		border-top: 1px solid #BFBFBF;
+		margin: 1em 0;
+		padding: 0.5em;
 	}
 }
 
@@ -501,11 +559,6 @@ a:focus .opens-new-window-accessible {
 	margin: 5px 10px;
 }
 
-.portlet-msg, .portlet-msg-info, .portlet-msg-error, .portlet-msg-alert, .portlet-msg-success {
-	border-radius: 4px;
-	margin: 4px;
-}
-
 /* ---------- Footer ---------- */
 
 #footer {
@@ -514,19 +567,19 @@ a:focus .opens-new-window-accessible {
 
 /* ---------- Forms ---------- */
 
-#page-search input[type=text], .aui-search-bar input[type=text], #so-sidebar .search input[type=text], .so-search-bar input.search-field {
+#page-search input[type=text], #so-sidebar .search input[type=text], .aui-search-bar input[type=text], .so-search-bar input.search-field {
 	background-image: url(../images/custom/so_search_icon.png);
 	background-position: right 0;
 	background-repeat: no-repeat;
 	padding-right: 25px;
 }
 
-input[type=text], textarea, input[type=password], .aui-field-select select, .aui-textboxlistentry-holder, .so-portlet-invite-members .search, .microblogs-portlet .autocomplete {
+input[type=password], input[type=text], textarea, .aui-field-select select, .aui-textboxlistentry-holder, .so-portlet-invite-members .search, .microblogs-portlet .autocomplete {
 	background: #FFF;
 	border: 1px solid $gray-dark;
 	padding: 6px 5px;
 
-	&:hover, &:active, &:focus, &.focus {
+	&:active, &:focus, &:hover, &.focus {
 		background-color: #FFFFF6;
 		border-color: $blue-link;
 	}
@@ -537,18 +590,26 @@ input[type=text], textarea, input[type=password], .aui-field-select select, .aui
 	}
 }
 
+button, input[type=button], input[type=submit], input[type=reset], #toggleFluid, .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-dialog-hd, .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .contacts-portlet .social-relations a:hover, .edit-controls a:hover, .lfr-header-row .aui-button-input, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .results-header th, .lfr-actions.lfr-extended, .invite-members, .portlet-document-library .select-documents, .portlet-document-library-display .select-documents, .portlet-wiki .top-links-nodes .top-link-node a.node-current, .tasks-dialog .control a.taglib-icon, .thread-controls a:hover, .top-links-navigation a:hover {
+	background: #E9E8E8;
+	border: 1px solid $gray;
+	text-shadow: none;
+}
+
+input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .contacts-portlet .social-relations a, .edit-controls a:hover, .invite-members:hover, .lfr-actions.lfr-extended, .thread-controls a:hover, .tasks-dialog .control a.taglib-icon, .top-links-navigation a:hover {
+	&:hover {
+		background: #EEE;
+		border-color: #AAA;
+		color: #5A5A5A;
+	}
+}
+
 .lfr-label {
 	color: #999;
 	font-size: 11px;
 	font-weight: bold;
 	text-align: right;
 	vertical-align: top;
-}
-
-button, input[type=submit], input[type=button], input[type=reset], .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .aui-dialog-hd, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .aui-button-input, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .results-header th, .contacts-portlet .social-relations a:hover, .top-links-navigation a:hover, .lfr-actions.lfr-extended, .invite-members, .thread-controls a:hover, .edit-controls a:hover, .portlet-document-library .select-documents, .portlet-document-library-display .select-documents, .tasks-dialog .control a.taglib-icon, #toggleFluid, .portlet-wiki .top-links-nodes .top-link-node a.node-current {
-	background: #E9E8E8;
-	border: 1px solid $gray;
-	text-shadow: none;
 }
 
 .aui-field-select {
@@ -580,14 +641,6 @@ button, input[type=submit], input[type=button], input[type=reset], .aui-panel-hd
 	padding-right: 30px;
 }
 
-input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .contacts-portlet .social-relations a:hover, .top-links-navigation a:hover, .lfr-actions.lfr-extended:hover, .invite-members:hover, .thread-controls a:hover, .edit-controls a:hover, .tasks-dialog .control a.taglib-icon:hover {
-	&:hover {
-		background: #EEE;
-		border-color: #AAA;
-		color: #5A5A5A;
-	}
-}
-
 .aui-toolbar {
 	.aui-toolbar-item {
 		border-width: 1px 0 1px 1px;
@@ -598,12 +651,12 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 }
 
-.aui-underlay-content, .aui-dialog-content {
+.aui-dialog-content, .aui-underlay-content {
 	border-width: 0;
 	background-color: #F9F9F9;
 }
 
-.aui-panel-hd, .aui-dialog-hd {
+.aui-dialog-hd, .aui-panel-hd {
 	border-width: 0;
 }
 
@@ -660,7 +713,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	background-color: #CCC;
 }
 
-.rtl .aui-toolbar-content, .rtl .portlet-layout, .rtl .toolbar, .rtl .contacts-portlet .toolbar .toolbar-content {
+.rtl .aui-toolbar-content, .rtl .contacts-portlet .toolbar .toolbar-content, .rtl .portlet-layout, .rtl .toolbar {
 	direction: ltr;
 }
 
@@ -668,8 +721,18 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	float: left;
 }
 
-.rtl .portlet-layout .portlet-column .portlet-content, .rtl .toolbar .aui-toolbar-content, .rtl .contacts-portlet .toolbar .toolbar-content .aui-column-content {
+.rtl .contacts-portlet .toolbar .toolbar-content .aui-column-content, .rtl .portlet-layout .portlet-column .portlet-content, .rtl .toolbar .aui-toolbar-content {
 	direction: rtl;
+}
+
+/* ---------- Portal Tool Tips ---------- */
+
+.portal-tool-tip {
+	font-size: 1.2em;
+}
+
+.controls-visible .portlet-borderless-container {
+	min-height: 20px;
 }
 
 /* ---------- Tabs ---------- */
@@ -687,7 +750,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 
 	.aui-tab-label, .aui-tab-label a {
-		&:normal, &:visited, &:active, &:hover {
+		&:active, &:hover, &:normal, &:visited {
 			text-decoration: none;
 		}
 	}
@@ -762,6 +825,11 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 /* ---------- Messages ---------- */
 
+.portlet-msg, .portlet-msg-alert, .portlet-msg-error, .portlet-msg-info, .portlet-msg-success {
+	border-radius: 4px;
+	margin: 4px;
+}
+
 .portlet-msg-info {
 	margin-top: 0;
 }
@@ -819,19 +887,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 }
 
-/* ---------- Sidebar ---------- */
-
-.aui-dialog .sidebar, #so-sidebar .search input[type=image] {
-	display: none;
-}
-
-#wrapper .sidebar h2 {
-	border: none;
-	font-size: 12px;
-	margin: 1em 0;
-	padding: 0;
-}
-
 /* ---------- Taglib ---------- */
 
 .taglib-icon .taglib-text {
@@ -839,97 +894,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 }
 
 /* ---------- Portlet ---------- */
-
-/* Asset Publisher */
-
-.ie6 .portlet-asset-publisher .asset-metadata {
-	display: none;
-}
-
-/* Bookmarks */
-
-.portlet-bookmarks {
-	.control-wrapper {
-		text-align: right;
-
-		a {
-			background: url(../images/arrows/01_plus.png) no-repeat scroll 100% 50%;
-			font-size: 11px;
-			padding-right: 16px;
-		}
-	}
-
-	.results-header {
-		display: none;
-	}
-}
-
-/* Calendar */
-
-.portlet-calendar {
-	.calendar-container, .calendar-container .taglib-calendar, .calendar-day {
-		float: none;
-	}
-
-	.aui-tabview-list {
-		border-left-color: $gray-dark;
-		border-width: 0 0 1px 1px;
-		margin-bottom: 0;
-	}
-
-	.calendar-container, .calendar-container .day-text {
-		background: transparent none;
-		border: none;
-	}
-
-	.aui-field-wrapper, .aui-field .aui-field-content {
-		padding: 0 10px;
-	}
-
-	.calendar-container {
-		border: 1px solid $gray-dark;
-		border-width: 0 1px;
-		width: auto;
-
-		.calendar-day {
-			border-bottom: 1px solid $gray-dark;
-			width: auto;
-		}
-
-		.day-text {
-			color: #333;
-		}
-
-		.taglib-calendar {
-			border-top: $gray-dark;
-		}
-	}
-
-	.event-selector, .date-selector {
-		float: left;
-	}
-
-	.day-grid {
-		border-top: 1px solid #CCC;
-
-		.hour, .half-hour {
-			border-bottom: 1px dotted #EEE;
-		}
-
-		.half-hour {
-			border-bottom-style: solid;
-		}
-
-		.half-hour, .night-hour {
-			background: transparent;
-		}
-
-		.event-box {
-			background: #EEE;
-			border: 1px solid #CCC;
-		}
-	}
-}
 
 /* Dockbar */
 
@@ -947,101 +911,86 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 }
 
-/* Recent Documents */
+/*  Activities Portlet  */
 
-.portlet-recent-documents {
-	td {
-		font-size: 11px;
+.so-portlet-activities {
+	.portlet-title {
+		color: $red;
+		font-size: 1.55em;
+		font-weight: normal;
+		margin-top: .5em;
+		padding: 0 .25em .70em;
 	}
 
-	.portlet-content img {
-		padding: 0 5px 8px 0;
-	}
-}
-
-/* RSS */
-
-.portlet-rss {
-	.feed-entry-title {
-		font-size: 11px;
+	h3 {
+		font-weight: normal;
+		margin: 1em 0 0;
 	}
 
-	.feed-entry-content, .feed-date {
-		font-size: 10px;
-	}
-
-	.feed-date {
-		font-weight: bold;
-	}
-}
-
-/* Search */
-
-.portlet-search .entry-title {
-	font-size: 1em;
-}
-
-/* SO: Sites */
-
-.so-portlet-sites .site-list-container span {
-	display: block;
-}
-
-.so-portlet-sites-dialog {
-	.template-details {
-		background: $gray-light;
-		border: 1px solid #C0C2C5;
+	.activity-item {
+		border-bottom: 1px solid #E7E7E7;
 		padding: 1em;
-
-		h3.name, ul.pages {
-			margin: 0;
-		}
-
-		ul.pages li {
-			float: left;
-			list-style: none;
-			padding-right: 1em;
-		}
 	}
 
-	.site-customization {
-		.set-label {
-			font-weight: bold;
-		}
-
-		.tip {
-			margin-bottom: 1em;
-		}
-
-		.page {
-			display: block;
-			float: left;
-			width: 125px;
-		}
+	.activity-body {
+		font-size: .95em;
 	}
 
-	.aui-button-holder {
-		background: #EEE;
-		border-top: 1px solid #BFBFBF;
-		margin: 1em 0;
-		padding: 0.5em;
+	.user-portrait .icon {
+		bottom: -4px;
+		left: -4px;
+	}
+
+	.user-portrait, .user-portrait .avatar {
+		height: 45px;
+		width: 45px;
+	}
+
+	.user-portrait .avatar img {
+		max-width: 45px;
+	}
+
+	.activity-data {
+		padding-left: 10px;
+	}
+
+	a.group {
+		color: $red;
 	}
 }
 
-/* TMS: Tasks */
+.profile-page .so-portlet-activities {
+	.portlet-title, .portrait-social-activities h3 {
+		text-align: right;
+	}
 
-.tms-portlet-tasks .progress {
-	background-color: #FFD8B2;
+	.portlet-title {
+		color: #666;
+		font-size: 1.5em;
+		font-weight: normal;
+		margin-top: .25em;
+		width: 115px;
+	}
+
+	.portrait-social-activities h3 {
+		font-size: 1em;
+		margin: .5em 0 1em;
+		width: 110px;
+	}
+
+	.user-portrait {
+		left: 65px;
+	}
+
+	.activity-data {
+		margin-left: 110px;
+	}
 }
 
-/* Portlet Styling */
+/* Asset Publisher */
 
-.controls-hidden .delete-tab {
+.ie6 .portlet-asset-publisher .asset-metadata {
 	display: none;
-}
-
-.controls-visible .portlet .portlet-topper .portlet-topper-toolbar {
-	display: block;
 }
 
 /* Blogs */
@@ -1132,7 +1081,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 			text-decoration: none;
 		}
 
-		.user-profile-image, .user-name {
+		.user-name, .user-profile-image {
 			display: inline-block;
 		}
 
@@ -1172,46 +1121,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 }
 
-/* Recent Bloggers  */
-
-.portlet-recent-bloggers {
-	.portlet-content {
-		padding: 0 1px;
-	}
-
-	.results-grid, .results-row td {
-		border: 0;
-	}
-
-	.results-grid {
-		.results-row td {
-			padding: 5px;
-		}
-
-		.taglib-user-display {
-			padding: 0;
-
-			.user-details {
-				font-size: .9em;
-				line-height: 1em;
-				margin-top: 0;
-
-				div {
-					display: inline;
-				}
-			}
-		}
-
-		.user-profile-image {
-			line-height: 0;
-			margin-right: 5px;
-
-			img {
-				width: 40px;
-			}
-		}
-	}
-}
+/* Blogs Aggregator */
 
 .portlet-blogs-aggregator {
 	.entry-author, .entry-date {
@@ -1232,6 +1142,91 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 	.comments a {
 		white-space: nowrap;
+	}
+}
+
+/* Bookmarks */
+
+.portlet-bookmarks {
+	.control-wrapper {
+		text-align: right;
+
+		a {
+			background: url(../images/arrows/01_plus.png) no-repeat scroll 100% 50%;
+			font-size: 11px;
+			padding-right: 16px;
+		}
+	}
+
+	.results-header {
+		display: none;
+	}
+}
+
+/* Calendar */
+
+.portlet-calendar {
+	.calendar-container, .calendar-container .taglib-calendar, .calendar-day {
+		float: none;
+	}
+
+	.aui-tabview-list {
+		border-left-color: $gray-dark;
+		border-width: 0 0 1px 1px;
+		margin-bottom: 0;
+	}
+
+	.calendar-container, .calendar-container .day-text {
+		background: transparent none;
+		border: none;
+	}
+
+	.aui-field-wrapper, .aui-field .aui-field-content {
+		padding: 0 10px;
+	}
+
+	.calendar-container {
+		border: 1px solid $gray-dark;
+		border-width: 0 1px;
+		width: auto;
+
+		.calendar-day {
+			border-bottom: 1px solid $gray-dark;
+			width: auto;
+		}
+
+		.day-text {
+			color: #333;
+		}
+
+		.taglib-calendar {
+			border-top: $gray-dark;
+		}
+	}
+
+	.date-selector, .event-selector {
+		float: left;
+	}
+
+	.day-grid {
+		border-top: 1px solid #CCC;
+
+		.hour, .half-hour {
+			border-bottom: 1px dotted #EEE;
+		}
+
+		.half-hour {
+			border-bottom-style: solid;
+		}
+
+		.half-hour, .night-hour {
+			background: transparent;
+		}
+
+		.event-box {
+			background: #EEE;
+			border: 1px solid #CCC;
+		}
 	}
 }
 
@@ -1355,266 +1350,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	border-bottom-width: 1px;
 }
 
-/*  Microblogs Portlet  */
-
-.microblogs-portlet {
-	.aui-tabview-list {
-		margin: 1em;
-	}
-
-	.yui3-aclist-hidden {
-		z-index: 4;
-	}
-
-	.autocomplete {
-		background-color: transparent;
-	}
-
-	.highlighter-content {
-		padding: 5px 0;
-	}
-
-	.microblogs-countdown {
-		font-size: .9em;
-	}
-}
-
-.user-group .microblogs-status-container {
-	position: relative;
-	top: -6px;
-
-	.microblogs-entry, .portlet-msg-info {
-		background-color: #FFF;
-		border: 1px solid $gray-dark;
-		margin: 10px;
-		padding: 8px 10px;
-	}
-
-	.portlet-msg-info {
-		padding-left: 30px;
-	}
-
-	.entry-bubble {
-		margin-left: 0;
-	}
-
-	.user-name, .thumbnail {
-		display: none;
-	}
-
-	&:after, &:before {
-		border: 8px solid $gray-dark;
-		border-color: transparent transparent $gray-dark;
-		content: "";
-		display: block;
-		left: 30px;
-		margin: 0;
-		position: absolute;
-		top: -16px;
-	}
-
-	&:after {
-		border-color: transparent transparent #FFF;
-		top: -15px;
-	}
-}
-
-.private-page .microblogs-status-container {
-	padding-bottom: 0;
-}
-
-.profile-page .microblogs-status-container {
-	top: 0;
-
-	.entry-bubble {
-		margin-left: 0;
-	}
-
-	&:after, &:before {
-		border-color: transparent $gray-dark transparent transparent;
-		left: -5px;
-		margin: -8px 0 0;
-		top: 18px;
-	}
-
-	&:after {
-		border-color: transparent #FFF transparent transparent;
-		left: -4px;
-	}
-}
-
-/*  Activities Portlet  */
-
-.so-portlet-activities {
-	.portlet-title {
-		color: $red;
-		font-size: 1.55em;
-		font-weight: normal;
-		margin-top: .5em;
-		padding: 0 .25em .70em;
-	}
-
-	h3 {
-		font-weight: normal;
-		margin: 1em 0 0;
-	}
-
-	.activity-item {
-		border-bottom: 1px solid #E7E7E7;
-		padding: 1em;
-	}
-
-	.activity-body {
-		font-size: .95em;
-	}
-
-	.user-portrait .icon {
-		left: -4px;
-		bottom: -4px;
-	}
-
-	.user-portrait, .user-portrait .avatar {
-		height: 45px;
-		width: 45px;
-	}
-
-	.user-portrait .avatar img {
-		max-width: 45px;
-	}
-
-	.activity-data {
-		padding-left: 10px;
-	}
-
-	a.group {
-		color: $red;
-	}
-}
-
-.profile-page .so-portlet-activities {
-	.portlet-title, .portrait-social-activities h3 {
-		text-align: right;
-	}
-
-	.portlet-title {
-		color: #666;
-		font-size: 1.5em;
-		font-weight: normal;
-		margin-top: .25em;
-		width: 115px;
-	}
-
-	.portrait-social-activities h3 {
-		font-size: 1em;
-		margin: .5em 0 1em;
-		width: 110px;
-	}
-
-	.user-portrait {
-		left: 65px;
-	}
-
-	.activity-data {
-		margin-left: 110px;
-	}
-}
-
-/*  Private Messaging  */
-
-.private-messaging-portlet {
-	margin-left: 1px;
-
-	.controls, .portlet-msg-info, .portlet-msg-success {
-		border-width: 0 0 1px;
-		margin: 0;
-	}
-
-	.thread .results-row, .results-grid table.taglib-search-iterator, .results-grid .results-row td, .results-grid .results-row.alt td {
-		border-width: 0 0 1px;
-	}
-
-	.message-link:hover {
-		background-color: #E8EFF4;
-		text-decoration: none;
-	}
-
-	.user-profile-image {
-		position: relative;
-		z-index: 2;
-	}
-
-	.taglib-search-iterator-page-iterator-bottom {
-		padding: 10px;
-	}
-
-	.messages-content {
-		min-height: 400px;
-	}
-}
-
-/*  Tasks Portlet  */
-
-.tasks-portlet {
-	.aui-tabview-list, .control-wrapper, .filter-wrapper, .list-wrapper, .tasks-options {
-		margin: 1em;
-	}
-
-	.filter-wrapper {
-		margin-top: -0.5em;
-	}
-}
-
-.upcoming-tasks-portlet .tasksentries-container .tasks-title a {
-	padding: 3px 0 3px 20px;
-
-	&:hover {
-		background-color: #EEE;
-		text-decoration: none;
-	}
-}
-
-.tasks-dialog {
-	.comment-wrapper {
-		border: 1px solid #EEE;
-
-		.comment-body {
-			background: #FFF;
-			padding: 10px;
-		}
-
-		.comment-info {
-			background: #EEE;
-			padding: 5px;
-		}
-
-		.user-name {
-			font-weight: bold;
-		}
-	}
-
-	.control a.taglib-icon {
-		border: 1px solid auto;
-		color: $button-text-color;
-		display: inline-block;
-		font-weight: bold;
-		padding: 5px;
-
-		&:hover {
-			text-decoration: none;
-		}
-	}
-}
-
-.ie .tasks-portlet {
-	zoom: 1;
-}
-
-/*  Sites Portlet */
-
-.so-portlet-sites-dialog .aui-button-holder {
-	margin: 0 -10px -10px;
-}
-
 /* Documents and Images Library */
 
 .portlet-document-library {
@@ -1634,11 +1369,11 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		min-height: 33px;
 	}
 
-	.lfr-app-column-view, .lfr-app-column-view .results-row td, .portlet-msg, .portlet-msg-info, .portlet-msg-error, .portlet-msg-alert, .portlet-msg-success, .search-button-container, .search-button-container .aui-column-content, .search-button-container .aui-column:before, .search-button-container .aui-column-content-center {
+	.lfr-app-column-view, .lfr-app-column-view .results-row td, .portlet-msg, .portlet-msg-alert, .portlet-msg-error, .portlet-msg-info, .portlet-msg-success, .search-button-container, .search-button-container .aui-column:before, .search-button-container .aui-column-content, .search-button-container .aui-column-content-center {
 		border-width: 0;
 	}
 
-	.portlet-msg, .portlet-msg-info, .portlet-msg-error, .portlet-msg-alert, .portlet-msg-success, .search-button-container .lfr-search-combobox-item, .search-button-container .aui-button, .aui-field-wrapper-content {
+	.aui-field-wrapper-content, .portlet-msg, .portlet-msg-alert, .portlet-msg-error, .portlet-msg-info, .portlet-msg-success, .search-button-container .aui-button, .search-button-container .lfr-search-combobox-item {
 		margin: 0;
 	}
 
@@ -1650,6 +1385,10 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		min-height: 400px;
 	}
 
+	.breadcrumbs .last {
+		background-image: none;
+	}
+
 	.breadcrumbs-horizontal li {
 		background: url(@theme_image_path@/arrows/05_right.png) no-repeat scroll 100% 50% transparent;
 		margin-right: 5px;
@@ -1659,10 +1398,6 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 
 	.breadcrumbs-horizontal .last {
 		margin-top: 0.2em;
-	}
-
-	.breadcrumbs .last {
-		background-image: none;
 	}
 
 	.aui-column-content-first, .aui-column-content-last, .search-button-container .aui-column:before, .search-button-container .aui-column-content, .search-button-container .aui-column-content-center {
@@ -1753,123 +1488,68 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 }
 
-/* Social Office Notifications */
+/* Events Display Portlet */
 
-.so-portlet-notifications {
-	.results-grid {
-		border-width: 0 0 0 1px;
+.events-display-portlet {
+	h2 {
+		color: $red;
+		font-size: 1em;
 	}
 
-	.results-row, .results-grid .results-row td, .results-grid .results-row.alt td {
-		background: transparent;
-		border-width: 1px 0;
-		padding: 10px;
-	}
+	.today-events {
+		.results-grid, .results-row td, .results-row.alt td {
+			background-color: transparent;
+			border-width: 0;
+		}
 
-	.resuls-row .first {
-		vertical-align: top;
-	}
+		.results-row td, .results-row.alt td {
+			border-bottom: 1px solid #EEE;
+		}
 
-	.results-row:hover td, .results-row.alt:hover td {
-		background: #EEE;
-	}
-
-	.user-notification-event-content {
-		margin: -10px;
-		padding: 10px;
-	}
-
-	tr.selected, tr.selected.hover td, tr.selected:hover td, tr.alt.selected:hover td {
-		background-color: #0070BA;
+		.results-row.hover td {
+			background: #EEE;
+		}
 	}
 }
 
-.portlet-wiki, .portlet-message-boards {
-	border-left: 1px solid $gray-dark;
+/* Faceted Search */
 
-	.portlet-msg-success {
-		border-width: 0 0 1px;
-		margin: -10px -10px 10px;
+.portlet-search {
+	.portlet-topper {
+		display: none;
 	}
 
-	.portlet-borderless-container .portlet-body {
-		padding: 10px;
+	.aui-form fieldset.aui-fieldset {
+		border-bottom: 1px solid $gray-dark;
 	}
 
-	.page-search {
+	.aui-form fieldset.aui-fieldset, .lfr-token-list, .taglib-search-iterator-page-iterator-bottom {
 		margin: 0;
 		padding: 5px;
 	}
-}
 
-.top-links-container {
-	margin: -10px -10px 0;
-}
-
-.top-links .top-links-navigation {
-	background: #EEE;
-	padding: 4px 8px;
-	width: auto;
-
-	.taglib-text {
-		border-right-width: 0;
-		padding-right: 0;
+	.aui-liferaytokenlist {
+		background-color: #E9E8E8;
 	}
 
-	a {
-		border: 1px solid transparent;
-		color: $button-text-color;
-		display: inline-block;
-		font-weight: bold;
-		line-height: 1em;
-		padding: 6px 4px;
-
-		&:hover {
-			text-decoration: none;
-		}
-	}
-}
-
-.portlet-boundary {
-	.top-links, .top-links .top-links-navigation, .top-links .page-search {
-		float: none;
-	}
-
-	.top-links .top-link {
-		border-right: 0;
-		margin: 0;
+	.menu-content, .portlet-content {
 		padding: 0;
 	}
-}
 
-/* Wiki */
-
-.portlet-wiki {
-	.top-links-container .top-links-nodes {
-		background-color: #FFF;
-		border-width: 0 0 1px;
-		float: none;
-		margin: 0;
-		padding: 4px;
-
-		li {
-			border-right-width: 0;
-			display: inline;
-			padding: 0;
-
-			a {
-				display: inline-block;
-				padding: 4px 8px;
-
-				&.node-current {
-					color: $button-text-color;
-				}
-			}
-		}
+	.search-layout .search-layout-content .menu .search-facet {
+		padding: 10px;
 	}
 
-	.createpage {
-		color: $red;
+	.menu {
+		border-right: 1px solid $gray-dark;
+	}
+
+	.results-grid {
+		border-width: 0;
+	}
+
+	.result-content {
+		margin: 0 -5px 0 -2px;
 	}
 }
 
@@ -1892,7 +1572,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 
 	.stats {
-		.votes, .status {
+		.status, .votes {
 			display: block;
 			height: auto;
 			margin: 0;
@@ -1989,7 +1669,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		}
 
 		.thread-bottom {
-			.taglib-ratings.thumbs, .taglib-flags {
+			.taglib-flags, .taglib-ratings.thumbs{
 				margin-top: 1.5em;
 			}
 		}
@@ -2003,7 +1683,7 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 		padding: 10px 0;
 	}
 
-	.thread-controls, .edit-controls {
+	.edit-controls, .thread-controls {
 		background: #EEE;
 		border: 1px solid $gray;
 		padding: 4px 5px;
@@ -2036,6 +1716,226 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 }
 
+.portlet-message-boards, .portlet-wiki {
+	border-left: 1px solid $gray-dark;
+
+	.portlet-msg-success {
+		border-width: 0 0 1px;
+		margin: -10px -10px 10px;
+	}
+
+	.portlet-borderless-container .portlet-body {
+		padding: 10px;
+	}
+
+	.page-search {
+		margin: 0;
+		padding: 5px;
+	}
+}
+
+/*  Microblogs Portlet  */
+
+.microblogs-portlet {
+	.aui-tabview-list {
+		margin: 1em;
+	}
+
+	.yui3-aclist-hidden {
+		z-index: 4;
+	}
+
+	.autocomplete {
+		background-color: transparent;
+	}
+
+	.highlighter-content {
+		padding: 5px 0;
+	}
+
+	.microblogs-countdown {
+		font-size: .9em;
+	}
+}
+
+.user-group .microblogs-status-container {
+	position: relative;
+	top: -6px;
+
+	.microblogs-entry, .portlet-msg-info {
+		background-color: #FFF;
+		border: 1px solid $gray-dark;
+		margin: 10px;
+		padding: 8px 10px;
+	}
+
+	.portlet-msg-info {
+		padding-left: 30px;
+	}
+
+	.entry-bubble {
+		margin-left: 0;
+	}
+
+	.thumbnail, .user-name {
+		display: none;
+	}
+
+	&:after, &:before {
+		border: 8px solid $gray-dark;
+		border-color: transparent transparent $gray-dark;
+		content: "";
+		display: block;
+		left: 30px;
+		margin: 0;
+		position: absolute;
+		top: -16px;
+	}
+
+	&:after {
+		border-color: transparent transparent #FFF;
+		top: -15px;
+	}
+}
+
+.private-page .microblogs-status-container {
+	padding-bottom: 0;
+}
+
+.profile-page .microblogs-status-container {
+	top: 0;
+
+	.entry-bubble {
+		margin-left: 0;
+	}
+
+	&:after, &:before {
+		border-color: transparent $gray-dark transparent transparent;
+		left: -5px;
+		margin: -8px 0 0;
+		top: 18px;
+	}
+
+	&:after {
+		border-color: transparent #FFF transparent transparent;
+		left: -4px;
+	}
+}
+
+/*  Private Messaging  */
+
+.private-messaging-portlet {
+	margin-left: 1px;
+
+	.controls, .portlet-msg-info, .portlet-msg-success {
+		border-width: 0 0 1px;
+		margin: 0;
+	}
+
+	.thread .results-row, .results-grid table.taglib-search-iterator, .results-grid .results-row td, .results-grid .results-row.alt td {
+		border-width: 0 0 1px;
+	}
+
+	.message-link:hover {
+		background-color: #E8EFF4;
+		text-decoration: none;
+	}
+
+	.user-profile-image {
+		position: relative;
+		z-index: 2;
+	}
+
+	.taglib-search-iterator-page-iterator-bottom {
+		padding: 10px;
+	}
+
+	.messages-content {
+		min-height: 400px;
+	}
+}
+
+/* Recent Bloggers  */
+
+.portlet-recent-bloggers {
+	.portlet-content {
+		padding: 0 1px;
+	}
+
+	.results-grid, .results-row td {
+		border: 0;
+	}
+
+	.results-grid {
+		.results-row td {
+			padding: 5px;
+		}
+
+		.taglib-user-display {
+			padding: 0;
+
+			.user-details {
+				font-size: .9em;
+				line-height: 1em;
+				margin-top: 0;
+
+				div {
+					display: inline;
+				}
+			}
+		}
+
+		.user-profile-image {
+			line-height: 0;
+			margin-right: 5px;
+
+			img {
+				width: 40px;
+			}
+		}
+	}
+}
+
+/* Recent Documents */
+
+.portlet-recent-documents {
+	td {
+		font-size: 11px;
+	}
+
+	.portlet-content img {
+		padding: 0 5px 8px 0;
+	}
+}
+
+/* RSS */
+
+.portlet-rss {
+	.feed-entry-title {
+		font-size: 11px;
+	}
+
+	.feed-date, .feed-entry-content {
+		font-size: 10px;
+	}
+
+	.feed-date {
+		font-weight: bold;
+	}
+}
+
+/* Search */
+
+.portlet-search .entry-title {
+	font-size: 1em;
+}
+
+/* SO: Sites */
+
+.so-portlet-sites .site-list-container span {
+	display: block;
+}
+
 .so-portlet-invite-members {
 	border: 0px solid transparent;
 	padding: 10px;
@@ -2054,75 +1954,188 @@ input[type=submit], input[type=button], input[type=reset], .aui-state-hover, .co
 	}
 }
 
-/* Events Display Portlet */
+/* Social Office Notifications */
 
-.events-display-portlet {
-	h2 {
-		color: $red;
-		font-size: 1em;
+.so-portlet-notifications {
+	.results-grid {
+		border-width: 0 0 0 1px;
 	}
 
-	.today-events {
-		.results-grid, .results-row td, .results-row.alt td {
-			background-color: transparent;
-			border-width: 0;
-		}
-
-		.results-row td, .results-row.alt td {
-			border-bottom: 1px solid #EEE;
-		}
-
-		.results-row.hover td {
-			background: #EEE;
-		}
-	}
-}
-
-/* Faceted Search */
-
-.portlet-search {
-	.portlet-topper {
-		display: none;
-	}
-
-	.aui-form fieldset.aui-fieldset {
-		border-bottom: 1px solid $gray-dark;
-	}
-
-	.aui-form fieldset.aui-fieldset, .lfr-token-list, .taglib-search-iterator-page-iterator-bottom {
-		margin: 0;
-		padding: 5px;
-	}
-
-	.aui-liferaytokenlist {
-		background-color: #E9E8E8;
-	}
-
-	.portlet-content, .menu-content {
-		padding: 0;
-	}
-
-	.search-layout .search-layout-content .menu .search-facet {
+	.results-grid .results-row td, .results-grid .results-row.alt td, .results-row {
+		background: transparent;
+		border-width: 1px 0;
 		padding: 10px;
 	}
 
-	.menu {
-		border-right: 1px solid $gray-dark;
+	.resuls-row .first {
+		vertical-align: top;
 	}
 
-	.results-grid {
-		border-width: 0;
+	.results-row:hover td, .results-row.alt:hover td {
+		background: #EEE;
 	}
 
-	.result-content {
-		margin: 0 -5px 0 -2px;
+	.user-notification-event-content {
+		margin: -10px;
+		padding: 10px;
+	}
+
+	tr.alt.selected:hover td, tr.selected, tr.selected.hover td, tr.selected:hover td {
+		background-color: #0070BA;
 	}
 }
 
-/* Fluid Layout */
+/* Top Links Component */
+
+.top-links-container {
+	margin: -10px -10px 0;
+}
+
+.top-links .top-links-navigation {
+	background: #EEE;
+	padding: 4px 8px;
+	width: auto;
+
+	.taglib-text {
+		border-right-width: 0;
+		padding-right: 0;
+	}
+
+	a {
+		border: 1px solid transparent;
+		color: $button-text-color;
+		display: inline-block;
+		font-weight: bold;
+		line-height: 1em;
+		padding: 6px 4px;
+
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}
+
+.portlet-boundary {
+	.top-links, .top-links .page-search, .top-links .top-links-navigation {
+		float: none;
+	}
+
+	.top-links .top-link {
+		border-right: 0;
+		margin: 0;
+		padding: 0;
+	}
+}
+
+/*  Tasks Portlet  */
+
+.tasks-portlet {
+	.aui-tabview-list, .control-wrapper, .filter-wrapper, .list-wrapper, .tasks-options {
+		margin: 1em;
+	}
+
+	.filter-wrapper {
+		margin-top: -0.5em;
+	}
+
+	.tms-portlet-tasks .progress {
+		background-color: #FFD8B2;
+	}
+}
+
+.upcoming-tasks-portlet .tasksentries-container .tasks-title a {
+	padding: 3px 0 3px 20px;
+
+	&:hover {
+		background-color: #EEE;
+		text-decoration: none;
+	}
+}
+
+.tasks-dialog {
+	.comment-wrapper {
+		border: 1px solid #EEE;
+
+		.comment-body {
+			background: #FFF;
+			padding: 10px;
+		}
+
+		.comment-info {
+			background: #EEE;
+			padding: 5px;
+		}
+
+		.user-name {
+			font-weight: bold;
+		}
+	}
+
+	.control a.taglib-icon {
+		border: 1px solid auto;
+		color: $button-text-color;
+		display: inline-block;
+		font-weight: bold;
+		padding: 5px;
+
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}
+
+.ie .tasks-portlet {
+	zoom: 1;
+}
+
+/* Wiki */
+
+.portlet-wiki {
+	.top-links-container .top-links-nodes {
+		background-color: #FFF;
+		border-width: 0 0 1px;
+		float: none;
+		margin: 0;
+		padding: 4px;
+
+		li {
+			border-right-width: 0;
+			display: inline;
+			padding: 0;
+
+			a {
+				display: inline-block;
+				padding: 4px 8px;
+
+				&.node-current {
+					color: $button-text-color;
+				}
+			}
+		}
+	}
+
+	.toc {
+		float: right;
+
+		ol ol {
+			margin-bottom: 0;
+			margin-top: 0;
+		}
+	}
+
+	.page-actions {
+		border-bottom: 1px solid $gray-light;
+	}
+
+	.createpage {
+		color: $red;
+	}
+}
+
+/* ---------- Fluid Layout ---------- */
 
 body.so-layout-fluid, body.so-layout-fluid-ad {
-	#content, #footer, #banner #heading {
+	#banner #heading, #content, #footer {
 		margin: 0 auto;
 		width: auto;
 	}
@@ -2150,7 +2163,7 @@ body.so-layout-fluid, body.so-layout-fluid-ad {
 	}
 }
 
-/* Login Screen */
+/* ---------- Login Screens ---------- */
 
 #loginPage {
 	.portlet {
@@ -2241,29 +2254,29 @@ body.so-layout-fluid, body.so-layout-fluid-ad {
 	}
 }
 
-/* Extras */
+/* ---------- Extras ---------- */
 
 .lfr-dockbar-pinned .dockbar {
 	@include box-shadow(0 -10px 9px 4px black, 0 -2px 10px -6px rgba(0, 0, 0, 0.5));
 }
 
-input[type=text], input[type=password], textarea, .aui-field-select select, .aui-textboxlistentry-holder, .microblogs-portlet .autocomplete, .so-portlet-invite-members .search, .user-group .microblogs-status-container .microblogs-entry, .user-group .microblogs-status-container .portlet-msg-info {
+input[type=password], input[type=text], textarea, .aui-field-select select, .aui-textboxlistentry-holder, .microblogs-portlet .autocomplete, .so-portlet-invite-members .search, .user-group .microblogs-status-container .microblogs-entry, .user-group .microblogs-status-container .portlet-msg-info {
 	@include border-radius(5px);
 }
 
-input[type=text], input[type=password], textarea, .aui-field-select select, .aui-textboxlistentry-holder, .microblogs-portlet .autocomplete, .so-portlet-invite-members .search {
+input[type=password], input[type=text], textarea, .aui-field-select select, .aui-textboxlistentry-holder, .microblogs-portlet .autocomplete, .so-portlet-invite-members .search {
 	@include box-shadow(0 1px 3px #C9C9C9 inset);
 }
 
-button, input[type=button], input[type=reset], input[type=submit], .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .aui-dialog-hd, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-button-disabled button, .aui-button-disabled button:focus, .aui-button-disabled button:hover, .contacts-portlet .social-relations a:hover, .invite-members, .lfr-actions.lfr-extended, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .aui-button-input, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .microblogs-portlet .microblogs-countdown, .portlet-document-library .select-documents, .portlet-document-library-display .select-documents, .portlet-message-boards .edit-controls, .results-header th, .tasks-dialog .control a.taglib-icon, .thread-controls a:hover, .top-links-navigation a:hover, .aui-form-validator-message, #toggleFluid {
+button, input[type=button], input[type=reset], input[type=submit], #toggleFluid, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-button-disabled button, .aui-button-disabled button:focus, .aui-button-disabled button:hover, .aui-dialog-hd, .aui-form-validator-message, .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .contacts-portlet .social-relations a:hover, .edit-controls a, .invite-members, .lfr-actions.lfr-extended, .lfr-header-row .aui-button-input, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .microblogs-portlet .microblogs-countdown, .portlet-document-library .select-documents, .portlet-document-library-display .select-documents, .portlet-message-boards .edit-controls, .results-header th, .tasks-dialog .control a.taglib-icon, .thread-controls a:hover, .top-links-navigation a:hover, .portlet-wiki .top-links-nodes .top-link-node a.node-current {
 	@include border-radius(3px);
 }
 
-button, input[type=button], input[type=reset], input[type=submit], .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .aui-dialog-hd, .aui-button-disabled input[type], .aui-button-disabled input[type]:focus, .aui-button-disabled input[type]:hover, .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .contacts-portlet .social-relations a:hover, .edit-controls a:hover, .invite-members, .lfr-actions.lfr-extended, .lfr-header-row .aui-button-input, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .portlet-document-library .select-documents, .portlet-document-library-display .select-documents, .results-header th, .so-layout-fluid-ad #toggleFluid, .tasks-dialog .control a.taglib-icon, .thread-controls a:hover, #toggleFluid, .top-links-navigation a:hover, .portlet-wiki .top-links-nodes .top-link-node a.node-current {
+button, input[type=button], input[type=reset], input[type=submit], #toggleFluid, .aui-button-disabled input[type], .aui-button-disabled input[type]:focus, .aui-button-disabled input[type]:hover, .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .aui-dialog-hd, .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .contacts-portlet .social-relations a:hover, .edit-controls a:hover, .invite-members, .lfr-actions.lfr-extended, .lfr-header-row .aui-button-input, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .portlet-document-library .select-documents, .portlet-document-library-display .select-documents, .results-header th, .so-layout-fluid-ad #toggleFluid, .tasks-dialog .control a.taglib-icon, .thread-controls a:hover, .top-links-navigation a:hover, .portlet-wiki .top-links-nodes .top-link-node a.node-current {
 	@include box-shadow(0 1px 0 #F4F3F3 inset, 0 -1px 0 #D9D8D8 inset);
 }
 
-.aui-dialog-content, .aui-underlay-content, #loginPage .portlet-login {
+#loginPage .portlet-login, .aui-dialog-content, .aui-underlay-content {
 	@include box-shadow(0 0 9px -3px #000, 0 20px 29px -22px rgba(0, 0, 0, 0.6));
 }
 
@@ -2271,7 +2284,7 @@ button, input[type=button], input[type=reset], input[type=submit], .aui-panel-hd
 	@include box-shadow(0 3px 2px #DDD);
 }
 
-input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .contacts-portlet .social-relations a:hover, .edit-controls a:hover, .invite-members:hover, .lfr-actions.lfr-extended:hover, .tasks-dialog .control a.taglib-icon:hover, .thread-controls a:hover, .top-links-navigation a:hover, .portlet-wiki .top-links-nodes .top-link-node a.node-current, .signed-in-as .user-name {
+input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .contacts-portlet .social-relations a:hover, .edit-controls a:hover, .invite-members:hover, .lfr-actions.lfr-extended:hover, .portlet-wiki .top-links-nodes .top-link-node a.node-current, .signed-in-as .user-name, .tasks-dialog .control a.taglib-icon:hover, .thread-controls a:hover, .top-links-navigation a:hover {
 	&:active {
 		@include box-shadow(0 1px 1px #C9C9C9 inset);
 	}
@@ -2281,11 +2294,11 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 	@include box-shadow(0 3px 10px -6px rgba(0, 0, 0, .5));
 }
 
-.portlet-blogs .lfr-meta-actions, .user-tags li a, #loginPage .portlet-login, #loginPage .portlet-login .navigation {
+#loginPage .portlet-login, #loginPage .portlet-login .navigation, .portlet-blogs .lfr-meta-actions, .user-tags li a {
 	@include border-radius(4px);
 }
 
-.aui-panel-hd button, .aui-panel-hd .aui-button, .aui-panel-hd .aui-state-default, .aui-textboxlistentry-holder .aui-field-input-text, .microblogs-portlet .autocomplete input[type=text], .aui-tab-content, .aui-toolbar-item, .aui-toolbar .aui-toolbar-item, .portlet-blogs .portlet-msg-success, .portlet-document-library .portlet-msg, .portlet-document-library .portlet-msg-info, .portlet-document-library .portlet-msg-error, .portlet-document-library .portlet-msg-alert, .portlet-document-library .portlet-msg-success, .portlet-message-boards .portlet-msg-success, .private-messaging-portlet .controls, .private-messaging-portlet .portlet-msg-info, .private-messaging-portlet .portlet-msg-success, .portlet-wiki .portlet-msg-success {
+.aui-panel-hd button, .aui-panel-hd .aui-button, .aui-panel-hd .aui-state-default, .aui-tab-content, .aui-textboxlistentry-holder .aui-field-input-text, .aui-toolbar-item, .aui-toolbar .aui-toolbar-item, .microblogs-portlet .autocomplete input[type=text], .portlet-blogs .portlet-msg-success, .portlet-document-library .portlet-msg, .portlet-document-library .portlet-msg-alert, .portlet-document-library .portlet-msg-error, .portlet-document-library .portlet-msg-info, .portlet-document-library .portlet-msg-success, .portlet-message-boards .portlet-msg-success, .private-messaging-portlet .controls, .private-messaging-portlet .portlet-msg-info, .private-messaging-portlet .portlet-msg-success, .portlet-wiki .portlet-msg-success {
 	@include border-radius(0);
 }
 
