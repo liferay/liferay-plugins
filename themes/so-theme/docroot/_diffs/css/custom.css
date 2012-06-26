@@ -1675,7 +1675,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 		}
 
 		.thread-bottom {
-			.taglib-flags, .taglib-ratings.thumbs{
+			.taglib-flags, .taglib-ratings.thumbs {
 				margin-top: 1.5em;
 			}
 		}
@@ -1684,6 +1684,34 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 	.taglib-user-display {
 		padding: 0;
 	}
+
+	.threads-panel .lfr-actions.show-arrow.direction-left {
+		.lfr-trigger {
+			padding: 0;
+
+			strong {
+				min-width: 20px;
+
+				a {
+					background-image: url(../images/arrows/08_left.png);
+					background-position: 0 -4px;
+					display: block;
+					height: 16px;
+					padding: 0;
+					width: 16px;
+
+					&:active {
+						background-position: 0 -22px;
+					}
+				}
+			}
+
+			img, .taglib-text {
+				display: none;
+			}
+		}
+	}
+
 
 	.thread-body {
 		padding: 10px 0;
