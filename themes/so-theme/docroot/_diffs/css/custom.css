@@ -1632,6 +1632,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 			text-decoration: none;
 			top: 0.5em;
 			width: 500px;
+			z-index: 1;
 		}
 
 		.user-details {
@@ -2118,8 +2119,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 		float: right;
 
 		ol ol {
-			margin-bottom: 0;
-			margin-top: 0;
+			margin: 0 0 0 1em;
 		}
 	}
 
