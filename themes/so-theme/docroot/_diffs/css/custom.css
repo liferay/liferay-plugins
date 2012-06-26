@@ -899,6 +899,8 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 
 .dockbar {
 	background-image: url(../images/custom/dockbar_bg.png);
+	background-color: #EAEAEA;
+	background-position: bottom left;
 	border-bottom-color: #CDCDCD;
 
 	.so-portlet-dockbar-notifications .menu-button .notification-count {
@@ -909,6 +911,16 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 		height: 28px;
 		overflow-y: hidden;
 	}
+}
+
+.page-customization-bar {
+	font-size: 12px;
+	font-weight: normal;
+	padding: 8px 20px 3px;
+	text-align: center;
+	text-shadow: -1px -1px #333;
+	@include background-image(linear-gradient(top, #803600, #C26E00));
+	@include box-shadow(1px 2px 6px -2px #000 inset);
 }
 
 /*  Activities Portlet  */
