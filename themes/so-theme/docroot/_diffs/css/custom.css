@@ -1486,6 +1486,11 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 			}
 		}
 	}
+
+	.document-display-style.display-icon {
+		margin: 0 0 5px 5px;
+		width: 195px;
+	}
 }
 
 /* Events Display Portlet */
