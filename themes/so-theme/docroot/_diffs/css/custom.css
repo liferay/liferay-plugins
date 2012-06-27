@@ -1175,6 +1175,37 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 	}
 }
 
+/* Breadcrumb */
+
+.breadcrumbs-horizontal {
+	border-bottom: 1px solid $gray;
+	margin: 0px;
+
+	li {
+		background: url(@theme_image_path@/common/breadcrumbs_so.png) no-repeat scroll 100% 50% transparent;
+		max-width: 50%;
+
+		a {
+			color: #34404F;
+			display: inline-block;
+			font-weight: bold;
+			padding: 7px 20px 7px 5px;
+
+			&:hover {
+				text-decoration: none;
+			}
+		}
+
+		&.first {
+			padding-left: 10px;
+		}
+
+		&.last {
+			background-image: none;
+		}
+	}
+}
+
 /* Calendar */
 
 .portlet-calendar {

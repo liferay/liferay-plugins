@@ -302,6 +302,9 @@ public class InstanceUtil {
 		LayoutUtil.addPortlets(
 			group, layout, "/forums", PortletPropsKeys.SITE_PROTOTYPE_PORTLETS);
 
+		LayoutUtil.removePortletBorder(layout, "73");
+		LayoutUtil.removePortletBorder(layout, "19");
+
 		LayoutUtil.configureAssetPublisher(layout);
 		LayoutUtil.configureMessageBoards(layout);
 
