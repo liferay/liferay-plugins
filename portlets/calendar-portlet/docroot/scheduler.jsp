@@ -18,8 +18,11 @@
 
 <%
 String activeView = ParamUtil.getString(request, "activeView", "week");
-long currentDate = ParamUtil.getLong(request, "currentDate", now.getTimeInMillis());
+String filterCalendarBookings = ParamUtil.getString(request, "filterCalendarBookings", null);
 String editCalendarBookingURL = ParamUtil.getString(request, "editCalendarBookingURL");
+
+long currentDate = ParamUtil.getLong(request, "currentDate", now.getTimeInMillis());
+
 boolean readOnly = ParamUtil.getBoolean(request, "readOnly", false);
 %>
 
@@ -97,6 +100,7 @@ boolean readOnly = ParamUtil.getBoolean(request, "readOnly", false);
 			eventClass: Liferay.SchedulerEvent,
 			eventRecorder: eventRecorder,
 			events: A.Object.values(Liferay.CalendarUtil.visibleCalendars),
+			filterCalendarBookings: <%= filterCalendarBookings %>,
 			portletNamespace: '<portlet:namespace />',
 			render: true,
 			views: [

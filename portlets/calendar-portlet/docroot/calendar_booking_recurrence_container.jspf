@@ -166,7 +166,7 @@ if (recurrence != null) {
 	var summaryNode = A.one('#<portlet:namespace />summary');
 	var summaryPreviewNode = A.one('#<portlet:namespace />summaryPreview');
 
-	var untilDateDatePicker = <portlet:namespace />untilDateLiferayInputDateDatePickerComponent();
+	var untilDateDatePicker = Liferay.component('<portlet:namespace />untilDatedatePicker');
 
 	var getFrequencyLabel = function(frequency, interval) {
 		var FREQUENCY = Liferay.CalendarUtil.FREQUENCY;

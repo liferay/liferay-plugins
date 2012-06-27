@@ -97,7 +97,7 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 			<liferay-util:param name="activeView" value="<%= activeView %>" />
 			<liferay-util:param name="currentDate" value="<%= String.valueOf(currentDate) %>" />
 
-			<portlet:renderURL copyCurrentRenderParameters="<%= false %>" var="editCalendarBookingURL">
+			<portlet:renderURL var="editCalendarBookingURL">
 				<portlet:param name="jspPage" value="/edit_calendar_booking.jsp" />
 				<portlet:param name="redirect" value="<%= String.valueOf(renderResponse.createRenderURL()) %>" />
 				<portlet:param name="activeView" value="{activeView}" />

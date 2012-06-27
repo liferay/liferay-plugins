@@ -63,7 +63,7 @@ JSONArray declinedCalendarsJSONArray = JSONFactoryUtil.createJSONArray();
 JSONArray maybeCalendarsJSONArray = JSONFactoryUtil.createJSONArray();
 JSONArray pendingCalendarsJSONArray = JSONFactoryUtil.createJSONArray();
 
-boolean invitable = false;
+boolean invitable = true;
 boolean recurring = false;
 
 Recurrence recurrence = null;
@@ -79,8 +79,8 @@ if (calendarBooking != null) {
 	maybeCalendarsJSONArray = CalendarUtil.toCalendarBookingsJSONArray(themeDisplay, CalendarBookingServiceUtil.getChildCalendarBookings(calendarBooking.getParentCalendarBookingId(), CalendarBookingWorkflowConstants.STATUS_MAYBE));
 	pendingCalendarsJSONArray = CalendarUtil.toCalendarBookingsJSONArray(themeDisplay, CalendarBookingServiceUtil.getChildCalendarBookings(calendarBooking.getParentCalendarBookingId(), CalendarBookingWorkflowConstants.STATUS_PENDING));
 
-	if (calendarBooking.isMasterBooking()) {
-		invitable = true;
+	if (!calendarBooking.isMasterBooking()) {
+		invitable = false;
 	}
 
 	if (calendarBooking.isRecurring()) {
@@ -105,8 +105,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 <liferay-ui:header
 	backURL="<%= redirect %>"
-	title='<%= ((calendarBooking != null) && Validator.isNotNull(title)) ? title : "new-calendar-booking" %>'
-/>
+	title='<%= ((calendarBooking != null) && Validator.isNotNull(title)) ? title : "new-calendar-booking" %>' />
 
 <liferay-portlet:actionURL name="updateCalendarBooking" var="updateCalendarBookingURL">
 	<liferay-portlet:param name="mvcPath" value="/edit_calendar_booking.jsp" />
@@ -122,7 +121,9 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 	<aui:fieldset>
 		<aui:input name="title" />
 
-		<aui:input name="startDate" value="<%= startDateJCalendar %>" />
+		<div id="<portlet:namespace />startDateContainer">
+			<aui:input name="startDate" value="<%= startDateJCalendar %>" />
+		</div>
 
 		<div id="<portlet:namespace />endDateContainer">
 			<aui:input name="endDate" value="<%= endDateJCalendar %>" />
@@ -222,14 +223,17 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 						<span class="calendar-portlet-list-text"><liferay-ui:message key="resources-availability" /></span>
 					</a>
 
-					<div class="aui-toggler-content-collapsed" id="<portlet:namespace />schedulerContainer">
-						<div id="<portlet:namespace />message"></div>
+					<div class="calendar-portlet-availability">
+						<div class="aui-toggler-content-collapsed" id="<portlet:namespace />schedulerContainer">
+							<div id="<portlet:namespace />message"></div>
 
-						<liferay-util:include page="/scheduler.jsp" servletContext="<%= application %>">
-							<liferay-util:param name="activeView" value="<%= activeView %>" />
-							<liferay-util:param name="currentDate" value="<%= String.valueOf(currentDate) %>" />
-							<liferay-util:param name="readOnly" value="<%= String.valueOf(true) %>" />
-						</liferay-util:include>
+							<liferay-util:include page="/scheduler.jsp" servletContext="<%= application %>">
+								<liferay-util:param name="activeView" value="<%= activeView %>" />
+								<liferay-util:param name="currentDate" value="<%= String.valueOf(currentDate) %>" />
+								<liferay-util:param name="filterCalendarBookings" value='<%= "window." + renderResponse.getNamespace() + "filterCalendarBookings" %>' />
+								<liferay-util:param name="readOnly" value="<%= String.valueOf(true) %>" />
+							</liferay-util:include>
+						</div>
 					</div>
 				</aui:column>
 			</aui:layout>
@@ -274,12 +278,13 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 	<c:if test="<%= calendarBooking == null %>">
 		document.<portlet:namespace />fm.<portlet:namespace />title_<%= LanguageUtil.getLanguageId(request) %>.value = decodeURIComponent('<%= HtmlUtil.escapeURL(title) %>');
 	</c:if>
+
+	window.<portlet:namespace />filterCalendarBookings = function(calendarBooking) {
+		return <%= calendarBookingId %> !== calendarBooking.calendarBookingId;
+	}
 </aui:script>
 
-<aui:script use="json,liferay-calendar-list,liferay-calendar-simple-menu">
-	Liferay.CalendarUtil.PORTLET_NAMESPACE = '<portlet:namespace />';
-	Liferay.CalendarUtil.USER_TIMEZONE_OFFSET = <%= JCalendarUtil.getTimeZoneOffset(timeZone) %>;
-
+<aui:script use="json,liferay-calendar-date-picker-utils,liferay-calendar-list,liferay-calendar-simple-menu">
 	var defaultCalendarId = <%= calendarId %>;
 
 	var removeCalendarResource = function(calendarList, calendar, menu) {
@@ -342,9 +347,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 					calendarList.activeItem.set('visible', true);
 
-					if (!<portlet:namespace />toggler.get('expanded')) {
-						<portlet:namespace />toggler.expand();
-					}
+					<portlet:namespace />toggler.expand();
 
 					instance.hide();
 
@@ -480,14 +483,14 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 	var formNode = A.one(document.<portlet:namespace />fm);
 
-	var currentEvent = new Liferay.SchedulerEvent(
+	window.<portlet:namespace />placeholderSchedulerEvent = new Liferay.SchedulerEvent(
 		{
 			after: {
 				endDateChange: function(event) {
-					Liferay.CalendarUtil.syncDatePickerFields(formNode, 'endDate', event.newVal);
+					Liferay.DatePickerUtils.syncUI(formNode, 'endDate', event.newVal);
 				},
 				startDateChange: function(event) {
-					Liferay.CalendarUtil.syncDatePickerFields(formNode, 'startDate', event.newVal);
+					Liferay.DatePickerUtils.syncUI(formNode, 'startDate', event.newVal);
 				}
 			},
 			borderStyle: 'dashed',
@@ -506,26 +509,15 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 		}
 	);
 
-	Liferay.CalendarUtil.linkDatePickerToEvent(formNode, 'endDate', currentEvent);
-	Liferay.CalendarUtil.linkDatePickerToEvent(formNode, 'startDate', currentEvent);
+	Liferay.DatePickerUtils.linkToSchedulerEvent('#<portlet:namespace />endDateContainer', window.<portlet:namespace />placeholderSchedulerEvent, 'endDate');
+	Liferay.DatePickerUtils.linkToSchedulerEvent('#<portlet:namespace />startDateContainer', window.<portlet:namespace />placeholderSchedulerEvent, 'startDate');
 
-	window.<portlet:namespace />scheduler.after(
+	window.<portlet:namespace />scheduler.on(
 		{
 			eventsChange: function(event) {
 				var instance = this;
 
-				var events = event.newVal;
-
-				A.Array.each(
-					events,
-					function(item, index, collection) {
-						if (item.get('calendarBookingId') === <%= calendarBookingId %>) {
-							A.Array.removeItem(events, item);
-						}
-					}
-				);
-
-				events.push(currentEvent);
+				event.newVal.push(window.<portlet:namespace />placeholderSchedulerEvent);
 			}
 		}
 	);
