@@ -145,11 +145,14 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			String executionType = actionElement.elementText("execution-type");
 			String script = actionElement.elementText("script");
 			String language = actionElement.elementText("script-language");
+			String scriptRequiredContexts = actionElement.elementText(
+				"script-required-contexts");
 			int priority = GetterUtil.getInteger(
 				actionElement.elementText("priority"));
 
 			Action action = new Action(
-				name, description, executionType, script, language, priority);
+				name, description, executionType, script, language,
+				scriptRequiredContexts, priority);
 
 			actions.add(action);
 		}
@@ -236,9 +239,12 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			String script = scriptedAssignmentElement.elementText("script");
 			String scriptLanguage = scriptedAssignmentElement.elementText(
 				"script-language");
+			String scriptRequiredContexts =
+				scriptedAssignmentElement.elementText(
+					"script-required-contexts");
 
 			ScriptAssignment scriptAssignment = new ScriptAssignment(
-				script, scriptLanguage);
+				script, scriptLanguage, scriptRequiredContexts);
 
 			assignments.add(scriptAssignment);
 		}
@@ -268,9 +274,11 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		String description = conditionElement.elementText("description");
 		String script = conditionElement.elementText("script");
 		String scriptLanguage = conditionElement.elementText("script-language");
+		String scriptRequiredContexts = conditionElement.elementText(
+			"script-required-contexts");
 
 		Condition condition = new Condition(
-			name, description, script, scriptLanguage);
+			name, description, script, scriptLanguage, scriptRequiredContexts);
 
 		String metadata = conditionElement.elementText("metadata");
 

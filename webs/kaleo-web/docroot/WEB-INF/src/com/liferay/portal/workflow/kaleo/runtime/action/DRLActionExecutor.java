@@ -18,7 +18,6 @@ import com.liferay.portal.kernel.bi.rules.Fact;
 import com.liferay.portal.kernel.bi.rules.RulesEngineUtil;
 import com.liferay.portal.kernel.bi.rules.RulesResourceRetriever;
 import com.liferay.portal.kernel.resource.StringResourceRetriever;
-import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoAction;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.runtime.util.RulesContextBuilder;
@@ -31,11 +30,12 @@ import java.util.List;
 public class DRLActionExecutor implements ActionExecutor {
 
 	public void execute(
-			KaleoAction kaleoAction, ExecutionContext executionContext)
+			KaleoAction kaleoAction, ExecutionContext executionContext,
+			ClassLoader... classLoaders)
 		throws ActionExecutorException {
 
 		try {
-			doExecute(kaleoAction, executionContext);
+			doExecute(kaleoAction, executionContext, classLoaders);
 		}
 		catch (Exception e) {
 			throw new ActionExecutorException(e);
@@ -43,7 +43,8 @@ public class DRLActionExecutor implements ActionExecutor {
 	}
 
 	protected void doExecute(
-			KaleoAction kaleoAction, ExecutionContext executionContext)
+			KaleoAction kaleoAction, ExecutionContext executionContext,
+			ClassLoader... classLoaders)
 		throws Exception {
 
 		List<Fact<?>> facts = RulesContextBuilder.buildRulesContext(
@@ -54,8 +55,7 @@ public class DRLActionExecutor implements ActionExecutor {
 				new StringResourceRetriever(kaleoAction.getScript()));
 
 		RulesEngineUtil.execute(
-			rulesResourceRetriever, facts,
-			PortalClassLoaderUtil.getClassLoader());
+			rulesResourceRetriever, facts, classLoaders);
 	}
 
 }

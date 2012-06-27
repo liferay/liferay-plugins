@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 
 <workflow-definition
-	xmlns="urn:liferay.com:liferay-workflow_6.1.0"
+	xmlns="urn:liferay.com:liferay-workflow_6.2.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="urn:liferay.com:liferay-workflow_6.1.0 http://www.liferay.com/dtd/liferay-workflow-definition_6_2_0.xsd"
+	xsi:schemaLocation="urn:liferay.com:liferay-workflow_6.2.0 http://www.liferay.com/dtd/liferay-workflow-definition_6_2_0.xsd"
 >
 	<name>Single Approver</name>
 	<description>A single approver can approve a workflow content.</description>
@@ -139,10 +139,13 @@
 				<name>approve</name>
 				<script>
 					<![CDATA[
-						Packages.com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil.updateStatus(Packages.com.liferay.portal.kernel.workflow.WorkflowConstants.toStatus("approved"), workflowContext);
+					    import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+					    import com.liferay.portal.kernel.workflow.WorkflowConstants;
+
+					    WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.toStatus("approved"), workflowContext);
 					]]>
 				</script>
-				<script-language>javascript</script-language>
+				<script-language>groovy</script-language>
 				<execution-type>onEntry</execution-type>
 			</action>
 		</actions>

@@ -30,7 +30,7 @@ public class CompositeTaskAssignmentSelector implements TaskAssignmentSelector {
 
 	public Collection<KaleoTaskAssignment> calculateTaskAssignments(
 			KaleoTaskAssignment kaleoTaskAssignment,
-			ExecutionContext executionContext)
+			ExecutionContext executionContext, ClassLoader... classLoaders)
 		throws PortalException, SystemException {
 
 		String assigneeClassName = kaleoTaskAssignment.getAssigneeClassName();
@@ -45,7 +45,7 @@ public class CompositeTaskAssignmentSelector implements TaskAssignmentSelector {
 		}
 
 		return taskAssignmentSelector.calculateTaskAssignments(
-			kaleoTaskAssignment, executionContext);
+			kaleoTaskAssignment, executionContext, classLoaders);
 	}
 
 	public void setTaskAssignmentSelectors(

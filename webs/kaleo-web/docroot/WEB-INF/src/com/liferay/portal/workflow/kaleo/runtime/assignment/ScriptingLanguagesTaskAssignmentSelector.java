@@ -34,7 +34,7 @@ public class ScriptingLanguagesTaskAssignmentSelector
 
 	public Collection<KaleoTaskAssignment> calculateTaskAssignments(
 			KaleoTaskAssignment kaleoTaskAssignment,
-			ExecutionContext executionContext)
+			ExecutionContext executionContext, ClassLoader... classLoaders)
 		throws PortalException, SystemException {
 
 		Map<String, Object> inputObjects =
@@ -47,7 +47,7 @@ public class ScriptingLanguagesTaskAssignmentSelector
 
 		Map<String, Object> results = ScriptingUtil.eval(
 			null, inputObjects, _outputNames, assigneeScriptingLanguage,
-			assigneeScript);
+			assigneeScript, classLoaders);
 
 		return getKaleoTaskAssignments(results);
 	}

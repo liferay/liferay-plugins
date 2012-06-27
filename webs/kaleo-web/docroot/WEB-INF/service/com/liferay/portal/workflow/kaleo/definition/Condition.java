@@ -20,13 +20,15 @@ package com.liferay.portal.workflow.kaleo.definition;
 public class Condition extends Node {
 
 	public Condition(
-		String name, String description, String script, String scriptLanguage) {
+		String name, String description, String script, String scriptLanguage,
+		String scriptRequiredContexts) {
 
 		super(NodeType.CONDITION, name, description);
 
 		_description = description;
 		_script = script;
 		_scriptLanguage = ScriptLanguage.parse(scriptLanguage);
+		_scriptRequiredContexts = scriptRequiredContexts;
 	}
 
 	@Override
@@ -42,8 +44,13 @@ public class Condition extends Node {
 		return _scriptLanguage;
 	}
 
+	public String getScriptRequiredContexts() {
+		return _scriptRequiredContexts;
+	}
+
 	private String _description;
 	private String _script;
 	private ScriptLanguage _scriptLanguage;
+	private String _scriptRequiredContexts;
 
 }

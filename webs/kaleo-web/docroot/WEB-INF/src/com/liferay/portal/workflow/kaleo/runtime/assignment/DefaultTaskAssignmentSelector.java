@@ -28,7 +28,7 @@ public class DefaultTaskAssignmentSelector implements TaskAssignmentSelector {
 
 	public Collection<KaleoTaskAssignment> calculateTaskAssignments(
 		KaleoTaskAssignment kaleoTaskAssignment,
-		ExecutionContext executionContext) {
+		ExecutionContext executionContext, ClassLoader... classLoaders) {
 
 		List<KaleoTaskAssignment> taskAssignments =
 			new ArrayList<KaleoTaskAssignment>(1);

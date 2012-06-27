@@ -23,7 +23,8 @@ import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 public interface ActionExecutor {
 
 	public void execute(
-			KaleoAction kaleoAction, ExecutionContext executionContext)
+			KaleoAction kaleoAction, ExecutionContext executionContext,
+			ClassLoader... classLoaders)
 		throws ActionExecutorException;
 
 }

@@ -16,6 +16,7 @@ package com.liferay.portal.workflow.kaleo.runtime.node;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.model.KaleoCondition;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
@@ -25,6 +26,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.runtime.condition.ConditionEvaluator;
 import com.liferay.portal.workflow.kaleo.runtime.graph.PathElement;
+import com.liferay.portal.workflow.kaleo.runtime.util.ClassLoaderUtil;
 
 import java.io.Serializable;
 
@@ -62,8 +64,18 @@ public class ConditionNodeExecutor extends BaseNodeExecutor {
 			kaleoConditionLocalService.getKaleoNodeKaleoCondition(
 				currentKaleoNode.getKaleoNodeId());
 
+		Thread currentThread = Thread.currentThread();
+
+		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+
+		String[] scriptRequiredContexts = StringUtil.split(
+			kaleoCondition.getScriptRequiredContexts());
+
+		ClassLoader[] classloaders = ClassLoaderUtil.getClassLoaders(
+			scriptRequiredContexts, contextClassLoader);
+
 		String transitionName = _conditionEvaluator.evaluate(
-			kaleoCondition, executionContext);
+			kaleoCondition, executionContext, classloaders);
 
 		KaleoTransition kaleoTransition = currentKaleoNode.getKaleoTransition(
 			transitionName);

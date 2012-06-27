@@ -16,9 +16,11 @@ package com.liferay.portal.workflow.kaleo.runtime.action;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.workflow.kaleo.definition.ExecutionType;
 import com.liferay.portal.workflow.kaleo.model.KaleoAction;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
+import com.liferay.portal.workflow.kaleo.runtime.util.ClassLoaderUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoActionLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoLogLocalServiceUtil;
 
@@ -38,19 +40,31 @@ public class ActionExecutorUtil {
 			KaleoActionLocalServiceUtil.getKaleoActions(
 				kaleoClassName, kaleoClassPK, executionType.getValue());
 
+		Thread currentThread = Thread.currentThread();
+
+		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+
 		for (KaleoAction kaleoAction : kaleoActions) {
 			long startTime = System.currentTimeMillis();
 
 			String comment = _COMMENT_ACTION_SUCCESS;
+
+			String[] scriptRequiredContexts = StringUtil.split(
+				kaleoAction.getScriptRequiredContexts());
+
+			ClassLoader[] classLoaders = ClassLoaderUtil.getClassLoaders(
+				scriptRequiredContexts, contextClassLoader);
 
 			try {
 				ActionExecutor actionExecutor =
 					ActionExecutorFactory.getActionExecutor(
 						kaleoAction.getScriptLanguage());
 
-				actionExecutor.execute(kaleoAction, executionContext);
+				actionExecutor.execute(
+					kaleoAction, executionContext, classLoaders);
 			}
 			catch (Exception e) {
+				e.printStackTrace();
 				comment = e.getMessage();
 			}
 			finally {

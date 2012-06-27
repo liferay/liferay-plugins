@@ -19,11 +19,14 @@ package com.liferay.portal.workflow.kaleo.definition;
  */
 public class ScriptAssignment extends Assignment {
 
-	public ScriptAssignment(String script, String scriptLanguage) {
+	public ScriptAssignment(
+		String script, String scriptLanguage, String scriptRequiredContexts) {
+
 		super(AssignmentType.SCRIPT);
 
 		_script = script;
 		_scriptLanguage = ScriptLanguage.parse(scriptLanguage);
+		_scriptRequiredContexts = scriptRequiredContexts;
 	}
 
 	public String getScript() {
@@ -32,6 +35,10 @@ public class ScriptAssignment extends Assignment {
 
 	public ScriptLanguage getScriptLanguage() {
 		return _scriptLanguage;
+	}
+
+	public String getScriptRequiredContexts() {
+		return _scriptRequiredContexts;
 	}
 
 	public void setScript(String script) {
@@ -44,5 +51,6 @@ public class ScriptAssignment extends Assignment {
 
 	private String _script;
 	private ScriptLanguage _scriptLanguage;
+	private String _scriptRequiredContexts;
 
 }

@@ -16,9 +16,11 @@ package com.liferay.portal.workflow.kaleo.runtime.condition;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.workflow.kaleo.definition.ScriptLanguage;
 import com.liferay.portal.workflow.kaleo.model.KaleoCondition;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
+import com.liferay.portal.workflow.kaleo.runtime.util.ClassLoaderUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +31,8 @@ import java.util.Map;
 public class MultiLanguageConditionEvaluator implements ConditionEvaluator {
 
 	public String evaluate(
-			KaleoCondition kaleoCondition, ExecutionContext executionContext)
+			KaleoCondition kaleoCondition, ExecutionContext executionContext,
+			ClassLoader... classLoaders)
 		throws PortalException, SystemException {
 
 		ScriptLanguage scriptLanguage = ScriptLanguage.parse(
@@ -44,7 +47,8 @@ public class MultiLanguageConditionEvaluator implements ConditionEvaluator {
 					scriptLanguage);
 		}
 
-		return conditionEvaluator.evaluate(kaleoCondition, executionContext);
+		return conditionEvaluator.evaluate(
+			kaleoCondition, executionContext, classLoaders);
 	}
 
 	public void setConditionEvaluators(

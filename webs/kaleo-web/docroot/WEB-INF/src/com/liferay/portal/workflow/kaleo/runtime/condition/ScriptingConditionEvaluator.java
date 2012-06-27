@@ -31,7 +31,8 @@ import java.util.Set;
 public class ScriptingConditionEvaluator implements ConditionEvaluator {
 
 	public String evaluate(
-			KaleoCondition kaleoCondition, ExecutionContext executionContext)
+			KaleoCondition kaleoCondition, ExecutionContext executionContext,
+			ClassLoader... classLoaders)
 		throws PortalException, SystemException {
 
 		Map<String, Object> inputObjects =
@@ -39,7 +40,8 @@ public class ScriptingConditionEvaluator implements ConditionEvaluator {
 
 		Map<String, Object> results = ScriptingUtil.eval(
 			null, inputObjects, _outputNames,
-			kaleoCondition.getScriptLanguage(), kaleoCondition.getScript());
+			kaleoCondition.getScriptLanguage(), kaleoCondition.getScript(),
+			classLoaders);
 
 		String returnValue = (String)results.get(_RETURN_VALUE);
 

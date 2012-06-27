@@ -55,6 +55,8 @@ public class KaleoConditionLocalServiceImpl
 		kaleoCondition.setScript(condition.getScript());
 		kaleoCondition.setScriptLanguage(
 			condition.getScriptLanguage().getValue());
+		kaleoCondition.setScriptRequiredContexts(
+			condition.getScriptRequiredContexts());
 
 		kaleoConditionPersistence.update(kaleoCondition, false);
 

@@ -40,7 +40,7 @@ public class ResourceActionTaskAssignmentSelector
 
 	public Collection<KaleoTaskAssignment> calculateTaskAssignments(
 			KaleoTaskAssignment kaleoTaskAssignment,
-			ExecutionContext executionContext)
+			ExecutionContext executionContext, ClassLoader... classLoaders)
 		throws SystemException {
 
 		Map<String, Serializable> workflowContext =

@@ -35,7 +35,8 @@ import java.util.Map;
 public class DRLConditionEvaluator implements ConditionEvaluator {
 
 	public String evaluate(
-			KaleoCondition kaleoCondition, ExecutionContext executionContext)
+			KaleoCondition kaleoCondition, ExecutionContext executionContext,
+			ClassLoader... classloaders)
 		throws PortalException, SystemException {
 
 		List<Fact<?>> facts = RulesContextBuilder.buildRulesContext(
@@ -48,8 +49,7 @@ public class DRLConditionEvaluator implements ConditionEvaluator {
 		Query query = Query.createStandardQuery();
 
 		Map<String, ?> results = RulesEngineUtil.execute(
-			rulesResourceRetriever, facts, query,
-			PortalClassLoaderUtil.getClassLoader());
+			rulesResourceRetriever, facts, query, classloaders);
 
 		String returnValue = (String)results.get(_RETURN_VALUE);
 

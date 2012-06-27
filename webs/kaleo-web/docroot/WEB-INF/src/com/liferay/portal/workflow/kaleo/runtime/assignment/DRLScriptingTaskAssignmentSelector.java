@@ -38,7 +38,7 @@ public class DRLScriptingTaskAssignmentSelector
 
 	public Collection<KaleoTaskAssignment> calculateTaskAssignments(
 			KaleoTaskAssignment kaleoTaskAssignment,
-			ExecutionContext executionContext)
+			ExecutionContext executionContext, ClassLoader... classLoaders)
 		throws PortalException, SystemException {
 
 		List<Fact<?>> facts = RulesContextBuilder.buildRulesContext(
@@ -53,8 +53,7 @@ public class DRLScriptingTaskAssignmentSelector
 		Query query = Query.createStandardQuery();
 
 		Map<String, ?> results = RulesEngineUtil.execute(
-			rulesResourceRetriever, facts, query,
-			PortalClassLoaderUtil.getClassLoader());
+			rulesResourceRetriever, facts, query, classLoaders);
 
 		return getKaleoTaskAssignments(results);
 	}
