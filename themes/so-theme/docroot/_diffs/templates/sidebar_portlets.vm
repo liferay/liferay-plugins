@@ -5,7 +5,7 @@
 	#set ($sidebar_portlet = "5_WAR_soportlet")
 	#set ($sidebar_portlet_title = $languageUtil.get($locale, "javax.portlet.title.134"))
 #else
- 	#set ($sidebar_portlet = "3_WAR_contactsportlet")
+	#set ($sidebar_portlet = "3_WAR_contactsportlet")
 	#set ($sidebar_portlet_title = $languageUtil.format($locale, "x's-contacts", $current_user.getFirstName()))
 #end
 
