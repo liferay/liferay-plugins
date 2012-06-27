@@ -24,7 +24,7 @@ Group group = themeDisplay.getScopeGroup();
 	<c:when test="<%= group.isUser() %>">
 
 		<%
-		List<User> users = UserLocalServiceUtil.getSocialUsers(group.getClassPK(), 0, 30, new UserLoginDateComparator());
+		List<User> users = UserLocalServiceUtil.getSocialUsers(group.getClassPK(), 0, 10, new UserLoginDateComparator());
 
 		PortletURL portletURL = null;
 
@@ -77,11 +77,10 @@ Group group = themeDisplay.getScopeGroup();
 					}
 					%>
 
+					<c:if test="<%= portletURL != null %>">
+						<a class="lfr-contact-grid-item" href="<%= portletURL %>"><liferay-ui:message arguments="<%= group.getDescriptiveName(locale) %>" key="view-all-x-connections" /></a>
+					</c:if>
 				</aui:layout>
-
-				<c:if test="<%= portletURL != null %>">
-					<a href="<%= portletURL %>"><liferay-ui:message arguments="<%= group.getDescriptiveName(locale) %>" key="view-all-x-connections" /></a>
-				</c:if>
 			</c:otherwise>
 		</c:choose>
 	</c:when>

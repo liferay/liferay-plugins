@@ -218,6 +218,8 @@ $toolbar-bg: #DCE3EA;
 	}
 
 	.my-contacts {
+		padding-left: 8px;
+
 		.lfr-contact-grid-item .lfr-contact-info {
 			margin-left: 40px;
 		}
