@@ -62,6 +62,7 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -79,6 +80,7 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long checkoutId = (Long)attributes.get("checkoutId");
 

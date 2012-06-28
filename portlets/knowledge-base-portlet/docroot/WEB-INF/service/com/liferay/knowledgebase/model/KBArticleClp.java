@@ -64,6 +64,7 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -95,6 +96,7 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		String uuid = (String)attributes.get("uuid");
 

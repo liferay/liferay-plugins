@@ -62,6 +62,7 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -78,6 +79,7 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long feedId = (Long)attributes.get("feedId");
 

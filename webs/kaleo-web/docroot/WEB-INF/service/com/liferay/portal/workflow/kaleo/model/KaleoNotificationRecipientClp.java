@@ -62,6 +62,7 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -83,6 +84,7 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long kaleoNotificationRecipientId = (Long)attributes.get(
 				"kaleoNotificationRecipientId");

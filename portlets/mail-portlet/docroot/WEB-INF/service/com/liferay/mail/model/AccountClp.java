@@ -62,6 +62,7 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -95,6 +96,7 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long accountId = (Long)attributes.get("accountId");
 

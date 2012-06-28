@@ -62,6 +62,7 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -80,6 +81,7 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long jiraIssueId = (Long)attributes.get("jiraIssueId");
 

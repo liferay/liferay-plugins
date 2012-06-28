@@ -60,6 +60,7 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -68,6 +69,7 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long fooId = (Long)attributes.get("fooId");
 

@@ -63,6 +63,7 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -78,6 +79,7 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long jiraActionId = (Long)attributes.get("jiraActionId");
 

@@ -60,6 +60,7 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -70,6 +71,7 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long typeId = (Long)attributes.get("typeId");
 

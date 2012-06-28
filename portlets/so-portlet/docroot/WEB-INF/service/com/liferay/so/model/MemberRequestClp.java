@@ -64,6 +64,7 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -83,6 +84,7 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long memberRequestId = (Long)attributes.get("memberRequestId");
 

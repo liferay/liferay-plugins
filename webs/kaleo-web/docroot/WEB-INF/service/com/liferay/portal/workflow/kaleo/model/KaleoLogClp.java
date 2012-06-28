@@ -61,6 +61,7 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -99,6 +100,7 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long kaleoLogId = (Long)attributes.get("kaleoLogId");
 

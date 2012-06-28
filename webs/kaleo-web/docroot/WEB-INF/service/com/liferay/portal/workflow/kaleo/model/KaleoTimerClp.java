@@ -62,6 +62,7 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -86,6 +87,7 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long kaleoTimerId = (Long)attributes.get("kaleoTimerId");
 

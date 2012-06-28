@@ -63,6 +63,7 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -84,6 +85,7 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long oAuthTokenId = (Long)attributes.get("oAuthTokenId");
 

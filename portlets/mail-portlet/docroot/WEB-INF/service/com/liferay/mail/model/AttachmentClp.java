@@ -62,6 +62,7 @@ public class AttachmentClp extends BaseModelImpl<Attachment>
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -78,6 +79,7 @@ public class AttachmentClp extends BaseModelImpl<Attachment>
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long attachmentId = (Long)attributes.get("attachmentId");
 

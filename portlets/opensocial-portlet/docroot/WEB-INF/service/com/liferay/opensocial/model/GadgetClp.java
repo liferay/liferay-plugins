@@ -61,6 +61,7 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -76,6 +77,7 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		String uuid = (String)attributes.get("uuid");
 
