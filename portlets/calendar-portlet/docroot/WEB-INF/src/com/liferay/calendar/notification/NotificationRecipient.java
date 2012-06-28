@@ -25,17 +25,18 @@ import javax.mail.internet.InternetAddress;
  */
 public class NotificationRecipient {
 
-	public NotificationRecipient(String email) {
-		_email = email;
+	public NotificationRecipient(String emailAddress) {
+		_emailAddress = emailAddress;
 	}
 
 	public NotificationRecipient(User user) {
 		_user = user;
-		_email = user.getEmailAddress();
+
+		_emailAddress = user.getEmailAddress();
 	}
 
-	public String getEmail() {
-		return _email;
+	public String getEmailAddress() {
+		return _emailAddress;
 	}
 
 	public String getFormat() {
@@ -43,7 +44,7 @@ public class NotificationRecipient {
 	}
 
 	public InternetAddress getInternetAddress() throws AddressException {
-		return new InternetAddress(_email);
+		return new InternetAddress(_emailAddress);
 	}
 
 	public String getName() {
@@ -62,8 +63,8 @@ public class NotificationRecipient {
 		return _format.equals(ContentTypes.TEXT_HTML);
 	}
 
-	public void setEmail(String email) {
-		_email = email;
+	public void setEmailAddress(String emailAddress) {
+		_emailAddress = emailAddress;
 	}
 
 	public void setFormat(String format) {
@@ -78,7 +79,7 @@ public class NotificationRecipient {
 		_user = user;
 	}
 
-	private String _email;
+	private String _emailAddress;
 	private String _format = ContentTypes.TEXT_HTML;
 	private String _name;
 	private User _user;

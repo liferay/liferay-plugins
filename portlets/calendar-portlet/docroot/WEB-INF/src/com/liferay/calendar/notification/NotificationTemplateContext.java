@@ -28,13 +28,11 @@ import java.util.Map;
 public class NotificationTemplateContext implements Cloneable, Serializable {
 
 	public NotificationTemplateContext() {
-		_attributes = new LinkedHashMap<String, Serializable>();
 		_notificationType = NotificationType.parse(
 			PortletPropsValues.CALENDAR_NOTIFICATION_DEFAULT_TYPE);
 	}
 
 	public NotificationTemplateContext(NotificationType notificationType) {
-		_attributes = new LinkedHashMap<String, Serializable>();
 		_notificationType = notificationType;
 	}
 
@@ -84,7 +82,8 @@ public class NotificationTemplateContext implements Cloneable, Serializable {
 		_notificationType = notificationType;
 	}
 
-	private Map<String, Serializable> _attributes;
+	private Map<String, Serializable> _attributes =
+		new LinkedHashMap<String, Serializable>();
 	private long _companyId;
 	private long _groupId;
 	private NotificationType _notificationType;

@@ -6,7 +6,7 @@
 		<portlet-name>1</portlet-name>
 		<configuration-action-class>com.liferay.calendar.action.ConfigurationActionImpl</configuration-action-class>
 		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.calendar.messaging.CheckBookingMessageListener</scheduler-event-listener-class>
+			<scheduler-event-listener-class>com.liferay.calendar.messaging.CheckBookingsMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<simple>
 					<property-key>calendar.notification.check.interval</property-key>

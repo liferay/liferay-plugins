@@ -14,11 +14,6 @@
 
 package com.liferay.calendar.service.impl;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-
 import com.liferay.calendar.CalendarNameException;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarResource;
@@ -32,6 +27,11 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * @author Eduardo Lundgren

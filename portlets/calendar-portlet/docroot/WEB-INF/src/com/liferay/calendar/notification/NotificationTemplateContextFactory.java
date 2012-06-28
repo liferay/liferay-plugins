@@ -55,65 +55,71 @@ public class NotificationTemplateContextFactory {
 			CalendarBooking calendarBooking, User user)
 		throws PortalException, SystemException {
 
-		long companyId = calendarBooking.getCompanyId();
-
-		Company company = CompanyLocalServiceUtil.getCompany(companyId);
-
 		NotificationTemplateContext notificationTemplateContext =
 			new NotificationTemplateContext();
-
-		notificationTemplateContext.setCompanyId(companyId);
-		notificationTemplateContext.setGroupId(calendarBooking.getGroupId());
 
 		Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(
 			user.getLocale(), user.getTimeZone());
 
 		Date endDate = calendarBooking.getEndDate();
-		Date startDate = calendarBooking.getStartDate();
 
 		notificationTemplateContext.setAttribute(
 			"endDate", dateFormatDateTime.format(endDate.getTime()));
+
+		PortletPreferences portletPreferences =
+			PortletPreferencesLocalServiceUtil.getPreferences(
+				calendarBooking.getCompanyId(), calendarBooking.getGroupId(),
+				PortletKeys.PREFS_OWNER_TYPE_GROUP,
+				PortletKeys.PREFS_PLID_SHARED, PortletKeys.CALENDAR, null);
+
+		String fromAddress = NotificationUtil.getEmailFromAddress(
+			portletPreferences, calendarBooking.getCompanyId());
+		String fromName = NotificationUtil.getEmailFromName(
+			portletPreferences, calendarBooking.getCompanyId());
+
+		notificationTemplateContext.setAttribute("fromAddress", fromAddress);
+		notificationTemplateContext.setAttribute("fromName", fromName);
+
 		notificationTemplateContext.setAttribute(
 			"location", calendarBooking.getLocation());
+
+		Company company = CompanyLocalServiceUtil.getCompany(
+			calendarBooking.getCompanyId());
+
 		notificationTemplateContext.setAttribute(
 			"portalUrl", company.getPortalURL(calendarBooking.getGroupId()));
+
+		notificationTemplateContext.setAttribute(
+			"portletName",
+			LanguageUtil.get(
+				getPortletConfig(), user.getLocale(),
+				"javax.portlet.title.".concat(PortletKeys.CALENDAR)));
+
+		Date startDate = calendarBooking.getStartDate();
+
 		notificationTemplateContext.setAttribute(
 			"startDate", dateFormatDateTime.format(startDate.getTime()));
+
 		notificationTemplateContext.setAttribute(
 			"title", calendarBooking.getTitle(user.getLocale()));
 		notificationTemplateContext.setAttribute(
 			"toAddress", user.getEmailAddress());
 		notificationTemplateContext.setAttribute("toName", user.getFullName());
-		notificationTemplateContext.setAttribute(
-			"portletName", LanguageUtil.get(
-				getPortletConfig(), user.getLocale(),
-				"javax.portlet.title.".concat(PortletKeys.CALENDAR)));
 
-		PortletPreferences preferences =
-			PortletPreferencesLocalServiceUtil.getPreferences(
-				companyId, calendarBooking.getGroupId(),
-				PortletKeys.PREFS_OWNER_TYPE_GROUP,
-				PortletKeys.PREFS_PLID_SHARED, PortletKeys.CALENDAR, null);
-
-		String fromAddress = NotificationUtil.getEmailFromAddress(
-			preferences, companyId);
-
-		String fromName = NotificationUtil.getEmailFromName(
-			preferences, companyId);
-
-		notificationTemplateContext.setAttribute("fromAddress", fromAddress);
-		notificationTemplateContext.setAttribute("fromName", fromName);
-
-		Enumeration<String> enu = preferences.getNames();
+		Enumeration<String> enu = portletPreferences.getNames();
 
 		while (enu.hasMoreElements()) {
 			String name = enu.nextElement();
 
 			String value = GetterUtil.getString(
-				preferences.getValue(name, StringPool.BLANK));
+				portletPreferences.getValue(name, StringPool.BLANK));
 
 			notificationTemplateContext.setAttribute(name, value);
 		}
+
+		notificationTemplateContext.setCompanyId(
+			calendarBooking.getCompanyId());
+		notificationTemplateContext.setGroupId(calendarBooking.getGroupId());
 
 		return notificationTemplateContext;
 	}

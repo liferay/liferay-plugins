@@ -24,17 +24,14 @@ String redirect = ParamUtil.getString(request, "redirect");
 String emailFromName = ParamUtil.getString(request, "emailFromName", NotificationUtil.getEmailFromName(preferences, themeDisplay.getCompanyId()));
 String emailFromAddress = ParamUtil.getString(request, "emailFromAddress", NotificationUtil.getEmailFromAddress(preferences, themeDisplay.getCompanyId()));
 
-String notificationTemplateType = ParamUtil.getString(request, "notificationTemplateType", "reminder");
-String notificationType = ParamUtil.getString(request, "notificationType", PortletPropsValues.CALENDAR_NOTIFICATION_DEFAULT_TYPE);
+NotificationType notificationType = NotificationType.parse(ParamUtil.getString(request, "notificationType", PortletPropsValues.CALENDAR_NOTIFICATION_DEFAULT_TYPE));
+NotificationTemplateType notificationTemplateType = NotificationTemplateType.parse(ParamUtil.getString(request, "notificationTemplateType", "reminder"));
 
-NotificationTemplateType notificationTemplateTypeEnum = NotificationTemplateType.parse(notificationTemplateType);
-NotificationType notificationTypeEnum = NotificationType.parse(notificationType);
+String notificationTemplateContentBodyParameterName = NotificationUtil.getPreferenceName(PortletPropsKeys.CALENDAR_NOTIFICATION_BODY, notificationType, notificationTemplateType);
+String notificationTemplateContentSubjectParameterName = NotificationUtil.getPreferenceName(PortletPropsKeys.CALENDAR_NOTIFICATION_SUBJECT, notificationType, notificationTemplateType);
 
-String templateBodyParameterName = NotificationUtil.getPreferenceName(PortletPropsKeys.CALENDAR_NOTIFICATION_BODY, notificationTypeEnum, notificationTemplateTypeEnum);
-String templateSubjectParameterName = NotificationUtil.getPreferenceName(PortletPropsKeys.CALENDAR_NOTIFICATION_SUBJECT, notificationTypeEnum, notificationTemplateTypeEnum);
-
-String templateBody = PrefsParamUtil.getString(preferences, request, templateBodyParameterName, NotificationUtil.getNotificationTemplateContent(PortletPropsKeys.CALENDAR_NOTIFICATION_BODY, notificationTypeEnum, notificationTemplateTypeEnum));
-String templateSubject = PrefsParamUtil.getString(preferences, request, templateSubjectParameterName, NotificationUtil.getNotificationTemplateContent(PortletPropsKeys.CALENDAR_NOTIFICATION_SUBJECT, notificationTypeEnum, notificationTemplateTypeEnum));
+String notificationTemplateContentBody = PrefsParamUtil.getString(preferences, request, notificationTemplateContentBodyParameterName, NotificationUtil.getNotificationTemplateContent(PortletPropsKeys.CALENDAR_NOTIFICATION_BODY, notificationType, notificationTemplateType));
+String notificationTemplateContentSubject = PrefsParamUtil.getString(preferences, request, notificationTemplateContentSubjectParameterName, NotificationUtil.getNotificationTemplateContent(PortletPropsKeys.CALENDAR_NOTIFICATION_SUBJECT, notificationType, notificationTemplateType));
 %>
 
 <liferay-portlet:renderURL portletConfiguration="true" var="portletURL">
@@ -48,8 +45,8 @@ String templateSubject = PrefsParamUtil.getString(preferences, request, template
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 	<aui:input name="tabs2" type="hidden" value="<%= tabs2 %>" />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="templateBodyParameterName" type="hidden" value="<%= templateBodyParameterName %>" />
-	<aui:input name="templateSubjectParameterName" type="hidden" value="<%= templateSubjectParameterName %>" />
+	<aui:input name="notificationTemplateContentBodyParameterName" type="hidden" value="<%= notificationTemplateContentBodyParameterName %>" />
+	<aui:input name="notificationTemplateContentSubjectParameterName" type="hidden" value="<%= notificationTemplateContentSubjectParameterName %>" />
 
 	<liferay-ui:tabs
 		names="email-from,templates,display-settings"
@@ -59,8 +56,8 @@ String templateSubject = PrefsParamUtil.getString(preferences, request, template
 
 	<liferay-ui:error key="emailFromAddress" message="please-enter-a-valid-email-address" />
 	<liferay-ui:error key="emailFromName" message="please-enter-a-valid-name" />
-	<liferay-ui:error key="templateBody" message="please-enter-a-valid-body" />
-	<liferay-ui:error key="templateSubject" message="please-enter-a-valid-subject" />
+	<liferay-ui:error key="notificationTemplateContentBody" message="please-enter-a-valid-body" />
+	<liferay-ui:error key="notificationTemplateContentSubject" message="please-enter-a-valid-subject" />
 
 	<c:choose>
 		<c:when test='<%= tabs2.equals("email-from") %>'>
@@ -72,27 +69,13 @@ String templateSubject = PrefsParamUtil.getString(preferences, request, template
 		</c:when>
 		<c:when test='<%= tabs2.equals("templates") %>'>
 			<aui:fieldset>
-				<aui:select name="notificationType" value="<%= notificationType %>">
+				<aui:select name="notificationType" value="<%= notificationType.getValue() %>">
 
 					<%
-					for (NotificationType notificationTypeValue : NotificationType.values()) {
+					for (NotificationType curNotificationType : NotificationType.values()) {
 					%>
 
-						<aui:option label="<%= notificationTypeValue.toString() %>" value="<%= notificationTypeValue.toString() %>" />
-
-					<%
-					}
-					%>
-
-				</aui:select>
-
-				<aui:select name="notificationTemplateType" value="<%= notificationTemplateType %>">
-
-					<%
-					for (NotificationTemplateType notificationTemplateTypeValue : NotificationTemplateType.values()) {
-					%>
-
-						<aui:option label="<%= notificationTemplateTypeValue.toString() %>" value="<%= notificationTemplateTypeValue.toString() %>" />
+						<aui:option label="<%= curNotificationType.getValue() %>" value="<%= curNotificationType.getValue() %>" />
 
 					<%
 					}
@@ -100,12 +83,26 @@ String templateSubject = PrefsParamUtil.getString(preferences, request, template
 
 				</aui:select>
 
-				<aui:input cssClass="lfr-input-text-container" label="subject" name='<%= "preferences--" + templateSubjectParameterName + "--" %>' type="text" value="<%= templateSubject %>" />
+				<aui:select name="notificationTemplateType" value="<%= notificationTemplateType.getValue() %>">
+
+					<%
+					for (NotificationTemplateType curNotificationTemplateType : NotificationTemplateType.values()) {
+					%>
+
+						<aui:option label="<%= curNotificationTemplateType.getValue() %>" value="<%= curNotificationTemplateType.getValue() %>" />
+
+					<%
+					}
+					%>
+
+				</aui:select>
+
+				<aui:input cssClass="lfr-input-text-container" label="subject" name='<%= "preferences--" + notificationTemplateContentSubjectParameterName + "--" %>' type="text" value="<%= notificationTemplateContentSubject %>" />
 
 				<aui:field-wrapper label="body">
 					<liferay-ui:input-editor editorImpl="ckeditor" />
 
-					<aui:input name='<%= "preferences--" + templateBodyParameterName + "--" %>' type="hidden" value="<%= templateBody %>" />
+					<aui:input name='<%= "preferences--" + notificationTemplateContentBodyParameterName + "--" %>' type="hidden" value="<%= notificationTemplateContentBody %>" />
 				</aui:field-wrapper>
 			</aui:fieldset>
 
@@ -117,19 +114,19 @@ String templateSubject = PrefsParamUtil.getString(preferences, request, template
 						[$BOOKING_LOCATION$]
 					</dt>
 					<dd>
-						<liferay-ui:message key="booking-location" />
+						<liferay-ui:message key="the-booking-location" />
 					</dd>
 					<dt>
 						[$BOOKING_START_DATE$]
 					</dt>
 					<dd>
-						<liferay-ui:message key="booking-start-date" />
+						<liferay-ui:message key="the-booking-start-date" />
 					</dd>
 					<dt>
 						[$BOOKING_TITLE$]
 					</dt>
 					<dd>
-						<liferay-ui:message key="booking-title" />
+						<liferay-ui:message key="the-booking-title" />
 					</dd>
 					<dt>
 						[$FROM_ADDRESS$]
@@ -181,47 +178,47 @@ String templateSubject = PrefsParamUtil.getString(preferences, request, template
 </aui:form>
 
 <aui:script use="aui-base">
-var <portlet:namespace />changeTemplate = function(parameterName, parameterValue) {
-	if (confirm('<liferay-ui:message key="changing-templates-could-loose-unsaved-data-do-you-want-to-proceed" />')) {
-		window.location.href = '<%= portletURL %>&' + parameterName + '=' + parameterValue;
+	var <portlet:namespace />changeNotificationTemplate = function(parameterName, parameterValue) {
+		if (confirm('<liferay-ui:message key="changing-templates-could-loose-unsaved-data-do-you-want-to-proceed" />')) {
+			window.location.href = '<%= portletURL %>&' + parameterName + '=' + parameterValue;
+		}
+	};
+
+	var notificationType = A.one('#<portlet:namespace />notificationType');
+	var notificationTemplateType = A.one('#<portlet:namespace />notificationTemplateType');
+
+	if (notificationType) {
+		notificationType.on(
+			'change',
+			function(event) {
+				<portlet:namespace />changeNotificationTemplate('notificationType', event.currentTarget.val());
+			}
+		);
 	}
-};
 
-var notificationType = A.one('#<portlet:namespace />notificationType');
-var notificationTemplateType = A.one('#<portlet:namespace />notificationTemplateType');
-
-if (notificationType) {
-	notificationType.on(
-		'change',
-		function(event) {
-			<portlet:namespace />changeTemplate('notificationType', event.currentTarget.val());
-		}
-	);
-}
-
-if (notificationTemplateType) {
-	notificationTemplateType.on(
-		'change',
-		function(event) {
-			<portlet:namespace />changeTemplate('notificationTemplateType', event.currentTarget.val());
-		}
-	);
-}
+	if (notificationTemplateType) {
+		notificationTemplateType.on(
+			'change',
+			function(event) {
+				<portlet:namespace />changeNotificationTemplate('notificationTemplateType', event.currentTarget.val());
+			}
+		);
+	}
 </aui:script>
 
 <aui:script>
 	function <portlet:namespace />initEditor() {
 		<c:if test='<%= tabs2.equals("templates") %>'>
-			return '<%= UnicodeFormatter.toString(templateBody) %>';
+			return '<%= UnicodeFormatter.toString(notificationTemplateContentBody) %>';
 		</c:if>
 	}
 
 	function <portlet:namespace />saveConfiguration() {
 		<c:if test='<%= tabs2.equals("templates") %>'>
-			var templateBody = document.getElementById('<portlet:namespace /><%= HtmlUtil.escapeJS(templateBodyParameterName) %>');
+			var notificationTemplateContentBody = document.getElementById('<portlet:namespace /><%= HtmlUtil.escapeJS(notificationTemplateContentBodyParameterName) %>');
 
-			if (templateBody) {
-				templateBody.value = window.<portlet:namespace />editor.getHTML();
+			if (notificationTemplateContentBody) {
+				notificationTemplateContentBody.value = window.<portlet:namespace />editor.getHTML();
 			}
 		</c:if>
 

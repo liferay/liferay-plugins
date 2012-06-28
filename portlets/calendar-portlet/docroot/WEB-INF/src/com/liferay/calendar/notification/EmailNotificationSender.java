@@ -66,7 +66,7 @@ public class EmailNotificationSender implements NotificationSender {
 			mailMessage.setHTMLFormat(notificationRecipient.isHTMLFormat());
 
 			InternetAddress toInternetAddress = new InternetAddress(
-				notificationRecipient.getEmail());
+				notificationRecipient.getEmailAddress());
 
 			mailMessage.setTo(toInternetAddress);
 

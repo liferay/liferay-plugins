@@ -30,11 +30,6 @@ redirect = HttpUtil.setParameter(redirect, renderResponse.getNamespace() + "curr
 CalendarBooking calendarBooking = (CalendarBooking)request.getAttribute(WebKeys.CALENDAR_BOOKING);
 
 long calendarBookingId = BeanParamUtil.getLong(calendarBooking, request, "calendarBookingId");
-long firstReminder = BeanParamUtil.getLong(calendarBooking, request, "firstReminder");
-long secondReminder = BeanParamUtil.getLong(calendarBooking, request, "secondReminder");
-
-String firstReminderType = BeanParamUtil.getString(calendarBooking, request, "firstReminderType", PortletPropsValues.CALENDAR_NOTIFICATION_DEFAULT_TYPE);
-String secondReminderType = BeanParamUtil.getString(calendarBooking, request, "secondReminderType", PortletPropsValues.CALENDAR_NOTIFICATION_DEFAULT_TYPE);
 
 long calendarId = BeanParamUtil.getLong(calendarBooking, request, "calendarId", userDefaultCalendar.getCalendarId());
 String title = BeanParamUtil.getString(calendarBooking, request, "titleCurrentValue");
@@ -57,6 +52,11 @@ if (!allDay) {
 	com.liferay.portal.kernel.util.CalendarUtil.roundByMinutes(startDateJCalendar, 30);
 	com.liferay.portal.kernel.util.CalendarUtil.roundByMinutes(endDateJCalendar, 30);
 }
+
+long firstReminder = BeanParamUtil.getLong(calendarBooking, request, "firstReminder");
+String firstReminderType = BeanParamUtil.getString(calendarBooking, request, "firstReminderType", PortletPropsValues.CALENDAR_NOTIFICATION_DEFAULT_TYPE);
+long secondReminder = BeanParamUtil.getLong(calendarBooking, request, "secondReminder");
+String secondReminderType = BeanParamUtil.getString(calendarBooking, request, "secondReminderType", PortletPropsValues.CALENDAR_NOTIFICATION_DEFAULT_TYPE);
 
 JSONArray acceptedCalendarsJSONArray = JSONFactoryUtil.createJSONArray();
 JSONArray declinedCalendarsJSONArray = JSONFactoryUtil.createJSONArray();
@@ -123,8 +123,8 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 	</aui:fieldset>
 
 	<aui:fieldset>
-		<liferay-ui:panel-container extended="<%= false %>" id="templateDetailsPanelContainer" persistState="<%= true %>">
-			<liferay-ui:panel collapsible="<%= true %>" extended="<%= false %>" id="calendarBookingDetailsSectionPanel" persistState="<%= true %>" title="details">
+		<liferay-ui:panel-container extended="<%= false %>" id="calendarBookingDetailsPanelContainer" persistState="<%= true %>">
+			<liferay-ui:panel collapsible="<%= true %>" extended="<%= false %>" id="calendarBookingDetailsPanel" persistState="<%= true %>" title="details">
 				<aui:select label="calendar" name="calendarId">
 
 					<%
@@ -147,7 +147,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 				<aui:input name="location" />
 			</liferay-ui:panel>
 
-			<liferay-ui:panel collapsible="<%= true %>" extended="<%= false %>" id="calendarBookingReminderSectionPanel" persistState="<%= true %>" title="reminders">
+			<liferay-ui:panel collapsible="<%= true %>" extended="<%= false %>" id="calendarBookingReminderPanel" persistState="<%= true %>" title="reminders">
 				<div id="<portlet:namespace />reminders"></div>
 			</liferay-ui:panel>
 		</liferay-ui:panel-container>

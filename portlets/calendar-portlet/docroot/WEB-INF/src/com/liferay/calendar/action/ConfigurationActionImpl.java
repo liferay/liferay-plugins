@@ -65,21 +65,27 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 	protected void validateTemplate(ActionRequest actionRequest)
 		throws Exception {
 
-		String templateBodyParameterName = ParamUtil.getString(
-			actionRequest, "templateBodyParameterName");
-		String templateSubjectParameterName = ParamUtil.getString(
-			actionRequest, "templateSubjectParameterName");
+		String notificationTemplateContentBodyParameterName =
+			ParamUtil.getString(
+				actionRequest, "notificationTemplateContentBodyParameterName");
 
-		String templateBody = getParameter(
-			actionRequest, templateBodyParameterName);
-		String templateSubject = getParameter(
-			actionRequest, templateSubjectParameterName);
+		String notificationTemplateContentBody = getParameter(
+			actionRequest, notificationTemplateContentBodyParameterName);
 
-		if (Validator.isNull(templateBody)) {
-			SessionErrors.add(actionRequest, "templateSubject");
+		String notificationTemplateContentSubjectParameterName =
+			ParamUtil.getString(
+				actionRequest,
+			"notificationTemplateContentSubjectParameterName");
+
+		String notificationTemplateContentSubject = getParameter(
+			actionRequest, notificationTemplateContentSubjectParameterName);
+
+		if (Validator.isNull(notificationTemplateContentBody)) {
+			SessionErrors.add(
+				actionRequest, "notificationTemplateContentSubject");
 		}
-		else if (Validator.isNull(templateSubject)) {
-			SessionErrors.add(actionRequest, "templateBody");
+		else if (Validator.isNull(notificationTemplateContentSubject)) {
+			SessionErrors.add(actionRequest, "notificationTemplateContentBody");
 		}
 	}
 

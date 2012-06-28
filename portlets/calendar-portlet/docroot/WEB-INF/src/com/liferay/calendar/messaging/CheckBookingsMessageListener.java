@@ -22,7 +22,7 @@ import com.liferay.portal.kernel.messaging.Message;
  * @author Fabio Pezzutto
  * @author Eduardo Lundgren
  */
-public class CheckBookingMessageListener extends BaseMessageListener {
+public class CheckBookingsMessageListener extends BaseMessageListener {
 
 	@Override
 	protected void doReceive(Message message) throws Exception {
