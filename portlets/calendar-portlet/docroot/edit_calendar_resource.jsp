@@ -21,6 +21,8 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKeys.CALENDAR_RESOURCE);
 
+String code = BeanParamUtil.getString(calendarResource, request, "code");
+
 long calendarResourceId = 0;
 
 List<Calendar> calendars = null;
@@ -46,8 +48,23 @@ if (calendarResource != null) {
 <aui:form action="<%= updateCalendarResourceURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateCalendarResource();" %>'>
 	<aui:model-context bean="<%= calendarResource %>" model="<%= CalendarResource.class %>" />
 
+	<liferay-ui:error exception="<%= CalendarResourceCodeException.class %>" message="please-enter-a-valid-code" />
+	<liferay-ui:error exception="<%= DuplicateCalendarResourceException.class %>" message="please-enter-a-unique-resource-code" />
+
 	<aui:fieldset>
-		<aui:input name="code" />
+
+		<c:choose>
+			<c:when test="<%= calendarResource == null %>">
+				<c:if test="<%= !PortletPropsValues.CALENDAR_RESOURCE_FORCE_AUTOGENERATE_CODE %>">
+					<aui:input name="code" />
+				</c:if>
+			</c:when>
+			<c:otherwise>
+				<aui:field-wrapper label="code">
+					<%= code %>
+				</aui:field-wrapper>
+			</c:otherwise>
+		</c:choose>
 
 		<aui:input name="name" />
 
@@ -106,5 +123,12 @@ if (calendarResource != null) {
 		submitForm(document.<portlet:namespace />fm);
 	}
 
-	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />code);
+	<c:choose>
+		<c:when test="<%= PortletPropsValues.CALENDAR_RESOURCE_FORCE_AUTOGENERATE_CODE %>">
+			Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />name);
+		</c:when>
+		<c:otherwise>
+			Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace /><%= (calendarResource == null) ? "code" : "name" %>);
+		</c:otherwise>
+	</c:choose>
 </aui:script>

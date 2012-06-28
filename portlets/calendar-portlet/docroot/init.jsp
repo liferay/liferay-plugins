@@ -25,7 +25,9 @@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %><%@
 taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.calendar.model.Calendar" %><%@
+<%@ page import="com.liferay.calendar.CalendarResourceCodeException" %><%@
+page import="com.liferay.calendar.DuplicateCalendarResourceException" %><%@
+page import="com.liferay.calendar.model.Calendar" %><%@
 page import="com.liferay.calendar.model.CalendarBooking" %><%@
 page import="com.liferay.calendar.model.CalendarResource" %><%@
 page import="com.liferay.calendar.notification.NotificationTemplateType" %><%@

@@ -21,6 +21,7 @@ import com.liferay.util.portlet.PortletProps;
  * @author Eduardo Lundgren
  * @author Fabio Pezzutto
  * @author Andrea Di Giorgi
+ * @author Bruno Basto
  */
 public class PortletPropsValues {
 
@@ -41,6 +42,11 @@ public class PortletPropsValues {
 
 	public static final String CALENDAR_NOTIFICATION_FROM_NAME =
 		PortletProps.get(PortletPropsKeys.CALENDAR_NOTIFICATION_FROM_NAME);
+
+	public static final boolean CALENDAR_RESOURCE_FORCE_AUTOGENERATE_CODE =
+		GetterUtil.getBoolean(
+			PortletProps.get(
+				PortletPropsKeys.CALENDAR_RESOURCE_FORCE_AUTOGENERATE_CODE));
 
 	public static final String[] CALENDAR_RESOURCE_TYPES =
 		PortletProps.getArray(PortletPropsKeys.CALENDAR_RESOURCE_TYPES);

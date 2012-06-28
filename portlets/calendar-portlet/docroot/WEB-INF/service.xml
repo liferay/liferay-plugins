@@ -186,10 +186,9 @@
 			<finder-column name="classNameId" />
 			<finder-column name="classPK" />
 		</finder>
-		<finder name="G_C_A" return-type="Collection">
+		<finder name="G_C" return-type="Collection">
 			<finder-column name="groupId" arrayable-operator="OR" />
-			<finder-column name="code" comparator="LIKE" />
-			<finder-column name="active" />
+			<finder-column name="code" />
 		</finder>
 		<finder name="G_N_A" return-type="Collection">
 			<finder-column name="groupId" arrayable-operator="OR" />
@@ -213,6 +212,7 @@
 		<exception>CalendarBookingStartDate</exception>
 		<exception>CalendarBookingTitle</exception>
 		<exception>CalendarName</exception>
+		<exception>CalendarResourceCode</exception>
 		<exception>DuplicateCalendarResource</exception>
 	</exceptions>
 </service-builder>
