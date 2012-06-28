@@ -31,7 +31,6 @@ import com.liferay.calendar.util.ActionKeys;
 import com.liferay.calendar.util.CalendarResourceUtil;
 import com.liferay.calendar.util.CalendarUtil;
 import com.liferay.calendar.util.JCalendarUtil;
-import com.liferay.calendar.util.PortletPropsValues;
 import com.liferay.calendar.util.WebKeys;
 import com.liferay.calendar.util.comparator.CalendarResourceNameComparator;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
@@ -309,10 +308,6 @@ public class CalendarPortlet extends MVCPortlet {
 			LocalizationUtil.getLocalizationMap(actionRequest, "description");
 		String type = ParamUtil.getString(actionRequest, "type");
 		boolean active = ParamUtil.getBoolean(actionRequest, "active");
-
-		if (PortletPropsValues.CALENDAR_RESOURCE_FORCE_AUTOGENERATE_CODE) {
-			code = null;
-		}
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			CalendarResource.class.getName(), actionRequest);

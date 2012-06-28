@@ -65,15 +65,6 @@ public class CalendarResourceLocalServiceImpl
 
 		long classNameId = PortalUtil.getClassNameId(className);
 
-		if (Validator.isNull(code)) {
-			code = String.valueOf(calendarResourceId);
-		}
-		else {
-			code = code.trim().toUpperCase();
-		}
-
-		validate(groupId, classNameId, classPK, code);
-
 		long globalUserId = 0;
 
 		if (isGlobalResource(classNameId)) {
@@ -86,7 +77,19 @@ public class CalendarResourceLocalServiceImpl
 			userId = globalUserId;
 		}
 
+		if (PortletPropsValues.CALENDAR_RESOURCE_FORCE_AUTOGENERATE_CODE ||
+			Validator.isNull(code)) {
+
+			code = String.valueOf(calendarResourceId);
+		}
+		else {
+			code = code.trim();
+			code = code.toUpperCase();
+		}
+
 		Date now = new Date();
+
+		validate(groupId, classNameId, classPK, code);
 
 		CalendarResource calendarResource = calendarResourcePersistence.create(
 			calendarResourceId);

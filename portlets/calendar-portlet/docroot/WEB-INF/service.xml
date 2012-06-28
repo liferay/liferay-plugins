@@ -178,6 +178,10 @@
 		<finder name="Active" return-type="Collection">
 			<finder-column name="active" />
 		</finder>
+		<finder name="G_C" return-type="Collection">
+			<finder-column name="groupId" arrayable-operator="OR" />
+			<finder-column name="code" />
+		</finder>
 		<finder name="G_A" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="active" />
@@ -185,10 +189,6 @@
 		<finder name="C_C" return-type="CalendarResource" unique="true">
 			<finder-column name="classNameId" />
 			<finder-column name="classPK" />
-		</finder>
-		<finder name="G_C" return-type="Collection">
-			<finder-column name="groupId" arrayable-operator="OR" />
-			<finder-column name="code" />
 		</finder>
 		<finder name="G_N_A" return-type="Collection">
 			<finder-column name="groupId" arrayable-operator="OR" />
