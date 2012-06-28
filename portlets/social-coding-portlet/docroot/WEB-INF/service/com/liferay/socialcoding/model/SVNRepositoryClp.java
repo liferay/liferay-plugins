@@ -61,6 +61,7 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -71,6 +72,7 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long svnRepositoryId = (Long)attributes.get("svnRepositoryId");
 

@@ -62,6 +62,7 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -79,6 +80,7 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long folderId = (Long)attributes.get("folderId");
 

@@ -64,6 +64,7 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -80,6 +81,7 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long meetupsRegistrationId = (Long)attributes.get(
 				"meetupsRegistrationId");

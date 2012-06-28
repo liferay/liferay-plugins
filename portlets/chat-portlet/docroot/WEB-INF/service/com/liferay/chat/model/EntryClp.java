@@ -61,6 +61,7 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -73,6 +74,7 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long entryId = (Long)attributes.get("entryId");
 

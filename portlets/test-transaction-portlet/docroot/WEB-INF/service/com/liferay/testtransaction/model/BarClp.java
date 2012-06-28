@@ -60,6 +60,7 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -69,6 +70,7 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long barId = (Long)attributes.get("barId");
 

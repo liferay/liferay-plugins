@@ -62,6 +62,7 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -73,6 +74,7 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long favoriteSiteId = (Long)attributes.get("favoriteSiteId");
 

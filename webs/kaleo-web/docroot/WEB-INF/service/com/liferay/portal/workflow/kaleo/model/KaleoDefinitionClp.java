@@ -68,6 +68,7 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -89,6 +90,7 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long kaleoDefinitionId = (Long)attributes.get("kaleoDefinitionId");
 

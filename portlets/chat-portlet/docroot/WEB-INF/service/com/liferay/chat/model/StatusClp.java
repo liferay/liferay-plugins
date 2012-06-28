@@ -61,6 +61,7 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
+	@Override
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -76,6 +77,7 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 		return attributes;
 	}
 
+	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
 		Long statusId = (Long)attributes.get("statusId");
 
