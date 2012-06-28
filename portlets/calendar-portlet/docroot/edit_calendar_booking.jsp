@@ -105,7 +105,8 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 <liferay-ui:header
 	backURL="<%= redirect %>"
-	title='<%= ((calendarBooking != null) && Validator.isNotNull(title)) ? title : "new-calendar-booking" %>' />
+	title='<%= ((calendarBooking != null) && Validator.isNotNull(title)) ? title : "new-calendar-booking" %>'
+/>
 
 <liferay-portlet:actionURL name="updateCalendarBooking" var="updateCalendarBookingURL">
 	<liferay-portlet:param name="mvcPath" value="/edit_calendar_booking.jsp" />
@@ -131,16 +132,10 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 		<aui:input name="allDay" />
 
-		<aui:field-wrapper inlineField="<%= true %>">
+		<aui:field-wrapper cssClass="calendar-portlet-recurrence-container" inlineField="<%= true %>" label="">
 			<aui:input checked="<%= recurring %>" name="repeat" type="checkbox" />
 
-			<div id="<portlet:namespace />summaryContainer">
-				<span class="calendar-portlet-recurrence-summary" id="<portlet:namespace />summary"></span>
-
-				<a href="javascript:void(0);" id="<portlet:namespace />summaryEditLink">
-					<liferay-ui:message key="edit" />
-				</a>
-			</div>
+			<a class="calendar-portlet-recurrence-summary" id="<portlet:namespace />summary" href="javascript:void(0);"></a>
 		</aui:field-wrapper>
 	</aui:fieldset>
 
@@ -240,14 +235,14 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 		</liferay-ui:section>
 	</liferay-ui:tabs>
 
+	<%@ include file="/calendar_booking_recurrence_container.jspf" %>
+
 	<aui:button-row>
 		<aui:button type="submit" />
 
 		<aui:button href="<%= redirect %>" type="cancel" />
 	</aui:button-row>
 </aui:form>
-
-<%@ include file="/calendar_booking_recurrence_container.jspf" %>
 
 <aui:script>
 	Liferay.provide(
@@ -273,7 +268,6 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />title);
 
 	Liferay.Util.toggleBoxes('<portlet:namespace />allDayCheckbox', '<portlet:namespace />endDateContainer', true);
-	Liferay.Util.toggleBoxes('<portlet:namespace />repeatCheckbox', '<portlet:namespace />summaryContainer');
 
 	<c:if test="<%= calendarBooking == null %>">
 		document.<portlet:namespace />fm.<portlet:namespace />title_<%= LanguageUtil.getLanguageId(request) %>.value = decodeURIComponent('<%= HtmlUtil.escapeURL(title) %>');
@@ -284,7 +278,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 	}
 </aui:script>
 
-<aui:script use="json,liferay-calendar-date-picker-utils,liferay-calendar-list,liferay-calendar-simple-menu">
+<aui:script use="json,liferay-calendar-date-picker-util,liferay-calendar-list,liferay-calendar-recurrence-util,liferay-calendar-simple-menu">
 	var defaultCalendarId = <%= calendarId %>;
 
 	var removeCalendarResource = function(calendarList, calendar, menu) {
@@ -487,10 +481,10 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 		{
 			after: {
 				endDateChange: function(event) {
-					Liferay.DatePickerUtils.syncUI(formNode, 'endDate', event.newVal);
+					Liferay.DatePickerUtil.syncUI(formNode, 'endDate', event.newVal);
 				},
 				startDateChange: function(event) {
-					Liferay.DatePickerUtils.syncUI(formNode, 'startDate', event.newVal);
+					Liferay.DatePickerUtil.syncUI(formNode, 'startDate', event.newVal);
 				}
 			},
 			borderStyle: 'dashed',
@@ -509,8 +503,8 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 		}
 	);
 
-	Liferay.DatePickerUtils.linkToSchedulerEvent('#<portlet:namespace />endDateContainer', window.<portlet:namespace />placeholderSchedulerEvent, 'endDate');
-	Liferay.DatePickerUtils.linkToSchedulerEvent('#<portlet:namespace />startDateContainer', window.<portlet:namespace />placeholderSchedulerEvent, 'startDate');
+	Liferay.DatePickerUtil.linkToSchedulerEvent('#<portlet:namespace />endDateContainer', window.<portlet:namespace />placeholderSchedulerEvent, 'endDate');
+	Liferay.DatePickerUtil.linkToSchedulerEvent('#<portlet:namespace />startDateContainer', window.<portlet:namespace />placeholderSchedulerEvent, 'startDate');
 
 	window.<portlet:namespace />scheduler.on(
 		{

@@ -1,6 +1,8 @@
 (function() {
 	var STR_BLANK = '';
 
+	var STR_COMMA = ',';
+
 	var STR_DASH = '-';
 
 	var STR_DOT = '.';
@@ -822,9 +824,9 @@
 	);
 
 	AUI.add(
-		'liferay-calendar-date-picker-utils',
+		'liferay-calendar-date-picker-util',
 		function(A) {
-			Liferay.DatePickerUtils = {
+			Liferay.DatePickerUtil = {
 				linkToSchedulerEvent: function(datePickerContainer, schedulerEvent, dateAttr) {
 					var instance = this;
 
@@ -883,6 +885,100 @@
 					amPmNode.val(amPm);
 					hourNode.val(hours);
 					minuteNode.val(minutes);
+				}
+			};
+		},
+		'',
+		{
+			requires: ['aui-base']
+		}
+	);
+
+	AUI.add(
+		'liferay-calendar-recurrence-util',
+		function(A) {
+			Liferay.RecurrenceUtil = {
+				FREQUENCY: {
+					DAILY: 'DAILY',
+					WEEKLY: 'WEEKLY',
+					MONTHLY: 'MONTHLY',
+					YEARLY: 'YEARLY'
+				},
+
+				INTERVAL_LABELS: {
+					DAILY:  Liferay.Language.get('days'),
+					WEEKLY:  Liferay.Language.get('weeks'),
+					MONTHLY:  Liferay.Language.get('months'),
+					YEARLY:  Liferay.Language.get('years')
+				},
+
+				MONTH_LABELS: [
+					Liferay.Language.get('january'),
+					Liferay.Language.get('frebruary'),
+					Liferay.Language.get('march'),
+					Liferay.Language.get('april'),
+					Liferay.Language.get('may'),
+					Liferay.Language.get('june'),
+					Liferay.Language.get('july'),
+					Liferay.Language.get('august'),
+					Liferay.Language.get('september'),
+					Liferay.Language.get('october'),
+					Liferay.Language.get('november'),
+					Liferay.Language.get('december')
+				],
+
+				getSummary: function(recurrence) {
+					var instance = this;
+
+					var template = [];
+
+					if (recurrence.interval == 1) {
+						template.push(recurrence.frequency);
+					}
+					else {
+						template.push(Liferay.Language.get('every'));
+						template.push(' {interval} {intervalLabel}');
+					}
+
+					if ((recurrence.frequency == instance.FREQUENCY.WEEKLY) && (recurrence.weekdays.length > 0)) {
+						template.push(STR_SPACE);
+						template.push(Liferay.Language.get('on'));
+						template.push(' {weekDays}');
+					}
+
+					if (recurrence.count && (recurrence.endValue === 'after')) {
+						template.push(', {count} ');
+						template.push(Liferay.Language.get('times'));
+					}
+					else if (recurrence.untilDate && (recurrence.endValue === 'on')) {
+						var untilDate = recurrence.untilDate;
+
+						template.push(STR_COMMA);
+						template.push(STR_SPACE);
+						template.push(Liferay.Language.get('until'));
+						template.push(
+							A.Lang.sub(
+								' {month} {date}, {year}',
+								{
+									date: untilDate.getDate(),
+									month: instance.MONTH_LABELS[untilDate.getMonth()],
+									year: untilDate.getFullYear()
+								}
+							)
+						);
+					}
+
+					var summary = A.Lang.sub(
+						template.join(STR_BLANK),
+						{
+							count: recurrence.count,
+							interval: recurrence.interval,
+							intervalLabel: instance.INTERVAL_LABELS[recurrence.frequency],
+							weekDays: recurrence.weekdays.join(', ')
+						}
+					);
+
+					return A.Lang.String.capitalize(summary);
 				}
 			};
 		},

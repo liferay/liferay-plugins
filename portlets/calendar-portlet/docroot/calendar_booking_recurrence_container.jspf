@@ -15,10 +15,13 @@
 --%>
 
 <%
-Frequency selectedFrequency = null;
-int interval = 0;
-List<Weekday> weekdays = new ArrayList<Weekday>();
 int count = 0;
+int interval = 0;
+
+Frequency selectedFrequency = null;
+
+List<Weekday> weekdays = new ArrayList<Weekday>();
+
 java.util.Calendar untilDate = startDateJCalendar;
 
 boolean afterChecked = false;
@@ -44,13 +47,13 @@ if (recurrence != null) {
 }
 %>
 
-<div class="aui-helper-hidden calendar-portlet-recurrence-container" id="<portlet:namespace />recurrenceContainer">
-	<table>
+<table class="calendar-portlet-recurrence-container aui-helper-hidden" id="<portlet:namespace />recurrenceContainer">
+	<tbody>
 		<tr>
-			<th>
-				<liferay-ui:message key="repeats" />
+			<th class="calendar-portlet-recurrence-title">
+				<liferay-ui:message key="repeats" />:
 			</th>
-			<td>
+			<td class="calendar-portlet-recurrence-content">
 				<aui:select label="" name="frequency">
 
 					<%
@@ -66,42 +69,44 @@ if (recurrence != null) {
 				</aui:select>
 			</td>
 		</tr>
-		<tr class="calendar-portlet-interval-view" id="<portlet:namespace />intervalContainer">
-			<th>
-				<liferay-ui:message key="repeat-every" />
+	</tbody>
+	<tbody class="calendar-portlet-interval-view" id="<portlet:namespace />intervalContainer">
+		<tr>
+			<th class="calendar-portlet-recurrence-title">
+				<liferay-ui:message key="repeat-every" />:
 			</th>
-			<td>
-				<aui:field-wrapper inlineField="<%= true %>" label="">
-					<aui:select label="" name="interval">
+			<td class="calendar-portlet-recurrence-content">
+				<aui:select label="" name="interval">
 
-						<%
-						for (int i = 1; i <= 30; i++) {
-						%>
+					<%
+					for (int i = 1; i <= 30; i++) {
+					%>
 
-							<aui:option selected="<%= (interval == i) %>" value="<%= i %>"><%= i %></aui:option>
+						<aui:option selected="<%= (interval == i) %>" value="<%= i %>"><%= i %></aui:option>
 
-						<%
-						}
-						%>
+					<%
+					}
+					%>
 
-					</aui:select>
+				</aui:select>
 
-					<span id="<portlet:namespace />intervalLabel"></span>
-				</aui:field-wrapper>
+				<span id="<portlet:namespace />intervalLabel"></span>
 			</td>
 		</tr>
-		<tr class="calendar-portlet-interval-view <%= (selectedFrequency == Frequency.WEEKLY) ? "" : "aui-helper-hidden" %>" id="<portlet:namespace />view<%= Frequency.WEEKLY %>">
-			<th>
-				<liferay-ui:message key="repeat-on" />
+	</tbody>
+	<tbody class="calendar-portlet-interval-view <%= (selectedFrequency == Frequency.WEEKLY) ? "" : "aui-helper-hidden" %>" id="<portlet:namespace />view<%= Frequency.WEEKLY %>">
+		<tr>
+			<th class="calendar-portlet-recurrence-title">
+				<liferay-ui:message key="repeat-on" />:
 			</th>
-			<td>
+			<td class="calendar-portlet-recurrence-content">
 				<aui:field-wrapper inlineField="<%= true %>" label="">
 
 					<%
 					for (Weekday weekday : Weekday.values()) {
 					%>
 
-						<aui:input checked="<%= (weekdays.contains(weekday)) %>" label="<%= weekday.getValue() %>" name='<%= "weekDay" + weekday.getValue() %>' type="checkbox" />
+						<aui:input checked="<%= (weekdays.contains(weekday)) %>" label="<%= weekday.getValue() %>" name='<%= weekday.getValue() %>' type="checkbox" data-weekday='<%= LanguageUtil.get(pageContext, "weekday." + weekday.getValue()) %>' />
 
 					<%
 					}
@@ -110,25 +115,27 @@ if (recurrence != null) {
 				</aui:field-wrapper>
 			</td>
 		</tr>
+	</tbody>
+	<tbody class="calendar-portlet-interval-view">
 		<tr>
-			<th>
-				<liferay-ui:message key="ends" />
+			<th class="calendar-portlet-recurrence-title">
+				<liferay-ui:message key="ends" />:
 			</th>
-			<td>
-				<aui:input checked="<%= (afterChecked == false) && (onChecked == false) %>" label="never" name="ends" type="radio" value="never" />
+			<td class="calendar-portlet-recurrence-content">
+				<aui:input label="never" name="ends" type="radio" value="never" checked="<%= (afterChecked == false) && (onChecked == false) %>" />
 
 				<aui:field-wrapper inlineField="<%= true %>" label="">
-					<aui:input checked="<%= afterChecked %>" label="after" name="ends" type="radio" value="after" />
+					<aui:input label="after" name="ends" type="radio" value="after" checked="<%= afterChecked %>" />
 
-					<aui:input disabled="<%= (afterChecked == false) %>" label="" name="count" type="text" value="<%= afterChecked ? count : StringPool.BLANK %>" />
+					<aui:input label="" name="count" type="text" value="<%= afterChecked ? count : StringPool.BLANK %>" size="5" disabled="<%= (afterChecked == false) %>" />
 
 					<liferay-ui:message key="ocurrences" />
 				</aui:field-wrapper>
 
-				<aui:field-wrapper inlineField="<%= true %>" label="">
+				<aui:field-wrapper cssClass="calendar-portlet-field-date" label="">
 					<aui:input checked="<%= onChecked %>" inlineField="<%= true %>" label="on" name="ends" type="radio" value="on" />
 
-					<div style="display: inline-block;">
+					<div class="calendar-portlet-field-datepicker aui-helper-clearfix">
 						<liferay-ui:input-date
 							dayParam="untilDateDay"
 							dayValue="<%= untilDate.get(java.util.Calendar.DATE) %>"
@@ -137,24 +144,28 @@ if (recurrence != null) {
 							monthValue="<%= untilDate.get(java.util.Calendar.MONTH) %>"
 							name="untilDate"
 							yearParam="untilDateYear"
-							yearRangeEnd="<%= startDateJCalendar.get(java.util.Calendar.YEAR) + 100 %>"
-							yearRangeStart="<%= startDateJCalendar.get(java.util.Calendar.YEAR) - 100 %>"
+							yearRangeEnd="<%= startDateJCalendar.get(java.util.Calendar.YEAR) + 5 %>"
+							yearRangeStart="<%= startDateJCalendar.get(java.util.Calendar.YEAR) - 5 %>"
 							yearValue="<%= untilDate.get(java.util.Calendar.YEAR) %>"
 						/>
 					</div>
 				</aui:field-wrapper>
 			</td>
 		</tr>
+	</tbody>
+	<tbody class="calendar-portlet-interval-view">
 		<tr>
-			<th>
-				<liferay-ui:message key="summary" />
+			<th class="calendar-portlet-recurrence-title">
+				<liferay-ui:message key="summary" />:
 			</th>
-			<td>
-				<span id="<portlet:namespace />summaryPreview" style="font-weight: bold;"></span>
+			<td class="calendar-portlet-recurrence-content">
+				<span class="calendar-portlet-recurrence-summary" id="<portlet:namespace />summaryPreview">
+					<liferay-ui:message key="none" />
+				</span>
 			</td>
 		</tr>
-	</table>
-</div>
+	</tbody>
+</table>
 
 <aui:script use="aui-dialog">
 	var countNode = A.one('#<portlet:namespace />count');
@@ -162,162 +173,49 @@ if (recurrence != null) {
 	var frequencyNode = A.one('#<portlet:namespace />frequency');
 	var recurrenceContainerNode = A.one('#<portlet:namespace />recurrenceContainer');
 	var repeatCheckboxNode = A.one('#<portlet:namespace />repeatCheckbox');
-	var summaryContainerNode = A.one('#<portlet:namespace />summaryContainer');
 	var summaryNode = A.one('#<portlet:namespace />summary');
-	var summaryPreviewNode = A.one('#<portlet:namespace />summaryPreview');
 
 	var untilDateDatePicker = Liferay.component('<portlet:namespace />untilDatedatePicker');
 
-	var getFrequencyLabel = function(frequency, interval) {
-		var FREQUENCY = Liferay.CalendarUtil.FREQUENCY;
-		var label = String.valueOf(frequency);
+	window.<portlet:namespace />recurrenceDialog;
 
-		if (FREQUENCY.DAILY === frequency) {
-			label = interval ? '<liferay-ui:message key="days" />' : '<liferay-ui:message key="daily" />';
-		}
-		else if (FREQUENCY.MONTHLY === frequency) {
-			label = interval ? '<liferay-ui:message key="months" />' : '<liferay-ui:message key="monthly" />';
-		}
-		else if (FREQUENCY.WEEKLY === frequency) {
-			label = interval ? '<liferay-ui:message key="weeks" />' : '<liferay-ui:message key="weekly" />';
-		}
-		else if (FREQUENCY.YEARLY === frequency) {
-			label = interval ? '<liferay-ui:message key="years" />' : '<liferay-ui:message key="yearly" />';
-		}
+	window.<portlet:namespace />openRecurrenceDialog = function(visible) {
+		var instance = this;
 
-		return label;
-	};
-
-	var getSummary = function(recurrence) {
-		var template = [];
-
-		if (recurrence.interval == 1) {
-			template.push(getFrequencyLabel(recurrence.frequency));
-		}
-		else {
-			template.push('<liferay-ui:message key="every" /> {interval} {intervalLabel}');
-		}
-
-		if ((recurrence.frequency == Liferay.CalendarUtil.FREQUENCY.WEEKLY) && (recurrence.weekdays.length > 0)) {
-			template.push(' <liferay-ui:message key="on" /> {weekDays}');
-		}
-
-		if ((recurrence.endsIndex == 1) && recurrence.count) {
-			template.push(', {count} <liferay-ui:message key="times" />');
-		}
-		else if (recurrence.endsIndex == 2 && recurrence.until) {
-			template.push(
-				A.Lang.sub(
-					', <liferay-ui:message key="until" /> {month} {date}, {year}',
-					{
-						date: recurrence.until.getDate(),
-						month: Liferay.CalendarUtil.MONTHS[recurrence.until.getMonth()],
-						year: recurrence.until.getFullYear()
-					}
-				)
-			);
-		}
-
-		var summary = A.Lang.sub(
-			template.join(''),
-			{
-				count: recurrence.count,
-				interval: recurrence.interval,
-				intervalLabel: getFrequencyLabel(recurrence.frequency, false),
-				weekDays: recurrence.weekdays.join(', ')
-			}
-		);
-
-		return A.Lang.String.capitalize(summary);
-	};
-
-	var recurrenceDialog = new A.Dialog(
-		{
-			after: {
-				render: function(event) {
-					recurrenceContainerNode.show();
-				}
-			},
-			bodyContent: recurrenceContainerNode,
-			buttons: [
+		if (!window.<portlet:namespace />recurrenceDialog) {
+			window.<portlet:namespace />recurrenceDialog = new A.Dialog(
 				{
-					handler: function() {
-						summaryContainerNode.show();
-						summaryNode.setContent(summaryPreviewNode.text());
+					after: {
+						visibleChange: function(event) {
+							if (event.newVal) {
+								recurrenceContainerNode.show();
+							}
 
-						this.hide();
-					},
-					label: '<liferay-ui:message key="done" />'
-				},
-				{
-					handler: function() {
-						if (!summaryNode.text()) {
-							repeatCheckboxNode.set('checked', false);
-							summaryContainerNode.hide();
+							window.<portlet:namespace />updateSummary(summaryNode);
+							window.<portlet:namespace />updateSummary('#<portlet:namespace />summaryPreview');
 						}
-
-						this.hide();
 					},
-					label: '<liferay-ui:message key="cancel" />'
-				}
-			],
-			centered: true,
-			modal: true,
-			title: '<liferay-ui:message key="repeat" />',
-			visible: false,
-			width: 400
-		}
-	).render('#<portlet:namespace />fm');
-
-	var updateSummaryPreview = function() {
-		var weekdays = [];
-
-		if (frequencyNode.val() == '<%= Frequency.WEEKLY %>') {
-			A.each(
-				Liferay.CalendarUtil.WEEKDAYS,
-				function(item, index, collection) {
-					if (A.one('#<portlet:namespace />weekDay' + index).val() == 'true') {
-						weekdays.push(item);
-					}
+					bodyContent: recurrenceContainerNode,
+					buttons: [
+						{
+							handler: function() {
+								this.hide();
+							},
+							label: '<liferay-ui:message key="done" />'
+						}
+					],
+					centered: true,
+					modal: true,
+					render: '#<portlet:namespace />fm',
+					title: '<liferay-ui:message key="repeat" />',
+					visible: false,
+					width: 600
 				}
 			);
 		}
 
-		var count;
-		var until;
-
-		var endsIndex = A.Array.indexOf(endsRadioNodes.get('checked'), true);
-
-		if (endsIndex == 1) {
-			count = countNode.val();
-		}
-		else if (endsIndex == 2) {
-			var dates = untilDateDatePicker.calendar.get('dates');
-
-			until = dates[0];
-		}
-
-		var intervalNode = A.one('#<portlet:namespace />interval');
-
-		var recurrence = {
-			count: count,
-			endsIndex: endsIndex,
-			frequency: frequencyNode.val(),
-			interval: intervalNode.val(),
-			until: until,
-			weekdays: weekdays
-		}
-
-		summaryPreviewNode.setContent(getSummary(recurrence));
-	}
-
-	var updateView = function(frequency) {
-		var intervalLabelNode = A.one('#<portlet:namespace />intervalLabel');
-		var weeklyViewNode = A.one('#<portlet:namespace />view<%= Frequency.WEEKLY %>');
-
-		intervalLabelNode.setContent(getFrequencyLabel(frequency, false));
-		weeklyViewNode.toggle(frequency == '<%= Frequency.WEEKLY %>');
-	}
+		window.<portlet:namespace />recurrenceDialog.set('visible', visible);
+	};
 
 	recurrenceContainerNode.delegate(
 		'change',
@@ -325,15 +223,28 @@ if (recurrence != null) {
 			var target = event.target;
 
 			if (target.test('#<portlet:namespace />frequency')) {
-				updateView(target.val());
+				window.<portlet:namespace />toggleView('<%= Frequency.WEEKLY %>', (target.val() == '<%= Frequency.WEEKLY %>'));
 			}
 
-			var selectedIndex = A.Array.indexOf(endsRadioNodes.get('checked'), true);
+			var endValue = endsRadioNodes.filter(':checked').val()[0];
 
-			countNode.set('disabled', ((selectedIndex == 0) || (selectedIndex == 2)));
-			untilDateDatePicker.set('disabled', ((selectedIndex == 0) || (selectedIndex == 1)));
+			if ((endValue == 'never') || (endValue == 'on')) {
+				countNode.set('disabled', true);
+			}
+			else {
+				countNode.set('disabled', false);
+			}
 
-			updateSummaryPreview();
+			countNode.selectText();
+
+			if ((endValue == 'never') || (endValue == 'after')) {
+				untilDateDatePicker.set('disabled', true);
+			}
+			else {
+				untilDateDatePicker.set('disabled', false);
+			}
+
+			window.<portlet:namespace />updateSummary('#<portlet:namespace />summaryPreview');
 		},
 		'select,input'
 	);
@@ -341,23 +252,66 @@ if (recurrence != null) {
 	repeatCheckboxNode.on(
 		'change',
 		function(event) {
-			if (event.target.get('checked') && !summaryNode.text()) {
-				recurrenceDialog.show()
+			var checked = event.currentTarget.get('checked');
+
+			if (!checked) {
+				summaryNode.empty();
 			}
+
+			<portlet:namespace />openRecurrenceDialog(checked);
 		}
 	);
 
-	A.one('#<portlet:namespace />summaryEditLink').on(
+	summaryNode.on(
 		'click',
 		function(event) {
-			recurrenceDialog.show();
+			<portlet:namespace />openRecurrenceDialog(true);
+
+			event.halt();
 		}
 	);
 
-	updateSummaryPreview();
-	updateView(frequencyNode.val());
+	window.<portlet:namespace />getSummary = function() {
+		var intervalNode = A.one('#<portlet:namespace />interval');
+		var weekdays = A.all('#<portlet:namespace />view<%= Frequency.WEEKLY %> input:checked');
+
+		var selectedWeekdays = [];
+
+		if (weekdays.size()) {
+			selectedWeekdays = weekdays.getAttribute('data-weekday');
+		}
+
+		var endValue = endsRadioNodes.filter(':checked').val()[0];
+
+		var recurrence = {
+			count: countNode.val(),
+			endValue: endValue,
+			frequency: frequencyNode.val(),
+			interval: intervalNode.val(),
+			untilDate: untilDateDatePicker.calendar.get('dates.0'),
+			weekdays: selectedWeekdays
+		}
+
+		return Liferay.RecurrenceUtil.getSummary(recurrence);
+	};
+
+	window.<portlet:namespace />toggleView = function(viewName, show) {
+		var viewNode = A.one('#<portlet:namespace />view' + viewName);
+
+		if (viewNode) {
+			viewNode.toggle(show);
+		}
+	};
+
+	window.<portlet:namespace />updateSummary = function(element) {
+		var previewNode = A.one(element);
+
+		if (previewNode) {
+			previewNode.html(window.<portlet:namespace />getSummary());
+		}
+	};
 
 	<c:if test="<%= recurring %>">
-		summaryNode.setContent(summaryPreviewNode.text());
+		window.<portlet:namespace />updateSummary(summaryNode);
 	</c:if>
 </aui:script>

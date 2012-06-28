@@ -90,38 +90,6 @@
 			PORTLET_NAMESPACE: STR_BLANK,
 			USER_TIMEZONE_OFFSET: 0,
 
-			FREQUENCY: {
-				DAILY: 'DAILY',
-				WEEKLY: 'WEEKLY',
-				MONTHLY: 'MONTHLY',
-				YEARLY: 'YEARLY'
-			},
-
-			MONTHS: {
-				0: Liferay.Language.get('january'),
-				1: Liferay.Language.get('frebruary'),
-				2: Liferay.Language.get('march'),
-				3: Liferay.Language.get('april'),
-				4: Liferay.Language.get('may'),
-				5: Liferay.Language.get('june'),
-				6: Liferay.Language.get('july'),
-				7: Liferay.Language.get('august'),
-				8: Liferay.Language.get('september'),
-				9: Liferay.Language.get('october'),
-				10: Liferay.Language.get('november'),
-				11: Liferay.Language.get('december')
-			},
-
-			WEEKDAYS: {
-				SU: Liferay.Language.get('sunday'),
-				MO: Liferay.Language.get('monday'),
-				TU: Liferay.Language.get('tuesday'),
-				WE: Liferay.Language.get('wednesday'),
-				TH: Liferay.Language.get('thursday'),
-				FR: Liferay.Language.get('friday'),
-				SA: Liferay.Language.get('saturday')
-			},
-
 			dataSource: null,
 			invokerURL: '/api/secure/jsonws/invoke',
 			visibleCalendars: {},

@@ -1,7 +1,7 @@
 @import "compass/css3";
 
 .calendar-portlet-availability {
-	margin: 10px 30px;
+	margin: 0 30px;
 }
 
 .calendar-portlet-wrapper {
@@ -230,12 +230,29 @@
 	width: 80%;
 }
 
-.calendar-portlet-recurrence-container th {
-	width: 22%;
+.calendar-portlet-recurrence-summary {
+	font-weight: bold;
 }
 
-.calendar-portlet-recurrence-summary {
-	font-style: italic;
+.calendar-portlet-recurrence-container .aui-field-content, .calendar-portlet-recurrence-container .aui-field-wrapper-content {
+	margin: 2px;
+}
+
+.calendar-portlet-recurrence-title {
+	font-weight: bold;
+	margin-right: 10px;
+	padding: 4px 10px;
+	text-align: right;
+	vertical-align: top;
+}
+
+.calendar-portlet-field-date .calendar-portlet-field-datepicker {
+	display: inline-block;
+}
+
+.calendar-portlet-field-date .aui-field {
+	top: -10px;
+	position: relative;
 }
 
 .calendar-portlet-wrapper .aui-scheduler-event-disabled {
