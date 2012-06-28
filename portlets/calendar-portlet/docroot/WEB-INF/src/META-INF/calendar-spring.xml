@@ -7,8 +7,6 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
 >
-	<bean id="com.liferay.calendar.workflow.CalendarBookingApprovalWorkflow" class="com.liferay.calendar.workflow.CalendarBookingApprovalWorkflowImpl" />
-	
 	<bean id="com.liferay.calendar.notification.NotificationSenderFactory" class="com.liferay.calendar.notification.NotificationSenderFactory">
 		<property name="notificationSenders">
 			<map>
@@ -21,4 +19,5 @@
 			</map>
 		</property>
 	</bean>
+	<bean id="com.liferay.calendar.workflow.CalendarBookingApprovalWorkflow" class="com.liferay.calendar.workflow.CalendarBookingApprovalWorkflowImpl" />	
 </beans>

@@ -29,25 +29,24 @@ public class EmailNotificationSender implements NotificationSender {
 
 	public void sendNotification(
 			NotificationRecipient notificationRecipient,
-			NotificationTemplateType templateType,
+			NotificationTemplateType notificationTemplateType,
 			NotificationTemplateContext notificationTemplateContext)
-		throws NotificationMessageSenderException {
+		throws NotificationSenderException {
 
 		try {
 			String fromAddress = notificationTemplateContext.getString(
 				"fromAddress");
 			String fromName = notificationTemplateContext.getString("fromName");
-
 			String subject = getSubject(
-				templateType, notificationTemplateContext);
-
-			String body = getBody(templateType, notificationTemplateContext);
+				notificationTemplateType, notificationTemplateContext);
+			String body = getBody(
+				notificationTemplateType, notificationTemplateContext);
 
 			sendNotification(
 				fromAddress, fromName, notificationRecipient, subject, body);
 		}
 		catch (Exception e) {
-			throw new NotificationMessageSenderException(e);
+			throw new NotificationSenderException(e);
 		}
 	}
 
@@ -55,61 +54,67 @@ public class EmailNotificationSender implements NotificationSender {
 			String fromAddress, String fromName,
 			NotificationRecipient notificationRecipient, String subject,
 			String notificationMessage)
-		throws NotificationMessageSenderException {
+		throws NotificationSenderException {
 
 		try {
-			InternetAddress from = new InternetAddress(fromAddress, fromName);
+			InternetAddress fromInternetAddress = new InternetAddress(
+				fromAddress, fromName);
 
 			MailMessage mailMessage = new MailMessage(
-				from, subject, notificationMessage, true);
+				fromInternetAddress, subject, notificationMessage, true);
 
-			InternetAddress internetAddress = new InternetAddress(
+			mailMessage.setHTMLFormat(notificationRecipient.isHTMLFormat());
+
+			InternetAddress toInternetAddress = new InternetAddress(
 				notificationRecipient.getEmail());
 
-			mailMessage.setTo(internetAddress);
-			mailMessage.setHTMLFormat(notificationRecipient.isHTMLFormat());
+			mailMessage.setTo(toInternetAddress);
 
 			MailServiceUtil.sendEmail(mailMessage);
 		}
 		catch (Exception e) {
-			throw new NotificationMessageSenderException(
+			throw new NotificationSenderException(
 				"Unable to send mail message", e);
 		}
 	}
 
 	protected String getBody(
-			NotificationTemplateType templateType,
+			NotificationTemplateType notificationTemplateType,
 			NotificationTemplateContext notificationTemplateContext)
 		throws Exception {
 
-		String template = NotificationUtil.getTemplateContent(
-			PortletPropsKeys.CALENDAR_NOTIFICATION_BODY, NotificationType.EMAIL,
-			templateType, notificationTemplateContext);
+		String notificationTemplateContent =
+			NotificationUtil.getNotificationTemplateContent(
+				PortletPropsKeys.CALENDAR_NOTIFICATION_BODY,
+				NotificationType.EMAIL, notificationTemplateType,
+				notificationTemplateContext);
 
-		return processTemplate(
-			template, templateType, notificationTemplateContext);
+		return processNotificationTemplateContent(
+			notificationTemplateContent, notificationTemplateContext);
 	}
 
 	protected String getSubject(
-			NotificationTemplateType templateType,
+			NotificationTemplateType notificationTemplateType,
 			NotificationTemplateContext notificationTemplateContext)
 		throws Exception {
 
-		String template = NotificationUtil.getTemplateContent(
-			PortletPropsKeys.CALENDAR_NOTIFICATION_SUBJECT,
-			NotificationType.EMAIL, templateType, notificationTemplateContext);
+		String notificationTemplateContent =
+			NotificationUtil.getNotificationTemplateContent(
+				PortletPropsKeys.CALENDAR_NOTIFICATION_SUBJECT,
+				NotificationType.EMAIL, notificationTemplateType,
+				notificationTemplateContext);
 
-		return processTemplate(
-			template, templateType, notificationTemplateContext);
+		return processNotificationTemplateContent(
+			notificationTemplateContent, notificationTemplateContext);
 	}
 
-	protected String processTemplate(
-			String template, NotificationTemplateType templateType,
+	protected String processNotificationTemplateContent(
+			String notificationTemplateContent,
 			NotificationTemplateContext notificationTemplateContext)
 		throws Exception {
 
-		template = StringUtil.replace(
-			template,
+		notificationTemplateContent = StringUtil.replace(
+			notificationTemplateContent,
 			new String[] {
 				"[$BOOKING_LOCATION$]", "[$BOOKING_START_DATE$]",
 				"[$BOOKING_END_DATE$]", "[$BOOKING_TITLE$]", "[$FROM_ADDRESS$]",
@@ -129,7 +134,7 @@ public class EmailNotificationSender implements NotificationSender {
 				notificationTemplateContext.getString("portletName"),
 			});
 
-		return template;
+		return notificationTemplateContent;
 	}
 
 }

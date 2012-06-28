@@ -156,18 +156,25 @@ public class CalendarBookingLocalServiceImpl
 	public void checkCalendarBookings()
 		throws PortalException, SystemException {
 
-		try {
-			Date now = new Date();
+		Date now = new Date();
 
-			List<CalendarBooking> calendarBookings =
-				calendarBookingFinder.findByFutureReminders(now);
+		List<CalendarBooking> calendarBookings =
+			calendarBookingFinder.findByFutureReminders(now);
 
-			for (CalendarBooking calendarBooking : calendarBookings) {
+		for (CalendarBooking calendarBooking : calendarBookings) {
+			try {
 				NotificationUtil.notifyCalendarBookingReminders(
 					calendarBooking);
 			}
-		}
-		catch (Exception e) {
+			catch (PortalException pe) {
+				throw pe;
+			}
+			catch (SystemException se) {
+				throw se;
+			}
+			catch (Exception e) {
+				throw new SystemException(e);
+			}
 		}
 	}
 

@@ -19,21 +19,21 @@ import com.liferay.portal.kernel.exception.PortalException;
 /**
  * @author Eduardo Lundgren
  */
-public class NotificationMessageSenderException extends PortalException {
+public class NotificationSenderException extends PortalException {
 
-	public NotificationMessageSenderException() {
+	public NotificationSenderException() {
 		super();
 	}
 
-	public NotificationMessageSenderException(String msg) {
+	public NotificationSenderException(String msg) {
 		super(msg);
 	}
 
-	public NotificationMessageSenderException(String msg, Throwable cause) {
+	public NotificationSenderException(String msg, Throwable cause) {
 		super(msg, cause);
 	}
 
-	public NotificationMessageSenderException(Throwable cause) {
+	public NotificationSenderException(Throwable cause) {
 		super(cause);
 	}
 

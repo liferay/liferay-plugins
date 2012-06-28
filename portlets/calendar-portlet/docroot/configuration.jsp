@@ -33,8 +33,8 @@ NotificationType notificationTypeEnum = NotificationType.parse(notificationType)
 String templateBodyParameterName = NotificationUtil.getPreferenceName(PortletPropsKeys.CALENDAR_NOTIFICATION_BODY, notificationTypeEnum, notificationTemplateTypeEnum);
 String templateSubjectParameterName = NotificationUtil.getPreferenceName(PortletPropsKeys.CALENDAR_NOTIFICATION_SUBJECT, notificationTypeEnum, notificationTemplateTypeEnum);
 
-String templateBody = PrefsParamUtil.getString(preferences, request, templateBodyParameterName, NotificationUtil.getTemplateContent(PortletPropsKeys.CALENDAR_NOTIFICATION_BODY, notificationTypeEnum, notificationTemplateTypeEnum));
-String templateSubject = PrefsParamUtil.getString(preferences, request, templateSubjectParameterName, NotificationUtil.getTemplateContent(PortletPropsKeys.CALENDAR_NOTIFICATION_SUBJECT, notificationTypeEnum, notificationTemplateTypeEnum));
+String templateBody = PrefsParamUtil.getString(preferences, request, templateBodyParameterName, NotificationUtil.getNotificationTemplateContent(PortletPropsKeys.CALENDAR_NOTIFICATION_BODY, notificationTypeEnum, notificationTemplateTypeEnum));
+String templateSubject = PrefsParamUtil.getString(preferences, request, templateSubjectParameterName, NotificationUtil.getNotificationTemplateContent(PortletPropsKeys.CALENDAR_NOTIFICATION_SUBJECT, notificationTypeEnum, notificationTemplateTypeEnum));
 %>
 
 <liferay-portlet:renderURL portletConfiguration="true" var="portletURL">

@@ -20,17 +20,15 @@ package com.liferay.calendar.notification;
 public class IMNotificationSender implements NotificationSender {
 
 	public void sendNotification(
-			NotificationRecipient notificationRecipient,
-			NotificationTemplateType templateType,
-			NotificationTemplateContext notificationTemplateContext)
-		throws NotificationMessageSenderException {
+		NotificationRecipient notificationRecipient,
+		NotificationTemplateType notificationTemplateType,
+		NotificationTemplateContext notificationTemplateContext) {
 	}
 
 	public void sendNotification(
-			String fromAddress, String fromName,
-			NotificationRecipient notificationRecipient, String subject,
-			String notificationMessage)
-		throws NotificationMessageSenderException {
+		String fromAddress, String fromName,
+		NotificationRecipient notificationRecipient, String subject,
+		String notificationMessage) {
 	}
 
 }

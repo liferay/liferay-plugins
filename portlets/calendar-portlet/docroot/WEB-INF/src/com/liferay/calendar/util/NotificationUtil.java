@@ -55,63 +55,6 @@ import javax.portlet.PortletPreferences;
  */
 public class NotificationUtil {
 
-	public static List<NotificationRecipient> getCalendarBookingRecipients(
-			CalendarBooking calendarBooking)
-		throws Exception {
-
-		Calendar calendar = calendarBooking.getCalendar();
-
-		CalendarResource calendarResource =
-			calendarBooking.getCalendarResource();
-
-		List<Role> roles = RoleLocalServiceUtil.getResourceBlockRoles(
-			calendar.getResourceBlockId(), Calendar.class.getName(),
-			ActionKeys.MANAGE_BOOKINGS);
-
-		List<NotificationRecipient> manageBookingUsers =
-			new ArrayList<NotificationRecipient>();
-
-		for (Role role : roles) {
-			if (role.getName().equals(RoleConstants.OWNER)) {
-				User calendarResourceUser = UserLocalServiceUtil.getUser(
-					calendarResource.getUserId());
-
-				manageBookingUsers.add(
-					new NotificationRecipient(calendarResourceUser));
-
-				User calendarUser = UserLocalServiceUtil.getUser(
-					calendar.getUserId());
-
-				if (calendarResourceUser.getUserId() !=
-						calendarUser.getUserId()) {
-
-					manageBookingUsers.add(
-						new NotificationRecipient(calendarUser));
-				}
-			}
-			else {
-				List<User> roleUsers = UserLocalServiceUtil.getRoleUsers(
-					role.getRoleId());
-
-				for (User roleUser : roleUsers) {
-					PermissionChecker permissionChecker =
-						PermissionCheckerFactoryUtil.create(roleUser);
-
-					if (!CalendarPermission.contains(
-						permissionChecker, calendar,
-						ActionKeys.MANAGE_BOOKINGS)) {
-
-						continue;
-					}
-
-					manageBookingUsers.add(new NotificationRecipient(roleUser));
-				}
-			}
-		}
-
-		return manageBookingUsers;
-	}
-
 	public static String getEmailFromAddress(
 			PortletPreferences preferences, long companyId)
 		throws SystemException {
@@ -130,21 +73,7 @@ public class NotificationUtil {
 			PortletPropsValues.CALENDAR_NOTIFICATION_FROM_NAME);
 	}
 
-	public static String getPreferenceName(
-		String propertyName, NotificationType notificationType,
-		NotificationTemplateType notificationTemplateType) {
-
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(CamelCaseUtil.toCamelCase(propertyName, CharPool.PERIOD));
-		sb.append(StringUtil.upperCaseFirstLetter(notificationType.toString()));
-		sb.append(StringUtil.upperCaseFirstLetter(
-			notificationTemplateType.toString()));
-
-		return sb.toString();
-	}
-
-	public static String getTemplateContent(
+	public static String getNotificationTemplateContent(
 		String propertyName, NotificationType notificationType,
 		NotificationTemplateType notificationTemplateType) {
 
@@ -156,7 +85,7 @@ public class NotificationUtil {
 		return ContentUtil.get(templatePath);
 	}
 
-	public static String getTemplateContent(
+	public static String getNotificationTemplateContent(
 		String propertyName, NotificationType notificationType,
 		NotificationTemplateType notificationTemplateType,
 		NotificationTemplateContext notificationTemplateContext) {
@@ -169,10 +98,24 @@ public class NotificationUtil {
 		if (Validator.isNotNull(value)) {
 			return value;
 		}
-		else {
-			return getTemplateContent(
-				propertyName, notificationType, notificationTemplateType);
-		}
+
+		return getNotificationTemplateContent(
+			propertyName, notificationType, notificationTemplateType);
+	}
+
+	public static String getPreferenceName(
+		String propertyName, NotificationType notificationType,
+		NotificationTemplateType notificationTemplateType) {
+
+		StringBundler sb = new StringBundler(3);
+
+		sb.append(CamelCaseUtil.toCamelCase(propertyName, CharPool.PERIOD));
+		sb.append(StringUtil.upperCaseFirstLetter(notificationType.toString()));
+		sb.append(
+			StringUtil.upperCaseFirstLetter(
+				notificationTemplateType.toString()));
+
+		return sb.toString();
 	}
 
 	public static void notifyCalendarBookingInvites(
@@ -184,7 +127,7 @@ public class NotificationUtil {
 				notificationType.toString());
 
 		List<NotificationRecipient> notificationRecipients =
-			getCalendarBookingRecipients(calendarBooking);
+			_getNotificationRecipients(calendarBooking);
 
 		for (NotificationRecipient notificationRecipient :
 				notificationRecipients) {
@@ -206,7 +149,7 @@ public class NotificationUtil {
 		throws Exception {
 
 		List<NotificationRecipient> notificationRecipients =
-			getCalendarBookingRecipients(calendarBooking);
+			_getNotificationRecipients(calendarBooking);
 
 		for (NotificationRecipient notificationRecipient :
 				notificationRecipients) {
@@ -223,7 +166,7 @@ public class NotificationUtil {
 
 			long startTime = startDate.getTimeInMillis();
 
-			if (startTime < nowTime) {
+			if (nowTime > startTime) {
 				return;
 			}
 
@@ -257,6 +200,66 @@ public class NotificationUtil {
 				notificationRecipient, NotificationTemplateType.REMINDER,
 				notificationTemplateContext);
 		}
+	}
+
+	private static List<NotificationRecipient> _getNotificationRecipients(
+			CalendarBooking calendarBooking)
+		throws Exception {
+
+		Calendar calendar = calendarBooking.getCalendar();
+
+		CalendarResource calendarResource =
+			calendarBooking.getCalendarResource();
+
+		List<Role> roles = RoleLocalServiceUtil.getResourceBlockRoles(
+			calendar.getResourceBlockId(), Calendar.class.getName(),
+			ActionKeys.MANAGE_BOOKINGS);
+
+		List<NotificationRecipient> notificationRecipients =
+			new ArrayList<NotificationRecipient>();
+
+		for (Role role : roles) {
+			String name = role.getName();
+
+			if (name.equals(RoleConstants.OWNER)) {
+				User calendarResourceUser = UserLocalServiceUtil.getUser(
+					calendarResource.getUserId());
+
+				notificationRecipients.add(
+					new NotificationRecipient(calendarResourceUser));
+
+				User calendarUser = UserLocalServiceUtil.getUser(
+					calendar.getUserId());
+
+				if (calendarResourceUser.getUserId() !=
+						calendarUser.getUserId()) {
+
+					notificationRecipients.add(
+						new NotificationRecipient(calendarUser));
+				}
+			}
+			else {
+				List<User> roleUsers = UserLocalServiceUtil.getRoleUsers(
+					role.getRoleId());
+
+				for (User roleUser : roleUsers) {
+					PermissionChecker permissionChecker =
+						PermissionCheckerFactoryUtil.create(roleUser);
+
+					if (!CalendarPermission.contains(
+							permissionChecker, calendar,
+							ActionKeys.MANAGE_BOOKINGS)) {
+
+						continue;
+					}
+
+					notificationRecipients.add(
+						new NotificationRecipient(roleUser));
+				}
+			}
+		}
+
+		return notificationRecipients;
 	}
 
 	private static final long _CHECK_INTERVAL =

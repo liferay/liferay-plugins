@@ -79,11 +79,8 @@ public class NotificationRecipient {
 	}
 
 	private String _email;
-
 	private String _format = ContentTypes.TEXT_HTML;
-
 	private String _name;
-
 	private User _user;
 
 }

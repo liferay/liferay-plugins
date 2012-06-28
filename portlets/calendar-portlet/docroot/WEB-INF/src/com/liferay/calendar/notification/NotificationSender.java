@@ -21,14 +21,14 @@ public interface NotificationSender {
 
 	public void sendNotification(
 			NotificationRecipient notificationRecipient,
-			NotificationTemplateType templateType,
+			NotificationTemplateType notificationTemplateType,
 			NotificationTemplateContext notificationTemplateContext)
-		throws NotificationMessageSenderException;
+		throws NotificationSenderException;
 
 	public void sendNotification(
 			String fromAddress, String fromName,
 			NotificationRecipient notificationRecipient, String subject,
 			String notificationMessage)
-		throws NotificationMessageSenderException;
+		throws NotificationSenderException;
 
 }

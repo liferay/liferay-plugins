@@ -29,8 +29,9 @@ public class PortletPropsValues {
 			PortletProps.get(PortletPropsKeys.CALENDAR_COLOR_DEFAULT));
 
 	public static final int CALENDAR_NOTIFICATION_CHECK_INTERVAL =
-		GetterUtil.getInteger(PortletProps.get(
-			PortletPropsKeys.CALENDAR_NOTIFICATION_CHECK_INTERVAL));
+		GetterUtil.getInteger(
+			PortletProps.get(
+				PortletPropsKeys.CALENDAR_NOTIFICATION_CHECK_INTERVAL));
 
 	public static final String CALENDAR_NOTIFICATION_DEFAULT_TYPE =
 		PortletProps.get(PortletPropsKeys.CALENDAR_NOTIFICATION_DEFAULT_TYPE);

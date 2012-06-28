@@ -102,6 +102,7 @@ public class CalendarPortlet extends MVCPortlet {
 		CalendarResourceServiceUtil.deleteCalendarResource(calendarResourceId);
 	}
 
+	@Override
 	public void init() throws PortletException {
 		super.init();
 
@@ -435,27 +436,27 @@ public class CalendarPortlet extends MVCPortlet {
 			year, month, day, hour, minute, 0, 0, timezone);
 	}
 
-	protected long[] getReminders(ActionRequest actionRequest) {
+	protected long[] getReminders(PortletRequest portletRequest) {
 		long firstReminder = ParamUtil.getInteger(
-			actionRequest, "reminderValue0");
+			portletRequest, "reminderValue0");
 		long firstReminderDuration = ParamUtil.getInteger(
-			actionRequest, "reminderDuration0");
+			portletRequest, "reminderDuration0");
 		long secondReminder = ParamUtil.getInteger(
-			actionRequest, "reminderValue1");
+			portletRequest, "reminderValue1");
 		long secondReminderDuration = ParamUtil.getInteger(
-			actionRequest, "reminderDuration1");
+			portletRequest, "reminderDuration1");
 
 		return new long[] {
-			firstReminder*firstReminderDuration*Time.SECOND,
-			secondReminder*secondReminderDuration*Time.SECOND
+			firstReminder * firstReminderDuration * Time.SECOND,
+			secondReminder * secondReminderDuration * Time.SECOND
 		};
 	}
 
-	protected String[] getRemindersType(ActionRequest actionRequest) {
+	protected String[] getRemindersType(PortletRequest portletRequest) {
 		String firstReminderType = ParamUtil.getString(
-			actionRequest, "reminderType0");
+			portletRequest, "reminderType0");
 		String secondReminderType = ParamUtil.getString(
-			actionRequest, "reminderType1");
+			portletRequest, "reminderType1");
 
 		return new String[] {
 			firstReminderType, secondReminderType
