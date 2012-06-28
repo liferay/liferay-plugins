@@ -693,7 +693,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 }
 
 #toggleFluid, .so-layout-fluid-ad #toggleFluid {
-	background-image: url(../images/custom/toggle-button-bg.png);
+	background-image: url(../images/custom/so_toggle_button_bg.png);
 	background-position: 8px 50%;
 	background-repeat: no-repeat;
 	display: block;
@@ -873,7 +873,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 	}
 
 	.result-tags {
-		background: url(../images/custom/tag_small.png) no-repeat 0 3px;
+		background: url(../images/custom/so_tag_small.png) no-repeat 0 3px;
 		color: #777;
 		font-size: 10px;
 		padding-left: 15px;
@@ -898,7 +898,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 /* Dockbar */
 
 .dockbar {
-	background-image: url(../images/custom/dockbar_bg.png);
+	background-image: url(../images/custom/so_dockbar_bg.png);
 	background-color: #EAEAEA;
 	background-position: bottom left;
 	border-bottom-color: #CDCDCD;

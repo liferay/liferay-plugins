@@ -51,7 +51,7 @@
 	#set ($current_user_profile_portrait_url = $current_user.getPortraitURL($themeDisplay))
 
 	#if ($current_user.getPortraitId() == 0)
-		#set ($current_user_profile_portrait_url = $images_folder + "/custom/user_profile_male_default.png")
+		#set ($current_user_profile_portrait_url = $images_folder + "/custom/so_user_profile_male_default.png")
 	#end
 
 	#set ($css_class = $css_class + " user-group")
