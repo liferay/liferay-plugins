@@ -32,6 +32,9 @@
 			<hint-collection name="CLOB" />
 		</field>
 		<field name="scriptLanguage" type="String" />
+		<field name="scriptRequiredContexts" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
 		<field name="priority" type="int" />
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoCondition">
@@ -50,6 +53,7 @@
 			<hint-collection name="CLOB" />
 		</field>
 		<field name="scriptLanguage" type="String" />
+		<field name="scriptRequiredContexts" type="String" />
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoDefinition">
 		<field name="kaleoDefinitionId" type="long" />
@@ -307,6 +311,7 @@
 			<hint-collection name="CLOB" />
 		</field>
 		<field name="assigneeScriptLanguage" type="String" />
+		<field name="assigneeScriptRequiredContexts" type="String" />
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance">
 		<field name="kaleoTaskAssignmentInstanceId" type="long" />
