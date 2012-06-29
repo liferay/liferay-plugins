@@ -21,14 +21,15 @@ import com.liferay.marketplace.util.MarketplaceUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.Constants;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.User;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
@@ -303,15 +304,15 @@ public class StorePortlet extends MVCPortlet {
 		String encodedClientId = MarketplaceUtil.encodeClientId(
 			companyId, userId, token);
 
-		StringBundler sb = new StringBundler(5);
+		url = HttpUtil.addParameter(
+			url, _PORTLET_NAMESPACE.concat("clientId"), encodedClientId);
+		url = HttpUtil.addParameter(
+			url, _PORTLET_NAMESPACE.concat("token"), token);
 
-		sb.append(url);
-		sb.append(StringPool.SLASH);
-		sb.append(encodedClientId);
-		sb.append(StringPool.SLASH);
-		sb.append(token);
-
-		return sb.toString();
+		return url;
 	}
+
+	private static final String _PORTLET_NAMESPACE =
+		PortalUtil.getPortletNamespace("12_WAR_osbportlet");
 
 }
