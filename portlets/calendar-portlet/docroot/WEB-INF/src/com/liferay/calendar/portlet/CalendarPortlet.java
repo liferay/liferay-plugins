@@ -445,33 +445,6 @@ public class CalendarPortlet extends MVCPortlet {
 			year, month, day, hour, minute, 0, 0, timezone);
 	}
 
-	protected long[] getReminders(PortletRequest portletRequest) {
-		long firstReminder = ParamUtil.getInteger(
-			portletRequest, "reminderValue0");
-		long firstReminderDuration = ParamUtil.getInteger(
-			portletRequest, "reminderDuration0");
-		long secondReminder = ParamUtil.getInteger(
-			portletRequest, "reminderValue1");
-		long secondReminderDuration = ParamUtil.getInteger(
-			portletRequest, "reminderDuration1");
-
-		return new long[] {
-			firstReminder * firstReminderDuration * Time.SECOND,
-			secondReminder * secondReminderDuration * Time.SECOND
-		};
-	}
-
-	protected String[] getRemindersType(PortletRequest portletRequest) {
-		String firstReminderType = ParamUtil.getString(
-			portletRequest, "reminderType0");
-		String secondReminderType = ParamUtil.getString(
-			portletRequest, "reminderType1");
-
-		return new String[] {
-			firstReminderType, secondReminderType
-		};
-	}
-
 	protected String getRecurrence(ActionRequest actionRequest) {
 		boolean repeat = ParamUtil.getBoolean(actionRequest, "repeat");
 
@@ -530,6 +503,33 @@ public class CalendarPortlet extends MVCPortlet {
 		recurrence.setUntil(until);
 
 		return RecurrenceSerializer.serialize(recurrence);
+	}
+
+	protected long[] getReminders(PortletRequest portletRequest) {
+		long firstReminder = ParamUtil.getInteger(
+			portletRequest, "reminderValue0");
+		long firstReminderDuration = ParamUtil.getInteger(
+			portletRequest, "reminderDuration0");
+		long secondReminder = ParamUtil.getInteger(
+			portletRequest, "reminderValue1");
+		long secondReminderDuration = ParamUtil.getInteger(
+			portletRequest, "reminderDuration1");
+
+		return new long[] {
+			firstReminder * firstReminderDuration * Time.SECOND,
+			secondReminder * secondReminderDuration * Time.SECOND
+		};
+	}
+
+	protected String[] getRemindersType(PortletRequest portletRequest) {
+		String firstReminderType = ParamUtil.getString(
+			portletRequest, "reminderType0");
+		String secondReminderType = ParamUtil.getString(
+			portletRequest, "reminderType1");
+
+		return new String[] {
+			firstReminderType, secondReminderType
+		};
 	}
 
 	@Override

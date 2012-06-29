@@ -135,7 +135,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 		<aui:field-wrapper cssClass="calendar-portlet-recurrence-container" inlineField="<%= true %>" label="">
 			<aui:input checked="<%= recurring %>" name="repeat" type="checkbox" />
 
-			<a class="calendar-portlet-recurrence-summary" id="<portlet:namespace />summary" href="javascript:void(0);"></a>
+			<a class="calendar-portlet-recurrence-summary" href="javascript:void(0);" id="<portlet:namespace />summary"></a>
 		</aui:field-wrapper>
 	</aui:fieldset>
 
@@ -278,7 +278,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 	}
 </aui:script>
 
-<aui:script use="json,liferay-calendar-date-picker-util,liferay-calendar-list,liferay-calendar-recurrence-util,liferay-calendar-simple-menu">
+<aui:script use="json,liferay-calendar-date-picker-util,liferay-calendar-list,liferay-calendar-recurrence-util,liferay-calendar-reminders,liferay-calendar-simple-menu">
 	var defaultCalendarId = <%= calendarId %>;
 
 	var removeCalendarResource = function(calendarList, calendar, menu) {
