@@ -15,25 +15,42 @@
 package com.liferay.resourcesimporter.util;
 
 import com.liferay.portal.kernel.lar.PortletDataHandlerKeys;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * @author Ryan Park
+ * @author Raymond Augé
  */
 public class LARImporter extends BaseImporter {
 
 	public void importResources() throws Exception {
 		LayoutLocalServiceUtil.importLayouts(
-			userId, groupId, false, getParameterMap(), _larFile);
+			userId, groupId, false, getParameterMap(), _larInputStream);
 	}
 
 	public void setLARFile(File larFile) {
-		_larFile = larFile;
+		try {
+			setLARInputStream(
+				new BufferedInputStream(new FileInputStream(larFile)));
+		}
+		catch (FileNotFoundException fnfe) {
+			_log.error(fnfe, fnfe);
+		}
+	}
+
+	public void setLARInputStream(InputStream larInputStream) {
+		_larInputStream = larInputStream;
 	}
 
 	protected Map<String, String[]> getParameterMap() {
@@ -97,6 +114,8 @@ public class LARImporter extends BaseImporter {
 		return parameters;
 	}
 
-	private File _larFile;
+	private static Log _log = LogFactoryUtil.getLog(LARImporter.class);
+
+	private InputStream _larInputStream;
 
 }

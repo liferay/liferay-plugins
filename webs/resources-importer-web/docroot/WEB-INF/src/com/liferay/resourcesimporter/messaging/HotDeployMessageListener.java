@@ -22,7 +22,10 @@ import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.servlet.ServletContextPool;
 import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.kernel.util.PropertiesUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.security.auth.CompanyThreadLocal;
@@ -31,18 +34,25 @@ import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
 import com.liferay.resourcesimporter.util.FileSystemImporter;
 import com.liferay.resourcesimporter.util.Importer;
 import com.liferay.resourcesimporter.util.LARImporter;
+import com.liferay.resourcesimporter.util.ResourceImporter;
 
-import java.io.File;
+import java.io.IOException;
+
+import java.net.URL;
+import java.net.URLConnection;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
 
 import javax.servlet.ServletContext;
 
 /**
  * @author Ryan Park
+ * @author Raymond Augé
  */
 public class HotDeployMessageListener extends BaseMessageListener {
 
@@ -59,10 +69,9 @@ public class HotDeployMessageListener extends BaseMessageListener {
 		ServletContext servletContext = ServletContextPool.get(
 			servletContextName);
 
-		File resourcesDir = new File(
-			servletContext.getRealPath("/WEB-INF/classes/resources-importer"));
+		URL resourcesDirURL = servletContext.getResource(_RESOURCES_DIR);
 
-		if (!resourcesDir.exists()) {
+		if (resourcesDirURL == null) {
 			return;
 		}
 
@@ -71,7 +80,10 @@ public class HotDeployMessageListener extends BaseMessageListener {
 
 		//layoutSetPrototypeName += " " + System.currentTimeMillis();
 
-		File larFile = new File(resourcesDir, "/archive.lar");
+		Set<String> resourcePaths = servletContext.getResourcePaths(
+			_RESOURCES_DIR);
+		URL larURL = servletContext.getResource(
+			_RESOURCES_DIR.concat("archive.lar"));
 
 		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 
@@ -95,15 +107,50 @@ public class HotDeployMessageListener extends BaseMessageListener {
 
 				Importer importer = null;
 
-				if (larFile.exists()) {
+				if (larURL != null) {
 					LARImporter larImporter = getLARImporter();
 
-					larImporter.setLARFile(larFile);
+					URLConnection urlConnection = larURL.openConnection();
+
+					larImporter.setLARInputStream(
+						urlConnection.getInputStream());
 
 					importer = larImporter;
 				}
+				else if ((resourcePaths != null) &&
+						 (!resourcePaths.isEmpty()) && (larURL == null)) {
+
+					importer = getResourceImporter();
+
+					importer.setResourcesDir(_RESOURCES_DIR);
+				}
 				else {
-					importer = getFileSystemImporter();
+					Properties pluginProperties = getPluginProperties(
+						servletContext);
+
+					String resourcesDir = pluginProperties.getProperty(
+							"resources-importer-external-dir");
+
+					if (Validator.isNotNull(resourcesDir)) {
+						importer = getFileSystemImporter();
+
+						importer.setResourcesDir(resourcesDir);
+					}
+				}
+
+				if (importer == null) {
+					Message newMessage = new Message();
+
+					newMessage.put("companyId", company.getCompanyId());
+					newMessage.put(
+						"layoutSetPrototypeId", 0);
+					newMessage.put("servletContextName", servletContextName);
+					newMessage.put("error", "no valid importer found");
+
+					MessageBusUtil.sendMessage(
+						"liferay/resources_importer", newMessage);
+
+					return;
 				}
 
 				importer.setCompanyId(company.getCompanyId());
@@ -118,7 +165,7 @@ public class HotDeployMessageListener extends BaseMessageListener {
 				importer.setLayoutSetPrototypeNameMap(
 					layoutSetPrototypeNameMap);
 
-				importer.setResourcesDir(resourcesDir);
+				importer.setServletContext(servletContext);
 				importer.setServletContextName(servletContextName);
 
 				importer.afterPropertiesSet();
@@ -155,6 +202,33 @@ public class HotDeployMessageListener extends BaseMessageListener {
 		return new LARImporter();
 	}
 
+	protected Properties getPluginProperties(ServletContext servletContext) {
+		Properties properties = null;
+
+		try {
+			String propertiesString = StringUtil.read(
+				servletContext.getResourceAsStream(
+					"/WEB-INF/liferay-plugin-package.properties"));
+
+			if (propertiesString != null) {
+				properties = PropertiesUtil.load(propertiesString);
+			}
+		}
+		catch (IOException e) {
+			_log.error(e, e);
+		}
+
+		if (properties == null) {
+			properties = new Properties();
+		}
+
+		return properties;
+	}
+
+	protected ResourceImporter getResourceImporter() {
+		return new ResourceImporter();
+	}
+
 	protected boolean hasLayoutSetPrototype(long companyId, String name)
 		throws Exception {
 
@@ -175,5 +249,8 @@ public class HotDeployMessageListener extends BaseMessageListener {
 
 	private static Log _log = LogFactoryUtil.getLog(
 		HotDeployMessageListener.class);
+
+	private static final String _RESOURCES_DIR =
+		"/WEB-INF/classes/resources-importer/";
 
 }

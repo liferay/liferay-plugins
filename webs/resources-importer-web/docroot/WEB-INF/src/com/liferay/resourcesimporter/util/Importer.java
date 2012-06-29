@@ -14,13 +14,14 @@
 
 package com.liferay.resourcesimporter.util;
 
-import java.io.File;
-
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+
 /**
  * @author Brian Wing Shun Chan
+ * @author Raymond Augé
  */
 public interface Importer {
 
@@ -37,7 +38,9 @@ public interface Importer {
 	public void setLayoutSetPrototypeNameMap(
 		Map<Locale, String> layoutSetPrototypeNameMap);
 
-	public void setResourcesDir(File resourcesDir);
+	public void setResourcesDir(String resourcesDir);
+
+	public void setServletContext(ServletContext servletContext);
 
 	public void setServletContextName(String servletContextName);
 
