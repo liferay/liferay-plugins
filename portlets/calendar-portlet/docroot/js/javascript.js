@@ -1,16 +1,15 @@
 (function() {
 	var Workflow = Liferay.Workflow;
-	var STR_BLANK = '';
-	var STR_COMMA = ',';
-	var STR_COMMA_SPACE = ', ';
-	var STR_DASH = '-';
-	var STR_SPACE = ' ';
 
 	var toNumber = function(val) {
 		return parseInt(val, 10) || 0;
 	};
 
 	var STR_BLANK = '';
+
+	var STR_COMMA = ',';
+
+	var STR_COMMA_SPACE = ', ';
 
 	var STR_DASH = '-';
 
@@ -726,7 +725,7 @@
 
 					firstReminder: {
 						setter: toNumber,
-						value: 60
+						value: 3600000
 					},
 
 					firstReminderType: {
