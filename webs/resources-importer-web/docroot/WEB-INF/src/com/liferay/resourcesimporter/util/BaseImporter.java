@@ -22,13 +22,14 @@ import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
-import java.io.File;
-
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+
 /**
  * @author Brian Wing Shun Chan
+ * @author Raymond Augé
  */
 public abstract class BaseImporter implements Importer {
 
@@ -66,8 +67,12 @@ public abstract class BaseImporter implements Importer {
 		this.layoutSetPrototypeNameMap = layoutSetPrototypeNameMap;
 	}
 
-	public void setResourcesDir(File resourcesDir) {
+	public void setResourcesDir(String resourcesDir) {
 		this.resourcesDir = resourcesDir;
+	}
+
+	public void setServletContext(ServletContext servletContext) {
+		this.servletContext = servletContext;
 	}
 
 	public void setServletContextName(String servletContextName) {
@@ -78,7 +83,8 @@ public abstract class BaseImporter implements Importer {
 	protected long groupId;
 	protected long layoutSetPrototypeId;
 	protected Map<Locale, String> layoutSetPrototypeNameMap;
-	protected File resourcesDir;
+	protected String resourcesDir;
+	protected ServletContext servletContext;
 	protected String servletContextName;
 	protected long userId;
 
