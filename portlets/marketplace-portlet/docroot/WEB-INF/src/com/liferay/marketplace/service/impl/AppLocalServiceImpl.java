@@ -185,8 +185,10 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 			}
 		}
 		catch (ZipException ze) {
-			_log.error(
-				"Deleting corrupt package from app " + app.getAppId(), ze);
+			if (_log.isInfoEnabled()) {
+				_log.info(
+					"Deleting corrupt package from app " + app.getAppId(), ze);
+			}
 
 			deleteApp(app);
 		}
