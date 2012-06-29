@@ -691,11 +691,11 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		throw new UnsupportedOperationException();
 	}
 
-<<<<<<< HEAD
 	public com.liferay.calendar.notification.NotificationType getSecondReminderNotificationType() {
-=======
+		throw new UnsupportedOperationException();
+	}
+
 	public com.liferay.calendar.recurrence.Recurrence getRecurrenceObj() {
->>>>>>> LPS-27329  Add event recurrence support - regenerate
 		throw new UnsupportedOperationException();
 	}
 
