@@ -54,7 +54,7 @@ public class TestPACLPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		try{
+		try {
 			TestPACLUtil.testWriteFile();
 
 			testGetClassLoaderBlogsEntryLocalService();

@@ -42,7 +42,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		super.processAction(portletConfig, actionRequest, actionResponse);
 	}
 
-	protected void validateNode(ActionRequest actionRequest) throws Exception{
+	protected void validateNode(ActionRequest actionRequest) throws Exception {
 		long selNodeId = GetterUtil.getLong(
 			getParameter(actionRequest, "selNodeId"));
 
