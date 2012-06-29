@@ -40,15 +40,12 @@ public class TaskAssignerUtil {
 		List<KaleoTaskAssignment> reassignedKaleoTaskAssignments =
 			new ArrayList<KaleoTaskAssignment>();
 
-		ClassLoader contextClassLoader =
-			Thread.currentThread().getContextClassLoader();
-
 		for (KaleoTaskAssignment kaleoTaskAssignment : kaleoTaskAssignments) {
 			String[] assigneeScriptRequiredContexts = StringUtil.split(
 				kaleoTaskAssignment.getAssigneeScriptRequiredContexts());
 
 			ClassLoader[] classLoaders = ClassLoaderUtil.getClassLoaders(
-				assigneeScriptRequiredContexts, contextClassLoader);
+				assigneeScriptRequiredContexts);
 
 			Collection<KaleoTaskAssignment> calculatedKaleoTaskAssignments =
 				_taskAssignmentSelector.calculateTaskAssignments(

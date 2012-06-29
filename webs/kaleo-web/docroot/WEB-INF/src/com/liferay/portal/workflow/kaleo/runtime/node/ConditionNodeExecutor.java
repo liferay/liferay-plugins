@@ -64,15 +64,11 @@ public class ConditionNodeExecutor extends BaseNodeExecutor {
 			kaleoConditionLocalService.getKaleoNodeKaleoCondition(
 				currentKaleoNode.getKaleoNodeId());
 
-		Thread currentThread = Thread.currentThread();
-
-		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
-
 		String[] scriptRequiredContexts = StringUtil.split(
 			kaleoCondition.getScriptRequiredContexts());
 
 		ClassLoader[] classloaders = ClassLoaderUtil.getClassLoaders(
-			scriptRequiredContexts, contextClassLoader);
+			scriptRequiredContexts);
 
 		String transitionName = _conditionEvaluator.evaluate(
 			kaleoCondition, executionContext, classloaders);

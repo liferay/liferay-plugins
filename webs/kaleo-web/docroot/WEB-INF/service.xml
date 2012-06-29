@@ -32,7 +32,7 @@
 		<column name="executionType" type="String" />
 		<column name="script" type="String" />
 		<column name="scriptLanguage" type="String" />
-        <column name="scriptRequiredContexts" type="String" />
+		<column name="scriptRequiredContexts" type="String" />
 		<column name="priority" type="int" />
 
 		<!-- Order -->
@@ -79,7 +79,7 @@
 		<column name="kaleoNodeId" type="long" />
 		<column name="script" type="String" />
 		<column name="scriptLanguage" type="String" />
-        <column name="scriptRequiredContexts" type="String" />
+		<column name="scriptRequiredContexts" type="String" />
 
 		<!-- Order -->
 
@@ -576,7 +576,7 @@
 		<column name="assigneeActionId" type="String" />
 		<column name="assigneeScript" type="String" />
 		<column name="assigneeScriptLanguage" type="String" />
-        <column name="assigneeScriptRequiredContexts" type="String" />
+		<column name="assigneeScriptRequiredContexts" type="String" />
 
 		<!-- Order -->
 

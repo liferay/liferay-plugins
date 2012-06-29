@@ -173,25 +173,27 @@
 			</transition>
 		</transitions>
 	</task>
-    <state>
-   		<name>approved</name>
-   		<metadata>
-   			<![CDATA[{"xy":[370,187]}]]>
-   		</metadata>
-   		<actions>
-   			<action>
-   				<name>approve</name>
-                   <script>
-                       <![CDATA[
-                           import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
-                           import com.liferay.portal.kernel.workflow.WorkflowConstants;
+	<state>
+		<name>approved</name>
+		<metadata>
+			<![CDATA[
+				{"xy":[370,187]}
+			]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>approve</name>
+				<script>
+					<![CDATA[
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+						import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
-                           WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.toStatus("approved"), workflowContext);
-                       ]]>
-                   </script>
-                   <script-language>groovy</script-language>
-                   <execution-type>onEntry</execution-type>
-   			</action>
-   		</actions>
-   	</state>
+						WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.toStatus("approved"), workflowContext);
+					]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+	</state>
 </workflow-definition>

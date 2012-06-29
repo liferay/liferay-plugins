@@ -54,8 +54,7 @@ public class DRLActionExecutor implements ActionExecutor {
 			new RulesResourceRetriever(
 				new StringResourceRetriever(kaleoAction.getScript()));
 
-		RulesEngineUtil.execute(
-			rulesResourceRetriever, facts, classLoaders);
+		RulesEngineUtil.execute(rulesResourceRetriever, facts, classLoaders);
 	}
 
 }

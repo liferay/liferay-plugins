@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -16,7 +16,6 @@ package com.liferay.portal.workflow.kaleo.runtime.util;
 
 import com.liferay.portal.kernel.servlet.PluginContextListener;
 import com.liferay.portal.kernel.servlet.ServletContextPool;
-import com.liferay.portal.kernel.util.AggregateClassLoader;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 
 import java.util.ArrayList;
@@ -28,18 +27,17 @@ import javax.servlet.ServletContext;
  * @author Michael C. Han
  */
 public class ClassLoaderUtil {
-	public static ClassLoader[] getClassLoaders(
-		String[] scriptRequiredContexts, ClassLoader contextClassLoader) {
 
+	public static ClassLoader[] getClassLoaders(String[] servletContextNames) {
 		List<ClassLoader> classLoaders =
-			new ArrayList<ClassLoader>(scriptRequiredContexts.length + 2);
+			new ArrayList<ClassLoader>(servletContextNames.length + 2);
 
-		classLoaders.add(contextClassLoader);
+		classLoaders.add(_getContextClassLoader());
 		classLoaders.add(PortalClassLoaderUtil.getClassLoader());
 
-		for (String scriptRequiredContext : scriptRequiredContexts) {
+		for (String servletContextName : servletContextNames) {
 			ServletContext servletContext = ServletContextPool.get(
-				scriptRequiredContext);
+				servletContextName);
 
 			ClassLoader pluginClassLoader =
 				(ClassLoader)servletContext.getAttribute(
@@ -50,4 +48,11 @@ public class ClassLoaderUtil {
 
 		return classLoaders.toArray(new ClassLoader[classLoaders.size()]);
 	}
+
+	private static ClassLoader _getContextClassLoader() {
+		Thread currentThread = Thread.currentThread();
+
+		return currentThread.getContextClassLoader();
+	}
+
 }

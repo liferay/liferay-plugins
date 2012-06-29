@@ -144,14 +144,15 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			String description = actionElement.elementText("description");
 			String executionType = actionElement.elementText("execution-type");
 			String script = actionElement.elementText("script");
-			String language = actionElement.elementText("script-language");
+			String scriptLanguage = actionElement.elementText(
+				"script-language");
 			String scriptRequiredContexts = actionElement.elementText(
 				"script-required-contexts");
 			int priority = GetterUtil.getInteger(
 				actionElement.elementText("priority"));
 
 			Action action = new Action(
-				name, description, executionType, script, language,
+				name, description, executionType, script, scriptLanguage,
 				scriptRequiredContexts, priority);
 
 			actions.add(action);

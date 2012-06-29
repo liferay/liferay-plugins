@@ -132,17 +132,19 @@
 	<state>
 		<name>approved</name>
 		<metadata>
-			<![CDATA[{"xy":[422,56]}]]>
+			<![CDATA[
+				{"xy":[370,187]}
+			]]>
 		</metadata>
 		<actions>
 			<action>
 				<name>approve</name>
 				<script>
 					<![CDATA[
-					    import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
-					    import com.liferay.portal.kernel.workflow.WorkflowConstants;
+						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
+						import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
-					    WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.toStatus("approved"), workflowContext);
+						WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.toStatus("approved"), workflowContext);
 					]]>
 				</script>
 				<script-language>groovy</script-language>

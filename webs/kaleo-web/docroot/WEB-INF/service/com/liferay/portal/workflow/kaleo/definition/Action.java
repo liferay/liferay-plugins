@@ -35,10 +35,10 @@ public class Action {
 			_executionType = ExecutionType.ON_TIMER;
 		}
 
-		_priority = priority;
 		_script = script;
 		_scriptLanguage = ScriptLanguage.parse(scriptLanguage);
 		_scriptRequiredContexts = scriptRequiredContexts;
+		_priority = priority;
 	}
 
 	@Override

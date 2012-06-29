@@ -109,18 +109,15 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 		Collection<KaleoTaskAssignment> kaleoTaskAssignments =
 			new ArrayList<KaleoTaskAssignment>();
 
-		ClassLoader contextClassLoader =
-			Thread.currentThread().getContextClassLoader();
-
 		for (KaleoTaskAssignment configuredKaleoTaskAssignment :
 				configuredKaleoTaskAssignments) {
 
 			String[] assigneeScriptRequiredContexts = StringUtil.split(
-				configuredKaleoTaskAssignment.getAssigneeScriptRequiredContexts());
+				configuredKaleoTaskAssignment.
+					getAssigneeScriptRequiredContexts());
 
 			ClassLoader[] classLoaders = ClassLoaderUtil.getClassLoaders(
-				assigneeScriptRequiredContexts, contextClassLoader);
-
+				assigneeScriptRequiredContexts);
 
 			Collection<KaleoTaskAssignment> calculatedKaleoTaskAssignments =
 				_taskAssignmentSelector.calculateTaskAssignments(
