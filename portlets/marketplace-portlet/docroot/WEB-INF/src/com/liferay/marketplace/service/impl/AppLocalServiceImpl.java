@@ -42,6 +42,7 @@ import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 
 /**
@@ -182,6 +183,12 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 				moduleLocalService.addModule(
 					app.getUserId(), app.getAppId(), contextName);
 			}
+		}
+		catch (ZipException ze) {
+			_log.error(
+				"Deleting corrupt package from app " + app.getAppId(), ze);
+
+			deleteApp(app);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
