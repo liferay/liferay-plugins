@@ -307,6 +307,22 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 	 */
 	public void setAssigneeScriptLanguage(String assigneeScriptLanguage);
 
+	/**
+	 * Returns the assignee script required contexts of this kaleo task assignment.
+	 *
+	 * @return the assignee script required contexts of this kaleo task assignment
+	 */
+	@AutoEscape
+	public String getAssigneeScriptRequiredContexts();
+
+	/**
+	 * Sets the assignee script required contexts of this kaleo task assignment.
+	 *
+	 * @param assigneeScriptRequiredContexts the assignee script required contexts of this kaleo task assignment
+	 */
+	public void setAssigneeScriptRequiredContexts(
+		String assigneeScriptRequiredContexts);
+
 	public boolean isNew();
 
 	public void setNew(boolean n);

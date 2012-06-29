@@ -34,7 +34,7 @@ public class KaleoActionCacheModel implements CacheModel<KaleoAction>,
 	Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(35);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("{kaleoActionId=");
 		sb.append(kaleoActionId);
@@ -68,6 +68,8 @@ public class KaleoActionCacheModel implements CacheModel<KaleoAction>,
 		sb.append(script);
 		sb.append(", scriptLanguage=");
 		sb.append(scriptLanguage);
+		sb.append(", scriptRequiredContexts=");
+		sb.append(scriptRequiredContexts);
 		sb.append(", priority=");
 		sb.append(priority);
 		sb.append("}");
@@ -156,6 +158,13 @@ public class KaleoActionCacheModel implements CacheModel<KaleoAction>,
 			kaleoActionImpl.setScriptLanguage(scriptLanguage);
 		}
 
+		if (scriptRequiredContexts == null) {
+			kaleoActionImpl.setScriptRequiredContexts(StringPool.BLANK);
+		}
+		else {
+			kaleoActionImpl.setScriptRequiredContexts(scriptRequiredContexts);
+		}
+
 		kaleoActionImpl.setPriority(priority);
 
 		kaleoActionImpl.resetOriginalValues();
@@ -179,5 +188,6 @@ public class KaleoActionCacheModel implements CacheModel<KaleoAction>,
 	public String executionType;
 	public String script;
 	public String scriptLanguage;
+	public String scriptRequiredContexts;
 	public int priority;
 }

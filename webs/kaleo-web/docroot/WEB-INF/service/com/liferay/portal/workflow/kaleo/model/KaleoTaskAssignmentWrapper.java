@@ -62,6 +62,8 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 		attributes.put("assigneeActionId", getAssigneeActionId());
 		attributes.put("assigneeScript", getAssigneeScript());
 		attributes.put("assigneeScriptLanguage", getAssigneeScriptLanguage());
+		attributes.put("assigneeScriptRequiredContexts",
+			getAssigneeScriptRequiredContexts());
 
 		return attributes;
 	}
@@ -163,6 +165,13 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 
 		if (assigneeScriptLanguage != null) {
 			setAssigneeScriptLanguage(assigneeScriptLanguage);
+		}
+
+		String assigneeScriptRequiredContexts = (String)attributes.get(
+				"assigneeScriptRequiredContexts");
+
+		if (assigneeScriptRequiredContexts != null) {
+			setAssigneeScriptRequiredContexts(assigneeScriptRequiredContexts);
 		}
 	}
 
@@ -491,6 +500,25 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	public void setAssigneeScriptLanguage(
 		java.lang.String assigneeScriptLanguage) {
 		_kaleoTaskAssignment.setAssigneeScriptLanguage(assigneeScriptLanguage);
+	}
+
+	/**
+	* Returns the assignee script required contexts of this kaleo task assignment.
+	*
+	* @return the assignee script required contexts of this kaleo task assignment
+	*/
+	public java.lang.String getAssigneeScriptRequiredContexts() {
+		return _kaleoTaskAssignment.getAssigneeScriptRequiredContexts();
+	}
+
+	/**
+	* Sets the assignee script required contexts of this kaleo task assignment.
+	*
+	* @param assigneeScriptRequiredContexts the assignee script required contexts of this kaleo task assignment
+	*/
+	public void setAssigneeScriptRequiredContexts(
+		java.lang.String assigneeScriptRequiredContexts) {
+		_kaleoTaskAssignment.setAssigneeScriptRequiredContexts(assigneeScriptRequiredContexts);
 	}
 
 	public boolean isNew() {

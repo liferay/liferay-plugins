@@ -15,6 +15,7 @@ create table KaleoAction (
 	executionType VARCHAR(20) null,
 	script TEXT null,
 	scriptLanguage VARCHAR(75) null,
+	scriptRequiredContexts STRING null,
 	priority INTEGER
 );
 
@@ -29,7 +30,8 @@ create table KaleoCondition (
 	kaleoDefinitionId LONG,
 	kaleoNodeId LONG,
 	script TEXT null,
-	scriptLanguage VARCHAR(75) null
+	scriptLanguage VARCHAR(75) null,
+	scriptRequiredContexts VARCHAR(75) null
 );
 
 create table KaleoDefinition (
@@ -203,7 +205,8 @@ create table KaleoTaskAssignment (
 	assigneeClassPK LONG,
 	assigneeActionId VARCHAR(75) null,
 	assigneeScript TEXT null,
-	assigneeScriptLanguage VARCHAR(75) null
+	assigneeScriptLanguage VARCHAR(75) null,
+	assigneeScriptRequiredContexts VARCHAR(75) null
 );
 
 create table KaleoTaskAssignmentInstance (

@@ -62,6 +62,7 @@ public class KaleoActionWrapper implements KaleoAction,
 		attributes.put("executionType", getExecutionType());
 		attributes.put("script", getScript());
 		attributes.put("scriptLanguage", getScriptLanguage());
+		attributes.put("scriptRequiredContexts", getScriptRequiredContexts());
 		attributes.put("priority", getPriority());
 
 		return attributes;
@@ -162,6 +163,13 @@ public class KaleoActionWrapper implements KaleoAction,
 
 		if (scriptLanguage != null) {
 			setScriptLanguage(scriptLanguage);
+		}
+
+		String scriptRequiredContexts = (String)attributes.get(
+				"scriptRequiredContexts");
+
+		if (scriptRequiredContexts != null) {
+			setScriptRequiredContexts(scriptRequiredContexts);
 		}
 
 		Integer priority = (Integer)attributes.get("priority");
@@ -495,6 +503,25 @@ public class KaleoActionWrapper implements KaleoAction,
 	*/
 	public void setScriptLanguage(java.lang.String scriptLanguage) {
 		_kaleoAction.setScriptLanguage(scriptLanguage);
+	}
+
+	/**
+	* Returns the script required contexts of this kaleo action.
+	*
+	* @return the script required contexts of this kaleo action
+	*/
+	public java.lang.String getScriptRequiredContexts() {
+		return _kaleoAction.getScriptRequiredContexts();
+	}
+
+	/**
+	* Sets the script required contexts of this kaleo action.
+	*
+	* @param scriptRequiredContexts the script required contexts of this kaleo action
+	*/
+	public void setScriptRequiredContexts(
+		java.lang.String scriptRequiredContexts) {
+		_kaleoAction.setScriptRequiredContexts(scriptRequiredContexts);
 	}
 
 	/**

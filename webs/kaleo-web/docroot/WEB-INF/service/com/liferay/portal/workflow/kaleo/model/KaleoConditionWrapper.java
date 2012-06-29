@@ -57,6 +57,7 @@ public class KaleoConditionWrapper implements KaleoCondition,
 		attributes.put("kaleoNodeId", getKaleoNodeId());
 		attributes.put("script", getScript());
 		attributes.put("scriptLanguage", getScriptLanguage());
+		attributes.put("scriptRequiredContexts", getScriptRequiredContexts());
 
 		return attributes;
 	}
@@ -126,6 +127,13 @@ public class KaleoConditionWrapper implements KaleoCondition,
 
 		if (scriptLanguage != null) {
 			setScriptLanguage(scriptLanguage);
+		}
+
+		String scriptRequiredContexts = (String)attributes.get(
+				"scriptRequiredContexts");
+
+		if (scriptRequiredContexts != null) {
+			setScriptRequiredContexts(scriptRequiredContexts);
 		}
 	}
 
@@ -363,6 +371,25 @@ public class KaleoConditionWrapper implements KaleoCondition,
 	*/
 	public void setScriptLanguage(java.lang.String scriptLanguage) {
 		_kaleoCondition.setScriptLanguage(scriptLanguage);
+	}
+
+	/**
+	* Returns the script required contexts of this kaleo condition.
+	*
+	* @return the script required contexts of this kaleo condition
+	*/
+	public java.lang.String getScriptRequiredContexts() {
+		return _kaleoCondition.getScriptRequiredContexts();
+	}
+
+	/**
+	* Sets the script required contexts of this kaleo condition.
+	*
+	* @param scriptRequiredContexts the script required contexts of this kaleo condition
+	*/
+	public void setScriptRequiredContexts(
+		java.lang.String scriptRequiredContexts) {
+		_kaleoCondition.setScriptRequiredContexts(scriptRequiredContexts);
 	}
 
 	public boolean isNew() {

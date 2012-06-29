@@ -34,7 +34,7 @@ public class KaleoConditionCacheModel implements CacheModel<KaleoCondition>,
 	Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("{kaleoConditionId=");
 		sb.append(kaleoConditionId);
@@ -58,6 +58,8 @@ public class KaleoConditionCacheModel implements CacheModel<KaleoCondition>,
 		sb.append(script);
 		sb.append(", scriptLanguage=");
 		sb.append(scriptLanguage);
+		sb.append(", scriptRequiredContexts=");
+		sb.append(scriptRequiredContexts);
 		sb.append("}");
 
 		return sb.toString();
@@ -109,6 +111,13 @@ public class KaleoConditionCacheModel implements CacheModel<KaleoCondition>,
 			kaleoConditionImpl.setScriptLanguage(scriptLanguage);
 		}
 
+		if (scriptRequiredContexts == null) {
+			kaleoConditionImpl.setScriptRequiredContexts(StringPool.BLANK);
+		}
+		else {
+			kaleoConditionImpl.setScriptRequiredContexts(scriptRequiredContexts);
+		}
+
 		kaleoConditionImpl.resetOriginalValues();
 
 		return kaleoConditionImpl;
@@ -125,4 +134,5 @@ public class KaleoConditionCacheModel implements CacheModel<KaleoCondition>,
 	public long kaleoNodeId;
 	public String script;
 	public String scriptLanguage;
+	public String scriptRequiredContexts;
 }

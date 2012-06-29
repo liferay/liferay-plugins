@@ -34,7 +34,7 @@ public class KaleoTaskAssignmentCacheModel implements CacheModel<KaleoTaskAssign
 	Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(33);
+		StringBundler sb = new StringBundler(35);
 
 		sb.append("{kaleoTaskAssignmentId=");
 		sb.append(kaleoTaskAssignmentId);
@@ -68,6 +68,8 @@ public class KaleoTaskAssignmentCacheModel implements CacheModel<KaleoTaskAssign
 		sb.append(assigneeScript);
 		sb.append(", assigneeScriptLanguage=");
 		sb.append(assigneeScriptLanguage);
+		sb.append(", assigneeScriptRequiredContexts=");
+		sb.append(assigneeScriptRequiredContexts);
 		sb.append("}");
 
 		return sb.toString();
@@ -143,6 +145,13 @@ public class KaleoTaskAssignmentCacheModel implements CacheModel<KaleoTaskAssign
 			kaleoTaskAssignmentImpl.setAssigneeScriptLanguage(assigneeScriptLanguage);
 		}
 
+		if (assigneeScriptRequiredContexts == null) {
+			kaleoTaskAssignmentImpl.setAssigneeScriptRequiredContexts(StringPool.BLANK);
+		}
+		else {
+			kaleoTaskAssignmentImpl.setAssigneeScriptRequiredContexts(assigneeScriptRequiredContexts);
+		}
+
 		kaleoTaskAssignmentImpl.resetOriginalValues();
 
 		return kaleoTaskAssignmentImpl;
@@ -164,4 +173,5 @@ public class KaleoTaskAssignmentCacheModel implements CacheModel<KaleoTaskAssign
 	public String assigneeActionId;
 	public String assigneeScript;
 	public String assigneeScriptLanguage;
+	public String assigneeScriptRequiredContexts;
 }

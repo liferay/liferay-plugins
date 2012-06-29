@@ -75,9 +75,10 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 			{ "assigneeClassPK", Types.BIGINT },
 			{ "assigneeActionId", Types.VARCHAR },
 			{ "assigneeScript", Types.CLOB },
-			{ "assigneeScriptLanguage", Types.VARCHAR }
+			{ "assigneeScriptLanguage", Types.VARCHAR },
+			{ "assigneeScriptRequiredContexts", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KaleoTaskAssignment (kaleoTaskAssignmentId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoClassName VARCHAR(200) null,kaleoClassPK LONG,kaleoDefinitionId LONG,kaleoNodeId LONG,assigneeClassName VARCHAR(200) null,assigneeClassPK LONG,assigneeActionId VARCHAR(75) null,assigneeScript TEXT null,assigneeScriptLanguage VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table KaleoTaskAssignment (kaleoTaskAssignmentId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoClassName VARCHAR(200) null,kaleoClassPK LONG,kaleoDefinitionId LONG,kaleoNodeId LONG,assigneeClassName VARCHAR(200) null,assigneeClassPK LONG,assigneeActionId VARCHAR(75) null,assigneeScript TEXT null,assigneeScriptLanguage VARCHAR(75) null,assigneeScriptRequiredContexts VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table KaleoTaskAssignment";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoTaskAssignment.kaleoTaskAssignmentId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY KaleoTaskAssignment.kaleoTaskAssignmentId ASC";
@@ -148,6 +149,8 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 		attributes.put("assigneeActionId", getAssigneeActionId());
 		attributes.put("assigneeScript", getAssigneeScript());
 		attributes.put("assigneeScriptLanguage", getAssigneeScriptLanguage());
+		attributes.put("assigneeScriptRequiredContexts",
+			getAssigneeScriptRequiredContexts());
 
 		return attributes;
 	}
@@ -250,6 +253,13 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 
 		if (assigneeScriptLanguage != null) {
 			setAssigneeScriptLanguage(assigneeScriptLanguage);
+		}
+
+		String assigneeScriptRequiredContexts = (String)attributes.get(
+				"assigneeScriptRequiredContexts");
+
+		if (assigneeScriptRequiredContexts != null) {
+			setAssigneeScriptRequiredContexts(assigneeScriptRequiredContexts);
 		}
 	}
 
@@ -477,6 +487,20 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 		_assigneeScriptLanguage = assigneeScriptLanguage;
 	}
 
+	public String getAssigneeScriptRequiredContexts() {
+		if (_assigneeScriptRequiredContexts == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _assigneeScriptRequiredContexts;
+		}
+	}
+
+	public void setAssigneeScriptRequiredContexts(
+		String assigneeScriptRequiredContexts) {
+		_assigneeScriptRequiredContexts = assigneeScriptRequiredContexts;
+	}
+
 	public long getColumnBitmask() {
 		return _columnBitmask;
 	}
@@ -525,6 +549,7 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 		kaleoTaskAssignmentImpl.setAssigneeActionId(getAssigneeActionId());
 		kaleoTaskAssignmentImpl.setAssigneeScript(getAssigneeScript());
 		kaleoTaskAssignmentImpl.setAssigneeScriptLanguage(getAssigneeScriptLanguage());
+		kaleoTaskAssignmentImpl.setAssigneeScriptRequiredContexts(getAssigneeScriptRequiredContexts());
 
 		kaleoTaskAssignmentImpl.resetOriginalValues();
 
@@ -691,12 +716,21 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 			kaleoTaskAssignmentCacheModel.assigneeScriptLanguage = null;
 		}
 
+		kaleoTaskAssignmentCacheModel.assigneeScriptRequiredContexts = getAssigneeScriptRequiredContexts();
+
+		String assigneeScriptRequiredContexts = kaleoTaskAssignmentCacheModel.assigneeScriptRequiredContexts;
+
+		if ((assigneeScriptRequiredContexts != null) &&
+				(assigneeScriptRequiredContexts.length() == 0)) {
+			kaleoTaskAssignmentCacheModel.assigneeScriptRequiredContexts = null;
+		}
+
 		return kaleoTaskAssignmentCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(33);
+		StringBundler sb = new StringBundler(35);
 
 		sb.append("{kaleoTaskAssignmentId=");
 		sb.append(getKaleoTaskAssignmentId());
@@ -730,13 +764,15 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 		sb.append(getAssigneeScript());
 		sb.append(", assigneeScriptLanguage=");
 		sb.append(getAssigneeScriptLanguage());
+		sb.append(", assigneeScriptRequiredContexts=");
+		sb.append(getAssigneeScriptRequiredContexts());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(52);
+		StringBundler sb = new StringBundler(55);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment");
@@ -806,6 +842,10 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 			"<column><column-name>assigneeScriptLanguage</column-name><column-value><![CDATA[");
 		sb.append(getAssigneeScriptLanguage());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>assigneeScriptRequiredContexts</column-name><column-value><![CDATA[");
+		sb.append(getAssigneeScriptRequiredContexts());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -841,6 +881,7 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 	private String _assigneeActionId;
 	private String _assigneeScript;
 	private String _assigneeScriptLanguage;
+	private String _assigneeScriptRequiredContexts;
 	private long _columnBitmask;
 	private KaleoTaskAssignment _escapedModelProxy;
 }

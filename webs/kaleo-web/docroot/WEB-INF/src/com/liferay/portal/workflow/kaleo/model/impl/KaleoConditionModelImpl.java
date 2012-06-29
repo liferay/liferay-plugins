@@ -70,9 +70,10 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 			{ "kaleoDefinitionId", Types.BIGINT },
 			{ "kaleoNodeId", Types.BIGINT },
 			{ "script", Types.CLOB },
-			{ "scriptLanguage", Types.VARCHAR }
+			{ "scriptLanguage", Types.VARCHAR },
+			{ "scriptRequiredContexts", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KaleoCondition (kaleoConditionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,script TEXT null,scriptLanguage VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table KaleoCondition (kaleoConditionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,script TEXT null,scriptLanguage VARCHAR(75) null,scriptRequiredContexts VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table KaleoCondition";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoCondition.kaleoConditionId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY KaleoCondition.kaleoConditionId ASC";
@@ -136,6 +137,7 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 		attributes.put("kaleoNodeId", getKaleoNodeId());
 		attributes.put("script", getScript());
 		attributes.put("scriptLanguage", getScriptLanguage());
+		attributes.put("scriptRequiredContexts", getScriptRequiredContexts());
 
 		return attributes;
 	}
@@ -206,6 +208,13 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 
 		if (scriptLanguage != null) {
 			setScriptLanguage(scriptLanguage);
+		}
+
+		String scriptRequiredContexts = (String)attributes.get(
+				"scriptRequiredContexts");
+
+		if (scriptRequiredContexts != null) {
+			setScriptRequiredContexts(scriptRequiredContexts);
 		}
 	}
 
@@ -358,6 +367,19 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 		_scriptLanguage = scriptLanguage;
 	}
 
+	public String getScriptRequiredContexts() {
+		if (_scriptRequiredContexts == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _scriptRequiredContexts;
+		}
+	}
+
+	public void setScriptRequiredContexts(String scriptRequiredContexts) {
+		_scriptRequiredContexts = scriptRequiredContexts;
+	}
+
 	public long getColumnBitmask() {
 		return _columnBitmask;
 	}
@@ -401,6 +423,7 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 		kaleoConditionImpl.setKaleoNodeId(getKaleoNodeId());
 		kaleoConditionImpl.setScript(getScript());
 		kaleoConditionImpl.setScriptLanguage(getScriptLanguage());
+		kaleoConditionImpl.setScriptRequiredContexts(getScriptRequiredContexts());
 
 		kaleoConditionImpl.resetOriginalValues();
 
@@ -534,12 +557,21 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 			kaleoConditionCacheModel.scriptLanguage = null;
 		}
 
+		kaleoConditionCacheModel.scriptRequiredContexts = getScriptRequiredContexts();
+
+		String scriptRequiredContexts = kaleoConditionCacheModel.scriptRequiredContexts;
+
+		if ((scriptRequiredContexts != null) &&
+				(scriptRequiredContexts.length() == 0)) {
+			kaleoConditionCacheModel.scriptRequiredContexts = null;
+		}
+
 		return kaleoConditionCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("{kaleoConditionId=");
 		sb.append(getKaleoConditionId());
@@ -563,13 +595,15 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 		sb.append(getScript());
 		sb.append(", scriptLanguage=");
 		sb.append(getScriptLanguage());
+		sb.append(", scriptRequiredContexts=");
+		sb.append(getScriptRequiredContexts());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(40);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.workflow.kaleo.model.KaleoCondition");
@@ -619,6 +653,10 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 			"<column><column-name>scriptLanguage</column-name><column-value><![CDATA[");
 		sb.append(getScriptLanguage());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>scriptRequiredContexts</column-name><column-value><![CDATA[");
+		sb.append(getScriptRequiredContexts());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -647,6 +685,7 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 	private boolean _setOriginalKaleoNodeId;
 	private String _script;
 	private String _scriptLanguage;
+	private String _scriptRequiredContexts;
 	private long _columnBitmask;
 	private KaleoCondition _escapedModelProxy;
 }

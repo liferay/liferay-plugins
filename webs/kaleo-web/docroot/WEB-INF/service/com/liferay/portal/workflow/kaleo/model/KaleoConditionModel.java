@@ -234,6 +234,21 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 	 */
 	public void setScriptLanguage(String scriptLanguage);
 
+	/**
+	 * Returns the script required contexts of this kaleo condition.
+	 *
+	 * @return the script required contexts of this kaleo condition
+	 */
+	@AutoEscape
+	public String getScriptRequiredContexts();
+
+	/**
+	 * Sets the script required contexts of this kaleo condition.
+	 *
+	 * @param scriptRequiredContexts the script required contexts of this kaleo condition
+	 */
+	public void setScriptRequiredContexts(String scriptRequiredContexts);
+
 	public boolean isNew();
 
 	public void setNew(boolean n);

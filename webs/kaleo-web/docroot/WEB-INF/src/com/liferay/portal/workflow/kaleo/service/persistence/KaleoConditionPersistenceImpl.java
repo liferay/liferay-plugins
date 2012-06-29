@@ -452,6 +452,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		kaleoConditionImpl.setKaleoNodeId(kaleoCondition.getKaleoNodeId());
 		kaleoConditionImpl.setScript(kaleoCondition.getScript());
 		kaleoConditionImpl.setScriptLanguage(kaleoCondition.getScriptLanguage());
+		kaleoConditionImpl.setScriptRequiredContexts(kaleoCondition.getScriptRequiredContexts());
 
 		return kaleoConditionImpl;
 	}

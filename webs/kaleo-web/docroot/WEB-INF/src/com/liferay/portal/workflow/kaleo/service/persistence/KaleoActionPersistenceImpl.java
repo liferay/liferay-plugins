@@ -460,6 +460,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 		kaleoActionImpl.setExecutionType(kaleoAction.getExecutionType());
 		kaleoActionImpl.setScript(kaleoAction.getScript());
 		kaleoActionImpl.setScriptLanguage(kaleoAction.getScriptLanguage());
+		kaleoActionImpl.setScriptRequiredContexts(kaleoAction.getScriptRequiredContexts());
 		kaleoActionImpl.setPriority(kaleoAction.getPriority());
 
 		return kaleoActionImpl;

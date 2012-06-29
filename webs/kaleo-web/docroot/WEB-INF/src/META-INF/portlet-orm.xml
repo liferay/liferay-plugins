@@ -29,6 +29,7 @@
 			<basic name="executionType" />
 			<basic name="script" />
 			<basic name="scriptLanguage" />
+			<basic name="scriptRequiredContexts" />
 			<basic name="priority" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
@@ -53,6 +54,7 @@
 			<basic name="kaleoNodeId" />
 			<basic name="script" />
 			<basic name="scriptLanguage" />
+			<basic name="scriptRequiredContexts" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
@@ -328,6 +330,7 @@
 			<basic name="assigneeActionId" />
 			<basic name="assigneeScript" />
 			<basic name="assigneeScriptLanguage" />
+			<basic name="assigneeScriptRequiredContexts" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />

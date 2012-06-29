@@ -41,6 +41,7 @@ public class KaleoConditionSoap implements Serializable {
 		soapModel.setKaleoNodeId(model.getKaleoNodeId());
 		soapModel.setScript(model.getScript());
 		soapModel.setScriptLanguage(model.getScriptLanguage());
+		soapModel.setScriptRequiredContexts(model.getScriptRequiredContexts());
 
 		return soapModel;
 	}
@@ -181,6 +182,14 @@ public class KaleoConditionSoap implements Serializable {
 		_scriptLanguage = scriptLanguage;
 	}
 
+	public String getScriptRequiredContexts() {
+		return _scriptRequiredContexts;
+	}
+
+	public void setScriptRequiredContexts(String scriptRequiredContexts) {
+		_scriptRequiredContexts = scriptRequiredContexts;
+	}
+
 	private long _kaleoConditionId;
 	private long _groupId;
 	private long _companyId;
@@ -192,4 +201,5 @@ public class KaleoConditionSoap implements Serializable {
 	private long _kaleoNodeId;
 	private String _script;
 	private String _scriptLanguage;
+	private String _scriptRequiredContexts;
 }

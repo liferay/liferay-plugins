@@ -46,6 +46,7 @@ public class KaleoTaskAssignmentSoap implements Serializable {
 		soapModel.setAssigneeActionId(model.getAssigneeActionId());
 		soapModel.setAssigneeScript(model.getAssigneeScript());
 		soapModel.setAssigneeScriptLanguage(model.getAssigneeScriptLanguage());
+		soapModel.setAssigneeScriptRequiredContexts(model.getAssigneeScriptRequiredContexts());
 
 		return soapModel;
 	}
@@ -229,6 +230,15 @@ public class KaleoTaskAssignmentSoap implements Serializable {
 		_assigneeScriptLanguage = assigneeScriptLanguage;
 	}
 
+	public String getAssigneeScriptRequiredContexts() {
+		return _assigneeScriptRequiredContexts;
+	}
+
+	public void setAssigneeScriptRequiredContexts(
+		String assigneeScriptRequiredContexts) {
+		_assigneeScriptRequiredContexts = assigneeScriptRequiredContexts;
+	}
+
 	private long _kaleoTaskAssignmentId;
 	private long _groupId;
 	private long _companyId;
@@ -245,4 +255,5 @@ public class KaleoTaskAssignmentSoap implements Serializable {
 	private String _assigneeActionId;
 	private String _assigneeScript;
 	private String _assigneeScriptLanguage;
+	private String _assigneeScriptRequiredContexts;
 }

@@ -46,6 +46,7 @@ public class KaleoActionSoap implements Serializable {
 		soapModel.setExecutionType(model.getExecutionType());
 		soapModel.setScript(model.getScript());
 		soapModel.setScriptLanguage(model.getScriptLanguage());
+		soapModel.setScriptRequiredContexts(model.getScriptRequiredContexts());
 		soapModel.setPriority(model.getPriority());
 
 		return soapModel;
@@ -227,6 +228,14 @@ public class KaleoActionSoap implements Serializable {
 		_scriptLanguage = scriptLanguage;
 	}
 
+	public String getScriptRequiredContexts() {
+		return _scriptRequiredContexts;
+	}
+
+	public void setScriptRequiredContexts(String scriptRequiredContexts) {
+		_scriptRequiredContexts = scriptRequiredContexts;
+	}
+
 	public int getPriority() {
 		return _priority;
 	}
@@ -251,5 +260,6 @@ public class KaleoActionSoap implements Serializable {
 	private String _executionType;
 	private String _script;
 	private String _scriptLanguage;
+	private String _scriptRequiredContexts;
 	private int _priority;
 }

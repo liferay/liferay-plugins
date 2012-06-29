@@ -517,6 +517,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		kaleoTaskAssignmentImpl.setAssigneeActionId(kaleoTaskAssignment.getAssigneeActionId());
 		kaleoTaskAssignmentImpl.setAssigneeScript(kaleoTaskAssignment.getAssigneeScript());
 		kaleoTaskAssignmentImpl.setAssigneeScriptLanguage(kaleoTaskAssignment.getAssigneeScriptLanguage());
+		kaleoTaskAssignmentImpl.setAssigneeScriptRequiredContexts(kaleoTaskAssignment.getAssigneeScriptRequiredContexts());
 
 		return kaleoTaskAssignmentImpl;
 	}

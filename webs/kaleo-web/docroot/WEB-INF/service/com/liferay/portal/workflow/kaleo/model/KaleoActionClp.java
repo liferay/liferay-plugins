@@ -82,6 +82,7 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		attributes.put("executionType", getExecutionType());
 		attributes.put("script", getScript());
 		attributes.put("scriptLanguage", getScriptLanguage());
+		attributes.put("scriptRequiredContexts", getScriptRequiredContexts());
 		attributes.put("priority", getPriority());
 
 		return attributes;
@@ -183,6 +184,13 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 
 		if (scriptLanguage != null) {
 			setScriptLanguage(scriptLanguage);
+		}
+
+		String scriptRequiredContexts = (String)attributes.get(
+				"scriptRequiredContexts");
+
+		if (scriptRequiredContexts != null) {
+			setScriptRequiredContexts(scriptRequiredContexts);
 		}
 
 		Integer priority = (Integer)attributes.get("priority");
@@ -328,6 +336,14 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		_scriptLanguage = scriptLanguage;
 	}
 
+	public String getScriptRequiredContexts() {
+		return _scriptRequiredContexts;
+	}
+
+	public void setScriptRequiredContexts(String scriptRequiredContexts) {
+		_scriptRequiredContexts = scriptRequiredContexts;
+	}
+
 	public int getPriority() {
 		return _priority;
 	}
@@ -379,6 +395,7 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		clone.setExecutionType(getExecutionType());
 		clone.setScript(getScript());
 		clone.setScriptLanguage(getScriptLanguage());
+		clone.setScriptRequiredContexts(getScriptRequiredContexts());
 		clone.setPriority(getPriority());
 
 		return clone;
@@ -436,7 +453,7 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(35);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("{kaleoActionId=");
 		sb.append(getKaleoActionId());
@@ -470,6 +487,8 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		sb.append(getScript());
 		sb.append(", scriptLanguage=");
 		sb.append(getScriptLanguage());
+		sb.append(", scriptRequiredContexts=");
+		sb.append(getScriptRequiredContexts());
 		sb.append(", priority=");
 		sb.append(getPriority());
 		sb.append("}");
@@ -478,7 +497,7 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(55);
+		StringBundler sb = new StringBundler(58);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.workflow.kaleo.model.KaleoAction");
@@ -549,6 +568,10 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		sb.append(getScriptLanguage());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>scriptRequiredContexts</column-name><column-value><![CDATA[");
+		sb.append(getScriptRequiredContexts());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>priority</column-name><column-value><![CDATA[");
 		sb.append(getPriority());
 		sb.append("]]></column-value></column>");
@@ -575,6 +598,7 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 	private String _executionType;
 	private String _script;
 	private String _scriptLanguage;
+	private String _scriptRequiredContexts;
 	private int _priority;
 	private BaseModel<?> _kaleoActionRemoteModel;
 }
