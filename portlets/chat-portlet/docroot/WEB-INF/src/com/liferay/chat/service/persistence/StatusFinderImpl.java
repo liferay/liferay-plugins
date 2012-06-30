@@ -104,6 +104,7 @@ public class StatusFinderImpl
 			qPos.add(userId);
 			qPos.add(type);
 			qPos.add(modifiedDate);
+			qPos.add(userId);
 
 			return (List<Object[]>)QueryUtil.list(q, getDialect(), start, end);
 		}
@@ -140,6 +141,7 @@ public class StatusFinderImpl
 
 			qPos.add(userId);
 			qPos.add(modifiedDate);
+			qPos.add(userId);
 
 			return (List<Object[]>)QueryUtil.list(q, getDialect(), start, end);
 		}
