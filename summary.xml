@@ -2062,6 +2062,30 @@
 		</releng>
 	</plugin>
 	<plugin>
+		<artifact-id>test-cache-configuration-portlet</artifact-id>
+		<name>Test Cache Configuration</name>
+		<type>portlet</type>
+		<tags>test</tags>
+		<short-description></short-description>
+		<long-description></long-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>LGPL</licenses>
+		<releng>
+			<bundle>false</bundle>
+			<category></category>
+			<compatibility>6.1.20</compatibility>
+			<demo-url></demo-url>
+			<labs>true</labs>
+			<marketplace>false</marketplace>
+			<parent-app></parent-app>
+			<public>true</public>
+			<standalone-app>true</standalone-app>
+			<supported>false</supported>
+		</releng>
+	</plugin>
+	<plugin>
 		<artifact-id>test-clp-portlet</artifact-id>
 		<name>Test Class Loader Proxy</name>
 		<type>portlet</type>
