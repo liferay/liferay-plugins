@@ -79,7 +79,8 @@
 				(SocialRelation.userId1 = ?) AND
 				(SocialRelation.type_ = ?) AND
 				(Chat_Status.modifiedDate > ?) AND
-				(Chat_Status.online_ = [$TRUE$])
+				(Chat_Status.online_ = [$TRUE$]) AND
+				(User.userId != ?)
 			ORDER BY
 				Chat_Status.awake ASC,
 				User_.firstName ASC,
@@ -111,7 +112,8 @@
 					)
 				) AND
 				(Chat_Status.modifiedDate > ?) AND
-				(Chat_Status.online_ = [$TRUE$])
+				(Chat_Status.online_ = [$TRUE$]) AND
+				(User_.userId != ?)
 			ORDER BY
 				Chat_Status.awake ASC,
 				User_.firstName ASC,

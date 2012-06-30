@@ -89,10 +89,6 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 			String fullName = ContactConstants.getFullName(
 				firstName, middleName, lastName);
 
-			if (userId == pollerRequest.getUserId()) {
-				continue;
-			}
-
 			Status buddyStatus = StatusLocalServiceUtil.getUserStatus(userId);
 
 			awake = buddyStatus.getAwake();
