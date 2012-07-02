@@ -135,7 +135,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 		<aui:field-wrapper cssClass="calendar-portlet-recurrence-container" inlineField="<%= true %>" label="">
 			<aui:input checked="<%= recurring %>" name="repeat" type="checkbox" />
 
-			<a class="calendar-portlet-recurrence-summary" href="javascript:void(0);" id="<portlet:namespace />summary"></a>
+			<a class="calendar-portlet-recurrence-summary" href="javascript:;" id="<portlet:namespace />summary"></a>
 		</aui:field-wrapper>
 	</aui:fieldset>
 
@@ -212,7 +212,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 				</aui:column>
 
 				<aui:column columnWidth="100">
-					<a class="aui-toggler-header-collapsed calendar-portlet-list-header" href="javascript:void(0);" id="<portlet:namespace />checkAvailability">
+					<a class="aui-toggler-header-collapsed calendar-portlet-list-header" href="javascript:;" id="<portlet:namespace />checkAvailability">
 						<span class="calendar-portlet-list-arrow"></span>
 
 						<span class="calendar-portlet-list-text"><liferay-ui:message key="resources-availability" /></span>
@@ -245,6 +245,10 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 </aui:form>
 
 <aui:script>
+	function <portlet:namespace />filterCalendarBookings(calendarBooking) {
+		return <%= calendarBookingId %> !== calendarBooking.calendarBookingId;
+	}
+
 	Liferay.provide(
 		window,
 		'<portlet:namespace />updateCalendarBooking',
@@ -272,14 +276,12 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 	<c:if test="<%= calendarBooking == null %>">
 		document.<portlet:namespace />fm.<portlet:namespace />title_<%= LanguageUtil.getLanguageId(request) %>.value = decodeURIComponent('<%= HtmlUtil.escapeURL(title) %>');
 	</c:if>
-
-	window.<portlet:namespace />filterCalendarBookings = function(calendarBooking) {
-		return <%= calendarBookingId %> !== calendarBooking.calendarBookingId;
-	}
 </aui:script>
 
 <aui:script use="json,liferay-calendar-date-picker-util,liferay-calendar-list,liferay-calendar-recurrence-util,liferay-calendar-reminders,liferay-calendar-simple-menu">
 	var defaultCalendarId = <%= calendarId %>;
+
+	var scheduler = window.<portlet:namespace />scheduler;
 
 	var removeCalendarResource = function(calendarList, calendar, menu) {
 		calendarList.remove(calendar);
@@ -310,7 +312,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 			after: {
 				expandedChange: function(event) {
 					if (event.newVal) {
-						var activeView = <portlet:namespace />scheduler.get('activeView');
+						var activeView = scheduler.get('activeView');
 
 						activeView._fillHeight();
 					}
@@ -395,7 +397,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 					syncVisibleCalendarsMap();
 
-					window.<portlet:namespace />scheduler.loadCalendarBookings();
+					scheduler.loadCalendarBookings();
 				}
 			},
 			boundingBox: '#<portlet:namespace />calendarListPending',
@@ -417,7 +419,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 					syncVisibleCalendarsMap();
 
-					window.<portlet:namespace />scheduler.loadCalendarBookings();
+					scheduler.loadCalendarBookings();
 				}
 			},
 			boundingBox: '#<portlet:namespace />calendarListAccepted',
@@ -439,7 +441,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 					syncVisibleCalendarsMap();
 
-					window.<portlet:namespace />scheduler.loadCalendarBookings();
+					scheduler.loadCalendarBookings();
 				}
 			},
 			boundingBox: '#<portlet:namespace />calendarListDeclined',
@@ -461,7 +463,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 					syncVisibleCalendarsMap();
 
-					window.<portlet:namespace />scheduler.loadCalendarBookings();
+					scheduler.loadCalendarBookings();
 				}
 			},
 			boundingBox: '#<portlet:namespace />calendarListMaybe',
@@ -498,7 +500,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 					event.stopPropagation();
 				}
 			},
-			scheduler: window.<portlet:namespace />scheduler,
+			scheduler: scheduler,
 			startDate: Liferay.CalendarUtil.toUserTimeZone(new Date(<%= startDate %>))
 		}
 	);
@@ -506,7 +508,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 	Liferay.DatePickerUtil.linkToSchedulerEvent('#<portlet:namespace />endDateContainer', window.<portlet:namespace />placeholderSchedulerEvent, 'endDate');
 	Liferay.DatePickerUtil.linkToSchedulerEvent('#<portlet:namespace />startDateContainer', window.<portlet:namespace />placeholderSchedulerEvent, 'startDate');
 
-	window.<portlet:namespace />scheduler.on(
+	scheduler.on(
 		{
 			eventsChange: function(event) {
 				var instance = this;

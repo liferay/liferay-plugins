@@ -196,7 +196,7 @@
 
 			Liferay.SimpleMenu = SimpleMenu;
 		},
-		'' ,
+		'',
 		{
 			requires: ['aui-base', 'aui-template', 'widget-position', 'widget-position-align', 'widget-position-constrain', 'widget-stack', 'widget-stdmod']
 		}
@@ -325,7 +325,7 @@
 						},
 
 						clear: function() {
-							var instance= this;
+							var instance = this;
 
 							instance.set('calendars', []);
 						},
@@ -594,7 +594,7 @@
 
 			var TPL_SIMPLE_COLOR_PICKER_ITEM = new A.Template(
 				'<tpl for="pallete">',
-					'<div class="', CSS_SIMPLE_COLOR_PICKER_ITEM, '" style="background-color: {.}', '; border-color:', '{.};','"></div>',
+					'<div class="', CSS_SIMPLE_COLOR_PICKER_ITEM, '" style="background-color: {.}', '; border-color:', '{.};', '"></div>',
 				'</tpl>'
 			);
 
@@ -836,9 +836,12 @@
 						'change',
 						function(event) {
 							var currentTarget = event.currentTarget;
+
 							var date = schedulerEvent.get(dateAttr);
 							var selectedSetter = selects.indexOf(currentTarget);
-							var setters = [ date.setMonth, date.setDate, date.setFullYear, date.setHours, date.setMinutes, date.setHours ];
+
+							var setters = [date.setMonth, date.setDate, date.setFullYear, date.setHours, date.setMinutes, date.setHours];
+
 							var value = toNumber(currentTarget.val());
 
 							if ((selectedSetter === 3) && (date.getHours() > 12)) {
@@ -850,7 +853,9 @@
 							}
 
 							setters[selectedSetter].call(date, value);
+
 							schedulerEvent.set(dateAttr, date);
+
 							schedulerEvent.get('scheduler').syncEventsUI();
 						}
 					);
@@ -867,11 +872,13 @@
 
 					if (datePicker) {
 						datePicker.calendar.set('dates', [date]);
+
 						datePicker.syncUI();
 					}
 
 					var hours = date.getHours();
 					var minutes = date.getMinutes();
+
 					var amPm = (hours < 12) ? 0 : 1;
 
 					if (amPm === 1) {
@@ -906,10 +913,10 @@
 				},
 
 				INTERVAL_LABELS: {
-					DAILY:  Liferay.Language.get('days'),
-					WEEKLY:  Liferay.Language.get('weeks'),
-					MONTHLY:  Liferay.Language.get('months'),
-					YEARLY:  Liferay.Language.get('years')
+					DAILY: Liferay.Language.get('days'),
+					WEEKLY: Liferay.Language.get('weeks'),
+					MONTHLY: Liferay.Language.get('months'),
+					YEARLY: Liferay.Language.get('years')
 				},
 
 				MONTH_LABELS: [
@@ -936,27 +943,23 @@
 						template.push(recurrence.frequency);
 					}
 					else {
-						template.push(Liferay.Language.get('every'));
-						template.push(' {interval} {intervalLabel}');
+						template.push(Liferay.Language.get('every'), ' {interval} {intervalLabel}');
 					}
 
 					if ((recurrence.frequency == instance.FREQUENCY.WEEKLY) && (recurrence.weekdays.length > 0)) {
-						template.push(STR_SPACE);
-						template.push(Liferay.Language.get('on'));
-						template.push(' {weekDays}');
+						template.push(STR_SPACE, Liferay.Language.get('on'), ' {weekDays}');
 					}
 
 					if (recurrence.count && (recurrence.endValue === 'after')) {
-						template.push(', {count} ');
-						template.push(Liferay.Language.get('times'));
+						template.push(', {count} ', Liferay.Language.get('times'));
 					}
 					else if (recurrence.untilDate && (recurrence.endValue === 'on')) {
 						var untilDate = recurrence.untilDate;
 
-						template.push(STR_COMMA);
-						template.push(STR_SPACE);
-						template.push(Liferay.Language.get('until'));
 						template.push(
+							STR_COMMA,
+							STR_SPACE,
+							Liferay.Language.get('until'),
 							A.Lang.sub(
 								' {month} {date}, {year}',
 								{
