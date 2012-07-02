@@ -2231,7 +2231,7 @@ DB db = DBFactoryUtil.getDB();
 String dbType = db.getType();
 %>
 
-<c:if test="<%= !dbType.equals(DB.TYPE_HYPERSONIC) %>">
+<c:if test="<%= dbType.equals(DB.TYPE_MYSQL) %>">
 	<p>
 		<h3>Replace</h3>
 	</p>
@@ -2369,55 +2369,57 @@ String dbType = db.getType();
 
 </p>
 
-<p>
-	<h3>Truncate</h3>
-</p>
+<c:if test="<%= dbType.equals(DB.TYPE_MYSQL) %>">
+	<p>
+		<h3>Truncate</h3>
+	</p>
 
-<p>
+	<p>
 
-	<%
-	new SQLSecurityExceptionTest(out, themeDisplay, true) {
+		<%
+		new SQLSecurityExceptionTest(out, themeDisplay, true) {
 
-		protected void test() throws Exception {
-			testPreparedStatement("truncate table TestPACL_TruncateFailure");
-		}
+			protected void test() throws Exception {
+				testPreparedStatement("truncate table TestPACL_TruncateFailure");
+			}
 
-	};
+		};
 
-	new SQLSecurityExceptionTest(out, themeDisplay, true) {
+		new SQLSecurityExceptionTest(out, themeDisplay, true) {
 
-		protected void test() throws Exception {
-			testStatement("truncate table TestPACL_TruncateFailure");
-		}
+			protected void test() throws Exception {
+				testStatement("truncate table TestPACL_TruncateFailure");
+			}
 
-	};
+		};
 
-	new SQLSecurityExceptionTest(out, themeDisplay, false) {
+		new SQLSecurityExceptionTest(out, themeDisplay, false) {
 
-		protected void test() throws Exception {
-			executePreparedStatement("create table TestPACL_TruncateSuccess (userId bigint)");
+			protected void test() throws Exception {
+				executePreparedStatement("create table TestPACL_TruncateSuccess (userId bigint)");
 
-			testPreparedStatement("truncate table TestPACL_TruncateSuccess");
+				testPreparedStatement("truncate table TestPACL_TruncateSuccess");
 
-			executePreparedStatement("drop table TestPACL_TruncateSuccess");
-		}
+				executePreparedStatement("drop table TestPACL_TruncateSuccess");
+			}
 
-	};
+		};
 
-	new SQLSecurityExceptionTest(out, themeDisplay, false) {
+		new SQLSecurityExceptionTest(out, themeDisplay, false) {
 
-		protected void test() throws Exception {
-			executeStatement("create table TestPACL_TruncateSuccess (userId bigint)");
+			protected void test() throws Exception {
+				executeStatement("create table TestPACL_TruncateSuccess (userId bigint)");
 
-			testStatement("truncate table TestPACL_TruncateSuccess");
+				testStatement("truncate table TestPACL_TruncateSuccess");
 
-			executePreparedStatement("drop table TestPACL_TruncateSuccess");
-		}
+				executePreparedStatement("drop table TestPACL_TruncateSuccess");
+			}
 
-	};
-	%>
+		};
+		%>
 
-</p>
+	</p>
+</c:if>
 
 <p>
 	<h3>Update</h3>
