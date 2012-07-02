@@ -1,3 +1,4 @@
+<%@ page import="javax.portlet.PortletMode" %>
 <%--
 /**
  * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
@@ -101,7 +102,13 @@ if (selUser != null) {
 
 			<c:choose>
 				<c:when test="<%= extension %>">
-					var uri = '<liferay-portlet:actionURL name="updateFieldGroup" portletName="<%= PortletKeys.USERS_ADMIN %>" windowState="<%= LiferayWindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/users_admin/edit_user" /></liferay-portlet:actionURL>';
+					<%
+					Group controlPanelGroup = GroupLocalServiceUtil.getGroup(themeDisplay.getCompanyId(), GroupConstants.CONTROL_PANEL);
+
+					long controlPanelPlid = LayoutLocalServiceUtil.getDefaultPlid(controlPanelGroup.getGroupId(), true);
+					%>
+
+					var uri = '<liferay-portlet:actionURL plid="<%= controlPanelPlid %>" name="updateFieldGroup" portletName="<%= PortletKeys.MY_ACCOUNT %>" windowState="<%= LiferayWindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/my_account/edit_user" /></liferay-portlet:actionURL>';
 				</c:when>
 				<c:otherwise>
 					var uri = '<liferay-portlet:actionURL name="updateFieldGroup" />';
@@ -150,7 +157,7 @@ if (selUser != null) {
 
 <c:choose>
 	<c:when test="<%= extension %>">
-		<%= StringUtil.replace(html, renderResponse.getNamespace(), "_" + PortletKeys.USERS_ADMIN + "_") %>
+		<%= StringUtil.replace(html, renderResponse.getNamespace(), "_" + PortletKeys.MY_ACCOUNT + "_") %>
 	</c:when>
 	<c:otherwise>
 		<%= html %>
