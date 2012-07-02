@@ -52,8 +52,8 @@ User selUser = (User)request.getAttribute("user.selUser");
 			long controlPanelPlid = LayoutLocalServiceUtil.getDefaultPlid(controlPanelGroup.getGroupId(), true);
 			%>
 
-			<liferay-portlet:renderURL plid="<%= controlPanelPlid %>" portletName="<%= PortletKeys.USERS_ADMIN %>" refererPlid="<%= plid %>" var="editUserPortraitURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-				<portlet:param name="struts_action" value="/users_admin/edit_user_portrait" />
+			<liferay-portlet:renderURL plid="<%= controlPanelPlid %>" portletName="<%= PortletKeys.MY_ACCOUNT %>" refererPlid="<%= plid %>" var="editUserPortraitURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+				<portlet:param name="struts_action" value="/my_account/edit_user_portrait" />
 				<portlet:param name="redirect" value="<%= currentURL %>" />
 				<portlet:param name="p_u_i_d" value="<%= String.valueOf(selUser.getUserId()) %>" />
 				<portlet:param name="portrait_id" value="<%= String.valueOf(selUser.getPortraitId()) %>" />
@@ -71,7 +71,7 @@ User selUser = (User)request.getAttribute("user.selUser");
 </aui:fieldset>
 
 <aui:script use="aui-base">
-	window['<%= PortalUtil.getPortletNamespace(PortletKeys.USERS_ADMIN) %>changeLogo'] = function (logoURL) {
+	window['<%= PortalUtil.getPortletNamespace(PortletKeys.MY_ACCOUNT) %>changeLogo'] = function (logoURL) {
 		var avatarDialog = A.one('#<portlet:namespace />userProfileImage .avatar');
 
 		if (avatarDialog) {
@@ -82,6 +82,12 @@ User selUser = (User)request.getAttribute("user.selUser");
 
 		if (avatarSidebar) {
 			avatarSidebar.attr('src', logoURL);
+		}
+
+		var avatarDockbar = A.one('.user-fullname.user-portrait img');
+
+		if (avatarDockbar) {
+			avatarDockbar.attr('src', logoURL);
 		}
 	}
 </aui:script>
