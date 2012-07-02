@@ -78,8 +78,6 @@ public class HotDeployMessageListener extends BaseMessageListener {
 		String layoutSetPrototypeName = TextFormatter.format(
 			servletContextName, TextFormatter.J);
 
-		//layoutSetPrototypeName += " " + System.currentTimeMillis();
-
 		Set<String> resourcePaths = servletContext.getResourcePaths(
 			_RESOURCES_DIR);
 		URL larURL = servletContext.getResource(
@@ -117,8 +115,8 @@ public class HotDeployMessageListener extends BaseMessageListener {
 
 					importer = larImporter;
 				}
-				else if ((resourcePaths != null) &&
-						 (!resourcePaths.isEmpty()) && (larURL == null)) {
+				else if ((resourcePaths != null) && !resourcePaths.isEmpty() &&
+						 (larURL == null)) {
 
 					importer = getResourceImporter();
 
@@ -142,8 +140,7 @@ public class HotDeployMessageListener extends BaseMessageListener {
 					Message newMessage = new Message();
 
 					newMessage.put("companyId", company.getCompanyId());
-					newMessage.put(
-						"layoutSetPrototypeId", 0);
+					newMessage.put("layoutSetPrototypeId", 0);
 					newMessage.put("servletContextName", servletContextName);
 					newMessage.put("error", "no valid importer found");
 
@@ -247,10 +244,10 @@ public class HotDeployMessageListener extends BaseMessageListener {
 		return false;
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(
-		HotDeployMessageListener.class);
-
 	private static final String _RESOURCES_DIR =
 		"/WEB-INF/classes/resources-importer/";
+
+	private static Log _log = LogFactoryUtil.getLog(
+		HotDeployMessageListener.class);
 
 }
