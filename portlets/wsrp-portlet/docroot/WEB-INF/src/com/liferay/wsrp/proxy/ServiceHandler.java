@@ -14,6 +14,7 @@
 
 package com.liferay.wsrp.proxy;
 
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
@@ -24,7 +25,6 @@ import com.liferay.wsrp.util.PortletPropsValues;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
 
 import java.net.URL;
 
@@ -139,7 +139,7 @@ public class ServiceHandler implements InvocationHandler {
 		InvocationHandler invocationHandler =
 			(InvocationHandler)ConstructorUtils.invokeConstructor(clazz, stub);
 
-		return Proxy.newProxyInstance(
+		return ProxyUtil.newProxyInstance(
 			ServiceHandler.class.getClassLoader(), new Class[] {proxyInterface},
 			invocationHandler);
 	}

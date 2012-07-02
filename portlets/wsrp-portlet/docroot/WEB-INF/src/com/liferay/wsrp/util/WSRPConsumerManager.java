@@ -17,6 +17,7 @@ package com.liferay.wsrp.util;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
@@ -24,8 +25,6 @@ import com.liferay.portal.kernel.xml.Namespace;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portlet.PortletQNameUtil;
 import com.liferay.wsrp.proxy.ServiceHandler;
-
-import java.lang.reflect.Proxy;
 
 import java.net.URL;
 
@@ -73,7 +72,7 @@ public class WSRPConsumerManager {
 			ServiceHandler serviceHandler = new ServiceHandler(
 				forwardCookies, userToken, _isV2(serviceElements));
 
-			_service = (WSRP_v2_Service)Proxy.newProxyInstance(
+			_service = (WSRP_v2_Service)ProxyUtil.newProxyInstance(
 				WSRP_v2_Service.class.getClassLoader(),
 				new Class[] {WSRP_v2_Service.class}, serviceHandler);
 
