@@ -77,7 +77,7 @@ public class FileSystemImporter extends BaseImporter {
 			!_resourcesDir.canRead()) {
 
 			throw new IllegalArgumentException(
-				"the resource directory specified is not accessible: " +
+				"The resource directory specified is not accessible: " +
 					resourcesDir);
 		}
 
@@ -121,24 +121,6 @@ public class FileSystemImporter extends BaseImporter {
 		}
 	}
 
-	protected void doAddDLFileEntries(
-			String name, InputStream inputStream, long length)
-		throws Exception {
-
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setScopeGroupId(groupId);
-
-		String mimeType = MimeTypesUtil.getContentType(name);
-
-		FileEntry fileEntry = DLAppLocalServiceUtil.addFileEntry(
-			userId, groupId, 0, name, mimeType, name,
-			StringPool.BLANK, StringPool.BLANK, inputStream, length,
-			serviceContext);
-
-		_fileEntries.put(name, fileEntry);
-	}
-
 	protected void addJournalArticles(
 			String journalStructureId, String journalTemplateId,
 			String articlesDirName)
@@ -174,41 +156,6 @@ public class FileSystemImporter extends BaseImporter {
 		}
 	}
 
-	protected void doAddJournalArticles(
-			String journalStructureId, String journalTemplateId, String name,
-			InputStream inputStream)
-		throws Exception {
-
-		String journalArticleId = getJournalArticleId(name);
-
-		String title = getName(name);
-
-		Map<Locale, String> titleMap = getNameMap(title);
-
-		String content = StringUtil.read(inputStream);
-
-		content = processJournalArticleContent(content);
-
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setScopeGroupId(groupId);
-
-		JournalArticle journalArticle =
-			JournalArticleLocalServiceUtil.addArticle(
-				userId, groupId, 0, 0, 0, journalArticleId, false,
-				JournalArticleConstants.VERSION_DEFAULT, titleMap, null,
-				content, "general", journalStructureId, journalTemplateId,
-				StringPool.BLANK, 1, 1, 2010, 0, 0, 0, 0, 0, 0, 0, true, 0,
-				0, 0, 0, 0, true, true, false, StringPool.BLANK, null,
-				new HashMap<String, byte[]>(), StringPool.BLANK,
-				serviceContext);
-
-		JournalArticleLocalServiceUtil.updateStatus(
-			userId, groupId, journalArticle.getArticleId(),
-			journalArticle.getVersion(), WorkflowConstants.STATUS_APPROVED,
-			StringPool.BLANK, serviceContext);
-	}
-
 	protected void addJournalStructures(String structuresDirName)
 		throws Exception {
 
@@ -238,24 +185,6 @@ public class FileSystemImporter extends BaseImporter {
 				}
 			}
 		}
-	}
-
-	protected void doAddJournalStructures(String name, InputStream inputStream)
-		throws Exception {
-
-		name = getName(name);
-
-		Map<Locale, String> nameMap = getNameMap(name);
-
-		String xsd = StringUtil.read(inputStream);
-
-		JournalStructure journalStructure =
-			JournalStructureLocalServiceUtil.addStructure(
-				userId, groupId, StringPool.BLANK, true, StringPool.BLANK,
-				nameMap, null, xsd, new ServiceContext());
-
-		addJournalTemplates(
-			journalStructure.getStructureId(), "/journal/templates/" + name);
 	}
 
 	protected void addJournalTemplates(
@@ -289,28 +218,6 @@ public class FileSystemImporter extends BaseImporter {
 				}
 			}
 		}
-	}
-
-	protected void doAddJournalTemplates(
-			String journalStructureId, String name, InputStream inputStream)
-		throws Exception {
-
-		name = getName(name);
-
-		Map<Locale, String> nameMap = getNameMap(name);
-
-		String xsl = StringUtil.read(inputStream);
-
-		JournalTemplate journalTemplate =
-			JournalTemplateLocalServiceUtil.addTemplate(
-				userId, groupId, StringPool.BLANK, true, journalStructureId,
-				nameMap, null, xsl, true,
-				JournalTemplateConstants.LANG_TYPE_VM, false, false,
-				StringPool.BLANK, null, new ServiceContext());
-
-		addJournalArticles(
-			journalStructureId, journalTemplate.getTemplateId(),
-			"/journal/articles/" + name);
 	}
 
 	protected void addLayout(long parentLayoutId, JSONObject layoutJSONObject)
@@ -441,9 +348,21 @@ public class FileSystemImporter extends BaseImporter {
 		}
 	}
 
-	protected void addLayouts(String siteMapName)
+	protected void addLayouts(long parentLayoutId, JSONArray layoutsJSONArray)
 		throws Exception {
 
+		if (layoutsJSONArray == null) {
+			return;
+		}
+
+		for (int i = 0; i < layoutsJSONArray.length(); i++) {
+			JSONObject layoutJSONObject = layoutsJSONArray.getJSONObject(i);
+
+			addLayout(parentLayoutId, layoutJSONObject);
+		}
+	}
+
+	protected void addLayouts(String siteMapName) throws Exception {
 		File sitemapJSONFile = new File(_resourcesDir, siteMapName);
 
 		if (!sitemapJSONFile.exists() || sitemapJSONFile.isDirectory() ||
@@ -467,6 +386,97 @@ public class FileSystemImporter extends BaseImporter {
 		}
 	}
 
+	protected void doAddDLFileEntries(
+			String name, InputStream inputStream, long length)
+		throws Exception {
+
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setScopeGroupId(groupId);
+
+		String mimeType = MimeTypesUtil.getContentType(name);
+
+		FileEntry fileEntry = DLAppLocalServiceUtil.addFileEntry(
+			userId, groupId, 0, name, mimeType, name, StringPool.BLANK,
+			StringPool.BLANK, inputStream, length, serviceContext);
+
+		_fileEntries.put(name, fileEntry);
+	}
+
+	protected void doAddJournalArticles(
+			String journalStructureId, String journalTemplateId, String name,
+			InputStream inputStream)
+		throws Exception {
+
+		String journalArticleId = getJournalArticleId(name);
+
+		String title = getName(name);
+
+		Map<Locale, String> titleMap = getNameMap(title);
+
+		String content = StringUtil.read(inputStream);
+
+		content = processJournalArticleContent(content);
+
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setScopeGroupId(groupId);
+
+		JournalArticle journalArticle =
+			JournalArticleLocalServiceUtil.addArticle(
+				userId, groupId, 0, 0, 0, journalArticleId, false,
+				JournalArticleConstants.VERSION_DEFAULT, titleMap, null,
+				content, "general", journalStructureId, journalTemplateId,
+				StringPool.BLANK, 1, 1, 2010, 0, 0, 0, 0, 0, 0, 0, true, 0, 0,
+				0, 0, 0, true, true, false, StringPool.BLANK, null,
+				new HashMap<String, byte[]>(), StringPool.BLANK,
+				serviceContext);
+
+		JournalArticleLocalServiceUtil.updateStatus(
+			userId, groupId, journalArticle.getArticleId(),
+			journalArticle.getVersion(), WorkflowConstants.STATUS_APPROVED,
+			StringPool.BLANK, serviceContext);
+	}
+
+	protected void doAddJournalStructures(String name, InputStream inputStream)
+		throws Exception {
+
+		name = getName(name);
+
+		Map<Locale, String> nameMap = getNameMap(name);
+
+		String xsd = StringUtil.read(inputStream);
+
+		JournalStructure journalStructure =
+			JournalStructureLocalServiceUtil.addStructure(
+				userId, groupId, StringPool.BLANK, true, StringPool.BLANK,
+				nameMap, null, xsd, new ServiceContext());
+
+		addJournalTemplates(
+			journalStructure.getStructureId(), "/journal/templates/" + name);
+	}
+
+	protected void doAddJournalTemplates(
+			String journalStructureId, String name, InputStream inputStream)
+		throws Exception {
+
+		name = getName(name);
+
+		Map<Locale, String> nameMap = getNameMap(name);
+
+		String xsl = StringUtil.read(inputStream);
+
+		JournalTemplate journalTemplate =
+			JournalTemplateLocalServiceUtil.addTemplate(
+				userId, groupId, StringPool.BLANK, true, journalStructureId,
+				nameMap, null, xsl, true, JournalTemplateConstants.LANG_TYPE_VM,
+				false, false, StringPool.BLANK, null, new ServiceContext());
+
+		addJournalArticles(
+			journalStructureId, journalTemplate.getTemplateId(),
+			"/journal/articles/" + name);
+	}
+
 	protected void doAddLayouts(InputStream inputStream) throws Exception {
 		String sitemapJSON = getSitemapJSON(inputStream);
 
@@ -484,20 +494,6 @@ public class FileSystemImporter extends BaseImporter {
 		JSONArray layoutsJSONArray = sitemapJSONObject.getJSONArray("layouts");
 
 		addLayouts(LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, layoutsJSONArray);
-	}
-
-	protected void addLayouts(long parentLayoutId, JSONArray layoutsJSONArray)
-		throws Exception {
-
-		if (layoutsJSONArray == null) {
-			return;
-		}
-
-		for (int i = 0; i < layoutsJSONArray.length(); i++) {
-			JSONObject layoutJSONObject = layoutsJSONArray.getJSONObject(i);
-
-			addLayout(parentLayoutId, layoutJSONObject);
-		}
 	}
 
 	protected JSONObject getDefaultPortletJSONObject(String articleId) {

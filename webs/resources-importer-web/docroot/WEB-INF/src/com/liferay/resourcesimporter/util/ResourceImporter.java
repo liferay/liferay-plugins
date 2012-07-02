@@ -43,9 +43,7 @@ public class ResourceImporter extends FileSystemImporter {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	protected void addDLFileEntries(String fileEntriesDir)
-		throws Exception {
-
+	protected void addDLFileEntries(String fileEntriesDir) throws Exception {
 		Set<String> resourcePaths = servletContext.getResourcePaths(
 			resourcesDir.concat(fileEntriesDir));
 
@@ -56,7 +54,7 @@ public class ResourceImporter extends FileSystemImporter {
 		for (String resourcePath : resourcePaths) {
 			URL resourceURL = servletContext.getResource(resourcePath);
 
-			if(resourceURL.getPath().endsWith(StringPool.SLASH)) {
+			if (resourceURL.getPath().endsWith(StringPool.SLASH)) {
 				continue;
 			}
 
@@ -93,7 +91,7 @@ public class ResourceImporter extends FileSystemImporter {
 		for (String resourcePath : resourcePaths) {
 			URL resourceURL = servletContext.getResource(resourcePath);
 
-			if(resourceURL.getPath().endsWith(StringPool.SLASH)) {
+			if (resourceURL.getPath().endsWith(StringPool.SLASH)) {
 				continue;
 			}
 
@@ -128,7 +126,7 @@ public class ResourceImporter extends FileSystemImporter {
 		for (String resourcePath : resourcePaths) {
 			URL resourceURL = servletContext.getResource(resourcePath);
 
-			if(resourceURL.getPath().endsWith(StringPool.SLASH)) {
+			if (resourceURL.getPath().endsWith(StringPool.SLASH)) {
 				continue;
 			}
 
@@ -162,7 +160,7 @@ public class ResourceImporter extends FileSystemImporter {
 		for (String resourcePath : resourcePaths) {
 			URL resourceURL = servletContext.getResource(resourcePath);
 
-			if(resourceURL.getPath().endsWith(StringPool.SLASH)) {
+			if (resourceURL.getPath().endsWith(StringPool.SLASH)) {
 				continue;
 			}
 
@@ -182,9 +180,7 @@ public class ResourceImporter extends FileSystemImporter {
 	}
 
 	@Override
-	protected void addLayouts(String siteMapName)
-		throws Exception {
-
+	protected void addLayouts(String siteMapName) throws Exception {
 		URL sitemapJSONURL = servletContext.getResource(
 			resourcesDir.concat(siteMapName));
 
