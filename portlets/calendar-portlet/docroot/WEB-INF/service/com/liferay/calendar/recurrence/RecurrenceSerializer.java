@@ -40,28 +40,28 @@ public class RecurrenceSerializer {
 		try {
 			Recurrence recurrence = new Recurrence();
 
-			RRule rrule = new RRule(data);
+			RRule rRule = new RRule(data);
 
-			recurrence.setCount(rrule.getCount());
+			recurrence.setCount(rRule.getCount());
 			recurrence.setFrequency(
-				Frequency.parse(String.valueOf(rrule.getFreq())));
-			recurrence.setInterval(rrule.getInterval());
+				Frequency.parse(String.valueOf(rRule.getFreq())));
+			recurrence.setInterval(rRule.getInterval());
 
-			DateValue dateValue = rrule.getUntil();
+			DateValue dateValue = rRule.getUntil();
 
 			if (dateValue != null) {
-				Calendar until = CalendarFactoryUtil.getCalendar();
+				Calendar jCalendar = CalendarFactoryUtil.getCalendar();
 
-				until.set(Calendar.DATE, dateValue.day());
-				until.set(Calendar.MONTH, dateValue.month());
-				until.set(Calendar.YEAR, dateValue.year());
+				jCalendar.set(Calendar.DATE, dateValue.day());
+				jCalendar.set(Calendar.MONTH, dateValue.month());
+				jCalendar.set(Calendar.YEAR, dateValue.year());
 
-				recurrence.setUntil(until);
+				recurrence.setUntil(jCalendar);
 			}
 
 			List<Weekday> weekdays = new ArrayList<Weekday>();
 
-			for (WeekdayNum weekdayNum : rrule.getByDay()) {
+			for (WeekdayNum weekdayNum : rRule.getByDay()) {
 				Weekday weekday = Weekday.parse(weekdayNum.wday.toString());
 
 				weekday.setPosition(weekdayNum.num);
@@ -81,39 +81,41 @@ public class RecurrenceSerializer {
 	}
 
 	public static String serialize(Recurrence recurrence) {
-		RRule rrule = new RRule();
+		RRule rRule = new RRule();
 
-		com.google.ical.values.Frequency freq =
-			com.google.ical.values.Frequency.valueOf(
-				String.valueOf(recurrence.getFrequency()));
-
-		rrule.setFreq(freq);
-		rrule.setInterval(recurrence.getInterval());
-		rrule.setCount(recurrence.getCount());
-
-		Calendar until = recurrence.getUntil();
-
-		if (until != null) {
-			DateValue dateValue = new DateValueImpl(
-				until.get(Calendar.YEAR), until.get(Calendar.MONTH),
-				until.get(Calendar.DATE));
-
-			rrule.setUntil(dateValue);
-		}
-
-		List<WeekdayNum> byDay = new ArrayList<WeekdayNum>();
+		List<WeekdayNum> weekdayNums = new ArrayList<WeekdayNum>();
 
 		for (Weekday weekday : recurrence.getWeekdays()) {
 			com.google.ical.values.Weekday wday = _weekdaysMap.get(weekday);
 
 			WeekdayNum weekdayNum = new WeekdayNum(weekday.getPosition(), wday);
 
-			byDay.add(weekdayNum);
+			weekdayNums.add(weekdayNum);
 		}
 
-		rrule.setByDay(byDay);
+		rRule.setByDay(weekdayNums);
 
-		return rrule.toIcal();
+		rRule.setCount(recurrence.getCount());
+
+		com.google.ical.values.Frequency frequency =
+			com.google.ical.values.Frequency.valueOf(
+				String.valueOf(recurrence.getFrequency()));
+
+		rRule.setFreq(frequency);
+
+		rRule.setInterval(recurrence.getInterval());
+
+		Calendar jCalendar = recurrence.getUntil();
+
+		if (jCalendar != null) {
+			DateValue dateValue = new DateValueImpl(
+				jCalendar.get(Calendar.YEAR), jCalendar.get(Calendar.MONTH),
+				jCalendar.get(Calendar.DATE));
+
+			rRule.setUntil(dateValue);
+		}
+
+		return rRule.toIcal();
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(RecurrenceSerializer.class);

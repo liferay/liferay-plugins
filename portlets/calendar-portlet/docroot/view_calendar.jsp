@@ -111,6 +111,7 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 			</portlet:renderURL>
 
 			<liferay-util:param name="editCalendarBookingURL" value="<%= editCalendarBookingURL %>" />
+
 			<liferay-util:param name="readOnly" value="<%= String.valueOf(false) %>" />
 		</liferay-util:include>
 	</aui:column>

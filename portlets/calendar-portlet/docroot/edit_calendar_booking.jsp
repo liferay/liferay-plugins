@@ -65,7 +65,6 @@ JSONArray pendingCalendarsJSONArray = JSONFactoryUtil.createJSONArray();
 
 boolean invitable = true;
 boolean recurring = false;
-
 Recurrence recurrence = null;
 
 Calendar calendar = CalendarServiceUtil.fetchCalendar(calendarId);
@@ -226,7 +225,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 								<liferay-util:param name="activeView" value="<%= activeView %>" />
 								<liferay-util:param name="currentDate" value="<%= String.valueOf(currentDate) %>" />
 								<liferay-util:param name="filterCalendarBookings" value='<%= "window." + renderResponse.getNamespace() + "filterCalendarBookings" %>' />
-								<liferay-util:param name="readOnly" value="<%= String.valueOf(true) %>" />
+								<liferay-util:param name="readOnly" value="<%= Boolean.TRUE.toString() %>" />
 							</liferay-util:include>
 						</div>
 					</div>

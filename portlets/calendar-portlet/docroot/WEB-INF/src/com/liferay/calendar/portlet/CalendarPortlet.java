@@ -51,7 +51,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.TimeZoneUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
@@ -448,24 +447,34 @@ public class CalendarPortlet extends MVCPortlet {
 	protected String getRecurrence(ActionRequest actionRequest) {
 		boolean repeat = ParamUtil.getBoolean(actionRequest, "repeat");
 
-		if (repeat == false) {
+		if (!repeat) {
 			return null;
 		}
 
-		Frequency frequency = Frequency.parse(
-			ParamUtil.getString(actionRequest, "frequency"));
-		int interval = ParamUtil.getInteger(actionRequest, "interval");
-		String ends = ParamUtil.getString(actionRequest, "ends");
+		Recurrence recurrence = new Recurrence();
 
 		int count = 0;
 
-		if (Validator.equals(ends, "after")) {
+		String ends = ParamUtil.getString(actionRequest, "ends");
+
+		if (ends.equals("after")) {
 			count = ParamUtil.getInteger(actionRequest, "count");
 		}
 
-		java.util.Calendar until = null;
+		recurrence.setCount(count);
 
-		if (Validator.equals(ends, "on")) {
+		Frequency frequency = Frequency.parse(
+			ParamUtil.getString(actionRequest, "frequency"));
+
+		recurrence.setFrequency(frequency);
+
+		int interval = ParamUtil.getInteger(actionRequest, "interval");
+
+		recurrence.setInterval(interval);
+
+		java.util.Calendar untilJCalendar = null;
+
+		if (ends.equals("on")) {
 			int untilDateDay = ParamUtil.getInteger(
 				actionRequest, "untilDateDay");
 			int untilDateMonth = ParamUtil.getInteger(
@@ -473,13 +482,14 @@ public class CalendarPortlet extends MVCPortlet {
 			int untilDateYear = ParamUtil.getInteger(
 				actionRequest, "untilDateYear");
 
-			until = CalendarFactoryUtil.getCalendar();
+			untilJCalendar = CalendarFactoryUtil.getCalendar();
 
-			until.set(java.util.Calendar.DATE, untilDateDay);
-			until.set(java.util.Calendar.MONTH, untilDateMonth);
-			until.set(java.util.Calendar.YEAR, untilDateYear);
-
+			untilJCalendar.set(java.util.Calendar.DATE, untilDateDay);
+			untilJCalendar.set(java.util.Calendar.MONTH, untilDateMonth);
+			untilJCalendar.set(java.util.Calendar.YEAR, untilDateYear);
 		}
+
+		recurrence.setUntil(untilJCalendar);
 
 		List<Weekday> weekdays = new ArrayList<Weekday>();
 
@@ -494,13 +504,7 @@ public class CalendarPortlet extends MVCPortlet {
 			}
 		}
 
-		Recurrence recurrence = new Recurrence();
-
-		recurrence.setFrequency(frequency);
-		recurrence.setInterval(interval);
 		recurrence.setWeekdays(weekdays);
-		recurrence.setCount(count);
-		recurrence.setUntil(until);
 
 		return RecurrenceSerializer.serialize(recurrence);
 	}

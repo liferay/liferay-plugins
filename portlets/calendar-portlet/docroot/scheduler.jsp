@@ -18,12 +18,10 @@
 
 <%
 String activeView = ParamUtil.getString(request, "activeView", "week");
-String filterCalendarBookings = ParamUtil.getString(request, "filterCalendarBookings", null);
-String editCalendarBookingURL = ParamUtil.getString(request, "editCalendarBookingURL");
-
 long currentDate = ParamUtil.getLong(request, "currentDate", now.getTimeInMillis());
-
-boolean readOnly = ParamUtil.getBoolean(request, "readOnly", false);
+String editCalendarBookingURL = ParamUtil.getString(request, "editCalendarBookingURL");
+String filterCalendarBookings = ParamUtil.getString(request, "filterCalendarBookings", null);
+boolean readOnly = ParamUtil.getBoolean(request, "readOnly");
 %>
 
 <div class="calendar-portlet-wrapper" id="<portlet:namespace />scheduler"></div>
