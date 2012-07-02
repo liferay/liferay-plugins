@@ -127,7 +127,7 @@ public class HotDeployMessageListener extends BaseMessageListener {
 						servletContext);
 
 					String resourcesDir = pluginProperties.getProperty(
-							"resources-importer-external-dir");
+						"resources-importer-external-dir");
 
 					if (Validator.isNotNull(resourcesDir)) {
 						importer = getFileSystemImporter();
@@ -140,9 +140,9 @@ public class HotDeployMessageListener extends BaseMessageListener {
 					Message newMessage = new Message();
 
 					newMessage.put("companyId", company.getCompanyId());
+					newMessage.put("error", "No valid importer found");
 					newMessage.put("layoutSetPrototypeId", 0);
 					newMessage.put("servletContextName", servletContextName);
-					newMessage.put("error", "no valid importer found");
 
 					MessageBusUtil.sendMessage(
 						"liferay/resources_importer", newMessage);

@@ -27,7 +27,6 @@ import java.util.Set;
 public class ResourceImporter extends FileSystemImporter {
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public void importResources() throws Exception {
 		addDLFileEntries("/document_library/documents");
 
@@ -42,7 +41,6 @@ public class ResourceImporter extends FileSystemImporter {
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	protected void addDLFileEntries(String fileEntriesDir) throws Exception {
 		Set<String> resourcePaths = servletContext.getResourcePaths(
 			resourcesDir.concat(fileEntriesDir));
@@ -54,7 +52,9 @@ public class ResourceImporter extends FileSystemImporter {
 		for (String resourcePath : resourcePaths) {
 			URL resourceURL = servletContext.getResource(resourcePath);
 
-			if (resourceURL.getPath().endsWith(StringPool.SLASH)) {
+			String path = resourceURL.getPath();
+
+			if (path.endsWith(StringPool.SLASH)) {
 				continue;
 			}
 
@@ -91,7 +91,9 @@ public class ResourceImporter extends FileSystemImporter {
 		for (String resourcePath : resourcePaths) {
 			URL resourceURL = servletContext.getResource(resourcePath);
 
-			if (resourceURL.getPath().endsWith(StringPool.SLASH)) {
+			String path = resourceURL.getPath();
+
+			if (path.endsWith(StringPool.SLASH)) {
 				continue;
 			}
 
@@ -126,7 +128,9 @@ public class ResourceImporter extends FileSystemImporter {
 		for (String resourcePath : resourcePaths) {
 			URL resourceURL = servletContext.getResource(resourcePath);
 
-			if (resourceURL.getPath().endsWith(StringPool.SLASH)) {
+			String path = resourceURL.getPath();
+
+			if (path.endsWith(StringPool.SLASH)) {
 				continue;
 			}
 
@@ -160,7 +164,9 @@ public class ResourceImporter extends FileSystemImporter {
 		for (String resourcePath : resourcePaths) {
 			URL resourceURL = servletContext.getResource(resourcePath);
 
-			if (resourceURL.getPath().endsWith(StringPool.SLASH)) {
+			String path = resourceURL.getPath();
+
+			if (path.endsWith(StringPool.SLASH)) {
 				continue;
 			}
 

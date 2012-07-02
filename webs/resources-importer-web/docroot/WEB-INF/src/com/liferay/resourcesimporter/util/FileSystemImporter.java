@@ -77,8 +77,7 @@ public class FileSystemImporter extends BaseImporter {
 			!_resourcesDir.canRead()) {
 
 			throw new IllegalArgumentException(
-				"The resource directory specified is not accessible: " +
-					resourcesDir);
+				"Unaccessible resource directory " + resourcesDir);
 		}
 
 		addDLFileEntries("/document_library/documents");
