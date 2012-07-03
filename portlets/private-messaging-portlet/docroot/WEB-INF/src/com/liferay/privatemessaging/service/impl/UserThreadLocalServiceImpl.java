@@ -32,9 +32,11 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -336,6 +338,21 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		return mbMessage;
 	}
 
+	protected String getPrivateMessageURL(
+			long groupId, long threadId, ThemeDisplay themeDisplay)
+		throws Exception {
+
+		long plid = PortalUtil.getPlidFromPortletId(
+			groupId, true, PortletKeys.PRIVATE_MESSAGING);
+
+		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
+
+		String privateMessageURL = PortalUtil.getLayoutFullURL(
+			layout, themeDisplay, false);
+
+		return privateMessageURL + "/-/private_messaging/thread/" + threadId;
+	}
+
 	protected List<User> parseRecipients(long userId, String to)
 		throws PortalException, SystemException {
 
@@ -376,12 +393,6 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		MBMessage mbMessage = MBMessageLocalServiceUtil.getMBMessage(
 			mbMessageId);
 
-		String layoutFullURL = PortalUtil.getLayoutFullURL(themeDisplay);
-
-		if (Validator.isNull(layoutFullURL)) {
-			return;
-		}
-
 		User sender = UserLocalServiceUtil.getUser(mbMessage.getUserId());
 
 		Company company = CompanyLocalServiceUtil.getCompany(
@@ -414,21 +425,16 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 				"/user_" + (sender.isFemale() ? "female" : "male") +
 					"_portrait?img_id=" + portraitId + "&t=" + tokenId;
 
-		String threadURL =
-			layoutFullURL + "/-/private_messaging/thread/" +
-				mbMessage.getThreadId();
-
 		body = StringUtil.replace(
 			body,
 			new String[] {
 				"[$BODY$]", "[$COMPANY_NAME$]", "[$FROM_AVATAR$]",
-				"[$FROM_NAME$]", "[$FROM_PROFILE_URL$]", "[$SUBJECT$]",
-				"[$THREAD_URL$]"
+				"[$FROM_NAME$]", "[$FROM_PROFILE_URL$]", "[$SUBJECT$]"
 			},
 			new String[] {
 				mbMessage.getBody(), company.getName(), portraitURL,
 				sender.getFullName(), sender.getDisplayURL(themeDisplay),
-				mbMessage.getSubject(), threadURL
+				mbMessage.getSubject()
 			});
 
 		List<UserThread> userThreads =
@@ -443,6 +449,14 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 			User recipient = UserLocalServiceUtil.getUser(
 				userThread.getUserId());
 
+			String threadURL = getPrivateMessageURL(
+				recipient.getGroup().getGroupId(), mbMessage.getThreadId(),
+				themeDisplay);
+
+			if (Validator.isNull(threadURL)) {
+				continue;
+			}
+
 			InternetAddress to = new InternetAddress(
 				recipient.getEmailAddress());
 
@@ -452,8 +466,15 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 					recipient.getTimeZone());
 
 			body = StringUtil.replace(
-				body, "[$SENT_DATE$]",
-				dateFormatDateTime.format(mbMessage.getCreateDate()));
+				body,
+				new String[] {
+					"[$SENT_DATE$]", "[$THREAD_URL$]"
+				},
+				new String[] {
+					dateFormatDateTime.format(mbMessage.getCreateDate()),
+					threadURL
+				}
+			);
 
 			MailMessage mailMessage = new MailMessage(
 				from, to, subject, body, true);
