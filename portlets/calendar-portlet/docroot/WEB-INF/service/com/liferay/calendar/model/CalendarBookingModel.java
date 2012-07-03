@@ -658,6 +658,13 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	public boolean isApproved();
 
 	/**
+	 * Returns <code>true</code> if this calendar booking is denied.
+	 *
+	 * @return <code>true</code> if this calendar booking is denied; <code>false</code> otherwise
+	 */
+	public boolean isDenied();
+
+	/**
 	 * Returns <code>true</code> if this calendar booking is a draft.
 	 *
 	 * @return <code>true</code> if this calendar booking is a draft; <code>false</code> otherwise
@@ -672,6 +679,20 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	public boolean isExpired();
 
 	/**
+	 * Returns <code>true</code> if this calendar booking is inactive.
+	 *
+	 * @return <code>true</code> if this calendar booking is inactive; <code>false</code> otherwise
+	 */
+	public boolean isInactive();
+
+	/**
+	 * Returns <code>true</code> if this calendar booking is incomplete.
+	 *
+	 * @return <code>true</code> if this calendar booking is incomplete; <code>false</code> otherwise
+	 */
+	public boolean isIncomplete();
+
+	/**
 	 * Returns <code>true</code> if this calendar booking is in the Recycle Bin.
 	 *
 	 * @return <code>true</code> if this calendar booking is in the Recycle Bin; <code>false</code> otherwise
@@ -684,6 +705,13 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 * @return <code>true</code> if this calendar booking is pending; <code>false</code> otherwise
 	 */
 	public boolean isPending();
+
+	/**
+	 * Returns <code>true</code> if this calendar booking is scheduled.
+	 *
+	 * @return <code>true</code> if this calendar booking is scheduled; <code>false</code> otherwise
+	 */
+	public boolean isScheduled();
 
 	public boolean isNew();
 

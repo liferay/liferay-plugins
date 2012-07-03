@@ -1005,6 +1005,15 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	}
 
 	/**
+	* Returns <code>true</code> if this calendar booking is denied.
+	*
+	* @return <code>true</code> if this calendar booking is denied; <code>false</code> otherwise
+	*/
+	public boolean isDenied() {
+		return _calendarBooking.isDenied();
+	}
+
+	/**
 	* Returns <code>true</code> if this calendar booking is a draft.
 	*
 	* @return <code>true</code> if this calendar booking is a draft; <code>false</code> otherwise
@@ -1023,6 +1032,24 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	}
 
 	/**
+	* Returns <code>true</code> if this calendar booking is inactive.
+	*
+	* @return <code>true</code> if this calendar booking is inactive; <code>false</code> otherwise
+	*/
+	public boolean isInactive() {
+		return _calendarBooking.isInactive();
+	}
+
+	/**
+	* Returns <code>true</code> if this calendar booking is incomplete.
+	*
+	* @return <code>true</code> if this calendar booking is incomplete; <code>false</code> otherwise
+	*/
+	public boolean isIncomplete() {
+		return _calendarBooking.isIncomplete();
+	}
+
+	/**
 	* Returns <code>true</code> if this calendar booking is in the Recycle Bin.
 	*
 	* @return <code>true</code> if this calendar booking is in the Recycle Bin; <code>false</code> otherwise
@@ -1038,6 +1065,15 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	*/
 	public boolean isPending() {
 		return _calendarBooking.isPending();
+	}
+
+	/**
+	* Returns <code>true</code> if this calendar booking is scheduled.
+	*
+	* @return <code>true</code> if this calendar booking is scheduled; <code>false</code> otherwise
+	*/
+	public boolean isScheduled() {
+		return _calendarBooking.isScheduled();
 	}
 
 	public boolean isNew() {
