@@ -23,17 +23,9 @@ import com.liferay.calendar.recurrence.RecurrenceSerializer;
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 import com.liferay.calendar.service.CalendarLocalServiceUtil;
 import com.liferay.calendar.service.CalendarResourceLocalServiceUtil;
-import com.liferay.calendar.util.JCalendarUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.CalendarFactoryUtil;
-import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.TimeZoneUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.User;
-import com.liferay.portal.service.UserLocalServiceUtil;
-
-import java.util.Date;
 
 /**
  * @author Eduardo Lundgren
@@ -77,14 +69,6 @@ public class CalendarBookingImpl extends CalendarBookingBaseImpl {
 		return NotificationType.parse(getSecondReminderType());
 	}
 
-	public Date getUTCEndDate() throws PortalException, SystemException {
-		return getUTCDate(getEndDate());
-	}
-
-	public Date getUTCStartDate() throws PortalException, SystemException {
-		return getUTCDate(getStartDate());
-	}
-
 	public boolean isMasterBooking() {
 		if (getParentCalendarBookingId() == getCalendarBookingId()) {
 			return true;
@@ -99,22 +83,6 @@ public class CalendarBookingImpl extends CalendarBookingBaseImpl {
 		}
 
 		return false;
-	}
-
-	protected Date getUTCDate(Date date)
-		throws PortalException, SystemException {
-
-		User user = UserLocalServiceUtil.getUser(getUserId());
-
-		java.util.Calendar userJCalendar = CalendarFactoryUtil.getCalendar(
-			user.getTimeZone());
-
-		userJCalendar.setTime(date);
-
-		java.util.Calendar utcUserJCalendar = JCalendarUtil.getJCalendar(
-			userJCalendar, TimeZoneUtil.getTimeZone(StringPool.UTC));
-
-		return utcUserJCalendar.getTime();
 	}
 
 	private Recurrence _recurrenceObj;

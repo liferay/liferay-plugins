@@ -20,8 +20,8 @@
 				) AND
 				[$STATUS$]
 				(
-					(startDate <= ? [$AND_OR_NULL_CHECK$]) AND
-					(endDate >= ? [$AND_OR_NULL_CHECK$])
+					(startDate <= ? OR ? = -1) AND
+					(endDate >= ? OR ? = -1)
 				)
 		]]>
 	</sql>
@@ -57,8 +57,8 @@
 				) AND
 				[$STATUS$]
 				(
-					(startDate >= ? [$AND_OR_NULL_CHECK$]) AND
-					(endDate <= ? [$AND_OR_NULL_CHECK$])
+					(startDate >= ? OR ? = -1) AND
+					(endDate <= ? OR ? = -1)
 				)
 				[$ORDER_BY$]
 		]]>

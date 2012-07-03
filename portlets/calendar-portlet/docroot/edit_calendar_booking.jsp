@@ -70,8 +70,8 @@ Recurrence recurrence = null;
 Calendar calendar = CalendarServiceUtil.fetchCalendar(calendarId);
 
 if (calendarBooking != null) {
-	startDateJCalendar.setTime(calendarBooking.getStartDate());
-	endDateJCalendar.setTime(calendarBooking.getEndDate());
+	startDateJCalendar.setTimeInMillis(calendarBooking.getStartDate());
+	endDateJCalendar.setTimeInMillis(calendarBooking.getEndDate());
 
 	acceptedCalendarsJSONArray = CalendarUtil.toCalendarBookingsJSONArray(themeDisplay, CalendarBookingServiceUtil.getChildCalendarBookings(calendarBooking.getParentCalendarBookingId(), CalendarBookingWorkflowConstants.STATUS_APPROVED));
 	declinedCalendarsJSONArray = CalendarUtil.toCalendarBookingsJSONArray(themeDisplay, CalendarBookingServiceUtil.getChildCalendarBookings(calendarBooking.getParentCalendarBookingId(), CalendarBookingWorkflowConstants.STATUS_DENIED));

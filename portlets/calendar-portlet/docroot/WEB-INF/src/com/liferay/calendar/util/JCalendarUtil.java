@@ -28,6 +28,8 @@ import java.util.TimeZone;
  */
 public class JCalendarUtil {
 
+	public static final TimeZone UTC = TimeZone.getTimeZone(StringPool.UTC);
+
 	public static Date getDate(Date date, TimeZone timeZone) {
 		Calendar jCalendar = getJCalendar(date, timeZone);
 
@@ -43,8 +45,7 @@ public class JCalendarUtil {
 	}
 
 	public static Calendar getJCalendar(Date date, TimeZone timeZone) {
-		Calendar jCalendar = CalendarFactoryUtil.getCalendar(
-			TimeZone.getTimeZone(StringPool.UTC));
+		Calendar jCalendar = CalendarFactoryUtil.getCalendar(UTC);
 
 		jCalendar.setTime(date);
 
@@ -64,6 +65,14 @@ public class JCalendarUtil {
 		jCalendar.set(Calendar.MINUTE, minutes);
 		jCalendar.set(Calendar.SECOND, seconds);
 		jCalendar.set(Calendar.MILLISECOND, milliseconds);
+
+		return jCalendar;
+	}
+
+	public static Calendar getJCalendar(long timestamp) {
+		Calendar jCalendar = CalendarFactoryUtil.getCalendar(UTC);
+
+		jCalendar.setTimeInMillis(timestamp);
 
 		return jCalendar;
 	}

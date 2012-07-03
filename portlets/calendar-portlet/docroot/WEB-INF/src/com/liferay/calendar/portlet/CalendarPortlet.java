@@ -50,7 +50,6 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
-import com.liferay.portal.kernel.util.TimeZoneUtil;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
@@ -285,17 +284,18 @@ public class CalendarPortlet extends MVCPortlet {
 				calendarId, childCalendarIds,
 				CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT,
 				titleMap, descriptionMap, location,
-				startDateJCalendar.getTime(), endDateJCalendar.getTime(),
-				allDay, recurrence, reminders[0], remindersType[0],
-				reminders[1], remindersType[1], serviceContext);
+				startDateJCalendar.getTimeInMillis(),
+				endDateJCalendar.getTimeInMillis(), allDay, recurrence,
+				reminders[0], remindersType[0], reminders[1], remindersType[1],
+				serviceContext);
 		}
 		else {
 			CalendarBookingServiceUtil.updateCalendarBooking(
 				calendarBookingId, calendarId, childCalendarIds, titleMap,
-				descriptionMap, location, startDateJCalendar.getTime(),
-				endDateJCalendar.getTime(), allDay, recurrence, reminders[0],
-				remindersType[0], reminders[1], remindersType[1], status,
-				serviceContext);
+				descriptionMap, location, startDateJCalendar.getTimeInMillis(),
+				endDateJCalendar.getTimeInMillis(), allDay, recurrence,
+				reminders[0], remindersType[0], reminders[1], remindersType[1],
+				status, serviceContext);
 		}
 	}
 
@@ -426,6 +426,9 @@ public class CalendarPortlet extends MVCPortlet {
 	protected java.util.Calendar getJCalendar(
 		PortletRequest portletRequest, String name) {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		int month = ParamUtil.getInteger(portletRequest, name + "Month");
 		int day = ParamUtil.getInteger(portletRequest, name + "Day");
 		int year = ParamUtil.getInteger(portletRequest, name + "Year");
@@ -438,10 +441,12 @@ public class CalendarPortlet extends MVCPortlet {
 			hour += 12;
 		}
 
-		TimeZone timezone = TimeZoneUtil.getTimeZone(StringPool.UTC);
+		TimeZone timeZone = themeDisplay.getTimeZone();
 
-		return JCalendarUtil.getJCalendar(
-			year, month, day, hour, minute, 0, 0, timezone);
+		java.util.Calendar jCalendar = JCalendarUtil.getJCalendar(
+			year, month, day, hour, minute, 0, 0, timeZone);
+
+		return jCalendar;
 	}
 
 	protected String getRecurrence(ActionRequest actionRequest) {

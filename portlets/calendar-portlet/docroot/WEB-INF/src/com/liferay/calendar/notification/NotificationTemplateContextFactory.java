@@ -31,7 +31,6 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 
 import java.text.Format;
 
-import java.util.Date;
 import java.util.Enumeration;
 
 import javax.portlet.PortletConfig;
@@ -61,10 +60,10 @@ public class NotificationTemplateContextFactory {
 		Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(
 			user.getLocale(), user.getTimeZone());
 
-		Date endDate = calendarBooking.getEndDate();
+		long endDate = calendarBooking.getEndDate();
 
 		notificationTemplateContext.setAttribute(
-			"endDate", dateFormatDateTime.format(endDate.getTime()));
+			"endDate", dateFormatDateTime.format(endDate));
 
 		PortletPreferences portletPreferences =
 			PortletPreferencesLocalServiceUtil.getPreferences(
@@ -95,10 +94,10 @@ public class NotificationTemplateContextFactory {
 				getPortletConfig(), user.getLocale(),
 				"javax.portlet.title.".concat(PortletKeys.CALENDAR)));
 
-		Date startDate = calendarBooking.getStartDate();
+		long startDate = calendarBooking.getStartDate();
 
 		notificationTemplateContext.setAttribute(
-			"startDate", dateFormatDateTime.format(startDate.getTime()));
+			"startDate", dateFormatDateTime.format(startDate));
 
 		notificationTemplateContext.setAttribute(
 			"title", calendarBooking.getTitle(user.getLocale()));
