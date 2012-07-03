@@ -749,6 +749,15 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	}
 
 	/**
+	* Returns <code>true</code> if this k b article is denied.
+	*
+	* @return <code>true</code> if this k b article is denied; <code>false</code> otherwise
+	*/
+	public boolean isDenied() {
+		return _kbArticle.isDenied();
+	}
+
+	/**
 	* Returns <code>true</code> if this k b article is a draft.
 	*
 	* @return <code>true</code> if this k b article is a draft; <code>false</code> otherwise
@@ -767,12 +776,39 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	}
 
 	/**
+	* Returns <code>true</code> if this k b article is inactive.
+	*
+	* @return <code>true</code> if this k b article is inactive; <code>false</code> otherwise
+	*/
+	public boolean isInactive() {
+		return _kbArticle.isInactive();
+	}
+
+	/**
+	* Returns <code>true</code> if this k b article is incomplete.
+	*
+	* @return <code>true</code> if this k b article is incomplete; <code>false</code> otherwise
+	*/
+	public boolean isIncomplete() {
+		return _kbArticle.isIncomplete();
+	}
+
+	/**
 	* Returns <code>true</code> if this k b article is pending.
 	*
 	* @return <code>true</code> if this k b article is pending; <code>false</code> otherwise
 	*/
 	public boolean isPending() {
 		return _kbArticle.isPending();
+	}
+
+	/**
+	* Returns <code>true</code> if this k b article is scheduled.
+	*
+	* @return <code>true</code> if this k b article is scheduled; <code>false</code> otherwise
+	*/
+	public boolean isScheduled() {
+		return _kbArticle.isScheduled();
 	}
 
 	public boolean isNew() {
