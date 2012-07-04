@@ -122,10 +122,9 @@ public class CalendarBookingLocalServiceClp
 
 		_methodParameterTypes20 = new String[] {
 				"long", "long", "long[][]", "long", "java.util.Map",
-				"java.util.Map", "java.lang.String", "java.util.Date",
-				"java.util.Date", "boolean", "java.lang.String", "long",
-				"java.lang.String", "long", "java.lang.String",
-				"com.liferay.portal.service.ServiceContext"
+				"java.util.Map", "java.lang.String", "long", "long", "boolean",
+				"java.lang.String", "long", "java.lang.String", "long",
+				"java.lang.String", "com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName21 = "checkCalendarBookings";
@@ -146,9 +145,7 @@ public class CalendarBookingLocalServiceClp
 
 		_methodName25 = "getCalendarBookings";
 
-		_methodParameterTypes25 = new String[] {
-				"long", "java.util.Date", "java.util.Date"
-			};
+		_methodParameterTypes25 = new String[] { "long", "long", "long" };
 
 		_methodName26 = "getCalendarBookingsCount";
 
@@ -166,8 +163,7 @@ public class CalendarBookingLocalServiceClp
 
 		_methodParameterTypes29 = new String[] {
 				"long", "long[][]", "long[][]", "long[][]", "long",
-				"java.lang.String", "java.util.Date", "java.util.Date",
-				"int[][]", "int", "int",
+				"java.lang.String", "long", "long", "int[][]", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
@@ -176,16 +172,15 @@ public class CalendarBookingLocalServiceClp
 		_methodParameterTypes30 = new String[] {
 				"long", "long[][]", "long[][]", "long[][]", "long",
 				"java.lang.String", "java.lang.String", "java.lang.String",
-				"java.util.Date", "java.util.Date", "int[][]", "boolean", "int",
-				"int", "com.liferay.portal.kernel.util.OrderByComparator"
+				"long", "long", "int[][]", "boolean", "int", "int",
+				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
 		_methodName31 = "searchCount";
 
 		_methodParameterTypes31 = new String[] {
 				"long", "long[][]", "long[][]", "long[][]", "long",
-				"java.lang.String", "java.util.Date", "java.util.Date",
-				"int[][]"
+				"java.lang.String", "long", "long", "int[][]"
 			};
 
 		_methodName32 = "searchCount";
@@ -193,16 +188,16 @@ public class CalendarBookingLocalServiceClp
 		_methodParameterTypes32 = new String[] {
 				"long", "long[][]", "long[][]", "long[][]", "long",
 				"java.lang.String", "java.lang.String", "java.lang.String",
-				"java.util.Date", "java.util.Date", "int[][]", "boolean"
+				"long", "long", "int[][]", "boolean"
 			};
 
 		_methodName33 = "updateCalendarBooking";
 
 		_methodParameterTypes33 = new String[] {
 				"long", "long", "long", "long[][]", "java.util.Map",
-				"java.util.Map", "java.lang.String", "java.util.Date",
-				"java.util.Date", "boolean", "java.lang.String", "long",
-				"java.lang.String", "long", "java.lang.String", "int",
+				"java.util.Map", "java.lang.String", "long", "long", "boolean",
+				"java.lang.String", "long", "java.lang.String", "long",
+				"java.lang.String", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -210,9 +205,9 @@ public class CalendarBookingLocalServiceClp
 
 		_methodParameterTypes34 = new String[] {
 				"long", "long", "long", "java.util.Map", "java.util.Map",
-				"java.lang.String", "java.util.Date", "java.util.Date",
-				"boolean", "java.lang.String", "long", "java.lang.String",
-				"long", "java.lang.String", "int",
+				"java.lang.String", "long", "long", "boolean",
+				"java.lang.String", "long", "java.lang.String", "long",
+				"java.lang.String", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -799,10 +794,10 @@ public class CalendarBookingLocalServiceClp
 		long parentCalendarBookingId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		java.lang.String location, java.util.Date startDate,
-		java.util.Date endDate, boolean allDay, java.lang.String recurrence,
-		long firstReminder, java.lang.String firstReminderType,
-		long secondReminder, java.lang.String secondReminderType,
+		java.lang.String location, long startDate, long endDate,
+		boolean allDay, java.lang.String recurrence, long firstReminder,
+		java.lang.String firstReminderType, long secondReminder,
+		java.lang.String secondReminderType,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -826,9 +821,9 @@ public class CalendarBookingLocalServiceClp
 						
 					ClpSerializer.translateInput(location),
 						
-					ClpSerializer.translateInput(startDate),
+					startDate,
 						
-					ClpSerializer.translateInput(endDate),
+					endDate,
 						
 					allDay,
 						
@@ -987,20 +982,14 @@ public class CalendarBookingLocalServiceClp
 	}
 
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookings(
-		long calendarId, java.util.Date startDate, java.util.Date endDate)
+		long calendarId, long startDate, long endDate)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName25,
 					_methodParameterTypes25,
-					new Object[] {
-						calendarId,
-						
-					ClpSerializer.translateInput(startDate),
-						
-					ClpSerializer.translateInput(endDate)
-					});
+					new Object[] { calendarId, startDate, endDate });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1110,8 +1099,8 @@ public class CalendarBookingLocalServiceClp
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> search(
 		long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
-		java.lang.String keywords, java.util.Date startDate,
-		java.util.Date endDate, int[] statuses, int start, int end,
+		java.lang.String keywords, long startDate, long endDate,
+		int[] statuses, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -1132,9 +1121,9 @@ public class CalendarBookingLocalServiceClp
 						
 					ClpSerializer.translateInput(keywords),
 						
-					ClpSerializer.translateInput(startDate),
+					startDate,
 						
-					ClpSerializer.translateInput(endDate),
+					endDate,
 						
 					ClpSerializer.translateInput(statuses),
 						
@@ -1168,9 +1157,8 @@ public class CalendarBookingLocalServiceClp
 		long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
 		java.lang.String title, java.lang.String description,
-		java.lang.String location, java.util.Date startDate,
-		java.util.Date endDate, int[] statuses, boolean andOperator, int start,
-		int end,
+		java.lang.String location, long startDate, long endDate,
+		int[] statuses, boolean andOperator, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -1195,9 +1183,9 @@ public class CalendarBookingLocalServiceClp
 						
 					ClpSerializer.translateInput(location),
 						
-					ClpSerializer.translateInput(startDate),
+					startDate,
 						
-					ClpSerializer.translateInput(endDate),
+					endDate,
 						
 					ClpSerializer.translateInput(statuses),
 						
@@ -1231,8 +1219,7 @@ public class CalendarBookingLocalServiceClp
 
 	public int searchCount(long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
-		java.lang.String keywords, java.util.Date startDate,
-		java.util.Date endDate, int[] statuses)
+		java.lang.String keywords, long startDate, long endDate, int[] statuses)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -1252,9 +1239,9 @@ public class CalendarBookingLocalServiceClp
 						
 					ClpSerializer.translateInput(keywords),
 						
-					ClpSerializer.translateInput(startDate),
+					startDate,
 						
-					ClpSerializer.translateInput(endDate),
+					endDate,
 						
 					ClpSerializer.translateInput(statuses)
 					});
@@ -1281,8 +1268,8 @@ public class CalendarBookingLocalServiceClp
 	public int searchCount(long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
 		java.lang.String title, java.lang.String description,
-		java.lang.String location, java.util.Date startDate,
-		java.util.Date endDate, int[] statuses, boolean andOperator)
+		java.lang.String location, long startDate, long endDate,
+		int[] statuses, boolean andOperator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -1306,9 +1293,9 @@ public class CalendarBookingLocalServiceClp
 						
 					ClpSerializer.translateInput(location),
 						
-					ClpSerializer.translateInput(startDate),
+					startDate,
 						
-					ClpSerializer.translateInput(endDate),
+					endDate,
 						
 					ClpSerializer.translateInput(statuses),
 						
@@ -1339,10 +1326,10 @@ public class CalendarBookingLocalServiceClp
 		long[] childCalendarIds,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		java.lang.String location, java.util.Date startDate,
-		java.util.Date endDate, boolean allDay, java.lang.String recurrence,
-		long firstReminder, java.lang.String firstReminderType,
-		long secondReminder, java.lang.String secondReminderType, int status,
+		java.lang.String location, long startDate, long endDate,
+		boolean allDay, java.lang.String recurrence, long firstReminder,
+		java.lang.String firstReminderType, long secondReminder,
+		java.lang.String secondReminderType, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -1366,9 +1353,9 @@ public class CalendarBookingLocalServiceClp
 						
 					ClpSerializer.translateInput(location),
 						
-					ClpSerializer.translateInput(startDate),
+					startDate,
 						
-					ClpSerializer.translateInput(endDate),
+					endDate,
 						
 					allDay,
 						
@@ -1414,10 +1401,10 @@ public class CalendarBookingLocalServiceClp
 		long userId, long calendarBookingId, long calendarId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		java.lang.String location, java.util.Date startDate,
-		java.util.Date endDate, boolean allDay, java.lang.String recurrence,
-		long firstReminder, java.lang.String firstReminderType,
-		long secondReminder, java.lang.String secondReminderType, int status,
+		java.lang.String location, long startDate, long endDate,
+		boolean allDay, java.lang.String recurrence, long firstReminder,
+		java.lang.String firstReminderType, long secondReminder,
+		java.lang.String secondReminderType, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -1439,9 +1426,9 @@ public class CalendarBookingLocalServiceClp
 						
 					ClpSerializer.translateInput(location),
 						
-					ClpSerializer.translateInput(startDate),
+					startDate,
 						
-					ClpSerializer.translateInput(endDate),
+					endDate,
 						
 					allDay,
 						

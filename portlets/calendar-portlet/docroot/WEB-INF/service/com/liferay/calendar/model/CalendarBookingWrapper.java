@@ -162,13 +162,13 @@ public class CalendarBookingWrapper implements CalendarBooking,
 			setLocation(location);
 		}
 
-		Date startDate = (Date)attributes.get("startDate");
+		Long startDate = (Long)attributes.get("startDate");
 
 		if (startDate != null) {
 			setStartDate(startDate);
 		}
 
-		Date endDate = (Date)attributes.get("endDate");
+		Long endDate = (Long)attributes.get("endDate");
 
 		if (endDate != null) {
 			setEndDate(endDate);
@@ -748,7 +748,7 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	*
 	* @return the start date of this calendar booking
 	*/
-	public java.util.Date getStartDate() {
+	public long getStartDate() {
 		return _calendarBooking.getStartDate();
 	}
 
@@ -757,7 +757,7 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	*
 	* @param startDate the start date of this calendar booking
 	*/
-	public void setStartDate(java.util.Date startDate) {
+	public void setStartDate(long startDate) {
 		_calendarBooking.setStartDate(startDate);
 	}
 
@@ -766,7 +766,7 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	*
 	* @return the end date of this calendar booking
 	*/
-	public java.util.Date getEndDate() {
+	public long getEndDate() {
 		return _calendarBooking.getEndDate();
 	}
 
@@ -775,7 +775,7 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	*
 	* @param endDate the end date of this calendar booking
 	*/
-	public void setEndDate(java.util.Date endDate) {
+	public void setEndDate(long endDate) {
 		_calendarBooking.setEndDate(endDate);
 	}
 
@@ -1178,18 +1178,6 @@ public class CalendarBookingWrapper implements CalendarBooking,
 
 	public com.liferay.calendar.notification.NotificationType getSecondReminderNotificationType() {
 		return _calendarBooking.getSecondReminderNotificationType();
-	}
-
-	public java.util.Date getUTCEndDate()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _calendarBooking.getUTCEndDate();
-	}
-
-	public java.util.Date getUTCStartDate()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _calendarBooking.getUTCStartDate();
 	}
 
 	public boolean isMasterBooking() {

@@ -155,20 +155,8 @@ public class CalendarBookingCacheModel implements CacheModel<CalendarBooking>,
 			calendarBookingImpl.setLocation(location);
 		}
 
-		if (startDate == Long.MIN_VALUE) {
-			calendarBookingImpl.setStartDate(null);
-		}
-		else {
-			calendarBookingImpl.setStartDate(new Date(startDate));
-		}
-
-		if (endDate == Long.MIN_VALUE) {
-			calendarBookingImpl.setEndDate(null);
-		}
-		else {
-			calendarBookingImpl.setEndDate(new Date(endDate));
-		}
-
+		calendarBookingImpl.setStartDate(startDate);
+		calendarBookingImpl.setEndDate(endDate);
 		calendarBookingImpl.setAllDay(allDay);
 
 		if (recurrence == null) {

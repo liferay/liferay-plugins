@@ -32,7 +32,6 @@ import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.CalendarUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.InstanceFactory;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -53,7 +52,6 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -258,7 +256,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 			CalendarBookingImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
 			"findByC_S_E",
 			new String[] {
-				Long.class.getName(), Date.class.getName(), Date.class.getName(),
+				Long.class.getName(), Long.class.getName(), Long.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
@@ -268,7 +266,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 			CalendarBookingImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_S_E",
 			new String[] {
-				Long.class.getName(), Date.class.getName(), Date.class.getName()
+				Long.class.getName(), Long.class.getName(), Long.class.getName()
 			},
 			CalendarBookingModelImpl.CALENDARID_COLUMN_BITMASK |
 			CalendarBookingModelImpl.STARTDATE_COLUMN_BITMASK |
@@ -277,7 +275,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 			CalendarBookingModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_S_E",
 			new String[] {
-				Long.class.getName(), Date.class.getName(), Date.class.getName()
+				Long.class.getName(), Long.class.getName(), Long.class.getName()
 			});
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(CalendarBookingModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarBookingModelImpl.FINDER_CACHE_ENABLED,
@@ -683,10 +681,8 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_S_E.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						Long.valueOf(calendarBookingModelImpl.getOriginalCalendarId()),
-						
-						calendarBookingModelImpl.getOriginalStartDate(),
-						
-						calendarBookingModelImpl.getOriginalEndDate()
+						Long.valueOf(calendarBookingModelImpl.getOriginalStartDate()),
+						Long.valueOf(calendarBookingModelImpl.getOriginalEndDate())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_S_E, args);
@@ -695,10 +691,8 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 
 				args = new Object[] {
 						Long.valueOf(calendarBookingModelImpl.getCalendarId()),
-						
-						calendarBookingModelImpl.getStartDate(),
-						
-						calendarBookingModelImpl.getEndDate()
+						Long.valueOf(calendarBookingModelImpl.getStartDate()),
+						Long.valueOf(calendarBookingModelImpl.getEndDate())
 					};
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_S_E, args);
@@ -3875,8 +3869,8 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	 * @return the matching calendar bookings
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<CalendarBooking> findByC_S_E(long calendarId, Date startDate,
-		Date endDate) throws SystemException {
+	public List<CalendarBooking> findByC_S_E(long calendarId, long startDate,
+		long endDate) throws SystemException {
 		return findByC_S_E(calendarId, startDate, endDate, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
@@ -3896,8 +3890,8 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	 * @return the range of matching calendar bookings
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<CalendarBooking> findByC_S_E(long calendarId, Date startDate,
-		Date endDate, int start, int end) throws SystemException {
+	public List<CalendarBooking> findByC_S_E(long calendarId, long startDate,
+		long endDate, int start, int end) throws SystemException {
 		return findByC_S_E(calendarId, startDate, endDate, start, end, null);
 	}
 
@@ -3917,8 +3911,8 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	 * @return the ordered range of matching calendar bookings
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<CalendarBooking> findByC_S_E(long calendarId, Date startDate,
-		Date endDate, int start, int end, OrderByComparator orderByComparator)
+	public List<CalendarBooking> findByC_S_E(long calendarId, long startDate,
+		long endDate, int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -3943,9 +3937,8 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 		if ((list != null) && !list.isEmpty()) {
 			for (CalendarBooking calendarBooking : list) {
 				if ((calendarId != calendarBooking.getCalendarId()) ||
-						!Validator.equals(startDate,
-							calendarBooking.getStartDate()) ||
-						!Validator.equals(endDate, calendarBooking.getEndDate())) {
+						(startDate != calendarBooking.getStartDate()) ||
+						(endDate != calendarBooking.getEndDate())) {
 					list = null;
 
 					break;
@@ -3968,19 +3961,9 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 
 			query.append(_FINDER_COLUMN_C_S_E_CALENDARID_2);
 
-			if (startDate == null) {
-				query.append(_FINDER_COLUMN_C_S_E_STARTDATE_1);
-			}
-			else {
-				query.append(_FINDER_COLUMN_C_S_E_STARTDATE_2);
-			}
+			query.append(_FINDER_COLUMN_C_S_E_STARTDATE_2);
 
-			if (endDate == null) {
-				query.append(_FINDER_COLUMN_C_S_E_ENDDATE_1);
-			}
-			else {
-				query.append(_FINDER_COLUMN_C_S_E_ENDDATE_2);
-			}
+			query.append(_FINDER_COLUMN_C_S_E_ENDDATE_2);
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
@@ -4004,13 +3987,9 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 
 				qPos.add(calendarId);
 
-				if (startDate != null) {
-					qPos.add(CalendarUtil.getTimestamp(startDate));
-				}
+				qPos.add(startDate);
 
-				if (endDate != null) {
-					qPos.add(CalendarUtil.getTimestamp(endDate));
-				}
+				qPos.add(endDate);
 
 				list = (List<CalendarBooking>)QueryUtil.list(q, getDialect(),
 						start, end);
@@ -4050,8 +4029,8 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	 * @throws com.liferay.calendar.NoSuchBookingException if a matching calendar booking could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public CalendarBooking findByC_S_E_First(long calendarId, Date startDate,
-		Date endDate, OrderByComparator orderByComparator)
+	public CalendarBooking findByC_S_E_First(long calendarId, long startDate,
+		long endDate, OrderByComparator orderByComparator)
 		throws NoSuchBookingException, SystemException {
 		List<CalendarBooking> list = findByC_S_E(calendarId, startDate,
 				endDate, 0, 1, orderByComparator);
@@ -4094,8 +4073,8 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	 * @throws com.liferay.calendar.NoSuchBookingException if a matching calendar booking could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public CalendarBooking findByC_S_E_Last(long calendarId, Date startDate,
-		Date endDate, OrderByComparator orderByComparator)
+	public CalendarBooking findByC_S_E_Last(long calendarId, long startDate,
+		long endDate, OrderByComparator orderByComparator)
 		throws NoSuchBookingException, SystemException {
 		int count = countByC_S_E(calendarId, startDate, endDate);
 
@@ -4142,7 +4121,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	 * @throws SystemException if a system exception occurred
 	 */
 	public CalendarBooking[] findByC_S_E_PrevAndNext(long calendarBookingId,
-		long calendarId, Date startDate, Date endDate,
+		long calendarId, long startDate, long endDate,
 		OrderByComparator orderByComparator)
 		throws NoSuchBookingException, SystemException {
 		CalendarBooking calendarBooking = findByPrimaryKey(calendarBookingId);
@@ -4173,8 +4152,8 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	}
 
 	protected CalendarBooking getByC_S_E_PrevAndNext(Session session,
-		CalendarBooking calendarBooking, long calendarId, Date startDate,
-		Date endDate, OrderByComparator orderByComparator, boolean previous) {
+		CalendarBooking calendarBooking, long calendarId, long startDate,
+		long endDate, OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -4189,19 +4168,9 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 
 		query.append(_FINDER_COLUMN_C_S_E_CALENDARID_2);
 
-		if (startDate == null) {
-			query.append(_FINDER_COLUMN_C_S_E_STARTDATE_1);
-		}
-		else {
-			query.append(_FINDER_COLUMN_C_S_E_STARTDATE_2);
-		}
+		query.append(_FINDER_COLUMN_C_S_E_STARTDATE_2);
 
-		if (endDate == null) {
-			query.append(_FINDER_COLUMN_C_S_E_ENDDATE_1);
-		}
-		else {
-			query.append(_FINDER_COLUMN_C_S_E_ENDDATE_2);
-		}
+		query.append(_FINDER_COLUMN_C_S_E_ENDDATE_2);
 
 		if (orderByComparator != null) {
 			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
@@ -4274,13 +4243,9 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 
 		qPos.add(calendarId);
 
-		if (startDate != null) {
-			qPos.add(CalendarUtil.getTimestamp(startDate));
-		}
+		qPos.add(startDate);
 
-		if (endDate != null) {
-			qPos.add(CalendarUtil.getTimestamp(endDate));
-		}
+		qPos.add(endDate);
 
 		if (orderByComparator != null) {
 			Object[] values = orderByComparator.getOrderByConditionValues(calendarBooking);
@@ -4551,7 +4516,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	 * @param endDate the end date
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByC_S_E(long calendarId, Date startDate, Date endDate)
+	public void removeByC_S_E(long calendarId, long startDate, long endDate)
 		throws SystemException {
 		for (CalendarBooking calendarBooking : findByC_S_E(calendarId,
 				startDate, endDate)) {
@@ -5124,7 +5089,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	 * @return the number of matching calendar bookings
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByC_S_E(long calendarId, Date startDate, Date endDate)
+	public int countByC_S_E(long calendarId, long startDate, long endDate)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { calendarId, startDate, endDate };
 
@@ -5138,19 +5103,9 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 
 			query.append(_FINDER_COLUMN_C_S_E_CALENDARID_2);
 
-			if (startDate == null) {
-				query.append(_FINDER_COLUMN_C_S_E_STARTDATE_1);
-			}
-			else {
-				query.append(_FINDER_COLUMN_C_S_E_STARTDATE_2);
-			}
+			query.append(_FINDER_COLUMN_C_S_E_STARTDATE_2);
 
-			if (endDate == null) {
-				query.append(_FINDER_COLUMN_C_S_E_ENDDATE_1);
-			}
-			else {
-				query.append(_FINDER_COLUMN_C_S_E_ENDDATE_2);
-			}
+			query.append(_FINDER_COLUMN_C_S_E_ENDDATE_2);
 
 			String sql = query.toString();
 
@@ -5165,13 +5120,9 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 
 				qPos.add(calendarId);
 
-				if (startDate != null) {
-					qPos.add(CalendarUtil.getTimestamp(startDate));
-				}
+				qPos.add(startDate);
 
-				if (endDate != null) {
-					qPos.add(CalendarUtil.getTimestamp(endDate));
-				}
+				qPos.add(endDate);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -5297,9 +5248,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	private static final String _FINDER_COLUMN_P_S_PARENTCALENDARBOOKINGID_2 = "calendarBooking.parentCalendarBookingId = ? AND ";
 	private static final String _FINDER_COLUMN_P_S_STATUS_2 = "calendarBooking.status = ?";
 	private static final String _FINDER_COLUMN_C_S_E_CALENDARID_2 = "calendarBooking.calendarId = ? AND ";
-	private static final String _FINDER_COLUMN_C_S_E_STARTDATE_1 = "calendarBooking.startDate IS NULL AND ";
 	private static final String _FINDER_COLUMN_C_S_E_STARTDATE_2 = "calendarBooking.startDate = ? AND ";
-	private static final String _FINDER_COLUMN_C_S_E_ENDDATE_1 = "calendarBooking.endDate IS NULL";
 	private static final String _FINDER_COLUMN_C_S_E_ENDDATE_2 = "calendarBooking.endDate = ?";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "calendarBooking.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No CalendarBooking exists with the primary key ";

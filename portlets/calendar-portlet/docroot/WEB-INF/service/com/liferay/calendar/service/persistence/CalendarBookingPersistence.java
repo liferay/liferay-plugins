@@ -945,7 +945,7 @@ public interface CalendarBookingPersistence extends BasePersistence<CalendarBook
 	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> findByC_S_E(
-		long calendarId, java.util.Date startDate, java.util.Date endDate)
+		long calendarId, long startDate, long endDate)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -964,8 +964,7 @@ public interface CalendarBookingPersistence extends BasePersistence<CalendarBook
 	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> findByC_S_E(
-		long calendarId, java.util.Date startDate, java.util.Date endDate,
-		int start, int end)
+		long calendarId, long startDate, long endDate, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -985,8 +984,7 @@ public interface CalendarBookingPersistence extends BasePersistence<CalendarBook
 	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> findByC_S_E(
-		long calendarId, java.util.Date startDate, java.util.Date endDate,
-		int start, int end,
+		long calendarId, long startDate, long endDate, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -1006,7 +1004,7 @@ public interface CalendarBookingPersistence extends BasePersistence<CalendarBook
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.calendar.model.CalendarBooking findByC_S_E_First(
-		long calendarId, java.util.Date startDate, java.util.Date endDate,
+		long calendarId, long startDate, long endDate,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.calendar.NoSuchBookingException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -1027,7 +1025,7 @@ public interface CalendarBookingPersistence extends BasePersistence<CalendarBook
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.calendar.model.CalendarBooking findByC_S_E_Last(
-		long calendarId, java.util.Date startDate, java.util.Date endDate,
+		long calendarId, long startDate, long endDate,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.calendar.NoSuchBookingException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -1049,8 +1047,7 @@ public interface CalendarBookingPersistence extends BasePersistence<CalendarBook
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.calendar.model.CalendarBooking[] findByC_S_E_PrevAndNext(
-		long calendarBookingId, long calendarId, java.util.Date startDate,
-		java.util.Date endDate,
+		long calendarBookingId, long calendarId, long startDate, long endDate,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.calendar.NoSuchBookingException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -1198,8 +1195,7 @@ public interface CalendarBookingPersistence extends BasePersistence<CalendarBook
 	* @param endDate the end date
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByC_S_E(long calendarId, java.util.Date startDate,
-		java.util.Date endDate)
+	public void removeByC_S_E(long calendarId, long startDate, long endDate)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -1314,8 +1310,7 @@ public interface CalendarBookingPersistence extends BasePersistence<CalendarBook
 	* @return the number of matching calendar bookings
 	* @throws SystemException if a system exception occurred
 	*/
-	public int countByC_S_E(long calendarId, java.util.Date startDate,
-		java.util.Date endDate)
+	public int countByC_S_E(long calendarId, long startDate, long endDate)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

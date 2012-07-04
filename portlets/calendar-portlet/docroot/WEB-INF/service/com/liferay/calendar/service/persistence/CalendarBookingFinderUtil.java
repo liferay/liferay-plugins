@@ -24,7 +24,7 @@ public class CalendarBookingFinderUtil {
 	public static int countByKeywords(long companyId, long[] groupIds,
 		long[] calendarIds, long[] calendarResourceIds,
 		long parentCalendarBookingId, java.lang.String keywords,
-		java.util.Date startDate, java.util.Date endDate, int[] statuses)
+		long startDate, long endDate, int[] statuses)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder()
 				   .countByKeywords(companyId, groupIds, calendarIds,
@@ -36,8 +36,7 @@ public class CalendarBookingFinderUtil {
 		long[] groupIds, long[] calendarIds, long[] calendarResourceIds,
 		long parentCalendarBookingId, java.lang.String title,
 		java.lang.String description, java.lang.String location,
-		java.util.Date startDate, java.util.Date endDate, int[] statuses,
-		boolean andOperator)
+		long startDate, long endDate, int[] statuses, boolean andOperator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder()
 				   .countByC_G_C_C_P_T_D_L_S_E_S(companyId, groupIds,
@@ -49,8 +48,7 @@ public class CalendarBookingFinderUtil {
 		long[] groupIds, long[] calendarIds, long[] calendarResourceIds,
 		long parentCalendarBookingId, java.lang.String[] titles,
 		java.lang.String[] descriptions, java.lang.String[] locations,
-		java.util.Date startDate, java.util.Date endDate, int[] statuses,
-		boolean andOperator)
+		long startDate, long endDate, int[] statuses, boolean andOperator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder()
 				   .countByC_G_C_C_P_T_D_L_S_E_S(companyId, groupIds,
@@ -61,7 +59,7 @@ public class CalendarBookingFinderUtil {
 	public static int filterCountByKeywords(long companyId, long[] groupIds,
 		long[] calendarIds, long[] calendarResourceIds,
 		long parentCalendarBookingId, java.lang.String keywords,
-		java.util.Date startDate, java.util.Date endDate, int[] statuses)
+		long startDate, long endDate, int[] statuses)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder()
 				   .filterCountByKeywords(companyId, groupIds, calendarIds,
@@ -73,8 +71,7 @@ public class CalendarBookingFinderUtil {
 		long[] groupIds, long[] calendarIds, long[] calendarResourceIds,
 		long parentCalendarBookingId, java.lang.String title,
 		java.lang.String description, java.lang.String location,
-		java.util.Date startDate, java.util.Date endDate, int[] statuses,
-		boolean andOperator)
+		long startDate, long endDate, int[] statuses, boolean andOperator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder()
 				   .filterCountByC_G_C_C_P_T_D_L_S_E_S(companyId, groupIds,
@@ -86,8 +83,7 @@ public class CalendarBookingFinderUtil {
 		long[] groupIds, long[] calendarIds, long[] calendarResourceIds,
 		long parentCalendarBookingId, java.lang.String[] titles,
 		java.lang.String[] descriptions, java.lang.String[] locations,
-		java.util.Date startDate, java.util.Date endDate, int[] statuses,
-		boolean andOperator)
+		long startDate, long endDate, int[] statuses, boolean andOperator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder()
 				   .filterCountByC_G_C_C_P_T_D_L_S_E_S(companyId, groupIds,
@@ -98,8 +94,8 @@ public class CalendarBookingFinderUtil {
 	public static java.util.List<com.liferay.calendar.model.CalendarBooking> filterFindByKeywords(
 		long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
-		java.lang.String keywords, java.util.Date startDate,
-		java.util.Date endDate, int[] statuses, int start, int end,
+		java.lang.String keywords, long startDate, long endDate,
+		int[] statuses, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder()
@@ -112,9 +108,8 @@ public class CalendarBookingFinderUtil {
 		long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
 		java.lang.String title, java.lang.String description,
-		java.lang.String location, java.util.Date startDate,
-		java.util.Date endDate, int[] statuses, boolean andOperator, int start,
-		int end,
+		java.lang.String location, long startDate, long endDate,
+		int[] statuses, boolean andOperator, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder()
@@ -128,9 +123,8 @@ public class CalendarBookingFinderUtil {
 		long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
 		java.lang.String[] titles, java.lang.String[] descriptions,
-		java.lang.String[] locations, java.util.Date startDate,
-		java.util.Date endDate, int[] statuses, boolean andOperator, int start,
-		int end,
+		java.lang.String[] locations, long startDate, long endDate,
+		int[] statuses, boolean andOperator, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder()
@@ -141,7 +135,7 @@ public class CalendarBookingFinderUtil {
 	}
 
 	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByFutureReminders(
-		java.util.Date startDate)
+		long startDate)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder().findByFutureReminders(startDate);
 	}
@@ -149,8 +143,8 @@ public class CalendarBookingFinderUtil {
 	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByKeywords(
 		long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
-		java.lang.String keywords, java.util.Date startDate,
-		java.util.Date endDate, int[] statuses, int start, int end,
+		java.lang.String keywords, long startDate, long endDate,
+		int[] statuses, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder()
@@ -163,9 +157,8 @@ public class CalendarBookingFinderUtil {
 		long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
 		java.lang.String title, java.lang.String description,
-		java.lang.String location, java.util.Date startDate,
-		java.util.Date endDate, int[] statuses, boolean andOperator, int start,
-		int end,
+		java.lang.String location, long startDate, long endDate,
+		int[] statuses, boolean andOperator, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder()
@@ -179,9 +172,8 @@ public class CalendarBookingFinderUtil {
 		long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
 		java.lang.String[] titles, java.lang.String[] descriptions,
-		java.lang.String[] locations, java.util.Date startDate,
-		java.util.Date endDate, int[] statuses, boolean andOperator, int start,
-		int end,
+		java.lang.String[] locations, long startDate, long endDate,
+		int[] statuses, boolean andOperator, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder()

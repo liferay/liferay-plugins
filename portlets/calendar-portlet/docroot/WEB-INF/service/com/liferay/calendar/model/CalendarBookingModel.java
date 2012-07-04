@@ -456,28 +456,28 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 *
 	 * @return the start date of this calendar booking
 	 */
-	public Date getStartDate();
+	public long getStartDate();
 
 	/**
 	 * Sets the start date of this calendar booking.
 	 *
 	 * @param startDate the start date of this calendar booking
 	 */
-	public void setStartDate(Date startDate);
+	public void setStartDate(long startDate);
 
 	/**
 	 * Returns the end date of this calendar booking.
 	 *
 	 * @return the end date of this calendar booking
 	 */
-	public Date getEndDate();
+	public long getEndDate();
 
 	/**
 	 * Sets the end date of this calendar booking.
 	 *
 	 * @param endDate the end date of this calendar booking
 	 */
-	public void setEndDate(Date endDate);
+	public void setEndDate(long endDate);
 
 	/**
 	 * Returns the all day of this calendar booking.

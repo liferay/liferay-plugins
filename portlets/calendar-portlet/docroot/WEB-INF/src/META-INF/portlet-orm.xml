@@ -61,12 +61,8 @@
 			<basic name="title" />
 			<basic name="description" />
 			<basic name="location" />
-			<basic name="startDate">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
-			<basic name="endDate">
-				<temporal>TIMESTAMP</temporal>
-			</basic>
+			<basic name="startDate" />
+			<basic name="endDate" />
 			<basic name="allDay" />
 			<basic name="recurrence" />
 			<basic name="firstReminder" />

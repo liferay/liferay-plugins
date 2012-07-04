@@ -223,19 +223,19 @@ public class CalendarBookingSoap implements Serializable {
 		_location = location;
 	}
 
-	public Date getStartDate() {
+	public long getStartDate() {
 		return _startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(long startDate) {
 		_startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public long getEndDate() {
 		return _endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(long endDate) {
 		_endDate = endDate;
 	}
 
@@ -337,8 +337,8 @@ public class CalendarBookingSoap implements Serializable {
 	private String _title;
 	private String _description;
 	private String _location;
-	private Date _startDate;
-	private Date _endDate;
+	private long _startDate;
+	private long _endDate;
 	private boolean _allDay;
 	private String _recurrence;
 	private long _firstReminder;

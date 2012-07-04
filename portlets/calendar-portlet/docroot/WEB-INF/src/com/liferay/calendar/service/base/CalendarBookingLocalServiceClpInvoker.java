@@ -120,10 +120,9 @@ public class CalendarBookingLocalServiceClpInvoker {
 
 		_methodParameterTypes61 = new String[] {
 				"long", "long", "long[][]", "long", "java.util.Map",
-				"java.util.Map", "java.lang.String", "java.util.Date",
-				"java.util.Date", "boolean", "java.lang.String", "long",
-				"java.lang.String", "long", "java.lang.String",
-				"com.liferay.portal.service.ServiceContext"
+				"java.util.Map", "java.lang.String", "long", "long", "boolean",
+				"java.lang.String", "long", "java.lang.String", "long",
+				"java.lang.String", "com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName62 = "checkCalendarBookings";
@@ -158,9 +157,7 @@ public class CalendarBookingLocalServiceClpInvoker {
 
 		_methodName69 = "getCalendarBookings";
 
-		_methodParameterTypes69 = new String[] {
-				"long", "java.util.Date", "java.util.Date"
-			};
+		_methodParameterTypes69 = new String[] { "long", "long", "long" };
 
 		_methodName70 = "getCalendarBookingsCount";
 
@@ -178,8 +175,7 @@ public class CalendarBookingLocalServiceClpInvoker {
 
 		_methodParameterTypes73 = new String[] {
 				"long", "long[][]", "long[][]", "long[][]", "long",
-				"java.lang.String", "java.util.Date", "java.util.Date",
-				"int[][]", "int", "int",
+				"java.lang.String", "long", "long", "int[][]", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
@@ -188,16 +184,15 @@ public class CalendarBookingLocalServiceClpInvoker {
 		_methodParameterTypes74 = new String[] {
 				"long", "long[][]", "long[][]", "long[][]", "long",
 				"java.lang.String", "java.lang.String", "java.lang.String",
-				"java.util.Date", "java.util.Date", "int[][]", "boolean", "int",
-				"int", "com.liferay.portal.kernel.util.OrderByComparator"
+				"long", "long", "int[][]", "boolean", "int", "int",
+				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
 		_methodName75 = "searchCount";
 
 		_methodParameterTypes75 = new String[] {
 				"long", "long[][]", "long[][]", "long[][]", "long",
-				"java.lang.String", "java.util.Date", "java.util.Date",
-				"int[][]"
+				"java.lang.String", "long", "long", "int[][]"
 			};
 
 		_methodName76 = "searchCount";
@@ -205,16 +200,16 @@ public class CalendarBookingLocalServiceClpInvoker {
 		_methodParameterTypes76 = new String[] {
 				"long", "long[][]", "long[][]", "long[][]", "long",
 				"java.lang.String", "java.lang.String", "java.lang.String",
-				"java.util.Date", "java.util.Date", "int[][]", "boolean"
+				"long", "long", "int[][]", "boolean"
 			};
 
 		_methodName77 = "updateCalendarBooking";
 
 		_methodParameterTypes77 = new String[] {
 				"long", "long", "long", "long[][]", "java.util.Map",
-				"java.util.Map", "java.lang.String", "java.util.Date",
-				"java.util.Date", "boolean", "java.lang.String", "long",
-				"java.lang.String", "long", "java.lang.String", "int",
+				"java.util.Map", "java.lang.String", "long", "long", "boolean",
+				"java.lang.String", "long", "java.lang.String", "long",
+				"java.lang.String", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -222,9 +217,9 @@ public class CalendarBookingLocalServiceClpInvoker {
 
 		_methodParameterTypes78 = new String[] {
 				"long", "long", "long", "java.util.Map", "java.util.Map",
-				"java.lang.String", "java.util.Date", "java.util.Date",
-				"boolean", "java.lang.String", "long", "java.lang.String",
-				"long", "java.lang.String", "int",
+				"java.lang.String", "long", "long", "boolean",
+				"java.lang.String", "long", "java.lang.String", "long",
+				"java.lang.String", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -348,8 +343,9 @@ public class CalendarBookingLocalServiceClpInvoker {
 				((Long)arguments[3]).longValue(),
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[4],
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[5],
-				(java.lang.String)arguments[6], (java.util.Date)arguments[7],
-				(java.util.Date)arguments[8],
+				(java.lang.String)arguments[6],
+				((Long)arguments[7]).longValue(),
+				((Long)arguments[8]).longValue(),
 				((Boolean)arguments[9]).booleanValue(),
 				(java.lang.String)arguments[10],
 				((Long)arguments[11]).longValue(),
@@ -398,7 +394,8 @@ public class CalendarBookingLocalServiceClpInvoker {
 		if (_methodName69.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
 			return CalendarBookingLocalServiceUtil.getCalendarBookings(((Long)arguments[0]).longValue(),
-				(java.util.Date)arguments[1], (java.util.Date)arguments[2]);
+				((Long)arguments[1]).longValue(),
+				((Long)arguments[2]).longValue());
 		}
 
 		if (_methodName70.equals(name) &&
@@ -423,8 +420,9 @@ public class CalendarBookingLocalServiceClpInvoker {
 			return CalendarBookingLocalServiceUtil.search(((Long)arguments[0]).longValue(),
 				(long[])arguments[1], (long[])arguments[2],
 				(long[])arguments[3], ((Long)arguments[4]).longValue(),
-				(java.lang.String)arguments[5], (java.util.Date)arguments[6],
-				(java.util.Date)arguments[7], (int[])arguments[8],
+				(java.lang.String)arguments[5],
+				((Long)arguments[6]).longValue(),
+				((Long)arguments[7]).longValue(), (int[])arguments[8],
 				((Integer)arguments[9]).intValue(),
 				((Integer)arguments[10]).intValue(),
 				(com.liferay.portal.kernel.util.OrderByComparator)arguments[11]);
@@ -436,8 +434,9 @@ public class CalendarBookingLocalServiceClpInvoker {
 				(long[])arguments[1], (long[])arguments[2],
 				(long[])arguments[3], ((Long)arguments[4]).longValue(),
 				(java.lang.String)arguments[5], (java.lang.String)arguments[6],
-				(java.lang.String)arguments[7], (java.util.Date)arguments[8],
-				(java.util.Date)arguments[9], (int[])arguments[10],
+				(java.lang.String)arguments[7],
+				((Long)arguments[8]).longValue(),
+				((Long)arguments[9]).longValue(), (int[])arguments[10],
 				((Boolean)arguments[11]).booleanValue(),
 				((Integer)arguments[12]).intValue(),
 				((Integer)arguments[13]).intValue(),
@@ -449,8 +448,9 @@ public class CalendarBookingLocalServiceClpInvoker {
 			return CalendarBookingLocalServiceUtil.searchCount(((Long)arguments[0]).longValue(),
 				(long[])arguments[1], (long[])arguments[2],
 				(long[])arguments[3], ((Long)arguments[4]).longValue(),
-				(java.lang.String)arguments[5], (java.util.Date)arguments[6],
-				(java.util.Date)arguments[7], (int[])arguments[8]);
+				(java.lang.String)arguments[5],
+				((Long)arguments[6]).longValue(),
+				((Long)arguments[7]).longValue(), (int[])arguments[8]);
 		}
 
 		if (_methodName76.equals(name) &&
@@ -459,8 +459,9 @@ public class CalendarBookingLocalServiceClpInvoker {
 				(long[])arguments[1], (long[])arguments[2],
 				(long[])arguments[3], ((Long)arguments[4]).longValue(),
 				(java.lang.String)arguments[5], (java.lang.String)arguments[6],
-				(java.lang.String)arguments[7], (java.util.Date)arguments[8],
-				(java.util.Date)arguments[9], (int[])arguments[10],
+				(java.lang.String)arguments[7],
+				((Long)arguments[8]).longValue(),
+				((Long)arguments[9]).longValue(), (int[])arguments[10],
 				((Boolean)arguments[11]).booleanValue());
 		}
 
@@ -471,8 +472,9 @@ public class CalendarBookingLocalServiceClpInvoker {
 				((Long)arguments[2]).longValue(), (long[])arguments[3],
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[4],
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[5],
-				(java.lang.String)arguments[6], (java.util.Date)arguments[7],
-				(java.util.Date)arguments[8],
+				(java.lang.String)arguments[6],
+				((Long)arguments[7]).longValue(),
+				((Long)arguments[8]).longValue(),
 				((Boolean)arguments[9]).booleanValue(),
 				(java.lang.String)arguments[10],
 				((Long)arguments[11]).longValue(),
@@ -490,8 +492,9 @@ public class CalendarBookingLocalServiceClpInvoker {
 				((Long)arguments[2]).longValue(),
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[3],
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[4],
-				(java.lang.String)arguments[5], (java.util.Date)arguments[6],
-				(java.util.Date)arguments[7],
+				(java.lang.String)arguments[5],
+				((Long)arguments[6]).longValue(),
+				((Long)arguments[7]).longValue(),
 				((Boolean)arguments[8]).booleanValue(),
 				(java.lang.String)arguments[9],
 				((Long)arguments[10]).longValue(),

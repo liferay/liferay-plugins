@@ -21,7 +21,6 @@ import com.liferay.calendar.model.CalendarBookingSoap;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSON;
-import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
@@ -86,8 +85,8 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 			{ "title", Types.VARCHAR },
 			{ "description", Types.VARCHAR },
 			{ "location", Types.VARCHAR },
-			{ "startDate", Types.TIMESTAMP },
-			{ "endDate", Types.TIMESTAMP },
+			{ "startDate", Types.BIGINT },
+			{ "endDate", Types.BIGINT },
 			{ "allDay", Types.BOOLEAN },
 			{ "recurrence", Types.VARCHAR },
 			{ "firstReminder", Types.BIGINT },
@@ -99,7 +98,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 			{ "statusByUserName", Types.VARCHAR },
 			{ "statusDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table CalendarBooking (uuid_ VARCHAR(75) null,calendarBookingId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,calendarId LONG,calendarResourceId LONG,parentCalendarBookingId LONG,title STRING null,description STRING null,location VARCHAR(75) null,startDate DATE null,endDate DATE null,allDay BOOLEAN,recurrence VARCHAR(75) null,firstReminder LONG,firstReminderType VARCHAR(75) null,secondReminder LONG,secondReminderType VARCHAR(75) null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table CalendarBooking (uuid_ VARCHAR(75) null,calendarBookingId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,calendarId LONG,calendarResourceId LONG,parentCalendarBookingId LONG,title STRING null,description STRING null,location VARCHAR(75) null,startDate LONG,endDate LONG,allDay BOOLEAN,recurrence VARCHAR(75) null,firstReminder LONG,firstReminderType VARCHAR(75) null,secondReminder LONG,secondReminderType VARCHAR(75) null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table CalendarBooking";
 	public static final String ORDER_BY_JPQL = " ORDER BY calendarBooking.startDate ASC, calendarBooking.title ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY CalendarBooking.startDate ASC, CalendarBooking.title ASC";
@@ -332,13 +331,13 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 			setLocation(location);
 		}
 
-		Date startDate = (Date)attributes.get("startDate");
+		Long startDate = (Long)attributes.get("startDate");
 
 		if (startDate != null) {
 			setStartDate(startDate);
 		}
 
-		Date endDate = (Date)attributes.get("endDate");
+		Long endDate = (Long)attributes.get("endDate");
 
 		if (endDate != null) {
 			setEndDate(endDate);
@@ -781,40 +780,44 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	}
 
 	@JSON
-	public Date getStartDate() {
+	public long getStartDate() {
 		return _startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(long startDate) {
 		_columnBitmask = -1L;
 
-		if (_originalStartDate == null) {
+		if (!_setOriginalStartDate) {
+			_setOriginalStartDate = true;
+
 			_originalStartDate = _startDate;
 		}
 
 		_startDate = startDate;
 	}
 
-	public Date getOriginalStartDate() {
+	public long getOriginalStartDate() {
 		return _originalStartDate;
 	}
 
 	@JSON
-	public Date getEndDate() {
+	public long getEndDate() {
 		return _endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(long endDate) {
 		_columnBitmask |= ENDDATE_COLUMN_BITMASK;
 
-		if (_originalEndDate == null) {
+		if (!_setOriginalEndDate) {
+			_setOriginalEndDate = true;
+
 			_originalEndDate = _endDate;
 		}
 
 		_endDate = endDate;
 	}
 
-	public Date getOriginalEndDate() {
+	public long getOriginalEndDate() {
 		return _originalEndDate;
 	}
 
@@ -1108,8 +1111,15 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	public int compareTo(CalendarBooking calendarBooking) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getStartDate(),
-				calendarBooking.getStartDate());
+		if (getStartDate() < calendarBooking.getStartDate()) {
+			value = -1;
+		}
+		else if (getStartDate() > calendarBooking.getStartDate()) {
+			value = 1;
+		}
+		else {
+			value = 0;
+		}
 
 		if (value != 0) {
 			return value;
@@ -1183,7 +1193,11 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 
 		calendarBookingModelImpl._originalStartDate = calendarBookingModelImpl._startDate;
 
+		calendarBookingModelImpl._setOriginalStartDate = false;
+
 		calendarBookingModelImpl._originalEndDate = calendarBookingModelImpl._endDate;
+
+		calendarBookingModelImpl._setOriginalEndDate = false;
 
 		calendarBookingModelImpl._originalStatus = calendarBookingModelImpl._status;
 
@@ -1268,23 +1282,9 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 			calendarBookingCacheModel.location = null;
 		}
 
-		Date startDate = getStartDate();
+		calendarBookingCacheModel.startDate = getStartDate();
 
-		if (startDate != null) {
-			calendarBookingCacheModel.startDate = startDate.getTime();
-		}
-		else {
-			calendarBookingCacheModel.startDate = Long.MIN_VALUE;
-		}
-
-		Date endDate = getEndDate();
-
-		if (endDate != null) {
-			calendarBookingCacheModel.endDate = endDate.getTime();
-		}
-		else {
-			calendarBookingCacheModel.endDate = Long.MIN_VALUE;
-		}
+		calendarBookingCacheModel.endDate = getEndDate();
 
 		calendarBookingCacheModel.allDay = getAllDay();
 
@@ -1550,10 +1550,12 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	private String _description;
 	private String _descriptionCurrentLanguageId;
 	private String _location;
-	private Date _startDate;
-	private Date _originalStartDate;
-	private Date _endDate;
-	private Date _originalEndDate;
+	private long _startDate;
+	private long _originalStartDate;
+	private boolean _setOriginalStartDate;
+	private long _endDate;
+	private long _originalEndDate;
+	private boolean _setOriginalEndDate;
 	private boolean _allDay;
 	private String _recurrence;
 	private long _firstReminder;
