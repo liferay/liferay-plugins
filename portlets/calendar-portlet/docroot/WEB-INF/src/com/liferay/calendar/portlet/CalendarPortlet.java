@@ -71,7 +71,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.TimeZone;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -441,12 +440,8 @@ public class CalendarPortlet extends MVCPortlet {
 			hour += 12;
 		}
 
-		TimeZone timeZone = themeDisplay.getTimeZone();
-
-		java.util.Calendar jCalendar = JCalendarUtil.getJCalendar(
-			year, month, day, hour, minute, 0, 0, timeZone);
-
-		return jCalendar;
+		return JCalendarUtil.getJCalendar(
+			year, month, day, hour, minute, 0, 0, themeDisplay.getTimeZone());
 	}
 
 	protected String getRecurrence(ActionRequest actionRequest) {
