@@ -63,15 +63,15 @@ String notificationTemplateContentSubject = PrefsParamUtil.getString(preferences
 		<c:when test='<%= tabs2.equals("user-settings") %>'>
 			<aui:fieldset>
 				<aui:select label="time-format" name="isoTimeFormat">
-					<aui:option label="1:00pm" selected="<%= !isoTimeFormat %>" value="<%= false %>" />
-					<aui:option label="13:00" selected="<%= isoTimeFormat %>" value="<%= true %>" />
+					<aui:option label="am-pm" selected="<%= !isoTimeFormat %>" value="<%= false %>" />
+					<aui:option label="24-hour" selected="<%= isoTimeFormat %>" value="<%= true %>" />
 				</aui:select>
 
 				<aui:select label="default-duration" name="defaultDuration">
-					<aui:option label="15 min" selected='<%= defaultDuration == 15 %>' value="15" />
-					<aui:option label="30 min" selected='<%= defaultDuration == 30 %>' value="30" />
-					<aui:option label="60 min" selected='<%= defaultDuration == 60 %>' value="60" />
-					<aui:option label="120 min" selected='<%= defaultDuration == 120 %>' value="120" />
+					<aui:option label='<%= LanguageUtil.format(pageContext, "x-minutes", "15") %>' selected='<%= defaultDuration == 15 %>' value="15" />
+					<aui:option label='<%= LanguageUtil.format(pageContext, "x-minutes", "30") %>' selected='<%= defaultDuration == 30 %>' value="30" />
+					<aui:option label='<%= LanguageUtil.format(pageContext, "x-minutes", "60") %>' selected='<%= defaultDuration == 60 %>' value="60" />
+					<aui:option label='<%= LanguageUtil.format(pageContext, "x-minutes", "120") %>' selected='<%= defaultDuration == 120 %>' value="120" />
 				</aui:select>
 
 				<aui:select label="default-view" name="defaultView">
