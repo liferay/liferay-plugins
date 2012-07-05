@@ -27,6 +27,8 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
 
+import java.util.List;
+
 /**
  * @author Eduardo Lundgren
  */
@@ -44,6 +46,13 @@ public class CalendarBookingImpl extends CalendarBookingBaseImpl {
 
 		return CalendarResourceLocalServiceUtil.getCalendarResource(
 			getCalendarResourceId());
+	}
+
+	public List<CalendarBooking> getChildCalendarBookings()
+		throws SystemException {
+
+		return CalendarBookingLocalServiceUtil.getChildCalendarBookings(
+			getCalendarBookingId());
 	}
 
 	public NotificationType getFirstReminderNotificationType() {

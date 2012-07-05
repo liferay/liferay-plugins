@@ -124,6 +124,16 @@ public class CalendarResourceUtil {
 			PortletRequest portletRequest, long userId)
 		throws PortalException, SystemException {
 
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			portletRequest);
+
+		return getUserCalendarResource(userId, serviceContext);
+	}
+
+	public static CalendarResource getUserCalendarResource(
+			long userId, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
 		long classNameId = PortalUtil.getClassNameId(User.class);
 
 		CalendarResource calendarResource =
@@ -141,9 +151,6 @@ public class CalendarResourceUtil {
 		nameMap.put(LocaleUtil.getDefault(), user.getFullName());
 
 		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			portletRequest);
 
 		return CalendarResourceLocalServiceUtil.addCalendarResource(
 			serviceContext.getUserId(), 0, User.class.getName(), userId, null,

@@ -207,6 +207,12 @@ public class CalendarBookingLocalServiceImpl
 		}
 	}
 
+	public CalendarBooking fetchCalendarBooking(String uuid, long groupId)
+		throws SystemException {
+
+		return calendarBookingPersistence.fetchByUUID_G(uuid, groupId);
+	}
+
 	@Override
 	public CalendarBooking getCalendarBooking(long calendarBookingId)
 		throws PortalException, SystemException {
