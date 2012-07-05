@@ -80,7 +80,7 @@ public class JCalendarUtil {
 	}
 
 	public static int getTimeZoneOffset(TimeZone timeZone) {
-		return timeZone.getOffset(System.currentTimeMillis());
+		return timeZone.getRawOffset();
 	}
 
 	private static TimeZone _utcTimeZone = TimeZone.getTimeZone(StringPool.UTC);

@@ -19,7 +19,7 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
-String activeView = ParamUtil.getString(request, "activeView", "week");
+String activeView = ParamUtil.getString(request, "activeView", defaultView);
 
 redirect = HttpUtil.setParameter(redirect, renderResponse.getNamespace() + "activeView", activeView);
 
@@ -36,7 +36,7 @@ String title = BeanParamUtil.getString(calendarBooking, request, "titleCurrentVa
 
 long startDate = ParamUtil.getLong(request, "startDate", now.getTimeInMillis());
 
-java.util.Calendar startDateJCalendar = JCalendarUtil.getJCalendar(startDate, timeZone);
+java.util.Calendar startDateJCalendar = JCalendarUtil.getJCalendar(startDate, userTimeZone);
 
 java.util.Calendar defaultEndDateJCalendar = (java.util.Calendar)now.clone();
 
@@ -44,7 +44,7 @@ defaultEndDateJCalendar.add(java.util.Calendar.HOUR, 1);
 
 long endDate = ParamUtil.getLong(request, "endDate", defaultEndDateJCalendar.getTimeInMillis());
 
-java.util.Calendar endDateJCalendar = JCalendarUtil.getJCalendar(endDate, timeZone);
+java.util.Calendar endDateJCalendar = JCalendarUtil.getJCalendar(endDate, userTimeZone);
 
 boolean allDay = ParamUtil.getBoolean(request, "allDay");
 

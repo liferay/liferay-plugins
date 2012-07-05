@@ -49,7 +49,7 @@ String notificationTemplateContentSubject = PrefsParamUtil.getString(preferences
 	<aui:input name="notificationTemplateContentSubjectParameterName" type="hidden" value="<%= notificationTemplateContentSubjectParameterName %>" />
 
 	<liferay-ui:tabs
-		names="email-from,templates,display-settings"
+		names="email-from,templates,user-settings"
 		param="tabs2"
 		url="<%= portletURL %>"
 	/>
@@ -161,13 +161,35 @@ String notificationTemplateContentSubject = PrefsParamUtil.getString(preferences
 				</dl>
 			</div>
 		</c:when>
-		<c:when test='<%= tabs2.equals("display-settings") %>'>
+		<c:when test='<%= tabs2.equals("user-settings") %>'>
 			<aui:fieldset>
-				<aui:input name="preferences--dayViewHeaderDateFormat--" type="text" value="<%= dayViewHeaderDateFormat %>" />
+				<aui:select label="time-format" name="isoTimeFormat">
+					<aui:option label="1:00pm" selected="<%= !isoTimeFormat %>" value="<%= false %>" />
+					<aui:option label="13:00" selected="<%= isoTimeFormat %>" value="<%= true %>" />
+				</aui:select>
 
-				<aui:input name="preferences--navigationHeaderDateFormat--" type="text" value="<%= navigationHeaderDateFormat %>" />
+				<aui:select label="default-duration" name="defaultDuration">
+					<aui:option label="15 min" selected='<%= defaultDuration == 15 %>' value="15" />
+					<aui:option label="30 min" selected='<%= defaultDuration == 30 %>' value="30" />
+					<aui:option label="60 min" selected='<%= defaultDuration == 60 %>' value="60" />
+					<aui:option label="120 min" selected='<%= defaultDuration == 120 %>' value="120" />
+				</aui:select>
 
-				<aui:input name="preferences--isoTimeFormat--" type="checkbox" value="<%= isoTimeFormat %>" />
+				<aui:select label="default-view" name="defaultView">
+					<aui:option label="day" selected='<%= defaultView.equals("day") %>' value="day" />
+					<aui:option label="month" selected='<%= defaultView.equals("month") %>' value="month" />
+					<aui:option label="week" selected='<%= defaultView.equals("week") %>' value="week" />
+				</aui:select>
+
+				<aui:select label="week-starts-on" name="weekStartsOn">
+					<aui:option label="weekday.SU" selected='<%= weekStartsOn == 0 %>' value="0" />
+					<aui:option label="weekday.MO" selected='<%= weekStartsOn == 1 %>' value="1" />
+					<aui:option label="weekday.SA" selected='<%= weekStartsOn == 6 %>' value="6" />
+				</aui:select>
+
+				<aui:input cssClass="calendar-portlet-time-zone-field" disabled="<%= usePortalTimeZone %>" label="time-zone" name="timeZoneId" type="timeZone" value="<%= timeZoneId %>" />
+
+				<aui:input label="use-global-timezone" name="usePortalTimeZone" type="checkbox" value="<%= usePortalTimeZone %>" />
 			</aui:fieldset>
 		</c:when>
 	</c:choose>
@@ -186,6 +208,7 @@ String notificationTemplateContentSubject = PrefsParamUtil.getString(preferences
 
 	var notificationType = A.one('#<portlet:namespace />notificationType');
 	var notificationTemplateType = A.one('#<portlet:namespace />notificationTemplateType');
+	var usePortalTimeZoneCheckbox = A.one('#<portlet:namespace />usePortalTimeZoneCheckbox');
 
 	if (notificationType) {
 		notificationType.on(
@@ -201,6 +224,15 @@ String notificationTemplateContentSubject = PrefsParamUtil.getString(preferences
 			'change',
 			function(event) {
 				<portlet:namespace />changeNotificationTemplate('notificationTemplateType', event.currentTarget.val());
+			}
+		);
+	}
+
+	if (usePortalTimeZoneCheckbox) {
+		usePortalTimeZoneCheckbox.on(
+			'change',
+			function(event) {
+				document.<portlet:namespace />fm.<portlet:namespace />timeZoneId.disabled = usePortalTimeZoneCheckbox.attr('checked');
 			}
 		);
 	}

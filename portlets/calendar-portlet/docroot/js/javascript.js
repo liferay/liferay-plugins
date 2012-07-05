@@ -495,7 +495,7 @@
 					date = new Date(date);
 				}
 
-				return DateMath.subtract(date, DateMath.MINUTES, date.getTimezoneOffset());
+				return DateMath.subtract(date, DateMath.MINUTES, date.getTimezoneOffset() + instance.USER_TIMEZONE_OFFSET/DateMath.ONE_MINUTE_MS);
 			},
 
 			updateEvent: function(schedulerEvent) {

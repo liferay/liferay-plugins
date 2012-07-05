@@ -290,3 +290,7 @@
 .aui-simple-color-picker-item:hover, .aui-simple-color-picker-item-selected {
 	@include transition(border-color 0s);
 }
+
+.calendar-portlet-time-zone-field .aui-field .aui-field-content {
+	margin: 0;
+}

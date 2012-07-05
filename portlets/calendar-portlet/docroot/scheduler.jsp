@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String activeView = ParamUtil.getString(request, "activeView", "week");
+String activeView = ParamUtil.getString(request, "activeView", defaultView);
 long currentDate = ParamUtil.getLong(request, "currentDate", now.getTimeInMillis());
 String editCalendarBookingURL = ParamUtil.getString(request, "editCalendarBookingURL");
 String filterCalendarBookings = ParamUtil.getString(request, "filterCalendarBookings", null);
@@ -32,24 +32,20 @@ boolean readOnly = ParamUtil.getBoolean(request, "readOnly");
 
 <aui:script use="aui-toggler,liferay-calendar-list,liferay-scheduler,liferay-store,json">
 	Liferay.CalendarUtil.PORTLET_NAMESPACE = '<portlet:namespace />';
-	Liferay.CalendarUtil.USER_TIMEZONE_OFFSET = <%= JCalendarUtil.getTimeZoneOffset(timeZone) %>;
+	Liferay.CalendarUtil.USER_TIMEZONE_OFFSET = <%= JCalendarUtil.getTimeZoneOffset(userTimeZone) %>;
 
 	window.<portlet:namespace />dayView = new A.SchedulerDayView(
 		{
-			headerDateFormat: '<%= dayViewHeaderDateFormat %>',
 			height: 700,
 			isoTime: <%= isoTimeFormat %>,
-			navigationDateFormat: '<%= navigationHeaderDateFormat %>',
 			readOnly: <%= readOnly %>
 		}
 	);
 
 	window.<portlet:namespace />weekView = new A.SchedulerWeekView(
 		{
-			headerDateFormat: '<%= dayViewHeaderDateFormat %>',
 			height: 700,
 			isoTime: <%= isoTimeFormat %>,
-			navigationDateFormat: '<%= navigationHeaderDateFormat %>',
 			readOnly: <%= readOnly %>
 		}
 	);
@@ -57,7 +53,6 @@ boolean readOnly = ParamUtil.getBoolean(request, "readOnly");
 	window.<portlet:namespace />monthView = new A.SchedulerMonthView(
 		{
 			height: 700,
-			navigationDateFormat: '<%= navigationHeaderDateFormat %>',
 			readOnly: <%= readOnly %>
 		}
 	);
@@ -68,7 +63,7 @@ boolean readOnly = ParamUtil.getBoolean(request, "readOnly");
 		eventRecorder = new Liferay.SchedulerEventRecorder(
 			{
 				calendarId: <%= userDefaultCalendar.getCalendarId() %>,
-				duration: 30,
+				duration: <%= defaultDuration %>,
 				editCalendarBookingURL: '<%= HtmlUtil.escapeJS(editCalendarBookingURL) %>',
 				portletNamespace: '<portlet:namespace />',
 				template: new A.Template(A.one('#<portlet:namespace />eventRecorderTpl').text())
@@ -76,29 +71,16 @@ boolean readOnly = ParamUtil.getBoolean(request, "readOnly");
 		);
 	</c:if>
 
-	var activeView;
-
-	<c:choose>
-		<c:when test='<%= activeView.equals("day") %>'>
-			activeView = window.<portlet:namespace />dayView;
-		</c:when>
-		<c:when test='<%= activeView.equals("month") %>'>
-			activeView = window.<portlet:namespace />monthView;
-		</c:when>
-		<c:otherwise>
-			activeView = window.<portlet:namespace />weekView;
-		</c:otherwise>
-	</c:choose>
-
 	window.<portlet:namespace />scheduler = new Liferay.Scheduler(
 		{
-			activeView: activeView,
+			activeView: window.<portlet:namespace /><%= activeView %>View,
 			boundingBox: '#<portlet:namespace />scheduler',
 			currentDate: new Date(<%= currentDate %>),
 			eventClass: Liferay.SchedulerEvent,
 			eventRecorder: eventRecorder,
 			events: A.Object.values(Liferay.CalendarUtil.visibleCalendars),
 			filterCalendarBookings: <%= filterCalendarBookings %>,
+			firstDayOfWeek: <%= weekStartsOn %>,
 			portletNamespace: '<portlet:namespace />',
 			render: true,
 			views: [
