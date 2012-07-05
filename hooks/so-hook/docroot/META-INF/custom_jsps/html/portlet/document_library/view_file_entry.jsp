@@ -2,30 +2,41 @@
 /**
  * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
+ * This file is part of Liferay Social Office. Liferay Social Office is free
+ * software: you can redistribute it and/or modify it under the terms of the GNU
+ * Affero General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
  *
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
+ * Liferay Social Office is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License
+ * for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
 --%>
 
 <%@ include file="/html/portlet/document_library/init.jsp" %>
 
-<c:if test="<%= (layout != null) && !layout.getGroup().isControlPanel() %>">
-	<%
-	FileEntry fileEntryBreadcrumb = (FileEntry)request.getAttribute(WebKeys.DOCUMENT_LIBRARY_FILE_ENTRY);
+<c:if test="<%= layout != null %>">
 
-	DLUtil.addPortletBreadcrumbEntries(fileEntryBreadcrumb, request, renderResponse);
+	<%
+	Group group = layout.getGroup();
 	%>
 
-	<div class="so-breadcrumbs">
-		<liferay-ui:breadcrumb showCurrentGroup="<%= false %>" showCurrentPortlet="<%= false %>" showGuestGroup="<%= false %>" showLayout="<%= true %>" showParentGroups="<%= false %>" />
-	</div>
+	<c:if test="<%= !group.isControlPanel() %>">
+
+		<%
+		FileEntry fileEntryBreadcrumb = (FileEntry)request.getAttribute(WebKeys.DOCUMENT_LIBRARY_FILE_ENTRY);
+
+		DLUtil.addPortletBreadcrumbEntries(fileEntryBreadcrumb, request, renderResponse);
+		%>
+
+		<div class="so-breadcrumbs">
+			<liferay-ui:breadcrumb showCurrentGroup="<%= false %>" showCurrentPortlet="<%= false %>" showGuestGroup="<%= false %>" showLayout="<%= true %>" showParentGroups="<%= false %>" />
+		</div>
+	</c:if>
 </c:if>
 
 <liferay-util:include page="/html/portlet/document_library/view_file_entry.jsp" useCustomPage="<%= false %>" />
