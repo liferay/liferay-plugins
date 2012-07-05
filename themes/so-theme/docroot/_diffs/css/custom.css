@@ -1672,7 +1672,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 			text-align: left;
 			text-decoration: none;
 			top: 0.5em;
-			width: 500px;
+			white-space: nowrap;
 			z-index: 1;
 		}
 
@@ -1748,7 +1748,6 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 		}
 	}
 
-
 	.thread-body {
 		padding: 10px 0;
 	}
@@ -1779,6 +1778,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 	.edit-controls {
 		position: relative;
 		top: -.5em;
+		z-index: 2;
 
 		li {
 			margin: 0;
