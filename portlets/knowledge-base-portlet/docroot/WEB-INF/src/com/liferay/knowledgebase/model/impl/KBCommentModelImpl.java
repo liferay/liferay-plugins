@@ -111,6 +111,10 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 	 * @return the normal model instance
 	 */
 	public static KBComment toModel(KBCommentSoap soapModel) {
+		if (soapModel == null) {
+			return null;
+		}
+
 		KBComment model = new KBCommentImpl();
 
 		model.setUuid(soapModel.getUuid());
@@ -136,6 +140,10 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 	 * @return the normal model instances
 	 */
 	public static List<KBComment> toModels(KBCommentSoap[] soapModels) {
+		if (soapModels == null) {
+			return null;
+		}
+
 		List<KBComment> models = new ArrayList<KBComment>(soapModels.length);
 
 		for (KBCommentSoap soapModel : soapModels) {

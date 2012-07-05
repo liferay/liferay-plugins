@@ -100,6 +100,10 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 	 * @return the normal model instance
 	 */
 	public static App toModel(AppSoap soapModel) {
+		if (soapModel == null) {
+			return null;
+		}
+
 		App model = new AppImpl();
 
 		model.setUuid(soapModel.getUuid());
@@ -122,6 +126,10 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 	 * @return the normal model instances
 	 */
 	public static List<App> toModels(AppSoap[] soapModels) {
+		if (soapModels == null) {
+			return null;
+		}
+
 		List<App> models = new ArrayList<App>(soapModels.length);
 
 		for (AppSoap soapModel : soapModels) {

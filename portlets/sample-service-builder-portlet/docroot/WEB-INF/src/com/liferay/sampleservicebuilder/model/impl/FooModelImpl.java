@@ -107,6 +107,10 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	 * @return the normal model instance
 	 */
 	public static Foo toModel(FooSoap soapModel) {
+		if (soapModel == null) {
+			return null;
+		}
+
 		Foo model = new FooImpl();
 
 		model.setUuid(soapModel.getUuid());
@@ -133,6 +137,10 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	 * @return the normal model instances
 	 */
 	public static List<Foo> toModels(FooSoap[] soapModels) {
+		if (soapModels == null) {
+			return null;
+		}
+
 		List<Foo> models = new ArrayList<Foo>(soapModels.length);
 
 		for (FooSoap soapModel : soapModels) {

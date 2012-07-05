@@ -131,6 +131,10 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	 * @return the normal model instance
 	 */
 	public static CalendarBooking toModel(CalendarBookingSoap soapModel) {
+		if (soapModel == null) {
+			return null;
+		}
+
 		CalendarBooking model = new CalendarBookingImpl();
 
 		model.setUuid(soapModel.getUuid());
@@ -171,6 +175,10 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	 */
 	public static List<CalendarBooking> toModels(
 		CalendarBookingSoap[] soapModels) {
+		if (soapModels == null) {
+			return null;
+		}
+
 		List<CalendarBooking> models = new ArrayList<CalendarBooking>(soapModels.length);
 
 		for (CalendarBookingSoap soapModel : soapModels) {

@@ -122,6 +122,10 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 	 * @return the normal model instance
 	 */
 	public static CalendarResource toModel(CalendarResourceSoap soapModel) {
+		if (soapModel == null) {
+			return null;
+		}
+
 		CalendarResource model = new CalendarResourceImpl();
 
 		model.setUuid(soapModel.getUuid());
@@ -154,6 +158,10 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 	 */
 	public static List<CalendarResource> toModels(
 		CalendarResourceSoap[] soapModels) {
+		if (soapModels == null) {
+			return null;
+		}
+
 		List<CalendarResource> models = new ArrayList<CalendarResource>(soapModels.length);
 
 		for (CalendarResourceSoap soapModel : soapModels) {

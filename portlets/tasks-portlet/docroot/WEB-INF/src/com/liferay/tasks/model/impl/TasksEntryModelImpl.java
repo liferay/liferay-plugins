@@ -110,6 +110,10 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	 * @return the normal model instance
 	 */
 	public static TasksEntry toModel(TasksEntrySoap soapModel) {
+		if (soapModel == null) {
+			return null;
+		}
+
 		TasksEntry model = new TasksEntryImpl();
 
 		model.setTasksEntryId(soapModel.getTasksEntryId());
@@ -137,6 +141,10 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	 * @return the normal model instances
 	 */
 	public static List<TasksEntry> toModels(TasksEntrySoap[] soapModels) {
+		if (soapModels == null) {
+			return null;
+		}
+
 		List<TasksEntry> models = new ArrayList<TasksEntry>(soapModels.length);
 
 		for (TasksEntrySoap soapModel : soapModels) {
