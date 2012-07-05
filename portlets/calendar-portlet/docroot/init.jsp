@@ -128,14 +128,14 @@ if (themeDisplay.isSignedIn()) {
 	}
 }
 
-PortalPreferences userPreferences = PortletPreferencesFactoryUtil.getPortalPreferences(request);
+PortalPreferences portalPreferences = PortletPreferencesFactoryUtil.getPortalPreferences(request);
 
-int defaultDuration = GetterUtil.getInteger(userPreferences.getValue(portletId, "defaultDuration", null), 60);
-String defaultView = userPreferences.getValue(portletId, "defaultView", "week");
-boolean isoTimeFormat = GetterUtil.getBoolean(userPreferences.getValue(portletId, "isoTimeFormat", null));
-String timeZoneId = userPreferences.getValue(portletId, "timeZoneId", user.getTimeZoneId());
-boolean usePortalTimeZone = GetterUtil.getBoolean(userPreferences.getValue(portletId, "usePortalTimeZone", null));
-int weekStartsOn = GetterUtil.getInteger(userPreferences.getValue(portletId, "weekStartsOn", null), 0);
+int defaultDuration = GetterUtil.getInteger(portalPreferences.getValue(portletId, "defaultDuration", null), 60);
+String defaultView = portalPreferences.getValue(portletId, "defaultView", "week");
+boolean isoTimeFormat = GetterUtil.getBoolean(portalPreferences.getValue(portletId, "isoTimeFormat", null));
+String timeZoneId = portalPreferences.getValue(portletId, "timeZoneId", user.getTimeZoneId());
+boolean usePortalTimeZone = GetterUtil.getBoolean(portalPreferences.getValue(portletId, "usePortalTimeZone", null));
+int weekStartsOn = GetterUtil.getInteger(portalPreferences.getValue(portletId, "weekStartsOn", null), 0);
 
 if (usePortalTimeZone) {
 	timeZoneId = user.getTimeZoneId();

@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String tabs2 = ParamUtil.getString(request, "tabs2", "email-from");
+String tabs2 = ParamUtil.getString(request, "tabs2", "user-settings");
 
 String redirect = ParamUtil.getString(request, "redirect");
 
@@ -49,7 +49,7 @@ String notificationTemplateContentSubject = PrefsParamUtil.getString(preferences
 	<aui:input name="notificationTemplateContentSubjectParameterName" type="hidden" value="<%= notificationTemplateContentSubjectParameterName %>" />
 
 	<liferay-ui:tabs
-		names="email-from,templates,user-settings"
+		names="user-settings,templates,email-from"
 		param="tabs2"
 		url="<%= portletURL %>"
 	/>
@@ -60,11 +60,35 @@ String notificationTemplateContentSubject = PrefsParamUtil.getString(preferences
 	<liferay-ui:error key="notificationTemplateContentSubject" message="please-enter-a-valid-subject" />
 
 	<c:choose>
-		<c:when test='<%= tabs2.equals("email-from") %>'>
+		<c:when test='<%= tabs2.equals("user-settings") %>'>
 			<aui:fieldset>
-				<aui:input cssClass="lfr-input-text-container" label="name" name="preferences--emailFromName--" type="text" value="<%= emailFromName %>" />
+				<aui:select label="time-format" name="isoTimeFormat">
+					<aui:option label="1:00pm" selected="<%= !isoTimeFormat %>" value="<%= false %>" />
+					<aui:option label="13:00" selected="<%= isoTimeFormat %>" value="<%= true %>" />
+				</aui:select>
 
-				<aui:input cssClass="lfr-input-text-container" label="address" name="preferences--emailFromAddress--" type="text" value="<%= emailFromAddress %>" />
+				<aui:select label="default-duration" name="defaultDuration">
+					<aui:option label="15 min" selected='<%= defaultDuration == 15 %>' value="15" />
+					<aui:option label="30 min" selected='<%= defaultDuration == 30 %>' value="30" />
+					<aui:option label="60 min" selected='<%= defaultDuration == 60 %>' value="60" />
+					<aui:option label="120 min" selected='<%= defaultDuration == 120 %>' value="120" />
+				</aui:select>
+
+				<aui:select label="default-view" name="defaultView">
+					<aui:option label="day" selected='<%= defaultView.equals("day") %>' value="day" />
+					<aui:option label="month" selected='<%= defaultView.equals("month") %>' value="month" />
+					<aui:option label="week" selected='<%= defaultView.equals("week") %>' value="week" />
+				</aui:select>
+
+				<aui:select label="week-starts-on" name="weekStartsOn">
+					<aui:option label="weekday.SU" selected='<%= weekStartsOn == 0 %>' value="0" />
+					<aui:option label="weekday.MO" selected='<%= weekStartsOn == 1 %>' value="1" />
+					<aui:option label="weekday.SA" selected='<%= weekStartsOn == 6 %>' value="6" />
+				</aui:select>
+
+				<aui:input cssClass="calendar-portlet-time-zone-field" disabled="<%= usePortalTimeZone %>" label="time-zone" name="timeZoneId" type="timeZone" value="<%= timeZoneId %>" />
+
+				<aui:input label="use-global-timezone" name="usePortalTimeZone" type="checkbox" value="<%= usePortalTimeZone %>" />
 			</aui:fieldset>
 		</c:when>
 		<c:when test='<%= tabs2.equals("templates") %>'>
@@ -161,35 +185,11 @@ String notificationTemplateContentSubject = PrefsParamUtil.getString(preferences
 				</dl>
 			</div>
 		</c:when>
-		<c:when test='<%= tabs2.equals("user-settings") %>'>
+		<c:when test='<%= tabs2.equals("email-from") %>'>
 			<aui:fieldset>
-				<aui:select label="time-format" name="isoTimeFormat">
-					<aui:option label="1:00pm" selected="<%= !isoTimeFormat %>" value="<%= false %>" />
-					<aui:option label="13:00" selected="<%= isoTimeFormat %>" value="<%= true %>" />
-				</aui:select>
+				<aui:input cssClass="lfr-input-text-container" label="name" name="preferences--emailFromName--" type="text" value="<%= emailFromName %>" />
 
-				<aui:select label="default-duration" name="defaultDuration">
-					<aui:option label="15 min" selected='<%= defaultDuration == 15 %>' value="15" />
-					<aui:option label="30 min" selected='<%= defaultDuration == 30 %>' value="30" />
-					<aui:option label="60 min" selected='<%= defaultDuration == 60 %>' value="60" />
-					<aui:option label="120 min" selected='<%= defaultDuration == 120 %>' value="120" />
-				</aui:select>
-
-				<aui:select label="default-view" name="defaultView">
-					<aui:option label="day" selected='<%= defaultView.equals("day") %>' value="day" />
-					<aui:option label="month" selected='<%= defaultView.equals("month") %>' value="month" />
-					<aui:option label="week" selected='<%= defaultView.equals("week") %>' value="week" />
-				</aui:select>
-
-				<aui:select label="week-starts-on" name="weekStartsOn">
-					<aui:option label="weekday.SU" selected='<%= weekStartsOn == 0 %>' value="0" />
-					<aui:option label="weekday.MO" selected='<%= weekStartsOn == 1 %>' value="1" />
-					<aui:option label="weekday.SA" selected='<%= weekStartsOn == 6 %>' value="6" />
-				</aui:select>
-
-				<aui:input cssClass="calendar-portlet-time-zone-field" disabled="<%= usePortalTimeZone %>" label="time-zone" name="timeZoneId" type="timeZone" value="<%= timeZoneId %>" />
-
-				<aui:input label="use-global-timezone" name="usePortalTimeZone" type="checkbox" value="<%= usePortalTimeZone %>" />
+				<aui:input cssClass="lfr-input-text-container" label="address" name="preferences--emailFromAddress--" type="text" value="<%= emailFromAddress %>" />
 			</aui:fieldset>
 		</c:when>
 	</c:choose>
