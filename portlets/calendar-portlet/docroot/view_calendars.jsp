@@ -90,3 +90,75 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 
 	<liferay-ui:search-iterator />
 </liferay-ui:search-container>
+
+<div class="aui-helper-hidden" id="<portlet:namespace />import-calendar-container">
+	<div class="aui-helper-hidden portlet-msg-success" id="<portlet:namespace />sucess-msg-container">
+		<liferay-ui:message key="your-request-completed-successfully" />
+	</div>
+
+	<aui:form enctype="multipart/form-data" method="post" name="fm">
+		<aui:input id="portlet:namespace />file" name="file" type="file" />
+    </aui:form>
+</div>
+
+<aui:script>
+	Liferay.provide(
+		window,
+		'<portlet:namespace />importCalendar',
+		function(url) {
+			var A = AUI();
+
+			var form = A.one('#<portlet:namespace />fm');
+			var importCalendarContainer = A.one('#<portlet:namespace />import-calendar-container');
+			var sucessMessageContainer = A.one('#<portlet:namespace />sucess-msg-container');
+
+			importCalendarContainer.show()
+
+			var dialog = new A.Dialog(
+				{
+					align: Liferay.Util.Window.ALIGN_CENTER,
+					bodyContent: A.one('#<portlet:namespace />import-calendar-container'),
+					buttons: [
+						{
+							handler: function() {
+								var config = {
+									form: {
+										id: form,
+										upload: true
+									},
+									method: 'post',
+									on: {
+										complete: function(event) {
+											sucessMessageContainer.show();
+										}
+									}
+								};
+
+								A.io(url, config);
+							},
+							label: Liferay.Language.get('ok')
+						},
+						{
+							handler: function() {
+								this.close();
+							},
+							label: Liferay.Language.get('cancel')
+						}
+					],
+					modal: true,
+					on: {
+						close: function(event) {
+							form.reset();
+
+							sucessMessageContainer.hide();
+						}
+					},
+					title: '<%= UnicodeLanguageUtil.get(pageContext, "import") %>',
+					width: 400
+				}
+			).render();
+
+		},
+		['aui-dialog','aui-io']
+	);
+</aui:script>

@@ -37,6 +37,40 @@ Calendar calendar = (Calendar)row.getObject();
 		/>
 	</c:if>
 
+	<c:if test="<%= CalendarPermission.contains(permissionChecker, calendar, ActionKeys.VIEW) %>">
+		<liferay-portlet:resourceURL id="exportCalendar" var="exportURL">
+			<portlet:param name="calendarId" value="<%= String.valueOf(calendar.getCalendarId()) %>" />
+		</liferay-portlet:resourceURL>
+
+		<liferay-ui:icon
+			image="export"
+			url="<%= exportURL %>"
+		/>
+	</c:if>
+
+	<c:if test="<%= CalendarPermission.contains(permissionChecker, calendar, ActionKeys.UPDATE) %>">
+		<liferay-portlet:resourceURL id="importCalendar" var="importURL">
+			<portlet:param name="calendarId" value="<%= String.valueOf(calendar.getCalendarId()) %>" />
+		</liferay-portlet:resourceURL>
+
+		<%
+		StringBundler sb = new StringBundler(6);
+
+		sb.append("javascript:");
+		sb.append(renderResponse.getNamespace());
+		sb.append("importCalendar");
+		sb.append("('");
+		sb.append(importURL);
+		sb.append("');");
+		%>
+
+		<liferay-ui:icon
+			image="top"
+			message="import"
+			url="<%= sb.toString() %>"
+		/>
+	</c:if>
+
 	<c:if test="<%= CalendarPermission.contains(permissionChecker, calendar, ActionKeys.PERMISSIONS) %>">
 		<liferay-security:permissionsURL
 			modelResource="<%= Calendar.class.getName() %>"
