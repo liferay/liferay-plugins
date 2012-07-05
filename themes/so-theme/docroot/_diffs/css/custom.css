@@ -1432,13 +1432,6 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 		background-image: none;
 	}
 
-	.breadcrumbs-horizontal li {
-		background: url(@theme_image_path@/arrows/05_right.png) no-repeat scroll 100% 50% transparent;
-		margin-right: 5px;
-		max-width: 50%;
-		padding-right: 15px;
-	}
-
 	.breadcrumbs-horizontal .last {
 		margin-top: 0.2em;
 	}
