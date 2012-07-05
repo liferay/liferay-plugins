@@ -263,6 +263,15 @@
 	}
 }
 
+.calendar-portlet-import-container .portlet-msg-error, .calendar-portlet-import-container .portlet-msg-help, .calendar-portlet-import-container .portlet-msg-success {
+	margin: 10px 0;
+	width: 420px;
+}
+
+.calendar-portlet-import-container .aui-field-input-text {
+	width: 454px;
+}
+
 .calendar-portlet-wrapper .aui-scheduler-event-disabled {
 	@include opacity(0.8);
 }

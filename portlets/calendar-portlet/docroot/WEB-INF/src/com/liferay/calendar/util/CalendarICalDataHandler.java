@@ -83,7 +83,6 @@ import net.fortuna.ical4j.model.property.Version;
 /**
  * @author Marcellus Tavares
  */
-@SuppressWarnings("unchecked")
 public class CalendarICalDataHandler implements CalendarDataHandler {
 
 	public String exportCalendar(long calendarId) throws Exception {

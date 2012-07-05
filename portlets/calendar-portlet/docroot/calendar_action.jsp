@@ -65,7 +65,7 @@ Calendar calendar = (Calendar)row.getObject();
 		%>
 
 		<liferay-ui:icon
-			image="top"
+			image="download"
 			message="import"
 			url="<%= sb.toString() %>"
 		/>

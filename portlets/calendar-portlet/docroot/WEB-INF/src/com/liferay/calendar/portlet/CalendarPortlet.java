@@ -46,18 +46,21 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
@@ -83,6 +86,7 @@ import java.util.Map;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
+import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
 import javax.portlet.PortletRequest;
 import javax.portlet.RenderRequest;
@@ -570,13 +574,13 @@ public class CalendarPortlet extends MVCPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		HttpServletRequest request = PortalUtil.getHttpServletRequest(
 			resourceRequest);
 		HttpServletResponse response = PortalUtil.getHttpServletResponse(
 			resourceResponse);
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
 
 		long calendarId = ParamUtil.getLong(resourceRequest, "calendarId");
 
@@ -602,20 +606,40 @@ public class CalendarPortlet extends MVCPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
-		long calendarId = ParamUtil.getLong(resourceRequest, "calendarId");
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		PortletConfig portletConfig =
+			(PortletConfig)resourceRequest.getAttribute(
+				JavaConstants.JAVAX_PORTLET_CONFIG);
 
 		UploadPortletRequest uploadPortletRequest =
 			PortalUtil.getUploadPortletRequest(resourceRequest);
+
+		long calendarId = ParamUtil.getLong(resourceRequest, "calendarId");
 
 		File file = uploadPortletRequest.getFile("file");
 
 		String data = FileUtil.read(file);
 
-		CalendarDataHandler calendarDataHandler =
-			CalendarDataHandlerFactory.getCalendarDataHandler(
-				CalendarDataFormat.ICAL);
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		calendarDataHandler.importCalendar(calendarId, data);
+		if (Validator.isNotNull(data)) {
+			CalendarDataHandler calendarDataHandler =
+				CalendarDataHandlerFactory.getCalendarDataHandler(
+					CalendarDataFormat.ICAL);
+
+			calendarDataHandler.importCalendar(calendarId, data);
+		}
+		else {
+			jsonObject.put(
+				"error",
+				LanguageUtil.get(
+					portletConfig, themeDisplay.getLocale(),
+					"failed-to-import-events-empty-uploaded-file"));
+		}
+
+		writeJSON(resourceRequest, resourceResponse, jsonObject);
 	}
 
 }
