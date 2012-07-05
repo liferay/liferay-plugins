@@ -113,6 +113,10 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 	 * @return the normal model instance
 	 */
 	public static KaleoDefinition toModel(KaleoDefinitionSoap soapModel) {
+		if (soapModel == null) {
+			return null;
+		}
+
 		KaleoDefinition model = new KaleoDefinitionImpl();
 
 		model.setKaleoDefinitionId(soapModel.getKaleoDefinitionId());
@@ -141,6 +145,10 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 	 */
 	public static List<KaleoDefinition> toModels(
 		KaleoDefinitionSoap[] soapModels) {
+		if (soapModels == null) {
+			return null;
+		}
+
 		List<KaleoDefinition> models = new ArrayList<KaleoDefinition>(soapModels.length);
 
 		for (KaleoDefinitionSoap soapModel : soapModels) {

@@ -100,6 +100,10 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	 * @return the normal model instance
 	 */
 	public static Gadget toModel(GadgetSoap soapModel) {
+		if (soapModel == null) {
+			return null;
+		}
+
 		Gadget model = new GadgetImpl();
 
 		model.setUuid(soapModel.getUuid());
@@ -121,6 +125,10 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	 * @return the normal model instances
 	 */
 	public static List<Gadget> toModels(GadgetSoap[] soapModels) {
+		if (soapModels == null) {
+			return null;
+		}
+
 		List<Gadget> models = new ArrayList<Gadget>(soapModels.length);
 
 		for (GadgetSoap soapModel : soapModels) {

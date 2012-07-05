@@ -108,6 +108,10 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 	 * @return the normal model instance
 	 */
 	public static MicroblogsEntry toModel(MicroblogsEntrySoap soapModel) {
+		if (soapModel == null) {
+			return null;
+		}
+
 		MicroblogsEntry model = new MicroblogsEntryImpl();
 
 		model.setMicroblogsEntryId(soapModel.getMicroblogsEntryId());
@@ -133,6 +137,10 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 	 */
 	public static List<MicroblogsEntry> toModels(
 		MicroblogsEntrySoap[] soapModels) {
+		if (soapModels == null) {
+			return null;
+		}
+
 		List<MicroblogsEntry> models = new ArrayList<MicroblogsEntry>(soapModels.length);
 
 		for (MicroblogsEntrySoap soapModel : soapModels) {

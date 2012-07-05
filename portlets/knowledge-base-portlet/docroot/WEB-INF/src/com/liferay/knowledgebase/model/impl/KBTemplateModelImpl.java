@@ -104,6 +104,10 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 	 * @return the normal model instance
 	 */
 	public static KBTemplate toModel(KBTemplateSoap soapModel) {
+		if (soapModel == null) {
+			return null;
+		}
+
 		KBTemplate model = new KBTemplateImpl();
 
 		model.setUuid(soapModel.getUuid());
@@ -127,6 +131,10 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 	 * @return the normal model instances
 	 */
 	public static List<KBTemplate> toModels(KBTemplateSoap[] soapModels) {
+		if (soapModels == null) {
+			return null;
+		}
+
 		List<KBTemplate> models = new ArrayList<KBTemplate>(soapModels.length);
 
 		for (KBTemplateSoap soapModel : soapModels) {
