@@ -1,4 +1,3 @@
-<%@ page import="javax.portlet.PortletMode" %>
 <%--
 /**
  * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
