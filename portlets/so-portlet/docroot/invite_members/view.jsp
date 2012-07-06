@@ -85,4 +85,13 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 			);
 		</aui:script>
 	</c:when>
+	<c:otherwise>
+		<aui:script use="aui-base">
+			var portlet = A.one('#p_p_id<portlet:namespace />');
+
+			if (portlet) {
+				portlet.hide();
+			}
+		</aui:script>
+	</c:otherwise>
 </c:choose>

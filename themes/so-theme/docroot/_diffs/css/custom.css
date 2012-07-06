@@ -2008,7 +2008,10 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 
 .so-portlet-invite-members {
 	border: 0px solid transparent;
-	padding: 10px;
+}
+
+.so-portlet-invite-members .invite-members {
+	margin: 10px;
 }
 
 .invite-members {
