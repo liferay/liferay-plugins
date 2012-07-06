@@ -121,6 +121,10 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		int type = ParamUtil.getInteger(actionRequest, "type");
 
+		if (type == SocialRelationConstants.TYPE_BI_CONNECTION) {
+			return;
+		}
+
 		for (long userId : userIds) {
 			if (userId == themeDisplay.getUserId()) {
 				continue;
@@ -290,7 +294,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			if (jsonFormat) {
 				if (actionName.equals("addSocialRelation")) {
 					addSocialRelation(actionRequest, actionResponse);
-					}
+				}
 				else if (actionName.equals("deleteSocialRelation")) {
 					deleteSocialRelation(actionRequest, actionResponse);
 				}
@@ -339,7 +343,11 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 			if (SocialRelationLocalServiceUtil.hasRelation(
 					userId, themeDisplay.getUserId(),
-					SocialRelationConstants.TYPE_UNI_ENEMY)) {
+					SocialRelationConstants.TYPE_UNI_ENEMY) ||
+				SocialRequestLocalServiceUtil.hasRequest(
+					themeDisplay.getUserId(), User.class.getName(),
+					themeDisplay.getUserId(), type, userId,
+					SocialRequestConstants.STATUS_PENDING)) {
 
 				continue;
 			}
