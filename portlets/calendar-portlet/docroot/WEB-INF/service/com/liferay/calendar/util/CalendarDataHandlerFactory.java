@@ -29,7 +29,7 @@ public class CalendarDataHandlerFactory {
 			CalendarDataFormat calendarDataFormat)
 		throws PortalException {
 
-		CalendarDataHandler calendarDataHandler = _dataHandlers.get(
+		CalendarDataHandler calendarDataHandler = _calendarDataHandlers.get(
 			calendarDataFormat);
 
 		if (calendarDataHandler == null) {
@@ -45,7 +45,8 @@ public class CalendarDataHandlerFactory {
 
 		PortalRuntimePermission.checkSetBeanProperty(getClass());
 
-		_dataHandlers = new HashMap<CalendarDataFormat, CalendarDataHandler>();
+		_calendarDataHandlers =
+			new HashMap<CalendarDataFormat, CalendarDataHandler>();
 
 		for (Map.Entry<String, CalendarDataHandler> entry :
 				calendarDataHandlers.entrySet()) {
@@ -53,10 +54,11 @@ public class CalendarDataHandlerFactory {
 			CalendarDataFormat calendarDataFormat = CalendarDataFormat.parse(
 				entry.getKey());
 
-			_dataHandlers.put(calendarDataFormat, entry.getValue());
+			_calendarDataHandlers.put(calendarDataFormat, entry.getValue());
 		}
 	}
 
-	private static Map<CalendarDataFormat, CalendarDataHandler> _dataHandlers;
+	private static Map<CalendarDataFormat, CalendarDataHandler>
+		_calendarDataHandlers;
 
 }

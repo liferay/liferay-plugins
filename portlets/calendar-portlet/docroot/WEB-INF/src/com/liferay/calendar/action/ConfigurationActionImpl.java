@@ -18,12 +18,12 @@ import com.liferay.portal.kernel.portlet.DefaultConfigurationAction;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portlet.PortalPreferences;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
+import javax.portlet.PortletPreferences;
 
 /**
  * @author Eduardo Lundgren
@@ -56,31 +56,33 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		PortalPreferences preferences =
-			PortletPreferencesFactoryUtil.getPortalPreferences(actionRequest);
-
-		String portletId = ParamUtil.getString(
+		String portletResource = ParamUtil.getString(
 			actionRequest, "portletResource");
-		String defaultView = ParamUtil.getString(actionRequest, "defaultView");
-		String timeZoneId = ParamUtil.getString(actionRequest, "timeZoneId");
+
+		PortletPreferences preferences =
+			PortletPreferencesFactoryUtil.getPortletSetup(
+				actionRequest, portletResource);
+
 		int defaultDuration = ParamUtil.getInteger(
 			actionRequest, "defaultDuration");
-		int weekStartsOn = ParamUtil.getInteger(actionRequest, "weekStartsOn");
+		String defaultView = ParamUtil.getString(actionRequest, "defaultView");
 		boolean isoTimeFormat = ParamUtil.getBoolean(
 			actionRequest, "isoTimeFormat");
+		String timeZoneId = ParamUtil.getString(actionRequest, "timeZoneId");
 		boolean usePortalTimeZone = ParamUtil.getBoolean(
 			actionRequest, "usePortalTimeZone");
+		int weekStartsOn = ParamUtil.getInteger(actionRequest, "weekStartsOn");
 
-		preferences.setValue(portletId, "defaultView", defaultView);
-		preferences.setValue(portletId, "timeZoneId", timeZoneId);
 		preferences.setValue(
-			portletId, "defaultDuration", String.valueOf(defaultDuration));
+			"defaultDuration", String.valueOf(defaultDuration));
+		preferences.setValue("defaultView", defaultView);
+		preferences.setValue("isoTimeFormat", String.valueOf(isoTimeFormat));
+		preferences.setValue("timeZoneId", timeZoneId);
 		preferences.setValue(
-			portletId, "weekStartsOn", String.valueOf(weekStartsOn));
-		preferences.setValue(
-			portletId, "isoTimeFormat", String.valueOf(isoTimeFormat));
-		preferences.setValue(
-			portletId, "usePortalTimeZone", String.valueOf(usePortalTimeZone));
+			"usePortalTimeZone", String.valueOf(usePortalTimeZone));
+		preferences.setValue("weekStartsOn", String.valueOf(weekStartsOn));
+
+		preferences.store();
 	}
 
 	protected void validateEmailFrom(ActionRequest actionRequest)

@@ -35,7 +35,6 @@ import com.liferay.portal.model.ModelHintsUtil;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.util.PortalUtil;
 
 import java.net.URI;
 
@@ -114,82 +113,81 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 	}
 
 	public void importCalendar(long calendarId, String data) throws Exception {
-		CalendarBuilder builder = new CalendarBuilder();
+		CalendarBuilder calendarBuilder = new CalendarBuilder();
 
 		UnsyncStringReader unsyncStringReader = new UnsyncStringReader(data);
 
-		net.fortuna.ical4j.model.Calendar calendar = builder.build(
+		net.fortuna.ical4j.model.Calendar iCalCalendar = calendarBuilder.build(
 			unsyncStringReader);
 
-		List<VEvent> vEvents = calendar.getComponents(Component.VEVENT);
+		List<VEvent> vEvents = iCalCalendar.getComponents(Component.VEVENT);
 
 		for (VEvent vEvent : vEvents) {
 			importICalEvent(calendarId, vEvent);
 		}
 	}
 
-	protected void importICalEvent(long calendarId, VEvent event)
+	protected void importICalEvent(long calendarId, VEvent vEvent)
 		throws Exception {
 
 		Calendar calendar = CalendarLocalServiceUtil.getCalendar(calendarId);
 
-		long companyId = calendar.getCompanyId();
-		long groupId = calendar.getGroupId();
-
-		User owner = UserLocalServiceUtil.getUser(calendar.getUserId());
-
-		Locale locale = owner.getLocale();
-
 		// Title
+
+		User user = UserLocalServiceUtil.getUser(calendar.getUserId());
 
 		Map<Locale, String> titleMap = new HashMap<Locale, String>();
 
-		Summary summary = event.getSummary();
+		Summary summary = vEvent.getSummary();
 
 		if (summary != null) {
 			String title = ModelHintsUtil.trimString(
 				CalendarBooking.class.getName(), "title", summary.getValue());
 
-			titleMap.put(locale, title);
+			titleMap.put(user.getLocale(), title);
 		}
 
 		// Description
 
 		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
 
-		Description description = event.getDescription();
+		Description description = vEvent.getDescription();
 
 		if (description != null) {
-			descriptionMap.put(locale, description.getValue());
+			descriptionMap.put(user.getLocale(), description.getValue());
 		}
 
 		// Location
 
-		String location = StringPool.BLANK;
+		String locationString = StringPool.BLANK;
 
-		if (event.getLocation() != null) {
-			location = event.getLocation().getValue();
+		Location location = vEvent.getLocation();
+
+		if (location != null) {
+			locationString = location.getValue();
 		}
 
-		// Start date
+		// Dates
 
-		Date startDate = event.getStartDate().getDate();
+		DtStart dtStart = vEvent.getStartDate();
 
-		// End date
+		Date startDate = dtStart.getDate();
 
-		Date endDate = event.getEndDate().getDate();
+		DtEnd dtEnd = vEvent.getEndDate();
+
+		Date endDate = dtEnd.getDate();
 
 		// All day
 
 		boolean allDay = false;
 
-		if (isICalDateOnly(event.getStartDate())) {
+		if (isICalDateOnly(dtStart)) {
 			allDay = true;
 		}
 
 		// Recurrence
 
-		RRule rrule = (RRule)event.getProperty(Property.RRULE);
+		RRule rrule = (RRule)vEvent.getProperty(Property.RRULE);
 
 		String recurrence = StringPool.BLANK;
 
@@ -199,17 +197,17 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		// Reminders
 
-		ComponentList alarms = event.getAlarms();
+		ComponentList componentList = vEvent.getAlarms();
 
-		int remindersSize = alarms.size();
-
-		long[] reminders = new long[remindersSize];
-		String[] reminderTypes = new String[remindersSize];
+		long[] reminders = new long[componentList.size()];
+		String[] reminderTypes = new String[componentList.size()];
 
 		int i = 0;
 
-		for (Iterator<VAlarm> it = alarms.iterator(); it.hasNext(); i++) {
-			VAlarm vAlarm = it.next();
+		for (Iterator<VAlarm> iterator = componentList.iterator();
+				iterator.hasNext(); i++) {
+
+			VAlarm vAlarm = iterator.next();
 
 			Action action = vAlarm.getAction();
 
@@ -225,40 +223,62 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 			Dur dur = trigger.getDuration();
 
-			long time = (dur.getWeeks() * Time.WEEK) +
-				(dur.getDays() * Time.DAY) + (dur.getHours() * Time.HOUR) +
-				(dur.getMinutes() * Time.MINUTE) +
-				(dur.getSeconds() * Time.SECOND);
+			long time = 0;
+
+			time += dur.getWeeks() * Time.WEEK;
+			time += dur.getDays() * Time.DAY;
+			time += dur.getHours() * Time.HOUR;
+			time += dur.getMinutes() * Time.MINUTE;
+			time += dur.getSeconds() * Time.SECOND;
 
 			reminders[i] = time;
 		}
 
+		long firstReminder = 0;
+		String firstReminderType = null;
+		long secondReminder = 0;
+		String secondReminderType = null;
+
+		if (!componentList.isEmpty()) {
+			firstReminder = reminders[0];
+			firstReminderType = reminderTypes[0];
+
+			if (componentList.size() > 1) {
+				secondReminder = reminders[1];
+				secondReminderType = reminderTypes[1];
+			}
+		}
+
 		// Attendees
 
-		PropertyList attendees = event.getProperties(Property.ATTENDEE);
+		PropertyList propertyList = vEvent.getProperties(Property.ATTENDEE);
 
 		List<Long> childCalendarIds = new ArrayList<Long>();
 
-		for (Iterator<Attendee> it = attendees.iterator(); it.hasNext();) {
-			Attendee attendee = it.next();
+		for (Iterator<Attendee> iterator = propertyList.iterator();
+				iterator.hasNext();) {
 
-			URI calAddress = attendee.getCalAddress();
+			Attendee attendee = iterator.next();
 
-			User user = UserLocalServiceUtil.fetchUserByEmailAddress(
-				companyId, calAddress.getSchemeSpecificPart());
+			URI uri = attendee.getCalAddress();
 
-			if ((user == null) || (calendar.getUserId() == user.getUserId())) {
+			User attendeeUser = UserLocalServiceUtil.fetchUserByEmailAddress(
+				calendar.getCompanyId(), uri.getSchemeSpecificPart());
+
+			if ((attendeeUser == null) ||
+				(calendar.getUserId() == attendeeUser.getUserId())) {
+
 				continue;
 			}
 
 			ServiceContext serviceContext = new ServiceContext();
 
-			serviceContext.setCompanyId(companyId);
-			serviceContext.setScopeGroupId(groupId);
+			serviceContext.setCompanyId(calendar.getCompanyId());
+			serviceContext.setScopeGroupId(calendar.getGroupId());
 
 			CalendarResource calendarResource =
 				CalendarResourceUtil.getUserCalendarResource(
-					user.getUserId(), serviceContext);
+					attendeeUser.getUserId(), serviceContext);
 
 			if (calendarResource == null) {
 				continue;
@@ -267,26 +287,23 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 			childCalendarIds.add(calendarResource.getDefaultCalendarId());
 		}
 
+		long[] childCalendarIdsArray = ArrayUtil.toArray(
+			childCalendarIds.toArray(new Long[childCalendarIds.size()]));
+
 		// Merge calendar booking
-
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setAddGroupPermissions(true);
-		serviceContext.setAddGuestPermissions(true);
-		serviceContext.setScopeGroupId(groupId);
-
-		String uuid = null;
 
 		CalendarBooking calendarBooking = null;
 
-		Uid uid = event.getUid();
+		String uuid = null;
+
+		Uid uid = vEvent.getUid();
 
 		if (uid != null) {
 			uuid = uid.getValue();
 
 			calendarBooking =
 				CalendarBookingLocalServiceUtil.fetchCalendarBooking(
-					uuid, groupId);
+					uuid, calendar.getGroupId());
 
 			if (calendarBooking == null) {
 				uuid = PortalUUIDUtil.generate(uuid.getBytes());
@@ -297,24 +314,11 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 			}
 		}
 
-		long[] childCalendarIdsArray = ArrayUtil.toArray(
-			childCalendarIds.toArray(new Long[childCalendarIds.size()]));
+		ServiceContext serviceContext = new ServiceContext();
 
-		long firstReminder = 0;
-		String firstReminderType = null;
-
-		long secondReminder = 0;
-		String secondReminderType = null;
-
-		if (remindersSize > 0) {
-			firstReminder = reminders[0];
-			firstReminderType = reminderTypes[0];
-
-			if (remindersSize > 1) {
-				secondReminder = reminders[1];
-				secondReminderType = reminderTypes[1];
-			}
-		}
+		serviceContext.setAddGroupPermissions(true);
+		serviceContext.setAddGuestPermissions(true);
+		serviceContext.setScopeGroupId(calendar.getGroupId());
 
 		if (calendarBooking == null) {
 			serviceContext.setUuid(uuid);
@@ -322,7 +326,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 			CalendarBookingServiceUtil.addCalendarBooking(
 				calendarId, childCalendarIdsArray,
 				CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT,
-				titleMap, descriptionMap, location, startDate.getTime(),
+				titleMap, descriptionMap, locationString, startDate.getTime(),
 				endDate.getTime(), allDay, recurrence, firstReminder,
 				firstReminderType, secondReminder, secondReminderType,
 				serviceContext);
@@ -330,7 +334,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 		else {
 			CalendarBookingServiceUtil.updateCalendarBooking(
 				calendarBooking.getCalendarBookingId(), calendarId,
-				childCalendarIdsArray, titleMap, descriptionMap, location,
+				childCalendarIdsArray, titleMap, descriptionMap, locationString,
 				startDate.getTime(), endDate.getTime(), allDay, recurrence,
 				firstReminder, firstReminderType, secondReminder,
 				secondReminderType, calendarBooking.getStatus(),
@@ -352,9 +356,13 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 	protected boolean isICalDateOnly(DateProperty dateProperty) {
 		Parameter valueParameter = dateProperty.getParameter(Parameter.VALUE);
 
-		if ((valueParameter != null) &&
-			valueParameter.getValue().equals("DATE")) {
+		if (valueParameter == null) {
+			return false;
+		}
 
+		String value = valueParameter.getValue();
+
+		if (value.equals("DATE")) {
 			return true;
 		}
 
@@ -366,9 +374,9 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		Dur dur = toICalDur(reminder);
 
-		VAlarm alarm = new VAlarm(dur);
+		VAlarm vAlarm = new VAlarm(dur);
 
-		PropertyList alarmProps = alarm.getProperties();
+		PropertyList propertyList = vAlarm.getProperties();
 
 		Action action = Action.DISPLAY;
 
@@ -379,14 +387,14 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 			action = Action.EMAIL;
 
-			alarmProps.add(attendee);
-			alarmProps.add(new Summary("Alarm notification"));
+			propertyList.add(attendee);
+			propertyList.add(new Summary("Alarm Notification"));
 		}
 
-		alarmProps.add(action);
-		alarmProps.add(new Description("This is an event reminder"));
+		propertyList.add(action);
+		propertyList.add(new Description("This is an event reminder."));
 
-		return alarm;
+		return vAlarm;
 	}
 
 	protected Attendee toICalAttendee(
@@ -418,36 +426,38 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 	}
 
 	protected net.fortuna.ical4j.model.Calendar toICalCalendar(
-		List<CalendarBooking> calendarBookings) throws Exception {
+			List<CalendarBooking> calendarBookings)
+		throws Exception {
 
-		net.fortuna.ical4j.model.Calendar iCal =
+		net.fortuna.ical4j.model.Calendar iCalCalendar =
 			new net.fortuna.ical4j.model.Calendar();
+
+		PropertyList propertiesList = iCalCalendar.getProperties();
 
 		ProdId prodId = new ProdId(
 			"-//Liferay Inc//Liferay Portal " + ReleaseInfo.getVersion() +
 			"//EN");
 
-		PropertyList propertiesList = iCal.getProperties();
-
 		propertiesList.add(prodId);
+
 		propertiesList.add(Version.VERSION_2_0);
 		propertiesList.add(CalScale.GREGORIAN);
 		propertiesList.add(Method.PUBLISH);
 
-		List<VEvent> components = iCal.getComponents();
+		List<VEvent> vEvents = iCalCalendar.getComponents();
 
 		for (CalendarBooking calendarBooking : calendarBookings) {
-			components.add(toICalEvent(calendarBooking));
+			vEvents.add(toICalEvent(calendarBooking));
 		}
 
-		return iCal;
+		return iCalCalendar;
 	}
 
 	protected DateTime toICalDateTime(long time) {
 		DateTime dateTime = new DateTime();
 
-		dateTime.setUtc(true);
 		dateTime.setTime(time);
+		dateTime.setUtc(true);
 
 		return dateTime;
 	}
@@ -489,19 +499,15 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 	protected VEvent toICalEvent(CalendarBooking calendarBooking)
 		throws Exception {
 
-		User owner = UserLocalServiceUtil.getUser(calendarBooking.getUserId());
-
-		Locale locale = owner.getLocale();
-
 		VEvent vEvent = new VEvent();
 
-		PropertyList eventProps = vEvent.getProperties();
+		PropertyList propertyList = vEvent.getProperties();
 
 		// UID
 
 		Uid uid = new Uid(calendarBooking.getUuid());
 
-		eventProps.add(uid);
+		propertyList.add(uid);
 
 		// Dates
 
@@ -509,62 +515,65 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 			DtStart dtStart = new DtStart(
 				new Date(calendarBooking.getStartDate()));
 
-			eventProps.add(dtStart);
+			propertyList.add(dtStart);
 		}
 		else {
 			DtStart dtStart = new DtStart(
 				toICalDateTime(calendarBooking.getStartDate()));
 
-			eventProps.add(dtStart);
+			propertyList.add(dtStart);
 
 			DtEnd dtEnd = new DtEnd(
 				toICalDateTime(calendarBooking.getEndDate()));
 
-			eventProps.add(dtEnd);
+			propertyList.add(dtEnd);
 		}
 
 		// Title
 
-		Summary summary = new Summary(calendarBooking.getTitle(locale));
+		User user = UserLocalServiceUtil.getUser(calendarBooking.getUserId());
 
-		eventProps.add(summary);
+		Summary summary = new Summary(
+			calendarBooking.getTitle(user.getLocale()));
+
+		propertyList.add(summary);
 
 		// Description
 
 		Description description = new Description(
-			calendarBooking.getDescription(locale));
+			calendarBooking.getDescription(user.getLocale()));
 
-		eventProps.add(description);
+		propertyList.add(description);
 
 		// Location
 
 		Location location = new Location(calendarBooking.getLocation());
 
-		eventProps.add(location);
+		propertyList.add(location);
 
 		// Recurrence
 
 		if (calendarBooking.isRecurring()) {
 			String value = StringUtil.replace(
-				calendarBooking.getRecurrence(), _rRulePart, StringPool.BLANK);
+				calendarBooking.getRecurrence(), _RRULE, StringPool.BLANK);
 
 			RRule rRule = new RRule(value);
 
-			eventProps.add(rRule);
+			propertyList.add(rRule);
 		}
 
 		// Reminders
 
-		ComponentList alarms = vEvent.getAlarms();
+		ComponentList componentList = vEvent.getAlarms();
 
 		long firstReminder = calendarBooking.getFirstReminder();
 
 		if (firstReminder > 0) {
-			VAlarm alarm = toICalAlarm(
+			VAlarm vAlarm = toICalAlarm(
 				calendarBooking.getFirstReminderNotificationType(),
-				firstReminder, owner.getEmailAddress());
+				firstReminder, user.getEmailAddress());
 
-			alarms.add(alarm);
+			componentList.add(vAlarm);
 		}
 
 		long secondReminder = calendarBooking.getSecondReminder();
@@ -572,9 +581,9 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 		if (secondReminder > 0) {
 			VAlarm alarm = toICalAlarm(
 				calendarBooking.getSecondReminderNotificationType(),
-				secondReminder, owner.getEmailAddress());
+				secondReminder, user.getEmailAddress());
 
-			alarms.add(alarm);
+			componentList.add(alarm);
 		}
 
 		// Attendees
@@ -582,29 +591,26 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 		List<CalendarBooking> childCalendarBookings =
 			calendarBooking.getChildCalendarBookings();
 
-		long userClassNameId = PortalUtil.getClassNameId(User.class);
-
 		for (CalendarBooking childCalendarBooking : childCalendarBookings) {
 			CalendarResource calResource =
 				childCalendarBooking.getCalendarResource();
 
-			long classNameId = calResource.getClassNameId();
-			long classPK = calResource.getClassPK();
-
-			if ((classNameId != userClassNameId) ||
+			if (!calResource.isUser() ||
 				(calendarBooking.getCalendarBookingId() ==
 					childCalendarBooking.getCalendarBookingId())) {
 
 				continue;
 			}
 
-			User user = UserLocalServiceUtil.getUser(classPK);
+			User calResourceUser = UserLocalServiceUtil.getUser(
+				calResource.getClassPK());
 
 			Attendee attendee = toICalAttendee(
-				user.getFullName(), user.getEmailAddress(),
+				calResourceUser.getFullName(),
+				calResourceUser.getEmailAddress(),
 				childCalendarBooking.getStatus());
 
-			eventProps.add(attendee);
+			propertyList.add(attendee);
 		}
 
 		return vEvent;
@@ -613,21 +619,23 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 	protected String toString(net.fortuna.ical4j.model.Calendar iCalCalendar)
 		throws Exception {
 
-		UnsyncStringWriter unsyncStringWriter = new UnsyncStringWriter();
+		CalendarOutputter calendarOutputter = new CalendarOutputter();
 
-		CalendarOutputter calOutput = new CalendarOutputter();
+		ComponentList componentList = iCalCalendar.getComponents();
 
-		if (iCalCalendar.getComponents().isEmpty()) {
-			calOutput.setValidating(false);
+		if (componentList.isEmpty()) {
+			calendarOutputter.setValidating(false);
 		}
 
-		calOutput.output(iCalCalendar, unsyncStringWriter);
+		UnsyncStringWriter unsyncStringWriter = new UnsyncStringWriter();
+
+		calendarOutputter.output(iCalCalendar, unsyncStringWriter);
 
 		unsyncStringWriter.flush();
 
 		return unsyncStringWriter.toString();
 	}
 
-	private static final String _rRulePart = "RRULE:";
+	private static final String _RRULE = "RRULE:";
 
 }
