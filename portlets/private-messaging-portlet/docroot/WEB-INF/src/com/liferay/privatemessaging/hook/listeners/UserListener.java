@@ -14,7 +14,6 @@
 
 package com.liferay.privatemessaging.hook.listeners;
 
-import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.model.BaseModelListener;
@@ -27,7 +26,7 @@ import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
 public class UserListener extends BaseModelListener<User> {
 
 	@Override
-	public void onAfterUpdate(User user) throws ModelListenerException {
+	public void onAfterUpdate(User user) {
 		try {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
