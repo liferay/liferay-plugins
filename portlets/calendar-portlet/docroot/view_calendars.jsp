@@ -137,7 +137,7 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 											},
 											method: 'post',
 											on: {
-												complete: function(evt, id, obj) {
+												complete: function() {
 													var responseData = this.get('responseData');
 
 													var error = responseData && responseData.error;
