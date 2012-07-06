@@ -127,7 +127,7 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 						buttons: [
 							{
 								handler: function() {
-									A.io(
+									A.io.request(
 										url,
 										{
 											dataType: 'json',
@@ -137,10 +137,10 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 											},
 											method: 'post',
 											on: {
-												complete: function(id, xhr) {
-													var obj = this.get('responseData');
+												complete: function(evt, id, obj) {
+													var responseData = this.get('responseData');
 
-													var error = obj.error;
+													var error = responseData && responseData.error;
 
 													if (error) {
 														portletErrorMessage.html(error).show();
