@@ -238,9 +238,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		userThreadPersistence.update(userThread, false);
 	}
 
-	public void updateUserName(User user)
-		throws PortalException, SystemException {
-
+	public void updateUserName(User user) throws SystemException {
 		String userName = user.getFullName();
 
 		List<UserThread> userThreads = userThreadPersistence.findByUserId(
@@ -338,12 +336,14 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		return mbMessage;
 	}
 
-	protected String getPrivateMessageURL(
-			long groupId, long threadId, ThemeDisplay themeDisplay)
+	protected String getThreadURL(
+			User user, long threadId, ThemeDisplay themeDisplay)
 		throws Exception {
 
+		Group group = user.getGroup();
+
 		long plid = PortalUtil.getPlidFromPortletId(
-			groupId, true, PortletKeys.PRIVATE_MESSAGING);
+			group.getGroupId(), true, PortletKeys.PRIVATE_MESSAGING);
 
 		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
 
@@ -449,9 +449,8 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 			User recipient = UserLocalServiceUtil.getUser(
 				userThread.getUserId());
 
-			String threadURL = getPrivateMessageURL(
-				recipient.getGroup().getGroupId(), mbMessage.getThreadId(),
-				themeDisplay);
+			String threadURL = getThreadURL(
+				recipient, mbMessage.getThreadId(), themeDisplay);
 
 			if (Validator.isNull(threadURL)) {
 				continue;
