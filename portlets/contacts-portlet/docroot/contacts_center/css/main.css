@@ -398,7 +398,7 @@ $toolbar-bg: #DCE3EA;
 				background-image: url(@theme_image_path@/social/follow.png);
 			}
 
-			.aui-icon-send-email {
+			.aui-icon-send-message {
 				background-image: url(@theme_image_path@/mail/compose.png);
 			}
 
