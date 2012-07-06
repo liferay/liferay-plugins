@@ -1902,8 +1902,12 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 		margin: 0;
 	}
 
-	.thread .results-row, .results-grid table.taglib-search-iterator, .results-grid .results-row td, .results-grid .results-row.alt td {
-		border-width: 0 0 1px;
+	.private-messaging-container {
+		.results-grid, .results-grid table.taglib-search-iterator, .results-grid .results-row td, .results-grid .results-row.alt td, .thread .results-row {
+			border-left-width: 0;
+			border-right-width: 0;
+			border-top-width: 0;
+		}
 	}
 
 	.message-link:hover {
