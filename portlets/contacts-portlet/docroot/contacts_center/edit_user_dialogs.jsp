@@ -101,13 +101,14 @@ if (selUser != null) {
 
 			<c:choose>
 				<c:when test="<%= extension %>">
+
 					<%
 					Group controlPanelGroup = GroupLocalServiceUtil.getGroup(themeDisplay.getCompanyId(), GroupConstants.CONTROL_PANEL);
 
 					long controlPanelPlid = LayoutLocalServiceUtil.getDefaultPlid(controlPanelGroup.getGroupId(), true);
 					%>
 
-					var uri = '<liferay-portlet:actionURL plid="<%= controlPanelPlid %>" name="updateFieldGroup" portletName="<%= PortletKeys.MY_ACCOUNT %>" windowState="<%= LiferayWindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/my_account/edit_user" /></liferay-portlet:actionURL>';
+					var uri = '<liferay-portlet:actionURL name="updateFieldGroup" plid="<%= controlPanelPlid %>" portletName="<%= PortletKeys.MY_ACCOUNT %>" windowState="<%= LiferayWindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/my_account/edit_user" /></liferay-portlet:actionURL>';
 				</c:when>
 				<c:otherwise>
 					var uri = '<liferay-portlet:actionURL name="updateFieldGroup" />';
