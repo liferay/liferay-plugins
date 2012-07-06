@@ -322,6 +322,12 @@ public class CalendarBookingLocalServiceWrapper
 		_calendarBookingLocalService.deleteCalendarBookings(calendarId);
 	}
 
+	public com.liferay.calendar.model.CalendarBooking fetchCalendarBooking(
+		java.lang.String uuid, long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarBookingLocalService.fetchCalendarBooking(uuid, groupId);
+	}
+
 	public com.liferay.calendar.model.CalendarBooking getCalendarBooking(
 		long calendarId, long parentCalendarBookingId)
 		throws com.liferay.portal.kernel.exception.PortalException,

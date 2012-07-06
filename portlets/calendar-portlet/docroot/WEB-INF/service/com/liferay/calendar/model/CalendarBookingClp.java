@@ -674,6 +674,10 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		throw new UnsupportedOperationException();
 	}
 
+	public java.util.List<com.liferay.calendar.model.CalendarBooking> getChildCalendarBookings() {
+		throw new UnsupportedOperationException();
+	}
+
 	public boolean isRecurring() {
 		throw new UnsupportedOperationException();
 	}
