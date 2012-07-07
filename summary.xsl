@@ -65,11 +65,11 @@
 									sortable: true
 								},
 								{
-									key: 'Bundle',
+									key: 'Liferay Versions',
 									sortable: true
 								},
 								{
-									key: 'Compatibility',
+									key: 'Bundle',
 									sortable: true
 								},
 								{
@@ -227,6 +227,7 @@
 			'Demo URL': '<xsl:value-of select="releng/demo-url" />',
 			'Author': '<xsl:value-of select="author" />',
 			'Licenses': '<xsl:value-of select="licenses" />',
+			'Liferay Versions': '<xsl:value-of select="liferay-versions" />',
 
 			<xsl:apply-templates select="releng" />
 		}
