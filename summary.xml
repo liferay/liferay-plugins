@@ -10,10 +10,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<icon>hooks/default-web-content-hook/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
@@ -35,10 +35,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Utility</category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
@@ -59,10 +59,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -83,10 +83,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -107,10 +107,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -131,10 +131,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -155,10 +155,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -179,10 +179,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>AGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Productivity</category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
@@ -203,10 +203,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Utility</category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
@@ -227,10 +227,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Utility</category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
@@ -253,10 +253,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0+</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Utility</category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
@@ -277,10 +277,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Utility</category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
@@ -303,10 +303,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0+</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Utility</category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
@@ -327,10 +327,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Utility</category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
@@ -353,10 +353,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0+</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Utility</category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
@@ -377,10 +377,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Utility</category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
@@ -403,10 +403,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0+</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Utility</category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
@@ -427,10 +427,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Utility</category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
@@ -453,10 +453,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0+</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Utility</category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
@@ -477,10 +477,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -501,10 +501,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
@@ -525,10 +525,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
@@ -549,10 +549,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -573,10 +573,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<icon>portlets/chat-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>false</labs>
@@ -598,10 +598,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Productivity</category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
@@ -622,10 +622,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<icon>portlets/ddl-form-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>false</labs>
@@ -647,10 +647,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Utility</category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
@@ -671,10 +671,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Productivity</category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
@@ -695,10 +695,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<icon>portlets/flash-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
@@ -720,10 +720,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<icon>portlets/google-adsense-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
@@ -745,10 +745,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<icon>portlets/google-maps-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>false</labs>
@@ -770,10 +770,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
@@ -794,10 +794,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<icon>portlets/ip-geocoder-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
@@ -819,10 +819,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -843,10 +843,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<icon>portlets/knowledge-base-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>false</labs>
@@ -868,10 +868,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
@@ -892,10 +892,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<icon>portlets/mail-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
@@ -917,10 +917,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>true</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
@@ -941,10 +941,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Productivity</category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
@@ -965,10 +965,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Utility</category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
@@ -989,10 +989,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Utility</category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
@@ -1013,10 +1013,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<icon>portlets/opensocial-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>false</labs>
@@ -1038,10 +1038,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Productivity</category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
@@ -1062,10 +1062,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
@@ -1086,10 +1086,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1110,10 +1110,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
@@ -1134,10 +1134,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1158,10 +1158,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1182,10 +1182,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1206,10 +1206,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1230,10 +1230,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1254,10 +1254,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1278,10 +1278,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1302,10 +1302,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1326,10 +1326,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1350,10 +1350,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1374,10 +1374,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1398,10 +1398,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1422,10 +1422,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1446,10 +1446,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1470,10 +1470,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1494,10 +1494,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1518,10 +1518,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1542,10 +1542,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1566,10 +1566,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1590,10 +1590,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1614,10 +1614,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1638,10 +1638,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1662,10 +1662,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1686,10 +1686,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1710,10 +1710,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1734,10 +1734,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1758,10 +1758,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1782,10 +1782,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>SpringSource, Inc.</author>
 		<licenses>Apache</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1806,10 +1806,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1830,10 +1830,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1854,10 +1854,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1878,10 +1878,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1902,10 +1902,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1926,10 +1926,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -1950,10 +1950,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>AGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Productivity</category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
@@ -1974,10 +1974,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
@@ -1998,10 +1998,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<icon>portlets/social-networking-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
@@ -2023,10 +2023,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<icon>portlets/stocks-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
@@ -2048,10 +2048,10 @@
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
 		<licenses>CDDL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -2072,10 +2072,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Productivity</category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
@@ -2096,10 +2096,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -2120,10 +2120,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -2144,10 +2144,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -2168,10 +2168,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -2192,10 +2192,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -2216,10 +2216,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -2240,10 +2240,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -2264,10 +2264,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -2288,10 +2288,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -2312,10 +2312,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -2336,10 +2336,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -2360,10 +2360,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -2384,10 +2384,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -2408,10 +2408,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -2432,10 +2432,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility></compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -2456,10 +2456,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -2480,10 +2480,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -2504,10 +2504,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
@@ -2528,10 +2528,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<icon>portlets/twitter-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
@@ -2553,10 +2553,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<icon>portlets/vimeo-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
@@ -2578,10 +2578,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<icon>portlets/weather-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
@@ -2603,10 +2603,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<icon>portlets/web-form-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
@@ -2628,10 +2628,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
@@ -2652,10 +2652,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<icon>portlets/wiki-navigation-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
@@ -2677,10 +2677,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<icon>portlets/wsrp-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>false</labs>
@@ -2702,10 +2702,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Collaboration</category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
@@ -2726,10 +2726,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<icon>portlets/youtube-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
@@ -2751,10 +2751,10 @@
 		<page-url>http://opensourcetemplates.org/template_info.php?id=104</page-url>
 		<author>Studio7Designs</author>
 		<licenses>CCA</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -2775,10 +2775,10 @@
 		<page-url>http://templates.arcsin.se</page-url>
 		<author>Viktor Persson</author>
 		<licenses>CCA</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -2799,10 +2799,10 @@
 		<page-url>http://templates.arcsin.se</page-url>
 		<author>Arcsin</author>
 		<licenses>CCA</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -2823,10 +2823,10 @@
 		<page-url>http://templates.arcsin.se</page-url>
 		<author>Arcsin</author>
 		<licenses>CCA</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -2847,10 +2847,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -2871,10 +2871,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -2895,10 +2895,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -2919,10 +2919,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -2943,10 +2943,10 @@
 		<page-url>http://templates.arcsin.se</page-url>
 		<author>Arcsin</author>
 		<licenses>CCA</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -2967,10 +2967,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0+</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -2991,10 +2991,10 @@
 		<page-url>http://templates.arcsin.se</page-url>
 		<author>Viktor Persson</author>
 		<licenses>CCA</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -3015,10 +3015,10 @@
 		<page-url>http://drupal.org/node/91964</page-url>
 		<author>Stefan Nagtegaal and Steven Wittens</author>
 		<licenses>GPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -3039,10 +3039,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -3063,10 +3063,10 @@
 		<page-url>http://www.styleshout.com</page-url>
 		<author>Styleshout</author>
 		<licenses>CCA</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -3087,10 +3087,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -3111,10 +3111,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -3135,10 +3135,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -3159,10 +3159,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -3183,10 +3183,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -3207,10 +3207,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -3231,10 +3231,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -3258,10 +3258,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0+</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -3285,10 +3285,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0+</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -3309,10 +3309,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -3336,10 +3336,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0+</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -3360,10 +3360,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -3384,10 +3384,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>AGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Productivity</category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
@@ -3408,10 +3408,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -3432,10 +3432,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -3456,10 +3456,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -3480,10 +3480,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -3504,10 +3504,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>true</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
@@ -3528,10 +3528,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -3552,10 +3552,10 @@
 		<page-url>http://2010dev.wordpress.com/</page-url>
 		<author>WordPress</author>
 		<licenses>GPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -3576,10 +3576,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -3600,10 +3600,10 @@
 		<page-url>http://www.oswd.org/design/information/id/3559</page-url>
 		<author>NodeThirtyThree</author>
 		<licenses>CCA</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
@@ -3624,10 +3624,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>BSD</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<icon>webs/cas-web/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
@@ -3649,10 +3649,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Utility</category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
@@ -3673,10 +3673,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<icon>webs/kaleo-web/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
@@ -3698,10 +3698,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>true</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
@@ -3722,10 +3722,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<icon>webs/server-manager-web/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
@@ -3747,10 +3747,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<icon>webs/solr-web/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
@@ -3772,10 +3772,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Utility</category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
@@ -3796,10 +3796,10 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>AGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
-			<compatibility>6.2.0</compatibility>
 			<demo-url></demo-url>
 			<icon>webs/wurfl-web/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
