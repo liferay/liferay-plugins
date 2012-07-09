@@ -9,7 +9,7 @@
 			<dynamic-content><![CDATA[[$FILE=welcome_bg_9.jpg$]]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-element instance-id="Jg6grt09" name="action-link-url" type="text" index-type="">
-			<dynamic-content><![CDATA[//liferay.com/eloqua-test?wh=9]]></dynamic-content>
+			<dynamic-content><![CDATA[//www.liferay.com/open]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-content><![CDATA[Open Source: A Better Way]]></dynamic-content>
 	</dynamic-element>
@@ -18,7 +18,7 @@
 			<dynamic-content><![CDATA[[$FILE=welcome_bg_10.png$]]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-element instance-id="1LCJ560s" name="action-link-url" type="text" index-type="">
-			<dynamic-content><![CDATA[//liferay.com/eloqua-test?wh=10]]></dynamic-content>
+			<dynamic-content><![CDATA[//www.liferay.com/ready]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-content><![CDATA[Ready to Go]]></dynamic-content>
 	</dynamic-element>
@@ -27,7 +27,7 @@
 			<dynamic-content><![CDATA[[$FILE=welcome_bg_11.jpg$]]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-element instance-id="padOwYYA" name="action-link-url" type="text" index-type="">
-			<dynamic-content><![CDATA[//liferay.com/eloqua-test?wh=11]]></dynamic-content>
+			<dynamic-content><![CDATA[//www.liferay.com/grow]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-content><![CDATA[Ready to Grow]]></dynamic-content>
 	</dynamic-element>
@@ -36,7 +36,7 @@
 			<dynamic-content><![CDATA[[$FILE=welcome_bg_12.jpg$]]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-element instance-id="0stopvdI" name="action-link-url" type="text" index-type="">
-			<dynamic-content><![CDATA[//liferay.com/eloqua-test?wh=12]]></dynamic-content>
+			<dynamic-content><![CDATA[//www.liferay.com/approved]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-content><![CDATA[Approved by IT]]></dynamic-content>
 	</dynamic-element>
@@ -45,7 +45,7 @@
 			<dynamic-content><![CDATA[[$FILE=welcome_bg_13.jpg$]]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-element instance-id="2vjBgvkJ" name="action-link-url" type="text" index-type="">
-			<dynamic-content><![CDATA[//liferay.com/eloqua-test?wh=13]]></dynamic-content>
+			<dynamic-content><![CDATA[//www.liferay.com/subscription]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-content><![CDATA[Open for Business]]></dynamic-content>
 	</dynamic-element>
