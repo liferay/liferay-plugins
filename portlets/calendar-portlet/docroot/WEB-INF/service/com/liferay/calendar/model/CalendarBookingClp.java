@@ -694,6 +694,10 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		throw new UnsupportedOperationException();
 	}
 
+	public long getDurationInMillis() {
+		throw new UnsupportedOperationException();
+	}
+
 	public com.liferay.calendar.model.CalendarResource getCalendarResource() {
 		throw new UnsupportedOperationException();
 	}

@@ -128,7 +128,7 @@ public interface CalendarBookingService extends BaseService, InvokableService {
 		long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
 		java.lang.String keywords, long startDate, long endDate,
-		int[] statuses, int start, int end,
+		int[] statuses, boolean recurring, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -139,7 +139,8 @@ public interface CalendarBookingService extends BaseService, InvokableService {
 		long[] calendarResourceIds, long parentCalendarBookingId,
 		java.lang.String title, java.lang.String description,
 		java.lang.String location, long startDate, long endDate,
-		int[] statuses, boolean andOperator, int start, int end,
+		int[] statuses, boolean recurring, boolean andOperator, int start,
+		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -147,7 +148,8 @@ public interface CalendarBookingService extends BaseService, InvokableService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int searchCount(long companyId, long[] groupIds, long[] calendarIds,
 		long[] calendarResourceIds, long parentCalendarBookingId,
-		java.lang.String keywords, long startDate, long endDate, int[] statuses)
+		java.lang.String keywords, boolean recurring, long startDate,
+		long endDate, int[] statuses)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -156,7 +158,7 @@ public interface CalendarBookingService extends BaseService, InvokableService {
 		long[] calendarResourceIds, long parentCalendarBookingId,
 		java.lang.String title, java.lang.String description,
 		java.lang.String location, long startDate, long endDate,
-		int[] statuses, boolean andOperator)
+		int[] statuses, boolean recurring, boolean andOperator)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
