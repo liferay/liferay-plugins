@@ -9,7 +9,7 @@
 			<dynamic-content><![CDATA[[$FILE=welcome_bg_1.jpg$]]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-element instance-id="D6RyRV8B" name="action-link-url" type="text" index-type="">
-			<dynamic-content><![CDATA[//liferay.com/eloqua-test?wh=1]]></dynamic-content>
+			<dynamic-content><![CDATA[//www.liferay.com/platform]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-content><![CDATA[A Foundation for Apps]]></dynamic-content>
 	</dynamic-element>
@@ -18,7 +18,7 @@
 			<dynamic-content><![CDATA[[$FILE=welcome_bg_2.jpg$]]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-element instance-id="cRxjgI5n" name="action-link-url" type="text" index-type="">
-			<dynamic-content><![CDATA[//liferay.com/eloqua-test?wh=2]]></dynamic-content>
+			<dynamic-content><![CDATA[//www.liferay.com/wem]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-content><![CDATA[Dynamic Websites]]></dynamic-content>
 	</dynamic-element>
@@ -27,7 +27,7 @@
 			<dynamic-content><![CDATA[[$FILE=welcome_bg_3.jpg$]]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-element instance-id="y9LxlToP" name="action-link-url" type="text" index-type="">
-			<dynamic-content><![CDATA[//liferay.com/eloqua-test?wh=3]]></dynamic-content>
+			<dynamic-content><![CDATA[//www.liferay.com/dm]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-content><![CDATA[Centralized Document Management]]></dynamic-content>
 	</dynamic-element>
@@ -36,7 +36,7 @@
 			<dynamic-content><![CDATA[[$FILE=welcome_bg_4.jpg$]]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-element instance-id="pd27Fmww" name="action-link-url" type="text" index-type="">
-			<dynamic-content><![CDATA[//liferay.com/eloqua-test?wh=4]]></dynamic-content>
+			<dynamic-content><![CDATA[//www.liferay.com/team]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-content><![CDATA[Intuitive Team Collaboration]]></dynamic-content>
 	</dynamic-element>
@@ -45,7 +45,7 @@
 			<dynamic-content><![CDATA[[$FILE=welcome_bg_5.jpg$]]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-element instance-id="sl1Vtl1C" name="action-link-url" type="text" index-type="">
-			<dynamic-content><![CDATA[//liferay.com/eloqua-test?wh=5]]></dynamic-content>
+			<dynamic-content><![CDATA[//www.liferay.com/productivity]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-content><![CDATA[Tools for Business]]></dynamic-content>
 	</dynamic-element>
@@ -54,7 +54,7 @@
 			<dynamic-content><![CDATA[[$FILE=welcome_bg_6.jpg$]]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-element instance-id="RVoEeB9K" name="action-link-url" type="text" index-type="">
-			<dynamic-content><![CDATA[//liferay.com/eloqua-test?wh=6]]></dynamic-content>
+			<dynamic-content><![CDATA[//www.liferay.com/sync]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-content><![CDATA[Desktop & Mobile Access]]></dynamic-content>
 	</dynamic-element>
@@ -63,7 +63,7 @@
 			<dynamic-content><![CDATA[[$FILE=welcome_bg_7.jpg$]]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-element instance-id="7LupLUIR" name="action-link-url" type="text" index-type="">
-			<dynamic-content><![CDATA[//liferay.com/eloqua-test?wh=7]]></dynamic-content>
+			<dynamic-content><![CDATA[//www.liferay.com/marketplace]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-content><![CDATA[Liferay Marketplace]]></dynamic-content>
 	</dynamic-element>
