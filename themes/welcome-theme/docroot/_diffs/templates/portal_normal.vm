@@ -69,7 +69,7 @@ $theme.include($body_top_include)
 				<div class="footer-box">
 					<h3>Want Easy Social Collaboration?</h3>
 
-					<a href="http://liferay.com/eloqua-test?wh=14">Get Social Office &#9658;</a>
+					<a href="//www.liferay.com/socialoffice">Get Social Office &#9658;</a>
 				</div>
 			</div>
 		</div>
@@ -81,7 +81,7 @@ $theme.include($body_top_include)
 				<div class="footer-box">
 					<h3>Need Help Getting Started?</h3>
 
-					<a href="http://liferay.com/eloqua-test?wh=15">Click here &#9658;</a>
+					<a href="//www.liferay.com/start">Click here &#9658;</a>
 				</div>
 			</div>
 		</div>
@@ -93,7 +93,7 @@ $theme.include($body_top_include)
 				<div class="footer-box">
 					<h3>Develop Faster.</h3>
 
-					<a href="http://liferay.com/eloqua-test?wh=16">Click here &#9658;</a>
+					<a href="//www.liferay.com/ide">Click here &#9658;</a>
 				</div>
 			</div>
 		</div>
