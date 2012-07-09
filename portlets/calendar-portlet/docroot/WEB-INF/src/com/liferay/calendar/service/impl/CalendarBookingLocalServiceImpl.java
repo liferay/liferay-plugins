@@ -23,6 +23,7 @@ import com.liferay.calendar.service.base.CalendarBookingLocalServiceBaseImpl;
 import com.liferay.calendar.util.JCalendarUtil;
 import com.liferay.calendar.util.NotificationUtil;
 import com.liferay.calendar.util.PortletPropsValues;
+import com.liferay.calendar.util.RecurrenceUtil;
 import com.liferay.calendar.workflow.CalendarBookingApprovalWorkflow;
 import com.liferay.calendar.workflow.CalendarBookingWorkflowConstants;
 import com.liferay.portal.kernel.bean.BeanReference;
@@ -66,8 +67,10 @@ public class CalendarBookingLocalServiceImpl
 			endDate);
 
 		if (allDay) {
-			startDateJCalendar = toMidnightJCalendar(startDateJCalendar);
-			endDateJCalendar = toLastHourJCalendar(endDateJCalendar);
+			startDateJCalendar = JCalendarUtil.toMidnightJCalendar(
+				startDateJCalendar);
+			endDateJCalendar = JCalendarUtil.toLastHourJCalendar(
+				endDateJCalendar);
 		}
 
 		if (firstReminder < secondReminder) {
@@ -270,27 +273,46 @@ public class CalendarBookingLocalServiceImpl
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,
 			String keywords, long startDate, long endDate, int[] statuses,
-			int start, int end, OrderByComparator orderByComparator)
+			boolean recurring, int start, int end,
+			OrderByComparator orderByComparator)
 		throws SystemException {
 
-		return calendarBookingFinder.findByKeywords(
-			companyId, groupIds, calendarIds, calendarResourceIds,
-			parentCalendarBookingId, keywords, startDate, endDate, statuses,
-			start, end, orderByComparator);
+		List<CalendarBooking> calendarBookings =
+			calendarBookingFinder.findByKeywords(
+				companyId, groupIds, calendarIds, calendarResourceIds,
+				parentCalendarBookingId, keywords, startDate, endDate, statuses,
+				recurring, start, end, orderByComparator);
+
+		if (recurring) {
+			calendarBookings = RecurrenceUtil.expandCalendarBookings(
+				calendarBookings, endDate);
+		}
+
+		return calendarBookings;
 	}
 
 	public List<CalendarBooking> search(
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,
 			String title, String description, String location, long startDate,
-			long endDate, int[] statuses, boolean andOperator, int start,
-			int end, OrderByComparator orderByComparator)
+			long endDate, int[] statuses, boolean recurring,
+			boolean andOperator, int start, int end,
+			OrderByComparator orderByComparator)
 		throws SystemException {
 
-		return calendarBookingFinder.findByC_G_C_C_P_T_D_L_S_E_S(
-			companyId, groupIds, calendarIds, calendarResourceIds,
-			parentCalendarBookingId, title, description, location, startDate,
-			endDate, statuses, andOperator, start, end, orderByComparator);
+		List<CalendarBooking> calendarBookings =
+			calendarBookingFinder.findByC_G_C_C_P_T_D_L_S_E_S(
+				companyId, groupIds, calendarIds, calendarResourceIds,
+				parentCalendarBookingId, title, description, location,
+				startDate, endDate, statuses, recurring, andOperator, start,
+				end, orderByComparator);
+
+		if (recurring) {
+			calendarBookings = RecurrenceUtil.expandCalendarBookings(
+				calendarBookings, endDate);
+		}
+
+		return calendarBookings;
 	}
 
 	public int searchCount(
@@ -339,8 +361,10 @@ public class CalendarBookingLocalServiceImpl
 			endDate);
 
 		if (allDay) {
-			startDateJCalendar = toMidnightJCalendar(startDateJCalendar);
-			endDateJCalendar = toLastHourJCalendar(endDateJCalendar);
+			startDateJCalendar = JCalendarUtil.toMidnightJCalendar(
+				startDateJCalendar);
+			endDateJCalendar = JCalendarUtil.toLastHourJCalendar(
+				endDateJCalendar);
 		}
 
 		if (firstReminder < secondReminder) {
@@ -498,34 +522,6 @@ public class CalendarBookingLocalServiceImpl
 			catch (Exception e) {
 			}
 		}
-	}
-
-	protected java.util.Calendar toLastHourJCalendar(
-		java.util.Calendar jCalendar) {
-
-		java.util.Calendar lastHourJCalendar =
-			(java.util.Calendar)jCalendar.clone();
-
-		lastHourJCalendar.set(java.util.Calendar.HOUR_OF_DAY, 23);
-		lastHourJCalendar.set(java.util.Calendar.MINUTE, 59);
-		lastHourJCalendar.set(java.util.Calendar.SECOND, 59);
-		lastHourJCalendar.set(java.util.Calendar.MILLISECOND, 999);
-
-		return lastHourJCalendar;
-	}
-
-	protected java.util.Calendar toMidnightJCalendar(
-		java.util.Calendar jCalendar) {
-
-		java.util.Calendar midnightJCalendar =
-			(java.util.Calendar)jCalendar.clone();
-
-		midnightJCalendar.set(java.util.Calendar.HOUR_OF_DAY, 0);
-		midnightJCalendar.set(java.util.Calendar.MINUTE, 0);
-		midnightJCalendar.set(java.util.Calendar.SECOND, 0);
-		midnightJCalendar.set(java.util.Calendar.MILLISECOND, 0);
-
-		return midnightJCalendar;
 	}
 
 	protected void validate(

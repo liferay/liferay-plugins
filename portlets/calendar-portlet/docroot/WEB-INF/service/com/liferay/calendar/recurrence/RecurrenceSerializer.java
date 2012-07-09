@@ -53,7 +53,7 @@ public class RecurrenceSerializer {
 				Calendar jCalendar = CalendarFactoryUtil.getCalendar();
 
 				jCalendar.set(Calendar.DATE, dateValue.day());
-				jCalendar.set(Calendar.MONTH, dateValue.month());
+				jCalendar.set(Calendar.MONTH, dateValue.month() - 1);
 				jCalendar.set(Calendar.YEAR, dateValue.year());
 
 				recurrence.setUntil(jCalendar);
@@ -109,7 +109,7 @@ public class RecurrenceSerializer {
 
 		if (jCalendar != null) {
 			DateValue dateValue = new DateValueImpl(
-				jCalendar.get(Calendar.YEAR), jCalendar.get(Calendar.MONTH),
+				jCalendar.get(Calendar.YEAR), jCalendar.get(Calendar.MONTH) + 1,
 				jCalendar.get(Calendar.DATE));
 
 			rRule.setUntil(dateValue);

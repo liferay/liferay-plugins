@@ -19,10 +19,7 @@
 					(lower(location) LIKE ? [$AND_OR_NULL_CHECK$])
 				) AND
 				[$STATUS$]
-				(
-					(startDate <= ? OR ? = -1) AND
-					(endDate >= ? OR ? = -1)
-				)
+				[$DATE_RANGE$]
 		]]>
 	</sql>
 	<sql id="com.liferay.calendar.service.persistence.CalendarBookingFinder.findByFutureReminders">
@@ -56,10 +53,7 @@
 					(lower(location) LIKE ? [$AND_OR_NULL_CHECK$])
 				) AND
 				[$STATUS$]
-				(
-					(startDate >= ? OR ? = -1) AND
-					(endDate <= ? OR ? = -1)
-				)
+				[$DATE_RANGE$]
 				[$ORDER_BY$]
 		]]>
 	</sql>

@@ -290,6 +290,7 @@
 							keywords: null,
 							orderByComparator: null,
 							parentCalendarBookingId: -1,
+							recurring: true,
 							start: Workflow.STATUS_APPROVED,
 							startDate: startDate.getTime(),
 							statuses: status.join(',')
