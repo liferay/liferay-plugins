@@ -40,8 +40,6 @@ public class ContactsCenterRequestInterpreter
 			SocialRequest request, ThemeDisplay themeDisplay)
 		throws Exception {
 
-		String creatorUserName = getUserName(request.getUserId(), themeDisplay);
-
 		int requestType = request.getType();
 
 		// Title
@@ -49,6 +47,9 @@ public class ContactsCenterRequestInterpreter
 		String title = StringPool.BLANK;
 
 		if (requestType == SocialRelationConstants.TYPE_BI_CONNECTION) {
+			String creatorUserName =
+				getUserNameLink(request.getUserId(), themeDisplay);
+
 			title = themeDisplay.translate(
 				"request-social-networking-summary-add-connection",
 				new Object[] {creatorUserName});
