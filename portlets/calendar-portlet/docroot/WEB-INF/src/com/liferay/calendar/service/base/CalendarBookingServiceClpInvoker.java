@@ -79,7 +79,7 @@ public class CalendarBookingServiceClpInvoker {
 
 		_methodParameterTypes53 = new String[] {
 				"long", "long[][]", "long[][]", "long[][]", "long",
-				"java.lang.String", "long", "long", "int[][]", "boolean", "int",
+				"java.lang.String", "long", "long", "boolean", "int[][]", "int",
 				"int", "com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
@@ -88,7 +88,7 @@ public class CalendarBookingServiceClpInvoker {
 		_methodParameterTypes54 = new String[] {
 				"long", "long[][]", "long[][]", "long[][]", "long",
 				"java.lang.String", "java.lang.String", "java.lang.String",
-				"long", "long", "int[][]", "boolean", "boolean", "int", "int",
+				"long", "long", "boolean", "int[][]", "boolean", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
@@ -96,7 +96,7 @@ public class CalendarBookingServiceClpInvoker {
 
 		_methodParameterTypes55 = new String[] {
 				"long", "long[][]", "long[][]", "long[][]", "long",
-				"java.lang.String", "boolean", "long", "long", "int[][]"
+				"java.lang.String", "long", "long", "boolean", "int[][]"
 			};
 
 		_methodName56 = "searchCount";
@@ -104,7 +104,7 @@ public class CalendarBookingServiceClpInvoker {
 		_methodParameterTypes56 = new String[] {
 				"long", "long[][]", "long[][]", "long[][]", "long",
 				"java.lang.String", "java.lang.String", "java.lang.String",
-				"long", "long", "int[][]", "boolean", "boolean"
+				"long", "long", "boolean", "int[][]", "boolean"
 			};
 
 		_methodName57 = "updateCalendarBooking";
@@ -211,8 +211,8 @@ public class CalendarBookingServiceClpInvoker {
 				(long[])arguments[3], ((Long)arguments[4]).longValue(),
 				(java.lang.String)arguments[5],
 				((Long)arguments[6]).longValue(),
-				((Long)arguments[7]).longValue(), (int[])arguments[8],
-				((Boolean)arguments[9]).booleanValue(),
+				((Long)arguments[7]).longValue(),
+				((Boolean)arguments[8]).booleanValue(), (int[])arguments[9],
 				((Integer)arguments[10]).intValue(),
 				((Integer)arguments[11]).intValue(),
 				(com.liferay.portal.kernel.util.OrderByComparator)arguments[12]);
@@ -226,8 +226,8 @@ public class CalendarBookingServiceClpInvoker {
 				(java.lang.String)arguments[5], (java.lang.String)arguments[6],
 				(java.lang.String)arguments[7],
 				((Long)arguments[8]).longValue(),
-				((Long)arguments[9]).longValue(), (int[])arguments[10],
-				((Boolean)arguments[11]).booleanValue(),
+				((Long)arguments[9]).longValue(),
+				((Boolean)arguments[10]).booleanValue(), (int[])arguments[11],
 				((Boolean)arguments[12]).booleanValue(),
 				((Integer)arguments[13]).intValue(),
 				((Integer)arguments[14]).intValue(),
@@ -240,9 +240,9 @@ public class CalendarBookingServiceClpInvoker {
 				(long[])arguments[1], (long[])arguments[2],
 				(long[])arguments[3], ((Long)arguments[4]).longValue(),
 				(java.lang.String)arguments[5],
-				((Boolean)arguments[6]).booleanValue(),
+				((Long)arguments[6]).longValue(),
 				((Long)arguments[7]).longValue(),
-				((Long)arguments[8]).longValue(), (int[])arguments[9]);
+				((Boolean)arguments[8]).booleanValue(), (int[])arguments[9]);
 		}
 
 		if (_methodName56.equals(name) &&
@@ -253,8 +253,8 @@ public class CalendarBookingServiceClpInvoker {
 				(java.lang.String)arguments[5], (java.lang.String)arguments[6],
 				(java.lang.String)arguments[7],
 				((Long)arguments[8]).longValue(),
-				((Long)arguments[9]).longValue(), (int[])arguments[10],
-				((Boolean)arguments[11]).booleanValue(),
+				((Long)arguments[9]).longValue(),
+				((Boolean)arguments[10]).booleanValue(), (int[])arguments[11],
 				((Boolean)arguments[12]).booleanValue());
 		}
 

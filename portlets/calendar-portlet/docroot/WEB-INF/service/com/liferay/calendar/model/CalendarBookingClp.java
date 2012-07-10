@@ -690,11 +690,11 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		throw new UnsupportedOperationException();
 	}
 
-	public com.liferay.calendar.recurrence.Recurrence getRecurrenceObj() {
+	public long getDuration() {
 		throw new UnsupportedOperationException();
 	}
 
-	public long getDurationInMillis() {
+	public com.liferay.calendar.recurrence.Recurrence getRecurrenceObj() {
 		throw new UnsupportedOperationException();
 	}
 

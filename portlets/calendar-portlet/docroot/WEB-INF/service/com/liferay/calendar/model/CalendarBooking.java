@@ -42,7 +42,7 @@ public interface CalendarBooking extends CalendarBookingModel, PersistedModel {
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> getChildCalendarBookings()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public long getDurationInMillis();
+	public long getDuration();
 
 	public com.liferay.calendar.notification.NotificationType getFirstReminderNotificationType();
 
