@@ -16,7 +16,6 @@ package com.liferay.microblogs.service;
 
 import com.liferay.microblogs.model.MicroblogsEntryClp;
 
-import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
@@ -184,11 +183,6 @@ public class ClpSerializer {
 	public static Throwable translateThrowable(Throwable throwable) {
 		if (_useReflectionToTranslateThrowable) {
 			try {
-				if (_classLoader == null) {
-					_classLoader = (ClassLoader)PortletBeanLocatorUtil.locate(_servletContextName,
-							"portletClassLoader");
-				}
-
 				UnsyncByteArrayOutputStream unsyncByteArrayOutputStream = new UnsyncByteArrayOutputStream();
 				ObjectOutputStream objectOutputStream = new ObjectOutputStream(unsyncByteArrayOutputStream);
 
@@ -199,8 +193,13 @@ public class ClpSerializer {
 
 				UnsyncByteArrayInputStream unsyncByteArrayInputStream = new UnsyncByteArrayInputStream(unsyncByteArrayOutputStream.unsafeGetByteArray(),
 						0, unsyncByteArrayOutputStream.size());
+
+				Thread currentThread = Thread.currentThread();
+
+				ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+
 				ObjectInputStream objectInputStream = new ClassLoaderObjectInputStream(unsyncByteArrayInputStream,
-						_classLoader);
+						contextClassLoader);
 
 				throwable = (Throwable)objectInputStream.readObject();
 
@@ -257,7 +256,6 @@ public class ClpSerializer {
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(ClpSerializer.class);
-	private static ClassLoader _classLoader;
 	private static String _servletContextName;
 	private static boolean _useReflectionToTranslateThrowable = true;
 }
