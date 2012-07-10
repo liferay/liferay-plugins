@@ -365,8 +365,7 @@ public class UserThreadLocalServiceWrapper implements UserThreadLocalService,
 	}
 
 	public void updateUserName(com.liferay.portal.model.User user)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		_userThreadLocalService.updateUserName(user);
 	}
 

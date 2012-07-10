@@ -371,8 +371,7 @@ public class UserThreadLocalServiceUtil {
 	}
 
 	public static void updateUserName(com.liferay.portal.model.User user)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getService().updateUserName(user);
 	}
 
