@@ -80,7 +80,7 @@
 				(SocialRelation.type_ = ?) AND
 				(Chat_Status.modifiedDate > ?) AND
 				(Chat_Status.online_ = [$TRUE$]) AND
-				(User.userId != ?)
+				(User_.userId != ?)
 			ORDER BY
 				Chat_Status.awake ASC,
 				User_.firstName ASC,
