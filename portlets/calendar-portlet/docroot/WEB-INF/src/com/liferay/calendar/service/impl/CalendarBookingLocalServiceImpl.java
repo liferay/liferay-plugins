@@ -272,16 +272,16 @@ public class CalendarBookingLocalServiceImpl
 	public List<CalendarBooking> search(
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,
-			String keywords, long startDate, long endDate, int[] statuses,
-			boolean recurring, int start, int end,
+			String keywords, long startDate, long endDate, boolean recurring,
+			int[] statuses, int start, int end,
 			OrderByComparator orderByComparator)
 		throws SystemException {
 
 		List<CalendarBooking> calendarBookings =
 			calendarBookingFinder.findByKeywords(
 				companyId, groupIds, calendarIds, calendarResourceIds,
-				parentCalendarBookingId, keywords, startDate, endDate, statuses,
-				recurring, start, end, orderByComparator);
+				parentCalendarBookingId, keywords, startDate, endDate,
+				recurring, statuses, start, end, orderByComparator);
 
 		if (recurring) {
 			calendarBookings = RecurrenceUtil.expandCalendarBookings(
@@ -295,7 +295,7 @@ public class CalendarBookingLocalServiceImpl
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,
 			String title, String description, String location, long startDate,
-			long endDate, int[] statuses, boolean recurring,
+			long endDate, boolean recurring, int[] statuses,
 			boolean andOperator, int start, int end,
 			OrderByComparator orderByComparator)
 		throws SystemException {
@@ -304,7 +304,7 @@ public class CalendarBookingLocalServiceImpl
 			calendarBookingFinder.findByC_G_C_C_P_T_D_L_S_E_S(
 				companyId, groupIds, calendarIds, calendarResourceIds,
 				parentCalendarBookingId, title, description, location,
-				startDate, endDate, statuses, recurring, andOperator, start,
+				startDate, endDate, recurring, statuses, andOperator, start,
 				end, orderByComparator);
 
 		if (recurring) {

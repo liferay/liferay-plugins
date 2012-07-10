@@ -168,8 +168,8 @@ public class CalendarBookingFinderImpl
 	public List<CalendarBooking> filterFindByKeywords(
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,
-			String keywords, long startDate, long endDate, int[] statuses,
-			boolean recurring, int start, int end,
+			String keywords, long startDate, long endDate, boolean recurring,
+			int[] statuses, int start, int end,
 			OrderByComparator orderByComparator)
 		throws SystemException {
 
@@ -190,7 +190,7 @@ public class CalendarBookingFinderImpl
 		return filterFindByC_G_C_C_P_T_D_L_S_E_S(
 			companyId, groupIds, calendarIds, calendarResourceIds,
 			parentCalendarBookingId, titles, descriptions, locations, startDate,
-			endDate, statuses, recurring, andOperator, start, end,
+			endDate, recurring, statuses, andOperator, start, end,
 			orderByComparator);
 	}
 
@@ -198,7 +198,7 @@ public class CalendarBookingFinderImpl
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,
 			String title, String description, String location, long startDate,
-			long endDate, int[] statuses, boolean recurring,
+			long endDate, boolean recurring, int[] statuses,
 			boolean andOperator, int start, int end,
 			OrderByComparator orderByComparator)
 		throws SystemException {
@@ -210,7 +210,7 @@ public class CalendarBookingFinderImpl
 		return filterFindByC_G_C_C_P_T_D_L_S_E_S(
 			companyId, groupIds, calendarIds, calendarResourceIds,
 			parentCalendarBookingId, titles, descriptions, locations, startDate,
-			endDate, statuses, recurring, andOperator, start, end,
+			endDate, recurring, statuses, andOperator, start, end,
 			orderByComparator);
 	}
 
@@ -218,7 +218,7 @@ public class CalendarBookingFinderImpl
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,
 			String[] titles, String[] descriptions, String[] locations,
-			long startDate, long endDate, int[] statuses, boolean recurring,
+			long startDate, long endDate, boolean recurring, int[] statuses,
 			boolean andOperator, int start, int end,
 			OrderByComparator orderByComparator)
 		throws SystemException {
@@ -226,7 +226,7 @@ public class CalendarBookingFinderImpl
 		return doFindByC_G_C_C_P_T_D_L_S_E_S(
 			companyId, groupIds, calendarIds, calendarResourceIds,
 			parentCalendarBookingId, titles, descriptions, locations, startDate,
-			endDate, statuses, recurring, andOperator, start, end,
+			endDate, recurring, statuses, andOperator, start, end,
 			orderByComparator, true);
 	}
 
@@ -261,8 +261,8 @@ public class CalendarBookingFinderImpl
 	public List<CalendarBooking> findByKeywords(
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,
-			String keywords, long startDate, long endDate, int[] statuses,
-			boolean recurring, int start, int end,
+			String keywords, long startDate, long endDate, boolean recurring,
+			int[] statuses, int start, int end,
 			OrderByComparator orderByComparator)
 		throws SystemException {
 
@@ -283,7 +283,7 @@ public class CalendarBookingFinderImpl
 		return findByC_G_C_C_P_T_D_L_S_E_S(
 			companyId, groupIds, calendarIds, calendarResourceIds,
 			parentCalendarBookingId, titles, descriptions, locations, startDate,
-			endDate, statuses, recurring, andOperator, start, end,
+			endDate, recurring, statuses, andOperator, start, end,
 			orderByComparator);
 	}
 
@@ -291,7 +291,7 @@ public class CalendarBookingFinderImpl
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,
 			String title, String description, String location, long startDate,
-			long endDate, int[] statuses, boolean recurring,
+			long endDate, boolean recurring, int[] statuses,
 			boolean andOperator, int start, int end,
 			OrderByComparator orderByComparator)
 		throws SystemException {
@@ -303,7 +303,7 @@ public class CalendarBookingFinderImpl
 		return findByC_G_C_C_P_T_D_L_S_E_S(
 			companyId, groupIds, calendarIds, calendarResourceIds,
 			parentCalendarBookingId, titles, descriptions, locations, startDate,
-			endDate, statuses, recurring, andOperator, start, end,
+			endDate, recurring, statuses, andOperator, start, end,
 			orderByComparator);
 	}
 
@@ -311,7 +311,7 @@ public class CalendarBookingFinderImpl
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,
 			String[] titles, String[] descriptions, String[] locations,
-			long startDate, long endDate, int[] statuses, boolean recurring,
+			long startDate, long endDate, boolean recurring, int[] statuses,
 			boolean andOperator, int start, int end,
 			OrderByComparator orderByComparator)
 		throws SystemException {
@@ -319,7 +319,7 @@ public class CalendarBookingFinderImpl
 		return doFindByC_G_C_C_P_T_D_L_S_E_S(
 			companyId, groupIds, calendarIds, calendarResourceIds,
 			parentCalendarBookingId, titles, descriptions, locations, startDate,
-			endDate, statuses, recurring, andOperator, start, end,
+			endDate, recurring, statuses, andOperator, start, end,
 			orderByComparator, false);
 	}
 
@@ -430,7 +430,7 @@ public class CalendarBookingFinderImpl
 			long companyId, long[] groupIds, long[] calendarIds,
 			long[] calendarResourceIds, long parentCalendarBookingId,
 			String[] titles, String[] descriptions, String[] locations,
-			long startDate, long endDate, int[] statuses, boolean recurring,
+			long startDate, long endDate, boolean recurring, int[] statuses,
 			boolean andOperator, int start, int end,
 			OrderByComparator orderByComparator, boolean inlineSQLHelper)
 		throws SystemException {
@@ -459,10 +459,10 @@ public class CalendarBookingFinderImpl
 			sql = StringUtil.replace(
 				sql, "[$CALENDAR_RESOURCE_ID$]",
 				getCalendarResourceIds(calendarResourceIds));
-			sql = StringUtil.replace(sql, "[$STATUS$]", getStatuses(statuses));
 			sql = StringUtil.replace(
 				sql, "[$DATE_RANGE$]",
 				getDateRange(startDate, endDate, recurring));
+			sql = StringUtil.replace(sql, "[$STATUS$]", getStatuses(statuses));
 
 			if (parentCalendarBookingId < 0) {
 				sql = StringUtil.replace(
@@ -512,11 +512,6 @@ public class CalendarBookingFinderImpl
 			qPos.add(titles, 2);
 			qPos.add(descriptions, 2);
 			qPos.add(locations, 2);
-
-			if ((statuses != null) && (statuses.length > 0)) {
-				qPos.add(statuses);
-			}
-
 			qPos.add(startDate);
 			qPos.add(startDate);
 			qPos.add(endDate);
@@ -525,6 +520,10 @@ public class CalendarBookingFinderImpl
 			if (recurring) {
 				qPos.add(endDate);
 				qPos.add(endDate);
+			}
+
+			if ((statuses != null) && (statuses.length > 0)) {
+				qPos.add(statuses);
 			}
 
 			return (List<CalendarBooking>)QueryUtil.list(

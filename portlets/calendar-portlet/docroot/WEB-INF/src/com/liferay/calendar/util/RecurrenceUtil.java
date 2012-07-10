@@ -40,14 +40,15 @@ public class RecurrenceUtil {
 	public static List<CalendarBooking> expandCalendarBookings(
 		List<CalendarBooking> calendarBookings, long endDate) {
 
-		List<CalendarBooking> result = new ArrayList<CalendarBooking>();
+		List<CalendarBooking> expandedCalendarBookings =
+			new ArrayList<CalendarBooking>();
 
 		DateValue endDateValue = _toDateValue(endDate);
 
 		try {
 			for (CalendarBooking calendarBooking : calendarBookings) {
 				if (!calendarBooking.isRecurring()) {
-					result.add(calendarBooking);
+					expandedCalendarBookings.add(calendarBooking);
 
 					continue;
 				}
@@ -61,16 +62,16 @@ public class RecurrenceUtil {
 						TimeUtils.utcTimezone());
 
 				while (recurrenceIterator.hasNext()) {
-					DateValue dateValue = (DateValue)recurrenceIterator.next();
+					DateValue dateValue = recurrenceIterator.next();
 
 					if (dateValue.compareTo(endDateValue) > 0) {
 						break;
 					}
 
-					CalendarBooking clone = _cloneCalendarBooking(
+					CalendarBooking clone = _copyCalendarBooking(
 						calendarBooking, dateValue);
 
-					result.add(clone);
+					expandedCalendarBookings.add(clone);
 				}
 			}
 		}
@@ -78,42 +79,38 @@ public class RecurrenceUtil {
 			_log.error("Unable to parse data ", pe);
 		}
 
-		return result;
+		return expandedCalendarBookings;
 	}
 
-	private static CalendarBooking _cloneCalendarBooking(
+	private static CalendarBooking _copyCalendarBooking(
 		CalendarBooking calendarBooking, DateValue startDateValue) {
 
-		CalendarBooking clone = (CalendarBooking)calendarBooking.clone();
+		CalendarBooking newCalendarBooking =
+			(CalendarBooking)calendarBooking.clone();
 
 		Calendar jCalendar = JCalendarUtil.getJCalendar(
 			calendarBooking.getStartDate());
 
-		Calendar startDateJCalendar =
-			JCalendarUtil.getJCalendar(
-				startDateValue.year(), startDateValue.month() - 1,
-				startDateValue.day(), jCalendar.get(Calendar.HOUR_OF_DAY),
-				jCalendar.get(Calendar.MINUTE), jCalendar.get(Calendar.SECOND),
-				jCalendar.get(Calendar.MILLISECOND),
-				TimeZone.getTimeZone(StringPool.UTC));
+		jCalendar = JCalendarUtil.getJCalendar(
+			startDateValue.year(), startDateValue.month() - 1,
+			startDateValue.day(), jCalendar.get(Calendar.HOUR_OF_DAY),
+			jCalendar.get(Calendar.MINUTE), jCalendar.get(Calendar.SECOND),
+			jCalendar.get(Calendar.MILLISECOND),
+			TimeZone.getTimeZone(StringPool.UTC));
 
-		long startDateInMillis = startDateJCalendar.getTimeInMillis();
+		newCalendarBooking.setEndDate(
+			jCalendar.getTimeInMillis() + calendarBooking.getDuration());
+		newCalendarBooking.setStartDate(jCalendar.getTimeInMillis());
 
-		clone.setStartDate(startDateInMillis);
-		clone.setEndDate(
-			startDateInMillis + calendarBooking.getDurationInMillis());
-
-		return clone;
+		return newCalendarBooking;
 	}
 
 	private static DateValue _toDateValue(long time) {
 		Calendar jCalendar = JCalendarUtil.getJCalendar(time);
 
-		DateValue dateValue = new DateValueImpl(
+		return new DateValueImpl(
 			jCalendar.get(Calendar.YEAR), jCalendar.get(Calendar.MONTH) + 1,
 			jCalendar.get(Calendar.DAY_OF_MONTH));
-
-		return dateValue;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(RecurrenceUtil.class);

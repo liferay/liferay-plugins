@@ -18,8 +18,8 @@
 					(description LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 					(lower(location) LIKE ? [$AND_OR_NULL_CHECK$])
 				) AND
-				[$STATUS$]
 				[$DATE_RANGE$]
+				[$STATUS$]
 		]]>
 	</sql>
 	<sql id="com.liferay.calendar.service.persistence.CalendarBookingFinder.findByFutureReminders">
@@ -52,8 +52,8 @@
 					(description LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 					(lower(location) LIKE ? [$AND_OR_NULL_CHECK$])
 				) AND
-				[$STATUS$]
 				[$DATE_RANGE$]
+				[$STATUS$]
 				[$ORDER_BY$]
 		]]>
 	</sql>
