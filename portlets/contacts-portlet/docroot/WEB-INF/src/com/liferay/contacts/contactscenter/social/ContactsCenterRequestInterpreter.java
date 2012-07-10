@@ -47,8 +47,8 @@ public class ContactsCenterRequestInterpreter
 		String title = StringPool.BLANK;
 
 		if (requestType == SocialRelationConstants.TYPE_BI_CONNECTION) {
-			String creatorUserName =
-				getUserNameLink(request.getUserId(), themeDisplay);
+			String creatorUserName = getUserNameLink(
+				request.getUserId(), themeDisplay);
 
 			title = themeDisplay.translate(
 				"request-social-networking-summary-add-connection",
