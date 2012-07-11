@@ -1,6 +1,6 @@
 <div class="pod button">
 	<a href="$!link.data">
-		#if($image.data !='')
+		#if ($image.data != '')
 			<img src='$image.data' class="pod-image" />
 		#end
 

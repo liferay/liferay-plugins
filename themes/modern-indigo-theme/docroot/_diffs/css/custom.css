@@ -23,24 +23,6 @@ $default-box-shadow-v-offset: 1px;
 	position: absolute;
 }
 
-body {
-	background: $bgColor url(../images/custom/body_bg.png) repeat-x 0 0;
-	font-family: "Helvetica Neue", Helvetica, Arial, san-serif;
-	font-size: 12px;
-
-	&.portal-popup #main-content{
-		width: auto;
-	}
-
-	&.lfr-dockbar-pinned {
-	    padding-top: 2.4em;
-	}
-}
-
-p {
-	color: #666;
-}
-
 a {
 	color: $textColor;
 	text-decoration: none;
@@ -48,6 +30,27 @@ a {
 	&:hover {
 		text-decoration: underline;
 	}
+}
+
+body {
+	background: $bgColor url(../images/custom/body_bg.png) repeat-x 0 0;
+	font-family: 12px "Helvetica Neue", Helvetica, Arial, san-serif;
+
+	&.lfr-dockbar-pinned {
+		padding-top: 2.4em;
+	}
+
+	&.portal-popup {
+		padding: 10px;
+
+		#main-content{
+			width: auto;
+		}
+	}
+}
+
+p {
+	color: #666;
 }
 
 /* -------- Wrapper / Skip / Sign-in -------- */
@@ -58,10 +61,6 @@ a {
 	padding: 20px 0 0;
 	position: relative;
 	width: 1200px;
-}
-
-.ie7 #wrapper {
-	zoom: 1;
 }
 
 #skip-to-content, #sign-in {
@@ -80,8 +79,8 @@ a {
 #sign-in {
 	font-size: 10px;
 	position: absolute;
-	top: 5px;
 	right: 125px;
+	top: 5px;
 }
 
 /* -------- Heading -------- */
@@ -115,10 +114,6 @@ a {
 		margin: 10px;
 		padding: 5px 10px;
 	}
-}
-
-.ie6 #banner #heading .logo.default-logo {
-	background-image: url(../images/custom/ie6/logo.gif);
 }
 
 /* -------- Navigation -------- */
@@ -170,10 +165,6 @@ a {
 			background: url(../images/custom/nav_active.png) 0 0 repeat-x;
 		}
 	}
-}
-
-.ie6 #navigation {
-	background-image: url(../images/custom/ie6/nav_bg.gif);
 }
 
 /* -------- Content -------- */
@@ -345,9 +336,13 @@ a {
 		color: #000;
 	}
 
+	.portlet-borderless-container .portlet-borderless-bar {
+		display: none;
+	}
+
 	.portlet-boundary {
 		background: $bgColor;
-		padding: 10px 10px 0;
+		padding: 10px;
 	}
 
 	.portlet-title {
@@ -383,11 +378,7 @@ a {
 	padding: 15px 0 0;
 }
 
-.portlet-topper-toolbar a, .portlet-topper-toolbar a:visited, .aui-tab-active span span a {
-	color: #FFF;
-}
-
-li.aui-tree-node a {
+.portlet-topper-toolbar a, .portlet-topper-toolbar a:visited, .aui-tab-active span span a, li.aui-tree-node a {
 	color: #FFF;
 }
 
@@ -425,7 +416,7 @@ li.aui-tree-node a {
 		width: 417px;
 
 		&:hover {
-			background: url(../images/custom/pod_button.png) no-repeat 0 0;	
+			background: url(../images/custom/pod_button.png) no-repeat 0 0;
 		}
 
 		.pod-image {
@@ -455,7 +446,6 @@ li.aui-tree-node a {
 		margin: 36px -5px 0;
 	}
 }
-
 
 .portlet-column-first .pod, .portlet-column-first .column-text, .portlet-column-first .pod .divider {
 	margin-left: 0;
@@ -492,12 +482,20 @@ li.aui-tree-node a {
 }
 
 .ie6 {
+	#banner #heading .logo.default-logo {
+		background-image: url(../images/custom/ie6/logo.gif);
+	}
+
 	#footer p {
 		background-image: url(../images/custom/ie6/footer_logo.gif);
 	}
 
-	#navigation ul li.selected a span {
-		background-image: url(../images/custom/ie6/nav_active.gif);
+	#navigation {
+		background-image: url(../images/custom/ie6/nav_bg.gif);
+
+		ul li.selected a span {
+			background-image: url(../images/custom/ie6/nav_active.gif);
+		}
 	}
 
 	.pod {
@@ -527,7 +525,7 @@ li.aui-tree-node a {
 		.pod-text {
 			padding: 0 0 0 10px;
 			width: 280px;
-			
+
 			a {
 				text-decoration: none;
 			}
@@ -553,6 +551,10 @@ li.aui-tree-node a {
 }
 
 .ie7 {
+	#wrapper {
+		zoom: 1;
+	}
+
 	.pod {
 		&.button .pod-text {
 			left: 20px;
@@ -575,6 +577,10 @@ li.aui-tree-node a {
 			padding: 0 5px;
 			position: absolute;
 			width: 100%;
+		}
+
+		.pod-text {
+			display: inline;
 		}
 	}
 }
