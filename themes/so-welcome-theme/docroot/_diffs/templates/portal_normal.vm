@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+#parse ($init)
+
+<html class="#language("lang.dir")" dir="#language("lang.dir")" lang="$w3c_language_id">
+
+<head>
+	<title>$the_title - $company_name</title>
+
+	$theme.include($top_head_include)
+</head>
+
+<body class="$css_class">
+
+$theme.include($body_top_include)
+
+#if ($is_signed_in)
+	#dockbar()
+#end
+
+<div id="loginPage">
+	<div class="login-holder">
+		<div class="company-title">
+			<a class="$logo_css_class" href="$site_default_url" title="#language("go-to") #language("dashboard")">
+				<img alt="$logo_description" height="$site_logo_height" src="$site_logo" width="$site_logo_width" />
+			</a>
+		</div>
+
+		<div id="so-welcome-context">
+			#if ($selectable)
+				$theme.include($content_include)
+			#else
+				$portletDisplay.recycle()
+
+				$portletDisplay.setTitle($the_title)
+
+				$theme.wrapPortlet("portlet.vm", $content_include)
+			#end
+		</div>
+	</div>
+</div>
+
+$theme.include($body_bottom_include)
+
+</body>
+
+$theme.include($bottom_include)
+
+</html>

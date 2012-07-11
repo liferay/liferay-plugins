@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE look-and-feel PUBLIC "-//Liferay//DTD Look and Feel 6.1.0//EN" "http://www.liferay.com/dtd/liferay-look-and-feel_6_1_0.dtd">
+
+<look-and-feel>
+	<compatibility>
+		<version>6.1.0+</version>
+		<version>6.2.0+</version>
+	</compatibility>
+	<theme id="so-welcome" name="Social Office Welcome">
+		<settings>
+			<setting configurable="false" key="show-site-name-default" value="false" />
+			<setting configurable="false" key="show-site-name-supported" value="true" />
+		</settings>
+	</theme>
+</look-and-feel>

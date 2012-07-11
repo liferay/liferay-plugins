@@ -6,16 +6,13 @@
 		<version>6.1.0+</version>
 		<version>6.2.0+</version>
 	</compatibility>
-	<theme id="so" name="Social Office Theme">
+	<theme id="so" name="Social Office">
 		<color-scheme id="fluid" name="Fluid Layout">
 			<css-class>so-layout-fluid-ad</css-class>
 		</color-scheme>
 		<color-scheme id="normal" name="Normal">
 			<default-cs>true</default-cs>
 			<css-class>normal</css-class>
-		</color-scheme>
-		<color-scheme id="login_screen" name="Login Screen">
-			<css-class>login-screen</css-class>
 		</color-scheme>
 	</theme>
 </look-and-feel>

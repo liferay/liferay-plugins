@@ -7,8 +7,8 @@
 	</compatibility>
 	<theme id="welcome" name="Welcome">
 		<settings>
-			<setting configurable="false" key="show-site-name-supported" value="true" />
 			<setting configurable="false" key="show-site-name-default" value="false" />
+			<setting configurable="false" key="show-site-name-supported" value="true" />
 		</settings>
 	</theme>
 </look-and-feel>

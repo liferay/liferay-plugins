@@ -27,6 +27,12 @@ a:hover {
 	text-decoration: underline;
 }
 
+a:focus .opens-new-window-accessible {
+	clip: none;
+	position: fixed;
+	text-indent: 0;
+}
+
 .ie6 img {
 	position: static;
 }
@@ -35,12 +41,6 @@ a:hover {
 	clip: rect(0 0 0 0);
 	position: absolute;
 	text-indent: -9999em;
-}
-
-a:focus .opens-new-window-accessible {
-	clip: none;
-	position: fixed;
-	text-indent: 0;
 }
 
 #banner:after, #content:after, #footer, .contacts-portlet .members-container:after, .portlet-msg-info:after, .portlet-toolbar:after, .so-portlet-activities .activity-item:after, .taglib-header:after, .tasks-portlet:after {
@@ -2239,96 +2239,6 @@ body.so-layout-fluid, body.so-layout-fluid-ad {
 	}
 }
 
-/* ---------- Login Screens ---------- */
-
-#loginPage {
-	.portlet {
-		border-bottom-width: 0;
-	}
-
-	.login-holder, .portlet-login {
-		margin: 15px auto;
-	}
-
-	.login-holder {
-		left: 0;
-		position: absolute;
-		right: 0;
-		top: 17.5%;
-	}
-
-	.company-title {
-		text-align: center;
-	}
-
-	.portlet-login {
-		padding: 4px;
-		position: relative;
-		width: 260px;
-
-		.portlet-topper {
-			display: none;
-		}
-
-		.portlet-content {
-			padding-bottom: 0;
-		}
-
-		.aui-field-input-text {
-			width: 225px;
-		}
-
-		.navigation {
-			border: 1px solid $gray;
-			left: 0;
-			margin-top: 4em;
-			position: absolute;
-			right: 0;
-			top: 100%;
-
-			.taglib-icon-list li {
-				display: block;
-				margin: 0;
-
-				a {
-					display: block;
-					padding: 2px;
-					white-space: pre;
-
-					&:hover {
-						background-color: #FFF;
-						text-decoration: none;
-					}
-				}
-			}
-		}
-	}
-
-	.portlet-login, .portlet-login .navigation, .signed-in-as {
-		background: $gray-light;
-	}
-
-	.signed-in-as {
-		padding: 10px;
-		text-align: center;
-		width: 100px;
-
-		.profile-image img {
-			width: 100px;
-			margin-bottom: .5em;
-		}
-
-		.user-name {
-			color: #34404F;
-			font-weight: bold;
-			padding: 4px 8px;
-
-			&:hover {
-				text-decoration: none;
-			}
-		}
-	}
-}
 
 /* ---------- Extras ---------- */
 
@@ -2352,7 +2262,7 @@ button, input[type=button], input[type=reset], input[type=submit], #toggleFluid,
 	@include box-shadow(0 1px 0 #F4F3F3 inset, 0 -1px 0 #D9D8D8 inset);
 }
 
-#loginPage .portlet-login, .aui-dialog-content, .aui-underlay-content {
+.aui-dialog-content, .aui-underlay-content {
 	@include box-shadow(0 0 9px -3px #000, 0 20px 29px -22px rgba(0, 0, 0, 0.6));
 }
 
@@ -2370,7 +2280,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 	@include box-shadow(0 3px 10px -6px rgba(0, 0, 0, .5));
 }
 
-#loginPage .portlet-login, #loginPage .portlet-login .navigation, .portlet-blogs .lfr-meta-actions, .user-tags li a {
+.portlet-blogs .lfr-meta-actions, .user-tags li a {
 	@include border-radius(4px);
 }
 
