@@ -1,7 +1,7 @@
 #set($contentId = $reserved-article-id.getData())
 #set($contentClass = "multiple-items-" + $contentId + "-carousel")
 
-<style type="text/css" media="screen">
+<style type="text/css">
 	#$contentClass {
 		height: $height.getData()px;
 		position: relative;
@@ -16,18 +16,19 @@
 		top: 0;
 	}
 	
-	#if($controls.data=='')
+	#if($controls.data == '')
 		#$contentClass menu {
 			display: none;
 		}
 	#end
-
 </style>
 
 <div id="$contentClass">
 	#foreach ($item in $image.getSiblings())
 		<div class="carousel-item">
-			<a href="$!item.link.url-location.data" #if($item.link.data)title="$item.link.data" alt="$item.link.data"#end><img src='$item.getData()'/></a>
+			<a href="$!item.link.url-location.data" #if($item.link.data)title="$item.link.data" alt="$item.link.data"#end>
+				<img src='$item.getData()'/>
+			</a>
 		</div>
 	#end
 </div>
@@ -44,7 +45,8 @@
 					intervalTime: $duration.getData(),
 					width: $width.getData()
 				}
-			).render();
+			)
+			.render();
 		}
 	);
 </script>

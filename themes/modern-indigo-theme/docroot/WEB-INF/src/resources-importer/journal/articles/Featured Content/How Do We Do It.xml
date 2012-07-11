@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <root available-locales="en_US" default-locale="en_US">
 	<dynamic-element instance-id="M4puwHg8" name="title" type="text" index-type="">
 		<dynamic-content><![CDATA[How do we do it?]]></dynamic-content>
