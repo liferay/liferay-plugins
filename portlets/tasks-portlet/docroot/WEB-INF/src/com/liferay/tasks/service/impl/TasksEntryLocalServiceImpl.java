@@ -98,9 +98,14 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 
 		// Social
 
+		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject();
+
+		extraDataJSONObject.put("title", tasksEntry.getTitle());
+
 		SocialActivityLocalServiceUtil.addActivity(
 			userId, groupId, TasksEntry.class.getName(), tasksEntryId,
-			TasksActivityKeys.ADD_ENTRY, StringPool.BLANK, assigneeUserId);
+			TasksActivityKeys.ADD_ENTRY, extraDataJSONObject.toString(),
+			assigneeUserId);
 
 		// Notifications
 
@@ -336,10 +341,14 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 			activity = TasksActivityKeys.REOPEN_ENTRY;
 		}
 
+		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject();
+
+		extraDataJSONObject.put("title", tasksEntry.getTitle());
+
 		SocialActivityLocalServiceUtil.addActivity(
 			serviceContext.getUserId(), tasksEntry.getGroupId(),
 			TasksEntry.class.getName(), tasksEntryId, activity,
-			StringPool.BLANK, assigneeUserId);
+			extraDataJSONObject.toString(), assigneeUserId);
 
 		// Notifications
 

@@ -32,6 +32,8 @@ import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -86,9 +88,14 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 
 		// Social
 
+		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject();
+
+		extraDataJSONObject.put("title", kbTemplate.getTitle());
+
 		socialActivityLocalService.addActivity(
 			userId, groupId, KBTemplate.class.getName(), kbTemplateId,
-			AdminActivityKeys.ADD_KB_TEMPLATE, StringPool.BLANK, 0);
+			AdminActivityKeys.ADD_KB_TEMPLATE, extraDataJSONObject.toString(),
+			0);
 
 		return kbTemplate;
 	}
@@ -214,10 +221,15 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 
 		// Social
 
+		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject();
+
+		extraDataJSONObject.put("title", kbTemplate.getTitle());
+
 		socialActivityLocalService.addActivity(
 			kbTemplate.getUserId(), kbTemplate.getGroupId(),
 			KBTemplate.class.getName(), kbTemplateId,
-			AdminActivityKeys.UPDATE_KB_TEMPLATE, StringPool.BLANK, 0);
+			AdminActivityKeys.UPDATE_KB_TEMPLATE,
+			extraDataJSONObject.toString(), 0);
 
 		return kbTemplate;
 	}
