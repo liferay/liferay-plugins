@@ -27,7 +27,6 @@ import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
 import com.liferay.portal.kernel.notifications.NotificationEvent;
 import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.GroupLocalServiceUtil;
@@ -92,18 +91,22 @@ public class MicroblogsEntryLocalServiceImpl
 
 		// Social
 
-		int actitivtyKey = MicroblogsActivityKeys.ADD_ENTRY;
+		int activityKey = MicroblogsActivityKeys.ADD_ENTRY;
 
 		if (type == MicroblogsEntryConstants.TYPE_REPLY) {
-			actitivtyKey = MicroblogsActivityKeys.REPLY_ENTRY;
+			activityKey = MicroblogsActivityKeys.REPLY_ENTRY;
 		}
 		else if (type == MicroblogsEntryConstants.TYPE_REPOST) {
-			actitivtyKey = MicroblogsActivityKeys.REPOST_ENTRY;
+			activityKey = MicroblogsActivityKeys.REPOST_ENTRY;
 		}
+
+		 JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject();
+
+		 extraDataJSONObject.put("content", microblogsEntry.getContent());
 
 		SocialActivityLocalServiceUtil.addActivity(
 			userId, 0, MicroblogsEntry.class.getName(), microblogsEntryId,
-			actitivtyKey, StringPool.BLANK, receiverUserId);
+			activityKey, extraDataJSONObject.toString(), receiverUserId);
 
 		// Notification
 

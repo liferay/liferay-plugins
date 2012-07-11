@@ -24,7 +24,6 @@ import com.liferay.knowledgebase.service.permission.KBArticlePermission;
 import com.liferay.knowledgebase.service.permission.KBTemplatePermission;
 import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -128,10 +127,12 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 			}
 		}
 
-		String articleTitle = wrapLink(
-			link, HtmlUtil.escape(kbArticle.getTitle()));
+		String articleTitle = getValue(
+			activity.getExtraData(), "title", kbArticle.getTitle());
 
-		Object[] titleArguments = {creatorUserName, articleTitle, groupName};
+		Object[] titleArguments = {
+			creatorUserName, wrapLink(link, articleTitle), groupName
+		};
 
 		String title = themeDisplay.translate(titlePattern, titleArguments);
 
@@ -209,13 +210,17 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 		String entityTitle = null;
 
 		if (kbArticle != null) {
-			entityTitle = wrapLink(link, HtmlUtil.escape(kbArticle.getTitle()));
+			entityTitle = getValue(
+				activity.getExtraData(), "title", kbArticle.getTitle());
 		}
 		else if (kbTemplate != null) {
-			entityTitle = HtmlUtil.escape(kbTemplate.getTitle());
+			entityTitle = getValue(
+				activity.getExtraData(), "title", kbTemplate.getTitle());
 		}
 
-		Object[] titleArguments = {creatorUserName, entityTitle, groupName};
+		Object[] titleArguments = {
+			creatorUserName, wrapLink(link, entityTitle), groupName
+		};
 
 		String title = themeDisplay.translate(titlePattern, titleArguments);
 
@@ -279,7 +284,8 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 			}
 		}
 
-		String articleTitle = HtmlUtil.escape(kbTemplate.getTitle());
+		String articleTitle = getValue(
+			activity.getExtraData(), "title", kbTemplate.getTitle());
 
 		Object[] titleArguments = {creatorUserName, articleTitle, groupName};
 
