@@ -345,6 +345,9 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 				scores.add(score);
 			}
+			else {
+				scores.add(maxScore);
+			}
 
 			snippets.add(snippet);
 
