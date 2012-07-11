@@ -16,9 +16,6 @@ package com.liferay.testmisc.scheduler;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.scheduler.SchedulerEngineUtil;
-import com.liferay.portal.kernel.scheduler.StorageType;
-import com.liferay.portal.kernel.scheduler.TriggerState;
 import com.liferay.testmisc.messaging.TestSchedulerMessageListener;
 
 /**
@@ -29,18 +26,6 @@ public class TestSchedulerBean {
 	public void afterPropertiesSet() {
 		try {
 			Thread.sleep(1000);
-
-			TriggerState triggerState = SchedulerEngineUtil.getJobState(
-				TestSchedulerMessageListener.class.getName(),
-				TestSchedulerMessageListener.class.getName(),
-				StorageType.MEMORY);
-
-			if (triggerState == null) {
-				TestSchedulerUtil.setScheduledBeforeSpringInitialized(false);
-			}
-			else {
-				TestSchedulerUtil.setScheduledBeforeSpringInitialized(true);
-			}
 
 			TestSchedulerUtil.setReceivedBeforeSpringInitialzed(
 				TestSchedulerMessageListener.isReceived());

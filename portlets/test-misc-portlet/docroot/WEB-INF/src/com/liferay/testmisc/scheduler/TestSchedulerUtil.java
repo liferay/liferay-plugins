@@ -23,23 +23,12 @@ public class TestSchedulerUtil {
 		return _receivedBeforeSpringInitialzed;
 	}
 
-	public static boolean isScheduledBeforeSpringInitialized() {
-		return _scheduledBeforeSpringInitialized;
-	}
-
 	public static void setReceivedBeforeSpringInitialzed(
 		boolean receivedBeforeSpringInitialzed) {
 
 		_receivedBeforeSpringInitialzed = receivedBeforeSpringInitialzed;
 	}
 
-	public static void setScheduledBeforeSpringInitialized(
-		boolean scheduledBeforeSpringInitialized) {
-
-		_scheduledBeforeSpringInitialized = scheduledBeforeSpringInitialized;
-	}
-
 	private static boolean _receivedBeforeSpringInitialzed;
-	private static boolean _scheduledBeforeSpringInitialized;
 
 }

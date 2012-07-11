@@ -52,7 +52,6 @@
 
 <p>
 	TestSchedulerMessageListener.isReceived=<%= _assertTrue(TestSchedulerMessageListener.isReceived()) %><br />
-	TestSchedulerUtil.isScheduledBeforeSpringInitialized=<%= _assertTrue(TestSchedulerUtil.isScheduledBeforeSpringInitialized()) %><br />
 	TestSchedulerUtil.isReceivedBeforeSpringInitialzed=<%= _assertTrue(!TestSchedulerUtil.isReceivedBeforeSpringInitialzed()) %>
 </p>
 
