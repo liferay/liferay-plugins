@@ -389,15 +389,20 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 		SolrQuery solrQuery = new SolrQuery();
 
-		solrQuery.setHighlight(queryConfig.isHighlightEnabled());
-		solrQuery.setHighlightFragsize(queryConfig.getHighlightFragmentSize());
-		solrQuery.setHighlightSnippets(queryConfig.getHighlightSnippetSize());
+		if (queryConfig.isHighlightEnabled()) {
+			solrQuery.setHighlight(true);
+			solrQuery.setHighlightFragsize(
+				queryConfig.getHighlightFragmentSize());
+			solrQuery.setHighlightSnippets(
+				queryConfig.getHighlightSnippetSize());
+
+			String localizedName = DocumentImpl.getLocalizedName(
+				queryConfig.getLocale(), Field.CONTENT);
+
+			solrQuery.setParam("hl.fl", Field.CONTENT, localizedName);
+		}
+
 		solrQuery.setIncludeScore(queryConfig.isScoreEnabled());
-
-		String localizedName = DocumentImpl.getLocalizedName(
-			queryConfig.getLocale(), Field.CONTENT);
-
-		solrQuery.setParam("hl.fl", Field.CONTENT, localizedName);
 
 		QueryTranslatorUtil.translateForSolr(query);
 

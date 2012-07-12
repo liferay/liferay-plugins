@@ -59,6 +59,7 @@
 		<field name="comments" type="text" indexed="true" stored="true" />
 		<field name="content" type="text" indexed="true" stored="true" />
 		<field name="description" type="text" indexed="true" stored="true" />
+		<field name="entryClassPK" type="text" indexed="true" stored="true" />
 		<field name="firstName" type="text" indexed="true" stored="true" />
 		<field name="firstName_sortable" type="string" indexed="true" stored="true" />
 		<field name="lastName" type="text" indexed="true" stored="true" />
