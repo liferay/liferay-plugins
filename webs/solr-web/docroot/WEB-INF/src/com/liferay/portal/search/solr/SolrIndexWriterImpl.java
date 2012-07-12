@@ -17,10 +17,12 @@ package com.liferay.portal.search.solr;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.Document;
+import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.IndexWriter;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
@@ -200,17 +202,28 @@ public class SolrIndexWriterImpl implements IndexWriter {
 				for (Map.Entry<Locale, String> entry :
 						localizedValues.entrySet()) {
 
-					Locale locale = entry.getKey();
 					String value = entry.getValue();
 
 					if (Validator.isNull(value)) {
 						continue;
 					}
 
-					name = name.concat(StringPool.UNDERLINE).concat(
-						locale.getDisplayName());
+					Locale locale = entry.getKey();
 
-					solrInputDocument.addField(name, value.trim(), boost);
+					String languageId = LocaleUtil.toLanguageId(locale);
+
+					String defaultLanguageId = LocaleUtil.toLanguageId(
+						LocaleUtil.getDefault());
+
+					if (languageId.equals(defaultLanguageId)) {
+						solrInputDocument.addField(name, value.trim(), boost);
+					}
+
+					String localizedName = DocumentImpl.getLocalizedName(
+						locale, name);
+
+					solrInputDocument.addField(
+						localizedName, value.trim(), boost);
 				}
 			}
 		}
