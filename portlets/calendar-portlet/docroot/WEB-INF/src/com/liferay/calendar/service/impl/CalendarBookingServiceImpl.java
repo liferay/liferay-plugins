@@ -172,7 +172,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			String keywords, long startDate, long endDate, boolean recurring,
 			int[] statuses, int start, int end,
 			OrderByComparator orderByComparator)
-		throws SystemException, PortalException {
+		throws PortalException, SystemException {
 
 		List<CalendarBooking> calendarBookings =
 			calendarBookingLocalService.search(

@@ -172,7 +172,7 @@ public class ArticlePortlet extends MVCPortlet {
 	@Override
 	public void render(
 			RenderRequest renderRequest, RenderResponse renderResponse)
-		throws PortletException, IOException {
+		throws IOException, PortletException {
 
 		try {
 			int status = getStatus(renderRequest);

@@ -169,7 +169,7 @@ public class CalendarBookingLocalServiceImpl
 	@Override
 	public CalendarBooking deleteCalendarBooking(
 			CalendarBooking calendarBooking)
-		throws SystemException, PortalException {
+		throws PortalException, SystemException {
 
 		// Calendar booking
 
