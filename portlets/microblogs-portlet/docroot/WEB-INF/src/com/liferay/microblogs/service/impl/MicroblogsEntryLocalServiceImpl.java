@@ -100,9 +100,9 @@ public class MicroblogsEntryLocalServiceImpl
 			activityKey = MicroblogsActivityKeys.REPOST_ENTRY;
 		}
 
-		 JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject();
+		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject();
 
-		 extraDataJSONObject.put("content", microblogsEntry.getContent());
+		extraDataJSONObject.put("content", microblogsEntry.getContent());
 
 		SocialActivityLocalServiceUtil.addActivity(
 			userId, 0, MicroblogsEntry.class.getName(), microblogsEntryId,
