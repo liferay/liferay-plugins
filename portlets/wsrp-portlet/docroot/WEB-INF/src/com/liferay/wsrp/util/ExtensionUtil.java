@@ -80,7 +80,6 @@ public class ExtensionUtil {
 	}
 
 	public static MessageElement[] getMessageElements(Extension[] extensions) {
-
 		if ((extensions == null) || (extensions.length <= 0)) {
 			return null;
 		}

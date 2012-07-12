@@ -429,7 +429,6 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 					roleRecipient = new RoleRecipient(roleId, roleType);
 				}
 				else {
-
 					roleRecipient = new RoleRecipient(name, roleType);
 
 					boolean autoCreate = GetterUtil.getBoolean(

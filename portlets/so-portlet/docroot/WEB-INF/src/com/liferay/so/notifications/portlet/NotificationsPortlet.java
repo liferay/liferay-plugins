@@ -115,7 +115,6 @@ public class NotificationsPortlet extends MVCPortlet {
 			WebKeys.THEME_DISPLAY);
 
 		try {
-
 			if (themeDisplay.isSignedIn()) {
 				HttpServletRequest request = PortalUtil.getHttpServletRequest(
 					renderRequest);
