@@ -98,14 +98,8 @@ public class TasksActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		// Body
 
-		StringBuilder sb = new StringBuilder();
-
-		String entryTitle = getValue(
+		String body = getValue(
 			activity.getExtraData(), "title", tasksEntry.getTitle());
-
-		sb.append(entryTitle);
-
-		String body = sb.toString();
 
 		return new SocialActivityFeedEntry(link, title, body);
 	}

@@ -78,7 +78,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 
 		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject();
 
-		putExtraDataJSONObjectTitle(extraDataJSONObject, kbComment);
+		putTitle(extraDataJSONObject, kbComment);
 
 		socialActivityLocalService.addActivity(
 			userId, kbComment.getGroupId(), KBComment.class.getName(),
@@ -178,7 +178,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 
 		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject();
 
-		putExtraDataJSONObjectTitle(extraDataJSONObject, kbComment);
+		putTitle(extraDataJSONObject, kbComment);
 
 		socialActivityLocalService.addActivity(
 			kbComment.getUserId(), kbComment.getGroupId(),
@@ -189,9 +189,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		return kbComment;
 	}
 
-	protected void putExtraDataJSONObjectTitle(
-		JSONObject extraDataJSONObject, KBComment kbComment) {
-
+	protected void putTitle(JSONObject jsonObject, KBComment kbComment) {
 		KBArticle kbArticle = null;
 		KBTemplate kbTemplate = null;
 
@@ -202,13 +200,13 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 				kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
 					kbComment.getClassPK(), WorkflowConstants.STATUS_APPROVED);
 
-				extraDataJSONObject.put("title", kbArticle.getTitle());
+				jsonObject.put("title", kbArticle.getTitle());
 			}
 			else if (className.equals(KBTemplate.class.getName())) {
 				kbTemplate = KBTemplateLocalServiceUtil.getKBTemplate(
 					kbComment.getClassPK());
 
-				extraDataJSONObject.put("title", kbTemplate.getTitle());
+				jsonObject.put("title", kbTemplate.getTitle());
 			}
 		}
 		catch (Exception e) {
