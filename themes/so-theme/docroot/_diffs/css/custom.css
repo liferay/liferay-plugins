@@ -2262,7 +2262,7 @@ button, input[type=button], input[type=reset], input[type=submit], #toggleFluid,
 	@include box-shadow(0 1px 0 #F4F3F3 inset, 0 -1px 0 #D9D8D8 inset);
 }
 
-#loginPage .portlet-login, .aui-dialog-content, .aui-underlay-content {
+.aui-dialog-content, .aui-underlay-content {
 	@include box-shadow(0 0 9px -3px #000, 0 20px 29px -22px rgba(0, 0, 0, 0.6));
 }
 
@@ -2280,7 +2280,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 	@include box-shadow(0 3px 10px -6px rgba(0, 0, 0, .5));
 }
 
-#loginPage .portlet-login, #loginPage .portlet-login .navigation, .portlet-blogs .lfr-meta-actions, .user-tags li a {
+.portlet-blogs .lfr-meta-actions, .user-tags li a {
 	@include border-radius(4px);
 }
 
