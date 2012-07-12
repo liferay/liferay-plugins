@@ -14,8 +14,5 @@
 			<default-cs>true</default-cs>
 			<css-class>normal</css-class>
 		</color-scheme>
-		<color-scheme id="login_screen" name="Login Screen">
-			<css-class>login-screen</css-class>
-		</color-scheme>
 	</theme>
 </look-and-feel>

@@ -7,12 +7,6 @@
 #set ($user_dashboard_url = $site_default_url)
 #set ($user_profile_url = $community_default_public_url)
 
-#set ($login_screen = false)
-
-#if ($theme_display.getColorSchemeId() == "login_screen")
-	#set ($login_screen = true)
-#end
-
 #if (($company.getLogoId() == 0) && !$layout.layoutSet.isLogo())
 	#set ($site_logo = $images_folder + "/custom/so_logo.png")
 	#set ($site_logo_height = "64px")

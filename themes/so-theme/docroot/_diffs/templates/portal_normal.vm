@@ -14,165 +14,134 @@
 
 $theme.include($body_top_include)
 
-#if ($login_screen)
-	<div id="loginPage">
-		<div class="login-holder">
+#if ($is_signed_in)
+	#dockbar()
+#end
+
+<div id="wrapper">
+	<a href="#main-content" id="skip-to-content">#language("skip-to-content")</a>
+
+	<header id="banner" role="banner">
+		<hgroup id="heading">
 			<div class="company-title">
-				<a class="$logo_css_class" href="$site_default_url" title="#language("go-to") #language("dashboard")">
+				<a class="$logo_css_class" href="$user_dashboard_url" title='#language("go-to") #language("dashboard")'>
 					<img alt="$logo_description" height="$site_logo_height" src="$site_logo" width="$site_logo_width" />
 				</a>
 			</div>
 
-			#if (!$is_signed_in)
-				$velocityPortletPreferences.setValue("displayStyle", "0")
-				$velocityPortletPreferences.setValue("portletSetupShowBorders", "false")
-
-				$theme.runtime("58", "", $velocityPortletPreferences.toString())
-
-				$velocityPortletPreferences.reset()
-			#else
-				#set ($user_portrait_url = $user.getPortraitURL($themeDisplay))
-
-				<div class="signed-in-as portlet-login">
-					<div class="profile-image">
-						<a href="$user_dashboard_url"><img src="$user.getPortraitURL($themeDisplay)" alt="$user_name"></a>
-					</div>
-
-					<a class="user-name aui-state-default aui-buttonitem-content" href="$user_dashboard_url"><span class="aui-button-label">#language("dashboard")</span></a>
-				</div>
-			#end
-		</div>
-	</div>
-#else
-	#if ($is_signed_in)
-		#dockbar()
-	#end
-
-	<div id="wrapper">
-		<a href="#main-content" id="skip-to-content">#language("skip-to-content")</a>
-
-		<header id="banner" role="banner">
-			<hgroup id="heading">
-				<div class="company-title">
-					<a class="$logo_css_class" href="$user_dashboard_url" title='#language("go-to") #language("dashboard")'>
-						<img alt="$logo_description" height="$site_logo_height" src="$site_logo" width="$site_logo_width" />
-					</a>
-				</div>
-
-			#if (!$page_group.isUser())
-				<div class="community-title">
-					<a href="$community_default_url" title='#language("go-to") $community_name'>
-						<span>$community_name</span>
-					</a>
-
-					#if ($is_signed_in)
-						<div class="member-button" id="memberButton">
-							#set ($member = $user_local_service.hasGroupUser($page_group.getGroupId(), $user_id))
-							#set ($membership_request = $membership_request_local_service.hasMembershipRequest($user_id, $page_group.getGroupId(), 0))
-
-							#if (!$member)
-								#if ($page_group.getType() == 1)
-									#set ($join_url = $portletURLFactory.create($request, "174", $page.getPlid(), "ACTION_PHASE"))
-
-									$join_url.setWindowState("normal")
-									$join_url.setParameter("struts_action", "/sites_admin/edit_site_assignments")
-									$join_url.setParameter("cmd", "group_users")
-									$join_url.setParameter("redirect", $community_default_url)
-									$join_url.setParameter("groupId", "$page_group.getGroupId()")
-									$join_url.setParameter("addUserIds", "$user_id")
-
-									<span class="action request">
-										<a href="$join_url">#language("join-site")</a>
-									</span>
-								#elseif (($page_group.getType() == 2) && !$membership_request)
-									#set ($membership_request_url = $portletURLFactory.create($request, "174", $page.getPlid(), "ACTION_PHASE"))
-
-									$membership_request_url.setWindowState("normal")
-									$membership_request_url.setParameter("struts_action", "/sites_admin/post_membership_request")
-									$membership_request_url.setParameter("redirect", $community_default_url)
-									$membership_request_url.setParameter("groupId", "$page_group.getGroupId()")
-
-									#set ($arguments = [$user_name, $community_name])
-
-									$membership_request_url.setParameter("comments", $languageUtil.format($locale, "x-wishes-to-join-x", $arguments.toArray()))
-
-									<span class="action request">
-										<a href="$membership_request_url">#language("request-membership")</a>
-									</span>
-								#elseif ($membership_request)
-									<span class="action requested">
-										<a>#language("membership-requested")</a>
-									</span>
-								#end
-								#end
-							</div>
-						#end
-					</div>
-				#end
-
-				<h3 class="page-title">
-					<span>$the_title</span>
-				</h3>
+		#if (!$page_group.isUser())
+			<div class="community-title">
+				<a href="$community_default_url" title='#language("go-to") $community_name'>
+					<span>$community_name</span>
+				</a>
 
 				#if ($is_signed_in)
-					<div id="page-search">
-						$theme.search()
-					</div>
-				#end
-			</hgroup>
+					<div class="member-button" id="memberButton">
+						#set ($member = $user_local_service.hasGroupUser($page_group.getGroupId(), $user_id))
+						#set ($membership_request = $membership_request_local_service.hasMembershipRequest($user_id, $page_group.getGroupId(), 0))
 
-			#if (!$is_signed_in)
-				<a href="$sign_in_url" id="sign-in" rel="nofollow">$sign_in_text</a>
+						#if (!$member)
+							#if ($page_group.getType() == 1)
+								#set ($join_url = $portletURLFactory.create($request, "174", $page.getPlid(), "ACTION_PHASE"))
+
+								$join_url.setWindowState("normal")
+								$join_url.setParameter("struts_action", "/sites_admin/edit_site_assignments")
+								$join_url.setParameter("cmd", "group_users")
+								$join_url.setParameter("redirect", $community_default_url)
+								$join_url.setParameter("groupId", "$page_group.getGroupId()")
+								$join_url.setParameter("addUserIds", "$user_id")
+
+								<span class="action request">
+									<a href="$join_url">#language("join-site")</a>
+								</span>
+							#elseif (($page_group.getType() == 2) && !$membership_request)
+								#set ($membership_request_url = $portletURLFactory.create($request, "174", $page.getPlid(), "ACTION_PHASE"))
+
+								$membership_request_url.setWindowState("normal")
+								$membership_request_url.setParameter("struts_action", "/sites_admin/post_membership_request")
+								$membership_request_url.setParameter("redirect", $community_default_url)
+								$membership_request_url.setParameter("groupId", "$page_group.getGroupId()")
+
+								#set ($arguments = [$user_name, $community_name])
+
+								$membership_request_url.setParameter("comments", $languageUtil.format($locale, "x-wishes-to-join-x", $arguments.toArray()))
+
+								<span class="action request">
+									<a href="$membership_request_url">#language("request-membership")</a>
+								</span>
+							#elseif ($membership_request)
+								<span class="action requested">
+									<a>#language("membership-requested")</a>
+								</span>
+							#end
+							#end
+						</div>
+					#end
+				</div>
 			#end
+
+			<h3 class="page-title">
+				<span>$the_title</span>
+			</h3>
 
 			#if ($is_signed_in)
-				<a href="javascript:;" id="toggleFluid"><span>$languageUtil.format($locale, "toggle-fluid-layout")</span></a>
+				<div id="page-search">
+					$theme.search()
+				</div>
 			#end
-		</header>
+		</hgroup>
 
-		<div id="content">
-			<div id="so-sidebar">
-				#if ($page_group.isUser())
-					<div class="$user_detail_class">
-						<div class="profile-image">
-							<a href="$current_user_profile_url"><img src="$current_user_profile_portrait_url" alt="$current_user_name"></a>
-						</div>
+		#if (!$is_signed_in)
+			<a href="$sign_in_url" id="sign-in" rel="nofollow">$sign_in_text</a>
+		#end
 
-						#if (!$layout.isPublicLayout())
-							<a class="profile-name" href="$current_user_profile_url">$current_user_name</a>
-						#end
+		#if ($is_signed_in)
+			<a href="javascript:;" id="toggleFluid"><span>$languageUtil.format($locale, "toggle-fluid-layout")</span></a>
+		#end
+	</header>
+
+	<div id="content">
+		<div id="so-sidebar">
+			#if ($page_group.isUser())
+				<div class="$user_detail_class">
+					<div class="profile-image">
+						<a href="$current_user_profile_url"><img src="$current_user_profile_portrait_url" alt="$current_user_name"></a>
 					</div>
-				#end
 
-				#if ($has_navigation)
-					#parse ("$full_templates_path/navigation.vm")
-				#end
+					#if (!$layout.isPublicLayout())
+						<a class="profile-name" href="$current_user_profile_url">$current_user_name</a>
+					#end
+				</div>
+			#end
 
-				#if ($page_group.isUser())
-					#parse ("$full_templates_path/sidebar_portlets.vm")
-				#end
-			</div>
+			#if ($has_navigation)
+				#parse ("$full_templates_path/navigation.vm")
+			#end
 
-			<div id="so-context">
-				#if ($selectable)
-					$theme.include($content_include)
-				#else
-					$portletDisplay.recycle()
-
-					$portletDisplay.setTitle($the_title)
-
-					$theme.wrapPortlet("portlet.vm", $content_include)
-				#end
-			</div>
+			#if ($page_group.isUser())
+				#parse ("$full_templates_path/sidebar_portlets.vm")
+			#end
 		</div>
 
-		<footer id="footer" role="contentinfo">
-			<p class="powered-by">
-				#language("powered-by") <a href="http://www.liferay.com" rel="external">Liferay</a>
-			</p>
-		</footer>
+		<div id="so-context">
+			#if ($selectable)
+				$theme.include($content_include)
+			#else
+				$portletDisplay.recycle()
+
+				$portletDisplay.setTitle($the_title)
+
+				$theme.wrapPortlet("portlet.vm", $content_include)
+			#end
+		</div>
 	</div>
-#end
+
+	<footer id="footer" role="contentinfo">
+		<p class="powered-by">
+			#language("powered-by") <a href="http://www.liferay.com" rel="external">Liferay</a>
+		</p>
+	</footer>
+</div>
 
 $theme.include($body_bottom_include)
 
