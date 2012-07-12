@@ -3134,6 +3134,30 @@
 		</releng>
 	</plugin>
 	<plugin>
+		<artifact-id>so-welcome-theme</artifact-id>
+		<name>Social Office Welcome</name>
+		<type>theme</type>
+		<tags>collaboration, communication, office, so, social, social office, team</tags>
+		<short-description></short-description>
+		<long-description></long-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>AGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
+		<releng>
+			<bundle>false</bundle>
+			<category>Productivity</category>
+			<demo-url></demo-url>
+			<labs>false</labs>
+			<marketplace>true</marketplace>
+			<parent-app>Social Office</parent-app>
+			<public>true</public>
+			<standalone-app>false</standalone-app>
+			<supported>true</supported>
+		</releng>
+	</plugin>
+	<plugin>
 		<artifact-id>spurt-theme</artifact-id>
 		<name>Spurt</name>
 		<type>theme</type>
