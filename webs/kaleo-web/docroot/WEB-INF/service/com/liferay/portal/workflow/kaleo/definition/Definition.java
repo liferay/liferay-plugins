@@ -47,6 +47,9 @@ public class Definition {
 			if (state.isInitial()) {
 				_initialState = state;
 			}
+			else if (state.isTerminal()) {
+				_terminalState = state;
+			}
 		}
 	}
 
@@ -74,6 +77,10 @@ public class Definition {
 		return Collections.unmodifiableCollection(_nodesMap.values());
 	}
 
+	public State getTerminalState() {
+		return _terminalState;
+	}
+
 	public int getVersion() {
 		return _version;
 	}
@@ -83,6 +90,7 @@ public class Definition {
 	private State _initialState;
 	private String _name;
 	private Map<String, Node> _nodesMap = new HashMap<String, Node>();
+	private State _terminalState;
 	private int _version;
 
 }

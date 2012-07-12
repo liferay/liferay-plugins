@@ -100,7 +100,7 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 			ServiceContext serviceContext,
 			KaleoInstanceToken kaleoInstanceToken, KaleoTask kaleoTask,
 			Date dueDate)
-		throws SystemException, PortalException {
+		throws PortalException, SystemException {
 		Collection<KaleoTaskAssignment> configuredKaleoTaskAssignments =
 			kaleoTask.getKaleoTaskAssignments();
 
@@ -226,7 +226,7 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 			getOrganizationKaleoTaskAssignments(
 				Collection<KaleoTaskAssignment> kaleoTaskAssignments,
 				ExecutionContext executionContext)
-		throws SystemException, PortalException {
+		throws PortalException, SystemException {
 
 		long userId = executionContext.getKaleoInstanceToken().getUserId();
 
