@@ -57,6 +57,12 @@ public class DefaultWorkflowValidator implements WorkflowValidator {
 			throw new WorkflowException(
 				"Multiple initial states defined " + state.getName());
 		}
+		else if (state.isTerminal() &&
+				 !Validator.equals(definition.getTerminalState(), state)) {
+
+			throw new WorkflowException(
+				"Multiple terminal states defined " + state.getName());
+		}
 	}
 
 	protected void validateTransitions(Map<String, Transition> transitions)
