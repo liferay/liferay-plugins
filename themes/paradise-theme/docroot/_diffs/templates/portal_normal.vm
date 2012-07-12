@@ -33,11 +33,11 @@ $theme.include($body_top_include)
 						$site_name
 					</span>
 				#end
-				
+
 				#if (!$is_signed_in)
 					<a href="$sign_in_url" id="sign-in" rel="nofollow">$sign_in_text</a>
 				#end
-				
+
 				<div id="page-search">
 					$theme.journalContentSearch()
 				</div>
@@ -54,7 +54,6 @@ $theme.include($body_top_include)
 	</header>
 
 	<div id="content">
-		
 		#if ($show_breadcrumbs)
 			<nav class="site-breadcrumbs" id="breadcrumbs">
 				<h1>

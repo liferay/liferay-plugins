@@ -5,21 +5,21 @@
 
 	<ul>
 		#foreach ($nav_item in $nav_items)
-			#set($order = "")
+			#set ($order = "")
 
 			#if ($nav_item.isSelected())
-				#set($order = $order + "selected ")
+				#set ($order = $order + "selected ")
 			#end
 
-			#if($velocityCount == 1)
-				#set($order = $order + "first ")
+			#if ($velocityCount == 1)
+				#set ($order = $order + "first ")
 			#end
-			
-			#if(!$velocityHasNext)
-				#set($order = $order + "last ")
+
+			#if (!$velocityHasNext)
+				#set ($order = $order + "last ")
 			#end
-			
-			#if($order != "")
+
+			#if ($order != "")
 				<li class="${order}">
 			#else
 				<li>

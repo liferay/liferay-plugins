@@ -1,16 +1,3 @@
-<style>
-	.tint img {
-		filter: url(../images/custom/filters.svg#grayscale);
-		filter: gray;
-		-webkit-filter: grayscale(1);
-	}
-	
-	.tint:hover img {
-		filter: none;
-		-webkit-filter: grayscale(0);
-	}
-</style>
-
 <div id="social">
 	<ul>
 		#foreach($social in $socials.siblings)

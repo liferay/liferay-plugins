@@ -2,8 +2,8 @@
 #set($contentClass = "multiple-items-" + $contentId + "-carousel")
 
 <style type="text/css">
-    #$contentClass {
-    	height: ${height.data}px;
+	#$contentClass {
+		height: ${height.data}px;
 		position: relative;
 		width: ${width.data}px;
 	}
@@ -26,19 +26,19 @@
 <div id="${contentClass}">
 	#foreach ($item in $items.siblings)
 		<div class="carousel-item">
-			#set($alt_class = "")
+			#set ($alt_class = "")
 
-			#if($item.data != "")
-				#set($alt_class = "title='$item.data' alt='$item.data'")
+			#if ($item.data != "")
+				#set ($alt_class = "title='$item.data' alt='$item.data'")
 			#end
 
-			#if($item.url-link.data != "")
+			#if ($item.url-link.data != "")
 				<a href="${item.url-link.data}" ${alt_class}>
 			#end
-			
+
 				<img src="${item.image.data}"/>
 
-			#if($item.url-link.data != "")
+			#if ($item.url-link.data != "")
 				</a>
 			#end
 		</div>
@@ -57,7 +57,8 @@
 					intervalTime: ${duration.data},
 					width: ${width.data}
 				}
-			).render();
+			)
+			.render();
 		}
 	);
 </script>
