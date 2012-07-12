@@ -1,9 +1,0 @@
-<Context path="/sample-icefaces-jsf-1.2-sun-facelets-portlet">
-
-	<!--
-	ICEfaces does not support persisted sessions. The following Manager element
-	will disable session persistence across Tomcat restarts.
-	-->
-
-	<Manager pathname="" />
-</Context>
