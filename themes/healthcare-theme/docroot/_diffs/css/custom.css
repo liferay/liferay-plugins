@@ -16,8 +16,7 @@
 
 body {
 	background: #202020;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
+	font-family: 12px Arial, Helvetica, sans-serif;
 	line-height: 1.35;
 
 	&.lfr-dockbar-pinned {
@@ -48,12 +47,12 @@ body {
 	top: 0;
 }
 
-#sign-in {
-	right: 0;
-}
-
 #logged-in-username {
 	left: 0;
+}
+
+#sign-in {
+	right: 0;
 }
 
 /* -------- Banner -------- */
@@ -152,11 +151,6 @@ body {
 		color: #000;
 		padding: 18px 0;
 
-		&:hover {
-			background-color: #70844C;
-			background-color: rgba(150,181,98,.3);
-		}
-
 		&:link, &:visited {
 			color: #FFF;
 			font-size: 12px;
@@ -165,6 +159,11 @@ body {
 			padding: 20px 15px 16px 15px;
 			text-decoration: none;
 			text-transform: uppercase;
+		}
+
+		&:hover {
+			background-color: #70844C;
+			background-color: rgba(150,181,98,.3);
 		}
 	}
 }
@@ -213,10 +212,10 @@ h4, h5, h6 {
 #main-content {
 	margin: 0 auto;
 	width: 960px;
-}
 
-#main-content body {
-	background: none;
+	body {
+		background: none;
+	}
 }
 
 h1.underlined {
@@ -226,6 +225,10 @@ h1.underlined {
 .underlined {
 	display: inline-block;
 	border-bottom: 6px solid #B2CF7D;
+
+	&.full {
+		display: block;
+	}
 }
 
 .read-more {
@@ -235,10 +238,6 @@ h1.underlined {
 
 .grey.underlined {
 	border-bottom: 6px solid #CCC;
-}
-
-.underlined.full {
-	display: block;
 }
 
 #recent-news div {
@@ -310,14 +309,14 @@ input {
 		color: #A4C667;
 		margin: 5px 0;
 	}
+
+	&[type="submit"]:hover, &[type="button"]:hover, &[type="reset"]:hover {
+		color: #E8E8E8;
+	}
 }
 
 .aui-state-default {
 	background-color: #343434;
-}
-
-input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover {
-	color: #E8E8E8;
 }
 
 /* -------- Make an Appointment / Web Form -------- */
@@ -423,8 +422,7 @@ h1.appointment {
 			a {
 				text-decoration: none;
 
-				&:link,
-				&:visited {
+				&:link, &:visited {
 					color: #C1C1C1;
 				}
 
@@ -464,14 +462,14 @@ h1.appointment {
 	@include background-image(linear-gradient(left top, #343434, #242424));
 }
 
-.web-form-portlet.make-appointment {
-	@include background-image(linear-gradient(left top, #EEE, #FFF));
-}
-
 #navigation a:link, #navigation a:visited, input[type="submit"], input[type="submit"]:hover, input[type="reset"], input[type="reset"]:hover, #footer #footer-content {
 	@include text-shadow(1px 1px 1px #000);
 }
 
-.web-form-portlet.make-appointment .description {
-	@include text-shadow(1px 1px #FFF);
+.web-form-portlet.make-appointment {
+	@include background-image(linear-gradient(left top, #EEE, #FFF));
+
+	.description {
+		@include text-shadow(1px 1px #FFF);
+	}
 }
