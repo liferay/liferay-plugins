@@ -21,6 +21,8 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.MethodKey;
+import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.model.Group;
@@ -123,7 +125,7 @@ public class LayoutSetPrototypeUtil {
 
 	public static void updateLayoutSetPrototype(
 			Group group, boolean privateLayout, String layoutSetPrototypeKey)
-		throws PortalException, SystemException {
+		throws Exception {
 
 		LayoutSetPrototype layoutSetPrototype = fetchLayoutSetPrototype(
 			group.getCompanyId(), layoutSetPrototypeKey);
@@ -133,9 +135,23 @@ public class LayoutSetPrototypeUtil {
 				group.getGroupId(), privateLayout, true,
 				layoutSetPrototype.getUuid());
 
+			LayoutSet layoutSet = group.getPublicLayoutSet();
+
+			if (privateLayout) {
+				layoutSet = group.getPrivateLayoutSet();
+			}
+
+			PortalClassInvoker.invoke(
+				true, _mergeLayoutSetProtypeLayoutsMethodKey, group, layoutSet);
+
 			LayoutLocalServiceUtil.updatePriorities(
 				group.getGroupId(), privateLayout);
 		}
 	}
+
+	private static MethodKey _mergeLayoutSetProtypeLayoutsMethodKey =
+		new MethodKey(
+			"com.liferay.portlet.sites.util.SitesUtil",
+			"mergeLayoutSetProtypeLayouts", Group.class, LayoutSet.class);
 
 }
