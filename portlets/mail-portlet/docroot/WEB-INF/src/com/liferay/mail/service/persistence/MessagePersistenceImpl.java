@@ -691,10 +691,6 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	/**
 	 * Returns the first message in the ordered set where companyId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching message
@@ -704,31 +700,45 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	public Message findByCompanyId_First(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchMessageException, SystemException {
+		Message message = fetchByCompanyId_First(companyId, orderByComparator);
+
+		if (message != null) {
+			return message;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchMessageException(msg.toString());
+	}
+
+	/**
+	 * Returns the first message in the ordered set where companyId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching message, or <code>null</code> if a matching message could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Message fetchByCompanyId_First(long companyId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<Message> list = findByCompanyId(companyId, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchMessageException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last message in the ordered set where companyId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -739,34 +749,48 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	public Message findByCompanyId_Last(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchMessageException, SystemException {
+		Message message = fetchByCompanyId_Last(companyId, orderByComparator);
+
+		if (message != null) {
+			return message;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchMessageException(msg.toString());
+	}
+
+	/**
+	 * Returns the last message in the ordered set where companyId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching message, or <code>null</code> if a matching message could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Message fetchByCompanyId_Last(long companyId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
 
 		List<Message> list = findByCompanyId(companyId, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchMessageException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the messages before and after the current message in the ordered set where companyId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param messageId the primary key of the current message
 	 * @param companyId the company ID
@@ -1046,10 +1070,6 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	/**
 	 * Returns the first message in the ordered set where folderId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param folderId the folder ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching message
@@ -1059,31 +1079,45 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	public Message findByFolderId_First(long folderId,
 		OrderByComparator orderByComparator)
 		throws NoSuchMessageException, SystemException {
+		Message message = fetchByFolderId_First(folderId, orderByComparator);
+
+		if (message != null) {
+			return message;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("folderId=");
+		msg.append(folderId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchMessageException(msg.toString());
+	}
+
+	/**
+	 * Returns the first message in the ordered set where folderId = &#63;.
+	 *
+	 * @param folderId the folder ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching message, or <code>null</code> if a matching message could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Message fetchByFolderId_First(long folderId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<Message> list = findByFolderId(folderId, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("folderId=");
-			msg.append(folderId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchMessageException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last message in the ordered set where folderId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param folderId the folder ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1094,34 +1128,48 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	public Message findByFolderId_Last(long folderId,
 		OrderByComparator orderByComparator)
 		throws NoSuchMessageException, SystemException {
+		Message message = fetchByFolderId_Last(folderId, orderByComparator);
+
+		if (message != null) {
+			return message;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("folderId=");
+		msg.append(folderId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchMessageException(msg.toString());
+	}
+
+	/**
+	 * Returns the last message in the ordered set where folderId = &#63;.
+	 *
+	 * @param folderId the folder ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching message, or <code>null</code> if a matching message could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Message fetchByFolderId_Last(long folderId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByFolderId(folderId);
 
 		List<Message> list = findByFolderId(folderId, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("folderId=");
-			msg.append(folderId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchMessageException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the messages before and after the current message in the ordered set where folderId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param messageId the primary key of the current message
 	 * @param folderId the folder ID

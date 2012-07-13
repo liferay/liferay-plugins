@@ -250,10 +250,6 @@ public class CalendarResourceUtil {
 	/**
 	* Returns the first calendar resource in the ordered set where resourceBlockId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param resourceBlockId the resource block ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching calendar resource
@@ -271,11 +267,24 @@ public class CalendarResourceUtil {
 	}
 
 	/**
-	* Returns the last calendar resource in the ordered set where resourceBlockId = &#63;.
+	* Returns the first calendar resource in the ordered set where resourceBlockId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param resourceBlockId the resource block ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarResource fetchByResourceBlockId_First(
+		long resourceBlockId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByResourceBlockId_First(resourceBlockId,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the last calendar resource in the ordered set where resourceBlockId = &#63;.
 	*
 	* @param resourceBlockId the resource block ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -294,11 +303,24 @@ public class CalendarResourceUtil {
 	}
 
 	/**
-	* Returns the calendar resources before and after the current calendar resource in the ordered set where resourceBlockId = &#63;.
+	* Returns the last calendar resource in the ordered set where resourceBlockId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param resourceBlockId the resource block ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarResource fetchByResourceBlockId_Last(
+		long resourceBlockId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByResourceBlockId_Last(resourceBlockId,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the calendar resources before and after the current calendar resource in the ordered set where resourceBlockId = &#63;.
 	*
 	* @param calendarResourceId the primary key of the current calendar resource
 	* @param resourceBlockId the resource block ID
@@ -373,10 +395,6 @@ public class CalendarResourceUtil {
 	/**
 	* Returns the first calendar resource in the ordered set where uuid = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching calendar resource
@@ -392,11 +410,22 @@ public class CalendarResourceUtil {
 	}
 
 	/**
-	* Returns the last calendar resource in the ordered set where uuid = &#63;.
+	* Returns the first calendar resource in the ordered set where uuid = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param uuid the uuid
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarResource fetchByUuid_First(
+		java.lang.String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByUuid_First(uuid, orderByComparator);
+	}
+
+	/**
+	* Returns the last calendar resource in the ordered set where uuid = &#63;.
 	*
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -413,11 +442,22 @@ public class CalendarResourceUtil {
 	}
 
 	/**
-	* Returns the calendar resources before and after the current calendar resource in the ordered set where uuid = &#63;.
+	* Returns the last calendar resource in the ordered set where uuid = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param uuid the uuid
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarResource fetchByUuid_Last(
+		java.lang.String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByUuid_Last(uuid, orderByComparator);
+	}
+
+	/**
+	* Returns the calendar resources before and after the current calendar resource in the ordered set where uuid = &#63;.
 	*
 	* @param calendarResourceId the primary key of the current calendar resource
 	* @param uuid the uuid
@@ -541,10 +581,6 @@ public class CalendarResourceUtil {
 	/**
 	* Returns the first calendar resource in the ordered set where uuid = &#63; and companyId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param uuid the uuid
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -562,11 +598,24 @@ public class CalendarResourceUtil {
 	}
 
 	/**
-	* Returns the last calendar resource in the ordered set where uuid = &#63; and companyId = &#63;.
+	* Returns the first calendar resource in the ordered set where uuid = &#63; and companyId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param uuid the uuid
+	* @param companyId the company ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarResource fetchByUuid_C_First(
+		java.lang.String uuid, long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByUuid_C_First(uuid, companyId, orderByComparator);
+	}
+
+	/**
+	* Returns the last calendar resource in the ordered set where uuid = &#63; and companyId = &#63;.
 	*
 	* @param uuid the uuid
 	* @param companyId the company ID
@@ -585,11 +634,24 @@ public class CalendarResourceUtil {
 	}
 
 	/**
-	* Returns the calendar resources before and after the current calendar resource in the ordered set where uuid = &#63; and companyId = &#63;.
+	* Returns the last calendar resource in the ordered set where uuid = &#63; and companyId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param uuid the uuid
+	* @param companyId the company ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarResource fetchByUuid_C_Last(
+		java.lang.String uuid, long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByUuid_C_Last(uuid, companyId, orderByComparator);
+	}
+
+	/**
+	* Returns the calendar resources before and after the current calendar resource in the ordered set where uuid = &#63; and companyId = &#63;.
 	*
 	* @param calendarResourceId the primary key of the current calendar resource
 	* @param uuid the uuid
@@ -666,10 +728,6 @@ public class CalendarResourceUtil {
 	/**
 	* Returns the first calendar resource in the ordered set where active = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param active the active
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching calendar resource
@@ -685,11 +743,22 @@ public class CalendarResourceUtil {
 	}
 
 	/**
-	* Returns the last calendar resource in the ordered set where active = &#63;.
+	* Returns the first calendar resource in the ordered set where active = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param active the active
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarResource fetchByActive_First(
+		boolean active,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByActive_First(active, orderByComparator);
+	}
+
+	/**
+	* Returns the last calendar resource in the ordered set where active = &#63;.
 	*
 	* @param active the active
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -706,11 +775,22 @@ public class CalendarResourceUtil {
 	}
 
 	/**
-	* Returns the calendar resources before and after the current calendar resource in the ordered set where active = &#63;.
+	* Returns the last calendar resource in the ordered set where active = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param active the active
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarResource fetchByActive_Last(
+		boolean active,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByActive_Last(active, orderByComparator);
+	}
+
+	/**
+	* Returns the calendar resources before and after the current calendar resource in the ordered set where active = &#63;.
 	*
 	* @param calendarResourceId the primary key of the current calendar resource
 	* @param active the active
@@ -789,10 +869,6 @@ public class CalendarResourceUtil {
 	/**
 	* Returns the first calendar resource in the ordered set where groupId = &#63; and code = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param groupId the group ID
 	* @param code the code
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -809,11 +885,24 @@ public class CalendarResourceUtil {
 	}
 
 	/**
-	* Returns the last calendar resource in the ordered set where groupId = &#63; and code = &#63;.
+	* Returns the first calendar resource in the ordered set where groupId = &#63; and code = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param groupId the group ID
+	* @param code the code
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarResource fetchByG_C_First(
+		long groupId, java.lang.String code,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByG_C_First(groupId, code, orderByComparator);
+	}
+
+	/**
+	* Returns the last calendar resource in the ordered set where groupId = &#63; and code = &#63;.
 	*
 	* @param groupId the group ID
 	* @param code the code
@@ -831,11 +920,23 @@ public class CalendarResourceUtil {
 	}
 
 	/**
-	* Returns the calendar resources before and after the current calendar resource in the ordered set where groupId = &#63; and code = &#63;.
+	* Returns the last calendar resource in the ordered set where groupId = &#63; and code = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param groupId the group ID
+	* @param code the code
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarResource fetchByG_C_Last(
+		long groupId, java.lang.String code,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByG_C_Last(groupId, code, orderByComparator);
+	}
+
+	/**
+	* Returns the calendar resources before and after the current calendar resource in the ordered set where groupId = &#63; and code = &#63;.
 	*
 	* @param calendarResourceId the primary key of the current calendar resource
 	* @param groupId the group ID
@@ -1112,10 +1213,6 @@ public class CalendarResourceUtil {
 	/**
 	* Returns the first calendar resource in the ordered set where groupId = &#63; and active = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param groupId the group ID
 	* @param active the active
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1133,11 +1230,24 @@ public class CalendarResourceUtil {
 	}
 
 	/**
-	* Returns the last calendar resource in the ordered set where groupId = &#63; and active = &#63;.
+	* Returns the first calendar resource in the ordered set where groupId = &#63; and active = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param groupId the group ID
+	* @param active the active
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarResource fetchByG_A_First(
+		long groupId, boolean active,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByG_A_First(groupId, active, orderByComparator);
+	}
+
+	/**
+	* Returns the last calendar resource in the ordered set where groupId = &#63; and active = &#63;.
 	*
 	* @param groupId the group ID
 	* @param active the active
@@ -1156,11 +1266,24 @@ public class CalendarResourceUtil {
 	}
 
 	/**
-	* Returns the calendar resources before and after the current calendar resource in the ordered set where groupId = &#63; and active = &#63;.
+	* Returns the last calendar resource in the ordered set where groupId = &#63; and active = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param groupId the group ID
+	* @param active the active
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarResource fetchByG_A_Last(
+		long groupId, boolean active,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByG_A_Last(groupId, active, orderByComparator);
+	}
+
+	/**
+	* Returns the calendar resources before and after the current calendar resource in the ordered set where groupId = &#63; and active = &#63;.
 	*
 	* @param calendarResourceId the primary key of the current calendar resource
 	* @param groupId the group ID
@@ -1370,10 +1493,6 @@ public class CalendarResourceUtil {
 	/**
 	* Returns the first calendar resource in the ordered set where groupId = &#63; and name LIKE &#63; and active = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param groupId the group ID
 	* @param name the name
 	* @param active the active
@@ -1392,11 +1511,25 @@ public class CalendarResourceUtil {
 	}
 
 	/**
-	* Returns the last calendar resource in the ordered set where groupId = &#63; and name LIKE &#63; and active = &#63;.
+	* Returns the first calendar resource in the ordered set where groupId = &#63; and name LIKE &#63; and active = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param groupId the group ID
+	* @param name the name
+	* @param active the active
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarResource fetchByG_N_A_First(
+		long groupId, java.lang.String name, boolean active,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByG_N_A_First(groupId, name, active, orderByComparator);
+	}
+
+	/**
+	* Returns the last calendar resource in the ordered set where groupId = &#63; and name LIKE &#63; and active = &#63;.
 	*
 	* @param groupId the group ID
 	* @param name the name
@@ -1416,11 +1549,25 @@ public class CalendarResourceUtil {
 	}
 
 	/**
-	* Returns the calendar resources before and after the current calendar resource in the ordered set where groupId = &#63; and name LIKE &#63; and active = &#63;.
+	* Returns the last calendar resource in the ordered set where groupId = &#63; and name LIKE &#63; and active = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param groupId the group ID
+	* @param name the name
+	* @param active the active
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarResource fetchByG_N_A_Last(
+		long groupId, java.lang.String name, boolean active,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByG_N_A_Last(groupId, name, active, orderByComparator);
+	}
+
+	/**
+	* Returns the calendar resources before and after the current calendar resource in the ordered set where groupId = &#63; and name LIKE &#63; and active = &#63;.
 	*
 	* @param calendarResourceId the primary key of the current calendar resource
 	* @param groupId the group ID
@@ -1722,10 +1869,6 @@ public class CalendarResourceUtil {
 	/**
 	* Returns the first calendar resource in the ordered set where companyId = &#63; and code LIKE &#63; and active = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param companyId the company ID
 	* @param code the code
 	* @param active the active
@@ -1744,11 +1887,26 @@ public class CalendarResourceUtil {
 	}
 
 	/**
-	* Returns the last calendar resource in the ordered set where companyId = &#63; and code LIKE &#63; and active = &#63;.
+	* Returns the first calendar resource in the ordered set where companyId = &#63; and code LIKE &#63; and active = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param companyId the company ID
+	* @param code the code
+	* @param active the active
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarResource fetchByC_C_A_First(
+		long companyId, java.lang.String code, boolean active,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByC_C_A_First(companyId, code, active,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the last calendar resource in the ordered set where companyId = &#63; and code LIKE &#63; and active = &#63;.
 	*
 	* @param companyId the company ID
 	* @param code the code
@@ -1768,11 +1926,25 @@ public class CalendarResourceUtil {
 	}
 
 	/**
-	* Returns the calendar resources before and after the current calendar resource in the ordered set where companyId = &#63; and code LIKE &#63; and active = &#63;.
+	* Returns the last calendar resource in the ordered set where companyId = &#63; and code LIKE &#63; and active = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param companyId the company ID
+	* @param code the code
+	* @param active the active
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarResource fetchByC_C_A_Last(
+		long companyId, java.lang.String code, boolean active,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByC_C_A_Last(companyId, code, active, orderByComparator);
+	}
+
+	/**
+	* Returns the calendar resources before and after the current calendar resource in the ordered set where companyId = &#63; and code LIKE &#63; and active = &#63;.
 	*
 	* @param calendarResourceId the primary key of the current calendar resource
 	* @param companyId the company ID
@@ -1859,10 +2031,6 @@ public class CalendarResourceUtil {
 	/**
 	* Returns the first calendar resource in the ordered set where companyId = &#63; and name LIKE &#63; and active = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param companyId the company ID
 	* @param name the name
 	* @param active the active
@@ -1881,11 +2049,26 @@ public class CalendarResourceUtil {
 	}
 
 	/**
-	* Returns the last calendar resource in the ordered set where companyId = &#63; and name LIKE &#63; and active = &#63;.
+	* Returns the first calendar resource in the ordered set where companyId = &#63; and name LIKE &#63; and active = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param companyId the company ID
+	* @param name the name
+	* @param active the active
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarResource fetchByC_N_A_First(
+		long companyId, java.lang.String name, boolean active,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByC_N_A_First(companyId, name, active,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the last calendar resource in the ordered set where companyId = &#63; and name LIKE &#63; and active = &#63;.
 	*
 	* @param companyId the company ID
 	* @param name the name
@@ -1905,11 +2088,25 @@ public class CalendarResourceUtil {
 	}
 
 	/**
-	* Returns the calendar resources before and after the current calendar resource in the ordered set where companyId = &#63; and name LIKE &#63; and active = &#63;.
+	* Returns the last calendar resource in the ordered set where companyId = &#63; and name LIKE &#63; and active = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param companyId the company ID
+	* @param name the name
+	* @param active the active
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.calendar.model.CalendarResource fetchByC_N_A_Last(
+		long companyId, java.lang.String name, boolean active,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByC_N_A_Last(companyId, name, active, orderByComparator);
+	}
+
+	/**
+	* Returns the calendar resources before and after the current calendar resource in the ordered set where companyId = &#63; and name LIKE &#63; and active = &#63;.
 	*
 	* @param calendarResourceId the primary key of the current calendar resource
 	* @param companyId the company ID

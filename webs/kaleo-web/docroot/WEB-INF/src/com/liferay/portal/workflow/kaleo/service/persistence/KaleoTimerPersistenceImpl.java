@@ -685,10 +685,6 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	/**
 	 * Returns the first kaleo timer in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param kaleoClassName the kaleo class name
 	 * @param kaleoClassPK the kaleo class p k
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -699,35 +695,52 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	public KaleoTimer findByKCN_KCPK_First(String kaleoClassName,
 		long kaleoClassPK, OrderByComparator orderByComparator)
 		throws NoSuchTimerException, SystemException {
+		KaleoTimer kaleoTimer = fetchByKCN_KCPK_First(kaleoClassName,
+				kaleoClassPK, orderByComparator);
+
+		if (kaleoTimer != null) {
+			return kaleoTimer;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoClassName=");
+		msg.append(kaleoClassName);
+
+		msg.append(", kaleoClassPK=");
+		msg.append(kaleoClassPK);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTimerException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo timer in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63;.
+	 *
+	 * @param kaleoClassName the kaleo class name
+	 * @param kaleoClassPK the kaleo class p k
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo timer, or <code>null</code> if a matching kaleo timer could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimer fetchByKCN_KCPK_First(String kaleoClassName,
+		long kaleoClassPK, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<KaleoTimer> list = findByKCN_KCPK(kaleoClassName, kaleoClassPK, 0,
 				1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoClassName=");
-			msg.append(kaleoClassName);
-
-			msg.append(", kaleoClassPK=");
-			msg.append(kaleoClassPK);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTimerException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last kaleo timer in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoClassName the kaleo class name
 	 * @param kaleoClassPK the kaleo class p k
@@ -739,37 +752,54 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	public KaleoTimer findByKCN_KCPK_Last(String kaleoClassName,
 		long kaleoClassPK, OrderByComparator orderByComparator)
 		throws NoSuchTimerException, SystemException {
+		KaleoTimer kaleoTimer = fetchByKCN_KCPK_Last(kaleoClassName,
+				kaleoClassPK, orderByComparator);
+
+		if (kaleoTimer != null) {
+			return kaleoTimer;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoClassName=");
+		msg.append(kaleoClassName);
+
+		msg.append(", kaleoClassPK=");
+		msg.append(kaleoClassPK);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTimerException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo timer in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63;.
+	 *
+	 * @param kaleoClassName the kaleo class name
+	 * @param kaleoClassPK the kaleo class p k
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo timer, or <code>null</code> if a matching kaleo timer could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimer fetchByKCN_KCPK_Last(String kaleoClassName,
+		long kaleoClassPK, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countByKCN_KCPK(kaleoClassName, kaleoClassPK);
 
 		List<KaleoTimer> list = findByKCN_KCPK(kaleoClassName, kaleoClassPK,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoClassName=");
-			msg.append(kaleoClassName);
-
-			msg.append(", kaleoClassPK=");
-			msg.append(kaleoClassPK);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTimerException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the kaleo timers before and after the current kaleo timer in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoTimerId the primary key of the current kaleo timer
 	 * @param kaleoClassName the kaleo class name
@@ -1104,10 +1134,6 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	/**
 	 * Returns the first kaleo timer in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and blocking = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param kaleoClassName the kaleo class name
 	 * @param kaleoClassPK the kaleo class p k
 	 * @param blocking the blocking
@@ -1119,38 +1145,56 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	public KaleoTimer findByKCN_KCPK_Blocking_First(String kaleoClassName,
 		long kaleoClassPK, boolean blocking, OrderByComparator orderByComparator)
 		throws NoSuchTimerException, SystemException {
+		KaleoTimer kaleoTimer = fetchByKCN_KCPK_Blocking_First(kaleoClassName,
+				kaleoClassPK, blocking, orderByComparator);
+
+		if (kaleoTimer != null) {
+			return kaleoTimer;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoClassName=");
+		msg.append(kaleoClassName);
+
+		msg.append(", kaleoClassPK=");
+		msg.append(kaleoClassPK);
+
+		msg.append(", blocking=");
+		msg.append(blocking);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTimerException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo timer in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and blocking = &#63;.
+	 *
+	 * @param kaleoClassName the kaleo class name
+	 * @param kaleoClassPK the kaleo class p k
+	 * @param blocking the blocking
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo timer, or <code>null</code> if a matching kaleo timer could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimer fetchByKCN_KCPK_Blocking_First(String kaleoClassName,
+		long kaleoClassPK, boolean blocking, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<KaleoTimer> list = findByKCN_KCPK_Blocking(kaleoClassName,
 				kaleoClassPK, blocking, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoClassName=");
-			msg.append(kaleoClassName);
-
-			msg.append(", kaleoClassPK=");
-			msg.append(kaleoClassPK);
-
-			msg.append(", blocking=");
-			msg.append(blocking);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTimerException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last kaleo timer in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and blocking = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoClassName the kaleo class name
 	 * @param kaleoClassPK the kaleo class p k
@@ -1163,41 +1207,59 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	public KaleoTimer findByKCN_KCPK_Blocking_Last(String kaleoClassName,
 		long kaleoClassPK, boolean blocking, OrderByComparator orderByComparator)
 		throws NoSuchTimerException, SystemException {
+		KaleoTimer kaleoTimer = fetchByKCN_KCPK_Blocking_Last(kaleoClassName,
+				kaleoClassPK, blocking, orderByComparator);
+
+		if (kaleoTimer != null) {
+			return kaleoTimer;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoClassName=");
+		msg.append(kaleoClassName);
+
+		msg.append(", kaleoClassPK=");
+		msg.append(kaleoClassPK);
+
+		msg.append(", blocking=");
+		msg.append(blocking);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTimerException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo timer in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and blocking = &#63;.
+	 *
+	 * @param kaleoClassName the kaleo class name
+	 * @param kaleoClassPK the kaleo class p k
+	 * @param blocking the blocking
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo timer, or <code>null</code> if a matching kaleo timer could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTimer fetchByKCN_KCPK_Blocking_Last(String kaleoClassName,
+		long kaleoClassPK, boolean blocking, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countByKCN_KCPK_Blocking(kaleoClassName, kaleoClassPK,
 				blocking);
 
 		List<KaleoTimer> list = findByKCN_KCPK_Blocking(kaleoClassName,
 				kaleoClassPK, blocking, count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoClassName=");
-			msg.append(kaleoClassName);
-
-			msg.append(", kaleoClassPK=");
-			msg.append(kaleoClassPK);
-
-			msg.append(", blocking=");
-			msg.append(blocking);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTimerException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the kaleo timers before and after the current kaleo timer in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and blocking = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoTimerId the primary key of the current kaleo timer
 	 * @param kaleoClassName the kaleo class name

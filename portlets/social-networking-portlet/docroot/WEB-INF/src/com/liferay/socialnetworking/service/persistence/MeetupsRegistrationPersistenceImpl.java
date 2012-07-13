@@ -710,10 +710,6 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	/**
 	 * Returns the first meetups registration in the ordered set where meetupsEntryId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param meetupsEntryId the meetups entry ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching meetups registration
@@ -723,32 +719,48 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	public MeetupsRegistration findByMeetupsEntryId_First(long meetupsEntryId,
 		OrderByComparator orderByComparator)
 		throws NoSuchMeetupsRegistrationException, SystemException {
+		MeetupsRegistration meetupsRegistration = fetchByMeetupsEntryId_First(meetupsEntryId,
+				orderByComparator);
+
+		if (meetupsRegistration != null) {
+			return meetupsRegistration;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("meetupsEntryId=");
+		msg.append(meetupsEntryId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchMeetupsRegistrationException(msg.toString());
+	}
+
+	/**
+	 * Returns the first meetups registration in the ordered set where meetupsEntryId = &#63;.
+	 *
+	 * @param meetupsEntryId the meetups entry ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching meetups registration, or <code>null</code> if a matching meetups registration could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MeetupsRegistration fetchByMeetupsEntryId_First(
+		long meetupsEntryId, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<MeetupsRegistration> list = findByMeetupsEntryId(meetupsEntryId,
 				0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("meetupsEntryId=");
-			msg.append(meetupsEntryId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchMeetupsRegistrationException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last meetups registration in the ordered set where meetupsEntryId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param meetupsEntryId the meetups entry ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -759,34 +771,49 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	public MeetupsRegistration findByMeetupsEntryId_Last(long meetupsEntryId,
 		OrderByComparator orderByComparator)
 		throws NoSuchMeetupsRegistrationException, SystemException {
+		MeetupsRegistration meetupsRegistration = fetchByMeetupsEntryId_Last(meetupsEntryId,
+				orderByComparator);
+
+		if (meetupsRegistration != null) {
+			return meetupsRegistration;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("meetupsEntryId=");
+		msg.append(meetupsEntryId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchMeetupsRegistrationException(msg.toString());
+	}
+
+	/**
+	 * Returns the last meetups registration in the ordered set where meetupsEntryId = &#63;.
+	 *
+	 * @param meetupsEntryId the meetups entry ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching meetups registration, or <code>null</code> if a matching meetups registration could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MeetupsRegistration fetchByMeetupsEntryId_Last(long meetupsEntryId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByMeetupsEntryId(meetupsEntryId);
 
 		List<MeetupsRegistration> list = findByMeetupsEntryId(meetupsEntryId,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("meetupsEntryId=");
-			msg.append(meetupsEntryId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchMeetupsRegistrationException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the meetups registrations before and after the current meetups registration in the ordered set where meetupsEntryId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param meetupsRegistrationId the primary key of the current meetups registration
 	 * @param meetupsEntryId the meetups entry ID
@@ -1234,10 +1261,6 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	/**
 	 * Returns the first meetups registration in the ordered set where meetupsEntryId = &#63; and status = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param meetupsEntryId the meetups entry ID
 	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1248,35 +1271,52 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	public MeetupsRegistration findByME_S_First(long meetupsEntryId,
 		int status, OrderByComparator orderByComparator)
 		throws NoSuchMeetupsRegistrationException, SystemException {
+		MeetupsRegistration meetupsRegistration = fetchByME_S_First(meetupsEntryId,
+				status, orderByComparator);
+
+		if (meetupsRegistration != null) {
+			return meetupsRegistration;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("meetupsEntryId=");
+		msg.append(meetupsEntryId);
+
+		msg.append(", status=");
+		msg.append(status);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchMeetupsRegistrationException(msg.toString());
+	}
+
+	/**
+	 * Returns the first meetups registration in the ordered set where meetupsEntryId = &#63; and status = &#63;.
+	 *
+	 * @param meetupsEntryId the meetups entry ID
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching meetups registration, or <code>null</code> if a matching meetups registration could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MeetupsRegistration fetchByME_S_First(long meetupsEntryId,
+		int status, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<MeetupsRegistration> list = findByME_S(meetupsEntryId, status, 0,
 				1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("meetupsEntryId=");
-			msg.append(meetupsEntryId);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchMeetupsRegistrationException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last meetups registration in the ordered set where meetupsEntryId = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param meetupsEntryId the meetups entry ID
 	 * @param status the status
@@ -1288,37 +1328,54 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	public MeetupsRegistration findByME_S_Last(long meetupsEntryId, int status,
 		OrderByComparator orderByComparator)
 		throws NoSuchMeetupsRegistrationException, SystemException {
+		MeetupsRegistration meetupsRegistration = fetchByME_S_Last(meetupsEntryId,
+				status, orderByComparator);
+
+		if (meetupsRegistration != null) {
+			return meetupsRegistration;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("meetupsEntryId=");
+		msg.append(meetupsEntryId);
+
+		msg.append(", status=");
+		msg.append(status);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchMeetupsRegistrationException(msg.toString());
+	}
+
+	/**
+	 * Returns the last meetups registration in the ordered set where meetupsEntryId = &#63; and status = &#63;.
+	 *
+	 * @param meetupsEntryId the meetups entry ID
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching meetups registration, or <code>null</code> if a matching meetups registration could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MeetupsRegistration fetchByME_S_Last(long meetupsEntryId,
+		int status, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countByME_S(meetupsEntryId, status);
 
 		List<MeetupsRegistration> list = findByME_S(meetupsEntryId, status,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("meetupsEntryId=");
-			msg.append(meetupsEntryId);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchMeetupsRegistrationException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the meetups registrations before and after the current meetups registration in the ordered set where meetupsEntryId = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param meetupsRegistrationId the primary key of the current meetups registration
 	 * @param meetupsEntryId the meetups entry ID

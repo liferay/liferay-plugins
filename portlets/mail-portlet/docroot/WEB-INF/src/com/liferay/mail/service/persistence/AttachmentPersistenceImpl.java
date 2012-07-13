@@ -590,10 +590,6 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	/**
 	 * Returns the first attachment in the ordered set where messageId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param messageId the message ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching attachment
@@ -603,32 +599,47 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	public Attachment findByMessageId_First(long messageId,
 		OrderByComparator orderByComparator)
 		throws NoSuchAttachmentException, SystemException {
+		Attachment attachment = fetchByMessageId_First(messageId,
+				orderByComparator);
+
+		if (attachment != null) {
+			return attachment;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("messageId=");
+		msg.append(messageId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchAttachmentException(msg.toString());
+	}
+
+	/**
+	 * Returns the first attachment in the ordered set where messageId = &#63;.
+	 *
+	 * @param messageId the message ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching attachment, or <code>null</code> if a matching attachment could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Attachment fetchByMessageId_First(long messageId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<Attachment> list = findByMessageId(messageId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("messageId=");
-			msg.append(messageId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchAttachmentException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last attachment in the ordered set where messageId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param messageId the message ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -639,34 +650,49 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	public Attachment findByMessageId_Last(long messageId,
 		OrderByComparator orderByComparator)
 		throws NoSuchAttachmentException, SystemException {
+		Attachment attachment = fetchByMessageId_Last(messageId,
+				orderByComparator);
+
+		if (attachment != null) {
+			return attachment;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("messageId=");
+		msg.append(messageId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchAttachmentException(msg.toString());
+	}
+
+	/**
+	 * Returns the last attachment in the ordered set where messageId = &#63;.
+	 *
+	 * @param messageId the message ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching attachment, or <code>null</code> if a matching attachment could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Attachment fetchByMessageId_Last(long messageId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByMessageId(messageId);
 
 		List<Attachment> list = findByMessageId(messageId, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("messageId=");
-			msg.append(messageId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchAttachmentException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the attachments before and after the current attachment in the ordered set where messageId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param attachmentId the primary key of the current attachment
 	 * @param messageId the message ID

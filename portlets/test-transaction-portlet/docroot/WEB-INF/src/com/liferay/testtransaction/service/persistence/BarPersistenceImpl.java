@@ -584,10 +584,6 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	/**
 	 * Returns the first bar in the ordered set where text = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param text the text
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching bar
@@ -596,31 +592,45 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	 */
 	public Bar findByText_First(String text, OrderByComparator orderByComparator)
 		throws NoSuchBarException, SystemException {
+		Bar bar = fetchByText_First(text, orderByComparator);
+
+		if (bar != null) {
+			return bar;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("text=");
+		msg.append(text);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchBarException(msg.toString());
+	}
+
+	/**
+	 * Returns the first bar in the ordered set where text = &#63;.
+	 *
+	 * @param text the text
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching bar, or <code>null</code> if a matching bar could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Bar fetchByText_First(String text,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<Bar> list = findByText(text, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("text=");
-			msg.append(text);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchBarException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last bar in the ordered set where text = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param text the text
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -630,33 +640,47 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	 */
 	public Bar findByText_Last(String text, OrderByComparator orderByComparator)
 		throws NoSuchBarException, SystemException {
+		Bar bar = fetchByText_Last(text, orderByComparator);
+
+		if (bar != null) {
+			return bar;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("text=");
+		msg.append(text);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchBarException(msg.toString());
+	}
+
+	/**
+	 * Returns the last bar in the ordered set where text = &#63;.
+	 *
+	 * @param text the text
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching bar, or <code>null</code> if a matching bar could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Bar fetchByText_Last(String text, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countByText(text);
 
 		List<Bar> list = findByText(text, count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("text=");
-			msg.append(text);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchBarException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the bars before and after the current bar in the ordered set where text = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param barId the primary key of the current bar
 	 * @param text the text

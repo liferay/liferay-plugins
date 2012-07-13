@@ -732,10 +732,6 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	/**
 	 * Returns the first o auth token in the ordered set where gadgetKey = &#63; and serviceName = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param gadgetKey the gadget key
 	 * @param serviceName the service name
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -746,35 +742,51 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	public OAuthToken findByG_S_First(String gadgetKey, String serviceName,
 		OrderByComparator orderByComparator)
 		throws NoSuchOAuthTokenException, SystemException {
+		OAuthToken oAuthToken = fetchByG_S_First(gadgetKey, serviceName,
+				orderByComparator);
+
+		if (oAuthToken != null) {
+			return oAuthToken;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("gadgetKey=");
+		msg.append(gadgetKey);
+
+		msg.append(", serviceName=");
+		msg.append(serviceName);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchOAuthTokenException(msg.toString());
+	}
+
+	/**
+	 * Returns the first o auth token in the ordered set where gadgetKey = &#63; and serviceName = &#63;.
+	 *
+	 * @param gadgetKey the gadget key
+	 * @param serviceName the service name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching o auth token, or <code>null</code> if a matching o auth token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public OAuthToken fetchByG_S_First(String gadgetKey, String serviceName,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<OAuthToken> list = findByG_S(gadgetKey, serviceName, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("gadgetKey=");
-			msg.append(gadgetKey);
-
-			msg.append(", serviceName=");
-			msg.append(serviceName);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchOAuthTokenException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last o auth token in the ordered set where gadgetKey = &#63; and serviceName = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param gadgetKey the gadget key
 	 * @param serviceName the service name
@@ -786,37 +798,53 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	public OAuthToken findByG_S_Last(String gadgetKey, String serviceName,
 		OrderByComparator orderByComparator)
 		throws NoSuchOAuthTokenException, SystemException {
+		OAuthToken oAuthToken = fetchByG_S_Last(gadgetKey, serviceName,
+				orderByComparator);
+
+		if (oAuthToken != null) {
+			return oAuthToken;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("gadgetKey=");
+		msg.append(gadgetKey);
+
+		msg.append(", serviceName=");
+		msg.append(serviceName);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchOAuthTokenException(msg.toString());
+	}
+
+	/**
+	 * Returns the last o auth token in the ordered set where gadgetKey = &#63; and serviceName = &#63;.
+	 *
+	 * @param gadgetKey the gadget key
+	 * @param serviceName the service name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching o auth token, or <code>null</code> if a matching o auth token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public OAuthToken fetchByG_S_Last(String gadgetKey, String serviceName,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_S(gadgetKey, serviceName);
 
 		List<OAuthToken> list = findByG_S(gadgetKey, serviceName, count - 1,
 				count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("gadgetKey=");
-			msg.append(gadgetKey);
-
-			msg.append(", serviceName=");
-			msg.append(serviceName);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchOAuthTokenException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the o auth tokens before and after the current o auth token in the ordered set where gadgetKey = &#63; and serviceName = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param oAuthTokenId the primary key of the current o auth token
 	 * @param gadgetKey the gadget key

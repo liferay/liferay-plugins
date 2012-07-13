@@ -829,10 +829,6 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	/**
 	 * Returns the first calendar in the ordered set where resourceBlockId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param resourceBlockId the resource block ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching calendar
@@ -842,32 +838,47 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	public Calendar findByResourceBlockId_First(long resourceBlockId,
 		OrderByComparator orderByComparator)
 		throws NoSuchCalendarException, SystemException {
+		Calendar calendar = fetchByResourceBlockId_First(resourceBlockId,
+				orderByComparator);
+
+		if (calendar != null) {
+			return calendar;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("resourceBlockId=");
+		msg.append(resourceBlockId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchCalendarException(msg.toString());
+	}
+
+	/**
+	 * Returns the first calendar in the ordered set where resourceBlockId = &#63;.
+	 *
+	 * @param resourceBlockId the resource block ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching calendar, or <code>null</code> if a matching calendar could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Calendar fetchByResourceBlockId_First(long resourceBlockId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<Calendar> list = findByResourceBlockId(resourceBlockId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("resourceBlockId=");
-			msg.append(resourceBlockId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchCalendarException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last calendar in the ordered set where resourceBlockId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param resourceBlockId the resource block ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -878,34 +889,49 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	public Calendar findByResourceBlockId_Last(long resourceBlockId,
 		OrderByComparator orderByComparator)
 		throws NoSuchCalendarException, SystemException {
+		Calendar calendar = fetchByResourceBlockId_Last(resourceBlockId,
+				orderByComparator);
+
+		if (calendar != null) {
+			return calendar;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("resourceBlockId=");
+		msg.append(resourceBlockId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchCalendarException(msg.toString());
+	}
+
+	/**
+	 * Returns the last calendar in the ordered set where resourceBlockId = &#63;.
+	 *
+	 * @param resourceBlockId the resource block ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching calendar, or <code>null</code> if a matching calendar could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Calendar fetchByResourceBlockId_Last(long resourceBlockId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByResourceBlockId(resourceBlockId);
 
 		List<Calendar> list = findByResourceBlockId(resourceBlockId, count - 1,
 				count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("resourceBlockId=");
-			msg.append(resourceBlockId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchCalendarException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the calendars before and after the current calendar in the ordered set where resourceBlockId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param calendarId the primary key of the current calendar
 	 * @param resourceBlockId the resource block ID
@@ -1196,10 +1222,6 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	/**
 	 * Returns the first calendar in the ordered set where uuid = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching calendar
@@ -1209,31 +1231,45 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	public Calendar findByUuid_First(String uuid,
 		OrderByComparator orderByComparator)
 		throws NoSuchCalendarException, SystemException {
+		Calendar calendar = fetchByUuid_First(uuid, orderByComparator);
+
+		if (calendar != null) {
+			return calendar;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("uuid=");
+		msg.append(uuid);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchCalendarException(msg.toString());
+	}
+
+	/**
+	 * Returns the first calendar in the ordered set where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching calendar, or <code>null</code> if a matching calendar could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Calendar fetchByUuid_First(String uuid,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<Calendar> list = findByUuid(uuid, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("uuid=");
-			msg.append(uuid);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchCalendarException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last calendar in the ordered set where uuid = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1244,34 +1280,48 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	public Calendar findByUuid_Last(String uuid,
 		OrderByComparator orderByComparator)
 		throws NoSuchCalendarException, SystemException {
+		Calendar calendar = fetchByUuid_Last(uuid, orderByComparator);
+
+		if (calendar != null) {
+			return calendar;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("uuid=");
+		msg.append(uuid);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchCalendarException(msg.toString());
+	}
+
+	/**
+	 * Returns the last calendar in the ordered set where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching calendar, or <code>null</code> if a matching calendar could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Calendar fetchByUuid_Last(String uuid,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid(uuid);
 
 		List<Calendar> list = findByUuid(uuid, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("uuid=");
-			msg.append(uuid);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchCalendarException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the calendars before and after the current calendar in the ordered set where uuid = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param calendarId the primary key of the current calendar
 	 * @param uuid the uuid
@@ -1751,10 +1801,6 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	/**
 	 * Returns the first calendar in the ordered set where uuid = &#63; and companyId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1765,35 +1811,51 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	public Calendar findByUuid_C_First(String uuid, long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchCalendarException, SystemException {
+		Calendar calendar = fetchByUuid_C_First(uuid, companyId,
+				orderByComparator);
+
+		if (calendar != null) {
+			return calendar;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("uuid=");
+		msg.append(uuid);
+
+		msg.append(", companyId=");
+		msg.append(companyId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchCalendarException(msg.toString());
+	}
+
+	/**
+	 * Returns the first calendar in the ordered set where uuid = &#63; and companyId = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching calendar, or <code>null</code> if a matching calendar could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Calendar fetchByUuid_C_First(String uuid, long companyId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<Calendar> list = findByUuid_C(uuid, companyId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("uuid=");
-			msg.append(uuid);
-
-			msg.append(", companyId=");
-			msg.append(companyId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchCalendarException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last calendar in the ordered set where uuid = &#63; and companyId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param uuid the uuid
 	 * @param companyId the company ID
@@ -1805,37 +1867,53 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	public Calendar findByUuid_C_Last(String uuid, long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchCalendarException, SystemException {
+		Calendar calendar = fetchByUuid_C_Last(uuid, companyId,
+				orderByComparator);
+
+		if (calendar != null) {
+			return calendar;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("uuid=");
+		msg.append(uuid);
+
+		msg.append(", companyId=");
+		msg.append(companyId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchCalendarException(msg.toString());
+	}
+
+	/**
+	 * Returns the last calendar in the ordered set where uuid = &#63; and companyId = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching calendar, or <code>null</code> if a matching calendar could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Calendar fetchByUuid_C_Last(String uuid, long companyId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid_C(uuid, companyId);
 
 		List<Calendar> list = findByUuid_C(uuid, companyId, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("uuid=");
-			msg.append(uuid);
-
-			msg.append(", companyId=");
-			msg.append(companyId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchCalendarException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the calendars before and after the current calendar in the ordered set where uuid = &#63; and companyId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param calendarId the primary key of the current calendar
 	 * @param uuid the uuid
@@ -2146,10 +2224,6 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	/**
 	 * Returns the first calendar in the ordered set where groupId = &#63; and calendarResourceId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param groupId the group ID
 	 * @param calendarResourceId the calendar resource ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -2160,35 +2234,51 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	public Calendar findByG_C_First(long groupId, long calendarResourceId,
 		OrderByComparator orderByComparator)
 		throws NoSuchCalendarException, SystemException {
+		Calendar calendar = fetchByG_C_First(groupId, calendarResourceId,
+				orderByComparator);
+
+		if (calendar != null) {
+			return calendar;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", calendarResourceId=");
+		msg.append(calendarResourceId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchCalendarException(msg.toString());
+	}
+
+	/**
+	 * Returns the first calendar in the ordered set where groupId = &#63; and calendarResourceId = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param calendarResourceId the calendar resource ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching calendar, or <code>null</code> if a matching calendar could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Calendar fetchByG_C_First(long groupId, long calendarResourceId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<Calendar> list = findByG_C(groupId, calendarResourceId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", calendarResourceId=");
-			msg.append(calendarResourceId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchCalendarException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last calendar in the ordered set where groupId = &#63; and calendarResourceId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param groupId the group ID
 	 * @param calendarResourceId the calendar resource ID
@@ -2200,37 +2290,53 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	public Calendar findByG_C_Last(long groupId, long calendarResourceId,
 		OrderByComparator orderByComparator)
 		throws NoSuchCalendarException, SystemException {
+		Calendar calendar = fetchByG_C_Last(groupId, calendarResourceId,
+				orderByComparator);
+
+		if (calendar != null) {
+			return calendar;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", calendarResourceId=");
+		msg.append(calendarResourceId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchCalendarException(msg.toString());
+	}
+
+	/**
+	 * Returns the last calendar in the ordered set where groupId = &#63; and calendarResourceId = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param calendarResourceId the calendar resource ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching calendar, or <code>null</code> if a matching calendar could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Calendar fetchByG_C_Last(long groupId, long calendarResourceId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_C(groupId, calendarResourceId);
 
 		List<Calendar> list = findByG_C(groupId, calendarResourceId, count - 1,
 				count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", calendarResourceId=");
-			msg.append(calendarResourceId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchCalendarException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the calendars before and after the current calendar in the ordered set where groupId = &#63; and calendarResourceId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param calendarId the primary key of the current calendar
 	 * @param groupId the group ID
@@ -2809,10 +2915,6 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	/**
 	 * Returns the first calendar in the ordered set where groupId = &#63; and calendarResourceId = &#63; and defaultCalendar = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param groupId the group ID
 	 * @param calendarResourceId the calendar resource ID
 	 * @param defaultCalendar the default calendar
@@ -2824,38 +2926,56 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	public Calendar findByG_C_D_First(long groupId, long calendarResourceId,
 		boolean defaultCalendar, OrderByComparator orderByComparator)
 		throws NoSuchCalendarException, SystemException {
+		Calendar calendar = fetchByG_C_D_First(groupId, calendarResourceId,
+				defaultCalendar, orderByComparator);
+
+		if (calendar != null) {
+			return calendar;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", calendarResourceId=");
+		msg.append(calendarResourceId);
+
+		msg.append(", defaultCalendar=");
+		msg.append(defaultCalendar);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchCalendarException(msg.toString());
+	}
+
+	/**
+	 * Returns the first calendar in the ordered set where groupId = &#63; and calendarResourceId = &#63; and defaultCalendar = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param calendarResourceId the calendar resource ID
+	 * @param defaultCalendar the default calendar
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching calendar, or <code>null</code> if a matching calendar could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Calendar fetchByG_C_D_First(long groupId, long calendarResourceId,
+		boolean defaultCalendar, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<Calendar> list = findByG_C_D(groupId, calendarResourceId,
 				defaultCalendar, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", calendarResourceId=");
-			msg.append(calendarResourceId);
-
-			msg.append(", defaultCalendar=");
-			msg.append(defaultCalendar);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchCalendarException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last calendar in the ordered set where groupId = &#63; and calendarResourceId = &#63; and defaultCalendar = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param groupId the group ID
 	 * @param calendarResourceId the calendar resource ID
@@ -2868,40 +2988,58 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	public Calendar findByG_C_D_Last(long groupId, long calendarResourceId,
 		boolean defaultCalendar, OrderByComparator orderByComparator)
 		throws NoSuchCalendarException, SystemException {
+		Calendar calendar = fetchByG_C_D_Last(groupId, calendarResourceId,
+				defaultCalendar, orderByComparator);
+
+		if (calendar != null) {
+			return calendar;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", calendarResourceId=");
+		msg.append(calendarResourceId);
+
+		msg.append(", defaultCalendar=");
+		msg.append(defaultCalendar);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchCalendarException(msg.toString());
+	}
+
+	/**
+	 * Returns the last calendar in the ordered set where groupId = &#63; and calendarResourceId = &#63; and defaultCalendar = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param calendarResourceId the calendar resource ID
+	 * @param defaultCalendar the default calendar
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching calendar, or <code>null</code> if a matching calendar could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Calendar fetchByG_C_D_Last(long groupId, long calendarResourceId,
+		boolean defaultCalendar, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countByG_C_D(groupId, calendarResourceId, defaultCalendar);
 
 		List<Calendar> list = findByG_C_D(groupId, calendarResourceId,
 				defaultCalendar, count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", calendarResourceId=");
-			msg.append(calendarResourceId);
-
-			msg.append(", defaultCalendar=");
-			msg.append(defaultCalendar);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchCalendarException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the calendars before and after the current calendar in the ordered set where groupId = &#63; and calendarResourceId = &#63; and defaultCalendar = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param calendarId the primary key of the current calendar
 	 * @param groupId the group ID

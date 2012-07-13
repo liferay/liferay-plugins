@@ -672,10 +672,6 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	/**
 	 * Returns the first o auth consumer in the ordered set where gadgetKey = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param gadgetKey the gadget key
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching o auth consumer
@@ -685,32 +681,47 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	public OAuthConsumer findByGadgetKey_First(String gadgetKey,
 		OrderByComparator orderByComparator)
 		throws NoSuchOAuthConsumerException, SystemException {
+		OAuthConsumer oAuthConsumer = fetchByGadgetKey_First(gadgetKey,
+				orderByComparator);
+
+		if (oAuthConsumer != null) {
+			return oAuthConsumer;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("gadgetKey=");
+		msg.append(gadgetKey);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchOAuthConsumerException(msg.toString());
+	}
+
+	/**
+	 * Returns the first o auth consumer in the ordered set where gadgetKey = &#63;.
+	 *
+	 * @param gadgetKey the gadget key
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching o auth consumer, or <code>null</code> if a matching o auth consumer could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public OAuthConsumer fetchByGadgetKey_First(String gadgetKey,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<OAuthConsumer> list = findByGadgetKey(gadgetKey, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("gadgetKey=");
-			msg.append(gadgetKey);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchOAuthConsumerException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last o auth consumer in the ordered set where gadgetKey = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param gadgetKey the gadget key
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -721,34 +732,49 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	public OAuthConsumer findByGadgetKey_Last(String gadgetKey,
 		OrderByComparator orderByComparator)
 		throws NoSuchOAuthConsumerException, SystemException {
+		OAuthConsumer oAuthConsumer = fetchByGadgetKey_Last(gadgetKey,
+				orderByComparator);
+
+		if (oAuthConsumer != null) {
+			return oAuthConsumer;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("gadgetKey=");
+		msg.append(gadgetKey);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchOAuthConsumerException(msg.toString());
+	}
+
+	/**
+	 * Returns the last o auth consumer in the ordered set where gadgetKey = &#63;.
+	 *
+	 * @param gadgetKey the gadget key
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching o auth consumer, or <code>null</code> if a matching o auth consumer could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public OAuthConsumer fetchByGadgetKey_Last(String gadgetKey,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByGadgetKey(gadgetKey);
 
 		List<OAuthConsumer> list = findByGadgetKey(gadgetKey, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("gadgetKey=");
-			msg.append(gadgetKey);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchOAuthConsumerException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the o auth consumers before and after the current o auth consumer in the ordered set where gadgetKey = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param oAuthConsumerId the primary key of the current o auth consumer
 	 * @param gadgetKey the gadget key

@@ -153,10 +153,6 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	/**
 	* Returns the first kaleo instance in the ordered set where companyId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo instance
@@ -170,11 +166,20 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 			com.liferay.portal.workflow.kaleo.NoSuchInstanceException;
 
 	/**
-	* Returns the last kaleo instance in the ordered set where companyId = &#63;.
+	* Returns the first kaleo instance in the ordered set where companyId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param companyId the company ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching kaleo instance, or <code>null</code> if a matching kaleo instance could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoInstance fetchByCompanyId_First(
+		long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last kaleo instance in the ordered set where companyId = &#63;.
 	*
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -189,11 +194,20 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 			com.liferay.portal.workflow.kaleo.NoSuchInstanceException;
 
 	/**
-	* Returns the kaleo instances before and after the current kaleo instance in the ordered set where companyId = &#63;.
+	* Returns the last kaleo instance in the ordered set where companyId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param companyId the company ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching kaleo instance, or <code>null</code> if a matching kaleo instance could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoInstance fetchByCompanyId_Last(
+		long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the kaleo instances before and after the current kaleo instance in the ordered set where companyId = &#63;.
 	*
 	* @param kaleoInstanceId the primary key of the current kaleo instance
 	* @param companyId the company ID
@@ -258,10 +272,6 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	/**
 	* Returns the first kaleo instance in the ordered set where kaleoDefinitionId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param kaleoDefinitionId the kaleo definition ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo instance
@@ -275,11 +285,20 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 			com.liferay.portal.workflow.kaleo.NoSuchInstanceException;
 
 	/**
-	* Returns the last kaleo instance in the ordered set where kaleoDefinitionId = &#63;.
+	* Returns the first kaleo instance in the ordered set where kaleoDefinitionId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching kaleo instance, or <code>null</code> if a matching kaleo instance could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoInstance fetchByKaleoDefinitionId_First(
+		long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last kaleo instance in the ordered set where kaleoDefinitionId = &#63;.
 	*
 	* @param kaleoDefinitionId the kaleo definition ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -294,11 +313,20 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 			com.liferay.portal.workflow.kaleo.NoSuchInstanceException;
 
 	/**
-	* Returns the kaleo instances before and after the current kaleo instance in the ordered set where kaleoDefinitionId = &#63;.
+	* Returns the last kaleo instance in the ordered set where kaleoDefinitionId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching kaleo instance, or <code>null</code> if a matching kaleo instance could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoInstance fetchByKaleoDefinitionId_Last(
+		long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the kaleo instances before and after the current kaleo instance in the ordered set where kaleoDefinitionId = &#63;.
 	*
 	* @param kaleoInstanceId the primary key of the current kaleo instance
 	* @param kaleoDefinitionId the kaleo definition ID
@@ -366,10 +394,6 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	/**
 	* Returns the first kaleo instance in the ordered set where kaleoDefinitionId = &#63; and completed = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param kaleoDefinitionId the kaleo definition ID
 	* @param completed the completed
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -384,11 +408,21 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 			com.liferay.portal.workflow.kaleo.NoSuchInstanceException;
 
 	/**
-	* Returns the last kaleo instance in the ordered set where kaleoDefinitionId = &#63; and completed = &#63;.
+	* Returns the first kaleo instance in the ordered set where kaleoDefinitionId = &#63; and completed = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @param completed the completed
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching kaleo instance, or <code>null</code> if a matching kaleo instance could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoInstance fetchByKDI_C_First(
+		long kaleoDefinitionId, boolean completed,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last kaleo instance in the ordered set where kaleoDefinitionId = &#63; and completed = &#63;.
 	*
 	* @param kaleoDefinitionId the kaleo definition ID
 	* @param completed the completed
@@ -404,11 +438,21 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 			com.liferay.portal.workflow.kaleo.NoSuchInstanceException;
 
 	/**
-	* Returns the kaleo instances before and after the current kaleo instance in the ordered set where kaleoDefinitionId = &#63; and completed = &#63;.
+	* Returns the last kaleo instance in the ordered set where kaleoDefinitionId = &#63; and completed = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @param completed the completed
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching kaleo instance, or <code>null</code> if a matching kaleo instance could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoInstance fetchByKDI_C_Last(
+		long kaleoDefinitionId, boolean completed,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the kaleo instances before and after the current kaleo instance in the ordered set where kaleoDefinitionId = &#63; and completed = &#63;.
 	*
 	* @param kaleoInstanceId the primary key of the current kaleo instance
 	* @param kaleoDefinitionId the kaleo definition ID
@@ -487,10 +531,6 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	/**
 	* Returns the first kaleo instance in the ordered set where companyId = &#63; and kaleoDefinitionName = &#63; and kaleoDefinitionVersion = &#63; and completionDate = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param companyId the company ID
 	* @param kaleoDefinitionName the kaleo definition name
 	* @param kaleoDefinitionVersion the kaleo definition version
@@ -508,11 +548,24 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 			com.liferay.portal.workflow.kaleo.NoSuchInstanceException;
 
 	/**
-	* Returns the last kaleo instance in the ordered set where companyId = &#63; and kaleoDefinitionName = &#63; and kaleoDefinitionVersion = &#63; and completionDate = &#63;.
+	* Returns the first kaleo instance in the ordered set where companyId = &#63; and kaleoDefinitionName = &#63; and kaleoDefinitionVersion = &#63; and completionDate = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param companyId the company ID
+	* @param kaleoDefinitionName the kaleo definition name
+	* @param kaleoDefinitionVersion the kaleo definition version
+	* @param completionDate the completion date
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching kaleo instance, or <code>null</code> if a matching kaleo instance could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoInstance fetchByC_KDN_KDV_CD_First(
+		long companyId, java.lang.String kaleoDefinitionName,
+		int kaleoDefinitionVersion, java.util.Date completionDate,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last kaleo instance in the ordered set where companyId = &#63; and kaleoDefinitionName = &#63; and kaleoDefinitionVersion = &#63; and completionDate = &#63;.
 	*
 	* @param companyId the company ID
 	* @param kaleoDefinitionName the kaleo definition name
@@ -531,11 +584,24 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 			com.liferay.portal.workflow.kaleo.NoSuchInstanceException;
 
 	/**
-	* Returns the kaleo instances before and after the current kaleo instance in the ordered set where companyId = &#63; and kaleoDefinitionName = &#63; and kaleoDefinitionVersion = &#63; and completionDate = &#63;.
+	* Returns the last kaleo instance in the ordered set where companyId = &#63; and kaleoDefinitionName = &#63; and kaleoDefinitionVersion = &#63; and completionDate = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param companyId the company ID
+	* @param kaleoDefinitionName the kaleo definition name
+	* @param kaleoDefinitionVersion the kaleo definition version
+	* @param completionDate the completion date
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching kaleo instance, or <code>null</code> if a matching kaleo instance could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoInstance fetchByC_KDN_KDV_CD_Last(
+		long companyId, java.lang.String kaleoDefinitionName,
+		int kaleoDefinitionVersion, java.util.Date completionDate,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the kaleo instances before and after the current kaleo instance in the ordered set where companyId = &#63; and kaleoDefinitionName = &#63; and kaleoDefinitionVersion = &#63; and completionDate = &#63;.
 	*
 	* @param kaleoInstanceId the primary key of the current kaleo instance
 	* @param companyId the company ID

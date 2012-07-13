@@ -681,10 +681,6 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	/**
 	 * Returns the first j i r a action in the ordered set where jiraUserId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param jiraUserId the jira user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching j i r a action
@@ -694,32 +690,47 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	public JIRAAction findByJiraUserId_First(String jiraUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAActionException, SystemException {
+		JIRAAction jiraAction = fetchByJiraUserId_First(jiraUserId,
+				orderByComparator);
+
+		if (jiraAction != null) {
+			return jiraAction;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("jiraUserId=");
+		msg.append(jiraUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAActionException(msg.toString());
+	}
+
+	/**
+	 * Returns the first j i r a action in the ordered set where jiraUserId = &#63;.
+	 *
+	 * @param jiraUserId the jira user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching j i r a action, or <code>null</code> if a matching j i r a action could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAAction fetchByJiraUserId_First(String jiraUserId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<JIRAAction> list = findByJiraUserId(jiraUserId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("jiraUserId=");
-			msg.append(jiraUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAActionException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last j i r a action in the ordered set where jiraUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param jiraUserId the jira user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -730,34 +741,49 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	public JIRAAction findByJiraUserId_Last(String jiraUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAActionException, SystemException {
+		JIRAAction jiraAction = fetchByJiraUserId_Last(jiraUserId,
+				orderByComparator);
+
+		if (jiraAction != null) {
+			return jiraAction;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("jiraUserId=");
+		msg.append(jiraUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAActionException(msg.toString());
+	}
+
+	/**
+	 * Returns the last j i r a action in the ordered set where jiraUserId = &#63;.
+	 *
+	 * @param jiraUserId the jira user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching j i r a action, or <code>null</code> if a matching j i r a action could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAAction fetchByJiraUserId_Last(String jiraUserId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByJiraUserId(jiraUserId);
 
 		List<JIRAAction> list = findByJiraUserId(jiraUserId, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("jiraUserId=");
-			msg.append(jiraUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAActionException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the j i r a actions before and after the current j i r a action in the ordered set where jiraUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param jiraActionId the primary key of the current j i r a action
 	 * @param jiraUserId the jira user ID
@@ -1050,10 +1076,6 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	/**
 	 * Returns the first j i r a action in the ordered set where jiraIssueId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param jiraIssueId the jira issue ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching j i r a action
@@ -1063,32 +1085,47 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	public JIRAAction findByJiraIssueId_First(long jiraIssueId,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAActionException, SystemException {
+		JIRAAction jiraAction = fetchByJiraIssueId_First(jiraIssueId,
+				orderByComparator);
+
+		if (jiraAction != null) {
+			return jiraAction;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("jiraIssueId=");
+		msg.append(jiraIssueId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAActionException(msg.toString());
+	}
+
+	/**
+	 * Returns the first j i r a action in the ordered set where jiraIssueId = &#63;.
+	 *
+	 * @param jiraIssueId the jira issue ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching j i r a action, or <code>null</code> if a matching j i r a action could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAAction fetchByJiraIssueId_First(long jiraIssueId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<JIRAAction> list = findByJiraIssueId(jiraIssueId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("jiraIssueId=");
-			msg.append(jiraIssueId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAActionException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last j i r a action in the ordered set where jiraIssueId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param jiraIssueId the jira issue ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1099,34 +1136,49 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	public JIRAAction findByJiraIssueId_Last(long jiraIssueId,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAActionException, SystemException {
+		JIRAAction jiraAction = fetchByJiraIssueId_Last(jiraIssueId,
+				orderByComparator);
+
+		if (jiraAction != null) {
+			return jiraAction;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("jiraIssueId=");
+		msg.append(jiraIssueId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAActionException(msg.toString());
+	}
+
+	/**
+	 * Returns the last j i r a action in the ordered set where jiraIssueId = &#63;.
+	 *
+	 * @param jiraIssueId the jira issue ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching j i r a action, or <code>null</code> if a matching j i r a action could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAAction fetchByJiraIssueId_Last(long jiraIssueId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByJiraIssueId(jiraIssueId);
 
 		List<JIRAAction> list = findByJiraIssueId(jiraIssueId, count - 1,
 				count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("jiraIssueId=");
-			msg.append(jiraIssueId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAActionException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the j i r a actions before and after the current j i r a action in the ordered set where jiraIssueId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param jiraActionId the primary key of the current j i r a action
 	 * @param jiraIssueId the jira issue ID
@@ -1417,10 +1469,6 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	/**
 	 * Returns the first j i r a action in the ordered set where type = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param type the type
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching j i r a action
@@ -1430,31 +1478,45 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	public JIRAAction findByType_First(String type,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAActionException, SystemException {
+		JIRAAction jiraAction = fetchByType_First(type, orderByComparator);
+
+		if (jiraAction != null) {
+			return jiraAction;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("type=");
+		msg.append(type);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAActionException(msg.toString());
+	}
+
+	/**
+	 * Returns the first j i r a action in the ordered set where type = &#63;.
+	 *
+	 * @param type the type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching j i r a action, or <code>null</code> if a matching j i r a action could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAAction fetchByType_First(String type,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<JIRAAction> list = findByType(type, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("type=");
-			msg.append(type);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAActionException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last j i r a action in the ordered set where type = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param type the type
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1465,34 +1527,48 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	public JIRAAction findByType_Last(String type,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAActionException, SystemException {
+		JIRAAction jiraAction = fetchByType_Last(type, orderByComparator);
+
+		if (jiraAction != null) {
+			return jiraAction;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("type=");
+		msg.append(type);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAActionException(msg.toString());
+	}
+
+	/**
+	 * Returns the last j i r a action in the ordered set where type = &#63;.
+	 *
+	 * @param type the type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching j i r a action, or <code>null</code> if a matching j i r a action could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAAction fetchByType_Last(String type,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByType(type);
 
 		List<JIRAAction> list = findByType(type, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("type=");
-			msg.append(type);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAActionException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the j i r a actions before and after the current j i r a action in the ordered set where type = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param jiraActionId the primary key of the current j i r a action
 	 * @param type the type

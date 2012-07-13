@@ -1757,10 +1757,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Returns the first k b article in the ordered set where uuid = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b article
@@ -1770,31 +1766,45 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByUuid_First(String uuid,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByUuid_First(uuid, orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("uuid=");
+		msg.append(uuid);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first k b article in the ordered set where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByUuid_First(String uuid,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KBArticle> list = findByUuid(uuid, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("uuid=");
-			msg.append(uuid);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last k b article in the ordered set where uuid = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1805,34 +1815,48 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByUuid_Last(String uuid,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByUuid_Last(uuid, orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("uuid=");
+		msg.append(uuid);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last k b article in the ordered set where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByUuid_Last(String uuid,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid(uuid);
 
 		List<KBArticle> list = findByUuid(uuid, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("uuid=");
-			msg.append(uuid);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the k b articles before and after the current k b article in the ordered set where uuid = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
 	 * @param uuid the uuid
@@ -2312,10 +2336,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Returns the first k b article in the ordered set where uuid = &#63; and companyId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -2326,35 +2346,51 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByUuid_C_First(String uuid, long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByUuid_C_First(uuid, companyId,
+				orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("uuid=");
+		msg.append(uuid);
+
+		msg.append(", companyId=");
+		msg.append(companyId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first k b article in the ordered set where uuid = &#63; and companyId = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByUuid_C_First(String uuid, long companyId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KBArticle> list = findByUuid_C(uuid, companyId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("uuid=");
-			msg.append(uuid);
-
-			msg.append(", companyId=");
-			msg.append(companyId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last k b article in the ordered set where uuid = &#63; and companyId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param uuid the uuid
 	 * @param companyId the company ID
@@ -2366,37 +2402,53 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByUuid_C_Last(String uuid, long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByUuid_C_Last(uuid, companyId,
+				orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("uuid=");
+		msg.append(uuid);
+
+		msg.append(", companyId=");
+		msg.append(companyId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last k b article in the ordered set where uuid = &#63; and companyId = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByUuid_C_Last(String uuid, long companyId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid_C(uuid, companyId);
 
 		List<KBArticle> list = findByUuid_C(uuid, companyId, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("uuid=");
-			msg.append(uuid);
-
-			msg.append(", companyId=");
-			msg.append(companyId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the k b articles before and after the current k b article in the ordered set where uuid = &#63; and companyId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
 	 * @param uuid the uuid
@@ -2699,10 +2751,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Returns the first k b article in the ordered set where resourcePrimKey = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param resourcePrimKey the resource prim key
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b article
@@ -2712,32 +2760,47 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByResourcePrimKey_First(long resourcePrimKey,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByResourcePrimKey_First(resourcePrimKey,
+				orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("resourcePrimKey=");
+		msg.append(resourcePrimKey);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first k b article in the ordered set where resourcePrimKey = &#63;.
+	 *
+	 * @param resourcePrimKey the resource prim key
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByResourcePrimKey_First(long resourcePrimKey,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KBArticle> list = findByResourcePrimKey(resourcePrimKey, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("resourcePrimKey=");
-			msg.append(resourcePrimKey);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last k b article in the ordered set where resourcePrimKey = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param resourcePrimKey the resource prim key
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -2748,34 +2811,49 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByResourcePrimKey_Last(long resourcePrimKey,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByResourcePrimKey_Last(resourcePrimKey,
+				orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("resourcePrimKey=");
+		msg.append(resourcePrimKey);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last k b article in the ordered set where resourcePrimKey = &#63;.
+	 *
+	 * @param resourcePrimKey the resource prim key
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByResourcePrimKey_Last(long resourcePrimKey,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByResourcePrimKey(resourcePrimKey);
 
 		List<KBArticle> list = findByResourcePrimKey(resourcePrimKey,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("resourcePrimKey=");
-			msg.append(resourcePrimKey);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the k b articles before and after the current k b article in the ordered set where resourcePrimKey = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
 	 * @param resourcePrimKey the resource prim key
@@ -3069,10 +3147,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Returns the first k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param resourcePrimKey the resource prim key
 	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -3083,35 +3157,51 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByR_G_First(long resourcePrimKey, long groupId,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByR_G_First(resourcePrimKey, groupId,
+				orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("resourcePrimKey=");
+		msg.append(resourcePrimKey);
+
+		msg.append(", groupId=");
+		msg.append(groupId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63;.
+	 *
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByR_G_First(long resourcePrimKey, long groupId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KBArticle> list = findByR_G(resourcePrimKey, groupId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("resourcePrimKey=");
-			msg.append(resourcePrimKey);
-
-			msg.append(", groupId=");
-			msg.append(groupId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param resourcePrimKey the resource prim key
 	 * @param groupId the group ID
@@ -3123,37 +3213,53 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByR_G_Last(long resourcePrimKey, long groupId,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByR_G_Last(resourcePrimKey, groupId,
+				orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("resourcePrimKey=");
+		msg.append(resourcePrimKey);
+
+		msg.append(", groupId=");
+		msg.append(groupId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63;.
+	 *
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByR_G_Last(long resourcePrimKey, long groupId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByR_G(resourcePrimKey, groupId);
 
 		List<KBArticle> list = findByR_G(resourcePrimKey, groupId, count - 1,
 				count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("resourcePrimKey=");
-			msg.append(resourcePrimKey);
-
-			msg.append(", groupId=");
-			msg.append(groupId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the k b articles before and after the current k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
 	 * @param resourcePrimKey the resource prim key
@@ -3928,10 +4034,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Returns the first k b article in the ordered set where resourcePrimKey = &#63; and latest = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param resourcePrimKey the resource prim key
 	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -3942,35 +4044,51 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByR_L_First(long resourcePrimKey, boolean latest,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByR_L_First(resourcePrimKey, latest,
+				orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("resourcePrimKey=");
+		msg.append(resourcePrimKey);
+
+		msg.append(", latest=");
+		msg.append(latest);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first k b article in the ordered set where resourcePrimKey = &#63; and latest = &#63;.
+	 *
+	 * @param resourcePrimKey the resource prim key
+	 * @param latest the latest
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByR_L_First(long resourcePrimKey, boolean latest,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KBArticle> list = findByR_L(resourcePrimKey, latest, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("resourcePrimKey=");
-			msg.append(resourcePrimKey);
-
-			msg.append(", latest=");
-			msg.append(latest);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last k b article in the ordered set where resourcePrimKey = &#63; and latest = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param resourcePrimKey the resource prim key
 	 * @param latest the latest
@@ -3982,37 +4100,53 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByR_L_Last(long resourcePrimKey, boolean latest,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByR_L_Last(resourcePrimKey, latest,
+				orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("resourcePrimKey=");
+		msg.append(resourcePrimKey);
+
+		msg.append(", latest=");
+		msg.append(latest);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last k b article in the ordered set where resourcePrimKey = &#63; and latest = &#63;.
+	 *
+	 * @param resourcePrimKey the resource prim key
+	 * @param latest the latest
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByR_L_Last(long resourcePrimKey, boolean latest,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByR_L(resourcePrimKey, latest);
 
 		List<KBArticle> list = findByR_L(resourcePrimKey, latest, count - 1,
 				count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("resourcePrimKey=");
-			msg.append(resourcePrimKey);
-
-			msg.append(", latest=");
-			msg.append(latest);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the k b articles before and after the current k b article in the ordered set where resourcePrimKey = &#63; and latest = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
 	 * @param resourcePrimKey the resource prim key
@@ -4483,10 +4617,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Returns the first k b article in the ordered set where resourcePrimKey = &#63; and main = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param resourcePrimKey the resource prim key
 	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -4497,35 +4627,51 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByR_M_First(long resourcePrimKey, boolean main,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByR_M_First(resourcePrimKey, main,
+				orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("resourcePrimKey=");
+		msg.append(resourcePrimKey);
+
+		msg.append(", main=");
+		msg.append(main);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first k b article in the ordered set where resourcePrimKey = &#63; and main = &#63;.
+	 *
+	 * @param resourcePrimKey the resource prim key
+	 * @param main the main
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByR_M_First(long resourcePrimKey, boolean main,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KBArticle> list = findByR_M(resourcePrimKey, main, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("resourcePrimKey=");
-			msg.append(resourcePrimKey);
-
-			msg.append(", main=");
-			msg.append(main);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last k b article in the ordered set where resourcePrimKey = &#63; and main = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param resourcePrimKey the resource prim key
 	 * @param main the main
@@ -4537,37 +4683,53 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByR_M_Last(long resourcePrimKey, boolean main,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByR_M_Last(resourcePrimKey, main,
+				orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("resourcePrimKey=");
+		msg.append(resourcePrimKey);
+
+		msg.append(", main=");
+		msg.append(main);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last k b article in the ordered set where resourcePrimKey = &#63; and main = &#63;.
+	 *
+	 * @param resourcePrimKey the resource prim key
+	 * @param main the main
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByR_M_Last(long resourcePrimKey, boolean main,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByR_M(resourcePrimKey, main);
 
 		List<KBArticle> list = findByR_M(resourcePrimKey, main, count - 1,
 				count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("resourcePrimKey=");
-			msg.append(resourcePrimKey);
-
-			msg.append(", main=");
-			msg.append(main);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the k b articles before and after the current k b article in the ordered set where resourcePrimKey = &#63; and main = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
 	 * @param resourcePrimKey the resource prim key
@@ -5035,10 +5197,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Returns the first k b article in the ordered set where resourcePrimKey = &#63; and status = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param resourcePrimKey the resource prim key
 	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -5049,35 +5207,51 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByR_S_First(long resourcePrimKey, int status,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByR_S_First(resourcePrimKey, status,
+				orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("resourcePrimKey=");
+		msg.append(resourcePrimKey);
+
+		msg.append(", status=");
+		msg.append(status);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first k b article in the ordered set where resourcePrimKey = &#63; and status = &#63;.
+	 *
+	 * @param resourcePrimKey the resource prim key
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByR_S_First(long resourcePrimKey, int status,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KBArticle> list = findByR_S(resourcePrimKey, status, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("resourcePrimKey=");
-			msg.append(resourcePrimKey);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last k b article in the ordered set where resourcePrimKey = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param resourcePrimKey the resource prim key
 	 * @param status the status
@@ -5089,37 +5263,53 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByR_S_Last(long resourcePrimKey, int status,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByR_S_Last(resourcePrimKey, status,
+				orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("resourcePrimKey=");
+		msg.append(resourcePrimKey);
+
+		msg.append(", status=");
+		msg.append(status);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last k b article in the ordered set where resourcePrimKey = &#63; and status = &#63;.
+	 *
+	 * @param resourcePrimKey the resource prim key
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByR_S_Last(long resourcePrimKey, int status,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByR_S(resourcePrimKey, status);
 
 		List<KBArticle> list = findByR_S(resourcePrimKey, status, count - 1,
 				count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("resourcePrimKey=");
-			msg.append(resourcePrimKey);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the k b articles before and after the current k b article in the ordered set where resourcePrimKey = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
 	 * @param resourcePrimKey the resource prim key
@@ -5588,10 +5778,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Returns the first k b article in the ordered set where groupId = &#63; and latest = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param groupId the group ID
 	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -5602,35 +5788,51 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByG_L_First(long groupId, boolean latest,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByG_L_First(groupId, latest,
+				orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", latest=");
+		msg.append(latest);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first k b article in the ordered set where groupId = &#63; and latest = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param latest the latest
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByG_L_First(long groupId, boolean latest,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KBArticle> list = findByG_L(groupId, latest, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", latest=");
-			msg.append(latest);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last k b article in the ordered set where groupId = &#63; and latest = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param groupId the group ID
 	 * @param latest the latest
@@ -5642,37 +5844,52 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByG_L_Last(long groupId, boolean latest,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByG_L_Last(groupId, latest, orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", latest=");
+		msg.append(latest);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last k b article in the ordered set where groupId = &#63; and latest = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param latest the latest
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByG_L_Last(long groupId, boolean latest,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_L(groupId, latest);
 
 		List<KBArticle> list = findByG_L(groupId, latest, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", latest=");
-			msg.append(latest);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the k b articles before and after the current k b article in the ordered set where groupId = &#63; and latest = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
 	 * @param groupId the group ID
@@ -6295,10 +6512,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Returns the first k b article in the ordered set where groupId = &#63; and main = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param groupId the group ID
 	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -6309,34 +6522,49 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByG_M_First(long groupId, boolean main,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByG_M_First(groupId, main, orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", main=");
+		msg.append(main);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first k b article in the ordered set where groupId = &#63; and main = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param main the main
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByG_M_First(long groupId, boolean main,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KBArticle> list = findByG_M(groupId, main, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", main=");
-			msg.append(main);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last k b article in the ordered set where groupId = &#63; and main = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param groupId the group ID
 	 * @param main the main
@@ -6348,37 +6576,52 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByG_M_Last(long groupId, boolean main,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByG_M_Last(groupId, main, orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", main=");
+		msg.append(main);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last k b article in the ordered set where groupId = &#63; and main = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param main the main
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByG_M_Last(long groupId, boolean main,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_M(groupId, main);
 
 		List<KBArticle> list = findByG_M(groupId, main, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", main=");
-			msg.append(main);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the k b articles before and after the current k b article in the ordered set where groupId = &#63; and main = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
 	 * @param groupId the group ID
@@ -7001,10 +7244,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Returns the first k b article in the ordered set where groupId = &#63; and status = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param groupId the group ID
 	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -7015,35 +7254,51 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByG_S_First(long groupId, int status,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByG_S_First(groupId, status,
+				orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", status=");
+		msg.append(status);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first k b article in the ordered set where groupId = &#63; and status = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByG_S_First(long groupId, int status,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KBArticle> list = findByG_S(groupId, status, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last k b article in the ordered set where groupId = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param groupId the group ID
 	 * @param status the status
@@ -7055,37 +7310,52 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByG_S_Last(long groupId, int status,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByG_S_Last(groupId, status, orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", status=");
+		msg.append(status);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last k b article in the ordered set where groupId = &#63; and status = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByG_S_Last(long groupId, int status,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_S(groupId, status);
 
 		List<KBArticle> list = findByG_S(groupId, status, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the k b articles before and after the current k b article in the ordered set where groupId = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
 	 * @param groupId the group ID
@@ -7707,10 +7977,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Returns the first k b article in the ordered set where companyId = &#63; and latest = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param companyId the company ID
 	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -7721,35 +7987,51 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByC_L_First(long companyId, boolean latest,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByC_L_First(companyId, latest,
+				orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(", latest=");
+		msg.append(latest);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first k b article in the ordered set where companyId = &#63; and latest = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param latest the latest
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByC_L_First(long companyId, boolean latest,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KBArticle> list = findByC_L(companyId, latest, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(", latest=");
-			msg.append(latest);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last k b article in the ordered set where companyId = &#63; and latest = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param companyId the company ID
 	 * @param latest the latest
@@ -7761,37 +8043,53 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByC_L_Last(long companyId, boolean latest,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByC_L_Last(companyId, latest,
+				orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(", latest=");
+		msg.append(latest);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last k b article in the ordered set where companyId = &#63; and latest = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param latest the latest
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByC_L_Last(long companyId, boolean latest,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByC_L(companyId, latest);
 
 		List<KBArticle> list = findByC_L(companyId, latest, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(", latest=");
-			msg.append(latest);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the k b articles before and after the current k b article in the ordered set where companyId = &#63; and latest = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
 	 * @param companyId the company ID
@@ -8089,10 +8387,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Returns the first k b article in the ordered set where companyId = &#63; and main = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param companyId the company ID
 	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -8103,35 +8397,51 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByC_M_First(long companyId, boolean main,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByC_M_First(companyId, main,
+				orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(", main=");
+		msg.append(main);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first k b article in the ordered set where companyId = &#63; and main = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param main the main
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByC_M_First(long companyId, boolean main,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KBArticle> list = findByC_M(companyId, main, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(", main=");
-			msg.append(main);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last k b article in the ordered set where companyId = &#63; and main = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param companyId the company ID
 	 * @param main the main
@@ -8143,37 +8453,52 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByC_M_Last(long companyId, boolean main,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByC_M_Last(companyId, main, orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(", main=");
+		msg.append(main);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last k b article in the ordered set where companyId = &#63; and main = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param main the main
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByC_M_Last(long companyId, boolean main,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByC_M(companyId, main);
 
 		List<KBArticle> list = findByC_M(companyId, main, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(", main=");
-			msg.append(main);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the k b articles before and after the current k b article in the ordered set where companyId = &#63; and main = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
 	 * @param companyId the company ID
@@ -8471,10 +8796,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Returns the first k b article in the ordered set where companyId = &#63; and status = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param companyId the company ID
 	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -8485,35 +8806,51 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByC_S_First(long companyId, int status,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByC_S_First(companyId, status,
+				orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(", status=");
+		msg.append(status);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first k b article in the ordered set where companyId = &#63; and status = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByC_S_First(long companyId, int status,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KBArticle> list = findByC_S(companyId, status, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last k b article in the ordered set where companyId = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param companyId the company ID
 	 * @param status the status
@@ -8525,37 +8862,53 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByC_S_Last(long companyId, int status,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByC_S_Last(companyId, status,
+				orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(", status=");
+		msg.append(status);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last k b article in the ordered set where companyId = &#63; and status = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByC_S_Last(long companyId, int status,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByC_S(companyId, status);
 
 		List<KBArticle> list = findByC_S(companyId, status, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the k b articles before and after the current k b article in the ordered set where companyId = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
 	 * @param companyId the company ID
@@ -8854,10 +9207,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Returns the first k b article in the ordered set where parentResourcePrimKey = &#63; and latest = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param parentResourcePrimKey the parent resource prim key
 	 * @param latest the latest
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -8868,35 +9217,52 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByP_L_First(long parentResourcePrimKey,
 		boolean latest, OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByP_L_First(parentResourcePrimKey, latest,
+				orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("parentResourcePrimKey=");
+		msg.append(parentResourcePrimKey);
+
+		msg.append(", latest=");
+		msg.append(latest);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first k b article in the ordered set where parentResourcePrimKey = &#63; and latest = &#63;.
+	 *
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param latest the latest
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByP_L_First(long parentResourcePrimKey,
+		boolean latest, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<KBArticle> list = findByP_L(parentResourcePrimKey, latest, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("parentResourcePrimKey=");
-			msg.append(parentResourcePrimKey);
-
-			msg.append(", latest=");
-			msg.append(latest);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last k b article in the ordered set where parentResourcePrimKey = &#63; and latest = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param parentResourcePrimKey the parent resource prim key
 	 * @param latest the latest
@@ -8908,37 +9274,54 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByP_L_Last(long parentResourcePrimKey, boolean latest,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByP_L_Last(parentResourcePrimKey, latest,
+				orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("parentResourcePrimKey=");
+		msg.append(parentResourcePrimKey);
+
+		msg.append(", latest=");
+		msg.append(latest);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last k b article in the ordered set where parentResourcePrimKey = &#63; and latest = &#63;.
+	 *
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param latest the latest
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByP_L_Last(long parentResourcePrimKey,
+		boolean latest, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countByP_L(parentResourcePrimKey, latest);
 
 		List<KBArticle> list = findByP_L(parentResourcePrimKey, latest,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("parentResourcePrimKey=");
-			msg.append(parentResourcePrimKey);
-
-			msg.append(", latest=");
-			msg.append(latest);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the k b articles before and after the current k b article in the ordered set where parentResourcePrimKey = &#63; and latest = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
 	 * @param parentResourcePrimKey the parent resource prim key
@@ -9410,10 +9793,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Returns the first k b article in the ordered set where parentResourcePrimKey = &#63; and main = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param parentResourcePrimKey the parent resource prim key
 	 * @param main the main
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -9424,35 +9803,51 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByP_M_First(long parentResourcePrimKey, boolean main,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByP_M_First(parentResourcePrimKey, main,
+				orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("parentResourcePrimKey=");
+		msg.append(parentResourcePrimKey);
+
+		msg.append(", main=");
+		msg.append(main);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first k b article in the ordered set where parentResourcePrimKey = &#63; and main = &#63;.
+	 *
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param main the main
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByP_M_First(long parentResourcePrimKey, boolean main,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KBArticle> list = findByP_M(parentResourcePrimKey, main, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("parentResourcePrimKey=");
-			msg.append(parentResourcePrimKey);
-
-			msg.append(", main=");
-			msg.append(main);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last k b article in the ordered set where parentResourcePrimKey = &#63; and main = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param parentResourcePrimKey the parent resource prim key
 	 * @param main the main
@@ -9464,37 +9859,53 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByP_M_Last(long parentResourcePrimKey, boolean main,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByP_M_Last(parentResourcePrimKey, main,
+				orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("parentResourcePrimKey=");
+		msg.append(parentResourcePrimKey);
+
+		msg.append(", main=");
+		msg.append(main);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last k b article in the ordered set where parentResourcePrimKey = &#63; and main = &#63;.
+	 *
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param main the main
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByP_M_Last(long parentResourcePrimKey, boolean main,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByP_M(parentResourcePrimKey, main);
 
 		List<KBArticle> list = findByP_M(parentResourcePrimKey, main,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("parentResourcePrimKey=");
-			msg.append(parentResourcePrimKey);
-
-			msg.append(", main=");
-			msg.append(main);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the k b articles before and after the current k b article in the ordered set where parentResourcePrimKey = &#63; and main = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
 	 * @param parentResourcePrimKey the parent resource prim key
@@ -9966,10 +10377,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Returns the first k b article in the ordered set where parentResourcePrimKey = &#63; and status = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param parentResourcePrimKey the parent resource prim key
 	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -9980,35 +10387,51 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByP_S_First(long parentResourcePrimKey, int status,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByP_S_First(parentResourcePrimKey, status,
+				orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("parentResourcePrimKey=");
+		msg.append(parentResourcePrimKey);
+
+		msg.append(", status=");
+		msg.append(status);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first k b article in the ordered set where parentResourcePrimKey = &#63; and status = &#63;.
+	 *
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByP_S_First(long parentResourcePrimKey, int status,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KBArticle> list = findByP_S(parentResourcePrimKey, status, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("parentResourcePrimKey=");
-			msg.append(parentResourcePrimKey);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last k b article in the ordered set where parentResourcePrimKey = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param parentResourcePrimKey the parent resource prim key
 	 * @param status the status
@@ -10020,37 +10443,53 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByP_S_Last(long parentResourcePrimKey, int status,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByP_S_Last(parentResourcePrimKey, status,
+				orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("parentResourcePrimKey=");
+		msg.append(parentResourcePrimKey);
+
+		msg.append(", status=");
+		msg.append(status);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last k b article in the ordered set where parentResourcePrimKey = &#63; and status = &#63;.
+	 *
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByP_S_Last(long parentResourcePrimKey, int status,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByP_S(parentResourcePrimKey, status);
 
 		List<KBArticle> list = findByP_S(parentResourcePrimKey, status,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("parentResourcePrimKey=");
-			msg.append(parentResourcePrimKey);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the k b articles before and after the current k b article in the ordered set where parentResourcePrimKey = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
 	 * @param parentResourcePrimKey the parent resource prim key
@@ -10530,10 +10969,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Returns the first k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param resourcePrimKey the resource prim key
 	 * @param groupId the group ID
 	 * @param latest the latest
@@ -10545,38 +10980,56 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByR_G_L_First(long resourcePrimKey, long groupId,
 		boolean latest, OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByR_G_L_First(resourcePrimKey, groupId,
+				latest, orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("resourcePrimKey=");
+		msg.append(resourcePrimKey);
+
+		msg.append(", groupId=");
+		msg.append(groupId);
+
+		msg.append(", latest=");
+		msg.append(latest);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
+	 *
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param latest the latest
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByR_G_L_First(long resourcePrimKey, long groupId,
+		boolean latest, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<KBArticle> list = findByR_G_L(resourcePrimKey, groupId, latest, 0,
 				1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("resourcePrimKey=");
-			msg.append(resourcePrimKey);
-
-			msg.append(", groupId=");
-			msg.append(groupId);
-
-			msg.append(", latest=");
-			msg.append(latest);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param resourcePrimKey the resource prim key
 	 * @param groupId the group ID
@@ -10589,40 +11042,58 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByR_G_L_Last(long resourcePrimKey, long groupId,
 		boolean latest, OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByR_G_L_Last(resourcePrimKey, groupId,
+				latest, orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("resourcePrimKey=");
+		msg.append(resourcePrimKey);
+
+		msg.append(", groupId=");
+		msg.append(groupId);
+
+		msg.append(", latest=");
+		msg.append(latest);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
+	 *
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param latest the latest
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByR_G_L_Last(long resourcePrimKey, long groupId,
+		boolean latest, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countByR_G_L(resourcePrimKey, groupId, latest);
 
 		List<KBArticle> list = findByR_G_L(resourcePrimKey, groupId, latest,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("resourcePrimKey=");
-			msg.append(resourcePrimKey);
-
-			msg.append(", groupId=");
-			msg.append(groupId);
-
-			msg.append(", latest=");
-			msg.append(latest);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the k b articles before and after the current k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
 	 * @param resourcePrimKey the resource prim key
@@ -11631,10 +12102,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Returns the first k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param resourcePrimKey the resource prim key
 	 * @param groupId the group ID
 	 * @param main the main
@@ -11646,38 +12113,56 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByR_G_M_First(long resourcePrimKey, long groupId,
 		boolean main, OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByR_G_M_First(resourcePrimKey, groupId,
+				main, orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("resourcePrimKey=");
+		msg.append(resourcePrimKey);
+
+		msg.append(", groupId=");
+		msg.append(groupId);
+
+		msg.append(", main=");
+		msg.append(main);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
+	 *
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param main the main
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByR_G_M_First(long resourcePrimKey, long groupId,
+		boolean main, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<KBArticle> list = findByR_G_M(resourcePrimKey, groupId, main, 0,
 				1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("resourcePrimKey=");
-			msg.append(resourcePrimKey);
-
-			msg.append(", groupId=");
-			msg.append(groupId);
-
-			msg.append(", main=");
-			msg.append(main);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param resourcePrimKey the resource prim key
 	 * @param groupId the group ID
@@ -11690,40 +12175,58 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByR_G_M_Last(long resourcePrimKey, long groupId,
 		boolean main, OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByR_G_M_Last(resourcePrimKey, groupId, main,
+				orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("resourcePrimKey=");
+		msg.append(resourcePrimKey);
+
+		msg.append(", groupId=");
+		msg.append(groupId);
+
+		msg.append(", main=");
+		msg.append(main);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
+	 *
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param main the main
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByR_G_M_Last(long resourcePrimKey, long groupId,
+		boolean main, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countByR_G_M(resourcePrimKey, groupId, main);
 
 		List<KBArticle> list = findByR_G_M(resourcePrimKey, groupId, main,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("resourcePrimKey=");
-			msg.append(resourcePrimKey);
-
-			msg.append(", groupId=");
-			msg.append(groupId);
-
-			msg.append(", main=");
-			msg.append(main);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the k b articles before and after the current k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
 	 * @param resourcePrimKey the resource prim key
@@ -12732,10 +13235,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Returns the first k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param resourcePrimKey the resource prim key
 	 * @param groupId the group ID
 	 * @param status the status
@@ -12747,38 +13246,56 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByR_G_S_First(long resourcePrimKey, long groupId,
 		int status, OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByR_G_S_First(resourcePrimKey, groupId,
+				status, orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("resourcePrimKey=");
+		msg.append(resourcePrimKey);
+
+		msg.append(", groupId=");
+		msg.append(groupId);
+
+		msg.append(", status=");
+		msg.append(status);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
+	 *
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByR_G_S_First(long resourcePrimKey, long groupId,
+		int status, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<KBArticle> list = findByR_G_S(resourcePrimKey, groupId, status, 0,
 				1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("resourcePrimKey=");
-			msg.append(resourcePrimKey);
-
-			msg.append(", groupId=");
-			msg.append(groupId);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param resourcePrimKey the resource prim key
 	 * @param groupId the group ID
@@ -12791,40 +13308,58 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByR_G_S_Last(long resourcePrimKey, long groupId,
 		int status, OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByR_G_S_Last(resourcePrimKey, groupId,
+				status, orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("resourcePrimKey=");
+		msg.append(resourcePrimKey);
+
+		msg.append(", groupId=");
+		msg.append(groupId);
+
+		msg.append(", status=");
+		msg.append(status);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
+	 *
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByR_G_S_Last(long resourcePrimKey, long groupId,
+		int status, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countByR_G_S(resourcePrimKey, groupId, status);
 
 		List<KBArticle> list = findByR_G_S(resourcePrimKey, groupId, status,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("resourcePrimKey=");
-			msg.append(resourcePrimKey);
-
-			msg.append(", groupId=");
-			msg.append(groupId);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the k b articles before and after the current k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
 	 * @param resourcePrimKey the resource prim key
@@ -13833,10 +14368,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Returns the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param groupId the group ID
 	 * @param parentResourcePrimKey the parent resource prim key
 	 * @param latest the latest
@@ -13849,38 +14380,56 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		long parentResourcePrimKey, boolean latest,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByG_P_L_First(groupId,
+				parentResourcePrimKey, latest, orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", parentResourcePrimKey=");
+		msg.append(parentResourcePrimKey);
+
+		msg.append(", latest=");
+		msg.append(latest);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param latest the latest
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByG_P_L_First(long groupId,
+		long parentResourcePrimKey, boolean latest,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KBArticle> list = findByG_P_L(groupId, parentResourcePrimKey,
 				latest, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", parentResourcePrimKey=");
-			msg.append(parentResourcePrimKey);
-
-			msg.append(", latest=");
-			msg.append(latest);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param groupId the group ID
 	 * @param parentResourcePrimKey the parent resource prim key
@@ -13893,40 +14442,58 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByG_P_L_Last(long groupId, long parentResourcePrimKey,
 		boolean latest, OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByG_P_L_Last(groupId, parentResourcePrimKey,
+				latest, orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", parentResourcePrimKey=");
+		msg.append(parentResourcePrimKey);
+
+		msg.append(", latest=");
+		msg.append(latest);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param latest the latest
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByG_P_L_Last(long groupId,
+		long parentResourcePrimKey, boolean latest,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_P_L(groupId, parentResourcePrimKey, latest);
 
 		List<KBArticle> list = findByG_P_L(groupId, parentResourcePrimKey,
 				latest, count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", parentResourcePrimKey=");
-			msg.append(parentResourcePrimKey);
-
-			msg.append(", latest=");
-			msg.append(latest);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the k b articles before and after the current k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
 	 * @param groupId the group ID
@@ -14945,10 +15512,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Returns the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param groupId the group ID
 	 * @param parentResourcePrimKey the parent resource prim key
 	 * @param main the main
@@ -14961,38 +15524,56 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		long parentResourcePrimKey, boolean main,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByG_P_M_First(groupId,
+				parentResourcePrimKey, main, orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", parentResourcePrimKey=");
+		msg.append(parentResourcePrimKey);
+
+		msg.append(", main=");
+		msg.append(main);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param main the main
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByG_P_M_First(long groupId,
+		long parentResourcePrimKey, boolean main,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KBArticle> list = findByG_P_M(groupId, parentResourcePrimKey,
 				main, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", parentResourcePrimKey=");
-			msg.append(parentResourcePrimKey);
-
-			msg.append(", main=");
-			msg.append(main);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param groupId the group ID
 	 * @param parentResourcePrimKey the parent resource prim key
@@ -15005,40 +15586,58 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByG_P_M_Last(long groupId, long parentResourcePrimKey,
 		boolean main, OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByG_P_M_Last(groupId, parentResourcePrimKey,
+				main, orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", parentResourcePrimKey=");
+		msg.append(parentResourcePrimKey);
+
+		msg.append(", main=");
+		msg.append(main);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param main the main
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByG_P_M_Last(long groupId,
+		long parentResourcePrimKey, boolean main,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_P_M(groupId, parentResourcePrimKey, main);
 
 		List<KBArticle> list = findByG_P_M(groupId, parentResourcePrimKey,
 				main, count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", parentResourcePrimKey=");
-			msg.append(parentResourcePrimKey);
-
-			msg.append(", main=");
-			msg.append(main);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the k b articles before and after the current k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
 	 * @param groupId the group ID
@@ -16055,10 +16654,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Returns the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param groupId the group ID
 	 * @param parentResourcePrimKey the parent resource prim key
 	 * @param status the status
@@ -16071,38 +16666,56 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		long parentResourcePrimKey, int status,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByG_P_S_First(groupId,
+				parentResourcePrimKey, status, orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", parentResourcePrimKey=");
+		msg.append(parentResourcePrimKey);
+
+		msg.append(", status=");
+		msg.append(status);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByG_P_S_First(long groupId,
+		long parentResourcePrimKey, int status,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KBArticle> list = findByG_P_S(groupId, parentResourcePrimKey,
 				status, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", parentResourcePrimKey=");
-			msg.append(parentResourcePrimKey);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param groupId the group ID
 	 * @param parentResourcePrimKey the parent resource prim key
@@ -16115,40 +16728,58 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle findByG_P_S_Last(long groupId, long parentResourcePrimKey,
 		int status, OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByG_P_S_Last(groupId, parentResourcePrimKey,
+				status, orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", parentResourcePrimKey=");
+		msg.append(parentResourcePrimKey);
+
+		msg.append(", status=");
+		msg.append(status);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByG_P_S_Last(long groupId,
+		long parentResourcePrimKey, int status,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_P_S(groupId, parentResourcePrimKey, status);
 
 		List<KBArticle> list = findByG_P_S(groupId, parentResourcePrimKey,
 				status, count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", parentResourcePrimKey=");
-			msg.append(parentResourcePrimKey);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the k b articles before and after the current k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
 	 * @param groupId the group ID
@@ -17179,10 +17810,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Returns the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param groupId the group ID
 	 * @param parentResourcePrimKey the parent resource prim key
 	 * @param sections the sections
@@ -17196,41 +17823,60 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		long parentResourcePrimKey, String sections, boolean latest,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByG_P_S_L_First(groupId,
+				parentResourcePrimKey, sections, latest, orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(10);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", parentResourcePrimKey=");
+		msg.append(parentResourcePrimKey);
+
+		msg.append(", sections=");
+		msg.append(sections);
+
+		msg.append(", latest=");
+		msg.append(latest);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param latest the latest
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByG_P_S_L_First(long groupId,
+		long parentResourcePrimKey, String sections, boolean latest,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KBArticle> list = findByG_P_S_L(groupId, parentResourcePrimKey,
 				sections, latest, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(10);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", parentResourcePrimKey=");
-			msg.append(parentResourcePrimKey);
-
-			msg.append(", sections=");
-			msg.append(sections);
-
-			msg.append(", latest=");
-			msg.append(latest);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param groupId the group ID
 	 * @param parentResourcePrimKey the parent resource prim key
@@ -17245,44 +17891,63 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		long parentResourcePrimKey, String sections, boolean latest,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByG_P_S_L_Last(groupId,
+				parentResourcePrimKey, sections, latest, orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(10);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", parentResourcePrimKey=");
+		msg.append(parentResourcePrimKey);
+
+		msg.append(", sections=");
+		msg.append(sections);
+
+		msg.append(", latest=");
+		msg.append(latest);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param latest the latest
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByG_P_S_L_Last(long groupId,
+		long parentResourcePrimKey, String sections, boolean latest,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_P_S_L(groupId, parentResourcePrimKey, sections,
 				latest);
 
 		List<KBArticle> list = findByG_P_S_L(groupId, parentResourcePrimKey,
 				sections, latest, count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(10);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", parentResourcePrimKey=");
-			msg.append(parentResourcePrimKey);
-
-			msg.append(", sections=");
-			msg.append(sections);
-
-			msg.append(", latest=");
-			msg.append(latest);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the k b articles before and after the current k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
 	 * @param groupId the group ID
@@ -18425,10 +19090,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Returns the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param groupId the group ID
 	 * @param parentResourcePrimKey the parent resource prim key
 	 * @param sections the sections
@@ -18442,41 +19103,60 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		long parentResourcePrimKey, String sections, boolean main,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByG_P_S_M_First(groupId,
+				parentResourcePrimKey, sections, main, orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(10);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", parentResourcePrimKey=");
+		msg.append(parentResourcePrimKey);
+
+		msg.append(", sections=");
+		msg.append(sections);
+
+		msg.append(", main=");
+		msg.append(main);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param main the main
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByG_P_S_M_First(long groupId,
+		long parentResourcePrimKey, String sections, boolean main,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KBArticle> list = findByG_P_S_M(groupId, parentResourcePrimKey,
 				sections, main, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(10);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", parentResourcePrimKey=");
-			msg.append(parentResourcePrimKey);
-
-			msg.append(", sections=");
-			msg.append(sections);
-
-			msg.append(", main=");
-			msg.append(main);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param groupId the group ID
 	 * @param parentResourcePrimKey the parent resource prim key
@@ -18491,44 +19171,63 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		long parentResourcePrimKey, String sections, boolean main,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByG_P_S_M_Last(groupId,
+				parentResourcePrimKey, sections, main, orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(10);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", parentResourcePrimKey=");
+		msg.append(parentResourcePrimKey);
+
+		msg.append(", sections=");
+		msg.append(sections);
+
+		msg.append(", main=");
+		msg.append(main);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param main the main
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByG_P_S_M_Last(long groupId,
+		long parentResourcePrimKey, String sections, boolean main,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_P_S_M(groupId, parentResourcePrimKey, sections,
 				main);
 
 		List<KBArticle> list = findByG_P_S_M(groupId, parentResourcePrimKey,
 				sections, main, count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(10);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", parentResourcePrimKey=");
-			msg.append(parentResourcePrimKey);
-
-			msg.append(", sections=");
-			msg.append(sections);
-
-			msg.append(", main=");
-			msg.append(main);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the k b articles before and after the current k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
 	 * @param groupId the group ID
@@ -19671,10 +20370,6 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	/**
 	 * Returns the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param groupId the group ID
 	 * @param parentResourcePrimKey the parent resource prim key
 	 * @param sections the sections
@@ -19688,41 +20383,60 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		long parentResourcePrimKey, String sections, int status,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByG_P_S_S_First(groupId,
+				parentResourcePrimKey, sections, status, orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(10);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", parentResourcePrimKey=");
+		msg.append(parentResourcePrimKey);
+
+		msg.append(", sections=");
+		msg.append(sections);
+
+		msg.append(", status=");
+		msg.append(status);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByG_P_S_S_First(long groupId,
+		long parentResourcePrimKey, String sections, int status,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KBArticle> list = findByG_P_S_S(groupId, parentResourcePrimKey,
 				sections, status, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(10);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", parentResourcePrimKey=");
-			msg.append(parentResourcePrimKey);
-
-			msg.append(", sections=");
-			msg.append(sections);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param groupId the group ID
 	 * @param parentResourcePrimKey the parent resource prim key
@@ -19737,44 +20451,63 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		long parentResourcePrimKey, String sections, int status,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
+		KBArticle kbArticle = fetchByG_P_S_S_Last(groupId,
+				parentResourcePrimKey, sections, status, orderByComparator);
+
+		if (kbArticle != null) {
+			return kbArticle;
+		}
+
+		StringBundler msg = new StringBundler(10);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", parentResourcePrimKey=");
+		msg.append(parentResourcePrimKey);
+
+		msg.append(", sections=");
+		msg.append(sections);
+
+		msg.append(", status=");
+		msg.append(status);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchArticleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param parentResourcePrimKey the parent resource prim key
+	 * @param sections the sections
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KBArticle fetchByG_P_S_S_Last(long groupId,
+		long parentResourcePrimKey, String sections, int status,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_P_S_S(groupId, parentResourcePrimKey, sections,
 				status);
 
 		List<KBArticle> list = findByG_P_S_S(groupId, parentResourcePrimKey,
 				sections, status, count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(10);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", parentResourcePrimKey=");
-			msg.append(parentResourcePrimKey);
-
-			msg.append(", sections=");
-			msg.append(sections);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the k b articles before and after the current k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kbArticleId the primary key of the current k b article
 	 * @param groupId the group ID

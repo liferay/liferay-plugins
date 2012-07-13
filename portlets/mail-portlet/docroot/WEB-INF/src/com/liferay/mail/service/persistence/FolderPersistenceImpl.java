@@ -650,10 +650,6 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	/**
 	 * Returns the first folder in the ordered set where accountId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param accountId the account ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching folder
@@ -663,31 +659,45 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	public Folder findByAccountId_First(long accountId,
 		OrderByComparator orderByComparator)
 		throws NoSuchFolderException, SystemException {
+		Folder folder = fetchByAccountId_First(accountId, orderByComparator);
+
+		if (folder != null) {
+			return folder;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("accountId=");
+		msg.append(accountId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchFolderException(msg.toString());
+	}
+
+	/**
+	 * Returns the first folder in the ordered set where accountId = &#63;.
+	 *
+	 * @param accountId the account ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching folder, or <code>null</code> if a matching folder could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Folder fetchByAccountId_First(long accountId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<Folder> list = findByAccountId(accountId, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("accountId=");
-			msg.append(accountId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchFolderException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last folder in the ordered set where accountId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param accountId the account ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -698,34 +708,48 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	public Folder findByAccountId_Last(long accountId,
 		OrderByComparator orderByComparator)
 		throws NoSuchFolderException, SystemException {
+		Folder folder = fetchByAccountId_Last(accountId, orderByComparator);
+
+		if (folder != null) {
+			return folder;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("accountId=");
+		msg.append(accountId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchFolderException(msg.toString());
+	}
+
+	/**
+	 * Returns the last folder in the ordered set where accountId = &#63;.
+	 *
+	 * @param accountId the account ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching folder, or <code>null</code> if a matching folder could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Folder fetchByAccountId_Last(long accountId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByAccountId(accountId);
 
 		List<Folder> list = findByAccountId(accountId, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("accountId=");
-			msg.append(accountId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchFolderException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the folders before and after the current folder in the ordered set where accountId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param folderId the primary key of the current folder
 	 * @param accountId the account ID

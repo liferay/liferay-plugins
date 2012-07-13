@@ -688,10 +688,6 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	/**
 	 * Returns the first s v n revision in the ordered set where svnUserId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param svnUserId the svn user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching s v n revision
@@ -701,32 +697,47 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	public SVNRevision findBySVNUserId_First(String svnUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchSVNRevisionException, SystemException {
+		SVNRevision svnRevision = fetchBySVNUserId_First(svnUserId,
+				orderByComparator);
+
+		if (svnRevision != null) {
+			return svnRevision;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("svnUserId=");
+		msg.append(svnUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchSVNRevisionException(msg.toString());
+	}
+
+	/**
+	 * Returns the first s v n revision in the ordered set where svnUserId = &#63;.
+	 *
+	 * @param svnUserId the svn user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching s v n revision, or <code>null</code> if a matching s v n revision could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public SVNRevision fetchBySVNUserId_First(String svnUserId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<SVNRevision> list = findBySVNUserId(svnUserId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("svnUserId=");
-			msg.append(svnUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchSVNRevisionException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last s v n revision in the ordered set where svnUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param svnUserId the svn user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -737,34 +748,49 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	public SVNRevision findBySVNUserId_Last(String svnUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchSVNRevisionException, SystemException {
+		SVNRevision svnRevision = fetchBySVNUserId_Last(svnUserId,
+				orderByComparator);
+
+		if (svnRevision != null) {
+			return svnRevision;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("svnUserId=");
+		msg.append(svnUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchSVNRevisionException(msg.toString());
+	}
+
+	/**
+	 * Returns the last s v n revision in the ordered set where svnUserId = &#63;.
+	 *
+	 * @param svnUserId the svn user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching s v n revision, or <code>null</code> if a matching s v n revision could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public SVNRevision fetchBySVNUserId_Last(String svnUserId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countBySVNUserId(svnUserId);
 
 		List<SVNRevision> list = findBySVNUserId(svnUserId, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("svnUserId=");
-			msg.append(svnUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchSVNRevisionException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the s v n revisions before and after the current s v n revision in the ordered set where svnUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param svnRevisionId the primary key of the current s v n revision
 	 * @param svnUserId the svn user ID
@@ -1062,10 +1088,6 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	/**
 	 * Returns the first s v n revision in the ordered set where svnRepositoryId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param svnRepositoryId the svn repository ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching s v n revision
@@ -1075,32 +1097,47 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	public SVNRevision findBySVNRepositoryId_First(long svnRepositoryId,
 		OrderByComparator orderByComparator)
 		throws NoSuchSVNRevisionException, SystemException {
+		SVNRevision svnRevision = fetchBySVNRepositoryId_First(svnRepositoryId,
+				orderByComparator);
+
+		if (svnRevision != null) {
+			return svnRevision;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("svnRepositoryId=");
+		msg.append(svnRepositoryId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchSVNRevisionException(msg.toString());
+	}
+
+	/**
+	 * Returns the first s v n revision in the ordered set where svnRepositoryId = &#63;.
+	 *
+	 * @param svnRepositoryId the svn repository ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching s v n revision, or <code>null</code> if a matching s v n revision could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public SVNRevision fetchBySVNRepositoryId_First(long svnRepositoryId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<SVNRevision> list = findBySVNRepositoryId(svnRepositoryId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("svnRepositoryId=");
-			msg.append(svnRepositoryId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchSVNRevisionException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last s v n revision in the ordered set where svnRepositoryId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param svnRepositoryId the svn repository ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1111,34 +1148,49 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	public SVNRevision findBySVNRepositoryId_Last(long svnRepositoryId,
 		OrderByComparator orderByComparator)
 		throws NoSuchSVNRevisionException, SystemException {
+		SVNRevision svnRevision = fetchBySVNRepositoryId_Last(svnRepositoryId,
+				orderByComparator);
+
+		if (svnRevision != null) {
+			return svnRevision;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("svnRepositoryId=");
+		msg.append(svnRepositoryId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchSVNRevisionException(msg.toString());
+	}
+
+	/**
+	 * Returns the last s v n revision in the ordered set where svnRepositoryId = &#63;.
+	 *
+	 * @param svnRepositoryId the svn repository ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching s v n revision, or <code>null</code> if a matching s v n revision could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public SVNRevision fetchBySVNRepositoryId_Last(long svnRepositoryId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countBySVNRepositoryId(svnRepositoryId);
 
 		List<SVNRevision> list = findBySVNRepositoryId(svnRepositoryId,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("svnRepositoryId=");
-			msg.append(svnRepositoryId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchSVNRevisionException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the s v n revisions before and after the current s v n revision in the ordered set where svnRepositoryId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param svnRevisionId the primary key of the current s v n revision
 	 * @param svnRepositoryId the svn repository ID
@@ -1444,10 +1496,6 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	/**
 	 * Returns the first s v n revision in the ordered set where svnUserId = &#63; and svnRepositoryId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param svnUserId the svn user ID
 	 * @param svnRepositoryId the svn repository ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1458,35 +1506,52 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	public SVNRevision findBySVNU_SVNR_First(String svnUserId,
 		long svnRepositoryId, OrderByComparator orderByComparator)
 		throws NoSuchSVNRevisionException, SystemException {
+		SVNRevision svnRevision = fetchBySVNU_SVNR_First(svnUserId,
+				svnRepositoryId, orderByComparator);
+
+		if (svnRevision != null) {
+			return svnRevision;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("svnUserId=");
+		msg.append(svnUserId);
+
+		msg.append(", svnRepositoryId=");
+		msg.append(svnRepositoryId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchSVNRevisionException(msg.toString());
+	}
+
+	/**
+	 * Returns the first s v n revision in the ordered set where svnUserId = &#63; and svnRepositoryId = &#63;.
+	 *
+	 * @param svnUserId the svn user ID
+	 * @param svnRepositoryId the svn repository ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching s v n revision, or <code>null</code> if a matching s v n revision could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public SVNRevision fetchBySVNU_SVNR_First(String svnUserId,
+		long svnRepositoryId, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<SVNRevision> list = findBySVNU_SVNR(svnUserId, svnRepositoryId, 0,
 				1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("svnUserId=");
-			msg.append(svnUserId);
-
-			msg.append(", svnRepositoryId=");
-			msg.append(svnRepositoryId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchSVNRevisionException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last s v n revision in the ordered set where svnUserId = &#63; and svnRepositoryId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param svnUserId the svn user ID
 	 * @param svnRepositoryId the svn repository ID
@@ -1498,37 +1563,54 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	public SVNRevision findBySVNU_SVNR_Last(String svnUserId,
 		long svnRepositoryId, OrderByComparator orderByComparator)
 		throws NoSuchSVNRevisionException, SystemException {
+		SVNRevision svnRevision = fetchBySVNU_SVNR_Last(svnUserId,
+				svnRepositoryId, orderByComparator);
+
+		if (svnRevision != null) {
+			return svnRevision;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("svnUserId=");
+		msg.append(svnUserId);
+
+		msg.append(", svnRepositoryId=");
+		msg.append(svnRepositoryId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchSVNRevisionException(msg.toString());
+	}
+
+	/**
+	 * Returns the last s v n revision in the ordered set where svnUserId = &#63; and svnRepositoryId = &#63;.
+	 *
+	 * @param svnUserId the svn user ID
+	 * @param svnRepositoryId the svn repository ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching s v n revision, or <code>null</code> if a matching s v n revision could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public SVNRevision fetchBySVNU_SVNR_Last(String svnUserId,
+		long svnRepositoryId, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countBySVNU_SVNR(svnUserId, svnRepositoryId);
 
 		List<SVNRevision> list = findBySVNU_SVNR(svnUserId, svnRepositoryId,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("svnUserId=");
-			msg.append(svnUserId);
-
-			msg.append(", svnRepositoryId=");
-			msg.append(svnRepositoryId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchSVNRevisionException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the s v n revisions before and after the current s v n revision in the ordered set where svnUserId = &#63; and svnRepositoryId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param svnRevisionId the primary key of the current s v n revision
 	 * @param svnUserId the svn user ID

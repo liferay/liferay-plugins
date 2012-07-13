@@ -154,10 +154,6 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 	/**
 	* Returns the first j i r a change item in the ordered set where jiraChangeGroupId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param jiraChangeGroupId the jira change group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a change item
@@ -171,11 +167,20 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 			com.liferay.socialcoding.NoSuchJIRAChangeItemException;
 
 	/**
-	* Returns the last j i r a change item in the ordered set where jiraChangeGroupId = &#63;.
+	* Returns the first j i r a change item in the ordered set where jiraChangeGroupId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param jiraChangeGroupId the jira change group ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching j i r a change item, or <code>null</code> if a matching j i r a change item could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.socialcoding.model.JIRAChangeItem fetchByJiraChangeGroupId_First(
+		long jiraChangeGroupId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last j i r a change item in the ordered set where jiraChangeGroupId = &#63;.
 	*
 	* @param jiraChangeGroupId the jira change group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -190,11 +195,20 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 			com.liferay.socialcoding.NoSuchJIRAChangeItemException;
 
 	/**
-	* Returns the j i r a change items before and after the current j i r a change item in the ordered set where jiraChangeGroupId = &#63;.
+	* Returns the last j i r a change item in the ordered set where jiraChangeGroupId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param jiraChangeGroupId the jira change group ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching j i r a change item, or <code>null</code> if a matching j i r a change item could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.socialcoding.model.JIRAChangeItem fetchByJiraChangeGroupId_Last(
+		long jiraChangeGroupId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the j i r a change items before and after the current j i r a change item in the ordered set where jiraChangeGroupId = &#63;.
 	*
 	* @param jiraChangeItemId the primary key of the current j i r a change item
 	* @param jiraChangeGroupId the jira change group ID

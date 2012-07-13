@@ -764,10 +764,6 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	/**
 	 * Returns the first kaleo task assignment instance in the ordered set where companyId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo task assignment instance
@@ -777,32 +773,47 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	public KaleoTaskAssignmentInstance findByCompanyId_First(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchTaskAssignmentInstanceException, SystemException {
+		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance = fetchByCompanyId_First(companyId,
+				orderByComparator);
+
+		if (kaleoTaskAssignmentInstance != null) {
+			return kaleoTaskAssignmentInstance;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTaskAssignmentInstanceException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo task assignment instance in the ordered set where companyId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo task assignment instance, or <code>null</code> if a matching kaleo task assignment instance could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTaskAssignmentInstance fetchByCompanyId_First(long companyId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KaleoTaskAssignmentInstance> list = findByCompanyId(companyId, 0,
 				1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTaskAssignmentInstanceException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last kaleo task assignment instance in the ordered set where companyId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -813,34 +824,49 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	public KaleoTaskAssignmentInstance findByCompanyId_Last(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchTaskAssignmentInstanceException, SystemException {
+		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance = fetchByCompanyId_Last(companyId,
+				orderByComparator);
+
+		if (kaleoTaskAssignmentInstance != null) {
+			return kaleoTaskAssignmentInstance;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTaskAssignmentInstanceException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo task assignment instance in the ordered set where companyId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo task assignment instance, or <code>null</code> if a matching kaleo task assignment instance could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTaskAssignmentInstance fetchByCompanyId_Last(long companyId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
 
 		List<KaleoTaskAssignmentInstance> list = findByCompanyId(companyId,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTaskAssignmentInstanceException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the kaleo task assignment instances before and after the current kaleo task assignment instance in the ordered set where companyId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoTaskAssignmentInstanceId the primary key of the current kaleo task assignment instance
 	 * @param companyId the company ID
@@ -1130,10 +1156,6 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	/**
 	 * Returns the first kaleo task assignment instance in the ordered set where kaleoDefinitionId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param kaleoDefinitionId the kaleo definition ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo task assignment instance
@@ -1143,32 +1165,48 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	public KaleoTaskAssignmentInstance findByKaleoDefinitionId_First(
 		long kaleoDefinitionId, OrderByComparator orderByComparator)
 		throws NoSuchTaskAssignmentInstanceException, SystemException {
+		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance = fetchByKaleoDefinitionId_First(kaleoDefinitionId,
+				orderByComparator);
+
+		if (kaleoTaskAssignmentInstance != null) {
+			return kaleoTaskAssignmentInstance;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoDefinitionId=");
+		msg.append(kaleoDefinitionId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTaskAssignmentInstanceException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo task assignment instance in the ordered set where kaleoDefinitionId = &#63;.
+	 *
+	 * @param kaleoDefinitionId the kaleo definition ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo task assignment instance, or <code>null</code> if a matching kaleo task assignment instance could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTaskAssignmentInstance fetchByKaleoDefinitionId_First(
+		long kaleoDefinitionId, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<KaleoTaskAssignmentInstance> list = findByKaleoDefinitionId(kaleoDefinitionId,
 				0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoDefinitionId=");
-			msg.append(kaleoDefinitionId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTaskAssignmentInstanceException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last kaleo task assignment instance in the ordered set where kaleoDefinitionId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoDefinitionId the kaleo definition ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1179,34 +1217,50 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	public KaleoTaskAssignmentInstance findByKaleoDefinitionId_Last(
 		long kaleoDefinitionId, OrderByComparator orderByComparator)
 		throws NoSuchTaskAssignmentInstanceException, SystemException {
+		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance = fetchByKaleoDefinitionId_Last(kaleoDefinitionId,
+				orderByComparator);
+
+		if (kaleoTaskAssignmentInstance != null) {
+			return kaleoTaskAssignmentInstance;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoDefinitionId=");
+		msg.append(kaleoDefinitionId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTaskAssignmentInstanceException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo task assignment instance in the ordered set where kaleoDefinitionId = &#63;.
+	 *
+	 * @param kaleoDefinitionId the kaleo definition ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo task assignment instance, or <code>null</code> if a matching kaleo task assignment instance could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTaskAssignmentInstance fetchByKaleoDefinitionId_Last(
+		long kaleoDefinitionId, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countByKaleoDefinitionId(kaleoDefinitionId);
 
 		List<KaleoTaskAssignmentInstance> list = findByKaleoDefinitionId(kaleoDefinitionId,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoDefinitionId=");
-			msg.append(kaleoDefinitionId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTaskAssignmentInstanceException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the kaleo task assignment instances before and after the current kaleo task assignment instance in the ordered set where kaleoDefinitionId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoTaskAssignmentInstanceId the primary key of the current kaleo task assignment instance
 	 * @param kaleoDefinitionId the kaleo definition ID
@@ -1497,10 +1551,6 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	/**
 	 * Returns the first kaleo task assignment instance in the ordered set where kaleoInstanceId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param kaleoInstanceId the kaleo instance ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo task assignment instance
@@ -1510,32 +1560,48 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	public KaleoTaskAssignmentInstance findByKaleoInstanceId_First(
 		long kaleoInstanceId, OrderByComparator orderByComparator)
 		throws NoSuchTaskAssignmentInstanceException, SystemException {
+		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance = fetchByKaleoInstanceId_First(kaleoInstanceId,
+				orderByComparator);
+
+		if (kaleoTaskAssignmentInstance != null) {
+			return kaleoTaskAssignmentInstance;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoInstanceId=");
+		msg.append(kaleoInstanceId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTaskAssignmentInstanceException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo task assignment instance in the ordered set where kaleoInstanceId = &#63;.
+	 *
+	 * @param kaleoInstanceId the kaleo instance ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo task assignment instance, or <code>null</code> if a matching kaleo task assignment instance could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTaskAssignmentInstance fetchByKaleoInstanceId_First(
+		long kaleoInstanceId, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<KaleoTaskAssignmentInstance> list = findByKaleoInstanceId(kaleoInstanceId,
 				0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoInstanceId=");
-			msg.append(kaleoInstanceId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTaskAssignmentInstanceException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last kaleo task assignment instance in the ordered set where kaleoInstanceId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoInstanceId the kaleo instance ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1546,34 +1612,50 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	public KaleoTaskAssignmentInstance findByKaleoInstanceId_Last(
 		long kaleoInstanceId, OrderByComparator orderByComparator)
 		throws NoSuchTaskAssignmentInstanceException, SystemException {
+		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance = fetchByKaleoInstanceId_Last(kaleoInstanceId,
+				orderByComparator);
+
+		if (kaleoTaskAssignmentInstance != null) {
+			return kaleoTaskAssignmentInstance;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoInstanceId=");
+		msg.append(kaleoInstanceId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTaskAssignmentInstanceException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo task assignment instance in the ordered set where kaleoInstanceId = &#63;.
+	 *
+	 * @param kaleoInstanceId the kaleo instance ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo task assignment instance, or <code>null</code> if a matching kaleo task assignment instance could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTaskAssignmentInstance fetchByKaleoInstanceId_Last(
+		long kaleoInstanceId, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countByKaleoInstanceId(kaleoInstanceId);
 
 		List<KaleoTaskAssignmentInstance> list = findByKaleoInstanceId(kaleoInstanceId,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoInstanceId=");
-			msg.append(kaleoInstanceId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTaskAssignmentInstanceException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the kaleo task assignment instances before and after the current kaleo task assignment instance in the ordered set where kaleoInstanceId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoTaskAssignmentInstanceId the primary key of the current kaleo task assignment instance
 	 * @param kaleoInstanceId the kaleo instance ID
@@ -1866,10 +1948,6 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	/**
 	 * Returns the first kaleo task assignment instance in the ordered set where kaleoTaskInstanceTokenId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param kaleoTaskInstanceTokenId the kaleo task instance token ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo task assignment instance
@@ -1879,32 +1957,48 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	public KaleoTaskAssignmentInstance findBykaleoTaskInstanceTokenId_First(
 		long kaleoTaskInstanceTokenId, OrderByComparator orderByComparator)
 		throws NoSuchTaskAssignmentInstanceException, SystemException {
+		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance = fetchBykaleoTaskInstanceTokenId_First(kaleoTaskInstanceTokenId,
+				orderByComparator);
+
+		if (kaleoTaskAssignmentInstance != null) {
+			return kaleoTaskAssignmentInstance;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoTaskInstanceTokenId=");
+		msg.append(kaleoTaskInstanceTokenId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTaskAssignmentInstanceException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo task assignment instance in the ordered set where kaleoTaskInstanceTokenId = &#63;.
+	 *
+	 * @param kaleoTaskInstanceTokenId the kaleo task instance token ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo task assignment instance, or <code>null</code> if a matching kaleo task assignment instance could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTaskAssignmentInstance fetchBykaleoTaskInstanceTokenId_First(
+		long kaleoTaskInstanceTokenId, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<KaleoTaskAssignmentInstance> list = findBykaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId,
 				0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoTaskInstanceTokenId=");
-			msg.append(kaleoTaskInstanceTokenId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTaskAssignmentInstanceException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last kaleo task assignment instance in the ordered set where kaleoTaskInstanceTokenId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoTaskInstanceTokenId the kaleo task instance token ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1915,34 +2009,50 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	public KaleoTaskAssignmentInstance findBykaleoTaskInstanceTokenId_Last(
 		long kaleoTaskInstanceTokenId, OrderByComparator orderByComparator)
 		throws NoSuchTaskAssignmentInstanceException, SystemException {
+		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance = fetchBykaleoTaskInstanceTokenId_Last(kaleoTaskInstanceTokenId,
+				orderByComparator);
+
+		if (kaleoTaskAssignmentInstance != null) {
+			return kaleoTaskAssignmentInstance;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoTaskInstanceTokenId=");
+		msg.append(kaleoTaskInstanceTokenId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTaskAssignmentInstanceException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo task assignment instance in the ordered set where kaleoTaskInstanceTokenId = &#63;.
+	 *
+	 * @param kaleoTaskInstanceTokenId the kaleo task instance token ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo task assignment instance, or <code>null</code> if a matching kaleo task assignment instance could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTaskAssignmentInstance fetchBykaleoTaskInstanceTokenId_Last(
+		long kaleoTaskInstanceTokenId, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countBykaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId);
 
 		List<KaleoTaskAssignmentInstance> list = findBykaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoTaskInstanceTokenId=");
-			msg.append(kaleoTaskInstanceTokenId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTaskAssignmentInstanceException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the kaleo task assignment instances before and after the current kaleo task assignment instance in the ordered set where kaleoTaskInstanceTokenId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoTaskAssignmentInstanceId the primary key of the current kaleo task assignment instance
 	 * @param kaleoTaskInstanceTokenId the kaleo task instance token ID

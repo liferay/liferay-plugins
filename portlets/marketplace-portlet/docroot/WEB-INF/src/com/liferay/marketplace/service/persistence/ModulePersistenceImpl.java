@@ -729,10 +729,6 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	/**
 	 * Returns the first module in the ordered set where uuid = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching module
@@ -742,31 +738,45 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	public Module findByUuid_First(String uuid,
 		OrderByComparator orderByComparator)
 		throws NoSuchModuleException, SystemException {
+		Module module = fetchByUuid_First(uuid, orderByComparator);
+
+		if (module != null) {
+			return module;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("uuid=");
+		msg.append(uuid);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchModuleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first module in the ordered set where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching module, or <code>null</code> if a matching module could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Module fetchByUuid_First(String uuid,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<Module> list = findByUuid(uuid, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("uuid=");
-			msg.append(uuid);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchModuleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last module in the ordered set where uuid = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -777,33 +787,47 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	public Module findByUuid_Last(String uuid,
 		OrderByComparator orderByComparator)
 		throws NoSuchModuleException, SystemException {
+		Module module = fetchByUuid_Last(uuid, orderByComparator);
+
+		if (module != null) {
+			return module;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("uuid=");
+		msg.append(uuid);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchModuleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last module in the ordered set where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching module, or <code>null</code> if a matching module could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Module fetchByUuid_Last(String uuid,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid(uuid);
 
 		List<Module> list = findByUuid(uuid, count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("uuid=");
-			msg.append(uuid);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchModuleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the modules before and after the current module in the ordered set where uuid = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param moduleId the primary key of the current module
 	 * @param uuid the uuid
@@ -1084,10 +1108,6 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	/**
 	 * Returns the first module in the ordered set where appId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param appId the app ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching module
@@ -1097,31 +1117,45 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	public Module findByAppId_First(long appId,
 		OrderByComparator orderByComparator)
 		throws NoSuchModuleException, SystemException {
+		Module module = fetchByAppId_First(appId, orderByComparator);
+
+		if (module != null) {
+			return module;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("appId=");
+		msg.append(appId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchModuleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first module in the ordered set where appId = &#63;.
+	 *
+	 * @param appId the app ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching module, or <code>null</code> if a matching module could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Module fetchByAppId_First(long appId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<Module> list = findByAppId(appId, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("appId=");
-			msg.append(appId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchModuleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last module in the ordered set where appId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param appId the app ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1132,34 +1166,48 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	public Module findByAppId_Last(long appId,
 		OrderByComparator orderByComparator)
 		throws NoSuchModuleException, SystemException {
+		Module module = fetchByAppId_Last(appId, orderByComparator);
+
+		if (module != null) {
+			return module;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("appId=");
+		msg.append(appId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchModuleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last module in the ordered set where appId = &#63;.
+	 *
+	 * @param appId the app ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching module, or <code>null</code> if a matching module could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Module fetchByAppId_Last(long appId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByAppId(appId);
 
 		List<Module> list = findByAppId(appId, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("appId=");
-			msg.append(appId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchModuleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the modules before and after the current module in the ordered set where appId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param moduleId the primary key of the current module
 	 * @param appId the app ID
@@ -1442,10 +1490,6 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	/**
 	 * Returns the first module in the ordered set where contextName = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param contextName the context name
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching module
@@ -1455,32 +1499,46 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	public Module findByContextName_First(String contextName,
 		OrderByComparator orderByComparator)
 		throws NoSuchModuleException, SystemException {
+		Module module = fetchByContextName_First(contextName, orderByComparator);
+
+		if (module != null) {
+			return module;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("contextName=");
+		msg.append(contextName);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchModuleException(msg.toString());
+	}
+
+	/**
+	 * Returns the first module in the ordered set where contextName = &#63;.
+	 *
+	 * @param contextName the context name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching module, or <code>null</code> if a matching module could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Module fetchByContextName_First(String contextName,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<Module> list = findByContextName(contextName, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("contextName=");
-			msg.append(contextName);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchModuleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last module in the ordered set where contextName = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param contextName the context name
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1491,34 +1549,48 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	public Module findByContextName_Last(String contextName,
 		OrderByComparator orderByComparator)
 		throws NoSuchModuleException, SystemException {
+		Module module = fetchByContextName_Last(contextName, orderByComparator);
+
+		if (module != null) {
+			return module;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("contextName=");
+		msg.append(contextName);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchModuleException(msg.toString());
+	}
+
+	/**
+	 * Returns the last module in the ordered set where contextName = &#63;.
+	 *
+	 * @param contextName the context name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching module, or <code>null</code> if a matching module could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Module fetchByContextName_Last(String contextName,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByContextName(contextName);
 
 		List<Module> list = findByContextName(contextName, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("contextName=");
-			msg.append(contextName);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchModuleException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the modules before and after the current module in the ordered set where contextName = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param moduleId the primary key of the current module
 	 * @param contextName the context name

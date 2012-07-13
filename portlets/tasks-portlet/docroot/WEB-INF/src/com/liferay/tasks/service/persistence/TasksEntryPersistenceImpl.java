@@ -838,10 +838,6 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	/**
 	 * Returns the first tasks entry in the ordered set where groupId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching tasks entry
@@ -851,31 +847,45 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	public TasksEntry findByGroupId_First(long groupId,
 		OrderByComparator orderByComparator)
 		throws NoSuchTasksEntryException, SystemException {
+		TasksEntry tasksEntry = fetchByGroupId_First(groupId, orderByComparator);
+
+		if (tasksEntry != null) {
+			return tasksEntry;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTasksEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the first tasks entry in the ordered set where groupId = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching tasks entry, or <code>null</code> if a matching tasks entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public TasksEntry fetchByGroupId_First(long groupId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<TasksEntry> list = findByGroupId(groupId, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTasksEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last tasks entry in the ordered set where groupId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -886,34 +896,48 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	public TasksEntry findByGroupId_Last(long groupId,
 		OrderByComparator orderByComparator)
 		throws NoSuchTasksEntryException, SystemException {
+		TasksEntry tasksEntry = fetchByGroupId_Last(groupId, orderByComparator);
+
+		if (tasksEntry != null) {
+			return tasksEntry;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTasksEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the last tasks entry in the ordered set where groupId = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching tasks entry, or <code>null</code> if a matching tasks entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public TasksEntry fetchByGroupId_Last(long groupId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByGroupId(groupId);
 
 		List<TasksEntry> list = findByGroupId(groupId, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTasksEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the tasks entries before and after the current tasks entry in the ordered set where groupId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param tasksEntryId the primary key of the current tasks entry
 	 * @param groupId the group ID
@@ -1504,10 +1528,6 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	/**
 	 * Returns the first tasks entry in the ordered set where userId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching tasks entry
@@ -1517,31 +1537,45 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	public TasksEntry findByUserId_First(long userId,
 		OrderByComparator orderByComparator)
 		throws NoSuchTasksEntryException, SystemException {
+		TasksEntry tasksEntry = fetchByUserId_First(userId, orderByComparator);
+
+		if (tasksEntry != null) {
+			return tasksEntry;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("userId=");
+		msg.append(userId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTasksEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the first tasks entry in the ordered set where userId = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching tasks entry, or <code>null</code> if a matching tasks entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public TasksEntry fetchByUserId_First(long userId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<TasksEntry> list = findByUserId(userId, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("userId=");
-			msg.append(userId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTasksEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last tasks entry in the ordered set where userId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1552,34 +1586,48 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	public TasksEntry findByUserId_Last(long userId,
 		OrderByComparator orderByComparator)
 		throws NoSuchTasksEntryException, SystemException {
+		TasksEntry tasksEntry = fetchByUserId_Last(userId, orderByComparator);
+
+		if (tasksEntry != null) {
+			return tasksEntry;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("userId=");
+		msg.append(userId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTasksEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the last tasks entry in the ordered set where userId = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching tasks entry, or <code>null</code> if a matching tasks entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public TasksEntry fetchByUserId_Last(long userId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUserId(userId);
 
 		List<TasksEntry> list = findByUserId(userId, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("userId=");
-			msg.append(userId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTasksEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the tasks entries before and after the current tasks entry in the ordered set where userId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param tasksEntryId the primary key of the current tasks entry
 	 * @param userId the user ID
@@ -1865,10 +1913,6 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	/**
 	 * Returns the first tasks entry in the ordered set where assigneeUserId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param assigneeUserId the assignee user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching tasks entry
@@ -1878,32 +1922,47 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	public TasksEntry findByAssigneeUserId_First(long assigneeUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchTasksEntryException, SystemException {
+		TasksEntry tasksEntry = fetchByAssigneeUserId_First(assigneeUserId,
+				orderByComparator);
+
+		if (tasksEntry != null) {
+			return tasksEntry;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("assigneeUserId=");
+		msg.append(assigneeUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTasksEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the first tasks entry in the ordered set where assigneeUserId = &#63;.
+	 *
+	 * @param assigneeUserId the assignee user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching tasks entry, or <code>null</code> if a matching tasks entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public TasksEntry fetchByAssigneeUserId_First(long assigneeUserId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<TasksEntry> list = findByAssigneeUserId(assigneeUserId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("assigneeUserId=");
-			msg.append(assigneeUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTasksEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last tasks entry in the ordered set where assigneeUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param assigneeUserId the assignee user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1914,34 +1973,49 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	public TasksEntry findByAssigneeUserId_Last(long assigneeUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchTasksEntryException, SystemException {
+		TasksEntry tasksEntry = fetchByAssigneeUserId_Last(assigneeUserId,
+				orderByComparator);
+
+		if (tasksEntry != null) {
+			return tasksEntry;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("assigneeUserId=");
+		msg.append(assigneeUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTasksEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the last tasks entry in the ordered set where assigneeUserId = &#63;.
+	 *
+	 * @param assigneeUserId the assignee user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching tasks entry, or <code>null</code> if a matching tasks entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public TasksEntry fetchByAssigneeUserId_Last(long assigneeUserId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByAssigneeUserId(assigneeUserId);
 
 		List<TasksEntry> list = findByAssigneeUserId(assigneeUserId, count - 1,
 				count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("assigneeUserId=");
-			msg.append(assigneeUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTasksEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the tasks entries before and after the current tasks entry in the ordered set where assigneeUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param tasksEntryId the primary key of the current tasks entry
 	 * @param assigneeUserId the assignee user ID
@@ -2227,10 +2301,6 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	/**
 	 * Returns the first tasks entry in the ordered set where resolverUserId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param resolverUserId the resolver user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching tasks entry
@@ -2240,32 +2310,47 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	public TasksEntry findByResolverUserId_First(long resolverUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchTasksEntryException, SystemException {
+		TasksEntry tasksEntry = fetchByResolverUserId_First(resolverUserId,
+				orderByComparator);
+
+		if (tasksEntry != null) {
+			return tasksEntry;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("resolverUserId=");
+		msg.append(resolverUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTasksEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the first tasks entry in the ordered set where resolverUserId = &#63;.
+	 *
+	 * @param resolverUserId the resolver user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching tasks entry, or <code>null</code> if a matching tasks entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public TasksEntry fetchByResolverUserId_First(long resolverUserId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<TasksEntry> list = findByResolverUserId(resolverUserId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("resolverUserId=");
-			msg.append(resolverUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTasksEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last tasks entry in the ordered set where resolverUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param resolverUserId the resolver user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -2276,34 +2361,49 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	public TasksEntry findByResolverUserId_Last(long resolverUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchTasksEntryException, SystemException {
+		TasksEntry tasksEntry = fetchByResolverUserId_Last(resolverUserId,
+				orderByComparator);
+
+		if (tasksEntry != null) {
+			return tasksEntry;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("resolverUserId=");
+		msg.append(resolverUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTasksEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the last tasks entry in the ordered set where resolverUserId = &#63;.
+	 *
+	 * @param resolverUserId the resolver user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching tasks entry, or <code>null</code> if a matching tasks entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public TasksEntry fetchByResolverUserId_Last(long resolverUserId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByResolverUserId(resolverUserId);
 
 		List<TasksEntry> list = findByResolverUserId(resolverUserId, count - 1,
 				count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("resolverUserId=");
-			msg.append(resolverUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTasksEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the tasks entries before and after the current tasks entry in the ordered set where resolverUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param tasksEntryId the primary key of the current tasks entry
 	 * @param resolverUserId the resolver user ID
@@ -2596,10 +2696,6 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	/**
 	 * Returns the first tasks entry in the ordered set where groupId = &#63; and userId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param groupId the group ID
 	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -2610,35 +2706,51 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	public TasksEntry findByG_U_First(long groupId, long userId,
 		OrderByComparator orderByComparator)
 		throws NoSuchTasksEntryException, SystemException {
+		TasksEntry tasksEntry = fetchByG_U_First(groupId, userId,
+				orderByComparator);
+
+		if (tasksEntry != null) {
+			return tasksEntry;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", userId=");
+		msg.append(userId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTasksEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the first tasks entry in the ordered set where groupId = &#63; and userId = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param userId the user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching tasks entry, or <code>null</code> if a matching tasks entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public TasksEntry fetchByG_U_First(long groupId, long userId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<TasksEntry> list = findByG_U(groupId, userId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", userId=");
-			msg.append(userId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTasksEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last tasks entry in the ordered set where groupId = &#63; and userId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param groupId the group ID
 	 * @param userId the user ID
@@ -2650,37 +2762,53 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	public TasksEntry findByG_U_Last(long groupId, long userId,
 		OrderByComparator orderByComparator)
 		throws NoSuchTasksEntryException, SystemException {
+		TasksEntry tasksEntry = fetchByG_U_Last(groupId, userId,
+				orderByComparator);
+
+		if (tasksEntry != null) {
+			return tasksEntry;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", userId=");
+		msg.append(userId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTasksEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the last tasks entry in the ordered set where groupId = &#63; and userId = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param userId the user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching tasks entry, or <code>null</code> if a matching tasks entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public TasksEntry fetchByG_U_Last(long groupId, long userId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_U(groupId, userId);
 
 		List<TasksEntry> list = findByG_U(groupId, userId, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", userId=");
-			msg.append(userId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTasksEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the tasks entries before and after the current tasks entry in the ordered set where groupId = &#63; and userId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param tasksEntryId the primary key of the current tasks entry
 	 * @param groupId the group ID
@@ -3304,10 +3432,6 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	/**
 	 * Returns the first tasks entry in the ordered set where groupId = &#63; and assigneeUserId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param groupId the group ID
 	 * @param assigneeUserId the assignee user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -3318,35 +3442,51 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	public TasksEntry findByG_A_First(long groupId, long assigneeUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchTasksEntryException, SystemException {
+		TasksEntry tasksEntry = fetchByG_A_First(groupId, assigneeUserId,
+				orderByComparator);
+
+		if (tasksEntry != null) {
+			return tasksEntry;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", assigneeUserId=");
+		msg.append(assigneeUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTasksEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the first tasks entry in the ordered set where groupId = &#63; and assigneeUserId = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param assigneeUserId the assignee user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching tasks entry, or <code>null</code> if a matching tasks entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public TasksEntry fetchByG_A_First(long groupId, long assigneeUserId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<TasksEntry> list = findByG_A(groupId, assigneeUserId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", assigneeUserId=");
-			msg.append(assigneeUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTasksEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last tasks entry in the ordered set where groupId = &#63; and assigneeUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param groupId the group ID
 	 * @param assigneeUserId the assignee user ID
@@ -3358,37 +3498,53 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	public TasksEntry findByG_A_Last(long groupId, long assigneeUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchTasksEntryException, SystemException {
+		TasksEntry tasksEntry = fetchByG_A_Last(groupId, assigneeUserId,
+				orderByComparator);
+
+		if (tasksEntry != null) {
+			return tasksEntry;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", assigneeUserId=");
+		msg.append(assigneeUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTasksEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the last tasks entry in the ordered set where groupId = &#63; and assigneeUserId = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param assigneeUserId the assignee user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching tasks entry, or <code>null</code> if a matching tasks entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public TasksEntry fetchByG_A_Last(long groupId, long assigneeUserId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_A(groupId, assigneeUserId);
 
 		List<TasksEntry> list = findByG_A(groupId, assigneeUserId, count - 1,
 				count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", assigneeUserId=");
-			msg.append(assigneeUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTasksEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the tasks entries before and after the current tasks entry in the ordered set where groupId = &#63; and assigneeUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param tasksEntryId the primary key of the current tasks entry
 	 * @param groupId the group ID
@@ -4013,10 +4169,6 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	/**
 	 * Returns the first tasks entry in the ordered set where groupId = &#63; and resolverUserId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param groupId the group ID
 	 * @param resolverUserId the resolver user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -4027,35 +4179,51 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	public TasksEntry findByG_R_First(long groupId, long resolverUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchTasksEntryException, SystemException {
+		TasksEntry tasksEntry = fetchByG_R_First(groupId, resolverUserId,
+				orderByComparator);
+
+		if (tasksEntry != null) {
+			return tasksEntry;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", resolverUserId=");
+		msg.append(resolverUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTasksEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the first tasks entry in the ordered set where groupId = &#63; and resolverUserId = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param resolverUserId the resolver user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching tasks entry, or <code>null</code> if a matching tasks entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public TasksEntry fetchByG_R_First(long groupId, long resolverUserId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<TasksEntry> list = findByG_R(groupId, resolverUserId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", resolverUserId=");
-			msg.append(resolverUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTasksEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last tasks entry in the ordered set where groupId = &#63; and resolverUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param groupId the group ID
 	 * @param resolverUserId the resolver user ID
@@ -4067,37 +4235,53 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	public TasksEntry findByG_R_Last(long groupId, long resolverUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchTasksEntryException, SystemException {
+		TasksEntry tasksEntry = fetchByG_R_Last(groupId, resolverUserId,
+				orderByComparator);
+
+		if (tasksEntry != null) {
+			return tasksEntry;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", resolverUserId=");
+		msg.append(resolverUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchTasksEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the last tasks entry in the ordered set where groupId = &#63; and resolverUserId = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param resolverUserId the resolver user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching tasks entry, or <code>null</code> if a matching tasks entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public TasksEntry fetchByG_R_Last(long groupId, long resolverUserId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_R(groupId, resolverUserId);
 
 		List<TasksEntry> list = findByG_R(groupId, resolverUserId, count - 1,
 				count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", resolverUserId=");
-			msg.append(resolverUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchTasksEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the tasks entries before and after the current tasks entry in the ordered set where groupId = &#63; and resolverUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param tasksEntryId the primary key of the current tasks entry
 	 * @param groupId the group ID

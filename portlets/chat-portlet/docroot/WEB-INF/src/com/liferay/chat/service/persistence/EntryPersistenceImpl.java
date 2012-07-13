@@ -838,10 +838,6 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	/**
 	 * Returns the first entry in the ordered set where createDate = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param createDate the create date
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching entry
@@ -851,31 +847,45 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public Entry findByCreateDate_First(long createDate,
 		OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
+		Entry entry = fetchByCreateDate_First(createDate, orderByComparator);
+
+		if (entry != null) {
+			return entry;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("createDate=");
+		msg.append(createDate);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the first entry in the ordered set where createDate = &#63;.
+	 *
+	 * @param createDate the create date
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching entry, or <code>null</code> if a matching entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Entry fetchByCreateDate_First(long createDate,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<Entry> list = findByCreateDate(createDate, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("createDate=");
-			msg.append(createDate);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last entry in the ordered set where createDate = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param createDate the create date
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -886,34 +896,48 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public Entry findByCreateDate_Last(long createDate,
 		OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
+		Entry entry = fetchByCreateDate_Last(createDate, orderByComparator);
+
+		if (entry != null) {
+			return entry;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("createDate=");
+		msg.append(createDate);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the last entry in the ordered set where createDate = &#63;.
+	 *
+	 * @param createDate the create date
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching entry, or <code>null</code> if a matching entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Entry fetchByCreateDate_Last(long createDate,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCreateDate(createDate);
 
 		List<Entry> list = findByCreateDate(createDate, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("createDate=");
-			msg.append(createDate);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the entries before and after the current entry in the ordered set where createDate = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param entryId the primary key of the current entry
 	 * @param createDate the create date
@@ -1192,10 +1216,6 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	/**
 	 * Returns the first entry in the ordered set where fromUserId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param fromUserId the from user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching entry
@@ -1205,31 +1225,45 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public Entry findByFromUserId_First(long fromUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
+		Entry entry = fetchByFromUserId_First(fromUserId, orderByComparator);
+
+		if (entry != null) {
+			return entry;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("fromUserId=");
+		msg.append(fromUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the first entry in the ordered set where fromUserId = &#63;.
+	 *
+	 * @param fromUserId the from user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching entry, or <code>null</code> if a matching entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Entry fetchByFromUserId_First(long fromUserId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<Entry> list = findByFromUserId(fromUserId, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("fromUserId=");
-			msg.append(fromUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last entry in the ordered set where fromUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param fromUserId the from user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1240,34 +1274,48 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public Entry findByFromUserId_Last(long fromUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
+		Entry entry = fetchByFromUserId_Last(fromUserId, orderByComparator);
+
+		if (entry != null) {
+			return entry;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("fromUserId=");
+		msg.append(fromUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the last entry in the ordered set where fromUserId = &#63;.
+	 *
+	 * @param fromUserId the from user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching entry, or <code>null</code> if a matching entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Entry fetchByFromUserId_Last(long fromUserId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByFromUserId(fromUserId);
 
 		List<Entry> list = findByFromUserId(fromUserId, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("fromUserId=");
-			msg.append(fromUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the entries before and after the current entry in the ordered set where fromUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param entryId the primary key of the current entry
 	 * @param fromUserId the from user ID
@@ -1545,10 +1593,6 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	/**
 	 * Returns the first entry in the ordered set where toUserId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param toUserId the to user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching entry
@@ -1558,31 +1602,45 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public Entry findByToUserId_First(long toUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
+		Entry entry = fetchByToUserId_First(toUserId, orderByComparator);
+
+		if (entry != null) {
+			return entry;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("toUserId=");
+		msg.append(toUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the first entry in the ordered set where toUserId = &#63;.
+	 *
+	 * @param toUserId the to user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching entry, or <code>null</code> if a matching entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Entry fetchByToUserId_First(long toUserId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<Entry> list = findByToUserId(toUserId, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("toUserId=");
-			msg.append(toUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last entry in the ordered set where toUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param toUserId the to user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1593,34 +1651,48 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public Entry findByToUserId_Last(long toUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
+		Entry entry = fetchByToUserId_Last(toUserId, orderByComparator);
+
+		if (entry != null) {
+			return entry;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("toUserId=");
+		msg.append(toUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the last entry in the ordered set where toUserId = &#63;.
+	 *
+	 * @param toUserId the to user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching entry, or <code>null</code> if a matching entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Entry fetchByToUserId_Last(long toUserId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByToUserId(toUserId);
 
 		List<Entry> list = findByToUserId(toUserId, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("toUserId=");
-			msg.append(toUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the entries before and after the current entry in the ordered set where toUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param entryId the primary key of the current entry
 	 * @param toUserId the to user ID
@@ -1911,10 +1983,6 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	/**
 	 * Returns the first entry in the ordered set where createDate = &#63; and fromUserId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param createDate the create date
 	 * @param fromUserId the from user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1925,35 +1993,50 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public Entry findByC_F_First(long createDate, long fromUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
+		Entry entry = fetchByC_F_First(createDate, fromUserId, orderByComparator);
+
+		if (entry != null) {
+			return entry;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("createDate=");
+		msg.append(createDate);
+
+		msg.append(", fromUserId=");
+		msg.append(fromUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the first entry in the ordered set where createDate = &#63; and fromUserId = &#63;.
+	 *
+	 * @param createDate the create date
+	 * @param fromUserId the from user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching entry, or <code>null</code> if a matching entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Entry fetchByC_F_First(long createDate, long fromUserId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<Entry> list = findByC_F(createDate, fromUserId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("createDate=");
-			msg.append(createDate);
-
-			msg.append(", fromUserId=");
-			msg.append(fromUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last entry in the ordered set where createDate = &#63; and fromUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param createDate the create date
 	 * @param fromUserId the from user ID
@@ -1965,37 +2048,52 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public Entry findByC_F_Last(long createDate, long fromUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
+		Entry entry = fetchByC_F_Last(createDate, fromUserId, orderByComparator);
+
+		if (entry != null) {
+			return entry;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("createDate=");
+		msg.append(createDate);
+
+		msg.append(", fromUserId=");
+		msg.append(fromUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the last entry in the ordered set where createDate = &#63; and fromUserId = &#63;.
+	 *
+	 * @param createDate the create date
+	 * @param fromUserId the from user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching entry, or <code>null</code> if a matching entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Entry fetchByC_F_Last(long createDate, long fromUserId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByC_F(createDate, fromUserId);
 
 		List<Entry> list = findByC_F(createDate, fromUserId, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("createDate=");
-			msg.append(createDate);
-
-			msg.append(", fromUserId=");
-			msg.append(fromUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the entries before and after the current entry in the ordered set where createDate = &#63; and fromUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param entryId the primary key of the current entry
 	 * @param createDate the create date
@@ -2292,10 +2390,6 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	/**
 	 * Returns the first entry in the ordered set where createDate = &#63; and toUserId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param createDate the create date
 	 * @param toUserId the to user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -2306,35 +2400,50 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public Entry findByC_T_First(long createDate, long toUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
+		Entry entry = fetchByC_T_First(createDate, toUserId, orderByComparator);
+
+		if (entry != null) {
+			return entry;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("createDate=");
+		msg.append(createDate);
+
+		msg.append(", toUserId=");
+		msg.append(toUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the first entry in the ordered set where createDate = &#63; and toUserId = &#63;.
+	 *
+	 * @param createDate the create date
+	 * @param toUserId the to user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching entry, or <code>null</code> if a matching entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Entry fetchByC_T_First(long createDate, long toUserId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<Entry> list = findByC_T(createDate, toUserId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("createDate=");
-			msg.append(createDate);
-
-			msg.append(", toUserId=");
-			msg.append(toUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last entry in the ordered set where createDate = &#63; and toUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param createDate the create date
 	 * @param toUserId the to user ID
@@ -2346,37 +2455,52 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public Entry findByC_T_Last(long createDate, long toUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
+		Entry entry = fetchByC_T_Last(createDate, toUserId, orderByComparator);
+
+		if (entry != null) {
+			return entry;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("createDate=");
+		msg.append(createDate);
+
+		msg.append(", toUserId=");
+		msg.append(toUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the last entry in the ordered set where createDate = &#63; and toUserId = &#63;.
+	 *
+	 * @param createDate the create date
+	 * @param toUserId the to user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching entry, or <code>null</code> if a matching entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Entry fetchByC_T_Last(long createDate, long toUserId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByC_T(createDate, toUserId);
 
 		List<Entry> list = findByC_T(createDate, toUserId, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("createDate=");
-			msg.append(createDate);
-
-			msg.append(", toUserId=");
-			msg.append(toUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the entries before and after the current entry in the ordered set where createDate = &#63; and toUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param entryId the primary key of the current entry
 	 * @param createDate the create date
@@ -2682,10 +2806,6 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	/**
 	 * Returns the first entry in the ordered set where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param createDate the create date
 	 * @param fromUserId the from user ID
 	 * @param toUserId the to user ID
@@ -2697,38 +2817,56 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public Entry findByC_F_T_First(long createDate, long fromUserId,
 		long toUserId, OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
+		Entry entry = fetchByC_F_T_First(createDate, fromUserId, toUserId,
+				orderByComparator);
+
+		if (entry != null) {
+			return entry;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("createDate=");
+		msg.append(createDate);
+
+		msg.append(", fromUserId=");
+		msg.append(fromUserId);
+
+		msg.append(", toUserId=");
+		msg.append(toUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the first entry in the ordered set where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
+	 *
+	 * @param createDate the create date
+	 * @param fromUserId the from user ID
+	 * @param toUserId the to user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching entry, or <code>null</code> if a matching entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Entry fetchByC_F_T_First(long createDate, long fromUserId,
+		long toUserId, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<Entry> list = findByC_F_T(createDate, fromUserId, toUserId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("createDate=");
-			msg.append(createDate);
-
-			msg.append(", fromUserId=");
-			msg.append(fromUserId);
-
-			msg.append(", toUserId=");
-			msg.append(toUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last entry in the ordered set where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param createDate the create date
 	 * @param fromUserId the from user ID
@@ -2741,40 +2879,58 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public Entry findByC_F_T_Last(long createDate, long fromUserId,
 		long toUserId, OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
+		Entry entry = fetchByC_F_T_Last(createDate, fromUserId, toUserId,
+				orderByComparator);
+
+		if (entry != null) {
+			return entry;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("createDate=");
+		msg.append(createDate);
+
+		msg.append(", fromUserId=");
+		msg.append(fromUserId);
+
+		msg.append(", toUserId=");
+		msg.append(toUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the last entry in the ordered set where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
+	 *
+	 * @param createDate the create date
+	 * @param fromUserId the from user ID
+	 * @param toUserId the to user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching entry, or <code>null</code> if a matching entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Entry fetchByC_F_T_Last(long createDate, long fromUserId,
+		long toUserId, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countByC_F_T(createDate, fromUserId, toUserId);
 
 		List<Entry> list = findByC_F_T(createDate, fromUserId, toUserId,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("createDate=");
-			msg.append(createDate);
-
-			msg.append(", fromUserId=");
-			msg.append(fromUserId);
-
-			msg.append(", toUserId=");
-			msg.append(toUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the entries before and after the current entry in the ordered set where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param entryId the primary key of the current entry
 	 * @param createDate the create date
@@ -3097,10 +3253,6 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	/**
 	 * Returns the first entry in the ordered set where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param fromUserId the from user ID
 	 * @param toUserId the to user ID
 	 * @param content the content
@@ -3112,38 +3264,56 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public Entry findByF_T_C_First(long fromUserId, long toUserId,
 		String content, OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
+		Entry entry = fetchByF_T_C_First(fromUserId, toUserId, content,
+				orderByComparator);
+
+		if (entry != null) {
+			return entry;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("fromUserId=");
+		msg.append(fromUserId);
+
+		msg.append(", toUserId=");
+		msg.append(toUserId);
+
+		msg.append(", content=");
+		msg.append(content);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the first entry in the ordered set where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
+	 *
+	 * @param fromUserId the from user ID
+	 * @param toUserId the to user ID
+	 * @param content the content
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching entry, or <code>null</code> if a matching entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Entry fetchByF_T_C_First(long fromUserId, long toUserId,
+		String content, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<Entry> list = findByF_T_C(fromUserId, toUserId, content, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("fromUserId=");
-			msg.append(fromUserId);
-
-			msg.append(", toUserId=");
-			msg.append(toUserId);
-
-			msg.append(", content=");
-			msg.append(content);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last entry in the ordered set where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param fromUserId the from user ID
 	 * @param toUserId the to user ID
@@ -3156,40 +3326,58 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public Entry findByF_T_C_Last(long fromUserId, long toUserId,
 		String content, OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
+		Entry entry = fetchByF_T_C_Last(fromUserId, toUserId, content,
+				orderByComparator);
+
+		if (entry != null) {
+			return entry;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("fromUserId=");
+		msg.append(fromUserId);
+
+		msg.append(", toUserId=");
+		msg.append(toUserId);
+
+		msg.append(", content=");
+		msg.append(content);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the last entry in the ordered set where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
+	 *
+	 * @param fromUserId the from user ID
+	 * @param toUserId the to user ID
+	 * @param content the content
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching entry, or <code>null</code> if a matching entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Entry fetchByF_T_C_Last(long fromUserId, long toUserId,
+		String content, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countByF_T_C(fromUserId, toUserId, content);
 
 		List<Entry> list = findByF_T_C(fromUserId, toUserId, content,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("fromUserId=");
-			msg.append(fromUserId);
-
-			msg.append(", toUserId=");
-			msg.append(toUserId);
-
-			msg.append(", content=");
-			msg.append(content);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the entries before and after the current entry in the ordered set where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param entryId the primary key of the current entry
 	 * @param fromUserId the from user ID

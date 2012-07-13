@@ -247,10 +247,6 @@ public class OAuthConsumerUtil {
 	/**
 	* Returns the first o auth consumer in the ordered set where gadgetKey = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param gadgetKey the gadget key
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth consumer
@@ -267,11 +263,23 @@ public class OAuthConsumerUtil {
 	}
 
 	/**
-	* Returns the last o auth consumer in the ordered set where gadgetKey = &#63;.
+	* Returns the first o auth consumer in the ordered set where gadgetKey = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param gadgetKey the gadget key
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching o auth consumer, or <code>null</code> if a matching o auth consumer could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.opensocial.model.OAuthConsumer fetchByGadgetKey_First(
+		java.lang.String gadgetKey,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByGadgetKey_First(gadgetKey, orderByComparator);
+	}
+
+	/**
+	* Returns the last o auth consumer in the ordered set where gadgetKey = &#63;.
 	*
 	* @param gadgetKey the gadget key
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -289,11 +297,23 @@ public class OAuthConsumerUtil {
 	}
 
 	/**
-	* Returns the o auth consumers before and after the current o auth consumer in the ordered set where gadgetKey = &#63;.
+	* Returns the last o auth consumer in the ordered set where gadgetKey = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param gadgetKey the gadget key
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching o auth consumer, or <code>null</code> if a matching o auth consumer could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.opensocial.model.OAuthConsumer fetchByGadgetKey_Last(
+		java.lang.String gadgetKey,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByGadgetKey_Last(gadgetKey, orderByComparator);
+	}
+
+	/**
+	* Returns the o auth consumers before and after the current o auth consumer in the ordered set where gadgetKey = &#63;.
 	*
 	* @param oAuthConsumerId the primary key of the current o auth consumer
 	* @param gadgetKey the gadget key

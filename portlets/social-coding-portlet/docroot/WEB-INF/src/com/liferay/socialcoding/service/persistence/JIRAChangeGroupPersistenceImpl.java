@@ -653,10 +653,6 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	/**
 	 * Returns the first j i r a change group in the ordered set where jiraUserId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param jiraUserId the jira user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching j i r a change group
@@ -666,32 +662,47 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	public JIRAChangeGroup findByJiraUserId_First(String jiraUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAChangeGroupException, SystemException {
+		JIRAChangeGroup jiraChangeGroup = fetchByJiraUserId_First(jiraUserId,
+				orderByComparator);
+
+		if (jiraChangeGroup != null) {
+			return jiraChangeGroup;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("jiraUserId=");
+		msg.append(jiraUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAChangeGroupException(msg.toString());
+	}
+
+	/**
+	 * Returns the first j i r a change group in the ordered set where jiraUserId = &#63;.
+	 *
+	 * @param jiraUserId the jira user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching j i r a change group, or <code>null</code> if a matching j i r a change group could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAChangeGroup fetchByJiraUserId_First(String jiraUserId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<JIRAChangeGroup> list = findByJiraUserId(jiraUserId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("jiraUserId=");
-			msg.append(jiraUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAChangeGroupException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last j i r a change group in the ordered set where jiraUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param jiraUserId the jira user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -702,34 +713,49 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	public JIRAChangeGroup findByJiraUserId_Last(String jiraUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAChangeGroupException, SystemException {
+		JIRAChangeGroup jiraChangeGroup = fetchByJiraUserId_Last(jiraUserId,
+				orderByComparator);
+
+		if (jiraChangeGroup != null) {
+			return jiraChangeGroup;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("jiraUserId=");
+		msg.append(jiraUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAChangeGroupException(msg.toString());
+	}
+
+	/**
+	 * Returns the last j i r a change group in the ordered set where jiraUserId = &#63;.
+	 *
+	 * @param jiraUserId the jira user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching j i r a change group, or <code>null</code> if a matching j i r a change group could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAChangeGroup fetchByJiraUserId_Last(String jiraUserId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByJiraUserId(jiraUserId);
 
 		List<JIRAChangeGroup> list = findByJiraUserId(jiraUserId, count - 1,
 				count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("jiraUserId=");
-			msg.append(jiraUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAChangeGroupException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the j i r a change groups before and after the current j i r a change group in the ordered set where jiraUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param jiraChangeGroupId the primary key of the current j i r a change group
 	 * @param jiraUserId the jira user ID
@@ -1023,10 +1049,6 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	/**
 	 * Returns the first j i r a change group in the ordered set where jiraIssueId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param jiraIssueId the jira issue ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching j i r a change group
@@ -1036,32 +1058,47 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	public JIRAChangeGroup findByJiraIssueId_First(long jiraIssueId,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAChangeGroupException, SystemException {
+		JIRAChangeGroup jiraChangeGroup = fetchByJiraIssueId_First(jiraIssueId,
+				orderByComparator);
+
+		if (jiraChangeGroup != null) {
+			return jiraChangeGroup;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("jiraIssueId=");
+		msg.append(jiraIssueId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAChangeGroupException(msg.toString());
+	}
+
+	/**
+	 * Returns the first j i r a change group in the ordered set where jiraIssueId = &#63;.
+	 *
+	 * @param jiraIssueId the jira issue ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching j i r a change group, or <code>null</code> if a matching j i r a change group could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAChangeGroup fetchByJiraIssueId_First(long jiraIssueId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<JIRAChangeGroup> list = findByJiraIssueId(jiraIssueId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("jiraIssueId=");
-			msg.append(jiraIssueId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAChangeGroupException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last j i r a change group in the ordered set where jiraIssueId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param jiraIssueId the jira issue ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1072,34 +1109,49 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	public JIRAChangeGroup findByJiraIssueId_Last(long jiraIssueId,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAChangeGroupException, SystemException {
+		JIRAChangeGroup jiraChangeGroup = fetchByJiraIssueId_Last(jiraIssueId,
+				orderByComparator);
+
+		if (jiraChangeGroup != null) {
+			return jiraChangeGroup;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("jiraIssueId=");
+		msg.append(jiraIssueId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchJIRAChangeGroupException(msg.toString());
+	}
+
+	/**
+	 * Returns the last j i r a change group in the ordered set where jiraIssueId = &#63;.
+	 *
+	 * @param jiraIssueId the jira issue ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching j i r a change group, or <code>null</code> if a matching j i r a change group could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAChangeGroup fetchByJiraIssueId_Last(long jiraIssueId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByJiraIssueId(jiraIssueId);
 
 		List<JIRAChangeGroup> list = findByJiraIssueId(jiraIssueId, count - 1,
 				count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("jiraIssueId=");
-			msg.append(jiraIssueId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchJIRAChangeGroupException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the j i r a change groups before and after the current j i r a change group in the ordered set where jiraIssueId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param jiraChangeGroupId the primary key of the current j i r a change group
 	 * @param jiraIssueId the jira issue ID

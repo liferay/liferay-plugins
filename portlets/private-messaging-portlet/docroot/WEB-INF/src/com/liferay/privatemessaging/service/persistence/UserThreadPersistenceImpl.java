@@ -779,10 +779,6 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	/**
 	 * Returns the first user thread in the ordered set where mbThreadId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param mbThreadId the mb thread ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching user thread
@@ -792,32 +788,47 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	public UserThread findByMBThreadId_First(long mbThreadId,
 		OrderByComparator orderByComparator)
 		throws NoSuchUserThreadException, SystemException {
+		UserThread userThread = fetchByMBThreadId_First(mbThreadId,
+				orderByComparator);
+
+		if (userThread != null) {
+			return userThread;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("mbThreadId=");
+		msg.append(mbThreadId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchUserThreadException(msg.toString());
+	}
+
+	/**
+	 * Returns the first user thread in the ordered set where mbThreadId = &#63;.
+	 *
+	 * @param mbThreadId the mb thread ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching user thread, or <code>null</code> if a matching user thread could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public UserThread fetchByMBThreadId_First(long mbThreadId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<UserThread> list = findByMBThreadId(mbThreadId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("mbThreadId=");
-			msg.append(mbThreadId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchUserThreadException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last user thread in the ordered set where mbThreadId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param mbThreadId the mb thread ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -828,34 +839,49 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	public UserThread findByMBThreadId_Last(long mbThreadId,
 		OrderByComparator orderByComparator)
 		throws NoSuchUserThreadException, SystemException {
+		UserThread userThread = fetchByMBThreadId_Last(mbThreadId,
+				orderByComparator);
+
+		if (userThread != null) {
+			return userThread;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("mbThreadId=");
+		msg.append(mbThreadId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchUserThreadException(msg.toString());
+	}
+
+	/**
+	 * Returns the last user thread in the ordered set where mbThreadId = &#63;.
+	 *
+	 * @param mbThreadId the mb thread ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching user thread, or <code>null</code> if a matching user thread could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public UserThread fetchByMBThreadId_Last(long mbThreadId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByMBThreadId(mbThreadId);
 
 		List<UserThread> list = findByMBThreadId(mbThreadId, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("mbThreadId=");
-			msg.append(mbThreadId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchUserThreadException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the user threads before and after the current user thread in the ordered set where mbThreadId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param userThreadId the primary key of the current user thread
 	 * @param mbThreadId the mb thread ID
@@ -1134,10 +1160,6 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	/**
 	 * Returns the first user thread in the ordered set where userId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching user thread
@@ -1147,31 +1169,45 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	public UserThread findByUserId_First(long userId,
 		OrderByComparator orderByComparator)
 		throws NoSuchUserThreadException, SystemException {
+		UserThread userThread = fetchByUserId_First(userId, orderByComparator);
+
+		if (userThread != null) {
+			return userThread;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("userId=");
+		msg.append(userId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchUserThreadException(msg.toString());
+	}
+
+	/**
+	 * Returns the first user thread in the ordered set where userId = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching user thread, or <code>null</code> if a matching user thread could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public UserThread fetchByUserId_First(long userId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<UserThread> list = findByUserId(userId, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("userId=");
-			msg.append(userId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchUserThreadException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last user thread in the ordered set where userId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1182,34 +1218,48 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	public UserThread findByUserId_Last(long userId,
 		OrderByComparator orderByComparator)
 		throws NoSuchUserThreadException, SystemException {
+		UserThread userThread = fetchByUserId_Last(userId, orderByComparator);
+
+		if (userThread != null) {
+			return userThread;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("userId=");
+		msg.append(userId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchUserThreadException(msg.toString());
+	}
+
+	/**
+	 * Returns the last user thread in the ordered set where userId = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching user thread, or <code>null</code> if a matching user thread could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public UserThread fetchByUserId_Last(long userId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUserId(userId);
 
 		List<UserThread> list = findByUserId(userId, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("userId=");
-			msg.append(userId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchUserThreadException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the user threads before and after the current user thread in the ordered set where userId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param userThreadId the primary key of the current user thread
 	 * @param userId the user ID
@@ -1652,10 +1702,6 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	/**
 	 * Returns the first user thread in the ordered set where userId = &#63; and deleted = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param userId the user ID
 	 * @param deleted the deleted
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1666,35 +1712,51 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	public UserThread findByU_D_First(long userId, boolean deleted,
 		OrderByComparator orderByComparator)
 		throws NoSuchUserThreadException, SystemException {
+		UserThread userThread = fetchByU_D_First(userId, deleted,
+				orderByComparator);
+
+		if (userThread != null) {
+			return userThread;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("userId=");
+		msg.append(userId);
+
+		msg.append(", deleted=");
+		msg.append(deleted);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchUserThreadException(msg.toString());
+	}
+
+	/**
+	 * Returns the first user thread in the ordered set where userId = &#63; and deleted = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param deleted the deleted
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching user thread, or <code>null</code> if a matching user thread could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public UserThread fetchByU_D_First(long userId, boolean deleted,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<UserThread> list = findByU_D(userId, deleted, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("userId=");
-			msg.append(userId);
-
-			msg.append(", deleted=");
-			msg.append(deleted);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchUserThreadException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last user thread in the ordered set where userId = &#63; and deleted = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param userId the user ID
 	 * @param deleted the deleted
@@ -1706,37 +1768,53 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	public UserThread findByU_D_Last(long userId, boolean deleted,
 		OrderByComparator orderByComparator)
 		throws NoSuchUserThreadException, SystemException {
+		UserThread userThread = fetchByU_D_Last(userId, deleted,
+				orderByComparator);
+
+		if (userThread != null) {
+			return userThread;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("userId=");
+		msg.append(userId);
+
+		msg.append(", deleted=");
+		msg.append(deleted);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchUserThreadException(msg.toString());
+	}
+
+	/**
+	 * Returns the last user thread in the ordered set where userId = &#63; and deleted = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param deleted the deleted
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching user thread, or <code>null</code> if a matching user thread could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public UserThread fetchByU_D_Last(long userId, boolean deleted,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByU_D(userId, deleted);
 
 		List<UserThread> list = findByU_D(userId, deleted, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("userId=");
-			msg.append(userId);
-
-			msg.append(", deleted=");
-			msg.append(deleted);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchUserThreadException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the user threads before and after the current user thread in the ordered set where userId = &#63; and deleted = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param userThreadId the primary key of the current user thread
 	 * @param userId the user ID
@@ -2043,10 +2121,6 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	/**
 	 * Returns the first user thread in the ordered set where userId = &#63; and read = &#63; and deleted = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param userId the user ID
 	 * @param read the read
 	 * @param deleted the deleted
@@ -2058,38 +2132,56 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	public UserThread findByU_R_D_First(long userId, boolean read,
 		boolean deleted, OrderByComparator orderByComparator)
 		throws NoSuchUserThreadException, SystemException {
+		UserThread userThread = fetchByU_R_D_First(userId, read, deleted,
+				orderByComparator);
+
+		if (userThread != null) {
+			return userThread;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("userId=");
+		msg.append(userId);
+
+		msg.append(", read=");
+		msg.append(read);
+
+		msg.append(", deleted=");
+		msg.append(deleted);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchUserThreadException(msg.toString());
+	}
+
+	/**
+	 * Returns the first user thread in the ordered set where userId = &#63; and read = &#63; and deleted = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param read the read
+	 * @param deleted the deleted
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching user thread, or <code>null</code> if a matching user thread could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public UserThread fetchByU_R_D_First(long userId, boolean read,
+		boolean deleted, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<UserThread> list = findByU_R_D(userId, read, deleted, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("userId=");
-			msg.append(userId);
-
-			msg.append(", read=");
-			msg.append(read);
-
-			msg.append(", deleted=");
-			msg.append(deleted);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchUserThreadException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last user thread in the ordered set where userId = &#63; and read = &#63; and deleted = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param userId the user ID
 	 * @param read the read
@@ -2102,40 +2194,58 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	public UserThread findByU_R_D_Last(long userId, boolean read,
 		boolean deleted, OrderByComparator orderByComparator)
 		throws NoSuchUserThreadException, SystemException {
+		UserThread userThread = fetchByU_R_D_Last(userId, read, deleted,
+				orderByComparator);
+
+		if (userThread != null) {
+			return userThread;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("userId=");
+		msg.append(userId);
+
+		msg.append(", read=");
+		msg.append(read);
+
+		msg.append(", deleted=");
+		msg.append(deleted);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchUserThreadException(msg.toString());
+	}
+
+	/**
+	 * Returns the last user thread in the ordered set where userId = &#63; and read = &#63; and deleted = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param read the read
+	 * @param deleted the deleted
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching user thread, or <code>null</code> if a matching user thread could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public UserThread fetchByU_R_D_Last(long userId, boolean read,
+		boolean deleted, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countByU_R_D(userId, read, deleted);
 
 		List<UserThread> list = findByU_R_D(userId, read, deleted, count - 1,
 				count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("userId=");
-			msg.append(userId);
-
-			msg.append(", read=");
-			msg.append(read);
-
-			msg.append(", deleted=");
-			msg.append(deleted);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchUserThreadException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the user threads before and after the current user thread in the ordered set where userId = &#63; and read = &#63; and deleted = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param userThreadId the primary key of the current user thread
 	 * @param userId the user ID

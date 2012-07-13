@@ -712,10 +712,6 @@ public class KaleoNotificationRecipientPersistenceImpl
 	/**
 	 * Returns the first kaleo notification recipient in the ordered set where companyId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo notification recipient
@@ -725,32 +721,47 @@ public class KaleoNotificationRecipientPersistenceImpl
 	public KaleoNotificationRecipient findByCompanyId_First(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchNotificationRecipientException, SystemException {
+		KaleoNotificationRecipient kaleoNotificationRecipient = fetchByCompanyId_First(companyId,
+				orderByComparator);
+
+		if (kaleoNotificationRecipient != null) {
+			return kaleoNotificationRecipient;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchNotificationRecipientException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo notification recipient in the ordered set where companyId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo notification recipient, or <code>null</code> if a matching kaleo notification recipient could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoNotificationRecipient fetchByCompanyId_First(long companyId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KaleoNotificationRecipient> list = findByCompanyId(companyId, 0,
 				1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchNotificationRecipientException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last kaleo notification recipient in the ordered set where companyId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -761,34 +772,49 @@ public class KaleoNotificationRecipientPersistenceImpl
 	public KaleoNotificationRecipient findByCompanyId_Last(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchNotificationRecipientException, SystemException {
+		KaleoNotificationRecipient kaleoNotificationRecipient = fetchByCompanyId_Last(companyId,
+				orderByComparator);
+
+		if (kaleoNotificationRecipient != null) {
+			return kaleoNotificationRecipient;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchNotificationRecipientException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo notification recipient in the ordered set where companyId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo notification recipient, or <code>null</code> if a matching kaleo notification recipient could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoNotificationRecipient fetchByCompanyId_Last(long companyId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
 
 		List<KaleoNotificationRecipient> list = findByCompanyId(companyId,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchNotificationRecipientException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the kaleo notification recipients before and after the current kaleo notification recipient in the ordered set where companyId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoNotificationRecipientId the primary key of the current kaleo notification recipient
 	 * @param companyId the company ID
@@ -1077,10 +1103,6 @@ public class KaleoNotificationRecipientPersistenceImpl
 	/**
 	 * Returns the first kaleo notification recipient in the ordered set where kaleoDefinitionId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param kaleoDefinitionId the kaleo definition ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo notification recipient
@@ -1090,32 +1112,48 @@ public class KaleoNotificationRecipientPersistenceImpl
 	public KaleoNotificationRecipient findByKaleoDefinitionId_First(
 		long kaleoDefinitionId, OrderByComparator orderByComparator)
 		throws NoSuchNotificationRecipientException, SystemException {
+		KaleoNotificationRecipient kaleoNotificationRecipient = fetchByKaleoDefinitionId_First(kaleoDefinitionId,
+				orderByComparator);
+
+		if (kaleoNotificationRecipient != null) {
+			return kaleoNotificationRecipient;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoDefinitionId=");
+		msg.append(kaleoDefinitionId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchNotificationRecipientException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo notification recipient in the ordered set where kaleoDefinitionId = &#63;.
+	 *
+	 * @param kaleoDefinitionId the kaleo definition ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo notification recipient, or <code>null</code> if a matching kaleo notification recipient could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoNotificationRecipient fetchByKaleoDefinitionId_First(
+		long kaleoDefinitionId, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<KaleoNotificationRecipient> list = findByKaleoDefinitionId(kaleoDefinitionId,
 				0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoDefinitionId=");
-			msg.append(kaleoDefinitionId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchNotificationRecipientException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last kaleo notification recipient in the ordered set where kaleoDefinitionId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoDefinitionId the kaleo definition ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1126,34 +1164,50 @@ public class KaleoNotificationRecipientPersistenceImpl
 	public KaleoNotificationRecipient findByKaleoDefinitionId_Last(
 		long kaleoDefinitionId, OrderByComparator orderByComparator)
 		throws NoSuchNotificationRecipientException, SystemException {
+		KaleoNotificationRecipient kaleoNotificationRecipient = fetchByKaleoDefinitionId_Last(kaleoDefinitionId,
+				orderByComparator);
+
+		if (kaleoNotificationRecipient != null) {
+			return kaleoNotificationRecipient;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoDefinitionId=");
+		msg.append(kaleoDefinitionId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchNotificationRecipientException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo notification recipient in the ordered set where kaleoDefinitionId = &#63;.
+	 *
+	 * @param kaleoDefinitionId the kaleo definition ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo notification recipient, or <code>null</code> if a matching kaleo notification recipient could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoNotificationRecipient fetchByKaleoDefinitionId_Last(
+		long kaleoDefinitionId, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countByKaleoDefinitionId(kaleoDefinitionId);
 
 		List<KaleoNotificationRecipient> list = findByKaleoDefinitionId(kaleoDefinitionId,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoDefinitionId=");
-			msg.append(kaleoDefinitionId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchNotificationRecipientException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the kaleo notification recipients before and after the current kaleo notification recipient in the ordered set where kaleoDefinitionId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoNotificationRecipientId the primary key of the current kaleo notification recipient
 	 * @param kaleoDefinitionId the kaleo definition ID
@@ -1443,10 +1497,6 @@ public class KaleoNotificationRecipientPersistenceImpl
 	/**
 	 * Returns the first kaleo notification recipient in the ordered set where kaleoNotificationId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param kaleoNotificationId the kaleo notification ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo notification recipient
@@ -1456,32 +1506,48 @@ public class KaleoNotificationRecipientPersistenceImpl
 	public KaleoNotificationRecipient findByKaleoNotificationId_First(
 		long kaleoNotificationId, OrderByComparator orderByComparator)
 		throws NoSuchNotificationRecipientException, SystemException {
+		KaleoNotificationRecipient kaleoNotificationRecipient = fetchByKaleoNotificationId_First(kaleoNotificationId,
+				orderByComparator);
+
+		if (kaleoNotificationRecipient != null) {
+			return kaleoNotificationRecipient;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoNotificationId=");
+		msg.append(kaleoNotificationId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchNotificationRecipientException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo notification recipient in the ordered set where kaleoNotificationId = &#63;.
+	 *
+	 * @param kaleoNotificationId the kaleo notification ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo notification recipient, or <code>null</code> if a matching kaleo notification recipient could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoNotificationRecipient fetchByKaleoNotificationId_First(
+		long kaleoNotificationId, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<KaleoNotificationRecipient> list = findByKaleoNotificationId(kaleoNotificationId,
 				0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoNotificationId=");
-			msg.append(kaleoNotificationId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchNotificationRecipientException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last kaleo notification recipient in the ordered set where kaleoNotificationId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoNotificationId the kaleo notification ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1492,34 +1558,50 @@ public class KaleoNotificationRecipientPersistenceImpl
 	public KaleoNotificationRecipient findByKaleoNotificationId_Last(
 		long kaleoNotificationId, OrderByComparator orderByComparator)
 		throws NoSuchNotificationRecipientException, SystemException {
+		KaleoNotificationRecipient kaleoNotificationRecipient = fetchByKaleoNotificationId_Last(kaleoNotificationId,
+				orderByComparator);
+
+		if (kaleoNotificationRecipient != null) {
+			return kaleoNotificationRecipient;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoNotificationId=");
+		msg.append(kaleoNotificationId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchNotificationRecipientException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo notification recipient in the ordered set where kaleoNotificationId = &#63;.
+	 *
+	 * @param kaleoNotificationId the kaleo notification ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo notification recipient, or <code>null</code> if a matching kaleo notification recipient could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoNotificationRecipient fetchByKaleoNotificationId_Last(
+		long kaleoNotificationId, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countByKaleoNotificationId(kaleoNotificationId);
 
 		List<KaleoNotificationRecipient> list = findByKaleoNotificationId(kaleoNotificationId,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoNotificationId=");
-			msg.append(kaleoNotificationId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchNotificationRecipientException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the kaleo notification recipients before and after the current kaleo notification recipient in the ordered set where kaleoNotificationId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoNotificationRecipientId the primary key of the current kaleo notification recipient
 	 * @param kaleoNotificationId the kaleo notification ID

@@ -757,10 +757,6 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 	/**
 	 * Returns the first kaleo instance in the ordered set where companyId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo instance
@@ -770,32 +766,47 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 	public KaleoInstance findByCompanyId_First(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchInstanceException, SystemException {
+		KaleoInstance kaleoInstance = fetchByCompanyId_First(companyId,
+				orderByComparator);
+
+		if (kaleoInstance != null) {
+			return kaleoInstance;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchInstanceException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo instance in the ordered set where companyId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo instance, or <code>null</code> if a matching kaleo instance could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoInstance fetchByCompanyId_First(long companyId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KaleoInstance> list = findByCompanyId(companyId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchInstanceException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last kaleo instance in the ordered set where companyId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -806,34 +817,49 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 	public KaleoInstance findByCompanyId_Last(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchInstanceException, SystemException {
+		KaleoInstance kaleoInstance = fetchByCompanyId_Last(companyId,
+				orderByComparator);
+
+		if (kaleoInstance != null) {
+			return kaleoInstance;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchInstanceException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo instance in the ordered set where companyId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo instance, or <code>null</code> if a matching kaleo instance could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoInstance fetchByCompanyId_Last(long companyId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
 
 		List<KaleoInstance> list = findByCompanyId(companyId, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchInstanceException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the kaleo instances before and after the current kaleo instance in the ordered set where companyId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoInstanceId the primary key of the current kaleo instance
 	 * @param companyId the company ID
@@ -1119,10 +1145,6 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 	/**
 	 * Returns the first kaleo instance in the ordered set where kaleoDefinitionId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param kaleoDefinitionId the kaleo definition ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo instance
@@ -1132,32 +1154,48 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 	public KaleoInstance findByKaleoDefinitionId_First(long kaleoDefinitionId,
 		OrderByComparator orderByComparator)
 		throws NoSuchInstanceException, SystemException {
+		KaleoInstance kaleoInstance = fetchByKaleoDefinitionId_First(kaleoDefinitionId,
+				orderByComparator);
+
+		if (kaleoInstance != null) {
+			return kaleoInstance;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoDefinitionId=");
+		msg.append(kaleoDefinitionId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchInstanceException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo instance in the ordered set where kaleoDefinitionId = &#63;.
+	 *
+	 * @param kaleoDefinitionId the kaleo definition ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo instance, or <code>null</code> if a matching kaleo instance could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoInstance fetchByKaleoDefinitionId_First(
+		long kaleoDefinitionId, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<KaleoInstance> list = findByKaleoDefinitionId(kaleoDefinitionId,
 				0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoDefinitionId=");
-			msg.append(kaleoDefinitionId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchInstanceException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last kaleo instance in the ordered set where kaleoDefinitionId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoDefinitionId the kaleo definition ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1168,34 +1206,49 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 	public KaleoInstance findByKaleoDefinitionId_Last(long kaleoDefinitionId,
 		OrderByComparator orderByComparator)
 		throws NoSuchInstanceException, SystemException {
+		KaleoInstance kaleoInstance = fetchByKaleoDefinitionId_Last(kaleoDefinitionId,
+				orderByComparator);
+
+		if (kaleoInstance != null) {
+			return kaleoInstance;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoDefinitionId=");
+		msg.append(kaleoDefinitionId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchInstanceException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo instance in the ordered set where kaleoDefinitionId = &#63;.
+	 *
+	 * @param kaleoDefinitionId the kaleo definition ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo instance, or <code>null</code> if a matching kaleo instance could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoInstance fetchByKaleoDefinitionId_Last(long kaleoDefinitionId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByKaleoDefinitionId(kaleoDefinitionId);
 
 		List<KaleoInstance> list = findByKaleoDefinitionId(kaleoDefinitionId,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoDefinitionId=");
-			msg.append(kaleoDefinitionId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchInstanceException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the kaleo instances before and after the current kaleo instance in the ordered set where kaleoDefinitionId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoInstanceId the primary key of the current kaleo instance
 	 * @param kaleoDefinitionId the kaleo definition ID
@@ -1490,10 +1543,6 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 	/**
 	 * Returns the first kaleo instance in the ordered set where kaleoDefinitionId = &#63; and completed = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param kaleoDefinitionId the kaleo definition ID
 	 * @param completed the completed
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1504,35 +1553,52 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 	public KaleoInstance findByKDI_C_First(long kaleoDefinitionId,
 		boolean completed, OrderByComparator orderByComparator)
 		throws NoSuchInstanceException, SystemException {
+		KaleoInstance kaleoInstance = fetchByKDI_C_First(kaleoDefinitionId,
+				completed, orderByComparator);
+
+		if (kaleoInstance != null) {
+			return kaleoInstance;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoDefinitionId=");
+		msg.append(kaleoDefinitionId);
+
+		msg.append(", completed=");
+		msg.append(completed);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchInstanceException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo instance in the ordered set where kaleoDefinitionId = &#63; and completed = &#63;.
+	 *
+	 * @param kaleoDefinitionId the kaleo definition ID
+	 * @param completed the completed
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo instance, or <code>null</code> if a matching kaleo instance could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoInstance fetchByKDI_C_First(long kaleoDefinitionId,
+		boolean completed, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<KaleoInstance> list = findByKDI_C(kaleoDefinitionId, completed, 0,
 				1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoDefinitionId=");
-			msg.append(kaleoDefinitionId);
-
-			msg.append(", completed=");
-			msg.append(completed);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchInstanceException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last kaleo instance in the ordered set where kaleoDefinitionId = &#63; and completed = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoDefinitionId the kaleo definition ID
 	 * @param completed the completed
@@ -1544,37 +1610,54 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 	public KaleoInstance findByKDI_C_Last(long kaleoDefinitionId,
 		boolean completed, OrderByComparator orderByComparator)
 		throws NoSuchInstanceException, SystemException {
+		KaleoInstance kaleoInstance = fetchByKDI_C_Last(kaleoDefinitionId,
+				completed, orderByComparator);
+
+		if (kaleoInstance != null) {
+			return kaleoInstance;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoDefinitionId=");
+		msg.append(kaleoDefinitionId);
+
+		msg.append(", completed=");
+		msg.append(completed);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchInstanceException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo instance in the ordered set where kaleoDefinitionId = &#63; and completed = &#63;.
+	 *
+	 * @param kaleoDefinitionId the kaleo definition ID
+	 * @param completed the completed
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo instance, or <code>null</code> if a matching kaleo instance could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoInstance fetchByKDI_C_Last(long kaleoDefinitionId,
+		boolean completed, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countByKDI_C(kaleoDefinitionId, completed);
 
 		List<KaleoInstance> list = findByKDI_C(kaleoDefinitionId, completed,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoDefinitionId=");
-			msg.append(kaleoDefinitionId);
-
-			msg.append(", completed=");
-			msg.append(completed);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchInstanceException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the kaleo instances before and after the current kaleo instance in the ordered set where kaleoDefinitionId = &#63; and completed = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoInstanceId the primary key of the current kaleo instance
 	 * @param kaleoDefinitionId the kaleo definition ID
@@ -1920,10 +2003,6 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 	/**
 	 * Returns the first kaleo instance in the ordered set where companyId = &#63; and kaleoDefinitionName = &#63; and kaleoDefinitionVersion = &#63; and completionDate = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param companyId the company ID
 	 * @param kaleoDefinitionName the kaleo definition name
 	 * @param kaleoDefinitionVersion the kaleo definition version
@@ -1937,42 +2016,63 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 		String kaleoDefinitionName, int kaleoDefinitionVersion,
 		Date completionDate, OrderByComparator orderByComparator)
 		throws NoSuchInstanceException, SystemException {
+		KaleoInstance kaleoInstance = fetchByC_KDN_KDV_CD_First(companyId,
+				kaleoDefinitionName, kaleoDefinitionVersion, completionDate,
+				orderByComparator);
+
+		if (kaleoInstance != null) {
+			return kaleoInstance;
+		}
+
+		StringBundler msg = new StringBundler(10);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(", kaleoDefinitionName=");
+		msg.append(kaleoDefinitionName);
+
+		msg.append(", kaleoDefinitionVersion=");
+		msg.append(kaleoDefinitionVersion);
+
+		msg.append(", completionDate=");
+		msg.append(completionDate);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchInstanceException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo instance in the ordered set where companyId = &#63; and kaleoDefinitionName = &#63; and kaleoDefinitionVersion = &#63; and completionDate = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param kaleoDefinitionName the kaleo definition name
+	 * @param kaleoDefinitionVersion the kaleo definition version
+	 * @param completionDate the completion date
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo instance, or <code>null</code> if a matching kaleo instance could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoInstance fetchByC_KDN_KDV_CD_First(long companyId,
+		String kaleoDefinitionName, int kaleoDefinitionVersion,
+		Date completionDate, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<KaleoInstance> list = findByC_KDN_KDV_CD(companyId,
 				kaleoDefinitionName, kaleoDefinitionVersion, completionDate, 0,
 				1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(10);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(", kaleoDefinitionName=");
-			msg.append(kaleoDefinitionName);
-
-			msg.append(", kaleoDefinitionVersion=");
-			msg.append(kaleoDefinitionVersion);
-
-			msg.append(", completionDate=");
-			msg.append(completionDate);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchInstanceException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last kaleo instance in the ordered set where companyId = &#63; and kaleoDefinitionName = &#63; and kaleoDefinitionVersion = &#63; and completionDate = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param companyId the company ID
 	 * @param kaleoDefinitionName the kaleo definition name
@@ -1987,6 +2087,50 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 		String kaleoDefinitionName, int kaleoDefinitionVersion,
 		Date completionDate, OrderByComparator orderByComparator)
 		throws NoSuchInstanceException, SystemException {
+		KaleoInstance kaleoInstance = fetchByC_KDN_KDV_CD_Last(companyId,
+				kaleoDefinitionName, kaleoDefinitionVersion, completionDate,
+				orderByComparator);
+
+		if (kaleoInstance != null) {
+			return kaleoInstance;
+		}
+
+		StringBundler msg = new StringBundler(10);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(", kaleoDefinitionName=");
+		msg.append(kaleoDefinitionName);
+
+		msg.append(", kaleoDefinitionVersion=");
+		msg.append(kaleoDefinitionVersion);
+
+		msg.append(", completionDate=");
+		msg.append(completionDate);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchInstanceException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo instance in the ordered set where companyId = &#63; and kaleoDefinitionName = &#63; and kaleoDefinitionVersion = &#63; and completionDate = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param kaleoDefinitionName the kaleo definition name
+	 * @param kaleoDefinitionVersion the kaleo definition version
+	 * @param completionDate the completion date
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo instance, or <code>null</code> if a matching kaleo instance could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoInstance fetchByC_KDN_KDV_CD_Last(long companyId,
+		String kaleoDefinitionName, int kaleoDefinitionVersion,
+		Date completionDate, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countByC_KDN_KDV_CD(companyId, kaleoDefinitionName,
 				kaleoDefinitionVersion, completionDate);
 
@@ -1994,38 +2138,15 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 				kaleoDefinitionName, kaleoDefinitionVersion, completionDate,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(10);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(", kaleoDefinitionName=");
-			msg.append(kaleoDefinitionName);
-
-			msg.append(", kaleoDefinitionVersion=");
-			msg.append(kaleoDefinitionVersion);
-
-			msg.append(", completionDate=");
-			msg.append(completionDate);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchInstanceException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the kaleo instances before and after the current kaleo instance in the ordered set where companyId = &#63; and kaleoDefinitionName = &#63; and kaleoDefinitionVersion = &#63; and completionDate = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoInstanceId the primary key of the current kaleo instance
 	 * @param companyId the company ID

@@ -904,10 +904,6 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	/**
 	 * Returns the first member request in the ordered set where receiverUserId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param receiverUserId the receiver user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching member request
@@ -917,32 +913,47 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	public MemberRequest findByReceiverUserId_First(long receiverUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchMemberRequestException, SystemException {
+		MemberRequest memberRequest = fetchByReceiverUserId_First(receiverUserId,
+				orderByComparator);
+
+		if (memberRequest != null) {
+			return memberRequest;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("receiverUserId=");
+		msg.append(receiverUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchMemberRequestException(msg.toString());
+	}
+
+	/**
+	 * Returns the first member request in the ordered set where receiverUserId = &#63;.
+	 *
+	 * @param receiverUserId the receiver user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching member request, or <code>null</code> if a matching member request could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MemberRequest fetchByReceiverUserId_First(long receiverUserId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<MemberRequest> list = findByReceiverUserId(receiverUserId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("receiverUserId=");
-			msg.append(receiverUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchMemberRequestException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last member request in the ordered set where receiverUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param receiverUserId the receiver user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -953,34 +964,49 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	public MemberRequest findByReceiverUserId_Last(long receiverUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchMemberRequestException, SystemException {
+		MemberRequest memberRequest = fetchByReceiverUserId_Last(receiverUserId,
+				orderByComparator);
+
+		if (memberRequest != null) {
+			return memberRequest;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("receiverUserId=");
+		msg.append(receiverUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchMemberRequestException(msg.toString());
+	}
+
+	/**
+	 * Returns the last member request in the ordered set where receiverUserId = &#63;.
+	 *
+	 * @param receiverUserId the receiver user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching member request, or <code>null</code> if a matching member request could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MemberRequest fetchByReceiverUserId_Last(long receiverUserId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByReceiverUserId(receiverUserId);
 
 		List<MemberRequest> list = findByReceiverUserId(receiverUserId,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("receiverUserId=");
-			msg.append(receiverUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchMemberRequestException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the member requests before and after the current member request in the ordered set where receiverUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param memberRequestId the primary key of the current member request
 	 * @param receiverUserId the receiver user ID
@@ -1275,10 +1301,6 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	/**
 	 * Returns the first member request in the ordered set where receiverUserId = &#63; and status = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param receiverUserId the receiver user ID
 	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1289,35 +1311,51 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	public MemberRequest findByR_S_First(long receiverUserId, int status,
 		OrderByComparator orderByComparator)
 		throws NoSuchMemberRequestException, SystemException {
+		MemberRequest memberRequest = fetchByR_S_First(receiverUserId, status,
+				orderByComparator);
+
+		if (memberRequest != null) {
+			return memberRequest;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("receiverUserId=");
+		msg.append(receiverUserId);
+
+		msg.append(", status=");
+		msg.append(status);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchMemberRequestException(msg.toString());
+	}
+
+	/**
+	 * Returns the first member request in the ordered set where receiverUserId = &#63; and status = &#63;.
+	 *
+	 * @param receiverUserId the receiver user ID
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching member request, or <code>null</code> if a matching member request could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MemberRequest fetchByR_S_First(long receiverUserId, int status,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<MemberRequest> list = findByR_S(receiverUserId, status, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("receiverUserId=");
-			msg.append(receiverUserId);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchMemberRequestException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last member request in the ordered set where receiverUserId = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param receiverUserId the receiver user ID
 	 * @param status the status
@@ -1329,37 +1367,53 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	public MemberRequest findByR_S_Last(long receiverUserId, int status,
 		OrderByComparator orderByComparator)
 		throws NoSuchMemberRequestException, SystemException {
+		MemberRequest memberRequest = fetchByR_S_Last(receiverUserId, status,
+				orderByComparator);
+
+		if (memberRequest != null) {
+			return memberRequest;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("receiverUserId=");
+		msg.append(receiverUserId);
+
+		msg.append(", status=");
+		msg.append(status);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchMemberRequestException(msg.toString());
+	}
+
+	/**
+	 * Returns the last member request in the ordered set where receiverUserId = &#63; and status = &#63;.
+	 *
+	 * @param receiverUserId the receiver user ID
+	 * @param status the status
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching member request, or <code>null</code> if a matching member request could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MemberRequest fetchByR_S_Last(long receiverUserId, int status,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByR_S(receiverUserId, status);
 
 		List<MemberRequest> list = findByR_S(receiverUserId, status, count - 1,
 				count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("receiverUserId=");
-			msg.append(receiverUserId);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchMemberRequestException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the member requests before and after the current member request in the ordered set where receiverUserId = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param memberRequestId the primary key of the current member request
 	 * @param receiverUserId the receiver user ID

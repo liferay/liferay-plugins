@@ -798,10 +798,6 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	/**
 	 * Returns the first kaleo instance token in the ordered set where companyId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo instance token
@@ -811,32 +807,47 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	public KaleoInstanceToken findByCompanyId_First(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchInstanceTokenException, SystemException {
+		KaleoInstanceToken kaleoInstanceToken = fetchByCompanyId_First(companyId,
+				orderByComparator);
+
+		if (kaleoInstanceToken != null) {
+			return kaleoInstanceToken;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchInstanceTokenException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo instance token in the ordered set where companyId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo instance token, or <code>null</code> if a matching kaleo instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoInstanceToken fetchByCompanyId_First(long companyId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KaleoInstanceToken> list = findByCompanyId(companyId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchInstanceTokenException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last kaleo instance token in the ordered set where companyId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -847,34 +858,49 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	public KaleoInstanceToken findByCompanyId_Last(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchInstanceTokenException, SystemException {
+		KaleoInstanceToken kaleoInstanceToken = fetchByCompanyId_Last(companyId,
+				orderByComparator);
+
+		if (kaleoInstanceToken != null) {
+			return kaleoInstanceToken;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchInstanceTokenException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo instance token in the ordered set where companyId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo instance token, or <code>null</code> if a matching kaleo instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoInstanceToken fetchByCompanyId_Last(long companyId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
 
 		List<KaleoInstanceToken> list = findByCompanyId(companyId, count - 1,
 				count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchInstanceTokenException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the kaleo instance tokens before and after the current kaleo instance token in the ordered set where companyId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoInstanceTokenId the primary key of the current kaleo instance token
 	 * @param companyId the company ID
@@ -1161,10 +1187,6 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	/**
 	 * Returns the first kaleo instance token in the ordered set where kaleoDefinitionId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param kaleoDefinitionId the kaleo definition ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo instance token
@@ -1174,32 +1196,48 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	public KaleoInstanceToken findByKaleoDefinitionId_First(
 		long kaleoDefinitionId, OrderByComparator orderByComparator)
 		throws NoSuchInstanceTokenException, SystemException {
+		KaleoInstanceToken kaleoInstanceToken = fetchByKaleoDefinitionId_First(kaleoDefinitionId,
+				orderByComparator);
+
+		if (kaleoInstanceToken != null) {
+			return kaleoInstanceToken;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoDefinitionId=");
+		msg.append(kaleoDefinitionId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchInstanceTokenException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo instance token in the ordered set where kaleoDefinitionId = &#63;.
+	 *
+	 * @param kaleoDefinitionId the kaleo definition ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo instance token, or <code>null</code> if a matching kaleo instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoInstanceToken fetchByKaleoDefinitionId_First(
+		long kaleoDefinitionId, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<KaleoInstanceToken> list = findByKaleoDefinitionId(kaleoDefinitionId,
 				0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoDefinitionId=");
-			msg.append(kaleoDefinitionId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchInstanceTokenException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last kaleo instance token in the ordered set where kaleoDefinitionId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoDefinitionId the kaleo definition ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1210,34 +1248,50 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	public KaleoInstanceToken findByKaleoDefinitionId_Last(
 		long kaleoDefinitionId, OrderByComparator orderByComparator)
 		throws NoSuchInstanceTokenException, SystemException {
+		KaleoInstanceToken kaleoInstanceToken = fetchByKaleoDefinitionId_Last(kaleoDefinitionId,
+				orderByComparator);
+
+		if (kaleoInstanceToken != null) {
+			return kaleoInstanceToken;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoDefinitionId=");
+		msg.append(kaleoDefinitionId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchInstanceTokenException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo instance token in the ordered set where kaleoDefinitionId = &#63;.
+	 *
+	 * @param kaleoDefinitionId the kaleo definition ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo instance token, or <code>null</code> if a matching kaleo instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoInstanceToken fetchByKaleoDefinitionId_Last(
+		long kaleoDefinitionId, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countByKaleoDefinitionId(kaleoDefinitionId);
 
 		List<KaleoInstanceToken> list = findByKaleoDefinitionId(kaleoDefinitionId,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoDefinitionId=");
-			msg.append(kaleoDefinitionId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchInstanceTokenException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the kaleo instance tokens before and after the current kaleo instance token in the ordered set where kaleoDefinitionId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoInstanceTokenId the primary key of the current kaleo instance token
 	 * @param kaleoDefinitionId the kaleo definition ID
@@ -1527,10 +1581,6 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	/**
 	 * Returns the first kaleo instance token in the ordered set where kaleoInstanceId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param kaleoInstanceId the kaleo instance ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo instance token
@@ -1540,32 +1590,48 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	public KaleoInstanceToken findByKaleoInstanceId_First(
 		long kaleoInstanceId, OrderByComparator orderByComparator)
 		throws NoSuchInstanceTokenException, SystemException {
+		KaleoInstanceToken kaleoInstanceToken = fetchByKaleoInstanceId_First(kaleoInstanceId,
+				orderByComparator);
+
+		if (kaleoInstanceToken != null) {
+			return kaleoInstanceToken;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoInstanceId=");
+		msg.append(kaleoInstanceId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchInstanceTokenException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo instance token in the ordered set where kaleoInstanceId = &#63;.
+	 *
+	 * @param kaleoInstanceId the kaleo instance ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo instance token, or <code>null</code> if a matching kaleo instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoInstanceToken fetchByKaleoInstanceId_First(
+		long kaleoInstanceId, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<KaleoInstanceToken> list = findByKaleoInstanceId(kaleoInstanceId,
 				0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoInstanceId=");
-			msg.append(kaleoInstanceId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchInstanceTokenException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last kaleo instance token in the ordered set where kaleoInstanceId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoInstanceId the kaleo instance ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1576,34 +1642,50 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	public KaleoInstanceToken findByKaleoInstanceId_Last(long kaleoInstanceId,
 		OrderByComparator orderByComparator)
 		throws NoSuchInstanceTokenException, SystemException {
+		KaleoInstanceToken kaleoInstanceToken = fetchByKaleoInstanceId_Last(kaleoInstanceId,
+				orderByComparator);
+
+		if (kaleoInstanceToken != null) {
+			return kaleoInstanceToken;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoInstanceId=");
+		msg.append(kaleoInstanceId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchInstanceTokenException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo instance token in the ordered set where kaleoInstanceId = &#63;.
+	 *
+	 * @param kaleoInstanceId the kaleo instance ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo instance token, or <code>null</code> if a matching kaleo instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoInstanceToken fetchByKaleoInstanceId_Last(
+		long kaleoInstanceId, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countByKaleoInstanceId(kaleoInstanceId);
 
 		List<KaleoInstanceToken> list = findByKaleoInstanceId(kaleoInstanceId,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoInstanceId=");
-			msg.append(kaleoInstanceId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchInstanceTokenException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the kaleo instance tokens before and after the current kaleo instance token in the ordered set where kaleoInstanceId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoInstanceTokenId the primary key of the current kaleo instance token
 	 * @param kaleoInstanceId the kaleo instance ID
@@ -1902,10 +1984,6 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	/**
 	 * Returns the first kaleo instance token in the ordered set where companyId = &#63; and parentKaleoInstanceTokenId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param companyId the company ID
 	 * @param parentKaleoInstanceTokenId the parent kaleo instance token ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1916,35 +1994,52 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	public KaleoInstanceToken findByC_PKITI_First(long companyId,
 		long parentKaleoInstanceTokenId, OrderByComparator orderByComparator)
 		throws NoSuchInstanceTokenException, SystemException {
+		KaleoInstanceToken kaleoInstanceToken = fetchByC_PKITI_First(companyId,
+				parentKaleoInstanceTokenId, orderByComparator);
+
+		if (kaleoInstanceToken != null) {
+			return kaleoInstanceToken;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(", parentKaleoInstanceTokenId=");
+		msg.append(parentKaleoInstanceTokenId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchInstanceTokenException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo instance token in the ordered set where companyId = &#63; and parentKaleoInstanceTokenId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param parentKaleoInstanceTokenId the parent kaleo instance token ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo instance token, or <code>null</code> if a matching kaleo instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoInstanceToken fetchByC_PKITI_First(long companyId,
+		long parentKaleoInstanceTokenId, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<KaleoInstanceToken> list = findByC_PKITI(companyId,
 				parentKaleoInstanceTokenId, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(", parentKaleoInstanceTokenId=");
-			msg.append(parentKaleoInstanceTokenId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchInstanceTokenException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last kaleo instance token in the ordered set where companyId = &#63; and parentKaleoInstanceTokenId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param companyId the company ID
 	 * @param parentKaleoInstanceTokenId the parent kaleo instance token ID
@@ -1956,37 +2051,54 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	public KaleoInstanceToken findByC_PKITI_Last(long companyId,
 		long parentKaleoInstanceTokenId, OrderByComparator orderByComparator)
 		throws NoSuchInstanceTokenException, SystemException {
+		KaleoInstanceToken kaleoInstanceToken = fetchByC_PKITI_Last(companyId,
+				parentKaleoInstanceTokenId, orderByComparator);
+
+		if (kaleoInstanceToken != null) {
+			return kaleoInstanceToken;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(", parentKaleoInstanceTokenId=");
+		msg.append(parentKaleoInstanceTokenId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchInstanceTokenException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo instance token in the ordered set where companyId = &#63; and parentKaleoInstanceTokenId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param parentKaleoInstanceTokenId the parent kaleo instance token ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo instance token, or <code>null</code> if a matching kaleo instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoInstanceToken fetchByC_PKITI_Last(long companyId,
+		long parentKaleoInstanceTokenId, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countByC_PKITI(companyId, parentKaleoInstanceTokenId);
 
 		List<KaleoInstanceToken> list = findByC_PKITI(companyId,
 				parentKaleoInstanceTokenId, count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(", parentKaleoInstanceTokenId=");
-			msg.append(parentKaleoInstanceTokenId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchInstanceTokenException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the kaleo instance tokens before and after the current kaleo instance token in the ordered set where companyId = &#63; and parentKaleoInstanceTokenId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoInstanceTokenId the primary key of the current kaleo instance token
 	 * @param companyId the company ID
@@ -2310,10 +2422,6 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	/**
 	 * Returns the first kaleo instance token in the ordered set where companyId = &#63; and parentKaleoInstanceTokenId = &#63; and completionDate = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param companyId the company ID
 	 * @param parentKaleoInstanceTokenId the parent kaleo instance token ID
 	 * @param completionDate the completion date
@@ -2326,39 +2434,57 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		long parentKaleoInstanceTokenId, Date completionDate,
 		OrderByComparator orderByComparator)
 		throws NoSuchInstanceTokenException, SystemException {
+		KaleoInstanceToken kaleoInstanceToken = fetchByC_PKITI_CD_First(companyId,
+				parentKaleoInstanceTokenId, completionDate, orderByComparator);
+
+		if (kaleoInstanceToken != null) {
+			return kaleoInstanceToken;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(", parentKaleoInstanceTokenId=");
+		msg.append(parentKaleoInstanceTokenId);
+
+		msg.append(", completionDate=");
+		msg.append(completionDate);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchInstanceTokenException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo instance token in the ordered set where companyId = &#63; and parentKaleoInstanceTokenId = &#63; and completionDate = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param parentKaleoInstanceTokenId the parent kaleo instance token ID
+	 * @param completionDate the completion date
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo instance token, or <code>null</code> if a matching kaleo instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoInstanceToken fetchByC_PKITI_CD_First(long companyId,
+		long parentKaleoInstanceTokenId, Date completionDate,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KaleoInstanceToken> list = findByC_PKITI_CD(companyId,
 				parentKaleoInstanceTokenId, completionDate, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(", parentKaleoInstanceTokenId=");
-			msg.append(parentKaleoInstanceTokenId);
-
-			msg.append(", completionDate=");
-			msg.append(completionDate);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchInstanceTokenException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last kaleo instance token in the ordered set where companyId = &#63; and parentKaleoInstanceTokenId = &#63; and completionDate = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param companyId the company ID
 	 * @param parentKaleoInstanceTokenId the parent kaleo instance token ID
@@ -2372,6 +2498,44 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		long parentKaleoInstanceTokenId, Date completionDate,
 		OrderByComparator orderByComparator)
 		throws NoSuchInstanceTokenException, SystemException {
+		KaleoInstanceToken kaleoInstanceToken = fetchByC_PKITI_CD_Last(companyId,
+				parentKaleoInstanceTokenId, completionDate, orderByComparator);
+
+		if (kaleoInstanceToken != null) {
+			return kaleoInstanceToken;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(", parentKaleoInstanceTokenId=");
+		msg.append(parentKaleoInstanceTokenId);
+
+		msg.append(", completionDate=");
+		msg.append(completionDate);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchInstanceTokenException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo instance token in the ordered set where companyId = &#63; and parentKaleoInstanceTokenId = &#63; and completionDate = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param parentKaleoInstanceTokenId the parent kaleo instance token ID
+	 * @param completionDate the completion date
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo instance token, or <code>null</code> if a matching kaleo instance token could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoInstanceToken fetchByC_PKITI_CD_Last(long companyId,
+		long parentKaleoInstanceTokenId, Date completionDate,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByC_PKITI_CD(companyId, parentKaleoInstanceTokenId,
 				completionDate);
 
@@ -2379,35 +2543,15 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 				parentKaleoInstanceTokenId, completionDate, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(", parentKaleoInstanceTokenId=");
-			msg.append(parentKaleoInstanceTokenId);
-
-			msg.append(", completionDate=");
-			msg.append(completionDate);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchInstanceTokenException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the kaleo instance tokens before and after the current kaleo instance token in the ordered set where companyId = &#63; and parentKaleoInstanceTokenId = &#63; and completionDate = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoInstanceTokenId the primary key of the current kaleo instance token
 	 * @param companyId the company ID
