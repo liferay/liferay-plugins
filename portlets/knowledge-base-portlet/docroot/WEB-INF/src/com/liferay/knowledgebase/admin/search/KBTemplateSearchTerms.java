@@ -49,7 +49,8 @@ public class KBTemplateSearchTerms extends KBTemplateDisplayTerms {
 		}
 
 		return PortalUtil.getDate(
-			endDateMonth, endDateDay + 1, endDateYear, timeZone, null);
+			endDateMonth, endDateDay + 1, endDateYear, timeZone,
+			(Class<? extends PortalException>)null);
 	}
 
 	public Date getStartDate(TimeZone timeZone) throws PortalException {
@@ -58,7 +59,8 @@ public class KBTemplateSearchTerms extends KBTemplateDisplayTerms {
 		}
 
 		return PortalUtil.getDate(
-			startDateMonth, startDateDay, startDateYear, timeZone, null);
+			startDateMonth, startDateDay, startDateYear, timeZone,
+			(Class<? extends PortalException>)null);
 	}
 
 	public boolean hasSearchTerms() {
