@@ -18,7 +18,7 @@ $theme.include($body_top_include)
 	#dockbar()
 #end
 
-<div id="page-wrapper">
+<div id="wrapper">
 	<a href="#main-content" id="skip-to-content">#language("skip-to-content")</a>
 
 	<header id="banner" role="banner">
@@ -27,13 +27,13 @@ $theme.include($body_top_include)
 				<a class="$logo_css_class png" href="$site_default_url" title="#language("go-to") $site_name">
 					<img alt="$logo_description" height="$site_logo_height" src="$site_logo" width="$site_logo_width" />
 				</a>
-				
+
 				#if ($show_site_name)
 					<span class="site-name" title="#language("go-to") $site_name">
 						$site_name
 					</span>
 				#end
-				
+
 				<div id="page-search">
 					$theme.journalContentSearch()
 				</div>

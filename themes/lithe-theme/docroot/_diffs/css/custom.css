@@ -19,8 +19,7 @@ $default-box-shadow-v-offset: 1px;
 body {
 	background: #142933;
 	border-top: 10px solid #193441;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 12px;
+	font-family: 12px, "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 	&.portal-popup {
 		background-image: none;
@@ -36,7 +35,7 @@ body {
 	}
 }
 
-#page-wrapper {
+#wrapper {
 	background: url(../images/custom/background.png) 0 0;
 	position: relative;
 }
@@ -71,6 +70,12 @@ img {
 
 	&.left {
 		margin: 18px 18px 18px 0;
+	}
+
+	&.main-content-image {
+		height: 320px;
+		margin-bottom: 1em;
+		width: 673px;
 	}
 }
 
@@ -186,9 +191,10 @@ hr {
 	}
 
 	.lfr-search-keywords {
-		background-position: 0 2px;
+		background-position: 0 0;
 		height: 36px;
 		margin-right: -10px;
+		margin-top: 3px;
 		text-transform: uppercase;
 
 		.aui-field-content {
@@ -211,20 +217,6 @@ hr {
 	}
 }
 
-.ie6 #page-search #search {
-	background-color: #132832;
-	height: 21px;
-}
-
-.ie8 #page-search #keywords {
-	display: block;
-}
-
-.firefox #page-search .lfr-search-keywords {
-	height: 38px;
-	margin-top: -6px;
-}
-
 /* -------- Navigation -------- */
 
 #navigation {
@@ -233,15 +225,17 @@ hr {
 	display: block;
 	height: 70px;
 
-	a:link, a:visited {
-		color: #707070;
-		font-size: 1em;
-		text-decoration: none;
-		text-transform: capitalize;
-	}
+	a {
+		&:link, &:visited {
+			color: #707070;
+			font-size: 1em;
+			text-decoration: none;
+			text-transform: capitalize;
+		}
 
-	a:hover {
-		color: #252525;
+		&:hover {
+			color: #252525;
+		}
 	}
 
 	li {
@@ -331,7 +325,7 @@ hr {
 				margin: 4px 15px 0 0;
 			}
 
-			h4{
+			h4 {
 				margin: 0;
 				padding: 0;
 				text-transform: uppercase;
@@ -348,21 +342,9 @@ hr {
 	}
 }
 
-.ie7 .carousel-container #tabs .divider {
-	background: none;
-}
-
 .aui-carousel-menu-active {
 	background: url(../images/custom/tabwarrow.png) no-repeat 0 0;
 	color: #C2C2C2;
-}
-
-.ie6 .aui-carousel-menu-active {
-	background-image: url(../images/custom/tab.png);
-}
-
-.ie6 .carousel-container #tabs .divider {
-	display: none;
 }
 
 /* -------- Pod -------- */
@@ -406,7 +388,10 @@ hr {
 	}
 
 	img {
+		height: 167px;
+		margin-bottom: 1em;
 		margin-top: 25px;
+		width: 305px;
 	}
 }
 
@@ -426,8 +411,8 @@ hr {
 	#quote-box-container {
 		background: #D4D1CE;
 		background: rgba(0,0,0,0.10);
-		border-bottom: 2px solid #e2e0de;
-		border-top: 2px solid #e2e0de;
+		border-bottom: 2px solid #E2E0DE;
+		border-top: 2px solid #E2E0DE;
 	}
 
 	.quote-item {
@@ -584,7 +569,7 @@ ul.arrow {
 				margin-bottom: 25px;
 				padding: 0 25px 0 0;
 				width: 32px;
-				
+
 				span {
 					display: block;
 					text-indent: -9999px;
@@ -599,6 +584,47 @@ ul.arrow {
 .signed-out #sign-out, .signed-in #sign-in {
 	display: none;
 	padding: 0;
+}
+
+/* ------- Browser Specific Rules ------ */
+
+.ie6 {
+	#page-search #search {
+		background-color: #132832;
+		height: 21px;
+	}
+
+	.aui-carousel-menu-active {
+		background-image: url(../images/custom/tab.png);
+	}
+
+	.carousel-container #tabs .divider {
+		display: none;
+	}
+}
+
+.ie7 {
+	#page-search #keywords {
+		margin-top: -1px;
+	}
+
+	.carousel-container #tabs .divider {
+		background: none;
+	}
+}
+
+.ie8 #page-search {
+	#keywords {
+		display: block;
+	}
+
+	.lfr-search-button {
+		background-position-y: -106px;
+	}
+}
+
+.firefox #page-search .lfr-search-keywords {
+	margin-top: -3px;
 }
 
 /* -------- Extras -------- */

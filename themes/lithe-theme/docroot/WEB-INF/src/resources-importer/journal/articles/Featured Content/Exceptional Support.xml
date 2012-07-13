@@ -14,6 +14,6 @@
 		<dynamic-content><![CDATA[Great Support and Service]]></dynamic-content>
 	</dynamic-element>
 	<dynamic-element instance-id="HlvOk8qY" name="content" type="text_area" index-type="">
-		<dynamic-content><![CDATA[<p><img alt="" src="[$FILE=mouse.png$]" style="width: 305px; height: 167px; " /></p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce malesuada enim ut lorem accumsan lacinia. Cras in orci purus, vitae ultricies dui. Morbi magna neque, laoreet vitae semper non, faucibus vitae lacus. Quisque pretium molestie sapien.</p><p><a class="more left" href="#"><span>More Information</span></a></p>]]></dynamic-content>
+		<dynamic-content><![CDATA[<img src="[$FILE=mouse.png$]" /><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce malesuada enim ut lorem accumsan lacinia. Cras in orci purus, vitae ultricies dui. Morbi magna neque, laoreet vitae semper non, faucibus vitae lacus. Quisque pretium molestie sapien.</p><p><a class="more left" href="#"><span>More Information</span></a></p>]]></dynamic-content>
 	</dynamic-element>
 </root>
