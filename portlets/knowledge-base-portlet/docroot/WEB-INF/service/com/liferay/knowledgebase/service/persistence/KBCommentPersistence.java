@@ -150,10 +150,6 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	/**
 	* Returns the first k b comment in the ordered set where uuid = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching k b comment
@@ -167,11 +163,20 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the last k b comment in the ordered set where uuid = &#63;.
+	* Returns the first k b comment in the ordered set where uuid = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param uuid the uuid
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching k b comment, or <code>null</code> if a matching k b comment could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.knowledgebase.model.KBComment fetchByUuid_First(
+		java.lang.String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last k b comment in the ordered set where uuid = &#63;.
 	*
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -186,11 +191,20 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the k b comments before and after the current k b comment in the ordered set where uuid = &#63;.
+	* Returns the last k b comment in the ordered set where uuid = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param uuid the uuid
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching k b comment, or <code>null</code> if a matching k b comment could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.knowledgebase.model.KBComment fetchByUuid_Last(
+		java.lang.String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the k b comments before and after the current k b comment in the ordered set where uuid = &#63;.
 	*
 	* @param kbCommentId the primary key of the current k b comment
 	* @param uuid the uuid
@@ -294,10 +308,6 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	/**
 	* Returns the first k b comment in the ordered set where groupId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching k b comment
@@ -311,11 +321,20 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the last k b comment in the ordered set where groupId = &#63;.
+	* Returns the first k b comment in the ordered set where groupId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param groupId the group ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching k b comment, or <code>null</code> if a matching k b comment could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.knowledgebase.model.KBComment fetchByGroupId_First(
+		long groupId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last k b comment in the ordered set where groupId = &#63;.
 	*
 	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -330,11 +349,20 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the k b comments before and after the current k b comment in the ordered set where groupId = &#63;.
+	* Returns the last k b comment in the ordered set where groupId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param groupId the group ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching k b comment, or <code>null</code> if a matching k b comment could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.knowledgebase.model.KBComment fetchByGroupId_Last(
+		long groupId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the k b comments before and after the current k b comment in the ordered set where groupId = &#63;.
 	*
 	* @param kbCommentId the primary key of the current k b comment
 	* @param groupId the group ID
@@ -402,10 +430,6 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	/**
 	* Returns the first k b comment in the ordered set where groupId = &#63; and classNameId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param groupId the group ID
 	* @param classNameId the class name ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -420,11 +444,21 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the last k b comment in the ordered set where groupId = &#63; and classNameId = &#63;.
+	* Returns the first k b comment in the ordered set where groupId = &#63; and classNameId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param groupId the group ID
+	* @param classNameId the class name ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching k b comment, or <code>null</code> if a matching k b comment could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.knowledgebase.model.KBComment fetchByG_C_First(
+		long groupId, long classNameId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last k b comment in the ordered set where groupId = &#63; and classNameId = &#63;.
 	*
 	* @param groupId the group ID
 	* @param classNameId the class name ID
@@ -440,11 +474,21 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the k b comments before and after the current k b comment in the ordered set where groupId = &#63; and classNameId = &#63;.
+	* Returns the last k b comment in the ordered set where groupId = &#63; and classNameId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param groupId the group ID
+	* @param classNameId the class name ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching k b comment, or <code>null</code> if a matching k b comment could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.knowledgebase.model.KBComment fetchByG_C_Last(
+		long groupId, long classNameId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the k b comments before and after the current k b comment in the ordered set where groupId = &#63; and classNameId = &#63;.
 	*
 	* @param kbCommentId the primary key of the current k b comment
 	* @param groupId the group ID
@@ -513,10 +557,6 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	/**
 	* Returns the first k b comment in the ordered set where classNameId = &#63; and classPK = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param classNameId the class name ID
 	* @param classPK the class p k
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -531,11 +571,21 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the last k b comment in the ordered set where classNameId = &#63; and classPK = &#63;.
+	* Returns the first k b comment in the ordered set where classNameId = &#63; and classPK = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param classNameId the class name ID
+	* @param classPK the class p k
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching k b comment, or <code>null</code> if a matching k b comment could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.knowledgebase.model.KBComment fetchByC_C_First(
+		long classNameId, long classPK,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last k b comment in the ordered set where classNameId = &#63; and classPK = &#63;.
 	*
 	* @param classNameId the class name ID
 	* @param classPK the class p k
@@ -551,11 +601,21 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the k b comments before and after the current k b comment in the ordered set where classNameId = &#63; and classPK = &#63;.
+	* Returns the last k b comment in the ordered set where classNameId = &#63; and classPK = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param classNameId the class name ID
+	* @param classPK the class p k
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching k b comment, or <code>null</code> if a matching k b comment could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.knowledgebase.model.KBComment fetchByC_C_Last(
+		long classNameId, long classPK,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the k b comments before and after the current k b comment in the ordered set where classNameId = &#63; and classPK = &#63;.
 	*
 	* @param kbCommentId the primary key of the current k b comment
 	* @param classNameId the class name ID

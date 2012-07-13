@@ -243,10 +243,6 @@ public class AccountUtil {
 	/**
 	* Returns the first account in the ordered set where userId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching account
@@ -262,11 +258,22 @@ public class AccountUtil {
 	}
 
 	/**
-	* Returns the last account in the ordered set where userId = &#63;.
+	* Returns the first account in the ordered set where userId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching account, or <code>null</code> if a matching account could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.mail.model.Account fetchByUserId_First(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByUserId_First(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the last account in the ordered set where userId = &#63;.
 	*
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -283,11 +290,22 @@ public class AccountUtil {
 	}
 
 	/**
-	* Returns the accounts before and after the current account in the ordered set where userId = &#63;.
+	* Returns the last account in the ordered set where userId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching account, or <code>null</code> if a matching account could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.mail.model.Account fetchByUserId_Last(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByUserId_Last(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the accounts before and after the current account in the ordered set where userId = &#63;.
 	*
 	* @param accountId the primary key of the current account
 	* @param userId the user ID

@@ -247,10 +247,6 @@ public class KaleoActionUtil {
 	/**
 	* Returns the first kaleo action in the ordered set where companyId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo action
@@ -267,11 +263,23 @@ public class KaleoActionUtil {
 	}
 
 	/**
-	* Returns the last kaleo action in the ordered set where companyId = &#63;.
+	* Returns the first kaleo action in the ordered set where companyId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param companyId the company ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching kaleo action, or <code>null</code> if a matching kaleo action could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoAction fetchByCompanyId_First(
+		long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByCompanyId_First(companyId, orderByComparator);
+	}
+
+	/**
+	* Returns the last kaleo action in the ordered set where companyId = &#63;.
 	*
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -289,11 +297,23 @@ public class KaleoActionUtil {
 	}
 
 	/**
-	* Returns the kaleo actions before and after the current kaleo action in the ordered set where companyId = &#63;.
+	* Returns the last kaleo action in the ordered set where companyId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param companyId the company ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching kaleo action, or <code>null</code> if a matching kaleo action could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoAction fetchByCompanyId_Last(
+		long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByCompanyId_Last(companyId, orderByComparator);
+	}
+
+	/**
+	* Returns the kaleo actions before and after the current kaleo action in the ordered set where companyId = &#63;.
 	*
 	* @param kaleoActionId the primary key of the current kaleo action
 	* @param companyId the company ID
@@ -371,10 +391,6 @@ public class KaleoActionUtil {
 	/**
 	* Returns the first kaleo action in the ordered set where kaleoDefinitionId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param kaleoDefinitionId the kaleo definition ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo action
@@ -392,11 +408,24 @@ public class KaleoActionUtil {
 	}
 
 	/**
-	* Returns the last kaleo action in the ordered set where kaleoDefinitionId = &#63;.
+	* Returns the first kaleo action in the ordered set where kaleoDefinitionId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching kaleo action, or <code>null</code> if a matching kaleo action could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoAction fetchByKaleoDefinitionId_First(
+		long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByKaleoDefinitionId_First(kaleoDefinitionId,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the last kaleo action in the ordered set where kaleoDefinitionId = &#63;.
 	*
 	* @param kaleoDefinitionId the kaleo definition ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -415,11 +444,24 @@ public class KaleoActionUtil {
 	}
 
 	/**
-	* Returns the kaleo actions before and after the current kaleo action in the ordered set where kaleoDefinitionId = &#63;.
+	* Returns the last kaleo action in the ordered set where kaleoDefinitionId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching kaleo action, or <code>null</code> if a matching kaleo action could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoAction fetchByKaleoDefinitionId_Last(
+		long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByKaleoDefinitionId_Last(kaleoDefinitionId,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the kaleo actions before and after the current kaleo action in the ordered set where kaleoDefinitionId = &#63;.
 	*
 	* @param kaleoActionId the primary key of the current kaleo action
 	* @param kaleoDefinitionId the kaleo definition ID
@@ -509,10 +551,6 @@ public class KaleoActionUtil {
 	/**
 	* Returns the first kaleo action in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param kaleoClassName the kaleo class name
 	* @param kaleoClassPK the kaleo class p k
 	* @param executionType the execution type
@@ -533,11 +571,27 @@ public class KaleoActionUtil {
 	}
 
 	/**
-	* Returns the last kaleo action in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63;.
+	* Returns the first kaleo action in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param kaleoClassName the kaleo class name
+	* @param kaleoClassPK the kaleo class p k
+	* @param executionType the execution type
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching kaleo action, or <code>null</code> if a matching kaleo action could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoAction fetchByKCN_KCPK_ET_First(
+		java.lang.String kaleoClassName, long kaleoClassPK,
+		java.lang.String executionType,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByKCN_KCPK_ET_First(kaleoClassName, kaleoClassPK,
+			executionType, orderByComparator);
+	}
+
+	/**
+	* Returns the last kaleo action in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63;.
 	*
 	* @param kaleoClassName the kaleo class name
 	* @param kaleoClassPK the kaleo class p k
@@ -559,11 +613,27 @@ public class KaleoActionUtil {
 	}
 
 	/**
-	* Returns the kaleo actions before and after the current kaleo action in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63;.
+	* Returns the last kaleo action in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param kaleoClassName the kaleo class name
+	* @param kaleoClassPK the kaleo class p k
+	* @param executionType the execution type
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching kaleo action, or <code>null</code> if a matching kaleo action could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoAction fetchByKCN_KCPK_ET_Last(
+		java.lang.String kaleoClassName, long kaleoClassPK,
+		java.lang.String executionType,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByKCN_KCPK_ET_Last(kaleoClassName, kaleoClassPK,
+			executionType, orderByComparator);
+	}
+
+	/**
+	* Returns the kaleo actions before and after the current kaleo action in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63;.
 	*
 	* @param kaleoActionId the primary key of the current kaleo action
 	* @param kaleoClassName the kaleo class name

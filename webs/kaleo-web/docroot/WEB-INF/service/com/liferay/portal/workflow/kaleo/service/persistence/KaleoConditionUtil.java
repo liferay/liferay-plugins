@@ -247,10 +247,6 @@ public class KaleoConditionUtil {
 	/**
 	* Returns the first kaleo condition in the ordered set where companyId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo condition
@@ -267,11 +263,23 @@ public class KaleoConditionUtil {
 	}
 
 	/**
-	* Returns the last kaleo condition in the ordered set where companyId = &#63;.
+	* Returns the first kaleo condition in the ordered set where companyId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param companyId the company ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching kaleo condition, or <code>null</code> if a matching kaleo condition could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition fetchByCompanyId_First(
+		long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByCompanyId_First(companyId, orderByComparator);
+	}
+
+	/**
+	* Returns the last kaleo condition in the ordered set where companyId = &#63;.
 	*
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -289,11 +297,23 @@ public class KaleoConditionUtil {
 	}
 
 	/**
-	* Returns the kaleo conditions before and after the current kaleo condition in the ordered set where companyId = &#63;.
+	* Returns the last kaleo condition in the ordered set where companyId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param companyId the company ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching kaleo condition, or <code>null</code> if a matching kaleo condition could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition fetchByCompanyId_Last(
+		long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByCompanyId_Last(companyId, orderByComparator);
+	}
+
+	/**
+	* Returns the kaleo conditions before and after the current kaleo condition in the ordered set where companyId = &#63;.
 	*
 	* @param kaleoConditionId the primary key of the current kaleo condition
 	* @param companyId the company ID
@@ -371,10 +391,6 @@ public class KaleoConditionUtil {
 	/**
 	* Returns the first kaleo condition in the ordered set where kaleoDefinitionId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param kaleoDefinitionId the kaleo definition ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo condition
@@ -392,11 +408,24 @@ public class KaleoConditionUtil {
 	}
 
 	/**
-	* Returns the last kaleo condition in the ordered set where kaleoDefinitionId = &#63;.
+	* Returns the first kaleo condition in the ordered set where kaleoDefinitionId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching kaleo condition, or <code>null</code> if a matching kaleo condition could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition fetchByKaleoDefinitionId_First(
+		long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByKaleoDefinitionId_First(kaleoDefinitionId,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the last kaleo condition in the ordered set where kaleoDefinitionId = &#63;.
 	*
 	* @param kaleoDefinitionId the kaleo definition ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -415,11 +444,24 @@ public class KaleoConditionUtil {
 	}
 
 	/**
-	* Returns the kaleo conditions before and after the current kaleo condition in the ordered set where kaleoDefinitionId = &#63;.
+	* Returns the last kaleo condition in the ordered set where kaleoDefinitionId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching kaleo condition, or <code>null</code> if a matching kaleo condition could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition fetchByKaleoDefinitionId_Last(
+		long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByKaleoDefinitionId_Last(kaleoDefinitionId,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the kaleo conditions before and after the current kaleo condition in the ordered set where kaleoDefinitionId = &#63;.
 	*
 	* @param kaleoConditionId the primary key of the current kaleo condition
 	* @param kaleoDefinitionId the kaleo definition ID

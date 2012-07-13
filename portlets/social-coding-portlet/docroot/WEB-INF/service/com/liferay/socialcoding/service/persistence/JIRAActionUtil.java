@@ -247,10 +247,6 @@ public class JIRAActionUtil {
 	/**
 	* Returns the first j i r a action in the ordered set where jiraUserId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param jiraUserId the jira user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a action
@@ -267,11 +263,23 @@ public class JIRAActionUtil {
 	}
 
 	/**
-	* Returns the last j i r a action in the ordered set where jiraUserId = &#63;.
+	* Returns the first j i r a action in the ordered set where jiraUserId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param jiraUserId the jira user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching j i r a action, or <code>null</code> if a matching j i r a action could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.socialcoding.model.JIRAAction fetchByJiraUserId_First(
+		java.lang.String jiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByJiraUserId_First(jiraUserId, orderByComparator);
+	}
+
+	/**
+	* Returns the last j i r a action in the ordered set where jiraUserId = &#63;.
 	*
 	* @param jiraUserId the jira user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -289,11 +297,23 @@ public class JIRAActionUtil {
 	}
 
 	/**
-	* Returns the j i r a actions before and after the current j i r a action in the ordered set where jiraUserId = &#63;.
+	* Returns the last j i r a action in the ordered set where jiraUserId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param jiraUserId the jira user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching j i r a action, or <code>null</code> if a matching j i r a action could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.socialcoding.model.JIRAAction fetchByJiraUserId_Last(
+		java.lang.String jiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByJiraUserId_Last(jiraUserId, orderByComparator);
+	}
+
+	/**
+	* Returns the j i r a actions before and after the current j i r a action in the ordered set where jiraUserId = &#63;.
 	*
 	* @param jiraActionId the primary key of the current j i r a action
 	* @param jiraUserId the jira user ID
@@ -369,10 +389,6 @@ public class JIRAActionUtil {
 	/**
 	* Returns the first j i r a action in the ordered set where jiraIssueId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param jiraIssueId the jira issue ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a action
@@ -389,11 +405,23 @@ public class JIRAActionUtil {
 	}
 
 	/**
-	* Returns the last j i r a action in the ordered set where jiraIssueId = &#63;.
+	* Returns the first j i r a action in the ordered set where jiraIssueId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param jiraIssueId the jira issue ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching j i r a action, or <code>null</code> if a matching j i r a action could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.socialcoding.model.JIRAAction fetchByJiraIssueId_First(
+		long jiraIssueId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByJiraIssueId_First(jiraIssueId, orderByComparator);
+	}
+
+	/**
+	* Returns the last j i r a action in the ordered set where jiraIssueId = &#63;.
 	*
 	* @param jiraIssueId the jira issue ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -411,11 +439,23 @@ public class JIRAActionUtil {
 	}
 
 	/**
-	* Returns the j i r a actions before and after the current j i r a action in the ordered set where jiraIssueId = &#63;.
+	* Returns the last j i r a action in the ordered set where jiraIssueId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param jiraIssueId the jira issue ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching j i r a action, or <code>null</code> if a matching j i r a action could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.socialcoding.model.JIRAAction fetchByJiraIssueId_Last(
+		long jiraIssueId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByJiraIssueId_Last(jiraIssueId, orderByComparator);
+	}
+
+	/**
+	* Returns the j i r a actions before and after the current j i r a action in the ordered set where jiraIssueId = &#63;.
 	*
 	* @param jiraActionId the primary key of the current j i r a action
 	* @param jiraIssueId the jira issue ID
@@ -490,10 +530,6 @@ public class JIRAActionUtil {
 	/**
 	* Returns the first j i r a action in the ordered set where type = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param type the type
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a action
@@ -509,11 +545,22 @@ public class JIRAActionUtil {
 	}
 
 	/**
-	* Returns the last j i r a action in the ordered set where type = &#63;.
+	* Returns the first j i r a action in the ordered set where type = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param type the type
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching j i r a action, or <code>null</code> if a matching j i r a action could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.socialcoding.model.JIRAAction fetchByType_First(
+		java.lang.String type,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByType_First(type, orderByComparator);
+	}
+
+	/**
+	* Returns the last j i r a action in the ordered set where type = &#63;.
 	*
 	* @param type the type
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -530,11 +577,22 @@ public class JIRAActionUtil {
 	}
 
 	/**
-	* Returns the j i r a actions before and after the current j i r a action in the ordered set where type = &#63;.
+	* Returns the last j i r a action in the ordered set where type = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param type the type
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching j i r a action, or <code>null</code> if a matching j i r a action could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.socialcoding.model.JIRAAction fetchByType_Last(
+		java.lang.String type,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByType_Last(type, orderByComparator);
+	}
+
+	/**
+	* Returns the j i r a actions before and after the current j i r a action in the ordered set where type = &#63;.
 	*
 	* @param jiraActionId the primary key of the current j i r a action
 	* @param type the type

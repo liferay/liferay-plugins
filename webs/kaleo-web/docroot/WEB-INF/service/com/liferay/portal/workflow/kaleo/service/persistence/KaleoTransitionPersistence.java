@@ -153,10 +153,6 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 	/**
 	* Returns the first kaleo transition in the ordered set where companyId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo transition
@@ -170,11 +166,20 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 			com.liferay.portal.workflow.kaleo.NoSuchTransitionException;
 
 	/**
-	* Returns the last kaleo transition in the ordered set where companyId = &#63;.
+	* Returns the first kaleo transition in the ordered set where companyId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param companyId the company ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching kaleo transition, or <code>null</code> if a matching kaleo transition could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoTransition fetchByCompanyId_First(
+		long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last kaleo transition in the ordered set where companyId = &#63;.
 	*
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -189,11 +194,20 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 			com.liferay.portal.workflow.kaleo.NoSuchTransitionException;
 
 	/**
-	* Returns the kaleo transitions before and after the current kaleo transition in the ordered set where companyId = &#63;.
+	* Returns the last kaleo transition in the ordered set where companyId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param companyId the company ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching kaleo transition, or <code>null</code> if a matching kaleo transition could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoTransition fetchByCompanyId_Last(
+		long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the kaleo transitions before and after the current kaleo transition in the ordered set where companyId = &#63;.
 	*
 	* @param kaleoTransitionId the primary key of the current kaleo transition
 	* @param companyId the company ID
@@ -258,10 +272,6 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 	/**
 	* Returns the first kaleo transition in the ordered set where kaleoDefinitionId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param kaleoDefinitionId the kaleo definition ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo transition
@@ -275,11 +285,20 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 			com.liferay.portal.workflow.kaleo.NoSuchTransitionException;
 
 	/**
-	* Returns the last kaleo transition in the ordered set where kaleoDefinitionId = &#63;.
+	* Returns the first kaleo transition in the ordered set where kaleoDefinitionId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching kaleo transition, or <code>null</code> if a matching kaleo transition could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoTransition fetchByKaleoDefinitionId_First(
+		long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last kaleo transition in the ordered set where kaleoDefinitionId = &#63;.
 	*
 	* @param kaleoDefinitionId the kaleo definition ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -294,11 +313,20 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 			com.liferay.portal.workflow.kaleo.NoSuchTransitionException;
 
 	/**
-	* Returns the kaleo transitions before and after the current kaleo transition in the ordered set where kaleoDefinitionId = &#63;.
+	* Returns the last kaleo transition in the ordered set where kaleoDefinitionId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param kaleoDefinitionId the kaleo definition ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching kaleo transition, or <code>null</code> if a matching kaleo transition could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoTransition fetchByKaleoDefinitionId_Last(
+		long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the kaleo transitions before and after the current kaleo transition in the ordered set where kaleoDefinitionId = &#63;.
 	*
 	* @param kaleoTransitionId the primary key of the current kaleo transition
 	* @param kaleoDefinitionId the kaleo definition ID
@@ -363,10 +391,6 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 	/**
 	* Returns the first kaleo transition in the ordered set where kaleoNodeId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param kaleoNodeId the kaleo node ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo transition
@@ -380,11 +404,20 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 			com.liferay.portal.workflow.kaleo.NoSuchTransitionException;
 
 	/**
-	* Returns the last kaleo transition in the ordered set where kaleoNodeId = &#63;.
+	* Returns the first kaleo transition in the ordered set where kaleoNodeId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param kaleoNodeId the kaleo node ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching kaleo transition, or <code>null</code> if a matching kaleo transition could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoTransition fetchByKaleoNodeId_First(
+		long kaleoNodeId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last kaleo transition in the ordered set where kaleoNodeId = &#63;.
 	*
 	* @param kaleoNodeId the kaleo node ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -399,11 +432,20 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 			com.liferay.portal.workflow.kaleo.NoSuchTransitionException;
 
 	/**
-	* Returns the kaleo transitions before and after the current kaleo transition in the ordered set where kaleoNodeId = &#63;.
+	* Returns the last kaleo transition in the ordered set where kaleoNodeId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param kaleoNodeId the kaleo node ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching kaleo transition, or <code>null</code> if a matching kaleo transition could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoTransition fetchByKaleoNodeId_Last(
+		long kaleoNodeId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the kaleo transitions before and after the current kaleo transition in the ordered set where kaleoNodeId = &#63;.
 	*
 	* @param kaleoTransitionId the primary key of the current kaleo transition
 	* @param kaleoNodeId the kaleo node ID

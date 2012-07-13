@@ -626,10 +626,6 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	/**
 	 * Returns the first favorite site in the ordered set where userId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching favorite site
@@ -639,31 +635,46 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	public FavoriteSite findByUserId_First(long userId,
 		OrderByComparator orderByComparator)
 		throws NoSuchFavoriteSiteException, SystemException {
+		FavoriteSite favoriteSite = fetchByUserId_First(userId,
+				orderByComparator);
+
+		if (favoriteSite != null) {
+			return favoriteSite;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("userId=");
+		msg.append(userId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchFavoriteSiteException(msg.toString());
+	}
+
+	/**
+	 * Returns the first favorite site in the ordered set where userId = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching favorite site, or <code>null</code> if a matching favorite site could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public FavoriteSite fetchByUserId_First(long userId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<FavoriteSite> list = findByUserId(userId, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("userId=");
-			msg.append(userId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchFavoriteSiteException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last favorite site in the ordered set where userId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -674,34 +685,48 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	public FavoriteSite findByUserId_Last(long userId,
 		OrderByComparator orderByComparator)
 		throws NoSuchFavoriteSiteException, SystemException {
+		FavoriteSite favoriteSite = fetchByUserId_Last(userId, orderByComparator);
+
+		if (favoriteSite != null) {
+			return favoriteSite;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("userId=");
+		msg.append(userId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchFavoriteSiteException(msg.toString());
+	}
+
+	/**
+	 * Returns the last favorite site in the ordered set where userId = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching favorite site, or <code>null</code> if a matching favorite site could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public FavoriteSite fetchByUserId_Last(long userId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUserId(userId);
 
 		List<FavoriteSite> list = findByUserId(userId, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("userId=");
-			msg.append(userId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchFavoriteSiteException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the favorite sites before and after the current favorite site in the ordered set where userId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param favoriteSiteId the primary key of the current favorite site
 	 * @param userId the user ID
@@ -986,10 +1011,6 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	/**
 	 * Returns the first favorite site in the ordered set where groupId = &#63; and userId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param groupId the group ID
 	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1000,35 +1021,51 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	public FavoriteSite findByG_U_First(long groupId, long userId,
 		OrderByComparator orderByComparator)
 		throws NoSuchFavoriteSiteException, SystemException {
+		FavoriteSite favoriteSite = fetchByG_U_First(groupId, userId,
+				orderByComparator);
+
+		if (favoriteSite != null) {
+			return favoriteSite;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", userId=");
+		msg.append(userId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchFavoriteSiteException(msg.toString());
+	}
+
+	/**
+	 * Returns the first favorite site in the ordered set where groupId = &#63; and userId = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param userId the user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching favorite site, or <code>null</code> if a matching favorite site could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public FavoriteSite fetchByG_U_First(long groupId, long userId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<FavoriteSite> list = findByG_U(groupId, userId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", userId=");
-			msg.append(userId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchFavoriteSiteException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last favorite site in the ordered set where groupId = &#63; and userId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param groupId the group ID
 	 * @param userId the user ID
@@ -1040,37 +1077,53 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	public FavoriteSite findByG_U_Last(long groupId, long userId,
 		OrderByComparator orderByComparator)
 		throws NoSuchFavoriteSiteException, SystemException {
+		FavoriteSite favoriteSite = fetchByG_U_Last(groupId, userId,
+				orderByComparator);
+
+		if (favoriteSite != null) {
+			return favoriteSite;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("groupId=");
+		msg.append(groupId);
+
+		msg.append(", userId=");
+		msg.append(userId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchFavoriteSiteException(msg.toString());
+	}
+
+	/**
+	 * Returns the last favorite site in the ordered set where groupId = &#63; and userId = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param userId the user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching favorite site, or <code>null</code> if a matching favorite site could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public FavoriteSite fetchByG_U_Last(long groupId, long userId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_U(groupId, userId);
 
 		List<FavoriteSite> list = findByG_U(groupId, userId, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", userId=");
-			msg.append(userId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchFavoriteSiteException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the favorite sites before and after the current favorite site in the ordered set where groupId = &#63; and userId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param favoriteSiteId the primary key of the current favorite site
 	 * @param groupId the group ID

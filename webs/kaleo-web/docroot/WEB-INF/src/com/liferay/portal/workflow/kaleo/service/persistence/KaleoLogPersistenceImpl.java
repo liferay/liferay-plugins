@@ -846,10 +846,6 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	/**
 	 * Returns the first kaleo log in the ordered set where companyId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo log
@@ -859,31 +855,45 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	public KaleoLog findByCompanyId_First(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchLogException, SystemException {
+		KaleoLog kaleoLog = fetchByCompanyId_First(companyId, orderByComparator);
+
+		if (kaleoLog != null) {
+			return kaleoLog;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchLogException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo log in the ordered set where companyId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo log, or <code>null</code> if a matching kaleo log could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoLog fetchByCompanyId_First(long companyId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KaleoLog> list = findByCompanyId(companyId, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchLogException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last kaleo log in the ordered set where companyId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -894,34 +904,48 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	public KaleoLog findByCompanyId_Last(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchLogException, SystemException {
+		KaleoLog kaleoLog = fetchByCompanyId_Last(companyId, orderByComparator);
+
+		if (kaleoLog != null) {
+			return kaleoLog;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchLogException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo log in the ordered set where companyId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo log, or <code>null</code> if a matching kaleo log could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoLog fetchByCompanyId_Last(long companyId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
 
 		List<KaleoLog> list = findByCompanyId(companyId, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchLogException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the kaleo logs before and after the current kaleo log in the ordered set where companyId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoLogId the primary key of the current kaleo log
 	 * @param companyId the company ID
@@ -1207,10 +1231,6 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	/**
 	 * Returns the first kaleo log in the ordered set where kaleoDefinitionId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param kaleoDefinitionId the kaleo definition ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo log
@@ -1220,32 +1240,47 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	public KaleoLog findByKaleoDefinitionId_First(long kaleoDefinitionId,
 		OrderByComparator orderByComparator)
 		throws NoSuchLogException, SystemException {
+		KaleoLog kaleoLog = fetchByKaleoDefinitionId_First(kaleoDefinitionId,
+				orderByComparator);
+
+		if (kaleoLog != null) {
+			return kaleoLog;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoDefinitionId=");
+		msg.append(kaleoDefinitionId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchLogException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo log in the ordered set where kaleoDefinitionId = &#63;.
+	 *
+	 * @param kaleoDefinitionId the kaleo definition ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo log, or <code>null</code> if a matching kaleo log could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoLog fetchByKaleoDefinitionId_First(long kaleoDefinitionId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KaleoLog> list = findByKaleoDefinitionId(kaleoDefinitionId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoDefinitionId=");
-			msg.append(kaleoDefinitionId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchLogException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last kaleo log in the ordered set where kaleoDefinitionId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoDefinitionId the kaleo definition ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1256,34 +1291,49 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	public KaleoLog findByKaleoDefinitionId_Last(long kaleoDefinitionId,
 		OrderByComparator orderByComparator)
 		throws NoSuchLogException, SystemException {
+		KaleoLog kaleoLog = fetchByKaleoDefinitionId_Last(kaleoDefinitionId,
+				orderByComparator);
+
+		if (kaleoLog != null) {
+			return kaleoLog;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoDefinitionId=");
+		msg.append(kaleoDefinitionId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchLogException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo log in the ordered set where kaleoDefinitionId = &#63;.
+	 *
+	 * @param kaleoDefinitionId the kaleo definition ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo log, or <code>null</code> if a matching kaleo log could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoLog fetchByKaleoDefinitionId_Last(long kaleoDefinitionId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByKaleoDefinitionId(kaleoDefinitionId);
 
 		List<KaleoLog> list = findByKaleoDefinitionId(kaleoDefinitionId,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoDefinitionId=");
-			msg.append(kaleoDefinitionId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchLogException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the kaleo logs before and after the current kaleo log in the ordered set where kaleoDefinitionId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoLogId the primary key of the current kaleo log
 	 * @param kaleoDefinitionId the kaleo definition ID
@@ -1569,10 +1619,6 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	/**
 	 * Returns the first kaleo log in the ordered set where kaleoInstanceId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param kaleoInstanceId the kaleo instance ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo log
@@ -1582,32 +1628,47 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	public KaleoLog findByKaleoInstanceId_First(long kaleoInstanceId,
 		OrderByComparator orderByComparator)
 		throws NoSuchLogException, SystemException {
+		KaleoLog kaleoLog = fetchByKaleoInstanceId_First(kaleoInstanceId,
+				orderByComparator);
+
+		if (kaleoLog != null) {
+			return kaleoLog;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoInstanceId=");
+		msg.append(kaleoInstanceId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchLogException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo log in the ordered set where kaleoInstanceId = &#63;.
+	 *
+	 * @param kaleoInstanceId the kaleo instance ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo log, or <code>null</code> if a matching kaleo log could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoLog fetchByKaleoInstanceId_First(long kaleoInstanceId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KaleoLog> list = findByKaleoInstanceId(kaleoInstanceId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoInstanceId=");
-			msg.append(kaleoInstanceId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchLogException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last kaleo log in the ordered set where kaleoInstanceId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoInstanceId the kaleo instance ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1618,34 +1679,49 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	public KaleoLog findByKaleoInstanceId_Last(long kaleoInstanceId,
 		OrderByComparator orderByComparator)
 		throws NoSuchLogException, SystemException {
+		KaleoLog kaleoLog = fetchByKaleoInstanceId_Last(kaleoInstanceId,
+				orderByComparator);
+
+		if (kaleoLog != null) {
+			return kaleoLog;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoInstanceId=");
+		msg.append(kaleoInstanceId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchLogException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo log in the ordered set where kaleoInstanceId = &#63;.
+	 *
+	 * @param kaleoInstanceId the kaleo instance ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo log, or <code>null</code> if a matching kaleo log could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoLog fetchByKaleoInstanceId_Last(long kaleoInstanceId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByKaleoInstanceId(kaleoInstanceId);
 
 		List<KaleoLog> list = findByKaleoInstanceId(kaleoInstanceId, count - 1,
 				count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoInstanceId=");
-			msg.append(kaleoInstanceId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchLogException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the kaleo logs before and after the current kaleo log in the ordered set where kaleoInstanceId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoLogId the primary key of the current kaleo log
 	 * @param kaleoInstanceId the kaleo instance ID
@@ -1933,10 +2009,6 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	/**
 	 * Returns the first kaleo log in the ordered set where kaleoTaskInstanceTokenId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param kaleoTaskInstanceTokenId the kaleo task instance token ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo log
@@ -1946,32 +2018,48 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	public KaleoLog findByKaleoTaskInstanceTokenId_First(
 		long kaleoTaskInstanceTokenId, OrderByComparator orderByComparator)
 		throws NoSuchLogException, SystemException {
+		KaleoLog kaleoLog = fetchByKaleoTaskInstanceTokenId_First(kaleoTaskInstanceTokenId,
+				orderByComparator);
+
+		if (kaleoLog != null) {
+			return kaleoLog;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoTaskInstanceTokenId=");
+		msg.append(kaleoTaskInstanceTokenId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchLogException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo log in the ordered set where kaleoTaskInstanceTokenId = &#63;.
+	 *
+	 * @param kaleoTaskInstanceTokenId the kaleo task instance token ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo log, or <code>null</code> if a matching kaleo log could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoLog fetchByKaleoTaskInstanceTokenId_First(
+		long kaleoTaskInstanceTokenId, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<KaleoLog> list = findByKaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId,
 				0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoTaskInstanceTokenId=");
-			msg.append(kaleoTaskInstanceTokenId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchLogException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last kaleo log in the ordered set where kaleoTaskInstanceTokenId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoTaskInstanceTokenId the kaleo task instance token ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1982,34 +2070,50 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	public KaleoLog findByKaleoTaskInstanceTokenId_Last(
 		long kaleoTaskInstanceTokenId, OrderByComparator orderByComparator)
 		throws NoSuchLogException, SystemException {
+		KaleoLog kaleoLog = fetchByKaleoTaskInstanceTokenId_Last(kaleoTaskInstanceTokenId,
+				orderByComparator);
+
+		if (kaleoLog != null) {
+			return kaleoLog;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoTaskInstanceTokenId=");
+		msg.append(kaleoTaskInstanceTokenId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchLogException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo log in the ordered set where kaleoTaskInstanceTokenId = &#63;.
+	 *
+	 * @param kaleoTaskInstanceTokenId the kaleo task instance token ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo log, or <code>null</code> if a matching kaleo log could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoLog fetchByKaleoTaskInstanceTokenId_Last(
+		long kaleoTaskInstanceTokenId, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countByKaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId);
 
 		List<KaleoLog> list = findByKaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoTaskInstanceTokenId=");
-			msg.append(kaleoTaskInstanceTokenId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchLogException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the kaleo logs before and after the current kaleo log in the ordered set where kaleoTaskInstanceTokenId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoLogId the primary key of the current kaleo log
 	 * @param kaleoTaskInstanceTokenId the kaleo task instance token ID
@@ -2316,10 +2420,6 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	/**
 	 * Returns the first kaleo log in the ordered set where kaleoInstanceTokenId = &#63; and type = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param kaleoInstanceTokenId the kaleo instance token ID
 	 * @param type the type
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -2330,35 +2430,51 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	public KaleoLog findByKITI_T_First(long kaleoInstanceTokenId, String type,
 		OrderByComparator orderByComparator)
 		throws NoSuchLogException, SystemException {
+		KaleoLog kaleoLog = fetchByKITI_T_First(kaleoInstanceTokenId, type,
+				orderByComparator);
+
+		if (kaleoLog != null) {
+			return kaleoLog;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoInstanceTokenId=");
+		msg.append(kaleoInstanceTokenId);
+
+		msg.append(", type=");
+		msg.append(type);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchLogException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo log in the ordered set where kaleoInstanceTokenId = &#63; and type = &#63;.
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param type the type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo log, or <code>null</code> if a matching kaleo log could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoLog fetchByKITI_T_First(long kaleoInstanceTokenId, String type,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KaleoLog> list = findByKITI_T(kaleoInstanceTokenId, type, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoInstanceTokenId=");
-			msg.append(kaleoInstanceTokenId);
-
-			msg.append(", type=");
-			msg.append(type);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchLogException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last kaleo log in the ordered set where kaleoInstanceTokenId = &#63; and type = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoInstanceTokenId the kaleo instance token ID
 	 * @param type the type
@@ -2370,37 +2486,53 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	public KaleoLog findByKITI_T_Last(long kaleoInstanceTokenId, String type,
 		OrderByComparator orderByComparator)
 		throws NoSuchLogException, SystemException {
+		KaleoLog kaleoLog = fetchByKITI_T_Last(kaleoInstanceTokenId, type,
+				orderByComparator);
+
+		if (kaleoLog != null) {
+			return kaleoLog;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoInstanceTokenId=");
+		msg.append(kaleoInstanceTokenId);
+
+		msg.append(", type=");
+		msg.append(type);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchLogException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo log in the ordered set where kaleoInstanceTokenId = &#63; and type = &#63;.
+	 *
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param type the type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo log, or <code>null</code> if a matching kaleo log could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoLog fetchByKITI_T_Last(long kaleoInstanceTokenId, String type,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByKITI_T(kaleoInstanceTokenId, type);
 
 		List<KaleoLog> list = findByKITI_T(kaleoInstanceTokenId, type,
 				count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoInstanceTokenId=");
-			msg.append(kaleoInstanceTokenId);
-
-			msg.append(", type=");
-			msg.append(type);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchLogException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the kaleo logs before and after the current kaleo log in the ordered set where kaleoInstanceTokenId = &#63; and type = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoLogId the primary key of the current kaleo log
 	 * @param kaleoInstanceTokenId the kaleo instance token ID
@@ -2759,10 +2891,6 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	/**
 	 * Returns the first kaleo log in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and kaleoInstanceTokenId = &#63; and type = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param kaleoClassName the kaleo class name
 	 * @param kaleoClassPK the kaleo class p k
 	 * @param kaleoInstanceTokenId the kaleo instance token ID
@@ -2776,42 +2904,61 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		long kaleoClassPK, long kaleoInstanceTokenId, String type,
 		OrderByComparator orderByComparator)
 		throws NoSuchLogException, SystemException {
+		KaleoLog kaleoLog = fetchByKCN_KCPK_KITI_T_First(kaleoClassName,
+				kaleoClassPK, kaleoInstanceTokenId, type, orderByComparator);
+
+		if (kaleoLog != null) {
+			return kaleoLog;
+		}
+
+		StringBundler msg = new StringBundler(10);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoClassName=");
+		msg.append(kaleoClassName);
+
+		msg.append(", kaleoClassPK=");
+		msg.append(kaleoClassPK);
+
+		msg.append(", kaleoInstanceTokenId=");
+		msg.append(kaleoInstanceTokenId);
+
+		msg.append(", type=");
+		msg.append(type);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchLogException(msg.toString());
+	}
+
+	/**
+	 * Returns the first kaleo log in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and kaleoInstanceTokenId = &#63; and type = &#63;.
+	 *
+	 * @param kaleoClassName the kaleo class name
+	 * @param kaleoClassPK the kaleo class p k
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param type the type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching kaleo log, or <code>null</code> if a matching kaleo log could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoLog fetchByKCN_KCPK_KITI_T_First(String kaleoClassName,
+		long kaleoClassPK, long kaleoInstanceTokenId, String type,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<KaleoLog> list = findByKCN_KCPK_KITI_T(kaleoClassName,
 				kaleoClassPK, kaleoInstanceTokenId, type, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(10);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoClassName=");
-			msg.append(kaleoClassName);
-
-			msg.append(", kaleoClassPK=");
-			msg.append(kaleoClassPK);
-
-			msg.append(", kaleoInstanceTokenId=");
-			msg.append(kaleoInstanceTokenId);
-
-			msg.append(", type=");
-			msg.append(type);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchLogException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last kaleo log in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and kaleoInstanceTokenId = &#63; and type = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoClassName the kaleo class name
 	 * @param kaleoClassPK the kaleo class p k
@@ -2826,6 +2973,48 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		long kaleoClassPK, long kaleoInstanceTokenId, String type,
 		OrderByComparator orderByComparator)
 		throws NoSuchLogException, SystemException {
+		KaleoLog kaleoLog = fetchByKCN_KCPK_KITI_T_Last(kaleoClassName,
+				kaleoClassPK, kaleoInstanceTokenId, type, orderByComparator);
+
+		if (kaleoLog != null) {
+			return kaleoLog;
+		}
+
+		StringBundler msg = new StringBundler(10);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("kaleoClassName=");
+		msg.append(kaleoClassName);
+
+		msg.append(", kaleoClassPK=");
+		msg.append(kaleoClassPK);
+
+		msg.append(", kaleoInstanceTokenId=");
+		msg.append(kaleoInstanceTokenId);
+
+		msg.append(", type=");
+		msg.append(type);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchLogException(msg.toString());
+	}
+
+	/**
+	 * Returns the last kaleo log in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and kaleoInstanceTokenId = &#63; and type = &#63;.
+	 *
+	 * @param kaleoClassName the kaleo class name
+	 * @param kaleoClassPK the kaleo class p k
+	 * @param kaleoInstanceTokenId the kaleo instance token ID
+	 * @param type the type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching kaleo log, or <code>null</code> if a matching kaleo log could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoLog fetchByKCN_KCPK_KITI_T_Last(String kaleoClassName,
+		long kaleoClassPK, long kaleoInstanceTokenId, String type,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByKCN_KCPK_KITI_T(kaleoClassName, kaleoClassPK,
 				kaleoInstanceTokenId, type);
 
@@ -2833,38 +3022,15 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 				kaleoClassPK, kaleoInstanceTokenId, type, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(10);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("kaleoClassName=");
-			msg.append(kaleoClassName);
-
-			msg.append(", kaleoClassPK=");
-			msg.append(kaleoClassPK);
-
-			msg.append(", kaleoInstanceTokenId=");
-			msg.append(kaleoInstanceTokenId);
-
-			msg.append(", type=");
-			msg.append(type);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchLogException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the kaleo logs before and after the current kaleo log in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and kaleoInstanceTokenId = &#63; and type = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param kaleoLogId the primary key of the current kaleo log
 	 * @param kaleoClassName the kaleo class name

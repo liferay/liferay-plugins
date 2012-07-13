@@ -149,10 +149,6 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	/**
 	* Returns the first foo in the ordered set where uuid = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching foo
@@ -166,11 +162,20 @@ public interface FooPersistence extends BasePersistence<Foo> {
 			com.liferay.sampleservicebuilder.NoSuchFooException;
 
 	/**
-	* Returns the last foo in the ordered set where uuid = &#63;.
+	* Returns the first foo in the ordered set where uuid = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param uuid the uuid
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching foo, or <code>null</code> if a matching foo could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.sampleservicebuilder.model.Foo fetchByUuid_First(
+		java.lang.String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last foo in the ordered set where uuid = &#63;.
 	*
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -185,11 +190,20 @@ public interface FooPersistence extends BasePersistence<Foo> {
 			com.liferay.sampleservicebuilder.NoSuchFooException;
 
 	/**
-	* Returns the foos before and after the current foo in the ordered set where uuid = &#63;.
+	* Returns the last foo in the ordered set where uuid = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param uuid the uuid
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching foo, or <code>null</code> if a matching foo could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.sampleservicebuilder.model.Foo fetchByUuid_Last(
+		java.lang.String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the foos before and after the current foo in the ordered set where uuid = &#63;.
 	*
 	* @param fooId the primary key of the current foo
 	* @param uuid the uuid
@@ -293,10 +307,6 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	/**
 	* Returns the first foo in the ordered set where field2 = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param field2 the field2
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching foo
@@ -310,11 +320,20 @@ public interface FooPersistence extends BasePersistence<Foo> {
 			com.liferay.sampleservicebuilder.NoSuchFooException;
 
 	/**
-	* Returns the last foo in the ordered set where field2 = &#63;.
+	* Returns the first foo in the ordered set where field2 = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param field2 the field2
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching foo, or <code>null</code> if a matching foo could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.sampleservicebuilder.model.Foo fetchByField2_First(
+		boolean field2,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last foo in the ordered set where field2 = &#63;.
 	*
 	* @param field2 the field2
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -329,11 +348,20 @@ public interface FooPersistence extends BasePersistence<Foo> {
 			com.liferay.sampleservicebuilder.NoSuchFooException;
 
 	/**
-	* Returns the foos before and after the current foo in the ordered set where field2 = &#63;.
+	* Returns the last foo in the ordered set where field2 = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param field2 the field2
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching foo, or <code>null</code> if a matching foo could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.sampleservicebuilder.model.Foo fetchByField2_Last(
+		boolean field2,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the foos before and after the current foo in the ordered set where field2 = &#63;.
 	*
 	* @param fooId the primary key of the current foo
 	* @param field2 the field2

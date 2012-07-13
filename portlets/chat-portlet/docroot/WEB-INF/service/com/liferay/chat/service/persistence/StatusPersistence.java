@@ -182,10 +182,6 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	/**
 	* Returns the first status in the ordered set where modifiedDate = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param modifiedDate the modified date
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching status
@@ -199,11 +195,20 @@ public interface StatusPersistence extends BasePersistence<Status> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the last status in the ordered set where modifiedDate = &#63;.
+	* Returns the first status in the ordered set where modifiedDate = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param modifiedDate the modified date
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching status, or <code>null</code> if a matching status could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Status fetchByModifiedDate_First(
+		long modifiedDate,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last status in the ordered set where modifiedDate = &#63;.
 	*
 	* @param modifiedDate the modified date
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -218,11 +223,20 @@ public interface StatusPersistence extends BasePersistence<Status> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the statuses before and after the current status in the ordered set where modifiedDate = &#63;.
+	* Returns the last status in the ordered set where modifiedDate = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param modifiedDate the modified date
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching status, or <code>null</code> if a matching status could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Status fetchByModifiedDate_Last(
+		long modifiedDate,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the statuses before and after the current status in the ordered set where modifiedDate = &#63;.
 	*
 	* @param statusId the primary key of the current status
 	* @param modifiedDate the modified date
@@ -287,10 +301,6 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	/**
 	* Returns the first status in the ordered set where online = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param online the online
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching status
@@ -303,11 +313,19 @@ public interface StatusPersistence extends BasePersistence<Status> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the last status in the ordered set where online = &#63;.
+	* Returns the first status in the ordered set where online = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param online the online
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching status, or <code>null</code> if a matching status could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Status fetchByOnline_First(boolean online,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last status in the ordered set where online = &#63;.
 	*
 	* @param online the online
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -321,11 +339,19 @@ public interface StatusPersistence extends BasePersistence<Status> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the statuses before and after the current status in the ordered set where online = &#63;.
+	* Returns the last status in the ordered set where online = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param online the online
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching status, or <code>null</code> if a matching status could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Status fetchByOnline_Last(boolean online,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the statuses before and after the current status in the ordered set where online = &#63;.
 	*
 	* @param statusId the primary key of the current status
 	* @param online the online
@@ -393,10 +419,6 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	/**
 	* Returns the first status in the ordered set where modifiedDate = &#63; and online = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param modifiedDate the modified date
 	* @param online the online
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -411,11 +433,21 @@ public interface StatusPersistence extends BasePersistence<Status> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the last status in the ordered set where modifiedDate = &#63; and online = &#63;.
+	* Returns the first status in the ordered set where modifiedDate = &#63; and online = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param modifiedDate the modified date
+	* @param online the online
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching status, or <code>null</code> if a matching status could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Status fetchByM_O_First(long modifiedDate,
+		boolean online,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last status in the ordered set where modifiedDate = &#63; and online = &#63;.
 	*
 	* @param modifiedDate the modified date
 	* @param online the online
@@ -431,11 +463,21 @@ public interface StatusPersistence extends BasePersistence<Status> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the statuses before and after the current status in the ordered set where modifiedDate = &#63; and online = &#63;.
+	* Returns the last status in the ordered set where modifiedDate = &#63; and online = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param modifiedDate the modified date
+	* @param online the online
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching status, or <code>null</code> if a matching status could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Status fetchByM_O_Last(long modifiedDate,
+		boolean online,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the statuses before and after the current status in the ordered set where modifiedDate = &#63; and online = &#63;.
 	*
 	* @param statusId the primary key of the current status
 	* @param modifiedDate the modified date

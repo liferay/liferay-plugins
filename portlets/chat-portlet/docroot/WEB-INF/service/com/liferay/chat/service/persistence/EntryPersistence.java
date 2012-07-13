@@ -148,10 +148,6 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	/**
 	* Returns the first entry in the ordered set where createDate = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param createDate the create date
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry
@@ -165,11 +161,20 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the last entry in the ordered set where createDate = &#63;.
+	* Returns the first entry in the ordered set where createDate = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param createDate the create date
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching entry, or <code>null</code> if a matching entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Entry fetchByCreateDate_First(
+		long createDate,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last entry in the ordered set where createDate = &#63;.
 	*
 	* @param createDate the create date
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -183,11 +188,20 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the entries before and after the current entry in the ordered set where createDate = &#63;.
+	* Returns the last entry in the ordered set where createDate = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param createDate the create date
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching entry, or <code>null</code> if a matching entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Entry fetchByCreateDate_Last(
+		long createDate,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the entries before and after the current entry in the ordered set where createDate = &#63;.
 	*
 	* @param entryId the primary key of the current entry
 	* @param createDate the create date
@@ -252,10 +266,6 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	/**
 	* Returns the first entry in the ordered set where fromUserId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param fromUserId the from user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry
@@ -269,11 +279,20 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the last entry in the ordered set where fromUserId = &#63;.
+	* Returns the first entry in the ordered set where fromUserId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param fromUserId the from user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching entry, or <code>null</code> if a matching entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Entry fetchByFromUserId_First(
+		long fromUserId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last entry in the ordered set where fromUserId = &#63;.
 	*
 	* @param fromUserId the from user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -287,11 +306,20 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the entries before and after the current entry in the ordered set where fromUserId = &#63;.
+	* Returns the last entry in the ordered set where fromUserId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param fromUserId the from user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching entry, or <code>null</code> if a matching entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Entry fetchByFromUserId_Last(
+		long fromUserId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the entries before and after the current entry in the ordered set where fromUserId = &#63;.
 	*
 	* @param entryId the primary key of the current entry
 	* @param fromUserId the from user ID
@@ -356,10 +384,6 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	/**
 	* Returns the first entry in the ordered set where toUserId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param toUserId the to user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry
@@ -372,11 +396,19 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the last entry in the ordered set where toUserId = &#63;.
+	* Returns the first entry in the ordered set where toUserId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param toUserId the to user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching entry, or <code>null</code> if a matching entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Entry fetchByToUserId_First(long toUserId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last entry in the ordered set where toUserId = &#63;.
 	*
 	* @param toUserId the to user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -390,11 +422,19 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the entries before and after the current entry in the ordered set where toUserId = &#63;.
+	* Returns the last entry in the ordered set where toUserId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param toUserId the to user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching entry, or <code>null</code> if a matching entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Entry fetchByToUserId_Last(long toUserId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the entries before and after the current entry in the ordered set where toUserId = &#63;.
 	*
 	* @param entryId the primary key of the current entry
 	* @param toUserId the to user ID
@@ -462,10 +502,6 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	/**
 	* Returns the first entry in the ordered set where createDate = &#63; and fromUserId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param createDate the create date
 	* @param fromUserId the from user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -480,11 +516,21 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the last entry in the ordered set where createDate = &#63; and fromUserId = &#63;.
+	* Returns the first entry in the ordered set where createDate = &#63; and fromUserId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param createDate the create date
+	* @param fromUserId the from user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching entry, or <code>null</code> if a matching entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Entry fetchByC_F_First(long createDate,
+		long fromUserId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last entry in the ordered set where createDate = &#63; and fromUserId = &#63;.
 	*
 	* @param createDate the create date
 	* @param fromUserId the from user ID
@@ -500,11 +546,21 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the entries before and after the current entry in the ordered set where createDate = &#63; and fromUserId = &#63;.
+	* Returns the last entry in the ordered set where createDate = &#63; and fromUserId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param createDate the create date
+	* @param fromUserId the from user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching entry, or <code>null</code> if a matching entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Entry fetchByC_F_Last(long createDate,
+		long fromUserId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the entries before and after the current entry in the ordered set where createDate = &#63; and fromUserId = &#63;.
 	*
 	* @param entryId the primary key of the current entry
 	* @param createDate the create date
@@ -573,10 +629,6 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	/**
 	* Returns the first entry in the ordered set where createDate = &#63; and toUserId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param createDate the create date
 	* @param toUserId the to user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -591,11 +643,21 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the last entry in the ordered set where createDate = &#63; and toUserId = &#63;.
+	* Returns the first entry in the ordered set where createDate = &#63; and toUserId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param createDate the create date
+	* @param toUserId the to user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching entry, or <code>null</code> if a matching entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Entry fetchByC_T_First(long createDate,
+		long toUserId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last entry in the ordered set where createDate = &#63; and toUserId = &#63;.
 	*
 	* @param createDate the create date
 	* @param toUserId the to user ID
@@ -611,11 +673,21 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the entries before and after the current entry in the ordered set where createDate = &#63; and toUserId = &#63;.
+	* Returns the last entry in the ordered set where createDate = &#63; and toUserId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param createDate the create date
+	* @param toUserId the to user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching entry, or <code>null</code> if a matching entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Entry fetchByC_T_Last(long createDate,
+		long toUserId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the entries before and after the current entry in the ordered set where createDate = &#63; and toUserId = &#63;.
 	*
 	* @param entryId the primary key of the current entry
 	* @param createDate the create date
@@ -687,10 +759,6 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	/**
 	* Returns the first entry in the ordered set where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param createDate the create date
 	* @param fromUserId the from user ID
 	* @param toUserId the to user ID
@@ -706,11 +774,22 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the last entry in the ordered set where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
+	* Returns the first entry in the ordered set where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param createDate the create date
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching entry, or <code>null</code> if a matching entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Entry fetchByC_F_T_First(long createDate,
+		long fromUserId, long toUserId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last entry in the ordered set where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
 	*
 	* @param createDate the create date
 	* @param fromUserId the from user ID
@@ -727,11 +806,22 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the entries before and after the current entry in the ordered set where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
+	* Returns the last entry in the ordered set where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param createDate the create date
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching entry, or <code>null</code> if a matching entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Entry fetchByC_F_T_Last(long createDate,
+		long fromUserId, long toUserId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the entries before and after the current entry in the ordered set where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
 	*
 	* @param entryId the primary key of the current entry
 	* @param createDate the create date
@@ -805,10 +895,6 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	/**
 	* Returns the first entry in the ordered set where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param fromUserId the from user ID
 	* @param toUserId the to user ID
 	* @param content the content
@@ -824,11 +910,22 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the last entry in the ordered set where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
+	* Returns the first entry in the ordered set where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
+	* @param content the content
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching entry, or <code>null</code> if a matching entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Entry fetchByF_T_C_First(long fromUserId,
+		long toUserId, java.lang.String content,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last entry in the ordered set where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
 	*
 	* @param fromUserId the from user ID
 	* @param toUserId the to user ID
@@ -845,11 +942,22 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the entries before and after the current entry in the ordered set where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
+	* Returns the last entry in the ordered set where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
+	* @param content the content
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching entry, or <code>null</code> if a matching entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.chat.model.Entry fetchByF_T_C_Last(long fromUserId,
+		long toUserId, java.lang.String content,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the entries before and after the current entry in the ordered set where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
 	*
 	* @param entryId the primary key of the current entry
 	* @param fromUserId the from user ID

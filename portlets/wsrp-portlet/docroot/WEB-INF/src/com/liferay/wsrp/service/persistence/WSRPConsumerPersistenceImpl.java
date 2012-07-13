@@ -656,10 +656,6 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 	/**
 	 * Returns the first w s r p consumer in the ordered set where uuid = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching w s r p consumer
@@ -669,31 +665,45 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 	public WSRPConsumer findByUuid_First(String uuid,
 		OrderByComparator orderByComparator)
 		throws NoSuchConsumerException, SystemException {
+		WSRPConsumer wsrpConsumer = fetchByUuid_First(uuid, orderByComparator);
+
+		if (wsrpConsumer != null) {
+			return wsrpConsumer;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("uuid=");
+		msg.append(uuid);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchConsumerException(msg.toString());
+	}
+
+	/**
+	 * Returns the first w s r p consumer in the ordered set where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching w s r p consumer, or <code>null</code> if a matching w s r p consumer could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public WSRPConsumer fetchByUuid_First(String uuid,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<WSRPConsumer> list = findByUuid(uuid, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("uuid=");
-			msg.append(uuid);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchConsumerException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last w s r p consumer in the ordered set where uuid = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -704,34 +714,48 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 	public WSRPConsumer findByUuid_Last(String uuid,
 		OrderByComparator orderByComparator)
 		throws NoSuchConsumerException, SystemException {
+		WSRPConsumer wsrpConsumer = fetchByUuid_Last(uuid, orderByComparator);
+
+		if (wsrpConsumer != null) {
+			return wsrpConsumer;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("uuid=");
+		msg.append(uuid);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchConsumerException(msg.toString());
+	}
+
+	/**
+	 * Returns the last w s r p consumer in the ordered set where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching w s r p consumer, or <code>null</code> if a matching w s r p consumer could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public WSRPConsumer fetchByUuid_Last(String uuid,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid(uuid);
 
 		List<WSRPConsumer> list = findByUuid(uuid, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("uuid=");
-			msg.append(uuid);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchConsumerException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the w s r p consumers before and after the current w s r p consumer in the ordered set where uuid = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param wsrpConsumerId the primary key of the current w s r p consumer
 	 * @param uuid the uuid
@@ -1024,10 +1048,6 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 	/**
 	 * Returns the first w s r p consumer in the ordered set where companyId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching w s r p consumer
@@ -1037,32 +1057,47 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 	public WSRPConsumer findByCompanyId_First(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchConsumerException, SystemException {
+		WSRPConsumer wsrpConsumer = fetchByCompanyId_First(companyId,
+				orderByComparator);
+
+		if (wsrpConsumer != null) {
+			return wsrpConsumer;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchConsumerException(msg.toString());
+	}
+
+	/**
+	 * Returns the first w s r p consumer in the ordered set where companyId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching w s r p consumer, or <code>null</code> if a matching w s r p consumer could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public WSRPConsumer fetchByCompanyId_First(long companyId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<WSRPConsumer> list = findByCompanyId(companyId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchConsumerException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last w s r p consumer in the ordered set where companyId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1073,34 +1108,49 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 	public WSRPConsumer findByCompanyId_Last(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchConsumerException, SystemException {
+		WSRPConsumer wsrpConsumer = fetchByCompanyId_Last(companyId,
+				orderByComparator);
+
+		if (wsrpConsumer != null) {
+			return wsrpConsumer;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchConsumerException(msg.toString());
+	}
+
+	/**
+	 * Returns the last w s r p consumer in the ordered set where companyId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching w s r p consumer, or <code>null</code> if a matching w s r p consumer could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public WSRPConsumer fetchByCompanyId_Last(long companyId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
 
 		List<WSRPConsumer> list = findByCompanyId(companyId, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchConsumerException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the w s r p consumers before and after the current w s r p consumer in the ordered set where companyId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param wsrpConsumerId the primary key of the current w s r p consumer
 	 * @param companyId the company ID

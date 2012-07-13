@@ -775,10 +775,6 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	/**
 	 * Returns the first microblogs entry in the ordered set where companyId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching microblogs entry
@@ -788,32 +784,47 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	public MicroblogsEntry findByCompanyId_First(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
+		MicroblogsEntry microblogsEntry = fetchByCompanyId_First(companyId,
+				orderByComparator);
+
+		if (microblogsEntry != null) {
+			return microblogsEntry;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the first microblogs entry in the ordered set where companyId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching microblogs entry, or <code>null</code> if a matching microblogs entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MicroblogsEntry fetchByCompanyId_First(long companyId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<MicroblogsEntry> list = findByCompanyId(companyId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last microblogs entry in the ordered set where companyId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -824,34 +835,49 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	public MicroblogsEntry findByCompanyId_Last(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
+		MicroblogsEntry microblogsEntry = fetchByCompanyId_Last(companyId,
+				orderByComparator);
+
+		if (microblogsEntry != null) {
+			return microblogsEntry;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the last microblogs entry in the ordered set where companyId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching microblogs entry, or <code>null</code> if a matching microblogs entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MicroblogsEntry fetchByCompanyId_Last(long companyId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
 
 		List<MicroblogsEntry> list = findByCompanyId(companyId, count - 1,
 				count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the microblogs entries before and after the current microblogs entry in the ordered set where companyId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param microblogsEntryId the primary key of the current microblogs entry
 	 * @param companyId the company ID
@@ -1447,10 +1473,6 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	/**
 	 * Returns the first microblogs entry in the ordered set where userId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching microblogs entry
@@ -1460,32 +1482,47 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	public MicroblogsEntry findByUserId_First(long userId,
 		OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
+		MicroblogsEntry microblogsEntry = fetchByUserId_First(userId,
+				orderByComparator);
+
+		if (microblogsEntry != null) {
+			return microblogsEntry;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("userId=");
+		msg.append(userId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the first microblogs entry in the ordered set where userId = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching microblogs entry, or <code>null</code> if a matching microblogs entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MicroblogsEntry fetchByUserId_First(long userId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<MicroblogsEntry> list = findByUserId(userId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("userId=");
-			msg.append(userId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last microblogs entry in the ordered set where userId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1496,34 +1533,49 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	public MicroblogsEntry findByUserId_Last(long userId,
 		OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
+		MicroblogsEntry microblogsEntry = fetchByUserId_Last(userId,
+				orderByComparator);
+
+		if (microblogsEntry != null) {
+			return microblogsEntry;
+		}
+
+		StringBundler msg = new StringBundler(4);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("userId=");
+		msg.append(userId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the last microblogs entry in the ordered set where userId = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching microblogs entry, or <code>null</code> if a matching microblogs entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MicroblogsEntry fetchByUserId_Last(long userId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUserId(userId);
 
 		List<MicroblogsEntry> list = findByUserId(userId, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(4);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("userId=");
-			msg.append(userId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the microblogs entries before and after the current microblogs entry in the ordered set where userId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param microblogsEntryId the primary key of the current microblogs entry
 	 * @param userId the user ID
@@ -2129,10 +2181,6 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	/**
 	 * Returns the first microblogs entry in the ordered set where userId = &#63; and type = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param userId the user ID
 	 * @param type the type
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -2143,35 +2191,51 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	public MicroblogsEntry findByU_T_First(long userId, int type,
 		OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
+		MicroblogsEntry microblogsEntry = fetchByU_T_First(userId, type,
+				orderByComparator);
+
+		if (microblogsEntry != null) {
+			return microblogsEntry;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("userId=");
+		msg.append(userId);
+
+		msg.append(", type=");
+		msg.append(type);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the first microblogs entry in the ordered set where userId = &#63; and type = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param type the type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching microblogs entry, or <code>null</code> if a matching microblogs entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MicroblogsEntry fetchByU_T_First(long userId, int type,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<MicroblogsEntry> list = findByU_T(userId, type, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("userId=");
-			msg.append(userId);
-
-			msg.append(", type=");
-			msg.append(type);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last microblogs entry in the ordered set where userId = &#63; and type = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param userId the user ID
 	 * @param type the type
@@ -2183,37 +2247,53 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	public MicroblogsEntry findByU_T_Last(long userId, int type,
 		OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
+		MicroblogsEntry microblogsEntry = fetchByU_T_Last(userId, type,
+				orderByComparator);
+
+		if (microblogsEntry != null) {
+			return microblogsEntry;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("userId=");
+		msg.append(userId);
+
+		msg.append(", type=");
+		msg.append(type);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the last microblogs entry in the ordered set where userId = &#63; and type = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param type the type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching microblogs entry, or <code>null</code> if a matching microblogs entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MicroblogsEntry fetchByU_T_Last(long userId, int type,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByU_T(userId, type);
 
 		List<MicroblogsEntry> list = findByU_T(userId, type, count - 1, count,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("userId=");
-			msg.append(userId);
-
-			msg.append(", type=");
-			msg.append(type);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the microblogs entries before and after the current microblogs entry in the ordered set where userId = &#63; and type = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param microblogsEntryId the primary key of the current microblogs entry
 	 * @param userId the user ID
@@ -2839,10 +2919,6 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	/**
 	 * Returns the first microblogs entry in the ordered set where type = &#63; and receiverUserId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param type the type
 	 * @param receiverUserId the receiver user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -2853,35 +2929,51 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	public MicroblogsEntry findByT_R_First(int type, long receiverUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
+		MicroblogsEntry microblogsEntry = fetchByT_R_First(type,
+				receiverUserId, orderByComparator);
+
+		if (microblogsEntry != null) {
+			return microblogsEntry;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("type=");
+		msg.append(type);
+
+		msg.append(", receiverUserId=");
+		msg.append(receiverUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the first microblogs entry in the ordered set where type = &#63; and receiverUserId = &#63;.
+	 *
+	 * @param type the type
+	 * @param receiverUserId the receiver user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching microblogs entry, or <code>null</code> if a matching microblogs entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MicroblogsEntry fetchByT_R_First(int type, long receiverUserId,
+		OrderByComparator orderByComparator) throws SystemException {
 		List<MicroblogsEntry> list = findByT_R(type, receiverUserId, 0, 1,
 				orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("type=");
-			msg.append(type);
-
-			msg.append(", receiverUserId=");
-			msg.append(receiverUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last microblogs entry in the ordered set where type = &#63; and receiverUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param type the type
 	 * @param receiverUserId the receiver user ID
@@ -2893,37 +2985,53 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	public MicroblogsEntry findByT_R_Last(int type, long receiverUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
+		MicroblogsEntry microblogsEntry = fetchByT_R_Last(type, receiverUserId,
+				orderByComparator);
+
+		if (microblogsEntry != null) {
+			return microblogsEntry;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("type=");
+		msg.append(type);
+
+		msg.append(", receiverUserId=");
+		msg.append(receiverUserId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the last microblogs entry in the ordered set where type = &#63; and receiverUserId = &#63;.
+	 *
+	 * @param type the type
+	 * @param receiverUserId the receiver user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching microblogs entry, or <code>null</code> if a matching microblogs entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MicroblogsEntry fetchByT_R_Last(int type, long receiverUserId,
+		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByT_R(type, receiverUserId);
 
 		List<MicroblogsEntry> list = findByT_R(type, receiverUserId, count - 1,
 				count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("type=");
-			msg.append(type);
-
-			msg.append(", receiverUserId=");
-			msg.append(receiverUserId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the microblogs entries before and after the current microblogs entry in the ordered set where type = &#63; and receiverUserId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param microblogsEntryId the primary key of the current microblogs entry
 	 * @param type the type
@@ -3550,10 +3658,6 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	/**
 	 * Returns the first microblogs entry in the ordered set where type = &#63; and receiverMicroblogsEntryId = &#63;.
 	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
 	 * @param type the type
 	 * @param receiverMicroblogsEntryId the receiver microblogs entry ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -3564,35 +3668,52 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	public MicroblogsEntry findByT_RMEI_First(int type,
 		long receiverMicroblogsEntryId, OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
+		MicroblogsEntry microblogsEntry = fetchByT_RMEI_First(type,
+				receiverMicroblogsEntryId, orderByComparator);
+
+		if (microblogsEntry != null) {
+			return microblogsEntry;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("type=");
+		msg.append(type);
+
+		msg.append(", receiverMicroblogsEntryId=");
+		msg.append(receiverMicroblogsEntryId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the first microblogs entry in the ordered set where type = &#63; and receiverMicroblogsEntryId = &#63;.
+	 *
+	 * @param type the type
+	 * @param receiverMicroblogsEntryId the receiver microblogs entry ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching microblogs entry, or <code>null</code> if a matching microblogs entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MicroblogsEntry fetchByT_RMEI_First(int type,
+		long receiverMicroblogsEntryId, OrderByComparator orderByComparator)
+		throws SystemException {
 		List<MicroblogsEntry> list = findByT_RMEI(type,
 				receiverMicroblogsEntryId, 0, 1, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("type=");
-			msg.append(type);
-
-			msg.append(", receiverMicroblogsEntryId=");
-			msg.append(receiverMicroblogsEntryId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the last microblogs entry in the ordered set where type = &#63; and receiverMicroblogsEntryId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param type the type
 	 * @param receiverMicroblogsEntryId the receiver microblogs entry ID
@@ -3604,37 +3725,54 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	public MicroblogsEntry findByT_RMEI_Last(int type,
 		long receiverMicroblogsEntryId, OrderByComparator orderByComparator)
 		throws NoSuchEntryException, SystemException {
+		MicroblogsEntry microblogsEntry = fetchByT_RMEI_Last(type,
+				receiverMicroblogsEntryId, orderByComparator);
+
+		if (microblogsEntry != null) {
+			return microblogsEntry;
+		}
+
+		StringBundler msg = new StringBundler(6);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("type=");
+		msg.append(type);
+
+		msg.append(", receiverMicroblogsEntryId=");
+		msg.append(receiverMicroblogsEntryId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the last microblogs entry in the ordered set where type = &#63; and receiverMicroblogsEntryId = &#63;.
+	 *
+	 * @param type the type
+	 * @param receiverMicroblogsEntryId the receiver microblogs entry ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching microblogs entry, or <code>null</code> if a matching microblogs entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MicroblogsEntry fetchByT_RMEI_Last(int type,
+		long receiverMicroblogsEntryId, OrderByComparator orderByComparator)
+		throws SystemException {
 		int count = countByT_RMEI(type, receiverMicroblogsEntryId);
 
 		List<MicroblogsEntry> list = findByT_RMEI(type,
 				receiverMicroblogsEntryId, count - 1, count, orderByComparator);
 
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("type=");
-			msg.append(type);
-
-			msg.append(", receiverMicroblogsEntryId=");
-			msg.append(receiverMicroblogsEntryId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchEntryException(msg.toString());
-		}
-		else {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Returns the microblogs entries before and after the current microblogs entry in the ordered set where type = &#63; and receiverMicroblogsEntryId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
 	 *
 	 * @param microblogsEntryId the primary key of the current microblogs entry
 	 * @param type the type

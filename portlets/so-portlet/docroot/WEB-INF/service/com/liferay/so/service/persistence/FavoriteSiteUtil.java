@@ -244,10 +244,6 @@ public class FavoriteSiteUtil {
 	/**
 	* Returns the first favorite site in the ordered set where userId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching favorite site
@@ -263,11 +259,22 @@ public class FavoriteSiteUtil {
 	}
 
 	/**
-	* Returns the last favorite site in the ordered set where userId = &#63;.
+	* Returns the first favorite site in the ordered set where userId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching favorite site, or <code>null</code> if a matching favorite site could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.so.model.FavoriteSite fetchByUserId_First(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByUserId_First(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the last favorite site in the ordered set where userId = &#63;.
 	*
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -284,11 +291,22 @@ public class FavoriteSiteUtil {
 	}
 
 	/**
-	* Returns the favorite sites before and after the current favorite site in the ordered set where userId = &#63;.
+	* Returns the last favorite site in the ordered set where userId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching favorite site, or <code>null</code> if a matching favorite site could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.so.model.FavoriteSite fetchByUserId_Last(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByUserId_Last(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the favorite sites before and after the current favorite site in the ordered set where userId = &#63;.
 	*
 	* @param favoriteSiteId the primary key of the current favorite site
 	* @param userId the user ID
@@ -367,10 +385,6 @@ public class FavoriteSiteUtil {
 	/**
 	* Returns the first favorite site in the ordered set where groupId = &#63; and userId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param groupId the group ID
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -388,11 +402,24 @@ public class FavoriteSiteUtil {
 	}
 
 	/**
-	* Returns the last favorite site in the ordered set where groupId = &#63; and userId = &#63;.
+	* Returns the first favorite site in the ordered set where groupId = &#63; and userId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching favorite site, or <code>null</code> if a matching favorite site could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.so.model.FavoriteSite fetchByG_U_First(
+		long groupId, long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByG_U_First(groupId, userId, orderByComparator);
+	}
+
+	/**
+	* Returns the last favorite site in the ordered set where groupId = &#63; and userId = &#63;.
 	*
 	* @param groupId the group ID
 	* @param userId the user ID
@@ -411,11 +438,24 @@ public class FavoriteSiteUtil {
 	}
 
 	/**
-	* Returns the favorite sites before and after the current favorite site in the ordered set where groupId = &#63; and userId = &#63;.
+	* Returns the last favorite site in the ordered set where groupId = &#63; and userId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching favorite site, or <code>null</code> if a matching favorite site could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.so.model.FavoriteSite fetchByG_U_Last(
+		long groupId, long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByG_U_Last(groupId, userId, orderByComparator);
+	}
+
+	/**
+	* Returns the favorite sites before and after the current favorite site in the ordered set where groupId = &#63; and userId = &#63;.
 	*
 	* @param favoriteSiteId the primary key of the current favorite site
 	* @param groupId the group ID

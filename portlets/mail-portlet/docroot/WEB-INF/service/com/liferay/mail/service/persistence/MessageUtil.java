@@ -244,10 +244,6 @@ public class MessageUtil {
 	/**
 	* Returns the first message in the ordered set where companyId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching message
@@ -264,11 +260,23 @@ public class MessageUtil {
 	}
 
 	/**
-	* Returns the last message in the ordered set where companyId = &#63;.
+	* Returns the first message in the ordered set where companyId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param companyId the company ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching message, or <code>null</code> if a matching message could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.mail.model.Message fetchByCompanyId_First(
+		long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByCompanyId_First(companyId, orderByComparator);
+	}
+
+	/**
+	* Returns the last message in the ordered set where companyId = &#63;.
 	*
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -286,11 +294,23 @@ public class MessageUtil {
 	}
 
 	/**
-	* Returns the messages before and after the current message in the ordered set where companyId = &#63;.
+	* Returns the last message in the ordered set where companyId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param companyId the company ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching message, or <code>null</code> if a matching message could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.mail.model.Message fetchByCompanyId_Last(
+		long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByCompanyId_Last(companyId, orderByComparator);
+	}
+
+	/**
+	* Returns the messages before and after the current message in the ordered set where companyId = &#63;.
 	*
 	* @param messageId the primary key of the current message
 	* @param companyId the company ID
@@ -366,10 +386,6 @@ public class MessageUtil {
 	/**
 	* Returns the first message in the ordered set where folderId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param folderId the folder ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching message
@@ -385,11 +401,23 @@ public class MessageUtil {
 	}
 
 	/**
-	* Returns the last message in the ordered set where folderId = &#63;.
+	* Returns the first message in the ordered set where folderId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param folderId the folder ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching message, or <code>null</code> if a matching message could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.mail.model.Message fetchByFolderId_First(
+		long folderId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByFolderId_First(folderId, orderByComparator);
+	}
+
+	/**
+	* Returns the last message in the ordered set where folderId = &#63;.
 	*
 	* @param folderId the folder ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -406,11 +434,22 @@ public class MessageUtil {
 	}
 
 	/**
-	* Returns the messages before and after the current message in the ordered set where folderId = &#63;.
+	* Returns the last message in the ordered set where folderId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param folderId the folder ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching message, or <code>null</code> if a matching message could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.mail.model.Message fetchByFolderId_Last(
+		long folderId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByFolderId_Last(folderId, orderByComparator);
+	}
+
+	/**
+	* Returns the messages before and after the current message in the ordered set where folderId = &#63;.
 	*
 	* @param messageId the primary key of the current message
 	* @param folderId the folder ID
