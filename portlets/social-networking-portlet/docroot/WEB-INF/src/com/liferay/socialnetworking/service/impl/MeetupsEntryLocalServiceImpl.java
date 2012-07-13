@@ -47,11 +47,11 @@ public class MeetupsEntryLocalServiceImpl
 		Date startDate = PortalUtil.getDate(
 			startDateMonth, startDateDay, startDateYear, startDateHour,
 			startDateMinute, user.getTimeZone(),
-			new MeetupsEntryStartDateException());
+			MeetupsEntryStartDateException.class);
 
 		Date endDate = PortalUtil.getDate(
 			endDateMonth, endDateDay, endDateYear, endDateHour, endDateMinute,
-			user.getTimeZone(), new MeetupsEntryEndDateException());
+			user.getTimeZone(), MeetupsEntryEndDateException.class);
 
 		Date now = new Date();
 
@@ -129,11 +129,11 @@ public class MeetupsEntryLocalServiceImpl
 		Date startDate = PortalUtil.getDate(
 			startDateMonth, startDateDay, startDateYear, startDateHour,
 			startDateMinute, user.getTimeZone(),
-			new MeetupsEntryStartDateException());
+			MeetupsEntryStartDateException.class);
 
 		Date endDate = PortalUtil.getDate(
 			endDateMonth, endDateDay, endDateYear, endDateHour, endDateMinute,
-			user.getTimeZone(), new MeetupsEntryEndDateException());
+			user.getTimeZone(), MeetupsEntryEndDateException.class);
 
 		MeetupsEntry meetupsEntry = meetupsEntryPersistence.findByPrimaryKey(
 			meetupsEntryId);
