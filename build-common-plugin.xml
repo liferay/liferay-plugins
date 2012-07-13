@@ -800,6 +800,7 @@ Please find a solution that does not require portal-impl.jar.
 			src="${zip.file.name}"
 		>
 			<patternset
+				excludes="${zip.excludes}"
 				includes="${zip.includes}"
 			/>
 		</unzip>
