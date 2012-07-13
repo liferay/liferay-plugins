@@ -11,7 +11,7 @@
 	<state>
 		<name>created</name>
 		<metadata>
-			<![CDATA[{"xy":[58,39]}]]>
+			<![CDATA[{"transitions":{"Determine Branch":{"xy":[-40,6]}},"xy":[60,45]}]]>
 		</metadata>
 		<initial>true</initial>
 		<transitions>
@@ -85,7 +85,7 @@
 	<task>
 		<name>update</name>
 		<metadata>
-			<![CDATA[{"xy":[673,33]}]]>
+			<![CDATA[{"xy":[670,30]}]]>
 		</metadata>
 		<actions>
 			<notification>
@@ -191,7 +191,7 @@
 	<task>
 		<name>legal-review</name>
 		<metadata>
-			<![CDATA[{"xy":[218,281]}]]>
+			<![CDATA[{"xy":[228,280]}]]>
 		</metadata>
 		<actions>
 			<notification>
@@ -255,7 +255,7 @@
 		<name>approved</name>
 		<metadata>
 			<![CDATA[
-				{"xy":[370,187]}
+				{"xy":[680,295]}
 			]]>
 		</metadata>
 		<actions>

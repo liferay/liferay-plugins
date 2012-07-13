@@ -11,7 +11,7 @@
 	<state>
 		<name>created</name>
 		<metadata>
-			<![CDATA[{"xy":[62,51]}]]>
+			<![CDATA[{"transitions":{"Market Review":{"xy":[-46,-12]}},"xy":[62,51]}]]>
 		</metadata>
 		<initial>true</initial>
 		<transitions>
@@ -25,7 +25,7 @@
 	<task>
 		<name>update</name>
 		<metadata>
-			<![CDATA[{"xy":[522,211]}]]>
+			<![CDATA[{"transitions":{"Resubmit":{"bendpoints":[[427,40]],"xy":[-27,11]}},"xy":[530,36]}]]>
 		</metadata>
 		<actions>
 			<notification>
@@ -50,7 +50,7 @@
 	<task>
 		<name>marketing-review</name>
 		<metadata>
-			<![CDATA[{"xy":[291,39]}]]>
+			<![CDATA[{"transitions":{"Marketing Approved":{"xy":[-1,-29]},"Marketing Denied":{"xy":[-34,-1]}},"xy":[260,36]}]]>
 		</metadata>
 		<actions>
 			<notification>
@@ -113,7 +113,7 @@
 	<task>
 		<name>legal-review</name>
 		<metadata>
-			<![CDATA[{"xy":[121,209]}]]>
+			<![CDATA[{"xy":[260,270]}]]>
 		</metadata>
 		<actions>
 			<notification>
@@ -163,7 +163,7 @@
 		<transitions>
 			<transition>
 				<name>Legal Approval</name>
-				<target>approve</target>
+				<target>approved</target>
 				<default>true</default>
 			</transition>
 			<transition>
@@ -177,7 +177,7 @@
 		<name>approved</name>
 		<metadata>
 			<![CDATA[
-				{"xy":[370,187]}
+				{"xy":[540,285]}
 			]]>
 		</metadata>
 		<actions>
