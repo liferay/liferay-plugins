@@ -99,7 +99,7 @@ public class ServiceBuilderPortlet extends MVCPortlet {
 
 		Date field4 = PortalUtil.getDate(
 			dateMonth, dateDay, dateYear, dateHour, dateMinute,
-			new PortalException());
+			PortalException.class);
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			Foo.class.getName(), actionRequest);

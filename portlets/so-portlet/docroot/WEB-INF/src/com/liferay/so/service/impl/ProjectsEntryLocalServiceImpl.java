@@ -45,14 +45,14 @@ public class ProjectsEntryLocalServiceImpl
 
 		Date startDate = PortalUtil.getDate(
 			startDateMonth, startDateDay, startDateYear, user.getTimeZone(),
-			new ProjectsEntryStartDateException());
+			ProjectsEntryStartDateException.class);
 
 		Date endDate = null;
 
 		if (!current) {
 			endDate = PortalUtil.getDate(
 				endDateMonth, endDateDay, endDateYear, user.getTimeZone(),
-				new ProjectsEntryEndDateException());
+				ProjectsEntryEndDateException.class);
 		}
 
 		Date now = new Date();
@@ -102,14 +102,14 @@ public class ProjectsEntryLocalServiceImpl
 
 		Date startDate = PortalUtil.getDate(
 			startDateMonth, startDateDay, startDateYear, user.getTimeZone(),
-			new ProjectsEntryStartDateException());
+			ProjectsEntryStartDateException.class);
 
 		Date endDate = null;
 
 		if (!current) {
 			endDate = PortalUtil.getDate(
 				endDateMonth, endDateDay, endDateYear, user.getTimeZone(),
-				new ProjectsEntryEndDateException());
+				ProjectsEntryEndDateException.class);
 		}
 
 		projectsEntry.setModifiedDate(new Date());

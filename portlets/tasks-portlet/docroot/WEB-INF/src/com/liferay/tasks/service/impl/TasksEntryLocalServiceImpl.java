@@ -65,7 +65,7 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 			dueDate = PortalUtil.getDate(
 				dueDateMonth, dueDateDay, dueDateYear, dueDateHour,
 				dueDateMinute, user.getTimeZone(),
-				new TasksEntryDueDateException());
+				TasksEntryDueDateException.class);
 		}
 
 		long tasksEntryId = CounterLocalServiceUtil.increment();
@@ -298,7 +298,7 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 			dueDate = PortalUtil.getDate(
 				dueDateMonth, dueDateDay, dueDateYear, dueDateHour,
 				dueDateMinute, user.getTimeZone(),
-				new TasksEntryDueDateException());
+				TasksEntryDueDateException.class);
 		}
 
 		long oldAssigneeUserId = tasksEntry.getAssigneeUserId();
