@@ -186,6 +186,7 @@
 			<arg value="service.spring.shard.data.source.file=${basedir}/docroot/WEB-INF/src/META-INF/shard-data-source-spring.xml" />
 			<arg value="service.api.dir=${basedir}/docroot/WEB-INF/service" />
 			<arg value="service.impl.dir=${basedir}/docroot/WEB-INF/src" />
+			<arg value="service.json.file=${basedir}/docroot/js/service.js" />
 			<arg value="service.sql.dir=${basedir}/docroot/WEB-INF/sql" />
 			<arg value="service.sql.file=tables.sql" />
 			<arg value="service.sql.indexes.file=indexes.sql" />
@@ -319,6 +320,32 @@
 				<delete dir="${tstamp.value}" />
 			</sequential>
 		</for>
+	</target>
+
+	<target name="build-xsd">
+		<tstamp>
+			<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
+		</tstamp>
+
+		<mkdir dir="${tstamp.value}" />
+
+		<path id="plugin-lib.classpath">
+			<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+			<pathelement location="docroot/WEB-INF/classes" />
+		</path>
+
+		<taskdef classname="org.apache.xmlbeans.impl.tool.XMLBean" classpathref="portal.classpath" name="xmlbean" />
+
+		<xmlbean
+			classgendir="${tstamp.value}/classes"
+			classpathref="plugin-lib.classpath"
+			destfile="docroot/WEB-INF/lib/${plugin.name}-xbean.jar"
+			srcgendir="${tstamp.value}/src"
+		>
+			<fileset dir="docroot/WEB-INF/xsd" includes="**/*.*" />
+		</xmlbean>
+
+		<delete dir="${tstamp.value}" />
 	</target>
 
 	<target name="clean" description="clean">
