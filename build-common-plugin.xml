@@ -322,6 +322,32 @@
 		</for>
 	</target>
 
+	<target name="build-xsd">
+		<tstamp>
+			<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
+		</tstamp>
+
+		<mkdir dir="${tstamp.value}" />
+
+		<path id="plugin-lib.classpath">
+			<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+			<pathelement location="docroot/WEB-INF/classes" />
+		</path>
+
+		<taskdef classname="org.apache.xmlbeans.impl.tool.XMLBean" classpathref="portal.classpath" name="xmlbean" />
+
+		<xmlbean
+			classgendir="${tstamp.value}/classes"
+			classpathref="plugin-lib.classpath"
+			destfile="docroot/WEB-INF/lib/${plugin.name}-xbean.jar"
+			srcgendir="${tstamp.value}/src"
+		>
+			<fileset dir="docroot/WEB-INF/xsd" includes="**/*.*" />
+		</xmlbean>
+
+		<delete dir="${tstamp.value}" />
+	</target>
+
 	<target name="clean" description="clean">
 		<delete dir="docroot/WEB-INF/classes" />
 
