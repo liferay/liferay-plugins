@@ -14,14 +14,12 @@
 
 package com.liferay.resourcesimporter.messaging;
 
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.servlet.ServletContextPool;
-import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PropertiesUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
@@ -30,9 +28,9 @@ import com.liferay.portal.model.Company;
 import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.security.auth.CompanyThreadLocal;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
-import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
 import com.liferay.resourcesimporter.util.FileSystemImporter;
 import com.liferay.resourcesimporter.util.Importer;
+import com.liferay.resourcesimporter.util.ImporterException;
 import com.liferay.resourcesimporter.util.LARImporter;
 import com.liferay.resourcesimporter.util.ResourceImporter;
 
@@ -41,10 +39,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
@@ -75,6 +70,26 @@ public class HotDeployMessageListener extends BaseMessageListener {
 			return;
 		}
 
+		Properties pluginProperties = getPluginProperties(servletContext);
+
+		String destinationClassName = pluginProperties.getProperty(
+			"resources-importer-destination-class-name");
+
+		if (Validator.isNull(destinationClassName)) {
+			destinationClassName = LayoutSetPrototype.class.getName();
+		}
+
+		String destinationName = pluginProperties.getProperty(
+			"resources-importer-destination-name");
+
+		if (Validator.isNull(destinationName)) {
+			destinationName = TextFormatter.format(
+				servletContextName, TextFormatter.J);
+		}
+
+		String resourcesDir = pluginProperties.getProperty(
+			"resources-importer-external-dir");
+
 		String layoutSetPrototypeName = TextFormatter.format(
 			servletContextName, TextFormatter.J);
 
@@ -86,18 +101,6 @@ public class HotDeployMessageListener extends BaseMessageListener {
 		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 
 		for (Company company : companies) {
-			if (hasLayoutSetPrototype(
-					company.getCompanyId(), layoutSetPrototypeName)) {
-
-				if (_log.isInfoEnabled()) {
-					_log.info(
-						"Layout set prototype already exists for company " +
-							company.getWebId());
-				}
-
-				continue;
-			}
-
 			long companyId = CompanyThreadLocal.getCompanyId();
 
 			try {
@@ -115,20 +118,12 @@ public class HotDeployMessageListener extends BaseMessageListener {
 
 					importer = larImporter;
 				}
-				else if ((resourcePaths != null) && !resourcePaths.isEmpty() &&
-						 (larURL == null)) {
-
+				else if ((resourcePaths != null) && !resourcePaths.isEmpty()) {
 					importer = getResourceImporter();
 
 					importer.setResourcesDir(_RESOURCES_DIR);
 				}
 				else {
-					Properties pluginProperties = getPluginProperties(
-						servletContext);
-
-					String resourcesDir = pluginProperties.getProperty(
-						"resources-importer-external-dir");
-
 					if (Validator.isNotNull(resourcesDir)) {
 						importer = getFileSystemImporter();
 
@@ -137,35 +132,26 @@ public class HotDeployMessageListener extends BaseMessageListener {
 				}
 
 				if (importer == null) {
-					Message newMessage = new Message();
-
-					newMessage.put("companyId", company.getCompanyId());
-					newMessage.put("error", "No valid importer found");
-					newMessage.put("layoutSetPrototypeId", 0);
-					newMessage.put("servletContextName", servletContextName);
-
-					MessageBusUtil.sendMessage(
-						"liferay/resources_importer", newMessage);
-
-					return;
+					throw new ImporterException("No valid importer found");
 				}
 
 				importer.setCompanyId(company.getCompanyId());
-
-				Map<Locale, String> layoutSetPrototypeNameMap =
-					new HashMap<Locale, String>();
-
-				Locale locale = LocaleUtil.getDefault();
-
-				layoutSetPrototypeNameMap.put(locale, layoutSetPrototypeName);
-
-				importer.setLayoutSetPrototypeNameMap(
-					layoutSetPrototypeNameMap);
-
+				importer.setDestinationClassName(destinationClassName);
+				importer.setDestinationName(destinationName);
 				importer.setServletContext(servletContext);
 				importer.setServletContextName(servletContextName);
 
 				importer.afterPropertiesSet();
+
+				if (importer.getGroupId() == 0) {
+					if (_log.isInfoEnabled()) {
+						_log.info(
+							"Group or layout set prototype already exists for" +
+								" company " + company.getWebId());
+					}
+
+					continue;
+				}
 
 				if (_log.isInfoEnabled()) {
 					_log.info(
@@ -178,8 +164,21 @@ public class HotDeployMessageListener extends BaseMessageListener {
 				Message newMessage = new Message();
 
 				newMessage.put("companyId", company.getCompanyId());
+				newMessage.put("destinationClassName", destinationClassName);
 				newMessage.put(
-					"layoutSetPrototypeId", importer.getLayoutSetPrototypeId());
+					"destinationClassPK", importer.getDestinationClassPK());
+				newMessage.put("servletContextName", servletContextName);
+
+				MessageBusUtil.sendMessage(
+					"liferay/resources_importer", newMessage);
+			}
+			catch (ImporterException ie) {
+				Message newMessage = new Message();
+
+				newMessage.put("companyId", company.getCompanyId());
+				newMessage.put("error", ie.getMessage());
+				newMessage.put("destinationClassName", destinationClassName);
+				newMessage.put("destinationClassPK", 0);
 				newMessage.put("servletContextName", servletContextName);
 
 				MessageBusUtil.sendMessage(
@@ -224,24 +223,6 @@ public class HotDeployMessageListener extends BaseMessageListener {
 
 	protected ResourceImporter getResourceImporter() {
 		return new ResourceImporter();
-	}
-
-	protected boolean hasLayoutSetPrototype(long companyId, String name)
-		throws Exception {
-
-		Locale locale = LocaleUtil.getDefault();
-
-		List<LayoutSetPrototype> layoutSetPrototypes =
-			LayoutSetPrototypeLocalServiceUtil.search(
-				companyId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-
-		for (LayoutSetPrototype layoutSetPrototype : layoutSetPrototypes) {
-			if (name.equals(layoutSetPrototype.getName(locale))) {
-				return true;
-			}
-		}
-
-		return false;
 	}
 
 	private static final String _RESOURCES_DIR =

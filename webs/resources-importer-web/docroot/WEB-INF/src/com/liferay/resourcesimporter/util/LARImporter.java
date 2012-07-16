@@ -36,7 +36,7 @@ public class LARImporter extends BaseImporter {
 
 	public void importResources() throws Exception {
 		LayoutLocalServiceUtil.importLayouts(
-			userId, groupId, false, getParameterMap(), _larInputStream);
+			userId, groupId, privateLayout, getParameterMap(), _larInputStream);
 	}
 
 	public void setLARFile(File larFile) {

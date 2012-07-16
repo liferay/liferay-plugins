@@ -235,7 +235,7 @@ public class FileSystemImporter extends BaseImporter {
 		}
 
 		Layout layout = LayoutLocalServiceUtil.addLayout(
-			userId, groupId, true, parentLayoutId, name, title,
+			userId, groupId, privateLayout, parentLayoutId, name, title,
 			StringPool.BLANK, LayoutConstants.TYPE_PORTLET, hidden, friendlyURL,
 			new ServiceContext());
 
@@ -483,7 +483,7 @@ public class FileSystemImporter extends BaseImporter {
 			sitemapJSON);
 
 		LayoutLocalServiceUtil.deleteLayouts(
-			groupId, true, new ServiceContext());
+			groupId, privateLayout, new ServiceContext());
 
 		_defaultLayoutTemplateId = sitemapJSONObject.getString(
 			"layoutTemplateId", StringPool.BLANK);
@@ -658,7 +658,7 @@ public class FileSystemImporter extends BaseImporter {
 
 		if (Validator.isNotNull(themeId)) {
 			LayoutSetLocalServiceUtil.updateLookAndFeel(
-				groupId, true, themeId, null, null, false);
+				groupId, privateLayout, themeId, null, null, false);
 		}
 	}
 

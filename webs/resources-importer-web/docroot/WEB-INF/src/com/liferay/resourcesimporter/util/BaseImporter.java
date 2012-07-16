@@ -14,14 +14,24 @@
 
 package com.liferay.resourcesimporter.util;
 
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.GroupConstants;
+import com.liferay.portal.model.Layout;
+import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.LayoutSetPrototype;
+import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -38,33 +48,103 @@ public abstract class BaseImporter implements Importer {
 
 		userId = user.getUserId();
 
-		LayoutSetPrototype layoutSetPrototype =
-			LayoutSetPrototypeLocalServiceUtil.addLayoutSetPrototype(
-				userId, companyId, layoutSetPrototypeNameMap, StringPool.BLANK,
-				true, true, new ServiceContext());
+		Group group = null;
 
-		Group group = layoutSetPrototype.getGroup();
+		if (destinationClassName.equals(LayoutSetPrototype.class.getName())) {
+			if (!hasLayoutSetPrototype(companyId, destinationName)) {
+				LayoutSetPrototype layoutSetPrototype =
+					LayoutSetPrototypeLocalServiceUtil.addLayoutSetPrototype(
+						userId, companyId, getDestinationNameMap(),
+						StringPool.BLANK, true, true, new ServiceContext());
+
+				group = layoutSetPrototype.getGroup();
+
+				destinationClassPK =
+					layoutSetPrototype.getLayoutSetPrototypeId();
+				privateLayout = true;
+			}
+		}
+		else if (destinationClassName.equals(Group.class.getName())) {
+			if (destinationName.equals(GroupConstants.GUEST)) {
+				Group guestGroup = GroupLocalServiceUtil.getGroup(
+					companyId, GroupConstants.GUEST);
+
+				List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
+					guestGroup.getGroupId(), false,
+					LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, false, 0, 1);
+
+				if (!layouts.isEmpty()) {
+					Layout layout = layouts.get(0);
+
+					LayoutTypePortlet layoutTypePortlet =
+						(LayoutTypePortlet)layout.getLayoutType();
+
+					List<String> portletIds = layoutTypePortlet.getPortletIds();
+
+					if (portletIds.size() != 2) {
+						return;
+					}
+
+					for (String portletId : portletIds) {
+						if (!portletId.equals("47") &&
+							!portletId.equals("58")) {
+
+							return;
+						}
+					}
+				}
+
+				group = guestGroup;
+			}
+			else if (!hasGroup(companyId, destinationName)) {
+				group = GroupLocalServiceUtil.addGroup(
+					userId, 0, StringPool.BLANK, 0, destinationName,
+					StringPool.BLANK, GroupConstants.TYPE_SITE_OPEN, null, true,
+					true, new ServiceContext());
+			}
+
+			if (group != null) {
+				destinationClassPK = group.getGroupId();
+				privateLayout = false;
+			}
+		}
+
+		if (group == null) {
+			return;
+		}
 
 		groupId = group.getGroupId();
-		layoutSetPrototypeId = layoutSetPrototype.getLayoutSetPrototypeId();
+	}
+
+	public long getDestinationClassPK() {
+		return destinationClassPK;
 	}
 
 	public long getGroupId() {
 		return groupId;
 	}
 
-	public long getLayoutSetPrototypeId() {
-		return layoutSetPrototypeId;
+	public Map<Locale, String> getDestinationNameMap() {
+		Map<Locale, String> destinationNameMap = new HashMap<Locale, String>();
+
+		Locale locale = LocaleUtil.getDefault();
+
+		destinationNameMap.put(locale, destinationName);
+
+		return destinationNameMap;
 	}
 
 	public void setCompanyId(long companyId) {
 		this.companyId = companyId;
 	}
 
-	public void setLayoutSetPrototypeNameMap(
-		Map<Locale, String> layoutSetPrototypeNameMap) {
+	public void setDestinationClassName(String destinationClassName) {
 
-		this.layoutSetPrototypeNameMap = layoutSetPrototypeNameMap;
+		this.destinationClassName = destinationClassName;
+	}
+
+	public void setDestinationName(String destinationName) {
+		this.destinationName = destinationName;
 	}
 
 	public void setResourcesDir(String resourcesDir) {
@@ -79,10 +159,40 @@ public abstract class BaseImporter implements Importer {
 		this.servletContextName = servletContextName;
 	}
 
+	protected boolean hasGroup(long companyId, String name) throws Exception {
+		Group group = GroupLocalServiceUtil.fetchGroup(companyId, name);
+
+		if (group != null) {
+			return true;
+		}
+
+		return false;
+	}
+
+	protected boolean hasLayoutSetPrototype(long companyId, String name)
+		throws Exception {
+
+		Locale locale = LocaleUtil.getDefault();
+
+		List<LayoutSetPrototype> layoutSetPrototypes =
+			LayoutSetPrototypeLocalServiceUtil.search(
+				companyId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+
+		for (LayoutSetPrototype layoutSetPrototype : layoutSetPrototypes) {
+			if (name.equals(layoutSetPrototype.getName(locale))) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	protected long companyId;
 	protected long groupId;
-	protected long layoutSetPrototypeId;
-	protected Map<Locale, String> layoutSetPrototypeNameMap;
+	protected String destinationClassName;
+	protected long destinationClassPK;
+	protected String destinationName;
+	protected boolean privateLayout;
 	protected String resourcesDir;
 	protected ServletContext servletContext;
 	protected String servletContextName;
