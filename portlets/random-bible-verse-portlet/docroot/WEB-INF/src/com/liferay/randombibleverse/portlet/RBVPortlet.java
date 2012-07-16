@@ -14,6 +14,7 @@
 
 package com.liferay.randombibleverse.portlet;
 
+import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -23,7 +24,6 @@ import java.io.IOException;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
 import javax.portlet.PortletMode;
 import javax.portlet.PortletPreferences;
@@ -58,11 +58,12 @@ public class RBVPortlet extends MVCPortlet {
 
 		preferences.store();
 
-		PortletConfig portletConfig = getPortletConfig();
+		LiferayPortletConfig liferayPortletConfig =
+			(LiferayPortletConfig)getPortletConfig();
 
 		SessionMessages.add(
 			actionRequest,
-			portletConfig.getPortletName() +
+			liferayPortletConfig.getPortletId() +
 				SessionMessages.KEY_SUFFIX_UPDATED_PREFERENCES);
 	}
 

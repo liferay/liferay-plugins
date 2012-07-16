@@ -18,6 +18,7 @@ import com.liferay.opensocial.gadget.action.BaseConfigurationAction;
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.opensocial.util.WebKeys;
+import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -52,18 +53,21 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		if (tabs2.equals("manage-oauth")) {
 			ShindigUtil.updateOAuthConsumers(actionRequest, actionResponse);
 
+			LiferayPortletConfig liferayPortletConfig =
+				(LiferayPortletConfig)portletConfig;
+
 			String portletResource = ParamUtil.getString(
 				actionRequest, "portletResource");
 
 			SessionMessages.add(
 				actionRequest,
-				portletConfig.getPortletName() +
+				liferayPortletConfig.getPortletId() +
 					SessionMessages.KEY_SUFFIX_REFRESH_PORTLET,
 				portletResource);
 
 			SessionMessages.add(
 				actionRequest,
-				portletConfig.getPortletName() +
+				liferayPortletConfig.getPortletId() +
 					SessionMessages.KEY_SUFFIX_UPDATED_CONFIGURATION);
 		}
 		else if (tabs2.equals("preferences")) {

@@ -30,6 +30,7 @@ import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.NoSuchSubscriptionException;
+import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
@@ -63,7 +64,6 @@ import java.io.InputStream;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
 import javax.portlet.PortletPreferences;
 import javax.portlet.RenderRequest;
@@ -197,11 +197,12 @@ public class ArticlePortlet extends MVCPortlet {
 
 				SessionErrors.add(renderRequest, e.getClass());
 
-				PortletConfig portletConfig = getPortletConfig();
+				LiferayPortletConfig liferayPortletConfig =
+					(LiferayPortletConfig)getPortletConfig();
 
 				SessionMessages.add(
 					renderRequest,
-					portletConfig.getPortletName() +
+					liferayPortletConfig.getPortletId() +
 						SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_ERROR_MESSAGE);
 			}
 			else {
