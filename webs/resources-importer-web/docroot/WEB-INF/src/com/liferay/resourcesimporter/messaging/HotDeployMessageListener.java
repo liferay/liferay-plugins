@@ -72,26 +72,20 @@ public class HotDeployMessageListener extends BaseMessageListener {
 
 		Properties pluginProperties = getPluginProperties(servletContext);
 
-		String destinationClassName = pluginProperties.getProperty(
-			"resources-importer-destination-class-name");
+		String targetClassName = pluginProperties.getProperty(
+			"resources-importer-target-class-name",
+			LayoutSetPrototype.class.getName());
 
-		if (Validator.isNull(destinationClassName)) {
-			destinationClassName = LayoutSetPrototype.class.getName();
-		}
+		String targetValue = pluginProperties.getProperty(
+			"resources-importer-target-value");
 
-		String destinationName = pluginProperties.getProperty(
-			"resources-importer-destination-name");
-
-		if (Validator.isNull(destinationName)) {
-			destinationName = TextFormatter.format(
+		if (Validator.isNull(targetValue)) {
+			targetValue = TextFormatter.format(
 				servletContextName, TextFormatter.J);
 		}
 
 		String resourcesDir = pluginProperties.getProperty(
 			"resources-importer-external-dir");
-
-		String layoutSetPrototypeName = TextFormatter.format(
-			servletContextName, TextFormatter.J);
 
 		Set<String> resourcePaths = servletContext.getResourcePaths(
 			_RESOURCES_DIR);
@@ -136,18 +130,18 @@ public class HotDeployMessageListener extends BaseMessageListener {
 				}
 
 				importer.setCompanyId(company.getCompanyId());
-				importer.setDestinationClassName(destinationClassName);
-				importer.setDestinationName(destinationName);
 				importer.setServletContext(servletContext);
 				importer.setServletContextName(servletContextName);
+				importer.setTargetClassName(targetClassName);
+				importer.setTargetValue(targetValue);
 
 				importer.afterPropertiesSet();
 
 				if (importer.getGroupId() == 0) {
 					if (_log.isInfoEnabled()) {
 						_log.info(
-							"Group or layout set prototype already exists for" +
-								" company " + company.getWebId());
+							"Group or layout set prototype already exists " +
+								"for company " + company.getWebId());
 					}
 
 					continue;
@@ -164,10 +158,9 @@ public class HotDeployMessageListener extends BaseMessageListener {
 				Message newMessage = new Message();
 
 				newMessage.put("companyId", company.getCompanyId());
-				newMessage.put("destinationClassName", destinationClassName);
-				newMessage.put(
-					"destinationClassPK", importer.getDestinationClassPK());
 				newMessage.put("servletContextName", servletContextName);
+				newMessage.put("targetClassName", targetClassName);
+				newMessage.put("targetClassPK", importer.getTargetClassPK());
 
 				MessageBusUtil.sendMessage(
 					"liferay/resources_importer", newMessage);
@@ -177,9 +170,9 @@ public class HotDeployMessageListener extends BaseMessageListener {
 
 				newMessage.put("companyId", company.getCompanyId());
 				newMessage.put("error", ie.getMessage());
-				newMessage.put("destinationClassName", destinationClassName);
-				newMessage.put("destinationClassPK", 0);
 				newMessage.put("servletContextName", servletContextName);
+				newMessage.put("targetClassName", targetClassName);
+				newMessage.put("targetClassPK", 0);
 
 				MessageBusUtil.sendMessage(
 					"liferay/resources_importer", newMessage);

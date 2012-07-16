@@ -50,22 +50,21 @@ public abstract class BaseImporter implements Importer {
 
 		Group group = null;
 
-		if (destinationClassName.equals(LayoutSetPrototype.class.getName())) {
-			if (!hasLayoutSetPrototype(companyId, destinationName)) {
+		if (targetClassName.equals(LayoutSetPrototype.class.getName())) {
+			if (!hasLayoutSetPrototype(companyId, targetValue)) {
 				LayoutSetPrototype layoutSetPrototype =
 					LayoutSetPrototypeLocalServiceUtil.addLayoutSetPrototype(
-						userId, companyId, getDestinationNameMap(),
+						userId, companyId, getTargetValueMap(),
 						StringPool.BLANK, true, true, new ServiceContext());
 
 				group = layoutSetPrototype.getGroup();
 
-				destinationClassPK =
-					layoutSetPrototype.getLayoutSetPrototypeId();
 				privateLayout = true;
+				targetClassPK = layoutSetPrototype.getLayoutSetPrototypeId();
 			}
 		}
-		else if (destinationClassName.equals(Group.class.getName())) {
-			if (destinationName.equals(GroupConstants.GUEST)) {
+		else if (targetClassName.equals(Group.class.getName())) {
+			if (targetValue.equals(GroupConstants.GUEST)) {
 				Group guestGroup = GroupLocalServiceUtil.getGroup(
 					companyId, GroupConstants.GUEST);
 
@@ -96,16 +95,16 @@ public abstract class BaseImporter implements Importer {
 
 				group = guestGroup;
 			}
-			else if (!hasGroup(companyId, destinationName)) {
+			else if (!hasGroup(companyId, targetValue)) {
 				group = GroupLocalServiceUtil.addGroup(
-					userId, 0, StringPool.BLANK, 0, destinationName,
+					userId, 0, StringPool.BLANK, 0, targetValue,
 					StringPool.BLANK, GroupConstants.TYPE_SITE_OPEN, null, true,
 					true, new ServiceContext());
 			}
 
 			if (group != null) {
-				destinationClassPK = group.getGroupId();
 				privateLayout = false;
+				targetClassPK = group.getGroupId();
 			}
 		}
 
@@ -116,35 +115,26 @@ public abstract class BaseImporter implements Importer {
 		groupId = group.getGroupId();
 	}
 
-	public long getDestinationClassPK() {
-		return destinationClassPK;
-	}
-
 	public long getGroupId() {
 		return groupId;
 	}
 
-	public Map<Locale, String> getDestinationNameMap() {
-		Map<Locale, String> destinationNameMap = new HashMap<Locale, String>();
+	public long getTargetClassPK() {
+		return targetClassPK;
+	}
+
+	public Map<Locale, String> getTargetValueMap() {
+		Map<Locale, String> targetValueMap = new HashMap<Locale, String>();
 
 		Locale locale = LocaleUtil.getDefault();
 
-		destinationNameMap.put(locale, destinationName);
+		targetValueMap.put(locale, targetValue);
 
-		return destinationNameMap;
+		return targetValueMap;
 	}
 
 	public void setCompanyId(long companyId) {
 		this.companyId = companyId;
-	}
-
-	public void setDestinationClassName(String destinationClassName) {
-
-		this.destinationClassName = destinationClassName;
-	}
-
-	public void setDestinationName(String destinationName) {
-		this.destinationName = destinationName;
 	}
 
 	public void setResourcesDir(String resourcesDir) {
@@ -157,6 +147,14 @@ public abstract class BaseImporter implements Importer {
 
 	public void setServletContextName(String servletContextName) {
 		this.servletContextName = servletContextName;
+	}
+
+	public void setTargetClassName(String targetClassName) {
+		this.targetClassName = targetClassName;
+	}
+
+	public void setTargetValue(String targetValue) {
+		this.targetValue = targetValue;
 	}
 
 	protected boolean hasGroup(long companyId, String name) throws Exception {
@@ -189,13 +187,13 @@ public abstract class BaseImporter implements Importer {
 
 	protected long companyId;
 	protected long groupId;
-	protected String destinationClassName;
-	protected long destinationClassPK;
-	protected String destinationName;
 	protected boolean privateLayout;
 	protected String resourcesDir;
 	protected ServletContext servletContext;
 	protected String servletContextName;
+	protected String targetClassName;
+	protected long targetClassPK;
+	protected String targetValue;
 	protected long userId;
 
 }

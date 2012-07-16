@@ -24,22 +24,22 @@ public interface Importer {
 
 	public void afterPropertiesSet() throws Exception;
 
-	public long getDestinationClassPK();
-
 	public long getGroupId();
+
+	public long getTargetClassPK();
 
 	public void importResources() throws Exception;
 
 	public void setCompanyId(long companyId);
-
-	public void setDestinationClassName(String className);
-
-	public void setDestinationName(String destinationName);
 
 	public void setResourcesDir(String resourcesDir);
 
 	public void setServletContext(ServletContext servletContext);
 
 	public void setServletContextName(String servletContextName);
+
+	public void setTargetClassName(String className);
+
+	public void setTargetValue(String targetValue);
 
 }
