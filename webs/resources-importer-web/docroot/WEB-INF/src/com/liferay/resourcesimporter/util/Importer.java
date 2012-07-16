@@ -14,9 +14,6 @@
 
 package com.liferay.resourcesimporter.util;
 
-import java.util.Locale;
-import java.util.Map;
-
 import javax.servlet.ServletContext;
 
 /**
@@ -27,16 +24,17 @@ public interface Importer {
 
 	public void afterPropertiesSet() throws Exception;
 
-	public long getGroupId();
+	public long getDestinationClassPK();
 
-	public long getLayoutSetPrototypeId();
+	public long getGroupId();
 
 	public void importResources() throws Exception;
 
 	public void setCompanyId(long companyId);
 
-	public void setLayoutSetPrototypeNameMap(
-		Map<Locale, String> layoutSetPrototypeNameMap);
+	public void setDestinationClassName(String className);
+
+	public void setDestinationName(String destinationName);
 
 	public void setResourcesDir(String resourcesDir);
 
