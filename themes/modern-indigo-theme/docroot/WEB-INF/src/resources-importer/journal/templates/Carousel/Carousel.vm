@@ -11,9 +11,9 @@
 	#$contentClass .carousel-item {
 		height: $height.getData()px;
 		overflow: hidden;
-		width: $width.getData()px;
 		position: absolute;
 		top: 0;
+		width: $width.getData()px;
 	}
 	
 	#if($controls.data == '')
@@ -26,8 +26,8 @@
 <div id="$contentClass">
 	#foreach ($item in $image.getSiblings())
 		<div class="carousel-item">
-			<a href="$!item.link.url-location.data" #if($item.link.data)title="$item.link.data" alt="$item.link.data"#end>
-				<img src='$item.getData()'/>
+			<a href="$!item.link.url-location.data">
+				<img src="$item.getData()" #if($item.link.data) alt="$item.link.data" title="$item.link.data"#end />
 			</a>
 		</div>
 	#end
@@ -45,8 +45,7 @@
 					intervalTime: $duration.getData(),
 					width: $width.getData()
 				}
-			)
-			.render();
+			).render();
 		}
 	);
 </script>
