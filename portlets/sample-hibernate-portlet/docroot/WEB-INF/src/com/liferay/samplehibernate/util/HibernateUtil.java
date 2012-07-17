@@ -67,7 +67,7 @@ public class HibernateUtil {
 			_sessionFactory = configuration.buildSessionFactory();
 		}
 		catch (Exception e) {
-		   _log.error(e, e);
+			_log.error(e, e);
 		}
 	}
 

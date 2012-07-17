@@ -43,11 +43,11 @@ import java.util.List;
 public class MicroblogsEntryLocalServiceImpl
 	extends MicroblogsEntryLocalServiceBaseImpl {
 
-	 public MicroblogsEntry addMicroblogsEntry(
+	public MicroblogsEntry addMicroblogsEntry(
 			long userId, String content, int type, long receiverUserId,
 			long receiverMicroblogsEntryId, int socialRelationType,
 			ServiceContext serviceContext)
-	 	throws PortalException, SystemException {
+		throws PortalException, SystemException {
 
 		// Microblogs entry
 

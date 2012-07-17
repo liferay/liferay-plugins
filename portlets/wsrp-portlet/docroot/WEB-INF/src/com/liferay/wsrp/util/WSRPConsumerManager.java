@@ -248,7 +248,7 @@ public class WSRPConsumerManager {
 
 			Element firstBindingElement = bindingElements.get(0);
 
-	 		String binding = firstBindingElement.attributeValue("binding");
+			String binding = firstBindingElement.attributeValue("binding");
 
 			if (binding.contains("v2")) {
 				return true;
@@ -313,7 +313,7 @@ public class WSRPConsumerManager {
 
 			String binding = firstBindingElement.attributeValue("binding");
 
-	 		if (binding.contains("v2")) {
+			if (binding.contains("v2")) {
 				break;
 			}
 		}

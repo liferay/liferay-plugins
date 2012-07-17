@@ -1,5 +1,7 @@
 drop database if exists sample_hibernate;
+
 create database sample_hibernate character set utf8;
+
 use sample_hibernate;
 
 create table FoodItem (
