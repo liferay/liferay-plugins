@@ -338,13 +338,17 @@
 		<taskdef classname="org.apache.xmlbeans.impl.tool.XMLBean" classpathref="portal.classpath" name="xmlbean" />
 
 		<xmlbean
-			classgendir="${tstamp.value}/classes"
+			classgendir="${tstamp.value}"
 			classpathref="plugin-lib.classpath"
-			destfile="docroot/WEB-INF/lib/${plugin.name}-xbean.jar"
-			srcgendir="${tstamp.value}/src"
+			srcgendir="${tstamp.value}"
 		>
 			<fileset dir="docroot/WEB-INF/xsd" includes="**/*.*" />
 		</xmlbean>
+
+		<zip
+			basedir="${tstamp.value}"
+			destfile="docroot/WEB-INF/lib/${plugin.name}-xbean.jar"
+		/>
 
 		<delete dir="${tstamp.value}" />
 	</target>
