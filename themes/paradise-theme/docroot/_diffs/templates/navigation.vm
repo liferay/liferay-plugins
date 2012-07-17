@@ -8,27 +8,22 @@
 			#set ($order = "")
 
 			#if ($nav_item.isSelected())
-				#set ($order = $order + "selected ")
+				#set ($order = $order + " selected")
 			#end
 
 			#if ($velocityCount == 1)
-				#set ($order = $order + "first ")
+				#set ($order = $order + " first")
 			#end
 
 			#if (!$velocityHasNext)
-				#set ($order = $order + "last ")
+				#set ($order = $order + " last")
 			#end
 
-			#if ($order != "")
-				<li class="${order}">
-			#else
-				<li>
-			#end
+			<li class="$order">
 				<a href="$nav_item.getURL()" $nav_item.getTarget()><span>$nav_item.icon() $nav_item.getName()</span></a>
 
 				#if ($nav_item.hasChildren())
 					<ul class="child-menu">
-
 						#foreach ($nav_child in $nav_item.getChildren())
 							#if ($nav_child.isSelected())
 								<li class="selected">

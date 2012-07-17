@@ -47,9 +47,9 @@
 
 <script type="text/javascript">
 	AUI().ready(
-	'aui-carousel',
+		'aui-carousel',
 		function(A) {
-			var component = new A.Carousel(
+			new A.Carousel(
 				{
 					activeIndex: 'rand',
 					contentBox: '#${contentClass}',
@@ -57,8 +57,7 @@
 					intervalTime: ${duration.data},
 					width: ${width.data}
 				}
-			)
-			.render();
+			).render();
 		}
 	);
 </script>

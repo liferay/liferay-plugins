@@ -3,13 +3,13 @@
 /* -------- Variables -------- */
 
 $bannerHeight: 454px;
-$smbannerHeight: 224px;
+$smallBannerHeight: 224px;
 $navHeight: 46px;
 $color: #3D7899;
 
 /* -------- Global -------- */
 
-#skip-to-content, #heading .page-title, #navigation h1, #navigation .child-menu, #breadcrumbs h1, .portlet-journal-content-search .lfr-search-keywords, .portlet-journal-content-search .lfr-search-button, #footer-social a span {
+#breadcrumbs h1, #footer-social a span, #heading .page-title, #navigation .child-menu, #navigation h1, #skip-to-content, .portlet-journal-content-search .lfr-search-button, .portlet-journal-content-search .lfr-search-keywords {
 	clip: rect(0 0 0 0);
 	margin: 0;
 	padding: 0;
@@ -28,7 +28,7 @@ body {
 
 #sign-in {
 	color: #FFF;
-	font: 0.65em Arial, Sans-Serif;
+	font: 0.65em "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
 	font-weight: 200;
 	letter-spacing: 0.1em;
 	position: absolute;
@@ -47,7 +47,7 @@ body {
 
 #banner {
 	background: url(../images/custom/small_banner.jpg) 0 0 no-repeat;
-	height: $smbannerHeight + $navHeight;
+	height: $smallBannerHeight + $navHeight;
 	position: relative;
 
 	#heading {
@@ -77,17 +77,17 @@ body {
 	}
 
 	#navigation {
-		background: url(../images/custom/navi_bg.png) repeat-x 0 -1px;
+		background: url(../images/custom/nav_bg.png) repeat-x 0 -1px;
 		bottom: 0;
 		float: left;
-		font: 12px Arial, Sans-Serif;
+		font: 12px "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
 		height: 46px;
 		left: 0;
 		position: absolute;
 		width: 960px;
 
 		a {
-			background: url(../images/custom/navi_split.png) no-repeat right;
+			background: url(../images/custom/nav_split.png) no-repeat right;
 			color: $color;
 			display: block;
 			padding: 16px 20px;
@@ -121,9 +121,9 @@ body {
 
 	#keywords {
 		background: rgba(255, 255, 255, 0.2);
-		border: none;
+		border-width: 0;
 		color: #FFF;
-		font: italic 0.8em Arial, Helvetica, Verdana, sans-serif;
+		font: italic 0.8em "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
 		height: 22px;
 		width: 220px;
 	}
@@ -149,12 +149,12 @@ body {
 }
 
 .breadcrumbs {
-	border: solid 1px #CACACA;
+	border: 1px solid #CACACA;
 	color: #9B9B9B;
 	display: inline-block;
-	font: 11px Arial, Helvetica, sans-serif;
+	font: 11px "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
 	line-height: 30px;
-	margin: 0px;
+	margin: 0;
 	overflow: hidden;
 	padding: 0;
 	width: 100%;
@@ -169,7 +169,7 @@ body {
 
 			a {
 				background: url(../images/custom/home.png) 12px 8px no-repeat;
-				border: none;
+				border-width: 0;
 				display: inline-block;
 				padding: 0 6px;
 				text-indent: -9999px;
@@ -193,8 +193,8 @@ body {
 		}
 
 		span {
-			display: block;
 			background: url(../images/custom/breadcrumb_separator.png) 100% 0 no-repeat;
+			display: block;
 		}
 	}
 }
@@ -220,7 +220,7 @@ img.center {
 .button {
 	background: url(../images/custom/port_button_bg.png) repeat-x;
 	color: #27698A;
-	font: 18px "Helvetica Neue", Arial, Sans-Serif;
+	font: 18px "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
 	margin: 0 5px;
 	padding: 7px 12px;
 	text-decoration: none;
@@ -232,7 +232,7 @@ img.center {
 }
 
 .journal-content-article ul {
-	font: 1.14em/2 "Helvetica Neue", Arial, Sans-Serif;
+	font: 1.14em/2 "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
 	list-style-image: url(../images/custom/port_bullet.jpg);
 }
 
@@ -262,7 +262,7 @@ img.center {
 .portlet-title {
 	background: url(../images/custom/port_topper_arrow.png) 100% 60% no-repeat;
 	color: #FFF;
-	font: 100 24px "Helvetica Neue", Arial, Sans-Serif;
+	font: 100 24px "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
 	margin: 0 12px 0 0;
 	padding: 4px 0 0 15px;
 
@@ -349,7 +349,7 @@ img.center {
 			float: left;
 
 			&.first {
-				border-left: none;
+				border-left-width: 0;
 			}
 		}
 
@@ -404,7 +404,7 @@ img.center {
 /* -------- Extras -------- */
 
 #wrapper {
-	@include box-shadow(#000 0px 0px 10px);
+	@include box-shadow(#000 0 0 10px);
 }
 
 #banner #heading .site-name {
@@ -414,7 +414,7 @@ img.center {
 }
 
 .button {
-	@include box-shadow(#BEBEBE 0px 2px 2px);
+	@include box-shadow(#BEBEBE 0 2px 2px);
 }
 
 .portlet-title {
