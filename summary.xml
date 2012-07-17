@@ -2909,6 +2909,30 @@
 		</releng>
 	</plugin>
 	<plugin>
+		<artifact-id>modern-indigo-theme</artifact-id>
+		<name>Modern Indigo Theme</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<long-description></long-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
+		<releng>
+			<bundle>true</bundle>
+			<category></category>
+			<demo-url></demo-url>
+			<labs>true</labs>
+			<marketplace>true</marketplace>
+			<parent-app></parent-app>
+			<public>true</public>
+			<standalone-app>true</standalone-app>
+			<supported>true</supported>
+		</releng>
+	</plugin>
+	<plugin>
 		<artifact-id>murali-theme</artifact-id>
 		<name>Murali</name>
 		<type>theme</type>
