@@ -1,6 +1,6 @@
-<footer id="footer-wrapper" role="contentinfo">
-	<div id="footer-content" class="aui-layout-content">
-		<div id="blurb" class="aui-column aui-w25 aui-column-first">
+<footer id="footerWrapper" role="contentinfo">
+	<div class="aui-layout-content" id="footerContent">
+		<div class="aui-column aui-column-first aui-w25" id="blurb">
 			<h2>
 				$!{theme_settings.blurb-title}
 			</h2>
@@ -10,52 +10,48 @@
 			</p>
 		</div>
 
-		<div id="footerNavigation" class="aui-column aui-w25">
+		<div class="aui-column aui-w25" id="footerNavigation">
 			<h2>
 				<span>$!{theme_settings.footer-nav-title}</span>
 			</h2>
 
 			<ul>
-				#set ($parentNavCount = 1)
-
 				#foreach ($nav_item in $nav_items)
-					#if ($parentNavCount == 1)
-						#set ($navItemClass = "item-" + $parentNavCount + " first")
-					#elseif ($parentNavCount == $nav_items.size())
-						#set ($navItemClass = "item-" + $parentNavCount + " last")
-					#else
-						#set ($navItemClass = "item-"+$parentNavCount)
+					#set ($nav_item_class = "item-" + $velocityCount)
+
+					#if ($velocityCount == 1)
+						#set ($nav_item_class = $nav_item_class + " first")
+					#elseif (!$velocityHasNext)
+						#set ($nav_item_class = $nav_item_class + " last")
 					#end
 
 					#if ($nav_item.isSelected())
-						#set ($navItemClass = "selected " + $navItemClass)
+						#set ($nav_item_class = $nav_item_class + " selected")
 					#end
 
-					<li class="$navItemClass">
+					<li class="$nav_item_class">
 						<a href="$nav_item.getURL()" $nav_item.getTarget()>
 							<span>$nav_item.icon() $nav_item.getName()</span>
 						</a>
 					</li>
-
-					#set ($parentNavCount = $parentNavCount + 1)
 				#end
 			</ul>
 		</div>
 
-		#if($theme_settings.footer-link1 || $theme_settings.footer-link2 || $theme_settings.footer-link3 || $theme_settings.footer-link4 || $theme_settings.display-sign-in == true)
-			<div id="siteMeta" class="aui-column aui-w25">
+		#if ($theme_settings.footer-link1 || $theme_settings.footer-link2 || $theme_settings.footer-link3 || $theme_settings.footer-link4 || $theme_settings.display-sign-in == true)
+			<div class="aui-column aui-w25" id="siteMeta">
 				<h2>
 					${theme_settings.footer-links-title}
 				</h2>
 
 				<ul class="hide-bullets">
 					#if (${theme_settings.display-sign-in} == "true")
-						<li id="sign-in">
+						<li id="signIn">
 							<a href="$sign_in_url" rel="nofollow">#language('sign-in')</a>
 						</li>
 
-						<li id="sign-out">
-							<a href="javascript: logOut();" rel="nofollow">#language('sign-out')</a>
+						<li id="signOut">
+							<a href="javascript: Liferay.LitheTheme.logOut();" rel="nofollow">#language('sign-out')</a>
 						</li>
 					#end
 
@@ -90,32 +86,34 @@
 					#end
 				</ul>
 
-				<script>
-				Liferay.provide(
-					window,
-					'logOut',
-					function() {
-						var A = AUI();
+				<script type="text/javascript">
+					Liferay.namespace('LitheTheme');
 
-						A.io.request(
-							themeDisplay.getPathMain() + '/portal/logout',
-							{
-								after: {
-									success: function(){
-										location.reload();
+					Liferay.provide(
+						Liferay.LitheTheme,
+						'logOut',
+						function() {
+							var A = AUI();
+
+							A.io.request(
+								themeDisplay.getPathMain() + '/portal/logout',
+								{
+									after: {
+										success: function(){
+											location.reload();
+										}
 									}
 								}
-							}
-						)
-					},
-					['aui-io']
-				);
+							)
+						},
+						['aui-io']
+					);
 				</script>
 			</div>
 		#end
 
-		#if($theme_settings.rss || $theme_settings.linkedin || $theme_settings.twitter || $theme_settings.facebook)
-			<div id="socialLinks" class="aui-column aui-w25 aui-column-last">
+		#if ($theme_settings.rss || $theme_settings.linkedin || $theme_settings.twitter || $theme_settings.facebook)
+			<div class="aui-column aui-column-last aui-w25" id="socialLinks">
 				<h2>
 					${theme_settings.social-title}
 				</h2>
@@ -127,8 +125,8 @@
 				<ul class="social">
 					#if ($theme_settings.rss)
 						<li>
-							<a alt='RSS' href='$theme_settings.rss' target='new_window' title='RSS'w>
-								<img src='$images_folder/custom/rss.png' class='png' />
+							<a alt="RSS" href="$theme_settings.rss" target="new_window" title="RSS">
+								<img src="$images_folder/custom/rss.png" />
 								<span>RSS</span>
 							</a>
 						</li>
@@ -136,8 +134,8 @@
 
 					#if ($theme_settings.linkedin)
 						<li>
-							<a alt='LinkedIn' href='$theme_settings.linkedin' target='new_window' title='LinkedIn'>
-								<img src='$images_folder/custom/linkedin.png' class='png' />
+							<a alt="LinkedIn" href="$theme_settings.linkedin" target="new_window" title="LinkedIn">
+								<img src="$images_folder/custom/linkedin.png" />
 								<span>LinkedIn</span>
 							</a>
 						</li>
@@ -145,8 +143,8 @@
 
 					#if ($theme_settings.twitter)
 						<li>
-							<a alt='Twitter' href='$theme_settings.twitter' target='new_window' title='Twitter'>
-								<img src='$images_folder/custom/twitter.png' class='png' />
+							<a alt="Twitter" href="$theme_settings.twitter" target="new_window" title="Twitter">
+								<img src="$images_folder/custom/twitter.png" />
 								<span>Twitter</span>
 							</a>
 						</li>
@@ -154,8 +152,8 @@
 
 					#if ($theme_settings.facebook)
 						<li>
-							<a alt='Facebook' href='$theme_settings.facebook' target='new_window' title='Facebook'>
-								<img src='$images_folder/custom/facebook.png' class='png' />
+							<a alt="Facebook" href="$theme_settings.facebook" target="new_window" title="Facebook">
+								<img src="$images_folder/custom/facebook.png" />
 								<span>Facebook</span>
 							</a>
 						</li>

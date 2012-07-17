@@ -4,13 +4,13 @@
 
 $default-box-shadow-blur-offset: 6px;
 $default-box-shadow-color: #999;
-$default-box-shadow-h-offset: 0px;
+$default-box-shadow-h-offset: 0;
 $default-box-shadow-spread: 1px;
 $default-box-shadow-v-offset: 1px;
 
 /* -------- Global -------- */
 
-#breadcrumbs, #heading .page-title, #navigation .child-menu, #navigation h1, .portlet-journal-content-search .lfr-search-keywords, .portlet-journal-content-search .lfr-search-button,#skip-to-content
+#breadcrumbs, #heading .page-title, #navigation .child-menu, #navigation h1, #skip-to-content, .portlet-journal-content-search .lfr-search-button, .portlet-journal-content-search .lfr-search-keywords
 {
 	clip: rect(0 0 0 0);
 	position: absolute;
@@ -62,7 +62,7 @@ ul.hide-bullets {
 }
 
 img {
-	border: 0;
+	border-width: 0;
 
 	&.right {
 		margin: 18px 0 18px 18px;
@@ -80,8 +80,8 @@ img {
 }
 
 hr {
-	background: none repeat scroll 0 0 #DDD;
-	border: medium none;
+	background: #DDD;
+	border-width: 0;
 	clear: both;
 	float: none;
 	height: 1px;
@@ -142,7 +142,7 @@ hr {
 			}
 		}
 
-		#page-search {
+		#pageSearch {
 			position: absolute;
 			right: 0;
 			top: 42px;
@@ -154,7 +154,7 @@ hr {
 	background-color: #132832;
 	color: #FFF;
 	display: inline-block;
-	font-size: .8em;
+	font-size: 0.8em;
 	font-weight: 200;
 	margin: 0 10px;
 	padding: 7px 17px;
@@ -173,7 +173,7 @@ hr {
 
 /* -------- Search Bar -------- */
 
-#page-search {
+#pageSearch {
 	#keywords, .lfr-search-keywords, .lfr-search-button {
 		background-image: url(../images/custom/search_sprite.png);
 		background-repeat: no-repeat;
@@ -182,7 +182,7 @@ hr {
 	#keywords {
 		background-position: 0 -37px;
 		background-repeat: repeat-x;
-		border: 0;
+		border-width: 0;
 		color: #9A9A9A;
 		font-size: 12px;
 		height: 14px;
@@ -207,7 +207,7 @@ hr {
 		background-position: 100% -107px;
 
 		.aui-field-content {
-			background: transparent url(../images/custom/search_sprite.png) 0 -72px;
+			background: url(../images/custom/search_sprite.png) 0 -72px;
 			margin-right: 12px;
 		}
 	}
@@ -220,7 +220,7 @@ hr {
 /* -------- Navigation -------- */
 
 #navigation {
-	background: url(../images/custom/nav_bg.png) 0 10px repeat-x;
+	background: url(../images/custom/nav_bg.png) repeat-x 0 10px;
 	clear: both;
 	display: block;
 	height: 70px;
@@ -304,7 +304,7 @@ hr {
 			margin: 0 5px;
 			padding: 20px 0 20px 15px;
 			position: relative;
-			text-shadow: 1px 1px 0 rgba(0,0,0,.5);
+			text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
 			width: 277px;
 			z-index: 2;
 
@@ -361,7 +361,7 @@ hr {
 		font-size: 20px;
 		font-weight: 400;
 		margin: 0 0 6px;
-		text-shadow: 1px 1px 0 rgba(0,0,0, 0.5);
+		text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
 	}
 
 	.pod-image {
@@ -397,7 +397,7 @@ hr {
 
 /* -------- Quote Box ------- */
 
-#quote-box {
+#quoteBox {
 	padding-top: 15px;
 
 	h3 {
@@ -408,21 +408,21 @@ hr {
 		text-transform: uppercase;
 	}
 
-	#quote-box-container {
+	#quoteBoxContainer {
 		background: #D4D1CE;
-		background: rgba(0,0,0,0.10);
+		background: rgba(0, 0, 0, 0.10);
 		border-bottom: 2px solid #E2E0DE;
 		border-top: 2px solid #E2E0DE;
 	}
 
 	.quote-item {
-		border-bottom: 2px solid #FFF;
-		border-top: 2px solid #FFF;
+		border: solid #FFF;
+		border-width: 2px 0;
 		display: none;
 		padding: 75px 155px;
 
 		.quote {
-			font-family: Georgia, Verdana;
+			font-family: Georgia, "Times New Roman", Times, serif;
 			font-size: 36px;
 			font-style: italic;
 			line-height: 35px;
@@ -490,17 +490,17 @@ ul.arrow {
 
 /* -------- Footer -------- */
 
-#footer-wrapper {
+#footerWrapper {
 	background: #142933;
 
-	#footer-content {
+	#footerContent {
 		margin: 0 auto;
 		padding: 25px 0;
 		width: 960px;
 	}
 }
 
-#footer-content {
+#footerContent {
 	a {
 		color: #EE9F44;
 		text-decoration: none;
@@ -529,13 +529,13 @@ ul.arrow {
 		}
 	}
 
-	#footer-content #social-links {
+	#footerContent #socialLinks {
 		margin-right: -5px;
 		padding: 0 5px;
 		width: 230px;
 	}
 
-	#footer-navigation, #site-meta {
+	#footerNavigation, #siteMeta {
 		margin: 0;
 		padding: 0 5px;
 		width: 230px;
@@ -554,6 +554,7 @@ ul.arrow {
 
 		li {
 			padding: 5px 0;
+
 			a {
 				text-transform: capitalize;
 			}
@@ -581,15 +582,14 @@ ul.arrow {
 
 /* ------- Footer / Links ------ */
 
-.signed-out #sign-out, .signed-in #sign-in {
+.signed-in #signIn, .signed-out #signOut {
 	display: none;
-	padding: 0;
 }
 
 /* ------- Browser Specific Rules ------ */
 
 .ie6 {
-	#page-search #search {
+	#pageSearch #search {
 		background-color: #132832;
 		height: 21px;
 	}
@@ -604,7 +604,7 @@ ul.arrow {
 }
 
 .ie7 {
-	#page-search #keywords {
+	#pageSearch #keywords {
 		margin-top: -1px;
 	}
 
@@ -613,7 +613,7 @@ ul.arrow {
 	}
 }
 
-.ie8 #page-search {
+.ie8 #pageSearch {
 	#keywords {
 		display: block;
 	}
@@ -623,7 +623,7 @@ ul.arrow {
 	}
 }
 
-.firefox #page-search .lfr-search-keywords {
+.firefox #pageSearch .lfr-search-keywords {
 	margin-top: -3px;
 }
 
@@ -643,10 +643,10 @@ ul.arrow {
 	@include border-radius(5px);
 }
 
-.carousel-container, .pod .pod-image, .column-text img {
+.carousel-container, .column-text img, .pod .pod-image {
 	@include single-box-shadow;
 }
 
-#quote-box h3 {
+#quoteBox h3 {
 	@include text-shadow(1px 1px rgba(255, 255, 255, 1));
 }

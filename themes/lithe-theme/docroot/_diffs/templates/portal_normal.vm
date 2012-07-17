@@ -34,7 +34,7 @@ $theme.include($body_top_include)
 					</span>
 				#end
 
-				<div id="page-search">
+				<div id="pageSearch">
 					$theme.journalContentSearch()
 				</div>
 			</h1>
