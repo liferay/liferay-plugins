@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+
+<service-builder package-path="com.liferay.portal.oauth" auto-namespace-tables="false">
+	<namespace>OAuth</namespace>
+	<entity name="OAuthApplication" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="applicationId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="ownerId" type="long" />
+		<column name="name" type="String" />
+		<column name="description" type="String" />
+		<column name="website" type="String" />
+		<column name="consumerKey" type="String" />
+		<column name="consumerSecret" type="String" />
+		<column name="callBackURL" type="String" />
+		<column name="accessLevel" type="int" />
+
+		<!-- Finder methods -->
+
+		<finder name="CompanyId" return-type="Collection">
+			<finder-column name="companyId" />
+		</finder>
+		<finder name="ConsumerKey" return-type="OAuthApplication" unique="true">
+			<finder-column name="consumerKey" />
+		</finder>
+		<finder name="OwnerId" return-type="Collection" >
+			<finder-column name="ownerId" />
+		</finder>
+		<finder name="Website" return-type="Collection">
+			<finder-column name="website" comparator="LIKE"/>
+		</finder>
+		<finder name="C_N" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="name" comparator="LIKE" />
+		</finder>
+		<finder name="O_N" return-type="Collection" >
+			<finder-column name="ownerId" />
+			<finder-column name="name" comparator="LIKE" />
+		</finder>
+	</entity>
+	<entity name="OAuthApplications_Users" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="oaauid" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="accessToken" type="String" />
+		<column name="accessSecret" type="String" />
+		<column name="applicationId" type="long" />
+		<column name="authorized" type="boolean" />
+		<column name="userId" type="long" />
+
+		<!-- Finder methods -->
+
+		<finder name="A_U" return-type="OAuthApplications_Users" unique="true">
+			<finder-column name="applicationId" />
+			<finder-column name="userId" />
+		</finder>
+		<finder name="A_A" return-type="Collection" >
+			<finder-column name="applicationId" />
+			<finder-column name="authorized" />
+		</finder>
+		<finder name="AccessToken" return-type="Collection">
+			<finder-column name="accessToken" />
+		</finder>
+		<finder name="ApplicationId" return-type="Collection" >
+			<finder-column name="applicationId" />
+		</finder>
+		<finder name="UserId" return-type="Collection" >
+			<finder-column name="userId" />
+		</finder>
+	</entity>
+</service-builder>

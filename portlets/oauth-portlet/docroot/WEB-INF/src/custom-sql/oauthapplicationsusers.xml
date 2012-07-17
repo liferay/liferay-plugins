@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.liferay.portal.oauth.service.persistence.OAuthApplications_UsersFinder.countAll">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				OAuthApplications_Users
+		]]>
+	</sql>
+	<sql id="com.liferay.portal.oauth.service.persistence.OAuthApplications_UsersFinder.countByO_A">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				OAuthApplications_Users,
+				OAuthApplication
+			WHERE
+				(OAuthApplication.ownerId = ?) AND
+				(OAuthApplication.applicationId = OAuthApplications_Users.applicationId) AND
+				(OAuthApplications_Users.authorized = ?)
+		]]>
+	</sql>
+	<sql id="com.liferay.portal.oauth.service.persistence.OAuthApplications_UsersFinder.findAll">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				OAuthApplications_Users
+		]]>
+	</sql>
+	<sql id="com.liferay.portal.oauth.service.persistence.OAuthApplications_UsersFinder.findByO_A">
+		<![CDATA[
+			SELECT
+				{OAuthApplications_Users.*}
+			FROM
+				OAuthApplications_Users,
+				OAuthApplication
+			WHERE
+				(OAuthApplication.ownerId = ?) AND
+				(OAuthApplication.applicationId = OAuthApplications_Users.applicationId) AND
+				(OAuthApplications_Users.authorized = ?)
+		]]>
+	</sql>
+</custom-sql>
