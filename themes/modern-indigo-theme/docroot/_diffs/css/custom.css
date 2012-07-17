@@ -4,9 +4,9 @@
 
 $bgColor: #DADADA;
 $textColor: #004461;
-$TextShadowColor1: #FFF;
-$TextShadowColor2: #333;
-$TextShadowColor3: #444;
+$textShadowColor1: #FFF;
+$textShadowColor2: #333;
+$textShadowColor3: #444;
 
 /* -------- Set Compass Defaults -------- */
 
@@ -43,7 +43,7 @@ body {
 	&.portal-popup {
 		padding: 10px;
 
-		#main-content{
+		#main-content {
 			width: auto;
 		}
 	}
@@ -447,7 +447,7 @@ p {
 	}
 }
 
-.portlet-column-first .pod, .portlet-column-first .column-text, .portlet-column-first .pod .divider {
+.portlet-column-first .column-text, .portlet-column-first .pod, .portlet-column-first .pod .divider {
 	margin-left: 0;
 }
 
@@ -671,15 +671,15 @@ ul.aui-tabview-list {
 /* -------- Extras -------- */
 
 p, a, a:link, a:visited, #navigation ul, .columns-max .portlet-topper-toolbar, .pod, .ie8 .pod.button span.description, .innovation-title  {
-	@include single-text-shadow($TextShadowColor1,1px, 1px, 1px);
+	@include single-text-shadow($textShadowColor1, 1px, 1px, 1px);
 }
 
-.featured-text p, .columns-2-1-2 #column-1 .featured-text h3, .columns-2-1-2 #column-2 .fetured-text h3, .portlet-topper-toolbar a, .portlet-topper-toolbar a:visited, .aui-tab-active span span a{
-	@include single-text-shadow($TextShadowColor2,1px, 1px, 1px);
+.featured-text p, .columns-2-1-2 #column-1 .featured-text h3, .columns-2-1-2 #column-2 .fetured-text h3, .portlet-topper-toolbar a, .portlet-topper-toolbar a:visited, .aui-tab-active span span a {
+	@include single-text-shadow($textShadowColor2, 1px, 1px, 1px);
 }
 
 .blue-content p {
-	@include single-text-shadow($TextShadowColor3,1px, 1px, 1px);
+	@include single-text-shadow($textShadowColor3, 1px, 1px, 1px);
 }
 
 #wrapper {

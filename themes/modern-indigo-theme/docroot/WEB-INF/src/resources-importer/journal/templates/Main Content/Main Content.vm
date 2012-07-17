@@ -29,17 +29,17 @@
 		#end
 
 		#if ($colCount == 2 && $col-one.data != '' && $col-two.data != '')
-			<div class="aui-column aui-w50 aui-column-first">
+			<div class="aui-column aui-column-first aui-w50">
 				<div class="aui-column-content">$col-one.data</div>
 			</div>
 
-			<div class="aui-column aui-w50 aui-column-last">
+			<div class="aui-column aui-column-last aui-w50">
 				<div class="aui-column-content">$col-two.data</div>
 			</div>
 		#end
 
 		#if ($colCount == 3 && $col-one.data != '' && $col-two.data != '' && $col-three.data != '')
-			<div class="aui-column aui-w33 aui-column-first">
+			<div class="aui-column aui-column-first aui-w33">
 				<div class="aui-column-content">$col-one.data</div>
 			</div>
 
@@ -47,7 +47,7 @@
 				<div class="aui-column-content">$col-two.data</div>
 			</div>
 
-			<div class="aui-column aui-w33 aui-column-last">
+			<div class="aui-column aui-column-last aui-w33">
 				<div class="aui-column-content">$col-three.data</div>
 			</div>
 		#end
