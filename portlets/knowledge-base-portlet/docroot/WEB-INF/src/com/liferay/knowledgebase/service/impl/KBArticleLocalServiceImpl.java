@@ -78,6 +78,7 @@ import com.liferay.portlet.documentlibrary.FileNameException;
 import com.liferay.portlet.documentlibrary.NoSuchDirectoryException;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 
+import java.io.File;
 import java.io.InputStream;
 
 import java.util.ArrayList;
@@ -102,6 +103,10 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		if (!isValidDirName(dirName)) {
+			throw new FileNameException();
+		}
+
+		if (!isValidFileName(shortFileName)) {
 			throw new FileNameException();
 		}
 
@@ -1380,6 +1385,17 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		ticket.setExpirationDate(getTicketExpirationDate());
 
 		ticket = ticketLocalService.updateTicket(ticket);
+
+		return true;
+	}
+
+	protected boolean isValidFileName(String name) throws SystemException {
+		if ((name == null) || name.contains(StringPool.BACK_SLASH) ||
+			name.contains(StringPool.SLASH) ||
+			name.contains(File.pathSeparator)) {
+
+			return false;
+		}
 
 		return true;
 	}
