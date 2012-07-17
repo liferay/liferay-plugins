@@ -88,9 +88,9 @@ public class ExtensionUtil {
 			new MessageElement[extensions.length];
 
 		for (int i = 0; i < extensions.length; i++) {
-			 MessageElement[] messageElementsWrapper = extensions[i].get_any();
+			MessageElement[] messageElementsWrapper = extensions[i].get_any();
 
-			 messageElements[i] = messageElementsWrapper[0];
+			messageElements[i] = messageElementsWrapper[0];
 		}
 
 		return messageElements;
