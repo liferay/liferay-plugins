@@ -14,24 +14,17 @@
 
 package com.liferay.welcome.messaging;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.util.MethodKey;
-import com.liferay.portal.kernel.util.PortalClassInvoker;
+import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
-import com.liferay.portal.model.LayoutSet;
-import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.service.GroupLocalServiceUtil;
-import com.liferay.portal.service.LayoutLocalServiceUtil;
-import com.liferay.portal.service.LayoutSetLocalServiceUtil;
-import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
  * @author Ryan Park
+ * @author Jonathan Lee
  */
 public class ResourcesImporterMessageListener extends BaseMessageListener {
 
@@ -43,39 +36,17 @@ public class ResourcesImporterMessageListener extends BaseMessageListener {
 			return;
 		}
 
-		long companyId = message.getLong("companyId");
-
 		Group group = GroupLocalServiceUtil.getGroup(
-			companyId, GroupConstants.GUEST);
+			message.getLong("companyId"), GroupConstants.GUEST);
 
-		long layoutSetPrototypeId = message.getLong("layoutSetPrototypeId");
+		UnicodeProperties typeSettingsProperties =
+			group.getTypeSettingsProperties();
 
-		if (_log.isInfoEnabled()) {
-			_log.info(
-				"Apply content and pages from layout set prototype " +
-					layoutSetPrototypeId + " onto the Guest group");
-		}
+		typeSettingsProperties.setProperty(
+			"customJspServletContextName", "so-hook");
 
-		LayoutSetPrototype layoutSetPrototype =
-			LayoutSetPrototypeLocalServiceUtil.getLayoutSetPrototype(
-				layoutSetPrototypeId);
-
-		LayoutSetLocalServiceUtil.updateLayoutSetPrototypeLinkEnabled(
-			group.getGroupId(), false, true, layoutSetPrototype.getUuid());
-
-		LayoutLocalServiceUtil.updatePriorities(group.getGroupId(), false);
-
-		PortalClassInvoker.invoke(
-			true, _mergeLayoutSetProtypeLayoutsMethodKey, group,
-			group.getPublicLayoutSet());
+		GroupLocalServiceUtil.updateGroup(
+			group.getGroupId(), typeSettingsProperties.toString());
 	}
-
-	private static Log _log = LogFactoryUtil.getLog(
-		ResourcesImporterMessageListener.class);
-
-	private static MethodKey _mergeLayoutSetProtypeLayoutsMethodKey =
-		new MethodKey(
-			"com.liferay.portlet.sites.util.SitesUtil",
-			"mergeLayoutSetProtypeLayouts", Group.class, LayoutSet.class);
 
 }
