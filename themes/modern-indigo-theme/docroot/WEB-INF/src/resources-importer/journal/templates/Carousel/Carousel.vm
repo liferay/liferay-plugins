@@ -15,8 +15,8 @@
 		top: 0;
 		width: $width.getData()px;
 	}
-	
-	#if($controls.data == '')
+
+	#if ($controls.data == '')
 		#$contentClass menu {
 			display: none;
 		}
@@ -27,7 +27,7 @@
 	#foreach ($item in $image.getSiblings())
 		<div class="carousel-item">
 			<a href="$!item.link.url-location.data">
-				<img src="$item.getData()" #if($item.link.data) alt="$item.link.data" title="$item.link.data"#end />
+				<img #if ($item.link.data) alt="$item.link.data" title="$item.link.data"#end src="$item.getData()" />
 			</a>
 		</div>
 	#end
