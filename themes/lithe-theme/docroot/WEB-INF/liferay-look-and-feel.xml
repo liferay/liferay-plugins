@@ -16,8 +16,13 @@
 					'aui-base',
 						function(A) {
 							var target = A.one('#[@NAMESPACE@]blurb-content');
-							target.setStyle('height', '100px');
-							target.setStyle('width', '515px');
+
+							target.setStyles(
+								{
+									height: 100,
+									width: 515
+								}
+							);
 						}
 					);
 				]]> </setting>
@@ -28,7 +33,8 @@
 					'aui-base',
 						function(A) {
 							var target = A.one('#[@NAMESPACE@]footer-link1');
-							target.setStyle('width', '515px');
+
+							target.setStyle('width', 515);
 						}
 					);
 				]]>
@@ -38,7 +44,8 @@
 					'aui-base',
 						function(A) {
 							var target = A.one('#[@NAMESPACE@]footer-link2');
-							target.setStyle('width', '515px');
+
+							target.setStyle('width', 515);
 						}
 					);
 				]]>
@@ -48,7 +55,8 @@
 					'aui-base',
 						function(A) {
 							var target = A.one('#[@NAMESPACE@]footer-link3');
-							target.setStyle('width', '515px');
+
+							target.setStyle('width', 515);
 						}
 					);
 				]]>
@@ -58,7 +66,8 @@
 					'aui-base',
 						function(A) {
 							var target = A.one('#[@NAMESPACE@]footer-link4');
-							target.setStyle('width', '515px');
+
+							target.setStyle('width', 515);
 						}
 					);
 				]]>
@@ -69,7 +78,8 @@
 					'aui-base',
 						function(A) {
 							var target = A.one('#[@NAMESPACE@]social-tagline');
-							target.setStyle('width', '515px');
+
+							target.setStyle('width', 515);
 						}
 					);
 				]]>
@@ -79,7 +89,8 @@
 						'aui-base',
 							function(A) {
 								var target = A.one('#[@NAMESPACE@]social-rss');
-								target.setStyle('width', '515px');
+
+								target.setStyle('width', 515);
 							}
 						);
 					]]>
@@ -89,7 +100,8 @@
 						'aui-base',
 							function(A) {
 								var target = A.one('#[@NAMESPACE@]social-linkedin');
-								target.setStyle('width', '515px');
+
+								target.setStyle('width', 515);
 							}
 						);
 					]]>
@@ -99,7 +111,8 @@
 						'aui-base',
 							function(A) {
 								var target = A.one('#[@NAMESPACE@]social-twitter');
-								target.setStyle('width', '515px');
+
+								target.setStyle('width', 515);
 							}
 						);
 					]]>
@@ -109,7 +122,8 @@
 						'aui-base',
 							function(A) {
 								var target = A.one('#[@NAMESPACE@]social-facebook');
-								target.setStyle('width', '515px');
+
+								target.setStyle('width', 515);
 							}
 						);
 					]]>

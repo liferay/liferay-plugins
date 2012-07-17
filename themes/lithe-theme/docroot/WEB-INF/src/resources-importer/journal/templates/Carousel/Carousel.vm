@@ -1,28 +1,28 @@
-#set ($article-id = $reserved-article-id.getData())
-#set ($content-id = "carousel-" + $article-id)
+#set ($article_id = $reserved-article-id.getData())
+#set ($content_id = "carousel-" + $article_id)
 
 <style>
-	#${content-id} {
+	#${content_id} {
 		height: ${height.data}px;
 	}
 </style>
 
-<div id="${content-id}" class="carousel-container">
+<div class="carousel-container" id="${content_id}">
 	<ul id="tabs">
 		#foreach ($item in $carousel-item.siblings)
-			#set ($customClass = "")
+			#set ($carousel_menu_item_class = "tab-item item-$velocityCount aui-carousel-menu-index")
 
 			#if ($velocityCount == 1)
-				#set ($customClass = $customClass + " first aui-carousel-menu-active")
+				#set ($carousel_menu_item_class = $carousel_menu_item_class + " aui-carousel-menu-active first")
 			#end
 
 			#if (!$velocityHasNext)
-				#set ($customClass = $customClass + " last")
+				#set ($carousel_menu_item_class = $carousel_menu_item_class + " last")
 			#end
 
-			<li class="tab-item item-$velocityCount aui-carousel-menu-index $customClass">
+			<li class="$carousel_menu_item_class">
 				#if ($item.icon.data!='')
-					<img src="${item.icon.data}" class="icon" />
+					<img class="icon" src="${item.icon.data}" />
 				#end
 
 				<h4 class="title">
@@ -46,34 +46,33 @@
 
 	<div id="carousel">
 		#foreach ($item in $carousel-item.siblings)
+			#set ($carousel_item_class = "aui-carousel-item")
+
 			#if ($velocityCount == 1)
-				<div style="background: url(${item.image.data}) no-repeat; width: 674px; height: ${height.data}px;" class="aui-carousel-item aui-carousel-item-active">
-					${item.data}
-				</div>
-			#else
-				<div style="background: url(${item.image.data}) no-repeat; width: 674px; height: ${height.data}px;" class="aui-carousel-item">
-					${item.data}
-				</div>
+				#set ($carousel_item_class = $carousel_item_class + " aui-carousel-item-active")
 			#end
+
+			<div style="background: url(${item.image.data}) no-repeat; width: 674px; height: ${height.data}px;" class="$carousel_item_class">
+				${item.data}
+			</div>
 		#end
 	</div>
 </div>
 
 <script type="text/javascript">
 	AUI().ready(
-	'aui-carousel',
+		'aui-carousel',
 		function(A) {
-			var component = new A.Carousel(
+			new A.Carousel(
 				{
-					contentBox: '#${content-id} #carousel',
+					contentBox: '#${content_id} #carousel',
 					height: ${height.data},
 					intervalTime: ${duration.data},
-					nodeMenu: '#${content-id} #tabs',
+					nodeMenu: '#${content_id} #tabs',
 					nodeMenuItemSelector: '.tab-item',
 					width: 287
 				}
-			)
-			.render();
+			).render();
 		}
 	);
 </script>

@@ -1,7 +1,7 @@
-<div id="quote-box">
+<div id="quoteBox">
 	<h3>$!title.data</h3>
 
-	<div id="quote-box-container">
+	<div id="quoteBoxContainer">
 		#set ($count=0)
 
 		#foreach ($quote-item in $quote.siblings)
