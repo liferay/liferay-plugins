@@ -273,10 +273,10 @@ public interface OAuthApplications_UsersLocalService extends BaseLocalService,
 	public int countByApplicationId(long applicationId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public int countByUser(long userId)
+	public int countByOwner(long ownerId, boolean authorized)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public int countByOwner(long ownerId, boolean authorized)
+	public int countByUser(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.portal.oauth.model.OAuthApplications_Users deleteOAuthApplications_Users(
@@ -289,6 +289,11 @@ public interface OAuthApplications_UsersLocalService extends BaseLocalService,
 		long applicationId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public java.util.List<com.liferay.portal.oauth.model.OAuthApplications_Users> findByOwner(
+		long ownerId, boolean authorized, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	public java.util.List<com.liferay.portal.oauth.model.OAuthApplications_Users> findByUser(
 		long userId) throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -299,20 +304,6 @@ public interface OAuthApplications_UsersLocalService extends BaseLocalService,
 	public java.util.List<com.liferay.portal.oauth.model.OAuthApplications_Users> findByUser(
 		long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public java.util.List<com.liferay.portal.oauth.model.OAuthApplications_Users> findByOwner(
-		long ownerId, boolean authorized, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public com.liferay.portal.oauth.model.OAuthApplications_Users updateOAuthApplications_Users(
-		long oAuthApplicationId, long userId, boolean authorized)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public com.liferay.portal.oauth.model.OAuthApplications_Users updateOAuthApplications_Users(
-		long oAuthApplicationId, long userId, java.lang.String accessToken,
-		java.lang.String accessSecret)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -338,4 +329,13 @@ public interface OAuthApplications_UsersLocalService extends BaseLocalService,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.portal.oauth.model.OAuthApplications_Users updateOAuthApplications_Users(
+		long oAuthApplicationId, long userId, boolean authorized)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.portal.oauth.model.OAuthApplications_Users updateOAuthApplications_Users(
+		long oAuthApplicationId, long userId, java.lang.String accessToken,
+		java.lang.String accessSecret)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

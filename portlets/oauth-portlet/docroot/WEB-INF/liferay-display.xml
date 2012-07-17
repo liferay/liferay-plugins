@@ -5,6 +5,5 @@
 	<category name="category.opensocial">
 		<portlet id="1"></portlet>
 		<portlet id="2"></portlet>
-		<portlet id="3"></portlet>
 	</category>
 </display>

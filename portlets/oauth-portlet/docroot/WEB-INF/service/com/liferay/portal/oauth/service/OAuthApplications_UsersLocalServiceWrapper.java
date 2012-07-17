@@ -304,15 +304,15 @@ public class OAuthApplications_UsersLocalServiceWrapper
 		return _oAuthApplications_UsersLocalService.countByApplicationId(applicationId);
 	}
 
-	public int countByUser(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _oAuthApplications_UsersLocalService.countByUser(userId);
-	}
-
 	public int countByOwner(long ownerId, boolean authorized)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _oAuthApplications_UsersLocalService.countByOwner(ownerId,
 			authorized);
+	}
+
+	public int countByUser(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _oAuthApplications_UsersLocalService.countByUser(userId);
 	}
 
 	public com.liferay.portal.oauth.model.OAuthApplications_Users deleteOAuthApplications_Users(
@@ -328,6 +328,14 @@ public class OAuthApplications_UsersLocalServiceWrapper
 		long applicationId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _oAuthApplications_UsersLocalService.findByApplicationId(applicationId);
+	}
+
+	public java.util.List<com.liferay.portal.oauth.model.OAuthApplications_Users> findByOwner(
+		long ownerId, boolean authorized, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _oAuthApplications_UsersLocalService.findByOwner(ownerId,
+			authorized, start, end, orderByComparator);
 	}
 
 	public java.util.List<com.liferay.portal.oauth.model.OAuthApplications_Users> findByUser(
@@ -348,29 +356,6 @@ public class OAuthApplications_UsersLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _oAuthApplications_UsersLocalService.findByUser(userId, start,
 			end, orderByComparator);
-	}
-
-	public java.util.List<com.liferay.portal.oauth.model.OAuthApplications_Users> findByOwner(
-		long ownerId, boolean authorized, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _oAuthApplications_UsersLocalService.findByOwner(ownerId,
-			authorized, start, end, orderByComparator);
-	}
-
-	public com.liferay.portal.oauth.model.OAuthApplications_Users updateOAuthApplications_Users(
-		long oAuthApplicationId, long userId, boolean authorized)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _oAuthApplications_UsersLocalService.updateOAuthApplications_Users(oAuthApplicationId,
-			userId, authorized);
-	}
-
-	public com.liferay.portal.oauth.model.OAuthApplications_Users updateOAuthApplications_Users(
-		long oAuthApplicationId, long userId, java.lang.String accessToken,
-		java.lang.String accessSecret)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _oAuthApplications_UsersLocalService.updateOAuthApplications_Users(oAuthApplicationId,
-			userId, accessToken, accessSecret);
 	}
 
 	/**
@@ -399,6 +384,21 @@ public class OAuthApplications_UsersLocalServiceWrapper
 		return _oAuthApplications_UsersLocalService.updateOAuthApplications_Users(authorized,
 			oAuthApplicationId, userId, accessSecret, accessToken,
 			serviceContext);
+	}
+
+	public com.liferay.portal.oauth.model.OAuthApplications_Users updateOAuthApplications_Users(
+		long oAuthApplicationId, long userId, boolean authorized)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _oAuthApplications_UsersLocalService.updateOAuthApplications_Users(oAuthApplicationId,
+			userId, authorized);
+	}
+
+	public com.liferay.portal.oauth.model.OAuthApplications_Users updateOAuthApplications_Users(
+		long oAuthApplicationId, long userId, java.lang.String accessToken,
+		java.lang.String accessSecret)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _oAuthApplications_UsersLocalService.updateOAuthApplications_Users(oAuthApplicationId,
+			userId, accessToken, accessSecret);
 	}
 
 	/**

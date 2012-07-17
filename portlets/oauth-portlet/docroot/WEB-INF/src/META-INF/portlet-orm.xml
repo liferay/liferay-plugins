@@ -48,11 +48,11 @@
 		</attributes>
 	</mapped-superclass>
 	<entity class="com.liferay.portal.oauth.model.impl.OAuthApplicationImpl" name="OAuthApplication">
-		<table name="OAuth_OAuthApplication" />
+		<table name="OAuthApplication" />
 		<attributes />
 	</entity>
 	<entity class="com.liferay.portal.oauth.model.impl.OAuthApplications_UsersImpl" name="OAuthApplications_Users">
-		<table name="OAuth_OAuthApplications_Users" />
+		<table name="OAuthApplications_Users" />
 		<attributes />
 	</entity>
 </entity-mappings>

@@ -78,6 +78,6 @@ public class OAuthAuthorizeAction extends BaseStrutsAction {
 		return windowState;
 	}
 
-	private static final String PORTLET_ID = "4_WAR_oauthportlet";
+	private static final String PORTLET_ID = "3_WAR_oauthportlet";
 
 }

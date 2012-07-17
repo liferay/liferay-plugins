@@ -243,7 +243,6 @@ public class OAuthApplicationLocalServiceImpl
 		return oAuthApplicationPersistence.countByOwnerId(ownerId);
 	}
 
-
 	/**
 	 * Update existing application that should use OAuth feature. If changed
 	 * method will update name, description, website, callbackURL and

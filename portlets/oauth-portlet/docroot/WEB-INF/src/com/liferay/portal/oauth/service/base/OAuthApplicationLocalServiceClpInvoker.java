@@ -170,25 +170,25 @@ public class OAuthApplicationLocalServiceClpInvoker {
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName54 = "getApplicationsByCNCount";
+		_methodName54 = "getApplicationsCount";
 
-		_methodParameterTypes54 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes54 = new String[] { "long" };
 
-		_methodName55 = "getApplicationsByONCount";
+		_methodName55 = "getApplicationsCountByCN";
 
 		_methodParameterTypes55 = new String[] { "long", "java.lang.String" };
 
-		_methodName56 = "getApplicationsByOwnerCount";
+		_methodName56 = "getApplicationsCountByON";
 
-		_methodParameterTypes56 = new String[] { "long" };
+		_methodParameterTypes56 = new String[] { "long", "java.lang.String" };
 
-		_methodName57 = "getApplicationsCount";
+		_methodName57 = "getApplicationsCountByOwnerId";
 
 		_methodParameterTypes57 = new String[] { "long" };
 
-		_methodName59 = "updateApplication";
+		_methodName58 = "updateApplication";
 
-		_methodParameterTypes59 = new String[] {
+		_methodParameterTypes58 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "int",
 				"com.liferay.portal.service.ServiceContext"
@@ -368,28 +368,28 @@ public class OAuthApplicationLocalServiceClpInvoker {
 
 		if (_methodName54.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
-			return OAuthApplicationLocalServiceUtil.getApplicationsByCNCount(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1]);
+			return OAuthApplicationLocalServiceUtil.getApplicationsCount(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName55.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
-			return OAuthApplicationLocalServiceUtil.getApplicationsByONCount(((Long)arguments[0]).longValue(),
+			return OAuthApplicationLocalServiceUtil.getApplicationsCountByCN(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1]);
 		}
 
 		if (_methodName56.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
-			return OAuthApplicationLocalServiceUtil.getApplicationsByOwnerCount(((Long)arguments[0]).longValue());
+			return OAuthApplicationLocalServiceUtil.getApplicationsCountByON(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1]);
 		}
 
 		if (_methodName57.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
-			return OAuthApplicationLocalServiceUtil.getApplicationsCount(((Long)arguments[0]).longValue());
+			return OAuthApplicationLocalServiceUtil.getApplicationsCountByOwnerId(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName59.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
+		if (_methodName58.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
 			return OAuthApplicationLocalServiceUtil.updateApplication(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
@@ -465,6 +465,6 @@ public class OAuthApplicationLocalServiceClpInvoker {
 	private String[] _methodParameterTypes56;
 	private String _methodName57;
 	private String[] _methodParameterTypes57;
-	private String _methodName59;
-	private String[] _methodParameterTypes59;
+	private String _methodName58;
+	private String[] _methodParameterTypes58;
 }

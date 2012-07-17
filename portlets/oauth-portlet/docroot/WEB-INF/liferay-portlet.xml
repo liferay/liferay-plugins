@@ -21,27 +21,19 @@
 		<css-class-wrapper>oauth-authorizations-portlet</css-class-wrapper>
 	</portlet>
 	<portlet>
-		<portlet-name>3</portlet-name>
-		<icon>/icon.png</icon>
-		<instanceable>false</instanceable>
-		<header-portlet-css>/css/main.css</header-portlet-css>
-		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
-		<css-class-wrapper>oauth-simulations-portlet</css-class-wrapper>
+	    <portlet-name>3</portlet-name>
+	    <icon>/icon.png</icon>
+	    <preferences-owned-by-group>true</preferences-owned-by-group>
+	    <instanceable>false</instanceable>
+	    <private-request-attributes>false</private-request-attributes>
+	    <private-session-attributes>false</private-session-attributes>
+	    <render-weight>50</render-weight>
+	    <header-portlet-css>/css/main.css</header-portlet-css>
+	    <footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
+	    <css-class-wrapper>oauth-authorize-portlet</css-class-wrapper>
+	    <add-default-resource>true</add-default-resource>
+	    <system>true</system>
 	</portlet>
-    <portlet>
-        <portlet-name>4</portlet-name>
-        <icon>/icon.png</icon>
-        <preferences-owned-by-group>true</preferences-owned-by-group>
-        <instanceable>false</instanceable>
-        <private-request-attributes>false</private-request-attributes>
-        <private-session-attributes>false</private-session-attributes>
-        <render-weight>50</render-weight>
-        <header-portlet-css>/css/main.css</header-portlet-css>
-        <footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
-        <css-class-wrapper>oauth-authorize-portlet</css-class-wrapper>
-        <add-default-resource>true</add-default-resource>
-        <system>true</system>
-    </portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
 		<role-link>Administrator</role-link>

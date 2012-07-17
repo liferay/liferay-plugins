@@ -4,7 +4,7 @@
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.liferay.portal.oauth.model.OAuthApplication" />
 	<import class="com.liferay.portal.oauth.model.OAuthApplications_Users" />
-	<class name="com.liferay.portal.oauth.model.impl.OAuthApplicationImpl" table="OAuth_OAuthApplication">
+	<class name="com.liferay.portal.oauth.model.impl.OAuthApplicationImpl" table="OAuthApplication">
 		<cache usage="read-write" />
 		<id name="applicationId" type="long">
 			<generator class="assigned" />
@@ -23,7 +23,7 @@
 		<property name="callBackURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="accessLevel" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 	</class>
-	<class name="com.liferay.portal.oauth.model.impl.OAuthApplications_UsersImpl" table="OAuth_OAuthApplications_Users">
+	<class name="com.liferay.portal.oauth.model.impl.OAuthApplications_UsersImpl" table="OAuthApplications_Users">
 		<cache usage="read-write" />
 		<id name="oaauid" type="long">
 			<generator class="assigned" />
