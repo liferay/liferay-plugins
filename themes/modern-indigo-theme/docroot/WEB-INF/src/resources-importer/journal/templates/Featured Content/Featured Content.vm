@@ -1,6 +1,6 @@
 <div class="pod">
 	#if ($image.data != '')
-		<img src='$image.data' class="pod-image" />
+		<img class="pod-image" src="$image.data" />
 	#end
 
 	<div class="pod-text">
