@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<!DOCTYPE project>
-
-<project name="08-gulona-theme" basedir="." default="deploy">
-	<import file="../build-common-theme.xml" />
-
-	<property name="theme.parent" value="_styled" />
-</project>
