@@ -312,7 +312,7 @@ a:focus .opens-new-window-accessible {
 
 	.profile-name {
 		font-weight: bold;
-		line-height: 1em;
+		line-height: 1.25em;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		width: 128px;
