@@ -57,17 +57,35 @@ List<CalEvent> todayEvents = new ArrayList<CalEvent>();
 List<CalEvent> upcomingEvents = new ArrayList<CalEvent>();
 
 for (CalEvent event : events) {
-	Date endDate = new Date(event.getStartDate().getTime() + (Time.HOUR * event.getDurationHour()) + (Time.MINUTE * event.getDurationMinute()));
+	Calendar startDateCal = Calendar.getInstance(timeZone, locale);
 
-	if (endDate.compareTo(cal.getTime()) < 0) {
-		continue;
-	}
+	startDateCal.setTime(event.getStartDate());
 
-	if (endDate.getDate() == cal.get(Calendar.DAY_OF_MONTH)) {
-		todayEvents.add(event);
+	if (event.isAllDay()) {
+		if ((startDateCal.get(Calendar.DAY_OF_MONTH) == cal.get(Calendar.DAY_OF_MONTH))) {
+			todayEvents.add(event);
+		}
+		else {
+			upcomingEvents.add(event);
+		}
 	}
 	else {
-		upcomingEvents.add(event);
+		Date endDate = new Date(event.getStartDate().getTime() + (Time.HOUR * event.getDurationHour()) + (Time.MINUTE * event.getDurationMinute()));
+
+		if (endDate.compareTo(cal.getTime()) < 0) {
+			continue;
+		}
+
+		Calendar endDateCal = Calendar.getInstance(timeZone, locale);
+
+		endDateCal.setTime(endDate);
+
+		if ((startDateCal.get(Calendar.DAY_OF_MONTH) <= cal.get(Calendar.DAY_OF_MONTH)) && (endDateCal.get(Calendar.DAY_OF_MONTH) >= cal.get(Calendar.DAY_OF_MONTH))) {
+			todayEvents.add(event);
+		}
+		else {
+			upcomingEvents.add(event);
+		}
 	}
 }
 %>
