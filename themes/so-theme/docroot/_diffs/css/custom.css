@@ -1170,7 +1170,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 		}
 	}
 
-	.results-header {
+	#_28_bookmarksEntriesSearchContainer .results-header {
 		display: none;
 	}
 }
