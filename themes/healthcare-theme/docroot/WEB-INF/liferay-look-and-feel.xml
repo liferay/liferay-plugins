@@ -18,8 +18,13 @@
 						'aui-base',
 						function(A) {
 							var blurbContent = A.one('#[@NAMESPACE@]blurb-content');
-							blurbContent.setStyle('height', '100px');
-							blurbContent.setStyle('width', '515px');
+
+							blurbContent.setStyles(
+								{
+									height: 100,
+									width: 515
+								}
+							);
 						}
 					);
 				]]>

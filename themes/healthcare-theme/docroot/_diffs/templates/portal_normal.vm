@@ -44,9 +44,9 @@ $theme.include($body_top_include)
 		</div>
 
 		#if ($is_signed_in)
-			<span id="logged-in-username">#language('welcome'), $user_name</span>
+			<span id="loggedInUsername">#language('welcome'), $user_name</span>
 		#else
-			<a href="$sign_in_url" id="sign-in" rel="nofollow">$sign_in_text</a>
+			<a href="$sign_in_url" id="signIn" rel="nofollow">$sign_in_text</a>
 		#end
 
 		#if ($has_navigation || $is_signed_in)
@@ -77,13 +77,13 @@ $theme.include($body_top_include)
 
 #if ($theme_settings.display-footer != "false")
 	<footer id="footer" role="contentinfo">
-		<div id="footer-content">
+		<div id="footerContent">
 			<div class="aui-layout-content">
-				<div id="blurb" class="aui-column aui-w50 aui-column-first">
+				<div id="blurb" class="aui-column aui-column-first aui-w50">
 					<h3 class="blurb-title">$theme_settings.blurb-title</h3>
 					<p class="blurb-text">“${theme_settings.blurb-content}”  - <span class="blurb-author">${theme_settings.blurb-author}</span></p>
 				</div>
-				<div id="site-map" class="aui-column aui-w25">
+				<div class="aui-column aui-w25" id="siteMap">
 					<h3>Site Map</h3>
 					<ul>
 
@@ -93,7 +93,8 @@ $theme.include($body_top_include)
 							#if ($velocityCount == 1)
 								#set($navItemClass = $navItemClass + " first")
 							#end
-							#if(!$velocityHasNext)
+
+							#if (!$velocityHasNext)
 								#set($navItemClass = $navItemClass + " last")
 							#end
 
@@ -107,8 +108,8 @@ $theme.include($body_top_include)
 						#end
 					</ul>
 				</div>
-				<div id="contact" class="aui-column aui-w25 aui-column-last">
-					${footer-contact}
+				<div class="aui-column aui-column-last aui-w25" id="contact">
+					$footer_contact
 				</div>
 			</div>
 		</div>

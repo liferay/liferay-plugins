@@ -1,17 +1,12 @@
 AUI().ready(
-	'node',
-	'attribute',
+	'aui-base',
 	/*
 	This function gets loaded when all the HTML, not including the portlets, is
 	loaded.
 	*/
 
 	function (A) {
-		var searchKeyword = A.all('#keywords');
-		
-		searchKeyword.each(function(i){
-			i.set('title', 'Press Enter to Search');
-		});
+		A.all('#keywords').attr('title', 'Press Enter to Search');
 	}
 );
 

@@ -1,1 +1,1 @@
-#set ($footer-contact = $journalContentUtil.getContent($group_id,'FOOTER-CONTACT-US',null,"$locale",$theme_display))
+#set ($footer_contact = $journalContentUtil.getContent($group_id, 'FOOTER-CONTACT-US', null, "$locale", $theme_display))
