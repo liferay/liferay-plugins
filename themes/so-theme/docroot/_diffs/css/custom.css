@@ -1273,6 +1273,17 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 			border: 1px solid #CCC;
 		}
 	}
+
+	p {
+		word-wrap: break-word;
+	}
+}
+
+.portlet-column-content-only {
+	.portlet-calendar .aui-column-content {
+		max-width: 550px;
+		padding: 10px;
+	}
 }
 
 /*  Contacts Portlet  */
