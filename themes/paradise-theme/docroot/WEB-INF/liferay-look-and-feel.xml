@@ -5,11 +5,11 @@
 	<compatibility>
 		<version>6.1.0+</version>
 	</compatibility>
-	<theme id="paradise" name="Paradise Theme">
+	<theme id="paradise" name="Paradise">
 		<settings>
-				<setting configurable="true" key="portlet-setup-show-borders-default" type="checkbox" value="true"/>
-				<setting configurable="true" key="show-breadcrumbs" type="checkbox" value="false"/>
-				<setting configurable="false" key="show-site-name-default" value="false" />
+			<setting configurable="true" key="portlet-setup-show-borders-default" type="checkbox" value="true" />
+			<setting configurable="true" key="show-breadcrumbs" type="checkbox" value="false" />
+			<setting configurable="false" key="show-site-name-default" value="false" />
 		</settings>
 		<layout-templates>
 			<custom>

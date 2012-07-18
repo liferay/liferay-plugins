@@ -1,10 +1,6 @@
 {
-	"layoutTemplateId": "1_3_1_columns",
 	"layouts": [
 		{
-			"title": "Home",
-			"name": "Home",
-			"friendlyURL": "/home",
 			"columns": [
 				[
 					"Main Carousel.xml"
@@ -21,28 +17,27 @@
 				[
 					"What Our Clients Are Saying.xml"
 				]
-			]
+			],
+			"friendlyURL": "/home",
+			"name": "Home",
+			"title": "Home"
 		},
 		{
-			"title": "Clients",
+			"friendlyURL": "/clients",
 			"name": "Clients",
-			"friendlyURL": "/clients"
+			"title": "Clients"
 		},
 		{
-			"title": "Partners",
+			"friendlyURL": "/partners",
 			"name": "Partners",
-			"friendlyURL": "/partners"
+			"title": "Partners"
 		},
 		{
-			"title": "Careers",
+			"friendlyURL": "/careers",
 			"name": "Careers",
-			"friendlyURL": "/careers"
+			"title": "Careers"
 		},
 		{
-			"layoutTemplateId": "2_columns_iii",
-			"title": "About Us",
-			"name": "About Us",
-			"friendlyURL": "/about-us",
 			"columns": [
 				[
 					"Main Content.html"
@@ -50,12 +45,17 @@
 				[
 					"Why Seven Cogs.html"
 				]
-			]
+			],
+			"friendlyURL": "/about-us",
+			"layoutTemplateId": "2_columns_iii",
+			"name": "About Us",
+			"title": "About Us"
 		},
 		{
-			"title": "Contact Us",
+			"friendlyURL": "/contact-us",
 			"name": "Contact Us",
-			"friendlyURL": "/contact-us"
+			"title": "Contact Us"
 		}
-	]
+	],
+	"layoutTemplateId": "1_3_1_columns"
 }

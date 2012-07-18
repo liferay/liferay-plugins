@@ -1,5 +1,4 @@
 {
-	"layoutTemplateId": "1_3_1_columns",
 	"layouts": [
 		{
 			"columns": [
@@ -52,5 +51,6 @@
 			"name": "Contact",
 			"title": "Contact"
 		}
-	]
+	],
+	"layoutTemplateId": "1_3_1_columns"
 }

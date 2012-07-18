@@ -52,7 +52,7 @@
 				#set ($carousel_item_class = $carousel_item_class + " aui-carousel-item-active")
 			#end
 
-			<div style="background: url(${item.image.data}) no-repeat; width: 674px; height: ${height.data}px;" class="$carousel_item_class">
+			<div class="$carousel_item_class" style="background: url(${item.image.data}) no-repeat; height: ${height.data}px; width: 674px;">
 				${item.data}
 			</div>
 		#end
