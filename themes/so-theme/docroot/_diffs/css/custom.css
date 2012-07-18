@@ -1182,13 +1182,15 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 	margin: 0px;
 
 	li {
-		background: url(@theme_image_path@/common/breadcrumbs_so.png) no-repeat scroll 100% 50% transparent;
+		background: url(../images/custom/so_breadcrumbs.png) no-repeat scroll 100% 50% transparent;
 		max-width: 50%;
 
 		a {
+			border-bottom: 1px solid $gray;
 			color: #34404F;
 			display: inline-block;
 			font-weight: bold;
+			margin-bottom: -1px;
 			padding: 7px 20px 7px 5px;
 
 			&:hover {
