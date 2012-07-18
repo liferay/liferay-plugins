@@ -2,7 +2,7 @@
 
 /* -------- Global -------- */
 
-#breadcrumbs, #skip-to-content, #heading .page-title, #navigation h1, #navigation .child-menu {
+#breadcrumbs, #heading .page-title, #navigation .child-menu, #navigation h1, #skip-to-content {
 	clip: rect(0 0 0 0);
 	height: 0;
 	margin: 0;
@@ -10,7 +10,7 @@
 	position: absolute;
 }
 
-.portlet-journal-content-search .lfr-search-keywords, .portlet-journal-content-search .lfr-search-button, .columns-max .portlet-borderless-bar {
+.columns-max .portlet-borderless-bar, .portlet-journal-content-search .lfr-search-button, .portlet-journal-content-search .lfr-search-keywords {
 	display: none;
 }
 
@@ -31,13 +31,13 @@ body {
 /* -------- Wrapper / Sign-in -------- */
 
 #wrapper {
-	background: #FFF url(../images/custom/header-bg.png) 0 0 repeat-x;
+	background: #FFF url(../images/custom/header-bg.png) repeat-x 0 0;
 	margin: 0 auto;
 	padding-bottom: 15px;
 	position: relative;
 }
 
-#logged-in-username, #sign-in {
+#loggedInUsername, #signIn {
 	color: #E8E8E8;
 	font-size: 12px;
 	height: 16px;
@@ -47,18 +47,18 @@ body {
 	top: 0;
 }
 
-#logged-in-username {
+#loggedInUsername {
 	left: 0;
 }
 
-#sign-in {
+#signIn {
 	right: 0;
 }
 
 /* -------- Banner -------- */
 
 #banner {
-	background: url(../images/custom/banner-bg.png) 0 50px repeat-x;
+	background: url(../images/custom/banner-bg.png) repeat-x 0 50px;
 	margin: 0 auto 25px;
 	padding: 50px 0 0;
 	position: relative;
@@ -104,10 +104,10 @@ body {
 
 		#keywords, .lfr-search-keywords input, .lfr-search-keywords input.focus {
 			background: #242424 url(../images/custom/search.png) no-repeat 7px 1px;
-			border: none;
+			border-width: 0;
 			color: #FFF;
 			padding-left: 25px !important;
-			padding-right:10px;
+			padding-right: 10px;
 			width: 162px;
 		}
 
@@ -141,14 +141,14 @@ body {
 			list-style: none;
 
 			&.selected a {
-				background: url(../images/custom/selected-bg.png) 0 0 repeat-x;
+				background: url(../images/custom/selected-bg.png) repeat-x 0 0;
 			}
 		}
 	}
 
 	a {
-		display: block;
 		color: #000;
+		display: block;
 		padding: 18px 0;
 
 		&:link, &:visited {
@@ -163,7 +163,7 @@ body {
 
 		&:hover {
 			background-color: #70844C;
-			background-color: rgba(150,181,98,.3);
+			background-color: rgba(150, 181, 98, 0.3);
 		}
 	}
 }
@@ -212,10 +212,6 @@ h4, h5, h6 {
 #main-content {
 	margin: 0 auto;
 	width: 960px;
-
-	body {
-		background: none;
-	}
 }
 
 h1.underlined {
@@ -223,8 +219,8 @@ h1.underlined {
 }
 
 .underlined {
-	display: inline-block;
 	border-bottom: 6px solid #B2CF7D;
+	display: inline-block;
 
 	&.full {
 		display: block;
@@ -232,15 +228,15 @@ h1.underlined {
 }
 
 .read-more {
-	display: block;
 	color: #7E994C;
+	display: block;
 }
 
 .grey.underlined {
 	border-bottom: 6px solid #CCC;
 }
 
-#recent-news div {
+#recentNews div {
 	border-bottom: 2px solid #D5D5D5;
 	padding-top: 1em;
 
@@ -249,7 +245,7 @@ h1.underlined {
 	}
 
 	&.last {
-		border-bottom: none;
+		border-bottom-width: 0;
 	}
 }
 
@@ -260,10 +256,11 @@ h1.underlined {
 
 	h2 {
 		background-color: #343434;
-		border: 1px solid #4D4D4D transparent #3F3F3F transparent;
-		padding: 8px;
+		border: 1px solid;
+		border-color: #4D4D4D transparent #3F3F3F transparent;
 		font-size: 1.16em;
 		margin: 0;
+		padding: 8px;
 		text-transform: uppercase;
 
 		a {
@@ -281,8 +278,8 @@ h1.underlined {
 			display: block;
 
 			a {
-				border-top: 1px solid #FFF;
 				border-bottom: 1px solid #CFCFCF;
+				border-top: 1px solid #FFF;
 				color: #5F5F5F;
 				display: block;
 				font-size: 1em;
@@ -338,7 +335,7 @@ input {
 		color: #969696;
 		display: inline-block;
 		float: right;
-		font-family: 'Georgia';
+		font-family: Georgia, "Times New Roman", Times, serif;
 		font-size: 18px;
 		position: absolute;
 		right: 20px;
@@ -346,7 +343,7 @@ input {
 		width: 267px;
 
 		&:before, &:after {
-			background-image: url("../images/custom/quotemarks.png");
+			background-image: url(../images/custom/quotemarks.png);
 			background-repeat: no-repeat;
 			content: " ";
 			display: block;
@@ -373,19 +370,19 @@ h1.appointment {
 	background: url(../images/custom/button.png) 0 5px no-repeat;
 	color: #2A2B2B;
 	display: inline-block;
-	font-family: Georgia;
+	font-family: Georgia, "Times New Roman", Times, serif;
 	font-style: italic;
 	padding-left: 41px;
 }
 
 #footer {
-	background: #202020 url('../images/custom/footer.png') 0 -5px repeat-x;
+	background: #202020 url(../images/custom/footer.png) 0 -5px repeat-x;
 	color: #DBDBDB;
-	font-family: Georgia, serif;
+	font-family: Georgia, "Times New Roman", Times, serif;
 	min-height: 220px;
 	padding: 5px 0 11px 0;
 
-	#footer-content {
+	#footerContent {
 		margin: 0 auto;
 		width: 940px;
 
@@ -398,12 +395,12 @@ h1.appointment {
 		}
 
 		ul li {
-			font-family: Arial;
+			font-family: Arial, Helvetica, sans-serif;
 			font-size: 14px;
 		}
 
 		#blurb .blurb-text {
-			font-family: Georgia, serif;
+			font-family: Georgia, "Times New Roman", Times, serif;
 			font-size: 14px;
 			font-style: italic;
 			padding-right: 20px;
@@ -413,12 +410,12 @@ h1.appointment {
 			}
 		}
 
-		#site-map ul, #contact ul {
+		#siteMap ul, #contact ul {
 			list-style: none;
 			margin-left: 0;
 		}
 
-		#site-map ul li {
+		#siteMap ul li {
 			a {
 				text-decoration: none;
 
@@ -458,11 +455,11 @@ h1.appointment {
 	@include box-shadow(#888 2px 2px 4px);
 }
 
-.portlet-navigation .nav-menu h2, input[type="submit"], input[type="submit"]:hover, input[type="reset"], input[type="reset"]:hover{
+.portlet-navigation .nav-menu h2, input[type="submit"], input[type="submit"]:hover, input[type="reset"], input[type="reset"]:hover {
 	@include background-image(linear-gradient(left top, #343434, #242424));
 }
 
-#navigation a:link, #navigation a:visited, input[type="submit"], input[type="submit"]:hover, input[type="reset"], input[type="reset"]:hover, #footer #footer-content {
+#navigation a:link, #navigation a:visited, input[type="submit"], input[type="submit"]:hover, input[type="reset"], input[type="reset"]:hover, #footer #footerContent {
 	@include text-shadow(1px 1px 1px #000);
 }
 
