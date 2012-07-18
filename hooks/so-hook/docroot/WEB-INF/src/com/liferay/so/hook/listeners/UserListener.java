@@ -88,14 +88,6 @@ public class UserListener extends BaseModelListener<User> {
 		try {
 			User user = UserLocalServiceUtil.getUser((Long)classPK);
 
-			boolean hasRole = UserLocalServiceUtil.hasRoleUser(
-				user.getCompanyId(), "Social Office User", user.getUserId(),
-				true);
-
-			if (hasRole) {
-				return;
-			}
-
 			Group group = user.getGroup();
 
 			ExpandoBridge expandoBridge = group.getExpandoBridge();
