@@ -36,7 +36,7 @@
 				<a href="${item.url-link.data}" ${alt_class}>
 			#end
 
-				<img src="${item.image.data}"/>
+				<img src="${item.image.data}" />
 
 			#if ($item.url-link.data != "")
 				</a>
