@@ -78,7 +78,6 @@ import com.liferay.portlet.documentlibrary.FileNameException;
 import com.liferay.portlet.documentlibrary.NoSuchDirectoryException;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 
-import java.io.File;
 import java.io.InputStream;
 
 import java.util.ArrayList;
@@ -1391,8 +1390,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	protected boolean isValidFileName(String name) throws SystemException {
 		if ((name == null) || name.contains(StringPool.BACK_SLASH) ||
-			name.contains(StringPool.SLASH) ||
-			name.contains(File.pathSeparator)) {
+			name.contains(StringPool.SLASH)) {
 
 			return false;
 		}
