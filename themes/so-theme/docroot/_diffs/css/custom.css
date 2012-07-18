@@ -1701,8 +1701,8 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 		padding: 0;
 	}
 
-	.threads-panel .lfr-actions.show-arrow.direction-left {
-		.lfr-trigger {
+	.message-boards-panels, .results-grid {
+		.lfr-actions.show-arrow.direction-left .lfr-trigger {
 			padding: 0;
 
 			strong {
