@@ -51,7 +51,7 @@
 						</li>
 
 						<li id="signOut">
-							<a href="javascript: Liferay.LitheTheme.logOut();" rel="nofollow">#language('sign-out')</a>
+							<a href="javascript:Liferay.LitheTheme.logOut();" rel="nofollow">#language('sign-out')</a>
 						</li>
 					#end
 

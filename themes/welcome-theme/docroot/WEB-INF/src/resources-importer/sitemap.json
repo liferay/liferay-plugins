@@ -1,5 +1,4 @@
 {
-	"layoutTemplateId": "1_column",
 	"layouts": [
 		{
 			"columns": [
@@ -31,5 +30,6 @@
 			"name": "Liferay Benefits",
 			"title": "Liferay Benefits"
 		}
-	]
+	],
+	"layoutTemplateId": "1_column"
 }

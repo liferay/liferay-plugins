@@ -1,9 +1,6 @@
 {
-	"layoutTemplateId": "2_columns_ii",
 	"layouts": [
 		{
-			"name": "Home",
-			"friendlyURL": "/home",
 			"columns": [
 				[
 					"Home Content.html"
@@ -11,12 +8,11 @@
 				[
 					"Home Carousel.xml"
 				]
-			]
+			],
+			"friendlyURL": "/home",
+			"name": "Home"
 		},
 		{
-			"name": "Reservations",
-			"friendlyURL": "/reservations",
-			"layoutTemplateId": "3-3-3-columns",
 			"columns": [
 				[
 					{
@@ -63,23 +59,27 @@
 				[
 					"Reserve Your Own Luxury Suite.html"
 				]
-			]
+			],
+			"friendlyURL": "/reservations",
+			"layoutTemplateId": "3-3-3-columns",
+			"name": "Reservations"
 		},
 		{
-			"name": "Rooms",
-			"friendlyURL": "/rooms"
+			"friendlyURL": "/rooms",
+			"name": "Rooms"
 		},
 		{
-			"name": "Restaurant & Bar",
-			"friendlyURL": "/restaurant-bar"
+			"friendlyURL": "/restaurant-bar",
+			"name": "Restaurant & Bar"
 		},
 		{
-			"name": "About Us",
-			"friendlyURL": "/about-us"
+			"friendlyURL": "/about-us",
+			"name": "About Us"
 		},
 		{
-			"name": "Contact Us",
-			"friendlyURL": "/contact-us"
+			"friendlyURL": "/contact-us",
+			"name": "Contact Us"
 		}
-	]
+	],
+	"layoutTemplateId": "2_columns_ii"
 }
