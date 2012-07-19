@@ -110,7 +110,7 @@ to = sb.toString() + to;
 	}
 </aui:script>
 
-<aui:script use="aui-button-item,aui-io-request,aui-loading-mask,autocomplete">
+<aui:script use="aui-button-item,aui-io-request,aui-loading-mask,autocomplete,json-parse,io-upload-iframe">
 	var form = A.one('#<portlet:namespace />fm');
 
 	form.on(
@@ -146,17 +146,19 @@ to = sb.toString() + to;
 			loadingMask.show();
 
 			A.io.request(
-				'<liferay-portlet:resourceURL id="checkRecipients"><liferay-portlet:param name="redirect" value="<%= PortalUtil.getLayoutURL(themeDisplay) %>" /></liferay-portlet:resourceURL>',
+				'<liferay-portlet:resourceURL id="checkData"><liferay-portlet:param name="redirect" value="<%= PortalUtil.getLayoutURL(themeDisplay) %>" /></liferay-portlet:resourceURL>',
 				{
-					after: {
-						success: function(event, id, obj) {
-							var response = this.get('responseData');
+					on: {
+						complete: function(event, id, xhr) {
+							var responseText = xhr.responseText;
 
-							if (response.success) {
+							var data = A.JSON.parse(responseText);
+
+							if (data.success) {
 								submitForm(document.<portlet:namespace />fm);
 							}
 							else {
-								<portlet:namespace />showMessage('<span class="portlet-msg-error"><%= UnicodeLanguageUtil.get(pageContext, "the-following-users-were-not-found") %>&nbsp;<em>' + response.message + '</em></span>');
+								<portlet:namespace />showMessage('<span class="portlet-msg-error">' + data.message + '</span>');
 
 								loadingMask.hide();
 							}
@@ -167,10 +169,11 @@ to = sb.toString() + to;
 							loadingMask.hide();
 						}
 					},
-					data: {
-						recipients: recipients
-					},
-					dataType: 'json'
+					dataType: 'json',
+					form: {
+						id: form.getDOM(),
+						upload: true
+					}
 				}
 			);
 		}
