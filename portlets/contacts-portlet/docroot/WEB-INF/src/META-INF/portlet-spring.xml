@@ -2,6 +2,7 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	<bean id="com.liferay.contacts.service.EntryLocalService" class="com.liferay.contacts.service.impl.EntryLocalServiceImpl" />
+	<bean id="com.liferay.contacts.service.EntryService" class="com.liferay.contacts.service.impl.EntryServiceImpl" />
 	<bean id="com.liferay.contacts.service.persistence.EntryPersistence" class="com.liferay.contacts.service.persistence.EntryPersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.contacts.service.persistence.EntryFinder" class="com.liferay.contacts.service.persistence.EntryFinderImpl" parent="basePersistence" />
 </beans>
