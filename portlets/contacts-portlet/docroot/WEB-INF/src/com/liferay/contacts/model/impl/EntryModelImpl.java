@@ -16,9 +16,11 @@ package com.liferay.contacts.model.impl;
 
 import com.liferay.contacts.model.Entry;
 import com.liferay.contacts.model.EntryModel;
+import com.liferay.contacts.model.EntrySoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -35,8 +37,10 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -52,6 +56,7 @@ import java.util.Map;
  * @see com.liferay.contacts.model.EntryModel
  * @generated
  */
+@JSON(strict = true)
 public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -89,6 +94,54 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 			true);
 	public static long EMAILADDRESS_COLUMN_BITMASK = 1L;
 	public static long USERID_COLUMN_BITMASK = 2L;
+
+	/**
+	 * Converts the soap model instance into a normal model instance.
+	 *
+	 * @param soapModel the soap model instance to convert
+	 * @return the normal model instance
+	 */
+	public static Entry toModel(EntrySoap soapModel) {
+		if (soapModel == null) {
+			return null;
+		}
+
+		Entry model = new EntryImpl();
+
+		model.setEntryId(soapModel.getEntryId());
+		model.setGroupId(soapModel.getGroupId());
+		model.setCompanyId(soapModel.getCompanyId());
+		model.setUserId(soapModel.getUserId());
+		model.setUserName(soapModel.getUserName());
+		model.setCreateDate(soapModel.getCreateDate());
+		model.setModifiedDate(soapModel.getModifiedDate());
+		model.setFullName(soapModel.getFullName());
+		model.setEmailAddress(soapModel.getEmailAddress());
+		model.setComments(soapModel.getComments());
+
+		return model;
+	}
+
+	/**
+	 * Converts the soap model instances into normal model instances.
+	 *
+	 * @param soapModels the soap model instances to convert
+	 * @return the normal model instances
+	 */
+	public static List<Entry> toModels(EntrySoap[] soapModels) {
+		if (soapModels == null) {
+			return null;
+		}
+
+		List<Entry> models = new ArrayList<Entry>(soapModels.length);
+
+		for (EntrySoap soapModel : soapModels) {
+			models.add(toModel(soapModel));
+		}
+
+		return models;
+	}
+
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.contacts.model.Entry"));
 
@@ -200,6 +253,7 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 		}
 	}
 
+	@JSON
 	public long getEntryId() {
 		return _entryId;
 	}
@@ -208,6 +262,7 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 		_entryId = entryId;
 	}
 
+	@JSON
 	public long getGroupId() {
 		return _groupId;
 	}
@@ -216,6 +271,7 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 		_groupId = groupId;
 	}
 
+	@JSON
 	public long getCompanyId() {
 		return _companyId;
 	}
@@ -224,6 +280,7 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 		_companyId = companyId;
 	}
 
+	@JSON
 	public long getUserId() {
 		return _userId;
 	}
@@ -252,6 +309,7 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 		return _originalUserId;
 	}
 
+	@JSON
 	public String getUserName() {
 		if (_userName == null) {
 			return StringPool.BLANK;
@@ -265,6 +323,7 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 		_userName = userName;
 	}
 
+	@JSON
 	public Date getCreateDate() {
 		return _createDate;
 	}
@@ -273,6 +332,7 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 		_createDate = createDate;
 	}
 
+	@JSON
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
@@ -281,6 +341,7 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 		_modifiedDate = modifiedDate;
 	}
 
+	@JSON
 	public String getFullName() {
 		if (_fullName == null) {
 			return StringPool.BLANK;
@@ -296,6 +357,7 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 		_fullName = fullName;
 	}
 
+	@JSON
 	public String getEmailAddress() {
 		if (_emailAddress == null) {
 			return StringPool.BLANK;
@@ -319,6 +381,7 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 		return GetterUtil.getString(_originalEmailAddress);
 	}
 
+	@JSON
 	public String getComments() {
 		if (_comments == null) {
 			return StringPool.BLANK;

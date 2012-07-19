@@ -16,6 +16,7 @@ package com.liferay.contacts.service.base;
 
 import com.liferay.contacts.model.Entry;
 import com.liferay.contacts.service.EntryLocalService;
+import com.liferay.contacts.service.EntryService;
 import com.liferay.contacts.service.persistence.EntryFinder;
 import com.liferay.contacts.service.persistence.EntryPersistence;
 
@@ -282,6 +283,24 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
+	 * Returns the entry remote service.
+	 *
+	 * @return the entry remote service
+	 */
+	public EntryService getEntryService() {
+		return entryService;
+	}
+
+	/**
+	 * Sets the entry remote service.
+	 *
+	 * @param entryService the entry remote service
+	 */
+	public void setEntryService(EntryService entryService) {
+		this.entryService = entryService;
+	}
+
+	/**
 	 * Returns the entry persistence.
 	 *
 	 * @return the entry persistence
@@ -470,6 +489,8 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 
 	@BeanReference(type = EntryLocalService.class)
 	protected EntryLocalService entryLocalService;
+	@BeanReference(type = EntryService.class)
+	protected EntryService entryService;
 	@BeanReference(type = EntryPersistence.class)
 	protected EntryPersistence entryPersistence;
 	@BeanReference(type = EntryFinder.class)
