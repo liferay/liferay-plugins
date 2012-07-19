@@ -61,6 +61,15 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 		return entry;
 	}
 
+	@Override
+	public Entry deleteEntry(long entryId)
+		throws PortalException, SystemException {
+
+		Entry entry = entryPersistence.findByPrimaryKey(entryId);
+
+		return deleteEntry(entry);
+	}
+
 	public List<Entry> getEntries(long userId, int start, int end)
 		throws SystemException {
 

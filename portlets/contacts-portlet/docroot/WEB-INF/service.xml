@@ -3,7 +3,7 @@
 
 <service-builder package-path="com.liferay.contacts">
 	<namespace>Contacts</namespace>
-	<entity name="Entry" local-service="true" remote-service="false">
+	<entity name="Entry" local-service="true" remote-service="true">
 
 		<!-- PK fields -->
 
