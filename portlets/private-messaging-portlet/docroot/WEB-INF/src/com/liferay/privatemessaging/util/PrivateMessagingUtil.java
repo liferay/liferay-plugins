@@ -14,6 +14,7 @@
 
 package com.liferay.privatemessaging.util;
 
+import com.liferay.portal.NoSuchRoleException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -25,8 +26,10 @@ import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.comparator.UserFirstNameComparator;
 import com.liferay.portlet.messageboards.model.MBMessage;
@@ -78,6 +81,17 @@ public class PrivateMessagingUtil {
 				new Long[] {
 					userId, new Long(SocialRelationConstants.TYPE_BI_CONNECTION)
 				});
+		}
+
+		try {
+			Role role = RoleLocalServiceUtil.getRole(
+				user.getCompanyId(), RoleConstants.SOCIAL_OFFICE_USER);
+
+			if (role != null) {
+				params.put("usersRoles", new Long(role.getRoleId()));
+			}
+		}
+		catch (NoSuchRoleException nsre) {
 		}
 
 		int total = UserLocalServiceUtil.searchCount(
