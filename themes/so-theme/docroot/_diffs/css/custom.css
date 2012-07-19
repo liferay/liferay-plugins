@@ -1499,28 +1499,8 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 		min-width: 200px;
 	}
 
-	.version-history .results-grid {
-		overflow: visible;
-
-		table {
-			background: #FFF;
-			position: relative;
-			width: 100%;
-			z-index: 1;
-
-			td, th {
-				overflow: hidden;
-				padding: 5px 5px;
-				text-overflow: ellipsis;
-				white-space: nowrap;
-			}
-
-			&:hover td, th {
-				overflow: visible;
-				text-overflow: visible;
-				white-space: normal;
-			}
-		}
+	.version-history .results-grid .lfr-actions .lfr-trigger strong {
+		min-width: 16px;
 	}
 
 	.document-display-style.display-icon {
