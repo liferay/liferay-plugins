@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.io.ByteArrayFileInputStream;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.notifications.Channel;
@@ -34,7 +33,6 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -72,7 +70,6 @@ import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
 import javax.portlet.PortletRequest;
 import javax.portlet.ResourceRequest;
@@ -188,11 +185,11 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws PortalException, SystemException {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		UploadPortletRequest uploadPortletRequest =
 			PortalUtil.getUploadPortletRequest(actionRequest);
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
 		long userId = ParamUtil.getLong(uploadPortletRequest, "userId");
 		long mbThreadId = ParamUtil.getLong(uploadPortletRequest, "mbThreadId");
@@ -312,7 +309,6 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 		}
 		catch (Exception e) {
 			jsonObject.put("message", getMessage(resourceRequest, e));
-
 			jsonObject.put("success", false);
 		}
 
@@ -322,21 +318,25 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 	protected String getMessage(PortletRequest portletRequest, Exception key)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		String message = null;
 
 		if (key instanceof FileExtensionException) {
-			message = translate(
-				portletRequest,
+			message = themeDisplay.translate(
 				"document-names-must-end-with-one-of-the-following-extensions");
 
-			message += CharPool.SPACE + StringUtil.merge(
-				PrefsPropsUtil.getStringArray(
-					PropsKeys.DL_FILE_EXTENSIONS, StringPool.COMMA),
-				StringPool.COMMA_AND_SPACE);
+			message +=
+				CharPool.SPACE +
+					StringUtil.merge(
+						PrefsPropsUtil.getStringArray(
+							PropsKeys.DL_FILE_EXTENSIONS, StringPool.COMMA),
+						StringPool.COMMA_AND_SPACE);
 		}
 		else if (key instanceof FileNameException) {
-			message = translate(
-				portletRequest, "please-enter-a-file-with-a-valid-file-name");
+			message = themeDisplay.translate(
+				"please-enter-a-file-with-a-valid-file-name");
 		}
 		else if (key instanceof FileSizeException) {
 			long fileMaxSize = PrefsPropsUtil.getLong(
@@ -349,20 +349,18 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 
 			fileMaxSize /= 1024;
 
-			message = translate(
-				portletRequest,
+			message = themeDisplay.translate(
 				"please-enter-a-file-with-a-valid-file-size-no-larger-than-x",
 				fileMaxSize);
 		}
 		else if (key instanceof UserScreenNameException) {
-			message = translate(
-				portletRequest, "the-following-users-were-not-found");
+			message = themeDisplay.translate(
+				"the-following-users-were-not-found");
 
 			message += CharPool.SPACE + key.getMessage();
 		}
 		else {
-			message = translate(
-				portletRequest, "your-request-failed-to-complete");
+			message = themeDisplay.translate("your-request-failed-to-complete");
 		}
 
 		return message;
@@ -444,31 +442,6 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 					companyId, userId, notificationEvent.getUuid());
 			}
 		}
-	}
-
-	protected String translate(PortletRequest portletRequest, String key) {
-		PortletConfig portletConfig =
-			(PortletConfig)portletRequest.getAttribute(
-				JavaConstants.JAVAX_PORTLET_CONFIG);
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		return LanguageUtil.get(portletConfig, themeDisplay.getLocale(), key);
-	}
-
-	protected String translate(
-		PortletRequest portletRequest, String key, Object argument) {
-
-		PortletConfig portletConfig =
-			(PortletConfig)portletRequest.getAttribute(
-				JavaConstants.JAVAX_PORTLET_CONFIG);
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		return LanguageUtil.format(
-			portletConfig, themeDisplay.getLocale(), key, argument);
 	}
 
 	protected void validateAttachment(String fileName, InputStream inputStream)

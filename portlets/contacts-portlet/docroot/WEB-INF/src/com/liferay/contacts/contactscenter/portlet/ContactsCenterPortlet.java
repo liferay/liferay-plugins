@@ -45,7 +45,6 @@ import com.liferay.portal.kernel.bean.BeanParamUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
 import com.liferay.portal.kernel.notifications.NotificationEvent;
 import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
@@ -53,7 +52,6 @@ import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
-import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -95,7 +93,6 @@ import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
@@ -459,7 +456,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			jsonObject.put("success", false);
 		}
 
-		jsonObject.put("message", translate(actionRequest, message));
+		jsonObject.put("message", themeDisplay.translate(message));
 
 		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
@@ -505,6 +502,9 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			jsonObject.put("success", true);
 		}
 		catch (Exception e) {
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+
 			String message = "your-request-failed-to-complete";
 
 			if (e instanceof AddressCityException) {
@@ -562,7 +562,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 				message = "please-enter-a-valid-url";
 			}
 
-			jsonObject.put("message", translate(actionRequest, message));
+			jsonObject.put("message", themeDisplay.translate(message));
 
 			jsonObject.put("success", false);
 		}
@@ -647,7 +647,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		String message = getRelationMessage(actionRequest);
 
-		jsonObject.put("message", translate(actionRequest, message));
+		jsonObject.put("message", themeDisplay.translate(message));
 
 		return jsonObject;
 	}
@@ -986,17 +986,6 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		ChannelHubManagerUtil.sendNotificationEvent(
 			socialRequest.getCompanyId(), socialRequest.getReceiverUserId(),
 			notificationEvent);
-	}
-
-	protected String translate(PortletRequest portletRequest, String key) {
-		PortletConfig portletConfig =
-			(PortletConfig)portletRequest.getAttribute(
-				JavaConstants.JAVAX_PORTLET_CONFIG);
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		return LanguageUtil.get(portletConfig, themeDisplay.getLocale(), key);
 	}
 
 	protected void updateAdditionalEmailAddresses(ActionRequest actionRequest)
