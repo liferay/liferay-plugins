@@ -16,11 +16,7 @@
 
 <aui:layout cssClass="controls">
 	<aui:column columnWidth="85" cssClass="col-1">
-		<liferay-ui:message key="select" />:
-
-		<span class="select-all"><a href="javascript:;"><liferay-ui:message key="all" /></a></span>
-
-		<span class="select-none"><a href="javascript:;"><liferay-ui:message key="none" /></a></span>
+		<aui:button cssClass="check-all" name="checkAll" type="checkbox" />
 
 		<aui:button cssClass="mark-messages-as-unread" name="markAsUnread" value="mark-as-unread" />
 

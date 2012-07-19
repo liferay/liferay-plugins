@@ -7,6 +7,9 @@ AUI.add(
 
 				instance.namespace = params.namespace;
 
+				instance.checkAll = A.one('#' + instance.namespace + 'checkAll');
+				instance.userThreadsSearchContainer = A.one('#' + instance.namespace + 'userThreadsSearchContainer');
+
 				instance.privateMessagingContainer = A.one('#p_p_id' + params.namespace + ' .private-messaging-container');
 
 				if (instance.privateMessagingContainer) {
@@ -148,25 +151,29 @@ AUI.add(
 				instance.privateMessagingContainer.delegate(
 					'click',
 					function(event) {
-						instance.privateMessagingContainer.all('input[type=checkbox]').each(
-							function(item, index, collection) {
-								item.set('checked', true);
-							}
-						);
+						var checkBox = event.target;
+
+						var  privateMessages = instance.privateMessagingContainer.all('input[type=checkbox]');
+
+						privateMessages.set('checked', checkBox.get('checked'));
 					},
-					'.select-all'
+					'.check-all'
 				);
 
 				instance.privateMessagingContainer.delegate(
 					'click',
 					function(event) {
-						instance.privateMessagingContainer.all('input[type=checkbox]').each(
-							function(item, index, collection) {
-								item.set('checked', false);
-							}
+						var checkBox = event.target;
+
+						Liferay.Util.updateCheckboxValue(checkBox);
+
+						Liferay.Util.checkAllBox(
+							instance.userThreadsSearchContainer,
+							instance.namespace + 'mbThreadCheckbox',
+							instance.checkAll
 						);
 					},
-					'.select-none'
+					'.results-row input[type=checkbox]'
 				);
 			},
 
