@@ -45,6 +45,7 @@ import com.liferay.util.portlet.PortletProps;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.portlet.PortletPreferences;
 
@@ -52,6 +53,29 @@ import javax.portlet.PortletPreferences;
  * @author Jonathan Lee
  */
 public class LayoutUtil {
+
+	public static Layout addLayout(
+			Group group, boolean privateLayout, long parentLayoutId,
+			Map<Locale, String> nameMap, String friendlyURL,
+			String layoutTemplateId)
+		throws Exception {
+
+		ServiceContext serviceContext = new ServiceContext();
+
+		Layout layout = LayoutLocalServiceUtil.addLayout(
+			group.getCreatorUserId(), group.getGroupId(), privateLayout,
+			parentLayoutId, nameMap, null, null, null, null,
+			LayoutConstants.TYPE_PORTLET, false, friendlyURL, serviceContext);
+
+		LayoutTypePortlet layoutTypePortlet =
+				(LayoutTypePortlet)layout.getLayoutType();
+
+		layoutTypePortlet.setLayoutTemplateId(0, layoutTemplateId, false);
+
+		return LayoutLocalServiceUtil.updateLayout(
+			layout.getGroupId(), layout.isPrivateLayout(), layout.getLayoutId(),
+			layout.getTypeSettings());
+	}
 
 	public static Layout addLayout(
 			Group group, boolean privateLayout, long parentLayoutId,
