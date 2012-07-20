@@ -114,7 +114,7 @@ if (selUser != null) {
 					var uri = '<liferay-portlet:actionURL name="updateFieldGroup" plid="<%= controlPanelPlid %>" portletName="<%= PortletKeys.MY_ACCOUNT %>" windowState="<%= LiferayWindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/my_account/edit_user" /></liferay-portlet:actionURL>';
 				</c:when>
 				<c:otherwise>
-					var uri = '<liferay-portlet:actionURL name="updateFieldGroup" />';
+					var uri = '<liferay-portlet:actionURL name="updateFieldGroup" windowState="<%= LiferayWindowState.NORMAL.toString() %>" />';
 				</c:otherwise>
 			</c:choose>
 
