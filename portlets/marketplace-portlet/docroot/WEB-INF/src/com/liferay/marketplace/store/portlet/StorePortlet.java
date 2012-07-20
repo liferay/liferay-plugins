@@ -78,6 +78,7 @@ public class StorePortlet extends MVCPortlet {
 
 		JSONObject jsonObject = getAppJSONObject(app.getRemoteAppId());
 
+		jsonObject.put("cmd", "downloadApp");
 		jsonObject.put("message", "success");
 
 		writeJSON(actionRequest, actionResponse, jsonObject);
@@ -91,6 +92,7 @@ public class StorePortlet extends MVCPortlet {
 
 		JSONObject jsonObject = getAppJSONObject(remoteAppId);
 
+		jsonObject.put("cmd", "getApp");
 		jsonObject.put("message", "success");
 
 		writeJSON(actionRequest, actionResponse, jsonObject);
@@ -110,6 +112,7 @@ public class StorePortlet extends MVCPortlet {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
+		jsonObject.put("cmd", "getClientId");
 		jsonObject.put("clientId", encodedClientId);
 		jsonObject.put("token", token);
 
@@ -126,6 +129,7 @@ public class StorePortlet extends MVCPortlet {
 
 		JSONObject jsonObject = getAppJSONObject(remoteAppId);
 
+		jsonObject.put("cmd", "installApp");
 		jsonObject.put("message", "success");
 
 		writeJSON(actionRequest, actionResponse, jsonObject);
@@ -164,6 +168,7 @@ public class StorePortlet extends MVCPortlet {
 
 		JSONObject jsonObject = getAppJSONObject(remoteAppId);
 
+		jsonObject.put("cmd", "uninstallApp");
 		jsonObject.put("message", "success");
 
 		writeJSON(actionRequest, actionResponse, jsonObject);
@@ -223,13 +228,25 @@ public class StorePortlet extends MVCPortlet {
 		String decodedClientId = MarketplaceUtil.decodeClientId(
 			clientId, token);
 
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		jsonObject.put("cmd", "updateClientId");
+
 		if (Validator.isNull(decodedClientId)) {
+			jsonObject.put("message", "fail");
+
+			writeJSON(actionRequest, actionResponse, jsonObject);
+
 			return;
 		}
 
 		ExpandoValueLocalServiceUtil.addValue(
 			themeDisplay.getCompanyId(), User.class.getName(), "MP",
 			"client-id", themeDisplay.getUserId(), decodedClientId);
+
+		jsonObject.put("message", "success");
+
+		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
 
 	@Override
