@@ -126,7 +126,6 @@ portletURL.setParameter("tabs1", tabs1);
 							[<%= (char)letter %><%= letterSuffix %>].
 
 						<%
-
 							for (int k = 0; k < scriptures.length; k++) {
 						%>
 
@@ -160,6 +159,7 @@ portletURL.setParameter("tabs1", tabs1);
 						</c:if>
 					</td>
 				</tr>
+
 			<%
 			}
 			%>
@@ -240,7 +240,6 @@ portletURL.setParameter("tabs1", tabs1);
 							[<%= (char)letter++ %>].
 
 						<%
-
 							for (int k = 0; k < scriptures.length; k++) {
 						%>
 
@@ -262,6 +261,7 @@ portletURL.setParameter("tabs1", tabs1);
 						</c:if>
 					</td>
 				</tr>
+
 			<%
 			}
 			%>

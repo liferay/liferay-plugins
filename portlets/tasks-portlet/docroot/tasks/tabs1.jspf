@@ -15,7 +15,6 @@
 --%>
 
 <%
-
 String tabs1Names = "all-tasks";
 
 if (group.isUser()) {
