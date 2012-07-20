@@ -17,11 +17,14 @@
 
 package com.liferay.so.util;
 
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
@@ -53,6 +56,7 @@ import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 /**
  * @author Brian Wing Shun Chan
@@ -257,7 +261,8 @@ public class InstanceUtil {
 		// Home
 
 		Layout layout = LayoutUtil.addLayout(
-			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Home", null,
+			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
+			_getLocalizationMap("home"), null,
 			PortletPropsValues.SITE_PROTOTYPE_LAYOUT_TEMPLATE);
 
 		LayoutUtil.addPortlets(
@@ -270,8 +275,8 @@ public class InstanceUtil {
 		// Calendar
 
 		layout = LayoutUtil.addLayout(
-			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Calendar",
-			null, "1_column");
+			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
+			_getLocalizationMap("calendar"), null, "1_column");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/calendar",
@@ -282,8 +287,8 @@ public class InstanceUtil {
 		// Documents
 
 		layout = LayoutUtil.addLayout(
-			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Documents",
-			null, "1_column");
+			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
+			_getLocalizationMap("documents"), null, "1_column");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/documents",
@@ -296,8 +301,8 @@ public class InstanceUtil {
 		// Forums
 
 		layout = LayoutUtil.addLayout(
-			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Forums",
-			null, "1_column");
+			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
+			_getLocalizationMap("forums"), null, "1_column");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/forums", PortletPropsKeys.SITE_PROTOTYPE_PORTLETS);
@@ -313,8 +318,8 @@ public class InstanceUtil {
 		// Blog
 
 		layout = LayoutUtil.addLayout(
-			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Blog", null,
-			"2_columns_iii");
+			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
+			_getLocalizationMap("blogs"), null, "2_columns_iii");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/blog", PortletPropsKeys.SITE_PROTOTYPE_PORTLETS);
@@ -326,8 +331,8 @@ public class InstanceUtil {
 		// Wiki
 
 		layout = LayoutUtil.addLayout(
-			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Wiki", null,
-			"1_column");
+			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
+			_getLocalizationMap("wiki"), null, "1_column");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/wiki", PortletPropsKeys.SITE_PROTOTYPE_PORTLETS);
@@ -339,8 +344,8 @@ public class InstanceUtil {
 		// Members
 
 		layout = LayoutUtil.addLayout(
-			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Members",
-			null, "1_column");
+			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
+			_getLocalizationMap("members"), null, "1_column");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/members",
@@ -375,8 +380,8 @@ public class InstanceUtil {
 		// Dashboard
 
 		Layout layout = LayoutUtil.addLayout(
-			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Dashboard",
-			"/so/dashboard", "2_columns_iii");
+			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
+			_getLocalizationMap("dashboard"), "/so/dashboard", "2_columns_iii");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/home",
@@ -390,7 +395,8 @@ public class InstanceUtil {
 
 		layout = LayoutUtil.addLayout(
 			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
-			"Contacts Center", "/so/contacts-center", "1_column");
+			_getLocalizationMap("contacts-center"), "/so/contacts-center",
+			"1_column");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/contacts-center",
@@ -403,8 +409,8 @@ public class InstanceUtil {
 		// Microblogs
 
 		layout = LayoutUtil.addLayout(
-			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Microblogs",
-			"/so/microblogs", "1_column");
+			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
+			_getLocalizationMap("microblogs"), "/so/microblogs", "1_column");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/microblogs",
@@ -417,8 +423,8 @@ public class InstanceUtil {
 		// Messages
 
 		layout = LayoutUtil.addLayout(
-			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Messages",
-			"/so/messages", "1_column");
+			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
+			_getLocalizationMap("messages"), "/so/messages", "1_column");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/messages",
@@ -431,8 +437,8 @@ public class InstanceUtil {
 		// Tasks
 
 		layout = LayoutUtil.addLayout(
-			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Tasks",
-			"/so/tasks", "1_column");
+			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
+			_getLocalizationMap("tasks"), "/so/tasks", "1_column");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/tasks",
@@ -467,8 +473,8 @@ public class InstanceUtil {
 		// Profile
 
 		Layout layout = LayoutUtil.addLayout(
-			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Profile",
-			"/so/profile", "1_2_columns_ii");
+			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
+			_getLocalizationMap("profile"), "/so/profile", "1_2_columns_ii");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/profile",
@@ -481,8 +487,8 @@ public class InstanceUtil {
 		// Contacts
 
 		layout = LayoutUtil.addLayout(
-			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Contacts",
-			"/so/contacts", "1_column");
+			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
+			_getLocalizationMap("contacts"), "/so/contacts", "1_column");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/contacts",
@@ -495,8 +501,8 @@ public class InstanceUtil {
 		// Microblogs
 
 		layout = LayoutUtil.addLayout(
-			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Microblogs",
-			"/so/microblogs", "1_column");
+			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
+			_getLocalizationMap("microblogs"), "/so/microblogs", "1_column");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/microblogs",
@@ -546,6 +552,80 @@ public class InstanceUtil {
 			expandoColumn.getCompanyId(), name, scope, primKey,
 			role.getRoleId(), actionIds);
 	}
+
+	private static String _fixValue(String value) {
+		if (value.endsWith(_AUTOMATIC_COPY)) {
+			value = value.substring(
+				0, value.length() - _AUTOMATIC_COPY.length());
+		}
+
+		if (value.endsWith(_AUTOMATIC_TRANSLATION)) {
+			value = value.substring(
+				0, value.length() - _AUTOMATIC_TRANSLATION.length());
+		}
+
+		return value;
+	}
+
+	private static Map<Locale, String> _getLocalizationMap(String key) {
+		Map<Locale, String> map = new HashMap<Locale, String>();
+
+		Locale defaultLocale = LocaleUtil.getDefault();
+
+		if (key == null) {
+			return null;
+		}
+
+		String defaultValue = _getLocalizationValue(defaultLocale, key, key);
+
+		map.put(defaultLocale, defaultValue);
+
+		Locale[] locales = LanguageUtil.getAvailableLocales();
+
+		for (Locale locale : locales) {
+			if (!locale.equals(defaultLocale)) {
+				String value = _getLocalizationValue(locale, key, null);
+
+				if (Validator.isNotNull(value) && !value.equals(defaultValue)) {
+					map.put(locale, value);
+				}
+			}
+		}
+
+		return map;
+	}
+
+	private static String _getLocalizationValue(
+		Locale locale, String key, String defaultValue) {
+
+		ResourceBundle resourceBundle = ResourceBundle.getBundle(
+			"content.Language", locale);
+
+		String value = null;
+
+		try {
+			value = resourceBundle.getString(key);
+
+			value = new String(
+				value.getBytes(StringPool.ISO_8859_1), StringPool.UTF8);
+		}
+		catch(Exception e) {
+		}
+
+		if (Validator.isNotNull(value)) {
+			value = _fixValue(value);
+		}
+		else {
+			value = LanguageUtil.get(locale, key, defaultValue);
+		}
+
+		return value;
+	}
+
+	private static final String _AUTOMATIC_COPY = " (Automatic Copy)";
+
+	private static final String _AUTOMATIC_TRANSLATION =
+		" (Automatic Translation)";
 
 	private static Log _log = LogFactoryUtil.getLog(InstanceUtil.class);
 
