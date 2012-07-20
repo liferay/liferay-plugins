@@ -969,6 +969,10 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 	a.group {
 		color: $red;
 	}
+
+	.taglib-page-iterator {
+		word-break: break-all;
+	}
 }
 
 .profile-page .so-portlet-activities {
