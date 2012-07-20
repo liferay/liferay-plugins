@@ -24,7 +24,6 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.io.ByteArrayFileInputStream;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.notifications.Channel;
@@ -37,7 +36,6 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -75,7 +73,6 @@ import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
 import javax.portlet.PortletRequest;
 import javax.portlet.ResourceRequest;
@@ -330,7 +327,8 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 		String message = null;
 
 		if (key instanceof FileExtensionException) {
-			message = themeDisplay.translate(
+			message = translate(
+				portletRequest,
 				"document-names-must-end-with-one-of-the-following-extensions");
 
 			message +=
@@ -341,8 +339,8 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 						StringPool.COMMA_AND_SPACE);
 		}
 		else if (key instanceof FileNameException) {
-			message = themeDisplay.translate(
-				"please-enter-a-file-with-a-valid-file-name");
+			message = translate(
+				portletRequest, "please-enter-a-file-with-a-valid-file-name");
 		}
 		else if (key instanceof FileSizeException) {
 			long fileMaxSize = PrefsPropsUtil.getLong(
@@ -355,7 +353,8 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 
 			fileMaxSize /= 1024;
 
-			message = themeDisplay.translate(
+			message = translate(
+				portletRequest,
 				"please-enter-a-file-with-a-valid-file-size-no-larger-than-x",
 				fileMaxSize);
 		}
@@ -366,7 +365,8 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 			message += CharPool.SPACE + key.getMessage();
 		}
 		else {
-			message = themeDisplay.translate("your-request-failed-to-complete");
+			message = translate(
+				portletRequest, "your-request-failed-to-complete");
 		}
 
 		return message;
@@ -448,17 +448,6 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 					companyId, userId, notificationEvent.getUuid());
 			}
 		}
-	}
-
-	protected String translate(PortletRequest portletRequest, String key) {
-		PortletConfig portletConfig =
-			(PortletConfig)portletRequest.getAttribute(
-				JavaConstants.JAVAX_PORTLET_CONFIG);
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		return LanguageUtil.get(portletConfig, themeDisplay.getLocale(), key);
 	}
 
 	protected void validateAttachment(String fileName, InputStream inputStream)
