@@ -436,6 +436,20 @@ public class InstanceUtil {
 
 		LayoutLocalServiceUtil.updatePriority(layout, 3);
 
+		// My Documents
+
+		layout = LayoutUtil.addLayout(
+			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
+			"My Documents", "/so/my-documents", "1_column");
+
+		LayoutUtil.addPortlets(
+			group, layout, "/my-documents",
+			PortletPropsKeys.USER_PRIVATE_LAYOUT_PORTLETS);
+
+		LayoutUtil.updatePermissions(layout, true);
+
+		LayoutLocalServiceUtil.updatePriority(layout, 4);
+
 		// Tasks
 
 		layout = LayoutUtil.addLayout(
@@ -448,7 +462,7 @@ public class InstanceUtil {
 
 		LayoutUtil.updatePermissions(layout, true);
 
-		LayoutLocalServiceUtil.updatePriority(layout, 4);
+		LayoutLocalServiceUtil.updatePriority(layout, 5);
 	}
 
 	protected static void setupLayoutSetPrototypeUserPublic(long companyId)
