@@ -165,7 +165,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .ed
 
 	.login-holder {
 		left: 0;
-		position: absolute;
+		position: relative;
 		right: 0;
 		top: 17.5%;
 	}
@@ -259,6 +259,20 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .ed
 
 /* ---------- Extras ---------- */
 
+.ie #login-page .login-holder .portlet {
+	border: 1px solid $gray;
+}
+
+.ie9 {
+	#loginPage .login-holder {
+		margin-top: 17.5%;
+	}
+
+	#loginPage .portlet {
+		border-collapse: separate;
+	}
+}
+
 input[type=password], input[type=text], textarea, .aui-field-select select {
 	@include border-radius(5px);
 }
@@ -284,7 +298,6 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .lf
 #loginPage .portlet {
 	@include box-shadow(0 0 9px -3px #000, 0 20px 29px -22px rgba(0, 0, 0, 0.6));
 }
-
 
 #loginPage .portlet, #loginPage .portlet-login .navigation {
 	@include border-radius(4px);
