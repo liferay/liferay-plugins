@@ -68,7 +68,7 @@ public class LayoutUtil {
 			LayoutConstants.TYPE_PORTLET, false, friendlyURL, serviceContext);
 
 		LayoutTypePortlet layoutTypePortlet =
-				(LayoutTypePortlet)layout.getLayoutType();
+			(LayoutTypePortlet)layout.getLayoutType();
 
 		layoutTypePortlet.setLayoutTemplateId(0, layoutTemplateId, false);
 

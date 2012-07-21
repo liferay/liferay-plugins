@@ -31,7 +31,7 @@ public class UpgradeUtil {
 	protected static boolean isFirstRun() throws Exception {
 		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 
-		if (companies.isEmpty() || companies.size() > 1) {
+		if (companies.isEmpty() || (companies.size() > 1)) {
 			return false;
 		}
 
