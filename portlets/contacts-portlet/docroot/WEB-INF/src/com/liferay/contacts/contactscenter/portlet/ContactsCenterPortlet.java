@@ -288,8 +288,6 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			WebKeys.THEME_DISPLAY);
 
 		if (!themeDisplay.isSignedIn()) {
-			System.out.println("nope");
-
 			return;
 		}
 
