@@ -284,6 +284,15 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws PortletException {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		if (!themeDisplay.isSignedIn()) {
+			System.out.println("nope");
+
+			return;
+		}
+
 		try {
 			String actionName = ParamUtil.getString(
 				actionRequest, ActionRequest.ACTION_NAME);
@@ -417,10 +426,14 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			Entry entry = null;
 
 			if (entryId > 0) {
-				entry = EntryLocalServiceUtil.updateEntry(
-					entryId, fullName, emailAddress, comments);
+				entry = EntryLocalServiceUtil.getEntry(entryId);
 
-				message = "you-have-successfully-updated-the-contact";
+				if (entry.getUserId() == themeDisplay.getUserId()) {
+					entry = EntryLocalServiceUtil.updateEntry(
+						entryId, fullName, emailAddress, comments);
+
+					message = "you-have-successfully-updated-the-contact";
+				}
 			}
 			else {
 				entry = EntryLocalServiceUtil.addEntry(
@@ -582,10 +595,14 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		long requestId = ParamUtil.getLong(actionRequest, "requestId");
 
-		int status = ParamUtil.getInteger(actionRequest, "status");
-
 		SocialRequest socialRequest =
 			SocialRequestLocalServiceUtil.getSocialRequest(requestId);
+
+		if (socialRequest.getUserId() != themeDisplay.getUserId()) {
+			return;
+		}
+
+		int status = ParamUtil.getInteger(actionRequest, "status");
 
 		if (SocialRelationLocalServiceUtil.hasRelation(
 				socialRequest.getReceiverUserId(), socialRequest.getUserId(),
@@ -609,10 +626,17 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		long entryId = ParamUtil.getLong(actionRequest, "entryId");
 
 		if (entryId > 0) {
-			EntryLocalServiceUtil.deleteEntry(entryId);
+			Entry entry = EntryLocalServiceUtil.getEntry(entryId);
+
+			if (entry.getUserId() == themeDisplay.getUserId()) {
+				EntryLocalServiceUtil.deleteEntry(entryId);
+			}
 		}
 	}
 
