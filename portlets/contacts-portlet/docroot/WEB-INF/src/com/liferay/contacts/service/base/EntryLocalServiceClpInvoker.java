@@ -100,58 +100,54 @@ public class EntryLocalServiceClpInvoker {
 				"com.liferay.contacts.model.Entry", "boolean"
 			};
 
-		_methodName40 = "getBeanIdentifier";
+		_methodName38 = "getBeanIdentifier";
 
-		_methodParameterTypes40 = new String[] {  };
+		_methodParameterTypes38 = new String[] {  };
 
-		_methodName41 = "setBeanIdentifier";
+		_methodName39 = "setBeanIdentifier";
 
-		_methodParameterTypes41 = new String[] { "java.lang.String" };
+		_methodParameterTypes39 = new String[] { "java.lang.String" };
 
-		_methodName46 = "addEntry";
+		_methodName44 = "addEntry";
 
-		_methodParameterTypes46 = new String[] {
+		_methodParameterTypes44 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String"
 			};
 
-		_methodName47 = "deleteEntry";
+		_methodName45 = "getEntries";
 
-		_methodParameterTypes47 = new String[] { "long" };
+		_methodParameterTypes45 = new String[] { "long", "int", "int" };
 
-		_methodName48 = "getEntries";
+		_methodName46 = "getEntriesCount";
 
-		_methodParameterTypes48 = new String[] { "long", "int", "int" };
+		_methodParameterTypes46 = new String[] { "long" };
 
-		_methodName49 = "getEntriesCount";
+		_methodName47 = "search";
 
-		_methodParameterTypes49 = new String[] { "long" };
-
-		_methodName50 = "search";
-
-		_methodParameterTypes50 = new String[] {
+		_methodParameterTypes47 = new String[] {
 				"long", "java.lang.String", "int", "int"
 			};
 
-		_methodName51 = "searchCount";
+		_methodName48 = "searchCount";
 
-		_methodParameterTypes51 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes48 = new String[] { "long", "java.lang.String" };
 
-		_methodName52 = "searchUsersAndContacts";
+		_methodName49 = "searchUsersAndContacts";
 
-		_methodParameterTypes52 = new String[] {
+		_methodParameterTypes49 = new String[] {
 				"long", "long", "java.lang.String", "int", "int"
 			};
 
-		_methodName53 = "searchUsersAndContactsCount";
+		_methodName50 = "searchUsersAndContactsCount";
 
-		_methodParameterTypes53 = new String[] {
+		_methodParameterTypes50 = new String[] {
 				"long", "long", "java.lang.String"
 			};
 
-		_methodName54 = "updateEntry";
+		_methodName51 = "updateEntry";
 
-		_methodParameterTypes54 = new String[] {
+		_methodParameterTypes51 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String"
 			};
@@ -246,56 +242,51 @@ public class EntryLocalServiceClpInvoker {
 				((Boolean)arguments[1]).booleanValue());
 		}
 
-		if (_methodName40.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
+		if (_methodName38.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes38, parameterTypes)) {
 			return EntryLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName41.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
+		if (_methodName39.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes39, parameterTypes)) {
 			EntryLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 		}
 
-		if (_methodName46.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
+		if (_methodName44.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes44, parameterTypes)) {
 			return EntryLocalServiceUtil.addEntry(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(java.lang.String)arguments[3]);
 		}
 
-		if (_methodName47.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
-			return EntryLocalServiceUtil.deleteEntry(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName48.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
+		if (_methodName45.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes45, parameterTypes)) {
 			return EntryLocalServiceUtil.getEntries(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName49.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
+		if (_methodName46.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
 			return EntryLocalServiceUtil.getEntriesCount(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName50.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+		if (_methodName47.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
 			return EntryLocalServiceUtil.search(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
 		}
 
-		if (_methodName51.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+		if (_methodName48.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
 			return EntryLocalServiceUtil.searchCount(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1]);
 		}
 
-		if (_methodName52.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
+		if (_methodName49.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
 			return EntryLocalServiceUtil.searchUsersAndContacts(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2],
@@ -303,14 +294,14 @@ public class EntryLocalServiceClpInvoker {
 				((Integer)arguments[4]).intValue());
 		}
 
-		if (_methodName53.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
+		if (_methodName50.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
 			return EntryLocalServiceUtil.searchUsersAndContactsCount(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(), (java.lang.String)arguments[2]);
 		}
 
-		if (_methodName54.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
+		if (_methodName51.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
 			return EntryLocalServiceUtil.updateEntry(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(java.lang.String)arguments[3]);
@@ -351,10 +342,14 @@ public class EntryLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName40;
-	private String[] _methodParameterTypes40;
-	private String _methodName41;
-	private String[] _methodParameterTypes41;
+	private String _methodName38;
+	private String[] _methodParameterTypes38;
+	private String _methodName39;
+	private String[] _methodParameterTypes39;
+	private String _methodName44;
+	private String[] _methodParameterTypes44;
+	private String _methodName45;
+	private String[] _methodParameterTypes45;
 	private String _methodName46;
 	private String[] _methodParameterTypes46;
 	private String _methodName47;
@@ -367,10 +362,4 @@ public class EntryLocalServiceClpInvoker {
 	private String[] _methodParameterTypes50;
 	private String _methodName51;
 	private String[] _methodParameterTypes51;
-	private String _methodName52;
-	private String[] _methodParameterTypes52;
-	private String _methodName53;
-	private String[] _methodParameterTypes53;
-	private String _methodName54;
-	private String[] _methodParameterTypes54;
 }

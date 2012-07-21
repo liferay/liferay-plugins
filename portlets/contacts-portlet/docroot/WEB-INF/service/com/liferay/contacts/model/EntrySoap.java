@@ -21,10 +21,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * This class is used by SOAP remote services, specifically {@link com.liferay.contacts.service.http.EntryServiceSoap}.
+ * This class is used by SOAP remote services.
  *
  * @author    Brian Wing Shun Chan
- * @see       com.liferay.contacts.service.http.EntryServiceSoap
  * @generated
  */
 public class EntrySoap implements Serializable {
