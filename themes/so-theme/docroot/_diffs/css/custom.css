@@ -1374,6 +1374,10 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 		padding-top: 20px;
 	}
 
+	.contacts-profile .user-information-column-1 {
+		float: none;
+	}
+
 	.social-relations {
 		margin-left: 1px;
 	}
