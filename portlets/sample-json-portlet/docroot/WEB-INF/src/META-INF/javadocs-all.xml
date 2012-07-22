@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<javadocs>
+	<javadoc>
+		<name>SampleJSONServlet</name>
+		<type>com.liferay.samplejson.servlet.SampleJSONServlet</type>
+		<author><![CDATA[Ming-Gih Lam]]></author>
+		<method>
+			<name>service</name>
+			<param>
+				<name>request</name>
+				<type>javax.servlet.http.HttpServletRequest</type>
+			</param>
+			<param>
+				<name>response</name>
+				<type>javax.servlet.http.HttpServletResponse</type>
+			</param>
+			<throws>
+				<name>IOException</name>
+				<type>java.io.IOException</type>
+			</throws>
+			<throws>
+				<name>ServletException</name>
+				<type>javax.servlet.ServletException</type>
+			</throws>
+		</method>
+		<method>
+			<name>getContent</name>
+			<param>
+				<name>request</name>
+				<type>javax.servlet.http.HttpServletRequest</type>
+			</param>
+			<param>
+				<name>response</name>
+				<type>javax.servlet.http.HttpServletResponse</type>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+			</throws>
+		</method>
+	</javadoc>
+</javadocs>

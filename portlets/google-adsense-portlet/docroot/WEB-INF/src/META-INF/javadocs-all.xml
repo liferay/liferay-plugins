@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<javadocs>
+	<javadoc>
+		<name>UpgradeProcess_1_0_0</name>
+		<type>com.liferay.googleadsense.hook.upgrade.UpgradeProcess_1_0_0</type>
+		<author><![CDATA[Julio Camarero]]></author>
+		<method>
+			<name>getThreshold</name>
+		</method>
+		<method>
+			<name>doUpgrade</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>UpgradePortletPreferences</name>
+		<type>com.liferay.googleadsense.hook.upgrade.v1_0_0.UpgradePortletPreferences</type>
+		<author><![CDATA[Julio Camarero]]></author>
+		<method>
+			<name>getPortletIds</name>
+		</method>
+	</javadoc>
+</javadocs>

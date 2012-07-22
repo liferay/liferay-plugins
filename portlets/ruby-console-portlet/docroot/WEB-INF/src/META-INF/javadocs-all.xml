@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+
+<javadocs>
+	<javadoc>
+		<name>RubyConsolePortlet</name>
+		<type>com.liferay.rubyconsole.portlet.RubyConsolePortlet</type>
+		<author><![CDATA[Raymond Augé]]></author>
+		<method>
+			<name>serveResource</name>
+			<param>
+				<name>resourceRequest</name>
+				<type>javax.portlet.ResourceRequest</type>
+			</param>
+			<param>
+				<name>resourceResponse</name>
+				<type>javax.portlet.ResourceResponse</type>
+			</param>
+			<throws>
+				<name>IOException</name>
+				<type>java.io.IOException</type>
+			</throws>
+		</method>
+		<method>
+			<name>includeConsoleInput</name>
+			<param>
+				<name>consoleInput</name>
+				<type>java.lang.String</type>
+			</param>
+			<param>
+				<name>portletRequest</name>
+				<type>javax.portlet.PortletRequest</type>
+			</param>
+			<param>
+				<name>portletResponse</name>
+				<type>javax.portlet.PortletResponse</type>
+			</param>
+			<throws>
+				<name>IOException</name>
+				<type>java.io.IOException</type>
+			</throws>
+		</method>
+		<field>
+			<name>_log</name>
+		</field>
+	</javadoc>
+</javadocs>
