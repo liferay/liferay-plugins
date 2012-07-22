@@ -62,7 +62,7 @@ for (CalEvent event : events) {
 	startDateCal.setTime(event.getStartDate());
 
 	if (event.isAllDay()) {
-		if ((startDateCal.get(Calendar.DAY_OF_MONTH) == cal.get(Calendar.DAY_OF_MONTH))) {
+		if (startDateCal.get(Calendar.DAY_OF_MONTH) == cal.get(Calendar.DAY_OF_MONTH)) {
 			todayEvents.add(event);
 		}
 		else {
