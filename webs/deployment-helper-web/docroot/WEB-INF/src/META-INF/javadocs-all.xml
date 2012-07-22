@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+
+<javadocs>
+	<javadoc>
+		<name>DeploymentHelperContextListener</name>
+		<type>com.liferay.deploymenthelper.servlet.DeploymentHelperContextListener</type>
+		<author><![CDATA[Raymond Augé]]></author>
+		<method>
+			<name>contextDestroyed</name>
+			<param>
+				<name>servletContextEvent</name>
+				<type>javax.servlet.ServletContextEvent</type>
+			</param>
+		</method>
+		<method>
+			<name>contextInitialized</name>
+			<param>
+				<name>servletContextEvent</name>
+				<type>javax.servlet.ServletContextEvent</type>
+			</param>
+		</method>
+		<method>
+			<name>copy</name>
+			<param>
+				<name>servletContext</name>
+				<type>javax.servlet.ServletContext</type>
+			</param>
+			<param>
+				<name>inputStream</name>
+				<type>java.io.InputStream</type>
+			</param>
+			<param>
+				<name>outputStream</name>
+				<type>java.io.OutputStream</type>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+			</throws>
+		</method>
+	</javadoc>
+</javadocs>

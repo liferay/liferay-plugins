@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<javadocs>
+	<javadoc>
+		<name>SignInPortlet</name>
+		<type>com.liferay.samplesignin.portlet.SignInPortlet</type>
+		<author><![CDATA[Brian Wing Shun Chan]]></author>
+		<method>
+			<name>processAction</name>
+			<param>
+				<name>actionRequest</name>
+				<type>javax.portlet.ActionRequest</type>
+			</param>
+			<param>
+				<name>actionResponse</name>
+				<type>javax.portlet.ActionResponse</type>
+			</param>
+			<throws>
+				<name>IOException</name>
+				<type>java.io.IOException</type>
+			</throws>
+			<throws>
+				<name>PortletException</name>
+				<type>javax.portlet.PortletException</type>
+			</throws>
+		</method>
+		<field>
+			<name>_log</name>
+		</field>
+	</javadoc>
+</javadocs>

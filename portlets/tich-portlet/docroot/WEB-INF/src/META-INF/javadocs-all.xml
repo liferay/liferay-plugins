@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+
+<javadocs>
+	<javadoc>
+		<name>Event</name>
+		<type>com.liferay.tich.model.Event</type>
+		<author><![CDATA[Brian Wing Shun Chan]]></author>
+		<method>
+			<name>Event</name>
+			<param>
+				<name>year</name>
+				<type>int</type>
+			</param>
+			<param>
+				<name>description</name>
+				<type>java.lang.String</type>
+			</param>
+		</method>
+		<method>
+			<name>getDescription</name>
+		</method>
+		<method>
+			<name>getYear</name>
+		</method>
+		<field>
+			<name>_description</name>
+		</field>
+		<field>
+			<name>_year</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>EventsWebCacheItem</name>
+		<type>com.liferay.tich.util.EventsWebCacheItem</type>
+		<author><![CDATA[Brian Wing Shun Chan]]></author>
+		<method>
+			<name>convert</name>
+			<param>
+				<name>key</name>
+				<type>java.lang.String</type>
+			</param>
+			<throws>
+				<name>WebCacheException</name>
+				<type>com.liferay.portal.kernel.webcache.WebCacheException</type>
+			</throws>
+		</method>
+		<method>
+			<name>getRefreshTime</name>
+		</method>
+		<field>
+			<name>_REFRESH_TIME</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>TICHUtil</name>
+		<type>com.liferay.tich.util.TICHUtil</type>
+		<author><![CDATA[Brian Wing Shun Chan]]></author>
+		<method>
+			<name>getEvents</name>
+		</method>
+	</javadoc>
+</javadocs>

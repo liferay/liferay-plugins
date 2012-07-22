@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+
+<javadocs>
+	<javadoc>
+		<name>ConfigurationActionImpl</name>
+		<type>com.liferay.netvibeswidget.action.ConfigurationActionImpl</type>
+		<author><![CDATA[Jorge Ferrer]]></author>
+		<author><![CDATA[Julio Camarero]]></author>
+		<author><![CDATA[Peter Shin]]></author>
+		<method>
+			<name>processAction</name>
+			<param>
+				<name>portletConfig</name>
+				<type>javax.portlet.PortletConfig</type>
+			</param>
+			<param>
+				<name>actionRequest</name>
+				<type>javax.portlet.ActionRequest</type>
+			</param>
+			<param>
+				<name>actionResponse</name>
+				<type>javax.portlet.ActionResponse</type>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>NetvibesWidgetUtil</name>
+		<type>com.liferay.netvibeswidget.util.NetvibesWidgetUtil</type>
+		<author><![CDATA[Julio Camarero]]></author>
+		<author><![CDATA[Peter Shin]]></author>
+		<method>
+			<name>getCategories</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+			</throws>
+		</method>
+		<method>
+			<name>getWidgets</name>
+			<param>
+				<name>query</name>
+				<type>java.lang.String</type>
+			</param>
+			<param>
+				<name>sort</name>
+				<type>java.lang.String</type>
+			</param>
+			<param>
+				<name>category</name>
+				<type>int</type>
+			</param>
+			<param>
+				<name>region</name>
+				<type>java.lang.String</type>
+			</param>
+			<param>
+				<name>page</name>
+				<type>int</type>
+			</param>
+			<param>
+				<name>limit</name>
+				<type>int</type>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+			</throws>
+		</method>
+	</javadoc>
+</javadocs>
