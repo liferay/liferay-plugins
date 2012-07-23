@@ -7,11 +7,7 @@
 	</compatibility>
 	<theme id="healthcare" name="Healthcare Theme">
 		<settings>
-			<setting configurable="false" key="show-site-name-default"  type="checkbox" value="false" />
-
-			<setting configurable="true" key="portlet-setup-show-borders-default" type="checkbox" value="false" />
-			<setting configurable="true" key="display-footer" type="checkbox" value="true"/>
-			<setting configurable="true" key="blurb-title" type="text" value="We Care About Your Health"></setting>
+			<setting configurable="true" key="blurb-author" type="text" value="Steve Cogs" />
 			<setting configurable="true" key="blurb-content" type="textarea" value="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc commodo, lectus id sollicitudin rhoncus, odio dui ullamcorper lacus, pellentesque mattis nisl erat eu tortor. Sed fermentum, massa at vestibulum sollicitudin, tortor neque cursus leo, eget faucibus mauris magna ac magna.">
 				<![CDATA[
 					AUI().use(
@@ -29,8 +25,11 @@
 					);
 				]]>
 			</setting>
-			<setting configurable="true" key="blurb-author" type="text" value="Steve Cogs"></setting>
-			<setting configurable="true" key="footer-nav-title" type="text" value="Site Map"></setting>
+			<setting configurable="true" key="blurb-title" type="text" value="We Care About Your Health" />
+			<setting configurable="true" key="display-footer" type="checkbox" value="true" />
+			<setting configurable="true" key="footer-nav-title" type="text" value="Site Map" />
+			<setting configurable="true" key="portlet-setup-show-borders-default" type="checkbox" value="false" />
+			<setting configurable="false" key="show-site-name-default" type="checkbox" value="false" />
 		</settings>
 		<layout-templates>
 			<custom>

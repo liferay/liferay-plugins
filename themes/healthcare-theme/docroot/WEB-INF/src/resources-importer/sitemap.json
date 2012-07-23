@@ -1,11 +1,6 @@
 {
-	"layoutTemplateId": "2_columns_ii",
 	"layouts": [
 		{
-			"title": "Home",
-			"name": "Home",
-			"friendlyURL": "/home",
-			"layoutTemplateId": "1-2-3-columns",
 			"columns": [
 				[
 					"Home Banner.html"
@@ -25,13 +20,13 @@
 				[
 					"Recent News.html"
 				]
-			]
+			],
+			"friendlyURL": "/home",
+			"layoutTemplateId": "1-2-3-columns",
+			"name": "Home",
+			"title": "Home"
 		},
 		{
-			"title": "About",
-			"layoutTemplateId": "2-1-2-4-columns",
-			"name": "About",
-			"friendlyURL": "/about",
 			"columns": [
 				[
 					"The 7 Cogs Promise.html"
@@ -54,21 +49,21 @@
 					{
 						"portletId": "1_WAR_webformportlet_INSTANCE_${groupId}",
 						"portletPreferences": {
+							"description" : "Lorem ipsum dolor sit amet, lohtil consectetur adipiscing elit. Vivamus feugiat, augue in sollicitudin blandit, magna purus bibendum justo, quisnic scelerisque ipsum turpis eu dui. Nunc lobortis, augue ac viverra convallis.",
+							"fieldLabel1": "Full Name",
+							"fieldLabel2": "Email",
+							"fieldsEditingDisabled": "true",
+							"fieldType1": "text",
+							"fieldType2": "text",
+							"fieldType3": "textarea",
+							"fieldValue": "Write your short description here",
 							"portletSetupCss": {
 								"advancedData": {
 									"customCSSClassName": "make-appointment"
 								}
 							},
 							"portletSetupShowBorders": "false",
-							"fieldsEditingDisabled": "true",
-							"fieldType1": "text",
-							"fieldLabel1": "Full Name",
-							"fieldType2": "text",
-							"fieldLabel2": "Email",
-							"fieldType3": "textarea",
-							"fieldValue": "Write your short description here",
-							"title" : "Seeing your Doctor, made easy",
-							"description" : "Lorem ipsum dolor sit amet, lohtil consectetur adipiscing elit. Vivamus feugiat, augue in sollicitudin blandit, magna purus bibendum justo, quisnic scelerisque ipsum turpis eu dui. Nunc lobortis, augue ac viverra convallis."
+							"title" : "Seeing your Doctor, made easy"
 						}
 					}
 				],
@@ -85,53 +80,58 @@
 					"Section 4.html"
 				]
 			],
+			"friendlyURL": "/about",
 			"layouts": [
 				{
-					"title": "Category 1",
-					"name": "Category 1",
 					"friendlyURL": "/category-1",
+					"name": "Category 1",
+					"title": "Category 1"
 				},
 				{
-					"title": "Category 2",
-					"name": "Category 2",
 					"friendlyURL": "/category-2",
+					"name": "Category 2",
+					"title": "Category 2"
 				},
 				{
-					"title": "Category 3",
-					"name": "Category 3",
 					"friendlyURL": "/category-3",
+					"name": "Category 3",
+					"title": "Category 3"
 				},
 				{
-					"title": "Category 4",
-					"name": "Category 4",
 					"friendlyURL": "/category-4",
+					"name": "Category 4",
+					"title": "Category 4"
 				}
-			]
+			],
+			"layoutTemplateId": "2-1-2-4-columns",
+			"name": "About",
+			"title": "About"
 		},
 		{
-			"title": "Clinic",
+			"friendlyURL": "/clinic",
 			"name": "Clinic",
-			"friendlyURL": "/clinic"
+			"title": "Clinic"
 		},
 		{
-			"title": "Services",
+			"friendlyURL": "/services",
 			"name": "Services",
-			"friendlyURL": "/services"
+			"title": "Services"
 		},
 		{
-			"title": "Health Plans",
+			"friendlyURL": "/health-plans",
 			"name": "Health Plans",
-			"friendlyURL": "/health-plans"
+			"title": "Health Plans"
 		},
 		{
-			"title": "Location",
+			"friendlyURL": "/location",
 			"name": "Location",
-			"friendlyURL": "/location"
+			"title": "Location"
 		},
 		{
-			"title": "Contact Us",
+			"friendlyURL": "/contact-us",
 			"name": "Contact Us",
-			"friendlyURL": "/contact-us"
+			"title": "Contact Us"
 		}
-	]
+	],
+	"layoutTemplateId": "2_columns_ii"
 }
