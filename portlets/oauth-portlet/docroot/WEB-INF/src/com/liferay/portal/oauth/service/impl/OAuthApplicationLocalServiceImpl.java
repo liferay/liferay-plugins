@@ -218,7 +218,7 @@ public class OAuthApplicationLocalServiceImpl
 	public int getApplicationsCount(long companyId) throws SystemException {
 		return oAuthApplicationPersistence.countByCompanyId(companyId);
 	}
-	
+
 	public int getApplicationsCountByCN(long companyId, String name)
 		throws SystemException {
 		if (null == name) {
@@ -227,7 +227,7 @@ public class OAuthApplicationLocalServiceImpl
 
 		return oAuthApplicationPersistence.countByC_N(companyId, name);
 	}
-	
+
 	public int getApplicationsCountByON(long ownerId, String name)
 		throws SystemException {
 		if (null == name) {
@@ -236,7 +236,7 @@ public class OAuthApplicationLocalServiceImpl
 
 		return oAuthApplicationPersistence.countByO_N(ownerId, name);
 	}
-	
+
 	public int getApplicationsCountByOwnerId(long ownerId)
 		throws SystemException {
 

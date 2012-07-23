@@ -124,7 +124,8 @@ public class OAuthApplicationSearch extends SearchContainer<OAuthApplication> {
 
 			@Override
 			public int compare(Object obj1, Object obj2) {
-				// TODO implement reflections (try to find get method for column - default is name
+				// TODO implement reflections (try to find get method for
+				// column - default is name
 				OAuthApplication app1 = (OAuthApplication)obj1;
 				OAuthApplication app2 = (OAuthApplication)obj2;
 

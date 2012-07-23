@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+    <ModulePrefs
+            title="Liferay Gadget"
+            description="A simple example of an OpenSocial Liferay Gadget using OAuth"
+            author="Ivica Cardic"
+            author_email="ivica.cardic@liferay.com"
+            >
+        <Require feature="opensocial-0.8"/>
+        <Require feature="dynamic-height" />
+        <Require feature="oauthpopup" />
+
+        <OAuth>
+            <Service name="liferay">
+                <Request url="http://localhost:8080/c/portal/oauth/request_token" param_location="uri-query" method="GET"/>
+                <Access url="http://localhost:8080/c/portal/oauth/access_token" param_location="uri-query" method="GET"/>
+                <Authorization url="http://localhost:8080/c/portal/oauth/authorize" />
+            </Service>
+        </OAuth>
+    </ModulePrefs>
+
+    <UserPref name="repositoryId" display_name="Repository ID" datatype="number" default_value="10178"/>
+    <UserPref name="folderId" display_name="Folder ID" datatype="number" default_value="10517"/>
+
+    <Content type="html">
+        <![CDATA[
+
+      <!-- shindig oauth popup handling code -->
+      <script src="http://opensocialdeju.googlecode.com/svn/common/popup.js"></script>
+
+      <style>
+        #error {
+          color: red;
+        }
+
+        #heading {
+          font-weight: bold;
+        }
+
+        #main {
+          font-size: small;
+          margin: 0px;
+          padding: 5px;
+        }
+
+        #validation {
+          color: red;
+        }
+      </style>
+
+      <div id="main" style="display: none">
+        <b>List of documents:</b>
+        <br>
+        <div id="validation"></div>
+        <br>
+        <div id="heading"></div>
+        <div id="documentsDiv"></div>
+      </div>
+
+      <div id="approval" style="display: none">
+        <img src="http://opensocialdeju.googlecode.com/svn/images/new.gif">
+        <a href="#" id="personalize">Personalize this gadget</a>
+      </div>
+
+      <div id="waiting" style="display: none">
+        Please click <a href="#" id="approvalcomplete">I've approved access</a> once you've approved access to your data.
+      </div>
+
+      <div id="error" style="display: none"></div>
+
+      <script type="text/javascript">
+
+        // Invoke makeRequest() to fetch data from the service provider endpoint.
+        // Depending on the results of makeRequest, decide which version of the UI
+        // to ask showOneSection() to display. If user has approved access to his
+        // or her data, display data.
+        // If the user hasn't approved access yet, response.oauthApprovalUrl contains a
+        // URL that includes a Liferay-supplied request token. This is presented in the
+        // gadget as a link that the user clicks to begin the approval process.
+        function fetchData() {
+          var url = "http://localhost:8080/api/jsonws/dlapp/get-folders/repository-id/" + repositoryId + "/parent-folder-id/" + folderId + "/include-mount-folders/true";
+
+          var callback = function(response) {
+            if (response.oauthApprovalUrl) { 
+              
+              // Create the popup handler. The onOpen function is called when the user
+              // opens the popup window. The onClose function is called when the popup
+              // window is closed.
+              var popup = shindig.oauth.popup({
+                destination : response.oauthApprovalUrl,
+                windowOptions : null,
+                onOpen : function() {showOneSection('waiting');},
+                onClose : function() {fetchData();}
+              });
+
+              // Use the popup handler to attach onclick handlers to UI elements.  The
+              // createOpenerOnClick() function returns an onclick handler to open the
+              // popup window.  The createApprovedOnClick function returns an onclick
+              // handler that will close the popup window and attempt to fetch the user's
+              // data again.
+              document.getElementById('personalize').onclick = popup.createOpenerOnClick();
+
+              document.getElementById('approvalcomplete').onclick = popup.createApprovedOnClick();
+
+              showOneSection('approval');
+            }
+            else if (response.data) {                       
+              showDocuments(response.data);
+            }
+            else {
+              showError(response);
+            }
+          };
+
+          var params = {};
+
+          params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.JSON;
+          params[gadgets.io.RequestParameters.AUTHORIZATION] = gadgets.io.AuthorizationType.OAUTH;
+          params[gadgets.io.RequestParameters.OAUTH_SERVICE_NAME] = "liferay";
+          params[gadgets.io.RequestParameters.OAUTH_USE_TOKEN] = "always";
+          params[gadgets.io.RequestParameters.METHOD] = gadgets.io.MethodType.GET;
+          params[gadgets.io.RequestParameters.OAUTH_USE_TOKEN] = "always";
+          gadgets.io.makeRequest(url, callback, params);
+        }
+
+        function showError(response) {
+          var errorDiv = document.getElementById('error');
+
+          var  errorTextNode = document.createTextNode(getErrorText(response));       
+
+          errorDiv.appendChild(errorTextNode);
+
+          showOneSection('error');
+
+          gadgets.window.adjustHeight();
+        }
+
+        function getErrorText(response) {
+          var oAuthError = "";
+
+          if (response.oauthError) {
+            oAuthError = ", OAuth error: " + response.oauthError;
+          }
+
+          var errorText = 'Error: ' + response.errors[0] + oAuthError + ", " + response.oauthErrorText;
+
+          return errorText;
+        }
+
+        // Display UI depending on OAuth access state of the gadget (see <divs> above).
+        // If user hasn't approved access to data, provide a "Personalize this gadget" link
+        // that contains the oauthApprovalUrl returned from makeRequest.
+        //
+        // If the user has opened the popup window but hasn't yet approved access, display
+        // text prompting the user to confirm that s/he approved access to data.  The user
+        // may not ever need to click this link, if the gadget is able to automatically
+        // detect when the user has approved access, but showing the link gives users
+        // an option to fetch their data even if the automatic detection fails.
+        //
+        // When the user confirms access, the fetchData() function is invoked again to
+        // obtain and display the user's data.
+        function showOneSection(requestedSection) {
+          var sections = ['approval', 'error', 'main', 'waiting'];
+
+          for ( var i = 0; i < sections.length; ++i) {
+            var section = sections[i];
+
+            var element = document.getElementById(section);
+
+            if (section === requestedSection) {
+              element.style.display = "block";
+            }
+            else {
+              element.style.display = "none";
+            }
+          }
+        }
+        
+        function showDocuments(data) {
+          var mainDiv = document.getElementById("main");
+
+          var newDocumentsDiv = document.createElement('div');
+
+          newDocumentsDiv.setAttribute("id", "documentsDiv");
+
+          var ul = document.createElement('ul');
+
+          for ( var i = 0; i < data.length; i++) {
+            var entry = data[i];
+            var text = entry.name;
+            var createdAt = entry.createDate;
+            var screenName = entry.userName;
+
+      var li = document.createElement('li');
+
+            if (typeof entry != 'undefined') {
+              var textNode = document.createTextNode(text + " by " + screenName + " at " + createdAt);
+
+              li.appendChild(textNode);
+            }
+
+            ul.appendChild(li);
+          }
+
+          newDocumentsDiv.appendChild(ul);
+
+          mainDiv.replaceChild(newDocumentsDiv, document.getElementById("documentsDiv"));        
+        
+
+      showOneSection('main');
+    gadgets.window.adjustHeight();
+        }        
+
+        var userPrefs = new _IG_Prefs();
+
+        var repositoryId = userPrefs.getString("repositoryId");
+        var folderId = userPrefs.getString("folderId"); 
+        var auth = userPrefs.getString("auth");
+        
+        gadgets.util.registerOnLoadHandler(fetchData);
+
+      </script>
+    ]]>
+    </Content>
+</Module>

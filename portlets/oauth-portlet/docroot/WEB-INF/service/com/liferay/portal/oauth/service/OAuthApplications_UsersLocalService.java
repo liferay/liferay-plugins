@@ -306,6 +306,11 @@ public interface OAuthApplications_UsersLocalService extends BaseLocalService,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.oauth.model.OAuthApplications_Users getOAuthApplications_UsersByAccessToken(
+		java.lang.String accessToken)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	/**
 	* Update user's authorization for an existing application that is
 	* registered to use OAuth feature. If entity doesn't exist new one (with

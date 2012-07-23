@@ -157,6 +157,21 @@ public class OAuthApplications_UsersLocalServiceImpl
 				.findByUserId(userId, start, end, orderByComparator);
 	}
 
+	public OAuthApplications_Users getOAuthApplications_UsersByAccessToken(
+		String accessToken)
+		throws SystemException {
+
+		OAuthApplications_Users oAuthApplications_users = null;
+		List<OAuthApplications_Users> oAuthApplications_userses =
+			oAuthApplications_UsersPersistence.findByAccessToken(accessToken);
+
+		if (oAuthApplications_userses.size() > 0) {
+			oAuthApplications_users = oAuthApplications_userses.get(0);
+		}
+
+		return oAuthApplications_users;
+	}
+
 	/**
 	 * Update user's authorization for an existing application that is
 	 * registered to use OAuth feature. If entity doesn't exist new one (with

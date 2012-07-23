@@ -79,7 +79,7 @@ public class OAuthApplicationAuthorizationPortlet extends MVCPortlet {
 
 	@Override
 	public void render(RenderRequest request, RenderResponse response)
-			throws PortletException, IOException {
+			throws IOException, PortletException {
 		super.render(request, response);
 	}
 

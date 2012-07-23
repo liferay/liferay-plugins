@@ -166,20 +166,24 @@ public class OAuthApplications_UsersLocalServiceClp
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName29 = "updateOAuthApplications_Users";
+		_methodName29 = "getOAuthApplications_UsersByAccessToken";
 
-		_methodParameterTypes29 = new String[] {
+		_methodParameterTypes29 = new String[] { "java.lang.String" };
+
+		_methodName30 = "updateOAuthApplications_Users";
+
+		_methodParameterTypes30 = new String[] {
 				"boolean", "long", "long", "java.lang.String",
 				"java.lang.String", "com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName30 = "updateOAuthApplications_Users";
-
-		_methodParameterTypes30 = new String[] { "long", "long", "boolean" };
-
 		_methodName31 = "updateOAuthApplications_Users";
 
-		_methodParameterTypes31 = new String[] {
+		_methodParameterTypes31 = new String[] { "long", "long", "boolean" };
+
+		_methodName32 = "updateOAuthApplications_Users";
+
+		_methodParameterTypes32 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String"
 			};
 	}
@@ -1052,6 +1056,35 @@ public class OAuthApplications_UsersLocalServiceClp
 		return (java.util.List<com.liferay.portal.oauth.model.OAuthApplications_Users>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.portal.oauth.model.OAuthApplications_Users getOAuthApplications_UsersByAccessToken(
+		java.lang.String accessToken)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName29,
+					_methodParameterTypes29,
+					new Object[] { ClpSerializer.translateInput(accessToken) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.oauth.model.OAuthApplications_Users)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public com.liferay.portal.oauth.model.OAuthApplications_Users updateOAuthApplications_Users(
 		boolean authorized, long oAuthApplicationId, long userId,
 		java.lang.String accessSecret, java.lang.String accessToken,
@@ -1061,8 +1094,8 @@ public class OAuthApplications_UsersLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName29,
-					_methodParameterTypes29,
+			returnObj = _invokableLocalService.invokeMethod(_methodName30,
+					_methodParameterTypes30,
 					new Object[] {
 						authorized,
 						
@@ -1106,8 +1139,8 @@ public class OAuthApplications_UsersLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName30,
-					_methodParameterTypes30,
+			returnObj = _invokableLocalService.invokeMethod(_methodName31,
+					_methodParameterTypes31,
 					new Object[] { oAuthApplicationId, userId, authorized });
 		}
 		catch (Throwable t) {
@@ -1136,8 +1169,8 @@ public class OAuthApplications_UsersLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName31,
-					_methodParameterTypes31,
+			returnObj = _invokableLocalService.invokeMethod(_methodName32,
+					_methodParameterTypes32,
 					new Object[] {
 						oAuthApplicationId,
 						
@@ -1230,4 +1263,6 @@ public class OAuthApplications_UsersLocalServiceClp
 	private String[] _methodParameterTypes30;
 	private String _methodName31;
 	private String[] _methodParameterTypes31;
+	private String _methodName32;
+	private String[] _methodParameterTypes32;
 }

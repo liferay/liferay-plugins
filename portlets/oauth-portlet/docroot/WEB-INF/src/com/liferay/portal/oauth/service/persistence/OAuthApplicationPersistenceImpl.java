@@ -734,6 +734,10 @@ public class OAuthApplicationPersistenceImpl extends BasePersistenceImpl<OAuthAp
 	/**
 	 * Returns the first o auth application in the ordered set where companyId = &#63;.
 	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching o auth application
@@ -743,47 +747,32 @@ public class OAuthApplicationPersistenceImpl extends BasePersistenceImpl<OAuthAp
 	public OAuthApplication findByCompanyId_First(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchApplicationException, SystemException {
-		OAuthApplication oAuthApplication = fetchByCompanyId_First(companyId,
-				orderByComparator);
-
-		if (oAuthApplication != null) {
-			return oAuthApplication;
-		}
-
-		StringBundler msg = new StringBundler(4);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("companyId=");
-		msg.append(companyId);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchApplicationException(msg.toString());
-	}
-
-	/**
-	 * Returns the first o auth application in the ordered set where companyId = &#63;.
-	 *
-	 * @param companyId the company ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching o auth application, or <code>null</code> if a matching o auth application could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public OAuthApplication fetchByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator) throws SystemException {
 		List<OAuthApplication> list = findByCompanyId(companyId, 0, 1,
 				orderByComparator);
 
-		if (!list.isEmpty()) {
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("companyId=");
+			msg.append(companyId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchApplicationException(msg.toString());
+		}
+		else {
 			return list.get(0);
 		}
-
-		return null;
 	}
 
 	/**
 	 * Returns the last o auth application in the ordered set where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
 	 *
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -794,49 +783,34 @@ public class OAuthApplicationPersistenceImpl extends BasePersistenceImpl<OAuthAp
 	public OAuthApplication findByCompanyId_Last(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchApplicationException, SystemException {
-		OAuthApplication oAuthApplication = fetchByCompanyId_Last(companyId,
-				orderByComparator);
-
-		if (oAuthApplication != null) {
-			return oAuthApplication;
-		}
-
-		StringBundler msg = new StringBundler(4);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("companyId=");
-		msg.append(companyId);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchApplicationException(msg.toString());
-	}
-
-	/**
-	 * Returns the last o auth application in the ordered set where companyId = &#63;.
-	 *
-	 * @param companyId the company ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching o auth application, or <code>null</code> if a matching o auth application could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public OAuthApplication fetchByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
 
 		List<OAuthApplication> list = findByCompanyId(companyId, count - 1,
 				count, orderByComparator);
 
-		if (!list.isEmpty()) {
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("companyId=");
+			msg.append(companyId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchApplicationException(msg.toString());
+		}
+		else {
 			return list.get(0);
 		}
-
-		return null;
 	}
 
 	/**
 	 * Returns the o auth applications before and after the current o auth application in the ordered set where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
 	 *
 	 * @param applicationId the primary key of the current o auth application
 	 * @param companyId the company ID
@@ -1554,6 +1528,10 @@ public class OAuthApplicationPersistenceImpl extends BasePersistenceImpl<OAuthAp
 	/**
 	 * Returns the first o auth application in the ordered set where ownerId = &#63;.
 	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
 	 * @param ownerId the owner ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching o auth application
@@ -1563,47 +1541,32 @@ public class OAuthApplicationPersistenceImpl extends BasePersistenceImpl<OAuthAp
 	public OAuthApplication findByOwnerId_First(long ownerId,
 		OrderByComparator orderByComparator)
 		throws NoSuchApplicationException, SystemException {
-		OAuthApplication oAuthApplication = fetchByOwnerId_First(ownerId,
-				orderByComparator);
-
-		if (oAuthApplication != null) {
-			return oAuthApplication;
-		}
-
-		StringBundler msg = new StringBundler(4);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("ownerId=");
-		msg.append(ownerId);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchApplicationException(msg.toString());
-	}
-
-	/**
-	 * Returns the first o auth application in the ordered set where ownerId = &#63;.
-	 *
-	 * @param ownerId the owner ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching o auth application, or <code>null</code> if a matching o auth application could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public OAuthApplication fetchByOwnerId_First(long ownerId,
-		OrderByComparator orderByComparator) throws SystemException {
 		List<OAuthApplication> list = findByOwnerId(ownerId, 0, 1,
 				orderByComparator);
 
-		if (!list.isEmpty()) {
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("ownerId=");
+			msg.append(ownerId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchApplicationException(msg.toString());
+		}
+		else {
 			return list.get(0);
 		}
-
-		return null;
 	}
 
 	/**
 	 * Returns the last o auth application in the ordered set where ownerId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
 	 *
 	 * @param ownerId the owner ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -1614,49 +1577,34 @@ public class OAuthApplicationPersistenceImpl extends BasePersistenceImpl<OAuthAp
 	public OAuthApplication findByOwnerId_Last(long ownerId,
 		OrderByComparator orderByComparator)
 		throws NoSuchApplicationException, SystemException {
-		OAuthApplication oAuthApplication = fetchByOwnerId_Last(ownerId,
-				orderByComparator);
-
-		if (oAuthApplication != null) {
-			return oAuthApplication;
-		}
-
-		StringBundler msg = new StringBundler(4);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("ownerId=");
-		msg.append(ownerId);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchApplicationException(msg.toString());
-	}
-
-	/**
-	 * Returns the last o auth application in the ordered set where ownerId = &#63;.
-	 *
-	 * @param ownerId the owner ID
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching o auth application, or <code>null</code> if a matching o auth application could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public OAuthApplication fetchByOwnerId_Last(long ownerId,
-		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByOwnerId(ownerId);
 
 		List<OAuthApplication> list = findByOwnerId(ownerId, count - 1, count,
 				orderByComparator);
 
-		if (!list.isEmpty()) {
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("ownerId=");
+			msg.append(ownerId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchApplicationException(msg.toString());
+		}
+		else {
 			return list.get(0);
 		}
-
-		return null;
 	}
 
 	/**
 	 * Returns the o auth applications before and after the current o auth application in the ordered set where ownerId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
 	 *
 	 * @param applicationId the primary key of the current o auth application
 	 * @param ownerId the owner ID
@@ -2228,6 +2176,10 @@ public class OAuthApplicationPersistenceImpl extends BasePersistenceImpl<OAuthAp
 	/**
 	 * Returns the first o auth application in the ordered set where website LIKE &#63;.
 	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
 	 * @param website the website
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching o auth application
@@ -2237,47 +2189,32 @@ public class OAuthApplicationPersistenceImpl extends BasePersistenceImpl<OAuthAp
 	public OAuthApplication findByWebsite_First(String website,
 		OrderByComparator orderByComparator)
 		throws NoSuchApplicationException, SystemException {
-		OAuthApplication oAuthApplication = fetchByWebsite_First(website,
-				orderByComparator);
-
-		if (oAuthApplication != null) {
-			return oAuthApplication;
-		}
-
-		StringBundler msg = new StringBundler(4);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("website=");
-		msg.append(website);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchApplicationException(msg.toString());
-	}
-
-	/**
-	 * Returns the first o auth application in the ordered set where website LIKE &#63;.
-	 *
-	 * @param website the website
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching o auth application, or <code>null</code> if a matching o auth application could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public OAuthApplication fetchByWebsite_First(String website,
-		OrderByComparator orderByComparator) throws SystemException {
 		List<OAuthApplication> list = findByWebsite(website, 0, 1,
 				orderByComparator);
 
-		if (!list.isEmpty()) {
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("website=");
+			msg.append(website);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchApplicationException(msg.toString());
+		}
+		else {
 			return list.get(0);
 		}
-
-		return null;
 	}
 
 	/**
 	 * Returns the last o auth application in the ordered set where website LIKE &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
 	 *
 	 * @param website the website
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -2288,49 +2225,34 @@ public class OAuthApplicationPersistenceImpl extends BasePersistenceImpl<OAuthAp
 	public OAuthApplication findByWebsite_Last(String website,
 		OrderByComparator orderByComparator)
 		throws NoSuchApplicationException, SystemException {
-		OAuthApplication oAuthApplication = fetchByWebsite_Last(website,
-				orderByComparator);
-
-		if (oAuthApplication != null) {
-			return oAuthApplication;
-		}
-
-		StringBundler msg = new StringBundler(4);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("website=");
-		msg.append(website);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchApplicationException(msg.toString());
-	}
-
-	/**
-	 * Returns the last o auth application in the ordered set where website LIKE &#63;.
-	 *
-	 * @param website the website
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching o auth application, or <code>null</code> if a matching o auth application could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public OAuthApplication fetchByWebsite_Last(String website,
-		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByWebsite(website);
 
 		List<OAuthApplication> list = findByWebsite(website, count - 1, count,
 				orderByComparator);
 
-		if (!list.isEmpty()) {
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("website=");
+			msg.append(website);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchApplicationException(msg.toString());
+		}
+		else {
 			return list.get(0);
 		}
-
-		return null;
 	}
 
 	/**
 	 * Returns the o auth applications before and after the current o auth application in the ordered set where website LIKE &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
 	 *
 	 * @param applicationId the primary key of the current o auth application
 	 * @param website the website
@@ -2949,6 +2871,10 @@ public class OAuthApplicationPersistenceImpl extends BasePersistenceImpl<OAuthAp
 	/**
 	 * Returns the first o auth application in the ordered set where companyId = &#63; and name LIKE &#63;.
 	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
 	 * @param companyId the company ID
 	 * @param name the name
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -2959,51 +2885,35 @@ public class OAuthApplicationPersistenceImpl extends BasePersistenceImpl<OAuthAp
 	public OAuthApplication findByC_N_First(long companyId, String name,
 		OrderByComparator orderByComparator)
 		throws NoSuchApplicationException, SystemException {
-		OAuthApplication oAuthApplication = fetchByC_N_First(companyId, name,
-				orderByComparator);
-
-		if (oAuthApplication != null) {
-			return oAuthApplication;
-		}
-
-		StringBundler msg = new StringBundler(6);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("companyId=");
-		msg.append(companyId);
-
-		msg.append(", name=");
-		msg.append(name);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchApplicationException(msg.toString());
-	}
-
-	/**
-	 * Returns the first o auth application in the ordered set where companyId = &#63; and name LIKE &#63;.
-	 *
-	 * @param companyId the company ID
-	 * @param name the name
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching o auth application, or <code>null</code> if a matching o auth application could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public OAuthApplication fetchByC_N_First(long companyId, String name,
-		OrderByComparator orderByComparator) throws SystemException {
 		List<OAuthApplication> list = findByC_N(companyId, name, 0, 1,
 				orderByComparator);
 
-		if (!list.isEmpty()) {
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("companyId=");
+			msg.append(companyId);
+
+			msg.append(", name=");
+			msg.append(name);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchApplicationException(msg.toString());
+		}
+		else {
 			return list.get(0);
 		}
-
-		return null;
 	}
 
 	/**
 	 * Returns the last o auth application in the ordered set where companyId = &#63; and name LIKE &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
 	 *
 	 * @param companyId the company ID
 	 * @param name the name
@@ -3015,53 +2925,37 @@ public class OAuthApplicationPersistenceImpl extends BasePersistenceImpl<OAuthAp
 	public OAuthApplication findByC_N_Last(long companyId, String name,
 		OrderByComparator orderByComparator)
 		throws NoSuchApplicationException, SystemException {
-		OAuthApplication oAuthApplication = fetchByC_N_Last(companyId, name,
-				orderByComparator);
-
-		if (oAuthApplication != null) {
-			return oAuthApplication;
-		}
-
-		StringBundler msg = new StringBundler(6);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("companyId=");
-		msg.append(companyId);
-
-		msg.append(", name=");
-		msg.append(name);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchApplicationException(msg.toString());
-	}
-
-	/**
-	 * Returns the last o auth application in the ordered set where companyId = &#63; and name LIKE &#63;.
-	 *
-	 * @param companyId the company ID
-	 * @param name the name
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching o auth application, or <code>null</code> if a matching o auth application could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public OAuthApplication fetchByC_N_Last(long companyId, String name,
-		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByC_N(companyId, name);
 
 		List<OAuthApplication> list = findByC_N(companyId, name, count - 1,
 				count, orderByComparator);
 
-		if (!list.isEmpty()) {
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("companyId=");
+			msg.append(companyId);
+
+			msg.append(", name=");
+			msg.append(name);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchApplicationException(msg.toString());
+		}
+		else {
 			return list.get(0);
 		}
-
-		return null;
 	}
 
 	/**
 	 * Returns the o auth applications before and after the current o auth application in the ordered set where companyId = &#63; and name LIKE &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
 	 *
 	 * @param applicationId the primary key of the current o auth application
 	 * @param companyId the company ID
@@ -3697,6 +3591,10 @@ public class OAuthApplicationPersistenceImpl extends BasePersistenceImpl<OAuthAp
 	/**
 	 * Returns the first o auth application in the ordered set where ownerId = &#63; and name LIKE &#63;.
 	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
 	 * @param ownerId the owner ID
 	 * @param name the name
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -3707,51 +3605,35 @@ public class OAuthApplicationPersistenceImpl extends BasePersistenceImpl<OAuthAp
 	public OAuthApplication findByO_N_First(long ownerId, String name,
 		OrderByComparator orderByComparator)
 		throws NoSuchApplicationException, SystemException {
-		OAuthApplication oAuthApplication = fetchByO_N_First(ownerId, name,
-				orderByComparator);
-
-		if (oAuthApplication != null) {
-			return oAuthApplication;
-		}
-
-		StringBundler msg = new StringBundler(6);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("ownerId=");
-		msg.append(ownerId);
-
-		msg.append(", name=");
-		msg.append(name);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchApplicationException(msg.toString());
-	}
-
-	/**
-	 * Returns the first o auth application in the ordered set where ownerId = &#63; and name LIKE &#63;.
-	 *
-	 * @param ownerId the owner ID
-	 * @param name the name
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching o auth application, or <code>null</code> if a matching o auth application could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public OAuthApplication fetchByO_N_First(long ownerId, String name,
-		OrderByComparator orderByComparator) throws SystemException {
 		List<OAuthApplication> list = findByO_N(ownerId, name, 0, 1,
 				orderByComparator);
 
-		if (!list.isEmpty()) {
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("ownerId=");
+			msg.append(ownerId);
+
+			msg.append(", name=");
+			msg.append(name);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchApplicationException(msg.toString());
+		}
+		else {
 			return list.get(0);
 		}
-
-		return null;
 	}
 
 	/**
 	 * Returns the last o auth application in the ordered set where ownerId = &#63; and name LIKE &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
 	 *
 	 * @param ownerId the owner ID
 	 * @param name the name
@@ -3763,53 +3645,37 @@ public class OAuthApplicationPersistenceImpl extends BasePersistenceImpl<OAuthAp
 	public OAuthApplication findByO_N_Last(long ownerId, String name,
 		OrderByComparator orderByComparator)
 		throws NoSuchApplicationException, SystemException {
-		OAuthApplication oAuthApplication = fetchByO_N_Last(ownerId, name,
-				orderByComparator);
-
-		if (oAuthApplication != null) {
-			return oAuthApplication;
-		}
-
-		StringBundler msg = new StringBundler(6);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("ownerId=");
-		msg.append(ownerId);
-
-		msg.append(", name=");
-		msg.append(name);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchApplicationException(msg.toString());
-	}
-
-	/**
-	 * Returns the last o auth application in the ordered set where ownerId = &#63; and name LIKE &#63;.
-	 *
-	 * @param ownerId the owner ID
-	 * @param name the name
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching o auth application, or <code>null</code> if a matching o auth application could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public OAuthApplication fetchByO_N_Last(long ownerId, String name,
-		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByO_N(ownerId, name);
 
 		List<OAuthApplication> list = findByO_N(ownerId, name, count - 1,
 				count, orderByComparator);
 
-		if (!list.isEmpty()) {
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("ownerId=");
+			msg.append(ownerId);
+
+			msg.append(", name=");
+			msg.append(name);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchApplicationException(msg.toString());
+		}
+		else {
 			return list.get(0);
 		}
-
-		return null;
 	}
 
 	/**
 	 * Returns the o auth applications before and after the current o auth application in the ordered set where ownerId = &#63; and name LIKE &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
 	 *
 	 * @param applicationId the primary key of the current o auth application
 	 * @param ownerId the owner ID

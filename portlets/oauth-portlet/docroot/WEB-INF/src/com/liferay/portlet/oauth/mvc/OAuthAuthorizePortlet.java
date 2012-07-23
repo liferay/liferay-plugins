@@ -66,7 +66,7 @@ public class OAuthAuthorizePortlet extends MVCPortlet {
 
 	@Override
 	public void render(RenderRequest request, RenderResponse response)
-		throws PortletException, IOException {
+		throws IOException, PortletException {
 
 		OAuthMessage requestMessage = OAuthProviderManagerUtil.getMessage(
 			request, null);

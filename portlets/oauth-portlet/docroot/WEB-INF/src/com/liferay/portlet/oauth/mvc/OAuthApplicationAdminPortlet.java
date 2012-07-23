@@ -179,7 +179,7 @@ public class OAuthApplicationAdminPortlet extends MVCPortlet {
 	@Override
 	public void render(
 			RenderRequest renderRequest, RenderResponse renberResponse)
-		throws PortletException, IOException {
+		throws IOException, PortletException {
 
 		long applicationId = ParamUtil.getLong(
 			renderRequest, OAuthConstants.WEB_APP_ID);

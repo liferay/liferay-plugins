@@ -361,6 +361,12 @@ public class OAuthApplications_UsersLocalServiceUtil {
 		return getService().findByUser(userId, start, end, orderByComparator);
 	}
 
+	public static com.liferay.portal.oauth.model.OAuthApplications_Users getOAuthApplications_UsersByAccessToken(
+		java.lang.String accessToken)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getOAuthApplications_UsersByAccessToken(accessToken);
+	}
+
 	/**
 	* Update user's authorization for an existing application that is
 	* registered to use OAuth feature. If entity doesn't exist new one (with

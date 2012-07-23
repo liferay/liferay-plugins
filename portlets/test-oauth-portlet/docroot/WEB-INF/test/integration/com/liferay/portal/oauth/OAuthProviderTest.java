@@ -126,7 +126,7 @@ public class OAuthProviderTest {
 			}
 
 			WebElement element = _driver.findElement(
-					By.id("_4_WAR_oauthportlet_authorize"));
+					By.id(OAUTH_PORTLET_ID));
 			element.submit();
 
 			String[] params = extractParams(_driver.getCurrentUrl());
@@ -158,7 +158,7 @@ public class OAuthProviderTest {
 			}
 
 			WebElement element = _driver.findElement(
-					By.id("_4_WAR_oauthportlet_authorize"));
+					By.id(OAUTH_PORTLET_ID));
 			element.submit();
 
 			element = _driver.findElement(By.className("portlet-msg-info"));
@@ -352,7 +352,7 @@ public class OAuthProviderTest {
 			"(? ,? ,? ,? ,? ,? , ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	private static final String OAUTH_PORTLET_ID =
-		"_4_WAR_oauthportlet_authorize";
+		"_3_WAR_oauthportlet_authorize";
 
 	Object[][] dataWithoutCallback = {
 		{
