@@ -241,32 +241,6 @@
 		</releng>
 	</plugin>
 	<plugin>
-		<artifact-id>1-2-1-columns-layouttpl</artifact-id>
-		<name>1-2-1 Columns Templates</name>
-		<type>layouttpl</type>
-		<tags></tags>
-		<short-description>
-		This plugin is a 1-2-1 columns layout template.
-	</short-description>
-		<long-description></long-description>
-		<change-log></change-log>
-		<page-url>http://www.liferay.com</page-url>
-		<author>Liferay, Inc.</author>
-		<licenses>LGPL</licenses>
-		<liferay-versions>6.2.0+</liferay-versions>
-		<releng>
-			<bundle>false</bundle>
-			<category>Utility</category>
-			<demo-url></demo-url>
-			<labs>true</labs>
-			<marketplace>true</marketplace>
-			<parent-app></parent-app>
-			<public>true</public>
-			<standalone-app>true</standalone-app>
-			<supported>true</supported>
-		</releng>
-	</plugin>
-	<plugin>
 		<artifact-id>1-3-1-columns-layouttpl</artifact-id>
 		<name>1-3-1 Columns Template</name>
 		<type>layouttpl</type>
@@ -278,32 +252,6 @@
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<liferay-versions>6.2.0</liferay-versions>
-		<releng>
-			<bundle>false</bundle>
-			<category>Utility</category>
-			<demo-url></demo-url>
-			<labs>true</labs>
-			<marketplace>true</marketplace>
-			<parent-app></parent-app>
-			<public>true</public>
-			<standalone-app>true</standalone-app>
-			<supported>true</supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id>1-3-1-columns-layouttpl</artifact-id>
-		<name>1-3-1 Columns Templates</name>
-		<type>layouttpl</type>
-		<tags></tags>
-		<short-description>
-		This plugin is a 1-3-1 columns layout template.
-	</short-description>
-		<long-description></long-description>
-		<change-log></change-log>
-		<page-url>http://www.liferay.com</page-url>
-		<author>Liferay, Inc.</author>
-		<licenses>LGPL</licenses>
-		<liferay-versions>6.2.0+</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Utility</category>
@@ -341,32 +289,6 @@
 		</releng>
 	</plugin>
 	<plugin>
-		<artifact-id>1-3-2-columns-layouttpl</artifact-id>
-		<name>1-3-2 Columns Templates</name>
-		<type>layouttpl</type>
-		<tags></tags>
-		<short-description>
-		This plugin is a 1-3-2 columns layout template.
-	</short-description>
-		<long-description></long-description>
-		<change-log></change-log>
-		<page-url>http://www.liferay.com</page-url>
-		<author>Liferay, Inc.</author>
-		<licenses>LGPL</licenses>
-		<liferay-versions>6.2.0+</liferay-versions>
-		<releng>
-			<bundle>false</bundle>
-			<category>Utility</category>
-			<demo-url></demo-url>
-			<labs>true</labs>
-			<marketplace>true</marketplace>
-			<parent-app></parent-app>
-			<public>true</public>
-			<standalone-app>true</standalone-app>
-			<supported>true</supported>
-		</releng>
-	</plugin>
-	<plugin>
 		<artifact-id>2-1-2-columns-layouttpl</artifact-id>
 		<name>2-1-2 Columns Template</name>
 		<type>layouttpl</type>
@@ -391,32 +313,6 @@
 		</releng>
 	</plugin>
 	<plugin>
-		<artifact-id>2-1-2-columns-layouttpl</artifact-id>
-		<name>2-1-2 Columns Templates</name>
-		<type>layouttpl</type>
-		<tags></tags>
-		<short-description>
-		This plugin is a 2-1-2 columns layout template.
-	</short-description>
-		<long-description></long-description>
-		<change-log></change-log>
-		<page-url>http://www.liferay.com</page-url>
-		<author>Liferay, Inc.</author>
-		<licenses>LGPL</licenses>
-		<liferay-versions>6.2.0+</liferay-versions>
-		<releng>
-			<bundle>false</bundle>
-			<category>Utility</category>
-			<demo-url></demo-url>
-			<labs>true</labs>
-			<marketplace>true</marketplace>
-			<parent-app></parent-app>
-			<public>true</public>
-			<standalone-app>true</standalone-app>
-			<supported>true</supported>
-		</releng>
-	</plugin>
-	<plugin>
 		<artifact-id>3-2-3-columns-layouttpl</artifact-id>
 		<name>3-2-3 Columns Template</name>
 		<type>layouttpl</type>
@@ -428,32 +324,6 @@
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
 		<liferay-versions>6.2.0</liferay-versions>
-		<releng>
-			<bundle>false</bundle>
-			<category>Utility</category>
-			<demo-url></demo-url>
-			<labs>true</labs>
-			<marketplace>true</marketplace>
-			<parent-app></parent-app>
-			<public>true</public>
-			<standalone-app>true</standalone-app>
-			<supported>true</supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id>3-2-3-columns-layouttpl</artifact-id>
-		<name>3-2-3 Columns Templates</name>
-		<type>layouttpl</type>
-		<tags></tags>
-		<short-description>
-		This plugin is a 3-2-3 columns layout template.
-	</short-description>
-		<long-description></long-description>
-		<change-log></change-log>
-		<page-url>http://www.liferay.com</page-url>
-		<author>Liferay, Inc.</author>
-		<licenses>LGPL</licenses>
-		<liferay-versions>6.2.0+</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Utility</category>
@@ -597,7 +467,7 @@
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
-		<licenses>LGPL</licenses>
+		<licenses>AGPL</licenses>
 		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
@@ -607,7 +477,7 @@
 			<marketplace>true</marketplace>
 			<parent-app>Social Office</parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
+			<standalone-app>false</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -940,7 +810,7 @@
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
-		<licenses>LGPL</licenses>
+		<licenses>AGPL</licenses>
 		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
@@ -950,7 +820,7 @@
 			<marketplace>true</marketplace>
 			<parent-app>Social Office</parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
+			<standalone-app>false</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -1037,7 +907,7 @@
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
-		<licenses>LGPL</licenses>
+		<licenses>AGPL</licenses>
 		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
@@ -1807,7 +1677,7 @@
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
-		<licenses>LGPL</licenses>
+		<licenses>AGPL</licenses>
 		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
@@ -1817,7 +1687,7 @@
 			<marketplace>true</marketplace>
 			<parent-app>Social Office</parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
+			<standalone-app>false</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2477,6 +2347,30 @@
 		</releng>
 	</plugin>
 	<plugin>
+		<artifact-id>healthcare-theme</artifact-id>
+		<name>Healthcare</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<long-description></long-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
+		<releng>
+			<bundle>false</bundle>
+			<category></category>
+			<demo-url></demo-url>
+			<labs>true</labs>
+			<marketplace>true</marketplace>
+			<parent-app></parent-app>
+			<public>true</public>
+			<standalone-app>true</standalone-app>
+			<supported>true</supported>
+		</releng>
+	</plugin>
+	<plugin>
 		<artifact-id>lithe-theme</artifact-id>
 		<name>Lithe</name>
 		<type>theme</type>
@@ -2553,16 +2447,13 @@
 		<name>Sample HTML4</name>
 		<type>theme</type>
 		<tags></tags>
-		<short-description>
-		This is a sample HTML4 theme with configuration set in
-		liferay-look-and-feel.xml.
-	</short-description>
+		<short-description></short-description>
 		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
-		<liferay-versions>6.2.0+</liferay-versions>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
@@ -2580,16 +2471,13 @@
 		<name>Sample Styled Advanced</name>
 		<type>theme</type>
 		<tags></tags>
-		<short-description>
-		This is a sample styled theme with advanced configuration set in
-		liferay-look-and-feel.xml.
-	</short-description>
+		<short-description></short-description>
 		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
-		<liferay-versions>6.2.0+</liferay-versions>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
@@ -2631,16 +2519,13 @@
 		<name>Sample Unstyled</name>
 		<type>theme</type>
 		<tags></tags>
-		<short-description>
-		This is a sample unstyled theme with configuration set in
-		liferay-look-and-feel.xml.
-	</short-description>
+		<short-description></short-description>
 		<long-description></long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
-		<liferay-versions>6.2.0+</liferay-versions>
+		<liferay-versions>6.2.0</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
