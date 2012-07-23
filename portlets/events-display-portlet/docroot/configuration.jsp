@@ -23,13 +23,31 @@
 		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="display-options">
-			<aui:select label="how-many-days-to-display" name="preferences--maxDaysDisplayed--">
-				<aui:option label="1" selected="<%= maxDaysDisplayed == 1 %>" value="<%= 1 %>" />
-				<aui:option label="2" selected="<%= maxDaysDisplayed == 2 %>" value="<%= 2 %>" />
-				<aui:option label="3" selected="<%= maxDaysDisplayed == 3 %>" value="<%= 3 %>" />
-				<aui:option label="4" selected="<%= maxDaysDisplayed == 4 %>" value="<%= 4 %>" />
-				<aui:option label="5" selected="<%= maxDaysDisplayed == 5 %>" value="<%= 5 %>" />
-			</aui:select>
+			<aui:fieldset>
+				<aui:select label="how-many-days-to-display" name="preferences--maxDaysDisplayed--">
+					<aui:option label="1" selected="<%= maxDaysDisplayed == 1 %>" value="<%= 1 %>" />
+					<aui:option label="2" selected="<%= maxDaysDisplayed == 2 %>" value="<%= 2 %>" />
+					<aui:option label="3" selected="<%= maxDaysDisplayed == 3 %>" value="<%= 3 %>" />
+					<aui:option label="4" selected="<%= maxDaysDisplayed == 4 %>" value="<%= 4 %>" />
+					<aui:option label="5" selected="<%= maxDaysDisplayed == 5 %>" value="<%= 5 %>" />
+				</aui:select>
+
+				<aui:select label="maximum-events-to-display" name="preferences--eventsPerPage--">
+
+					<%
+					int[] deltaValues = GetterUtil.getIntegerValues(PrefsPropsUtil.getStringArray(PropsKeys.SEARCH_CONTAINER_PAGE_DELTA_VALUES, StringPool.COMMA));
+
+					for (int pageDeltaValue : deltaValues) {
+					%>
+
+						<aui:option label="<%= pageDeltaValue %>" selected="<%= eventsPerPage == pageDeltaValue %>" />
+
+					<%
+					}
+					%>
+
+				</aui:select>
+			</aui:fieldset>
 		</liferay-ui:panel>
 
 		<aui:button type="submit" />

@@ -11,8 +11,16 @@
 		float: right;
 	}
 
-	.event-type, .results-header, .taglib-search-iterator-page-iterator-bottom {
+	.event-type, .results-header {
 		display: none;
+	}
+
+	.aui-field-select {
+		display: block;
+
+		.aui-field-content {
+			margin: 10px;
+		}
 	}
 }
 

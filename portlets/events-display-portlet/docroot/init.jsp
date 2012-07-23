@@ -30,10 +30,13 @@ page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
 page import="com.liferay.portal.kernel.util.CalendarFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %><%@
+page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
 page import="com.liferay.portal.kernel.util.ListUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.PortalClassLoaderUtil" %><%@
 page import="com.liferay.portal.kernel.util.PrefsParamUtil" %><%@
+page import="com.liferay.portal.kernel.util.PrefsPropsUtil" %><%@
+page import="com.liferay.portal.kernel.util.PropsKeys" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
 page import="com.liferay.portal.kernel.util.StringUtil" %><%@
 page import="com.liferay.portal.kernel.util.Time" %><%@
@@ -77,6 +80,8 @@ String portletResource = ParamUtil.getString(request, "portletResource");
 if (Validator.isNotNull(portletResource)) {
 	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
+
+int eventsPerPage = PrefsParamUtil.getInteger(preferences, request, "eventsPerPage", 10);
 
 int maxDaysDisplayed = PrefsParamUtil.getInteger(preferences, request, "maxDaysDisplayed", 1);
 
