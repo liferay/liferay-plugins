@@ -2323,8 +2323,8 @@
 		</releng>
 	</plugin>
 	<plugin>
-		<artifact-id>healthcare-theme</artifact-id>
-		<name>Healthcare</name>
+		<artifact-id>7cogs-brochure-theme</artifact-id>
+		<name>7Cogs Brochure</name>
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
@@ -2347,8 +2347,8 @@
 		</releng>
 	</plugin>
 	<plugin>
-		<artifact-id>lithe-theme</artifact-id>
-		<name>Lithe</name>
+		<artifact-id>7cogs-healthcare-theme</artifact-id>
+		<name>7Cogs Healthcare</name>
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
@@ -2371,8 +2371,8 @@
 		</releng>
 	</plugin>
 	<plugin>
-		<artifact-id>modern-indigo-theme</artifact-id>
-		<name>Modern Indigo</name>
+		<artifact-id>7cogs-resort-theme</artifact-id>
+		<name>7Cogs Paradise</name>
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
@@ -2395,8 +2395,8 @@
 		</releng>
 	</plugin>
 	<plugin>
-		<artifact-id>paradise-theme</artifact-id>
-		<name>Paradise</name>
+		<artifact-id>7cogs-tech-theme</artifact-id>
+		<name>7Cogs Tech</name>
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
