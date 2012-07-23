@@ -79,7 +79,7 @@ $theme.include($body_top_include)
 	<footer id="footer" role="contentinfo">
 		<div id="footerContent">
 			<div class="aui-layout-content">
-				<div id="blurb" class="aui-column aui-column-first aui-w50">
+				<div class="aui-column aui-column-first aui-w50" id="blurb">
 					<h3 class="blurb-title">$theme_settings.blurb-title</h3>
 					<p class="blurb-text">“${theme_settings.blurb-content}”  - <span class="blurb-author">${theme_settings.blurb-author}</span></p>
 				</div>
@@ -89,7 +89,7 @@ $theme.include($body_top_include)
 
 						#foreach ($nav_item in $nav_items)
 							#set($navItemClass = "item-" + $velocityCount)
-						
+
 							#if ($velocityCount == 1)
 								#set($navItemClass = $navItemClass + " first")
 							#end
@@ -101,7 +101,7 @@ $theme.include($body_top_include)
 							#if ($nav_item.isSelected())
 								#set($navItemClass = $navItemClass + " selected")
 							#end
-						
+
 							<li class="$navItemClass">
 								<a href="$nav_item.getURL()" $nav_item.getTarget()><span>$nav_item.icon() $nav_item.getName()</span></a>
 							</li>
