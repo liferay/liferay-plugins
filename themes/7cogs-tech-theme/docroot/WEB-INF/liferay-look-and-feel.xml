@@ -5,7 +5,7 @@
 	<compatibility>
 		<version>6.1.1+</version>
 	</compatibility>
-	<theme id="lithe" name="Lithe">
+	<theme id="7cogs-tech" name="7Cogs Tech">
 		<settings>
 			<setting configurable="true" key="blurb-content" type="textarea" value="Vivamus rutrum nunc non neque consectetur quis placerat neque lobortis. Nam vestibulum, arcu sodales feugiat consectetur, nisl orci bibendum elit, eu euismod magna sapien ut nibh. Donec semper quam scelerisque tortor dictum gravida. In hac habitasse">
 				<![CDATA[
