@@ -50,13 +50,31 @@ public class MarketplaceMessageListener extends BaseMessageListener {
 			return;
 		}
 
-		App app = AppLocalServiceUtil.addApp(0, remoteAppId, version, null);
+		App app = AppLocalServiceUtil.fetchRemoteApp(remoteAppId);
+
+		if (app != null) {
+			return;
+		}
+
+		app = AppLocalServiceUtil.addApp(0, remoteAppId, version, null);
 
 		String[] contextNames = StringUtil.split(
-			properties.getProperty("contextNames"));
+			properties.getProperty("context-names"));
 
 		for (String contextName : contextNames) {
 			ModuleLocalServiceUtil.addModule(0, app.getAppId(), contextName);
+		}
+
+		long[] uninstallRemoteAppIds = StringUtil.split(
+			properties.getProperty("supersedes-remote-app-ids"), 0L);
+
+		for (long uninstallRemoteAppId : uninstallRemoteAppIds) {
+			App uninstallApp = AppLocalServiceUtil.fetchRemoteApp(
+				uninstallRemoteAppId);
+
+			if ((uninstallApp != null) && uninstallApp.isInstalled()) {
+				AppLocalServiceUtil.uninstallApp(uninstallRemoteAppId);
+			}
 		}
 	}
 
