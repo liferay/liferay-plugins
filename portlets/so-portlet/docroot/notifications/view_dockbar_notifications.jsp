@@ -73,10 +73,10 @@ int notificationEventsCount = notificationEvents.size();
 			%>
 
 				<c:choose>
-					<c:when test='<%= portletId.equals(PortletKeys.ANNOUNCEMENTS) %>'>
+					<c:when test="<%= portletId.equals(PortletKeys.ANNOUNCEMENTS) %>">
 						<%@ include file="/notifications/view_announcement.jspf" %>
 					</c:when>
-					<c:when test='<%= portletId.equals(PortletKeys.SO_INVITE_MEMBERS) %>'>
+					<c:when test="<%= portletId.equals(PortletKeys.SO_INVITE_MEMBERS) %>">
 						<%@ include file="/notifications/view_member_request.jspf" %>
 					</c:when>
 					<c:when test='<%= portletId.equals("1_WAR_contactsportlet") %>'>

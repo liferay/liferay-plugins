@@ -63,7 +63,7 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 			<c:if test="<%= PortletPropsValues.VALIDATION_SCRIPT_ENABLED %>">
 				<liferay-ui:error key='<%= "error" + fieldLabel %>' message="<%= fieldValidationErrorMessage %>" />
 
-				<c:if test='<%= Validator.isNotNull(fieldValidationScript) %>'>
+				<c:if test="<%= Validator.isNotNull(fieldValidationScript) %>">
 					<div class="aui-helper-hidden" id="<portlet:namespace/>validationError<%= fieldName %>">
 						<span class="portlet-msg-error"><%= fieldValidationErrorMessage %></span>
 					</div>

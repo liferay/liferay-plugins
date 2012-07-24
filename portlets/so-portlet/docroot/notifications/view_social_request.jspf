@@ -24,7 +24,7 @@
 		</span>
 
 		<span class="portlet-icon">
-			<liferay-portlet:icon-portlet portlet='<%= PortletLocalServiceUtil.getPortletById(company.getCompanyId(), portletId) %>' />
+			<liferay-portlet:icon-portlet portlet="<%= PortletLocalServiceUtil.getPortletById(company.getCompanyId(), portletId) %>" />
 		</span>
 	</div>
 
