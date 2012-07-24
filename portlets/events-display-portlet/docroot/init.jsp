@@ -82,7 +82,6 @@ if (Validator.isNotNull(portletResource)) {
 }
 
 int eventsPerPage = PrefsParamUtil.getInteger(preferences, request, "eventsPerPage", 10);
-
 int maxDaysDisplayed = PrefsParamUtil.getInteger(preferences, request, "maxDaysDisplayed", 1);
 
 Calendar cal = CalendarFactoryUtil.getCalendar(timeZone, locale);
