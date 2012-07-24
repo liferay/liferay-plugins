@@ -68,10 +68,10 @@ String notificationTemplateContentSubject = PrefsParamUtil.getString(preferences
 				</aui:select>
 
 				<aui:select label="default-duration" name="defaultDuration">
-					<aui:option label='<%= LanguageUtil.format(pageContext, "x-minutes", "15") %>' selected='<%= defaultDuration == 15 %>' value="15" />
-					<aui:option label='<%= LanguageUtil.format(pageContext, "x-minutes", "30") %>' selected='<%= defaultDuration == 30 %>' value="30" />
-					<aui:option label='<%= LanguageUtil.format(pageContext, "x-minutes", "60") %>' selected='<%= defaultDuration == 60 %>' value="60" />
-					<aui:option label='<%= LanguageUtil.format(pageContext, "x-minutes", "120") %>' selected='<%= defaultDuration == 120 %>' value="120" />
+					<aui:option label='<%= LanguageUtil.format(pageContext, "x-minutes", "15") %>' selected="<%= defaultDuration == 15 %>" value="15" />
+					<aui:option label='<%= LanguageUtil.format(pageContext, "x-minutes", "30") %>' selected="<%= defaultDuration == 30 %>" value="30" />
+					<aui:option label='<%= LanguageUtil.format(pageContext, "x-minutes", "60") %>' selected="<%= defaultDuration == 60 %>" value="60" />
+					<aui:option label='<%= LanguageUtil.format(pageContext, "x-minutes", "120") %>' selected="<%= defaultDuration == 120 %>" value="120" />
 				</aui:select>
 
 				<aui:select label="default-view" name="defaultView">
@@ -81,9 +81,9 @@ String notificationTemplateContentSubject = PrefsParamUtil.getString(preferences
 				</aui:select>
 
 				<aui:select label="week-starts-on" name="weekStartsOn">
-					<aui:option label="weekday.SU" selected='<%= weekStartsOn == 0 %>' value="0" />
-					<aui:option label="weekday.MO" selected='<%= weekStartsOn == 1 %>' value="1" />
-					<aui:option label="weekday.SA" selected='<%= weekStartsOn == 6 %>' value="6" />
+					<aui:option label="weekday.SU" selected="<%= weekStartsOn == 0 %>" value="0" />
+					<aui:option label="weekday.MO" selected="<%= weekStartsOn == 1 %>" value="1" />
+					<aui:option label="weekday.SA" selected="<%= weekStartsOn == 6 %>" value="6" />
 				</aui:select>
 
 				<aui:input cssClass="calendar-portlet-time-zone-field" disabled="<%= usePortalTimeZone %>" label="time-zone" name="timeZoneId" type="timeZone" value="<%= timeZoneId %>" />
