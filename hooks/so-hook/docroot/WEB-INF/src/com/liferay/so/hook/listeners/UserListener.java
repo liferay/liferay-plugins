@@ -22,10 +22,13 @@ import com.liferay.portal.NoSuchGroupException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.so.util.LayoutSetPrototypeUtil;
+import com.liferay.so.util.RoleConstants;
 import com.liferay.so.util.SocialOfficeConstants;
 import com.liferay.so.util.SocialOfficeUtil;
 
@@ -86,6 +89,18 @@ public class UserListener extends BaseModelListener<User> {
 		throws ModelListenerException {
 
 		try {
+			if (!associationClassPK.equals(Role.class.getName())) {
+				return;
+			}
+
+			Role role = RoleLocalServiceUtil.getRole((Long)associationClassPK);
+
+			String name = role.getName();
+
+			if (!name.equals(RoleConstants.SOCIAL_OFFICE_USER)) {
+				return;
+			}
+
 			User user = UserLocalServiceUtil.getUser((Long)classPK);
 
 			Group group = user.getGroup();
