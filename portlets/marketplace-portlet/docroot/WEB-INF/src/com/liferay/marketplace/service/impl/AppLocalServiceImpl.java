@@ -57,7 +57,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 		// App
 
-		User user = userPersistence.findByPrimaryKey(userId);
+		User user = userPersistence.fetchByPrimaryKey(userId);
 		Date now = new Date();
 
 		validate(remoteAppId, version);
@@ -66,9 +66,12 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 		App app = appPersistence.create(appId);
 
-		app.setCompanyId(user.getCompanyId());
-		app.setUserId(user.getUserId());
-		app.setUserName(user.getFullName());
+		if (user != null) {
+			app.setCompanyId(user.getCompanyId());
+			app.setUserId(user.getUserId());
+			app.setUserName(user.getFullName());
+		}
+
 		app.setCreateDate(now);
 		app.setModifiedDate(now);
 		app.setRemoteAppId(remoteAppId);
@@ -78,9 +81,11 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 		// File
 
-		DLStoreUtil.addFile(
-			app.getCompanyId(), CompanyConstants.SYSTEM, app.getFilePath(),
-			false, inputStream);
+		if (inputStream != null) {
+			DLStoreUtil.addFile(
+				app.getCompanyId(), CompanyConstants.SYSTEM, app.getFilePath(),
+				false, inputStream);
+		}
 
 		return app;
 	}
