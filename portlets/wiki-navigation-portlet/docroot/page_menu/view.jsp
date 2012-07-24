@@ -22,7 +22,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 
 <c:choose>
 	<c:when test="<%= wikiPage != null %>">
-		<liferay-ui:panel-container extended="<%= Boolean.TRUE %>" id='pageMenu' persistState="<%= true %>">
+		<liferay-ui:panel-container extended="<%= Boolean.TRUE %>" id="pageMenu" persistState="<%= true %>">
 
 			<%
 			List<MenuItem> menuItems = MenuItem.fromWikiPage(wikiPage, portletURL);
