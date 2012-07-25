@@ -210,10 +210,10 @@ h1.underlined {
 .underlined {
 	border-bottom: 6px solid #B2CF7D;
 	display: inline-block;
+}
 
-	&.full {
-		display: block;
-	}
+.full {
+	display: block;
 }
 
 .read-more {
