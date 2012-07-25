@@ -64,24 +64,31 @@ public class StorePortlet extends MVCPortlet {
 
 		URL urlObj = new URL(url);
 
-		InputStream inputStream = urlObj.openStream();
+		InputStream inputStream = null;
 
-		App app = AppLocalServiceUtil.fetchRemoteApp(remoteAppId);
+		try {
+			inputStream = urlObj.openStream();
 
-		if (app == null) {
-			app = AppServiceUtil.addApp(remoteAppId, version, inputStream);
+			App app = AppLocalServiceUtil.fetchRemoteApp(remoteAppId);
+
+			if (app == null) {
+				app = AppServiceUtil.addApp(remoteAppId, version, inputStream);
+			}
+			else {
+				app = AppServiceUtil.updateApp(
+					app.getAppId(), version, inputStream);
+			}
+
+			JSONObject jsonObject = getAppJSONObject(app.getRemoteAppId());
+
+			jsonObject.put("cmd", "downloadApp");
+			jsonObject.put("message", "success");
+
+			writeJSON(actionRequest, actionResponse, jsonObject);
 		}
-		else {
-			app = AppServiceUtil.updateApp(
-				app.getAppId(), version, inputStream);
+		finally {
+			StreamUtil.cleanUp(inputStream);
 		}
-
-		JSONObject jsonObject = getAppJSONObject(app.getRemoteAppId());
-
-		jsonObject.put("cmd", "downloadApp");
-		jsonObject.put("message", "success");
-
-		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
 
 	public void getApp(
@@ -198,11 +205,20 @@ public class StorePortlet extends MVCPortlet {
 
 			App app = AppLocalServiceUtil.fetchRemoteApp(remoteAppId);
 
-			AppServiceUtil.updateApp(app.getAppId(), version, inputStream);
+			if (app == null) {
+				app = AppServiceUtil.addApp(remoteAppId, version, inputStream);
+			}
+			else {
+				app = AppServiceUtil.updateApp(
+					app.getAppId(), version, inputStream);
+			}
 
 			AppServiceUtil.installApp(remoteAppId);
 
 			JSONObject jsonObject = getAppJSONObject(remoteAppId);
+
+			jsonObject.put("cmd", "updateApp");
+			jsonObject.put("message", "success");
 
 			writeJSON(actionRequest, actionResponse, jsonObject);
 		}
