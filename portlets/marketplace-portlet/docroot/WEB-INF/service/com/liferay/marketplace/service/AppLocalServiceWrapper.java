@@ -281,6 +281,12 @@ public class AppLocalServiceWrapper implements AppLocalService,
 		_appLocalService.installApp(remoteAppId);
 	}
 
+	public void processMarketplaceProperties(java.util.Properties properties)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_appLocalService.processMarketplaceProperties(properties);
+	}
+
 	public void uninstallApp(long remoteAppId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

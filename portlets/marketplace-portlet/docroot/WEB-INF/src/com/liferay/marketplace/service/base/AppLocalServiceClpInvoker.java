@@ -136,13 +136,17 @@ public class AppLocalServiceClpInvoker {
 
 		_methodParameterTypes52 = new String[] { "long" };
 
-		_methodName53 = "uninstallApp";
+		_methodName53 = "processMarketplaceProperties";
 
-		_methodParameterTypes53 = new String[] { "long" };
+		_methodParameterTypes53 = new String[] { "java.util.Properties" };
 
-		_methodName54 = "updateApp";
+		_methodName54 = "uninstallApp";
 
-		_methodParameterTypes54 = new String[] {
+		_methodParameterTypes54 = new String[] { "long" };
+
+		_methodName55 = "updateApp";
+
+		_methodParameterTypes55 = new String[] {
 				"long", "java.lang.String", "java.io.InputStream"
 			};
 	}
@@ -276,11 +280,16 @@ public class AppLocalServiceClpInvoker {
 
 		if (_methodName53.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
-			AppLocalServiceUtil.uninstallApp(((Long)arguments[0]).longValue());
+			AppLocalServiceUtil.processMarketplaceProperties((java.util.Properties)arguments[0]);
 		}
 
 		if (_methodName54.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
+			AppLocalServiceUtil.uninstallApp(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName55.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
 			return AppLocalServiceUtil.updateApp(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				(java.io.InputStream)arguments[2]);
@@ -339,4 +348,6 @@ public class AppLocalServiceClpInvoker {
 	private String[] _methodParameterTypes53;
 	private String _methodName54;
 	private String[] _methodParameterTypes54;
+	private String _methodName55;
+	private String[] _methodParameterTypes55;
 }
