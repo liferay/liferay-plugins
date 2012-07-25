@@ -26,7 +26,10 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.PropertiesUtil;
+import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.SystemProperties;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
@@ -36,11 +39,13 @@ import com.liferay.portlet.documentlibrary.NoSuchFileException;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Properties;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
@@ -147,11 +152,13 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 			SystemProperties.get(SystemProperties.TMP_DIR) + StringPool.SLASH +
 				Time.getTimestamp();
 
+		ZipFile zipFile = null;
+
 		try {
 			File liferayPackageFile = DLStoreUtil.getFile(
 				app.getCompanyId(), CompanyConstants.SYSTEM, app.getFilePath());
 
-			ZipFile zipFile = new ZipFile(liferayPackageFile);
+			zipFile = new ZipFile(liferayPackageFile);
 
 			Enumeration<ZipEntry> enu =
 				(Enumeration<ZipEntry>)zipFile.entries();
@@ -164,6 +171,14 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 				String fileName = zipEntry.getName();
 
+				if (!fileName.endsWith(".war") &&
+					!fileName.endsWith(".xml") &&
+					!fileName.endsWith(".zip") &&
+					!fileName.equals("liferay-marketplace.properties")) {
+
+					continue;
+				}
+
 				String contextName = getContextName(fileName);
 
 				autoDeploymentContext.setContext(contextName);
@@ -174,19 +189,36 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 							app.getAppId());
 				}
 
-				InputStream inputStream = zipFile.getInputStream(zipEntry);
+				InputStream inputStream = null;
 
-				File pluginPackageFile = new File(
-					tmpDir + StringPool.SLASH + fileName);
+				try {
+					inputStream = zipFile.getInputStream(zipEntry);
 
-				FileUtil.write(pluginPackageFile, inputStream);
+					if (fileName.equals("liferay-marketplace.properties")) {
+						String propertiesString = StringUtil.read(inputStream);
 
-				autoDeploymentContext.setFile(pluginPackageFile);
+						Properties properties = PropertiesUtil.load(
+							propertiesString);
 
-				DeployManagerUtil.deploy(autoDeploymentContext);
+						processMarketplaceProperties(properties);
+					}
+					else {
+						File pluginPackageFile = new File(
+							tmpDir + StringPool.SLASH + fileName);
 
-				moduleLocalService.addModule(
-					app.getUserId(), app.getAppId(), contextName);
+						FileUtil.write(pluginPackageFile, inputStream);
+
+						autoDeploymentContext.setFile(pluginPackageFile);
+
+						DeployManagerUtil.deploy(autoDeploymentContext);
+
+						moduleLocalService.addModule(
+							app.getUserId(), app.getAppId(), contextName);
+					}
+				}
+				finally {
+					StreamUtil.cleanUp(inputStream);
+				}
 			}
 		}
 		catch (ZipException ze) {
@@ -202,6 +234,30 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		}
 		finally {
 			FileUtil.deltree(tmpDir);
+
+			if (zipFile != null) {
+				try {
+					zipFile.close();
+				}
+				catch (IOException ioe) {
+				}
+			}
+		}
+	}
+
+	public void processMarketplaceProperties(Properties properties)
+		throws PortalException, SystemException {
+
+		long[] supersedesRemoteAppIds = StringUtil.split(
+			properties.getProperty("supersedes-remote-app-ids"), 0L);
+
+		for (long supersedesRemoteAppId : supersedesRemoteAppIds) {
+			App supersedesApp = appPersistence.fetchByRemoteAppId(
+				supersedesRemoteAppId);
+
+			if ((supersedesApp != null) && supersedesApp.isInstalled()) {
+				uninstallApp(supersedesRemoteAppId);
+			}
 		}
 	}
 

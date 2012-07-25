@@ -65,17 +65,7 @@ public class MarketplaceMessageListener extends BaseMessageListener {
 			ModuleLocalServiceUtil.addModule(0, app.getAppId(), contextName);
 		}
 
-		long[] uninstallRemoteAppIds = StringUtil.split(
-			properties.getProperty("supersedes-remote-app-ids"), 0L);
-
-		for (long uninstallRemoteAppId : uninstallRemoteAppIds) {
-			App uninstallApp = AppLocalServiceUtil.fetchRemoteApp(
-				uninstallRemoteAppId);
-
-			if ((uninstallApp != null) && uninstallApp.isInstalled()) {
-				AppLocalServiceUtil.uninstallApp(uninstallRemoteAppId);
-			}
-		}
+		AppLocalServiceUtil.processMarketplaceProperties(properties);
 	}
 
 }
