@@ -217,7 +217,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		Set<String> queryTerms,
 		Map<String, Map<String, List<String>>> highlights, String field) {
 
-		if (Validator.isNull(highlights)) {
+		if (highlights == null) {
 			return StringPool.BLANK;
 		}
 
