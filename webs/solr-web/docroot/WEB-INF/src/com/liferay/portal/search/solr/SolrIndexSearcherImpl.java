@@ -327,6 +327,10 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 				snippet = getSnippet(
 					solrDocument, queryConfig, queryTerms,
 					queryResponse.getHighlighting());
+
+				if (Validator.isNull(snippet)) {
+					continue;
+				}
 			}
 
 			documents.add(document);
