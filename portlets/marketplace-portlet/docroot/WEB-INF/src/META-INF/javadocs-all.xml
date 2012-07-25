@@ -29,6 +29,22 @@
 		</method>
 	</javadoc>
 	<javadoc>
+		<name>MarketplaceMessageListener</name>
+		<type>com.liferay.marketplace.messaging.MarketplaceMessageListener</type>
+		<author><![CDATA[Ryan Park]]></author>
+		<method>
+			<name>doReceive</name>
+			<param>
+				<name>message</name>
+				<type>com.liferay.portal.kernel.messaging.Message</type>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
 		<name>AppImpl</name>
 		<type>com.liferay.marketplace.model.impl.AppImpl</type>
 		<author><![CDATA[Ryan Park]]></author>
