@@ -215,7 +215,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 	protected String getSnippet(
 		SolrDocument solrDocument, QueryConfig queryConfig,
 		Set<String> queryTerms,
-		Map<String, Map<String, List<String>>> highlights) {
+		Map<String, Map<String, List<String>>> highlights, String field) {
 
 		if (Validator.isNull(highlights)) {
 			return StringPool.BLANK;
@@ -236,21 +236,16 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 			localizedSearch = false;
 		}
 
-		String snippetField = StringPool.BLANK;
-
 		if (localizedSearch) {
 			String localizedName = DocumentImpl.getLocalizedName(
-				queryConfig.getLocale(), Field.CONTENT);
+				queryConfig.getLocale(), field);
 
 			if (solrDocument.containsKey(localizedName)) {
-				snippetField = localizedName;
+				field = localizedName;
 			}
 		}
-		else {
-			snippetField = Field.CONTENT;
-		}
 
-		List<String> snippets = uidHighlights.get(snippetField);
+		List<String> snippets = uidHighlights.get(field);
 
 		String snippet = StringUtil.merge(snippets, "...");
 
@@ -326,10 +321,16 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 			if (queryConfig.isHighlightEnabled()) {
 				snippet = getSnippet(
 					solrDocument, queryConfig, queryTerms,
-					queryResponse.getHighlighting());
+					queryResponse.getHighlighting(), Field.CONTENT);
 
 				if (Validator.isNull(snippet)) {
-					continue;
+					snippet = getSnippet(
+						solrDocument, queryConfig, queryTerms,
+						queryResponse.getHighlighting(), Field.TITLE);
+
+					if (Validator.isNull(snippet)) {
+						continue;
+					}
 				}
 			}
 
@@ -396,10 +397,15 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 			solrQuery.setHighlightSnippets(
 				queryConfig.getHighlightSnippetSize());
 
-			String localizedName = DocumentImpl.getLocalizedName(
+			String localizedContentName = DocumentImpl.getLocalizedName(
 				queryConfig.getLocale(), Field.CONTENT);
 
-			solrQuery.setParam("hl.fl", Field.CONTENT, localizedName);
+			String localizedTitleName = DocumentImpl.getLocalizedName(
+				queryConfig.getLocale(), Field.TITLE);
+
+			solrQuery.setParam(
+				"hl.fl", Field.CONTENT, localizedContentName, Field.TITLE,
+				localizedTitleName);
 		}
 
 		solrQuery.setIncludeScore(queryConfig.isScoreEnabled());
