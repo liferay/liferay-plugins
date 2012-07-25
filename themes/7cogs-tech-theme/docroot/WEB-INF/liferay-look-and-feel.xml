@@ -24,7 +24,7 @@
 						);
 				]]>
 			</setting>
-			<setting configurable="true" key="blurb-title" type="text" value="7cogs" />
+			<setting configurable="true" key="blurb-title" type="text" value="7Cogs" />
 			<setting configurable="true" key="display-footer" type="checkbox" value="true" />
 			<setting configurable="true" key="display-sign-in" type="checkbox" value="true" />
 			<setting configurable="true" key="facebook" type="text">
