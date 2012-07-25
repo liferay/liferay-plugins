@@ -126,13 +126,17 @@ public class AppLocalServiceClp implements AppLocalService {
 
 		_methodParameterTypes21 = new String[] { "long" };
 
-		_methodName22 = "uninstallApp";
+		_methodName22 = "processMarketplaceProperties";
 
-		_methodParameterTypes22 = new String[] { "long" };
+		_methodParameterTypes22 = new String[] { "java.util.Properties" };
 
-		_methodName23 = "updateApp";
+		_methodName23 = "uninstallApp";
 
-		_methodParameterTypes23 = new String[] {
+		_methodParameterTypes23 = new String[] { "long" };
+
+		_methodName24 = "updateApp";
+
+		_methodParameterTypes24 = new String[] {
 				"long", "java.lang.String", "java.io.InputStream"
 			};
 	}
@@ -757,12 +761,41 @@ public class AppLocalServiceClp implements AppLocalService {
 		}
 	}
 
-	public void uninstallApp(long remoteAppId)
+	public void processMarketplaceProperties(java.util.Properties properties)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName22,
-				_methodParameterTypes22, new Object[] { remoteAppId });
+				_methodParameterTypes22,
+				new Object[] { ClpSerializer.translateInput(properties) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	public void uninstallApp(long remoteAppId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName23,
+				_methodParameterTypes23, new Object[] { remoteAppId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -792,8 +825,8 @@ public class AppLocalServiceClp implements AppLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23,
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
 					new Object[] {
 						appId,
 						
@@ -872,4 +905,6 @@ public class AppLocalServiceClp implements AppLocalService {
 	private String[] _methodParameterTypes22;
 	private String _methodName23;
 	private String[] _methodParameterTypes23;
+	private String _methodName24;
+	private String[] _methodParameterTypes24;
 }
