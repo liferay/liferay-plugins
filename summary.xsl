@@ -73,19 +73,15 @@
 									sortable: true
 								},
 								{
+									key: 'Dependent Apps',
+									sortable: true
+								},
+								{
 									key: 'Labs',
 									sortable: true
 								},
 								{
 									key: 'Marketplace',
-									sortable: true
-								},
-								{
-									key: 'Standalone App',
-									sortable: true
-								},
-								{
-									key: 'Parent App',
 									sortable: true
 								},
 								{
@@ -246,6 +242,8 @@
 
 		'Compatibility': '<xsl:value-of select="compatibility" />',
 
+		'Dependent Apps': '<xsl:value-of select="dependent-apps" />',
+
 		'Icon': '<xsl:if test="icon != ''"><img height="50"><xsl:attribute name="src"><xsl:value-of select="icon" /></xsl:attribute></img></xsl:if>',
 
 		'Labs':
@@ -260,8 +258,6 @@
 				<xsl:otherwise>No</xsl:otherwise>
 			</xsl:choose>',
 
-		'Parent App': '<xsl:value-of select="parent-app" />',
-
 		'Public':
 			'<xsl:choose>
 				<xsl:when test="public = 'true'">Yes</xsl:when>
@@ -269,12 +265,6 @@
 			</xsl:choose>',
 
 		'Screenshots': '<nobr><xsl:for-each select="screenshot"><a target="_blank"><xsl:attribute name="href"><xsl:value-of select="current()" /></xsl:attribute><img height="50"><xsl:attribute name="src"><xsl:value-of select="current()" /></xsl:attribute></img></a></xsl:for-each></nobr>',
-
-		'Standalone App':
-			'<xsl:choose>
-				<xsl:when test="standalone-app = 'true'">Yes</xsl:when>
-				<xsl:otherwise>No</xsl:otherwise>
-			</xsl:choose>',
 
 		'Supported':
 			'<xsl:choose>
