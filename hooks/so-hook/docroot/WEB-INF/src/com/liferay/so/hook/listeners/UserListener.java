@@ -49,16 +49,22 @@ public class UserListener extends BaseModelListener<User> {
 		try {
 			User user = UserLocalServiceUtil.getUser((Long)classPK);
 
-			if (associationClassName.equals(Organization.class.getName()) ||
-				associationClassName.equals(UserGroup.class.getName()) ||
-				associationClassName.equals(Group.class.getName())) {
+			if (associationClassName.equals(Group.class.getName()) ||
+				associationClassName.equals(Organization.class.getName()) ||
+				associationClassName.equals(UserGroup.class.getName())) {
 
 				Role role = RoleLocalServiceUtil.getRole(
 					user.getCompanyId(), RoleConstants.SOCIAL_OFFICE_USER);
 
 				Group group = null;
 
-				if (associationClassName.equals(Organization.class.getName())) {
+				if (associationClassName.equals(Group.class.getName())) {
+					group = GroupLocalServiceUtil.getGroup(
+						(Long)associationClassPK);
+				}
+				else if (associationClassName.equals(
+							Organization.class.getName())) {
+
 					group = GroupLocalServiceUtil.getOrganizationGroup(
 						user.getCompanyId(), (Long)associationClassPK);
 				}
@@ -67,10 +73,6 @@ public class UserListener extends BaseModelListener<User> {
 
 					group = GroupLocalServiceUtil.getUserGroupGroup(
 						user.getCompanyId(), (Long)associationClassPK);
-				}
-				else if (associationClassName.equals(Group.class.getName())) {
-					group = GroupLocalServiceUtil.getGroup(
-						(Long)associationClassPK);
 				}
 
 				if (GroupLocalServiceUtil.hasRoleGroup(
@@ -104,16 +106,22 @@ public class UserListener extends BaseModelListener<User> {
 		try {
 			User user = UserLocalServiceUtil.getUser((Long)classPK);
 
-			if (associationClassName.equals(Organization.class.getName()) ||
-				associationClassName.equals(UserGroup.class.getName()) ||
-				associationClassName.equals(Group.class.getName())) {
+			if (associationClassName.equals(Group.class.getName()) ||
+				associationClassName.equals(Organization.class.getName()) ||
+				associationClassName.equals(UserGroup.class.getName())) {
 
 				Role role = RoleLocalServiceUtil.getRole(
 					user.getCompanyId(), RoleConstants.SOCIAL_OFFICE_USER);
 
 				Group group = null;
 
-				if (associationClassName.equals(Organization.class.getName())) {
+				if (associationClassName.equals(Group.class.getName())) {
+					group = GroupLocalServiceUtil.getGroup(
+						(Long)associationClassPK);
+				}
+				else if (associationClassName.equals(
+							Organization.class.getName())) {
+
 					group = GroupLocalServiceUtil.getOrganizationGroup(
 						user.getCompanyId(), (Long)associationClassPK);
 				}
@@ -122,10 +130,6 @@ public class UserListener extends BaseModelListener<User> {
 
 					group = GroupLocalServiceUtil.getUserGroupGroup(
 						user.getCompanyId(), (Long)associationClassPK);
-				}
-				else if (associationClassName.equals(Group.class.getName())) {
-					group = GroupLocalServiceUtil.getGroup(
-						(Long)associationClassPK);
 				}
 
 				if (GroupLocalServiceUtil.hasRoleGroup(
