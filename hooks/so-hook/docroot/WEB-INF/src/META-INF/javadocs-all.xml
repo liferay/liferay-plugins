@@ -239,6 +239,28 @@
 				<type>com.liferay.portal.ModelListenerException</type>
 			</throws>
 		</method>
+		<method>
+			<name>disableSocialOffice</name>
+			<param>
+				<name>group</name>
+				<type>com.liferay.portal.model.Group</type>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+			</throws>
+		</method>
+		<method>
+			<name>enableSocialOffice</name>
+			<param>
+				<name>group</name>
+				<type>com.liferay.portal.model.Group</type>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+			</throws>
+		</method>
 	</javadoc>
 	<javadoc>
 		<name>AnnouncementsEntryServiceImpl</name>

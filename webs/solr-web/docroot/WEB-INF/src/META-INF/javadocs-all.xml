@@ -100,6 +100,10 @@
 				<name>highlights</name>
 				<type>java.util.Map</type>
 			</param>
+			<param>
+				<name>field</name>
+				<type>java.lang.String</type>
+			</param>
 		</method>
 		<method>
 			<name>subset</name>
