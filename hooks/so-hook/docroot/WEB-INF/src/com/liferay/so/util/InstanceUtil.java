@@ -159,7 +159,8 @@ public class InstanceUtil {
 
 	protected static Map<Locale, String> getLocalizationMap(String key) {
 		return LocalizationUtil.getLocalizationMap(
-			"content.Language", InstanceUtil.class.getClassLoader(), key);
+			"content.Language", InstanceUtil.class.getClassLoader(), key,
+			false);
 	}
 
 	protected static void setInitialized(long companyId) throws Exception {
