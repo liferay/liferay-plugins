@@ -269,6 +269,12 @@
 		<field>
 			<name>_methodParameterTypes50</name>
 		</field>
+		<field>
+			<name>_methodName51</name>
+		</field>
+		<field>
+			<name>_methodParameterTypes51</name>
+		</field>
 	</javadoc>
 	<javadoc>
 		<name>AppServiceClpInvoker</name>
@@ -565,6 +571,21 @@
 			<param>
 				<name>remoteAppId</name>
 				<type>long</type>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+			</throws>
+		</method>
+		<method>
+			<name>processMarketplaceProperties</name>
+			<param>
+				<name>properties</name>
+				<type>java.util.Properties</type>
 			</param>
 			<throws>
 				<name>PortalException</name>
@@ -1069,10 +1090,19 @@
 			<name>MARKETPLACE_URL_LOGOUT</name>
 		</field>
 		<field>
+			<name>_MARKETPLACE_CLIENT_BUILD</name>
+		</field>
+		<field>
 			<name>_MARKETPLACE_PATH_PURCHASED</name>
 		</field>
 		<field>
 			<name>_MARKETPLACE_PATH_STORE</name>
+		</field>
+		<field>
+			<name>_pathPurchased</name>
+		</field>
+		<field>
+			<name>_pathStore</name>
 		</field>
 	</javadoc>
 	<javadoc>
