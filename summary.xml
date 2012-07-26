@@ -623,7 +623,7 @@
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<icon>portlets/google-maps-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
-			<labs>false</labs>
+			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
 			<screenshot>portlets/google-maps-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
@@ -1569,7 +1569,7 @@
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<labs>true</labs>
-			<marketplace>true</marketplace>
+			<marketplace>false</marketplace>
 			<public>true</public>
 			<screenshot>portlets/social-coding-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<screenshot>portlets/social-coding-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
@@ -2187,7 +2187,7 @@
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<icon>portlets/web-form-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
-			<labs>true</labs>
+			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
 			<screenshot>portlets/web-form-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
@@ -2617,7 +2617,7 @@
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<labs>true</labs>
-			<marketplace>true</marketplace>
+			<marketplace>false</marketplace>
 			<public>true</public>
 			<supported>true</supported>
 		</releng>
@@ -2691,7 +2691,7 @@
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<icon>webs/kaleo-web/docroot/WEB-INF/releng/icons/90x90.png</icon>
-			<labs>true</labs>
+			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
 			<screenshot>webs/kaleo-web/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
@@ -2741,7 +2741,7 @@
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<icon>webs/server-manager-web/docroot/WEB-INF/releng/icons/90x90.png</icon>
-			<labs>true</labs>
+			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
 			<screenshot>webs/server-manager-web/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
@@ -2769,7 +2769,7 @@
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<icon>webs/solr-web/docroot/WEB-INF/releng/icons/90x90.png</icon>
-			<labs>true</labs>
+			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
 			<supported>true</supported>
