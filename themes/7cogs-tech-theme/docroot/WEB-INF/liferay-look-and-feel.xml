@@ -7,138 +7,15 @@
 	</compatibility>
 	<theme id="7cogs-tech" name="7Cogs Tech">
 		<settings>
-			<setting configurable="true" key="blurb-content" type="textarea" value="Vivamus rutrum nunc non neque consectetur quis placerat neque lobortis. Nam vestibulum, arcu sodales feugiat consectetur, nisl orci bibendum elit, eu euismod magna sapien ut nibh. Donec semper quam scelerisque tortor dictum gravida. In hac habitasse">
-				<![CDATA[
-					AUI().use(
-						'aui-base',
-							function(A) {
-								var target = A.one('#[@NAMESPACE@]blurb-content');
-
-								target.setStyles(
-									{
-										height: 100,
-										width: 515
-									}
-								);
-							}
-						);
-				]]>
-			</setting>
-			<setting configurable="true" key="blurb-title" type="text" value="7Cogs" />
+			<setting configurable="true" key="display-company-logo" type="checkbox" value="false" />
 			<setting configurable="true" key="display-footer" type="checkbox" value="true" />
-			<setting configurable="true" key="display-sign-in" type="checkbox" value="true" />
-			<setting configurable="true" key="facebook" type="text">
-				<![CDATA[
-					AUI().use(
-						'aui-base',
-							function(A) {
-								var target = A.one('#[@NAMESPACE@]social-facebook');
-
-								target.setStyle('width', 515);
-							}
-						);
-				]]>
-			</setting>
-			<setting configurable="true" key="footer-link1" type="text" value="Link 1|#">
-				<![CDATA[
-					AUI().use(
-						'aui-base',
-							function(A) {
-								var target = A.one('#[@NAMESPACE@]footer-link1');
-
-								target.setStyle('width', 515);
-							}
-						);
-				]]>
-			</setting>
-			<setting configurable="true" key="footer-link2" type="text" value="Link 2|#">
-				<![CDATA[
-					AUI().use(
-						'aui-base',
-							function(A) {
-								var target = A.one('#[@NAMESPACE@]footer-link2');
-
-								target.setStyle('width', 515);
-							}
-						);
-				]]>
-			</setting>
-			<setting configurable="true" key="footer-link3" type="text" value="Link 3|#">
-				<![CDATA[
-					AUI().use(
-						'aui-base',
-							function(A) {
-								var target = A.one('#[@NAMESPACE@]footer-link3');
-
-								target.setStyle('width', 515);
-							}
-						);
-				]]>
-			</setting>
-			<setting configurable="true" key="footer-link4" type="text" value="Link 4|#">
-				<![CDATA[
-					AUI().use(
-						'aui-base',
-							function(A) {
-								var target = A.one('#[@NAMESPACE@]footer-link4');
-
-								target.setStyle('width', 515);
-							}
-						);
-				]]>
-			</setting>
-			<setting configurable="true" key="footer-links-title" type="text" value="Meta Links" />
+			<setting configurable="true" key="footer-nav-display" type="checkbox" value="true" />
 			<setting configurable="true" key="footer-nav-title" type="text" value="Site Pages" />
-			<setting configurable="true" key="linkedin" type="text">
-				<![CDATA[
-					AUI().use(
-						'aui-base',
-							function(A) {
-								var target = A.one('#[@NAMESPACE@]social-linkedin');
-
-								target.setStyle('width', 515);
-							}
-						);
-				]]>
-			</setting>
-			<setting configurable="true" key="rss" type="text">
-				<![CDATA[
-					AUI().use(
-						'aui-base',
-							function(A) {
-								var target = A.one('#[@NAMESPACE@]social-rss');
-
-								target.setStyle('width', 515);
-							}
-						);
-					]]>
-			</setting>
+			<setting configurable="true" key="footer-section-1-article-id" type="text" />
+			<setting configurable="true" key="footer-section-2-article-id" type="text" />
+			<setting configurable="true" key="footer-section-3-article-id" type="text" />
+			<setting configurable="true" key="footer-section-4-article-id" type="text" />
 			<setting configurable="false" key="show-site-name-default"  type="checkbox" value="false" />
-			<setting configurable="true" key="social-tagline" type="text" value="Subscribe and follow us">
-				<![CDATA[
-					AUI().use(
-						'aui-base',
-							function(A) {
-								var target = A.one('#[@NAMESPACE@]social-tagline');
-
-								target.setStyle('width', 515);
-							}
-						);
-				]]>
-			</setting>
-			<setting configurable="true" key="social-title" type="text" value="Stay Updated" />
-			<setting configurable="true" key="twitter" type="text">
-				<![CDATA[
-					AUI().use(
-						'aui-base',
-							function(A) {
-								var target = A.one('#[@NAMESPACE@]social-twitter');
-
-								target.setStyle('width', 515);
-							}
-						);
-				]]>
-			</setting>
 		</settings>
 	</theme>
 </look-and-feel>

@@ -1,165 +1,71 @@
-<footer id="footerWrapper" role="contentinfo">
-	<div class="aui-layout-content" id="footerContent">
-		<div class="aui-column aui-column-first aui-w25" id="blurb">
-			<h2>
-				$!{theme_settings.blurb-title}
-			</h2>
+<footer id="footer-wrapper" role="contentinfo">
+	<div class="aui-layout-content" id="footer-content">
+		<div class="aui-column aui-column-first aui-w25" id="footer-section-1">
+			<div class="aui-column-content aui-column-content-first">
+				#if($footer_section_1)
+					$footer_section_1
+				#else
 
-			<p>
-				$!{theme_settings.blurb-content}
-			</p>
-		</div>
-
-		<div class="aui-column aui-w25" id="footerNavigation">
-			<h2>
-				<span>$!{theme_settings.footer-nav-title}</span>
-			</h2>
-
-			<ul>
-				#foreach ($nav_item in $nav_items)
-					#set ($nav_item_class = "item-" + $velocityCount)
-
-					#if ($velocityCount == 1)
-						#set ($nav_item_class = $nav_item_class + " first")
-					#elseif (!$velocityHasNext)
-						#set ($nav_item_class = $nav_item_class + " last")
-					#end
-
-					#if ($nav_item.isSelected())
-						#set ($nav_item_class = $nav_item_class + " selected")
-					#end
-
-					<li class="$nav_item_class">
-						<a href="$nav_item.getURL()" $nav_item.getTarget()>
-							<span>$nav_item.icon() $nav_item.getName()</span>
-						</a>
-					</li>
 				#end
-			</ul>
+			</div>
 		</div>
 
-		#if ($theme_settings.footer-link1 || $theme_settings.footer-link2 || $theme_settings.footer-link3 || $theme_settings.footer-link4 || $theme_settings.display-sign-in == true)
-			<div class="aui-column aui-w25" id="siteMeta">
-				<h2>
-					${theme_settings.footer-links-title}
-				</h2>
+		<div class="aui-column aui-w25" id="footer-section-2">
+			<div class="aui-column-content">
+				#if ($theme_settings.footer-nav-display == "true")
+					<h2>
+						<span>$!{theme_settings.footer-nav-title}</span>
+					</h2>
 
-				<ul class="hide-bullets">
-					#if (${theme_settings.display-sign-in} == "true")
-						<li id="signIn">
-							<a href="$sign_in_url" rel="nofollow">#language('sign-in')</a>
-						</li>
+					<ul>
+						#foreach ($nav_item in $nav_items)
+							#set ($nav_item_class = "item-" + $velocityCount)
 
-						<li id="signOut">
-							<a href="javascript:Liferay.LitheTheme.logOut();" rel="nofollow">#language('sign-out')</a>
-						</li>
+							#if ($velocityCount == 1)
+								#set ($nav_item_class = $nav_item_class + " first")
+							#elseif (!$velocityHasNext)
+								#set ($nav_item_class = $nav_item_class + " last")
+							#end
+
+							#if ($nav_item.isSelected())
+								#set ($nav_item_class = $nav_item_class + " selected")
+							#end
+
+							<li class="$nav_item_class">
+								<a href="$nav_item.getURL()" $nav_item.getTarget()>
+									<span>$nav_item.icon() $nav_item.getName()</span>
+								</a>
+							</li>
+						#end
+					</ul>
+				#else
+					#if ($footer_section_2)
+						$footer_section_2
+					#else
+
 					#end
-
-					## Set Meta Link variable
-					#set ($link1 = $stringUtil.split($theme_settings.footer-link1, "|"))
-					#set ($link2 = $stringUtil.split($theme_settings.footer-link2, "|"))
-					#set ($link3 = $stringUtil.split($theme_settings.footer-link3, "|"))
-					#set ($link4 = $stringUtil.split($theme_settings.footer-link4, "|"))
-
-					#if ($theme_settings.footer-link1 != "")
-						<li>
-							<a href="$link1.get(1)">$link1.get(0)</a>
-						</li>
-					#end
-
-					#if ($theme_settings.footer-link2 != "")
-						<li>
-							<a href="$link2.get(1)">$link2.get(0)</a>
-						</li>
-					#end
-
-					#if ($theme_settings.footer-link3 != "")
-						<li>
-							<a href="$link3.get(1)">$link3.get(0)</a>
-						</li>
-					#end
-
-					#if ($theme_settings.footer-link4 != "")
-						<li>
-							<a href="$link4.get(1)">$link4.get(0)</a>
-						</li>
-					#end
-				</ul>
-
-				<script type="text/javascript">
-					Liferay.namespace('LitheTheme');
-
-					Liferay.provide(
-						Liferay.LitheTheme,
-						'logOut',
-						function() {
-							var A = AUI();
-
-							A.io.request(
-								themeDisplay.getPathMain() + '/portal/logout',
-								{
-									after: {
-										success: function(){
-											location.reload();
-										}
-									}
-								}
-							)
-						},
-						['aui-io']
-					);
-				</script>
+				#end
 			</div>
-		#end
+		</div>
 
-		#if ($theme_settings.rss || $theme_settings.linkedin || $theme_settings.twitter || $theme_settings.facebook)
-			<div class="aui-column aui-column-last aui-w25" id="socialLinks">
-				<h2>
-					${theme_settings.social-title}
-				</h2>
+		<div class="aui-column aui-w25" id="footer-section-3">
+			<div class="aui-column-content">
+				#if($footer_section_3)
+					$footer_section_3
+				#else
 
-				<h4>
-					${theme_settings.social-tagline}
-				</h4>
-
-				<ul class="social">
-					#if ($theme_settings.rss)
-						<li>
-							<a alt="RSS" href="$theme_settings.rss" target="new_window" title="RSS">
-								<img src="$images_folder/custom/rss.png" />
-								<span>RSS</span>
-							</a>
-						</li>
-					#end
-
-					#if ($theme_settings.linkedin)
-						<li>
-							<a alt="LinkedIn" href="$theme_settings.linkedin" target="new_window" title="LinkedIn">
-								<img src="$images_folder/custom/linkedin.png" />
-								<span>LinkedIn</span>
-							</a>
-						</li>
-					#end
-
-					#if ($theme_settings.twitter)
-						<li>
-							<a alt="Twitter" href="$theme_settings.twitter" target="new_window" title="Twitter">
-								<img src="$images_folder/custom/twitter.png" />
-								<span>Twitter</span>
-							</a>
-						</li>
-					#end
-
-					#if ($theme_settings.facebook)
-						<li>
-							<a alt="Facebook" href="$theme_settings.facebook" target="new_window" title="Facebook">
-								<img src="$images_folder/custom/facebook.png" />
-								<span>Facebook</span>
-							</a>
-						</li>
-					#end
-				</ul>
+				#end
 			</div>
-		#end
+		</div>
+
+		<div class="aui-column aui-column-last aui-w25" id="footer-section-4">
+			<div class="aui-column-content aui-column-content-last">
+				#if($footer_section_4)
+					$footer_section_4
+				#else
+
+				#end
+			</div>
+		</div>
 	</div>
 </footer>
