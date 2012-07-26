@@ -43,6 +43,9 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>hooks/mongodb-hook/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>hooks/mongodb-hook/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
+			<screenshot>hooks/mongodb-hook/docroot/WEB-INF/releng/screenshots/3.jpg</screenshot>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -177,9 +180,9 @@
 			<bundle>false</bundle>
 			<category>Productivity</category>
 			<demo-url></demo-url>
-			<dependent-apps>chat-portlet, contacts-portlet, events-display-portlet, microblogs-portlet, private-messaging-portlet, resources-importer-web, so-portlet, so-theme, so-welcome-theme, tasks-portlet, weather-portlet, wysiwyg-portlet</dependent-apps>
+			<dependent-apps></dependent-apps>
 			<labs>false</labs>
-			<marketplace>true</marketplace>
+			<marketplace>false</marketplace>
 			<public>true</public>
 			<supported>true</supported>
 		</releng>
@@ -204,6 +207,9 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>hooks/social-bookmarks-hook/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>hooks/social-bookmarks-hook/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
+			<screenshot>hooks/social-bookmarks-hook/docroot/WEB-INF/releng/screenshots/3.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -227,6 +233,8 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>layouttpl/1-2-1-columns-layouttpl/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>layouttpl/1-2-1-columns-layouttpl/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -250,6 +258,8 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>layouttpl/1-3-1-columns-layouttpl/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>layouttpl/1-3-1-columns-layouttpl/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -273,6 +283,8 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>layouttpl/1-3-2-columns-layouttpl/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>layouttpl/1-3-2-columns-layouttpl/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -296,6 +308,8 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>layouttpl/2-1-2-columns-layouttpl/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>layouttpl/2-1-2-columns-layouttpl/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -319,6 +333,8 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>layouttpl/3-2-3-columns-layouttpl/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>layouttpl/3-2-3-columns-layouttpl/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -412,6 +428,8 @@
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>portlets/chat-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>portlets/chat-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -459,6 +477,9 @@
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>portlets/ddl-form-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>portlets/ddl-form-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
+			<screenshot>portlets/ddl-form-portlet/docroot/WEB-INF/releng/screenshots/3.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -482,6 +503,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>portlets/digg-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -529,6 +551,8 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>portlets/flash-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>portlets/flash-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -553,6 +577,8 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>portlets/google-adsense-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>portlets/google-adsense-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -577,6 +603,8 @@
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>portlets/google-maps-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>portlets/google-maps-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -624,6 +652,8 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>portlets/ip-geocoder-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>portlets/ip-geocoder-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -671,6 +701,10 @@
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>portlets/knowledge-base-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>portlets/knowledge-base-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
+			<screenshot>portlets/knowledge-base-portlet/docroot/WEB-INF/releng/screenshots/3.jpg</screenshot>
+			<screenshot>portlets/knowledge-base-portlet/docroot/WEB-INF/releng/screenshots/4.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -718,6 +752,8 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>portlets/mail-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>portlets/mail-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -787,6 +823,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>portlets/my-subscriptions-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -810,6 +847,8 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>portlets/netvibes-widget-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>portlets/netvibes-widget-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -834,6 +873,10 @@
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>portlets/opensocial-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>portlets/opensocial-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
+			<screenshot>portlets/opensocial-portlet/docroot/WEB-INF/releng/screenshots/3.jpg</screenshot>
+			<screenshot>portlets/opensocial-portlet/docroot/WEB-INF/releng/screenshots/4.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -1474,10 +1517,14 @@
 			<bundle>false</bundle>
 			<category>Productivity</category>
 			<demo-url></demo-url>
-			<dependent-apps></dependent-apps>
+			<dependent-apps>chat-portlet, contacts-portlet, events-display-portlet, microblogs-portlet, private-messaging-portlet, resources-importer-web, so-portlet, so-theme, so-welcome-theme, tasks-portlet, weather-portlet, wysiwyg-portlet</dependent-apps>
 			<labs>false</labs>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>portlets/so-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>portlets/so-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
+			<screenshot>portlets/so-portlet/docroot/WEB-INF/releng/screenshots/3.jpg</screenshot>
+			<screenshot>portlets/so-portlet/docroot/WEB-INF/releng/screenshots/4.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -1501,6 +1548,8 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>portlets/social-coding-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>portlets/social-coding-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -1525,6 +1574,13 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>portlets/social-networking-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>portlets/social-networking-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
+			<screenshot>portlets/social-networking-portlet/docroot/WEB-INF/releng/screenshots/3.jpg</screenshot>
+			<screenshot>portlets/social-networking-portlet/docroot/WEB-INF/releng/screenshots/4.jpg</screenshot>
+			<screenshot>portlets/social-networking-portlet/docroot/WEB-INF/releng/screenshots/5.jpg</screenshot>
+			<screenshot>portlets/social-networking-portlet/docroot/WEB-INF/releng/screenshots/6.jpg</screenshot>
+			<screenshot>portlets/social-networking-portlet/docroot/WEB-INF/releng/screenshots/7.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -1549,6 +1605,8 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>portlets/stocks-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>portlets/stocks-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2033,6 +2091,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>portlets/twitter-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2057,6 +2116,9 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>portlets/vimeo-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>portlets/vimeo-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
+			<screenshot>portlets/vimeo-portlet/docroot/WEB-INF/releng/screenshots/3.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2105,6 +2167,9 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>portlets/web-form-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>portlets/web-form-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
+			<screenshot>portlets/web-form-portlet/docroot/WEB-INF/releng/screenshots/3.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2152,6 +2217,8 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>portlets/wiki-navigation-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>portlets/wiki-navigation-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2176,6 +2243,10 @@
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>portlets/wsrp-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>portlets/wsrp-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
+			<screenshot>portlets/wsrp-portlet/docroot/WEB-INF/releng/screenshots/3.jpg</screenshot>
+			<screenshot>portlets/wsrp-portlet/docroot/WEB-INF/releng/screenshots/4.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2199,6 +2270,7 @@
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>portlets/wysiwyg-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2223,6 +2295,8 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>portlets/youtube-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>portlets/youtube-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2546,6 +2620,8 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>webs/cas-web/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>webs/cas-web/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2569,6 +2645,8 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>webs/deployment-helper-web/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>webs/deployment-helper-web/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2593,6 +2671,9 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>webs/kaleo-web/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>webs/kaleo-web/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
+			<screenshot>webs/kaleo-web/docroot/WEB-INF/releng/screenshots/3.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2640,6 +2721,10 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>webs/server-manager-web/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>webs/server-manager-web/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
+			<screenshot>webs/server-manager-web/docroot/WEB-INF/releng/screenshots/3.jpg</screenshot>
+			<screenshot>webs/server-manager-web/docroot/WEB-INF/releng/screenshots/4.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2687,6 +2772,10 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>webs/theme-loader-web/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>webs/theme-loader-web/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
+			<screenshot>webs/theme-loader-web/docroot/WEB-INF/releng/screenshots/3.jpg</screenshot>
+			<screenshot>webs/theme-loader-web/docroot/WEB-INF/releng/screenshots/4.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2711,6 +2800,9 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>webs/wurfl-web/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>webs/wurfl-web/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
+			<screenshot>webs/wurfl-web/docroot/WEB-INF/releng/screenshots/3.jpg</screenshot>
 			<supported>true</supported>
 		</releng>
 	</plugin>
