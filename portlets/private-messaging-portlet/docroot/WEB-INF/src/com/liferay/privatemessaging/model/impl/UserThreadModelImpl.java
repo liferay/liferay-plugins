@@ -360,17 +360,6 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	}
 
 	@Override
-	public UserThread toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (UserThread)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
-		}
-
-		return _escapedModelProxy;
-	}
-
-	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
 			UserThread.class.getName(), getPrimaryKey());
@@ -381,6 +370,17 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
 		expandoBridge.setAttributes(serviceContext);
+	}
+
+	@Override
+	public UserThread toEscapedModel() {
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (UserThread)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
+		}
+
+		return _escapedModelProxy;
 	}
 
 	@Override

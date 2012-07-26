@@ -347,17 +347,6 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 	}
 
 	@Override
-	public Definition toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (Definition)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
-		}
-
-		return _escapedModelProxy;
-	}
-
-	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
 			Definition.class.getName(), getPrimaryKey());
@@ -368,6 +357,17 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
 		expandoBridge.setAttributes(serviceContext);
+	}
+
+	@Override
+	public Definition toEscapedModel() {
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (Definition)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
+		}
+
+		return _escapedModelProxy;
 	}
 
 	@Override

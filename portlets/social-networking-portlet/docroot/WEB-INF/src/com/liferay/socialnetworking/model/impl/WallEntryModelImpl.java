@@ -299,17 +299,6 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 	}
 
 	@Override
-	public WallEntry toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (WallEntry)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
-		}
-
-		return _escapedModelProxy;
-	}
-
-	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
 			WallEntry.class.getName(), getPrimaryKey());
@@ -320,6 +309,17 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
 		expandoBridge.setAttributes(serviceContext);
+	}
+
+	@Override
+	public WallEntry toEscapedModel() {
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (WallEntry)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
+		}
+
+		return _escapedModelProxy;
 	}
 
 	@Override

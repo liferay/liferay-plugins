@@ -16,6 +16,7 @@ package com.liferay.calendar.model;
 
 import com.liferay.calendar.service.CalendarResourceLocalServiceUtil;
 
+import com.liferay.portal.LocaleException;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -586,6 +587,15 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 		else {
 			CalendarResourceLocalServiceUtil.updateCalendarResource(this);
 		}
+	}
+
+	@SuppressWarnings("unused")
+	public void prepareLocalizedFieldsForImport(Locale defaultImportLocale)
+		throws LocaleException {
+		setName(getName(defaultImportLocale), defaultImportLocale,
+			defaultImportLocale);
+		setDescription(getDescription(defaultImportLocale),
+			defaultImportLocale, defaultImportLocale);
 	}
 
 	@Override

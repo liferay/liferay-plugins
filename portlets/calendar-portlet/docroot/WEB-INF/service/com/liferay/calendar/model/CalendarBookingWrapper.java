@@ -1113,6 +1113,12 @@ public class CalendarBookingWrapper implements CalendarBooking,
 		_calendarBooking.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	public void prepareLocalizedFieldsForImport(
+		java.util.Locale defaultImportLocale)
+		throws com.liferay.portal.LocaleException {
+		_calendarBooking.prepareLocalizedFieldsForImport(defaultImportLocale);
+	}
+
 	@Override
 	public java.lang.Object clone() {
 		return new CalendarBookingWrapper((CalendarBooking)_calendarBooking.clone());

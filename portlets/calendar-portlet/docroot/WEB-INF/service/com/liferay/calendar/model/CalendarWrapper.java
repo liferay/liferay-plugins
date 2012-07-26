@@ -703,6 +703,12 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 		_calendar.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	public void prepareLocalizedFieldsForImport(
+		java.util.Locale defaultImportLocale)
+		throws com.liferay.portal.LocaleException {
+		_calendar.prepareLocalizedFieldsForImport(defaultImportLocale);
+	}
+
 	@Override
 	public java.lang.Object clone() {
 		return new CalendarWrapper((Calendar)_calendar.clone());

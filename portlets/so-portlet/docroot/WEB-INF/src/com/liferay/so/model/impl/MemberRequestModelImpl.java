@@ -396,17 +396,6 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	}
 
 	@Override
-	public MemberRequest toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (MemberRequest)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
-		}
-
-		return _escapedModelProxy;
-	}
-
-	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
 			MemberRequest.class.getName(), getPrimaryKey());
@@ -417,6 +406,17 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
 		expandoBridge.setAttributes(serviceContext);
+	}
+
+	@Override
+	public MemberRequest toEscapedModel() {
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (MemberRequest)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
+		}
+
+		return _escapedModelProxy;
 	}
 
 	@Override

@@ -273,17 +273,6 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 	}
 
 	@Override
-	public Entry toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (Entry)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
-		}
-
-		return _escapedModelProxy;
-	}
-
-	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
 			Entry.class.getName(), getPrimaryKey());
@@ -294,6 +283,17 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
 		expandoBridge.setAttributes(serviceContext);
+	}
+
+	@Override
+	public Entry toEscapedModel() {
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (Entry)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
+		}
+
+		return _escapedModelProxy;
 	}
 
 	@Override

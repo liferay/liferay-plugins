@@ -365,17 +365,6 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	}
 
 	@Override
-	public Gadget toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (Gadget)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
-		}
-
-		return _escapedModelProxy;
-	}
-
-	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
 			Gadget.class.getName(), getPrimaryKey());
@@ -386,6 +375,17 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
 		expandoBridge.setAttributes(serviceContext);
+	}
+
+	@Override
+	public Gadget toEscapedModel() {
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (Gadget)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
+		}
+
+		return _escapedModelProxy;
 	}
 
 	@Override

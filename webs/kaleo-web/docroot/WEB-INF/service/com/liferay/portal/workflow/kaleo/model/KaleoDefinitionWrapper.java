@@ -594,6 +594,12 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 		_kaleoDefinition.setExpandoBridgeAttributes(serviceContext);
 	}
 
+	public void prepareLocalizedFieldsForImport(
+		java.util.Locale defaultImportLocale)
+		throws com.liferay.portal.LocaleException {
+		_kaleoDefinition.prepareLocalizedFieldsForImport(defaultImportLocale);
+	}
+
 	@Override
 	public java.lang.Object clone() {
 		return new KaleoDefinitionWrapper((KaleoDefinition)_kaleoDefinition.clone());

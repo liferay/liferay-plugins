@@ -308,17 +308,6 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 	}
 
 	@Override
-	public JIRAAction toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (JIRAAction)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
-		}
-
-		return _escapedModelProxy;
-	}
-
-	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
 			JIRAAction.class.getName(), getPrimaryKey());
@@ -329,6 +318,17 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
 		expandoBridge.setAttributes(serviceContext);
+	}
+
+	@Override
+	public JIRAAction toEscapedModel() {
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (JIRAAction)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
+		}
+
+		return _escapedModelProxy;
 	}
 
 	@Override

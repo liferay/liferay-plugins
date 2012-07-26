@@ -16,6 +16,7 @@ package com.liferay.calendar.model;
 
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 
+import com.liferay.portal.LocaleException;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -814,6 +815,15 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		else {
 			CalendarBookingLocalServiceUtil.updateCalendarBooking(this);
 		}
+	}
+
+	@SuppressWarnings("unused")
+	public void prepareLocalizedFieldsForImport(Locale defaultImportLocale)
+		throws LocaleException {
+		setTitle(getTitle(defaultImportLocale), defaultImportLocale,
+			defaultImportLocale);
+		setDescription(getDescription(defaultImportLocale),
+			defaultImportLocale, defaultImportLocale);
 	}
 
 	@Override

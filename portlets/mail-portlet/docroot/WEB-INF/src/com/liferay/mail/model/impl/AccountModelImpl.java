@@ -642,17 +642,6 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 	}
 
 	@Override
-	public Account toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (Account)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
-		}
-
-		return _escapedModelProxy;
-	}
-
-	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
 			Account.class.getName(), getPrimaryKey());
@@ -663,6 +652,17 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
 		expandoBridge.setAttributes(serviceContext);
+	}
+
+	@Override
+	public Account toEscapedModel() {
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (Account)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
+		}
+
+		return _escapedModelProxy;
 	}
 
 	@Override

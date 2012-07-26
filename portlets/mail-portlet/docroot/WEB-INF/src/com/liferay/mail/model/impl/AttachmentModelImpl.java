@@ -296,17 +296,6 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 	}
 
 	@Override
-	public Attachment toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (Attachment)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
-		}
-
-		return _escapedModelProxy;
-	}
-
-	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
 			Attachment.class.getName(), getPrimaryKey());
@@ -317,6 +306,17 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
 		expandoBridge.setAttributes(serviceContext);
+	}
+
+	@Override
+	public Attachment toEscapedModel() {
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (Attachment)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
+		}
+
+		return _escapedModelProxy;
 	}
 
 	@Override
