@@ -15,12 +15,11 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<icon>hooks/default-web-content-hook/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -40,11 +39,10 @@
 			<bundle>false</bundle>
 			<category>Utility</category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -64,11 +62,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -88,11 +85,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -112,11 +108,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -136,11 +131,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -160,11 +154,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -179,16 +172,15 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>AGPL</licenses>
-		<liferay-versions>6.1.1</liferay-versions>
+		<liferay-versions>6.1.1,6.1.20</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Productivity</category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
-			<parent-app>Social Office</parent-app>
 			<public>true</public>
-			<standalone-app>false</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -208,11 +200,10 @@
 			<bundle>false</bundle>
 			<category>Utility</category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -232,11 +223,10 @@
 			<bundle>false</bundle>
 			<category>Utility</category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -256,11 +246,10 @@
 			<bundle>false</bundle>
 			<category>Utility</category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -280,11 +269,10 @@
 			<bundle>false</bundle>
 			<category>Utility</category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -304,11 +292,10 @@
 			<bundle>false</bundle>
 			<category>Utility</category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -328,11 +315,10 @@
 			<bundle>false</bundle>
 			<category>Utility</category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -352,11 +338,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -376,11 +361,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -400,11 +384,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -419,17 +402,16 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
-		<liferay-versions>6.1.1</liferay-versions>
+		<liferay-versions>6.1.1,6.1.20</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<icon>portlets/chat-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -444,16 +426,15 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>AGPL</licenses>
-		<liferay-versions>6.1.1</liferay-versions>
+		<liferay-versions>6.1.1,6.1.20</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Productivity</category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
-			<parent-app>Social Office</parent-app>
 			<public>true</public>
-			<standalone-app>false</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -473,12 +454,11 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<icon>portlets/ddl-form-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -498,11 +478,10 @@
 			<bundle>false</bundle>
 			<category>Utility</category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -517,16 +496,15 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
-		<liferay-versions>6.1.1</liferay-versions>
+		<liferay-versions>6.1.1,6.1.20</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Productivity</category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
-			<parent-app>Social Office</parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -546,12 +524,11 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<icon>portlets/flash-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -571,12 +548,11 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<icon>portlets/google-adsense-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -596,12 +572,11 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<icon>portlets/google-maps-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -621,11 +596,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -645,13 +619,12 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<icon>portlets/ip-geocoder-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
-			<marketplace>false</marketplace>
-			<parent-app></parent-app>
+			<marketplace>true</marketplace>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
-			<supported>false</supported>
+			<supported>true</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -670,11 +643,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -694,12 +666,11 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<icon>portlets/knowledge-base-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -719,11 +690,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -743,12 +713,11 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<icon>portlets/mail-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -768,11 +737,10 @@
 			<bundle>true</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -787,16 +755,15 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>AGPL</licenses>
-		<liferay-versions>6.1.1</liferay-versions>
+		<liferay-versions>6.1.1,6.1.20</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Productivity</category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
-			<parent-app>Social Office</parent-app>
 			<public>true</public>
-			<standalone-app>false</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -816,11 +783,10 @@
 			<bundle>false</bundle>
 			<category>Utility</category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -840,11 +806,10 @@
 			<bundle>false</bundle>
 			<category>Utility</category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -864,12 +829,11 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<icon>portlets/opensocial-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -884,16 +848,15 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>AGPL</licenses>
-		<liferay-versions>6.1.1</liferay-versions>
+		<liferay-versions>6.1.1,6.1.20</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Productivity</category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
-			<parent-app>Social Office</parent-app>
 			<public>true</public>
-			<standalone-app>false</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -913,11 +876,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -937,11 +899,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -961,11 +922,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -985,11 +945,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1009,11 +968,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1033,11 +991,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1057,11 +1014,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1081,11 +1037,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1105,11 +1060,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1129,11 +1083,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1153,11 +1106,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1177,11 +1129,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1201,11 +1152,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1225,11 +1175,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1249,11 +1198,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1273,11 +1221,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1297,11 +1244,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1321,11 +1267,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1345,11 +1290,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1369,11 +1313,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1393,11 +1336,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1417,11 +1359,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1441,11 +1382,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1465,11 +1405,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1489,11 +1428,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1513,11 +1451,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1532,16 +1469,15 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>AGPL</licenses>
-		<liferay-versions>6.1.1</liferay-versions>
+		<liferay-versions>6.1.1,6.1.20</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Productivity</category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
-			<parent-app>Social Office</parent-app>
 			<public>true</public>
-			<standalone-app>false</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -1561,11 +1497,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>false</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -1585,12 +1520,11 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<icon>portlets/social-networking-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -1610,12 +1544,11 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<icon>portlets/stocks-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -1635,11 +1568,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1654,16 +1586,15 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>AGPL</licenses>
-		<liferay-versions>6.1.1</liferay-versions>
+		<liferay-versions>6.1.1,6.1.20</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Productivity</category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
-			<parent-app>Social Office</parent-app>
 			<public>true</public>
-			<standalone-app>false</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -1683,11 +1614,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1707,11 +1637,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1731,11 +1660,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1755,11 +1683,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1779,11 +1706,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1803,11 +1729,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1827,11 +1752,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1851,11 +1775,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1875,11 +1798,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1899,11 +1821,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1923,11 +1844,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1947,11 +1867,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1971,11 +1890,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -1995,11 +1913,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -2019,11 +1936,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>false</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -2043,11 +1959,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -2067,11 +1982,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -2091,11 +2005,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -2115,12 +2028,11 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<icon>portlets/twitter-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2140,12 +2052,11 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<icon>portlets/vimeo-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2160,17 +2071,16 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
-		<liferay-versions>6.1.1</liferay-versions>
+		<liferay-versions>6.1.1,6.1.20</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<icon>portlets/weather-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2190,12 +2100,11 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<icon>portlets/web-form-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2215,11 +2124,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -2239,12 +2147,11 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<icon>portlets/wiki-navigation-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2264,12 +2171,11 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<icon>portlets/wsrp-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2284,16 +2190,15 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
-		<liferay-versions>6.1.1</liferay-versions>
+		<liferay-versions>6.1.1,6.1.20</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Collaboration</category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
-			<parent-app>Social Office</parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2313,12 +2218,11 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<icon>portlets/youtube-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2338,11 +2242,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2362,11 +2265,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2386,11 +2288,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2410,11 +2311,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2434,11 +2334,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -2458,11 +2357,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -2482,11 +2380,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -2506,11 +2403,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -2530,11 +2426,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -2549,16 +2444,15 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>AGPL</licenses>
-		<liferay-versions>6.1.1</liferay-versions>
+		<liferay-versions>6.1.1,6.1.20</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Productivity</category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
-			<parent-app>Social Office</parent-app>
 			<public>true</public>
-			<standalone-app>false</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2573,16 +2467,15 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>AGPL</licenses>
-		<liferay-versions>6.1.1</liferay-versions>
+		<liferay-versions>6.1.1,6.1.20</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
 			<category>Productivity</category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
-			<parent-app>Social Office</parent-app>
 			<public>true</public>
-			<standalone-app>false</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2602,11 +2495,10 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -2626,11 +2518,10 @@
 			<bundle>true</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2650,12 +2541,11 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<icon>webs/cas-web/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2675,11 +2565,10 @@
 			<bundle>false</bundle>
 			<category>Utility</category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2699,12 +2588,11 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<icon>webs/kaleo-web/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2724,11 +2612,10 @@
 			<bundle>true</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>false</supported>
 		</releng>
 	</plugin>
@@ -2748,12 +2635,11 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<icon>webs/server-manager-web/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2773,12 +2659,11 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<icon>webs/solr-web/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2798,11 +2683,10 @@
 			<bundle>false</bundle>
 			<category>Utility</category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
@@ -2822,12 +2706,11 @@
 			<bundle>false</bundle>
 			<category></category>
 			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
 			<icon>webs/wurfl-web/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>true</labs>
 			<marketplace>true</marketplace>
-			<parent-app></parent-app>
 			<public>true</public>
-			<standalone-app>true</standalone-app>
 			<supported>true</supported>
 		</releng>
 	</plugin>
