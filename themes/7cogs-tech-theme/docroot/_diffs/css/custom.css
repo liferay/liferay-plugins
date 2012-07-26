@@ -17,9 +17,9 @@ $default-box-shadow-v-offset: 1px;
 }
 
 body {
-	background: #142933;
+	background: url(../images/custom/background.png) 0 0;
 	border-top: 10px solid #193441;
-	font-family: 12px, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 	&.portal-popup {
 		background-image: none;
@@ -36,7 +36,6 @@ body {
 }
 
 #wrapper {
-	background: url(../images/custom/background.png) 0 0;
 	position: relative;
 }
 
@@ -132,17 +131,7 @@ hr {
 		margin-top: 0;
 		padding-top: 2em;
 
-		 .logo.default-logo {
-			background: url(../images/custom/logo.png) 0 50% no-repeat;
-			height: 40px;
-			width: 145px;
-
-			img {
-				display: none;
-			}
-		}
-
-		#pageSearch {
+		#page-search {
 			position: absolute;
 			right: 0;
 			top: 42px;
@@ -173,7 +162,7 @@ hr {
 
 /* -------- Search Bar -------- */
 
-#pageSearch {
+#page-search {
 	#keywords, .lfr-search-keywords, .lfr-search-button {
 		background-image: url(../images/custom/search_sprite.png);
 		background-repeat: no-repeat;
@@ -490,17 +479,23 @@ ul.arrow {
 
 /* -------- Footer -------- */
 
-#footerWrapper {
+#footer-wrapper {
 	background: #142933;
 
-	#footerContent {
+	#footer-content {
 		margin: 0 auto;
 		padding: 25px 0;
 		width: 960px;
 	}
 }
 
-#footerContent {
+#footer-content {
+
+	.aui-column-content {
+		display: inline-block;
+		width: 100%;
+	}
+
 	a {
 		color: #EE9F44;
 		text-decoration: none;
@@ -517,28 +512,6 @@ ul.arrow {
 		color: #959595;
 		font-size: 1em;
 		margin-bottom: 1.7em;
-	}
-
-	#blurb {
-		margin-left: -5px;
-		padding: 0 5px;
-		width: 230px;
-
-		p {
-			padding-right: 10px;
-		}
-	}
-
-	#footerContent #socialLinks {
-		margin-right: -5px;
-		padding: 0 5px;
-		width: 230px;
-	}
-
-	#footerNavigation, #siteMeta {
-		margin: 0;
-		padding: 0 5px;
-		width: 230px;
 	}
 
 	p {
@@ -580,16 +553,10 @@ ul.arrow {
 	}
 }
 
-/* ------- Footer / Links ------ */
-
-.signed-in #signIn, .signed-out #signOut {
-	display: none;
-}
-
 /* ------- Browser Specific Rules ------ */
 
 .ie6 {
-	#pageSearch #search {
+	#page-search #search {
 		background-color: #132832;
 		height: 21px;
 	}
@@ -604,7 +571,7 @@ ul.arrow {
 }
 
 .ie7 {
-	#pageSearch #keywords {
+	#page-search #keywords {
 		margin-top: -1px;
 	}
 
@@ -613,7 +580,7 @@ ul.arrow {
 	}
 }
 
-.ie8 #pageSearch {
+.ie8 #page-search {
 	#keywords {
 		display: block;
 	}
@@ -623,7 +590,7 @@ ul.arrow {
 	}
 }
 
-.firefox #pageSearch .lfr-search-keywords {
+.firefox #page-search .lfr-search-keywords {
 	margin-top: -3px;
 }
 

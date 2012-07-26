@@ -1,0 +1,31 @@
+<h2>$!title.data</h2>
+
+<ul class="hide-bullets">
+	#if ($display-signin.data == "true")
+		<li id="signIn">
+			<a href="$sign_in_url" rel="nofollow">#language('sign-in')</a>
+		</li>
+		<li id="signOut">
+			<a href="javascript:Liferay.TechTheme.logOut();" rel="nofollow">#language('sign-out')</a>
+		</li>
+	#end
+
+	#foreach ($footer-link in $footer-links.siblings)
+		<li><a href="$!footer-link.url-location.data">$!footer-link.data</a></li>
+	#end
+</ul>
+
+<script type="text/javascript">
+	Liferay.namespace("TechTheme");
+	Liferay.provide(Liferay.TechTheme,"logOut",function(){
+		var a=AUI();
+
+		a.io.request(themeDisplay.getPathMain()+"/portal/logout",{
+			after:{
+				success:function(){
+					location.reload()
+				}
+			}
+		})
+	},["aui-io"]);
+</script>

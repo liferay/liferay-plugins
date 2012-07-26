@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <root available-locales="en_US" default-locale="en_US">
-	<dynamic-element instance-id="Dq2bIXiJ" name="height" type="text" index-type="not-searchable">
+	<dynamic-element instance-id="Dq2bIXiJ" name="height" type="text" index-type="">
 		<dynamic-content><![CDATA[320]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="O4aO9a8O" name="duration" type="list" index-type="not-searchable">
+	<dynamic-element instance-id="O4aO9a8O" name="duration" type="list" index-type="">
 		<dynamic-content><![CDATA[3]]></dynamic-content>
 	</dynamic-element>
 	<dynamic-element instance-id="qYyn3lcL" name="carousel-item" type="text" index-type="">
@@ -16,6 +16,9 @@
 		</dynamic-element>
 		<dynamic-element instance-id="NKshI0fa" name="image" type="document_library" index-type="">
 			<dynamic-content><![CDATA[[$FILE=carousel_item1.jpg$]]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element instance-id="CaKRiz5o" name="url-location" type="link_to_layout" index-type="">
+			<dynamic-content><![CDATA[5@private-group]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-content><![CDATA[Services]]></dynamic-content>
 	</dynamic-element>
@@ -29,6 +32,9 @@
 		<dynamic-element instance-id="AB6XGWIW" name="image" type="document_library" index-type="">
 			<dynamic-content><![CDATA[[$FILE=carousel_item2.jpg$]]]></dynamic-content>
 		</dynamic-element>
+		<dynamic-element instance-id="0BlzqsMw" name="url-location" type="link_to_layout" index-type="">
+			<dynamic-content><![CDATA[5@private-group]]></dynamic-content>
+		</dynamic-element>
 		<dynamic-content><![CDATA[Programming]]></dynamic-content>
 	</dynamic-element>
 	<dynamic-element instance-id="qOSRCIBp" name="carousel-item" type="text" index-type="">
@@ -41,6 +47,9 @@
 		<dynamic-element instance-id="cJiqbcTO" name="image" type="document_library" index-type="">
 			<dynamic-content><![CDATA[[$FILE=carousel_item3.jpg$]]]></dynamic-content>
 		</dynamic-element>
+		<dynamic-element instance-id="6A0R3Dey" name="url-location" type="link_to_layout" index-type="">
+			<dynamic-content><![CDATA[3@private-group]]></dynamic-content>
+		</dynamic-element>
 		<dynamic-content><![CDATA[Applications]]></dynamic-content>
 	</dynamic-element>
 	<dynamic-element instance-id="PS84bJen" name="carousel-item" type="text" index-type="">
@@ -52,6 +61,9 @@
 		</dynamic-element>
 		<dynamic-element instance-id="old8s3oU" name="image" type="document_library" index-type="">
 			<dynamic-content><![CDATA[[$FILE=carousel_item2.jpg$]]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element instance-id="MyFk6Nmv" name="url-location" type="link_to_layout" index-type="">
+			<dynamic-content><![CDATA[5@private-group]]></dynamic-content>
 		</dynamic-element>
 		<dynamic-content><![CDATA[Resources]]></dynamic-content>
 	</dynamic-element>

@@ -21,6 +21,7 @@
 			#end
 
 			<li class="$carousel_menu_item_class">
+
 				#if ($item.icon.data!='')
 					<img class="icon" src="${item.icon.data}" />
 				#end
@@ -52,9 +53,17 @@
 				#set ($carousel_item_class = $carousel_item_class + " aui-carousel-item-active")
 			#end
 
-			<div class="$carousel_item_class" style="background: url(${item.image.data}) no-repeat; height: ${height.data}px; width: 674px;">
-				${item.data}
-			</div>
+			#if($item.url-location.data != "")
+				<a href="$item.url-location.friendlyUrl" title="$!item.data">
+			#end
+
+				<div class="$carousel_item_class" style="background: url(${item.image.data}) no-repeat; height: ${height.data}px; width: 674px;">
+					${item.data}
+				</div>
+
+			#if($item.url-location.data != "")
+				</a>
+			#end
 		#end
 	</div>
 </div>
