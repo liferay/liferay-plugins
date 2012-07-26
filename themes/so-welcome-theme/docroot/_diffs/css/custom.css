@@ -165,7 +165,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .ed
 
 	.login-holder {
 		left: 0;
-		position: relative;
+		position: absolute;
 		right: 0;
 		top: 17.5%;
 	}
