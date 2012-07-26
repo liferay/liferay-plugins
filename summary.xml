@@ -177,7 +177,7 @@
 			<bundle>false</bundle>
 			<category>Productivity</category>
 			<demo-url></demo-url>
-			<dependent-apps></dependent-apps>
+			<dependent-apps>chat-portlet, contacts-portlet, events-display-portlet, microblogs-portlet, private-messaging-portlet, resources-importer-web, so-portlet, so-theme, so-welcome-theme, tasks-portlet, weather-portlet, wysiwyg-portlet</dependent-apps>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
@@ -433,7 +433,7 @@
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<labs>false</labs>
-			<marketplace>true</marketplace>
+			<marketplace>false</marketplace>
 			<public>true</public>
 			<supported>true</supported>
 		</releng>
@@ -503,7 +503,7 @@
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<labs>false</labs>
-			<marketplace>true</marketplace>
+			<marketplace>false</marketplace>
 			<public>true</public>
 			<supported>true</supported>
 		</releng>
@@ -762,7 +762,7 @@
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<labs>false</labs>
-			<marketplace>true</marketplace>
+			<marketplace>false</marketplace>
 			<public>true</public>
 			<supported>true</supported>
 		</releng>
@@ -855,7 +855,7 @@
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<labs>false</labs>
-			<marketplace>true</marketplace>
+			<marketplace>false</marketplace>
 			<public>true</public>
 			<supported>true</supported>
 		</releng>
@@ -1476,7 +1476,7 @@
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<labs>false</labs>
-			<marketplace>true</marketplace>
+			<marketplace>false</marketplace>
 			<public>true</public>
 			<supported>true</supported>
 		</releng>
@@ -1593,7 +1593,7 @@
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<labs>false</labs>
-			<marketplace>true</marketplace>
+			<marketplace>false</marketplace>
 			<public>true</public>
 			<supported>true</supported>
 		</releng>
@@ -2451,7 +2451,7 @@
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<labs>false</labs>
-			<marketplace>true</marketplace>
+			<marketplace>false</marketplace>
 			<public>true</public>
 			<supported>true</supported>
 		</releng>
@@ -2474,7 +2474,7 @@
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<labs>false</labs>
-			<marketplace>true</marketplace>
+			<marketplace>false</marketplace>
 			<public>true</public>
 			<supported>true</supported>
 		</releng>
@@ -2607,7 +2607,7 @@
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
 		<licenses>LGPL</licenses>
-		<liferay-versions>6.1.1</liferay-versions>
+		<liferay-versions>6.1.1,6.1.20</liferay-versions>
 		<releng>
 			<bundle>true</bundle>
 			<category></category>
