@@ -284,7 +284,7 @@ p {
 	}
 
 	.divider {
-		background: url('../images/custom/home_content_divs.png') 0 0 repeat-x;
+		background: url(../images/custom/home_content_divs.png) 0 0 repeat-x;
 		height: 8px;
 		margin: 0 0 15px;
 		width: 100%;
@@ -437,15 +437,17 @@ p {
 	}
 }
 
-.portlet-column-first .column-text, .portlet-column-first .pod, .portlet-column-first .pod .divider {
-	margin-left: 0;
+.portlet-column-first {
+	.column-text, .pod, .pod .divider {
+		margin-left: 0;
+	}
 }
 
 .pod-image {
 	clear: both;
 	float: left;
-	padding-left: 15px;
 	height: 77px;
+	padding-left: 15px;
 }
 
 .pod-text {
@@ -489,16 +491,18 @@ p {
 	}
 
 	.pod {
-		&.button, &.button:hover {
-			background-image: url(../images/custom/ie6/pod_button.gif);
+		&.button {
+			&, &:hover {
+				background-image: url(../images/custom/ie6/pod_button.gif);
 
-			.pod-text .description {
-				clear: left;
-				float: left;
-				height: 50px;
-				text-align: left;
-				text-indent: -3px;
-				white-space: pre;
+				.pod-text .description {
+					clear: left;
+					float: left;
+					height: 50px;
+					text-align: left;
+					text-indent: -3px;
+					white-space: pre;
+				}
 			}
 		}
 
@@ -660,11 +664,11 @@ ul.aui-tabview-list {
 
 /* -------- Extras -------- */
 
-p, a, a:link, a:visited, #navigation ul, .columns-max .portlet-topper-toolbar, .pod, .ie8 .pod.button span.description, .innovation-title  {
+a, a:link, a:visited, p, #navigation ul, .columns-max .portlet-topper-toolbar, .ie8 .pod.button span.description, .innovation-title, .pod {
 	@include single-text-shadow($textShadowColor1, 1px, 1px, 1px);
 }
 
-.featured-text p, .columns-2-1-2 #column-1 .featured-text h3, .columns-2-1-2 #column-2 .fetured-text h3, .portlet-topper-toolbar a, .portlet-topper-toolbar a:visited, .aui-tab-active span span a {
+.aui-tab-active span span a, .columns-2-1-2 #column-1 .featured-text h3, .columns-2-1-2 #column-2 .fetured-text h3, .featured-text p, .portlet-topper-toolbar a, .portlet-topper-toolbar a:visited {
 	@include single-text-shadow($textShadowColor2, 1px, 1px, 1px);
 }
 

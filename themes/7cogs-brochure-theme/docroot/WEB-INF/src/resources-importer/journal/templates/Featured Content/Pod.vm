@@ -1,15 +1,27 @@
 <div class="pod button">
-	<a href="$!link.data">
-		#if ($image.data != '')
-			<img class="pod-image" src="$image.data" />
+	#if ($link.data != "")
+		<a href="$link.data">
+	#end
+
+	#if ($image.data != "")
+		<img class="pod-image" src="$image.data" />
+	#end
+
+	<div class="pod-text">
+		#if ($title.data != "")
+			<h5>
+				$title.data
+			</h5>
 		#end
 
-		<div class="pod-text">
-			<h5>$!title.data</h5>
-
+		#if ($description.data != "")
 			<span class="description">
-				$!description.data
+				$description.data
 			</span>
-		</div>
-	</a>
+		#end
+	</div>
+
+	#if ($link.data != "")
+		</a>
+	#end
 </div>
