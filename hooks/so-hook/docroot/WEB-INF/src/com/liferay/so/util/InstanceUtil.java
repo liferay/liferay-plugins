@@ -441,7 +441,7 @@ public class InstanceUtil {
 
 		layout = LayoutUtil.addLayout(
 			group, true, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
-			"My Documents", "/so/my-documents", "1_column");
+			getLocalizationMap("my-documents"), "/so/my-documents", "1_column");
 
 		LayoutUtil.addPortlets(
 			group, layout, "/my-documents",
