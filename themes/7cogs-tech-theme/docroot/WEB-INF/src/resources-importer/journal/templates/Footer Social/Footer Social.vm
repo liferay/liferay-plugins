@@ -1,9 +1,22 @@
-<h2>$title.data</h2>
-<h4>$tagline.data</h4>
+#if ($title.data != "")
+	<h2>
+		$title.data
+	</h2>
+#end
+
+#if ($tagline.data != "")
+	<h4>
+		$tagline.data
+	</h4>
+#end
+
 <ul class="social">
 	#foreach ($social-link in $social-links.siblings)
 		<li>
-			<a alt="${social-link.data}" href="${social-link.url-location.data}" target="new_window" title="${social-link.data}"><img src="${social-link.icon.data}" /><span>${social-link.data}</span></a>
+			<a href="$social-link.url-location.data" target="new_window" title="$social-link.data" >
+				<img alt="$social-link.data" src="$social-link.icon.data" />
+				<span>$social-link.data</span>
+			</a>
 		</li>
 	#end
 </ul>

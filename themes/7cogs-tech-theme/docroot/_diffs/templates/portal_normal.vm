@@ -34,7 +34,7 @@ $theme.include($body_top_include)
 					</span>
 				#end
 
-				<div id="page-search">
+				<div id="pageSearch">
 					$theme.journalContentSearch()
 				</div>
 			</h1>
@@ -70,7 +70,7 @@ $theme.include($body_top_include)
 	</div>
 </div>
 
-#if ($theme_settings.display-footer == 'true')
+#if ($theme_settings.display-footer == true)
 	#parse ("$full_templates_path/footer.vm")
 #end
 

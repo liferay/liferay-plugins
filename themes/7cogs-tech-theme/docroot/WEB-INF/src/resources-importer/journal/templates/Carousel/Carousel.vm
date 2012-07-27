@@ -7,10 +7,10 @@
 	}
 </style>
 
-<div class="carousel-container" id="${content_id}">
+<div class="carousel-container" id="$content_id">
 	<ul id="tabs">
 		#foreach ($item in $carousel-item.siblings)
-			#set ($carousel_menu_item_class = "tab-item item-$velocityCount aui-carousel-menu-index")
+			#set ($carousel_menu_item_class = "tab-item item-" + $velocityCount + " aui-carousel-menu-index")
 
 			#if ($velocityCount == 1)
 				#set ($carousel_menu_item_class = $carousel_menu_item_class + " aui-carousel-menu-active first")
@@ -21,22 +21,19 @@
 			#end
 
 			<li class="$carousel_menu_item_class">
-
-				#if ($item.icon.data!='')
-					<img class="icon" src="${item.icon.data}" />
+				#if ($item.icon.data != "")
+					<img class="icon" src="$item.icon.data" />
 				#end
 
-				<h4 class="title">
-					#if ($item.data)
-						${item.data}
-					#end
-				</h4>
+				#if ($item.data != "")
+					<h4 class="title">$item.data</h4>
+				#end
 
-				<span class="tagline">
-					#if ($item.tagline.data)
-						${item.tagline.data}
-					#end
-				</span>
+				#if ($item.tagline.data != "")
+					<span class="tagline">
+						$item.tagline.data
+					</span>
+				#end
 			</li>
 
 			#if ($velocityHasNext)
@@ -53,15 +50,15 @@
 				#set ($carousel_item_class = $carousel_item_class + " aui-carousel-item-active")
 			#end
 
-			#if($item.url-location.data != "")
-				<a href="$item.url-location.friendlyUrl" title="$!item.data">
+			#if ($item.url-location.data != "")
+				<a href="$item.url-location.friendlyUrl" title="$item.data">
 			#end
 
-				<div class="$carousel_item_class" style="background: url(${item.image.data}) no-repeat; height: ${height.data}px; width: 674px;">
-					${item.data}
-				</div>
+			<div class="$carousel_item_class" style="background: url(${item.image.data}) no-repeat; height: ${height.data}px; width: 674px;">
+				$item.data
+			</div>
 
-			#if($item.url-location.data != "")
+			#if ($item.url-location.data != "")
 				</a>
 			#end
 		#end

@@ -1,21 +1,21 @@
-<footer id="footer-wrapper" role="contentinfo">
-	<div class="aui-layout-content" id="footer-content">
+<footer id="footerWrapper" role="contentinfo">
+	<div class="aui-layout-content" id="footerContent">
 		<div class="aui-column aui-column-first aui-w25" id="footer-section-1">
 			<div class="aui-column-content aui-column-content-first">
-				#if($footer_section_1)
+				#if ($footer_section_1)
 					$footer_section_1
-				#else
-
 				#end
 			</div>
 		</div>
 
 		<div class="aui-column aui-w25" id="footer-section-2">
 			<div class="aui-column-content">
-				#if ($theme_settings.footer-nav-display == "true")
-					<h2>
-						<span>$!{theme_settings.footer-nav-title}</span>
-					</h2>
+				#if ($theme_settings.footer-nav-display)
+					#if ($theme_settings.footer-nav-title)
+						<h2>
+							<span>$theme_settings.footer-nav-title</span>
+						</h2>
+					#end
 
 					<ul>
 						#foreach ($nav_item in $nav_items)
@@ -41,8 +41,6 @@
 				#else
 					#if ($footer_section_2)
 						$footer_section_2
-					#else
-
 					#end
 				#end
 			</div>
@@ -50,20 +48,16 @@
 
 		<div class="aui-column aui-w25" id="footer-section-3">
 			<div class="aui-column-content">
-				#if($footer_section_3)
+				#if ($footer_section_3)
 					$footer_section_3
-				#else
-
 				#end
 			</div>
 		</div>
 
 		<div class="aui-column aui-column-last aui-w25" id="footer-section-4">
 			<div class="aui-column-content aui-column-content-last">
-				#if($footer_section_4)
+				#if ($footer_section_4)
 					$footer_section_4
-				#else
-
 				#end
 			</div>
 		</div>
