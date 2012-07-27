@@ -34,7 +34,7 @@ a {
 
 body {
 	background: $bgColor url(../images/custom/body_bg.png) repeat-x 0 0;
-	font-family: 12px "Helvetica Neue", Helvetica, Arial, san-serif;
+	font: 12px "Helvetica Neue", Helvetica, Arial, san-serif;
 
 	&.lfr-dockbar-pinned {
 		padding-top: 2.4em;
@@ -92,18 +92,8 @@ p {
 	}
 
 	.logo {
+		float: left;
 		margin: 7px 10px 7px 130px;
-
-		&.default-logo {
-			background: url(../images/custom/logo.png) no-repeat 0 0;
-			float: left;
-			height: 39px;
-			width: 135px;
-
-			img {
-				display: none;
-			}
-		}
 	}
 
 	.site-name {
