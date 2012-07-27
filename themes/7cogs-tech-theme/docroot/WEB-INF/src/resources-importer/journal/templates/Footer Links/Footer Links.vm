@@ -1,31 +1,57 @@
-<h2>$!title.data</h2>
+#if ($title.data != "")
+	<h2>
+		$title.data
+	</h2>
+#end
 
 <ul class="hide-bullets">
-	#if ($display-signin.data == "true")
+	#if ($display-signin.data)
 		<li id="signIn">
 			<a href="$sign_in_url" rel="nofollow">#language('sign-in')</a>
 		</li>
+
 		<li id="signOut">
 			<a href="javascript:Liferay.TechTheme.logOut();" rel="nofollow">#language('sign-out')</a>
 		</li>
 	#end
 
 	#foreach ($footer-link in $footer-links.siblings)
-		<li><a href="$!footer-link.url-location.data">$!footer-link.data</a></li>
+		<li>
+			#if ($footer-link.url-location.data != "")
+				<a href="$footer-link.url-location.data">
+			#end
+
+			$footer-link.data
+
+			#if ($footer-link.url-location.data != "")
+				</a>
+			#end
+		</li>
 	#end
 </ul>
 
-<script type="text/javascript">
-	Liferay.namespace("TechTheme");
-	Liferay.provide(Liferay.TechTheme,"logOut",function(){
-		var a=AUI();
+#if ($display-signin.data)
+	<script type="text/javascript">
+		Liferay.namespace("TechTheme");
 
-		a.io.request(themeDisplay.getPathMain()+"/portal/logout",{
-			after:{
-				success:function(){
-					location.reload()
-				}
-			}
-		})
-	},["aui-io"]);
-</script>
+		Liferay.provide(
+			Liferay.TechTheme,
+			"logOut",
+			function() {
+				var A = AUI();
+
+				A.io.request(
+					themeDisplay.getPathMain() + "/portal/logout",
+					{
+						after: {
+							success: function() {
+								location.reload()
+							}
+						}
+					}
+				)
+			},
+			["aui-io"]
+		);
+	</script>
+#end
