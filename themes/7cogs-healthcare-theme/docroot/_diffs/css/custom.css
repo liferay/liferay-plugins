@@ -15,8 +15,7 @@
 }
 
 body {
-	background: #202020;
-	font-family: 12px Arial, Helvetica, sans-serif;
+	font: 12px Arial, Helvetica, sans-serif;
 	line-height: 1.35;
 
 	&.lfr-dockbar-pinned {
@@ -70,16 +69,6 @@ body {
 
 	.site-title {
 		margin: 0;
-
-		.logo.default-logo {
-			background: url(../images/custom/logo.png) no-repeat;
-			height: 100px;
-			width: 295px;
-
-			img {
-				display: none;
-			}
-		}
 
 		.site-name {
 			background: #BBD58D;
@@ -375,6 +364,8 @@ h1.appointment {
 	padding-left: 41px;
 }
 
+/* -------- Footer -------- */
+
 #footer {
 	background: #202020 url(../images/custom/footer.png) 0 -5px repeat-x;
 	color: #DBDBDB;
@@ -385,6 +376,11 @@ h1.appointment {
 	#footerContent {
 		margin: 0 auto;
 		width: 940px;
+
+		.aui-column-content {
+			display: inline-block;
+			width: 100%;
+		}
 
 		h3 {
 			color: #DBDBDB;
@@ -399,23 +395,24 @@ h1.appointment {
 			font-size: 14px;
 		}
 
-		#blurb .blurb-text {
-			font-family: Georgia, "Times New Roman", Times, serif;
-			font-size: 14px;
-			font-style: italic;
-			padding-right: 20px;
+		#footerBlurb {
+			p {
+				font: 14px Georgia, "Times New Roman", Times, serif;
+				font-style: italic;
+				padding-right: 20px;
+			}
 
-			.blurb-author {
+			span {
 				color: #8FA46A;
 			}
 		}
 
-		#siteMap ul, #contact ul {
+		#footerNavigation ul, #footerContact ul {
 			list-style: none;
 			margin-left: 0;
 		}
 
-		#siteMap ul li {
+		#footerNavigation ul li {
 			a {
 				text-decoration: none;
 

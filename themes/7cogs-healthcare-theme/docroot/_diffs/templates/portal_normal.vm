@@ -79,37 +79,54 @@ $theme.include($body_top_include)
 	<footer id="footer" role="contentinfo">
 		<div id="footerContent">
 			<div class="aui-layout-content">
-				<div class="aui-column aui-column-first aui-w50" id="blurb">
-					<h3 class="blurb-title">$theme_settings.blurb-title</h3>
-					<p class="blurb-text">“${theme_settings.blurb-content}”  - <span class="blurb-author">${theme_settings.blurb-author}</span></p>
-				</div>
-				<div class="aui-column aui-w25" id="siteMap">
-					<h3>Site Map</h3>
-					<ul>
-
-						#foreach ($nav_item in $nav_items)
-							#set($navItemClass = "item-" + $velocityCount)
-
-							#if ($velocityCount == 1)
-								#set($navItemClass = $navItemClass + " first")
-							#end
-
-							#if (!$velocityHasNext)
-								#set($navItemClass = $navItemClass + " last")
-							#end
-
-							#if ($nav_item.isSelected())
-								#set($navItemClass = $navItemClass + " selected")
-							#end
-
-							<li class="$navItemClass">
-								<a href="$nav_item.getURL()" $nav_item.getTarget()><span>$nav_item.icon() $nav_item.getName()</span></a>
-							</li>
+				<div class="aui-column aui-column-first aui-w50" id="footerSection1">
+					<div class="aui-column-content aui-column-content-first">
+						#if ($footer_section_1)
+							$footer_section_1
 						#end
-					</ul>
+					</div>
 				</div>
-				<div class="aui-column aui-column-last aui-w25" id="contact">
-					$footer_contact
+				<div class="aui-column aui-w25" id="footerSection2">
+					<div class="aui-column-content">
+						#if ($theme_settings.footer-section-2-article-id)
+							#if ($footer_section_2)
+								$footer_section_2
+							#end
+						#else
+							<div id="footerNavigation">
+								<h3>$theme_settings.footer-nav-title</h3>
+								<ul>
+
+									#foreach ($nav_item in $nav_items)
+										#set($navItemClass = "item-" + $velocityCount)
+
+										#if ($velocityCount == 1)
+											#set($navItemClass = $navItemClass + " first")
+										#end
+
+										#if (!$velocityHasNext)
+											#set($navItemClass = $navItemClass + " last")
+										#end
+
+										#if ($nav_item.isSelected())
+											#set($navItemClass = $navItemClass + " selected")
+										#end
+
+										<li class="$navItemClass">
+											<a href="$nav_item.getURL()" $nav_item.getTarget()><span>$nav_item.icon() $nav_item.getName()</span></a>
+										</li>
+									#end
+								</ul>
+							</div>
+						#end
+					</div>
+				</div>
+				<div class="aui-column aui-column-last aui-w25" id="footerSection3">
+					<div class="aui-column-content aui-column-content-last">
+						#if ($footer_section_3)
+							$footer_section_3
+						#end
+					</div>
 				</div>
 			</div>
 		</div>
