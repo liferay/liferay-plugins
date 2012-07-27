@@ -1,15 +1,15 @@
-#set($contentId = $reserved-article-id.data)
-#set($contentClass = "multiple-items-" + $contentId + "-carousel")
+#set ($content_id = $reserved-article-id.data)
+#set ($content_class = "multiple-items-" + $content_id + "-carousel")
 
 <style type="text/css">
-	#$contentClass {
+	#${content_class} {
 		height: ${height.data}px;
 		position: relative;
 		width: ${width.data}px;
 	}
 
-	#${contentClass} .carousel-item {
-		height: ${height.data}()px;
+	#${content_class} .carousel-item {
+		height: ${height.data}px;
 		overflow: hidden;
 		position: absolute;
 		top: 0;
@@ -17,26 +17,20 @@
 	}
 
 	#if ($controls.data == "")
-		#${contentClass} menu {
+		#${content_class} menu {
 			display: none;
 		}
 	#end
 </style>
 
-<div id="${contentClass}">
+<div id="$content_class">
 	#foreach ($item in $items.siblings)
 		<div class="carousel-item">
-			#set ($alt_class = "")
-
-			#if ($item.data != "")
-				#set ($alt_class = "title='$item.data' alt='$item.data'")
-			#end
-
 			#if ($item.url-link.data != "")
-				<a href="${item.url-link.data}" ${alt_class}>
+				<a href="${item.url-link.data}">
 			#end
 
-				<img src="${item.image.data}" />
+			<img alt="$item.data" src="$item.image.data" title="$item.data" />
 
 			#if ($item.url-link.data != "")
 				</a>
@@ -52,7 +46,7 @@
 			new A.Carousel(
 				{
 					activeIndex: 'rand',
-					contentBox: '#${contentClass}',
+					contentBox: '#${content_class}',
 					height: ${height.data},
 					intervalTime: ${duration.data},
 					width: ${width.data}
