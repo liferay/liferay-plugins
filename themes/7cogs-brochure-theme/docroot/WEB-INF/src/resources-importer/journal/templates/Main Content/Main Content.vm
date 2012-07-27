@@ -1,19 +1,19 @@
-#set ($colCount = 0)
+#set ($col_count = 0)
 
-#if ($col-one.data != '')
-	#set ($colCount = $colCount + 1)
+#if ($col-one.data != "")
+	#set ($col_count = $col_count + 1)
 #end
 
-#if ($col-two.data != '')
-	#set ($colCount = $colCount + 1)
+#if ($col-two.data != "")
+	#set ($col_count = $col_count + 1)
 #end
 
-#if ($col-three.data != '')
-	#set ($colCount = $colCount + 1)
+#if ($col-three.data != "")
+	#set ($col_count = $col_count + 1)
 #end
 
 <div class="page-content">
-	#if ($title.data != '' )
+	#if ($title.data != "")
 		<h1 class="innovation-title">
 			$title.data
 		</h1>
@@ -21,34 +21,46 @@
 		<div class="divider"></div>
 	#end
 
-	<div class="content-text aui-layout-content">
-		#if ($colCount == 1 && $col-one.data != '' && $col-one.data != '')
+	<div class="aui-layout-content content-text">
+		#if ($col_count == 1 && $col-one.data != "")
 			<div class="aui-column aui-w100">
-				<div class="aui-column-content">$col-one.data</div>
+				<div class="aui-column-content">
+					$col-one.data
+				</div>
 			</div>
 		#end
 
-		#if ($colCount == 2 && $col-one.data != '' && $col-two.data != '')
+		#if ($col_count == 2 && $col-one.data != "" && $col-two.data != "")
 			<div class="aui-column aui-column-first aui-w50">
-				<div class="aui-column-content">$col-one.data</div>
+				<div class="aui-column-content">
+					$col-one.data
+				</div>
 			</div>
 
 			<div class="aui-column aui-column-last aui-w50">
-				<div class="aui-column-content">$col-two.data</div>
+				<div class="aui-column-content">
+					$col-two.data
+				</div>
 			</div>
 		#end
 
-		#if ($colCount == 3 && $col-one.data != '' && $col-two.data != '' && $col-three.data != '')
+		#if ($col_count == 3 && $col-one.data != "" && $col-two.data != "" && $col-three.data != "")
 			<div class="aui-column aui-column-first aui-w33">
-				<div class="aui-column-content">$col-one.data</div>
+				<div class="aui-column-content">
+					$col-one.data
+				</div>
 			</div>
 
 			<div class="aui-column aui-w33 center">
-				<div class="aui-column-content">$col-two.data</div>
+				<div class="aui-column-content">
+					$col-two.data
+				</div>
 			</div>
 
 			<div class="aui-column aui-column-last aui-w33">
-				<div class="aui-column-content">$col-three.data</div>
+				<div class="aui-column-content">
+					$col-three.data
+				</div>
 			</div>
 		#end
 	</div>

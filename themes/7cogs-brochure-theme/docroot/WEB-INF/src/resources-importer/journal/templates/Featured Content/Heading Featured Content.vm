@@ -1,5 +1,13 @@
 <div class="featured-text">
-	<h3>$!title.data</h3>
+	#if ($title.data != "")
+		<h3>
+			$title.data
+		</h3>
+	#end
 
-	<div class="featured-content">$!content.data</div>
+	#if ($content.data != "")
+		<div class="featured-content">
+			$content.data
+		</div>
+	#end
 </div>

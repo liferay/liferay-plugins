@@ -1,17 +1,23 @@
 <div class="pod">
-	#if ($image.data != '')
+	#if ($image.data != "")
 		<img class="pod-image" src="$image.data" />
 	#end
 
 	<div class="pod-text">
-		<h5>$!title.data</h5>
+		#if ($title.data != "")
+			<h5>
+				$title.data
+			</h5>
+		#end
 
-		$!description.data
+		$description.data
 	</div>
 
 	<div class="divider"></div>
 </div>
 
-<div class="column-text">
-	$!content.data
-</div>
+#if ($content.data != "")
+	<div class="column-text">
+		$content.data
+	</div>
+#end
