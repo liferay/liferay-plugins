@@ -1,25 +1,25 @@
 ## ---------- Logo ---------- ##
 
-#if (($company.getLogoId() == 0) && $use_company_logo && $theme_settings.display-company-logo != 'true')
-	#set ($site_logo = "$images_folder/custom/logo.png")
+#if (($company.getLogoId() == 0) && $use_company_logo && $theme_settings.display-company-logo != true)
+	#set ($site_logo = "${images_folder}/custom/logo.png")
 	#set ($site_logo_height = 100)
 	#set ($site_logo_width = 295)
 #end
 
 ## ---------- Footer Web Content ---------- ##
 
-#if($theme_settings.footer-section-1-article-id)
+#if ($theme_settings.footer-section-1-article-id)
 	#set ($footer_section_1 = $journalContentUtil.getContent($group_id, $theme_settings.footer-section-1-article-id, null, "$locale", $theme_display))
 #else
-	#set ($footer_section_1 = $journalContentUtil.getContent($group_id, 'FOOTER-BLURB', null, "$locale", $theme_display))
+	#set ($footer_section_1 = $journalContentUtil.getContent($group_id, "FOOTER-BLURB", null, "$locale", $theme_display))
 #end
 
-#if($theme_settings.footer-section-2-article-id)
+#if ($theme_settings.footer-section-2-article-id)
 	#set ($footer_section_2 = $journalContentUtil.getContent($group_id, $theme_settings.footer-section-2-article-id, null, "$locale", $theme_display))
 #end
 
-#if($theme_settings.footer-section-3-article-id)
+#if ($theme_settings.footer-section-3-article-id)
 	#set ($footer_section_3 = $journalContentUtil.getContent($group_id, $theme_settings.footer-section-3-article-id, null, "$locale", $theme_display))
 #else
-	#set ($footer_section_3 = $journalContentUtil.getContent($group_id, 'FOOTER-CONTACT', null, "$locale", $theme_display))
+	#set ($footer_section_3 = $journalContentUtil.getContent($group_id, "FOOTER-CONTACT", null, "$locale", $theme_display))
 #end

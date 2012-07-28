@@ -29,6 +29,7 @@
 				</td>
 			</tr>
 		</table>
+
 		<table class="portlet-layout">
 			<tr>
 				<td class="aui-w25 portlet-column portlet-column-first" id="column-6">

@@ -452,11 +452,11 @@ h1.appointment {
 	@include box-shadow(#888 2px 2px 4px);
 }
 
-.portlet-navigation .nav-menu h2, input[type="submit"], input[type="submit"]:hover, input[type="reset"], input[type="reset"]:hover {
+input[type="submit"], input[type="submit"]:hover, input[type="reset"], input[type="reset"]:hover, .portlet-navigation .nav-menu h2 {
 	@include background-image(linear-gradient(left top, #343434, #242424));
 }
 
-#navigation a:link, #navigation a:visited, input[type="submit"], input[type="submit"]:hover, input[type="reset"], input[type="reset"]:hover, #footer #footerContent {
+input[type="submit"], input[type="submit"]:hover, input[type="reset"], input[type="reset"]:hover, #footer #footerContent, #navigation a:link, #navigation a:visited {
 	@include text-shadow(1px 1px 1px #000);
 }
 

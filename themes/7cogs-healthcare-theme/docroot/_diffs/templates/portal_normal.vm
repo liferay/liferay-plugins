@@ -38,6 +38,7 @@ $theme.include($body_top_include)
 			<h2 class="page-title">
 				<span>$the_title</span>
 			</h2>
+
 			<div class="page-search">
 				$theme.journalContentSearch()
 			</div>
@@ -86,6 +87,7 @@ $theme.include($body_top_include)
 						#end
 					</div>
 				</div>
+
 				<div class="aui-column aui-w25" id="footerSection2">
 					<div class="aui-column-content">
 						#if ($theme_settings.footer-section-2-article-id)
@@ -95,8 +97,8 @@ $theme.include($body_top_include)
 						#else
 							<div id="footerNavigation">
 								<h3>$theme_settings.footer-nav-title</h3>
-								<ul>
 
+								<ul>
 									#foreach ($nav_item in $nav_items)
 										#set($navItemClass = "item-" + $velocityCount)
 
@@ -113,7 +115,9 @@ $theme.include($body_top_include)
 										#end
 
 										<li class="$navItemClass">
-											<a href="$nav_item.getURL()" $nav_item.getTarget()><span>$nav_item.icon() $nav_item.getName()</span></a>
+											<a href="$nav_item.getURL()" $nav_item.getTarget()>
+												<span>$nav_item.icon() $nav_item.getName()</span>
+											</a>
 										</li>
 									#end
 								</ul>
@@ -121,6 +125,7 @@ $theme.include($body_top_include)
 						#end
 					</div>
 				</div>
+
 				<div class="aui-column aui-column-last aui-w25" id="footerSection3">
 					<div class="aui-column-content aui-column-content-last">
 						#if ($footer_section_3)

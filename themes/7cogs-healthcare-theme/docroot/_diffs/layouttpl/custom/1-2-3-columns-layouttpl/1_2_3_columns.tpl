@@ -7,6 +7,7 @@
 				</td>
 			</tr>
 		</table>
+
 		<table class="portlet-layout">
 			<tr>
 				<td class="aui-w75 portlet-column portlet-column-first">
@@ -34,7 +35,6 @@
 						</tr>
 					</table>
 				</td>
-
 				<td class="aui-w25 portlet-column portlet-column-last" id="column-6">
 					$processor.processColumn("column-6", "portlet-column-content portlet-column-content-last")
 				</td>
@@ -46,11 +46,13 @@
 				$processor.processColumn("column-1", "portlet-column-content portlet-column-content-only")
 			</div>
 		</div>
+
 		<div class="portlet-layout">
 			<div class="aui-w75 portlet-column portlet-column-first">
 				<div class="aui-w100 portlet-column portlet-column-first" id="column-2">
 					$processor.processColumn("column-2", "portlet-column-content portlet-column-content-first")
 				</div>
+
 				<div class="portlet-layout">
 					<div class="aui-w33 portlet-column portlet-column-first" id="column-3">
 						$processor.processColumn("column-3", "portlet-column-content portlet-column-content-first")
@@ -65,6 +67,7 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="aui-w25 portlet-column portlet-column-last" id="column-6">
 				$processor.processColumn("column-6", "portlet-column-content portlet-column-content-last")
 			</div>
