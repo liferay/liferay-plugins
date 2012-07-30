@@ -2746,7 +2746,7 @@
 		<type>web</type>
 		<tags>apache, lucene, search, seo, solr</tags>
 		<short-description></short-description>
-		<long-description>This app provides integration with Apache Solr, the popularopen source enterprise search platform from the Apache Lucene project. Its major features include powerful full-text search, hit highlighting, faceted search, dynamic clustering, database integration, rich document (e.g., Word, PDF) handling, and geospatial search. Solr is highly scalable, providing distributed search and index replication, and it powers the search and navigation features of many of the world's largest internet sites. With this integration, your Liferay Portal will use Solr for indexing and searching.</long-description>
+		<long-description>This app provides integration with Apache Solr, the popular open source enterprise search platform from the Apache Lucene project. Its major features include powerful full-text search, hit highlighting, faceted search, dynamic clustering, database integration, rich document (e.g., Word, PDF) handling, and geospatial search. Solr is highly scalable, providing distributed search and index replication, and it powers the search and navigation features of many of the world's largest internet sites. With this integration, your Liferay Portal will use Solr for indexing and searching.</long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -2794,7 +2794,7 @@
 	</plugin>
 	<plugin>
 		<artifact-id>wurfl-web</artifact-id>
-		<name>WURFL Device Recognition Provider</name>
+		<name>Device Detection Provider</name>
 		<type>web</type>
 		<tags>android, device, ios, mobile, tablet, rules</tags>
 		<short-description></short-description>
