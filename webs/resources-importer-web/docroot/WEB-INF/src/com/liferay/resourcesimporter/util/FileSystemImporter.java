@@ -80,6 +80,16 @@ public class FileSystemImporter extends BaseImporter {
 				"Unaccessible resource directory " + resourcesDir);
 		}
 
+		serviceContext = new ServiceContext();
+
+		serviceContext.setAddGroupPermissions(true);
+
+		if (!privateLayout) {
+			serviceContext.setAddGuestPermissions(true);
+		}
+
+		serviceContext.setScopeGroupId(groupId);
+
 		addDLFileEntries("/document_library/documents");
 
 		addJournalArticles(
@@ -237,7 +247,7 @@ public class FileSystemImporter extends BaseImporter {
 		Layout layout = LayoutLocalServiceUtil.addLayout(
 			userId, groupId, privateLayout, parentLayoutId, name, title,
 			StringPool.BLANK, LayoutConstants.TYPE_PORTLET, hidden, friendlyURL,
-			new ServiceContext());
+			serviceContext);
 
 		LayoutTypePortlet layoutTypePortlet =
 			(LayoutTypePortlet)layout.getLayoutType();
@@ -389,10 +399,6 @@ public class FileSystemImporter extends BaseImporter {
 			String name, InputStream inputStream, long length)
 		throws Exception {
 
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setScopeGroupId(groupId);
-
 		String mimeType = MimeTypesUtil.getContentType(name);
 
 		FileEntry fileEntry = DLAppLocalServiceUtil.addFileEntry(
@@ -416,10 +422,6 @@ public class FileSystemImporter extends BaseImporter {
 		String content = StringUtil.read(inputStream);
 
 		content = processJournalArticleContent(content);
-
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setScopeGroupId(groupId);
 
 		JournalArticle journalArticle =
 			JournalArticleLocalServiceUtil.addArticle(
@@ -449,7 +451,7 @@ public class FileSystemImporter extends BaseImporter {
 		JournalStructure journalStructure =
 			JournalStructureLocalServiceUtil.addStructure(
 				userId, groupId, StringPool.BLANK, true, StringPool.BLANK,
-				nameMap, null, xsd, new ServiceContext());
+				nameMap, null, xsd, serviceContext);
 
 		addJournalTemplates(
 			journalStructure.getStructureId(), "/journal/templates/" + name);
@@ -469,7 +471,7 @@ public class FileSystemImporter extends BaseImporter {
 			JournalTemplateLocalServiceUtil.addTemplate(
 				userId, groupId, StringPool.BLANK, true, journalStructureId,
 				nameMap, null, xsl, true, JournalTemplateConstants.LANG_TYPE_VM,
-				false, false, StringPool.BLANK, null, new ServiceContext());
+				false, false, StringPool.BLANK, null, serviceContext);
 
 		addJournalArticles(
 			journalStructureId, journalTemplate.getTemplateId(),
@@ -661,6 +663,8 @@ public class FileSystemImporter extends BaseImporter {
 				groupId, privateLayout, themeId, null, null, false);
 		}
 	}
+
+	protected ServiceContext serviceContext;
 
 	private String _defaultLayoutTemplateId;
 	private Map<String, FileEntry> _fileEntries =

@@ -15,6 +15,7 @@
 package com.liferay.resourcesimporter.util;
 
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.service.ServiceContext;
 
 import java.net.URL;
 import java.net.URLConnection;
@@ -28,6 +29,14 @@ public class ResourceImporter extends FileSystemImporter {
 
 	@Override
 	public void importResources() throws Exception {
+		serviceContext = new ServiceContext();
+
+		serviceContext.setScopeGroupId(groupId);
+
+		if (!privateLayout) {
+			serviceContext.setAddGuestPermissions(true);
+		}
+
 		addDLFileEntries("/document_library/documents");
 
 		addJournalArticles(
