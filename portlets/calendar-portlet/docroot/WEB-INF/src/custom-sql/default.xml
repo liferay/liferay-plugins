@@ -18,7 +18,7 @@
 					(description LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 					(lower(location) LIKE ? [$AND_OR_NULL_CHECK$])
 				) AND
-				[$DATE_RANGE$]
+				[$DATE_RANGE$] AND
 				[$STATUS$]
 		]]>
 	</sql>
@@ -52,7 +52,7 @@
 					(description LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 					(lower(location) LIKE ? [$AND_OR_NULL_CHECK$])
 				) AND
-				[$DATE_RANGE$]
+				[$DATE_RANGE$] AND
 				[$STATUS$]
 				[$ORDER_BY$]
 		]]>

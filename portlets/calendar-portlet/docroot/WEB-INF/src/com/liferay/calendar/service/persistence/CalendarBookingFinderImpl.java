@@ -643,7 +643,7 @@ public class CalendarBookingFinderImpl
 			}
 		}
 
-		sb.append(") AND");
+		sb.append(") ");
 
 		return sb.toString();
 	}
