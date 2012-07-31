@@ -100,18 +100,18 @@ $theme.include($body_top_include)
 
 								<ul>
 									#foreach ($nav_item in $nav_items)
-										#set($navItemClass = "item-" + $velocityCount)
+										#set ($navItemClass = "item-" + $velocityCount)
 
 										#if ($velocityCount == 1)
-											#set($navItemClass = $navItemClass + " first")
+											#set ($navItemClass = $navItemClass + " first")
 										#end
 
 										#if (!$velocityHasNext)
-											#set($navItemClass = $navItemClass + " last")
+											#set ($navItemClass = $navItemClass + " last")
 										#end
 
 										#if ($nav_item.isSelected())
-											#set($navItemClass = $navItemClass + " selected")
+											#set ($navItemClass = $navItemClass + " selected")
 										#end
 
 										<li class="$navItemClass">

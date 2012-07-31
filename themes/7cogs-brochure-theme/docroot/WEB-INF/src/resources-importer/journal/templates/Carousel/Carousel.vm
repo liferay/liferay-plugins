@@ -31,7 +31,7 @@
 					<a href="$item.link.url-location.data">
 				#end
 
-				<img alt="$item.link.data" src="$item.getData()" title="$item.link.data"/>
+				<img alt="$item.link.data" src="$item.getData()" title="$item.link.data" />
 
 				#if ($item.link.url-location.data != "")
 					</a>
