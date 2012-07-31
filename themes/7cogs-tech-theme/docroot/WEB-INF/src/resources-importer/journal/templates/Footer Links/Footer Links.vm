@@ -32,16 +32,16 @@
 
 #if ($display-signin.data)
 	<script type="text/javascript">
-		Liferay.namespace("TechTheme");
+		Liferay.namespace('TechTheme');
 
 		Liferay.provide(
 			Liferay.TechTheme,
-			"logOut",
+			'logOut',
 			function() {
 				var A = AUI();
 
 				A.io.request(
-					themeDisplay.getPathMain() + "/portal/logout",
+					themeDisplay.getPathMain() + '/portal/logout',
 					{
 						after: {
 							success: function() {
@@ -51,7 +51,7 @@
 					}
 				)
 			},
-			["aui-io"]
+			['aui-io']
 		);
 	</script>
 #end
