@@ -15,6 +15,7 @@
 		<li>
 			<a href="$social-link.url-location.data" target="new_window" title="$social-link.data" >
 				<img alt="$social-link.data" src="$social-link.icon.data" />
+
 				<span>$social-link.data</span>
 			</a>
 		</li>

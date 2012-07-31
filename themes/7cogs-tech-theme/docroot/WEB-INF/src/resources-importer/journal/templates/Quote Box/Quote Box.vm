@@ -12,7 +12,7 @@
 			<div class="quote-item quote-item-${count}">
 				#if ($quote-item.data != "")
 					<q class="quote">
-						<span class="first-quote">&quot;</span>
+						<span class="first">&quot;</span>
 							$quote-item.data
 						<span class="last">&quot;</span>
 					</q>
