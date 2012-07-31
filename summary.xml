@@ -20,16 +20,16 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
 		<artifact-id>mongodb-hook</artifact-id>
-		<name>MongoDB</name>
+		<name>MongoDB Expando Adapter</name>
 		<type>hook</type>
 		<tags>db, expando, ha, json, nosql, redundancy, sql</tags>
-		<short-description>This hook uses MongoDB to persist custom attributes.</short-description>
-		<long-description></long-description>
+		<short-description></short-description>
+		<long-description>This app replaces the backend storage system used for Liferay's "Expando" service framework to use MongoDB instead of the default SQL database used by the rest of Liferay. Many features in Liferay make use of Expandos (such as Document Data Lists and Custom User Attributes). If you need high performance in these areas, consider using MongoDB. MongoDB is an open source, document-oriented NoSQL database. MongoDB focuses on four main things: flexibility, power, speed, and ease of use. MongoDB stores data in JSON documents and contains built-in redundancy and high availability features. For more detail on MongoDB, visit http://mongodb.org. There are multiple portlets included in this app. For details about how to use the Knowledge Base, Consult the �Knowledge Base� section of the Liferay User Guide. The Liferay User Guide can be found at http://liferay.com/documentation.</long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -179,13 +179,13 @@
 		<liferay-versions>6.1.1,6.1.20</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
-			<category>Productivity</category>
+			<category></category>
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<labs>false</labs>
 			<marketplace>false</marketplace>
 			<public>true</public>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -194,7 +194,7 @@
 		<type>hook</type>
 		<tags>bookmarks, social, social bookmarks</tags>
 		<short-description></short-description>
-		<long-description></long-description>
+		<long-description>This app adds additional social bookmarks to Liferay's built-in set of Social Bookmarks. These bookmarks can be used by custom apps, and are also used by Liferay's built-in apps such as its Blogs portlet. Social Bookmarks allow users to easily post a reference to Liferay content on their favorite social networking website. In addition, some websites offer counters that can immediately show users how many people have bookmarked a particular piece of user-generated content.</long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -212,7 +212,7 @@
 			<screenshot>hooks/social-bookmarks-hook/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<screenshot>hooks/social-bookmarks-hook/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<screenshot>hooks/social-bookmarks-hook/docroot/WEB-INF/releng/screenshots/3.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -238,7 +238,7 @@
 			<public>true</public>
 			<screenshot>layouttpl/1-2-1-columns-layouttpl/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<screenshot>layouttpl/1-2-1-columns-layouttpl/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -264,7 +264,7 @@
 			<public>true</public>
 			<screenshot>layouttpl/1-3-1-columns-layouttpl/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<screenshot>layouttpl/1-3-1-columns-layouttpl/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -290,7 +290,7 @@
 			<public>true</public>
 			<screenshot>layouttpl/1-3-2-columns-layouttpl/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<screenshot>layouttpl/1-3-2-columns-layouttpl/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -311,12 +311,12 @@
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<icon>layouttpl/2-1-2-columns-layouttpl/docroot/WEB-INF/releng/icons/90x90.png</icon>
-			<labs>false</labs>
+			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
 			<screenshot>layouttpl/2-1-2-columns-layouttpl/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<screenshot>layouttpl/2-1-2-columns-layouttpl/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -342,7 +342,7 @@
 			<public>true</public>
 			<screenshot>layouttpl/3-2-3-columns-layouttpl/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<screenshot>layouttpl/3-2-3-columns-layouttpl/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -437,7 +437,7 @@
 			<public>true</public>
 			<screenshot>portlets/chat-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<screenshot>portlets/chat-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -454,13 +454,13 @@
 		<liferay-versions>6.1.1,6.1.20</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
-			<category>Productivity</category>
+			<category></category>
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<labs>false</labs>
 			<marketplace>false</marketplace>
 			<public>true</public>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -469,7 +469,7 @@
 		<type>portlet</type>
 		<tags>ddl, dynamic data list, form, user form</tags>
 		<short-description></short-description>
-		<long-description>A Dynamic Data List (ddl) is a user-defined collection of records, similar to a spreadsheet. The records in a Dynamic Data List are composed of various field types such as text, date, integer, check box, etc. These can be published as workflow-enabled forms that capture user information in different ways such as an RSVP, for tasks tracking, or for managing issues. This Dynamic Data List Form app allows you to display dynamic forms to users, allowing them to enter information in predefined lists. This app can also be configured to use a template to display the list in different ways depending on whether the user is viewing the entire list or the details of a specific list record. Consult the "Dynamic Data Lists in Liferay" section of the Liferay User Guide for details on administering this service. The Liferay User Guide can be found at http://liferay.com/documentation.</long-description>
+		<long-description>A Dynamic Data List (DDL) is a user-defined collection of records, similar to a spreadsheet. The records in a Dynamic Data List are composed of various field types such as text, date, integer, check box, etc. These can be published as workflow-enabled forms that capture user information in different ways such as an RSVP, for tasks tracking, or for managing issues. This Dynamic Data List Form app allows you to display dynamic forms to users, allowing them to enter information in predefined lists. This app can also be configured to use a template to display the list in different ways depending on whether the user is viewing the entire list or the details of a specific list record. Consult the "Dynamic Data Lists in Liferay" section of the Liferay User Guide for details on administering this service. The Liferay User Guide can be found at http://liferay.com/documentation.</long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -487,7 +487,7 @@
 			<screenshot>portlets/ddl-form-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<screenshot>portlets/ddl-form-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<screenshot>portlets/ddl-form-portlet/docroot/WEB-INF/releng/screenshots/3.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -496,7 +496,7 @@
 		<type>portlet</type>
 		<tags>bookmarks, digg, news, social</tags>
 		<short-description></short-description>
-		<long-description></long-description>
+		<long-description>This app integrates with Digg, a social news website (http://digg.com).  The app provides additional configuration, allowing users to select the types of news streams they wish to view, and configure various parameters (result limits, polling frequency, and others) to optimally retrieve and show news and social links from Digg.</long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -512,7 +512,7 @@
 			<marketplace>true</marketplace>
 			<public>true</public>
 			<screenshot>portlets/digg-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -525,17 +525,17 @@
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
-		<licenses>LGPL</licenses>
+		<licenses>AGPL</licenses>
 		<liferay-versions>6.1.1,6.1.20</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
-			<category>Productivity</category>
+			<category></category>
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<labs>false</labs>
 			<marketplace>false</marketplace>
 			<public>true</public>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -556,12 +556,12 @@
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<icon>portlets/flash-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
-			<labs>false</labs>
+			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
 			<screenshot>portlets/flash-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<screenshot>portlets/flash-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -582,12 +582,12 @@
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<icon>portlets/google-adsense-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
-			<labs>false</labs>
+			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
 			<screenshot>portlets/google-adsense-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<screenshot>portlets/google-adsense-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -608,12 +608,12 @@
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<icon>portlets/google-maps-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
-			<labs>false</labs>
+			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
 			<screenshot>portlets/google-maps-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<screenshot>portlets/google-maps-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -657,12 +657,12 @@
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<icon>portlets/ip-geocoder-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
-			<labs>false</labs>
+			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
 			<screenshot>portlets/ip-geocoder-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<screenshot>portlets/ip-geocoder-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -713,7 +713,7 @@
 			<screenshot>portlets/knowledge-base-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<screenshot>portlets/knowledge-base-portlet/docroot/WEB-INF/releng/screenshots/3.jpg</screenshot>
 			<screenshot>portlets/knowledge-base-portlet/docroot/WEB-INF/releng/screenshots/4.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -757,12 +757,12 @@
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<icon>portlets/mail-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
-			<labs>false</labs>
+			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
 			<screenshot>portlets/mail-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<screenshot>portlets/mail-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -785,7 +785,7 @@
 			<labs>false</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -802,13 +802,13 @@
 		<liferay-versions>6.1.1,6.1.20</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
-			<category>Productivity</category>
+			<category></category>
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<labs>false</labs>
 			<marketplace>false</marketplace>
 			<public>true</public>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -817,7 +817,7 @@
 		<type>portlet</type>
 		<tags>blog, feed, forum, message board, social, subscriptions, wiki</tags>
 		<short-description></short-description>
-		<long-description></long-description>
+		<long-description>This app allows users to manage their subscriptions. Users can subscribe to various assets in Liferay, such as subscribing to a blog post, the comments of a wiki page, a message board category (or specific thread), and a host of other items. The purpose of subscriptions is to be notified when something happens related to the item you've subscribed to. For example, if you are subscribed to a message board category, you are notified when a new post or reply occurs within that category. The method of notification is configurable, but is usually in the form of an email sent to all users who have subscribed. There are multiple items that one can subscribe to in Liferay. For details about subscriptions, Consult the �Liferay Collaboration Suite� section of the Liferay User Guide. The Liferay User Guide can be found at http://liferay.com/documentation.</long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -833,7 +833,7 @@
 			<marketplace>true</marketplace>
 			<public>true</public>
 			<screenshot>portlets/my-subscriptions-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -854,12 +854,12 @@
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<icon>portlets/netvibes-widget-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
-			<labs>false</labs>
+			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
 			<screenshot>portlets/netvibes-widget-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<screenshot>portlets/netvibes-widget-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -887,7 +887,7 @@
 			<screenshot>portlets/opensocial-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<screenshot>portlets/opensocial-portlet/docroot/WEB-INF/releng/screenshots/3.jpg</screenshot>
 			<screenshot>portlets/opensocial-portlet/docroot/WEB-INF/releng/screenshots/4.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -904,13 +904,13 @@
 		<liferay-versions>6.1.1,6.1.20</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
-			<category>Productivity</category>
+			<category></category>
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<labs>false</labs>
 			<marketplace>false</marketplace>
 			<public>true</public>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -979,7 +979,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -1360,7 +1360,7 @@
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>SpringSource, Inc.</author>
-		<licenses>Apache</licenses>
+		<licenses>LGPL</licenses>
 		<liferay-versions>6.1.1</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
@@ -1527,7 +1527,7 @@
 			<bundle>false</bundle>
 			<category>Productivity</category>
 			<demo-url></demo-url>
-			<dependent-apps>chat-portlet, contacts-portlet, events-display-portlet, microblogs-portlet, private-messaging-portlet, resources-importer-web, so-hook, so-portlet, so-theme, so-welcome-theme, tasks-portlet, weather-portlet, wysiwyg-portlet</dependent-apps>
+			<dependent-apps>chat-portlet, contacts-portlet, events-display-portlet, microblogs-portlet, private-messaging-portlet, resources-importer-web, so-hook, so-portlet, so-theme, so-welcome-theme, tasks-portlet, wysiwyg-portlet</dependent-apps>
 			<icon>portlets/so-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
 			<labs>false</labs>
 			<marketplace>true</marketplace>
@@ -1536,7 +1536,7 @@
 			<screenshot>portlets/so-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<screenshot>portlets/so-portlet/docroot/WEB-INF/releng/screenshots/3.jpg</screenshot>
 			<screenshot>portlets/so-portlet/docroot/WEB-INF/releng/screenshots/4.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -1561,7 +1561,7 @@
 			<public>true</public>
 			<screenshot>portlets/social-coding-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<screenshot>portlets/social-coding-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -1592,7 +1592,7 @@
 			<screenshot>portlets/social-networking-portlet/docroot/WEB-INF/releng/screenshots/5.jpg</screenshot>
 			<screenshot>portlets/social-networking-portlet/docroot/WEB-INF/releng/screenshots/6.jpg</screenshot>
 			<screenshot>portlets/social-networking-portlet/docroot/WEB-INF/releng/screenshots/7.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -1613,12 +1613,12 @@
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<icon>portlets/stocks-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
-			<labs>false</labs>
+			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
 			<screenshot>portlets/stocks-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<screenshot>portlets/stocks-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -1631,7 +1631,7 @@
 		<change-log></change-log>
 		<page-url>https://portlet-repository.dev.java.net/public/Download.html</page-url>
 		<author>Sun Microsystems, Inc.</author>
-		<licenses>CDDL</licenses>
+		<licenses>LGPL</licenses>
 		<liferay-versions>6.1.1</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
@@ -1658,13 +1658,13 @@
 		<liferay-versions>6.1.1,6.1.20</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
-			<category>Productivity</category>
+			<category></category>
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<labs>false</labs>
 			<marketplace>false</marketplace>
 			<public>true</public>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2103,7 +2103,7 @@
 			<marketplace>true</marketplace>
 			<public>true</public>
 			<screenshot>portlets/twitter-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2124,13 +2124,13 @@
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<icon>portlets/vimeo-portlet/docroot/WEB-INF/releng/icons/90x90.png</icon>
-			<labs>false</labs>
+			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
 			<screenshot>portlets/vimeo-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<screenshot>portlets/vimeo-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<screenshot>portlets/vimeo-portlet/docroot/WEB-INF/releng/screenshots/3.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2139,7 +2139,7 @@
 		<type>portlet</type>
 		<tags>utility, weather</tags>
 		<short-description></short-description>
-		<long-description></long-description>
+		<long-description>This app provides a quick visual indication of weather across a configurable set of locations. Locations can be specified using a textual city name (such as "Los Angeles, CA" or "China"), or a postal code (such as 32701 in the U.S.). Links to a summary screen at weather.com are provided for each location. Temperature readings can be configured for Celsius or Fahrenheit.</long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -2154,7 +2154,8 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
-			<supported>true</supported>
+			<screenshot>portlets/weather-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2181,7 +2182,7 @@
 			<screenshot>portlets/web-form-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<screenshot>portlets/web-form-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<screenshot>portlets/web-form-portlet/docroot/WEB-INF/releng/screenshots/3.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2230,7 +2231,7 @@
 			<public>true</public>
 			<screenshot>portlets/wiki-navigation-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<screenshot>portlets/wiki-navigation-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2258,7 +2259,7 @@
 			<screenshot>portlets/wsrp-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<screenshot>portlets/wsrp-portlet/docroot/WEB-INF/releng/screenshots/3.jpg</screenshot>
 			<screenshot>portlets/wsrp-portlet/docroot/WEB-INF/releng/screenshots/4.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2282,7 +2283,7 @@
 			<marketplace>true</marketplace>
 			<public>true</public>
 			<screenshot>portlets/wysiwyg-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2308,7 +2309,7 @@
 			<public>true</public>
 			<screenshot>portlets/youtube-portlet/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<screenshot>portlets/youtube-portlet/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2331,7 +2332,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2354,12 +2355,12 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
 		<artifact-id>7cogs-resort-theme</artifact-id>
-		<name>7Cogs Paradise</name>
+		<name>7Cogs Resort</name>
 		<type>theme</type>
 		<tags></tags>
 		<short-description></short-description>
@@ -2377,7 +2378,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2400,7 +2401,7 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2532,13 +2533,13 @@
 		<liferay-versions>6.1.1,6.1.20</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
-			<category>Productivity</category>
+			<category></category>
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<labs>false</labs>
 			<marketplace>false</marketplace>
 			<public>true</public>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2555,13 +2556,13 @@
 		<liferay-versions>6.1.1,6.1.20</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
-			<category>Productivity</category>
+			<category></category>
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<labs>false</labs>
 			<marketplace>false</marketplace>
 			<public>true</public>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2607,7 +2608,7 @@
 			<labs>true</labs>
 			<marketplace>false</marketplace>
 			<public>true</public>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2633,16 +2634,16 @@
 			<public>true</public>
 			<screenshot>webs/cas-web/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<screenshot>webs/cas-web/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
 		<artifact-id>deployment-helper-web</artifact-id>
-		<name>Deployment Helper</name>
+		<name>Cluster Deployment Helper</name>
 		<type>web</type>
 		<tags>cluster, deployment, enterprise, ha, high availability, replication</tags>
-		<short-description>This plugin helps deploy other plugins within a cluster using the native application server deployment mechanisms.</short-description>
-		<long-description></long-description>
+		<short-description></short-description>
+		<long-description>Liferay Portal is designed to power the simplest to most complex web sites, easily scaling to the size you need. Liferay works well in clusters of multiple machines (horizontal cluster) or in clusters of multiple VMs on a single machine (vertical cluster), or any mixture of the two. Once you have Liferay installed in more than one application server node, there are several optimizations that need to be made. When deploying apps to a Liferay cluster, each cluster must receive a copy of the app before the app�s functionality will work across the cluster. This app helps deploy other apps within a cluster using the native application server deployment mechanisms.</long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -2659,7 +2660,7 @@
 			<public>true</public>
 			<screenshot>webs/deployment-helper-web/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<screenshot>webs/deployment-helper-web/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2667,8 +2668,8 @@
 		<name>Kaleo Workflow</name>
 		<type>web</type>
 		<tags>bi, business intelligence, designer, kaleo, workflow</tags>
-		<short-description>This plugin uses Kaleo as the workflow engine.</short-description>
-		<long-description></long-description>
+		<short-description></short-description>
+		<long-description>This app provides the Kaleo Workflow engine, for use with Liferay Portal. In Greek, Kaleo means "called ones," which is appropriate for a workflow engine that calls users to participate in a process that has been designed for them. Kaleo workflow allows a user to define any number of simple to complex business processes/ workflows, deploy them, and manage them through a portal interface. Those processes have knowledge of users, groups, and roles. You don't have to write a single line of code to accomplish this: all you have to do is create a single XML document. And if you're a Liferay EE customer, you get a graphical workflow designer, which gives you a point and click interface to create workflows. Simple workflows can be managed using the default configuration and GUI tools, while more complex workflows can be created to meet the workflow management needs of almost any portal. Consult the �Workflow� section of the Liferay User Guide for details on administering this service. The Liferay User Guide can be found at http://liferay.com/documentation. This App installs as a Liferay service.</long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -2676,7 +2677,7 @@
 		<liferay-versions>6.1.1</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
-			<category></category>
+			<category>Productivity</category>
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<icon>webs/kaleo-web/docroot/WEB-INF/releng/icons/90x90.png</icon>
@@ -2686,7 +2687,7 @@
 			<screenshot>webs/kaleo-web/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<screenshot>webs/kaleo-web/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<screenshot>webs/kaleo-web/docroot/WEB-INF/releng/screenshots/3.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2737,7 +2738,7 @@
 			<screenshot>webs/server-manager-web/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<screenshot>webs/server-manager-web/docroot/WEB-INF/releng/screenshots/3.jpg</screenshot>
 			<screenshot>webs/server-manager-web/docroot/WEB-INF/releng/screenshots/4.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2761,7 +2762,10 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
-			<supported>true</supported>
+			<screenshot>webs/solr-web/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>webs/solr-web/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
+			<screenshot>webs/solr-web/docroot/WEB-INF/releng/screenshots/3.jpg</screenshot>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2770,7 +2774,7 @@
 		<type>web</type>
 		<tags>theme, utility</tags>
 		<short-description>This is the Theme Loader plugin.</short-description>
-		<long-description></long-description>
+		<long-description>A theme loader is required to allow the LAR export and import mechanism to hot deploy themes at runtime even if the underlying application server does not support hot deploy.</long-description>
 		<change-log></change-log>
 		<page-url>http://www.liferay.com</page-url>
 		<author>Liferay, Inc.</author>
@@ -2789,7 +2793,7 @@
 			<screenshot>webs/theme-loader-web/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<screenshot>webs/theme-loader-web/docroot/WEB-INF/releng/screenshots/3.jpg</screenshot>
 			<screenshot>webs/theme-loader-web/docroot/WEB-INF/releng/screenshots/4.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<plugin>
@@ -2810,20 +2814,18 @@
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<icon>webs/wurfl-web/docroot/WEB-INF/releng/icons/90x90.png</icon>
-			<labs>false</labs>
+			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
 			<screenshot>webs/wurfl-web/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
 			<screenshot>webs/wurfl-web/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
 			<screenshot>webs/wurfl-web/docroot/WEB-INF/releng/screenshots/3.jpg</screenshot>
-			<supported>true</supported>
+			<supported>false</supported>
 		</releng>
 	</plugin>
 	<author>Liferay, Inc.</author>
 	<author>SpringSource, Inc.</author>
 	<author>Sun Microsystems, Inc.</author>
 	<license>AGPL</license>
-	<license>Apache</license>
-	<license>CDDL</license>
 	<license>LGPL</license>
 </plugins-summary>
