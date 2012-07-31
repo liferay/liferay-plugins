@@ -152,7 +152,7 @@ p {
 		}
 
 		li.selected a span {
-			background: url(../images/custom/nav_active.png) 0 0 repeat-x;
+			background: url(../images/custom/nav_active.png) repeat-x 0 0;
 		}
 	}
 }
@@ -160,7 +160,7 @@ p {
 /* -------- Content -------- */
 
 #content {
-	background: url(../images/custom/content_bg.png) 0 285px repeat-x;
+	background: url(../images/custom/content_bg.png) repeat-x 0 285px;
 	margin: 10px 0 0;
 	min-height: 600px;
 	padding: 0 0 20px 0;
@@ -298,11 +298,11 @@ p {
 /* -------- Footer -------- */
 
 #footer {
-	background: url(../images/custom/footer_bg.png) 0 0 repeat-x;
+	background: url(../images/custom/footer_bg.png) repeat-x 0 0;
 	padding: 30px 0;
 
 	p {
-		background: url(../images/custom/footer_logo.png) 0 0 no-repeat;
+		background: url(../images/custom/footer_logo.png) no-repeat 0 0;
 		height: 64px;
 		margin: 0 auto;
 		width: 64px;
@@ -431,7 +431,7 @@ p {
 	}
 
 	.divider {
-		background: url(../images/custom/home_content_divs.png) repeat-x 0 0 ;
+		background: url(../images/custom/home_content_divs.png) repeat-x 0 0;
 		height: 20px;
 		margin: 36px -5px 0;
 	}
