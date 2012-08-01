@@ -62,7 +62,7 @@ $theme.include($body_top_include)
 	</div>
 
 	<footer id="footer" role="contentinfo">
-		<div class="column-1" id="getting-started">
+		<div class="column-1" id="social-office">
 			<div class="footer-column-content">
 				<span class="footer-logo"></span>
 
@@ -74,7 +74,7 @@ $theme.include($body_top_include)
 			</div>
 		</div>
 
-		<div class="column-2" id="ide">
+		<div class="column-2" id="getting-started">
 			<div class="footer-column-content">
 				<span class="footer-logo"></span>
 
@@ -86,7 +86,7 @@ $theme.include($body_top_include)
 			</div>
 		</div>
 
-		<div class="column-3" id="social-office">
+		<div class="column-3" id="ide">
 			<div class="footer-column-content">
 				<span class="footer-logo"></span>
 
