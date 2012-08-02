@@ -5,7 +5,7 @@
 	<compatibility>
 		<version>6.1.0+</version>
 	</compatibility>
-	<theme id="7cogs-healthcare" name="7Cogs Healthcare">
+	<theme id="zoe-healthcare" name="Zoe Healthcare">
 		<settings>
 			<setting configurable="true" key="display-company-logo" type="checkbox" value="false" />
 			<setting configurable="true" key="display-footer" type="checkbox" value="true" />

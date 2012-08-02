@@ -5,7 +5,7 @@
 	<compatibility>
 		<version>6.1.0+</version>
 	</compatibility>
-	<theme id="7cogs-resort" name="7Cogs Resort">
+	<theme id="zoe-resort" name="Zoe Resort">
 		<settings>
 			<setting configurable="true" key="portlet-setup-show-borders-default" type="checkbox" value="true" />
 			<setting configurable="true" key="show-breadcrumbs" type="checkbox" value="false" />
