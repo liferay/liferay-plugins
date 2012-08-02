@@ -9,7 +9,6 @@
 		<settings>
 			<setting configurable="true" key="display-company-logo" type="checkbox" value="false" />
 			<setting configurable="true" key="display-footer" type="checkbox" value="true" />
-			<setting configurable="true" key="footer-nav-display" type="checkbox" value="true" />
 			<setting configurable="true" key="footer-nav-title" type="text" value="Site Pages" />
 			<setting configurable="true" key="footer-section-1-article-id" type="text" />
 			<setting configurable="true" key="footer-section-2-article-id" type="text" />

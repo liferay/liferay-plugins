@@ -8,6 +8,11 @@
 
 ## ---------- Footer Content ---------- ##
 
+
+#if ($theme_settings.display-footer == 'true')
+	#set ($css_class = $css_class + " show-footer")
+#end
+
 #if ($theme_settings.footer-section-1-article-id)
 	#set ($footer_section_1 = $journalContentUtil.getContent($group_id, $theme_settings.footer-section-1-article-id, null, "$locale", $theme_display))
 #else
