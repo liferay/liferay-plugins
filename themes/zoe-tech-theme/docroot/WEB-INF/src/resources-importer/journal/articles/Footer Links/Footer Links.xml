@@ -4,9 +4,6 @@
 	<dynamic-element instance-id="umMah2Cu" name="title" type="text" index-type="">
 		<dynamic-content><![CDATA[Footer Links]]></dynamic-content>
 	</dynamic-element>
-	<dynamic-element instance-id="PwfpIvHX" name="display-signin" type="boolean" index-type="">
-		<dynamic-content><![CDATA[]]></dynamic-content>
-	</dynamic-element>
 	<dynamic-element instance-id="RRsHqYC8" name="footer-links" type="text" index-type="">
 		<dynamic-element instance-id="0taWbQYJ" name="url-location" type="text" index-type="">
 			<dynamic-content><![CDATA[#]]></dynamic-content>

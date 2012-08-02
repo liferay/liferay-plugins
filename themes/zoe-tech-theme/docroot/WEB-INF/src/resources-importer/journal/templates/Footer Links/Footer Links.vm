@@ -5,16 +5,6 @@
 #end
 
 <ul class="hide-bullets">
-	#if ($display-signin.data)
-		<li id="signIn">
-			<a href="$sign_in_url" rel="nofollow">#language('sign-in')</a>
-		</li>
-
-		<li id="signOut">
-			<a href="javascript:Liferay.TechTheme.logOut();" rel="nofollow">#language('sign-out')</a>
-		</li>
-	#end
-
 	#foreach ($footer-link in $footer-links.siblings)
 		<li>
 			#if ($footer-link.url-location.data != "")
@@ -29,29 +19,3 @@
 		</li>
 	#end
 </ul>
-
-#if ($display-signin.data)
-	<script type="text/javascript">
-		Liferay.namespace('TechTheme');
-
-		Liferay.provide(
-			Liferay.TechTheme,
-			'logOut',
-			function() {
-				var A = AUI();
-
-				A.io.request(
-					themeDisplay.getPathMain() + '/portal/logout',
-					{
-						after: {
-							success: function() {
-								location.reload()
-							}
-						}
-					}
-				)
-			},
-			['aui-io']
-		);
-	</script>
-#end

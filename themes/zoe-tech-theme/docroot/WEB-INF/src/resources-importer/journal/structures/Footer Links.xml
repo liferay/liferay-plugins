@@ -10,15 +10,6 @@
 			<entry name="predefinedValue"><![CDATA[]]></entry>
 		</meta-data>
 	</dynamic-element>
-	<dynamic-element name="display-signin" type="boolean" index-type="" repeatable="false">
-		<meta-data>
-			<entry name="displayAsTooltip"><![CDATA[true]]></entry>
-			<entry name="required"><![CDATA[false]]></entry>
-			<entry name="instructions"><![CDATA[]]></entry>
-			<entry name="label"><![CDATA[Display Sign-in/Log-out]]></entry>
-			<entry name="predefinedValue"><![CDATA[]]></entry>
-		</meta-data>
-	</dynamic-element>
 	<dynamic-element name="footer-links" type="text" index-type="" repeatable="true">
 		<dynamic-element name="url-location" type="text" index-type="" repeatable="false">
 			<meta-data>
