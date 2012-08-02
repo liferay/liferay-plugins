@@ -1,0 +1,72 @@
+<%--
+/**
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%
+String portletId = portletDisplay.getId();
+%>
+
+<c:choose>
+	<c:when test="<%= portletId.equals(PortletKeys.ADMIN_PLUGINS) %>">
+
+		<%
+		PortletURL installPluginsURL = PortletURLFactoryUtil.create(request, PortletKeys.PLUGIN_INSTALLER, themeDisplay.getPlid(), PortletRequest.RENDER_PHASE);
+
+		installPluginsURL.setWindowState(LiferayWindowState.MAXIMIZED);
+		installPluginsURL.setPortletMode(PortletMode.VIEW);
+
+		installPluginsURL.setParameter("struts_action", "/plugin_installer/view");
+		installPluginsURL.setParameter("backURL", currentURL);
+		%>
+
+		<liferay-ui:tabs
+			names="portlet-plugins,theme-plugins,layout-template-plugins,private-plugin-installer"
+			param="tabs2"
+			url="<%= portletURL.toString() %>"
+			url3="<%= installPluginsURL.toString() %>"
+		/>
+	</c:when>
+	<c:otherwise>
+		<liferay-ui:tabs
+			names="portlet-plugins,theme-plugins,layout-template-plugins"
+			param="tabs2"
+			url="<%= portletURL.toString() %>"
+		/>
+	</c:otherwise>
+</c:choose>
+
+<c:choose>
+	<c:when test='<%= tabs2.equals("theme-plugins") %>'>
+		<%@ include file="/html/portlet/plugins_admin/themes.jspf" %>
+	</c:when>
+	<c:when test='<%= tabs2.equals("layout-template-plugins") %>'>
+		<%@ include file="/html/portlet/plugins_admin/layout_templates.jspf" %>
+	</c:when>
+	<c:when test='<%= tabs2.equals("hook-plugins") %>'>
+	</c:when>
+	<c:when test='<%= tabs2.equals("web-plugins") %>'>
+	</c:when>
+	<c:otherwise>
+		<%@ include file="/html/portlet/plugins_admin/portlets.jspf" %>
+	</c:otherwise>
+</c:choose>
+
+<aui:script use="aui-base">
+	var description = A.one('#cpContextPanelTemplate');
+
+	if (description) {
+		description.append('<span class="warn"><liferay-ui:message key="warning-x-will-be-replaced-with-liferay-marketplace" arguments="<%= portletDisplay.getTitle() %>" /></span>');
+	}
+</aui:script>
