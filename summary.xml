@@ -64,11 +64,11 @@
 		<liferay-versions>6.1.1</liferay-versions>
 		<releng>
 			<bundle>false</bundle>
-			<category></category>
+			<category>Utility</category>
 			<demo-url></demo-url>
 			<dependent-apps></dependent-apps>
 			<labs>true</labs>
-			<marketplace>false</marketplace>
+			<marketplace>true</marketplace>
 			<public>true</public>
 			<supported>false</supported>
 		</releng>
