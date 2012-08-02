@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hook PUBLIC "-//Liferay//DTD Hook 6.1.0//EN" "http://www.liferay.com/dtd/liferay-hook_6_1_0.dtd">
+
+<hook>
+	<language-properties>content/Language_ar.properties</language-properties>
+	<language-properties>content/Language_bg.properties</language-properties>
+	<language-properties>content/Language_ca.properties</language-properties>
+	<language-properties>content/Language_cs.properties</language-properties>
+	<language-properties>content/Language_de.properties</language-properties>
+	<language-properties>content/Language_el.properties</language-properties>
+	<language-properties>content/Language_en.properties</language-properties>
+	<language-properties>content/Language_es.properties</language-properties>
+	<language-properties>content/Language_et.properties</language-properties>
+	<language-properties>content/Language_eu.properties</language-properties>
+	<language-properties>content/Language_fa.properties</language-properties>
+	<language-properties>content/Language_fi.properties</language-properties>
+	<language-properties>content/Language_fr.properties</language-properties>
+	<language-properties>content/Language_gl.properties</language-properties>
+	<language-properties>content/Language_hi_IN.properties</language-properties>
+	<language-properties>content/Language_hu.properties</language-properties>
+	<language-properties>content/Language_in.properties</language-properties>
+	<language-properties>content/Language_it.properties</language-properties>
+	<language-properties>content/Language_iw.properties</language-properties>
+	<language-properties>content/Language_ja.properties</language-properties>
+	<language-properties>content/Language_ko.properties</language-properties>
+	<language-properties>content/Language_nb.properties</language-properties>
+	<language-properties>content/Language_nl.properties</language-properties>
+	<language-properties>content/Language_pl.properties</language-properties>
+	<language-properties>content/Language_pt_BR.properties</language-properties>
+	<language-properties>content/Language_pt_PT.properties</language-properties>
+	<language-properties>content/Language_ro.properties</language-properties>
+	<language-properties>content/Language_ru.properties</language-properties>
+	<language-properties>content/Language_sk.properties</language-properties>
+	<language-properties>content/Language_sv.properties</language-properties>
+	<language-properties>content/Language_tr.properties</language-properties>
+	<language-properties>content/Language_uk.properties</language-properties>
+	<language-properties>content/Language_vi.properties</language-properties>
+	<language-properties>content/Language_zh_CN.properties</language-properties>
+	<language-properties>content/Language_zh_TW.properties</language-properties>
+	<custom-jsp-dir>/META-INF/custom_jsps</custom-jsp-dir>
+</hook>
