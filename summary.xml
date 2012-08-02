@@ -51,6 +51,29 @@
 		</releng>
 	</plugin>
 	<plugin>
+		<artifact-id>private-plugin-installer-hook</artifact-id>
+		<name>Private Plugin Installer</name>
+		<type>hook</type>
+		<tags></tags>
+		<short-description></short-description>
+		<long-description></long-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>LGPL</licenses>
+		<liferay-versions>6.1.1</liferay-versions>
+		<releng>
+			<bundle>false</bundle>
+			<category></category>
+			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
+			<labs>true</labs>
+			<marketplace>false</marketplace>
+			<public>true</public>
+			<supported>false</supported>
+		</releng>
+	</plugin>
+	<plugin>
 		<artifact-id>sample-application-adapter-hook</artifact-id>
 		<name>Sample Application Adapter</name>
 		<type>hook</type>
