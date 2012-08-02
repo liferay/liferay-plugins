@@ -53,7 +53,7 @@ private String _buildTreeMenuHTML(List<MenuItem> menuItems, String curTitle, boo
 		String label = menuItem.getLabel();
 		String url = menuItem.getURL();
 
-		sb.append("<li>");
+		sb.append("<li class=\"aui-tree-node\">");
 
 		if (Validator.isNotNull(url)) {
 			if (label.equals(curTitle)) {
