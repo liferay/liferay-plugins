@@ -5,7 +5,7 @@
 	<compatibility>
 		<version>6.1.0+</version>
 	</compatibility>
-	<theme id="7cogs-brochure" name="7Cogs Brochure">
+	<theme id="zoe-brochure" name="Zoe Brochure">
 		<settings>
 			<setting configurable="true" key="portlet-setup-show-borders-default" type="checkbox" value="false" />
 			<setting configurable="false" key="show-site-name-default" value="false" />

@@ -5,7 +5,7 @@
 	<compatibility>
 		<version>6.1.1+</version>
 	</compatibility>
-	<theme id="7cogs-tech" name="7Cogs Tech">
+	<theme id="zoe-tech" name="Zoe Tech">
 		<settings>
 			<setting configurable="true" key="display-company-logo" type="checkbox" value="false" />
 			<setting configurable="true" key="display-footer" type="checkbox" value="true" />
