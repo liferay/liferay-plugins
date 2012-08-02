@@ -2336,98 +2336,6 @@
 		</releng>
 	</plugin>
 	<plugin>
-		<artifact-id>7cogs-brochure-theme</artifact-id>
-		<name>7Cogs Brochure</name>
-		<type>theme</type>
-		<tags></tags>
-		<short-description></short-description>
-		<long-description></long-description>
-		<change-log></change-log>
-		<page-url>http://www.liferay.com</page-url>
-		<author>Liferay, Inc.</author>
-		<licenses>LGPL</licenses>
-		<liferay-versions>6.2.0</liferay-versions>
-		<releng>
-			<bundle>false</bundle>
-			<category></category>
-			<demo-url></demo-url>
-			<dependent-apps></dependent-apps>
-			<labs>true</labs>
-			<marketplace>true</marketplace>
-			<public>true</public>
-			<supported>false</supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id>7cogs-healthcare-theme</artifact-id>
-		<name>7Cogs Healthcare</name>
-		<type>theme</type>
-		<tags></tags>
-		<short-description></short-description>
-		<long-description></long-description>
-		<change-log></change-log>
-		<page-url>http://www.liferay.com</page-url>
-		<author>Liferay, Inc.</author>
-		<licenses>LGPL</licenses>
-		<liferay-versions>6.2.0</liferay-versions>
-		<releng>
-			<bundle>false</bundle>
-			<category></category>
-			<demo-url></demo-url>
-			<dependent-apps></dependent-apps>
-			<labs>true</labs>
-			<marketplace>true</marketplace>
-			<public>true</public>
-			<supported>false</supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id>7cogs-resort-theme</artifact-id>
-		<name>7Cogs Resort</name>
-		<type>theme</type>
-		<tags></tags>
-		<short-description></short-description>
-		<long-description></long-description>
-		<change-log></change-log>
-		<page-url>http://www.liferay.com</page-url>
-		<author>Liferay, Inc.</author>
-		<licenses>LGPL</licenses>
-		<liferay-versions>6.2.0</liferay-versions>
-		<releng>
-			<bundle>false</bundle>
-			<category></category>
-			<demo-url></demo-url>
-			<dependent-apps></dependent-apps>
-			<labs>true</labs>
-			<marketplace>true</marketplace>
-			<public>true</public>
-			<supported>false</supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id>7cogs-tech-theme</artifact-id>
-		<name>7Cogs Tech</name>
-		<type>theme</type>
-		<tags></tags>
-		<short-description></short-description>
-		<long-description></long-description>
-		<change-log></change-log>
-		<page-url>http://www.liferay.com</page-url>
-		<author>Liferay, Inc.</author>
-		<licenses>LGPL</licenses>
-		<liferay-versions>6.2.0</liferay-versions>
-		<releng>
-			<bundle>false</bundle>
-			<category></category>
-			<demo-url></demo-url>
-			<dependent-apps></dependent-apps>
-			<labs>true</labs>
-			<marketplace>true</marketplace>
-			<public>true</public>
-			<supported>false</supported>
-		</releng>
-	</plugin>
-	<plugin>
 		<artifact-id>sample-html4-theme</artifact-id>
 		<name>Sample HTML4</name>
 		<type>theme</type>
@@ -2630,6 +2538,98 @@
 			<dependent-apps></dependent-apps>
 			<labs>true</labs>
 			<marketplace>false</marketplace>
+			<public>true</public>
+			<supported>false</supported>
+		</releng>
+	</plugin>
+	<plugin>
+		<artifact-id>zoe-brochure-theme</artifact-id>
+		<name>Zoe Brochure</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<long-description></long-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
+		<releng>
+			<bundle>false</bundle>
+			<category></category>
+			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
+			<labs>true</labs>
+			<marketplace>true</marketplace>
+			<public>true</public>
+			<supported>false</supported>
+		</releng>
+	</plugin>
+	<plugin>
+		<artifact-id>zoe-healthcare-theme</artifact-id>
+		<name>Zoe Healthcare</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<long-description></long-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
+		<releng>
+			<bundle>false</bundle>
+			<category></category>
+			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
+			<labs>true</labs>
+			<marketplace>true</marketplace>
+			<public>true</public>
+			<supported>false</supported>
+		</releng>
+	</plugin>
+	<plugin>
+		<artifact-id>zoe-resort-theme</artifact-id>
+		<name>Zoe Resort</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<long-description></long-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
+		<releng>
+			<bundle>false</bundle>
+			<category></category>
+			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
+			<labs>true</labs>
+			<marketplace>true</marketplace>
+			<public>true</public>
+			<supported>false</supported>
+		</releng>
+	</plugin>
+	<plugin>
+		<artifact-id>zoe-tech-theme</artifact-id>
+		<name>Zoe Tech</name>
+		<type>theme</type>
+		<tags></tags>
+		<short-description></short-description>
+		<long-description></long-description>
+		<change-log></change-log>
+		<page-url>http://www.liferay.com</page-url>
+		<author>Liferay, Inc.</author>
+		<licenses>LGPL</licenses>
+		<liferay-versions>6.2.0</liferay-versions>
+		<releng>
+			<bundle>false</bundle>
+			<category></category>
+			<demo-url></demo-url>
+			<dependent-apps></dependent-apps>
+			<labs>true</labs>
+			<marketplace>true</marketplace>
 			<public>true</public>
 			<supported>false</supported>
 		</releng>
