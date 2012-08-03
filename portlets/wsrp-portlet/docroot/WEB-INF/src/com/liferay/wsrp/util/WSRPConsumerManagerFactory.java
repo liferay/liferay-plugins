@@ -14,12 +14,12 @@
 
 package com.liferay.wsrp.util;
 
+import com.liferay.portal.kernel.servlet.NonSerializableObjectHandler;
 import com.liferay.portal.kernel.util.AutoResetThreadLocal;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.wsrp.model.WSRPConsumer;
 
-import java.io.Serializable;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -107,19 +107,23 @@ public class WSRPConsumerManagerFactory {
 			_wsrpConsumerManagers;
 
 		if (session != null) {
-			WSRPConsumerSessionHolder wsrpConsumerSessionHolder =
-				(WSRPConsumerSessionHolder)session.getAttribute(
+			NonSerializableObjectHandler nonSerializableObjectHandler =
+				(NonSerializableObjectHandler)session.getAttribute(
 					WebKeys.WSRP_CONSUMER_MANAGERS);
 
-			if (wsrpConsumerSessionHolder == null) {
-				wsrpConsumerSessionHolder = new WSRPConsumerSessionHolder();
+			if (nonSerializableObjectHandler == null) {
+				nonSerializableObjectHandler =
+					new NonSerializableObjectHandler(
+						new ConcurrentHashMap<String, WSRPConsumerManager>());
 
 				session.setAttribute(
-					WebKeys.WSRP_CONSUMER_MANAGERS, wsrpConsumerManagers);
+					WebKeys.WSRP_CONSUMER_MANAGERS,
+					nonSerializableObjectHandler);
 			}
 
 			wsrpConsumerManagers =
-				wsrpConsumerSessionHolder.getWsrpConsumerManagers();
+				(Map<String, WSRPConsumerManager>)
+					nonSerializableObjectHandler.getValue();
 		}
 
 		WSRPConsumerManager wsrpConsumerManager = wsrpConsumerManagers.get(url);
