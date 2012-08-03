@@ -54,3 +54,13 @@
 .so-portlet-activities .activity-data {
 	margin-left: 45px;
 }
+
+.so-portlet-activities .activity-body a {
+	border-right: 1px solid #C7D0DA;
+	padding-right: 5px;
+
+	&:last-child {
+		border-right-width: 0;
+		padding-right: 0;
+	}
+}
