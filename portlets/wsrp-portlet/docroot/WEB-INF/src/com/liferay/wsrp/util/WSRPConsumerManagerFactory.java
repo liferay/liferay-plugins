@@ -19,6 +19,7 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.wsrp.model.WSRPConsumer;
 
+import java.io.Serializable;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -106,17 +107,19 @@ public class WSRPConsumerManagerFactory {
 			_wsrpConsumerManagers;
 
 		if (session != null) {
-			wsrpConsumerManagers =
-				(Map<String, WSRPConsumerManager>)
-					session.getAttribute(WebKeys.WSRP_CONSUMER_MANAGERS);
+			WSRPConsumerSessionHolder wsrpConsumerSessionHolder =
+				(WSRPConsumerSessionHolder)session.getAttribute(
+					WebKeys.WSRP_CONSUMER_MANAGERS);
 
-			if (wsrpConsumerManagers == null) {
-				wsrpConsumerManagers =
-					new ConcurrentHashMap<String, WSRPConsumerManager>();
+			if (wsrpConsumerSessionHolder == null) {
+				wsrpConsumerSessionHolder = new WSRPConsumerSessionHolder();
 
 				session.setAttribute(
 					WebKeys.WSRP_CONSUMER_MANAGERS, wsrpConsumerManagers);
 			}
+
+			wsrpConsumerManagers =
+				wsrpConsumerSessionHolder.getWsrpConsumerManagers();
 		}
 
 		WSRPConsumerManager wsrpConsumerManager = wsrpConsumerManagers.get(url);
