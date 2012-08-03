@@ -7,6 +7,6 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
 >
 	<lifecycle>
-		<phase-listener>com.liferay.faces.bridge.lifecycle.BridgeDebugPhaseListener</phase-listener>
+		<phase-listener>com.liferay.faces.util.lifecycle.DebugPhaseListener</phase-listener>
 	</lifecycle>
 </faces-config>
