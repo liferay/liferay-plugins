@@ -56,9 +56,9 @@ public class WURFLDeviceRecognitionProvider
 			if ((capabilities != null) && !capabilities.isEmpty()) {
 				device = new WURFLDevice(capabilities, _deviceCapabilityFilter);
 			}
-            else {
-                device = UnknownDevice.getInstance();
-            }
+			else {
+				device = UnknownDevice.getInstance();
+			}
 		}
 
 		return device;
@@ -74,18 +74,18 @@ public class WURFLDeviceRecognitionProvider
 		_knownDevices.reload();
 	}
 
+	public void setDeviceCapabilityFilter(
+		DeviceCapabilityFilter deviceCapabilityFilter) {
+
+		_deviceCapabilityFilter = deviceCapabilityFilter;
+	}
+
 	public void setKnownDevices(KnownDevices knownDevices) {
 		_knownDevices = knownDevices;
 	}
 
 	public void setWurflHolderImpl(WURFLHolderImpl wurflHolderImpl) {
 		_wurflHolderImpl = wurflHolderImpl;
-	}
-
-	public void setDeviceCapabilityFilter(
-		DeviceCapabilityFilter deviceCapabilityFilter) {
-
-		_deviceCapabilityFilter = deviceCapabilityFilter;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
