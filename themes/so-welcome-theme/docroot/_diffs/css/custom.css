@@ -15,7 +15,7 @@ body {
 	font: 12px/1.5em 'Helvetica', Arial, sans-serif;
 }
 
-a, a:visited, a:active {
+a, a:visited, a:active, #sign-in:hover {
 	color: $blue-link;
 	text-decoration: none;
 }
@@ -46,13 +46,13 @@ input[type=password], input[type=text], textarea, .aui-field-select select, .aui
 	}
 }
 
-button, input[type=button], input[type=submit], input[type=reset], .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-dialog-hd, .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content {
+button, input[type=button], input[type=submit], input[type=reset], #sign-in, .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-dialog-hd, .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content {
 	background: #E9E8E8;
 	border: 1px solid $gray;
 	text-shadow: none;
 }
 
-input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .edit-controls a:hover, .lfr-actions.lfr-extended, .thread-controls a:hover, .tasks-dialog .control a.taglib-icon, .top-links-navigation a:hover {
+input[type=button], input[type=reset], input[type=submit], #sign-in:hover, .aui-state-hover, .edit-controls a:hover, .lfr-actions.lfr-extended, .thread-controls a:hover, .tasks-dialog .control a.taglib-icon, .top-links-navigation a:hover {
 	&:hover {
 		background: #EEE;
 		border-color: #AAA;
@@ -149,6 +149,14 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .ed
 }
 
 /* ---------- Login Screens ---------- */
+
+#sign-in {
+	color: #34404F;
+	padding: 2px 4px;
+	position: absolute;
+	right: 4px;
+	top: 4px;
+}
 
 #loginPage {
 	.portlet {
@@ -275,15 +283,15 @@ input[type=password], input[type=text], textarea, .aui-field-select select {
 	@include border-radius(5px);
 }
 
-input[type=password], input[type=text], textarea, .aui-field-select select {
+input[type=password], input[type=text], textarea, #sign-in:active, .aui-field-select select {
 	@include box-shadow(0 1px 3px #C9C9C9 inset);
 }
 
-button, input[type=button], input[type=reset], input[type=submit], .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-button-disabled button, .aui-button-disabled button:focus, .aui-button-disabled button:hover, .aui-dialog-hd, .aui-form-validator-message, .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .lfr-actions.lfr-extended, .lfr-header-row .aui-button-input, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox {
+button, input[type=button], input[type=reset], input[type=submit], #sign-in, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-button-disabled button, .aui-button-disabled button:focus, .aui-button-disabled button:hover, .aui-dialog-hd, .aui-form-validator-message, .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .lfr-actions.lfr-extended, .lfr-header-row .aui-button-input, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox {
 	@include border-radius(3px);
 }
 
-button, input[type=button], input[type=reset], input[type=submit], .aui-button-disabled input[type], .aui-button-disabled input[type]:focus, .aui-button-disabled input[type]:hover, .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .aui-dialog-hd, .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .lfr-actions.lfr-extended, .lfr-header-row .aui-button-input, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox {
+button, input[type=button], input[type=reset], input[type=submit], #sign-in, .aui-button-disabled input[type], .aui-button-disabled input[type]:focus, .aui-button-disabled input[type]:hover, .aui-button-disabled button, .aui-button-disabled button:hover, .aui-button-disabled button:focus, .aui-dialog-hd, .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .lfr-actions.lfr-extended, .lfr-header-row .aui-button-input, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox {
 	@include box-shadow(0 1px 0 #F4F3F3 inset, 0 -1px 0 #D9D8D8 inset);
 }
 
