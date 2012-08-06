@@ -15,6 +15,7 @@ package com.liferay.portal.mobile.device.wurfl;
 
 import com.liferay.portal.kernel.mobile.device.AbstractDevice;
 import com.liferay.portal.kernel.mobile.device.Capability;
+import com.liferay.portal.kernel.mobile.device.DeviceCapabilityFilter;
 import com.liferay.portal.kernel.mobile.device.Dimensions;
 import com.liferay.portal.kernel.util.GetterUtil;
 
@@ -28,12 +29,21 @@ import java.util.Map;
  */
 public class WURFLDevice extends AbstractDevice {
 
-	public WURFLDevice(Map<String, String> capabilities) {
-		for (Entry<String, String> entry : capabilities.entrySet()) {
-			Capability capability = new Capability(
-				entry.getKey(), entry.getValue());
+	public WURFLDevice(
+		Map<String, String> capabilities,
+		DeviceCapabilityFilter deviceCapabilityFilter) {
 
-			_capabilities.put(entry.getKey(), capability);
+		for (Entry<String, String> entry : capabilities.entrySet()) {
+			String name = entry.getKey();
+			String value = entry.getValue();
+
+			if (!deviceCapabilityFilter.accept(name, value)) {
+				continue;
+			}
+
+			Capability capability = new Capability(name, value);
+
+			_capabilities.put(name, capability);
 		}
 	}
 
