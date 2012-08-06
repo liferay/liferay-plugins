@@ -15,52 +15,58 @@
  * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
 
-.so-portlet-activities .activity-item {
-	min-height: 38px;
-	margin-bottom: .5em;
+@import "compass";
+
+.so-portlet-activities {
+	.activity-item {
+		margin-bottom: .5em;
+		min-height: 38px;
+	}
+
+	.user-portrait {
+		float: left;
+		height: 38px;
+		position: relative;
+		width: 38px;
+
+		.avatar {
+			display: block;
+			height: 30px;
+			overflow: hidden;
+
+			img {
+				max-width: 30px;
+			}
+		}
+
+		.icon {
+			bottom: 0;
+			position: absolute;
+			right: 0;
+		}
+	}
+
+	.activity-data {
+		margin-left: 45px;
+	}
+
+	.activity-body a {
+		border-right: 1px solid #C7D0DA;
+		padding-right: 5px;
+
+		&:last-child {
+			border-right-width: 0;
+			padding-right: 0;
+		}
+	}
 }
 
-.ie .so-portlet-activities .activity-item {
-	height: 38px;
-}
+.ie .so-portlet-activities {
+	.activity-item {
+		height: 38px;
+	}
 
-.so-portlet-activities .user-portrait {
-	float: left;
-	height: 38px;
-	position: relative;
-	width: 38px;
-}
-
-.so-portlet-activities .user-portrait .avatar img {
-	max-width: 30px;
-}
-
-.ie .so-portlet-activities .user-portrait .avatar img {
-	width: 30px;
-}
-
-.so-portlet-activities .user-portrait .avatar {
-	display: block;
-	height: 30px;
-	overflow: hidden;
-}
-
-.so-portlet-activities .user-portrait .icon {
-	position: absolute;
-	bottom: 0;
-	right: 0;
-}
-
-.so-portlet-activities .activity-data {
-	margin-left: 45px;
-}
-
-.so-portlet-activities .activity-body a {
-	border-right: 1px solid #C7D0DA;
-	padding-right: 5px;
-
-	&:last-child {
-		border-right-width: 0;
-		padding-right: 0;
+	.user-portrait .avatar img {
+		width: 30px;
 	}
 }
