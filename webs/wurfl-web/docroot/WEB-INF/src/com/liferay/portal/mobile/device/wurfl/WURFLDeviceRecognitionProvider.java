@@ -16,6 +16,7 @@ package com.liferay.portal.mobile.device.wurfl;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.mobile.device.Device;
+import com.liferay.portal.kernel.mobile.device.DeviceCapabilityFilter;
 import com.liferay.portal.kernel.mobile.device.DeviceRecognitionProvider;
 import com.liferay.portal.kernel.mobile.device.KnownDevices;
 import com.liferay.portal.kernel.mobile.device.UnknownDevice;
@@ -53,8 +54,11 @@ public class WURFLDeviceRecognitionProvider
 			Map<String, String> capabilities = wurflDevice.getCapabilities();
 
 			if ((capabilities != null) && !capabilities.isEmpty()) {
-				device = new WURFLDevice(capabilities);
+				device = new WURFLDevice(capabilities, _deviceCapabilityFilter);
 			}
+            else {
+                device = UnknownDevice.getInstance();
+            }
 		}
 
 		return device;
@@ -78,9 +82,16 @@ public class WURFLDeviceRecognitionProvider
 		_wurflHolderImpl = wurflHolderImpl;
 	}
 
+	public void setDeviceCapabilityFilter(
+		DeviceCapabilityFilter deviceCapabilityFilter) {
+
+		_deviceCapabilityFilter = deviceCapabilityFilter;
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(
 		WURFLDeviceRecognitionProvider.class);
 
+	private DeviceCapabilityFilter _deviceCapabilityFilter;
 	private KnownDevices _knownDevices;
 	private WURFLHolderImpl _wurflHolderImpl;
 

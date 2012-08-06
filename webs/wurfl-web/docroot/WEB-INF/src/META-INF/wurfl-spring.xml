@@ -10,6 +10,9 @@
 	<bean id="com.liferay.portal.mobile.device.wurfl.WURFLDeviceRecognitionProvider" class="com.liferay.portal.mobile.device.wurfl.WURFLDeviceRecognitionProvider">
 		<property name="knownDevices" ref="com.liferay.portal.mobile.device.wurfl.WURFLKnownDevices" />
 		<property name="wurflHolderImpl" ref="com.liferay.portal.mobile.device.wurfl.WURFLHolderImpl" />
+        <property name="deviceCapabilityFilter">
+	        <bean class="com.liferay.portal.kernel.mobile.device.DefaultDeviceCapabilityFilter" />
+        </property>
 	</bean>
 	<bean id="com.liferay.portal.mobile.device.wurfl.WURFLHolderImpl" class="com.liferay.portal.mobile.device.wurfl.WURFLHolderImpl" />
 	<bean id="com.liferay.portal.mobile.device.wurfl.WURFLKnownDevices" class="com.liferay.portal.mobile.device.wurfl.WURFLKnownDevices">
