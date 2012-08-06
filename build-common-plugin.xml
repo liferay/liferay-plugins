@@ -4,6 +4,10 @@
 <project name="build-common-plugin" xmlns:antelope="antlib:ise.antelope.tasks">
 	<import file="build-common.xml" />
 
+	<condition property="isWindows" value="true">
+		<os family="windows" />
+	</condition>
+
 	<if>
 		<available file="docroot/WEB-INF/liferay-plugin-package.properties" />
 		<then>
@@ -152,6 +156,17 @@
 		</path>
 
 		<if>
+			<isset property="isWindows" />
+			<then>
+				<classpath-to-jar classpathref="service.classpath" jar="build-service-classpath.jar" />
+
+				<path id="service.classpath">
+					<fileset file="build-service-classpath.jar" />
+				</path>
+			</then>
+		</if>
+
+		<if>
 			<not>
 				<isset property="service.input.file" />
 			</not>
@@ -210,6 +225,13 @@
 
 		<delete file="ServiceBuilder.temp" />
 
+		<if>
+			<isset property="isWindows" />
+			<then>
+				<delete file="build-service-classpath.jar" />
+			</then>
+		</if>
+
 		<mkdir dir="docroot/WEB-INF/service-classes" />
 
 		<path id="service.classpath">
@@ -241,6 +263,17 @@
 			<pathelement location="docroot/WEB-INF/classes" />
 		</path>
 
+		<if>
+			<isset property="isWindows" />
+			<then>
+				<classpath-to-jar classpathref="wsdd.classpath" jar="build-wsdd-classpath.jar" />
+
+				<path id="wsdd.classpath">
+					<fileset file="build-wsdd-classpath.jar" />
+				</path>
+			</then>			
+		</if>
+
 		<java
 			classname="com.liferay.portal.tools.WSDDBuilder"
 			classpathref="wsdd.classpath"
@@ -255,6 +288,13 @@
 			<arg value="wsdd.service.namespace=Plugin" />
 			<arg value="wsdd.output.path=docroot/WEB-INF/src/" />
 		</java>
+
+		<if>
+			<isset property="isWindows" />
+			<then>
+				<delete file="build-wsdd-classpath.jar" />
+			</then>
+		</if>
 	</target>
 
 	<target name="build-wsdl">
@@ -352,6 +392,27 @@
 
 		<delete dir="${tstamp.value}" />
 	</target>
+
+	<macrodef name="classpath-to-jar">
+		<attribute name="classpathref"/>
+		<attribute name="jar"/>
+
+		<sequential>
+			<manifestclasspath property="manifest.cp" jarfile="@{jar}" maxParentLevels="99">
+				<classpath refid="@{classpathref}"/>
+			</manifestclasspath>
+
+			<manifest file="@{jar}.manifest">
+				<attribute name="Class-Path" value="${manifest.cp}"/>
+			</manifest>
+
+			<jar destfile="@{jar}" manifest="@{jar}.manifest"/>
+
+			<delete file="@{jar}.manifest"/>
+
+			<var name="manifest.cp" unset="true"/>
+		</sequential>
+	</macrodef>
 
 	<target name="clean" description="clean">
 		<delete dir="docroot/WEB-INF/classes" />
