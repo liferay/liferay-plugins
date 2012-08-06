@@ -18,7 +18,7 @@ $theme.include($body_top_include)
 	#dockbar()
 #end
 
-#if (!$is_signed_in)
+#if (!$is_signed_in && !$layoutTypePortlet.getPortletIds().contains("58") && !$layoutTypePortlet.hasStateMax())
 	<a href="$sign_in_url" id="sign-in" rel="nofollow"><span>$sign_in_text</span></a>
 #end
 
