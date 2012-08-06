@@ -18,6 +18,10 @@ $theme.include($body_top_include)
 	#dockbar()
 #end
 
+#if (!$is_signed_in)
+	<a href="$sign_in_url" id="sign-in" rel="nofollow"><span>$sign_in_text</span></a>
+#end
+
 <div id="loginPage">
 	<div class="login-holder">
 		<div class="company-title">
