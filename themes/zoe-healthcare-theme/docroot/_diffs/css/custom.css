@@ -68,7 +68,16 @@ body {
 	}
 
 	.site-title {
+		height: 100px;
 		margin: 0;
+
+		.logo {
+			padding: 10px 0;
+
+			&.default-logo img {
+				padding: 8px 0;
+			}
+		}
 
 		.site-name {
 			background: #BBD58D;
