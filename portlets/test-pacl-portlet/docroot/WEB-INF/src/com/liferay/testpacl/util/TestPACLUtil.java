@@ -151,6 +151,9 @@ public class TestPACLUtil {
 					System.getenv("USER_INSTALL_ROOT") +
 						"/installedApps/liferay-cell/chat-portlet.ear" +
 							"/chat-portlet.war/");
+			} else if (ServerDetector.isGlassfish()) {
+				fileName = StringUtil.replace(fileName, "autodeploy",
+					"applications");
 			}
 		}
 
