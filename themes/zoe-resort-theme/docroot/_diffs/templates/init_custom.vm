@@ -2,8 +2,8 @@
 
 #if (($company.getLogoId() == 0) && $use_company_logo)
 	#set ($site_logo = "${images_folder}/custom/logo.png")
-	#set ($site_logo_height = 64)
-	#set ($site_logo_width = 270)
+	#set ($site_logo_height = 66)
+	#set ($site_logo_width = 183)
 #end
 
 ## ---------- Header/Footer ---------- ##

@@ -94,6 +94,10 @@ p {
 	.logo {
 		float: left;
 		margin: 7px 10px 7px 130px;
+
+		&.default-logo {
+			padding: 6px 0 3px;
+		}
 	}
 
 	.site-name {
