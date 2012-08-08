@@ -178,10 +178,14 @@ input[type=button], input[type=reset], input[type=submit], #sign-in:hover, .aui-
 		text-align: center;
 	}
 
+	#so-welcome-context {
+		display: table;
+		margin: 0 auto;
+	}
+
 	.portlet {
 		padding: 4px;
 		position: relative;
-		width: 260px;
 
 		.portlet-topper {
 			display: none;
@@ -273,6 +277,20 @@ html.ie, .ie body, .ie #loginPage {
 
 .ie6 img {
 	position: static;
+}
+
+.ie7 #loginPage {
+	#main-content {
+		text-align: center;
+	}
+
+	.portlet {
+		display: inline-block;
+	}
+
+	.portlet-content {
+		text-align: left;
+	}
 }
 
 .ie9 #loginPage .portlet {
