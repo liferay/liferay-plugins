@@ -210,8 +210,10 @@ html body {
 }
 
 .buddy-list .panel-content div {
-	float: left;
 	font: 12px/24px Arial, Helvetica, sans-serif;
+	overflow-x: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .buddy-list .panel-content .idle div {
@@ -298,6 +300,7 @@ html body {
 	font-weight: bold;
 	height: 24px;
 	line-height: 24px;
+	padding-right: 35px;
 	text-indent: 60px;
 }
 
@@ -371,12 +374,13 @@ html body {
 	color: #fff;
 	display: block;
 	line-height: 11px;
-	padding: 2px 4px 3px;
+	padding: 2px 50px 3px 4px;
 }
 
 .panel-output .incoming .name {
 	background: #D3DADD;
 	color: #555;
+	padding-right:50px;
 }
 
 .panel-output .date {
