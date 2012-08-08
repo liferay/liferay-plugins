@@ -54,7 +54,7 @@
 		<artifact-id>private-plugin-installer-hook</artifact-id>
 		<name>Private Plugin Installer</name>
 		<type>hook</type>
-		<tags></tags>
+		<tags>ftp, hot deploy, installer, private, repository, ssh</tags>
 		<short-description></short-description>
 		<long-description>The Private Plugin Installer app allows developers and system administrators to hot deploy individual Liferay plugins using Control Panel. It is a graphical frontend to the underlying Liferay plugin deployment and management mechanism, and eliminates the need to manually copy plugins into the underlying operating system's filesystem in order to hot deploy plugins (e.g. using FTP or SSH). It also enables the use of a private plugins repository. This app installs to the Plugins Installation tab in Control Panel and adds a new sub-tab called "Private Plugins Installation". See the "Plugin Management" section of the Liferay User Guide for more details on setting up a plugin repository.</long-description>
 		<change-log></change-log>
@@ -71,6 +71,10 @@
 			<labs>true</labs>
 			<marketplace>true</marketplace>
 			<public>true</public>
+			<screenshot>hooks/private-plugin-installer-hook/docroot/WEB-INF/releng/screenshots/1.jpg</screenshot>
+			<screenshot>hooks/private-plugin-installer-hook/docroot/WEB-INF/releng/screenshots/2.jpg</screenshot>
+			<screenshot>hooks/private-plugin-installer-hook/docroot/WEB-INF/releng/screenshots/3.jpg</screenshot>
+			<screenshot>hooks/private-plugin-installer-hook/docroot/WEB-INF/releng/screenshots/4.jpg</screenshot>
 			<supported>false</supported>
 		</releng>
 	</plugin>
