@@ -51,11 +51,18 @@
 
 			<!--
 			Windows chokes if the classpath is longer than 32 kb. But the
-			workaround only works for Ant 1.8.1 and above. See LPS-29085.
+			workaround only works for Ant 1.8 and above. See LPS-29085.
 			-->
 
 			<if>
-				<contains string="${ant.version}" substring="1.8.1" />
+				<and>
+					<not>
+						<contains string="${ant.version}" substring="1.6" />
+					</not>
+					<not>
+						<contains string="${ant.version}" substring="1.7" />
+					</not>
+				</and>
 				<then>
 					<manifestclasspath
 						jarfile="@{jarfile}"
