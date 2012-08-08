@@ -142,8 +142,8 @@ public class TestPACLUtil {
 						version + ".1/chat-portlet-" + version + ".1.car/");
 			}
 			else if (ServerDetector.isGlassfish()) {
-				fileName = StringUtil.replace(fileName, "autodeploy",
-					"applications");
+				fileName = StringUtil.replace(
+					fileName, "autodeploy", "applications");
 			}
 			else if (ServerDetector.isJBoss()) {
 				fileName = StringUtil.replace(
