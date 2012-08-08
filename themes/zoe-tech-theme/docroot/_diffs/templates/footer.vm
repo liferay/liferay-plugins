@@ -10,7 +10,7 @@
 
 		<div class="aui-column aui-w25" id="footerSection2">
 			<div class="aui-column-content">
-				#if($theme_settings.footer-section-2-article-id)
+				#if ($theme_settings.footer-section-2-article-id)
 					#if ($footer_section_2)
 						$footer_section_2
 					#end

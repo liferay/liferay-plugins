@@ -16,17 +16,14 @@ $default-box-shadow-v-offset: 1px;
 	position: absolute;
 }
 
-body.show-footer {
-		background: #142933;
-	#wrapper {
-		background: url(../images/custom/background.png) 0 0;
-	}
-}
-
 body {
 	background: url(../images/custom/background.png) 0 0;
 	border-top: 10px solid #142933;
 	font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+	&.html-editor {
+		background: #FFF;
+	}
 
 	&.portal-popup {
 		background-image: none;
@@ -37,8 +34,12 @@ body {
 		}
 	}
 
-	&.html-editor {
-		background: #FFF;
+	&.show-footer {
+		background: #142933;
+
+		#wrapper {
+			background: url(../images/custom/background.png) 0 0;
+		}
 	}
 }
 
@@ -59,14 +60,14 @@ body {
 	background: #142933;
 	color: #FFF;
 	display: block;
-	padding: 0 15px 5px;
 	font-size: 1em;
 	font-weight: bold;
+	padding: 0 15px 5px;
 	position: absolute;
+	right: 0;
 	text-decoration: none;
 	text-transform: uppsercase;
 	top: 0;
-	right: 0;
 
 	&:hover {
 		color: #EE9F44;
