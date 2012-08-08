@@ -4,10 +4,6 @@
 <project name="build-common-plugin" xmlns:antelope="antlib:ise.antelope.tasks">
 	<import file="build-common.xml" />
 
-	<condition property="isWindows" value="true">
-		<os family="windows" />
-	</condition>
-
 	<if>
 		<available file="docroot/WEB-INF/liferay-plugin-package.properties" />
 		<then>
@@ -46,6 +42,49 @@
 			<property name="plugin.src.file" value="${project.dir}/dist/${plugin.name}-src-${lp.version}.${plugin.version}${lp.version.file.suffix}.zip" />
 		</else>
 	</if>
+
+	<macrodef name="classpath-to-jar">
+		<attribute name="classpathref" />
+		<attribute name="jarfile" />
+
+		<sequential>
+
+			<!--
+			Windows chokes if the classpath is longer than 32 kb. But the
+			workaround only works for Ant 1.8.1 and above. See LPS-29085.
+			-->
+
+			<if>
+				<contains string="${ant.version}" substring="1.8.1" />
+				<then>
+					<manifestclasspath
+						jarfile="@{jarfile}"
+						maxParentLevels="99"
+						property="manifest.classpath"
+					>
+						<classpath refid="@{classpathref}" />
+					</manifestclasspath>
+
+					<manifest file="@{jarfile}.manifest">
+						<attribute name="Class-Path" value="${manifest.classpath}" />
+					</manifest>
+
+					<jar
+						destfile="@{jarfile}"
+						manifest="@{jarfile}.manifest"
+					/>
+
+					<delete file="@{jarfile}.manifest" />
+
+					<var name="manifest.classpath" unset="true" />
+
+					<path id="@{classpathref}">
+						<fileset file="@{jarfile}" />
+					</path>
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
 
 	<target name="all">
 		<antcall target="clean" />
@@ -156,13 +195,12 @@
 		</path>
 
 		<if>
-			<isset property="isWindows" />
+			<os family="windows" />
 			<then>
-				<classpath-to-jar classpathref="service.classpath" jar="build-service-classpath.jar" />
-
-				<path id="service.classpath">
-					<fileset file="build-service-classpath.jar" />
-				</path>
+				<classpath-to-jar
+					classpathref="service.classpath"
+					jarfile="build-service-classpath.jar"
+				/>
 			</then>
 		</if>
 
@@ -214,6 +252,13 @@
 			<arg value="service.target.entity.name=${service.target.entity.name}" />
 		</java>
 
+		<if>
+			<os family="windows" />
+			<then>
+				<delete file="build-service-classpath.jar" />
+			</then>
+		</if>
+
 		<echo>${service.test.output}</echo>
 
 		<if>
@@ -224,13 +269,6 @@
 		</if>
 
 		<delete file="ServiceBuilder.temp" />
-
-		<if>
-			<isset property="isWindows" />
-			<then>
-				<delete file="build-service-classpath.jar" />
-			</then>
-		</if>
 
 		<mkdir dir="docroot/WEB-INF/service-classes" />
 
@@ -264,14 +302,13 @@
 		</path>
 
 		<if>
-			<isset property="isWindows" />
+			<os family="windows" />
 			<then>
-				<classpath-to-jar classpathref="wsdd.classpath" jar="build-wsdd-classpath.jar" />
-
-				<path id="wsdd.classpath">
-					<fileset file="build-wsdd-classpath.jar" />
-				</path>
-			</then>			
+				<classpath-to-jar
+					classpathref="wsdd.classpath"
+					jarfile="build-wsdd-classpath.jar"
+				/>
+			</then>
 		</if>
 
 		<java
@@ -290,7 +327,7 @@
 		</java>
 
 		<if>
-			<isset property="isWindows" />
+			<os family="windows" />
 			<then>
 				<delete file="build-wsdd-classpath.jar" />
 			</then>
@@ -392,27 +429,6 @@
 
 		<delete dir="${tstamp.value}" />
 	</target>
-
-	<macrodef name="classpath-to-jar">
-		<attribute name="classpathref"/>
-		<attribute name="jar"/>
-
-		<sequential>
-			<manifestclasspath property="manifest.cp" jarfile="@{jar}" maxParentLevels="99">
-				<classpath refid="@{classpathref}"/>
-			</manifestclasspath>
-
-			<manifest file="@{jar}.manifest">
-				<attribute name="Class-Path" value="${manifest.cp}"/>
-			</manifest>
-
-			<jar destfile="@{jar}" manifest="@{jar}.manifest"/>
-
-			<delete file="@{jar}.manifest"/>
-
-			<var name="manifest.cp" unset="true"/>
-		</sequential>
-	</macrodef>
 
 	<target name="clean" description="clean">
 		<delete dir="docroot/WEB-INF/classes" />
