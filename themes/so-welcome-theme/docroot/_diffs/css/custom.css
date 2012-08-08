@@ -108,8 +108,8 @@ input[type=button], input[type=reset], input[type=submit], #sign-in:hover, .aui-
 }
 
 .aui-dialog-content, .aui-underlay-content {
-	border-width: 0;
 	background-color: #F9F9F9;
+	border-width: 0;
 }
 
 .aui-dialog-hd, .aui-panel-hd {
@@ -159,10 +159,6 @@ input[type=button], input[type=reset], input[type=submit], #sign-in:hover, .aui-
 }
 
 #loginPage {
-	.portlet {
-		border-bottom-width: 0;
-	}
-
 	.login-holder, .portlet {
 		margin: 15px auto;
 	}
@@ -184,6 +180,7 @@ input[type=button], input[type=reset], input[type=submit], #sign-in:hover, .aui-
 	}
 
 	.portlet {
+		border-bottom-width: 0;
 		padding: 4px;
 		position: relative;
 
