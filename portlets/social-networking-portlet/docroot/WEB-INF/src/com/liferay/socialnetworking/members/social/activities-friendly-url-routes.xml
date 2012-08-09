@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE routes PUBLIC "-//Liferay//DTD Friendly URL Routes 6.2.0//EN" "http://www.liferay.com/dtd/liferay-friendly-url-routes_6_2_0.dtd">
+
+<routes>
+	<route>
+		<pattern></pattern>
+		<implicit-parameter name="struts_action">/activities/view</implicit-parameter>
+	</route>
+	<route>
+		<pattern>/rss</pattern>
+		<ignored-parameter name="p_p_cacheability" />
+		<implicit-parameter name="p_p_lifecycle">2</implicit-parameter>
+		<implicit-parameter name="struts_action">/activities/rss</implicit-parameter>
+	</route>
+	<route>
+		<pattern>/rss/{p_p_state}</pattern>
+		<implicit-parameter name="p_p_lifecycle">1</implicit-parameter>
+		<implicit-parameter name="struts_action">/activities/rss</implicit-parameter>
+	</route>
+</routes>
