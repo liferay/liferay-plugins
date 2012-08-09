@@ -2296,7 +2296,7 @@
 		<type><![CDATA[portlet]]></type>
 		<tags><![CDATA[ckeditor, cms, editor, wcm, wysiwyg]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[]]></long-description>
+		<long-description><![CDATA[This app enables content authors to quickly and easily create web content using Liferay's built-in WYSIWYG editing capabilities, without the overhead of the full CMS system. Content is associated directly with each instance of this app, and does not have any tracking metadata such as titles, versions, abstracts, or other ancillary information.<br /><br /> Content can be entered into the configuration window and is immediately displayed in the content window of the app. This should only be used when the full capabilities of Liferay's CMS system is not needed.]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
@@ -2307,6 +2307,7 @@
 			<category><![CDATA[Collaboration]]></category>
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
+			<icon><![CDATA[portlets/wysiwyg-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[false]]></labs>
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
@@ -2732,12 +2733,16 @@
 		<liferay-versions><![CDATA[6.1.1,6.1.20]]></liferay-versions>
 		<releng>
 			<bundle><![CDATA[true]]></bundle>
-			<category><![CDATA[]]></category>
+			<category><![CDATA[Utility]]></category>
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
+			<icon><![CDATA[webs/resources-importer-web/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<screenshot><![CDATA[webs/resources-importer-web/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
+			<screenshot><![CDATA[webs/resources-importer-web/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
+			<screenshot><![CDATA[webs/resources-importer-web/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
