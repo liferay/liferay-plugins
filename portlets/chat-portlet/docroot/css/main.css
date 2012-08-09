@@ -80,10 +80,6 @@ html body {
 	z-index: 30;
 	margin: -2px 0 -1px;
 }
-/*
-.chat-bar div ul li.buddy-list .panel-trigger {
-	border-right: 0;
-}*/
 
 /* ---------- Unread Messages ---------- */
 
@@ -380,16 +376,16 @@ html body {
 .panel-output .incoming .name {
 	background: #D3DADD;
 	color: #555;
-	padding-right:50px;
 }
 
 .panel-output .date {
 	color: #eee;
 	font-size: 10px;
 	font-style: normal;
+	margin-top: -2em;
 	position: absolute;
 	right: 8px;
-	top: 2px;
+	top: 50%;
 }
 
 .panel-output .incoming .date {
