@@ -116,7 +116,7 @@
 
 								<ul class="lfr-component settings">
 									<li>
-										<label for="statusMessage"><%= LanguageUtil.format(pageContext, "x-is", user.getFullName(), false) %></label>
+										<label for="statusMessage"><%= LanguageUtil.format(pageContext, "x-is", HtmlUtil.escape(user.getFullName()), false) %></label>
 
 										<input id="statusMessage" type="text" value="<%= statusMessage %>" />
 									</li>
