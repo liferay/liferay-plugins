@@ -96,7 +96,8 @@ page import="java.util.List" %>
 <%@ page import="javax.portlet.ActionRequest" %><%@
 page import="javax.portlet.PortletPreferences" %><%@
 page import="javax.portlet.PortletURL" %><%@
-page import="javax.portlet.WindowState" %>
+page import="javax.portlet.WindowState" %><%@ 
+page import="javax.portlet.ResourceURL" %>
 
 <portlet:defineObjects />
 
