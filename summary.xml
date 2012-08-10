@@ -20,6 +20,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -47,6 +48,7 @@
 			<screenshot><![CDATA[hooks/mongodb-hook/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[hooks/mongodb-hook/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
 			<screenshot><![CDATA[hooks/mongodb-hook/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -75,6 +77,7 @@
 			<screenshot><![CDATA[hooks/private-plugin-installer-hook/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
 			<screenshot><![CDATA[hooks/private-plugin-installer-hook/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
 			<screenshot><![CDATA[hooks/private-plugin-installer-hook/docroot/WEB-INF/releng/screenshots/4.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -98,6 +101,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -121,6 +125,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -144,6 +149,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -167,6 +173,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -190,6 +197,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -213,6 +221,7 @@
 			<labs><![CDATA[false]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -240,6 +249,7 @@
 			<screenshot><![CDATA[hooks/social-bookmarks-hook/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[hooks/social-bookmarks-hook/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
 			<screenshot><![CDATA[hooks/social-bookmarks-hook/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -266,6 +276,7 @@
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[layouttpl/1-2-1-columns-layouttpl/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[layouttpl/1-2-1-columns-layouttpl/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -292,6 +303,7 @@
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[layouttpl/1-3-1-columns-layouttpl/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[layouttpl/1-3-1-columns-layouttpl/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -318,6 +330,7 @@
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[layouttpl/1-3-2-columns-layouttpl/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[layouttpl/1-3-2-columns-layouttpl/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -344,6 +357,7 @@
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[layouttpl/2-1-2-columns-layouttpl/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[layouttpl/2-1-2-columns-layouttpl/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -370,6 +384,7 @@
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[layouttpl/3-2-3-columns-layouttpl/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[layouttpl/3-2-3-columns-layouttpl/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -393,6 +408,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -416,6 +432,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -439,6 +456,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -462,6 +480,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -488,6 +507,7 @@
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/chat-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/chat-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -511,6 +531,7 @@
 			<labs><![CDATA[false]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -538,6 +559,7 @@
 			<screenshot><![CDATA[portlets/ddl-form-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/ddl-form-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/ddl-form-portlet/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -563,6 +585,7 @@
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/digg-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -586,6 +609,7 @@
 			<labs><![CDATA[false]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -612,6 +636,7 @@
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/flash-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/flash-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -638,6 +663,7 @@
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/google-adsense-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/google-adsense-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -664,6 +690,7 @@
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/google-maps-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/google-maps-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -687,6 +714,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -713,6 +741,7 @@
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/ip-geocoder-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/ip-geocoder-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -736,6 +765,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -764,6 +794,7 @@
 			<screenshot><![CDATA[portlets/knowledge-base-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/knowledge-base-portlet/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/knowledge-base-portlet/docroot/WEB-INF/releng/screenshots/4.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -787,6 +818,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -813,6 +845,7 @@
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/mail-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/mail-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -836,6 +869,7 @@
 			<labs><![CDATA[false]]></labs>
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -859,6 +893,7 @@
 			<labs><![CDATA[false]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -884,6 +919,7 @@
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/my-subscriptions-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -910,6 +946,7 @@
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/netvibes-widget-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/netvibes-widget-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -938,6 +975,7 @@
 			<screenshot><![CDATA[portlets/opensocial-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/opensocial-portlet/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/opensocial-portlet/docroot/WEB-INF/releng/screenshots/4.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -961,6 +999,7 @@
 			<labs><![CDATA[false]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -984,6 +1023,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1007,6 +1047,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1030,6 +1071,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1053,6 +1095,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1076,6 +1119,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1099,6 +1143,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1122,6 +1167,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1145,6 +1191,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1168,6 +1215,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1191,6 +1239,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1214,6 +1263,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1237,6 +1287,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1260,6 +1311,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1283,6 +1335,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1306,6 +1359,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1329,6 +1383,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1352,6 +1407,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1375,6 +1431,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1398,6 +1455,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1421,6 +1479,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1444,6 +1503,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1467,6 +1527,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1490,6 +1551,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1513,6 +1575,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1536,6 +1599,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1559,6 +1623,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1587,6 +1652,7 @@
 			<screenshot><![CDATA[portlets/so-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/so-portlet/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/so-portlet/docroot/WEB-INF/releng/screenshots/4.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1612,6 +1678,7 @@
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/social-coding-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/social-coding-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1643,6 +1710,7 @@
 			<screenshot><![CDATA[portlets/social-networking-portlet/docroot/WEB-INF/releng/screenshots/5.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/social-networking-portlet/docroot/WEB-INF/releng/screenshots/6.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/social-networking-portlet/docroot/WEB-INF/releng/screenshots/7.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1669,6 +1737,7 @@
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/stocks-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/stocks-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1692,6 +1761,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1715,6 +1785,7 @@
 			<labs><![CDATA[false]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1738,6 +1809,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1761,6 +1833,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1784,6 +1857,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1807,6 +1881,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1830,6 +1905,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1853,6 +1929,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1876,6 +1953,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1899,6 +1977,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1922,6 +2001,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1945,6 +2025,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1968,6 +2049,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -1991,6 +2073,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2014,6 +2097,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2037,6 +2121,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2060,6 +2145,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2083,6 +2169,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2106,6 +2193,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2129,6 +2217,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2154,6 +2243,7 @@
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/twitter-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2181,6 +2271,7 @@
 			<screenshot><![CDATA[portlets/vimeo-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/vimeo-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/vimeo-portlet/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2206,6 +2297,7 @@
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/weather-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2233,6 +2325,7 @@
 			<screenshot><![CDATA[portlets/web-form-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/web-form-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/web-form-portlet/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2256,6 +2349,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2282,6 +2376,7 @@
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/wiki-navigation-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/wiki-navigation-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2310,6 +2405,7 @@
 			<screenshot><![CDATA[portlets/wsrp-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/wsrp-portlet/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/wsrp-portlet/docroot/WEB-INF/releng/screenshots/4.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2335,6 +2431,7 @@
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/wysiwyg-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2361,6 +2458,7 @@
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/youtube-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/youtube-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2384,6 +2482,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2407,6 +2506,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2430,6 +2530,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2453,6 +2554,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2476,6 +2578,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2499,6 +2602,7 @@
 			<labs><![CDATA[false]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2522,6 +2626,7 @@
 			<labs><![CDATA[false]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2545,6 +2650,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2568,6 +2674,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2591,6 +2698,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2614,6 +2722,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2637,6 +2746,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2660,6 +2770,7 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2686,6 +2797,7 @@
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[webs/cas-web/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[webs/cas-web/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2712,6 +2824,7 @@
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[webs/deployment-helper-web/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[webs/deployment-helper-web/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2739,6 +2852,7 @@
 			<screenshot><![CDATA[webs/kaleo-web/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[webs/kaleo-web/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
 			<screenshot><![CDATA[webs/kaleo-web/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2766,6 +2880,7 @@
 			<screenshot><![CDATA[webs/resources-importer-web/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[webs/resources-importer-web/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
 			<screenshot><![CDATA[webs/resources-importer-web/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2794,6 +2909,7 @@
 			<screenshot><![CDATA[webs/server-manager-web/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
 			<screenshot><![CDATA[webs/server-manager-web/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
 			<screenshot><![CDATA[webs/server-manager-web/docroot/WEB-INF/releng/screenshots/4.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2821,6 +2937,7 @@
 			<screenshot><![CDATA[webs/solr-web/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[webs/solr-web/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
 			<screenshot><![CDATA[webs/solr-web/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2849,6 +2966,7 @@
 			<screenshot><![CDATA[webs/theme-loader-web/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
 			<screenshot><![CDATA[webs/theme-loader-web/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
 			<screenshot><![CDATA[webs/theme-loader-web/docroot/WEB-INF/releng/screenshots/4.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
@@ -2876,6 +2994,7 @@
 			<screenshot><![CDATA[webs/wurfl-web/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[webs/wurfl-web/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
 			<screenshot><![CDATA[webs/wurfl-web/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
