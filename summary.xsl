@@ -57,6 +57,10 @@
 									sortable: true
 								},
 								{
+									key: 'Support URL',
+									sortable: true
+								},
+								{
 									key: 'Author',
 									sortable: true
 								},
@@ -221,6 +225,7 @@
 			'Change Log': '<xsl:value-of select="change-log" />',
 			'Page URL': '<xsl:value-of select="page-url" />',
 			'Demo URL': '<xsl:value-of select="releng/demo-url" />',
+			'Support URL': '<xsl:value-of select="releng/support-url" />',
 			'Author': '<xsl:value-of select="author" />',
 			'Licenses': '<xsl:value-of select="licenses" />',
 			'Liferay Versions': '<xsl:value-of select="liferay-versions" />',
