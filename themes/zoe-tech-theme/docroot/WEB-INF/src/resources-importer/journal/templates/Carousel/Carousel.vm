@@ -53,15 +53,12 @@
 			#end
 
 			#if ($item.url-location.data != "")
-				<a href="$item.url-location.friendlyUrl" title="$item.data">
-			#end
+				<a class="$carousel_item_class" href="$item.url-location.friendlyUrl" style="background: url(${item.image.data}) no-repeat; height: ${height.data}px; width: 674px;" title="$item.data">$item.data</a>
+			#else
 
 			<div class="$carousel_item_class" style="background: url(${item.image.data}) no-repeat; height: ${height.data}px; width: 674px;">
 				$item.data
 			</div>
-
-			#if ($item.url-location.data != "")
-				</a>
 			#end
 		#end
 	</div>
