@@ -624,12 +624,12 @@ input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .co
 	}
 }
 
-.aui-buttonitem-content {
+.control-container .aui-buttonitem-content {
 	line-height: 1.5em;
 	padding: 3px 2px;
 }
 
-.firefox .aui-buttonitem-content {
+.firefox .control-container .aui-buttonitem-content {
 	padding: 3px 0;
 }
 
