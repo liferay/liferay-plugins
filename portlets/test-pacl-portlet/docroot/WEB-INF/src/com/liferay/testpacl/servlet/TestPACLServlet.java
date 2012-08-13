@@ -14,7 +14,7 @@
 
 package com.liferay.testpacl.servlet;
 
-import java.io.File;
+import com.liferay.testpacl.util.TestPACLUtil;
 
 import javax.servlet.http.HttpServlet;
 
@@ -24,29 +24,17 @@ import javax.servlet.http.HttpServlet;
 public class TestPACLServlet extends HttpServlet {
 
 	public TestPACLServlet() {
-		testWriteFile();
+		TestPACLUtil.testWriteFile();
 	}
 
 	@Override
 	public void destroy() {
-		testWriteFile();
+		TestPACLUtil.testWriteFile();
 	}
 
 	@Override
 	public void init() {
-		testWriteFile();
-	}
-
-	protected void testWriteFile() {
-		File file = new File("../webapps/chat-portlet/css/main.css");
-
-		try {
-			file.exists();
-
-			throw new RuntimeException("File is not protected");
-		}
-		catch (SecurityException se) {
-		}
+		TestPACLUtil.testWriteFile();
 	}
 
 }

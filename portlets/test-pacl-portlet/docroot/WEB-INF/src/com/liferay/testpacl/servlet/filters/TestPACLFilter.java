@@ -14,7 +14,8 @@
 
 package com.liferay.testpacl.servlet.filters;
 
-import java.io.File;
+import com.liferay.testpacl.util.TestPACLUtil;
+
 import java.io.IOException;
 
 import javax.servlet.Filter;
@@ -30,11 +31,11 @@ import javax.servlet.ServletResponse;
 public class TestPACLFilter implements Filter {
 
 	public TestPACLFilter() {
-		testWriteFile();
+		TestPACLUtil.testWriteFile();
 	}
 
 	public void destroy() {
-		testWriteFile();
+		TestPACLUtil.testWriteFile();
 	}
 
 	public void doFilter(
@@ -42,25 +43,13 @@ public class TestPACLFilter implements Filter {
 			FilterChain filterChain)
 		throws IOException, ServletException {
 
-		testWriteFile();
+		TestPACLUtil.testWriteFile();
 
 		filterChain.doFilter(servletRequest, servletResponse);
 	}
 
 	public void init(FilterConfig filterConfig) {
-		testWriteFile();
-	}
-
-	protected void testWriteFile() {
-		File file = new File("../webapps/chat-portlet/css/main.css");
-
-		try {
-			file.exists();
-
-			throw new RuntimeException("File is not protected");
-		}
-		catch (SecurityException se) {
-		}
+		TestPACLUtil.testWriteFile();
 	}
 
 }
