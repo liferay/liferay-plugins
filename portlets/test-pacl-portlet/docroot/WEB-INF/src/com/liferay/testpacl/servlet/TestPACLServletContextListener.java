@@ -14,7 +14,7 @@
 
 package com.liferay.testpacl.servlet;
 
-import java.io.File;
+import com.liferay.testpacl.util.TestPACLUtil;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -25,27 +25,15 @@ import javax.servlet.ServletContextListener;
 public class TestPACLServletContextListener implements ServletContextListener {
 
 	public TestPACLServletContextListener() {
-		testWriteFile();
+		TestPACLUtil.testWriteFile();
 	}
 
 	public void contextDestroyed(ServletContextEvent servletContextEvent) {
-		testWriteFile();
+		TestPACLUtil.testWriteFile();
 	}
 
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
-		testWriteFile();
-	}
-
-	protected void testWriteFile() {
-		File file = new File("../webapps/chat-portlet/css/main.css");
-
-		try {
-			file.exists();
-
-			throw new RuntimeException("File is not protected");
-		}
-		catch (SecurityException se) {
-		}
+		TestPACLUtil.testWriteFile();
 	}
 
 }
