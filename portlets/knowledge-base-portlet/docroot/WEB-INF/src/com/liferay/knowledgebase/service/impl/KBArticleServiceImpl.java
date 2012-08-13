@@ -681,9 +681,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 					});
 			}
 
-			String author = null;
-
-			String userName = PortalUtil.getUserName(kbArticle);
+			String author = PortalUtil.getUserName(kbArticle);
 
 			String link = KnowledgeBaseUtil.getKBArticleURL(
 				themeDisplay.getPlid(), kbArticle.getResourcePrimKey(),
