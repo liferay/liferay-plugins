@@ -1,4 +1,5 @@
 AUI().use(
+	'anim-color',
 	'aui-base',
 	'aui-live-search',
 	'liferay-poller',
@@ -260,6 +261,18 @@ AUI().use(
 			instance._typingDelay = 5000;
 			instance._unreadMessages = 0;
 			instance._originalPageTitle = document.title;
+			instance._originalBackgroundColor = instance._panel.getStyle('backgroundColor');
+			instance._originalContainerBackgroundColor = instance._originalBackgroundColor;
+
+			var backgroundColorContainer = instance._panel;
+
+			while (instance._originalContainerBackgroundColor === 'transparent') {
+				instance._originalContainerBackgroundColor = backgroundColorContainer.getStyle('backgroundColor');
+
+				backgroundColorContainer = backgroundColorContainer.ancestor();
+			}
+
+			instance._waitingBackgroundColor = 'rgb(165, 214, 239)';
 
 			instance._stopTypingTask = A.debounce(instance.setTyping, instance._typingDelay, instance, false);
 
@@ -294,7 +307,8 @@ AUI().use(
 				setAsRead: function() {
 					var instance = this;
 
-					instance._panel.removeClass('waiting');
+					instance.setWaiting(false);
+
 					instance._unreadMessagesContainer.hide();
 
 					instance._unreadMessages = 0;
@@ -309,14 +323,13 @@ AUI().use(
 					if (!instance.get('selected')) {
 						var panel = instance._panel;
 
-						panel.addClass('waiting');
-
 						if (instance._unreadMessages > 1) {
 							instance._unreadMessagesContainer.text(instance._unreadMessages);
 							instance._unreadMessagesContainer.show();
 						}
 						else {
 							Liferay.Chat.Manager.triggerSound();
+							instance.setWaiting(true);
 							instance._unreadMessagesContainer.hide();
 						}
 
@@ -332,6 +345,35 @@ AUI().use(
 					}
 					else {
 						instance._panel.removeClass('typing');
+					}
+				},
+
+				setWaiting: function(isWaiting) {
+					var instance = this;
+
+					if (isWaiting) {
+						var waitingAnim = new A.Anim(
+							{
+							    node: instance._panel,
+							    from: {
+							        backgroundColor: function() {
+							            return instance._originalContainerBackgroundColor;
+							        }
+							    },
+							    to: {
+							        backgroundColor: function() {
+							        	return instance._waitingBackgroundColor;
+							        }
+							    },
+							    iterations: 11,
+							    direction: 'alternate'
+							}
+						);
+
+						waitingAnim.run();
+					}
+					else {
+						instance._panel.setStyle('backgroundColor', instance._originalBackgroundColor);
 					}
 				},
 

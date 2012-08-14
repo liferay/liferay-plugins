@@ -6,7 +6,7 @@ html body {
 /* ---------- Bottom Dock ---------- */
 
 .chat-bar {
-	background: url(../images/btm-dock_bg.png);
+	background: url(../images/btm-dock_bg.png) #e5e5e5;
 	border: 1px solid #b5b5b5;
 	border-bottom: none;
 	bottom: 0;
@@ -82,10 +82,6 @@ html body {
 }
 
 /* ---------- Unread Messages ---------- */
-
-.chat-bar div ul li.waiting .panel-trigger {
-	background-image: url(../images/message_waiting_indicator.gif);
-}
 
 .chat-bar div ul li .panel-trigger .unread {
 	background: url(../images/unread-messages.png);
