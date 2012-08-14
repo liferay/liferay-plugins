@@ -256,6 +256,12 @@ if (user2 != null) {
 
 		var contactFilterSelect = A.one('#<portlet:namespace />filterBy');
 
+		var contactFilerSelectValue = '<%= ContactsConstants.FILTER_BY_DEFAULT %>';
+
+		if (contactFilterSelect) {
+			contactFilerSelectValue = contactFilterSelect.get('value');
+		}
+
 		var searchInput = A.one('.contacts-portlet #<portlet:namespace />name');
 
 		A.io.request(
@@ -271,7 +277,7 @@ if (user2 != null) {
 				},
 				data: {
 					end: end,
-					filterBy: contactFilterSelect.get('value') || '<%= ContactsConstants.FILTER_BY_DEFAULT %>',
+					filterBy: contactFilerSelectValue,
 					keywords: searchInput.get('value'),
 					start: 0,
 					jsonFormat: true,
