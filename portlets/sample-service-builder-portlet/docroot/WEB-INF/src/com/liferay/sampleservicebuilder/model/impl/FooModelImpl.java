@@ -469,17 +469,6 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	}
 
 	@Override
-	public Foo toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (Foo)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
-		}
-
-		return _escapedModelProxy;
-	}
-
-	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
 			Foo.class.getName(), getPrimaryKey());
@@ -490,6 +479,17 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
 		expandoBridge.setAttributes(serviceContext);
+	}
+
+	@Override
+	public Foo toEscapedModel() {
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (Foo)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
+		}
+
+		return _escapedModelProxy;
 	}
 
 	@Override

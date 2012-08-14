@@ -218,17 +218,6 @@ public class FavoriteSiteModelImpl extends BaseModelImpl<FavoriteSite>
 	}
 
 	@Override
-	public FavoriteSite toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (FavoriteSite)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
-		}
-
-		return _escapedModelProxy;
-	}
-
-	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
 			FavoriteSite.class.getName(), getPrimaryKey());
@@ -239,6 +228,17 @@ public class FavoriteSiteModelImpl extends BaseModelImpl<FavoriteSite>
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
 		expandoBridge.setAttributes(serviceContext);
+	}
+
+	@Override
+	public FavoriteSite toEscapedModel() {
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (FavoriteSite)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
+		}
+
+		return _escapedModelProxy;
 	}
 
 	@Override

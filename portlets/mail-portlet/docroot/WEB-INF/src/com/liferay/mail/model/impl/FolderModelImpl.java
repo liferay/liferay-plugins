@@ -332,17 +332,6 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 	}
 
 	@Override
-	public Folder toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (Folder)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
-		}
-
-		return _escapedModelProxy;
-	}
-
-	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
 			Folder.class.getName(), getPrimaryKey());
@@ -353,6 +342,17 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
 		expandoBridge.setAttributes(serviceContext);
+	}
+
+	@Override
+	public Folder toEscapedModel() {
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (Folder)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
+		}
+
+		return _escapedModelProxy;
 	}
 
 	@Override

@@ -167,17 +167,6 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 	}
 
 	@Override
-	public Type toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (Type)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
-		}
-
-		return _escapedModelProxy;
-	}
-
-	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
 			Type.class.getName(), getPrimaryKey());
@@ -188,6 +177,17 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
 		expandoBridge.setAttributes(serviceContext);
+	}
+
+	@Override
+	public Type toEscapedModel() {
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (Type)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
+		}
+
+		return _escapedModelProxy;
 	}
 
 	@Override

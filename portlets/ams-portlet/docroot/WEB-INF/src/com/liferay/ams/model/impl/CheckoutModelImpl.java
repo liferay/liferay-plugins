@@ -289,17 +289,6 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 	}
 
 	@Override
-	public Checkout toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (Checkout)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
-		}
-
-		return _escapedModelProxy;
-	}
-
-	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
 			Checkout.class.getName(), getPrimaryKey());
@@ -310,6 +299,17 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
 		expandoBridge.setAttributes(serviceContext);
+	}
+
+	@Override
+	public Checkout toEscapedModel() {
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (Checkout)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
+		}
+
+		return _escapedModelProxy;
 	}
 
 	@Override

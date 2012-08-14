@@ -493,17 +493,6 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 	}
 
 	@Override
-	public KBComment toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (KBComment)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
-		}
-
-		return _escapedModelProxy;
-	}
-
-	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
 			KBComment.class.getName(), getPrimaryKey());
@@ -514,6 +503,17 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
 		expandoBridge.setAttributes(serviceContext);
+	}
+
+	@Override
+	public KBComment toEscapedModel() {
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (KBComment)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
+		}
+
+		return _escapedModelProxy;
 	}
 
 	@Override

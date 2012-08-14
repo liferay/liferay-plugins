@@ -168,17 +168,6 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 	}
 
 	@Override
-	public Bar toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (Bar)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
-		}
-
-		return _escapedModelProxy;
-	}
-
-	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
 			Bar.class.getName(), getPrimaryKey());
@@ -189,6 +178,17 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
 		expandoBridge.setAttributes(serviceContext);
+	}
+
+	@Override
+	public Bar toEscapedModel() {
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (Bar)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
+		}
+
+		return _escapedModelProxy;
 	}
 
 	@Override

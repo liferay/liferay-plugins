@@ -297,17 +297,6 @@ public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 	}
 
 	@Override
-	public Asset toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (Asset)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
-		}
-
-		return _escapedModelProxy;
-	}
-
-	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
 			Asset.class.getName(), getPrimaryKey());
@@ -318,6 +307,17 @@ public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
 		expandoBridge.setAttributes(serviceContext);
+	}
+
+	@Override
+	public Asset toEscapedModel() {
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (Asset)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
+		}
+
+		return _escapedModelProxy;
 	}
 
 	@Override

@@ -318,17 +318,6 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 	}
 
 	@Override
-	public Status toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (Status)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
-		}
-
-		return _escapedModelProxy;
-	}
-
-	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
 			Status.class.getName(), getPrimaryKey());
@@ -339,6 +328,17 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
 		expandoBridge.setAttributes(serviceContext);
+	}
+
+	@Override
+	public Status toEscapedModel() {
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (Status)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
+		}
+
+		return _escapedModelProxy;
 	}
 
 	@Override

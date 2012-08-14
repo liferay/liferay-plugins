@@ -329,17 +329,6 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	}
 
 	@Override
-	public Feed toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (Feed)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
-		}
-
-		return _escapedModelProxy;
-	}
-
-	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
 			Feed.class.getName(), getPrimaryKey());
@@ -350,6 +339,17 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
 		expandoBridge.setAttributes(serviceContext);
+	}
+
+	@Override
+	public Feed toEscapedModel() {
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (Feed)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
+		}
+
+		return _escapedModelProxy;
 	}
 
 	@Override

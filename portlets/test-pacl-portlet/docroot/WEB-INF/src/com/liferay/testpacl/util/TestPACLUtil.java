@@ -141,6 +141,10 @@ public class TestPACLUtil {
 					geronimoHome + "/repository/liferay/chat-portlet/" +
 						version + ".1/chat-portlet-" + version + ".1.car/");
 			}
+			else if (ServerDetector.isGlassfish()) {
+				fileName = StringUtil.replace(
+					fileName, "autodeploy", "applications");
+			}
 			else if (ServerDetector.isJBoss()) {
 				fileName = StringUtil.replace(
 					fileName, "/chat-portlet/", "/chat-portlet.war/");
