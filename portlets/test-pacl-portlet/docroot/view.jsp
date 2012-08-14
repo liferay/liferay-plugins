@@ -1725,6 +1725,41 @@
 </p>
 
 <liferay-ui:header
+	title="Services: Sample Service Builder Portlet"
+/>
+
+<p>
+	<h3>com.liferay.sampleservicebuilder.service.impl.FooLocalServiceImpl</h3>
+</p>
+
+<p>
+	com.liferay.sampleservicebuilder.service.FooLocalServiceUtil.FooLocalServiceUtil#getFoosCount=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				com.liferay.sampleservicebuilder.service.FooLocalServiceUtil.getFoosCount();
+			}
+
+		};
+		%>
+
+	com.liferay.sampleservicebuilder.service.FooLocalServiceUtil.FooLocalServiceUtil#getLocalObject=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, false) {
+
+			protected void test() throws Exception {
+				com.liferay.sampleservicebuilder.service.FooLocalServiceUtil.getLocalObject();
+			}
+
+		};
+		%>
+
+</p>
+
+<liferay-ui:header
 	title="Services: Test PACL Portlet"
 />
 

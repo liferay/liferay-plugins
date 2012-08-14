@@ -145,16 +145,20 @@ public class FooLocalServiceClpInvoker {
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName62 = "updateAsset";
+		_methodName62 = "getLocalObject";
 
-		_methodParameterTypes62 = new String[] {
+		_methodParameterTypes62 = new String[] {  };
+
+		_methodName63 = "updateAsset";
+
+		_methodParameterTypes63 = new String[] {
 				"long", "com.liferay.sampleservicebuilder.model.Foo", "long[][]",
 				"java.lang.String[][]"
 			};
 
-		_methodName63 = "updateFoo";
+		_methodName64 = "updateFoo";
 
-		_methodParameterTypes63 = new String[] {
+		_methodParameterTypes64 = new String[] {
 				"long", "java.lang.String", "boolean", "int", "java.util.Date",
 				"java.lang.String", "com.liferay.portal.service.ServiceContext"
 			};
@@ -298,13 +302,18 @@ public class FooLocalServiceClpInvoker {
 
 		if (_methodName62.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
+			return FooLocalServiceUtil.getLocalObject();
+		}
+
+		if (_methodName63.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
 			FooLocalServiceUtil.updateAsset(((Long)arguments[0]).longValue(),
 				(com.liferay.sampleservicebuilder.model.Foo)arguments[1],
 				(long[])arguments[2], (java.lang.String[])arguments[3]);
 		}
 
-		if (_methodName63.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
+		if (_methodName64.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
 			FooLocalServiceUtil.updateFoo(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				((Boolean)arguments[2]).booleanValue(),
@@ -368,4 +377,6 @@ public class FooLocalServiceClpInvoker {
 	private String[] _methodParameterTypes62;
 	private String _methodName63;
 	private String[] _methodParameterTypes63;
+	private String _methodName64;
+	private String[] _methodParameterTypes64;
 }

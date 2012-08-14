@@ -299,6 +299,10 @@ public class FooLocalServiceWrapper implements FooLocalService,
 		return _fooLocalService.getFoos(obc);
 	}
 
+	public java.lang.Object getLocalObject() throws java.lang.Exception {
+		return _fooLocalService.getLocalObject();
+	}
+
 	public void updateAsset(long userId,
 		com.liferay.sampleservicebuilder.model.Foo foo,
 		long[] assetCategoryIds, java.lang.String[] assetTagNames)
