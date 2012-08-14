@@ -18,11 +18,13 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.InstanceFactory;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.sampleservicebuilder.model.Foo;
 import com.liferay.sampleservicebuilder.service.base.FooLocalServiceBaseImpl;
+import com.liferay.sampleservicebuilder.util.LocalObject;
 
 import java.util.Date;
 import java.util.List;
@@ -100,6 +102,15 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 
 	public List<Foo> getFoos(OrderByComparator obc) throws SystemException {
 		return getFoos(QueryUtil.ALL_POS, QueryUtil.ALL_POS, obc);
+	}
+
+	public Object getLocalObject() throws Exception {
+		Thread currentThread = Thread.currentThread();
+
+		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+
+		return InstanceFactory.newInstance(
+			contextClassLoader, LocalObject.class.getName());
 	}
 
 	public void updateAsset(

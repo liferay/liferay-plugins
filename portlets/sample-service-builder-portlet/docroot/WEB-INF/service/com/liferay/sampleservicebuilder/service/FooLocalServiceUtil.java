@@ -308,6 +308,10 @@ public class FooLocalServiceUtil {
 		return getService().getFoos(obc);
 	}
 
+	public static java.lang.Object getLocalObject() throws java.lang.Exception {
+		return getService().getLocalObject();
+	}
+
 	public static void updateAsset(long userId,
 		com.liferay.sampleservicebuilder.model.Foo foo,
 		long[] assetCategoryIds, java.lang.String[] assetTagNames)
