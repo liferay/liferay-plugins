@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.security.ac.AccessControlled;
 import com.liferay.portal.service.BaseService;
 import com.liferay.portal.service.InvokableService;
 
@@ -36,6 +37,7 @@ import com.liferay.portal.service.InvokableService;
  * @see com.liferay.portal.workflow.kaleo.service.impl.KaleoDefinitionServiceImpl
  * @generated
  */
+@AccessControlled
 @JSONWebService
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
