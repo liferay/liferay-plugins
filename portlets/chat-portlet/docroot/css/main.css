@@ -6,7 +6,7 @@ html body {
 /* ---------- Bottom Dock ---------- */
 
 .chat-bar {
-	background: url(../images/btm-dock_bg.png) #e5e5e5;
+	background: #e5e5e5 url(../images/btm-dock_bg.png) repeat-x;
 	border: 1px solid #b5b5b5;
 	border-bottom: none;
 	bottom: 0;
@@ -37,6 +37,10 @@ html body {
 }
 
 .chat-tabs-container {
+}
+
+.chat-bar .trigger-name, .chat-bar .status-message {
+	text-shadow: 1px 1px #fff;
 }
 
 /* ---------- Bottom Dock Tabs ---------- */
@@ -464,4 +468,10 @@ html body {
 	height: 16px;
 	margin-right: 3px;
 	width: 16px;
+}
+
+/* ---------- Message waiting indicator (only background-color is used) ---------- */
+
+.message-waiting {
+	background-color: #a5d6ef;
 }
