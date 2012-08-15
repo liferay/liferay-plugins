@@ -227,7 +227,6 @@ input[type=button], input[type=reset], input[type=submit], #sign-in:hover, .aui-
 	}
 
 	.signed-in-as {
-		margin: 0 auto;
 		padding: 20px 10px 40px;
 		text-align: center;
 		width: 100px;
