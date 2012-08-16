@@ -532,6 +532,7 @@
 
 		<copy todir="docroot/WEB-INF/lib">
 			<fileset dir="${app.server.lib.portal.dir}" includes="${plugin.jars}" />
+			<fileset dir="${project.dir}/lib" includes="portal-compat-client.jar" />
 		</copy>
 
 		<if>
