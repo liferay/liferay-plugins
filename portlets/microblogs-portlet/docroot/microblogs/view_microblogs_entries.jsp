@@ -52,7 +52,7 @@ PortletURL microblogsEntriesURL = (PortletURL)request.getAttribute(WebKeys.MICRO
 <%
 for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 	String userDisplayURL = StringPool.BLANK;
-	String userFullName = PortalUtil.getUserName(microblogsEntry.getUserId(), microblogsEntry.getUserName());
+	String userFullName = PortalUtil.getUserName(microblogsEntry);
 	String userPortaitURL = StringPool.BLANK;
 	String userScreenName = StringPool.BLANK;
 

@@ -14,6 +14,7 @@
 
 package com.liferay.knowledgebase.service.impl;
 
+import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.knowledgebase.admin.util.AdminUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleConstants;
@@ -42,7 +43,6 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.RSSUtil;
 
 import com.sun.syndication.feed.synd.SyndContent;
@@ -681,12 +681,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 					});
 			}
 
-			String author = null;
-
-			String userName = PortalUtil.getUserName(
-				kbArticle.getUserId(), kbArticle.getUserName());
-
-			author = HtmlUtil.escape(userName);
+			String author = PortalUtil.getUserName(kbArticle);
 
 			String link = KnowledgeBaseUtil.getKBArticleURL(
 				themeDisplay.getPlid(), kbArticle.getResourcePrimKey(),
