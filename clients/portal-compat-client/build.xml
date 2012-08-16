@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+
+<project name="portal-compat-client" basedir="." default="deploy">
+	<property name="plugin.version" value="1" />
+
+	<import file="../build-common-client.xml" />
+
+	<target name="jar">
+		<antcall target="build-common-client.jar" />
+
+		<move
+			file="${plugin.file}"
+			tofile="${project.dir}/lib/portal-compat-client.jar"
+		/>
+	</target>
+</project>

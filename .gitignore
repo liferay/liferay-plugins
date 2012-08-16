@@ -8,6 +8,7 @@ _sass_cache_*.css
 /*/*/tmp
 
 /*/*/docroot/WEB-INF/classes
+/*/*/docroot/WEB-INF/lib/portal-compat-client.jar
 
 /build.*.properties
 /dist
