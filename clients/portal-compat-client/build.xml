@@ -9,6 +9,17 @@
 	<target name="jar">
 		<antcall target="build-common-client.jar" />
 
+		<if>
+			<available file="${project.dir}/lib/portal-compat-client.jar" />
+			<then>
+				<fail>.
+
+You must manually delete ${project.dir}/lib/portal-compat-client.jar before
+running this task because Ant creates a lock on portal-compat-client.jar.
+				</fail>
+			</then>
+		</if>
+
 		<move
 			file="${plugin.file}"
 			tofile="${project.dir}/lib/portal-compat-client.jar"
