@@ -27,11 +27,13 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
+import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.model.PortletConstants;
 import com.liferay.portal.model.Theme;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
+import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ThemeLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
@@ -237,6 +239,7 @@ public class FileSystemImporter extends BaseImporter {
 		boolean hidden = layoutJSONObject.getBoolean("hidden");
 
 		String friendlyURL = layoutJSONObject.getString("friendlyURL");
+		String typeSettings = layoutJSONObject.getString("typeSettings");
 
 		if (Validator.isNotNull(friendlyURL) &&
 			!friendlyURL.startsWith(StringPool.SLASH)) {
@@ -248,6 +251,8 @@ public class FileSystemImporter extends BaseImporter {
 			userId, groupId, privateLayout, parentLayoutId, name, title,
 			StringPool.BLANK, LayoutConstants.TYPE_PORTLET, hidden, friendlyURL,
 			serviceContext);
+
+		layout.setTypeSettings(typeSettings);
 
 		LayoutTypePortlet layoutTypePortlet =
 			(LayoutTypePortlet)layout.getLayoutType();
@@ -489,6 +494,18 @@ public class FileSystemImporter extends BaseImporter {
 
 		_defaultLayoutTemplateId = sitemapJSONObject.getString(
 			"layoutTemplateId", StringPool.BLANK);
+
+		String layoutSetPrototypeSettings = sitemapJSONObject.getString(
+			"layoutSetPrototypeSettings", StringPool.BLANK);
+
+		LayoutSetPrototype layoutSetPrototype =
+			LayoutSetPrototypeLocalServiceUtil.getLayoutSetPrototype(
+				getTargetClassPK());
+
+		layoutSetPrototype.setSettings(layoutSetPrototypeSettings);
+
+		LayoutSetPrototypeLocalServiceUtil.updateLayoutSetPrototype(
+			layoutSetPrototype);
 
 		updateLayoutSetThemeId(sitemapJSONObject);
 
