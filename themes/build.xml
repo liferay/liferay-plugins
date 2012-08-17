@@ -45,6 +45,10 @@
 				</copy>
 
 				<mkdir dir="${theme.dir}/docroot/_diffs" />
+				<mkdir dir="${theme.dir}/docroot/WEB-INF/src/resources-importer/document_library/documents" />
+				<mkdir dir="${theme.dir}/docroot/WEB-INF/src/resources-importer/journal/articles" />
+				<mkdir dir="${theme.dir}/docroot/WEB-INF/src/resources-importer/journal/structures" />
+				<mkdir dir="${theme.dir}/docroot/WEB-INF/src/resources-importer/journal/templates" />
 
 				<replace dir="${theme.dir}">
 					<replacefilter token="@theme.name@" value="${theme.name}" />
