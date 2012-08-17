@@ -36,8 +36,12 @@
 			<hint-collection name="TEXTAREA" />
 		</field>
 		<field name="location" type="String" />
-		<field name="startDate" type="long" />
-		<field name="endDate" type="long" />
+		<field name="startDate" type="long">
+			<hint name="type">Date</hint>
+		</field>
+		<field name="endDate" type="long">
+			<hint name="type">Date</hint>
+		</field>
 		<field name="allDay" type="boolean" />
 		<field name="recurrence" type="String" />
 		<field name="firstReminder" type="long" />
