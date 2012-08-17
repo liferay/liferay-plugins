@@ -349,6 +349,7 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 		message.put(
 			SchedulerEngine.RECEIVER_KEY,
 			groupName.concat(StringPool.PERIOD).concat(groupName));
+
 		message.put(
 			"kaleoTimerInstanceTokenId",
 			kaleoTimerInstanceToken.getKaleoTimerInstanceTokenId());
