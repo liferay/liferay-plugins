@@ -1,0 +1,175 @@
+<%--
+/**
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<aui:script use="liferay-calendar-simple-menu,liferay-calendar-simple-color-picker">
+	window.<portlet:namespace />calendarListsMenu = new Liferay.SimpleMenu(
+		{
+			align: {
+				points: [A.WidgetPositionAlign.TL, A.WidgetPositionAlign.BL]
+			},
+			items: [
+				{
+					caption: '<liferay-ui:message key="manage-calendars" />',
+					fn: function(event) {
+						var instance = this;
+
+						var calendarResourceId = instance.calendarResourceId;
+
+						if (calendarResourceId) {
+							<portlet:renderURL var="calendarsURL">
+								<portlet:param name="jspPage" value="/view_calendars.jsp" />
+								<portlet:param name="redirect" value="<%= currentURL %>" />
+								<portlet:param name="calendarResourceId" value="{calendarResourceId}" />
+							</portlet:renderURL>
+
+							window.location.href = A.Lang.sub(
+								decodeURIComponent('<%= calendarsURL %>'),
+								{
+									calendarResourceId: calendarResourceId
+								}
+							);
+						}
+					},
+					id: 'manage'
+				}
+			],
+			visible: false,
+			width: 290,
+			zIndex: 500
+		}
+	).render();
+
+	window.<portlet:namespace />calendarsMenu = {
+		items: [
+			{
+				caption: '<liferay-ui:message key="hide-this-calendar-from-the-list" />',
+				fn: function(event) {
+					var instance = this;
+
+					var calendarList = instance.get('host');
+
+					calendarList.remove(calendarList.activeItem);
+
+					instance.set('visible', false);
+				},
+				id: 'hide'
+			},
+			{
+				caption: '<liferay-ui:message key="calendar-settings" />',
+				fn: function(event) {
+					var instance = this;
+
+					var calendarList = instance.get('host');
+					var activeCalendar = calendarList.activeItem;
+
+					<portlet:renderURL var="editCalendarURL">
+						<portlet:param name="jspPage" value="/edit_calendar.jsp" />
+						<portlet:param name="redirect" value="<%= currentURL %>" />
+						<portlet:param name="calendarId" value="{calendarId}" />
+						<portlet:param name="calendarResourceId" value="{calendarResourceId}" />
+					</portlet:renderURL>
+
+					window.location.href = A.Lang.sub(
+						decodeURIComponent('<%= editCalendarURL %>'),
+						{
+							calendarId: activeCalendar.get('calendarId'),
+							calendarResourceId: activeCalendar.get('calendarResourceId')
+						}
+					);
+				},
+				id: 'settings'
+			},
+			{
+				caption: '-'
+			},
+			{
+				caption: '<div class="calendar-portlet-color-picker"></div>'
+			}
+		],
+		on: {
+			visibleChange: function(event) {
+				var instance = this;
+
+				var calendarList = instance.get('host');
+
+				var calendar = calendarList.activeItem
+
+				if (event.newVal) {
+					var hiddenItems = [];
+
+					if (calendarList !== window.<portlet:namespace />otherCalendarList) {
+						hiddenItems.push('hide');
+					}
+
+					instance.set('hiddenItems', hiddenItems);
+
+					<portlet:namespace />colorPicker.set('host', instance);
+
+					<portlet:namespace />colorPicker.setAttrs(
+						{
+							color: calendar.get('color'),
+							visible: true
+						}
+					);
+
+					var colorPickerContainer = instance.get('boundingBox').one('.calendar-portlet-color-picker');
+
+					colorPickerContainer.append(window.<portlet:namespace />colorPicker.get('boundingBox'));
+				}
+			}
+		}
+	};
+
+	<portlet:namespace />colorPicker = new Liferay.SimpleColorPicker(
+		{
+			on: {
+				colorChange: function(event) {
+					var instance = this;
+
+					var simpleMenu = instance.get('host');
+
+					if (simpleMenu) {
+						var calendarList = simpleMenu.get('host');
+
+						calendarList.activeItem.set('color', event.newVal);
+
+						simpleMenu.set('visible', false);
+					}
+				}
+			},
+			visible: false
+		}
+	).render();
+
+	A.one('#<portlet:namespace />calendarListContainer').delegate(
+		'click',
+		function(event) {
+			var target = event.target;
+
+			window.<portlet:namespace />calendarListsMenu.setAttrs(
+				{
+					'align.node': target,
+					visible: !window.<portlet:namespace />calendarListsMenu.get('visible')
+				}
+			);
+
+			window.<portlet:namespace />calendarListsMenu.calendarResourceId = target.getAttribute('data-calendarResourceId');
+
+			event.stopImmediatePropagation();
+		},
+		'.aui-calendar-list-item-arrow'
+	);
+</aui:script>
