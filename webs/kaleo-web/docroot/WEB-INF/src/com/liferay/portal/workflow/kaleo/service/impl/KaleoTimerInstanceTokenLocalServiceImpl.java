@@ -31,6 +31,7 @@ import com.liferay.portal.kernel.scheduler.Trigger;
 import com.liferay.portal.kernel.scheduler.messaging.SchedulerEventMessageListenerWrapper;
 import com.liferay.portal.kernel.staging.StagingUtil;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.definition.DelayDuration;
@@ -345,6 +346,9 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 		message.put(
 			SchedulerEngine.MESSAGE_LISTENER_UUID,
 			schedulerEventListenerWrapper.getMessageListenerUUID());
+		message.put(
+			SchedulerEngine.RECEIVER_KEY,
+			groupName.concat(StringPool.PERIOD).concat(groupName));
 		message.put(
 			"kaleoTimerInstanceTokenId",
 			kaleoTimerInstanceToken.getKaleoTimerInstanceTokenId());
