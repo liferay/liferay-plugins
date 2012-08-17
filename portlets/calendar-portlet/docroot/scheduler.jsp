@@ -84,8 +84,8 @@ boolean readOnly = ParamUtil.getBoolean(request, "readOnly");
 			portletNamespace: '<portlet:namespace />',
 			render: true,
 			views: [
-				window.<portlet:namespace />weekView,
 				window.<portlet:namespace />dayView,
+				window.<portlet:namespace />weekView,
 				window.<portlet:namespace />monthView
 			]
 		}
