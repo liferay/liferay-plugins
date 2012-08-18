@@ -1,5 +1,4 @@
 {
-	"layoutTemplateId": "2_columns_ii",
 	"layouts": [
 		{
 			"columns": [
@@ -18,5 +17,6 @@
 			"name": "Welcome",
 			"title": "Welcome"
 		}
-	]
+	],
+	"layoutTemplateId": "2_columns_ii"
 }
