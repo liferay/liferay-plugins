@@ -53,7 +53,7 @@ public class AnnouncementsEntryServiceImpl
 	extends AnnouncementsEntryServiceWrapper {
 
 	public AnnouncementsEntryServiceImpl(
-			AnnouncementsEntryService announcementsEntryService) {
+		AnnouncementsEntryService announcementsEntryService) {
 
 		super(announcementsEntryService);
 	}
