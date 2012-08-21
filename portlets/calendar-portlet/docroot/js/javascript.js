@@ -938,7 +938,14 @@
 							newSchedulerEvent = new (instance.get('eventClass'))();
 						}
 
-						newSchedulerEvent.setAttrs(instance.serializeForm());
+						newSchedulerEvent.setAttrs(
+							A.merge(
+								instance.serializeForm(),
+								{
+									color: instance.get('color')
+								}
+							)
+						);
 
 						newSchedulerEvent.set('scheduler', scheduler);
 
@@ -975,6 +982,28 @@
 						var instance = this;
 
 						return false;
+					},
+
+					populateForm: function() {
+						var instance = this;
+
+						SchedulerEventRecorder.superclass.populateForm.apply(this, arguments);
+
+						var portletNamespace = instance.get('portletNamespace');
+						var eventRecorderCalendar = A.one('#' + portletNamespace + 'eventRecorderCalendar');
+						var schedulerEvent = (instance.get('event') || instance);
+
+						if (eventRecorderCalendar) {
+							eventRecorderCalendar.after('change', function(event) {
+								var calendarId = toNumber(eventRecorderCalendar.val());
+								var selectedCalendar = CalendarUtil.getCalendarJSONById(CalendarUtil.MANAGEABLE_CALENDARS, calendarId);
+
+								if (selectedCalendar) {
+									schedulerEvent.set('calendarId', calendarId);
+									schedulerEvent.set('color', selectedCalendar.color);
+								}
+							});
+						}
 					},
 
 					_handleEventAcceptResponse: function(event) {
@@ -1037,7 +1066,7 @@
 
 						SchedulerEventRecorder.superclass._onOverlayVisibleChange.apply(this, arguments);
 
-						var schedulerEvent = instance.get('event');
+						var schedulerEvent = (instance.get('event') || instance);
 						var overlayBB = instance.overlay.get('boundingBox');
 						var portletNamespace = instance.get('portletNamespace');
 

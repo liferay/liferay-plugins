@@ -14,10 +14,6 @@
  */
 --%>
 
-<%
-List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.getCompanyId(), null, null, null, true, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new CalendarNameComparator(true), ActionKeys.MANAGE_BOOKINGS);
-%>
-
 <div class="calendar-portlet-event-recorder">
 	<div class="aui-scheduler-event-recorder-overlay-arrow aui-scheduler-event-recorder-overlay-arrow-shadow"></div>
 
