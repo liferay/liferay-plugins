@@ -13,6 +13,11 @@
 		<constructor-arg>
 			<map>
 				<entry key="methodInterceptor" value-ref="serviceAdvice" />
+				<entry key="serviceBeanAopCacheManager">
+					<bean class="com.liferay.portal.kernel.spring.util.SpringFactoryUtil" factory-method="newBean">
+						<constructor-arg value="com.liferay.portal.spring.aop.ServiceBeanAopCacheManager" />
+					</bean>
+				</entry>
 			</map>
 		</constructor-arg>
 	</bean>
