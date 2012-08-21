@@ -107,20 +107,20 @@ public class WSRPConsumerManagerFactory {
 			_wsrpConsumerManagers;
 
 		if (session != null) {
-			TransientValue transientValue =
-				(TransientValue)session.getAttribute(
-					WebKeys.WSRP_CONSUMER_MANAGERS);
+			TransientValue<Map<String, WSRPConsumerManager>> transientValue =
+				(TransientValue<Map<String, WSRPConsumerManager>>)
+					session.getAttribute(WebKeys.WSRP_CONSUMER_MANAGERS);
 
 			if (transientValue == null) {
-				transientValue = new TransientValue(
-					new ConcurrentHashMap<String, WSRPConsumerManager>());
+				transientValue =
+					new TransientValue<Map<String, WSRPConsumerManager>>(
+						new ConcurrentHashMap<String, WSRPConsumerManager>());
 
 				session.setAttribute(
 					WebKeys.WSRP_CONSUMER_MANAGERS, transientValue);
 			}
 
-			wsrpConsumerManagers =
-				(Map<String, WSRPConsumerManager>)transientValue.getValue();
+			wsrpConsumerManagers = transientValue.getValue();
 		}
 
 		WSRPConsumerManager wsrpConsumerManager = wsrpConsumerManagers.get(url);
