@@ -115,6 +115,19 @@ public class CalendarBookingServiceSoap {
 		}
 	}
 
+	public static void deleteCalendarBookingInstance(long calendarBookingId,
+		long startDate, boolean allFollowing) throws RemoteException {
+		try {
+			CalendarBookingServiceUtil.deleteCalendarBookingInstance(calendarBookingId,
+				startDate, allFollowing);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.liferay.calendar.model.CalendarBookingSoap fetchCalendarBooking(
 		long calendarBookingId) throws RemoteException {
 		try {

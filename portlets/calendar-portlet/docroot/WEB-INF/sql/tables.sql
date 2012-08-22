@@ -33,7 +33,7 @@ create table CalendarBooking (
 	startDate LONG,
 	endDate LONG,
 	allDay BOOLEAN,
-	recurrence VARCHAR(75) null,
+	recurrence STRING null,
 	firstReminder LONG,
 	firstReminderType VARCHAR(75) null,
 	secondReminder LONG,
