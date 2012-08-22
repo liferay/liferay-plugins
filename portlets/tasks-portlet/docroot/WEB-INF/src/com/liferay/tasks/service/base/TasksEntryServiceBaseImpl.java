@@ -259,6 +259,9 @@ public abstract class TasksEntryServiceBaseImpl extends BaseServiceImpl
 	}
 
 	public void afterPropertiesSet() {
+		Class<?> clazz = getClass();
+
+		_classLoader = clazz.getClassLoader();
 	}
 
 	public void destroy() {
@@ -284,7 +287,22 @@ public abstract class TasksEntryServiceBaseImpl extends BaseServiceImpl
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
-		return _clpInvoker.invokeMethod(name, parameterTypes, arguments);
+		Thread currentThread = Thread.currentThread();
+
+		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+
+		if (contextClassLoader != _classLoader) {
+			currentThread.setContextClassLoader(_classLoader);
+		}
+
+		try {
+			return _clpInvoker.invokeMethod(name, parameterTypes, arguments);
+		}
+		finally {
+			if (contextClassLoader != _classLoader) {
+				currentThread.setContextClassLoader(contextClassLoader);
+			}
+		}
 	}
 
 	protected Class<?> getModelClass() {
@@ -337,5 +355,6 @@ public abstract class TasksEntryServiceBaseImpl extends BaseServiceImpl
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 	private String _beanIdentifier;
+	private ClassLoader _classLoader;
 	private TasksEntryServiceClpInvoker _clpInvoker = new TasksEntryServiceClpInvoker();
 }
