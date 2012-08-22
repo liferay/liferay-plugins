@@ -19,6 +19,8 @@ import com.liferay.calendar.CalendarBookingTitleException;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.notification.NotificationType;
+import com.liferay.calendar.recurrence.Recurrence;
+import com.liferay.calendar.recurrence.RecurrenceSerializer;
 import com.liferay.calendar.service.base.CalendarBookingLocalServiceBaseImpl;
 import com.liferay.calendar.util.JCalendarUtil;
 import com.liferay.calendar.util.NotificationUtil;
@@ -43,6 +45,7 @@ import java.util.Map;
 /**
  * @author Eduardo Lundgren
  * @author Fabio Pezzutto
+ * @author Marcellus Tavares
  */
 public class CalendarBookingLocalServiceImpl
 	extends CalendarBookingLocalServiceBaseImpl {
@@ -197,6 +200,32 @@ public class CalendarBookingLocalServiceImpl
 		deleteCalendarBooking(calendarBooking);
 
 		return calendarBooking;
+	}
+
+	public void deleteCalendarBookingInstance(
+			long calendarBookingId, long startDate, boolean allFollowing)
+		throws PortalException, SystemException {
+
+		CalendarBooking calendarBooking =
+			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
+
+		java.util.Calendar jCalendar = JCalendarUtil.getJCalendar(startDate);
+
+		Recurrence recurrenceObj = calendarBooking.getRecurrenceObj();
+
+		if (allFollowing) {
+			jCalendar.add(java.util.Calendar.DATE, -1);
+
+			recurrenceObj.setUntil(jCalendar);
+		}
+		else {
+			recurrenceObj.addExceptionDate(jCalendar);
+		}
+
+		calendarBooking.setRecurrence(
+			RecurrenceSerializer.serialize(recurrenceObj));
+
+		calendarBookingPersistence.update(calendarBooking, false);
 	}
 
 	public void deleteCalendarBookings(long calendarId)
@@ -540,5 +569,7 @@ public class CalendarBookingLocalServiceImpl
 
 	@BeanReference(type = CalendarBookingApprovalWorkflow.class)
 	protected CalendarBookingApprovalWorkflow calendarBookingApprovalWorkflow;
+
+	private static final String _EXDATE = "EXDATE:";
 
 }

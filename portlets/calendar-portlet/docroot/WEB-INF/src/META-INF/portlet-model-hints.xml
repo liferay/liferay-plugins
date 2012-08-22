@@ -43,7 +43,9 @@
 			<hint name="type">Date</hint>
 		</field>
 		<field name="allDay" type="boolean" />
-		<field name="recurrence" type="String" />
+		<field name="recurrence" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
 		<field name="firstReminder" type="long" />
 		<field name="firstReminderType" type="String" />
 		<field name="secondReminder" type="long" />
