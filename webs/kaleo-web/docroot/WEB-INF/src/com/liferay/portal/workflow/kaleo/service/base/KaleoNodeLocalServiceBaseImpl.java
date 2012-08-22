@@ -1036,6 +1036,10 @@ public abstract class KaleoNodeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	public void afterPropertiesSet() {
+		Class<?> clazz = getClass();
+
+		_classLoader = clazz.getClassLoader();
+
 		PersistedModelLocalServiceRegistryUtil.register("com.liferay.portal.workflow.kaleo.model.KaleoNode",
 			kaleoNodeLocalService);
 	}
@@ -1065,7 +1069,22 @@ public abstract class KaleoNodeLocalServiceBaseImpl extends BaseLocalServiceImpl
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
-		return _clpInvoker.invokeMethod(name, parameterTypes, arguments);
+		Thread currentThread = Thread.currentThread();
+
+		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+
+		if (contextClassLoader != _classLoader) {
+			currentThread.setContextClassLoader(_classLoader);
+		}
+
+		try {
+			return _clpInvoker.invokeMethod(name, parameterTypes, arguments);
+		}
+		finally {
+			if (contextClassLoader != _classLoader) {
+				currentThread.setContextClassLoader(contextClassLoader);
+			}
+		}
 	}
 
 	protected Class<?> getModelClass() {
@@ -1174,5 +1193,6 @@ public abstract class KaleoNodeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 	private String _beanIdentifier;
+	private ClassLoader _classLoader;
 	private KaleoNodeLocalServiceClpInvoker _clpInvoker = new KaleoNodeLocalServiceClpInvoker();
 }
