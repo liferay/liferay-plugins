@@ -72,6 +72,21 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			calendarBookingId);
 	}
 
+	public void deleteCalendarBookingInstance(
+			long calendarBookingId, long startDate, boolean allFollowing)
+		throws PortalException, SystemException {
+
+		CalendarBooking calendarBooking =
+			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
+
+		CalendarPermission.check(
+			getPermissionChecker(), calendarBooking.getCalendarId(),
+			ActionKeys.MANAGE_BOOKINGS);
+
+		calendarBookingLocalService.deleteCalendarBookingInstance(
+			calendarBookingId, startDate, allFollowing);
+	}
+
 	public CalendarBooking fetchCalendarBooking(long calendarBookingId)
 		throws PortalException, SystemException {
 

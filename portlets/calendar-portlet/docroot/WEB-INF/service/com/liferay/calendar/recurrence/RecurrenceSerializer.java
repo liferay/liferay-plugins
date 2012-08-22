@@ -14,14 +14,17 @@
 
 package com.liferay.calendar.recurrence;
 
+import com.google.ical.values.DateTimeValue;
+import com.google.ical.values.DateTimeValueImpl;
 import com.google.ical.values.DateValue;
-import com.google.ical.values.DateValueImpl;
+import com.google.ical.values.RDateList;
 import com.google.ical.values.RRule;
 import com.google.ical.values.WeekdayNum;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
+import com.liferay.portal.kernel.util.StringPool;
 
 import java.text.ParseException;
 
@@ -30,6 +33,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 /**
  * @author Marcellus Tavares
@@ -39,6 +43,24 @@ public class RecurrenceSerializer {
 	public static Recurrence deserialize(String data) {
 		try {
 			Recurrence recurrence = new Recurrence();
+
+			int index = data.indexOf(StringPool.NEW_LINE);
+
+			if (index != -1) {
+				String exceptionDates = data.substring(
+					index + 1, data.length());
+
+				RDateList rDateList = new RDateList(
+					exceptionDates, TimeZone.getTimeZone(StringPool.UTC));
+
+				for (DateValue dateValue : rDateList.getDatesUtc()) {
+					Calendar jCalendar = _toJCalendar(dateValue);
+
+					recurrence.addExceptionDate(jCalendar);
+				}
+
+				data = data.substring(0, index);
+			}
 
 			RRule rRule = new RRule(data);
 
@@ -50,11 +72,7 @@ public class RecurrenceSerializer {
 			DateValue dateValue = rRule.getUntil();
 
 			if (dateValue != null) {
-				Calendar jCalendar = CalendarFactoryUtil.getCalendar();
-
-				jCalendar.set(Calendar.DATE, dateValue.day());
-				jCalendar.set(Calendar.MONTH, dateValue.month() - 1);
-				jCalendar.set(Calendar.YEAR, dateValue.year());
+				Calendar jCalendar = _toJCalendar(dateValue);
 
 				recurrence.setUntil(jCalendar);
 			}
@@ -108,15 +126,63 @@ public class RecurrenceSerializer {
 		Calendar jCalendar = recurrence.getUntil();
 
 		if (jCalendar != null) {
-			DateValue dateValue = new DateValueImpl(
-				jCalendar.get(Calendar.YEAR), jCalendar.get(Calendar.MONTH) + 1,
-				jCalendar.get(Calendar.DATE));
+			DateValue dateValue = _toDateValue(jCalendar);
 
 			rRule.setUntil(dateValue);
 		}
 
-		return rRule.toIcal();
+		String data = rRule.toIcal();
+
+		List<Calendar> exceptionDates = recurrence.getExceptionDates();
+
+		if (!exceptionDates.isEmpty()) {
+			DateValue[] dateValues = new DateValue[exceptionDates.size()];
+
+			for (int i = 0; i < exceptionDates.size(); i++) {
+				dateValues[i] = _toDateValue(exceptionDates.get(i));
+			}
+
+			RDateList rDateList = new RDateList(
+				TimeZone.getTimeZone(StringPool.UTC));
+
+			rDateList.setName(_EXDATE);
+			rDateList.setDatesUtc(dateValues);
+
+			data = data.concat(StringPool.NEW_LINE).concat(rDateList.toIcal());
+		}
+
+		return data;
 	}
+
+	private static DateValue _toDateValue(Calendar jCalendar) {
+		DateValue dateValue = new DateTimeValueImpl(
+			jCalendar.get(Calendar.YEAR), jCalendar.get(Calendar.MONTH) + 1,
+			jCalendar.get(Calendar.DATE), jCalendar.get(Calendar.HOUR_OF_DAY),
+			jCalendar.get(Calendar.MINUTE), jCalendar.get(Calendar.SECOND));
+
+		return dateValue;
+	}
+
+	private static Calendar _toJCalendar(DateValue dateValue) {
+		Calendar jCalendar = CalendarFactoryUtil.getCalendar(
+			TimeZone.getTimeZone(StringPool.UTC));
+
+		jCalendar.set(Calendar.DATE, dateValue.day());
+		jCalendar.set(Calendar.MONTH, dateValue.month() - 1);
+		jCalendar.set(Calendar.YEAR, dateValue.year());
+
+		if (dateValue instanceof DateTimeValue) {
+			DateTimeValue dateTimeValue = (DateTimeValue)dateValue;
+
+			jCalendar.set(Calendar.HOUR_OF_DAY, dateTimeValue.hour());
+			jCalendar.set(Calendar.MINUTE, dateTimeValue.minute());
+			jCalendar.set(Calendar.SECOND, dateTimeValue.second());
+		}
+
+		return jCalendar;
+	}
+
+	private static final String _EXDATE = "EXDATE";
 
 	private static Log _log = LogFactoryUtil.getLog(RecurrenceSerializer.class);
 

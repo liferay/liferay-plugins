@@ -19,6 +19,7 @@ import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.CalendarBookingConstants;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.notification.NotificationType;
+import com.liferay.calendar.recurrence.Recurrence;
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 import com.liferay.calendar.service.CalendarBookingServiceUtil;
 import com.liferay.calendar.service.CalendarLocalServiceUtil;
@@ -26,6 +27,7 @@ import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringWriter;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ReleaseInfo;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
@@ -42,6 +44,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Locale;
 import java.util.Map;
 
@@ -50,6 +53,7 @@ import net.fortuna.ical4j.data.CalendarOutputter;
 import net.fortuna.ical4j.model.Component;
 import net.fortuna.ical4j.model.ComponentList;
 import net.fortuna.ical4j.model.Date;
+import net.fortuna.ical4j.model.DateList;
 import net.fortuna.ical4j.model.DateTime;
 import net.fortuna.ical4j.model.Dur;
 import net.fortuna.ical4j.model.Parameter;
@@ -70,6 +74,7 @@ import net.fortuna.ical4j.model.property.DateProperty;
 import net.fortuna.ical4j.model.property.Description;
 import net.fortuna.ical4j.model.property.DtEnd;
 import net.fortuna.ical4j.model.property.DtStart;
+import net.fortuna.ical4j.model.property.ExDate;
 import net.fortuna.ical4j.model.property.Location;
 import net.fortuna.ical4j.model.property.Method;
 import net.fortuna.ical4j.model.property.ProdId;
@@ -193,6 +198,53 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		if (rrule != null) {
 			recurrence = StringUtil.trim(rrule.toString());
+
+			PropertyList propertyList = vEvent.getProperties(Property.EXDATE);
+
+			if (!propertyList.isEmpty()) {
+				StringBundler sb = new StringBundler();
+
+				for (Iterator<ExDate> iterator = propertyList.iterator();
+						iterator.hasNext();) {
+
+					ExDate exDate = iterator.next();
+
+					DateList dateList = exDate.getDates();
+
+					ListIterator<Date> listIterator = dateList.listIterator();
+
+					while (listIterator.hasNext()) {
+						Date date = listIterator.next();
+
+						java.util.Calendar jCalendar =
+							JCalendarUtil.getJCalendar(date.getTime());
+
+						int year = jCalendar.get(java.util.Calendar.YEAR);
+						int month = jCalendar.get(java.util.Calendar.MONTH) + 1;
+						int day = jCalendar.get(java.util.Calendar.DATE);
+						int hour = jCalendar.get(
+							java.util.Calendar.HOUR_OF_DAY);
+						int minute = jCalendar.get(java.util.Calendar.MINUTE);
+						int second = jCalendar.get(java.util.Calendar.SECOND);
+
+						sb.append(
+							String.format(
+								_EXDATE_FORMAT, year, month, day, hour, minute,
+								second));
+
+						if (listIterator.hasNext()) {
+							sb.append(StringPool.COMMA);
+						}
+					}
+
+					if (iterator.hasNext()) {
+						sb.append(StringPool.COMMA);
+					}
+				}
+
+				recurrence = recurrence.concat(
+					StringPool.NEW_LINE).concat(_EXDATE).concat(sb.toString());
+			}
 		}
 
 		// Reminders
@@ -554,12 +606,26 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 		// Recurrence
 
 		if (calendarBooking.isRecurring()) {
+			String recurrence = calendarBooking.getRecurrence();
+
+			int index = recurrence.indexOf(StringPool.NEW_LINE);
+
+			if (index != 0) {
+				recurrence = recurrence.substring(0, index);
+			}
+
 			String value = StringUtil.replace(
-				calendarBooking.getRecurrence(), _RRULE, StringPool.BLANK);
+				recurrence, _RRULE, StringPool.BLANK);
 
 			RRule rRule = new RRule(value);
 
 			propertyList.add(rRule);
+
+			ExDate exDate = toICalExDate(calendarBooking.getRecurrenceObj());
+
+			if (exDate != null) {
+				propertyList.add(exDate);
+			}
 		}
 
 		// Reminders
@@ -616,6 +682,29 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 		return vEvent;
 	}
 
+	protected ExDate toICalExDate(Recurrence recurrence) {
+		List<java.util.Calendar> exceptionDates =
+			recurrence.getExceptionDates();
+
+		if (exceptionDates.isEmpty()) {
+			return null;
+		}
+
+		DateList dateList = new DateList();
+
+		dateList.setUtc(true);
+
+		for (java.util.Calendar exceptionDate : exceptionDates) {
+			DateTime dateTime = toICalDateTime(exceptionDate.getTimeInMillis());
+
+			dateList.add(dateTime);
+		}
+
+		ExDate exDate = new ExDate(dateList);
+
+		return exDate;
+	}
+
 	protected String toString(net.fortuna.ical4j.model.Calendar iCalCalendar)
 		throws Exception {
 
@@ -635,6 +724,11 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		return unsyncStringWriter.toString();
 	}
+
+	private static final String _EXDATE =
+		"EXDATE;TZID=\"UTC\";VALUE=DATE-TIME:";
+
+	private static final String _EXDATE_FORMAT = "%04d%02d%02dT%02d%02d%02dZ";
 
 	private static final String _RRULE = "RRULE:";
 

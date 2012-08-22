@@ -14,6 +14,7 @@
 
 package com.liferay.calendar.recurrence;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -22,8 +23,16 @@ import java.util.List;
  */
 public class Recurrence {
 
+	public void addExceptionDate(Calendar calendar) {
+		_exceptionDates.add(calendar);
+	}
+
 	public int getCount() {
 		return _count;
+	}
+
+	public List<Calendar> getExceptionDates() {
+		return _exceptionDates;
 	}
 
 	public Frequency getFrequency() {
@@ -46,6 +55,10 @@ public class Recurrence {
 		_count = count;
 	}
 
+	public void setExceptionDates(List<Calendar> exceptionDates) {
+		_exceptionDates = exceptionDates;
+	}
+
 	public void setFrequency(Frequency frequency) {
 		_frequency = frequency;
 	}
@@ -63,6 +76,7 @@ public class Recurrence {
 	}
 
 	private int _count;
+	private List<Calendar> _exceptionDates = new ArrayList<Calendar>();
 	private Frequency _frequency;
 	private int _interval;
 	private Calendar _until;
