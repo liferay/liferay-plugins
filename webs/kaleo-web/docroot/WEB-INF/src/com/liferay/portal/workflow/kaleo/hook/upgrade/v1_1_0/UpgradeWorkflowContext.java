@@ -35,18 +35,13 @@ public class UpgradeWorkflowContext extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		upgradeWorkflowContext("kaleoInstanceId", "KaleoInstance");
-		upgradeWorkflowContext("kaleoLogId", "KaleoLog");
-		upgradeWorkflowContext(
-			"kaleoTaskInstanceTokenId", "KaleoTaskInstanceToken");
+		updateTable("KaleoInstance", "kaleoInstanceId");
+		updateTable("KaleoLog", "kaleoLogId");
+		updateTable("KaleoTaskInstanceToken", "kaleoTaskInstanceTokenId");
 	}
 
-	protected void upgradeWorkflowContext(String uniqueId, String tableName)
+	protected void updateTable(String tableName, String fieldName)
 		throws Exception {
-
-		JSONSerializer jsonSerializer = new JSONSerializer();
-
-		jsonSerializer.registerDefaultSerializers();
 
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -56,23 +51,26 @@ public class UpgradeWorkflowContext extends UpgradeProcess {
 			con = DataAccess.getConnection();
 
 			ps = con.prepareStatement(
-					"select " + uniqueId + ", workflowContext from " +
-						tableName + " where workflowContext is not null and " +
-							"workflowContext !='' and workflowContext " +
-								"not like '%serializable%'");
+				"select " + fieldName + ", workflowContext from " + tableName +
+					" where workflowContext is not null and workflowContext " +
+						"!= '' and workflowContext not like '%serializable%'");
 
 			rs = ps.executeQuery();
 
+			JSONSerializer jsonSerializer = new JSONSerializer();
+
+			jsonSerializer.registerDefaultSerializers();
+
 			while (rs.next()) {
-				long Id = rs.getLong(uniqueId);
+				long fieldValue = rs.getLong(fieldName);
 				String workflowContext = rs.getString("workflowContext");
 
-				String newWorkflowContext = WorkflowContextUtil.convert(
+				workflowContext = WorkflowContextUtil.convert(
 					(Map<String, Serializable>)jsonSerializer.fromJSON(
 						workflowContext));
 
-				upgradeWorkflowContext(
-					uniqueId, tableName, newWorkflowContext, Id);
+				updateWorkflowContext(
+					tableName, fieldName, fieldValue, workflowContext);
 			}
 		}
 		finally {
@@ -80,8 +78,9 @@ public class UpgradeWorkflowContext extends UpgradeProcess {
 		}
 	}
 
-	protected void upgradeWorkflowContext(
-			String uniqueId, String tableName, String workflowContext, long Id)
+	protected void updateWorkflowContext(
+			String tableName, String fieldName, long fieldValue,
+			String workflowContext)
 		throws Exception {
 
 		Connection con = null;
@@ -92,10 +91,10 @@ public class UpgradeWorkflowContext extends UpgradeProcess {
 
 			ps = con.prepareStatement(
 				"update " + tableName + " set workflowContext = ? where " +
-					uniqueId + " = ?");
+					fieldName + " = ?");
 
 			ps.setString(1, workflowContext);
-			ps.setLong(2, Id);
+			ps.setLong(2, fieldValue);
 
 			ps.executeUpdate();
 		}
