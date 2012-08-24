@@ -2692,7 +2692,7 @@
 			<bundle><![CDATA[false]]></bundle>
 			<category><![CDATA[Themes]]></category>
 			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[1-3-1-columns-layoutppl, resources-importer-web]]></dependent-apps>
+			<dependent-apps><![CDATA[1-3-1-columns-layouttpl, resources-importer-web]]></dependent-apps>
 			<icon><![CDATA[themes/zoe-brochure-theme/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[true]]></marketplace>
