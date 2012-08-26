@@ -63,6 +63,8 @@
 
 					calendarList.remove(calendarList.activeItem);
 
+					<portlet:namespace />refreshVisibleCalendarRenderingRules();
+
 					instance.set('visible', false);
 				},
 				id: 'hide'

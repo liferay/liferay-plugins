@@ -305,3 +305,11 @@
 .calendar-portlet-time-zone-field .aui-field .aui-field-content {
 	margin: 0;
 }
+
+.calendar-portlet-mini-calendar {
+	padding-bottom: 10px;
+}
+
+.yui3-skin-sam .yui3-calendar-day.lfr-busy-day, .yui3-skin-sam .yui3-calendar-prevmonth-day.lfr-busy-day, .yui3-skin-sam .yui3-calendar-nextmonth-day.lfr-busy-day {
+	text-decoration: underline;
+}

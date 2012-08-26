@@ -17,9 +17,11 @@ package com.liferay.calendar.util;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.CalendarResource;
+import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 import com.liferay.calendar.service.CalendarResourceLocalServiceUtil;
 import com.liferay.calendar.service.permission.CalendarPermission;
 import com.liferay.calendar.util.comparator.CalendarNameComparator;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -32,7 +34,11 @@ import com.liferay.portal.kernel.util.UniqueList;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.theme.ThemeDisplay;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Eduardo Lundgren
@@ -40,6 +46,81 @@ import java.util.List;
  * @author Fabio Pezzutto
  */
 public class CalendarUtil {
+
+	public static JSONObject getCalendarRenderingRules(
+			ThemeDisplay themeDisplay, long[] calendarIds, int[] statuses,
+			long startDate, long endDate, String ruleName)
+		throws PortalException, SystemException {
+
+		long[] groupIds = new long[] {
+			0, themeDisplay.getCompanyGroupId(), themeDisplay.getScopeGroupId()
+		};
+
+		List<CalendarBooking> calendarBookings =
+			CalendarBookingLocalServiceUtil.search(
+				themeDisplay.getCompanyId(), groupIds, calendarIds,
+				new long[] {}, -1, null, startDate,
+				endDate, true, statuses, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				(OrderByComparator)null);
+
+		Map<Integer, Map<Integer, List<Integer>>> rulesMap =
+			new HashMap<Integer, Map<Integer, List<Integer>>>();
+
+		for (CalendarBooking calendarBooking : calendarBookings) {
+			java.util.Calendar startDateJCalendar = JCalendarUtil.getJCalendar(
+				calendarBooking.getStartDate());
+
+			int year = startDateJCalendar.get(java.util.Calendar.YEAR);
+			int month = startDateJCalendar.get(java.util.Calendar.MONTH);
+			int day = startDateJCalendar.get(java.util.Calendar.DAY_OF_MONTH);
+
+			Map<Integer, List<Integer>> rulesMonth = rulesMap.get(year);
+
+			if (rulesMonth == null) {
+				rulesMonth = new HashMap<Integer, List<Integer>>();
+
+				rulesMap.put(year, rulesMonth);
+			}
+
+			List<Integer> rulesDay = rulesMonth.get(month);
+
+			if (rulesDay == null) {
+				rulesDay = new ArrayList<Integer>();
+
+				rulesMonth.put(month, rulesDay);
+			}
+
+			if (!rulesDay.contains(day)) {
+				rulesDay.add(day);
+			}
+		}
+
+		Set<Integer> years = rulesMap.keySet();
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		for (Integer year : years) {
+			Map<Integer, List<Integer>> monthsMap = rulesMap.get(year);
+
+			Set<Integer> months = monthsMap.keySet();
+
+			JSONObject jsonObjectMonth = JSONFactoryUtil.createJSONObject();
+
+			for (Integer month : months) {
+				List<Integer> days = monthsMap.get(month);
+
+				String daysKey = StringUtil.merge(days);
+
+				JSONObject jsonObjectDay = JSONFactoryUtil.createJSONObject();
+
+				jsonObject.put(String.valueOf(year), jsonObjectMonth);
+				jsonObjectDay.put(daysKey, ruleName);
+				jsonObjectMonth.put(String.valueOf(month), jsonObjectDay);
+			}
+		}
+
+		return jsonObject;
+	}
 
 	public static OrderByComparator getOrderByComparator(
 		String orderByCol, String orderByType) {
