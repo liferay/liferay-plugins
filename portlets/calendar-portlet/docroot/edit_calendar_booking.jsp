@@ -256,7 +256,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 			<c:if test="<%= invitable %>">
 				var calendarId = A.one('#<portlet:namespace />calendarId').val();
-				var childCalendarIds = A.Object.keys(Liferay.CalendarUtil.visibleCalendars);
+				var childCalendarIds = A.Object.keys(Liferay.CalendarUtil.availableCalendars);
 
 				A.Array.remove(childCalendarIds, A.Array.indexOf(childCalendarIds, calendarId));
 
@@ -290,8 +290,8 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 		}
 	}
 
-	var syncVisibleCalendarsMap = function() {
-		Liferay.CalendarUtil.syncVisibleCalendarsMap(
+	var syncCalendarsMap = function() {
+		Liferay.CalendarUtil.syncCalendarsMap(
 			window.<portlet:namespace />calendarListAccepted,
 			window.<portlet:namespace />calendarListDeclined,
 			window.<portlet:namespace />calendarListMaybe,
@@ -299,7 +299,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 		);
 
 		A.each(
-			Liferay.CalendarUtil.visibleCalendars,
+			Liferay.CalendarUtil.availableCalendars,
 			function(item, index, collection) {
 				item.set('disabled', true);
 			}
@@ -332,7 +332,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 					var instance = this;
 
 					A.each(
-						Liferay.CalendarUtil.visibleCalendars,
+						Liferay.CalendarUtil.availableCalendars,
 						function(item, index, collection) {
 							item.set('visible', false);
 						}
@@ -394,10 +394,11 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 					A.one('#<portlet:namespace />pendingCounter').html(event.newVal.length);
 
-					syncVisibleCalendarsMap();
+					syncCalendarsMap();
 
 					scheduler.loadCalendarBookings();
-				}
+				},
+				'scheduler-calendar:visibleChange': syncCalendarsMap
 			},
 			boundingBox: '#<portlet:namespace />calendarListPending',
 			calendars: <%= pendingCalendarsJSONArray %>,
@@ -416,10 +417,11 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 					A.one('#<portlet:namespace />acceptedCounter').html(event.newVal.length);
 
-					syncVisibleCalendarsMap();
+					syncCalendarsMap();
 
 					scheduler.loadCalendarBookings();
-				}
+				},
+				'scheduler-calendar:visibleChange': syncCalendarsMap
 			},
 			boundingBox: '#<portlet:namespace />calendarListAccepted',
 			calendars: <%= acceptedCalendarsJSONArray %>,
@@ -438,10 +440,11 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 					A.one('#<portlet:namespace />declinedCounter').html(event.newVal.length);
 
-					syncVisibleCalendarsMap();
+					syncCalendarsMap();
 
 					scheduler.loadCalendarBookings();
-				}
+				},
+				'scheduler-calendar:visibleChange': syncCalendarsMap
 			},
 			boundingBox: '#<portlet:namespace />calendarListDeclined',
 			calendars: <%= declinedCalendarsJSONArray %>,
@@ -460,10 +463,11 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 					A.one('#<portlet:namespace />maybeCounter').html(event.newVal.length);
 
-					syncVisibleCalendarsMap();
+					syncCalendarsMap();
 
 					scheduler.loadCalendarBookings();
-				}
+				},
+				'scheduler-calendar:visibleChange': syncCalendarsMap
 			},
 			boundingBox: '#<portlet:namespace />calendarListMaybe',
 			calendars: <%= maybeCalendarsJSONArray %>,
@@ -474,7 +478,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 		}
 	).render();
 
-	syncVisibleCalendarsMap();
+	syncCalendarsMap();
 
 	var formNode = A.one(document.<portlet:namespace />fm);
 

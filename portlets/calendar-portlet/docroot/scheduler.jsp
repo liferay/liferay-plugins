@@ -78,7 +78,7 @@ boolean readOnly = ParamUtil.getBoolean(request, "readOnly");
 			currentDate: new Date(<%= currentDate %>),
 			eventClass: Liferay.SchedulerEvent,
 			eventRecorder: eventRecorder,
-			events: A.Object.values(Liferay.CalendarUtil.visibleCalendars),
+			events: A.Object.values(Liferay.CalendarUtil.availableCalendars),
 			filterCalendarBookings: <%= filterCalendarBookings %>,
 			firstDayOfWeek: <%= weekStartsOn %>,
 			portletNamespace: '<portlet:namespace />',

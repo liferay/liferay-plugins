@@ -85,16 +85,20 @@
 		Liferay.Time = Time;
 
 		var CalendarUtil = {
+			INVOKER_URL: '/api/jsonws/invoke',
 			NOTIFICATION_DEFAULT_TYPE: 'email',
 			PORTLET_NAMESPACE: STR_BLANK,
+			RENDERING_RULES_URL: null,
 			USER_TIMEZONE_OFFSET: 0,
 
 			dataSource: null,
-			invokerURL: '/api/jsonws/invoke',
+			availableCalendars: {},
 			visibleCalendars: {},
 
 			addEvent: function(schedulerEvent) {
 				var instance = this;
+
+				var scheduler = schedulerEvent.get('scheduler');
 
 				instance.invoke(
 					{
@@ -133,6 +137,10 @@
 								}
 								else {
 									instance.setEventAttrs(schedulerEvent, data);
+
+									if (scheduler) {
+										scheduler.fire('eventsChangeBatch');
+									}
 								}
 							}
 						}
@@ -156,7 +164,7 @@
 							return A.Array.filter(
 								results,
 								function(item, index, collection) {
-									return !instance.visibleCalendars[item.raw.calendarId];
+									return !instance.availableCalendars[item.raw.calendarId];
 								}
 							);
 						},
@@ -186,6 +194,8 @@
 			deleteEvent: function(schedulerEvent) {
 				var instance = this;
 
+				var scheduler = schedulerEvent.get('scheduler');
+
 				instance.invoke(
 					{
 						'/calendar-portlet/calendarbooking/delete-calendar-booking': {
@@ -194,7 +204,11 @@
 					},
 					{
 						success: function() {
-							schedulerEvent.get('scheduler').loadCalendarBookings();
+							scheduler.loadCalendarBookings();
+
+							if (scheduler) {
+								scheduler.fire('eventsChangeBatch');
+							}
 						}
 					}
 				);
@@ -237,6 +251,36 @@
 				);
 			},
 
+			getCalendarRenderingRules: function(calendarIds, startDate, endDate, ruleName, callback) {
+				var instance = this;
+
+				var renderingRulesURL = A.Lang.sub(
+					'{renderingRulesURL}&{portletNamespace}calendarIds={calendarIds}&{portletNamespace}startDate={startDate}&{portletNamespace}endDate={endDate}&{portletNamespace}ruleName={ruleName}',
+					{
+						calendarIds: calendarIds.join(),
+						endDate: endDate.getTime(),
+						portletNamespace: instance.PORTLET_NAMESPACE,
+						renderingRulesURL: instance.RENDERING_RULES_URL,
+						ruleName: ruleName,
+						startDate: startDate.getTime()
+					}
+				);
+
+				A.io.request(
+					renderingRulesURL,
+					{
+						dataType: 'json',
+						on: {
+							success: function() {
+								var rulesDefinition = this.get('responseData');
+
+								callback(rulesDefinition);
+							}
+						}
+					}
+				);
+			},
+
 			getDataSource: function() {
 				var instance = this;
 
@@ -245,7 +289,7 @@
 				if (!dataSource) {
 					dataSource = new A.DataSource.IO(
 						{
-							source: instance.invokerURL,
+							source: instance.INVOKER_URL,
 							on: {
 								request: function(e) {
 									var callback = e.callback && e.callback.start;
@@ -276,7 +320,7 @@
 			getEvents: function(startDate, endDate, status, success, failure) {
 				var instance = this;
 
-				var calendarIds = A.Object.keys(instance.visibleCalendars);
+				var calendarIds = A.Object.keys(instance.availableCalendars);
 
 				instance.invoke(
 					{
@@ -423,13 +467,13 @@
 
 				schedulerEvent.set('status', data.status);
 
-				var oldCalendar = instance.visibleCalendars[oldCalendarId];
+				var oldCalendar = instance.availableCalendars[oldCalendarId];
 
 				if (oldCalendar) {
 					oldCalendar.removeEvent(schedulerEvent);
 				}
 
-				var newCalendar = instance.visibleCalendars[newCalendarId];
+				var newCalendar = instance.availableCalendars[newCalendarId];
 
 				if (newCalendar) {
 					newCalendar.addEvent(schedulerEvent);
@@ -438,10 +482,11 @@
 				schedulerEvent.set('calendarId', newCalendarId);
 			},
 
-			syncVisibleCalendarsMap: function() {
+			syncCalendarsMap: function() {
 				var instance = this;
 
 				var visibleCalendars = instance.visibleCalendars = {};
+				var availableCalendars = instance.availableCalendars = {};
 
 				A.Array.each(
 					arguments,
@@ -451,13 +496,19 @@
 						A.each(
 							calendars,
 							function(item, index, collection) {
-								visibleCalendars[item.get('calendarId')] = item;
+								var calendarId = item.get('calendarId');
+
+								availableCalendars[calendarId] = item;
+
+								if (item.get('visible')) {
+									visibleCalendars[calendarId] = item;
+								}
 							}
 						);
 					}
 				);
 
-				return visibleCalendars;
+				return availableCalendars;
 			},
 
 			toSchedulerEvent: function(calendarBooking) {
@@ -633,10 +684,10 @@
 					loadCalendarBookingsJSON: function(calendarBookings) {
 						var instance = this;
 
-						var visibleCalendarsMap = Liferay.CalendarUtil.visibleCalendars;
+						var availableCalendarsMap = Liferay.CalendarUtil.availableCalendars;
 
 						A.each(
-							visibleCalendarsMap,
+							availableCalendarsMap,
 							function(item, index, collection) {
 								var events = CalendarUtil.filterJSONArray(calendarBookings, 'calendarId', toNumber(index));
 
@@ -644,7 +695,7 @@
 							}
 						);
 
-						instance.set('events', A.Object.values(visibleCalendarsMap));
+						instance.set('events', A.Object.values(availableCalendarsMap));
 
 						if (instance.get('rendered')) {
 							instance.syncEventsUI();
@@ -879,6 +930,8 @@
 				prototype: {
 					getEventCopy: function() {
 						var instance = this;
+
+						var scheduler = instance.get('scheduler');
 						var newSchedulerEvent = instance.get('event');
 
 						if (!newSchedulerEvent) {
@@ -886,6 +939,8 @@
 						}
 
 						newSchedulerEvent.setAttrs(instance.serializeForm());
+
+						newSchedulerEvent.set('scheduler', scheduler);
 
 						return newSchedulerEvent;
 					},
@@ -901,7 +956,7 @@
 							editing = true;
 						}
 
-						var calendar = CalendarUtil.visibleCalendars[schedulerEvent.get('calendarId')];
+						var calendar = CalendarUtil.availableCalendars[schedulerEvent.get('calendarId')];
 						var permissions = calendar.get('permissions');
 
 						return A.merge(
@@ -1017,7 +1072,7 @@
 
 						var schedulerEvent = instance.get('event') || instance;
 						var status = schedulerEvent.get('status');
-						var calendar = CalendarUtil.visibleCalendars[schedulerEvent.get('calendarId')];
+						var calendar = CalendarUtil.availableCalendars[schedulerEvent.get('calendarId')];
 
 						var permissions = calendar.get('permissions');
 
