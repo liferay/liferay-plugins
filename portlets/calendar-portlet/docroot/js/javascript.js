@@ -15,6 +15,8 @@
 
 	var STR_SPACE = ' ';
 
+	var TPL_RENDERING_RULES_URL = '{renderingRulesURL}&{portletNamespace}calendarIds={calendarIds}&{portletNamespace}startDate={startDate}&{portletNamespace}endDate={endDate}&{portletNamespace}ruleName={ruleName}';
+
 	var COMPANY_GROUP_ID = toNumber(themeDisplay.getCompanyGroupId());
 
 	var COMPANY_ID = toNumber(themeDisplay.getCompanyId());
@@ -255,7 +257,7 @@
 				var instance = this;
 
 				var renderingRulesURL = A.Lang.sub(
-					'{renderingRulesURL}&{portletNamespace}calendarIds={calendarIds}&{portletNamespace}startDate={startDate}&{portletNamespace}endDate={endDate}&{portletNamespace}ruleName={ruleName}',
+					TPL_RENDERING_RULES_URL,
 					{
 						calendarIds: calendarIds.join(),
 						endDate: endDate.getTime(),
@@ -272,9 +274,7 @@
 						dataType: 'json',
 						on: {
 							success: function() {
-								var rulesDefinition = this.get('responseData');
-
-								callback(rulesDefinition);
+								callback(this.get('responseData'));
 							}
 						}
 					}
@@ -684,18 +684,18 @@
 					loadCalendarBookingsJSON: function(calendarBookings) {
 						var instance = this;
 
-						var availableCalendarsMap = Liferay.CalendarUtil.availableCalendars;
-
-						A.each(
-							availableCalendarsMap,
+						var events = A.Object.map(
+							Liferay.CalendarUtil.availableCalendars,
 							function(item, index, collection) {
 								var events = CalendarUtil.filterJSONArray(calendarBookings, 'calendarId', toNumber(index));
 
 								item.set('events', events);
+
+								return item;
 							}
 						);
 
-						instance.set('events', A.Object.values(availableCalendarsMap));
+						instance.set('events', events);
 
 						if (instance.get('rendered')) {
 							instance.syncEventsUI();
