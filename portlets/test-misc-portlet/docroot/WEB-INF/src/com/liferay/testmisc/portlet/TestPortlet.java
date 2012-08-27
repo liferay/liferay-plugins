@@ -54,6 +54,12 @@ public class TestPortlet extends LiferayPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
+		String title = ParamUtil.getString(renderRequest, "title");
+		
+		if (Validator.isNotNull(title)) {
+			renderResponse.setTitle(title);
+		}
+
 		String mvcPath = ParamUtil.getString(
 			renderRequest, "mvcPath", "/view.jsp");
 

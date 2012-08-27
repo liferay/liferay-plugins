@@ -16,6 +16,19 @@
 
 <%@ include file="/init.jsp" %>
 
+<%
+String defaultDescription = "Test Misc Localized Description";
+String defaultTitle = "Test Misc Localized Title";
+String title = ParamUtil.getString(renderRequest, "title", defaultTitle);
+%>
+
+<h3>Portlet Localized Title and Description</h3>
+
+<p>
+	TestLocalizationUtil.getLocalizedPortletTitle=<%= _assertEquals(TestLocalizationUtil.getLocalizedPortletTitle(request, application), defaultTitle) %><br />
+	TestLocalizationUtil.getLocalizedPortletDescription=<%= _assertEquals(TestLocalizationUtil.getLocalizedPortletDescription(request, application), defaultDescription) %><br />
+</p>
+
 <h3>Portlet Request</h3>
 
 <p>
@@ -40,6 +53,14 @@
 <p>
 	<a href="<portlet:renderURL><portlet:param name="mvcPath" value="/portlet_response/buffer_size.jsp" /></portlet:renderURL>">Buffer Size</a><br />
 	<a href="<portlet:resourceURL id="logo.png" />">Download File</a>
+</p>
+
+<h3>Portlet Response (Title)</h3>
+
+<p>
+	TestLocalizationUtil.getPortletDisplayTitle=<%= _assertEquals(TestLocalizationUtil.getPortletDisplayTitle(request), title) %><br /><br />
+	<a href="<portlet:renderURL><portlet:param name="title" value="New Title" /></portlet:renderURL>">Change Portlet Title</a><br />
+	<a href="<portlet:renderURL />">Restore Portlet Title</a>
 </p>
 
 <h3>Portlet Session</h3>
@@ -70,6 +91,10 @@
 </p>
 
 <%!
+private static String _assertEquals(Object expected, Object actual) {
+	return _assertTrue(Validator.equals(expected, actual));
+}
+	
 private static String _assertTrue(boolean value) {
 	if (value) {
 		return "PASSED";
