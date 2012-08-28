@@ -104,9 +104,6 @@
 		<finder name="CalendarId" return-type="Collection">
 			<finder-column name="calendarId" />
 		</finder>
-		<finder name="CalendarIds" return-type="Collection">
-			<finder-column name="calendarId" arrayable-operator="OR" />
-		</finder>
 		<finder name="CalendarResourceId" return-type="Collection">
 			<finder-column name="calendarResourceId" />
 		</finder>
