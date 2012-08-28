@@ -156,11 +156,11 @@ public class CalendarPortlet extends MVCPortlet {
 		try {
 			String resourceID = resourceRequest.getResourceID();
 
-			if (resourceID.equals("calendarResources")) {
-				serveCalendarResources(resourceRequest, resourceResponse);
-			}
-			else if (resourceID.equals("calendarRenderingRules")) {
+			if (resourceID.equals("calendarRenderingRules")) {
 				serveCalendarRenderingRules(resourceRequest, resourceResponse);
+			}
+			else if (resourceID.equals("calendarResources")) {
+				serveCalendarResources(resourceRequest, resourceResponse);
 			}
 			else if (resourceID.equals("exportCalendar")) {
 				serveExportCalendar(resourceRequest, resourceResponse);
@@ -519,8 +519,8 @@ public class CalendarPortlet extends MVCPortlet {
 			WebKeys.THEME_DISPLAY);
 
 		long[] calendarIds = ParamUtil.getLongValues(
-				resourceRequest, "calendarIds");
-		int[] statuses = new int[] {
+			resourceRequest, "calendarIds");
+		int[] statuses = {
 			CalendarBookingWorkflowConstants.STATUS_APPROVED,
 			CalendarBookingWorkflowConstants.STATUS_MAYBE,
 			CalendarBookingWorkflowConstants.STATUS_PENDING
