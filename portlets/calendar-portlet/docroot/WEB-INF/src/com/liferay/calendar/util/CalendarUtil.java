@@ -50,17 +50,17 @@ public class CalendarUtil {
 	public static JSONObject getCalendarRenderingRules(
 			ThemeDisplay themeDisplay, long[] calendarIds, int[] statuses,
 			long startDate, long endDate, String ruleName)
-		throws PortalException, SystemException {
-
-		long[] groupIds = new long[] {
-			0, themeDisplay.getCompanyGroupId(), themeDisplay.getScopeGroupId()
-		};
+		throws SystemException {
 
 		List<CalendarBooking> calendarBookings =
 			CalendarBookingLocalServiceUtil.search(
-				themeDisplay.getCompanyId(), groupIds, calendarIds,
-				new long[] {}, -1, null, startDate,
-				endDate, true, statuses, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				themeDisplay.getCompanyId(),
+				new long[] {
+					0, themeDisplay.getCompanyGroupId(),
+					themeDisplay.getScopeGroupId()
+				},
+				calendarIds, new long[0], -1, null, startDate, endDate, true,
+				statuses, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 				(OrderByComparator)null);
 
 		Map<Integer, Map<Integer, List<Integer>>> rulesMap =
@@ -71,8 +71,6 @@ public class CalendarUtil {
 				calendarBooking.getStartDate());
 
 			int year = startDateJCalendar.get(java.util.Calendar.YEAR);
-			int month = startDateJCalendar.get(java.util.Calendar.MONTH);
-			int day = startDateJCalendar.get(java.util.Calendar.DAY_OF_MONTH);
 
 			Map<Integer, List<Integer>> rulesMonth = rulesMap.get(year);
 
@@ -82,6 +80,8 @@ public class CalendarUtil {
 				rulesMap.put(year, rulesMonth);
 			}
 
+			int month = startDateJCalendar.get(java.util.Calendar.MONTH);
+
 			List<Integer> rulesDay = rulesMonth.get(month);
 
 			if (rulesDay == null) {
@@ -89,6 +89,8 @@ public class CalendarUtil {
 
 				rulesMonth.put(month, rulesDay);
 			}
+
+			int day = startDateJCalendar.get(java.util.Calendar.DAY_OF_MONTH);
 
 			if (!rulesDay.contains(day)) {
 				rulesDay.add(day);
@@ -106,15 +108,15 @@ public class CalendarUtil {
 
 			JSONObject jsonObjectMonth = JSONFactoryUtil.createJSONObject();
 
+			jsonObject.put(String.valueOf(year), jsonObjectMonth);
+
 			for (Integer month : months) {
 				List<Integer> days = monthsMap.get(month);
 
-				String daysKey = StringUtil.merge(days);
-
 				JSONObject jsonObjectDay = JSONFactoryUtil.createJSONObject();
 
-				jsonObject.put(String.valueOf(year), jsonObjectMonth);
-				jsonObjectDay.put(daysKey, ruleName);
+				jsonObjectDay.put(StringUtil.merge(days), ruleName);
+
 				jsonObjectMonth.put(String.valueOf(month), jsonObjectDay);
 			}
 		}
