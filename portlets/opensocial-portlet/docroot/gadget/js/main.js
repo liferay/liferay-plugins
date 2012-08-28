@@ -35,7 +35,14 @@ AUI.add(
 					checksum: {},
 					content: {},
 					country: {
-						value: 'ALL'
+						setter: function(v) {
+							if (v) {
+								return v;
+							}
+							else {
+								return 'ALL';
+							}
+						}
 					},
 					debug: {},
 					height: {
@@ -55,8 +62,15 @@ AUI.add(
 						getter: '_getIframeUrl'
 					},
 					language: {
-						value: 'ALL'
-					},
+						setter: function(v) {
+							if (v) {
+								return v;
+							}
+							else {
+								return 'ALL';
+							}
+						}
+					}, 
 					moduleId: {
 						valueFn: function() {
 							return Gadget._id++;
