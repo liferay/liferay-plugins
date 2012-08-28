@@ -56,8 +56,10 @@ JSONObject userPrefsJSONObject = ExpandoValueServiceUtil.getJSONData(themeDispla
 		{
 			appId: '<%= gadget.getUrl() %>',
 			checksum: '<%= gadgetSpec.getChecksum() %>',
+			country: '<%= themeDisplay.getLocale().getCountry() %>',
 			debug: <%= PortletPropsValues.SHINDIG_JS_DEBUG %>,
 			height: <%= modulePrefs.getHeight() %>,
+			language: '<%= themeDisplay.getLocale().getLanguage() %>',
 			moduleId: '<%= moduleId %>',
 			nocache: <%= PortletPropsValues.SHINDIG_NO_CACHE %>,
 			portletId: '<%= portletDisplay.getId() %>',
