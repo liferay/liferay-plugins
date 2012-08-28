@@ -55,7 +55,7 @@ public class TestPortlet extends LiferayPortlet {
 		throws IOException, PortletException {
 
 		String title = ParamUtil.getString(renderRequest, "title");
-		
+
 		if (Validator.isNotNull(title)) {
 			renderResponse.setTitle(title);
 		}
