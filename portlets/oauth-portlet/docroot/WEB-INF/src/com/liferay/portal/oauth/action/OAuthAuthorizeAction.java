@@ -78,6 +78,41 @@ public class OAuthAuthorizeAction extends BaseStrutsAction {
 		return windowState;
 	}
 
+	protected boolean isSignedIn() {
+		PermissionChecker permissionChecker = PermissionThreadLocal
+			.getPermissionChecker();
+
+		if ((permissionChecker == null) || !permissionChecker.isSignedIn()) {
+			return false;
+		}
+
+		return true;
+	}
+
+	protected String redirectToLogin(
+		HttpServletRequest request, HttpServletResponse response)
+		throws IOException {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String uri = request.getRequestURI();
+		String queryString = request.getQueryString();
+
+		StringBundler sb = new StringBundler();
+		sb.append(themeDisplay.getPathMain());
+		sb.append("/portal/login?redirect=");
+		sb.append(HttpUtil.encodeURL(uri));
+		if (Validator.isNotNull(queryString)) {
+			HttpUtil.encodeURL("?"+queryString);
+		}
+
+		response.sendRedirect(sb.toString());
+
+		return null;
+	}
+
+	private static final String PORTLET_ID = "4_WAR_oauthportlet";
 	private static final String PORTLET_ID = "3_WAR_oauthportlet";
 
 }
