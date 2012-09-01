@@ -12,11 +12,12 @@
  * details.
  */
 
-package com.liferay.sample.authverifier;
+package com.liferay.sampleauthverifier.hook.security.auth;
 
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Role;
+import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.security.auth.AccessControlContext;
 import com.liferay.portal.security.auth.AuthException;
 import com.liferay.portal.security.auth.AuthVerifier;
@@ -30,58 +31,47 @@ import java.util.Properties;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * {@link AuthVerifier}s are used for obtaining user from request based on
- * a provided token, regardless of a nature of the token.<br />
- * <br />
- * This sample verifier returns admin account if request contains secret key,
- * configurable from hook's portal.properties file.<br />
- * <br />
- * <strong>Don't use in production, only for educational purposes, security
- * of this solution is weak!</strong>
- *
  * @author Tomas Polesovsky
  */
 public class SampleAuthVerifier implements AuthVerifier {
 
 	public AuthVerifierResult verify(
-			AccessControlContext accessControlContext,
-			Properties configuration)
+			AccessControlContext accessControlContext, Properties configuration)
 		throws AuthException {
 
-		AuthVerifierResult result = new AuthVerifierResult();
+		AuthVerifierResult authVerifierResult = new AuthVerifierResult();
 
-		String keyFromConfiguration = configuration.getProperty("key");
+		String configurationSecretKey = GetterUtil.getString(
+			configuration.getProperty("secret.key"));
 
 		HttpServletRequest request = accessControlContext.getRequest();
 
-		String keyFromRequest = ParamUtil.get(request, "key", StringPool.BLANK);
+		String requestSecretKey = ParamUtil.getString(request, "secretKey");
 
-		if (!keyFromConfiguration.equals(keyFromRequest)) {
-			return result;
+		if (!configurationSecretKey.equals(requestSecretKey)) {
+			return authVerifierResult;
 		}
 
-		long companyId = PortalUtil.getCompanyId(request);
-
 		try {
-			Role adminRole = RoleLocalServiceUtil.getRole(
-				companyId, "Administrator");
+			authVerifierResult.setState(AuthVerifierResult.State.SUCCESS);
 
-			long[] adminIds = UserLocalServiceUtil.getRoleUserIds(
-				adminRole.getRoleId());
+			long companyId = PortalUtil.getCompanyId(request);
 
-			long adminId = 0;
+			Role role = RoleLocalServiceUtil.getRole(
+				companyId, RoleConstants.ADMINISTRATOR);
 
-			if (adminIds.length > 0) {
-				adminId = adminIds[0];
+			long[] userIds = UserLocalServiceUtil.getRoleUserIds(
+				role.getRoleId());
+
+			if (userIds.length > 0) {
+				authVerifierResult.setUserId(userIds[0]);
 			}
-
-			result.setState(AuthVerifierResult.State.SUCCESS);
-			result.setUserId(adminId);
 		}
 		catch (Exception e) {
 			throw new AuthException(e.getMessage(), e);
 		}
 
-		return result;
+		return authVerifierResult;
 	}
+
 }
