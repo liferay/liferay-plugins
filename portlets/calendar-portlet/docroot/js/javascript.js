@@ -223,9 +223,9 @@
 				instance.invoke(
 					{
 						'/calendar-portlet/calendarbooking/delete-calendar-booking-instance': {
+							allFollowing: allFollowing,
 							calendarBookingId: schedulerEvent.get('calendarBookingId'),
-							startDate: CalendarUtil.toUTCTimeZone(schedulerEvent.get('startDate')).getTime(),
-							allFollowing: allFollowing
+							startDate: CalendarUtil.toUTCTimeZone(schedulerEvent.get('startDate')).getTime()
 						}
 					},
 					{
@@ -735,9 +735,9 @@
 
 					_deleteEvent: function(schedulerEvent) {
 						var instance = this;
-						
+
 						var eventRecorder = instance.get('eventRecorder');
-						
+
 						instance.removeEvent(schedulerEvent);
 
 						eventRecorder.hideOverlay();
@@ -756,24 +756,24 @@
 								'delete',
 								function() {
 									CalendarUtil.deleteEventInstance(schedulerEvent, false);
-									
+
 									instance._deleteEvent(schedulerEvent);
-									
-									Liferay.RecurrenceUtil.hideConfirmationPanel();
+
+									Liferay.RecurrenceUtil.closeConfirmationPanel();
 								},
 								function() {
 									CalendarUtil.deleteEventInstance(schedulerEvent, true);
-									
+
 									instance._deleteEvent(schedulerEvent);
-									
-									Liferay.RecurrenceUtil.hideConfirmationPanel();
+
+									Liferay.RecurrenceUtil.closeConfirmationPanel();
 								},
 								function() {
 									CalendarUtil.deleteEvent(schedulerEvent);
-									
+
 									instance._deleteEvent(schedulerEvent);
-									
-									Liferay.RecurrenceUtil.hideConfirmationPanel();
+
+									Liferay.RecurrenceUtil.closeConfirmationPanel();
 								}
 							);
 
@@ -781,8 +781,11 @@
 						}
 						else if (schedulerEvent.isMasterBooking() && confirm(Liferay.Language.get('deleting-this-event-will-cancel-the-meeting-with-your-guests-would-you-like-to-delete'))) {
 							CalendarUtil.deleteEvent(schedulerEvent);
-							
+
 							instance._deleteEvent(schedulerEvent);
+						}
+						else {
+							event.preventDefault();
 						}
 					},
 
@@ -850,7 +853,7 @@
 						setter: toNumber,
 						value: 0
 					},
-					
+
 					recurrence: {
 						validator: isString,
 						value: STR_BLANK
@@ -892,11 +895,13 @@
 
 						return (instance.get('parentCalendarBookingId') === instance.get('calendarBookingId'));
 					},
-					
+
 					isRecurring: function() {
 						var instance = this;
 
-						return (instance.get('recurrence') !== STR_BLANK);
+						var recurrence = instance.get('recurrence');
+
+						return (recurrence !== STR_BLANK);
 					},
 
 					syncNodeColorUI: function() {
