@@ -526,8 +526,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 			'valueChange',
 			function(event) {
 				var calendarId = parseInt(event.target.val(), 10);
-
-				var calendarJSON = Liferay.CalendarUtil.getCalendarJSONById(<%= CalendarUtil.toCalendarsJSONArray(themeDisplay, manageableCalendars) %>, calendarId);
+				var calendarJSON = Liferay.CalendarUtil.manageableCalendars[calendarId];
 
 				A.Array.each(
 					[<portlet:namespace />calendarListAccepted, <portlet:namespace />calendarListDeclined, <portlet:namespace />calendarListMaybe, <portlet:namespace />calendarListPending],
