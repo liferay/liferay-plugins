@@ -129,13 +129,14 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		return calendarPersistence.findByPrimaryKey(calendarId);
 	}
 
-	public List<Calendar> getCalendars(long groupId, long calendarResourceId)
+	public List<Calendar> getCalendarResourceCalendars(
+			long groupId, long calendarResourceId)
 		throws SystemException {
 
 		return calendarPersistence.findByG_C(groupId, calendarResourceId);
 	}
 
-	public List<Calendar> getCalendars(
+	public List<Calendar> getCalendarResourceCalendars(
 			long groupId, long calendarResourceId, boolean defaultCalendar)
 		throws SystemException {
 
@@ -264,7 +265,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 			return;
 		}
 
-		List<Calendar> defaultCalendars = getCalendars(
+		List<Calendar> defaultCalendars = getCalendarResourceCalendars(
 			calendar.getGroupId(), calendar.getCalendarResourceId(), true);
 
 		for (Calendar defaultCalendar : defaultCalendars) {

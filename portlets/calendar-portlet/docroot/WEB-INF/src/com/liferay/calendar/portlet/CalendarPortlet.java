@@ -318,9 +318,10 @@ public class CalendarPortlet extends MVCPortlet {
 		PermissionChecker permissionChecker =
 			themeDisplay.getPermissionChecker();
 
-		List<Calendar> calendars = CalendarLocalServiceUtil.getCalendars(
-			calendarResource.getGroupId(),
-			calendarResource.getCalendarResourceId());
+		List<Calendar> calendars =
+			CalendarLocalServiceUtil.getCalendarResourceCalendars(
+				calendarResource.getGroupId(),
+				calendarResource.getCalendarResourceId());
 
 		for (Calendar calendar : calendars) {
 			if (!CalendarPermission.contains(
