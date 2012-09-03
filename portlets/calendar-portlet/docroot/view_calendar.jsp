@@ -265,9 +265,7 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 						'customRenderer',
 						{
 							filterFunction: function(date, node, rules) {
-								if (rules.indexOf("busy">= 0)) {
-									node.addClass("lfr-busy-day");
-								}
+								node.addClass("lfr-busy-day");
 							},
 							rules: rulesDefinition
 						}
