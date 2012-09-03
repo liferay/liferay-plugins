@@ -284,13 +284,18 @@ public class CalendarPortlet extends MVCPortlet {
 		if (calendarResourceId <= 0) {
 			CalendarResourceServiceUtil.addCalendarResource(
 				serviceContext.getScopeGroupId(), null, 0,
-				PortalUUIDUtil.generate(), defaultCalendarId, code, nameMap,
-				descriptionMap, type, active, serviceContext);
+				PortalUUIDUtil.generate(), code, nameMap, descriptionMap, type,
+				active, serviceContext);
 		}
 		else {
 			CalendarResourceServiceUtil.updateCalendarResource(
-				calendarResourceId, defaultCalendarId, nameMap, descriptionMap,
-				type, active, serviceContext);
+				calendarResourceId, nameMap, descriptionMap, type, active,
+				serviceContext);
+
+			if (defaultCalendarId > 0) {
+				CalendarLocalServiceUtil.updateCalendar(
+					defaultCalendarId, true);
+			}
 		}
 	}
 
@@ -313,10 +318,9 @@ public class CalendarPortlet extends MVCPortlet {
 		PermissionChecker permissionChecker =
 			themeDisplay.getPermissionChecker();
 
-		List<Calendar> calendars =
-			CalendarLocalServiceUtil.getCalendarResourceCalendars(
-				calendarResource.getGroupId(),
-				calendarResource.getCalendarResourceId());
+		List<Calendar> calendars = CalendarLocalServiceUtil.getCalendars(
+			calendarResource.getGroupId(),
+			calendarResource.getCalendarResourceId());
 
 		for (Calendar calendar : calendars) {
 			if (!CalendarPermission.contains(

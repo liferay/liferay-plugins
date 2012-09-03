@@ -14,17 +14,40 @@
 
 package com.liferay.calendar.model.impl;
 
+import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarResource;
+import com.liferay.calendar.service.CalendarLocalServiceUtil;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
 
+import java.util.List;
+
 /**
  * @author Eduardo Lundgren
+ * @author Marcellus Tavares
  */
 public class CalendarResourceImpl extends CalendarResourceBaseImpl {
 
-	public CalendarResourceImpl() {
+	public List<Calendar> getCalendars() throws SystemException {
+		List<Calendar> calendars = CalendarLocalServiceUtil.getCalendars(
+			getGroupId(), getCalendarResourceId());
+
+		return calendars;
+	}
+
+	public Calendar getDefaultCalendar() throws SystemException {
+		List<Calendar> calendars = CalendarLocalServiceUtil.getCalendars(
+			getGroupId(), getCalendarResourceId(), true);
+
+		return calendars.get(0);
+	}
+
+	public long getDefaultCalendarId() throws SystemException {
+		Calendar calendar = getDefaultCalendar();
+
+		return calendar.getCalendarId();
 	}
 
 	public boolean isGlobal() {
