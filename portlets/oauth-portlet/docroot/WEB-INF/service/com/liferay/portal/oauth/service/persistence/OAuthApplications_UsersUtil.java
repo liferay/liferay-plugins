@@ -300,10 +300,6 @@ public class OAuthApplications_UsersUtil {
 	/**
 	* Returns the first o auth applications_ users in the ordered set where applicationId = &#63; and authorized = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param applicationId the application ID
 	* @param authorized the authorized
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -321,11 +317,25 @@ public class OAuthApplications_UsersUtil {
 	}
 
 	/**
-	* Returns the last o auth applications_ users in the ordered set where applicationId = &#63; and authorized = &#63;.
+	* Returns the first o auth applications_ users in the ordered set where applicationId = &#63; and authorized = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param applicationId the application ID
+	* @param authorized the authorized
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching o auth applications_ users, or <code>null</code> if a matching o auth applications_ users could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.oauth.model.OAuthApplications_Users fetchByA_A_First(
+		long applicationId, boolean authorized,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByA_A_First(applicationId, authorized,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the last o auth applications_ users in the ordered set where applicationId = &#63; and authorized = &#63;.
 	*
 	* @param applicationId the application ID
 	* @param authorized the authorized
@@ -344,11 +354,24 @@ public class OAuthApplications_UsersUtil {
 	}
 
 	/**
-	* Returns the o auth applications_ userses before and after the current o auth applications_ users in the ordered set where applicationId = &#63; and authorized = &#63;.
+	* Returns the last o auth applications_ users in the ordered set where applicationId = &#63; and authorized = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param applicationId the application ID
+	* @param authorized the authorized
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching o auth applications_ users, or <code>null</code> if a matching o auth applications_ users could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.oauth.model.OAuthApplications_Users fetchByA_A_Last(
+		long applicationId, boolean authorized,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByA_A_Last(applicationId, authorized, orderByComparator);
+	}
+
+	/**
+	* Returns the o auth applications_ userses before and after the current o auth applications_ users in the ordered set where applicationId = &#63; and authorized = &#63;.
 	*
 	* @param oaauid the primary key of the current o auth applications_ users
 	* @param applicationId the application ID
@@ -505,10 +528,6 @@ public class OAuthApplications_UsersUtil {
 	/**
 	* Returns the first o auth applications_ users in the ordered set where accessToken = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param accessToken the access token
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth applications_ users
@@ -525,11 +544,23 @@ public class OAuthApplications_UsersUtil {
 	}
 
 	/**
-	* Returns the last o auth applications_ users in the ordered set where accessToken = &#63;.
+	* Returns the first o auth applications_ users in the ordered set where accessToken = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param accessToken the access token
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching o auth applications_ users, or <code>null</code> if a matching o auth applications_ users could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.oauth.model.OAuthApplications_Users fetchByAccessToken_First(
+		java.lang.String accessToken,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByAccessToken_First(accessToken, orderByComparator);
+	}
+
+	/**
+	* Returns the last o auth applications_ users in the ordered set where accessToken = &#63;.
 	*
 	* @param accessToken the access token
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -547,11 +578,23 @@ public class OAuthApplications_UsersUtil {
 	}
 
 	/**
-	* Returns the o auth applications_ userses before and after the current o auth applications_ users in the ordered set where accessToken = &#63;.
+	* Returns the last o auth applications_ users in the ordered set where accessToken = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param accessToken the access token
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching o auth applications_ users, or <code>null</code> if a matching o auth applications_ users could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.oauth.model.OAuthApplications_Users fetchByAccessToken_Last(
+		java.lang.String accessToken,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByAccessToken_Last(accessToken, orderByComparator);
+	}
+
+	/**
+	* Returns the o auth applications_ userses before and after the current o auth applications_ users in the ordered set where accessToken = &#63;.
 	*
 	* @param oaauid the primary key of the current o auth applications_ users
 	* @param accessToken the access token
@@ -703,10 +746,6 @@ public class OAuthApplications_UsersUtil {
 	/**
 	* Returns the first o auth applications_ users in the ordered set where applicationId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param applicationId the application ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth applications_ users
@@ -723,11 +762,23 @@ public class OAuthApplications_UsersUtil {
 	}
 
 	/**
-	* Returns the last o auth applications_ users in the ordered set where applicationId = &#63;.
+	* Returns the first o auth applications_ users in the ordered set where applicationId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param applicationId the application ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching o auth applications_ users, or <code>null</code> if a matching o auth applications_ users could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.oauth.model.OAuthApplications_Users fetchByApplicationId_First(
+		long applicationId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByApplicationId_First(applicationId, orderByComparator);
+	}
+
+	/**
+	* Returns the last o auth applications_ users in the ordered set where applicationId = &#63;.
 	*
 	* @param applicationId the application ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -745,11 +796,23 @@ public class OAuthApplications_UsersUtil {
 	}
 
 	/**
-	* Returns the o auth applications_ userses before and after the current o auth applications_ users in the ordered set where applicationId = &#63;.
+	* Returns the last o auth applications_ users in the ordered set where applicationId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param applicationId the application ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching o auth applications_ users, or <code>null</code> if a matching o auth applications_ users could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.oauth.model.OAuthApplications_Users fetchByApplicationId_Last(
+		long applicationId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByApplicationId_Last(applicationId, orderByComparator);
+	}
+
+	/**
+	* Returns the o auth applications_ userses before and after the current o auth applications_ users in the ordered set where applicationId = &#63;.
 	*
 	* @param oaauid the primary key of the current o auth applications_ users
 	* @param applicationId the application ID
@@ -900,10 +963,6 @@ public class OAuthApplications_UsersUtil {
 	/**
 	* Returns the first o auth applications_ users in the ordered set where userId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth applications_ users
@@ -919,11 +978,22 @@ public class OAuthApplications_UsersUtil {
 	}
 
 	/**
-	* Returns the last o auth applications_ users in the ordered set where userId = &#63;.
+	* Returns the first o auth applications_ users in the ordered set where userId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching o auth applications_ users, or <code>null</code> if a matching o auth applications_ users could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.oauth.model.OAuthApplications_Users fetchByUserId_First(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByUserId_First(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the last o auth applications_ users in the ordered set where userId = &#63;.
 	*
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -940,11 +1010,22 @@ public class OAuthApplications_UsersUtil {
 	}
 
 	/**
-	* Returns the o auth applications_ userses before and after the current o auth applications_ users in the ordered set where userId = &#63;.
+	* Returns the last o auth applications_ users in the ordered set where userId = &#63;.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching o auth applications_ users, or <code>null</code> if a matching o auth applications_ users could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.oauth.model.OAuthApplications_Users fetchByUserId_Last(
+		long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByUserId_Last(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the o auth applications_ userses before and after the current o auth applications_ users in the ordered set where userId = &#63;.
 	*
 	* @param oaauid the primary key of the current o auth applications_ users
 	* @param userId the user ID

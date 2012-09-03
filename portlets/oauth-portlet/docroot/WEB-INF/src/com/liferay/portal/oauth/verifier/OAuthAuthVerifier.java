@@ -20,10 +20,10 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.oauth.model.OAuthApplications_Users;
 import com.liferay.portal.oauth.service.OAuthApplications_UsersLocalServiceUtil;
+import com.liferay.portal.security.auth.AccessControlContext;
 import com.liferay.portal.security.auth.AuthException;
-import com.liferay.portal.security.auth.AuthenticationContext;
-import com.liferay.portal.security.auth.verifier.AuthVerifier;
-import com.liferay.portal.security.auth.verifier.VerificationResult;
+import com.liferay.portal.security.auth.AuthVerifier;
+import com.liferay.portal.security.auth.AuthVerifierResult;
 
 import java.util.Properties;
 
@@ -31,15 +31,14 @@ import java.util.Properties;
  * @author Ivica Cardic
  */
 public class OAuthAuthVerifier implements AuthVerifier {
-	public VerificationResult verify(
-		AuthenticationContext authenticationContext, Properties configuration)
+	public AuthVerifierResult verify(
+		AccessControlContext accessControlContext, Properties properties)
 		throws AuthException {
 
-		VerificationResult result = new VerificationResult();
+		AuthVerifierResult result = new AuthVerifierResult();
 
 		String accessToken = ParamUtil.get(
-			authenticationContext.getHttpServletRequest(), "oauth_token",
-			StringPool.BLANK);
+			accessControlContext.getRequest(), "oauth_token", StringPool.BLANK);
 
 		if (Validator.isNull(accessToken)) {
 			return result;
@@ -62,7 +61,7 @@ public class OAuthAuthVerifier implements AuthVerifier {
 
 		long userId = oAuthApplications_users.getUserId();
 
-		result.setState(VerificationResult.State.SUCCESS);
+		result.setState(AuthVerifierResult.State.SUCCESS);
 		result.setUserId(userId);
 
 		return result;

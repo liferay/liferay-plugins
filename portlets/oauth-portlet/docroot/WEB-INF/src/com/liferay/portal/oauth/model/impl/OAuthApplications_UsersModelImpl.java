@@ -288,17 +288,6 @@ public class OAuthApplications_UsersModelImpl extends BaseModelImpl<OAuthApplica
 	}
 
 	@Override
-	public OAuthApplications_Users toEscapedModel() {
-		if (_escapedModelProxy == null) {
-			_escapedModelProxy = (OAuthApplications_Users)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelProxyInterfaces,
-					new AutoEscapeBeanHandler(this));
-		}
-
-		return _escapedModelProxy;
-	}
-
-	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
 			OAuthApplications_Users.class.getName(), getPrimaryKey());
@@ -309,6 +298,17 @@ public class OAuthApplications_UsersModelImpl extends BaseModelImpl<OAuthApplica
 		ExpandoBridge expandoBridge = getExpandoBridge();
 
 		expandoBridge.setAttributes(serviceContext);
+	}
+
+	@Override
+	public OAuthApplications_Users toEscapedModel() {
+		if (_escapedModelProxy == null) {
+			_escapedModelProxy = (OAuthApplications_Users)ProxyUtil.newProxyInstance(_classLoader,
+					_escapedModelProxyInterfaces,
+					new AutoEscapeBeanHandler(this));
+		}
+
+		return _escapedModelProxy;
 	}
 
 	@Override

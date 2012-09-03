@@ -47,14 +47,14 @@
 	boolean alreadyAuthorized = GetterUtil.get(SessionErrors.contains(renderRequest, OAuthConstants.ALREADY_AUTHORIZED), false);
 %>
 
-<c:if test='<%= SessionErrors.contains(renderRequest, OAuthProblemException.class) %>'>
-	<c:if test='<%= SessionErrors.get(renderRequest, OAuthProblemException.class) == OAuthProblemException.TOKEN_EXPIRED%>'>
+<c:if test="<%= SessionErrors.contains(renderRequest, OAuthProblemException.class) %>">
+	<c:if test="<%= SessionErrors.get(renderRequest, OAuthProblemException.class) == OAuthProblemException.TOKEN_EXPIRED%>">
 		<div class="portlet-msg-error">
 			<liferay-ui:message key="your-token-has-been-expired" />
 		</div>
 	</c:if>
 </c:if>
-<c:if test='<%= alreadyAuthorized %>'>
+<c:if test="<%= alreadyAuthorized %>">
 	<div class="portlet-msg-error">
 		<liferay-ui:message key="you-are-already-authorized" />
 	</div>
@@ -88,17 +88,17 @@
 			<div>
 				<liferay-portlet:actionURL name="authorize" var="authorizeURL" />
 
-				<aui:form action='<%= authorizeURL.toString() %>' method="POST" name="authForm">
+				<aui:form action="<%= authorizeURL.toString() %>" method="POST" name="authForm">
 					<aui:input name="oauth_token" type="hidden" value="<%= accessor.getRequestToken() %>" />
 					<aui:input name="oauth_callback" type="hidden" value="<%= callback %>" />
 					<aui:button-row>
-						<c:if test='<%= !alreadyAuthorized %>'>
+						<c:if test="<%= !alreadyAuthorized %>">
 							<aui:button name="authorize" type="submit" value="authorize" />
 						</c:if>
 					</aui:button-row>
 				</aui:form>
 			</div>
-			<c:if test='<%= verifier != null %>'>
+			<c:if test="<%= verifier != null %>">
 				<div class="portlet-msg-info">
 					<liferay-ui:message arguments="<%= verifier %>" key="authorization-successfull-verification" />
 				</div>

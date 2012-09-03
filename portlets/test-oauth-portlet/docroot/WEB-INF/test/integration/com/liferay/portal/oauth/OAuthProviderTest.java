@@ -129,6 +129,8 @@ public class OAuthProviderTest {
 					By.id(OAUTH_PORTLET_ID));
 			element.submit();
 
+			_driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
 			String[] params = extractParams(_driver.getCurrentUrl());
 
 			Assert.assertNotNull(params[0]);
@@ -193,6 +195,8 @@ public class OAuthProviderTest {
 
 			WebElement element = _driver.findElement(By.id(OAUTH_PORTLET_ID));
 			element.submit();
+
+			_driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
 			String[] params = extractParams(_driver.getCurrentUrl());
 

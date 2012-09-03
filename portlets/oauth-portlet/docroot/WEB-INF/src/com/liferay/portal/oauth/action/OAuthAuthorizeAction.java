@@ -16,12 +16,18 @@ package com.liferay.portal.oauth.action;
 
 import com.liferay.portal.kernel.portlet.WindowStateFactory;
 import com.liferay.portal.kernel.struts.BaseStrutsAction;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.security.permission.PermissionThreadLocal;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.portlet.oauth.OAuthConstants;
+
+import java.io.IOException;
 
 import javax.portlet.PortletMode;
 import javax.portlet.PortletRequest;
@@ -42,6 +48,10 @@ public class OAuthAuthorizeAction extends BaseStrutsAction {
 	public String execute(
 			HttpServletRequest request, HttpServletResponse response)
 		throws Exception {
+
+		if (!isSignedIn()) {
+			return redirectToLogin(request, response);
+		}
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 				WebKeys.THEME_DISPLAY);
@@ -104,7 +114,7 @@ public class OAuthAuthorizeAction extends BaseStrutsAction {
 		sb.append("/portal/login?redirect=");
 		sb.append(HttpUtil.encodeURL(uri));
 		if (Validator.isNotNull(queryString)) {
-			HttpUtil.encodeURL("?"+queryString);
+			sb.append(HttpUtil.encodeURL("?"+queryString));
 		}
 
 		response.sendRedirect(sb.toString());
@@ -112,7 +122,6 @@ public class OAuthAuthorizeAction extends BaseStrutsAction {
 		return null;
 	}
 
-	private static final String PORTLET_ID = "4_WAR_oauthportlet";
 	private static final String PORTLET_ID = "3_WAR_oauthportlet";
 
 }
