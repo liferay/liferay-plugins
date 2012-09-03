@@ -20,6 +20,7 @@ create index IX_76DDD0F7 on CalendarResource (active_);
 create unique index IX_16A12327 on CalendarResource (classNameId, classPK);
 create index IX_4470A59D on CalendarResource (companyId, code_, active_);
 create index IX_2C5184D4 on CalendarResource (companyId, name, active_);
+create index IX_1243D698 on CalendarResource (groupId);
 create index IX_40678371 on CalendarResource (groupId, active_);
 create index IX_55C2F8AA on CalendarResource (groupId, code_);
 create index IX_B9EA8C92 on CalendarResource (groupId, name, active_);

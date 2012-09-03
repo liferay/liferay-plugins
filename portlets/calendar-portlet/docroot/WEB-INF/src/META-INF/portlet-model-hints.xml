@@ -66,7 +66,6 @@
 		<field name="classNameId" type="long" />
 		<field name="classPK" type="long" />
 		<field name="classUuid" type="String" />
-		<field name="defaultCalendarId" type="long" />
 		<field name="code" type="String" />
 		<field name="name" type="String" localized="true" />
 		<field name="description" type="String" localized="true">

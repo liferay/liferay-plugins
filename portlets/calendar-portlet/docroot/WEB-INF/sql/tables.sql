@@ -57,7 +57,6 @@ create table CalendarResource (
 	classNameId LONG,
 	classPK LONG,
 	classUuid VARCHAR(75) null,
-	defaultCalendarId LONG,
 	code_ VARCHAR(75) null,
 	name STRING null,
 	description STRING null,

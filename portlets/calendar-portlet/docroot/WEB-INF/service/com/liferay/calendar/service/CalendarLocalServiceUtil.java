@@ -311,6 +311,14 @@ public class CalendarLocalServiceUtil {
 				   .getCalendarResourceCalendars(groupId, calendarResourceId);
 	}
 
+	public static java.util.List<com.liferay.calendar.model.Calendar> getCalendarResourceCalendars(
+		long groupId, long calendarResourceId, boolean defaultCalendar)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getCalendarResourceCalendars(groupId, calendarResourceId,
+			defaultCalendar);
+	}
+
 	public static java.util.List<com.liferay.calendar.model.Calendar> search(
 		long companyId, long[] groupIds, long[] calendarResourceIds,
 		java.lang.String keywords, boolean andOperator, int start, int end,
@@ -350,6 +358,12 @@ public class CalendarLocalServiceUtil {
 			description, andOperator);
 	}
 
+	public static void updateCalendar(long calendarId, boolean defaultCalendar)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().updateCalendar(calendarId, defaultCalendar);
+	}
+
 	public static com.liferay.calendar.model.Calendar updateCalendar(
 		long calendarId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
@@ -381,12 +395,6 @@ public class CalendarLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateColor(calendarId, color, serviceContext);
-	}
-
-	public static void updateDefaultCalendar(
-		com.liferay.calendar.model.Calendar calendar, boolean defaultCalendar)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getService().updateDefaultCalendar(calendar, defaultCalendar);
 	}
 
 	public static void clearService() {
