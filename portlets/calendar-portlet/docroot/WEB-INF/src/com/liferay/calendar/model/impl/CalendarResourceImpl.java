@@ -31,15 +31,17 @@ import java.util.List;
 public class CalendarResourceImpl extends CalendarResourceBaseImpl {
 
 	public List<Calendar> getCalendars() throws SystemException {
-		List<Calendar> calendars = CalendarLocalServiceUtil.getCalendars(
-			getGroupId(), getCalendarResourceId());
+		List<Calendar> calendars =
+			CalendarLocalServiceUtil.getCalendarResourceCalendars(
+				getGroupId(), getCalendarResourceId());
 
 		return calendars;
 	}
 
 	public Calendar getDefaultCalendar() throws SystemException {
-		List<Calendar> calendars = CalendarLocalServiceUtil.getCalendars(
-			getGroupId(), getCalendarResourceId(), true);
+		List<Calendar> calendars =
+			CalendarLocalServiceUtil.getCalendarResourceCalendars(
+					getGroupId(), getCalendarResourceId(), true);
 
 		return calendars.get(0);
 	}
