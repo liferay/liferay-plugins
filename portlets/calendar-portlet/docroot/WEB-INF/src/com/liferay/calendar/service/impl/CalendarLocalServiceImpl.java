@@ -16,7 +16,6 @@ package com.liferay.calendar.service.impl;
 
 import com.liferay.calendar.CalendarNameException;
 import com.liferay.calendar.model.Calendar;
-import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.base.CalendarLocalServiceBaseImpl;
 import com.liferay.calendar.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -77,34 +76,13 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 
 		calendarPersistence.update(calendar, false);
 
+		// Default Calendar
+
+		checkDefaultCalendar(calendar);
+
 		// Resources
 
 		resourceLocalService.addModelResources(calendar, serviceContext);
-
-		// Calendar resource
-
-		if (defaultCalendar) {
-			List<Calendar> calendarResourceCalendars =
-				getCalendarResourceCalendars(groupId, calendarResourceId);
-
-			for (Calendar calendarResourceCalendar :
-					calendarResourceCalendars) {
-
-				updateDefaultCalendar(
-					calendarResourceCalendar,
-					calendar.equals(calendarResourceCalendar));
-			}
-
-			CalendarResource calendarResource =
-				calendarResourcePersistence.fetchByPrimaryKey(
-					calendarResourceId);
-
-			if (calendarResource != null) {
-				calendarResource.setDefaultCalendarId(calendarId);
-
-				calendarResourcePersistence.update(calendarResource, false);
-			}
-		}
 
 		return calendar;
 	}
@@ -151,11 +129,18 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		return calendarPersistence.findByPrimaryKey(calendarId);
 	}
 
-	public List<Calendar> getCalendarResourceCalendars(
-			long groupId, long calendarResourceId)
+	public List<Calendar> getCalendars(long groupId, long calendarResourceId)
 		throws SystemException {
 
 		return calendarPersistence.findByG_C(groupId, calendarResourceId);
+	}
+
+	public List<Calendar> getCalendars(
+			long groupId, long calendarResourceId, boolean defaultCalendar)
+		throws SystemException {
+
+		return calendarPersistence.findByG_C_D(
+			groupId, calendarResourceId, defaultCalendar);
 	}
 
 	public List<Calendar> search(
@@ -199,6 +184,20 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 			andOperator);
 	}
 
+	public void updateCalendar(long calendarId, boolean defaultCalendar)
+		throws PortalException, SystemException {
+
+		Calendar calendar = calendarPersistence.findByPrimaryKey(calendarId);
+
+		calendar.setDefaultCalendar(defaultCalendar);
+
+		calendarPersistence.update(calendar, false);
+
+		// Default Calendar
+
+		checkDefaultCalendar(calendar);
+	}
+
 	public Calendar updateCalendar(
 			long calendarId, Map<Locale, String> nameMap,
 			Map<Locale, String> descriptionMap, int color,
@@ -223,31 +222,13 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 
 		calendarPersistence.update(calendar, false);
 
+		// Default Calendar
+
+		checkDefaultCalendar(calendar);
+
 		// Resources
 
 		resourceLocalService.updateModelResources(calendar, serviceContext);
-
-		// Calendar resource
-
-		if (defaultCalendar) {
-			List<Calendar> calendarResourceCalendars =
-				getCalendarResourceCalendars(
-					calendar.getGroupId(), calendar.getCalendarResourceId());
-
-			for (Calendar calendarResourceCalendar :
-					calendarResourceCalendars) {
-
-				updateDefaultCalendar(
-					calendarResourceCalendar,
-					calendar.equals(calendarResourceCalendar));
-			}
-
-			CalendarResource calendarResource = calendar.getCalendarResource();
-
-			calendarResource.setDefaultCalendarId(calendarId);
-
-			calendarResourcePersistence.update(calendarResource, false);
-		}
 
 		return calendar;
 	}
@@ -276,13 +257,23 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 			color, calendar.isDefaultCalendar(), serviceContext);
 	}
 
-	public void updateDefaultCalendar(
-			Calendar calendar, boolean defaultCalendar)
-		throws SystemException {
+	protected void checkDefaultCalendar(Calendar calendar)
+		throws PortalException, SystemException {
 
-		calendar.setDefaultCalendar(defaultCalendar);
+		if (!calendar.isDefaultCalendar()) {
+			return;
+		}
 
-		calendarPersistence.update(calendar, false);
+		List<Calendar> defaultCalendars = getCalendars(
+			calendar.getGroupId(), calendar.getCalendarResourceId(), true);
+
+		for (Calendar defaultCalendar : defaultCalendars) {
+			if (defaultCalendar.getCalendarId() == calendar.getCalendarId()) {
+				continue;
+			}
+
+			updateCalendar(defaultCalendar.getCalendarId(), false);
+		}
 	}
 
 	protected void validate(Map<Locale, String> nameMap)

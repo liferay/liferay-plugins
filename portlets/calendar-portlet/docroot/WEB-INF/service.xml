@@ -46,7 +46,6 @@
 			<finder-column name="groupId" />
 			<finder-column name="calendarResourceId" />
 		</finder>
-
 		<finder name="G_C_D" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="calendarResourceId" />
@@ -160,7 +159,6 @@
 		<column name="classNameId" type="long" />
 		<column name="classPK" type="long" />
 		<column name="classUuid" type="String" />
-		<column name="defaultCalendarId" type="long" />
 		<column name="code" type="String" />
 		<column name="name" type="String" localized="true" />
 		<column name="description" type="String" localized="true" />
@@ -177,6 +175,9 @@
 
 		<finder name="Active" return-type="Collection">
 			<finder-column name="active" />
+		</finder>
+		<finder name="GroupId" return-type="Collection">
+			<finder-column name="groupId" />
 		</finder>
 		<finder name="G_C" return-type="Collection">
 			<finder-column name="groupId" arrayable-operator="OR" />

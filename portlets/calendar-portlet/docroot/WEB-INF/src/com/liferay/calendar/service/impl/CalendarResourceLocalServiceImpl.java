@@ -42,15 +42,16 @@ import java.util.Map;
  * @author Eduardo Lundgren
  * @author Fabio Pezzutto
  * @author Bruno Basto
+ * @author Marcellus Tavares
  */
 public class CalendarResourceLocalServiceImpl
 	extends CalendarResourceLocalServiceBaseImpl {
 
 	public CalendarResource addCalendarResource(
 			long userId, long groupId, String className, long classPK,
-			String classUuid, long defaultCalendarId, String code,
-			Map<Locale, String> nameMap, Map<Locale, String> descriptionMap,
-			String type, boolean active, ServiceContext serviceContext)
+			String classUuid, String code, Map<Locale, String> nameMap,
+			Map<Locale, String> descriptionMap, String type, boolean active,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// Calendar resource
@@ -111,21 +112,6 @@ public class CalendarResourceLocalServiceImpl
 		}
 
 		calendarResource.setClassUuid(classUuid);
-
-		if (defaultCalendarId <= 0) {
-			serviceContext.setAddGroupPermissions(true);
-			serviceContext.setAddGuestPermissions(true);
-
-			Calendar calendar = calendarLocalService.addCalendar(
-				userId, groupId, calendarResourceId, nameMap, descriptionMap,
-				PortletPropsValues.CALENDAR_COLOR_DEFAULT, true,
-				serviceContext);
-
-			defaultCalendarId = calendar.getCalendarId();
-		}
-
-		calendarResource.setDefaultCalendarId(defaultCalendarId);
-
 		calendarResource.setCode(code);
 		calendarResource.setNameMap(nameMap);
 		calendarResource.setDescriptionMap(descriptionMap);
@@ -133,6 +119,15 @@ public class CalendarResourceLocalServiceImpl
 		calendarResource.setActive(active);
 
 		calendarResourcePersistence.update(calendarResource, false);
+
+		// Default Calendar
+
+		serviceContext.setAddGroupPermissions(true);
+		serviceContext.setAddGuestPermissions(true);
+
+		calendarLocalService.addCalendar(
+			userId, groupId, calendarResourceId, nameMap, descriptionMap,
+			PortletPropsValues.CALENDAR_COLOR_DEFAULT, true, serviceContext);
 
 		// Resources
 
@@ -189,6 +184,17 @@ public class CalendarResourceLocalServiceImpl
 		return deleteCalendarResource(calendarResource);
 	}
 
+	public void deleteCalendarResources(long groupId)
+		throws PortalException, SystemException {
+
+		List<CalendarResource> calendarResources =
+			calendarResourcePersistence.findByGroupId(groupId);
+
+		for (CalendarResource calendarResource : calendarResources) {
+			deleteCalendarResource(calendarResource);
+		}
+	}
+
 	public CalendarResource fetchCalendarResource(
 			long classNameId, long classPK)
 		throws SystemException {
@@ -201,6 +207,12 @@ public class CalendarResourceLocalServiceImpl
 		throws PortalException, SystemException {
 
 		return calendarResourcePersistence.findByPrimaryKey(calendarResourceId);
+	}
+
+	public List<CalendarResource> getCalendarResources(long groupId)
+		throws PortalException, SystemException {
+
+		return calendarResourcePersistence.findByGroupId(groupId);
 	}
 
 	public List<CalendarResource> search(
@@ -247,9 +259,9 @@ public class CalendarResourceLocalServiceImpl
 	}
 
 	public CalendarResource updateCalendarResource(
-			long calendarResourceId, long defaultCalendarId,
-			Map<Locale, String> nameMap, Map<Locale, String> descriptionMap,
-			String type, boolean active, ServiceContext serviceContext)
+			long calendarResourceId, Map<Locale, String> nameMap,
+			Map<Locale, String> descriptionMap, String type, boolean active,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// Calendar resource
@@ -258,7 +270,6 @@ public class CalendarResourceLocalServiceImpl
 			calendarResourcePersistence.findByPrimaryKey(calendarResourceId);
 
 		calendarResource.setModifiedDate(serviceContext.getModifiedDate(null));
-		calendarResource.setDefaultCalendarId(defaultCalendarId);
 		calendarResource.setNameMap(nameMap);
 		calendarResource.setDescriptionMap(descriptionMap);
 		calendarResource.setType(type);
@@ -272,20 +283,6 @@ public class CalendarResourceLocalServiceImpl
 			calendarResource, serviceContext);
 
 		return calendarResource;
-	}
-
-	public CalendarResource updateCalendarResource(
-			long calendarResourceId, Map<Locale, String> nameMap,
-			Map<Locale, String> descriptionMap, String type, boolean active,
-			ServiceContext serviceContext)
-		throws PortalException, SystemException {
-
-		CalendarResource calendarResource =
-			calendarResourcePersistence.findByPrimaryKey(calendarResourceId);
-
-		return updateCalendarResource(
-			calendarResourceId, calendarResource.getDefaultCalendarId(),
-			nameMap, descriptionMap, type, active, serviceContext);
 	}
 
 	protected long getGlobalResourceGroupId(long companyId)

@@ -14,6 +14,7 @@
 				</simple>
 			</trigger>
 		</scheduler-entry>
+		<portlet-data-handler-class>com.liferay.calendar.lar.CalendarPortletDataHandlerImpl</portlet-data-handler-class>
 		<preferences-unique-per-layout>false</preferences-unique-per-layout>
 		<preferences-owned-by-group>true</preferences-owned-by-group>
 		<header-portlet-css>/css/main.css</header-portlet-css>
