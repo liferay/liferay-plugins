@@ -76,13 +76,13 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 
 		calendarPersistence.update(calendar, false);
 
-		// Default Calendar
-
-		checkDefaultCalendar(calendar);
-
 		// Resources
 
 		resourceLocalService.addModelResources(calendar, serviceContext);
+
+		// Calendar
+
+		updateDefaultCalendar(calendar);
 
 		return calendar;
 	}
@@ -194,9 +194,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 
 		calendarPersistence.update(calendar, false);
 
-		// Default Calendar
-
-		checkDefaultCalendar(calendar);
+		updateDefaultCalendar(calendar);
 	}
 
 	public Calendar updateCalendar(
@@ -223,13 +221,13 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 
 		calendarPersistence.update(calendar, false);
 
-		// Default Calendar
-
-		checkDefaultCalendar(calendar);
-
 		// Resources
 
 		resourceLocalService.updateModelResources(calendar, serviceContext);
+
+		// Calendar
+
+		updateDefaultCalendar(calendar);
 
 		return calendar;
 	}
@@ -258,7 +256,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 			color, calendar.isDefaultCalendar(), serviceContext);
 	}
 
-	protected void checkDefaultCalendar(Calendar calendar)
+	protected void updateDefaultCalendar(Calendar calendar)
 		throws PortalException, SystemException {
 
 		if (!calendar.isDefaultCalendar()) {

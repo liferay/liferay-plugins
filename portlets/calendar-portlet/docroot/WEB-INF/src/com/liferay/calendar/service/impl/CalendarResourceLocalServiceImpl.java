@@ -120,7 +120,12 @@ public class CalendarResourceLocalServiceImpl
 
 		calendarResourcePersistence.update(calendarResource, false);
 
-		// Default Calendar
+		// Resources
+
+		resourceLocalService.addModelResources(
+			calendarResource, serviceContext);
+
+		// Calendar
 
 		serviceContext.setAddGroupPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
@@ -128,11 +133,6 @@ public class CalendarResourceLocalServiceImpl
 		calendarLocalService.addCalendar(
 			userId, groupId, calendarResourceId, nameMap, descriptionMap,
 			PortletPropsValues.CALENDAR_COLOR_DEFAULT, true, serviceContext);
-
-		// Resources
-
-		resourceLocalService.addModelResources(
-			calendarResource, serviceContext);
 
 		return calendarResource;
 	}
@@ -210,7 +210,7 @@ public class CalendarResourceLocalServiceImpl
 	}
 
 	public List<CalendarResource> getCalendarResources(long groupId)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		return calendarResourcePersistence.findByGroupId(groupId);
 	}

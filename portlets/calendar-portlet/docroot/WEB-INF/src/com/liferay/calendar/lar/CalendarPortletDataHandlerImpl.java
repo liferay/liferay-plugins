@@ -48,10 +48,10 @@ public class CalendarPortletDataHandlerImpl extends BasePortletDataHandler {
 	@Override
 	public String[] getDataPortletPreferences() {
 		return new String[] {
-			"calendarNotificationBodyEmailReminder",
-			"calendarNotificationSubjectEmailReminder",
 			"calendarNotificationBodyEmailInvite",
-			"calendarNotificationSubjectEmailInvite", "defaultDuration",
+			"calendarNotificationBodyEmailReminder",
+			"calendarNotificationSubjectEmailInvite",
+			"calendarNotificationSubjectEmailReminder", "defaultDuration",
 			"defaultView", "emailFromAddress", "emailFromName", "isoTimeFormat",
 			"timeZoneId", "usePortalTimeZone", "weekStartsOn"
 		};
