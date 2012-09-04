@@ -974,29 +974,6 @@
 						return false;
 					},
 
-					_renderOverlay: function() {
-						var instance = this;
-
-						var overlayBB = instance.overlay.get('boundingBox');
-						var portletNamespace = instance.get('portletNamespace');
-
-						SchedulerEventRecorder.superclass._renderOverlay.apply(this, arguments);
-
-						overlayBB.delegate(
-							['change', 'keypress'],
-							function(event) {
-								var schedulerEvent = instance.get('event') || instance;
-								var calendarId = toNumber(event.currentTarget.val());
-								var selectedCalendar = CalendarUtil.manageableCalendars[calendarId];
-
-								if (selectedCalendar) {
-									schedulerEvent.set('color', selectedCalendar.color);
-								}
-							},
-							'#' + portletNamespace + 'eventRecorderCalendar'
-						);
-					},
-
 					_handleEventAcceptResponse: function(event) {
 						var instance = this;
 
@@ -1063,15 +1040,17 @@
 						var calendarId = CalendarUtil.DEFAULT_CALENDAR.calendarId;
 						var color = CalendarUtil.DEFAULT_CALENDAR.color;
 
+						var eventInstance = instance;
+
 						if (schedulerEvent) {
 							calendarId = schedulerEvent.get('calendarId');
-							color = Liferay.CalendarUtil.manageableCalendars[calendarId].color;
 
-							schedulerEvent.set('color', color);
+							color = CalendarUtil.manageableCalendars[calendarId].color;
+
+							eventInstance = schedulerEvent;
 						}
-						else {
-							instance.set('color', color);
-						}
+
+						eventInstance.set('color', color);
 
 						SchedulerEventRecorder.superclass._onOverlayVisibleChange.apply(this, arguments);
 
@@ -1083,6 +1062,30 @@
 						}
 
 						instance._syncToolbarButtons(event.newVal);
+					},
+
+					_renderOverlay: function() {
+						var instance = this;
+
+						var overlayBB = instance.overlay.get('boundingBox');
+
+						SchedulerEventRecorder.superclass._renderOverlay.apply(this, arguments);
+
+						overlayBB.delegate(
+							['change', 'keypress'],
+							function(event) {
+								var schedulerEvent = instance.get('event') || instance;
+
+								var calendarId = toNumber(event.currentTarget.val());
+
+								var selectedCalendar = CalendarUtil.manageableCalendars[calendarId];
+
+								if (selectedCalendar) {
+									schedulerEvent.set('color', selectedCalendar.color);
+								}
+							},
+							'#' + instance.get('portletNamespace') + 'eventRecorderCalendar'
+						);
 					},
 
 					_syncToolbarButtons: function(overlayVisible) {
