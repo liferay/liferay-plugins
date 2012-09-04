@@ -106,7 +106,6 @@
 			<basic name="classNameId" />
 			<basic name="classPK" />
 			<basic name="classUuid" />
-			<basic name="defaultCalendarId" />
 			<basic name="code">
 				<column name="CODE_" />
 			</basic>

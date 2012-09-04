@@ -262,20 +262,6 @@ public interface CalendarResourceModel extends AttachedModel,
 	public void setClassUuid(String classUuid);
 
 	/**
-	 * Returns the default calendar ID of this calendar resource.
-	 *
-	 * @return the default calendar ID of this calendar resource
-	 */
-	public long getDefaultCalendarId();
-
-	/**
-	 * Sets the default calendar ID of this calendar resource.
-	 *
-	 * @param defaultCalendarId the default calendar ID of this calendar resource
-	 */
-	public void setDefaultCalendarId(long defaultCalendarId);
-
-	/**
 	 * Returns the code of this calendar resource.
 	 *
 	 * @return the code of this calendar resource

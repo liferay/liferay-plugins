@@ -64,8 +64,7 @@ public class CalendarResourceServiceUtil {
 
 	public static com.liferay.calendar.model.CalendarResource addCalendarResource(
 		long groupId, java.lang.String className, long classPK,
-		java.lang.String classUuid, long defaultCalendarId,
-		java.lang.String code,
+		java.lang.String classUuid, java.lang.String code,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String type, boolean active,
@@ -74,8 +73,7 @@ public class CalendarResourceServiceUtil {
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addCalendarResource(groupId, className, classPK, classUuid,
-			defaultCalendarId, code, nameMap, descriptionMap, type, active,
-			serviceContext);
+			code, nameMap, descriptionMap, type, active, serviceContext);
 	}
 
 	public static com.liferay.calendar.model.CalendarResource deleteCalendarResource(
@@ -142,7 +140,7 @@ public class CalendarResourceServiceUtil {
 	}
 
 	public static com.liferay.calendar.model.CalendarResource updateCalendarResource(
-		long calendarResourceId, long defaultCalendarId,
+		long calendarResourceId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String type, boolean active,
@@ -150,21 +148,7 @@ public class CalendarResourceServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .updateCalendarResource(calendarResourceId,
-			defaultCalendarId, nameMap, descriptionMap, type, active,
-			serviceContext);
-	}
-
-	public static com.liferay.calendar.model.CalendarResource updateCalendarResource(
-		long calendarResourceId, java.lang.String code,
-		java.util.Map<java.util.Locale, java.lang.String> nameMap,
-		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		java.lang.String type, boolean active,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .updateCalendarResource(calendarResourceId, code, nameMap,
+				   .updateCalendarResource(calendarResourceId, nameMap,
 			descriptionMap, type, active, serviceContext);
 	}
 

@@ -34,7 +34,7 @@ public class CalendarResourceServiceClpInvoker {
 		_methodName46 = "addCalendarResource";
 
 		_methodParameterTypes46 = new String[] {
-				"long", "java.lang.String", "long", "java.lang.String", "long",
+				"long", "java.lang.String", "long", "java.lang.String",
 				"java.lang.String", "java.util.Map", "java.util.Map",
 				"java.lang.String", "boolean",
 				"com.liferay.portal.service.ServiceContext"
@@ -86,17 +86,8 @@ public class CalendarResourceServiceClpInvoker {
 		_methodName54 = "updateCalendarResource";
 
 		_methodParameterTypes54 = new String[] {
-				"long", "long", "java.util.Map", "java.util.Map",
-				"java.lang.String", "boolean",
-				"com.liferay.portal.service.ServiceContext"
-			};
-
-		_methodName55 = "updateCalendarResource";
-
-		_methodParameterTypes55 = new String[] {
-				"long", "java.lang.String", "java.util.Map", "java.util.Map",
-				"java.lang.String", "boolean",
-				"com.liferay.portal.service.ServiceContext"
+				"long", "java.util.Map", "java.util.Map", "java.lang.String",
+				"boolean", "com.liferay.portal.service.ServiceContext"
 			};
 	}
 
@@ -117,14 +108,12 @@ public class CalendarResourceServiceClpInvoker {
 			return CalendarResourceServiceUtil.addCalendarResource(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				((Long)arguments[2]).longValue(),
-				(java.lang.String)arguments[3],
-				((Long)arguments[4]).longValue(),
-				(java.lang.String)arguments[5],
+				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
+				(java.util.Map<java.util.Locale, java.lang.String>)arguments[5],
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[6],
-				(java.util.Map<java.util.Locale, java.lang.String>)arguments[7],
-				(java.lang.String)arguments[8],
-				((Boolean)arguments[9]).booleanValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[10]);
+				(java.lang.String)arguments[7],
+				((Boolean)arguments[8]).booleanValue(),
+				(com.liferay.portal.service.ServiceContext)arguments[9]);
 		}
 
 		if (_methodName47.equals(name) &&
@@ -189,23 +178,11 @@ public class CalendarResourceServiceClpInvoker {
 		if (_methodName54.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
 			return CalendarResourceServiceUtil.updateCalendarResource(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue(),
+				(java.util.Map<java.util.Locale, java.lang.String>)arguments[1],
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[2],
-				(java.util.Map<java.util.Locale, java.lang.String>)arguments[3],
-				(java.lang.String)arguments[4],
-				((Boolean)arguments[5]).booleanValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[6]);
-		}
-
-		if (_methodName55.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
-			return CalendarResourceServiceUtil.updateCalendarResource(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1],
-				(java.util.Map<java.util.Locale, java.lang.String>)arguments[2],
-				(java.util.Map<java.util.Locale, java.lang.String>)arguments[3],
-				(java.lang.String)arguments[4],
-				((Boolean)arguments[5]).booleanValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[6]);
+				(java.lang.String)arguments[3],
+				((Boolean)arguments[4]).booleanValue(),
+				(com.liferay.portal.service.ServiceContext)arguments[5]);
 		}
 
 		throw new UnsupportedOperationException();
@@ -233,6 +210,4 @@ public class CalendarResourceServiceClpInvoker {
 	private String[] _methodParameterTypes53;
 	private String _methodName54;
 	private String[] _methodParameterTypes54;
-	private String _methodName55;
-	private String[] _methodParameterTypes55;
 }

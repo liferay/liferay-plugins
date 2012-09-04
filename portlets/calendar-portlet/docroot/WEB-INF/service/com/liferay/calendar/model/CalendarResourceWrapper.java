@@ -58,7 +58,6 @@ public class CalendarResourceWrapper implements CalendarResource,
 		attributes.put("classNameId", getClassNameId());
 		attributes.put("classPK", getClassPK());
 		attributes.put("classUuid", getClassUuid());
-		attributes.put("defaultCalendarId", getDefaultCalendarId());
 		attributes.put("code", getCode());
 		attributes.put("name", getName());
 		attributes.put("description", getDescription());
@@ -139,12 +138,6 @@ public class CalendarResourceWrapper implements CalendarResource,
 
 		if (classUuid != null) {
 			setClassUuid(classUuid);
-		}
-
-		Long defaultCalendarId = (Long)attributes.get("defaultCalendarId");
-
-		if (defaultCalendarId != null) {
-			setDefaultCalendarId(defaultCalendarId);
 		}
 
 		String code = (String)attributes.get("code");
@@ -443,24 +436,6 @@ public class CalendarResourceWrapper implements CalendarResource,
 	*/
 	public void setClassUuid(java.lang.String classUuid) {
 		_calendarResource.setClassUuid(classUuid);
-	}
-
-	/**
-	* Returns the default calendar ID of this calendar resource.
-	*
-	* @return the default calendar ID of this calendar resource
-	*/
-	public long getDefaultCalendarId() {
-		return _calendarResource.getDefaultCalendarId();
-	}
-
-	/**
-	* Sets the default calendar ID of this calendar resource.
-	*
-	* @param defaultCalendarId the default calendar ID of this calendar resource
-	*/
-	public void setDefaultCalendarId(long defaultCalendarId) {
-		_calendarResource.setDefaultCalendarId(defaultCalendarId);
 	}
 
 	/**
@@ -858,6 +833,21 @@ public class CalendarResourceWrapper implements CalendarResource,
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_calendarResource.persist();
+	}
+
+	public java.util.List<com.liferay.calendar.model.Calendar> getCalendars()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResource.getCalendars();
+	}
+
+	public com.liferay.calendar.model.Calendar getDefaultCalendar()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResource.getDefaultCalendar();
+	}
+
+	public long getDefaultCalendarId()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResource.getDefaultCalendarId();
 	}
 
 	public boolean isGlobal() {

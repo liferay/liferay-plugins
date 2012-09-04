@@ -71,7 +71,6 @@
 		<property name="classNameId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="classPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="classUuid" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="defaultCalendarId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="code" type="com.liferay.portal.dao.orm.hibernate.StringType" column="code_" />
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />

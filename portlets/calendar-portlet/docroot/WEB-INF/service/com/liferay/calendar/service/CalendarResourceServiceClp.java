@@ -34,7 +34,7 @@ public class CalendarResourceServiceClp implements CalendarResourceService {
 		_methodName3 = "addCalendarResource";
 
 		_methodParameterTypes3 = new String[] {
-				"long", "java.lang.String", "long", "java.lang.String", "long",
+				"long", "java.lang.String", "long", "java.lang.String",
 				"java.lang.String", "java.util.Map", "java.util.Map",
 				"java.lang.String", "boolean",
 				"com.liferay.portal.service.ServiceContext"
@@ -86,17 +86,8 @@ public class CalendarResourceServiceClp implements CalendarResourceService {
 		_methodName11 = "updateCalendarResource";
 
 		_methodParameterTypes11 = new String[] {
-				"long", "long", "java.util.Map", "java.util.Map",
-				"java.lang.String", "boolean",
-				"com.liferay.portal.service.ServiceContext"
-			};
-
-		_methodName12 = "updateCalendarResource";
-
-		_methodParameterTypes12 = new String[] {
-				"long", "java.lang.String", "java.util.Map", "java.util.Map",
-				"java.lang.String", "boolean",
-				"com.liferay.portal.service.ServiceContext"
+				"long", "java.util.Map", "java.util.Map", "java.lang.String",
+				"boolean", "com.liferay.portal.service.ServiceContext"
 			};
 	}
 
@@ -149,8 +140,7 @@ public class CalendarResourceServiceClp implements CalendarResourceService {
 
 	public com.liferay.calendar.model.CalendarResource addCalendarResource(
 		long groupId, java.lang.String className, long classPK,
-		java.lang.String classUuid, long defaultCalendarId,
-		java.lang.String code,
+		java.lang.String classUuid, java.lang.String code,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String type, boolean active,
@@ -170,8 +160,6 @@ public class CalendarResourceServiceClp implements CalendarResourceService {
 					classPK,
 						
 					ClpSerializer.translateInput(classUuid),
-						
-					defaultCalendarId,
 						
 					ClpSerializer.translateInput(code),
 						
@@ -505,7 +493,7 @@ public class CalendarResourceServiceClp implements CalendarResourceService {
 	}
 
 	public com.liferay.calendar.model.CalendarResource updateCalendarResource(
-		long calendarResourceId, long defaultCalendarId,
+		long calendarResourceId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.lang.String type, boolean active,
@@ -519,60 +507,6 @@ public class CalendarResourceServiceClp implements CalendarResourceService {
 					_methodParameterTypes11,
 					new Object[] {
 						calendarResourceId,
-						
-					defaultCalendarId,
-						
-					ClpSerializer.translateInput(nameMap),
-						
-					ClpSerializer.translateInput(descriptionMap),
-						
-					ClpSerializer.translateInput(type),
-						
-					active,
-						
-					ClpSerializer.translateInput(serviceContext)
-					});
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.calendar.model.CalendarResource)ClpSerializer.translateOutput(returnObj);
-	}
-
-	public com.liferay.calendar.model.CalendarResource updateCalendarResource(
-		long calendarResourceId, java.lang.String code,
-		java.util.Map<java.util.Locale, java.lang.String> nameMap,
-		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		java.lang.String type, boolean active,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableService.invokeMethod(_methodName12,
-					_methodParameterTypes12,
-					new Object[] {
-						calendarResourceId,
-						
-					ClpSerializer.translateInput(code),
 						
 					ClpSerializer.translateInput(nameMap),
 						
@@ -631,6 +565,4 @@ public class CalendarResourceServiceClp implements CalendarResourceService {
 	private String[] _methodParameterTypes10;
 	private String _methodName11;
 	private String[] _methodParameterTypes11;
-	private String _methodName12;
-	private String[] _methodParameterTypes12;
 }

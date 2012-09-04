@@ -35,7 +35,7 @@ public class CalendarResourceCacheModel implements CacheModel<CalendarResource>,
 	Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(35);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -61,8 +61,6 @@ public class CalendarResourceCacheModel implements CacheModel<CalendarResource>,
 		sb.append(classPK);
 		sb.append(", classUuid=");
 		sb.append(classUuid);
-		sb.append(", defaultCalendarId=");
-		sb.append(defaultCalendarId);
 		sb.append(", code=");
 		sb.append(code);
 		sb.append(", name=");
@@ -125,8 +123,6 @@ public class CalendarResourceCacheModel implements CacheModel<CalendarResource>,
 			calendarResourceImpl.setClassUuid(classUuid);
 		}
 
-		calendarResourceImpl.setDefaultCalendarId(defaultCalendarId);
-
 		if (code == null) {
 			calendarResourceImpl.setCode(StringPool.BLANK);
 		}
@@ -174,7 +170,6 @@ public class CalendarResourceCacheModel implements CacheModel<CalendarResource>,
 	public long classNameId;
 	public long classPK;
 	public String classUuid;
-	public long defaultCalendarId;
 	public String code;
 	public String name;
 	public String description;
