@@ -38,6 +38,8 @@
 		var isObject = Lang.isObject;
 		var isString = Lang.isString;
 
+		var RecurrenceUtil = Liferay.RecurrenceUtil;
+
 		var jsonParse = function(val) {
 			var jsonObj = null;
 
@@ -751,7 +753,7 @@
 						var schedulerEvent = event.schedulerEvent;
 
 						if (schedulerEvent.isRecurring()) {
-							Liferay.RecurrenceUtil.openConfirmationPanel(
+							RecurrenceUtil.openConfirmationPanel(
 								schedulerEvent,
 								'delete',
 								function() {
@@ -759,21 +761,21 @@
 
 									instance._deleteEvent(schedulerEvent);
 
-									Liferay.RecurrenceUtil.closeConfirmationPanel();
+									RecurrenceUtil.closeConfirmationPanel();
 								},
 								function() {
 									CalendarUtil.deleteEventInstance(schedulerEvent, true);
 
 									instance._deleteEvent(schedulerEvent);
 
-									Liferay.RecurrenceUtil.closeConfirmationPanel();
+									RecurrenceUtil.closeConfirmationPanel();
 								},
 								function() {
 									CalendarUtil.deleteEvent(schedulerEvent);
 
 									instance._deleteEvent(schedulerEvent);
 
-									Liferay.RecurrenceUtil.closeConfirmationPanel();
+									RecurrenceUtil.closeConfirmationPanel();
 								}
 							);
 
@@ -899,9 +901,7 @@
 					isRecurring: function() {
 						var instance = this;
 
-						var recurrence = instance.get('recurrence');
-
-						return (recurrence !== STR_BLANK);
+						return (instance.get('recurrence') !== STR_BLANK);
 					},
 
 					syncNodeColorUI: function() {
@@ -1397,7 +1397,7 @@
 	},
 	'' ,
 	{
-		requires: ['aui-io', 'aui-scheduler', 'autocomplete', 'autocomplete-highlighters', 'datasource-cache', 'datasource-get', 'dd-plugin', 'liferay-portlet-url', 'liferay-calendar-recurrence-util', 'liferay-store', 'panel', 'resize-plugin']
+		requires: ['aui-dialog', 'aui-io', 'aui-scheduler', 'autocomplete', 'autocomplete-highlighters', 'datasource-cache', 'datasource-get', 'dd-plugin', 'liferay-portlet-url', 'liferay-calendar-recurrence-util', 'liferay-store', 'resize-plugin']
 	}
 );
 }());
