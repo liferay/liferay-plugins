@@ -273,7 +273,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 	Liferay.Util.toggleBoxes('<portlet:namespace />allDayCheckbox', '<portlet:namespace />endDateContainer', true);
 
 	<c:if test="<%= calendarBooking == null %>">
-		document.<portlet:namespace />fm.<portlet:namespace />title_<%= LanguageUtil.getLanguageId(request) %>.value = decodeURIComponent('<%= HtmlUtil.escapeURL(title) %>');
+		document.<portlet:namespace />fm.<portlet:namespace />title_<%= LanguageUtil.getLanguageId(request) %>.value = '<%= HtmlUtil.escapeJS(title) %>';
 	</c:if>
 </aui:script>
 
