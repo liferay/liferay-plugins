@@ -36,12 +36,12 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 	Liferay.CalendarUtil.PORTLET_NAMESPACE = '<portlet:namespace />';
 	Liferay.CalendarUtil.USER_TIMEZONE_OFFSET = <%= JCalendarUtil.getTimeZoneOffset(userTimeZone) %>;
 
+	var manageableCalendars = Liferay.CalendarUtil.manageableCalendars;
+
 	A.each(
 		<%= CalendarUtil.toCalendarsJSONArray(themeDisplay, manageableCalendars) %>,
 		function(item, index, collection) {
-			var calendarId = item.calendarId;
-
-			Liferay.CalendarUtil.manageableCalendars[calendarId] = item;
+			manageableCalendars[item.calendarId] = item;
 		}
 	);
 
