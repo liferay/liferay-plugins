@@ -905,8 +905,6 @@
 		'liferay-calendar-recurrence-util',
 		function(A) {
 			Liferay.RecurrenceUtil = {
-				confirmationPanel: null,
-
 				FREQUENCY: {
 					DAILY: 'DAILY',
 					WEEKLY: 'WEEKLY',
@@ -939,8 +937,10 @@
 				closeConfirmationPanel: function() {
 					var instance = this;
 
-					if (instance.confirmationPanel) {
-						instance.confirmationPanel.hide();
+					var confirmationPanel = instance.confirmationPanel;
+
+					if (confirmationPanel) {
+						confirmationPanel.hide();
 					}
 				},
 
@@ -997,78 +997,68 @@
 				openConfirmationPanel: function(schedulerEvent, actionName, onlyThisInstanceFn, allFollowingFn, allEventsInFn) {
 					var instance = this;
 
-					var title;
-					var content = [];
+					var titleText;
+					var changeDeleteText;
 
 					if (actionName === 'delete') {
-						title = A.Lang.sub(
-							'<h4>{title}</h4>',
-							{
-								title: Liferay.Language.get('delete-recurring-event')
-							}
-						);
-
-						content.push(Liferay.Language.get('would-you-like-to-delete-only-this-event-all-events-in-the-series-or-this-and-all-future-events-in-the-series'));
+						titleText = Liferay.Language.get('delete-recurring-event');
+						changeDeleteText = Liferay.Language.get('would-you-like-to-delete-only-this-event-all-events-in-the-series-or-this-and-all-future-events-in-the-series');
 					}
 					else {
-						title = A.Lang.sub(
-							'<h4>{title}</h4>',
-							{
-								title: Liferay.Language.get('change-recurring-event')
-							}
-						);
-
-						content.push(Liferay.Language.get('would-you-like-to-change-only-this-event-all-events-in-the-series-or-this-and-all-future-events-in-the-series'));
+						titleText = Liferay.Language.get('change-recurring-event');
+						changeDeleteText = Liferay.Language.get('would-you-like-to-change-only-this-event-all-events-in-the-series-or-this-and-all-future-events-in-the-series');
 					}
+
+					var content = [changeDeleteText];
 
 					if (schedulerEvent.isMasterBooking()) {
 						content.push(
 							A.Lang.sub(
-							'<br/><br/><b>{cancelMeetingMessage}</b>',
+								'<br/><br/><b>{0}</b>',
+								[Liferay.Language.get('deleting-this-event-will-cancel-the-meeting-with-your-guests')]
+							)
+						);
+					}
+
+					var confirmationPanel = instance.confirmationPanel;
+
+					if (!confirmationPanel) {
+						confirmationPanel = new A.Dialog(
 							{
-								cancelMeetingMessage: Liferay.Language.get('deleting-this-event-will-cancel-the-meeting-with-your-guests')
+								bodyContent: content.join(''),
+								buttons: [
+									{
+										handler: onlyThisInstanceFn,
+										label: Liferay.Language.get('only-this-instance')
+									},
+									{
+										handler: allFollowingFn,
+										label: Liferay.Language.get('all-following')
+									},
+									{
+										handler: allEventsInFn,
+										label: Liferay.Language.get('all-events-in-the-series')
+									},
+									{
+										handler: function(event) {
+											instance.confirmationPanel.hide();
+										},
+										label: Liferay.Language.get('cancel-this-change')
+									}
+								],
+								centered: true,
+								modal: true,
+								title: titleText,
+								visible: false,
+								width: 550,
+								zIndex: 1000
 							}
-						));
+						);
+
+						instance.confirmationPanel = confirmationPanel;
 					}
 
-					if (!instance.confirmationPanel) {
-						instance.confirmationPanel = new A.Panel({
-							bodyContent: content.join(''),
-							headerContent: title,
-							buttons: [
-								{
-									value: 'Only this instance',
-									action: 'onlyThisInstanceFn'
-								},
-
-								{
-									value: 'All following',
-									action: 'allFollowingFn'
-								},
-
-								{
-									value: 'All events in the series',
-									action: 'allEventsInFn'
-								},
-
-								{
-									value: 'Cancel this change',
-									action: 'hide'
-								}
-							],
-							centered: true,
-							modal: true,
-							plugins: [A.Plugin.Drag],
-							visible: false,
-							width: 550,
-							zIndex: 1000
-						});
-					}
-
-					instance.confirmationPanel.onlyThisInstanceFn = onlyThisInstanceFn;
-					instance.confirmationPanel.allFollowingFn = allFollowingFn;
-					instance.confirmationPanel.allEventsInFn = allEventsInFn;
-					instance.confirmationPanel.render().show();
+					confirmationPanel.render().show();
 				}
 			};
 		},
