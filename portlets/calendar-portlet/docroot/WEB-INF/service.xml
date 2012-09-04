@@ -173,11 +173,11 @@
 
 		<!-- Finder methods -->
 
-		<finder name="Active" return-type="Collection">
-			<finder-column name="active" />
-		</finder>
 		<finder name="GroupId" return-type="Collection">
 			<finder-column name="groupId" />
+		</finder>
+		<finder name="Active" return-type="Collection">
+			<finder-column name="active" />
 		</finder>
 		<finder name="G_C" return-type="Collection">
 			<finder-column name="groupId" arrayable-operator="OR" />
