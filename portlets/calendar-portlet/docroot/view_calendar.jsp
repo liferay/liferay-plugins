@@ -253,6 +253,7 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 
 		window.<portlet:namespace />refreshVisibleCalendarRenderingRules = function() {
 			var miniCalendarStartDate = window.<portlet:namespace />miniCalendar.get('date');
+
 			var miniCalendarEndDate = DateMath.add(miniCalendarStartDate, DateMath.MONTH, 1);
 
 			Liferay.CalendarUtil.getCalendarRenderingRules(
@@ -265,7 +266,7 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 						'customRenderer',
 						{
 							filterFunction: function(date, node, rules) {
-								node.addClass("lfr-busy-day");
+								node.addClass('lfr-busy-day');
 							},
 							rules: rulesDefinition
 						}
