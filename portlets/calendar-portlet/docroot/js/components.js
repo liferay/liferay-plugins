@@ -1028,15 +1028,21 @@
 								bodyContent: content.join(''),
 								buttons: [
 									{
-										handler: onlyThisInstanceFn,
+										handler: function(event, buttonItem) {
+											this.onlyThisInstanceFn.apply(this, arguments);
+										},
 										label: Liferay.Language.get('only-this-instance')
 									},
 									{
-										handler: allFollowingFn,
+										handler: function(event, buttonItem) {
+											this.allFollowingFn.apply(this, arguments);
+										},
 										label: Liferay.Language.get('all-following')
 									},
 									{
-										handler: allEventsInFn,
+										handler: function(event, buttonItem) {
+											this.allEventsInFn.apply(this, arguments);
+										},
 										label: Liferay.Language.get('all-events-in-the-series')
 									},
 									{
@@ -1055,6 +1061,9 @@
 							}
 						);
 
+						confirmationPanel.onlyThisInstanceFn = onlyThisInstanceFn;
+						confirmationPanel.allFollowingFn = allFollowingFn;
+						confirmationPanel.allEventsInFn = allEventsInFn;
 						instance.confirmationPanel = confirmationPanel;
 					}
 

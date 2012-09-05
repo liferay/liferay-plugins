@@ -22,6 +22,8 @@ long currentDate = ParamUtil.getLong(request, "currentDate", now.getTimeInMillis
 String editCalendarBookingURL = ParamUtil.getString(request, "editCalendarBookingURL");
 String filterCalendarBookings = ParamUtil.getString(request, "filterCalendarBookings", null);
 boolean readOnly = ParamUtil.getBoolean(request, "readOnly");
+
+List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.getCompanyId(), null, null, null, true, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new CalendarNameComparator(true), ActionKeys.MANAGE_BOOKINGS);
 %>
 
 <div class="calendar-portlet-wrapper" id="<portlet:namespace />scheduler"></div>
@@ -37,10 +39,6 @@ boolean readOnly = ParamUtil.getBoolean(request, "readOnly");
 	var manageableCalendars = Liferay.CalendarUtil.manageableCalendars;
 
 	A.each(
-
-		<%
-		List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.getCompanyId(), null, null, null, true, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new CalendarNameComparator(true), ActionKeys.MANAGE_BOOKINGS);
-		%>
 
 		<%= CalendarUtil.toCalendarsJSONArray(themeDisplay, manageableCalendars) %>,
 		function(item, index, collection) {
