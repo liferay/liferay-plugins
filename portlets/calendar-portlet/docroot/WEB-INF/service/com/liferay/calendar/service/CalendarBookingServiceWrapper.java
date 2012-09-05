@@ -82,6 +82,14 @@ public class CalendarBookingServiceWrapper implements CalendarBookingService,
 		return _calendarBookingService.deleteCalendarBooking(calendarBookingId);
 	}
 
+	public void deleteCalendarBookingInstance(long calendarBookingId,
+		long startDate, boolean allFollowing)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_calendarBookingService.deleteCalendarBookingInstance(calendarBookingId,
+			startDate, allFollowing);
+	}
+
 	public com.liferay.calendar.model.CalendarBooking fetchCalendarBooking(
 		long calendarBookingId)
 		throws com.liferay.portal.kernel.exception.PortalException,

@@ -19,6 +19,7 @@ Liferay.Service.registerClass(
 	{
 		addCalendarBooking: true,
 		deleteCalendarBooking: true,
+		deleteCalendarBookingInstance: true,
 		fetchCalendarBooking: true,
 		getCalendarBooking: true,
 		getCalendarBookings: true,
