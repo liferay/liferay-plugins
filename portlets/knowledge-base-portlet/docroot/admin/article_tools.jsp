@@ -25,7 +25,7 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 <div class="kb-article-tools">
 	<table class="lfr-table">
 	<tr>
-		<c:if test="<%= (kbArticle.isApproved() || !kbArticle.isFirstVersion()) && !Validator.equals(portletDisplay.getRootPortletId(), PortletKeys.KNOWLEDGE_BASE_ADMIN) %>">
+		<c:if test="<%= PortalUtil.isRSSFeedsEnabled() && (kbArticle.isApproved() || !kbArticle.isFirstVersion()) && !Validator.equals(portletDisplay.getRootPortletId(), PortletKeys.KNOWLEDGE_BASE_ADMIN) %>">
 			<td>
 				<liferay-portlet:resourceURL id="kbArticleRSS" var="kbArticleRSSURL">
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />

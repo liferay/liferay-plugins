@@ -24,8 +24,16 @@ String tabs2 = ParamUtil.getString(request, "tabs2", Validator.equals(portletRes
 	<portlet:param name="tabs2" value="<%= tabs2 %>" />
 </liferay-portlet:renderURL>
 
+<%
+String tabs2Names = Validator.equals(portletResource, PortletKeys.KNOWLEDGE_BASE_ARTICLE_DEFAULT_INSTANCE) ? "display-settings" : "general,display-settings";
+
+if (PortalUtil.isRSSFeedsEnabled()) {
+	tabs2Names += ",rss";
+}
+%>
+
 <liferay-ui:tabs
-	names='<%= Validator.equals(portletResource, PortletKeys.KNOWLEDGE_BASE_ARTICLE_DEFAULT_INSTANCE) ? "display-settings,rss" : "general,display-settings,rss" %>'
+	names="<%= tabs2Names %>"
 	param="tabs2"
 	url="<%= portletURL %>"
 />

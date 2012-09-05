@@ -57,7 +57,7 @@ KBArticle kbArticle = (KBArticle)row.getObject();
 		/>
 	</c:if>
 
-	<c:if test="<%= kbArticle.isApproved() || !kbArticle.isFirstVersion() %>">
+	<c:if test="<%= PortalUtil.isRSSFeedsEnabled() && (kbArticle.isApproved() || !kbArticle.isFirstVersion()) %>">
 		<liferay-portlet:resourceURL id="kbArticleRSS" var="kbArticleRSSURL">
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 			<portlet:param name="rssDelta" value="<%= String.valueOf(rssDelta) %>" />

@@ -256,6 +256,13 @@ public class DisplayPortlet extends MVCPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
+		if (!PortalUtil.isRSSFeedsEnabled()) {
+			PortalUtil.sendRSSFeedsDisabledError(
+				resourceRequest, resourceResponse);
+
+			return;
+		}
+
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
@@ -276,6 +283,13 @@ public class DisplayPortlet extends MVCPortlet {
 	public void serveKBArticleRSS(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
+
+		if (!PortalUtil.isRSSFeedsEnabled()) {
+			PortalUtil.sendRSSFeedsDisabledError(
+				resourceRequest, resourceResponse);
+
+			return;
+		}
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);

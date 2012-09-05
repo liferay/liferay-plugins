@@ -136,21 +136,23 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		<div class="kb-display-tools">
 			<table class="lfr-table">
 			<tr>
-				<td>
-					<liferay-portlet:resourceURL id="groupKBArticlesRSS" var="groupKBArticlesRSSURL">
-						<portlet:param name="rssDelta" value="<%= String.valueOf(rssDelta) %>" />
-						<portlet:param name="rssDisplayStyle" value="<%= rssDisplayStyle %>" />
-						<portlet:param name="rssFormat" value="<%= rssFormat %>" />
-					</liferay-portlet:resourceURL>
+				<c:if test="<%= PortalUtil.isRSSFeedsEnabled() %>">
+					<td>
+						<liferay-portlet:resourceURL id="groupKBArticlesRSS" var="groupKBArticlesRSSURL">
+							<portlet:param name="rssDelta" value="<%= String.valueOf(rssDelta) %>" />
+							<portlet:param name="rssDisplayStyle" value="<%= rssDisplayStyle %>" />
+							<portlet:param name="rssFormat" value="<%= rssFormat %>" />
+						</liferay-portlet:resourceURL>
 
-					<liferay-ui:icon
-						image="rss"
-						label="<%= true %>"
-						method="get"
-						target="_blank"
-						url="<%= groupKBArticlesRSSURL %>"
-					/>
-				</td>
+						<liferay-ui:icon
+							image="rss"
+							label="<%= true %>"
+							method="get"
+							target="_blank"
+							url="<%= groupKBArticlesRSSURL %>"
+						/>
+					</td>
+				</c:if>
 
 				<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.SUBSCRIBE) %>">
 					<td>

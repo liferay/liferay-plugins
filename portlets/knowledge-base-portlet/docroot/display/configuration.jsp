@@ -26,8 +26,16 @@ String tabs3 = ParamUtil.getString(request, "tabs3", "article");
 	<portlet:param name="tabs3" value="<%= tabs3 %>" />
 </liferay-portlet:renderURL>
 
+<%
+String tabs2Names = "general,display-settings";
+
+if (PortalUtil.isRSSFeedsEnabled()) {
+	tabs2Names += ",rss";
+}
+%>
+
 <liferay-ui:tabs
-	names="general,display-settings,rss"
+	names="<%= tabs2Names %>"
 	param="tabs2"
 	url="<%= portletURL %>"
 />

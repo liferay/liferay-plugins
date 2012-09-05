@@ -148,12 +148,14 @@
 								/>
 							</span>
 
-							<span class="rss-icon">
-								<liferay-ui:icon
-									image="rss"
-									url='<%= themeDisplay.getPathMain() + "/message_boards/rss?p_l_id=" + mbPlid + "&groupId=" + guestGroup.getGroupId() + "&userId=" + user2.getUserId() %>'
-								/>
-							</span>
+							<c:if test="<%= PortalUtil.isRSSFeedsEnabled() %>">
+								<span class="rss-icon">
+									<liferay-ui:icon
+										image="rss"
+										url='<%= themeDisplay.getPathMain() + "/message_boards/rss?p_l_id=" + mbPlid + "&groupId=" + guestGroup.getGroupId() + "&userId=" + user2.getUserId() %>'
+									/>
+								</span>
+							</c:if>
 						</c:when>
 						<c:otherwise>
 							<span>
@@ -183,13 +185,15 @@
 								/>
 							</span>
 
-							<span class="rss-icon">
-								<liferay-ui:icon
-									image="rss"
-									method="get"
-									url='<%= blogsFriendlyURL + "/-/blogs/rss" %>'
-								/>
-							</span>
+							<c:if test="<%= PortalUtil.isRSSFeedsEnabled() %>">
+								<span class="rss-icon">
+									<liferay-ui:icon
+										image="rss"
+										method="get"
+										url='<%= blogsFriendlyURL + "/-/blogs/rss" %>'
+									/>
+								</span>
+							</c:if>
 						</c:when>
 						<c:otherwise>
 							<span>
