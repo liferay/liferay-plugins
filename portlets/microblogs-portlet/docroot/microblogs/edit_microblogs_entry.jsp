@@ -38,6 +38,8 @@ if (microblogsEntryId > 0) {
 	}
 }
 
+String content = StringPool.BLANK;
+
 String modifiedDate = StringPool.BLANK;
 
 long receiverUserId = 0;
@@ -51,6 +53,8 @@ boolean edit = ParamUtil.getBoolean(request, "edit");
 boolean repost = ParamUtil.getBoolean(request, "repost");
 
 if ((microblogsEntry != null) && !edit) {
+	content =  HtmlUtil.escape(microblogsEntry.getContent());
+
 	modifiedDate = dateFormatDateTime.format(microblogsEntry.getModifiedDate());
 
 	receiverUserId = microblogsEntry.getUserId();
@@ -101,7 +105,7 @@ if (comment) {
 					</div>
 
 					<div class="content">
-						<span><%= HtmlUtil.escape(microblogsEntry.getContent()) %><span>
+						<span><%= content %></span>
 					</div>
 
 					<div class="footer">
@@ -130,7 +134,7 @@ if (comment) {
 		<c:when test="<%= repost %>">
 			<aui:input name="type" type="hidden" value="<%= MicroblogsEntryConstants.TYPE_REPOST %>" />
 
-			<aui:input name="content" type="hidden" value="<%= microblogsEntry.getContent() %>" />
+			<aui:input name="content" type="hidden" value="<%= content %>" />
 		</c:when>
 		<c:when test="<%= comment %>">
 			<aui:input name="type" type="hidden" value="<%= MicroblogsEntryConstants.TYPE_REPLY %>" />
@@ -249,7 +253,7 @@ if (comment) {
 			var autocompleteContent = A.one('#<portlet:namespace />autocompleteContent<%= microblogsEntryId %>');
 			var highlighterContent = A.one('#<portlet:namespace/>highlighterContent<%= microblogsEntryId %>');
 
-			var inputValue = '<%= ((microblogsEntry != null) && (edit)) ? StringUtil.replace(microblogsEntry.getContent(), "\'", "\\'") : StringPool.BLANK %>';
+			var inputValue = '<%= ((microblogsEntry != null) && (edit)) ? StringUtil.replace(content, "\'", "\\'") : StringPool.BLANK %>';
 
 			if ((autocomplete.height() < 45) || (highlighterContent.height() < 45)) {
 				autocomplete.height(45);
