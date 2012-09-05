@@ -23,14 +23,14 @@ String mvcPath = ParamUtil.getString(request, "jspPage");
 
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
-OAuthApplication oAuthApp = (OAuthApplication)row.getObject();
+Application app = (Application)row.getObject();
 %>
 
 <liferay-ui:icon-menu>
 	<liferay-portlet:renderURL var="viewURL">
-		<portlet:param name="jspPage" value="/html/admin/edit.jsp" />
+		<portlet:param name="mvcPath" value="/html/admin/edit.jsp" />
 		<portlet:param name="referer" value="<%= currentURL %>" />
-		<portlet:param name="applicationId" value="<%= String.valueOf(oAuthApp.getApplicationId()) %>" />
+		<portlet:param name="applicationId" value="<%= String.valueOf(app.getApplicationId()) %>" />
 	</liferay-portlet:renderURL>
 
 	<liferay-ui:icon
@@ -41,9 +41,9 @@ OAuthApplication oAuthApp = (OAuthApplication)row.getObject();
 
 	<c:if test='<%= permissionChecker.hasPermission(layout.getGroupId(), "com.liferay.portlet.oauth", layout.getGroupId(), ActionKeys.UPDATE) %>'>
 		<liferay-portlet:renderURL var="editURL">
-			<portlet:param name="jspPage" value="/html/admin/edit.jsp" />
+			<portlet:param name="mvcPath" value="/html/admin/edit.jsp" />
 			<portlet:param name="referer" value="<%= currentURL %>" />
-			<portlet:param name="applicationId" value="<%= String.valueOf(oAuthApp.getApplicationId()) %>" />
+			<portlet:param name="applicationId" value="<%= String.valueOf(app.getApplicationId()) %>" />
 		</liferay-portlet:renderURL>
 
 		<liferay-ui:icon
@@ -54,8 +54,9 @@ OAuthApplication oAuthApp = (OAuthApplication)row.getObject();
 	</c:if>
 
 	<c:if test='<%= permissionChecker.hasPermission(layout.getGroupId(), "com.liferay.portlet.oauth", layout.getGroupId(), ActionKeys.DELETE) %>'>
-		<liferay-portlet:actionURL name="deleteOAuthApp" var="deleteURL">
-			<portlet:param name="applicationId" value="<%= String.valueOf(oAuthApp.getApplicationId()) %>" />
+		<liferay-portlet:actionURL name="deleteApplication" var="deleteURL">
+			<portlet:param name="referer" value="<%= currentURL %>" />
+			<portlet:param name="applicationId" value="<%= String.valueOf(app.getApplicationId()) %>" />
 		</liferay-portlet:actionURL>
 
 		<liferay-ui:icon-delete

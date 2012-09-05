@@ -14,15 +14,6 @@
  */
 --%>
 
-<%@ page import="com.liferay.portal.kernel.servlet.SessionMessages" %>
-<%@ page import="com.liferay.portal.oauth.service.OAuthApplicationLocalServiceUtil" %>
-<%@ page import="com.liferay.portal.oauth.service.OAuthApplications_UsersLocalServiceUtil" %>
-<%@ page import="com.liferay.portlet.oauth.search.OAuthApplicationDisplayTerms" %>
-<%@ page import="com.liferay.portlet.oauth.search.OAuthApplicationSearch" %>
-<%@ page import="com.liferay.portlet.oauth.search.OAuthApplicationSearchTerms" %>
-
-<%@ page import="java.util.List" %>
-
 <%@ include file="/html/init.jsp" %>
 
 <c:if test="<%= SessionMessages.contains(request, OAuthConstants.WEB_APP_REQ_PROCESSED) %>">
@@ -51,15 +42,15 @@ String replaceParm0 = "{0}";
 	<%
 		String name = ((OAuthApplicationSearchTerms)searchContainer.getSearchTerms()).getName();
 
-		List<OAuthApplication> oAuthApps = null;
+		List<Application> oAuthApps = null;
 		int oAuthAppsCnt = 0;
 
 		if (adminUser) {
-			oAuthApps = OAuthApplicationLocalServiceUtil.getApplications(themeDisplay.getCompanyId(), name, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
-			oAuthAppsCnt = OAuthApplicationLocalServiceUtil.getApplicationsCountByCN(themeDisplay.getCompanyId(), name);
+			oAuthApps = ApplicationLocalServiceUtil.getApplications(themeDisplay.getCompanyId(), name, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
+			oAuthAppsCnt = ApplicationLocalServiceUtil.getApplicationsCountByCN(themeDisplay.getCompanyId(), name);
 		} else {
-			oAuthApps = OAuthApplicationLocalServiceUtil.getApplicationsByON(themeDisplay.getUserId(), name, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
-			oAuthAppsCnt = OAuthApplicationLocalServiceUtil.getApplicationsCountByON(themeDisplay.getUserId(), name);
+			oAuthApps = ApplicationLocalServiceUtil.getApplicationsByON(themeDisplay.getUserId(), name, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
+			oAuthAppsCnt = ApplicationLocalServiceUtil.getApplicationsCountByON(themeDisplay.getUserId(), name);
 		}
 	%>
 
@@ -69,12 +60,12 @@ String replaceParm0 = "{0}";
 	 />
 
 	<liferay-ui:search-container-row
-		className="com.liferay.portal.oauth.model.OAuthApplication"
+		className="com.liferay.portal.oauth.model.Application"
 		keyProperty="applicationId"
 		modelVar="app">
 
 		<%
-		int authorizationsCount = OAuthApplications_UsersLocalServiceUtil.countByApplicationId(app.getApplicationId());
+		int authorizationsCount = ApplicationUserLocalServiceUtil.getApplicationUsersCount(app.getApplicationId());
 		%>
 
 		<liferay-ui:search-container-column-text

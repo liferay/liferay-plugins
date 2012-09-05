@@ -7,7 +7,7 @@
 			<access>PROPERTY</access>
 		</persistence-unit-defaults>
 	</persistence-unit-metadata>
-	<mapped-superclass class="com.liferay.portal.oauth.model.impl.OAuthApplicationModelImpl">
+	<mapped-superclass class="com.liferay.portal.oauth.model.impl.ApplicationModelImpl">
 		<attributes>
 			<id name="applicationId" />
 			<basic name="companyId" />
@@ -19,40 +19,39 @@
 			<basic name="modifiedDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
-			<basic name="ownerId" />
 			<basic name="name" />
 			<basic name="description" />
 			<basic name="website" />
-			<basic name="consumerKey" />
-			<basic name="consumerSecret" />
 			<basic name="callBackURL" />
 			<basic name="accessLevel" />
+			<basic name="consumerKey" />
+			<basic name="consumerSecret" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
-	<mapped-superclass class="com.liferay.portal.oauth.model.impl.OAuthApplications_UsersModelImpl">
+	<mapped-superclass class="com.liferay.portal.oauth.model.impl.ApplicationUserModelImpl">
 		<attributes>
-			<id name="oaauid" />
+			<id name="oaauId" />
+			<basic name="userId" />
+			<basic name="applicationId" />
 			<basic name="accessToken" />
 			<basic name="accessSecret" />
-			<basic name="applicationId" />
 			<basic name="authorized" />
-			<basic name="userId" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
-	<entity class="com.liferay.portal.oauth.model.impl.OAuthApplicationImpl" name="OAuthApplication">
-		<table name="OAuthApplication" />
+	<entity class="com.liferay.portal.oauth.model.impl.ApplicationImpl" name="Application">
+		<table name="OAuth_Application" />
 		<attributes />
 	</entity>
-	<entity class="com.liferay.portal.oauth.model.impl.OAuthApplications_UsersImpl" name="OAuthApplications_Users">
-		<table name="OAuthApplications_Users" />
+	<entity class="com.liferay.portal.oauth.model.impl.ApplicationUserImpl" name="ApplicationUser">
+		<table name="OAuth_ApplicationUser" />
 		<attributes />
 	</entity>
 </entity-mappings>

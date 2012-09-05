@@ -14,13 +14,7 @@
  */
 --%>
 
-<%@page import="java.util.ArrayList"%>
-<%@page import="com.liferay.portal.oauth.service.OAuthApplications_UsersLocalServiceUtil"%>
-<%@page import="com.liferay.portal.oauth.service.persistence.OAuthApplications_UsersFinderUtil"%>
-<%@page import="com.liferay.portal.oauth.service.persistence.OAuthApplications_UsersFinder"%>
-<%@page import="com.liferay.portal.oauth.model.OAuthApplications_Users"%>
-<%@ page import="com.liferay.portal.oauth.service.OAuthApplicationLocalServiceUtil" %>
-
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 
 <%@ include file="/html/init.jsp" %>
@@ -31,7 +25,7 @@ String secret = (String)request.getAttribute("oauth-simulator-secret");
 String oauthURL = (String)request.getAttribute("oauth-simulator-url");
 String applicationId = (String)request.getAttribute("applicationId");
 
-boolean verifyStep = null != oauthURL && !"".equals(oauthURL);
+boolean verifyStep = Validator.isNotNull(oauthURL);
 %>
 
 <liferay-ui:error-marker key="errorSection" value="details" />
@@ -45,7 +39,7 @@ boolean verifyStep = null != oauthURL && !"".equals(oauthURL);
 		</liferay-ui:panel>
 
 		<liferay-portlet:actionURL name="verifyOAuthorization" var="verifyOAuthorizationURL">
-				<portlet:param name="jspPage" value="/html/simulator/view.jsp" />
+				<portlet:param name="mvcPath" value="/html/simulator/view.jsp" />
 		</liferay-portlet:actionURL>
 
 		<aui:form action="<%= verifyOAuthorizationURL %>" method="post">
@@ -61,22 +55,22 @@ boolean verifyStep = null != oauthURL && !"".equals(oauthURL);
 		</aui:form>
 	</c:when>
 	<c:otherwise>
-		<liferay-ui:search-container delta="5" >
+		<liferay-ui:search-container delta="5">
 
 	<%
-		List<OAuthApplication> allOAuthApps = null;	
-		List<OAuthApplication> unapprovedOAuthApps = new ArrayList<OAuthApplication>();
-		
+		List<Application> allOAuthApps = null;
+		List<Application> unapprovedOAuthApps = new ArrayList<Application>();
+
 		int oAuthAppsCnt = 0;
-		
-		allOAuthApps = OAuthApplicationLocalServiceUtil.getApplications(themeDisplay.getCompanyId());
-		
+
+		allOAuthApps = ApplicationLocalServiceUtil.getApplications(themeDisplay.getCompanyId());
+
 		unapprovedOAuthApps.addAll(allOAuthApps);
-		
-		List<OAuthApplications_Users> approved = OAuthApplications_UsersLocalServiceUtil.findByUser(themeDisplay.getUserId());
-		
-		for (OAuthApplication a : allOAuthApps) {
-			for (OAuthApplications_Users oaau : approved) {
+
+		List<ApplicationUser> approved = ApplicationUserLocalServiceUtil.getAuthorizedApplicationUsersByUserId(themeDisplay.getUserId(), true);
+
+		for (Application a : allOAuthApps) {
+			for (ApplicationUser oaau : approved) {
 				if (a.getApplicationId() == oaau.getApplicationId()) {
 					unapprovedOAuthApps.remove(a);
 				}
@@ -91,7 +85,7 @@ boolean verifyStep = null != oauthURL && !"".equals(oauthURL);
 	 />
 
 	<liferay-ui:search-container-row
-		className="com.liferay.portal.oauth.model.OAuthApplication"
+		className="com.liferay.portal.oauth.model.Application"
 		keyProperty="applicationId"
 		modelVar="app">
 
@@ -112,7 +106,7 @@ boolean verifyStep = null != oauthURL && !"".equals(oauthURL);
 		</liferay-ui:search-container-column-text>
 
 		<liferay-portlet:actionURL name="addOAuthorization" var="addAuthorizationURL">
-			<portlet:param name="jspPage" value="/html/simulator/view.jsp" />
+			<portlet:param name="mvcPath" value="/html/simulator/view.jsp" />
 			<portlet:param name="applicationId" value="<%= String.valueOf(app.getApplicationId()) %>" />
 		</liferay-portlet:actionURL>
 

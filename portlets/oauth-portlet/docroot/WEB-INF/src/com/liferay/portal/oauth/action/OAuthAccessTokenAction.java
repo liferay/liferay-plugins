@@ -18,8 +18,10 @@ import com.liferay.portal.kernel.struts.BaseStrutsAction;
 import com.liferay.portal.oauth.OAuthAccessor;
 import com.liferay.portal.oauth.OAuthMessage;
 import com.liferay.portal.oauth.OAuthProblemException;
-import com.liferay.portal.oauth.OAuthProviderManagerUtil;
-import com.liferay.portlet.oauth.OAuthConstants;
+import com.liferay.portal.oauth.OAuthUtil;
+import com.liferay.portal.oauth.util.OAuthConstants;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextFactory;
 
 import java.io.OutputStream;
 
@@ -39,17 +41,21 @@ public class OAuthAccessTokenAction extends BaseStrutsAction {
 		throws Exception {
 
 		try {
-			OAuthMessage requestMessage = OAuthProviderManagerUtil.getMessage(
-				request, null);
+			ServiceContext serviceContext = ServiceContextFactory.getInstance(
+				request);
 
-			OAuthAccessor accessor = OAuthProviderManagerUtil.getAccessor(
-				requestMessage);
+			OAuthMessage requestMessage = OAuthUtil.getMessage(request, null);
 
-			OAuthProviderManagerUtil.validateMessage(requestMessage, accessor);
+			OAuthAccessor accessor = OAuthUtil.getAccessor(requestMessage);
+
+			OAuthUtil.validateMessage(requestMessage, accessor);
 
 			// make sure token is authorized
-			if (!Boolean.TRUE.equals(accessor.getProperty(
-					OAuthConstants.AUTHORIZED))) {
+
+			Boolean authorized = (Boolean)accessor.getProperty(
+				OAuthConstants.AUTHORIZED);
+
+			if (!Boolean.TRUE.equals(authorized)) {
 				throw new OAuthProblemException(
 					OAuthProblemException.PERMISSION_DENIED);
 			}
@@ -57,20 +63,20 @@ public class OAuthAccessTokenAction extends BaseStrutsAction {
 			long userId = (Long)accessor.getProperty(OAuthConstants.USER);
 
 			// generate access token and secret
-			OAuthProviderManagerUtil.generateAccessToken(accessor, userId);
+
+			OAuthUtil.generateAccessToken(accessor, userId, serviceContext);
 
 			response.setContentType("text/plain");
 
 			OutputStream out = response.getOutputStream();
-			OAuthProviderManagerUtil
-				.formEncode(
-					accessor.getAccessToken(), accessor.getTokenSecret(), out);
+
+			OAuthUtil.formEncode(
+				accessor.getAccessToken(), accessor.getTokenSecret(), out);
 
 			out.close();
-
-		} catch (Exception e) {
-			OAuthProviderManagerUtil.handleException(
-				request, response, e, true);
+		}
+		catch (Exception e) {
+			OAuthUtil.handleException(request, response, e, true);
 		}
 
 		return null;

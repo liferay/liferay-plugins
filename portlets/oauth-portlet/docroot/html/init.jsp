@@ -16,18 +16,25 @@
 
 <%@ page import="com.liferay.portal.RequiredFieldException" %><%@
 page import="com.liferay.portal.kernel.servlet.SessionErrors" %><%@
+page import="com.liferay.portal.kernel.servlet.SessionMessages" %><%@
 page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
+page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.portal.kernel.util.WebKeys" %><%@
 page import="com.liferay.portal.oauth.OAuthAccessor" %><%@
 page import="com.liferay.portal.oauth.OAuthProblemException" %><%@
-page import="com.liferay.portal.oauth.model.OAuthApplication" %><%@
+page import="com.liferay.portal.oauth.model.Application" %><%@
+page import="com.liferay.portal.oauth.service.ApplicationLocalServiceUtil" %><%@
+page import="com.liferay.portal.oauth.service.ApplicationUserLocalServiceUtil" %><%@
+page import="com.liferay.portal.oauth.util.OAuthConstants" %><%@
 page import="com.liferay.portal.security.permission.ActionKeys" %><%@
 page import="com.liferay.portlet.PortletURLUtil" %><%@
-page import="com.liferay.portlet.oauth.OAuthConstants" %><%@
-page import="com.liferay.portlet.oauth.OAuthWebKeys" %>
+page import="com.liferay.portlet.oauth.search.OAuthApplicationDisplayTerms" %><%@
+page import="com.liferay.portlet.oauth.search.OAuthApplicationSearchTerms" %><%@
+page import="com.liferay.portlet.oauth.search.OAuthApplicationSearch" %>
 
-<%@ page import="java.net.MalformedURLException" %>
+<%@ page import="java.net.MalformedURLException" %><%@
+page import="java.util.List" %>
 
 <%@ page import="javax.portlet.PortletMode" %><%@
 page import="javax.portlet.PortletURL" %><%@

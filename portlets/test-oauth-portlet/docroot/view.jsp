@@ -1,4 +1,4 @@
-<%
+<%--
 /**
  * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
@@ -12,7 +12,7 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-%>
+--%>
 
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 

@@ -16,9 +16,9 @@ package com.liferay.portal.oauth.service.messaging;
 
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
+import com.liferay.portal.oauth.service.ApplicationLocalServiceUtil;
+import com.liferay.portal.oauth.service.ApplicationUserLocalServiceUtil;
 import com.liferay.portal.oauth.service.ClpSerializer;
-import com.liferay.portal.oauth.service.OAuthApplicationLocalServiceUtil;
-import com.liferay.portal.oauth.service.OAuthApplications_UsersLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
@@ -35,9 +35,9 @@ public class ClpMessageListener extends BaseMessageListener {
 
 		if (command.equals("undeploy") &&
 				servletContextName.equals(getServletContextName())) {
-			OAuthApplicationLocalServiceUtil.clearService();
+			ApplicationLocalServiceUtil.clearService();
 
-			OAuthApplications_UsersLocalServiceUtil.clearService();
+			ApplicationUserLocalServiceUtil.clearService();
 		}
 	}
 }

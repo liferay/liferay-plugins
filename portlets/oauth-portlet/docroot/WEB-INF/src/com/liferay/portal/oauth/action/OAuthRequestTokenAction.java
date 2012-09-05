@@ -16,6 +16,7 @@ package com.liferay.portal.oauth.action;
 
 import com.liferay.portal.kernel.struts.BaseStrutsAction;
 import com.liferay.portal.oauth.*;
+import com.liferay.portal.oauth.util.OAuthConstants;
 
 import java.io.OutputStream;
 
@@ -35,15 +36,15 @@ public class OAuthRequestTokenAction extends BaseStrutsAction {
 		throws Exception {
 
 		try {
-			OAuthMessage requestMessage = OAuthProviderManagerUtil.getMessage(
+			OAuthMessage requestMessage = OAuthUtil.getMessage(
 				request, null);
 
-			OAuthConsumer consumer = OAuthProviderManagerUtil.getConsumer(
+			OAuthConsumer consumer = OAuthUtil.getConsumer(
 				requestMessage);
 
 			OAuthAccessor accessor = new OAuthAccessorImpl(consumer);
 
-			OAuthProviderManagerUtil.validateMessage(requestMessage, accessor);
+			OAuthUtil.validateMessage(requestMessage, accessor);
 
 			// Support the 'Variable Accessor Secret' extension
 			// described in http://oauth.pbwiki.com/AccessorSecret
@@ -51,21 +52,21 @@ public class OAuthRequestTokenAction extends BaseStrutsAction {
 				"oauth_accessor_secret");
 
 			if (secret != null) {
-				accessor.setProperty(OAuthConsumer.ACCESSOR_SECRET, secret);
+				accessor.setProperty(OAuthConstants.ACCESSOR_SECRET, secret);
 			}
 
 			// generate request_token and secret
-			OAuthProviderManagerUtil.generateRequestToken(accessor);
+			OAuthUtil.generateRequestToken(accessor);
 
 			response.setContentType("text/plain");
 
 			OutputStream out = response.getOutputStream();
-			OAuthProviderManagerUtil.formEncode(
+			OAuthUtil.formEncode(
 				accessor.getRequestToken(), accessor.getTokenSecret(), out);
 
 			out.close();
 		} catch (Exception e) {
-			OAuthProviderManagerUtil.handleException(
+			OAuthUtil.handleException(
 				request, response, e, true);
 		}
 

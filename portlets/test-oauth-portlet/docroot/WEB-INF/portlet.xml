@@ -4,7 +4,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>1</display-name>
-		<portlet-class>com.liferay.portlet.oauth.mvc.OAuthSimulatorPortlet</portlet-class>
+		<portlet-class>com.liferay.portlet.oauth.mvc.SimulatorPortlet</portlet-class>
 		<init-param>
 			<name>config-jsp</name>
 			<value>/html/simulator/config.jsp</value>
@@ -12,6 +12,10 @@
 		<init-param>
 			<name>copy-request-parameters</name>
 			<value>true</value>
+		</init-param>
+		<init-param>
+			<name>edit-jsp</name>
+			<value>/html/simulator/config.jsp</value>
 		</init-param>
 		<init-param>
 			<name>view-jsp</name>
@@ -22,6 +26,7 @@
 			<mime-type>text/html</mime-type>
 			<portlet-mode>view</portlet-mode>
 			<portlet-mode>config</portlet-mode>
+			<portlet-mode>edit</portlet-mode>
 		</supports>
 		<portlet-info>
 			<title>OAUTH SIMULATION</title>

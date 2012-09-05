@@ -1,28 +1,27 @@
 <?xml version="1.0"?>
 
 <model-hints>
-	<model name="com.liferay.portal.oauth.model.OAuthApplication">
+	<model name="com.liferay.portal.oauth.model.Application">
 		<field name="applicationId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
 		<field name="userName" type="String" />
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
-		<field name="ownerId" type="long" />
 		<field name="name" type="String" />
 		<field name="description" type="String" />
 		<field name="website" type="String" />
-		<field name="consumerKey" type="String" />
-		<field name="consumerSecret" type="String" />
 		<field name="callBackURL" type="String" />
 		<field name="accessLevel" type="int" />
+		<field name="consumerKey" type="String" />
+		<field name="consumerSecret" type="String" />
 	</model>
-	<model name="com.liferay.portal.oauth.model.OAuthApplications_Users">
-		<field name="oaauid" type="long" />
+	<model name="com.liferay.portal.oauth.model.ApplicationUser">
+		<field name="oaauId" type="long" />
+		<field name="userId" type="long" />
+		<field name="applicationId" type="long" />
 		<field name="accessToken" type="String" />
 		<field name="accessSecret" type="String" />
-		<field name="applicationId" type="long" />
 		<field name="authorized" type="boolean" />
-		<field name="userId" type="long" />
 	</model>
 </model-hints>

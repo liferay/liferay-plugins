@@ -65,7 +65,7 @@
 		</permissions>
 	</model-resource>
 	<model-resource>
-		<model-name>com.liferay.portal.oauth.model.OAuthApplication</model-name>
+		<model-name>com.liferay.portal.oauth.model.Application</model-name>
 		<portlet-ref>
 			<portlet-name>1</portlet-name>
 		</portlet-ref>
@@ -87,7 +87,7 @@
 		</permissions>
 	</model-resource>
 	<model-resource>
-		<model-name>com.liferay.portal.oauth.model.OAuthApplications_Users</model-name>
+		<model-name>com.liferay.portal.oauth.model.ApplicationUser</model-name>
 		<portlet-ref>
 			<portlet-name>1</portlet-name>
 		</portlet-ref>

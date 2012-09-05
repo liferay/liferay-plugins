@@ -125,8 +125,7 @@ public class OAuthProviderTest {
 				redirectedToLoginPage();
 			}
 
-			WebElement element = _driver.findElement(
-					By.id(OAUTH_PORTLET_ID));
+			WebElement element = _driver.findElement(By.id(OAUTH_PORTLET_ID));
 			element.submit();
 
 			_driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -159,8 +158,7 @@ public class OAuthProviderTest {
 				redirectedToLoginPage();
 			}
 
-			WebElement element = _driver.findElement(
-					By.id(OAUTH_PORTLET_ID));
+			WebElement element = _driver.findElement(By.id(OAUTH_PORTLET_ID));
 			element.submit();
 
 			element = _driver.findElement(By.className("portlet-msg-info"));
@@ -234,7 +232,7 @@ public class OAuthProviderTest {
 	private void clearData(Object[][] data) throws Exception {
 		for (int i = 0; i< data.length; i++) {
 			PreparedStatement pstmt = _connection.prepareStatement(
-				DELETE_STATEMENT_OAUTHAPPLICATION);
+				DELETE_STATEMENT_APPLICATION);
 
 			pstmt.setInt(1, (Integer) data[i][0]);
 
@@ -243,7 +241,7 @@ public class OAuthProviderTest {
 			pstmt.close();
 
 			pstmt = _connection.prepareStatement(
-				DELETE_STATEMENT_OAUTHAPPLICATIONS_USERS);
+				DELETE_STATEMENT_APPLICATIONUSER);
 
 			pstmt.setInt(1, (Integer) data[i][0]);
 
@@ -306,7 +304,7 @@ public class OAuthProviderTest {
 	private void prepareData(Object[][] data) throws Exception {
 		for (int i = 0; i< data.length; i++) {
 			PreparedStatement pstmt = _connection.prepareStatement(
-				INSERT_STATEMENT_OAUTHAPPLICATION);
+				INSERT_STATEMENT_APPLICATION);
 
 			pstmt.setInt(1, (Integer) data[i][0]);
 			pstmt.setInt(2, (Integer) data[i][1]);
@@ -347,12 +345,12 @@ public class OAuthProviderTest {
 		element.submit();
 	}
 
-	private static final String DELETE_STATEMENT_OAUTHAPPLICATION =
-			"delete from oauthapplication where applicationId=?";
-	private static final String DELETE_STATEMENT_OAUTHAPPLICATIONS_USERS =
-			"delete from oauthapplications_users where applicationId=?";
-	private static final String INSERT_STATEMENT_OAUTHAPPLICATION =
-		"INSERT INTO oauthapplication VALUES " +
+	private static final String DELETE_STATEMENT_APPLICATION =
+			"delete from oauth_application where applicationId=?";
+	private static final String DELETE_STATEMENT_APPLICATIONUSER =
+			"delete from oauth_applicationuser where applicationId=?";
+	private static final String INSERT_STATEMENT_APPLICATION =
+		"INSERT INTO oauth_application VALUES " +
 			"(? ,? ,? ,? ,? ,? , ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	private static final String OAUTH_PORTLET_ID =

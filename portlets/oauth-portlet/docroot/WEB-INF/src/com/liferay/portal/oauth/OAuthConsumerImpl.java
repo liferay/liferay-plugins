@@ -14,14 +14,14 @@
 
 package com.liferay.portal.oauth;
 
-import com.liferay.portal.oauth.model.OAuthApplication;
+import com.liferay.portal.oauth.model.Application;
 
 /**
  * @author Ivica Cardic
  */
 public class OAuthConsumerImpl implements OAuthConsumer {
 
-	public OAuthConsumerImpl(OAuthApplication oAuthApplication) {
+	public OAuthConsumerImpl(Application oAuthApplication) {
 		this(new net.oauth.OAuthConsumer(
 			oAuthApplication.getCallBackURL(),
 			oAuthApplication.getConsumerKey(),
@@ -38,7 +38,7 @@ public class OAuthConsumerImpl implements OAuthConsumer {
 		return _oAuthConsumer.callbackURL;
 	}
 
-	public OAuthApplication getOAuthApplication() {
+	public Application getApplication() {
 		return _oAuthApplication;
 	}
 
@@ -54,7 +54,7 @@ public class OAuthConsumerImpl implements OAuthConsumer {
 		this._oAuthConsumer = (net.oauth.OAuthConsumer)oAuthConsumer;
 	}
 
-	private OAuthApplication _oAuthApplication;
+	private Application _oAuthApplication;
 	private net.oauth.OAuthConsumer _oAuthConsumer;
 
 }

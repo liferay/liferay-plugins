@@ -14,15 +14,11 @@
  */
 --%>
 
-<%@ page import="com.liferay.portal.kernel.servlet.SessionMessages" %>
-<%@ page import="com.liferay.portal.oauth.model.OAuthApplications_Users" %>
-<%@ page import="com.liferay.portal.oauth.service.OAuthApplicationLocalServiceUtil" %>
-<%@ page import="com.liferay.portal.oauth.service.OAuthApplications_UsersLocalServiceUtil" %>
-<%@ page import="com.liferay.portlet.oauth.search.OAuthApplicationDisplayTerms" %>
-<%@ page import="com.liferay.portlet.oauth.search.OAuthApplicationSearchTerms" %>
-<%@ page import="com.liferay.portlet.oauth.search.OAuthApplicationUserSearch" %>
-
-<%@ page import="java.util.List" %>
+<%@ page import="com.liferay.portal.kernel.servlet.SessionMessages" %><%@
+page import="com.liferay.portal.oauth.model.ApplicationUser" %><%@
+page import="com.liferay.portlet.oauth.search.OAuthApplicationDisplayTerms" %><%@
+page import="com.liferay.portlet.oauth.search.OAuthApplicationSearchTerms" %><%@
+page import="com.liferay.portlet.oauth.search.OAuthApplicationUserSearch" %>
 
 <%@ include file="/html/init.jsp" %>
 
@@ -34,7 +30,7 @@ String noResultsMsgKey = "no-authorized-apps-were-found";
 String toolbarItem = ParamUtil.getString(request, OAuthConstants.TOOLBAR_ITEM, OAuthConstants.TOOLBAR_ITEM_VIEW_ALL);
 
 if (!adminUser) {
-	myAppsCount = OAuthApplicationLocalServiceUtil.getApplicationsCountByOwnerId(userId);
+	myAppsCount = ApplicationLocalServiceUtil.getApplicationsByUserIdCount(userId);
 
 	if (OAuthConstants.TOOLBAR_ITEM_MY_APPS.equals(toolbarItem)) {
 		noResultsMsgKey = "no-authorized-my-apps-were-found";
@@ -69,7 +65,7 @@ if (!adminUser) {
 	<%
 		String name = ((OAuthApplicationSearchTerms)searchContainer.getSearchTerms()).getName();
 
-		List<OAuthApplications_Users> oAuthApps = null;
+		List<ApplicationUser> oAuthApps = null;
 		int oAuthAppsCnt = 0;
 
 		boolean renderRevokeAction = false;
@@ -77,18 +73,18 @@ if (!adminUser) {
 		if (adminUser) {
 			renderRevokeAction = true;
 
-			oAuthApps = OAuthApplications_UsersLocalServiceUtil.getOAuthApplications_Userses(searchContainer.getStart(), searchContainer.getEnd());
-			oAuthAppsCnt = OAuthApplications_UsersLocalServiceUtil.getOAuthApplications_UsersesCount();
+			oAuthApps = ApplicationUserLocalServiceUtil.getApplicationUsers(searchContainer.getStart(), searchContainer.getEnd());
+			oAuthAppsCnt = ApplicationUserLocalServiceUtil.getApplicationUsersCount();
 		} else {
 			if (OAuthConstants.TOOLBAR_ITEM_MY_APPS.equals(toolbarItem)) {
-				oAuthApps = OAuthApplications_UsersLocalServiceUtil.findByOwner(userId, true, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
-				oAuthAppsCnt = OAuthApplications_UsersLocalServiceUtil.countByOwner(userId, true);
+				oAuthApps = ApplicationUserLocalServiceUtil.getAuthorizedApplicationUsersByOwnerId(userId, true, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
+				oAuthAppsCnt = ApplicationUserLocalServiceUtil.getAuthorizedApplicationUsersByOwnerIdCount(userId, true);
 			}
 			else {
 				renderRevokeAction = true;
 
-				oAuthApps = OAuthApplications_UsersLocalServiceUtil.findByUser(userId, searchContainer.getStart(), searchContainer.getEnd());
-				oAuthAppsCnt = OAuthApplications_UsersLocalServiceUtil.countByUser(userId);
+				oAuthApps = ApplicationUserLocalServiceUtil.getAuthorizedApplicationUsersByUserId(userId, true, searchContainer.getStart(), searchContainer.getEnd(), null);
+				oAuthAppsCnt = ApplicationUserLocalServiceUtil.getAuthorizedApplicationUsersByUserIdCount(userId, true);
 			}
 		}
 	%>
@@ -99,18 +95,18 @@ if (!adminUser) {
 	 />
 
 	<liferay-ui:search-container-row
-		className="com.liferay.portal.oauth.model.OAuthApplications_Users"
-		keyProperty="oaauid"
+		className="com.liferay.portal.oauth.model.ApplicationUser"
+		keyProperty="oaauId"
 		modelVar="appAuth">
 
 		<%
-		OAuthApplication app = OAuthApplicationLocalServiceUtil.fetchOAuthApplication(appAuth.getApplicationId());
+		Application app = ApplicationLocalServiceUtil.getApplication(appAuth.getApplicationId());
 		%>
 
 		<liferay-ui:search-container-column-text
 			name="oaauid"
 			orderable="<%= true %>"
-			value="<%= String.valueOf(appAuth.getOaauid()) %>"
+			value="<%= String.valueOf(appAuth.getOaauId()) %>"
 		/>
 		<liferay-ui:search-container-column-text
 			name="application-id-short"
@@ -127,7 +123,7 @@ if (!adminUser) {
 		/>
 		<liferay-ui:search-container-column-text
 			name="authorized"
-			value="<%= Boolean.toString(appAuth.getAuthorized()) %>"
+			value="<%= String.valueOf(appAuth.getAuthorized()) %>"
 		/>
 		<liferay-ui:search-container-column-text
 			name="access-level"
@@ -137,7 +133,7 @@ if (!adminUser) {
 
 		<c:if test="<%= renderRevokeAction %>">
 			<liferay-portlet:actionURL name="deleteOAuthAppUsr" var="revokeURL">
-				<portlet:param name="<%= OAuthConstants.WEB_APP_ID %>" value="<%= String.valueOf(appAuth.getApplicationId()) %>" />
+				<portlet:param name="<%=OAuthConstants.APPLICATION_ID%>" value="<%= String.valueOf(appAuth.getApplicationId()) %>" />
 			</liferay-portlet:actionURL>
 
 			<liferay-ui:search-container-column-text href="<%= revokeURL %>">

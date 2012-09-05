@@ -20,11 +20,10 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.oauth.model.OAuthApplication;
-import com.liferay.portal.oauth.model.OAuthApplications_Users;
+import com.liferay.portal.oauth.model.ApplicationUser;
+import com.liferay.portal.oauth.util.OAuthConstants;
 import com.liferay.portlet.PortalPreferences;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
-import com.liferay.portlet.oauth.OAuthConstants;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,7 +39,7 @@ import javax.portlet.PortletURL;
  *
  */
 public class OAuthApplicationUserSearch
-	extends SearchContainer<OAuthApplications_Users> {
+	extends SearchContainer<ApplicationUser> {
 	public static final String ORDER_BY_ASC = "name ASC";
 
 	public static final String ORDER_BY_DESC = "name DESC";
@@ -51,12 +50,12 @@ public class OAuthApplicationUserSearch
 	static Map<String, String> orderableHeaders = new HashMap<String, String>();
 
 	static {
-		headerNames.add(OAuthConstants.WEB_APP_NAME);
-		headerNames.add(OAuthConstants.WEB_APP_WEBSITE);
-		headerNames.add(OAuthConstants.WEB_APP_CALLBACKURL);
+		headerNames.add(OAuthConstants.NAME);
+		headerNames.add(OAuthConstants.WEBSITE);
+		headerNames.add(OAuthConstants.CALLBACK_URL);
 
 		orderableHeaders.put(
-				OAuthConstants.WEB_APP_NAME, OAuthConstants.WEB_APP_NAME);
+				OAuthConstants.NAME, OAuthConstants.NAME);
 	}
 
 	public OAuthApplicationUserSearch(
@@ -128,10 +127,11 @@ public class OAuthApplicationUserSearch
 			public int compare(Object obj1, Object obj2) {
 				// TODO implement reflections (try to find get method for
 				// column - default is name
-				OAuthApplication app1 = (OAuthApplication)obj1;
-				OAuthApplication app2 = (OAuthApplication)obj2;
+				ApplicationUser app1 = (ApplicationUser)obj1;
+				ApplicationUser app2 = (ApplicationUser)obj2;
 
-				int value = app1.getName().compareTo(app2.getName());
+				int value = app1.getAccessToken()
+								.compareTo(app2.getAccessToken());
 
 				if (_ascending) {
 					return value;

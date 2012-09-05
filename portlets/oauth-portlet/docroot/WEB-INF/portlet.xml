@@ -4,7 +4,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>1</display-name>
-		<portlet-class>com.liferay.portlet.oauth.mvc.OAuthApplicationAdminPortlet</portlet-class>
+		<portlet-class>com.liferay.portlet.oauth.mvc.AdminPortlet</portlet-class>
 		<init-param>
 			<name>config-jsp</name>
 			<value>/html/admin/config.jsp</value>
@@ -23,7 +23,7 @@
 			<portlet-mode>view</portlet-mode>
 			<portlet-mode>config</portlet-mode>
 		</supports>
-		<resource-bundle>content.Admin</resource-bundle>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>OAUTH ADMINISTRATION</title>
 			<short-title>OAUTH ADMIN</short-title>
@@ -36,7 +36,7 @@
 	<portlet>
 		<portlet-name>2</portlet-name>
 		<display-name>2</display-name>
-		<portlet-class>com.liferay.portlet.oauth.mvc.OAuthApplicationAuthorizationPortlet</portlet-class>
+		<portlet-class>com.liferay.portlet.oauth.mvc.AuthorizationsPortlet</portlet-class>
 		<init-param>
 			<name>config-jsp</name>
 			<value>/html/authorization/config.jsp</value>
@@ -55,7 +55,7 @@
 			<portlet-mode>view</portlet-mode>
 			<portlet-mode>config</portlet-mode>
 		</supports>
-		<resource-bundle>content.Authorizations</resource-bundle>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>OAUTH AUTHORIZATIONS</title>
 			<short-title>OAUTH AUTHORIZATIONS</short-title>
@@ -77,7 +77,7 @@
 	<portlet>
 		<portlet-name>3</portlet-name>
 		<display-name>3</display-name>
-		<portlet-class>com.liferay.portlet.oauth.mvc.OAuthAuthorizePortlet</portlet-class>
+		<portlet-class>com.liferay.portlet.oauth.mvc.AuthorizePortlet</portlet-class>
 		<init-param>
 			<name>copy-request-parameters</name>
 			<value>true</value>

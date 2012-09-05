@@ -2,9 +2,9 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
-	<import class="com.liferay.portal.oauth.model.OAuthApplication" />
-	<import class="com.liferay.portal.oauth.model.OAuthApplications_Users" />
-	<class name="com.liferay.portal.oauth.model.impl.OAuthApplicationImpl" table="OAuthApplication">
+	<import class="com.liferay.portal.oauth.model.Application" />
+	<import class="com.liferay.portal.oauth.model.ApplicationUser" />
+	<class name="com.liferay.portal.oauth.model.impl.ApplicationImpl" table="OAuth_Application">
 		<cache usage="read-write" />
 		<id name="applicationId" type="long">
 			<generator class="assigned" />
@@ -14,24 +14,23 @@
 		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
-		<property name="ownerId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="website" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="consumerKey" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="consumerSecret" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="callBackURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="accessLevel" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="consumerKey" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="consumerSecret" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
-	<class name="com.liferay.portal.oauth.model.impl.OAuthApplications_UsersImpl" table="OAuthApplications_Users">
+	<class name="com.liferay.portal.oauth.model.impl.ApplicationUserImpl" table="OAuth_ApplicationUser">
 		<cache usage="read-write" />
-		<id name="oaauid" type="long">
+		<id name="oaauId" type="long">
 			<generator class="assigned" />
 		</id>
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="applicationId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="accessToken" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="accessSecret" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="applicationId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="authorized" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 </hibernate-mapping>

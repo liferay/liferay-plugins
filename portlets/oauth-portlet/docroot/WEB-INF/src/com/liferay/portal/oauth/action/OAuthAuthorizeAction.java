@@ -21,11 +21,11 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.oauth.util.OAuthConstants;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.PortletURLFactoryUtil;
-import com.liferay.portlet.oauth.OAuthConstants;
 
 import java.io.IOException;
 

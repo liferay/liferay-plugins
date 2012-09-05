@@ -7,9 +7,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
 	>
-	<bean id="com.liferay.portal.kernel.oauth.OAuthProviderManagerUtil" class="com.liferay.portal.oauth.OAuthProviderManagerUtil">
-		<property name="OAuthProviderManager">
-			<bean class="com.liferay.portal.oauth.OAuthProviderManagerImpl" >
+	<bean id="com.liferay.portal.kernel.oauth.OAuthProviderManagerUtil" class="com.liferay.portal.oauth.OAuthUtil">
+		<property name="OAuth">
+			<bean class="com.liferay.portal.oauth.OAuthImpl" >
 				<constructor-arg>
 					<bean class="com.liferay.portal.oauth.SimpleOAuthValidator"/>
 				</constructor-arg>
