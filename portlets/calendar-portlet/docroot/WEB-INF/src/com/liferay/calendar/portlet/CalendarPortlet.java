@@ -457,7 +457,7 @@ public class CalendarPortlet extends MVCPortlet {
 			untilJCalendar.set(java.util.Calendar.YEAR, untilDateYear);
 		}
 
-		recurrence.setUntil(untilJCalendar);
+		recurrence.setUntilJCalendar(untilJCalendar);
 
 		List<Weekday> weekdays = new ArrayList<Weekday>();
 

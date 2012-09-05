@@ -30,7 +30,7 @@ if (recurrence != null) {
 	interval = recurrence.getInterval();
 
 	if (recurrence.getUntil() != null) {
-		untilJCalendar = recurrence.getUntil();
+		untilJCalendar = recurrence.getUntilJCalendar();
 	}
 
 	weekdays = recurrence.getWeekdays();

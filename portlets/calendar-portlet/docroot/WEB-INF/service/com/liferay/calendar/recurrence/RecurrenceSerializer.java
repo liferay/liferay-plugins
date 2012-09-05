@@ -74,7 +74,7 @@ public class RecurrenceSerializer {
 			if (dateValue != null) {
 				Calendar jCalendar = _toJCalendar(dateValue);
 
-				recurrence.setUntil(jCalendar);
+				recurrence.setUntilJCalendar(jCalendar);
 			}
 
 			List<Weekday> weekdays = new ArrayList<Weekday>();
@@ -123,7 +123,7 @@ public class RecurrenceSerializer {
 
 		rRule.setInterval(recurrence.getInterval());
 
-		Calendar jCalendar = recurrence.getUntil();
+		Calendar jCalendar = recurrence.getUntilJCalendar();
 
 		if (jCalendar != null) {
 			DateValue dateValue = _toDateValue(jCalendar);
@@ -133,20 +133,21 @@ public class RecurrenceSerializer {
 
 		String data = rRule.toIcal();
 
-		List<Calendar> exceptionDates = recurrence.getExceptionDates();
+		List<Calendar> exceptionJCalendars =
+			recurrence.getExceptionJCalendars();
 
-		if (!exceptionDates.isEmpty()) {
-			DateValue[] dateValues = new DateValue[exceptionDates.size()];
+		if (!exceptionJCalendars.isEmpty()) {
+			DateValue[] dateValues = new DateValue[exceptionJCalendars.size()];
 
-			for (int i = 0; i < exceptionDates.size(); i++) {
-				dateValues[i] = _toDateValue(exceptionDates.get(i));
+			for (int i = 0; i < exceptionJCalendars.size(); i++) {
+				dateValues[i] = _toDateValue(exceptionJCalendars.get(i));
 			}
 
 			RDateList rDateList = new RDateList(
 				TimeZone.getTimeZone(StringPool.UTC));
 
-			rDateList.setName(_EXDATE);
 			rDateList.setDatesUtc(dateValues);
+			rDateList.setName(_EXDATE);
 
 			data = data.concat(StringPool.NEW_LINE).concat(rDateList.toIcal());
 		}
