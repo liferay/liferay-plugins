@@ -29,7 +29,7 @@ if (recurrence != null) {
 	frequency = recurrence.getFrequency();
 	interval = recurrence.getInterval();
 
-	if (recurrence.getUntil() != null) {
+	if (recurrence.getUntilJCalendar() != null) {
 		untilJCalendar = recurrence.getUntilJCalendar();
 	}
 
@@ -39,7 +39,7 @@ if (recurrence != null) {
 		afterChecked = true;
 	}
 
-	if (recurrence.getUntil() != null) {
+	if (recurrence.getUntilJCalendar() != null) {
 		onChecked = true;
 	}
 }
