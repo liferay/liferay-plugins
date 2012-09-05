@@ -1064,6 +1064,7 @@
 						confirmationPanel.onlyThisInstanceFn = onlyThisInstanceFn;
 						confirmationPanel.allFollowingFn = allFollowingFn;
 						confirmationPanel.allEventsInFn = allEventsInFn;
+
 						instance.confirmationPanel = confirmationPanel;
 					}
 

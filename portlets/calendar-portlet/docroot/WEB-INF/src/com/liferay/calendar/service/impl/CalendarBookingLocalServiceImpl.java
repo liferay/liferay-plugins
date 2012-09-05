@@ -216,7 +216,7 @@ public class CalendarBookingLocalServiceImpl
 		if (allFollowing) {
 			jCalendar.add(java.util.Calendar.DATE, -1);
 
-			recurrenceObj.setUntil(jCalendar);
+			recurrenceObj.setUntilJCalendar(jCalendar);
 		}
 		else {
 			recurrenceObj.addExceptionDate(jCalendar);
@@ -569,7 +569,5 @@ public class CalendarBookingLocalServiceImpl
 
 	@BeanReference(type = CalendarBookingApprovalWorkflow.class)
 	protected CalendarBookingApprovalWorkflow calendarBookingApprovalWorkflow;
-
-	private static final String _EXDATE = "EXDATE:";
 
 }

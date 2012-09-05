@@ -204,9 +204,9 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 			if (!propertyList.isEmpty()) {
 				StringBundler sb = new StringBundler();
 
-				for (Iterator<ExDate> iterator = propertyList.iterator();
-						iterator.hasNext();) {
+				Iterator<ExDate> iterator = propertyList.iterator();
 
+				while (iterator.hasNext()) {
 					ExDate exDate = iterator.next();
 
 					DateList dateList = exDate.getDates();
@@ -683,10 +683,10 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 	}
 
 	protected ExDate toICalExDate(Recurrence recurrence) {
-		List<java.util.Calendar> exceptionDates =
-			recurrence.getExceptionDates();
+		List<java.util.Calendar> exceptionJCalendars =
+			recurrence.getExceptionJCalendars();
 
-		if (exceptionDates.isEmpty()) {
+		if (exceptionJCalendars.isEmpty()) {
 			return null;
 		}
 
@@ -694,8 +694,9 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		dateList.setUtc(true);
 
-		for (java.util.Calendar exceptionDate : exceptionDates) {
-			DateTime dateTime = toICalDateTime(exceptionDate.getTimeInMillis());
+		for (java.util.Calendar exceptionJCalendar : exceptionJCalendars) {
+			DateTime dateTime = toICalDateTime(
+				exceptionJCalendar.getTimeInMillis());
 
 			dateList.add(dateTime);
 		}

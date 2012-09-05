@@ -24,15 +24,15 @@ import java.util.List;
 public class Recurrence {
 
 	public void addExceptionDate(Calendar calendar) {
-		_exceptionDates.add(calendar);
+		_exceptionJCalendars.add(calendar);
 	}
 
 	public int getCount() {
 		return _count;
 	}
 
-	public List<Calendar> getExceptionDates() {
-		return _exceptionDates;
+	public List<Calendar> getExceptionJCalendars() {
+		return _exceptionJCalendars;
 	}
 
 	public Frequency getFrequency() {
@@ -43,8 +43,8 @@ public class Recurrence {
 		return _interval;
 	}
 
-	public Calendar getUntil() {
-		return _until;
+	public Calendar getUntilJCalendar() {
+		return _untilJCalendar;
 	}
 
 	public List<Weekday> getWeekdays() {
@@ -55,8 +55,8 @@ public class Recurrence {
 		_count = count;
 	}
 
-	public void setExceptionDates(List<Calendar> exceptionDates) {
-		_exceptionDates = exceptionDates;
+	public void setExceptionJCalendars(List<Calendar> exceptionJCalendars) {
+		_exceptionJCalendars = exceptionJCalendars;
 	}
 
 	public void setFrequency(Frequency frequency) {
@@ -67,8 +67,8 @@ public class Recurrence {
 		_interval = interval;
 	}
 
-	public void setUntil(Calendar until) {
-		_until = until;
+	public void setUntilJCalendar(Calendar untilJCalendar) {
+		_untilJCalendar = untilJCalendar;
 	}
 
 	public void setWeekdays(List<Weekday> weekdays) {
@@ -76,10 +76,10 @@ public class Recurrence {
 	}
 
 	private int _count;
-	private List<Calendar> _exceptionDates = new ArrayList<Calendar>();
+	private List<Calendar> _exceptionJCalendars = new ArrayList<Calendar>();
 	private Frequency _frequency;
 	private int _interval;
-	private Calendar _until;
+	private Calendar _untilJCalendar;
 	private List<Weekday> _weekdays;
 
 }
