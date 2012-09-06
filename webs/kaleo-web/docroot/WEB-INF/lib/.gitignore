@@ -1,6 +1,9 @@
 /commons-collections.jar
 /commons-logging.jar
+/jabsorb.jar
+/json-java.jar
 /log4j.jar
+/slf4j-api.jar
 /util-bridges.jar
 /util-java.jar
 /util-taglib.jar
