@@ -77,7 +77,9 @@
 		<dynamicField name="expando/*" type="text" indexed="true" multiValued="true" stored="true" />
 		<dynamicField name="web_content/*" type="text" indexed="true" stored="true" />
 
-		<!-- leave this entry last, the fields element is an ordered set -->
+		<!--
+		This must be the last entry since the fields element is an ordered set.
+		-->
 
 		<dynamicField name="*" type="string" indexed="true" multiValued="true" stored="true" />
 	</fields>
