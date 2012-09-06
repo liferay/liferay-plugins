@@ -71,12 +71,15 @@
 		<field name="url" type="string" indexed="true" stored="true" />
 		<field name="userName" type="string" indexed="true" stored="true" />
 		<field name="version" type="string" indexed="true" stored="true" />
-		<dynamicField name="*" type="string" indexed="true" multiValued="true" stored="true" />
 		<dynamicField name="*CategoryNames" type="string" indexed="true" multiValued="true" stored="true" />
 		<dynamicField name="*CategoryIds" type="string" indexed="true" multiValued="true" stored="true" />
-		<dynamicField name="*sortable" type="string" indexed="true" multiValued="false" stored="true" />
+		<dynamicField name="*_sortable" type="string" indexed="true" multiValued="false" stored="true" />
 		<dynamicField name="expando/*" type="text" indexed="true" multiValued="true" stored="true" />
 		<dynamicField name="web_content/*" type="text" indexed="true" stored="true" />
+
+		<!-- leave this entry last, the fields element is an ordered set -->
+
+		<dynamicField name="*" type="string" indexed="true" multiValued="true" stored="true" />
 	</fields>
 	<uniqueKey>uid</uniqueKey>
 	<defaultSearchField>content</defaultSearchField>
