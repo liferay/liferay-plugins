@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.LayoutSetPrototype;
@@ -91,6 +92,8 @@ public class FileSystemImporter extends BaseImporter {
 		}
 
 		serviceContext.setScopeGroupId(groupId);
+
+		setupSettings("settings.json");
 
 		addDLFileEntries("/document_library/documents");
 
@@ -376,8 +379,8 @@ public class FileSystemImporter extends BaseImporter {
 		}
 	}
 
-	protected void addLayouts(String siteMapName) throws Exception {
-		File sitemapJSONFile = new File(_resourcesDir, siteMapName);
+	protected void addLayouts(String sitemapName) throws Exception {
+		File sitemapJSONFile = new File(_resourcesDir, sitemapName);
 
 		if (!sitemapJSONFile.exists() || sitemapJSONFile.isDirectory() ||
 			!sitemapJSONFile.canRead()) {
@@ -484,16 +487,27 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected void doAddLayouts(InputStream inputStream) throws Exception {
-		String sitemapJSON = getSitemapJSON(inputStream);
-
-		JSONObject sitemapJSONObject = JSONFactoryUtil.createJSONObject(
-			sitemapJSON);
+		JSONObject sitemapJSONObject = getJSON(inputStream);
 
 		LayoutLocalServiceUtil.deleteLayouts(
 			groupId, privateLayout, new ServiceContext());
 
 		_defaultLayoutTemplateId = sitemapJSONObject.getString(
 			"layoutTemplateId", StringPool.BLANK);
+
+		updateLayoutSetThemeId(sitemapJSONObject);
+
+		JSONArray layoutsJSONArray = sitemapJSONObject.getJSONArray("layouts");
+
+		addLayouts(LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, layoutsJSONArray);
+	}
+
+	protected void doSetupSettings(InputStream inputStream) throws Exception {
+		if (targetClassName.equals(Group.class.getName())) {
+			return;
+		}
+
+		JSONObject sitemapJSONObject = getJSON(inputStream);
 
 		String layoutSetPrototypeSettings = sitemapJSONObject.getString(
 			"layoutSetPrototypeSettings", StringPool.BLANK);
@@ -506,12 +520,6 @@ public class FileSystemImporter extends BaseImporter {
 
 		LayoutSetPrototypeLocalServiceUtil.updateLayoutSetPrototype(
 			layoutSetPrototype);
-
-		updateLayoutSetThemeId(sitemapJSONObject);
-
-		JSONArray layoutsJSONArray = sitemapJSONObject.getJSONArray("layouts");
-
-		addLayouts(LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, layoutsJSONArray);
 	}
 
 	protected JSONObject getDefaultPortletJSONObject(String articleId) {
@@ -541,6 +549,20 @@ public class FileSystemImporter extends BaseImporter {
 			journalArticleId, StringPool.SPACE, StringPool.DASH);
 	}
 
+	protected JSONObject getJSON(InputStream inputStream) throws Exception {
+		String jsonString = StringUtil.read(inputStream);
+
+		jsonString = StringUtil.replace(
+			jsonString,
+			new String[] {"${companyId}", "${groupId}", "${groupId}"},
+			new String[] {
+				String.valueOf(companyId), String.valueOf(groupId),
+				String.valueOf(userId)
+			});
+
+		return JSONFactoryUtil.createJSONObject(jsonString);
+	}
+
 	protected String getName(String fileName) {
 		int x = fileName.lastIndexOf(StringPool.SLASH);
 
@@ -565,18 +587,6 @@ public class FileSystemImporter extends BaseImporter {
 		nameMap.put(locale, name);
 
 		return nameMap;
-	}
-
-	protected String getSitemapJSON(InputStream inputStream) throws Exception {
-		String sitemapJSON = StringUtil.read(inputStream);
-
-		return StringUtil.replace(
-			sitemapJSON,
-			new String[] {"${companyId}", "${groupId}", "${groupId}"},
-			new String[] {
-				String.valueOf(companyId), String.valueOf(groupId),
-				String.valueOf(userId)
-			});
 	}
 
 	protected File[] listFiles(File dir) {
@@ -641,6 +651,30 @@ public class FileSystemImporter extends BaseImporter {
 		sb.append("</static-content></root>");
 
 		return sb.toString();
+	}
+
+	protected void setupSettings(String settingsName) throws Exception {
+		File settingsJSONFile = new File(_resourcesDir, settingsName);
+
+		if (!settingsJSONFile.exists() || settingsJSONFile.isDirectory() ||
+			!settingsJSONFile.canRead()) {
+
+			return;
+		}
+
+		InputStream inputStream = null;
+
+		try {
+			inputStream = new BufferedInputStream(
+				new FileInputStream(settingsJSONFile));
+
+			doSetupSettings(inputStream);
+		}
+		finally {
+			if (inputStream != null) {
+				inputStream.close();
+			}
+		}
 	}
 
 	protected void updateLayoutSetThemeId(JSONObject sitemapJSONObject)
