@@ -14,7 +14,6 @@
 
 package com.liferay.portal.search.solr;
 
-import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -46,9 +45,6 @@ import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.search.solr.facet.SolrFacetFieldCollector;
 import com.liferay.portal.search.solr.facet.SolrFacetQueryCollector;
-import com.liferay.portal.search.solr.util.PortletPropsKeys;
-import com.liferay.portal.search.solr.util.PortletPropsValues;
-import com.liferay.util.portlet.PortletProps;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -433,7 +429,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 			solrQuery.setStart(start);
 		}
 
-		if ((sorts != null) && (sorts.length > 0)) {
+		if (sorts != null) {
 			for (Sort sort : sorts) {
 				if (sort == null) {
 					continue;
@@ -441,24 +437,22 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 				String sortFieldName = sort.getFieldName();
 
-				if (ArrayUtil.contains(
-						PortletPropsValues.SOLR_SORTABLE_TEXT_FIELDS,
-						sortFieldName)) {
-
-					sortFieldName = GetterUtil.getString(
-						PortletProps.get(
-							PortletPropsKeys.SOLR_COPY_FIELDS,
-							new Filter(sortFieldName)));
+				if (DocumentImpl.isSortableTextField(sortFieldName)) {
+					sortFieldName = DocumentImpl.getSortableFieldName(
+						sortFieldName);
 				}
 
 				ORDER order = ORDER.asc;
 
-				if (sortFieldName == null) {
+				if (Validator.isNull(sortFieldName) ||
+					!sortFieldName.endsWith("sortable")) {
+
 					sortFieldName = "score";
 
 					order = ORDER.desc;
 				}
-				else if (sort.isReverse()) {
+
+				if (sort.isReverse()) {
 					order = ORDER.desc;
 				}
 

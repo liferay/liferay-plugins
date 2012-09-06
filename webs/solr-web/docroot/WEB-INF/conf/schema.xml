@@ -61,12 +61,9 @@
 		<field name="description" type="text" indexed="true" stored="true" />
 		<field name="entryClassPK" type="text" indexed="true" stored="true" />
 		<field name="firstName" type="text" indexed="true" stored="true" />
-		<field name="firstName_sortable" type="string" indexed="true" stored="true" />
 		<field name="lastName" type="text" indexed="true" stored="true" />
-		<field name="lastName_sortable" type="string" indexed="true" stored="true" />
 		<field name="leftOrganizationId" type="slong" indexed="true" stored="true" />
 		<field name="name" type="text" indexed="true" stored="true" />
-		<field name="name_sortable" type="string" indexed="true" stored="true" />
 		<field name="properties" type="string" indexed="true" stored="true" />
 		<field name="rightOrganizationId" type="slong" indexed="true" stored="true" />
 		<field name="title" type="text" indexed="true" stored="true" />
@@ -77,12 +74,10 @@
 		<dynamicField name="*" type="string" indexed="true" multiValued="true" stored="true" />
 		<dynamicField name="*CategoryNames" type="string" indexed="true" multiValued="true" stored="true" />
 		<dynamicField name="*CategoryIds" type="string" indexed="true" multiValued="true" stored="true" />
+		<dynamicField name="*sortable" type="string" indexed="true" multiValued="false" stored="true" />
 		<dynamicField name="expando/*" type="text" indexed="true" multiValued="true" stored="true" />
 		<dynamicField name="web_content/*" type="text" indexed="true" stored="true" />
 	</fields>
-	<copyField source="firstName" dest="firstName_sortable" />
-	<copyField source="lastName" dest="lastName_sortable" />
-	<copyField source="name" dest="name_sortable" />
 	<uniqueKey>uid</uniqueKey>
 	<defaultSearchField>content</defaultSearchField>
 	<solrQueryParser defaultOperator="OR" />
