@@ -49,7 +49,7 @@ if (portletPlid != 0) {
 		</div>
 
 		<div class="body">
-			<%= StringUtil.shorten(notificationEventJSONObject.getString("body"), 50) %>
+			<%= HtmlUtil.escape(StringUtil.shorten(notificationEventJSONObject.getString("body"), 50)) %>
 		</div>
 
 		<div class="datetime">
