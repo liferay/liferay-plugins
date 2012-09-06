@@ -24,6 +24,7 @@ import java.util.Set;
 
 /**
  * @author Raymond Augé
+ * @author Ryan Park
  */
 public class ResourceImporter extends FileSystemImporter {
 
@@ -31,11 +32,15 @@ public class ResourceImporter extends FileSystemImporter {
 	public void importResources() throws Exception {
 		serviceContext = new ServiceContext();
 
-		serviceContext.setScopeGroupId(groupId);
+		serviceContext.setAddGroupPermissions(true);
 
 		if (!privateLayout) {
 			serviceContext.setAddGuestPermissions(true);
 		}
+
+		serviceContext.setScopeGroupId(groupId);
+
+		setupSettings("settings.json");
 
 		addDLFileEntries("/document_library/documents");
 
@@ -195,15 +200,29 @@ public class ResourceImporter extends FileSystemImporter {
 	}
 
 	@Override
-	protected void addLayouts(String siteMapName) throws Exception {
+	protected void addLayouts(String sitemapName) throws Exception {
 		URL sitemapJSONURL = servletContext.getResource(
-			resourcesDir.concat(siteMapName));
+			resourcesDir.concat(sitemapName));
 
 		if (sitemapJSONURL == null) {
 			return;
 		}
 
 		URLConnection urlConnection = sitemapJSONURL.openConnection();
+
+		doAddLayouts(urlConnection.getInputStream());
+	}
+
+	@Override
+	protected void setupSettings(String settingsName) throws Exception {
+		URL settingsJSONURL = servletContext.getResource(
+			resourcesDir.concat(settingsName));
+
+		if (settingsJSONURL == null) {
+			return;
+		}
+
+		URLConnection urlConnection = settingsJSONURL.openConnection();
 
 		doAddLayouts(urlConnection.getInputStream());
 	}
