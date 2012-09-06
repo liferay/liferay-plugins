@@ -13,10 +13,14 @@
 	<classpathentry kind="lib" path="/portal-6.1.x/lib/global/portlet.jar" />
 	<classpathentry kind="lib" path="/portal-6.1.x/lib/portal/commons-collections.jar" />
 	<classpathentry kind="lib" path="/portal-6.1.x/lib/portal/commons-logging.jar" />
+	<classpathentry kind="lib" path="/portal-6.1.x/lib/portal/jabsorb.jar" />
+	<classpathentry kind="lib" path="/portal-6.1.x/lib/portal/json-java.jar" />
 	<classpathentry kind="lib" path="/portal-6.1.x/lib/portal/log4j.jar" />
+	<classpathentry kind="lib" path="/portal-6.1.x/lib/portal/slf4j-api.jar" />
 	<classpathentry kind="lib" path="/portal-6.1.x/portal-service/portal-service.jar" />
 	<classpathentry kind="lib" path="/portal-6.1.x/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-6.1.x/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-6.1.x/util-taglib/util-taglib.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/portal-compat-client.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
