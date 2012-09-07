@@ -124,5 +124,5 @@
 </c:if>
 
 <%!
-	private static Log _log = LogFactoryUtil.getLog("svn.view_feeds_jsp");
+private static Log _log = LogFactoryUtil.getLog("svn.view_feeds_jsp");
 %>
