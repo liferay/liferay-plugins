@@ -58,8 +58,10 @@ String currentURL = PortalUtil.getCurrentURL(request);
 PortletPreferences preferences = liferayPortletRequest.getPreferences();
 
 String portletResource = ParamUtil.getString(request, "portletResource");
+boolean isPortletResourceOnThePage = true;
 
 if (Validator.isNotNull(portletResource)) {
 	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
+	isPortletResourceOnThePage = layoutTypePortlet.hasPortletId(portletResource);
 }
 %>

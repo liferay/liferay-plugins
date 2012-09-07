@@ -245,11 +245,13 @@
 							<%= LanguageUtil.format(pageContext, "you-need-to-approve-x-as-your-friend", HtmlUtil.escape(user2.getFirstName())) %>
 						</c:when>
 						<c:otherwise>
-							<liferay-portlet:actionURL name="addFriend" portletName="1_WAR_socialnetworkingportlet" var="addAsFriendURL">
-								<portlet:param name="redirect" value="<%= currentURL %>" />
-							</liferay-portlet:actionURL>
+							<c:if test="<%= isSummaryPortletOnThePage %>">
+								<liferay-portlet:actionURL name="addFriend" portletName="<%= SUMMARY_PORTLET_ID %>" var="addAsFriendURL">
+									<portlet:param name="redirect" value='<%= currentURL %>' />
+								</liferay-portlet:actionURL>
 
-							<a href="<%= addAsFriendURL %>"><%= LanguageUtil.format(pageContext, "ask-x-to-be-your-friend", HtmlUtil.escape(user2.getFirstName())) %></a>
+								<a href="<%= addAsFriendURL %>"><%= LanguageUtil.format(pageContext, "ask-x-to-be-your-friend", HtmlUtil.escape(user2.getFirstName())) %></a>
+							</c:if>
 						</c:otherwise>
 					</c:choose>
 				</c:when>

@@ -14,15 +14,14 @@
  */
 --%>
 
-<%@ include file="/wall/init.jsp" %>
+<%@ include file="/init.jsp" %>
 
-<c:choose>
-	<c:when test="<%= user2 == null %>">
-		<div class="portlet-msg-error">
-			<liferay-ui:message key="this-application-will-only-function-when-placed-on-a-user-page" />
-		</div>
-	</c:when>
-	<c:otherwise>
-		<%@ include file="/wall/view_wall.jspf" %>
-	</c:otherwise>
-</c:choose>
+<%
+
+boolean isSummaryPortletOnThePage = layoutTypePortlet.hasPortletId(SUMMARY_PORTLET_ID);
+
+%><%!
+
+public static final String SUMMARY_PORTLET_ID = "1_WAR_socialnetworkingportlet";
+
+%>
