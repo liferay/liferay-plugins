@@ -66,6 +66,10 @@ for (String zip : zips) {
 
 </form>
 
+<br />
+
+<liferay-ui:message key="powered-by" /> <a href="http://www.worldweatheronline.com/" target="_blank" title="Free local weather content provider">World Weather Online</a>
+
 <c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
 	<aui:script>
 		Liferay.Util.focusFormField(document.<portlet:namespace />fm.where);

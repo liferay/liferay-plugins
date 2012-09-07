@@ -16,6 +16,7 @@ package com.liferay.weather.util;
 
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.webcache.WebCacheException;
 import com.liferay.portal.kernel.webcache.WebCacheItem;
@@ -26,6 +27,7 @@ import com.liferay.weather.model.Weather;
 
 /**
  * @author Brian Wing Shun Chan
+ * @author Samuel Kong
  */
 public class WeatherWebCacheItem implements WebCacheItem {
 
@@ -41,27 +43,29 @@ public class WeatherWebCacheItem implements WebCacheItem {
 		Weather weather = null;
 
 		try {
-			String xml = HttpUtil.URLtoString(
-				"http://www.google.com/ig/api?weather=" +
-					HttpUtil.encodeURL(_zip));
+			StringBundler sb = new StringBundler(5);
+
+			sb.append("http://free.worldweatheronline.com/feed/weather.ashx?key=");
+			sb.append(PortletPropsValues.WORLD_WEATHER_ONLINE_API_KEY);
+			sb.append("&q=");
+			sb.append(HttpUtil.encodeURL(_zip));
+			sb.append("&format=xml");
+
+			String xml = HttpUtil.URLtoString(sb.toString());
 
 			Document doc = SAXReaderUtil.read(xml);
 
 			Element root = doc.getRootElement();
 
-			Element weatherEl = root.element("weather");
+			Element currentConditionEl = root.element("current_condition");
 
-			Element currentConditionsEl = weatherEl.element(
-				"current_conditions");
+			Element temperatureEl = currentConditionEl.element("temp_F");
 
-			Element temperatureEl = currentConditionsEl.element("temp_f");
+			float temperature = GetterUtil.getFloat(temperatureEl.getData());
 
-			float temperature = GetterUtil.getFloat(
-				temperatureEl.attributeValue("data"));
+			Element iconEl = currentConditionEl.element("weatherIconUrl");
 
-			Element iconEl = currentConditionsEl.element("icon");
-
-			String iconURL = "//www.google.com" + iconEl.attributeValue("data");
+			String iconURL = iconEl.getText();
 
 			weather = new Weather(_zip, iconURL, temperature);
 		}
@@ -76,7 +80,7 @@ public class WeatherWebCacheItem implements WebCacheItem {
 		return _REFRESH_TIME;
 	}
 
-	private static final long _REFRESH_TIME = Time.MINUTE * 20;
+	private static final long _REFRESH_TIME = Time.MINUTE * 60;
 
 	private String _zip;
 
