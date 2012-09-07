@@ -28,28 +28,6 @@ import java.util.TimeZone;
  */
 public class JCalendarUtil {
 
-	public static Date getDate(Date date, TimeZone timeZone) {
-		Calendar jCalendar = getJCalendar(date, timeZone);
-
-		return jCalendar.getTime();
-	}
-
-	public static Calendar getJCalendar(Calendar jCalendar, TimeZone timeZone) {
-		return getJCalendar(
-			jCalendar.get(Calendar.YEAR), jCalendar.get(Calendar.MONTH),
-			jCalendar.get(Calendar.DATE), jCalendar.get(Calendar.HOUR_OF_DAY),
-			jCalendar.get(Calendar.MINUTE), jCalendar.get(Calendar.SECOND),
-			jCalendar.get(Calendar.MILLISECOND), timeZone);
-	}
-
-	public static Calendar getJCalendar(Date date, TimeZone timeZone) {
-		Calendar jCalendar = CalendarFactoryUtil.getCalendar(_utcTimeZone);
-
-		jCalendar.setTime(date);
-
-		return getJCalendar(jCalendar, timeZone);
-	}
-
 	public static Calendar getJCalendar(
 		int year, int month, int day, int hour, int minutes, int seconds,
 		int milliseconds, TimeZone timeZone) {
@@ -68,19 +46,27 @@ public class JCalendarUtil {
 	}
 
 	public static Calendar getJCalendar(long time) {
-		Calendar jCalendar = CalendarFactoryUtil.getCalendar(_utcTimeZone);
+		return getJCalendar(time, _utcTimeZone);
+	}
+
+	public static Calendar getJCalendar(long time, TimeZone timeZone) {
+		Calendar jCalendar = CalendarFactoryUtil.getCalendar(timeZone);
 
 		jCalendar.setTimeInMillis(time);
 
 		return jCalendar;
 	}
 
-	public static Calendar getJCalendar(long time, TimeZone timeZone) {
-		return getJCalendar(new Date(time), timeZone);
-	}
-
 	public static int getTimeZoneOffset(TimeZone timeZone) {
-		return timeZone.getRawOffset();
+		int offset = timeZone.getRawOffset();
+
+		boolean inDaylightTime = timeZone.inDaylightTime(new Date());
+
+		if (inDaylightTime) {
+			offset += timeZone.getDSTSavings();
+		}
+
+		return offset;
 	}
 
 	public static Calendar toLastHourJCalendar(Calendar jCalendar) {
