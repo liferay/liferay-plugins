@@ -395,22 +395,6 @@ public class CalendarPortlet extends MVCPortlet {
 	protected java.util.Calendar getJCalendar(
 		PortletRequest portletRequest, String name) {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		PortletPreferences preferences = portletRequest.getPreferences();
-
-		User user = themeDisplay.getUser();
-
-		String timeZoneId = preferences.getValue(
-			"timeZoneId", user.getTimeZoneId());
-
-		if (Validator.isNull(timeZoneId)) {
-			timeZoneId = user.getTimeZoneId();
-		}
-
-		TimeZone timeZone = TimeZone.getTimeZone(timeZoneId);
-
 		int month = ParamUtil.getInteger(portletRequest, name + "Month");
 		int day = ParamUtil.getInteger(portletRequest, name + "Day");
 		int year = ParamUtil.getInteger(portletRequest, name + "Year");
@@ -424,7 +408,7 @@ public class CalendarPortlet extends MVCPortlet {
 		}
 
 		return JCalendarUtil.getJCalendar(
-			year, month, day, hour, minute, 0, 0, timeZone);
+			year, month, day, hour, minute, 0, 0, getTimeZone(portletRequest));
 	}
 
 	protected String getRecurrence(ActionRequest actionRequest) {
@@ -517,6 +501,24 @@ public class CalendarPortlet extends MVCPortlet {
 		return new String[] {
 			firstReminderType, secondReminderType
 		};
+	}
+
+	protected TimeZone getTimeZone(PortletRequest portletRequest) {
+		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		PortletPreferences preferences = portletRequest.getPreferences();
+
+		User user = themeDisplay.getUser();
+
+		String timeZoneId = preferences.getValue(
+			"timeZoneId", user.getTimeZoneId());
+
+		if (Validator.isNull(timeZoneId)) {
+			timeZoneId = user.getTimeZoneId();
+		}
+
+		return TimeZone.getTimeZone(timeZoneId);
 	}
 
 	@Override
