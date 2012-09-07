@@ -35,20 +35,24 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class SampleAuthVerifier implements AuthVerifier {
 
+	public String getAuthType() {
+		return SampleAuthVerifier.class.getSimpleName();
+	}
+
 	public AuthVerifierResult verify(
-			AccessControlContext accessControlContext, Properties configuration)
+			AccessControlContext accessControlContext, Properties properties)
 		throws AuthException {
 
 		AuthVerifierResult authVerifierResult = new AuthVerifierResult();
 
-		String configurationSecretKey = GetterUtil.getString(
-			configuration.getProperty("secret.key"));
+		String propertiesSecretKey = GetterUtil.getString(
+			properties.getProperty("secret.key"));
 
 		HttpServletRequest request = accessControlContext.getRequest();
 
 		String requestSecretKey = ParamUtil.getString(request, "secretKey");
 
-		if (!configurationSecretKey.equals(requestSecretKey)) {
+		if (!propertiesSecretKey.equals(requestSecretKey)) {
 			return authVerifierResult;
 		}
 
