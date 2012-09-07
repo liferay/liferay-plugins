@@ -82,10 +82,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
+import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -396,6 +398,19 @@ public class CalendarPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
+		PortletPreferences preferences = portletRequest.getPreferences();
+
+		User user = themeDisplay.getUser();
+
+		String timeZoneId = preferences.getValue(
+			"timeZoneId", user.getTimeZoneId());
+
+		if (Validator.isNull(timeZoneId)) {
+			timeZoneId = user.getTimeZoneId();
+		}
+
+		TimeZone timeZone = TimeZone.getTimeZone(timeZoneId);
+
 		int month = ParamUtil.getInteger(portletRequest, name + "Month");
 		int day = ParamUtil.getInteger(portletRequest, name + "Day");
 		int year = ParamUtil.getInteger(portletRequest, name + "Year");
@@ -409,7 +424,7 @@ public class CalendarPortlet extends MVCPortlet {
 		}
 
 		return JCalendarUtil.getJCalendar(
-			year, month, day, hour, minute, 0, 0, themeDisplay.getTimeZone());
+			year, month, day, hour, minute, 0, 0, timeZone);
 	}
 
 	protected String getRecurrence(ActionRequest actionRequest) {
