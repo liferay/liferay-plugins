@@ -15,7 +15,6 @@
 package com.liferay.resourcesimporter.util;
 
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.service.ServiceContext;
 
 import java.net.URL;
 import java.net.URLConnection;
@@ -30,34 +29,15 @@ public class ResourceImporter extends FileSystemImporter {
 
 	@Override
 	public void importResources() throws Exception {
-		serviceContext = new ServiceContext();
-
-		serviceContext.setAddGroupPermissions(true);
-
-		if (!privateLayout) {
-			serviceContext.setAddGuestPermissions(true);
-		}
-
-		serviceContext.setScopeGroupId(groupId);
-
-		setupSettings("settings.json");
-
-		addDLFileEntries("/document_library/documents");
-
-		addJournalArticles(
-			StringPool.BLANK, StringPool.BLANK, "/journal/articles");
-
-		addJournalStructures("/journal/structures");
-
-		addJournalTemplates(StringPool.BLANK, "/journal/templates");
-
-		addLayouts("sitemap.json");
+		doImportResources();
 	}
 
 	@Override
-	protected void addDLFileEntries(String fileEntriesDir) throws Exception {
+	protected void addDLFileEntries(String fileEntriesDirName)
+		throws Exception {
+
 		Set<String> resourcePaths = servletContext.getResourcePaths(
-			resourcesDir.concat(fileEntriesDir));
+			resourcesDir.concat(fileEntriesDirName));
 
 		if (resourcePaths == null) {
 			return;
@@ -200,20 +180,6 @@ public class ResourceImporter extends FileSystemImporter {
 	}
 
 	@Override
-	protected void addLayouts(String sitemapName) throws Exception {
-		URL sitemapJSONURL = servletContext.getResource(
-			resourcesDir.concat(sitemapName));
-
-		if (sitemapJSONURL == null) {
-			return;
-		}
-
-		URLConnection urlConnection = sitemapJSONURL.openConnection();
-
-		doAddLayouts(urlConnection.getInputStream());
-	}
-
-	@Override
 	protected void setupSettings(String settingsName) throws Exception {
 		URL settingsJSONURL = servletContext.getResource(
 			resourcesDir.concat(settingsName));
@@ -224,7 +190,21 @@ public class ResourceImporter extends FileSystemImporter {
 
 		URLConnection urlConnection = settingsJSONURL.openConnection();
 
-		doAddLayouts(urlConnection.getInputStream());
+		setupSettings(urlConnection.getInputStream());
+	}
+
+	@Override
+	protected void setupSitemap(String sitemapName) throws Exception {
+		URL sitemapJSONURL = servletContext.getResource(
+			resourcesDir.concat(sitemapName));
+
+		if (sitemapJSONURL == null) {
+			return;
+		}
+
+		URLConnection urlConnection = sitemapJSONURL.openConnection();
+
+		setupSitemap(urlConnection.getInputStream());
 	}
 
 }
