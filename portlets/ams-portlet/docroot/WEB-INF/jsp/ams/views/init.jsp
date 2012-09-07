@@ -37,23 +37,10 @@ page import="javax.portlet.WindowState" %>
 <liferay-theme:defineObjects />
 
 <%
-WindowState windowState = null;
-PortletMode portletMode = null;
+PortletMode portletMode = liferayPortletRequest.getPortletMode();
+WindowState windowState = liferayPortletRequest.getWindowState();
 
-PortletURL currentURLObj = null;
-
-if (renderRequest != null) {
-	windowState = renderRequest.getWindowState();
-	portletMode = renderRequest.getPortletMode();
-
-	currentURLObj = PortletURLUtil.getCurrent(renderRequest, renderResponse);
-}
-else if (resourceRequest != null) {
-	windowState = resourceRequest.getWindowState();
-	portletMode = resourceRequest.getPortletMode();
-
-	currentURLObj = PortletURLUtil.getCurrent(resourceRequest, resourceResponse);
-}
+PortletURL currentURLObj = PortletURLUtil.getCurrent(liferayPortletRequest, liferayPortletResponse);
 
 String currentURL = currentURLObj.toString();
 
