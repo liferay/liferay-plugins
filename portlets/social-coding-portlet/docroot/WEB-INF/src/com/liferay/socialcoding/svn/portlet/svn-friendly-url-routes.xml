@@ -8,24 +8,36 @@
 	</route>
 	<route>
 		<pattern>/rss/all/plugins/trunk</pattern>
+		<ignored-parameter name="jspPage" />
 		<implicit-parameter name="all">1</implicit-parameter>
-		<implicit-parameter name="p_p_state">exclusive</implicit-parameter>
+		<implicit-parameter name="p_p_cacheability">cacheLevelPage</implicit-parameter>
+		<implicit-parameter name="p_p_lifecycle">2</implicit-parameter>
+		<implicit-parameter name="p_p_resource_id">rss</implicit-parameter>
 		<implicit-parameter name="url">/plugins/trunk</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/rss/all/portal/trunk</pattern>
+		<ignored-parameter name="jspPage" />
 		<implicit-parameter name="all">1</implicit-parameter>
-		<implicit-parameter name="p_p_state">exclusive</implicit-parameter>
+		<implicit-parameter name="p_p_cacheability">cacheLevelPage</implicit-parameter>
+		<implicit-parameter name="p_p_lifecycle">2</implicit-parameter>
+		<implicit-parameter name="p_p_resource_id">rss</implicit-parameter>
 		<implicit-parameter name="url">/portal/trunk</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/rss/user/plugins/trunk</pattern>
-		<implicit-parameter name="p_p_state">exclusive</implicit-parameter>
+		<ignored-parameter name="jspPage" />
+		<implicit-parameter name="p_p_cacheability">cacheLevelPage</implicit-parameter>
+		<implicit-parameter name="p_p_lifecycle">2</implicit-parameter>
+		<implicit-parameter name="p_p_resource_id">rss</implicit-parameter>
 		<implicit-parameter name="url">/plugins/trunk</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/rss/user/portal/trunk</pattern>
-		<implicit-parameter name="p_p_state">exclusive</implicit-parameter>
+		<ignored-parameter name="jspPage" />
+		<implicit-parameter name="p_p_cacheability">cacheLevelPage</implicit-parameter>
+		<implicit-parameter name="p_p_lifecycle">2</implicit-parameter>
+		<implicit-parameter name="p_p_resource_id">rss</implicit-parameter>
 		<implicit-parameter name="url">/portal/trunk</implicit-parameter>
 	</route>
 </routes>

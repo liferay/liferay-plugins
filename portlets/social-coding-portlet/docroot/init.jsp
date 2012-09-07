@@ -96,7 +96,11 @@ page import="javax.portlet.WindowState" %>
 <liferay-theme:defineObjects />
 
 <%
-WindowState windowState = renderRequest.getWindowState();
+WindowState windowState	= WindowState.NORMAL;
+
+if (renderRequest != null) {
+	windowState = renderRequest.getWindowState();
+}
 
 String currentURL = PortalUtil.getCurrentURL(request);
 

@@ -14,354 +14,238 @@
  */
 --%>
 
+<%
+for (String url : SVNConstants.SVN_URLS) {
+	try {
+		SVNRepository svnRepository = SVNRepositoryLocalServiceUtil.getSVNRepository(url);
+	}
+	catch (NoSuchSVNRepositoryException nssvnre) {
+%>
+
+		<div class="portlet-msg-error">
+			The SVN repositories have not been initialized. This should not be the case except the first time this portlet is deployed when the SVN tables have not been populated. To populate the SVN tables, make sure the property "svn.synchronization.interval" is set to a value greater than 0.
+		</div>
+
+<%
+		return;
+	}
+}
+%>
+
+<%
+String svnUserId = user2.getScreenName();
+%>
+
 <c:choose>
-	<c:when test="<%= themeDisplay.isStateExclusive() %>">
-
-		<%
-		String url = ParamUtil.getString(request, "url");
-		boolean all = ParamUtil.getBoolean(request, "all");
-
-		String svnURL = "svn://svn.liferay.com/repos/public" + url;
-
-		SVNRepository svnRepository = SVNRepositoryLocalServiceUtil.getSVNRepository(svnURL);
-
-		List<SVNRevision> svnRevisions = null;
-
-		if (all) {
-			svnRevisions = SVNRevisionLocalServiceUtil.getSVNRevisions(svnRepository.getSvnRepositoryId(), 0, 100);
-		}
-		else {
-			String svnUserId = user2.getScreenName();
-
-			svnRevisions = SVNRevisionLocalServiceUtil.getSVNRevisions(svnUserId, svnRepository.getSvnRepositoryId(), 0, 100);
-		}
-
-		String title = null;
-
-		if (all) {
-			title = LanguageUtil.format(pageContext, "all-commits-on-x", svnURL);
-		}
-		else {
-			title = LanguageUtil.format(pageContext, "x's-commits-on-x", new Object[] {HtmlUtil.escape(user2.getFullName()), svnURL});
-		}
-
-		SyndFeed syndFeed = new SyndFeedImpl();
-
-		syndFeed.setFeedType(RSSUtil.FEED_TYPE_DEFAULT);
-		syndFeed.setLink(currentURL);
-		syndFeed.setTitle(title);
-		syndFeed.setDescription(title);
-
-		List<SyndEntry> entries = new ArrayList<SyndEntry>();
-
-		syndFeed.setEntries(entries);
-
-		for (SVNRevision svnRevision : svnRevisions) {
-			String link = svnRevision.getWebRevisionNumberURL();
-
-			SyndEntry syndEntry = new SyndEntryImpl();
-
-			syndEntry.setAuthor(HtmlUtil.escape(user2.getFullName()));
-			syndEntry.setTitle(LanguageUtil.get(pageContext, "revision") + StringPool.SPACE + svnRevision.getRevisionNumber());
-			syndEntry.setLink(link);
-			syndEntry.setPublishedDate(svnRevision.getCreateDate());
-
-			Object[] jiraIssueAndComments = svnRevision.getJIRAIssueAndComments();
-
-			JIRAIssue jiraIssue = null;
-			String comments = svnRevision.getComments();
-
-			if (jiraIssueAndComments != null) {
-				jiraIssue = (JIRAIssue)jiraIssueAndComments[0];
-				comments = (String)jiraIssueAndComments[1];
-
-				StringBuilder sb = new StringBuilder();
-
-				sb.append(comments);
-				sb.append("<br />");
-
-				sb.append(jiraIssue.getSummary());
-				sb.append("<br />");
-
-				sb.append("<a href=\"");
-				sb.append(link);
-				sb.append("\"><img border=\"0\" src=\"");
-				sb.append(request.getContextPath());
-				sb.append("/icons/svn.png\" />SVN</a><br />");
-
-				sb.append("<a href=\"http://issues.liferay.com/browse/");
-				sb.append(jiraIssue.getKey());
-				sb.append("\"><img border=\"0\" src=\"");
-				sb.append(request.getContextPath());
-				sb.append("/icons/jira.png\" />JIRA</a>");
-
-				comments = sb.toString();
-			}
-
-			SyndContent syndContent = new SyndContentImpl();
-
-			syndContent.setType(RSSUtil.ENTRY_TYPE_DEFAULT);
-			syndContent.setValue(comments);
-
-			syndEntry.setDescription(syndContent);
-
-			entries.add(syndEntry);
-		}
-
-		String feedXML = StringPool.BLANK;
-
-		try {
-			feedXML = RSSUtil.export(syndFeed);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-		}
-
-		response.setContentType(ContentTypes.TEXT_XML_UTF8);
-		%>
-
-		<%= feedXML %>
-	</c:when>
-	<c:otherwise>
-
-		<%
-		for (String url : SVNConstants.SVN_URLS) {
-			try {
-				SVNRepository svnRepository = SVNRepositoryLocalServiceUtil.getSVNRepository(url);
-			}
-			catch (NoSuchSVNRepositoryException nssvnre) {
-		%>
-
-				<div class="portlet-msg-error">
-					The SVN repositories have not been initialized. This should not be the case except the first time this portlet is deployed when the SVN tables have not been populated. To populate the SVN tables, make sure the property "svn.synchronization.interval" is set to a value greater than 0.
-				</div>
-
-		<%
-				return;
-			}
-		}
-		%>
-
-		<%
-		String svnUserId = user2.getScreenName();
-		%>
-
+	<c:when test="<%= SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnUserId) > 0 %>">
 		<c:choose>
-			<c:when test="<%= SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnUserId) > 0 %>">
-				<c:choose>
-					<c:when test="<%= windowState.equals(WindowState.NORMAL) %>">
-						<!--<h4 class="project-title">
-							<a href="http://svn.liferay.com" target="_blank">Liferay Portal</a>
-						</h4>-->
+			<c:when test="<%= windowState.equals(WindowState.NORMAL) %>">
+				<!--<h4 class="project-title">
+					<a href="http://svn.liferay.com" target="_blank">Liferay Portal</a>
+				</h4>-->
 
-						<%
-						for (String url : SVNConstants.SVN_URLS) {
-							SVNRepository svnRepository = SVNRepositoryLocalServiceUtil.getSVNRepository(url);
-						%>
+				<%
+				for (String url : SVNConstants.SVN_URLS) {
+					SVNRepository svnRepository = SVNRepositoryLocalServiceUtil.getSVNRepository(url);
+				%>
 
-							<c:if test="<%= SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnUserId, svnRepository.getSvnRepositoryId()) > 0 %>">
-								<portlet:renderURL var="userRevisionsURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
-									<portlet:param name="url" value="<%= url %>" />
-								</portlet:renderURL>
+					<c:if test="<%= SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnUserId, svnRepository.getSvnRepositoryId()) > 0 %>">
+						<portlet:renderURL var="userRevisionsURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
+							<portlet:param name="url" value="<%= url %>" />
+						</portlet:renderURL>
 
-								<portlet:renderURL var="allRevisionsURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
-									<portlet:param name="url" value="<%= url %>" />
-									<portlet:param name="all" value="true" />
-								</portlet:renderURL>
+						<portlet:renderURL var="allRevisionsURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
+							<portlet:param name="url" value="<%= url %>" />
+							<portlet:param name="all" value="true" />
+						</portlet:renderURL>
 
-								<div class="project-details">
-									<h5 class="project-section">
-										<%= svnRepository.getShortURL() %>
-									</h5>
+						<div class="project-details">
+							<h5 class="project-section">
+								<%= svnRepository.getShortURL() %>
+							</h5>
 
-									<table class="lfr-table">
-									<tr>
-										<td>
-											<a href="<%= userRevisionsURL %>">
+							<table class="lfr-table">
+							<tr>
+								<td>
+									<a href="<%= userRevisionsURL %>">
 
-											<c:choose>
-												<c:when test="<%= user2.getUserId() == themeDisplay.getUserId() %>">
-													<liferay-ui:message key="my-commits" />
-												</c:when>
-												<c:otherwise>
-													<%= LanguageUtil.format(pageContext, "x's-commits", HtmlUtil.escape(user2.getFirstName())) %>
-												</c:otherwise>
-											</c:choose>
+									<c:choose>
+										<c:when test="<%= user2.getUserId() == themeDisplay.getUserId() %>">
+											<liferay-ui:message key="my-commits" />
+										</c:when>
+										<c:otherwise>
+											<%= LanguageUtil.format(pageContext, "x's-commits", HtmlUtil.escape(user2.getFirstName())) %>
+										</c:otherwise>
+									</c:choose>
 
-											</a>
-										</td>
-										<td>
-											<%= SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnUserId, svnRepository.getSvnRepositoryId()) %>
-										</td>
-										<td>
-											<liferay-ui:icon
-												image="rss"
-												url='<%= PortalUtil.getPathFriendlyURLPublic() + StringPool.SLASH + user2.getScreenName() + "/profile/-/svn/rss/user" + svnRepository.getShortURL() %>'
-											/>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<a href="<%= allRevisionsURL %>"><liferay-ui:message key="all-commits" /></a>
-										</td>
-										<td>
-											<%= SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnRepository.getSvnRepositoryId()) %>
-										</td>
-										<td>
-											<liferay-ui:icon
-												image="rss"
-												url='<%= PortalUtil.getPathFriendlyURLPublic() + StringPool.SLASH + user2.getScreenName() + "/profile/-/svn/rss/all" + svnRepository.getShortURL() %>'
-											/>
-										</td>
-									</tr>
-									</table>
-								</div>
-							</c:if>
+									</a>
+								</td>
+								<td>
+									<%= SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnUserId, svnRepository.getSvnRepositoryId()) %>
+								</td>
+								<td>
+									<liferay-ui:icon
+										image="rss"
+										url='<%= PortalUtil.getPathFriendlyURLPublic() + StringPool.SLASH + user2.getScreenName() + "/profile/-/svn/rss/user" + svnRepository.getShortURL() %>'
+									/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="<%= allRevisionsURL %>"><liferay-ui:message key="all-commits" /></a>
+								</td>
+								<td>
+									<%= SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnRepository.getSvnRepositoryId()) %>
+								</td>
+								<td>
+									<liferay-ui:icon
+										image="rss"
+										url='<%= PortalUtil.getPathFriendlyURLPublic() + StringPool.SLASH + user2.getScreenName() + "/profile/-/svn/rss/all" + svnRepository.getShortURL() %>'
+									/>
+								</td>
+							</tr>
+							</table>
+						</div>
+					</c:if>
 
-						<%
-						}
-						%>
+				<%
+				}
+				%>
 
-					</c:when>
-					<c:otherwise>
-
-						<%
-						String url = ParamUtil.getString(request, "url");
-						boolean all = ParamUtil.getBoolean(request, "all");
-
-						PortletURL portletURL = renderResponse.createRenderURL();
-
-						portletURL.setParameter("url", url);
-						portletURL.setParameter("all", String.valueOf(all));
-
-						SVNRepository svnRepository = SVNRepositoryLocalServiceUtil.getSVNRepository(url);
-
-						List headerNames = new ArrayList();
-
-						headerNames.add("revision");
-						headerNames.add("comments");
-						headerNames.add("date-and-time");
-						headerNames.add(StringPool.BLANK);
-
-						SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, "cur1", SearchContainer.DEFAULT_DELTA, portletURL, headerNames, null);
-
-						int total = 0;
-
-						if (all) {
-							total = SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnRepository.getSvnRepositoryId());
-						}
-						else {
-							total = SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnUserId, svnRepository.getSvnRepositoryId());
-						}
-
-						searchContainer.setTotal(total);
-
-						List<SVNRevision> results = null;
-
-						if (all) {
-							results = SVNRevisionLocalServiceUtil.getSVNRevisions(svnRepository.getSvnRepositoryId(), searchContainer.getStart(), searchContainer.getEnd());
-						}
-						else {
-							results = SVNRevisionLocalServiceUtil.getSVNRevisions(svnUserId, svnRepository.getSvnRepositoryId(), searchContainer.getStart(), searchContainer.getEnd());
-						}
-
-						searchContainer.setResults(results);
-
-						List resultRows = searchContainer.getResultRows();
-
-						for (int i = 0; i < results.size(); i++) {
-							SVNRevision svnRevision = results.get(i);
-
-							String rowHREF = svnRevision.getWebRevisionNumberURL();
-
-							Object[] jiraIssueAndComments = svnRevision.getJIRAIssueAndComments();
-
-							JIRAIssue jiraIssue = null;
-							String comments = svnRevision.getComments();
-
-							if (jiraIssueAndComments != null) {
-								jiraIssue = (JIRAIssue)jiraIssueAndComments[0];
-								comments = (String)jiraIssueAndComments[1];
-							}
-
-							ResultRow row = new ResultRow(new Object[] {svnRevision, rowHREF, jiraIssue}, svnRevision.getSvnRevisionId(), i);
-
-							TextSearchEntry rowTextEntry = new TextSearchEntry();
-
-							rowTextEntry.setHref(rowHREF);
-							rowTextEntry.setName(String.valueOf(svnRevision.getRevisionNumber()));
-							rowTextEntry.setTarget("_blank");
-							rowTextEntry.setTitle(String.valueOf(svnRevision.getRevisionNumber()));
-
-							// Revision number
-
-							row.addText(rowTextEntry);
-
-							// Comments
-
-							rowTextEntry = (TextSearchEntry)rowTextEntry.clone();
-
-							if (jiraIssue == null) {
-								rowTextEntry.setName(HtmlUtil.escape(comments));
-							}
-							else {
-								rowTextEntry.setName(HtmlUtil.escape(comments) + "<br />" + HtmlUtil.escape(jiraIssue.getSummary()));
-							}
-
-							row.addText(rowTextEntry);
-
-							// Date
-
-							rowTextEntry = (TextSearchEntry)rowTextEntry.clone();
-
-							rowTextEntry.setName("<nobr>" + dateFormatDateTime.format(svnRevision.getCreateDate()) + "</nobr>");
-
-							row.addText(rowTextEntry);
-
-							// Action
-
-							row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/svn/revision_action.jsp", application, request, response);
-
-							// Add result row
-
-							resultRows.add(row);
-						}
-						%>
-
-						<h4>
-							<c:choose>
-								<c:when test="<%= all %>">
-
-									<%
-									String fishEyeURL = "http://svn.liferay.com/browse/" + svnRepository.getName();
-									%>
-
-									<%= LanguageUtil.format(pageContext, "all-commits-on-x", "<a href=\"" + fishEyeURL + "\" target=\"_blank\">" + fishEyeURL + "</a>") %>
-								</c:when>
-								<c:otherwise>
-
-									<%
-									String fishEyeURL = "http://svn.liferay.com/browse/~author=" + svnUserId + "/" + svnRepository.getName();
-									%>
-
-									<%= LanguageUtil.format(pageContext, "x's-commits-on-x", new Object[] {HtmlUtil.escape(user2.getFirstName()), "<a href=\"" + fishEyeURL + "\" target=\"_blank\">" + url + "</a>"}) %>
-								</c:otherwise>
-							</c:choose>
-						</h4>
-
-						<br />
-
-						<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
-					</c:otherwise>
-				</c:choose>
 			</c:when>
 			<c:otherwise>
-				<%= LanguageUtil.format(pageContext, "x-does-not-have-any-commits-to-the-svn-repository", HtmlUtil.escape(user2.getFullName())) %>
+
+				<%
+				String url = ParamUtil.getString(request, "url");
+				boolean all = ParamUtil.getBoolean(request, "all");
+
+				PortletURL portletURL = renderResponse.createRenderURL();
+
+				portletURL.setParameter("url", url);
+				portletURL.setParameter("all", String.valueOf(all));
+
+				SVNRepository svnRepository = SVNRepositoryLocalServiceUtil.getSVNRepository(url);
+
+				List headerNames = new ArrayList();
+
+				headerNames.add("revision");
+				headerNames.add("comments");
+				headerNames.add("date-and-time");
+				headerNames.add(StringPool.BLANK);
+
+				SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, "cur1", SearchContainer.DEFAULT_DELTA, portletURL, headerNames, null);
+
+				int total = 0;
+
+				if (all) {
+					total = SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnRepository.getSvnRepositoryId());
+				}
+				else {
+					total = SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnUserId, svnRepository.getSvnRepositoryId());
+				}
+
+				searchContainer.setTotal(total);
+
+				List<SVNRevision> results = null;
+
+				if (all) {
+					results = SVNRevisionLocalServiceUtil.getSVNRevisions(svnRepository.getSvnRepositoryId(), searchContainer.getStart(), searchContainer.getEnd());
+				}
+				else {
+					results = SVNRevisionLocalServiceUtil.getSVNRevisions(svnUserId, svnRepository.getSvnRepositoryId(), searchContainer.getStart(), searchContainer.getEnd());
+				}
+
+				searchContainer.setResults(results);
+
+				List resultRows = searchContainer.getResultRows();
+
+				for (int i = 0; i < results.size(); i++) {
+					SVNRevision svnRevision = results.get(i);
+
+					String rowHREF = svnRevision.getWebRevisionNumberURL();
+
+					Object[] jiraIssueAndComments = svnRevision.getJIRAIssueAndComments();
+
+					JIRAIssue jiraIssue = null;
+					String comments = svnRevision.getComments();
+
+					if (jiraIssueAndComments != null) {
+						jiraIssue = (JIRAIssue)jiraIssueAndComments[0];
+						comments = (String)jiraIssueAndComments[1];
+					}
+
+					ResultRow row = new ResultRow(new Object[] {svnRevision, rowHREF, jiraIssue}, svnRevision.getSvnRevisionId(), i);
+
+					TextSearchEntry rowTextEntry = new TextSearchEntry();
+
+					rowTextEntry.setHref(rowHREF);
+					rowTextEntry.setName(String.valueOf(svnRevision.getRevisionNumber()));
+					rowTextEntry.setTarget("_blank");
+					rowTextEntry.setTitle(String.valueOf(svnRevision.getRevisionNumber()));
+
+					// Revision number
+
+					row.addText(rowTextEntry);
+
+					// Comments
+
+					rowTextEntry = (TextSearchEntry)rowTextEntry.clone();
+
+					if (jiraIssue == null) {
+						rowTextEntry.setName(HtmlUtil.escape(comments));
+					}
+					else {
+						rowTextEntry.setName(HtmlUtil.escape(comments) + "<br />" + HtmlUtil.escape(jiraIssue.getSummary()));
+					}
+
+					row.addText(rowTextEntry);
+
+					// Date
+
+					rowTextEntry = (TextSearchEntry)rowTextEntry.clone();
+
+					rowTextEntry.setName("<nobr>" + dateFormatDateTime.format(svnRevision.getCreateDate()) + "</nobr>");
+
+					row.addText(rowTextEntry);
+
+					// Action
+
+					row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/svn/revision_action.jsp", application, request, response);
+
+					// Add result row
+
+					resultRows.add(row);
+				}
+				%>
+
+				<h4>
+					<c:choose>
+						<c:when test="<%= all %>">
+
+							<%
+							String fishEyeURL = "http://svn.liferay.com/browse/" + svnRepository.getName();
+							%>
+
+							<%= LanguageUtil.format(pageContext, "all-commits-on-x", "<a href=\"" + fishEyeURL + "\" target=\"_blank\">" + fishEyeURL + "</a>") %>
+						</c:when>
+						<c:otherwise>
+
+							<%
+							String fishEyeURL = "http://svn.liferay.com/browse/~author=" + svnUserId + "/" + svnRepository.getName();
+							%>
+
+							<%= LanguageUtil.format(pageContext, "x's-commits-on-x", new Object[] {HtmlUtil.escape(user2.getFirstName()), "<a href=\"" + fishEyeURL + "\" target=\"_blank\">" + url + "</a>"}) %>
+						</c:otherwise>
+					</c:choose>
+				</h4>
+
+				<br />
+
+				<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
 			</c:otherwise>
 		</c:choose>
+	</c:when>
+	<c:otherwise>
+		<%= LanguageUtil.format(pageContext, "x-does-not-have-any-commits-to-the-svn-repository", HtmlUtil.escape(user2.getFullName())) %>
 	</c:otherwise>
 </c:choose>
-
-<%!
-private static Log _log = LogFactoryUtil.getLog("svn.view_svn_jspf");
-%>
