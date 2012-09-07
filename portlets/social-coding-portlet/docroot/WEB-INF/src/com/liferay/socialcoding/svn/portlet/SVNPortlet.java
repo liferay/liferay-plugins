@@ -15,6 +15,7 @@
 package com.liferay.socialcoding.svn.portlet;
 
 import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
@@ -48,6 +49,13 @@ public class SVNPortlet extends MVCPortlet {
 	protected void serveRSS(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
+
+		if (!PortalUtil.isRSSFeedsEnabled()) {
+			PortalUtil.sendRSSFeedsDisabledError(
+				resourceRequest, resourceResponse);
+
+			return;
+		}
 
 		resourceResponse.setContentType(ContentTypes.TEXT_XML_UTF8);
 
