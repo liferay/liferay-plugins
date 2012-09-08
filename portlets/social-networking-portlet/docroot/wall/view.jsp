@@ -14,7 +14,7 @@
  */
 --%>
 
-<%@ include file="/wall/init.jsp" %>
+<%@ include file="/init.jsp" %>
 
 <c:choose>
 	<c:when test="<%= user2 == null %>">

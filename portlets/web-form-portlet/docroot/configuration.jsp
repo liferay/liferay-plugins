@@ -110,7 +110,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 						<liferay-ui:message key="there-is-existing-form-data-please-export-and-delete-it-before-making-changes-to-the-fields" />
 					</div>
 
-					<c:if test="<%= isPortletResourceOnThePage %>">
+					<c:if test="<%= layoutTypePortlet.hasPortletId(portletResource) %>">
 						<liferay-portlet:resourceURL portletName="<%= portletResource %>" var="exportURL">
 							<portlet:param name="<%= Constants.CMD %>" value="export" />
 						</liferay-portlet:resourceURL>

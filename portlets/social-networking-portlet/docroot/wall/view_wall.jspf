@@ -244,15 +244,13 @@
 						<c:when test="<%= SocialRequestLocalServiceUtil.hasRequest(user2.getUserId(), User.class.getName(), user2.getUserId(), FriendsRequestKeys.ADD_FRIEND, user.getUserId(), SocialRequestConstants.STATUS_PENDING) %>">
 							<%= LanguageUtil.format(pageContext, "you-need-to-approve-x-as-your-friend", HtmlUtil.escape(user2.getFirstName())) %>
 						</c:when>
-						<c:otherwise>
-							<c:if test="<%= isSummaryPortletOnThePage %>">
-								<liferay-portlet:actionURL name="addFriend" portletName="<%= SUMMARY_PORTLET_ID %>" var="addAsFriendURL">
-									<portlet:param name="redirect" value='<%= currentURL %>' />
-								</liferay-portlet:actionURL>
+						<c:when test="<%= layoutTypePortlet.hasPortletId(PortletKeys.SUMMARY) %>">
+							<liferay-portlet:actionURL name="addFriend" portletName="<%= PortletKeys.SUMMARY %>" var="addAsFriendURL">
+								<portlet:param name="redirect" value="<%= currentURL %>" />
+							</liferay-portlet:actionURL>
 
-								<a href="<%= addAsFriendURL %>"><%= LanguageUtil.format(pageContext, "ask-x-to-be-your-friend", HtmlUtil.escape(user2.getFirstName())) %></a>
-							</c:if>
-						</c:otherwise>
+							<a href="<%= addAsFriendURL %>"><%= LanguageUtil.format(pageContext, "ask-x-to-be-your-friend", HtmlUtil.escape(user2.getFirstName())) %></a>
+						</c:when>
 					</c:choose>
 				</c:when>
 				<c:otherwise>
