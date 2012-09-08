@@ -43,31 +43,7 @@ public class WeatherWebCacheItem implements WebCacheItem {
 		Weather weather = null;
 
 		try {
-			StringBundler sb = new StringBundler(5);
-
-			sb.append("http://free.worldweatheronline.com/feed/weather.ashx?key=");
-			sb.append(PortletPropsValues.WORLD_WEATHER_ONLINE_API_KEY);
-			sb.append("&q=");
-			sb.append(HttpUtil.encodeURL(_zip));
-			sb.append("&format=xml");
-
-			String xml = HttpUtil.URLtoString(sb.toString());
-
-			Document doc = SAXReaderUtil.read(xml);
-
-			Element root = doc.getRootElement();
-
-			Element currentConditionEl = root.element("current_condition");
-
-			Element temperatureEl = currentConditionEl.element("temp_F");
-
-			float temperature = GetterUtil.getFloat(temperatureEl.getData());
-
-			Element iconEl = currentConditionEl.element("weatherIconUrl");
-
-			String iconURL = iconEl.getText();
-
-			weather = new Weather(_zip, iconURL, temperature);
+			weather = doConvert(key);
 		}
 		catch (Exception e) {
 			throw new WebCacheException(_zip);
@@ -78,6 +54,35 @@ public class WeatherWebCacheItem implements WebCacheItem {
 
 	public long getRefreshTime() {
 		return _REFRESH_TIME;
+	}
+
+	protected Weather doConvert(String key) throws Exception {
+		StringBundler sb = new StringBundler(5);
+
+		sb.append("http://free.worldweatheronline.com/feed/weather.ashx?key=");
+		sb.append(PortletPropsValues.WORLD_WEATHER_ONLINE_API_KEY);
+		sb.append("&q=");
+		sb.append(HttpUtil.encodeURL(_zip));
+		sb.append("&format=xml");
+
+		String xml = HttpUtil.URLtoString(sb.toString());
+
+		Document document = SAXReaderUtil.read(xml);
+
+		Element rootElement = document.getRootElement();
+
+		Element currentConditionElement = rootElement.element(
+			"current_condition");
+
+		Element temperatureElement = currentConditionElement.element("temp_F");
+
+		float temperature = GetterUtil.getFloat(temperatureElement.getData());
+
+		Element iconElement = currentConditionElement.element("weatherIconUrl");
+
+		String iconURL = iconElement.getText();
+
+		return new Weather(_zip, iconURL, temperature);
 	}
 
 	private static final long _REFRESH_TIME = Time.MINUTE * 60;
