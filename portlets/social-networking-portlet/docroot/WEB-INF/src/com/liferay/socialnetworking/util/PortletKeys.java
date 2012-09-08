@@ -1,4 +1,3 @@
-<%--
 /**
  * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
@@ -12,16 +11,14 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
---%>
 
-<%@ include file="/init.jsp" %>
+package com.liferay.socialnetworking.util;
 
-<%
+/**
+ * @author Brian Wing Shun Chan
+ */
+public class PortletKeys extends com.liferay.portal.util.PortletKeys {
 
-boolean isSummaryPortletOnThePage = layoutTypePortlet.hasPortletId(SUMMARY_PORTLET_ID);
+	public static final String SUMMARY = "1_WAR_socialnetworkingportlet";
 
-%><%!
-
-public static final String SUMMARY_PORTLET_ID = "1_WAR_socialnetworkingportlet";
-
-%>
+}
