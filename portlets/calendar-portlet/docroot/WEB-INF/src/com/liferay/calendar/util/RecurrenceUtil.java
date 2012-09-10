@@ -38,11 +38,12 @@ import java.util.TimeZone;
 public class RecurrenceUtil {
 
 	public static List<CalendarBooking> expandCalendarBookings(
-		List<CalendarBooking> calendarBookings, long endDate) {
+		List<CalendarBooking> calendarBookings, long startDate, long endDate) {
 
 		List<CalendarBooking> expandedCalendarBookings =
 			new ArrayList<CalendarBooking>();
 
+		DateValue startDateValue = _toDateValue(startDate);
 		DateValue endDateValue = _toDateValue(endDate);
 
 		try {
@@ -53,16 +54,18 @@ public class RecurrenceUtil {
 					continue;
 				}
 
-				DateValue startDateValue = _toDateValue(
-					calendarBooking.getStartDate());
-
 				RecurrenceIterator recurrenceIterator =
 					RecurrenceIteratorFactory.createRecurrenceIterator(
-						calendarBooking.getRecurrence(), startDateValue,
+						calendarBooking.getRecurrence(),
+						_toDateValue(calendarBooking.getStartDate()),
 						TimeUtils.utcTimezone());
 
 				while (recurrenceIterator.hasNext()) {
 					DateValue dateValue = recurrenceIterator.next();
+
+					if (dateValue.compareTo(startDateValue) < 0) {
+						continue;
+					}
 
 					if (dateValue.compareTo(endDateValue) > 0) {
 						break;

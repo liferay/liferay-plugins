@@ -314,7 +314,7 @@ public class CalendarBookingLocalServiceImpl
 
 		if (recurring) {
 			calendarBookings = RecurrenceUtil.expandCalendarBookings(
-				calendarBookings, endDate);
+				calendarBookings, startDate, endDate);
 		}
 
 		return calendarBookings;
@@ -338,7 +338,7 @@ public class CalendarBookingLocalServiceImpl
 
 		if (recurring) {
 			calendarBookings = RecurrenceUtil.expandCalendarBookings(
-				calendarBookings, endDate);
+				calendarBookings, startDate, endDate);
 		}
 
 		return calendarBookings;
