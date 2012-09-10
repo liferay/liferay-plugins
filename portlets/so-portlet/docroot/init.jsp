@@ -96,6 +96,8 @@ page import="com.liferay.so.service.SocialOfficeServiceUtil" %><%@
 page import="com.liferay.so.sites.util.SitesUtil" %><%@
 page import="com.liferay.so.util.GroupConstants" %><%@
 page import="com.liferay.so.util.PortletKeys" %><%@
+page import="com.liferay.so.util.PortletPropsKeys" %><%@
+page import="com.liferay.so.util.PortletPropsValues" %><%@
 page import="com.liferay.so.util.RoleConstants" %>
 
 <%@ page import="java.text.Format" %>

@@ -20,8 +20,6 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String userNotificationEventUuids = StringPool.BLANK;
-
 List<NotificationEvent> notificationEvents = null;
 
 try {
@@ -33,62 +31,66 @@ catch (UnknownChannelException e) {
 	notificationEvents = channel.getNotificationEvents();
 }
 
-int notificationEventsCount = notificationEvents.size();
+List<NotificationEvent> userNotificationEvents = new ArrayList<NotificationEvent>();
+String userNotificationEventUuids = StringPool.BLANK;
+
+for (NotificationEvent notificationEvent : notificationEvents) {
+	if (notificationEvent.getType().equals(PortletKeys.SO_NOTIFICATION)) {
+		userNotificationEvents.add(notificationEvent);
+	}
+}
+
+int notificationEventsCount = userNotificationEvents.size();
 %>
 
 <div class="aui-menu aui-overlaycontext-hidden user-notification-events" id="<portlet:namespace />notificationsMenuContainer">
 	<div class="aui-menu-content user-notification-events-container" id="<portlet:namespace />notificationsMenuContent">
-
+		
 		<%
-		if (!notificationEvents.isEmpty()) {
-			for (NotificationEvent notificationEvent : notificationEvents) {
-				if (notificationEvent.getType().equals(PortletKeys.SO_NOTIFICATION)) {
-					userNotificationEventUuids = StringUtil.add(userNotificationEventUuids, notificationEvent.getUuid());
-				}
-				else {
-					notificationEventsCount--;
+		int maxNotificationEvents = Math.min(notificationEventsCount, PortletPropsValues.NOTIFICATIONS_DOCKBAR_MAX_ELEMENTS);
+			
+		for  (int i = 0; i < maxNotificationEvents; i++) {
+			NotificationEvent  notificationEvent = userNotificationEvents.get(i);
 
-					continue;
-				}
+			userNotificationEventUuids = StringUtil.add(userNotificationEventUuids, notificationEvent.getUuid());
 
-				JSONObject notificationEventJSONObject = notificationEvent.getPayload();
+			JSONObject notificationEventJSONObject = notificationEvent.getPayload();
 
-				String portletId = notificationEventJSONObject.getString("portletId");
+			String portletId = notificationEventJSONObject.getString("portletId");
 
-				long userId = notificationEventJSONObject.getLong("userId");
+			long userId = notificationEventJSONObject.getLong("userId");
 
-				String userFullName = PortalUtil.getUserName(userId, StringPool.BLANK);
+			String userFullName = PortalUtil.getUserName(userId, StringPool.BLANK);
 
-				String userDisplayURL = StringPool.BLANK;
-				String userPortaitURL = StringPool.BLANK;
+			String userDisplayURL = StringPool.BLANK;
+			String userPortaitURL = StringPool.BLANK;
 
-				User curUser = UserLocalServiceUtil.fetchUserById(userId);
+			User curUser = UserLocalServiceUtil.fetchUserById(userId);
 
-				if (curUser != null) {
-					userDisplayURL = curUser.getDisplayURL(themeDisplay);
-					userPortaitURL = curUser.getPortraitURL(themeDisplay);
-				}
-
-				int daysBetween = DateUtil.getDaysBetween(new Date(notificationEvent.getTimestamp()), new Date(), timeZone);
-			%>
-
-				<c:choose>
-					<c:when test="<%= portletId.equals(PortletKeys.ANNOUNCEMENTS) %>">
-						<%@ include file="/notifications/view_announcement.jspf" %>
-					</c:when>
-					<c:when test="<%= portletId.equals(PortletKeys.SO_INVITE_MEMBERS) %>">
-						<%@ include file="/notifications/view_member_request.jspf" %>
-					</c:when>
-					<c:when test='<%= portletId.equals("1_WAR_contactsportlet") %>'>
-						<%@ include file="/notifications/view_social_request.jspf" %>
-					</c:when>
-					<c:otherwise>
-						<%@ include file="/notifications/view_notification.jspf" %>
-					</c:otherwise>
-				</c:choose>
-
-		<%
+			if (curUser != null) {
+				userDisplayURL = curUser.getDisplayURL(themeDisplay);
+				userPortaitURL = curUser.getPortraitURL(themeDisplay);
 			}
+
+			int daysBetween = DateUtil.getDaysBetween(new Date(notificationEvent.getTimestamp()), new Date(), timeZone);
+		%>
+
+			<c:choose>
+				<c:when test="<%= portletId.equals(PortletKeys.ANNOUNCEMENTS) %>">
+					<%@ include file="/notifications/view_announcement.jspf" %>
+				</c:when>
+				<c:when test="<%= portletId.equals(PortletKeys.SO_INVITE_MEMBERS) %>">
+					<%@ include file="/notifications/view_member_request.jspf" %>
+				</c:when>
+				<c:when test='<%= portletId.equals("1_WAR_contactsportlet") %>'>
+					<%@ include file="/notifications/view_social_request.jspf" %>
+				</c:when>
+				<c:otherwise>
+					<%@ include file="/notifications/view_notification.jspf" %>
+				</c:otherwise>
+			</c:choose>
+
+		<%
 		}
 		%>
 
@@ -114,7 +116,7 @@ int notificationEventsCount = notificationEvents.size();
 				<a href="<%= viewAllNotifications %>"><liferay-ui:message key="view-all" />&raquo;</a>
 			</span>
 		</div>
-	</div>
+	</div>	
 </div>
 
 <a class="menu-button user-notification-events-icon" href="javascript:;">
