@@ -568,15 +568,17 @@ public class CalendarPortlet extends MVCPortlet {
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
-		long[] groupIds = new long[] {
-			themeDisplay.getCompanyGroupId(), themeDisplay.getScopeGroupId()};
-
 		long classNameId = PortalUtil.getClassNameId(CalendarResource.class);
 
 		List<CalendarResource> calendarResources =
 			CalendarResourceServiceUtil.search(
-				themeDisplay.getCompanyId(), groupIds, new long[] {classNameId},
-				keywords, true, true, 0, SearchContainer.DEFAULT_DELTA,
+				themeDisplay.getCompanyId(),
+				new long[] {
+					themeDisplay.getCompanyGroupId(),
+					themeDisplay.getScopeGroupId()
+				},
+				new long[] {classNameId}, keywords, true, true, 0,
+				SearchContainer.DEFAULT_DELTA,
 				new CalendarResourceNameComparator());
 
 		for (CalendarResource calendarResource : calendarResources) {
