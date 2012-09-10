@@ -1,0 +1,66 @@
+@import "compass";
+
+#sign-in {
+	padding: 2px 4px;
+	position: absolute;
+	right: 4px;
+	top: 4px;
+}
+
+#loginPage {
+	.login-holder, .portlet {
+		margin: 15px auto;
+	}
+
+	.login-holder {
+		left: 0;
+		position: absolute;
+		right: 0;
+		top: 17.5%;
+	}
+
+	.company-title {
+		text-align: center;
+	}
+
+	#so-welcome-context {
+		display: table;
+		margin: 0 auto;
+	}
+
+	.portlet {
+
+	}
+}
+
+/* ---------- Extras ---------- */
+
+html.ie, .ie body, .ie #loginPage {
+	height: 100%;
+}
+
+.ie #loginPage .login-holder .portlet {
+	border: 1px solid $gray;
+}
+
+.ie6 img {
+	position: static;
+}
+
+.ie7 #loginPage {
+	#main-content {
+		text-align: center;
+	}
+
+	.portlet {
+		display: inline-block;
+	}
+
+	.portlet-content {
+		text-align: left;
+	}
+}
+
+.ie9 #loginPage .portlet {
+	border-collapse: separate;
+}
