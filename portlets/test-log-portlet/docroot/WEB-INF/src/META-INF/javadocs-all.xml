@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<javadocs>
+	<javadoc>
+		<name>TestLogPortlet</name>
+		<type>com.liferay.testlog.portlet.TestLogPortlet</type>
+		<author><![CDATA[Shinn Lok]]></author>
+		<method>
+			<name>doView</name>
+			<param>
+				<name>renderRequest</name>
+				<type>javax.portlet.RenderRequest</type>
+			</param>
+			<param>
+				<name>renderResponse</name>
+				<type>javax.portlet.RenderResponse</type>
+			</param>
+			<throws>
+				<name>IOException</name>
+				<type>java.io.IOException</type>
+			</throws>
+			<throws>
+				<name>PortletException</name>
+				<type>javax.portlet.PortletException</type>
+			</throws>
+		</method>
+		<field>
+			<name>_log</name>
+		</field>
+	</javadoc>
+</javadocs>
