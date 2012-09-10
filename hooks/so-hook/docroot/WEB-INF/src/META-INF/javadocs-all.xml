@@ -377,41 +377,6 @@
 		</method>
 	</javadoc>
 	<javadoc>
-		<name>CompanyLocalServiceImpl</name>
-		<type>com.liferay.so.hook.service.impl.CompanyLocalServiceImpl</type>
-		<author><![CDATA[Ryan Park]]></author>
-		<method>
-			<name>CompanyLocalServiceImpl</name>
-			<param>
-				<name>companyLocalService</name>
-				<type>com.liferay.portal.service.CompanyLocalService</type>
-			</param>
-		</method>
-		<method>
-			<name>checkCompany</name>
-			<param>
-				<name>webId</name>
-				<type>java.lang.String</type>
-			</param>
-			<param>
-				<name>mx</name>
-				<type>java.lang.String</type>
-			</param>
-			<param>
-				<name>shardName</name>
-				<type>java.lang.String</type>
-			</param>
-			<throws>
-				<name>PortalException</name>
-				<type>com.liferay.portal.kernel.exception.PortalException</type>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-			</throws>
-		</method>
-	</javadoc>
-	<javadoc>
 		<name>UpgradeProcess_1_5_1</name>
 		<type>com.liferay.so.hook.upgrade.UpgradeProcess_1_5_1</type>
 		<author><![CDATA[Ryan Park]]></author>
