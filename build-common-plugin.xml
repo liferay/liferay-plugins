@@ -536,6 +536,21 @@
 		</copy>
 
 		<if>
+			<available file="docroot/WEB-INF/src/META-INF/portal-log4j.xml" />
+			<then>
+				<unzip
+					dest="docroot/WEB-INF/src/META-INF"
+					src="${project.dir}/lib/log4j.jar"
+				>
+					<patternset
+						includes="**/log4j.dtd"
+					/>
+					<flattenmapper />
+				</unzip>
+			</then>
+		</if>
+
+		<if>
 			<isset property="plugin-package.required-deployment-contexts" />
 			<then>
 				<for list="${plugin-package.required-deployment-contexts}" param="required.deployment.context">

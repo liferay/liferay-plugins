@@ -10,6 +10,7 @@ _sass_cache_*.css
 
 /*/*/docroot/WEB-INF/classes
 /*/*/docroot/WEB-INF/lib/portal-compat-client.jar
+/*/*/docroot/WEB-INF/src/META-INF/log4j.dtd
 
 /build.*.properties
 /dist
