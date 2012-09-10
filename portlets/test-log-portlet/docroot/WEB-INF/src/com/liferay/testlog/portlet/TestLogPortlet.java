@@ -16,9 +16,17 @@ package com.liferay.testlog.portlet;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import java.text.Format;
+
+import java.util.Date;
 
 import javax.portlet.GenericPortlet;
 import javax.portlet.PortletException;
@@ -39,7 +47,19 @@ public class TestLogPortlet extends GenericPortlet {
 
 		_log.info("Execute Test");
 
-		if (_log.isInfoEnabled()) {
+		if (!_log.isInfoEnabled()) {
+			printWriter.write("FAILED");
+
+			printWriter.close();
+
+			return;
+		}
+
+		File file = new File(
+			PropsUtil.get(PropsKeys.LIFERAY_HOME) + "/logs/test-log-portlet." +
+				_simpleDateFormat.format(new Date()) + ".log");
+
+		if (file.exists()) {
 			printWriter.write("PASSED");
 		}
 		else {
@@ -50,5 +70,8 @@ public class TestLogPortlet extends GenericPortlet {
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(TestLogPortlet.class);
+
+	private static Format _simpleDateFormat =
+		FastDateFormatFactoryUtil.getSimpleDateFormat("yyyy-MM-dd");
 
 }
