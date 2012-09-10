@@ -19,13 +19,12 @@
 				<name>IOException</name>
 				<type>java.io.IOException</type>
 			</throws>
-			<throws>
-				<name>PortletException</name>
-				<type>javax.portlet.PortletException</type>
-			</throws>
 		</method>
 		<field>
 			<name>_log</name>
+		</field>
+		<field>
+			<name>_format</name>
 		</field>
 	</javadoc>
 </javadocs>

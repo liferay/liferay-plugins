@@ -29,7 +29,6 @@ import java.text.Format;
 import java.util.Date;
 
 import javax.portlet.GenericPortlet;
-import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
@@ -41,29 +40,26 @@ public class TestLogPortlet extends GenericPortlet {
 	@Override
 	public void doView(
 			RenderRequest renderRequest, RenderResponse renderResponse)
-		throws IOException, PortletException {
+		throws IOException {
 
 		PrintWriter printWriter = renderResponse.getWriter();
 
-		_log.info("Execute Test");
-
-		if (!_log.isInfoEnabled()) {
-			printWriter.write("FAILED");
-
-			printWriter.close();
-
-			return;
+		if (_log.isInfoEnabled()) {
+			printWriter.write("Log#isEnabled=PASSED\n");
+		}
+		else {
+			printWriter.write("Log#isEnabled=FAILED\n");
 		}
 
 		File file = new File(
 			PropsUtil.get(PropsKeys.LIFERAY_HOME) + "/logs/test-log-portlet." +
-				_simpleDateFormat.format(new Date()) + ".log");
+				_format.format(new Date()) + ".log");
 
 		if (file.exists()) {
-			printWriter.write("PASSED");
+			printWriter.write(file + "=PASSED\n");
 		}
 		else {
-			printWriter.write("FAILED");
+			printWriter.write(file + "=FAILED\n");
 		}
 
 		printWriter.close();
@@ -71,7 +67,7 @@ public class TestLogPortlet extends GenericPortlet {
 
 	private static Log _log = LogFactoryUtil.getLog(TestLogPortlet.class);
 
-	private static Format _simpleDateFormat =
+	private static Format _format =
 		FastDateFormatFactoryUtil.getSimpleDateFormat("yyyy-MM-dd");
 
 }
