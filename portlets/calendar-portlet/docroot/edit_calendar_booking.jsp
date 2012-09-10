@@ -175,7 +175,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 	>
 		<liferay-ui:section>
 			<c:if test="<%= invitable %>">
-				<aui:input inputCssClass="calendar-portlet-invite-resources-input" label="invite-resource" name="inviteResource" placeholder="add-guests-groups-rooms" type="text" />
+				<aui:input inputCssClass="calendar-portlet-invite-resources-input" label="invite" name="inviteResource" placeholder="add-people-groups-rooms" type="text" />
 
 				<div class="separator"><!-- --></div>
 			</c:if>
