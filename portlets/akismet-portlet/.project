@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <projectDescription>
-	<name>akismet-portlet-6.1.x</name>
+	<name>akismet-portlet-trunk</name>
 	<comment></comment>
 	<projects></projects>
 	<buildSpec>
