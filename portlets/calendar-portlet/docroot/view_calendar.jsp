@@ -18,7 +18,7 @@
 
 <%
 String activeView = ParamUtil.getString(request, "activeView", defaultView);
-long currentDate = ParamUtil.getLong(request, "currentDate", now.getTimeInMillis());
+long date = ParamUtil.getLong(request, "date", now.getTimeInMillis());
 
 List<Calendar> groupCalendars = null;
 
@@ -97,7 +97,7 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 	<aui:column columnWidth="100">
 		<liferay-util:include page="/scheduler.jsp" servletContext="<%= application %>">
 			<liferay-util:param name="activeView" value="<%= activeView %>" />
-			<liferay-util:param name="currentDate" value="<%= String.valueOf(currentDate) %>" />
+			<liferay-util:param name="date" value="<%= String.valueOf(date) %>" />
 
 			<portlet:renderURL var="editCalendarBookingURL">
 				<portlet:param name="jspPage" value="/edit_calendar_booking.jsp" />
@@ -106,7 +106,7 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 				<portlet:param name="allDay" value="{allDay}" />
 				<portlet:param name="calendarBookingId" value="{calendarBookingId}" />
 				<portlet:param name="calendarId" value="{calendarId}" />
-				<portlet:param name="currentDate" value="{currentDate}" />
+				<portlet:param name="date" value="{date}" />
 				<portlet:param name="endDate" value="{endDate}" />
 				<portlet:param name="startDate" value="{startDate}" />
 				<portlet:param name="titleCurrentValue" value="{titleCurrentValue}" />
@@ -283,12 +283,12 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 						<portlet:namespace />scheduler.setAttrs(
 							{
 								activeView: <portlet:namespace />dayView,
-								currentDate: event.date
+								date: event.date
 							}
 						);
 					}
 				},
-				date: new Date(<%= String.valueOf(currentDate) %>),
+				date: new Date(<%= String.valueOf(date) %>),
 				locale: 'en'
 			}
 		).render('#<portlet:namespace />miniCalendarContainer');
