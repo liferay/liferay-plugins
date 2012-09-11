@@ -1133,5 +1133,4 @@
 			requires: ['aui-dialog']
 		}
 	);
-
 }());

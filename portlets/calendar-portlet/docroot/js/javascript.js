@@ -751,18 +751,14 @@
 								Liferay.Language.get('continue'),
 								Liferay.Language.get('dont-change-the-event'),
 								function() {
-									var dialog = this;
-
 									CalendarUtil.updateEvent(schedulerEvent);
 
-									dialog.close();
+									this.close();
 								},
 								function() {
-									var dialog = this;
-
 									instance.loadCalendarBookings();
 
-									dialog.close();
+									this.close();
 								}
 							);
 						}
