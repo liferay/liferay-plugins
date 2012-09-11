@@ -47,11 +47,6 @@
 		modelVar="group"
 	>
 		<liferay-ui:search-container-column-text
-			name="code"
-			value="<%= String.valueOf(group.getGroupId()) %>"
-		/>
-
-		<liferay-ui:search-container-column-text
 			name="name"
 			value="<%= group.getName() %>"
 		/>
