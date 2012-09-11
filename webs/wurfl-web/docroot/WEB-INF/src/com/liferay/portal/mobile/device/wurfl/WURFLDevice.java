@@ -17,6 +17,7 @@ import com.liferay.portal.kernel.mobile.device.AbstractDevice;
 import com.liferay.portal.kernel.mobile.device.Capability;
 import com.liferay.portal.kernel.mobile.device.DeviceCapabilityFilter;
 import com.liferay.portal.kernel.mobile.device.Dimensions;
+import com.liferay.portal.kernel.mobile.device.VersionableName;
 import com.liferay.portal.kernel.util.GetterUtil;
 
 import java.util.HashMap;
@@ -48,23 +49,15 @@ public class WURFLDevice extends AbstractDevice {
 	}
 
 	public String getBrand() {
-		Capability capability = _capabilities.get(WURFLConstants.BRAND_NAME);
-
-		return capability.getValue();
+		return getValue(WURFLConstants.BRAND_NAME);
 	}
 
 	public String getBrowser() {
-		Capability capability = _capabilities.get(
-			WURFLConstants.MOBILE_BROWSER);
-
-		return capability.getValue();
+		return getValue(WURFLConstants.MOBILE_BROWSER);
 	}
 
 	public String getBrowserVersion() {
-		Capability capability = _capabilities.get(
-			WURFLConstants.MOBILE_BROWSER_VERSION);
-
-		return capability.getValue();
+		return getValue(WURFLConstants.MOBILE_BROWSER_VERSION);
 	}
 
 	public Map<String, Capability> getCapabilities() {
@@ -74,44 +67,40 @@ public class WURFLDevice extends AbstractDevice {
 	public String getCapability(String name) {
 		Capability capability = _capabilities.get(name);
 
+		if (capability == null) {
+			return null;
+		}
+
 		return capability.getValue();
 	}
 
 	public String getModel() {
-		Capability capability = _capabilities.get(WURFLConstants.MODEL_NAME);
-
-		return capability.getValue();
+		return getValue(WURFLConstants.MODEL_NAME);
 	}
 
 	public String getOS() {
-		Capability capability = _capabilities.get(WURFLConstants.DEVICE_OS);
-
-		return capability.getValue();
+		return getValue(WURFLConstants.DEVICE_OS);
 	}
 
 	public String getOSVersion() {
-		Capability capability = _capabilities.get(
-			WURFLConstants.DEVICE_OS_VERSION);
-
-		return capability.getValue();
+		return getValue(WURFLConstants.DEVICE_OS_VERSION);
 	}
 
 	public String getPointingMethod() {
-		Capability capability = _capabilities.get(
-			WURFLConstants.POINTING_METHOD);
-
-		return capability.getValue();
+		return getValue(WURFLConstants.POINTING_METHOD);
 	}
 
 	public Dimensions getScreenSize() {
 		Capability heightCapability = _capabilities.get(
 			WURFLConstants.RESOLUTION_HEIGHT);
-
-		float height = GetterUtil.getFloat(heightCapability.getValue());
-
 		Capability widthCapability = _capabilities.get(
 			WURFLConstants.RESOLUTION_WIDTH);
 
+		if ((heightCapability == null) || (widthCapability == null)) {
+			return Dimensions.UNKNOWN;
+		}
+
+		float height = GetterUtil.getFloat(heightCapability.getValue());
 		float width = GetterUtil.getFloat(widthCapability.getValue());
 
 		return new Dimensions(height, width);
@@ -121,13 +110,31 @@ public class WURFLDevice extends AbstractDevice {
 		Capability capability = _capabilities.get(
 			WURFLConstants.HAS_QWERTY_KEYBOARD);
 
+		if (capability == null) {
+			return false;
+		}
+
 		return GetterUtil.getBoolean(capability.getValue(), false);
 	}
 
 	public boolean isTablet() {
 		Capability capability = _capabilities.get(WURFLConstants.IS_TABLET);
 
+		if (capability == null) {
+			return false;
+		}
+
 		return GetterUtil.getBoolean(capability.getValue(), false);
+	}
+
+	protected String getValue(String name) {
+		Capability capability = _capabilities.get(name);
+
+		if (capability == null) {
+			return VersionableName.UNKNOWN.getName();
+		}
+
+		return capability.getValue();
 	}
 
 	private Map<String, Capability> _capabilities =
