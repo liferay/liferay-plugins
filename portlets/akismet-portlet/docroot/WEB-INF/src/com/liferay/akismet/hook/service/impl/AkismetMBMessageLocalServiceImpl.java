@@ -137,13 +137,11 @@ public class AkismetMBMessageLocalServiceImpl
 			long userId, String body, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		long companyId = serviceContext.getCompanyId();
+		User user = UserLocalServiceUtil.getUser(userId);
 
-		if (!AkismetUtil.isEnabled(companyId)) {
+		if (!AkismetUtil.isEnabled(user.getCompanyId())) {
 			return false;
 		}
-
-		User user = UserLocalServiceUtil.getUser(userId);
 
 		String ipAddress = serviceContext.getRemoteAddr();
 
@@ -153,9 +151,9 @@ public class AkismetMBMessageLocalServiceImpl
 		String referrer = headers.get("referer");
 
 		if (AkismetUtil.isSpam(
-				companyId, ipAddress, userAgent, referrer, StringPool.BLANK,
-				AkismetConstants.TYPE_COMMENT, user.getFullName(),
-				user.getEmailAddress(), body)) {
+				user.getCompanyId(), ipAddress, userAgent, referrer,
+				StringPool.BLANK, AkismetConstants.TYPE_COMMENT,
+				user.getFullName(), user.getEmailAddress(), body)) {
 
 			return true;
 		}
