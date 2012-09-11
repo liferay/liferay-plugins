@@ -48,11 +48,6 @@
 		modelVar="resource"
 	>
 		<liferay-ui:search-container-column-text
-			name="code"
-			orderable="<%= true %>"
-		/>
-
-		<liferay-ui:search-container-column-text
 			name="name"
 			orderable="<%= true %>"
 			value="<%= resource.getName(locale) %>"

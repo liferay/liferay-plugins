@@ -45,11 +45,6 @@
 		modelVar="user"
 	>
 		<liferay-ui:search-container-column-text
-			name="code"
-			value="<%= user.getScreenName() %>"
-		/>
-
-		<liferay-ui:search-container-column-text
 			name="name"
 			value="<%= user.getFullName() %>"
 		/>
