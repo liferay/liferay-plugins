@@ -23,9 +23,9 @@ String activeView = ParamUtil.getString(request, "activeView", defaultView);
 
 redirect = HttpUtil.setParameter(redirect, renderResponse.getNamespace() + "activeView", activeView);
 
-long currentDate = ParamUtil.getLong(request, "currentDate", now.getTimeInMillis());
+long date = ParamUtil.getLong(request, "date", now.getTimeInMillis());
 
-redirect = HttpUtil.setParameter(redirect, renderResponse.getNamespace() + "currentDate", currentDate);
+redirect = HttpUtil.setParameter(redirect, renderResponse.getNamespace() + "date", date);
 
 CalendarBooking calendarBooking = (CalendarBooking)request.getAttribute(WebKeys.CALENDAR_BOOKING);
 
@@ -223,7 +223,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 							<liferay-util:include page="/scheduler.jsp" servletContext="<%= application %>">
 								<liferay-util:param name="activeView" value="<%= activeView %>" />
-								<liferay-util:param name="currentDate" value="<%= String.valueOf(currentDate) %>" />
+								<liferay-util:param name="date" value="<%= String.valueOf(date) %>" />
 								<liferay-util:param name="filterCalendarBookings" value='<%= "window." + renderResponse.getNamespace() + "filterCalendarBookings" %>' />
 								<liferay-util:param name="readOnly" value="<%= Boolean.TRUE.toString() %>" />
 							</liferay-util:include>

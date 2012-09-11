@@ -18,7 +18,7 @@
 
 <%
 String activeView = ParamUtil.getString(request, "activeView", defaultView);
-long currentDate = ParamUtil.getLong(request, "currentDate", now.getTimeInMillis());
+long date = ParamUtil.getLong(request, "date", now.getTimeInMillis());
 String editCalendarBookingURL = ParamUtil.getString(request, "editCalendarBookingURL");
 String filterCalendarBookings = ParamUtil.getString(request, "filterCalendarBookings", null);
 boolean readOnly = ParamUtil.getBoolean(request, "readOnly");
@@ -88,7 +88,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 		{
 			activeView: window.<portlet:namespace /><%= activeView %>View,
 			boundingBox: '#<portlet:namespace />scheduler',
-			currentDate: new Date(<%= currentDate %>),
+			date: new Date(<%= date %>),
 			eventClass: Liferay.SchedulerEvent,
 			eventRecorder: eventRecorder,
 			events: A.Object.values(Liferay.CalendarUtil.availableCalendars),
