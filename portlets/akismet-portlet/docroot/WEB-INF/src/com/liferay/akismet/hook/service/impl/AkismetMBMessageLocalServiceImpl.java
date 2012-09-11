@@ -29,6 +29,8 @@ import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.service.MBMessageLocalService;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceWrapper;
 
+import java.io.InputStream;
+
 import java.util.List;
 import java.util.Map;
 
@@ -64,8 +66,9 @@ public class AkismetMBMessageLocalServiceImpl
 	public MBMessage addMessage(
 			long userId, String userName, long groupId, long categoryId,
 			long threadId, long parentMessageId, String subject, String body,
-			List<ObjectValuePair<String, byte[]>> files, boolean anonymous,
-			double priority, boolean allowPingbacks,
+			String format,
+			List<ObjectValuePair<String, InputStream>> inputStreamOVPs,
+			boolean anonymous, double priority, boolean allowPingbacks,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -75,16 +78,16 @@ public class AkismetMBMessageLocalServiceImpl
 
 		return super.addMessage(
 			userId, userName, groupId, categoryId, threadId, parentMessageId,
-			subject, body, files, anonymous, priority, allowPingbacks,
-			serviceContext);
+			subject, body, format, inputStreamOVPs, anonymous, priority,
+			allowPingbacks, serviceContext);
 	}
 
 	@Override
 	public MBMessage addMessage(
 			long userId, String userName, long groupId, long categoryId,
-			String subject, String body,
-			List<ObjectValuePair<String, byte[]>> files, boolean anonymous,
-			double priority, boolean allowPingbacks,
+			String subject, String body, String format,
+			List<ObjectValuePair<String, InputStream>> inputStreamOVPs,
+			boolean anonymous, double priority, boolean allowPingbacks,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -93,8 +96,9 @@ public class AkismetMBMessageLocalServiceImpl
 		}
 
 		return super.addMessage(
-			userId, userName, groupId, categoryId, subject, body, files,
-			anonymous, priority, allowPingbacks, serviceContext);
+			userId, userName, groupId, categoryId, subject, body, format,
+			inputStreamOVPs, anonymous, priority, allowPingbacks,
+			serviceContext);
 	}
 
 	@Override
@@ -115,7 +119,7 @@ public class AkismetMBMessageLocalServiceImpl
 	@Override
 	public MBMessage updateMessage(
 			long userId, long messageId, String subject, String body,
-			List<ObjectValuePair<String, byte[]>> files,
+			List<ObjectValuePair<String, InputStream>> inputStreamOVPs,
 			List<String> existingFiles, double priority, boolean allowPingbacks,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
@@ -125,8 +129,8 @@ public class AkismetMBMessageLocalServiceImpl
 		}
 
 		return super.updateMessage(
-			userId, messageId, subject, body, files, existingFiles, priority,
-			allowPingbacks, serviceContext);
+			userId, messageId, subject, body, inputStreamOVPs, existingFiles,
+			priority, allowPingbacks, serviceContext);
 	}
 
 	protected boolean isSpam(
