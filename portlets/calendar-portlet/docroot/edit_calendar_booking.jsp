@@ -263,6 +263,10 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 				A.one('#<portlet:namespace />childCalendarIds').val(childCalendarIds.join(','));
 			</c:if>
 
+			<c:if test="<%= calendarBooking == null %>">
+				submitForm(document.<portlet:namespace />fm);
+			</c:if>
+
 			<c:if test="<%= (calendarBooking != null) && (calendar != null) %>">
 				<c:choose>
 					<c:when test="<%= calendarBooking.isMasterBooking() %>">
