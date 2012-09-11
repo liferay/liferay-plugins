@@ -122,13 +122,7 @@ public class LayoutUtil {
 				portletIds = PortletProps.getArray(keyPrefix + column, filter);
 			}
 
-			String portlets = StringPool.BLANK;
-
-			for (String portletId : portletIds) {
-				portlets = StringUtil.add(portlets, portletId);
-			}
-
-			layoutTypePortlet.setPortletIds(column, portlets);
+			layoutTypePortlet.addPortletIds(0, portletIds, column, false);
 		}
 
 		LayoutLocalServiceUtil.updateLayout(
