@@ -1077,4 +1077,60 @@
 			requires: ['aui-base']
 		}
 	);
+
+	AUI.add(
+		'liferay-calendar-message-util',
+		function(A) {
+			Liferay.CalendarMessageUtil = {
+				confirmationPanel: null,
+
+				confirm: function(message, yesButtonLabel, noButtonLabel, yesFn, noFn) {
+					var instance = this;
+
+					var confirmationPanel = instance.confirmationPanel;
+
+					if (!confirmationPanel) {
+						confirmationPanel = new A.Dialog(
+							{
+								bodyContent: message,
+								buttons: [
+									{
+										handler: function(event, buttonItem) {
+											this.yesFn.apply(this, arguments);
+										},
+										label: yesButtonLabel
+									},
+									{
+										handler: function(event, buttonItem) {
+											this.noFn.apply(this, arguments);
+										},
+										label: noButtonLabel
+									}
+								],
+								centered: true,
+								modal: true,
+								resizable: false,
+								title: Liferay.Language.get('are-you-sure'),
+								visible: false,
+								width: 350,
+								zIndex: 1000
+							}
+						);
+
+						confirmationPanel.yesFn = yesFn;
+						confirmationPanel.noFn = noFn || confirmationPanel.close;
+
+						instance.confirmationPanel = confirmationPanel;
+					}
+
+					return confirmationPanel.render().show();
+				}
+			};
+		},
+		'',
+		{
+			requires: ['aui-dialog']
+		}
+	);
+
 }());

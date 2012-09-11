@@ -110,7 +110,7 @@
 						'/calendar-portlet/calendarbooking/add-calendar-booking': {
 							allDay: schedulerEvent.get('allDay'),
 							calendarId: schedulerEvent.get('calendarId'),
-							childCalendarIds: '',
+							childCalendarIds: STR_BLANK,
 							descriptionMap: instance.getLocalizationMap(schedulerEvent.get('description')),
 							endDate: instance.toUTCTimeZone(schedulerEvent.get('endDate')).getTime(),
 							firstReminder: schedulerEvent.get('firstReminder'),
@@ -337,7 +337,7 @@
 					{
 						'$booking = /calendar-portlet/calendarbooking/search': {
 							calendarIds: calendarIds.join(','),
-							calendarResourceIds: '',
+							calendarResourceIds: STR_BLANK,
 							companyId: COMPANY_ID,
 							end: -1,
 							endDate: endDate.getTime(),
@@ -635,7 +635,7 @@
 					},
 
 					portletNamespace: {
-						value: '',
+						value: STR_BLANK,
 						validator: isString
 					}
 				},
@@ -714,7 +714,7 @@
 							instance.syncEventsUI();
 						}
 
-						CalendarUtil.message('');
+						CalendarUtil.message(STR_BLANK);
 					},
 
 					_afterCurrentDateChange: function(event) {
@@ -730,9 +730,42 @@
 					_afterStartDateChange: function(event) {
 						var instance = this;
 
-						setTimeout(function() {
-							CalendarUtil.updateEvent(event.target);
-						}, 0);
+						var schedulerEvent = event.target;
+
+						if (schedulerEvent.isMasterBooking()) {
+							CalendarUtil.updateEvent(schedulerEvent);
+						}
+						else {
+							var calendar = Liferay.CalendarUtil.availableCalendars[schedulerEvent.get('calendarId')];
+							var content = [
+								'<p class="calendar-portlet-confirmation-text">',
+								A.Lang.sub(
+									Liferay.Language.get('you-are-about-to-make-changes-that-will-only-be-reflected-on-calendar-x'),
+									[calendar.get('name')]
+								),
+								'</p>'
+							].join(STR_BLANK);
+
+							Liferay.CalendarMessageUtil.confirm(
+								content,
+								Liferay.Language.get('continue'),
+								Liferay.Language.get('dont-change-the-event'),
+								function() {
+									var dialog = this;
+
+									CalendarUtil.updateEvent(schedulerEvent);
+
+									dialog.close();
+								},
+								function() {
+									var dialog = this;
+
+									instance.loadCalendarBookings();
+
+									dialog.close();
+								}
+							);
+						}
 					},
 
 					_deleteEvent: function(schedulerEvent) {
@@ -1310,7 +1343,7 @@
 					},
 
 					calendarResourceName: {
-						value: '',
+						value: STR_BLANK,
 						validator: isString
 					},
 
@@ -1397,7 +1430,7 @@
 	},
 	'' ,
 	{
-		requires: ['aui-dialog', 'aui-io', 'aui-scheduler', 'autocomplete', 'autocomplete-highlighters', 'datasource-cache', 'datasource-get', 'dd-plugin', 'liferay-portlet-url', 'liferay-calendar-recurrence-util', 'liferay-store', 'resize-plugin']
+		requires: ['aui-io', 'aui-scheduler', 'autocomplete', 'autocomplete-highlighters', 'datasource-cache', 'datasource-get', 'dd-plugin', 'liferay-calendar-message-util', 'liferay-portlet-url', 'liferay-calendar-recurrence-util', 'liferay-store', 'resize-plugin']
 	}
 );
 }());
