@@ -50,7 +50,15 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 			<div class="calendar-portlet-colors" id="<portlet:namespace />colorPicker"></div>
 		</aui:field-wrapper>
 
-		<aui:input name="defaultCalendar" type="checkbox" value="<%= (calendar == null) ? false : calendar.isDefaultCalendar() %>" />
+		<%
+		boolean isDefaultCalendar = false;
+
+		if (calendar != null) {
+			isDefaultCalendar = calendar.isDefaultCalendar();
+		}
+		%>
+
+		<aui:input disabled="<%= isDefaultCalendar %>" name="defaultCalendar" type="checkbox" value="<%= isDefaultCalendar %>" />
 
 		<c:if test="<%= calendar == null %>">
 			<aui:field-wrapper label="permissions">
