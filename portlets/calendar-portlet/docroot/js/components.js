@@ -1108,6 +1108,7 @@
 									}
 								],
 								centered: true,
+								close: false,
 								modal: true,
 								resizable: false,
 								title: Liferay.Language.get('are-you-sure'),
