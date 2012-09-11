@@ -296,6 +296,14 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 		<portlet:namespace />refreshVisibleCalendarRenderingRules();
 
 		<portlet:namespace />scheduler.on('eventsChangeBatch', <portlet:namespace />refreshVisibleCalendarRenderingRules);
+
+		<portlet:namespace />scheduler.after(
+			'dateChange',
+			function(event) {
+				<portlet:namespace />miniCalendar._clearSelection();
+				<portlet:namespace />miniCalendar.selectDates(<portlet:namespace />scheduler.get('viewDate'));
+			}
+		);
 	});
 </aui:script>
 

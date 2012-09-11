@@ -626,7 +626,7 @@
 						valueFn: function(val) {
 							var instance = this;
 
-							return instance.get('currentDate').getMonth();
+							return instance.get('date').getMonth();
 						}
 					},
 
@@ -652,7 +652,7 @@
 
 						instance.after(
 							{
-								'scheduler-base:currentDateChange': instance._afterCurrentDateChange,
+								'scheduler-base:dateChange': instance._afterDateChange,
 								'scheduler-event:startDateChange': instance._afterStartDateChange
 							}
 						);
@@ -674,11 +674,11 @@
 
 						CalendarUtil.message(Liferay.Language.get('loading') + '...');
 
-						var currentDate = instance.get('currentDate');
+						var date = instance.get('date');
 						var firstDayOfWeek = instance.get('firstDayOfWeek');
 
-						var startDate = DateMath.getFirstDayOfWeek(DateMath.findMonthStart(currentDate), firstDayOfWeek);
-						var endDate = DateMath.add(DateMath.getFirstDayOfWeek(DateMath.findMonthEnd(currentDate), firstDayOfWeek), DateMath.DAY, 7);
+						var startDate = DateMath.getFirstDayOfWeek(DateMath.findMonthStart(date), firstDayOfWeek);
+						var endDate = DateMath.add(DateMath.getFirstDayOfWeek(DateMath.findMonthEnd(date), firstDayOfWeek), DateMath.DAY, 7);
 
 						CalendarUtil.getEvents(
 							startDate,
@@ -717,7 +717,7 @@
 						CalendarUtil.message(STR_BLANK);
 					},
 
-					_afterCurrentDateChange: function(event) {
+					_afterDateChange: function(event) {
 						var instance = this;
 
 						var currentMonth = event.newVal.getMonth();
@@ -1115,14 +1115,14 @@
 
 						var scheduler = instance.get('scheduler');
 						var activeViewName = scheduler.get('activeView').get('name');
-						var currentDate = scheduler.get('currentDate');
+						var date = scheduler.get('date');
 
 						var schedulerEvent = instance.get('event');
 						var editCalendarBookingURL = decodeURIComponent(instance.get('editCalendarBookingURL'));
 						var data = instance.serializeForm();
 
 						data.activeView = activeViewName;
-						data.currentDate = currentDate.getTime();
+						data.date = date.getTime();
 						data.endDate = CalendarUtil.toUTCTimeZone(data.endDate).getTime();
 						data.startDate = CalendarUtil.toUTCTimeZone(data.startDate).getTime();
 						data.titleCurrentValue = encodeURIComponent(data.content);
