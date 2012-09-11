@@ -239,6 +239,10 @@ input[type=button], input[type=reset], input[type=submit], #sign-in:hover, .aui-
 
 /* ---------- Extras ---------- */
 
+.ie #loginPage .login-holder .portlet {
+	border: 1px solid $gray;
+}
+
 input[type=password], input[type=text], textarea, .aui-field-select select {
 	@include border-radius(5px);
 }
