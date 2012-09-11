@@ -16,7 +16,6 @@ package com.liferay.akismet.util;
 
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
-import com.liferay.portal.util.PortletKeys;
 import com.liferay.util.portlet.PortletProps;
 
 import javax.portlet.PortletPreferences;
@@ -31,7 +30,7 @@ public class PrefsPortletPropsUtil {
 
 		return PortletPreferencesLocalServiceUtil.getPreferences(
 			companyId, companyId, PortletKeys.PREFS_OWNER_TYPE_COMPANY,
-			PortletKeys.PREFS_PLID_SHARED, "1_WAR_akismetportlet");
+			PortletKeys.PREFS_PLID_SHARED, PortletKeys.AKISMET);
 	}
 
 	public static String getString(long companyId, String name)
