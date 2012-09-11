@@ -310,6 +310,10 @@
 	padding-bottom: 10px;
 }
 
+.calendar-portlet-confirmation-text {
+	padding: 5px;
+}
+
 .yui3-skin-sam .yui3-calendar-day.lfr-busy-day, .yui3-skin-sam .yui3-calendar-prevmonth-day.lfr-busy-day, .yui3-skin-sam .yui3-calendar-nextmonth-day.lfr-busy-day {
 	text-decoration: underline;
 }
