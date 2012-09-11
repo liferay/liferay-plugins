@@ -4,8 +4,34 @@
 	margin: 0 30px;
 }
 
+.calendar-portlet-wrapper,
+.aui-scheduler-base-content,
+.aui-scheduler-event,
+.aui-scheduler-today-hd {
+	@include border-radius(5px);
+}
+
+.calendar-portlet-list-header .aui-calendar-list-item-arrow,
+.aui-calendar-list-item .aui-calendar-list-item-color,
+.aui-calendar-list-item .aui-calendar-list-item-arrow {
+	@include border-radius(3px);
+}
+
 .calendar-portlet-wrapper {
 	background: #FFF;
+	font-size: 12px;
+
+	.aui-scheduler-view-table-header-col {
+		.aui-scheduler-view-table-header-day div {
+			font-size: 12px;
+			padding: 6px;
+		}
+	}
+
+	.aui-scheduler-today-hd {
+		color: #333333;
+		font-weight: bold
+	}
 }
 
 .calendar-portlet-column-options {
@@ -46,11 +72,6 @@
 	width: 350px;
 }
 
-.calendar-portlet-add-calendars-input {
-	margin: 2px 0;
-	width: 200px;
-}
-
 .calendar-booking-invitations .aui-calendar-list-empty-message {
 	margin: 4px 0 0 4px;
 }
@@ -64,7 +85,7 @@
 	color: #222;
 	cursor: pointer;
 	font-size: 12px;
-	line-height: 30px;
+	line-height: 20px;
 	padding: 0 5px;
 	position: relative;
 	white-space: nowrap;
@@ -91,7 +112,7 @@
 	position: absolute;
 	right: 5px;
 	text-indent: -100px;
-	top: 9px;
+	top: 4px;
 	vertical-align: middle;
 	width: 11px;
 }
@@ -120,15 +141,15 @@
 	display: block;
 	font-size: 13px;
 	font-weight: normal;
-	line-height: 30px;
-	margin: 0;
+	line-height: 20px;
+	margin: 10px 0 0 0;
 	padding: 2px 0;
 	position: relative;
 	text-decoration: none;
 
 	.aui-calendar-list-item-arrow {
 		display: block;
-		top: 11px;
+		top: 7px;
 	}
 
 	&:hover {
@@ -139,6 +160,12 @@
 
 .calendar-portlet-calendar-list {
 	margin-left: 11px;
+
+	.calendar-portlet-add-calendars-input {
+		margin: 2px 0 5px;
+		width: 200px;
+		padding: 5px 4px;
+	}
 }
 
 .calendar-portlet-list-text {
@@ -148,7 +175,7 @@
 .calendar-portlet-list-arrow {
 	background: url(@theme_image_path@/aui/icon_sprite.png) -34px -18px;
 	display: inline-block;
-	height: 12px;
+	height: 13px;
 	vertical-align: middle;
 	width: 12px;
 }
@@ -312,9 +339,7 @@
 	margin: 0;
 }
 
-.calendar-portlet-mini-calendar {
-	padding-bottom: 10px;
-}
+.yui3-skin-sam .calendar-portlet-mini-calendar {}
 
 .calendar-portlet-confirmation-text {
 	padding: 5px;
@@ -334,4 +359,37 @@
 
 .calendar-booking-reminders {
 	min-height: 52px;
+}
+.aui-scheduler-view-day .aui-scheduler-view-table .aui-scheduler-view-table-data-col {
+	padding-top: 5px;
+}
+
+.aui-scheduler-view-table-data-event {
+	padding: 0 3px 0 3px;
+
+	.aui-scheduler-event-content {
+		font-size: 10px;
+	}
+}
+
+.aui-scheduler-view-day-content .yui3-widget-hd {
+	padding-top: 4px
+}
+
+.aui-scheduler-view-day-header-day a {
+	font-size: 12px;
+	padding: 2px;
+}
+
+.yui3-skin-sam .calendar-portlet-mini-calendar .yui3-calendar-content {
+	background: #ffffff !important;
+	border: 1px solid #DDD
+}
+
+.aui-scheduler-event {
+	.aui-scheduler-event-title {
+		display: inline-block;
+		padding: 4px;
+		padding-bottom: 0;
+	}
 }
