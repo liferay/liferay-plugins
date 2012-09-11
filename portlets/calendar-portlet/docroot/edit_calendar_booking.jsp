@@ -287,16 +287,12 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 							Liferay.Language.get('continue'),
 							Liferay.Language.get('dont-change-the-event'),
 							function() {
-								var dialog = this;
-
 								submitForm(document.<portlet:namespace />fm);
 
-								dialog.close();
+								this.close();
 							},
 							function() {
-								var dialog = this;
-
-								dialog.close();
+								this.close();
 							}
 						);
 					</c:otherwise>
