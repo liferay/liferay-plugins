@@ -51,7 +51,7 @@ public class AkismetMBMessageLocalServiceImpl
 			String body, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		if (_isSpam(userId, body, serviceContext)) {
+		if (isSpam(userId, body, serviceContext)) {
 			throw new MessageBodyException();
 		}
 
@@ -69,7 +69,7 @@ public class AkismetMBMessageLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		if (_isSpam(userId, body, serviceContext)) {
+		if (isSpam(userId, body, serviceContext)) {
 			throw new MessageBodyException();
 		}
 
@@ -88,7 +88,7 @@ public class AkismetMBMessageLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		if (_isSpam(userId, body, serviceContext)) {
+		if (isSpam(userId, body, serviceContext)) {
 			throw new MessageBodyException();
 		}
 
@@ -103,7 +103,7 @@ public class AkismetMBMessageLocalServiceImpl
 			String subject, String body, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		if (_isSpam(userId, body, serviceContext)) {
+		if (isSpam(userId, body, serviceContext)) {
 			throw new MessageBodyException();
 		}
 
@@ -120,7 +120,7 @@ public class AkismetMBMessageLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		if (_isSpam(userId, body, serviceContext)) {
+		if (isSpam(userId, body, serviceContext)) {
 			throw new MessageBodyException();
 		}
 
@@ -129,7 +129,7 @@ public class AkismetMBMessageLocalServiceImpl
 			allowPingbacks, serviceContext);
 	}
 
-	private boolean _isSpam(
+	protected boolean isSpam(
 			long userId, String body, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
