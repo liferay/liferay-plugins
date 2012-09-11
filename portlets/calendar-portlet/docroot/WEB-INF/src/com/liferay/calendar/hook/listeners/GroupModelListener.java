@@ -29,7 +29,8 @@ public class GroupModelListener extends BaseModelListener<Group> {
 	@Override
 	public void onAfterRemove(Group group) throws ModelListenerException {
 		try {
-			// Global Resource
+
+			// Global calendar resource
 
 			long classNameId = PortalUtil.getClassNameId(Group.class);
 
@@ -42,7 +43,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 					calendarResource);
 			}
 
-			// Local Resources
+			// Local calendar resources
 
 			CalendarResourceLocalServiceUtil.deleteCalendarResources(
 				group.getGroupId());
