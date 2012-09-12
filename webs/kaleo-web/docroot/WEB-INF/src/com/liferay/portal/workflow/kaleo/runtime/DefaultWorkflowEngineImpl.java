@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
+import com.liferay.portal.kernel.transaction.TransactionCommitCallbackRegistryUtil;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
@@ -51,6 +52,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
 /**
  * @author Michael C. Han
@@ -121,7 +123,7 @@ public class DefaultWorkflowEngineImpl
 			KaleoInstanceToken kaleoInstanceToken =
 				kaleoTimerInstanceToken.getKaleoInstanceToken();
 
-			ExecutionContext executionContext = new ExecutionContext(
+			final ExecutionContext executionContext = new ExecutionContext(
 				kaleoInstanceToken, kaleoTimerInstanceToken, workflowContext,
 				serviceContext);
 
@@ -130,13 +132,24 @@ public class DefaultWorkflowEngineImpl
 
 			executionContext.setKaleoTaskInstanceToken(kaleoTaskInstanceToken);
 
-			KaleoNode currentKaleoNode =
+			final KaleoNode currentKaleoNode =
 				kaleoInstanceToken.getCurrentKaleoNode();
 
 			NodeExecutor nodeExecutor = NodeExecutorFactory.getNodeExecutor(
 				NodeType.valueOf(currentKaleoNode.getType()));
 
 			nodeExecutor.executeTimer(currentKaleoNode, executionContext);
+
+			TransactionCommitCallbackRegistryUtil.registerCallback(
+				new Callable<Void>() {
+
+					public Void call() throws Exception {
+						_kaleoSignaler.signalExecute(
+							currentKaleoNode, executionContext);
+
+						return null;
+					}
+				});
 
 			return executionContext;
 		}
@@ -287,6 +300,10 @@ public class DefaultWorkflowEngineImpl
 		}
 	}
 
+	public void setKaleoSignaler(KaleoSignaler kaleoSignaler) {
+		_kaleoSignaler = kaleoSignaler;
+	}
+
 	public void setWorkflowDeployer(WorkflowDeployer workflowDeployer) {
 		_workflowDeployer = workflowDeployer;
 	}
@@ -301,11 +318,8 @@ public class DefaultWorkflowEngineImpl
 		_workflowValidator = workflowValidator;
 	}
 
-	@Transactional(
-		isolation = Isolation.PORTAL, propagation = Propagation.REQUIRES_NEW,
-		rollbackFor = {Exception.class})
 	public WorkflowInstance signalWorkflowInstance(
-			long workflowInstanceId, String transitionName,
+			long workflowInstanceId, final String transitionName,
 			Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)
 		throws WorkflowException {
@@ -330,6 +344,25 @@ public class DefaultWorkflowEngineImpl
 
 			serviceContext.setScopeGroupId(kaleoInstanceToken.getGroupId());
 
+			final ExecutionContext executionContext = new ExecutionContext(
+				kaleoInstanceToken, workflowContext, serviceContext);
+
+			TransactionCommitCallbackRegistryUtil.registerCallback(
+				new Callable<Void>() {
+
+					public Void call() throws Exception {
+						try {
+							_kaleoSignaler.signalExit(
+								transitionName, executionContext);
+						} catch (Exception e) {
+							throw new WorkflowException(
+								"Unable to signal next transition", e);
+						}
+
+						return null;
+					}
+				});
+
 			return new WorkflowInstanceAdapter(
 				kaleoInstance, kaleoInstanceToken, workflowContext);
 		}
@@ -338,12 +371,10 @@ public class DefaultWorkflowEngineImpl
 		}
 	}
 
-	@Transactional(
-		isolation = Isolation.PORTAL, propagation = Propagation.REQUIRES_NEW,
-		rollbackFor = {Exception.class})
 	public WorkflowInstance startWorkflowInstance(
 			String workflowDefinitionName, Integer workflowDefinitionVersion,
-			String transitionName, Map<String, Serializable> workflowContext,
+			final String transitionName,
+			Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)
 		throws WorkflowException {
 
@@ -397,6 +428,26 @@ public class DefaultWorkflowEngineImpl
 
 			kaleoLogLocalService.addWorkflowInstanceStartKaleoLog(
 				rootKaleoInstanceToken, serviceContext);
+
+			final ExecutionContext executionContext = new ExecutionContext(
+				rootKaleoInstanceToken, workflowContext, serviceContext);
+
+			TransactionCommitCallbackRegistryUtil.registerCallback(
+				new Callable<Void>() {
+
+				public Void call() throws Exception {
+					try {
+						_kaleoSignaler.signalEntry(
+							transitionName, executionContext);
+					}
+					catch (Exception e) {
+						throw new WorkflowException(
+							"Unable to start workflow", e);
+					}
+
+					return null;
+				}
+			});
 
 			return new WorkflowInstanceAdapter(
 				kaleoInstance, rootKaleoInstanceToken, workflowContext);
@@ -498,6 +549,7 @@ public class DefaultWorkflowEngineImpl
 		return workflowInstances;
 	}
 
+	private KaleoSignaler _kaleoSignaler;
 	private WorkflowDeployer _workflowDeployer;
 	private WorkflowModelParser _workflowModelParser;
 	private WorkflowValidator _workflowValidator;

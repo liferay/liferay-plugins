@@ -85,9 +85,6 @@ public class DefaultTaskManagerImpl
 		}
 	}
 
-	@Transactional(
-		isolation = Isolation.PORTAL, propagation = Propagation.REQUIRES_NEW,
-		rollbackFor = {Exception.class})
 	public WorkflowTask completeWorkflowTask(
 			long workflowTaskInstanceId, String transitionName, String comment,
 			Map<String, Serializable> workflowContext,

@@ -13,7 +13,7 @@
 	<bean id="destination.kaleo_graph_walker" class="com.liferay.portal.kernel.messaging.ParallelDestination">
 		<property name="name" value="liferay/kaleo_graph_walker" />
 	</bean>
-	<bean id="destination.workflow_definition_link" class="com.liferay.portal.kernel.messaging.ParallelDestination">
+	<bean id="destination.workflow_definition_link" class="com.liferay.portal.kernel.messaging.SynchronousDestination">
 		<property name="name" value="liferay/workflow_definition_link" />
 	</bean>
 

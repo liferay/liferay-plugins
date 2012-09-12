@@ -24,11 +24,7 @@ import com.liferay.portal.kernel.scheduler.SchedulerEngineUtil;
 import com.liferay.portal.kernel.scheduler.StorageType;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
-import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken;
-import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
-import com.liferay.portal.workflow.kaleo.runtime.KaleoSignaler;
 import com.liferay.portal.workflow.kaleo.runtime.WorkflowEngine;
 import com.liferay.portal.workflow.kaleo.service.KaleoTimerInstanceTokenLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.util.SchedulerUtil;
@@ -42,10 +38,6 @@ import java.util.Map;
  * @author Marcellus Tavares
  */
 public class TimerMessageListener extends BaseMessageListener {
-
-	public void setKaleoSignaler(KaleoSignaler kaleoSignaler) {
-		_kaleoSignaler = kaleoSignaler;
-	}
 
 	public void setWorkflowEngine(WorkflowEngine workflowEngine) {
 		_workflowEngine = workflowEngine;
@@ -67,17 +59,8 @@ public class TimerMessageListener extends BaseMessageListener {
 			ServiceContext serviceContext = (ServiceContext)workflowContext.get(
 				WorkflowConstants.CONTEXT_SERVICE_CONTEXT);
 
-			KaleoInstanceToken kaleoInstanceToken =
-				kaleoTimerInstanceToken.getKaleoInstanceToken();
-
-			KaleoNode currentKaleoNode =
-				kaleoInstanceToken.getCurrentKaleoNode();
-
-			ExecutionContext executionContext =
-				_workflowEngine.executeTimerWorkflowInstance(
-					kaleoTimerInstanceTokenId, serviceContext, workflowContext);
-
-			_kaleoSignaler.signalExecute(currentKaleoNode, executionContext);
+			_workflowEngine.executeTimerWorkflowInstance(
+				kaleoTimerInstanceTokenId, serviceContext, workflowContext);
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {
@@ -110,7 +93,6 @@ public class TimerMessageListener extends BaseMessageListener {
 
 	private static Log _log = LogFactoryUtil.getLog(TimerMessageListener.class);
 
-	private KaleoSignaler _kaleoSignaler;
 	private WorkflowEngine _workflowEngine;
 
 }
