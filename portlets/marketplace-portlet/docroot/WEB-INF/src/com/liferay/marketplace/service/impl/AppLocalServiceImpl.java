@@ -153,10 +153,18 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 				Time.getTimestamp();
 
 		ZipFile zipFile = null;
+		InputStream inputStream = null;
 
 		try {
-			File liferayPackageFile = DLStoreUtil.getFile(
+			inputStream = DLStoreUtil.getFileAsStream(
 				app.getCompanyId(), CompanyConstants.SYSTEM, app.getFilePath());
+
+			if (inputStream == null) {
+				throw new IOException(
+					"Cannot read the file: " + app.getFilePath());
+			}
+
+			File liferayPackageFile = FileUtil.createTempFile(inputStream);
 
 			zipFile = new ZipFile(liferayPackageFile);
 
@@ -189,13 +197,13 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 							app.getAppId());
 				}
 
-				InputStream inputStream = null;
+				InputStream zipInputStream = null;
 
 				try {
-					inputStream = zipFile.getInputStream(zipEntry);
+					zipInputStream = zipFile.getInputStream(zipEntry);
 
 					if (fileName.equals("liferay-marketplace.properties")) {
-						String propertiesString = StringUtil.read(inputStream);
+						String propertiesString = StringUtil.read(zipInputStream);
 
 						Properties properties = PropertiesUtil.load(
 							propertiesString);
@@ -206,7 +214,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 						File pluginPackageFile = new File(
 							tmpDir + StringPool.SLASH + fileName);
 
-						FileUtil.write(pluginPackageFile, inputStream);
+						FileUtil.write(pluginPackageFile, zipInputStream);
 
 						autoDeploymentContext.setFile(pluginPackageFile);
 
@@ -217,7 +225,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 					}
 				}
 				finally {
-					StreamUtil.cleanUp(inputStream);
+					StreamUtil.cleanUp(zipInputStream);
 				}
 			}
 		}
@@ -242,6 +250,8 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 				catch (IOException ioe) {
 				}
 			}
+
+			StreamUtil.cleanUp(inputStream);
 		}
 	}
 
