@@ -274,8 +274,14 @@
 	}
 }
 
-.calendar-portlet-wrapper .aui-scheduler-event-disabled {
-	@include opacity(0.8);
+.calendar-portlet-wrapper {
+	.aui-scheduler-event-all-day .aui-scheduler-event-title {
+		display: none;
+	}
+
+	.aui-scheduler-event-disabled {
+		@include opacity(0.8);
+	}
 }
 
 .calendar-booking-invitations .aui-field-label {
