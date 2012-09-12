@@ -231,6 +231,8 @@ public class KaleoConditionLocalServiceClpInvoker {
 		if (_methodName101.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes101, parameterTypes)) {
 			KaleoConditionLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName106.equals(name) &&
@@ -244,11 +246,15 @@ public class KaleoConditionLocalServiceClpInvoker {
 		if (_methodName107.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes107, parameterTypes)) {
 			KaleoConditionLocalServiceUtil.deleteCompanyKaleoConditions(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName108.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes108, parameterTypes)) {
 			KaleoConditionLocalServiceUtil.deleteKaleoDefinitionKaleoCondition(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName109.equals(name) &&

@@ -214,6 +214,8 @@ public class JIRAActionLocalServiceClpInvoker {
 		if (_methodName63.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
 			JIRAActionLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName68.equals(name) &&

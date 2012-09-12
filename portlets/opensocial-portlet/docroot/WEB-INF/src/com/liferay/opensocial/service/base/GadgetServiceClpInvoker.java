@@ -62,6 +62,8 @@ public class GadgetServiceClpInvoker {
 		if (_methodName31.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes31, parameterTypes)) {
 			GadgetServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName36.equals(name) &&
@@ -82,6 +84,8 @@ public class GadgetServiceClpInvoker {
 			GadgetServiceUtil.updateGadget(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				(com.liferay.portal.service.ServiceContext)arguments[2]);
+
+			return null;
 		}
 
 		throw new UnsupportedOperationException();

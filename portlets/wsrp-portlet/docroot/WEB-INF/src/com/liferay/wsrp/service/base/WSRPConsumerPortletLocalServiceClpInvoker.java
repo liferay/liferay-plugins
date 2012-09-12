@@ -287,6 +287,8 @@ public class WSRPConsumerPortletLocalServiceClpInvoker {
 		if (_methodName45.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes45, parameterTypes)) {
 			WSRPConsumerPortletLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName50.equals(name) &&
@@ -311,6 +313,8 @@ public class WSRPConsumerPortletLocalServiceClpInvoker {
 		if (_methodName53.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
 			WSRPConsumerPortletLocalServiceUtil.deleteWSRPConsumerPortlet((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName54.equals(name) &&
@@ -321,17 +325,23 @@ public class WSRPConsumerPortletLocalServiceClpInvoker {
 		if (_methodName55.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
 			WSRPConsumerPortletLocalServiceUtil.deleteWSRPConsumerPortlets(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName56.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
 			WSRPConsumerPortletLocalServiceUtil.destroyWSRPConsumerPortlet(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2]);
+
+			return null;
 		}
 
 		if (_methodName57.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
 			WSRPConsumerPortletLocalServiceUtil.destroyWSRPConsumerPortlets();
+
+			return null;
 		}
 
 		if (_methodName58.equals(name) &&
@@ -360,6 +370,8 @@ public class WSRPConsumerPortletLocalServiceClpInvoker {
 		if (_methodName62.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
 			WSRPConsumerPortletLocalServiceUtil.initFailedWSRPConsumerPortlets();
+
+			return null;
 		}
 
 		if (_methodName63.equals(name) &&
@@ -369,11 +381,15 @@ public class WSRPConsumerPortletLocalServiceClpInvoker {
 				((Long)arguments[2]).longValue(),
 				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
 				(java.lang.String)arguments[5]);
+
+			return null;
 		}
 
 		if (_methodName64.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
 			WSRPConsumerPortletLocalServiceUtil.initWSRPConsumerPortlets();
+
+			return null;
 		}
 
 		if (_methodName65.equals(name) &&

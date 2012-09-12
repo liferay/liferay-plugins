@@ -140,6 +140,8 @@ public class CalendarServiceClpInvoker {
 		if (_methodName41.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
 			CalendarServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName46.equals(name) &&

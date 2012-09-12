@@ -306,6 +306,8 @@ public class JIRAIssueLocalServiceClpInvoker {
 		if (_methodName63.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
 			JIRAIssueLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName68.equals(name) &&
@@ -431,6 +433,8 @@ public class JIRAIssueLocalServiceClpInvoker {
 		if (_methodName86.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes86, parameterTypes)) {
 			JIRAIssueLocalServiceUtil.updateJIRAIssues(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		throw new UnsupportedOperationException();

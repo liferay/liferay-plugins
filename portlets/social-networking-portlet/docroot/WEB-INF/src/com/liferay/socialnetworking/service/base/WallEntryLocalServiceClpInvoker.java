@@ -257,6 +257,8 @@ public class WallEntryLocalServiceClpInvoker {
 		if (_methodName47.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
 			WallEntryLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName52.equals(name) &&
@@ -270,6 +272,8 @@ public class WallEntryLocalServiceClpInvoker {
 		if (_methodName53.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
 			WallEntryLocalServiceUtil.deleteWallEntries(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName54.equals(name) &&

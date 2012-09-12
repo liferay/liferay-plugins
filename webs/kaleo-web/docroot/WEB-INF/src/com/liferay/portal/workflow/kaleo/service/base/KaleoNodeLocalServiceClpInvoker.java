@@ -225,6 +225,8 @@ public class KaleoNodeLocalServiceClpInvoker {
 		if (_methodName101.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes101, parameterTypes)) {
 			KaleoNodeLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName106.equals(name) &&
@@ -237,11 +239,15 @@ public class KaleoNodeLocalServiceClpInvoker {
 		if (_methodName107.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes107, parameterTypes)) {
 			KaleoNodeLocalServiceUtil.deleteCompanyKaleoNodes(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName108.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes108, parameterTypes)) {
 			KaleoNodeLocalServiceUtil.deleteKaleoDefinitionKaleoNodes(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		throw new UnsupportedOperationException();

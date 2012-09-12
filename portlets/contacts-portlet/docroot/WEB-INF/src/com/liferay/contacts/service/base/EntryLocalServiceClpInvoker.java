@@ -250,6 +250,8 @@ public class EntryLocalServiceClpInvoker {
 		if (_methodName39.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes39, parameterTypes)) {
 			EntryLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName44.equals(name) &&

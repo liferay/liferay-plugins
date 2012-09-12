@@ -66,6 +66,8 @@ public class AppServiceClpInvoker {
 		if (_methodName27.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes27, parameterTypes)) {
 			AppServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName32.equals(name) &&
@@ -83,11 +85,15 @@ public class AppServiceClpInvoker {
 		if (_methodName34.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes34, parameterTypes)) {
 			AppServiceUtil.installApp(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName35.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes35, parameterTypes)) {
 			AppServiceUtil.uninstallApp(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName36.equals(name) &&

@@ -222,6 +222,8 @@ public class SVNRepositoryLocalServiceClpInvoker {
 		if (_methodName63.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
 			SVNRepositoryLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName68.equals(name) &&
@@ -237,6 +239,8 @@ public class SVNRepositoryLocalServiceClpInvoker {
 		if (_methodName70.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
 			SVNRepositoryLocalServiceUtil.updateSVNRepository((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		throw new UnsupportedOperationException();

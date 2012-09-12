@@ -264,6 +264,8 @@ public class KaleoTaskAssignmentInstanceLocalServiceClpInvoker {
 		if (_methodName101.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes101, parameterTypes)) {
 			KaleoTaskAssignmentInstanceLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName106.equals(name) &&
@@ -300,21 +302,29 @@ public class KaleoTaskAssignmentInstanceLocalServiceClpInvoker {
 		if (_methodName110.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes110, parameterTypes)) {
 			KaleoTaskAssignmentInstanceLocalServiceUtil.deleteCompanyKaleoTaskAssignmentInstances(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName111.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes111, parameterTypes)) {
 			KaleoTaskAssignmentInstanceLocalServiceUtil.deleteKaleoDefinitionKaleoTaskAssignmentInstances(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName112.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes112, parameterTypes)) {
 			KaleoTaskAssignmentInstanceLocalServiceUtil.deleteKaleoInstanceKaleoTaskAssignmentInstances(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName113.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes113, parameterTypes)) {
 			KaleoTaskAssignmentInstanceLocalServiceUtil.deleteKaleoTaskAssignmentInstances((com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName114.equals(name) &&

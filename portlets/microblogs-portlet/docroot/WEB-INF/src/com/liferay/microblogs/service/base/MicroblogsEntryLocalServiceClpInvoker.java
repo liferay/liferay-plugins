@@ -292,6 +292,8 @@ public class MicroblogsEntryLocalServiceClpInvoker {
 		if (_methodName41.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
 			MicroblogsEntryLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName46.equals(name) &&
@@ -318,6 +320,8 @@ public class MicroblogsEntryLocalServiceClpInvoker {
 		if (_methodName49.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
 			MicroblogsEntryLocalServiceUtil.deleteUserMicroblogsEntries(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName50.equals(name) &&
@@ -396,6 +400,8 @@ public class MicroblogsEntryLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
 			MicroblogsEntryLocalServiceUtil.updateAsset((com.liferay.microblogs.model.MicroblogsEntry)arguments[0],
 				(long[])arguments[1], (java.lang.String[])arguments[2]);
+
+			return null;
 		}
 
 		if (_methodName62.equals(name) &&

@@ -96,6 +96,8 @@ public class MicroblogsEntryServiceClpInvoker {
 		if (_methodName25.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes25, parameterTypes)) {
 			MicroblogsEntryServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName30.equals(name) &&

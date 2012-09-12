@@ -272,6 +272,8 @@ public class GadgetLocalServiceClpInvoker {
 		if (_methodName47.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
 			GadgetLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName52.equals(name) &&
@@ -295,11 +297,15 @@ public class GadgetLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
 			GadgetLocalServiceUtil.destroyGadget((java.lang.String)arguments[0],
 				((Long)arguments[1]).longValue(), (java.lang.String)arguments[2]);
+
+			return null;
 		}
 
 		if (_methodName56.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
 			GadgetLocalServiceUtil.destroyGadgets();
+
+			return null;
 		}
 
 		if (_methodName57.equals(name) &&
@@ -337,11 +343,15 @@ public class GadgetLocalServiceClpInvoker {
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
 				(java.lang.String)arguments[3], (java.lang.String)arguments[4]);
+
+			return null;
 		}
 
 		if (_methodName63.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
 			GadgetLocalServiceUtil.initGadgets();
+
+			return null;
 		}
 
 		if (_methodName64.equals(name) &&

@@ -406,6 +406,8 @@ public class KaleoTaskInstanceTokenLocalServiceClpInvoker {
 		if (_methodName101.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes101, parameterTypes)) {
 			KaleoTaskInstanceTokenLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName106.equals(name) &&
@@ -437,16 +439,22 @@ public class KaleoTaskInstanceTokenLocalServiceClpInvoker {
 		if (_methodName109.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes109, parameterTypes)) {
 			KaleoTaskInstanceTokenLocalServiceUtil.deleteCompanyKaleoTaskInstanceTokens(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName110.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes110, parameterTypes)) {
 			KaleoTaskInstanceTokenLocalServiceUtil.deleteKaleoDefinitionKaleoTaskInstanceTokens(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName111.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes111, parameterTypes)) {
 			KaleoTaskInstanceTokenLocalServiceUtil.deleteKaleoInstanceKaleoTaskInstanceTokens(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName112.equals(name) &&

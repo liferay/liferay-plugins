@@ -263,6 +263,8 @@ public class WSRPConsumerLocalServiceClpInvoker {
 		if (_methodName45.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes45, parameterTypes)) {
 			WSRPConsumerLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName50.equals(name) &&
@@ -311,11 +313,15 @@ public class WSRPConsumerLocalServiceClpInvoker {
 		if (_methodName57.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
 			WSRPConsumerLocalServiceUtil.restartConsumer(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName58.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
 			WSRPConsumerLocalServiceUtil.updateServiceDescription(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName59.equals(name) &&

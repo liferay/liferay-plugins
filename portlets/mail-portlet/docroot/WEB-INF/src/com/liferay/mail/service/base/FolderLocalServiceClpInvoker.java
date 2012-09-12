@@ -248,6 +248,8 @@ public class FolderLocalServiceClpInvoker {
 		if (_methodName49.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
 			FolderLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName54.equals(name) &&
@@ -271,6 +273,8 @@ public class FolderLocalServiceClpInvoker {
 		if (_methodName57.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
 			FolderLocalServiceUtil.deleteFolders(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName58.equals(name) &&

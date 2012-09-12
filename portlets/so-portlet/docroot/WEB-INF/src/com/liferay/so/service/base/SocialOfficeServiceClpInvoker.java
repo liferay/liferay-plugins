@@ -50,6 +50,8 @@ public class SocialOfficeServiceClpInvoker {
 		if (_methodName39.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes39, parameterTypes)) {
 			SocialOfficeServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName42.equals(name) &&

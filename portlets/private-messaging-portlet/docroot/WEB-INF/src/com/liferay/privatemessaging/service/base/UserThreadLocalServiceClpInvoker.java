@@ -279,6 +279,8 @@ public class UserThreadLocalServiceClpInvoker {
 		if (_methodName37.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes37, parameterTypes)) {
 			UserThreadLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName42.equals(name) &&
@@ -307,17 +309,23 @@ public class UserThreadLocalServiceClpInvoker {
 				((Long)arguments[2]).longValue(),
 				((Boolean)arguments[3]).booleanValue(),
 				((Boolean)arguments[4]).booleanValue());
+
+			return null;
 		}
 
 		if (_methodName45.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes45, parameterTypes)) {
 			UserThreadLocalServiceUtil.deleteUser(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName46.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
 			UserThreadLocalServiceUtil.deleteUserThread(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
+
+			return null;
 		}
 
 		if (_methodName47.equals(name) &&
@@ -369,17 +377,23 @@ public class UserThreadLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
 			UserThreadLocalServiceUtil.markUserThreadAsRead(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
+
+			return null;
 		}
 
 		if (_methodName55.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
 			UserThreadLocalServiceUtil.markUserThreadAsUnread(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
+
+			return null;
 		}
 
 		if (_methodName56.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
 			UserThreadLocalServiceUtil.updateUserName((com.liferay.portal.model.User)arguments[0]);
+
+			return null;
 		}
 
 		throw new UnsupportedOperationException();

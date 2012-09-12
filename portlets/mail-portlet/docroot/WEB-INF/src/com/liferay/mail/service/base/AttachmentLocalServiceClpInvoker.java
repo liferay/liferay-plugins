@@ -237,6 +237,8 @@ public class AttachmentLocalServiceClpInvoker {
 		if (_methodName49.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
 			AttachmentLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName54.equals(name) &&
@@ -256,6 +258,8 @@ public class AttachmentLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
 			AttachmentLocalServiceUtil.deleteAttachments(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
+
+			return null;
 		}
 
 		if (_methodName57.equals(name) &&

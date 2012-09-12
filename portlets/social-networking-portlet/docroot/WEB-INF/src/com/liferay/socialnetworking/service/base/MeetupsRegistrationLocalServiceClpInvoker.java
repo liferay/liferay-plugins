@@ -229,6 +229,8 @@ public class MeetupsRegistrationLocalServiceClpInvoker {
 		if (_methodName47.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
 			MeetupsRegistrationLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName52.equals(name) &&

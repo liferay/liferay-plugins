@@ -271,6 +271,8 @@ public class KaleoTimerInstanceTokenLocalServiceClpInvoker {
 		if (_methodName101.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes101, parameterTypes)) {
 			KaleoTimerInstanceTokenLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName106.equals(name) &&
@@ -302,23 +304,31 @@ public class KaleoTimerInstanceTokenLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes109, parameterTypes)) {
 			KaleoTimerInstanceTokenLocalServiceUtil.completeKaleoTimerInstanceTokens((java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken>)arguments[0],
 				(com.liferay.portal.service.ServiceContext)arguments[1]);
+
+			return null;
 		}
 
 		if (_methodName110.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes110, parameterTypes)) {
 			KaleoTimerInstanceTokenLocalServiceUtil.completeKaleoTimerInstanceTokens(((Long)arguments[0]).longValue(),
 				(com.liferay.portal.service.ServiceContext)arguments[1]);
+
+			return null;
 		}
 
 		if (_methodName111.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes111, parameterTypes)) {
 			KaleoTimerInstanceTokenLocalServiceUtil.deleteKaleoTimerInstanceToken(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
+
+			return null;
 		}
 
 		if (_methodName112.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes112, parameterTypes)) {
 			KaleoTimerInstanceTokenLocalServiceUtil.deleteKaleoTimerInstanceTokens(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName113.equals(name) &&

@@ -305,6 +305,8 @@ public class CalendarLocalServiceClpInvoker {
 		if (_methodName58.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
 			CalendarLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName63.equals(name) &&
@@ -394,6 +396,8 @@ public class CalendarLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
 			CalendarLocalServiceUtil.updateCalendar(((Long)arguments[0]).longValue(),
 				((Boolean)arguments[1]).booleanValue());
+
+			return null;
 		}
 
 		if (_methodName75.equals(name) &&

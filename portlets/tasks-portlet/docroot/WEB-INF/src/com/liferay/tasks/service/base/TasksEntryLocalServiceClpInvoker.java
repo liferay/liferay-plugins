@@ -323,6 +323,8 @@ public class TasksEntryLocalServiceClpInvoker {
 		if (_methodName41.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
 			TasksEntryLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName46.equals(name) &&
@@ -471,6 +473,8 @@ public class TasksEntryLocalServiceClpInvoker {
 			TasksEntryLocalServiceUtil.updateAsset(((Long)arguments[0]).longValue(),
 				(com.liferay.tasks.model.TasksEntry)arguments[1],
 				(long[])arguments[2], (java.lang.String[])arguments[3]);
+
+			return null;
 		}
 
 		if (_methodName67.equals(name) &&
