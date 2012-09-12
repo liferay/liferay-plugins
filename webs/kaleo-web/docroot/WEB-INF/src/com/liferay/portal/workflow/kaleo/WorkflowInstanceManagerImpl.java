@@ -20,9 +20,6 @@ import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowInstance;
 import com.liferay.portal.kernel.workflow.WorkflowInstanceManager;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
-import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
-import com.liferay.portal.workflow.kaleo.runtime.KaleoSignaler;
 import com.liferay.portal.workflow.kaleo.runtime.WorkflowEngine;
 
 import java.io.Serializable;
@@ -162,10 +159,6 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 			end, orderByComparator, serviceContext);
 	}
 
-	public void setKaleoSignaler(KaleoSignaler kaleoSignaler) {
-		_kaleoSignaler = kaleoSignaler;
-	}
-
 	public void setWorkflowEngine(WorkflowEngine workflowEngine) {
 		_workflowEngine = workflowEngine;
 	}
@@ -184,19 +177,6 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 			(WorkflowInstanceAdapter)_workflowEngine.signalWorkflowInstance(
 				workflowInstanceId, transitionName, workflowContext,
 				serviceContext);
-
-		KaleoInstanceToken kaleoInstanceToken =
-			workflowInstanceAdapter.getKaleoInstanceToken();
-
-		ExecutionContext executionContext = new ExecutionContext(
-			kaleoInstanceToken, workflowContext, serviceContext);
-
-		try {
-			_kaleoSignaler.signalExit(transitionName, executionContext);
-		}
-		catch (Exception e) {
-			throw new WorkflowException("Unable to signal next transition", e);
-		}
 
 		return workflowInstanceAdapter;
 	}
@@ -219,19 +199,6 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 				workflowDefinitionName, workflowDefinitionVersion,
 				transitionName, workflowContext, serviceContext);
 
-		KaleoInstanceToken kaleoInstanceToken =
-			workflowInstanceAdapter.getKaleoInstanceToken();
-
-		ExecutionContext executionContext = new ExecutionContext(
-			kaleoInstanceToken, workflowContext, serviceContext);
-
-		try {
-			_kaleoSignaler.signalEntry(transitionName, executionContext);
-		}
-		catch (Exception e) {
-			throw new WorkflowException("Unable to start workflow", e);
-		}
-
 		return workflowInstanceAdapter;
 	}
 
@@ -248,7 +215,6 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 			workflowInstanceId, workflowContext, serviceContext);
 	}
 
-	private KaleoSignaler _kaleoSignaler;
 	private WorkflowEngine _workflowEngine;
 
 }
