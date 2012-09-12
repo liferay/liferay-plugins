@@ -301,6 +301,7 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 			'dateChange',
 			function(event) {
 				<portlet:namespace />miniCalendar._clearSelection();
+
 				<portlet:namespace />miniCalendar.selectDates(<portlet:namespace />scheduler.get('viewDate'));
 			}
 		);
