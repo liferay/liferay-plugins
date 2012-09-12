@@ -536,6 +536,15 @@
 		</copy>
 
 		<if>
+			<available file="overwrite" />
+			<then>
+				<copy overwrite="true" preservelastmodified="true" todir="docroot">
+					<fileset dir="overwrite" />
+				</copy>
+			</then>
+		</if>
+
+		<if>
 			<isset property="plugin-package.required-deployment-contexts" />
 			<then>
 				<for list="${plugin-package.required-deployment-contexts}" param="required.deployment.context">
