@@ -536,6 +536,15 @@
 		</copy>
 
 		<if>
+			<available file="overwrite" />
+			<then>
+				<copy overwrite="true" preservelastmodified="true" todir="docroot">
+					<fileset dir="overwrite" />
+				</copy>
+			</then>
+		</if>
+
+		<if>
 			<available file="docroot/WEB-INF/src/META-INF/portal-log4j.xml" />
 			<then>
 				<unzip
