@@ -251,6 +251,8 @@ public class OAuthTokenLocalServiceClpInvoker {
 		if (_methodName43.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes43, parameterTypes)) {
 			OAuthTokenLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName48.equals(name) &&
@@ -268,12 +270,16 @@ public class OAuthTokenLocalServiceClpInvoker {
 			OAuthTokenLocalServiceUtil.deleteOAuthToken(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				((Long)arguments[3]).longValue(), (java.lang.String)arguments[4]);
+
+			return null;
 		}
 
 		if (_methodName50.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
 			OAuthTokenLocalServiceUtil.deleteOAuthTokens((java.lang.String)arguments[0],
 				(java.lang.String)arguments[1]);
+
+			return null;
 		}
 
 		if (_methodName51.equals(name) &&

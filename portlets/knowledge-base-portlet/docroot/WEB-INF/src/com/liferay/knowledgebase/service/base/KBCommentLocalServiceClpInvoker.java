@@ -265,6 +265,8 @@ public class KBCommentLocalServiceClpInvoker {
 		if (_methodName52.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
 			KBCommentLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName57.equals(name) &&
@@ -291,6 +293,8 @@ public class KBCommentLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
 			KBCommentLocalServiceUtil.deleteKBComments((java.lang.String)arguments[0],
 				((Long)arguments[1]).longValue());
+
+			return null;
 		}
 
 		if (_methodName61.equals(name) &&

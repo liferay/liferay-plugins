@@ -248,6 +248,8 @@ public class FavoriteSiteLocalServiceClpInvoker {
 		if (_methodName57.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
 			FavoriteSiteLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName62.equals(name) &&
@@ -265,6 +267,8 @@ public class FavoriteSiteLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
 			FavoriteSiteLocalServiceUtil.deleteFavoriteSites(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
+
+			return null;
 		}
 
 		if (_methodName65.equals(name) &&

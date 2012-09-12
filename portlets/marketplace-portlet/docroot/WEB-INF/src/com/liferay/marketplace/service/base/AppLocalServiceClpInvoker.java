@@ -248,6 +248,8 @@ public class AppLocalServiceClpInvoker {
 		if (_methodName39.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes39, parameterTypes)) {
 			AppLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName44.equals(name) &&
@@ -276,16 +278,22 @@ public class AppLocalServiceClpInvoker {
 		if (_methodName48.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
 			AppLocalServiceUtil.installApp(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName49.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
 			AppLocalServiceUtil.processMarketplaceProperties((java.util.Properties)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName50.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
 			AppLocalServiceUtil.uninstallApp(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName51.equals(name) &&

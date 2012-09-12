@@ -59,6 +59,8 @@ public class KBCommentServiceClpInvoker {
 		if (_methodName35.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes35, parameterTypes)) {
 			KBCommentServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName40.equals(name) &&

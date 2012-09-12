@@ -267,6 +267,8 @@ public class FooLocalServiceClpInvoker {
 		if (_methodName48.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
 			FooLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName53.equals(name) &&
@@ -276,6 +278,8 @@ public class FooLocalServiceClpInvoker {
 				((Integer)arguments[2]).intValue(),
 				(java.util.Date)arguments[3], (java.lang.String)arguments[4],
 				(com.liferay.portal.service.ServiceContext)arguments[5]);
+
+			return null;
 		}
 
 		if (_methodName54.equals(name) &&
@@ -310,6 +314,8 @@ public class FooLocalServiceClpInvoker {
 			FooLocalServiceUtil.updateAsset(((Long)arguments[0]).longValue(),
 				(com.liferay.sampleservicebuilder.model.Foo)arguments[1],
 				(long[])arguments[2], (java.lang.String[])arguments[3]);
+
+			return null;
 		}
 
 		if (_methodName60.equals(name) &&
@@ -320,6 +326,8 @@ public class FooLocalServiceClpInvoker {
 				((Integer)arguments[3]).intValue(),
 				(java.util.Date)arguments[4], (java.lang.String)arguments[5],
 				(com.liferay.portal.service.ServiceContext)arguments[6]);
+
+			return null;
 		}
 
 		throw new UnsupportedOperationException();

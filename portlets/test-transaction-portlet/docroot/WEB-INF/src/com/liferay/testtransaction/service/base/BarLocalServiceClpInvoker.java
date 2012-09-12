@@ -254,11 +254,15 @@ public class BarLocalServiceClpInvoker {
 		if (_methodName39.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes39, parameterTypes)) {
 			BarLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName44.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes44, parameterTypes)) {
 			BarLocalServiceUtil.addBar_Rollback((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName45.equals(name) &&
@@ -269,11 +273,15 @@ public class BarLocalServiceClpInvoker {
 		if (_methodName46.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
 			BarLocalServiceUtil.addBarAndClassName_PortalRollback((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName47.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
 			BarLocalServiceUtil.addBarAndClassName_PortletRollback((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName48.equals(name) &&
@@ -284,6 +292,8 @@ public class BarLocalServiceClpInvoker {
 		if (_methodName49.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
 			BarLocalServiceUtil.deleteBarAndClassName((com.liferay.testtransaction.model.Bar)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName50.equals(name) &&
@@ -304,6 +314,8 @@ public class BarLocalServiceClpInvoker {
 		if (_methodName53.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
 			BarLocalServiceUtil.testAddClassNameAndBar_Success((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		throw new UnsupportedOperationException();

@@ -283,6 +283,8 @@ public class MessageLocalServiceClpInvoker {
 		if (_methodName45.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes45, parameterTypes)) {
 			MessageLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName50.equals(name) &&
@@ -309,6 +311,8 @@ public class MessageLocalServiceClpInvoker {
 		if (_methodName53.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
 			MessageLocalServiceUtil.deleteMessages(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName54.equals(name) &&

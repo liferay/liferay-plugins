@@ -87,6 +87,8 @@ public class KBTemplateServiceClpInvoker {
 		if (_methodName41.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
 			KBTemplateServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName46.equals(name) &&
@@ -105,6 +107,8 @@ public class KBTemplateServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
 			KBTemplateServiceUtil.deleteKBTemplates(((Long)arguments[0]).longValue(),
 				(long[])arguments[1]);
+
+			return null;
 		}
 
 		if (_methodName49.equals(name) &&

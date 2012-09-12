@@ -293,6 +293,8 @@ public class CalendarResourceLocalServiceClpInvoker {
 		if (_methodName54.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
 			CalendarResourceLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName59.equals(name) &&
@@ -322,6 +324,8 @@ public class CalendarResourceLocalServiceClpInvoker {
 		if (_methodName62.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
 			CalendarResourceLocalServiceUtil.deleteCalendarResources(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName63.equals(name) &&

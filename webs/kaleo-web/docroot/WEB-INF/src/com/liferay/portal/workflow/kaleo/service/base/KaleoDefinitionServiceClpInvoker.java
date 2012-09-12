@@ -50,6 +50,8 @@ public class KaleoDefinitionServiceClpInvoker {
 		if (_methodName81.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes81, parameterTypes)) {
 			KaleoDefinitionServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName86.equals(name) &&

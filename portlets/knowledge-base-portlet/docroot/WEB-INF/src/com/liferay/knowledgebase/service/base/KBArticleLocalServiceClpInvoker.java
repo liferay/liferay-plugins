@@ -436,6 +436,8 @@ public class KBArticleLocalServiceClpInvoker {
 		if (_methodName98.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes98, parameterTypes)) {
 			KBArticleLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName103.equals(name) &&
@@ -444,6 +446,8 @@ public class KBArticleLocalServiceClpInvoker {
 				(java.lang.String)arguments[1],
 				(java.io.InputStream)arguments[2],
 				(com.liferay.portal.service.ServiceContext)arguments[3]);
+
+			return null;
 		}
 
 		if (_methodName104.equals(name) &&
@@ -462,6 +466,8 @@ public class KBArticleLocalServiceClpInvoker {
 			KBArticleLocalServiceUtil.addKBArticleResources((com.liferay.knowledgebase.model.KBArticle)arguments[0],
 				((Boolean)arguments[1]).booleanValue(),
 				((Boolean)arguments[2]).booleanValue());
+
+			return null;
 		}
 
 		if (_methodName106.equals(name) &&
@@ -469,6 +475,8 @@ public class KBArticleLocalServiceClpInvoker {
 			KBArticleLocalServiceUtil.addKBArticleResources((com.liferay.knowledgebase.model.KBArticle)arguments[0],
 				(java.lang.String[])arguments[1],
 				(java.lang.String[])arguments[2]);
+
+			return null;
 		}
 
 		if (_methodName107.equals(name) &&
@@ -476,6 +484,8 @@ public class KBArticleLocalServiceClpInvoker {
 			KBArticleLocalServiceUtil.addKBArticleResources(((Long)arguments[0]).longValue(),
 				((Boolean)arguments[1]).booleanValue(),
 				((Boolean)arguments[2]).booleanValue());
+
+			return null;
 		}
 
 		if (_methodName108.equals(name) &&
@@ -483,22 +493,30 @@ public class KBArticleLocalServiceClpInvoker {
 			KBArticleLocalServiceUtil.addKBArticleResources(((Long)arguments[0]).longValue(),
 				(java.lang.String[])arguments[1],
 				(java.lang.String[])arguments[2]);
+
+			return null;
 		}
 
 		if (_methodName109.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes109, parameterTypes)) {
 			KBArticleLocalServiceUtil.checkAttachments();
+
+			return null;
 		}
 
 		if (_methodName110.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes110, parameterTypes)) {
 			KBArticleLocalServiceUtil.deleteAttachment(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1]);
+
+			return null;
 		}
 
 		if (_methodName111.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes111, parameterTypes)) {
 			KBArticleLocalServiceUtil.deleteGroupKBArticles(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName112.equals(name) &&
@@ -514,6 +532,8 @@ public class KBArticleLocalServiceClpInvoker {
 		if (_methodName114.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes114, parameterTypes)) {
 			KBArticleLocalServiceUtil.deleteKBArticles((long[])arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName115.equals(name) &&
@@ -627,6 +647,8 @@ public class KBArticleLocalServiceClpInvoker {
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
 				((Double)arguments[3]).doubleValue());
+
+			return null;
 		}
 
 		if (_methodName130.equals(name) &&
@@ -645,6 +667,8 @@ public class KBArticleLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes131, parameterTypes)) {
 			KBArticleLocalServiceUtil.subscribeGroupKBArticles(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
+
+			return null;
 		}
 
 		if (_methodName132.equals(name) &&
@@ -652,18 +676,24 @@ public class KBArticleLocalServiceClpInvoker {
 			KBArticleLocalServiceUtil.subscribeKBArticle(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue());
+
+			return null;
 		}
 
 		if (_methodName133.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes133, parameterTypes)) {
 			KBArticleLocalServiceUtil.unsubscribeGroupKBArticles(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
+
+			return null;
 		}
 
 		if (_methodName134.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes134, parameterTypes)) {
 			KBArticleLocalServiceUtil.unsubscribeKBArticle(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
+
+			return null;
 		}
 
 		if (_methodName135.equals(name) &&
@@ -689,6 +719,8 @@ public class KBArticleLocalServiceClpInvoker {
 			KBArticleLocalServiceUtil.updateKBArticleAsset(((Long)arguments[0]).longValue(),
 				(com.liferay.knowledgebase.model.KBArticle)arguments[1],
 				(long[])arguments[2], (java.lang.String[])arguments[3]);
+
+			return null;
 		}
 
 		if (_methodName138.equals(name) &&
@@ -696,11 +728,15 @@ public class KBArticleLocalServiceClpInvoker {
 			KBArticleLocalServiceUtil.updateKBArticleResources((com.liferay.knowledgebase.model.KBArticle)arguments[0],
 				(java.lang.String[])arguments[1],
 				(java.lang.String[])arguments[2]);
+
+			return null;
 		}
 
 		if (_methodName139.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes139, parameterTypes)) {
 			KBArticleLocalServiceUtil.updateKBArticlesPriorities((java.util.Map<java.lang.Long, java.lang.Double>)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName140.equals(name) &&
@@ -716,6 +752,8 @@ public class KBArticleLocalServiceClpInvoker {
 			KBArticleLocalServiceUtil.updateViewCount(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue());
+
+			return null;
 		}
 
 		throw new UnsupportedOperationException();

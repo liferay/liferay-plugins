@@ -201,6 +201,8 @@ public class KBArticleServiceClpInvoker {
 		if (_methodName81.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes81, parameterTypes)) {
 			KBArticleServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName86.equals(name) &&
@@ -210,6 +212,8 @@ public class KBArticleServiceClpInvoker {
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
 				(java.io.InputStream)arguments[4],
 				(com.liferay.portal.service.ServiceContext)arguments[5]);
+
+			return null;
 		}
 
 		if (_methodName87.equals(name) &&
@@ -229,6 +233,8 @@ public class KBArticleServiceClpInvoker {
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2],
 				((Long)arguments[3]).longValue(), (java.lang.String)arguments[4]);
+
+			return null;
 		}
 
 		if (_methodName89.equals(name) &&
@@ -240,6 +246,8 @@ public class KBArticleServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes90, parameterTypes)) {
 			KBArticleServiceUtil.deleteKBArticles(((Long)arguments[0]).longValue(),
 				(long[])arguments[1]);
+
+			return null;
 		}
 
 		if (_methodName91.equals(name) &&
@@ -369,29 +377,39 @@ public class KBArticleServiceClpInvoker {
 			KBArticleServiceUtil.moveKBArticle(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Double)arguments[2]).doubleValue());
+
+			return null;
 		}
 
 		if (_methodName107.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes107, parameterTypes)) {
 			KBArticleServiceUtil.subscribeGroupKBArticles(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1]);
+
+			return null;
 		}
 
 		if (_methodName108.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes108, parameterTypes)) {
 			KBArticleServiceUtil.subscribeKBArticle(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
+
+			return null;
 		}
 
 		if (_methodName109.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes109, parameterTypes)) {
 			KBArticleServiceUtil.unsubscribeGroupKBArticles(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1]);
+
+			return null;
 		}
 
 		if (_methodName110.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes110, parameterTypes)) {
 			KBArticleServiceUtil.unsubscribeKBArticle(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName111.equals(name) &&
@@ -416,6 +434,8 @@ public class KBArticleServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes113, parameterTypes)) {
 			KBArticleServiceUtil.updateKBArticlesPriorities(((Long)arguments[0]).longValue(),
 				(java.util.Map<java.lang.Long, java.lang.Double>)arguments[1]);
+
+			return null;
 		}
 
 		throw new UnsupportedOperationException();

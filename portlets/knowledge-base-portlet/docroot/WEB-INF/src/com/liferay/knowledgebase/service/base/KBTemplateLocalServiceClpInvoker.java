@@ -278,6 +278,8 @@ public class KBTemplateLocalServiceClpInvoker {
 		if (_methodName58.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
 			KBTemplateLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName63.equals(name) &&
@@ -290,6 +292,8 @@ public class KBTemplateLocalServiceClpInvoker {
 		if (_methodName64.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
 			KBTemplateLocalServiceUtil.deleteGroupKBTemplates(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName65.equals(name) &&
@@ -305,6 +309,8 @@ public class KBTemplateLocalServiceClpInvoker {
 		if (_methodName67.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
 			KBTemplateLocalServiceUtil.deleteKBTemplates((long[])arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName68.equals(name) &&
@@ -343,6 +349,8 @@ public class KBTemplateLocalServiceClpInvoker {
 			KBTemplateLocalServiceUtil.updateKBTemplateResources((com.liferay.knowledgebase.model.KBTemplate)arguments[0],
 				(java.lang.String[])arguments[1],
 				(java.lang.String[])arguments[2]);
+
+			return null;
 		}
 
 		throw new UnsupportedOperationException();

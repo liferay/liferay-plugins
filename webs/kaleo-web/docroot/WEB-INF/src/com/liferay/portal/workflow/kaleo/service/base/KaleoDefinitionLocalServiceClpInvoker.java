@@ -339,6 +339,8 @@ public class KaleoDefinitionLocalServiceClpInvoker {
 		if (_methodName97.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes97, parameterTypes)) {
 			KaleoDefinitionLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName102.equals(name) &&
@@ -346,12 +348,16 @@ public class KaleoDefinitionLocalServiceClpInvoker {
 			KaleoDefinitionLocalServiceUtil.activateKaleoDefinition(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(com.liferay.portal.service.ServiceContext)arguments[2]);
+
+			return null;
 		}
 
 		if (_methodName103.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes103, parameterTypes)) {
 			KaleoDefinitionLocalServiceUtil.activateKaleoDefinition(((Long)arguments[0]).longValue(),
 				(com.liferay.portal.service.ServiceContext)arguments[1]);
+
+			return null;
 		}
 
 		if (_methodName104.equals(name) &&
@@ -359,6 +365,8 @@ public class KaleoDefinitionLocalServiceClpInvoker {
 			KaleoDefinitionLocalServiceUtil.activateKaleoDefinition((java.lang.String)arguments[0],
 				((Integer)arguments[1]).intValue(),
 				(com.liferay.portal.service.ServiceContext)arguments[2]);
+
+			return null;
 		}
 
 		if (_methodName105.equals(name) &&
@@ -375,11 +383,15 @@ public class KaleoDefinitionLocalServiceClpInvoker {
 			KaleoDefinitionLocalServiceUtil.deactivateKaleoDefinition((java.lang.String)arguments[0],
 				((Integer)arguments[1]).intValue(),
 				(com.liferay.portal.service.ServiceContext)arguments[2]);
+
+			return null;
 		}
 
 		if (_methodName107.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes107, parameterTypes)) {
 			KaleoDefinitionLocalServiceUtil.deleteCompanyKaleoDefinitions(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName108.equals(name) &&
@@ -387,6 +399,8 @@ public class KaleoDefinitionLocalServiceClpInvoker {
 			KaleoDefinitionLocalServiceUtil.deleteKaleoDefinition((java.lang.String)arguments[0],
 				((Integer)arguments[1]).intValue(),
 				(com.liferay.portal.service.ServiceContext)arguments[2]);
+
+			return null;
 		}
 
 		if (_methodName109.equals(name) &&

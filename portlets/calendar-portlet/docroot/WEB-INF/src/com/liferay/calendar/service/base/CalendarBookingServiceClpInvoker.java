@@ -142,6 +142,8 @@ public class CalendarBookingServiceClpInvoker {
 		if (_methodName39.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes39, parameterTypes)) {
 			CalendarBookingServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName44.equals(name) &&
@@ -172,6 +174,8 @@ public class CalendarBookingServiceClpInvoker {
 			CalendarBookingServiceUtil.deleteCalendarBookingInstance(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Boolean)arguments[2]).booleanValue());
+
+			return null;
 		}
 
 		if (_methodName47.equals(name) &&
@@ -213,6 +217,8 @@ public class CalendarBookingServiceClpInvoker {
 			CalendarBookingServiceUtil.invokeTransition(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				(com.liferay.portal.service.ServiceContext)arguments[2]);
+
+			return null;
 		}
 
 		if (_methodName54.equals(name) &&

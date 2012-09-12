@@ -263,6 +263,8 @@ public class MemberRequestLocalServiceClpInvoker {
 		if (_methodName63.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
 			MemberRequestLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName68.equals(name) &&
@@ -283,6 +285,8 @@ public class MemberRequestLocalServiceClpInvoker {
 				((Long)arguments[3]).longValue(),
 				((Long)arguments[4]).longValue(),
 				(com.liferay.portal.service.ServiceContext)arguments[5]);
+
+			return null;
 		}
 
 		if (_methodName70.equals(name) &&
@@ -293,6 +297,8 @@ public class MemberRequestLocalServiceClpInvoker {
 				((Long)arguments[3]).longValue(),
 				((Long)arguments[4]).longValue(),
 				(com.liferay.portal.service.ServiceContext)arguments[5]);
+
+			return null;
 		}
 
 		if (_methodName71.equals(name) &&

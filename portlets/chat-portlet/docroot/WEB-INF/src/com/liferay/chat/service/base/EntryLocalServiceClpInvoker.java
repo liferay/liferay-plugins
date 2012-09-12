@@ -228,6 +228,8 @@ public class EntryLocalServiceClpInvoker {
 		if (_methodName41.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
 			EntryLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName46.equals(name) &&
@@ -246,6 +248,8 @@ public class EntryLocalServiceClpInvoker {
 		if (_methodName48.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
 			EntryLocalServiceUtil.deleteEntries(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName49.equals(name) &&
