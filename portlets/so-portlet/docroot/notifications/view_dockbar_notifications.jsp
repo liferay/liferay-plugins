@@ -45,12 +45,12 @@ int notificationEventsCount = userNotificationEvents.size();
 
 <div class="aui-menu aui-overlaycontext-hidden user-notification-events" id="<portlet:namespace />notificationsMenuContainer">
 	<div class="aui-menu-content user-notification-events-container" id="<portlet:namespace />notificationsMenuContent">
-		
+
 		<%
 		int maxNotificationEvents = Math.min(notificationEventsCount, PortletPropsValues.NOTIFICATIONS_DOCKBAR_MAX_ELEMENTS);
-			
-		for  (int i = 0; i < maxNotificationEvents; i++) {
-			NotificationEvent  notificationEvent = userNotificationEvents.get(i);
+
+		for (int i = 0; i < maxNotificationEvents; i++) {
+			NotificationEvent notificationEvent = userNotificationEvents.get(i);
 
 			userNotificationEventUuids = StringUtil.add(userNotificationEventUuids, notificationEvent.getUuid());
 
@@ -116,7 +116,7 @@ int notificationEventsCount = userNotificationEvents.size();
 				<a href="<%= viewAllNotifications %>"><liferay-ui:message key="view-all" />&raquo;</a>
 			</span>
 		</div>
-	</div>	
+	</div>
 </div>
 
 <a class="menu-button user-notification-events-icon" href="javascript:;">
