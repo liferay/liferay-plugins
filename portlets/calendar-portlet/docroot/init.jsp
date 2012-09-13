@@ -88,6 +88,7 @@ page import="com.liferay.portal.util.comparator.UserScreenNameComparator" %><%@
 page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
 
 <%@ page import="java.util.ArrayList" %><%@
+page import="java.util.Iterator" %><%@
 page import="java.util.List" %><%@
 page import="java.util.TimeZone" %>
 

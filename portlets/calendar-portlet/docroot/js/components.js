@@ -994,7 +994,7 @@
 					return A.Lang.String.capitalize(summary);
 				},
 
-				openConfirmationPanel: function(schedulerEvent, actionName, onlyThisInstanceFn, allFollowingFn, allEventsInFn) {
+				openConfirmationPanel: function(actionName, masterBooking, onlyThisInstanceFn, allFollowingFn, allEventsInFn, cancelFn) {
 					var instance = this;
 
 					var titleText;
@@ -1011,7 +1011,7 @@
 
 					var content = [changeDeleteText];
 
-					if (schedulerEvent.isMasterBooking()) {
+					if ((actionName === 'delete') && masterBooking) {
 						content.push(
 							A.Lang.sub(
 								'<br/><br/><b>{0}</b>',
@@ -1046,13 +1046,14 @@
 										label: Liferay.Language.get('all-events-in-the-series')
 									},
 									{
-										handler: function(event) {
-											instance.confirmationPanel.hide();
+										handler: function(event, buttonItem) {
+											this.cancelFn.apply(this, arguments);
 										},
 										label: Liferay.Language.get('cancel-this-change')
 									}
 								],
 								centered: true,
+								close: false,
 								modal: true,
 								title: titleText,
 								visible: false,
@@ -1061,12 +1062,13 @@
 							}
 						);
 
-						confirmationPanel.onlyThisInstanceFn = onlyThisInstanceFn;
-						confirmationPanel.allFollowingFn = allFollowingFn;
-						confirmationPanel.allEventsInFn = allEventsInFn;
-
 						instance.confirmationPanel = confirmationPanel;
 					}
+					
+					confirmationPanel.onlyThisInstanceFn = onlyThisInstanceFn;
+					confirmationPanel.allFollowingFn = allFollowingFn;
+					confirmationPanel.allEventsInFn = allEventsInFn;
+					confirmationPanel.cancelFn = cancelFn || confirmationPanel.close;
 
 					confirmationPanel.render().show();
 				}
@@ -1118,11 +1120,11 @@
 							}
 						);
 
-						confirmationPanel.yesFn = yesFn;
-						confirmationPanel.noFn = noFn || confirmationPanel.close;
-
 						instance.confirmationPanel = confirmationPanel;
 					}
+
+					confirmationPanel.yesFn = yesFn;
+					confirmationPanel.noFn = noFn || confirmationPanel.close;
 
 					return confirmationPanel.render().show();
 				}
