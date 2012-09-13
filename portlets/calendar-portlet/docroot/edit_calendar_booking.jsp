@@ -64,9 +64,6 @@ Recurrence recurrence = null;
 Calendar calendar = CalendarServiceUtil.fetchCalendar(calendarId);
 
 if (calendarBooking != null) {
-	startDateJCalendar.setTimeInMillis(calendarBooking.getStartDate());
-	endDateJCalendar.setTimeInMillis(calendarBooking.getEndDate());
-
 	acceptedCalendarsJSONArray = CalendarUtil.toCalendarBookingsJSONArray(themeDisplay, CalendarBookingServiceUtil.getChildCalendarBookings(calendarBooking.getParentCalendarBookingId(), CalendarBookingWorkflowConstants.STATUS_APPROVED));
 	declinedCalendarsJSONArray = CalendarUtil.toCalendarBookingsJSONArray(themeDisplay, CalendarBookingServiceUtil.getChildCalendarBookings(calendarBooking.getParentCalendarBookingId(), CalendarBookingWorkflowConstants.STATUS_DENIED));
 	maybeCalendarsJSONArray = CalendarUtil.toCalendarBookingsJSONArray(themeDisplay, CalendarBookingServiceUtil.getChildCalendarBookings(calendarBooking.getParentCalendarBookingId(), CalendarBookingWorkflowConstants.STATUS_MAYBE));
@@ -104,6 +101,9 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 <aui:form action="<%= updateCalendarBookingURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateCalendarBooking();" %>'>
 	<aui:input name="calendarBookingId" type="hidden" value="<%= calendarBookingId %>" />
 	<aui:input name="childCalendarIds" type="hidden" />
+	<aui:input name="updateCalendarBookingInstance" type="hidden" />
+	<aui:input name="allFollowing" type="hidden" />
+	<aui:input name="oldStartDate" type="hidden" value="<%= startDateJCalendar.getTimeInMillis() %>" />
 
 	<aui:model-context bean="<%= calendarBooking %>" model="<%= CalendarBooking.class %>" />
 
@@ -258,6 +258,26 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 			<c:if test="<%= (calendarBooking != null) && (calendar != null) %>">
 				<c:choose>
+					<c:when test="<%= recurring %>">
+						Liferay.RecurrenceUtil.openConfirmationPanel(
+							'update',
+							'<%= calendarBooking.isMasterBooking() %>',
+							function() {
+								A.one('#<portlet:namespace />updateCalendarBookingInstance').val('true');
+
+								submitForm(document.<portlet:namespace />fm);
+							},
+							function() {
+								A.one('#<portlet:namespace />updateCalendarBookingInstance').val('true');
+								A.one('#<portlet:namespace />allFollowing').val('true');
+
+								submitForm(document.<portlet:namespace />fm);
+							},
+							function() {
+								submitForm(document.<portlet:namespace />fm);
+							}
+						);
+					</c:when>
 					<c:when test="<%= calendarBooking.isMasterBooking() %>">
 						submitForm(document.<portlet:namespace />fm);
 					</c:when>
