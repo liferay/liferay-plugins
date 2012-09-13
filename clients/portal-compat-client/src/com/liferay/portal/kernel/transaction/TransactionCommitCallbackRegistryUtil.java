@@ -44,4 +44,12 @@ public class TransactionCommitCallbackRegistryUtil {
 		}
 	}
 
+	public void setTransactionCallbackRegistry(
+		TransactionCommitCallbackRegistry transactionCommitCallbackRegistry) {
+
+		// This should never be invoked except when invoking Service Builder
+		// from the command line
+
+	}
+
 }
