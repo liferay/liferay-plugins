@@ -15,6 +15,7 @@
 package com.liferay.akismet.util;
 
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.util.portlet.PortletProps;
 
@@ -24,6 +25,18 @@ import javax.portlet.PortletPreferences;
  * @author Amos Fong
  */
 public class PrefsPortletPropsUtil {
+
+	public static boolean getBoolean(long companyId, String name)
+		throws SystemException {
+
+		return GetterUtil.getBoolean(getString(companyId, name));
+	}
+
+	public static int getInteger(long companyId, String name)
+		throws SystemException {
+
+		return GetterUtil.getInteger(getString(companyId, name));
+	}
 
 	public static PortletPreferences getPortletPreferences(long companyId)
 		throws SystemException {

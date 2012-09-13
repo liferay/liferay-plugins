@@ -19,6 +19,17 @@ package com.liferay.akismet.util;
  */
 public interface PortletPropsKeys {
 
+	public static final String AKISMET_ALLOW_REPORT_MESSAGE_TIME =
+		"akismet.allow.report.message.time";
+
 	public static final String AKISMET_API_KEY = "akismet.api.key";
+
+	public static final String AKISMET_DISCUSSIONS_CHECK_ENABLED =
+		"akismet.discussions.check.enabled";
+
+	public static final String AKISMET_MESSAGE_BOARDS_CHECK_ENABLED =
+		"akismet.message.boards.check.enabled";
+
+	public static final String RETAIN_SPAM_TIME = "retain.spam.time";
 
 }

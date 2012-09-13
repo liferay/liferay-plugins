@@ -14,20 +14,25 @@
 
 package com.liferay.akismet.hook.service.impl;
 
+import com.liferay.akismet.model.AkismetData;
+import com.liferay.akismet.service.AkismetDataLocalServiceUtil;
 import com.liferay.akismet.util.AkismetConstants;
 import com.liferay.akismet.util.AkismetUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.util.ObjectValuePair;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portlet.messageboards.MessageBodyException;
+import com.liferay.portlet.blogs.model.BlogsEntry;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.service.MBMessageLocalService;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceWrapper;
+import com.liferay.portlet.wiki.model.WikiPage;
 
 import java.io.InputStream;
 
@@ -36,6 +41,7 @@ import java.util.Map;
 
 /**
  * @author Amos Fong
+ * @author Mika Koivisto
  */
 public class AkismetMBMessageLocalServiceImpl
 	extends MBMessageLocalServiceWrapper {
@@ -53,13 +59,31 @@ public class AkismetMBMessageLocalServiceImpl
 			String body, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		if (isSpam(userId, body, serviceContext)) {
-			throw new MessageBodyException();
+		boolean enabled = isDiscussionsEnabled(userId);
+
+		if (enabled) {
+			serviceContext.setWorkflowAction(
+				WorkflowConstants.ACTION_SAVE_DRAFT);
 		}
 
-		return super.addDiscussionMessage(
+		MBMessage message = super.addDiscussionMessage(
 			userId, userName, groupId, className, classPK, threadId,
 			parentMessageId, subject, body, serviceContext);
+
+		AkismetData akismetData = updateAkismetData(message, serviceContext);
+
+		if (!enabled) {
+			return message;
+		}
+
+		int status = WorkflowConstants.STATUS_APPROVED;
+
+		if (isSpam(userId, subject, body, akismetData)) {
+			status = WorkflowConstants.STATUS_DENIED;
+		}
+
+		return super.updateStatus(
+			userId, message.getMessageId(), status, serviceContext);
 	}
 
 	@Override
@@ -72,14 +96,32 @@ public class AkismetMBMessageLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		if (isSpam(userId, body, serviceContext)) {
-			throw new MessageBodyException();
+		boolean enabled = isMessageBoardsEnabled(userId);
+
+		if (enabled) {
+			serviceContext.setWorkflowAction(
+				WorkflowConstants.ACTION_SAVE_DRAFT);
 		}
 
-		return super.addMessage(
+		MBMessage message = super.addMessage(
 			userId, userName, groupId, categoryId, threadId, parentMessageId,
 			subject, body, format, inputStreamOVPs, anonymous, priority,
 			allowPingbacks, serviceContext);
+
+		AkismetData akismetData = updateAkismetData(message, serviceContext);
+
+		if (!enabled) {
+			return message;
+		}
+
+		int status = WorkflowConstants.STATUS_APPROVED;
+
+		if (isSpam(userId, subject, body, akismetData)) {
+			status = WorkflowConstants.STATUS_DENIED;
+		}
+
+		return super.updateStatus(
+			userId, message.getMessageId(), status, serviceContext);
 	}
 
 	@Override
@@ -91,14 +133,32 @@ public class AkismetMBMessageLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		if (isSpam(userId, body, serviceContext)) {
-			throw new MessageBodyException();
+		boolean enabled = isMessageBoardsEnabled(userId);
+
+		if (enabled) {
+			serviceContext.setWorkflowAction(
+				WorkflowConstants.ACTION_SAVE_DRAFT);
 		}
 
-		return super.addMessage(
+		MBMessage message = super.addMessage(
 			userId, userName, groupId, categoryId, subject, body, format,
 			inputStreamOVPs, anonymous, priority, allowPingbacks,
 			serviceContext);
+
+		AkismetData akismetData = updateAkismetData(message, serviceContext);
+
+		if (!enabled) {
+			return message;
+		}
+
+		int status = WorkflowConstants.STATUS_APPROVED;
+
+		if (isSpam(userId, subject, body, akismetData)) {
+			status = WorkflowConstants.STATUS_DENIED;
+		}
+
+		return super.updateStatus(
+			userId, message.getMessageId(), status, serviceContext);
 	}
 
 	@Override
@@ -107,13 +167,31 @@ public class AkismetMBMessageLocalServiceImpl
 			String subject, String body, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		if (isSpam(userId, body, serviceContext)) {
-			throw new MessageBodyException();
+		boolean enabled = isDiscussionsEnabled(userId);
+
+		if (enabled) {
+			serviceContext.setWorkflowAction(
+				WorkflowConstants.ACTION_SAVE_DRAFT);
 		}
 
-		return super.updateDiscussionMessage(
+		MBMessage message = super.updateDiscussionMessage(
 			userId, messageId, className, classPK, subject, body,
 			serviceContext);
+
+		AkismetData akismetData = updateAkismetData(message, serviceContext);
+
+		if (!enabled) {
+			return message;
+		}
+
+		int status = WorkflowConstants.STATUS_APPROVED;
+
+		if (isSpam(userId, subject, body, akismetData)) {
+			status = WorkflowConstants.STATUS_DENIED;
+		}
+
+		return super.updateStatus(
+			userId, message.getMessageId(), status, serviceContext);
 	}
 
 	@Override
@@ -124,42 +202,127 @@ public class AkismetMBMessageLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		if (isSpam(userId, body, serviceContext)) {
-			throw new MessageBodyException();
+		boolean enabled = isMessageBoardsEnabled(userId);
+
+		if (enabled) {
+			serviceContext.setWorkflowAction(
+				WorkflowConstants.ACTION_SAVE_DRAFT);
 		}
 
-		return super.updateMessage(
+		MBMessage message = super.updateMessage(
 			userId, messageId, subject, body, inputStreamOVPs, existingFiles,
 			priority, allowPingbacks, serviceContext);
+
+		AkismetData akismetData = updateAkismetData(message, serviceContext);
+
+		if (!enabled) {
+			return message;
+		}
+
+		int status = WorkflowConstants.STATUS_APPROVED;
+
+		if (isSpam(userId, subject, body, akismetData)) {
+			status = WorkflowConstants.STATUS_DENIED;
+		}
+
+		return super.updateStatus(
+			userId, message.getMessageId(), status, serviceContext);
 	}
 
-	protected boolean isSpam(
-			long userId, String body, ServiceContext serviceContext)
+	protected String getPermalink(
+		MBMessage message, ServiceContext serviceContext) {
+
+		StringBundler sb = new StringBundler(4);
+
+		sb.append(serviceContext.getPortalURL());
+		sb.append(serviceContext.getPathMain());
+
+		if (message.isDiscussion()) {
+			String className = message.getClassName();
+
+			if (className.equals(BlogsEntry.class.getName())) {
+				sb.append("/blogs/find_entry?entryId=");
+				sb.append(message.getClassPK());
+			}
+			else if (className.equals(WikiPage.class.getName())) {
+				sb.append("/wiki/find_page?pageResourcePrimKey=");
+				sb.append(message.getClassPK());
+			}
+			else {
+				return StringPool.BLANK;
+			}
+		}
+		else {
+			sb.append("/message_boards/find_entry?messageId=");
+			sb.append(message.getMessageId());
+		}
+
+		return sb.toString();
+	}
+
+	protected boolean isDiscussionsEnabled(long userId)
 		throws PortalException, SystemException {
 
 		User user = UserLocalServiceUtil.getUser(userId);
 
-		if (!AkismetUtil.isEnabled(user.getCompanyId())) {
+		if (AkismetUtil.isDiscussionsEnabled(user.getCompanyId())) {
+			return true;
+		}
+		else {
 			return false;
 		}
+	}
 
-		String ipAddress = serviceContext.getRemoteAddr();
+	protected boolean isMessageBoardsEnabled(long userId)
+		throws PortalException, SystemException {
 
-		Map<String, String> headers = serviceContext.getHeaders();
+		User user = UserLocalServiceUtil.getUser(userId);
 
-		String userAgent = headers.get(HttpHeaders.USER_AGENT.toLowerCase());
-		String referrer = headers.get("referer");
+		if (AkismetUtil.isMessageBoardsEnabled(user.getCompanyId())) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	protected boolean isSpam(
+			long userId, String subject, String body, AkismetData akismetData)
+		throws PortalException, SystemException {
+
+		String content = subject + "\n\n" + body;
+
+		User user = UserLocalServiceUtil.getUser(userId);
 
 		if (AkismetUtil.isSpam(
-				user.getCompanyId(), ipAddress, userAgent, referrer,
-				StringPool.BLANK, AkismetConstants.TYPE_COMMENT,
-				user.getFullName(), user.getEmailAddress(), body)) {
+				user.getCompanyId(), akismetData.getUserIP(),
+				akismetData.getUserAgent(), akismetData.getReferrer(),
+				akismetData.getPermalink(), akismetData.getType(),
+				user.getFullName(), user.getEmailAddress(), content)) {
 
 			return true;
 		}
 		else {
 			return false;
 		}
+	}
+
+	protected AkismetData updateAkismetData(
+			MBMessage message, ServiceContext serviceContext)
+		throws SystemException {
+
+		String permalink = getPermalink(message, serviceContext);
+
+		Map<String, String> headers = serviceContext.getHeaders();
+
+		String userAgent = headers.get(HttpHeaders.USER_AGENT.toLowerCase());
+		String referrer = headers.get("referer");
+
+		String userIP = serviceContext.getRemoteAddr();
+
+		return AkismetDataLocalServiceUtil.updateAkismetData(
+			message.getMessageId(), AkismetConstants.TYPE_COMMENT, permalink,
+			referrer, userAgent, userIP, StringPool.BLANK);
 	}
 
 }

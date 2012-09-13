@@ -19,16 +19,16 @@ package com.liferay.akismet.util;
  */
 public class AkismetConstants {
 
-	public static final String CHECK_SPAM_PATH = "/comment-check";
+	public static final String PATH_CHECK_SPAM = "/comment-check";
+
+	public static final String PATH_SUBMIT_HAM = "/submit-ham";
+
+	public static final String PATH_SUBMIT_SPAM = "/submit-spam";
+
+	public static final String PATH_VERIFY = "/verify-key";
 
 	public static final String REST_URL = "rest.akismet.com/1.1";
 
-	public static final String SUBMIT_HAM_PATH = "/submit-ham";
-
-	public static final String SUBMIT_SPAM_PATH = "/submit-spam";
-
 	public static final String TYPE_COMMENT = "comment";
-
-	public static final String VERIFY_PATH = "/verify-key";
 
 }

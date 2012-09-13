@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.liferay.akismet.model.AkismetData">
+		<field name="akismetDataId" type="long" />
+		<field name="modifiedDate" type="Date" />
+		<field name="mbMessageId" type="long" />
+		<field name="type" type="String" />
+		<field name="permalink" type="String">
+			<hint-collection name="URL" />
+		</field>
+		<field name="referrer" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
+		<field name="userAgent" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
+		<field name="userIP" type="String" />
+		<field name="userURL" type="String">
+			<hint-collection name="URL" />
+		</field>
+	</model>
+</model-hints>

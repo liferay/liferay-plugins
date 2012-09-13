@@ -14,39 +14,48 @@
 
 package com.liferay.akismet.util;
 
+import com.liferay.akismet.model.AkismetData;
+import com.liferay.akismet.service.AkismetDataLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
+import com.liferay.portal.model.User;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.messageboards.model.MBMessage;
+import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 
 import java.io.IOException;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.portlet.PortletPreferences;
-
 /**
  * @author Amos Fong
  */
 public class AkismetUtil {
 
-	public static boolean isEnabled(long companyId) throws SystemException {
-		PortletPreferences preferences =
-			PrefsPortletPropsUtil.getPortletPreferences(companyId);
+	public static boolean isDiscussionsEnabled(long companyId)
+		throws SystemException {
 
-		return GetterUtil.getBoolean(
-			preferences.getValue("enabled", String.valueOf(Boolean.TRUE)));
+		return PrefsPortletPropsUtil.getBoolean(
+			companyId, PortletPropsKeys.AKISMET_DISCUSSIONS_CHECK_ENABLED);
+	}
+
+	public static boolean isMessageBoardsEnabled(long companyId)
+		throws SystemException {
+
+		return PrefsPortletPropsUtil.getBoolean(
+			companyId, PortletPropsKeys.AKISMET_MESSAGE_BOARDS_CHECK_ENABLED);
 	}
 
 	public static boolean isSpam(
@@ -63,28 +72,18 @@ public class AkismetUtil {
 				companyId, PortletPropsKeys.AKISMET_API_KEY));
 		sb.append(StringPool.PERIOD);
 		sb.append(AkismetConstants.REST_URL);
-		sb.append(AkismetConstants.CHECK_SPAM_PATH);
+		sb.append(AkismetConstants.PATH_CHECK_SPAM);
 
 		String location = sb.toString();
 
-		Map<String, String> parts = new HashMap<String, String>();
-
-		parts.put("blog", _getPortalURL(companyId));
-		parts.put("comment_author", userName);
-		parts.put("comment_author_email", emailAddress);
-		parts.put("comment_content", content);
-		parts.put("comment_type", commentType);
-		parts.put("permalink", permalink);
-		parts.put("referrer", referrer);
-		parts.put("user_agent", userAgent);
-		parts.put("user_ip", ipAddress);
-
-		String response = _sendRequest(location, parts);
+		String response = _sendRequest(
+			location, companyId, ipAddress, userAgent, referrer, permalink,
+			commentType, userName, emailAddress, content);
 
 		if (Validator.isNull(response) || response.equals("invalid")) {
 			_log.error("There was an issue with Akismet comment validation");
 
-			return true;
+			return false;
 		}
 		else if (response.equals("true")) {
 			return true;
@@ -93,12 +92,112 @@ public class AkismetUtil {
 		return false;
 	}
 
+	public static void submitHam(long mbMessageId)
+		throws PortalException, SystemException {
+
+		AkismetData akismetData = AkismetDataLocalServiceUtil.fetchAkismetData(
+			mbMessageId);
+
+		if (akismetData == null) {
+			return;
+		}
+
+		MBMessage message = MBMessageLocalServiceUtil.getMBMessage(mbMessageId);
+
+		User user = UserLocalServiceUtil.getUser(message.getUserId());
+
+		String content = message.getSubject() + "\n\n" + message.getBody();
+
+		submitHam(
+			message.getCompanyId(), akismetData.getUserIP(),
+			akismetData.getUserAgent(), akismetData.getReferrer(),
+			akismetData.getPermalink(), akismetData.getType(),
+			user.getFullName(), user.getEmailAddress(), content);
+	}
+
+	public static void submitHam(
+			long companyId, String ipAddress, String userAgent, String referrer,
+			String permalink, String commentType, String userName,
+			String emailAddress, String content)
+		throws PortalException, SystemException {
+
+		StringBundler sb = new StringBundler(5);
+
+		sb.append(Http.HTTP_WITH_SLASH);
+		sb.append(
+			PrefsPortletPropsUtil.getString(
+				companyId, PortletPropsKeys.AKISMET_API_KEY));
+		sb.append(StringPool.PERIOD);
+		sb.append(AkismetConstants.REST_URL);
+		sb.append(AkismetConstants.PATH_SUBMIT_HAM);
+
+		String location = sb.toString();
+
+		String response = _sendRequest(
+			location, companyId, ipAddress, userAgent, referrer, permalink,
+			commentType, userName, emailAddress, content);
+
+		if (Validator.isNull(response)) {
+			_log.error("There was an issue submitting message as ham");
+		}
+	}
+
+	public static void submitSpam(long mbMessageId)
+		throws PortalException, SystemException {
+
+		AkismetData akismetData = AkismetDataLocalServiceUtil.fetchAkismetData(
+			mbMessageId);
+
+		if (akismetData == null) {
+			return;
+		}
+
+		MBMessage message = MBMessageLocalServiceUtil.getMBMessage(mbMessageId);
+
+		User user = UserLocalServiceUtil.getUser(message.getUserId());
+
+		String content = message.getSubject() + "\n\n" + message.getBody();
+
+		submitSpam(
+			message.getCompanyId(), akismetData.getUserIP(),
+			akismetData.getUserAgent(), akismetData.getReferrer(),
+			akismetData.getPermalink(), akismetData.getType(),
+			user.getFullName(), user.getEmailAddress(), content);
+	}
+
+	public static void submitSpam(
+			long companyId, String ipAddress, String userAgent, String referrer,
+			String permalink, String commentType, String userName,
+			String emailAddress, String content)
+		throws PortalException, SystemException {
+
+		StringBundler sb = new StringBundler(5);
+
+		sb.append(Http.HTTP_WITH_SLASH);
+		sb.append(
+			PrefsPortletPropsUtil.getString(
+				companyId, PortletPropsKeys.AKISMET_API_KEY));
+		sb.append(StringPool.PERIOD);
+		sb.append(AkismetConstants.REST_URL);
+		sb.append(AkismetConstants.PATH_SUBMIT_SPAM);
+
+		String location = sb.toString();
+
+		String response = _sendRequest(
+			location, companyId, ipAddress, userAgent, referrer, permalink,
+			commentType, userName, emailAddress, content);
+
+		if (Validator.isNull(response)) {
+			_log.error("There was an issue submitting message as spam");
+		}
+	}
+
 	public static boolean verifyApiKey(long companyId, String apiKey)
 		throws PortalException, SystemException {
 
 		String location =
 			Http.HTTP_WITH_SLASH + AkismetConstants.REST_URL +
-				AkismetConstants.VERIFY_PATH;
+				AkismetConstants.PATH_VERIFY;
 
 		Map<String, String> parts = new HashMap<String, String>();
 
@@ -123,6 +222,27 @@ public class AkismetUtil {
 		return PortalUtil.getPortalURL(
 			company.getVirtualHostname(), PortalUtil.getPortalPort(false),
 			false);
+	}
+
+	private static String _sendRequest(
+			String location, long companyId, String ipAddress, String userAgent,
+			String referrer, String permalink, String commentType,
+			String userName, String emailAddress, String content)
+		throws PortalException, SystemException {
+
+		Map<String, String> parts = new HashMap<String, String>();
+
+		parts.put("blog", _getPortalURL(companyId));
+		parts.put("comment_author", userName);
+		parts.put("comment_author_email", emailAddress);
+		parts.put("comment_content", content);
+		parts.put("comment_type", commentType);
+		parts.put("permalink", permalink);
+		parts.put("referrer", referrer);
+		parts.put("user_agent", userAgent);
+		parts.put("user_ip", ipAddress);
+
+		return _sendRequest(location, parts);
 	}
 
 	private static String _sendRequest(

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.akismet.portlet;
+package com.liferay.akismet.portlet.akismet;
 
 import com.liferay.akismet.util.AkismetUtil;
 import com.liferay.akismet.util.PortletPropsKeys;
@@ -20,12 +20,15 @@ import com.liferay.akismet.util.PrefsPortletPropsUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.model.RoleConstants;
+import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletPreferences;
+import javax.portlet.PortletRequest;
 
 /**
  * @author Amos Fong
@@ -39,21 +42,53 @@ public class AkismetPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		boolean enabled = ParamUtil.getBoolean(actionRequest, "enabled");
+		boolean messageBoardsEnabled = ParamUtil.getBoolean(
+			actionRequest, "messageBoardsEnabled");
+		boolean discussionsEnabled = ParamUtil.getBoolean(
+			actionRequest, "discussionsEnabled");
 		String apiKey = ParamUtil.getString(actionRequest, "apiKey");
+		int allowReportMessageTime = ParamUtil.getInteger(
+			actionRequest, "allowReportMessageTime");
 
 		PortletPreferences preferences =
 			PrefsPortletPropsUtil.getPortletPreferences(
 				themeDisplay.getCompanyId());
 
-		preferences.setValue("enabled", String.valueOf(enabled));
+		preferences.setValue(
+			PortletPropsKeys.AKISMET_MESSAGE_BOARDS_CHECK_ENABLED,
+			String.valueOf(messageBoardsEnabled));
+		preferences.setValue(
+			PortletPropsKeys.AKISMET_DISCUSSIONS_CHECK_ENABLED,
+			String.valueOf(discussionsEnabled));
 		preferences.setValue(PortletPropsKeys.AKISMET_API_KEY, apiKey);
+		preferences.setValue(
+			PortletPropsKeys.AKISMET_ALLOW_REPORT_MESSAGE_TIME,
+			String.valueOf(allowReportMessageTime));
 
 		preferences.store();
 
 		if (!AkismetUtil.verifyApiKey(themeDisplay.getCompanyId(), apiKey)) {
 			SessionErrors.add(actionRequest, "apiKeyError");
 		}
+	}
+
+	@Override
+	protected boolean isProcessPortletRequest(PortletRequest portletRequest) {
+		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		try {
+			if (RoleLocalServiceUtil.hasUserRole(
+					themeDisplay.getUserId(), themeDisplay.getCompanyId(),
+					RoleConstants.ADMINISTRATOR, true)) {
+
+				return true;
+			}
+		}
+		catch (Exception e) {
+		}
+
+		return false;
 	}
 
 }
