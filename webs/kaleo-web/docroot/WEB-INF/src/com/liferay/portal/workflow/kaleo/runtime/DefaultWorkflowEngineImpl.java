@@ -149,7 +149,9 @@ public class DefaultWorkflowEngineImpl
 
 						return null;
 					}
-				});
+
+				}
+			);
 
 			return executionContext;
 		}
@@ -354,14 +356,17 @@ public class DefaultWorkflowEngineImpl
 						try {
 							_kaleoSignaler.signalExit(
 								transitionName, executionContext);
-						} catch (Exception e) {
+						}
+						catch (Exception e) {
 							throw new WorkflowException(
 								"Unable to signal next transition", e);
 						}
 
 						return null;
 					}
-				});
+
+				}
+			);
 
 			return new WorkflowInstanceAdapter(
 				kaleoInstance, kaleoInstanceToken, workflowContext);
@@ -435,19 +440,21 @@ public class DefaultWorkflowEngineImpl
 			TransactionCommitCallbackRegistryUtil.registerCallback(
 				new Callable<Void>() {
 
-				public Void call() throws Exception {
-					try {
-						_kaleoSignaler.signalEntry(
-							transitionName, executionContext);
-					}
-					catch (Exception e) {
-						throw new WorkflowException(
-							"Unable to start workflow", e);
+					public Void call() throws Exception {
+						try {
+							_kaleoSignaler.signalEntry(
+								transitionName, executionContext);
+						}
+						catch (Exception e) {
+							throw new WorkflowException(
+								"Unable to start workflow", e);
+						}
+
+						return null;
 					}
 
-					return null;
 				}
-			});
+			);
 
 			return new WorkflowInstanceAdapter(
 				kaleoInstance, rootKaleoInstanceToken, workflowContext);
