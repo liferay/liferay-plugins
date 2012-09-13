@@ -323,3 +323,15 @@
 .yui3-skin-sam .yui3-calendar-day.lfr-busy-day, .yui3-skin-sam .yui3-calendar-prevmonth-day.lfr-busy-day, .yui3-skin-sam .yui3-calendar-nextmonth-day.lfr-busy-day {
 	text-decoration: underline;
 }
+
+.aui-dialog-iframe-popup .calendar-portlet .aui-fieldset {
+	margin-bottom: 2em;
+}
+
+.calendar-booking-invitations {
+	min-height: 110px;
+}
+
+.calendar-booking-reminders {
+	min-height: 52px;
+}

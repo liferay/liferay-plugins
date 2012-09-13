@@ -1132,7 +1132,24 @@
 							data.calendarBookingId = schedulerEvent.get('calendarBookingId');
 						}
 
-						A.config.win.location.href = A.Lang.sub(editCalendarBookingURL, data);
+						Liferay.Util.openWindow(
+							{
+								dialog: {
+									after: {
+										destroy: function(event) {
+											scheduler.loadCalendarBookings();
+										}
+									},
+									destroyOnClose: true,
+									modal: true
+								},
+								refreshWindow: window,
+								title: Liferay.Language.get('edit-details'),
+								uri: A.Lang.sub(editCalendarBookingURL, data)
+							}
+						);
+
+						instance.hideOverlay();
 					},
 
 					_onOverlayVisibleChange: function(event) {
