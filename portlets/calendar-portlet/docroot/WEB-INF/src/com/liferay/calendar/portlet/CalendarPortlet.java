@@ -158,7 +158,10 @@ public class CalendarPortlet extends MVCPortlet {
 		try {
 			String resourceID = resourceRequest.getResourceID();
 
-			if (resourceID.equals("calendarRenderingRules")) {
+			if (resourceID.equals("calendarBookingInvitees")) {
+				serveCalendarBookingInvitees(resourceRequest, resourceResponse);
+			}
+			else if (resourceID.equals("calendarRenderingRules")) {
 				serveCalendarRenderingRules(resourceRequest, resourceResponse);
 			}
 			else if (resourceID.equals("calendarResources")) {
@@ -531,6 +534,30 @@ public class CalendarPortlet extends MVCPortlet {
 		}
 
 		return false;
+	}
+
+	protected void serveCalendarBookingInvitees(
+		ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+			throws Exception {
+
+		long parentCalendarBookingId = ParamUtil.getLong(
+			resourceRequest, "parentCalendarBookingId");
+
+		List<CalendarBooking> childCalendarBookings =
+			CalendarBookingServiceUtil.getChildCalendarBookings(
+				parentCalendarBookingId);
+
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+		for (CalendarBooking calendarBooking : childCalendarBookings) {
+			CalendarResource resource = calendarBooking.getCalendarResource();
+
+			addCalendarJSONObject(
+				resourceRequest, jsonArray, resource.getClassNameId(),
+				resource.getClassPK());
+		}
+
+		writeJSON(resourceRequest, resourceResponse, jsonArray);
 	}
 
 	protected void serveCalendarRenderingRules(
