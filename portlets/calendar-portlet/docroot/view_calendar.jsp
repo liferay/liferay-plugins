@@ -99,9 +99,8 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 			<liferay-util:param name="activeView" value="<%= activeView %>" />
 			<liferay-util:param name="date" value="<%= String.valueOf(date) %>" />
 
-			<portlet:renderURL var="editCalendarBookingURL">
+			<portlet:renderURL var="editCalendarBookingURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 				<portlet:param name="jspPage" value="/edit_calendar_booking.jsp" />
-				<portlet:param name="redirect" value="<%= String.valueOf(renderResponse.createRenderURL()) %>" />
 				<portlet:param name="activeView" value="{activeView}" />
 				<portlet:param name="allDay" value="{allDay}" />
 				<portlet:param name="calendarBookingId" value="{calendarBookingId}" />
