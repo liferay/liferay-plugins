@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_0_0.dtd">
+
+<service-builder package-path="com.liferay.akismet">
+	<namespace>Akismet</namespace>
+	<entity name="AkismetData" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="akismetDataId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="mbMessageId" type="long" />
+		<column name="type" type="String" />
+		<column name="permalink" type="String" />
+		<column name="referrer" type="String" />
+		<column name="userAgent" type="String" />
+		<column name="userIP" type="String" />
+		<column name="userURL" type="String" />
+
+		<!-- Finder methods -->
+
+		<finder name="ModifiedDate" return-type="Collection">
+			<finder-column name="modifiedDate" comparator="&lt;" />
+		</finder>
+		<finder name="MBMessageId" return-type="AkismetData">
+			<finder-column name="mbMessageId" />
+		</finder>
+	</entity>
+</service-builder>

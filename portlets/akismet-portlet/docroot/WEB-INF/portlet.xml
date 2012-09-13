@@ -4,20 +4,57 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Akismet</display-name>
-		<portlet-class>com.liferay.akismet.portlet.AkismetPortlet</portlet-class>
+		<portlet-class>com.liferay.akismet.portlet.akismet.AkismetPortlet</portlet-class>
+		<init-param>
+			<name>jsp-path</name>
+			<value>/akismet/</value>
+		</init-param>
 		<init-param>
 			<name>view-jsp</name>
-			<value>/view.jsp</value>
+			<value>/akismet/view.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
-		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Akismet</title>
 			<short-title>Akismet</short-title>
 			<keywords>Akismet</keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<portlet>
+		<portlet-name>2</portlet-name>
+		<display-name>Spam Moderation</display-name>
+		<portlet-class>com.liferay.akismet.portlet.moderation.ModerationPortlet</portlet-class>
+		<init-param>
+			<name>jsp-path</name>
+			<value>/moderation/</value>
+		</init-param>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/moderation/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+		</supports>
+		<portlet-info>
+			<title>Spam Moderation</title>
+			<short-title>Spam Moderation</short-title>
+			<keywords>Spam Moderation</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

@@ -22,9 +22,13 @@
 	<liferay-ui:error key="apiKeyError" message="unable-to-validate-akismet-api-key" />
 
 	<aui:fieldset>
-		<aui:input label="enabled" name="enabled" type="checkbox" value="<%= AkismetUtil.isEnabled(company.getCompanyId()) %>" />
+		<aui:input label="enabled-for-message-boards" name="messageBoardsEnabled" type="checkbox" value='<%= AkismetUtil.isMessageBoardsEnabled(company.getCompanyId()) %>' />
+
+		<aui:input label="enabled-for-discussions" name="discussionsEnabled" type="checkbox" value='<%= AkismetUtil.isDiscussionsEnabled(company.getCompanyId()) %>' />
 
 		<aui:input label="api-key" name="apiKey" type="text" value="<%= PrefsPortletPropsUtil.getString(company.getCompanyId(), PortletPropsKeys.AKISMET_API_KEY) %>" />
+
+		<aui:input label="time-in-days-after-a-message-is-created-or-updated-to-mark-it-as-spam-or-ham" name="allowReportMessageTime" type="text" value='<%= PrefsPortletPropsUtil.getString(company.getCompanyId(), PortletPropsKeys.AKISMET_ALLOW_REPORT_MESSAGE_TIME) %>' />
 
 		<aui:button-row>
 			<aui:button type="submit" />
