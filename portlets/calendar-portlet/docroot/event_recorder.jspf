@@ -70,6 +70,19 @@
 					</td>
 				</tr>
 			</tpl>
+
+			<tr class="aui-helper-hidden" id="<portlet:namespace />eventRecorderUsers">
+				<td><liferay-ui:message key="users" />:</td>
+				<td>
+					<label class="calendar-portlet-invitees"></label>
+				</td>
+			</tr>
+			<tr class="aui-helper-hidden" id="<portlet:namespace />eventRecorderResources">
+				<td><liferay-ui:message key="resources" />:</td>
+				<td>
+					<label class="calendar-portlet-invitees"></label>
+				</td>
+			</tr>
 		</table>
 	</div>
 </div>

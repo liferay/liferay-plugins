@@ -15,6 +15,8 @@
 
 	var STR_SPACE = ' ';
 
+	var TPL_INVITEES_URL = '{inviteesURL}&{portletNamespace}parentCalendarBookingId={calendarBookingId}';
+
 	var TPL_RENDERING_RULES_URL = '{renderingRulesURL}&{portletNamespace}calendarIds={calendarIds}&{portletNamespace}startDate={startDate}&{portletNamespace}endDate={endDate}&{portletNamespace}ruleName={ruleName}';
 
 	var COMPANY_GROUP_ID = toNumber(themeDisplay.getCompanyGroupId());
@@ -89,6 +91,7 @@
 		Liferay.Time = Time;
 
 		var CalendarUtil = {
+			INVITEES_URL: null,
 			INVOKER_URL: '/api/jsonws/invoke',
 			NOTIFICATION_DEFAULT_TYPE: 'email',
 			PORTLET_NAMESPACE: STR_BLANK,
@@ -262,6 +265,31 @@
 				);
 
 				return events;
+			},
+
+			getCalendarBookingInvitees: function(calendarBookingId, callback) {
+				var instance = this;
+
+				var inviteesURL = A.Lang.sub(
+					TPL_INVITEES_URL,
+					{
+						calendarBookingId: calendarBookingId,
+						inviteesURL: instance.INVITEES_URL,
+						portletNamespace: instance.PORTLET_NAMESPACE
+					}
+				);
+
+				A.io.request(
+					inviteesURL,
+					{
+						dataType: 'json',
+						on: {
+							success: function() {
+								callback(this.get('responseData'));
+							}
+						}
+					}
+				);
 			},
 
 			getCalendarRenderingRules: function(calendarIds, startDate, endDate, ruleName, callback) {
@@ -1184,7 +1212,13 @@
 							eventRecorderCalendar.val(calendarId);
 						}
 
-						instance._syncToolbarButtons(event.newVal);
+						var visible = event.newVal;
+
+						if (visible) {
+							instance._syncInvittes();
+						}
+
+						instance._syncToolbarButtons(visible);
 					},
 
 					_renderOverlay: function() {
@@ -1209,6 +1243,54 @@
 							},
 							'#' + instance.get('portletNamespace') + 'eventRecorderCalendar'
 						);
+					},
+
+					_syncInvittes: function() {
+						var instance = this;
+
+						var overlayBB = instance.overlay.get('boundingBox');
+						var portletNamespace = instance.get('portletNamespace');
+						var schedulerEvent = instance.get('event');
+
+						if (schedulerEvent) {
+							CalendarUtil.getCalendarBookingInvitees(
+								schedulerEvent.get('parentCalendarBookingId'),
+								function(data) {
+									var resources = [];
+									var users = [];
+
+									A.Array.each(
+										data,
+										function(item, index, collection) {
+											var name = item.name;
+
+											if (item.classNameId == CalendarUtil.USER_CLASS_NAME_ID) {
+												users.push(name);
+											}
+											else {
+												resources.push(name);
+											}
+										}
+									);
+
+									if (resources.length > 0) {
+										var eventRecorderResources = A.one('#' + portletNamespace + 'eventRecorderResources');
+										var eventRecorderResourcesContent = eventRecorderResources.one('.calendar-portlet-invitees');
+
+										eventRecorderResourcesContent.setContent(resources.join(', '));
+										eventRecorderResources.show();
+									}
+
+									if (users.length > 0) {
+										var eventRecorderUsers = A.one('#' + portletNamespace + 'eventRecorderUsers');
+										var eventRecorderUsersContent = eventRecorderUsers.one('.calendar-portlet-invitees');
+
+										eventRecorderUsersContent.setContent(users.join(', '));
+										eventRecorderUsers.show();
+									}
+								}
+							);
+						}
 					},
 
 					_syncToolbarButtons: function(overlayVisible) {
