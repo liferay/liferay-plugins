@@ -18,6 +18,7 @@ import com.liferay.calendar.CalendarBookingDurationException;
 import com.liferay.calendar.CalendarBookingTitleException;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
+import com.liferay.calendar.model.CalendarBookingConstants;
 import com.liferay.calendar.notification.NotificationType;
 import com.liferay.calendar.recurrence.Recurrence;
 import com.liferay.calendar.recurrence.RecurrenceSerializer;
@@ -33,6 +34,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
@@ -209,7 +211,20 @@ public class CalendarBookingLocalServiceImpl
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
 
+		java.util.Calendar startDateJCalendar = JCalendarUtil.getJCalendar(
+			calendarBooking.getStartDate());
+
 		java.util.Calendar jCalendar = JCalendarUtil.getJCalendar(startDate);
+
+		jCalendar.set(
+			java.util.Calendar.HOUR_OF_DAY,
+			startDateJCalendar.get(java.util.Calendar.HOUR_OF_DAY));
+		jCalendar.set(
+			java.util.Calendar.MINUTE,
+			startDateJCalendar.get(java.util.Calendar.MINUTE));
+		jCalendar.set(
+			java.util.Calendar.SECOND,
+			startDateJCalendar.get(java.util.Calendar.SECOND));
 
 		Recurrence recurrenceObj = calendarBooking.getRecurrenceObj();
 
@@ -381,6 +396,7 @@ public class CalendarBookingLocalServiceImpl
 		// Calendar booking
 
 		User user = userPersistence.findByPrimaryKey(userId);
+
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
 
@@ -445,33 +461,58 @@ public class CalendarBookingLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		CalendarBooking calendarBooking =
-			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
-
-		List<CalendarBooking> childCalendarBookings =
-			calendarBookingPersistence.findByParentCalendarBookingId(
-				calendarBookingId);
-
-		long[] childCalendarIds = new long[childCalendarBookings.size()];
-
-		for (int i = 0; i < childCalendarIds.length; i++) {
-			CalendarBooking childCalendarBooking = childCalendarBookings.get(i);
-
-			if (childCalendarBooking.getCalendarId() ==
-					calendarBooking.getCalendarId()) {
-
-				childCalendarIds[i] = calendarId;
-			}
-			else {
-				childCalendarIds[i] = childCalendarBooking.getCalendarId();
-			}
-		}
+		long[] childCalendarIds = getChildCalendarIds(
+			calendarBookingId, calendarId);
 
 		return updateCalendarBooking(
 			userId, calendarBookingId, calendarId, childCalendarIds, titleMap,
 			descriptionMap, location, startDate, endDate, allDay, recurrence,
 			firstReminder, firstReminderType, secondReminder,
 			secondReminderType, status, serviceContext);
+	}
+
+	public CalendarBooking updateCalendarBookingInstance(
+			long userId, long calendarBookingId, long calendarId,
+			long[] childCalendarIds, Map<Locale, String> titleMap,
+			Map<Locale, String> descriptionMap, String location, long startDate,
+			long endDate, boolean allDay, String recurrence, long firstReminder,
+			String firstReminderType, long secondReminder,
+			String secondReminderType, int status, boolean allFollowing,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		deleteCalendarBookingInstance(
+			calendarBookingId, startDate, allFollowing);
+
+		if (!allFollowing) {
+			recurrence = StringPool.BLANK;
+		}
+
+		return addCalendarBooking(
+			userId, calendarId, childCalendarIds,
+			CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT,
+			titleMap, descriptionMap, location, startDate, endDate, allDay,
+			recurrence, firstReminder, firstReminderType, secondReminder,
+			secondReminderType, serviceContext);
+	}
+
+	public CalendarBooking updateCalendarBookingInstance(
+			long userId, long calendarBookingId, long calendarId,
+			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
+			String location, long startDate, long endDate, boolean allDay,
+			String recurrence, long firstReminder, String firstReminderType,
+			long secondReminder, String secondReminderType, int status,
+			boolean allFollowing, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		long[] childCalendarIds = getChildCalendarIds(
+			calendarBookingId, calendarId);
+
+		return updateCalendarBookingInstance(
+			userId, calendarBookingId, calendarId, childCalendarIds, titleMap,
+			descriptionMap, location, startDate, endDate, allDay, recurrence,
+			firstReminder, firstReminderType, secondReminder,
+			secondReminderType, status, allFollowing, serviceContext);
 	}
 
 	public CalendarBooking updateStatus(
@@ -551,6 +592,35 @@ public class CalendarBookingLocalServiceImpl
 			catch (Exception e) {
 			}
 		}
+	}
+
+	protected long[] getChildCalendarIds(
+			long calendarBookingId, long calendarId)
+		throws PortalException, SystemException {
+
+		CalendarBooking calendarBooking =
+			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
+
+		List<CalendarBooking> childCalendarBookings =
+			calendarBookingPersistence.findByParentCalendarBookingId(
+				calendarBookingId);
+
+		long[] childCalendarIds = new long[childCalendarBookings.size()];
+
+		for (int i = 0; i < childCalendarIds.length; i++) {
+			CalendarBooking childCalendarBooking = childCalendarBookings.get(i);
+
+			if (childCalendarBooking.getCalendarId() ==
+					calendarBooking.getCalendarId()) {
+
+				childCalendarIds[i] = calendarId;
+			}
+			else {
+				childCalendarIds[i] = childCalendarBooking.getCalendarId();
+			}
+		}
+
+		return childCalendarIds;
 	}
 
 	protected void validate(
