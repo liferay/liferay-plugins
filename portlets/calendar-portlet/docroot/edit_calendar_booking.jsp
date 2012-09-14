@@ -268,8 +268,8 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 								submitForm(document.<portlet:namespace />fm);
 							},
 							function() {
-								A.one('#<portlet:namespace />updateCalendarBookingInstance').val('true');
 								A.one('#<portlet:namespace />allFollowing').val('true');
+								A.one('#<portlet:namespace />updateCalendarBookingInstance').val('true');
 
 								submitForm(document.<portlet:namespace />fm);
 							},
