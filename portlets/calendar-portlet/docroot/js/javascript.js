@@ -1381,9 +1381,9 @@ AUI.add(
 						var schedulerEvent = instance.get('event');
 						var portletNamespace = instance.get('portletNamespace');
 
-						var parentCalendarBookingId = schedulerEvent.get('parentCalendarBookingId');
-
 						if (schedulerEvent) {
+							var parentCalendarBookingId = schedulerEvent.get('parentCalendarBookingId');
+
 							CalendarUtil.getCalendarBookingInvitees(
 								parentCalendarBookingId,
 								function(data) {
