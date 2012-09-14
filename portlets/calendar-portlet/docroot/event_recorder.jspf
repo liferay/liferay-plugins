@@ -38,13 +38,17 @@
 	<div class="aui-scheduler-event-recorder-overlay-body">
 		<table>
 			<tr class="calendar-portlet-event-recorder-status-row">
-				<td><liferay-ui:message key="status" />:</td>
+				<td>
+					<liferay-ui:message key="status" />:
+				</td>
 				<td>
 					<label>{status}</label>
 				</td>
 			</tr>
 			<tr>
-				<td><liferay-ui:message key="when" />:</td>
+				<td>
+					<liferay-ui:message key="when" />:
+				</td>
 				<td>
 					<label class="aui-scheduler-event-recorder-overlay-date">{date}</label>
 				</td>
@@ -52,7 +56,9 @@
 
 			<tpl if="values.permissions.MANAGE_BOOKINGS">
 				<tr class="calendar-portlet-event-recorder-calendar-row">
-					<td><liferay-ui:message key="calendar" />:</td>
+					<td>
+						<liferay-ui:message key="calendar" />:
+					</td>
 					<td>
 						<select id="<portlet:namespace />eventRecorderCalendar" name="calendarId">
 
@@ -72,13 +78,17 @@
 			</tpl>
 
 			<tr class="aui-helper-hidden" id="<portlet:namespace />eventRecorderUsers">
-				<td><liferay-ui:message key="users" />:</td>
+				<td>
+					<liferay-ui:message key="users" />:
+				</td>
 				<td>
 					<label class="calendar-portlet-invitees"></label>
 				</td>
 			</tr>
 			<tr class="aui-helper-hidden" id="<portlet:namespace />eventRecorderResources">
-				<td><liferay-ui:message key="resources" />:</td>
+				<td>
+					<liferay-ui:message key="resources" />:
+				</td>
 				<td>
 					<label class="calendar-portlet-invitees"></label>
 				</td>
