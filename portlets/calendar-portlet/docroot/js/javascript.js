@@ -1,37 +1,12 @@
-(function() {
-	var Workflow = Liferay.Workflow;
-
-	var toNumber = function(val) {
-		return parseInt(val, 10) || 0;
-	};
-
-	var STR_BLANK = '';
-
-	var STR_COMMA = ',';
-
-	var STR_COMMA_SPACE = ', ';
-
-	var STR_DASH = '-';
-
-	var STR_SPACE = ' ';
-
-	var TPL_INVITEES_URL = '{inviteesURL}&{portletNamespace}parentCalendarBookingId={calendarBookingId}';
-
-	var TPL_RENDERING_RULES_URL = '{renderingRulesURL}&{portletNamespace}calendarIds={calendarIds}&{portletNamespace}startDate={startDate}&{portletNamespace}endDate={endDate}&{portletNamespace}ruleName={ruleName}';
-
-	var COMPANY_GROUP_ID = toNumber(themeDisplay.getCompanyGroupId());
-
-	var COMPANY_ID = toNumber(themeDisplay.getCompanyId());
-
-	var GROUP_ID = toNumber(themeDisplay.getScopeGroupId());
-
-	var USER_ID = toNumber(themeDisplay.getUserId());
-
-	AUI.add(
-		'liferay-scheduler',
-		function(A) {
+AUI.add(
+	'liferay-scheduler',
+	function(A) {
+		var AArray = A.Array;
 		var DateMath = A.DataType.DateMath;
 		var Lang = A.Lang;
+
+		var RecurrenceUtil = Liferay.RecurrenceUtil;
+		var Workflow = Liferay.Workflow;
 
 		var isArray = Lang.isArray;
 		var isBoolean = Lang.isBoolean;
@@ -40,7 +15,29 @@
 		var isObject = Lang.isObject;
 		var isString = Lang.isString;
 
-		var RecurrenceUtil = Liferay.RecurrenceUtil;
+		var toInt = Lang.toInt;
+
+		var STR_BLANK = '';
+
+		var STR_COMMA = ',';
+
+		var STR_COMMA_SPACE = ', ';
+
+		var STR_DASH = '-';
+
+		var STR_SPACE = ' ';
+
+		var TPL_INVITEES_URL = '{inviteesURL}&{portletNamespace}parentCalendarBookingId={calendarBookingId}';
+
+		var TPL_RENDERING_RULES_URL = '{renderingRulesURL}&{portletNamespace}calendarIds={calendarIds}&{portletNamespace}startDate={startDate}&{portletNamespace}endDate={endDate}&{portletNamespace}ruleName={ruleName}';
+
+		var COMPANY_GROUP_ID = toInt(themeDisplay.getCompanyGroupId());
+
+		var COMPANY_ID = toInt(themeDisplay.getCompanyId());
+
+		var GROUP_ID = toInt(themeDisplay.getScopeGroupId());
+
+		var USER_ID = toInt(themeDisplay.getUserId());
 
 		var jsonParse = function(val) {
 			var jsonObj = null;
@@ -70,7 +67,7 @@
 				var value = 0;
 
 				if (milliseconds > 0) {
-					A.Array.some(
+					AArray.some(
 						[ Time.WEEK, Time.DAY, Time.HOUR, Time.MINUTE ],
 						function(item, index, collection) {
 							value = milliseconds/item;
@@ -169,7 +166,7 @@
 						maxResults: 20,
 						requestTemplate: '&' + instance.PORTLET_NAMESPACE + 'keywords={query}',
 						resultFilters: function(query, results) {
-							return A.Array.filter(
+							return AArray.filter(
 								results,
 								function(item, index, collection) {
 									return !instance.availableCalendars[item.raw.calendarId];
@@ -177,7 +174,7 @@
 							);
 						},
 						resultFormatter: function(query, results) {
-							return A.Array.map(
+							return AArray.map(
 								results,
 								function (result) {
 									var calendar = result.raw;
@@ -255,7 +252,7 @@
 
 				var events = [];
 
-				A.Array.each(
+				AArray.each(
 					jsonArray,
 					function(item, index, collection) {
 						if (value === item[property]) {
@@ -270,7 +267,7 @@
 			getCalendarBookingInvitees: function(calendarBookingId, callback) {
 				var instance = this;
 
-				var inviteesURL = A.Lang.sub(
+				var inviteesURL = Lang.sub(
 					TPL_INVITEES_URL,
 					{
 						calendarBookingId: calendarBookingId,
@@ -295,7 +292,7 @@
 			getCalendarRenderingRules: function(calendarIds, startDate, endDate, ruleName, callback) {
 				var instance = this;
 
-				var renderingRulesURL = A.Lang.sub(
+				var renderingRulesURL = Lang.sub(
 					TPL_RENDERING_RULES_URL,
 					{
 						calendarIds: calendarIds.join(),
@@ -528,7 +525,7 @@
 				var visibleCalendars = instance.visibleCalendars = {};
 				var availableCalendars = instance.availableCalendars = {};
 
-				A.Array.each(
+				AArray.each(
 					arguments,
 					function(calendarList) {
 						var calendars = calendarList.get('calendars');
@@ -650,7 +647,7 @@
 			{
 				ATTRS: {
 					currentMonth: {
-						setter: toNumber,
+						setter: toInt,
 						valueFn: function(val) {
 							var instance = this;
 
@@ -714,7 +711,7 @@
 							[CalendarWorkflow.STATUS_APPROVED, CalendarWorkflow.STATUS_MAYBE, CalendarWorkflow.STATUS_PENDING],
 							function(calendarBookings) {
 								if (filterCalendarBookings) {
-									calendarBookings = A.Array.filter(calendarBookings, filterCalendarBookings);
+									calendarBookings = AArray.filter(calendarBookings, filterCalendarBookings);
 								}
 
 								instance.loadCalendarBookingsJSON(calendarBookings);
@@ -728,7 +725,7 @@
 						var events = A.Object.map(
 							Liferay.CalendarUtil.availableCalendars,
 							function(item, index, collection) {
-								var events = CalendarUtil.filterJSONArray(calendarBookings, 'calendarId', toNumber(index));
+								var events = CalendarUtil.filterJSONArray(calendarBookings, 'calendarId', toInt(index));
 
 								item.set('events', events);
 
@@ -767,7 +764,7 @@
 							var calendar = Liferay.CalendarUtil.availableCalendars[schedulerEvent.get('calendarId')];
 							var content = [
 								'<p class="calendar-portlet-confirmation-text">',
-								A.Lang.sub(
+								Lang.sub(
 									Liferay.Language.get('you-are-about-to-make-changes-that-will-only-be-reflected-on-calendar-x'),
 									[calendar.get('name')]
 								),
@@ -869,12 +866,12 @@
 			{
 				ATTRS: {
 					calendarBookingId: {
-						setter: toNumber,
+						setter: toInt,
 						value: 0
 					},
 
 					calendarId: {
-						setter: toNumber,
+						setter: toInt,
 						value: 0
 					},
 
@@ -889,7 +886,7 @@
 					},
 
 					firstReminder: {
-						setter: toNumber,
+						setter: toInt,
 						value: 3600000
 					},
 
@@ -909,7 +906,7 @@
 					},
 
 					parentCalendarBookingId: {
-						setter: toNumber,
+						setter: toInt,
 						value: 0
 					},
 
@@ -919,7 +916,7 @@
 					},
 
 					secondReminder: {
-						setter: toNumber,
+						setter: toInt,
 						value: 0
 					},
 
@@ -929,7 +926,7 @@
 					},
 
 					status: {
-						setter: toNumber,
+						setter: toInt,
 						value: 0
 					}
 				},
@@ -1021,7 +1018,7 @@
 			{
 				ATTRS: {
 					calendarId: {
-						setter: toNumber,
+						setter: toInt,
 						value: 0
 					},
 
@@ -1036,7 +1033,7 @@
 					},
 
 					status: {
-						setter: toNumber,
+						setter: toInt,
 						value: CalendarWorkflow.STATUS_DRAFT
 					},
 
@@ -1173,7 +1170,7 @@
 								},
 								refreshWindow: window,
 								title: Liferay.Language.get('edit-details'),
-								uri: A.Lang.sub(editCalendarBookingURL, data)
+								uri: Lang.sub(editCalendarBookingURL, data)
 							}
 						);
 
@@ -1231,7 +1228,7 @@
 							function(event) {
 								var schedulerEvent = instance.get('event') || instance;
 
-								var calendarId = toNumber(event.currentTarget.val());
+								var calendarId = toInt(event.currentTarget.val());
 
 								var selectedCalendar = CalendarUtil.manageableCalendars[calendarId];
 
@@ -1248,13 +1245,14 @@
 
 						var schedulerEvent = instance.get('event');
 						var portletNamespace = instance.get('portletNamespace');
+
 						var parentCalendarBookingId = schedulerEvent.get('parentCalendarBookingId');
 
 						if (schedulerEvent) {
 							CalendarUtil.getCalendarBookingInvitees(
 								parentCalendarBookingId,
 								function(data) {
-									var results = A.Array.partition(
+									var results = AArray.partition(
 										data,
 										function(item) {
 											return item.classNameId === CalendarUtil.USER_CLASS_NAME_ID;
@@ -1271,7 +1269,7 @@
 					_syncInviteesContent: function(contentNode, calendarResources) {
 						var instance = this;
 
-						var values = A.Array.map(
+						var values = AArray.map(
 							calendarResources,
 							function(item) {
 								return item.name;
@@ -1419,12 +1417,12 @@
 				ATTRS: {
 					calendarId: {
 						value: 0,
-						setter: toNumber
+						setter: toInt
 					},
 
 					calendarResourceId: {
 						value: 0,
-						setter: toNumber
+						setter: toInt
 					},
 
 					calendarResourceName: {
@@ -1434,12 +1432,12 @@
 
 					classNameId: {
 						value: 0,
-						setter: toNumber
+						setter: toInt
 					},
 
 					classPK: {
 						value: 0,
-						setter: toNumber
+						setter: toInt
 					},
 
 					defaultCalendar: {
@@ -1515,7 +1513,6 @@
 	},
 	'' ,
 	{
-		requires: ['aui-io', 'aui-scheduler', 'autocomplete', 'autocomplete-highlighters', 'datasource-cache', 'datasource-get', 'dd-plugin', 'liferay-calendar-message-util', 'liferay-portlet-url', 'liferay-calendar-recurrence-util', 'liferay-store', 'resize-plugin']
+		requires: ['aui-io', 'aui-scheduler', 'autocomplete', 'autocomplete-highlighters', 'datasource-cache', 'datasource-get', 'dd-plugin', 'liferay-calendar-message-util', 'liferay-calendar-recurrence-util', 'liferay-portlet-url', 'liferay-store', 'resize-plugin']
 	}
 );
-}());
