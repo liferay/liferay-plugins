@@ -1055,6 +1055,7 @@
 								centered: true,
 								close: false,
 								modal: true,
+								resizable: false,
 								title: titleText,
 								visible: false,
 								width: 550,
@@ -1064,7 +1065,7 @@
 
 						instance.confirmationPanel = confirmationPanel;
 					}
-					
+
 					confirmationPanel.onlyThisInstanceFn = onlyThisInstanceFn;
 					confirmationPanel.allFollowingFn = allFollowingFn;
 					confirmationPanel.allEventsInFn = allEventsInFn;

@@ -369,7 +369,7 @@ AUI.add(
 					}
 				);
 			},
-			
+
 			getEvents: function(startDate, endDate, status, success, failure) {
 				var instance = this;
 
@@ -521,7 +521,7 @@ AUI.add(
 				schedulerEvent.set('status', data.status);
 
 				if (!schedulerEvent.get('scheduler')) {
-					return;					
+					return;
 				}
 
 				var oldCalendar = instance.availableCalendars[oldCalendarId];
@@ -663,7 +663,7 @@ AUI.add(
 					{
 						'/calendar-portlet/calendarbooking/update-calendar-booking-instance': {
 							allDay: schedulerEvent.get('allDay'),
-							allFollowing: allFollowing, 
+							allFollowing: allFollowing,
 							calendarBookingId: schedulerEvent.get('calendarBookingId'),
 							calendarId: schedulerEvent.get('calendarId'),
 							descriptionMap: instance.getLocalizationMap(schedulerEvent.get('description')),
@@ -829,6 +829,7 @@ AUI.add(
 						var instance = this;
 
 						var schedulerEvent = event.target;
+						var calendarBookingId = schedulerEvent.get('calendarBookingId');
 
 						if (schedulerEvent.isRecurring()) {
 							Liferay.RecurrenceUtil.openConfirmationPanel(
@@ -847,29 +848,35 @@ AUI.add(
 									this.close();
 								},
 								function() {
-									CalendarUtil.getEvent(schedulerEvent.get('calendarBookingId'), function(calendarBooking) {
-										var newSchedulerEvent = CalendarUtil.toSchedulerEvent(calendarBooking);
+									CalendarUtil.getEvent(
+										calendarBookingId,
+										function(calendarBooking) {
+											var newSchedulerEvent = CalendarUtil.toSchedulerEvent(calendarBooking);
 
-										newSchedulerEvent.copyPropagateAttrValues(schedulerEvent);
+											newSchedulerEvent.copyPropagateAttrValues(schedulerEvent);
 
-										var duration = schedulerEvent.getSecondsDuration() * 1000;
-										var offset = 0;
-										
-										if (isDate(event.newVal) && isDate(event.prevVal)) {
-											offset = event.newVal.getTime() - event.prevVal.getTime();
+											var offset = 0;
+											var duration = schedulerEvent.getSecondsDuration() * 1000;
+
+											if (isDate(event.newVal) && isDate(event.prevVal)) {
+												offset = event.newVal.getTime() - event.prevVal.getTime();
+											}
+
+											var startDate = CalendarUtil.toUserTimeZone(calendarBooking.startDate + offset);
+											var endDate = CalendarUtil.toUserTimeZone(calendarBooking.startDate + offset + duration);
+
+											newSchedulerEvent.set('startDate', startDate);
+											newSchedulerEvent.set('endDate', endDate);
+
+											CalendarUtil.updateEvent(
+												newSchedulerEvent,
+												function() {
+													instance.loadCalendarBookings();
+												}
+											);
 										}
+									);
 
-										var startDate = CalendarUtil.toUserTimeZone(calendarBooking.startDate + offset);
-										var endDate = CalendarUtil.toUserTimeZone(calendarBooking.startDate + offset + duration);
-
-										newSchedulerEvent.set('startDate', startDate);
-										newSchedulerEvent.set('endDate', endDate);
-
-										CalendarUtil.updateEvent(newSchedulerEvent, function() {
-											instance.loadCalendarBookings();
-										});
-									});
-									
 									this.close();
 								},
 								function() {
