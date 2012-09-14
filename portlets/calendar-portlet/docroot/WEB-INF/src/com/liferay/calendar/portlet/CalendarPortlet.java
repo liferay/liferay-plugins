@@ -543,18 +543,19 @@ public class CalendarPortlet extends MVCPortlet {
 		long parentCalendarBookingId = ParamUtil.getLong(
 			resourceRequest, "parentCalendarBookingId");
 
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
 		List<CalendarBooking> childCalendarBookings =
 			CalendarBookingServiceUtil.getChildCalendarBookings(
 				parentCalendarBookingId);
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
 		for (CalendarBooking calendarBooking : childCalendarBookings) {
-			CalendarResource resource = calendarBooking.getCalendarResource();
+			CalendarResource calendarResource =
+				calendarBooking.getCalendarResource();
 
 			addCalendarJSONObject(
-				resourceRequest, jsonArray, resource.getClassNameId(),
-				resource.getClassPK());
+				resourceRequest, jsonArray, calendarResource.getClassNameId(),
+				calendarResource.getClassPK());
 		}
 
 		writeJSON(resourceRequest, resourceResponse, jsonArray);
