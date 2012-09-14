@@ -1022,7 +1022,7 @@ AUI.add(
 
 					firstReminder: {
 						setter: toInt,
-						value: 3600000
+						value: 0
 					},
 
 					firstReminderType: {
@@ -1048,6 +1048,22 @@ AUI.add(
 					recurrence: {
 						validator: isString,
 						value: STR_BLANK
+					},
+
+					reminder: {
+						getter: function() {
+							var instance = this;
+
+							return (instance.get('firstReminder') > 0) || (instance.get('secondReminder') > 0);
+						}
+					},
+
+					repeated: {
+						getter: function() {
+							var instance = this;
+
+							return instance.isRecurring();
+						}
 					},
 
 					secondReminder: {
