@@ -16,6 +16,7 @@ package com.liferay.portal.workflow.kaleo.hook.upgrade.v1_1_0;
 
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
@@ -53,7 +54,7 @@ public class UpgradeWorkflowContext extends UpgradeProcess {
 			ps = con.prepareStatement(
 				"select " + fieldName + ", workflowContext from " + tableName +
 					" where workflowContext is not null and workflowContext " +
-						"!= '' and workflowContext not like '%serializable%'");
+						"not like '%serializable%'");
 
 			rs = ps.executeQuery();
 
@@ -64,6 +65,10 @@ public class UpgradeWorkflowContext extends UpgradeProcess {
 			while (rs.next()) {
 				long fieldValue = rs.getLong(fieldName);
 				String workflowContext = rs.getString("workflowContext");
+
+				if (Validator.isNull(workflowContext)) {
+					continue;
+				}
 
 				workflowContext = WorkflowContextUtil.convert(
 					(Map<String, Serializable>)jsonSerializer.fromJSON(
