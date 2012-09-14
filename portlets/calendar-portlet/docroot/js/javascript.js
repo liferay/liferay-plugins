@@ -1123,9 +1123,10 @@ AUI.add(
 							if ((activeViewName === 'month') && !instance.get('allDay')) {
 								node.setStyles(
 									{
-										backgroundColor: '#f8f8f8',
+										backgroundColor: instance.get('color'),
+										padding: '0 2px',
 										border: 'none',
-										color: instance.get('color')
+										color: '#111'
 									}
 								);
 							}

@@ -4,10 +4,7 @@
 	margin: 0 30px;
 }
 
-.calendar-portlet-wrapper,
-.aui-scheduler-base-content,
-.aui-scheduler-event,
-.aui-scheduler-today-hd {
+.calendar-portlet-wrapper {
 	@include border-radius(5px);
 }
 
@@ -20,18 +17,6 @@
 .calendar-portlet-wrapper {
 	background: #FFF;
 	font-size: 12px;
-
-	.aui-scheduler-view-table-header-col {
-		.aui-scheduler-view-table-header-day div {
-			font-size: 12px;
-			padding: 6px;
-		}
-	}
-
-	.aui-scheduler-today-hd {
-		color: #333333;
-		font-weight: bold
-	}
 }
 
 .calendar-portlet-column-options {
@@ -52,10 +37,6 @@
 .calendar-portlet-event-recorder {
 	table td {
 		padding: 5px;
-	}
-
-	.aui-scheduler-event-recorder-overlay-body {
-		margin: 15px 0;
 	}
 }
 
@@ -384,12 +365,4 @@
 .yui3-skin-sam .calendar-portlet-mini-calendar .yui3-calendar-content {
 	background: #ffffff !important;
 	border: 1px solid #DDD
-}
-
-.aui-scheduler-event {
-	.aui-scheduler-event-title {
-		display: inline-block;
-		padding: 4px;
-		padding-bottom: 0;
-	}
 }
