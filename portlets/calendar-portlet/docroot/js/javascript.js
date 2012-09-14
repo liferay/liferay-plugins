@@ -1212,13 +1212,11 @@
 							eventRecorderCalendar.val(calendarId);
 						}
 
-						var visible = event.newVal;
+						instance._syncToolbarButtons(event.newVal);
 
-						if (visible) {
-							instance._syncInvittes();
+						if (event.newVal) {
+							instance._syncInvitees();
 						}
-
-						instance._syncToolbarButtons(visible);
 					},
 
 					_renderOverlay: function() {
@@ -1245,51 +1243,43 @@
 						);
 					},
 
-					_syncInvittes: function() {
+					_syncInvitees: function() {
 						var instance = this;
 
-						var overlayBB = instance.overlay.get('boundingBox');
-						var portletNamespace = instance.get('portletNamespace');
 						var schedulerEvent = instance.get('event');
+						var portletNamespace = instance.get('portletNamespace');
+						var parentCalendarBookingId = schedulerEvent.get('parentCalendarBookingId');
 
 						if (schedulerEvent) {
 							CalendarUtil.getCalendarBookingInvitees(
-								schedulerEvent.get('parentCalendarBookingId'),
+								parentCalendarBookingId,
 								function(data) {
-									var resources = [];
-									var users = [];
-
-									A.Array.each(
+									var results = A.Array.partition(
 										data,
-										function(item, index, collection) {
-											var name = item.name;
-
-											if (item.classNameId == CalendarUtil.USER_CLASS_NAME_ID) {
-												users.push(name);
-											}
-											else {
-												resources.push(name);
-											}
+										function(item) {
+											return item.classNameId === CalendarUtil.USER_CLASS_NAME_ID;
 										}
 									);
 
-									if (resources.length > 0) {
-										var eventRecorderResources = A.one('#' + portletNamespace + 'eventRecorderResources');
-										var eventRecorderResourcesContent = eventRecorderResources.one('.calendar-portlet-invitees');
-
-										eventRecorderResourcesContent.setContent(resources.join(', '));
-										eventRecorderResources.show();
-									}
-
-									if (users.length > 0) {
-										var eventRecorderUsers = A.one('#' + portletNamespace + 'eventRecorderUsers');
-										var eventRecorderUsersContent = eventRecorderUsers.one('.calendar-portlet-invitees');
-
-										eventRecorderUsersContent.setContent(users.join(', '));
-										eventRecorderUsers.show();
-									}
+									instance._syncInviteesContent('#' + portletNamespace + 'eventRecorderUsers', results.matches);
+									instance._syncInviteesContent('#' + portletNamespace + 'eventRecorderResources', results.rejects);
 								}
 							);
+						}
+					},
+
+					_syncInviteesContent: function(contentNode, calendarResources) {
+						var instance = this;
+
+						var values = A.Array.map(
+							calendarResources,
+							function(item) {
+								return item.name;
+							}
+						);
+
+						if (values.length > 0) {
+							A.one(contentNode).show().one('.calendar-portlet-invitees').html(values.join(STR_COMMA_SPACE));
 						}
 					},
 
