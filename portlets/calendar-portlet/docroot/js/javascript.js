@@ -1025,10 +1025,7 @@ AUI.add(
 					},
 
 					firstReminder: {
-						setter: function(val) {
-							console.log(val);
-							return toInt(val);
-						},
+						setter: toInt,
 						value: 0
 					},
 
