@@ -55,7 +55,7 @@ if (recurrence != null) {
 
 		sb.append(exceptionJCalendar.getTimeInMillis());
 
-		if (it.hasNext()) {
+		if (iterator.hasNext()) {
 			sb.append(StringPool.COMMA);
 		}
 	}
