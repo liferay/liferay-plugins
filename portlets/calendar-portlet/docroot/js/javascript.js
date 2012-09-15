@@ -577,9 +577,13 @@ AUI.add(
 						content: calendarBooking.titleCurrentValue,
 						description: calendarBooking.descriptionCurrentValue,
 						endDate: instance.toUserTimeZone(calendarBooking.endDate),
+						firstReminder: calendarBooking.firstReminder,
+						firstReminderType: calendarBooking.firstReminderType,
 						location: calendarBooking.location,
 						parentCalendarBookingId: calendarBooking.parentCalendarBookingId,
 						recurrence: calendarBooking.recurrence,
+						secondReminder: calendarBooking.secondReminder,
+						secondReminderType: calendarBooking.secondReminderType,
 						startDate: instance.toUserTimeZone(calendarBooking.startDate),
 						status: calendarBooking.status
 					}
@@ -1021,7 +1025,10 @@ AUI.add(
 					},
 
 					firstReminder: {
-						setter: toInt,
+						setter: function(val) {
+							console.log(val);
+							return toInt(val);
+						},
 						value: 0
 					},
 
