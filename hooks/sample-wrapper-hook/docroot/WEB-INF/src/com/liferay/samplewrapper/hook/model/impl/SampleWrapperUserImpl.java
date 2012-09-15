@@ -20,9 +20,9 @@ import com.liferay.portal.model.UserWrapper;
 /**
  * @author Brian Wing Shun Chan
  */
-public class SampleUserImpl extends UserWrapper {
+public class SampleWrapperUserImpl extends UserWrapper {
 
-	public SampleUserImpl(User user) {
+	public SampleWrapperUserImpl(User user) {
 		super(user);
 	}
 
@@ -32,7 +32,7 @@ public class SampleUserImpl extends UserWrapper {
 
 	@Override
 	public String getFirstName() {
-		System.out.println("Called SampleUserImpl.getFirstName()");
+		System.out.println("Called SampleWrapperUserImpl.getFirstName()");
 
 		return super.getFirstName();
 	}

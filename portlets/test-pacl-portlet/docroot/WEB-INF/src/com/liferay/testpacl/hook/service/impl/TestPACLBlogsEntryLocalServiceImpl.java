@@ -20,9 +20,10 @@ import com.liferay.portlet.blogs.service.BlogsEntryLocalServiceWrapper;
 /**
  * @author Brian Wing Shun Chan
  */
-public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceWrapper {
+public class TestPACLBlogsEntryLocalServiceImpl
+	extends BlogsEntryLocalServiceWrapper {
 
-	public BlogsEntryLocalServiceImpl(
+	public TestPACLBlogsEntryLocalServiceImpl(
 		BlogsEntryLocalService blogsEntryLocalService) {
 
 		super(blogsEntryLocalService);

@@ -49,10 +49,10 @@ import java.util.List;
 /**
  * @author Jonathan Lee
  */
-public class AnnouncementsEntryServiceImpl
+public class SOAnnouncementsEntryServiceImpl
 	extends AnnouncementsEntryServiceWrapper {
 
-	public AnnouncementsEntryServiceImpl(
+	public SOAnnouncementsEntryServiceImpl(
 		AnnouncementsEntryService announcementsEntryService) {
 
 		super(announcementsEntryService);

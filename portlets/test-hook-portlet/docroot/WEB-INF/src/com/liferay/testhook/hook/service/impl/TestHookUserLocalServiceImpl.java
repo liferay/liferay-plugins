@@ -19,14 +19,14 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.service.UserLocalServiceWrapper;
-import com.liferay.testhook.hook.model.impl.TestUserImpl;
+import com.liferay.testhook.hook.model.impl.TestHookUserImpl;
 
 /**
  * @author Brian Wing Shun Chan
  */
-public class TestUserLocalServiceImpl extends UserLocalServiceWrapper {
+public class TestHookUserLocalServiceImpl extends UserLocalServiceWrapper {
 
-	public TestUserLocalServiceImpl(UserLocalService userLocalService) {
+	public TestHookUserLocalServiceImpl(UserLocalService userLocalService) {
 		super(userLocalService);
 	}
 
@@ -35,12 +35,12 @@ public class TestUserLocalServiceImpl extends UserLocalServiceWrapper {
 		throws PortalException, SystemException {
 
 		System.out.println(
-			"Called TestUserLocalServiceImpl.getUserByEmailAddress(" +
+			"Called TestHookUserLocalServiceImpl.getUserByEmailAddress(" +
 				companyId + ", " + emailAddress + ")");
 
 		User user = super.getUserByEmailAddress(companyId, emailAddress);
 
-		return new TestUserImpl(user);
+		return new TestHookUserImpl(user);
 	}
 
 	@Override
@@ -48,11 +48,11 @@ public class TestUserLocalServiceImpl extends UserLocalServiceWrapper {
 		throws PortalException, SystemException {
 
 		System.out.println(
-			"Called TestUserLocalServiceImpl.getUserById(" + userId + ")");
+			"Called TestHookUserLocalServiceImpl.getUserById(" + userId + ")");
 
 		User user = super.getUserById(userId);
 
-		return new TestUserImpl(user);
+		return new TestHookUserImpl(user);
 	}
 
 }
