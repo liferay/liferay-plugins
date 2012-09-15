@@ -27,7 +27,8 @@ Liferay.Service.registerClass(
 		invokeTransition: true,
 		search: true,
 		searchCount: true,
-		updateCalendarBooking: true
+		updateCalendarBooking: true,
+		updateCalendarBookingInstance: true
 	}
 );
 

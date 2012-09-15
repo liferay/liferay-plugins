@@ -130,6 +130,26 @@ public class CalendarBookingServiceClpInvoker {
 				"java.lang.String", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
+
+		_methodName64 = "updateCalendarBookingInstance";
+
+		_methodParameterTypes64 = new String[] {
+				"long", "long", "long[][]", "java.util.Map", "java.util.Map",
+				"java.lang.String", "long", "long", "boolean",
+				"java.lang.String", "boolean", "long", "java.lang.String",
+				"long", "java.lang.String", "int",
+				"com.liferay.portal.service.ServiceContext"
+			};
+
+		_methodName65 = "updateCalendarBookingInstance";
+
+		_methodParameterTypes65 = new String[] {
+				"long", "long", "java.util.Map", "java.util.Map",
+				"java.lang.String", "long", "long", "boolean",
+				"java.lang.String", "boolean", "long", "java.lang.String",
+				"long", "java.lang.String", "int",
+				"com.liferay.portal.service.ServiceContext"
+			};
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -313,6 +333,46 @@ public class CalendarBookingServiceClpInvoker {
 				(com.liferay.portal.service.ServiceContext)arguments[14]);
 		}
 
+		if (_methodName64.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
+			return CalendarBookingServiceUtil.updateCalendarBookingInstance(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(), (long[])arguments[2],
+				(java.util.Map<java.util.Locale, java.lang.String>)arguments[3],
+				(java.util.Map<java.util.Locale, java.lang.String>)arguments[4],
+				(java.lang.String)arguments[5],
+				((Long)arguments[6]).longValue(),
+				((Long)arguments[7]).longValue(),
+				((Boolean)arguments[8]).booleanValue(),
+				(java.lang.String)arguments[9],
+				((Boolean)arguments[10]).booleanValue(),
+				((Long)arguments[11]).longValue(),
+				(java.lang.String)arguments[12],
+				((Long)arguments[13]).longValue(),
+				(java.lang.String)arguments[14],
+				((Integer)arguments[15]).intValue(),
+				(com.liferay.portal.service.ServiceContext)arguments[16]);
+		}
+
+		if (_methodName65.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
+			return CalendarBookingServiceUtil.updateCalendarBookingInstance(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				(java.util.Map<java.util.Locale, java.lang.String>)arguments[2],
+				(java.util.Map<java.util.Locale, java.lang.String>)arguments[3],
+				(java.lang.String)arguments[4],
+				((Long)arguments[5]).longValue(),
+				((Long)arguments[6]).longValue(),
+				((Boolean)arguments[7]).booleanValue(),
+				(java.lang.String)arguments[8],
+				((Boolean)arguments[9]).booleanValue(),
+				((Long)arguments[10]).longValue(),
+				(java.lang.String)arguments[11],
+				((Long)arguments[12]).longValue(),
+				(java.lang.String)arguments[13],
+				((Integer)arguments[14]).intValue(),
+				(com.liferay.portal.service.ServiceContext)arguments[15]);
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -352,4 +412,8 @@ public class CalendarBookingServiceClpInvoker {
 	private String[] _methodParameterTypes62;
 	private String _methodName63;
 	private String[] _methodParameterTypes63;
+	private String _methodName64;
+	private String[] _methodParameterTypes64;
+	private String _methodName65;
+	private String[] _methodParameterTypes65;
 }

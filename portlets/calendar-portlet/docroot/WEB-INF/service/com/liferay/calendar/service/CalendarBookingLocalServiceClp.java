@@ -219,9 +219,29 @@ public class CalendarBookingLocalServiceClp
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName37 = "updateStatus";
+		_methodName37 = "updateCalendarBookingInstance";
 
 		_methodParameterTypes37 = new String[] {
+				"long", "long", "long", "long[][]", "java.util.Map",
+				"java.util.Map", "java.lang.String", "long", "long", "boolean",
+				"java.lang.String", "boolean", "long", "java.lang.String",
+				"long", "java.lang.String", "int",
+				"com.liferay.portal.service.ServiceContext"
+			};
+
+		_methodName38 = "updateCalendarBookingInstance";
+
+		_methodParameterTypes38 = new String[] {
+				"long", "long", "long", "java.util.Map", "java.util.Map",
+				"java.lang.String", "long", "long", "boolean",
+				"java.lang.String", "boolean", "long", "java.lang.String",
+				"long", "java.lang.String", "int",
+				"com.liferay.portal.service.ServiceContext"
+			};
+
+		_methodName39 = "updateStatus";
+
+		_methodParameterTypes39 = new String[] {
 				"long", "long", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -1542,8 +1562,15 @@ public class CalendarBookingLocalServiceClp
 		return (com.liferay.calendar.model.CalendarBooking)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.liferay.calendar.model.CalendarBooking updateStatus(
-		long userId, long calendarBookingId, int status,
+	public com.liferay.calendar.model.CalendarBooking updateCalendarBookingInstance(
+		long userId, long calendarBookingId, long calendarId,
+		long[] childCalendarIds,
+		java.util.Map<java.util.Locale, java.lang.String> titleMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		java.lang.String location, long startDate, long endDate,
+		boolean allDay, java.lang.String recurrence, boolean allFollowing,
+		long firstReminder, java.lang.String firstReminderType,
+		long secondReminder, java.lang.String secondReminderType, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -1552,6 +1579,152 @@ public class CalendarBookingLocalServiceClp
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName37,
 					_methodParameterTypes37,
+					new Object[] {
+						userId,
+						
+					calendarBookingId,
+						
+					calendarId,
+						
+					ClpSerializer.translateInput(childCalendarIds),
+						
+					ClpSerializer.translateInput(titleMap),
+						
+					ClpSerializer.translateInput(descriptionMap),
+						
+					ClpSerializer.translateInput(location),
+						
+					startDate,
+						
+					endDate,
+						
+					allDay,
+						
+					ClpSerializer.translateInput(recurrence),
+						
+					allFollowing,
+						
+					firstReminder,
+						
+					ClpSerializer.translateInput(firstReminderType),
+						
+					secondReminder,
+						
+					ClpSerializer.translateInput(secondReminderType),
+						
+					status,
+						
+					ClpSerializer.translateInput(serviceContext)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.calendar.model.CalendarBooking)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public com.liferay.calendar.model.CalendarBooking updateCalendarBookingInstance(
+		long userId, long calendarBookingId, long calendarId,
+		java.util.Map<java.util.Locale, java.lang.String> titleMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		java.lang.String location, long startDate, long endDate,
+		boolean allDay, java.lang.String recurrence, boolean allFollowing,
+		long firstReminder, java.lang.String firstReminderType,
+		long secondReminder, java.lang.String secondReminderType, int status,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName38,
+					_methodParameterTypes38,
+					new Object[] {
+						userId,
+						
+					calendarBookingId,
+						
+					calendarId,
+						
+					ClpSerializer.translateInput(titleMap),
+						
+					ClpSerializer.translateInput(descriptionMap),
+						
+					ClpSerializer.translateInput(location),
+						
+					startDate,
+						
+					endDate,
+						
+					allDay,
+						
+					ClpSerializer.translateInput(recurrence),
+						
+					allFollowing,
+						
+					firstReminder,
+						
+					ClpSerializer.translateInput(firstReminderType),
+						
+					secondReminder,
+						
+					ClpSerializer.translateInput(secondReminderType),
+						
+					status,
+						
+					ClpSerializer.translateInput(serviceContext)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.calendar.model.CalendarBooking)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public com.liferay.calendar.model.CalendarBooking updateStatus(
+		long userId, long calendarBookingId, int status,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName39,
+					_methodParameterTypes39,
 					new Object[] {
 						userId,
 						
@@ -1660,4 +1833,8 @@ public class CalendarBookingLocalServiceClp
 	private String[] _methodParameterTypes36;
 	private String _methodName37;
 	private String[] _methodParameterTypes37;
+	private String _methodName38;
+	private String[] _methodParameterTypes38;
+	private String _methodName39;
+	private String[] _methodParameterTypes39;
 }
