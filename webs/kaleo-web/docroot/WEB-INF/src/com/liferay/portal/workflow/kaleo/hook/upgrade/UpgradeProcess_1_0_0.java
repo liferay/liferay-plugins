@@ -15,7 +15,7 @@
 package com.liferay.portal.workflow.kaleo.hook.upgrade;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.workflow.kaleo.hook.upgrade.v1_0_0.UpgradeTaskInstanceToken;
+import com.liferay.portal.workflow.kaleo.hook.upgrade.v1_0_0.UpgradeKaleoTaskInstanceToken;
 
 /**
  * @author Marcellus Tavares
@@ -29,7 +29,7 @@ public class UpgradeProcess_1_0_0 extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		upgrade(UpgradeTaskInstanceToken.class);
+		upgrade(UpgradeKaleoTaskInstanceToken.class);
 	}
 
 }
