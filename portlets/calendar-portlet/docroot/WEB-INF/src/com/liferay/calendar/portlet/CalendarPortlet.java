@@ -239,15 +239,9 @@ public class CalendarPortlet extends MVCPortlet {
 		long oldStartDate = ParamUtil.getLong(actionRequest, "oldStartDate");
 		boolean allDay = ParamUtil.getBoolean(actionRequest, "allDay");
 		String recurrence = getRecurrence(actionRequest);
-		int status = ParamUtil.getInteger(actionRequest, "status");
-
 		long[] reminders = getReminders(actionRequest);
 		String[] remindersType = getRemindersType(actionRequest);
-
-		boolean updateCalendarBookingInstance = ParamUtil.getBoolean(
-			actionRequest, "updateCalendarBookingInstance");
-		boolean allFollowing = ParamUtil.getBoolean(
-			actionRequest, "allFollowing");
+		int status = ParamUtil.getInteger(actionRequest, "status");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			CalendarBooking.class.getName(), actionRequest);
@@ -263,14 +257,20 @@ public class CalendarPortlet extends MVCPortlet {
 				serviceContext);
 		}
 		else {
+			boolean updateCalendarBookingInstance = ParamUtil.getBoolean(
+				actionRequest, "updateCalendarBookingInstance");
+
 			if (updateCalendarBookingInstance) {
+				boolean allFollowing = ParamUtil.getBoolean(
+					actionRequest, "allFollowing");
+
 				CalendarBookingServiceUtil.updateCalendarBookingInstance(
 					calendarBookingId, calendarId, childCalendarIds, titleMap,
 					descriptionMap, location,
 					startDateJCalendar.getTimeInMillis(),
 					endDateJCalendar.getTimeInMillis(), allDay, recurrence,
-					reminders[0], remindersType[0], reminders[1],
-					remindersType[1], status, allFollowing, serviceContext);
+					allFollowing, reminders[0], remindersType[0], reminders[1],
+					remindersType[1], status, serviceContext);
 			}
 			else {
 				CalendarBooking calendarBooking =
