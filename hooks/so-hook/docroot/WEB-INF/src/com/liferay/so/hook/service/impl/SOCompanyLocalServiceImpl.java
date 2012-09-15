@@ -27,9 +27,9 @@ import com.liferay.so.util.InstanceUtil;
 /**
  * @author Ryan Park
  */
-public class CompanyLocalServiceImpl extends CompanyLocalServiceWrapper {
+public class SOCompanyLocalServiceImpl extends CompanyLocalServiceWrapper {
 
-	public CompanyLocalServiceImpl(CompanyLocalService companyLocalService) {
+	public SOCompanyLocalServiceImpl(CompanyLocalService companyLocalService) {
 		super(companyLocalService);
 	}
 

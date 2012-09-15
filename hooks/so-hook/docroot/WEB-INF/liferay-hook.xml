@@ -42,11 +42,11 @@
 	<custom-jsp-global>false</custom-jsp-global>
 	<service>
 		<service-type>com.liferay.portal.service.CompanyLocalService</service-type>
-		<service-impl>com.liferay.so.hook.service.impl.CompanyLocalServiceImpl</service-impl>
+		<service-impl>com.liferay.so.hook.service.impl.SOCompanyLocalServiceImpl</service-impl>
 	</service>
 	<service>
 		<service-type>com.liferay.portlet.announcements.service.AnnouncementsEntryService</service-type>
-		<service-impl>com.liferay.so.hook.service.impl.AnnouncementsEntryServiceImpl</service-impl>
+		<service-impl>com.liferay.so.hook.service.impl.SOAnnouncementsEntryServiceImpl</service-impl>
 	</service>
 	<struts-action>
 		<struts-action-path>/sites_admin/edit_layouts</struts-action-path>

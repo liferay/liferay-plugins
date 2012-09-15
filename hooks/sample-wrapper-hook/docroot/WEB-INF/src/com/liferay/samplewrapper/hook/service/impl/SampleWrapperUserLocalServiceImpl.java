@@ -19,14 +19,16 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.service.UserLocalServiceWrapper;
-import com.liferay.samplewrapper.hook.model.impl.SampleUserImpl;
+import com.liferay.samplewrapper.hook.model.impl.SampleWrapperUserImpl;
 
 /**
  * @author Brian Wing Shun Chan
  */
-public class SampleUserLocalServiceImpl extends UserLocalServiceWrapper {
+public class SampleWrapperUserLocalServiceImpl extends UserLocalServiceWrapper {
 
-	public SampleUserLocalServiceImpl(UserLocalService userLocalService) {
+	public SampleWrapperUserLocalServiceImpl(
+		UserLocalService userLocalService) {
+
 		super(userLocalService);
 	}
 
@@ -35,11 +37,12 @@ public class SampleUserLocalServiceImpl extends UserLocalServiceWrapper {
 		throws PortalException, SystemException {
 
 		System.out.println(
-			"Called SampleUserLocalServiceImpl.getUserById(" + userId + ")");
+			"Called SampleWrapperUserLocalServiceImpl.getUserById(" + userId +
+				")");
 
 		User user = super.getUserById(userId);
 
-		return new SampleUserImpl(user);
+		return new SampleWrapperUserImpl(user);
 	}
 
 }

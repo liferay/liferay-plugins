@@ -20,9 +20,9 @@ import com.liferay.portal.model.UserWrapper;
 /**
  * @author Brian Wing Shun Chan
  */
-public class TestUserImpl extends UserWrapper {
+public class TestHookUserImpl extends UserWrapper {
 
-	public TestUserImpl(User user) {
+	public TestHookUserImpl(User user) {
 		super(user);
 	}
 

@@ -25,9 +25,11 @@ import com.liferay.portal.workflow.kaleo.manager.PortalKaleoManagerUtil;
 /**
  * @author Brian Wing Shun Chan
  */
-public class CompanyLocalServiceImpl extends CompanyLocalServiceWrapper {
+public class KaleoCompanyLocalServiceImpl extends CompanyLocalServiceWrapper {
 
-	public CompanyLocalServiceImpl(CompanyLocalService companyLocalService) {
+	public KaleoCompanyLocalServiceImpl(
+		CompanyLocalService companyLocalService) {
+
 		super(companyLocalService);
 	}
 
