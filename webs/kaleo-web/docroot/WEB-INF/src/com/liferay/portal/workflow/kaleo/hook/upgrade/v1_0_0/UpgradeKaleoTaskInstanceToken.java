@@ -30,7 +30,7 @@ import java.util.Set;
 /**
  * @author Marcellus Tavares
  */
-public class UpgradeTaskInstanceToken extends UpgradeProcess {
+public class UpgradeKaleoTaskInstanceToken extends UpgradeProcess {
 
 	protected void deleteKaleoInstanceTokens() throws Exception {
 		if (_kaleoInstanceTokenIds.isEmpty()) {
