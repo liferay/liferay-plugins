@@ -101,9 +101,9 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 <aui:form action="<%= updateCalendarBookingURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateCalendarBooking();" %>'>
 	<aui:input name="calendarBookingId" type="hidden" value="<%= calendarBookingId %>" />
 	<aui:input name="childCalendarIds" type="hidden" />
-	<aui:input name="updateCalendarBookingInstance" type="hidden" />
-	<aui:input name="allFollowing" type="hidden" />
 	<aui:input name="oldStartDate" type="hidden" value="<%= startDateJCalendar.getTimeInMillis() %>" />
+	<aui:input name="allFollowing" type="hidden" />
+	<aui:input name="updateCalendarBookingInstance" type="hidden" />
 
 	<aui:model-context bean="<%= calendarBooking %>" model="<%= CalendarBooking.class %>" />
 

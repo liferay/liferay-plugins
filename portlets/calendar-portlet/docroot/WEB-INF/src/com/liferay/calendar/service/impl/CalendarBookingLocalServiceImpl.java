@@ -211,30 +211,31 @@ public class CalendarBookingLocalServiceImpl
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
 
-		java.util.Calendar startDateJCalendar = JCalendarUtil.getJCalendar(
+		java.util.Calendar newStartDateJCalendar = JCalendarUtil.getJCalendar(
+			startDate);
+
+		java.util.Calendar oldStartDateJCalendar = JCalendarUtil.getJCalendar(
 			calendarBooking.getStartDate());
 
-		java.util.Calendar jCalendar = JCalendarUtil.getJCalendar(startDate);
-
-		jCalendar.set(
+		newStartDateJCalendar.set(
 			java.util.Calendar.HOUR_OF_DAY,
-			startDateJCalendar.get(java.util.Calendar.HOUR_OF_DAY));
-		jCalendar.set(
+			oldStartDateJCalendar.get(java.util.Calendar.HOUR_OF_DAY));
+		newStartDateJCalendar.set(
 			java.util.Calendar.MINUTE,
-			startDateJCalendar.get(java.util.Calendar.MINUTE));
-		jCalendar.set(
+			oldStartDateJCalendar.get(java.util.Calendar.MINUTE));
+		newStartDateJCalendar.set(
 			java.util.Calendar.SECOND,
-			startDateJCalendar.get(java.util.Calendar.SECOND));
+			oldStartDateJCalendar.get(java.util.Calendar.SECOND));
 
 		Recurrence recurrenceObj = calendarBooking.getRecurrenceObj();
 
 		if (allFollowing) {
-			jCalendar.add(java.util.Calendar.DATE, -1);
+			newStartDateJCalendar.add(java.util.Calendar.DATE, -1);
 
-			recurrenceObj.setUntilJCalendar(jCalendar);
+			recurrenceObj.setUntilJCalendar(newStartDateJCalendar);
 		}
 		else {
-			recurrenceObj.addExceptionDate(jCalendar);
+			recurrenceObj.addExceptionDate(newStartDateJCalendar);
 		}
 
 		calendarBooking.setRecurrence(
@@ -396,7 +397,6 @@ public class CalendarBookingLocalServiceImpl
 		// Calendar booking
 
 		User user = userPersistence.findByPrimaryKey(userId);
-
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
 
@@ -475,9 +475,9 @@ public class CalendarBookingLocalServiceImpl
 			long userId, long calendarBookingId, long calendarId,
 			long[] childCalendarIds, Map<Locale, String> titleMap,
 			Map<Locale, String> descriptionMap, String location, long startDate,
-			long endDate, boolean allDay, String recurrence, long firstReminder,
-			String firstReminderType, long secondReminder,
-			String secondReminderType, int status, boolean allFollowing,
+			long endDate, boolean allDay, String recurrence,
+			boolean allFollowing, long firstReminder, String firstReminderType,
+			long secondReminder, String secondReminderType, int status,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -500,9 +500,10 @@ public class CalendarBookingLocalServiceImpl
 			long userId, long calendarBookingId, long calendarId,
 			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
 			String location, long startDate, long endDate, boolean allDay,
-			String recurrence, long firstReminder, String firstReminderType,
-			long secondReminder, String secondReminderType, int status,
-			boolean allFollowing, ServiceContext serviceContext)
+			String recurrence, boolean allFollowing, long firstReminder,
+			String firstReminderType, long secondReminder,
+			String secondReminderType, int status,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		long[] childCalendarIds = getChildCalendarIds(
@@ -511,8 +512,8 @@ public class CalendarBookingLocalServiceImpl
 		return updateCalendarBookingInstance(
 			userId, calendarBookingId, calendarId, childCalendarIds, titleMap,
 			descriptionMap, location, startDate, endDate, allDay, recurrence,
-			firstReminder, firstReminderType, secondReminder,
-			secondReminderType, status, allFollowing, serviceContext);
+			allFollowing, firstReminder, firstReminderType, secondReminder,
+			secondReminderType, status, serviceContext);
 	}
 
 	public CalendarBooking updateStatus(
