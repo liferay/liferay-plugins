@@ -128,8 +128,8 @@ public class KaleoServiceComponentLocalServiceImpl
 
 				if (_log.isDebugEnabled()) {
 					_log.debug(
-						keyColumnName + " = " + key + ", " + valueColumnName +
-							" = " + value);
+						"{" + keyColumnName + "=" + key + ", " +
+							valueColumnName + "=" + value + "}");
 				}
 
 				keyValueMap.put(key, value);
