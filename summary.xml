@@ -106,6 +106,30 @@
 		</releng>
 	</plugin>
 	<plugin>
+		<artifact-id><![CDATA[sample-authverifier-hook]]></artifact-id>
+		<name><![CDATA[Sample Authentication Verifier]]></name>
+		<type><![CDATA[hook]]></type>
+		<tags><![CDATA[]]></tags>
+		<short-description><![CDATA[]]></short-description>
+		<long-description><![CDATA[]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[false]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
 		<artifact-id><![CDATA[sample-expando-hook]]></artifact-id>
 		<name><![CDATA[Sample Expando]]></name>
 		<type><![CDATA[hook]]></type>
@@ -384,6 +408,30 @@
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[layouttpl/3-2-3-columns-layouttpl/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[layouttpl/3-2-3-columns-layouttpl/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
+		<artifact-id><![CDATA[akismet-portlet]]></artifact-id>
+		<name><![CDATA[Akismet]]></name>
+		<type><![CDATA[portlet]]></type>
+		<tags><![CDATA[]]></tags>
+		<short-description><![CDATA[]]></short-description>
+		<long-description><![CDATA[]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[6.2.0]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[Utility]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[true]]></marketplace>
+			<public><![CDATA[true]]></public>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
@@ -2057,6 +2105,30 @@
 		<type><![CDATA[portlet]]></type>
 		<tags><![CDATA[test]]></tags>
 		<short-description><![CDATA[This plugin shows how to localize a portlet.]]></short-description>
+		<long-description><![CDATA[]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[6.2.0]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[false]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
+		<artifact-id><![CDATA[test-log-portlet]]></artifact-id>
+		<name><![CDATA[Test Log Portlet]]></name>
+		<type><![CDATA[portlet]]></type>
+		<tags><![CDATA[]]></tags>
+		<short-description><![CDATA[]]></short-description>
 		<long-description><![CDATA[]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
