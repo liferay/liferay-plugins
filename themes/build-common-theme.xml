@@ -164,6 +164,16 @@
 			<then>
 				<antcall target="build-common-plugin.compile" />
 			</then>
+			<else>
+				<if>
+					<available file="overwrite" />
+					<then>
+						<copy overwrite="true" preservelastmodified="true" todir="docroot">
+							<fileset dir="overwrite" />
+						</copy>
+					</then>
+				</if>
+			</else>
 		</if>
 	</target>
 
