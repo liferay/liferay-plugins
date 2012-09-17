@@ -31,25 +31,28 @@ catch (UnknownChannelException e) {
 	notificationEvents = channel.getNotificationEvents();
 }
 
-List<NotificationEvent> userNotificationEvents = new ArrayList<NotificationEvent>();
-String userNotificationEventUuids = StringPool.BLANK;
+notificationEvents = new ArrayList<NotificationEvent>(notificationEvents);
 
-for (NotificationEvent notificationEvent : notificationEvents) {
-	if (notificationEvent.getType().equals(PortletKeys.SO_NOTIFICATION)) {
-		userNotificationEvents.add(notificationEvent);
+Iterator<NotificationEvent> iterator = notificationEvents.iterator();
+
+while (iterator.hasNext()) {
+	NotificationEvent notificationEvent = iterator.next();
+
+	String type = notificationEvent.getType();
+
+	if (!type.equals(PortletKeys.SO_NOTIFICATION)) {
+		iterator.remove();
 	}
 }
-
-int notificationEventsCount = userNotificationEvents.size();
 %>
 
 <div class="aui-menu aui-overlaycontext-hidden user-notification-events" id="<portlet:namespace />notificationsMenuContainer">
 	<div class="aui-menu-content user-notification-events-container" id="<portlet:namespace />notificationsMenuContent">
 
 		<%
-		int maxNotificationEvents = Math.min(notificationEventsCount, PortletPropsValues.NOTIFICATIONS_DOCKBAR_MAX_ELEMENTS);
+		String userNotificationEventUuids = StringPool.BLANK;
 
-		for (int i = 0; i < maxNotificationEvents; i++) {
+		for (int i = 0; i < Math.min(notificationEvents.size(), PortletPropsValues.NOTIFICATIONS_DOCKBAR_MAX_ELEMENTS); i++) {
 			NotificationEvent notificationEvent = userNotificationEvents.get(i);
 
 			userNotificationEventUuids = StringUtil.add(userNotificationEventUuids, notificationEvent.getUuid());
@@ -94,7 +97,7 @@ int notificationEventsCount = userNotificationEvents.size();
 		}
 		%>
 
-		<c:if test="<%= notificationEventsCount <= 0 %>">
+		<c:if test="<%= notificationEvents.size() <= 0 %>">
 			<div class="user-notification-event-header">
 				<liferay-ui:message key="you-have-no-new-notifications" />
 			</div>
@@ -102,7 +105,7 @@ int notificationEventsCount = userNotificationEvents.size();
 
 		<div class="user-notification-event-footer">
 			<span class="dismiss-notifications">
-				<c:if test="<%= notificationEventsCount > 0 %>">
+				<c:if test="<%= notificationEvents.size() > 0 %>">
 					<a class="dismiss-notifications" href="javascript:;"><liferay-ui:message key="mark-as-read" /></a>
 				</c:if>
 			</span>
@@ -120,14 +123,14 @@ int notificationEventsCount = userNotificationEvents.size();
 </div>
 
 <a class="menu-button user-notification-events-icon" href="javascript:;">
-	<span class="notification-count"><%= notificationEventsCount %></span>
+	<span class="notification-count"><%= notificationEvents.size() %></span>
 </a>
 
 <aui:script use="aui-base">
 	var userNotificationEvents = A.one('.dockbar .user-notification-events');
 	var userNotificationsContainer = userNotificationEvents.one('.user-notification-events-container');
 
-	<c:if test="<%= notificationEventsCount > 0 %>">
+	<c:if test="<%= notificationEvents.size() > 0 %>">
 		userNotificationEvents.delegate(
 			'click',
 			function(event) {

@@ -104,6 +104,7 @@ page import="com.liferay.so.util.RoleConstants" %>
 <%@ page import="java.util.ArrayList" %><%@
 page import="java.util.Calendar" %><%@
 page import="java.util.Date" %><%@
+page import="java.util.Iterator" %><%@
 page import="java.util.LinkedHashMap" %><%@
 page import="java.util.List" %>
 
