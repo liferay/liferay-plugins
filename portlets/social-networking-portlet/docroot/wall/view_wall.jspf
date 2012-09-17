@@ -244,8 +244,8 @@
 						<c:when test="<%= SocialRequestLocalServiceUtil.hasRequest(user2.getUserId(), User.class.getName(), user2.getUserId(), FriendsRequestKeys.ADD_FRIEND, user.getUserId(), SocialRequestConstants.STATUS_PENDING) %>">
 							<%= LanguageUtil.format(pageContext, "you-need-to-approve-x-as-your-friend", HtmlUtil.escape(user2.getFirstName())) %>
 						</c:when>
-						<c:when test="<%= layoutTypePortlet.hasPortletId(PortletKeys.SUMMARY) %>">
-							<liferay-portlet:actionURL name="addFriend" portletName="<%= PortletKeys.SUMMARY %>" var="addAsFriendURL">
+						<c:when test="<%= layoutTypePortlet.hasPortletId(com.liferay.socialnetworking.util.PortletKeys.SUMMARY) %>">
+							<liferay-portlet:actionURL name="addFriend" portletName="<%= com.liferay.socialnetworking.util.PortletKeys.SUMMARY %>" var="addAsFriendURL">
 								<portlet:param name="redirect" value="<%= currentURL %>" />
 							</liferay-portlet:actionURL>
 
