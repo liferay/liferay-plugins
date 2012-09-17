@@ -7,7 +7,6 @@
 .calendar-portlet-wrapper {
 	background: #FFF;
 	font-size: 12px;
-	@include border-radius(5px);
 
 	.aui-scheduler-event-all-day .aui-scheduler-event-title {
 		display: none;
@@ -16,12 +15,6 @@
 	.aui-scheduler-event-disabled {
 		@include opacity(0.8);
 	}
-}
-
-.calendar-portlet-list-header .aui-calendar-list-item-arrow,
-.aui-calendar-list-item .aui-calendar-list-item-color,
-.aui-calendar-list-item .aui-calendar-list-item-arrow {
-	@include border-radius(3px);
 }
 
 .calendar-portlet-column-options {
@@ -149,8 +142,8 @@
 
 	.calendar-portlet-add-calendars-input {
 		margin: 2px 0 5px;
-		width: 200px;
 		padding: 5px 4px;
+		width: 200px;
 	}
 }
 
@@ -301,26 +294,6 @@
 	margin-left: 15px;
 }
 
-.aui-calendar-list-item-arrow, .aui-calendar-list-item-color, .aui-simple-color-picker-item {
-	@include border-radius(1px);
-}
-
-.aui-simple-menu-item {
-	@include transition(background .13s);
-
-	&:hover {
-		@include transition(background 0s);
-	}
-}
-
-.aui-simple-color-picker-item {
-	@include transition(border-color .13s);
-}
-
-.aui-simple-color-picker-item:hover, .aui-simple-color-picker-item-selected {
-	@include transition(border-color 0s);
-}
-
 .calendar-portlet-time-zone-field .aui-field .aui-field-content {
 	margin: 0;
 }
@@ -369,31 +342,54 @@
 	min-height: 52px;
 }
 
+.yui3-skin-sam .yui3-calendar-day.lfr-busy-day {
+	&, &:hover, &.yui3-calendar-day-selected {
+		background: #000;
+	}
+}
+
+/* --- Extras --- */
+
+.calendar-portlet-wrapper {
+	@include border-radius(5px);
+}
+
+.calendar-portlet-list-header .aui-calendar-list-item-arrow,
+.aui-calendar-list-item .aui-calendar-list-item-color,
+.aui-calendar-list-item .aui-calendar-list-item-arrow {
+	@include border-radius(3px);
+}
+
+.aui-calendar-list-item-arrow, .aui-calendar-list-item-color, .aui-simple-color-picker-item {
+	@include border-radius(1px);
+}
+
+.aui-simple-menu-item {
+	@include transition(background .13s);
+
+	&:hover {
+		@include transition(background 0s);
+	}
+}
+
+.aui-simple-color-picker-item {
+	@include transition(border-color .13s);
+}
+
+.aui-simple-color-picker-item:hover, .aui-simple-color-picker-item-selected {
+	@include transition(border-color 0s);
+}
+
 .yui3-skin-sam {
 	.yui3-calendar-day.lfr-busy-day {
-		background: rgb(0, 0, 0);
-		background: -moz-linear-gradient(225deg, rgb(0, 0, 0) 15%, rgb(255, 255, 255) 0%);
-		background: -webkit-linear-gradient(225deg, rgb(0, 0, 0) 15%, rgb(255, 255, 255) 0%);
-		background: -o-linear-gradient(225deg, rgb(0, 0, 0) 15%, rgb(255, 255, 255) 0%);
-		background: -ms-linear-gradient(225deg, rgb(0, 0, 0) 15%, rgb(255, 255, 255) 0%);
-		background: linear-gradient(225deg, rgb(0, 0, 0) 15%, rgb(255, 255, 255) 0%);
-	}
+		@include background-image(linear-gradient(225deg, rgb(0, 0, 0) 15%, rgb(255, 255, 255) 0%));
 
-	.yui3-calendar-day.lfr-busy-day:hover {
-		background: rgb(0, 0, 0);
-		background: -moz-linear-gradient(225deg, rgb(0, 0, 0) 15%, rgb(0, 102, 204) 0%);
-		background: -webkit-linear-gradient(225deg, rgb(0, 0, 0) 15%, rgb(0, 102, 204) 0%);
-		background: -o-linear-gradient(225deg, rgb(0, 0, 0) 15%, rgb(0, 102, 204) 0%);
-		background: -ms-linear-gradient(225deg, rgb(0, 0, 0) 15%, rgb(0, 102, 204) 0%);
-		background: linear-gradient(225deg, rgb(0, 0, 0) 15%, rgb(0, 102, 204) 0%);
-	}
+		&:hover {
+			@include background-image(linear-gradient(225deg, rgb(0, 0, 0) 15%, rgb(0, 102, 204) 0%));
+		}
 
-	.yui3-calendar-day.lfr-busy-day.yui3-calendar-day-selected {
-		background: rgb(0, 0, 0);
-		background: -moz-linear-gradient(225deg, rgb(0, 0, 0) 15%, rgb(179, 215, 255) 0%);
-		background: -webkit-linear-gradient(225deg, rgb(0, 0, 0) 15%, rgb(179, 215, 255) 0%);
-		background: -o-linear-gradient(225deg, rgb(0, 0, 0) 15%, rgb(179, 215, 255) 0%);
-		background: -ms-linear-gradient(225deg, rgb(0, 0, 0) 15%, rgb(179, 215, 255) 0%);
-		background: linear-gradient(225deg, rgb(0, 0, 0) 15%, rgb(179, 215, 255) 0%);
+		&.yui3-calendar-day-selected {
+			@include background-image(linear-gradient(225deg, rgb(0, 0, 0) 15%, rgb(179, 215, 255) 0%));
+		}
 	}
 }
