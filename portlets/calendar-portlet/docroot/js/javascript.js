@@ -1349,9 +1349,13 @@ AUI.add(
 						if (schedulerEvent) {
 							calendarId = schedulerEvent.get('calendarId');
 
-							color = CalendarUtil.manageableCalendars[calendarId].color;
+							var calendar = CalendarUtil.manageableCalendars[calendarId];
 
-							eventInstance = schedulerEvent;
+							if (calendar) {
+								color = calendar.color;
+
+								eventInstance = schedulerEvent;
+							}
 						}
 
 						eventInstance.set('color', color);
