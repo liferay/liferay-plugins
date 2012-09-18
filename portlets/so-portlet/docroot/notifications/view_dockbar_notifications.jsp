@@ -53,7 +53,7 @@ while (iterator.hasNext()) {
 		String userNotificationEventUuids = StringPool.BLANK;
 
 		for (int i = 0; i < Math.min(notificationEvents.size(), PortletPropsValues.NOTIFICATIONS_DOCKBAR_MAX_ELEMENTS); i++) {
-			NotificationEvent notificationEvent = userNotificationEvents.get(i);
+			NotificationEvent notificationEvent = notificationEvents.get(i);
 
 			userNotificationEventUuids = StringUtil.add(userNotificationEventUuids, notificationEvent.getUuid());
 
