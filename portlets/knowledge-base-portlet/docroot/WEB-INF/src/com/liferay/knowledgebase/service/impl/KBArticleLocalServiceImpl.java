@@ -902,7 +902,9 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			long userId, KBArticle kbArticle, long[] assetCategoryIds,
 			String[] assetTagNames)
 		throws PortalException, SystemException {
-		//TBD
+
+		// TODO
+
 		long classTypeId = 0;
 
 		assetEntryLocalService.updateEntry(
@@ -1388,7 +1390,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		return true;
 	}
 
-	protected boolean isValidFileName(String name) throws SystemException {
+	protected boolean isValidFileName(String name) {
 		if ((name == null) || name.contains(StringPool.BACK_SLASH) ||
 			name.contains(StringPool.SLASH)) {
 

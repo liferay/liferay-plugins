@@ -653,9 +653,25 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			ThemeDisplay themeDisplay)
 		throws SystemException {
 
+		SyndFeed syndFeed = new SyndFeedImpl();
+
+		syndFeed.setDescription(description);
+
 		List<SyndEntry> syndEntries = new ArrayList<SyndEntry>();
 
+		syndFeed.setEntries(syndEntries);
+
 		for (KBArticle kbArticle : kbArticles) {
+			SyndEntry syndEntry = new SyndEntryImpl();
+
+			String author = PortalUtil.getUserName(kbArticle);
+
+			syndEntry.setAuthor(author);
+
+			SyndContent syndContent = new SyndContentImpl();
+
+			syndContent.setType(RSSUtil.ENTRY_TYPE_DEFAULT);
+
 			String value = null;
 
 			if (rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_ABSTRACT)) {
@@ -681,21 +697,14 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 					});
 			}
 
-			String author = PortalUtil.getUserName(kbArticle);
+			syndContent.setValue(value);
+
+			syndEntry.setDescription(syndContent);
 
 			String link = KnowledgeBaseUtil.getKBArticleURL(
 				themeDisplay.getPlid(), kbArticle.getResourcePrimKey(),
 				kbArticle.getStatus(), themeDisplay.getPortalURL(), false);
 
-			SyndContent syndContent = new SyndContentImpl();
-
-			syndContent.setType(RSSUtil.ENTRY_TYPE_DEFAULT);
-			syndContent.setValue(value);
-
-			SyndEntry syndEntry = new SyndEntryImpl();
-
-			syndEntry.setAuthor(author);
-			syndEntry.setDescription(syndContent);
 			syndEntry.setLink(link);
 			syndEntry.setPublishedDate(kbArticle.getCreateDate());
 			syndEntry.setTitle(kbArticle.getTitle());
@@ -709,13 +718,12 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			RSSUtil.getFormatType(rssFormat),
 			RSSUtil.getFormatVersion(rssFormat));
 
-		SyndFeed syndFeed = new SyndFeedImpl();
-
-		syndFeed.setDescription(description);
-		syndFeed.setEntries(syndEntries);
 		syndFeed.setFeedType(feedType);
+
 		syndFeed.setLink(feedURL);
+		syndFeed.setPublishedDate(new Date());
 		syndFeed.setTitle(name);
+		syndFeed.setUri(feedURL);
 
 		try {
 			return RSSUtil.export(syndFeed);
