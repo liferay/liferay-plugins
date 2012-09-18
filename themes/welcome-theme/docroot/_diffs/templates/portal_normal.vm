@@ -2,7 +2,7 @@
 
 #parse ($init)
 
-<html class="#language("lang.dir")" dir="#language("lang.dir")" lang="$w3c_language_id">
+<html class="#language ("lang.dir")" dir="#language ("lang.dir")" lang="$w3c_language_id">
 
 <head>
 	<title>$the_title - $company_name</title>
@@ -19,17 +19,17 @@ $theme.include($body_top_include)
 #end
 
 <div id="wrapper">
-	<a href="#main-content" id="skip-to-content">#language("skip-to-content")</a>
+	<a href="#main-content" id="skip-to-content">#language ("skip-to-content")</a>
 
 	<header id="banner" role="banner">
 		<div id="heading">
 			<h1 class="site-title">
-				<a class="$logo_css_class" href="$site_default_url" title="#language("go-to") $site_name">
+				<a class="$logo_css_class" href="$site_default_url" title="#language ("go-to") $site_name">
 					<img alt="$logo_description" height="$site_logo_height" src="$site_logo" width="$site_logo_width" />
 				</a>
 
 				#if ($show_site_name)
-					<span class="site-name" title="#language("go-to") $site_name">
+					<span class="site-name" title="#language ("go-to") $site_name">
 						$site_name
 					</span>
 				#end

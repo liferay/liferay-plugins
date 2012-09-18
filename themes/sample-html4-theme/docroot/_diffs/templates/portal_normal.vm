@@ -2,7 +2,7 @@
 
 #parse ($init)
 
-<html class="#language("lang.dir")" dir="#language("lang.dir")" lang="$w3c_language_id">
+<html class="#language ("lang.dir")" dir="#language ("lang.dir")" lang="$w3c_language_id">
 
 <head>
 	<title>$the_title - $company_name</title>
@@ -17,18 +17,18 @@
 #end
 
 <div id="wrapper">
-	<a href="#main-content" id="skip-to-content">#language("skip-to-content")</a>
+	<a href="#main-content" id="skip-to-content">#language ("skip-to-content")</a>
 
 	<div id="banner" role="banner">
 		<div id="heading">
 			<h1 class="company-title">
-				<a class="$logo_css_class" href="$company_url" title="#language("go-to") $company_name">
+				<a class="$logo_css_class" href="$company_url" title="#language ("go-to") $company_name">
 					<span>$company_name</span>
 				</a>
 			</h1>
 
 			<h2 class="community-title">
-				<a href="$community_default_url" title="#language("go-to") $community_name">
+				<a href="$community_default_url" title="#language ("go-to") $community_name">
 					<span>$community_name</span>
 				</a>
 			</h2>
@@ -50,7 +50,7 @@
 	<div id="content">
 		<div class="site-breadcrumbs" id="breadcrumbs">
 			<h1>
-				<span>#language("breadcrumbs")</span>
+				<span>#language ("breadcrumbs")</span>
 			</h1>
 
 			#breadcrumbs()
@@ -69,7 +69,7 @@
 
 	<div id="footer" role="contentinfo">
 		<p class="powered-by">
-			#language("powered-by") <a href="http://www.liferay.com" rel="external">Liferay</a>
+			#language ("powered-by") <a href="http://www.liferay.com" rel="external">Liferay</a>
 		</p>
 	</div>
 </div>
