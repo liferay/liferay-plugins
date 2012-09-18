@@ -154,6 +154,8 @@ public class CalendarResourceUtil {
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			portletRequest);
 
+		serviceContext.setUserId(userId);
+
 		return getUserCalendarResource(userId, serviceContext);
 	}
 
