@@ -261,13 +261,20 @@
 				<type>java.lang.Exception</type>
 			</throws>
 		</method>
+		<method>
+			<name>initInstance</name>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+			</param>
+		</method>
 	</javadoc>
 	<javadoc>
-		<name>AnnouncementsEntryServiceImpl</name>
-		<type>com.liferay.so.hook.service.impl.AnnouncementsEntryServiceImpl</type>
+		<name>SOAnnouncementsEntryServiceImpl</name>
+		<type>com.liferay.so.hook.service.impl.SOAnnouncementsEntryServiceImpl</type>
 		<author><![CDATA[Jonathan Lee]]></author>
 		<method>
-			<name>AnnouncementsEntryServiceImpl</name>
+			<name>SOAnnouncementsEntryServiceImpl</name>
 			<param>
 				<name>announcementsEntryService</name>
 				<type>com.liferay.portlet.announcements.service.AnnouncementsEntryService</type>
