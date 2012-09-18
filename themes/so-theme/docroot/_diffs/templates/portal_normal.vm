@@ -2,7 +2,7 @@
 
 #parse ($init)
 
-<html class="#language("lang.dir")" dir="#language("lang.dir")" lang="$w3c_language_id">
+<html class="#language ("lang.dir")" dir="#language ("lang.dir")" lang="$w3c_language_id">
 
 <head>
 	<title>$the_title - $company_name</title>
@@ -19,19 +19,19 @@ $theme.include($body_top_include)
 #end
 
 <div id="wrapper">
-	<a href="#main-content" id="skip-to-content">#language("skip-to-content")</a>
+	<a href="#main-content" id="skip-to-content">#language ("skip-to-content")</a>
 
 	<header id="banner" role="banner">
 		<hgroup id="heading">
 			<div class="company-title">
-				<a class="$logo_css_class" href="$user_dashboard_url" title='#language("go-to") #language("dashboard")'>
+				<a class="$logo_css_class" href="$user_dashboard_url" title='#language ("go-to") #language ("dashboard")'>
 					<img alt="$logo_description" height="$site_logo_height" src="$site_logo" width="$site_logo_width" />
 				</a>
 			</div>
 
 		#if (!$page_group.isUser())
 			<div class="community-title">
-				<a href="$community_default_url" title='#language("go-to") $community_name'>
+				<a href="$community_default_url" title='#language ("go-to") $community_name'>
 					<span>$community_name</span>
 				</a>
 
@@ -52,7 +52,7 @@ $theme.include($body_top_include)
 								$join_url.setParameter("addUserIds", "$user_id")
 
 								<span class="action request">
-									<a href="$join_url">#language("join-site")</a>
+									<a href="$join_url">#language ("join-site")</a>
 								</span>
 							#elseif (($page_group.getType() == 2) && !$membership_request)
 								#set ($membership_request_url = $portletURLFactory.create($request, "174", $page.getPlid(), "ACTION_PHASE"))
@@ -67,11 +67,11 @@ $theme.include($body_top_include)
 								$membership_request_url.setParameter("comments", $languageUtil.format($locale, "x-wishes-to-join-x", $arguments.toArray()))
 
 								<span class="action request">
-									<a href="$membership_request_url">#language("request-membership")</a>
+									<a href="$membership_request_url">#language ("request-membership")</a>
 								</span>
 							#elseif ($membership_request)
 								<span class="action requested">
-									<a>#language("membership-requested")</a>
+									<a>#language ("membership-requested")</a>
 								</span>
 							#end
 							#end
@@ -138,7 +138,7 @@ $theme.include($body_top_include)
 
 	<footer id="footer" role="contentinfo">
 		<p class="powered-by">
-			#language("powered-by") <a href="http://www.liferay.com" rel="external">Liferay</a>
+			#language ("powered-by") <a href="http://www.liferay.com" rel="external">Liferay</a>
 		</p>
 	</footer>
 </div>
