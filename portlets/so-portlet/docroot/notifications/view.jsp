@@ -39,12 +39,12 @@
 				>
 
 					<%
-					List<UserNotificationEvent> userNotificationEvents = UserNotificationEventLocalServiceUtil.getUserNotificationEvents(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
+					List<UserNotificationEvent> notificationEvents = UserNotificationEventLocalServiceUtil.getUserNotificationEvents(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
 					int notificationEventsCount = UserNotificationEventLocalServiceUtil.getUserNotificationEventsCount(themeDisplay.getUserId());
 					%>
 
 					<liferay-ui:search-container-results
-						results="<%= userNotificationEvents %>"
+						results="<%= notificationEvents %>"
 						total="<%= notificationEventsCount %>"
 					/>
 

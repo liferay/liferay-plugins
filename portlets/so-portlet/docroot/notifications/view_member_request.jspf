@@ -28,7 +28,7 @@ catch (Exception e) {
 
 	ChannelHubManagerUtil.confirmDelivery(user.getCompanyId(), user.getUserId(), notificationEvent.getUuid(), false);
 
-	notificationEventsCount--;
+	notificationEvents.remove(notificationEvent);
 }
 %>
 
