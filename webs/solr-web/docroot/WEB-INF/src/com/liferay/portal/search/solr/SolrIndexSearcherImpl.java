@@ -352,7 +352,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		}
 
 		hits.setDocs(documents.toArray(new Document[subsetTotal]));
-		hits.setLength(subsetTotal);
+		hits.setLength((int)total);
 		hits.setQuery(query);
 		hits.setQueryTerms(queryTerms.toArray(new String[queryTerms.size()]));
 
