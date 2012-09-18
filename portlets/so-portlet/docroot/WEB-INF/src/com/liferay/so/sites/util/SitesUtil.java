@@ -110,7 +110,7 @@ public class SitesUtil {
 			params.put("usersGroups", userId);
 
 			List<Group> groups = GroupLocalServiceUtil.search(
-				companyId, keywords, null, params, true, start, end,
+				companyId, keywords, null, params, start, end,
 				new GroupNameComparator(true));
 
 			return groups;
@@ -130,7 +130,7 @@ public class SitesUtil {
 			params.put("types", types);
 
 			List<Group> groups = GroupLocalServiceUtil.search(
-				companyId, keywords, null, params, true, start, end,
+				companyId, keywords, null, params, start, end,
 				new GroupNameComparator(true));
 
 			return groups;
@@ -150,7 +150,7 @@ public class SitesUtil {
 			params.put("usersGroups", userId);
 
 			return GroupLocalServiceUtil.searchCount(
-				comapnyId, keywords, null, params, true);
+				comapnyId, keywords, null, params);
 		}
 		else {
 			LinkedHashMap<String, Object> params =
@@ -166,7 +166,7 @@ public class SitesUtil {
 			params.put("types", types);
 
 			int groupsCount = GroupLocalServiceUtil.searchCount(
-				comapnyId, keywords, null, params, true);
+				comapnyId, keywords, null, params);
 
 			params.clear();
 
@@ -180,7 +180,7 @@ public class SitesUtil {
 			params.put("types", types);
 
 			return groupsCount + GroupLocalServiceUtil.searchCount(
-				comapnyId, keywords, null, params, true);
+				comapnyId, keywords, null, params);
 		}
 	}
 
