@@ -48,6 +48,11 @@ Also, check out the [Liferay IDE project](http://www.liferay.com/community/lifer
 
 Finally, you can also use Maven to build Liferay Plugins.  For an excellent overview of Maven support, check out [Mika's presentation](http://www.slideshare.net/koivimik/developing-liferay-plugins-with-maven) and [Getting Started with Liferay Maven SDK](http://www.liferay.com/web/mika.koivisto/blog/-/blogs/12322618).
 
+Contributing
+------------
+
+Liferay welcomes any and all contributions!  If you have an idea for a new plugin or a new feature in an existing plugin, and wish to implement it, follow the contribution steps outlined in the [CONTRIBUTING](https://github.com/liferay/liferay-portal/CONTRIBUTING.md) guide found in the `liferay-portal` repository.  This guide contains details on how to contribute to Liferay and additional useful resource links, and applies to this repository as well.
+
 More Information
 ----------------
 
