@@ -28,7 +28,7 @@ Quick start
 -----------
 In this repository, plugins are laid out in the form of a Liferay Plugins SDK.  Read the *Liferay Development Guide* included in the [Liferay Documentation](http://www.liferay.com/documentation) to learn more about working with the Liferay Plugins SDK.
 
-Once you fork this repository, to quickly build and deploy one or more plugins, you should first create a `build.${username}.properties` file in the root directory of your clone.  Within this file, override any necessary settings from the base `build.properties` file (do not edit the base file).  If you are using Tomcat, for example, all you need to do is override the `app.server.dir` setting to point to an existing copy of a deployed instance of Liferay+Tomcat.  For example:
+Once you fork this repository, to quickly build and deploy one or more plugins, you should first create a `build.${username}.properties` file in the root directory of your clone (replace `${username}` with your login name, which on Windows can be determined through the `%USERNAME%` environment variable, and on unix by using the `whoami` command).  Within this file, override any necessary settings from the base `build.properties` file (do not edit the base file).  If you are using Tomcat, for example, all you need to do is override the `app.server.dir` setting to point to an existing copy of a deployed instance of Liferay+Tomcat.  For example, if your username is *joe*, then create a `build.joe.properties` text file, with a single line:
 
     app.server.dir=/Users/joe/liferay-portal-6.1.1-ga2/tomcat-7.0.27
 
