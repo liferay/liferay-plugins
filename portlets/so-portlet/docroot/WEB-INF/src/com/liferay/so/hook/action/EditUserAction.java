@@ -43,6 +43,7 @@ import com.liferay.so.model.ProjectsEntry;
 import com.liferay.so.service.ProjectsEntryLocalServiceUtil;
 import com.liferay.so.util.LayoutSetPrototypeUtil;
 import com.liferay.so.util.RoleConstants;
+import com.liferay.so.util.SocialOfficeConstants;
 
 import java.util.HashSet;
 import java.util.List;
@@ -270,7 +271,9 @@ public class EditUserAction extends BaseStrutsPortletAction {
 
 		if (newSocialOfficeUser && !roles.contains(role)) {
 			LayoutSetPrototype publicLayoutSetPrototype =
-				LayoutSetPrototypeUtil.fetchLayoutSetPrototype(user, false);
+				LayoutSetPrototypeUtil.fetchLayoutSetPrototype(
+					user.getCompanyId(),
+					SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_USER_PUBLIC);
 
 			if (publicLayoutSetPrototype != null) {
 				dynamicActionRequest.setParameter(
@@ -283,7 +286,10 @@ public class EditUserAction extends BaseStrutsPortletAction {
 			}
 
 			LayoutSetPrototype privateLayoutSetPrototype =
-				LayoutSetPrototypeUtil.fetchLayoutSetPrototype(user, true);
+				LayoutSetPrototypeUtil.fetchLayoutSetPrototype(
+					user.getCompanyId(),
+					SocialOfficeConstants.
+						LAYOUT_SET_PROTOTYPE_KEY_USER_PRIVATE);
 
 			if (privateLayoutSetPrototype != null) {
 				dynamicActionRequest.setParameter(

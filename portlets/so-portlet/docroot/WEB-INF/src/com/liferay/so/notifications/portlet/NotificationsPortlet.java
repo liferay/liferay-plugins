@@ -122,13 +122,13 @@ public class NotificationsPortlet extends MVCPortlet {
 				HttpSession session = request.getSession();
 
 				String memberRequestKey = (String)session.getAttribute(
-					WebKeys.MEMBER_REQEUST_KEY);
+					WebKeys.MEMBER_REQUEST_KEY);
 
 				if (Validator.isNotNull(memberRequestKey)) {
 					MemberRequestLocalServiceUtil.updateMemberRequest(
 						memberRequestKey, themeDisplay.getUserId());
 
-					session.removeAttribute(WebKeys.MEMBER_REQEUST_KEY);
+					session.removeAttribute(WebKeys.MEMBER_REQUEST_KEY);
 				}
 			}
 
