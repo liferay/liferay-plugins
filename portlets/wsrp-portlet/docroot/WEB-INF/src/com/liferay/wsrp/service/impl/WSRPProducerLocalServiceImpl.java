@@ -177,7 +177,7 @@ public class WSRPProducerLocalServiceImpl
 		params.put("type", type);
 
 		List<Group> groups = groupLocalService.search(
-			user.getCompanyId(), name, null, params, 0, 1);
+			user.getCompanyId(), name, params, 0, 1);
 
 		if (!groups.isEmpty()) {
 			return groups.get(0);

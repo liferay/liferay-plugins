@@ -54,6 +54,7 @@ import com.liferay.util.Encryptor;
 import com.liferay.wsrp.axis.WSRPHTTPSender;
 import com.liferay.wsrp.model.WSRPConsumer;
 import com.liferay.wsrp.model.WSRPConsumerPortlet;
+import com.liferay.wsrp.proxy.Stub;
 import com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 import com.liferay.wsrp.servlet.ServiceHolder;
@@ -145,7 +146,6 @@ import oasis.names.tc.wsrp.v2.types.UploadContext;
 import oasis.names.tc.wsrp.v2.types.UserContext;
 import oasis.names.tc.wsrp.v2.types.UserProfile;
 
-import org.apache.axis.client.Stub;
 import org.apache.axis.message.MessageElement;
 
 /**

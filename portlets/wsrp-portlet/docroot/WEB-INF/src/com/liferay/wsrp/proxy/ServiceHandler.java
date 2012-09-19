@@ -73,11 +73,27 @@ public class ServiceHandler implements InvocationHandler {
 	public Object doInvoke(Object proxy, Method method, Object[] args)
 		throws Exception {
 
+		String methodName = method.getName();
+
+		if (_v2 && methodName.equals("getWSRP_v2_Markup_Service")) {
+			WSRP_v2_Markup_Binding_SOAPStub markupService =
+				new WSRP_v2_Markup_Binding_SOAPStub(
+					(URL)args[0], _serviceLocator);
+
+			WSRP_v2_ServiceLocator wsrpV2ServiceLocator =
+				(WSRP_v2_ServiceLocator)_serviceLocator;
+
+			String markupServiceName =
+				wsrpV2ServiceLocator.getWSRP_v2_Markup_ServiceWSDDServiceName();
+
+			markupService.setPortName(markupServiceName);
+
+			return markupService;
+		}
+
 		Thread currentThread = Thread.currentThread();
 
 		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
-
-		String methodName = method.getName();
 
 		URL bindingURL = (URL)args[0];
 
@@ -140,8 +156,8 @@ public class ServiceHandler implements InvocationHandler {
 			(InvocationHandler)ConstructorUtils.invokeConstructor(clazz, stub);
 
 		return ProxyUtil.newProxyInstance(
-			ServiceHandler.class.getClassLoader(), new Class[] {proxyInterface},
-			invocationHandler);
+			ServiceHandler.class.getClassLoader(),
+			new Class[] {proxyInterface, Stub.class}, invocationHandler);
 	}
 
 	public Object invoke(Object proxy, Method method, Object[] args)
