@@ -25,7 +25,7 @@ import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.scheduler.CronText;
 import com.liferay.portal.kernel.scheduler.CronTrigger;
 import com.liferay.portal.kernel.scheduler.SchedulerEngine;
-import com.liferay.portal.kernel.scheduler.SchedulerEngineUtil;
+import com.liferay.portal.kernel.scheduler.SchedulerEngineHelperUtil;
 import com.liferay.portal.kernel.scheduler.StorageType;
 import com.liferay.portal.kernel.scheduler.Trigger;
 import com.liferay.portal.kernel.scheduler.messaging.SchedulerEventMessageListenerWrapper;
@@ -268,7 +268,7 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 
 		String groupName = getSchedulerGroupName(kaleoTimerInstanceToken);
 
-		SchedulerEngineUtil.delete(groupName, StorageType.PERSISTED);
+		SchedulerEngineHelperUtil.delete(groupName, StorageType.PERSISTED);
 	}
 
 	protected String getSchedulerGroupName(
@@ -354,7 +354,7 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 			"kaleoTimerInstanceTokenId",
 			kaleoTimerInstanceToken.getKaleoTimerInstanceTokenId());
 
-		SchedulerEngineUtil.schedule(
+		SchedulerEngineHelperUtil.schedule(
 			trigger, StorageType.PERSISTED, null,
 			DestinationNames.SCHEDULER_DISPATCH, message, 0);
 	}

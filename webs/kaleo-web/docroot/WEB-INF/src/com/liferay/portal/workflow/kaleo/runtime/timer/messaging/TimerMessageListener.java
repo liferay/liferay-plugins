@@ -20,7 +20,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.scheduler.SchedulerEngineUtil;
+import com.liferay.portal.kernel.scheduler.SchedulerEngineHelperUtil;
 import com.liferay.portal.kernel.scheduler.StorageType;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.service.ServiceContext;
@@ -73,7 +73,7 @@ public class TimerMessageListener extends BaseMessageListener {
 			String groupName = SchedulerUtil.getGroupName(
 				kaleoTimerInstanceTokenId);
 
-			SchedulerEngineUtil.delete(groupName, StorageType.PERSISTED);
+			SchedulerEngineHelperUtil.delete(groupName, StorageType.PERSISTED);
 		}
 	}
 
