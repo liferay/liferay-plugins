@@ -22,7 +22,7 @@ package com.liferay.so.util;
  */
 public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
 
-	public static final String MEMBER_REQEUST_KEY =
+	public static final String MEMBER_REQUEST_KEY =
 		"LIFERAY_SHARED_MEMBER_REQUEST_KEY";
 
 }
