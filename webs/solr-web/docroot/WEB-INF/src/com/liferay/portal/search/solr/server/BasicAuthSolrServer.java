@@ -39,16 +39,6 @@ import org.apache.solr.common.util.NamedList;
  */
 public class BasicAuthSolrServer extends StoppableSolrServer {
 
-	public BasicAuthSolrServer(String url) throws MalformedURLException {
-		this(null, null, url);
-	}
-
-	public BasicAuthSolrServer(String username, String password, String url)
-		throws MalformedURLException {
-
-		this(null, username, password, url);
-	}
-
 	public BasicAuthSolrServer(
 			AuthScope authScope, String username, String password, String url)
 		throws MalformedURLException {
@@ -79,6 +69,16 @@ public class BasicAuthSolrServer extends StoppableSolrServer {
 		}
 
 		_server = new CommonsHttpSolrServer(url, httpClient);
+	}
+
+	public BasicAuthSolrServer(String url) throws MalformedURLException {
+		this(null, null, url);
+	}
+
+	public BasicAuthSolrServer(String username, String password, String url)
+		throws MalformedURLException {
+
+		this(null, username, password, url);
 	}
 
 	public String getBaseURL() {

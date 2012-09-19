@@ -21,14 +21,14 @@ import java.io.File;
  */
 public class MailFile {
 
-	public MailFile(String contentPath, String fileName, long size) {
-		_contentPath = contentPath;
+	public MailFile(File file, String fileName, long size) {
+		_file = file;
 		_fileName = fileName;
 		_size = size;
 	}
 
-	public MailFile(File file, String fileName, long size) {
-		_file = file;
+	public MailFile(String contentPath, String fileName, long size) {
+		_contentPath = contentPath;
 		_fileName = fileName;
 		_size = size;
 	}
