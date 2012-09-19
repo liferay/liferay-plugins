@@ -203,7 +203,8 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 					zipInputStream = zipFile.getInputStream(zipEntry);
 
 					if (fileName.equals("liferay-marketplace.properties")) {
-						String propertiesString = StringUtil.read(zipInputStream);
+						String propertiesString = StringUtil.read(
+							zipInputStream);
 
 						Properties properties = PropertiesUtil.load(
 							propertiesString);
@@ -236,6 +237,9 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 			}
 
 			deleteApp(app);
+		}
+		catch (IOException ioe) {
+			throw new PortalException(ioe.getMessage());
 		}
 		catch (Exception e) {
 			_log.error(e, e);
