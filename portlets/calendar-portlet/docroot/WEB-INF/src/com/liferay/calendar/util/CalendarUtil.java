@@ -72,7 +72,7 @@ public class CalendarUtil {
 			java.util.Calendar endDateJCalendar = JCalendarUtil.getJCalendar(
 				calendarBooking.getEndDate());
 
-			long days = JCalendarUtil.daysBetween(
+			long days = JCalendarUtil.getDaysBetween(
 				startDateJCalendar, endDateJCalendar);
 
 			for (int i = 0; i <= days; i++) {
@@ -96,7 +96,8 @@ public class CalendarUtil {
 					rulesMonth.put(month, rulesDay);
 				}
 
-				int day = startDateJCalendar.get(java.util.Calendar.DAY_OF_MONTH);
+				int day = startDateJCalendar.get(
+					java.util.Calendar.DAY_OF_MONTH);
 
 				if (!rulesDay.contains(day)) {
 					rulesDay.add(day);

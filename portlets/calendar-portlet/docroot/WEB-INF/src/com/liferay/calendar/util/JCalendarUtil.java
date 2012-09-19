@@ -39,16 +39,16 @@ public class JCalendarUtil {
 
 	public static final long SECOND = 1000;
 
-	public static long daysBetween(
+	public static long getDaysBetween(
 		Calendar startDateJCalendar, Calendar endDateJCalendar) {
 
-		endDateJCalendar = toMidnightJCalendar(endDateJCalendar);
 		startDateJCalendar = toMidnightJCalendar(startDateJCalendar);
+		endDateJCalendar = toMidnightJCalendar(endDateJCalendar);
 
-		long end = endDateJCalendar.getTimeInMillis();
-		long start = startDateJCalendar.getTimeInMillis();
+		long startdateTime = startDateJCalendar.getTimeInMillis();
+		long endDateTime = endDateJCalendar.getTimeInMillis();
 
-		return (end - start)/DAY;
+		return (endDateTime - startdateTime) / DAY;
 	}
 
 	public static Calendar getJCalendar(
