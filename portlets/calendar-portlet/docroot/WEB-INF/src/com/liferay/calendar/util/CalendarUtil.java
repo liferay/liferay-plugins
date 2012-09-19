@@ -76,8 +76,6 @@ public class CalendarUtil {
 				startDateJCalendar, endDateJCalendar);
 
 			for (int i = 0; i <= days; i++) {
-				startDateJCalendar.add(java.util.Calendar.DATE, 1);
-
 				int year = startDateJCalendar.get(java.util.Calendar.YEAR);
 
 				Map<Integer, List<Integer>> rulesMonth = rulesMap.get(year);
@@ -103,6 +101,8 @@ public class CalendarUtil {
 				if (!rulesDay.contains(day)) {
 					rulesDay.add(day);
 				}
+
+				startDateJCalendar.add(java.util.Calendar.DATE, 1);
 			}
 		}
 
