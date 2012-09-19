@@ -1,9 +1,11 @@
-[Liferay Portal](http://www.liferay.com/community/liferay-projects/liferay-portal)
+Liferay Plugins
 =================
 
-Liferay Portal is an open source enterprise web platform for building business solutions that deliver immediate results and long-term value. It started out as a personal development project in 2000 and was open sourced in 2001.
+This repository is part of the Liferay Portal project. Liferay Portal is an open source enterprise web platform for building business solutions that deliver immediate results and long-term value. It started out as a personal development project in 2000 and was open sourced in 2001.
 
 To get started, check out the project's community homepage at http://liferay.org!
+
+Most of the plugins found in this repository here can be easily installed through the [Liferay Marketplace](http://liferay.com/marketplace).  If you wish to build one or more of the plugins yourself, read below for details.
 
 Source Code
 -----------
@@ -16,63 +18,40 @@ Liferay's main source code resides in two repositories: [liferay-portal](https:/
 * [Liferay Faces](https://github.com/liferay/liferay-faces)
 * [Git Tools for Liferay](https://github.com/liferay/git-tools)
 
-Liferay's releases are built from the `liferay-portal` repository, along with a select few plugins from the `liferay-plugins` repository.  
+Liferay's releases are built from the `liferay-portal` repository, along with a select few plugins from the `liferay-plugins` repository.
 
-To build Liferay yourself you must build at least the `liferay-portal` repository.  You can optionally build plugins from the `liferay-plugins` repository, or build any of the other supporting technologies by visiting any of the above repositories and reading the instructions.
+To build Liferay yourself you must build at least the `liferay-portal` repository.  You can optionally build and install plugins from this repository (the `liferay-plugins` repository), or build any of the other supporting technologies by visiting any of the above repositories and reading the instructions.
+
+For more information on building `liferay-portal`, visit the [README](https://github.com/liferay/liferay-portal/README.md) from the `liferay-portal` repository.
 
 Quick start
 -----------
+In this repository, plugins are laid out in the form of a Liferay Plugins SDK.  Read the *Liferay Development Guide* included in the [Liferay Documentation](http://www.liferay.com/documentation) to learn more about working with the Liferay Plugins SDK.
 
-To quickly get up and running, [download a pre-built Liferay release](http://liferay.com/downloads) and follow the [Quick Start](http://liferay.com/quick-start).
+Once you fork this repository, to quickly build and deploy one or more plugins, you should first create a `build.${username}.properties` file in the root directory of your clone.  Within this file, override any necessary settings from the base `build.properties` file (do not edit the base file).  If you are using Tomcat, for example, all you need to do is override the `app.server.dir` setting to point to an existing copy of a deployed instance of Liferay+Tomcat.  For example:
 
-If you wish to build core Liferay or its plugins yourself, read the [CONTRIBUTING guide](https://github.com/liferay/liferay-portal/CONTRIBUTING.md) for details on how to clone and build the repository.
+    app.server.dir=/Users/joe/liferay-portal-6.1.1-ga2/tomcat-7.0.27
 
-Versioning
-----------
+Once you have done that, visit any of the directories containing your desired plugin, and use the `ant deploy` command to build and deploy the plugin to your configured Liferay instance.
 
-For transparency and insight into our release cycle, and for striving to maintain backward compatibility, Liferay is maintained under the [Versioning guidelines](http://www.liferay.com/community/wiki/-/wiki/Main/Liferay+Versioning+Policy) as much as possible.
+For example, to build the sample JSP portlet, use these commands on unix (Windows is similar):
 
-Bug tracker
------------
+    cd portlets/sample-jsp-portlet
+    ant deploy
 
-Have a bug? Please file an issue at http://issues.liferay.com that conforms with the [Liferay JIRA Guidelines](http://www.liferay.com/community/wiki/-/wiki/Main/JIRA).
+This will compile the plugin, build a WAR file in the `dist` directory, and copy the resulting WAR file to Liferay's *Hot Deploy* directory.
 
-Twitter account
----------------
-
-Keep up to date on announcements and more by following Liferay on Twitter, [@Liferay](http://twitter.com/Liferay).
-
-
-Blog
-----
-
-Read more detailed announcements, discussions, and more on [Liferay's Blog Stream](http://www.liferay.com/community/blogs).
-
-Forum
------
-
-Have a question? Ask on our very active [forums](http://www.liferay.com/community/forums)!
-
-IRC
----
-
-Server: irc.freenode.net
-
-Channel: #liferay
-
-Developers
-----------
-
-If you wish to build core Liferay or its plugins yourself, read the [CONTRIBUTING guide](https://github.com/liferay/liferay-portal/CONTRIBUTING.md) for details on how to clone and build the repository.
+There are many other options for developing new Liferay plugins using the Plugins SDK.  Consult the 
+*Liferay Development Guide* in [Liferay's Official Documentation](http://liferay.com/documentation) for more details.
 
 Also, check out the [Liferay IDE project](http://www.liferay.com/community/liferay-projects/liferay-ide).  This project provides an Eclipse-based Liferay development environment to help quickly build and maintain Liferay projects.
 
-Finally, you can also use Maven to build Liferay and your Liferay Projects.  For an excellent overview of Maven support, check out [Mika's presentation](http://www.slideshare.net/koivimik/developing-liferay-plugins-with-maven) and [Getting Started with Liferay Maven SDK](http://www.liferay.com/web/mika.koivisto/blog/-/blogs/12322618).
+Finally, you can also use Maven to build Liferay Plugins.  For an excellent overview of Maven support, check out [Mika's presentation](http://www.slideshare.net/koivimik/developing-liferay-plugins-with-maven) and [Getting Started with Liferay Maven SDK](http://www.liferay.com/web/mika.koivisto/blog/-/blogs/12322618).
 
-Contributing
-------------
+More Information
+----------------
 
-Liferay welcomes any and all contributions!  Please read the [CONTRIBUTING guide](https://github.com/liferay/liferay-portal/CONTRIBUTING.md) for details on how to clone and build the repository, and how to submit your contribution.
+For more information about filing bugs, keeping up with Liferay on social media, and other ways to participate, check out the [Liferay Community Homepage](http://liferay.org) and read the [README](https://github.com/liferay/liferay-portal/README.md) in the `liferay-portal` repository.
 
 Liferay Portal Community Edition License
 ----------------------------------------
