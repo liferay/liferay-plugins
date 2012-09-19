@@ -161,7 +161,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 			if (inputStream == null) {
 				throw new IOException(
-					"Cannot read the file: " + app.getFilePath());
+					"Unable to open file at " + app.getFilePath());
 			}
 
 			File liferayPackageFile = FileUtil.createTempFile(inputStream);
