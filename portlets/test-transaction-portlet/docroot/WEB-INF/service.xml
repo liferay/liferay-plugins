@@ -24,7 +24,7 @@
 		<finder name="Text" return-type="Collection">
 			<finder-column name="text" />
 		</finder>
-		
+
 		<!-- References -->
 
 		<reference package-path="com.liferay.portal" entity="ClassName" />
