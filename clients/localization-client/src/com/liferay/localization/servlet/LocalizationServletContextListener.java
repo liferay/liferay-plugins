@@ -14,6 +14,7 @@
 
 package com.liferay.localization.servlet;
 
+import com.liferay.localization.util.InstanceUtil;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
@@ -24,6 +25,8 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
+import com.liferay.portal.model.Company;
+import com.liferay.portal.service.CompanyLocalServiceUtil;
 
 import java.io.InputStream;
 
@@ -56,6 +59,37 @@ public class LocalizationServletContextListener
 
 	@Override
 	protected void doPortalInit() throws Exception {
+		importSQL();
+
+		for (Company company : CompanyLocalServiceUtil.getCompanies()) {
+			InstanceUtil.localizeRoleNames(company.getCompanyId());
+		}
+	}
+
+	protected int getCount(String sql) throws Exception {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+			connection = DataAccess.getUpgradeOptimizedConnection();
+
+			preparedStatement = connection.prepareStatement(sql);
+
+			resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				return resultSet.getInt(1);
+			}
+
+			return 0;
+		}
+		finally {
+			DataAccess.cleanUp(connection, preparedStatement, resultSet);
+		}
+	}
+
+	protected void importSQL() throws Exception {
 		Class<?> clazz = getClass();
 
 		ClassLoader classLoader = clazz.getClassLoader();
@@ -84,29 +118,6 @@ public class LocalizationServletContextListener
 				batchElement.elementText("import-sql"), StringPool.SEMICOLON);
 
 			runSQL(importSQLs);
-		}
-	}
-
-	protected int getCount(String sql) throws Exception {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-
-		try {
-			connection = DataAccess.getUpgradeOptimizedConnection();
-
-			preparedStatement = connection.prepareStatement(sql);
-
-			resultSet = preparedStatement.executeQuery();
-
-			if (resultSet.next()) {
-				return resultSet.getInt(1);
-			}
-
-			return 0;
-		}
-		finally {
-			DataAccess.cleanUp(connection, preparedStatement, resultSet);
 		}
 	}
 
