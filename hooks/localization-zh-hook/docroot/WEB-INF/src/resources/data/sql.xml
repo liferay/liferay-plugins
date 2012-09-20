@@ -4,7 +4,7 @@
 	<batch>
 		<test-sql>
 			<![CDATA[
-				select count(*) from Region where regionCode name = 'ABC'
+				select count(*) from Region where name = 'ABC'
 			]]>
 		</test-sql>
 		<import-sql>
