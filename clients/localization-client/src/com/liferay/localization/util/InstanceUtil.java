@@ -36,7 +36,7 @@ public class InstanceUtil {
 		try {
 			PortletPreferencesThreadLocal.setStrict(false);
 
-			_localizeRoleNames(companyId);
+			localizeRoleNames(companyId);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -46,11 +46,7 @@ public class InstanceUtil {
 		}
 	}
 
-	private static Locale _getLocale() {
-		return LocaleUtil.fromLanguageId(PortletPropsValues.LANGUAGE_ID);
-	}
-
-	private static void _localizeRoleNames(long companyId) throws Exception {
+	public static void localizeRoleNames(long companyId) throws Exception {
 
 		// Regular roles
 
@@ -169,6 +165,10 @@ public class InstanceUtil {
 				role.getRoleId(), name, titleMap, descriptionMap,
 				RoleConstants.TYPE_SITE_LABEL);
 		}
+	}
+
+	private static Locale _getLocale() {
+		return LocaleUtil.fromLanguageId(PortletPropsValues.LANGUAGE_ID);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(InstanceUtil.class);
