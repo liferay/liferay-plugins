@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+
+<project name="localization-zh-hook" basedir="." default="deploy">
+	<import file="../build-common-hook.xml" />
+
+	<target name="compile">
+		<ant dir="${project.dir}/clients/localization-client" target="jar" inheritAll="false" />
+
+		<copy
+			file="${project.dir}/dist/localization-client-${lp.version}.1.jar"
+			tofile="docroot/WEB-INF/lib/localization-client.jar"
+		/>
+
+		<antcall target="build-common-plugin.compile" />
+	</target>
+</project>

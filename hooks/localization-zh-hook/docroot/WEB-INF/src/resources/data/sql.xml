@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<sql>
+	<batch>
+		<test-sql>
+			<![CDATA[
+				select count(*) from Region where regionCode name = 'ABC'
+			]]>
+		</test-sql>
+		<import-sql>
+			<![CDATA[
+				update Region set name = 'HELLO' where name = 'HELLO';
+				update Region set name = 'WORLD' where name = 'WORLD';
+			]]>
+		</import-sql>
+	</batch>
+</sql>
