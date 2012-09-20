@@ -5,8 +5,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
-		<preferences-owned-by-group>false</preferences-owned-by-group>
-		<maximize-edit>true</maximize-edit>
+		<configuration-action-class>com.liferay.weather.action.ConfigurationActionImpl</configuration-action-class>
 		<css-class-wrapper>weather-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
