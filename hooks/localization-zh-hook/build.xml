@@ -18,7 +18,7 @@
 				includes="html/portlet/directory/user/search_columns.jspf"
 			/>
 		</copy>
-<echo>${app.server.portal.dir}</echo>
+
 		<antcall target="build-common-plugin.compile" />
 	</target>
 </project>
