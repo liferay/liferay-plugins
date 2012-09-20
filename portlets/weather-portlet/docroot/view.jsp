@@ -16,62 +16,69 @@
 
 <%@ include file="/init.jsp" %>
 
-<form name="<portlet:namespace />fm" onSubmit="submitForm(document.<portlet:namespace />fm, 'http://www.weather.com/search/enhancedlocalsearch', false); return false;" target="_blank">
+<c:choose>
+	<c:when test="<%= Validator.isNotNull(apiKey) %>">
+		<form name="<portlet:namespace />fm" onSubmit="submitForm(document.<portlet:namespace />fm, 'http://www.weather.com/search/enhancedlocalsearch', false); return false;" target="_blank">
 
-<table class="lfr-table">
+		<table class="lfr-table">
 
-<%
-for (String zip : zips) {
-	Weather weather = WeatherUtil.getWeather(zip);
+		<%
+		for (String zip : zips) {
+			Weather weather = WeatherUtil.getWeather(apiKey, zip);
 
-	if (weather != null) {
-%>
+			if (weather != null) {
+		%>
 
-		<tr>
-			<td>
-				<a href="http://www.weather.com/search/enhancedlocalsearch?where=<%= HtmlUtil.escapeURL(weather.getZip()) %>" style="font-size: xx-small; font-weight: bold;" target="_blank"><%= HtmlUtil.escape(weather.getZip()) %></a>
-			</td>
-			<td align="right">
-				<span style="font-size: xx-small;">
+				<tr>
+					<td>
+						<a href="http://www.weather.com/search/enhancedlocalsearch?where=<%= HtmlUtil.escapeURL(weather.getZip()) %>" style="font-size: xx-small; font-weight: bold;" target="_blank"><%= HtmlUtil.escape(weather.getZip()) %></a>
+					</td>
+					<td align="right">
+						<span style="font-size: xx-small;">
 
-				<c:if test="<%= fahrenheit %>">
-					<%= weather.getCurrentTemp() %> &deg;F
-				</c:if>
+						<c:if test="<%= fahrenheit %>">
+							<%= weather.getCurrentTemp() %> &deg;F
+						</c:if>
 
-				<c:if test="<%= !fahrenheit %>">
-					<%= Math.round((.5555555555 * (weather.getCurrentTemp() + 459.67)) - 273.15) %> &deg;C
-				</c:if>
+						<c:if test="<%= !fahrenheit %>">
+							<%= Math.round((.5555555555 * (weather.getCurrentTemp() + 459.67)) - 273.15) %> &deg;C
+						</c:if>
 
-				</span>
-			</td>
-			<td align="right">
-				<img alt="" src="<%= weather.getIconURL() %>" />
-			</td>
-		</tr>
+						</span>
+					</td>
+					<td align="right">
+						<img alt="" src="<%= weather.getIconURL() %>" />
+					</td>
+				</tr>
 
-<%
-	}
-}
-%>
+		<%
+			}
+		}
+		%>
 
-</table>
+		</table>
 
-<br />
+		<br />
 
-<liferay-ui:message key="city-or-zip-code" />
+		<liferay-ui:message key="city-or-zip-code" />
 
-<input name="where" size="23" type="text" />
+		<input name="where" size="23" type="text" />
 
-<input type="submit" value="<liferay-ui:message key="search" />" />
+		<input type="submit" value="<liferay-ui:message key="search" />" />
 
-</form>
+		</form>
 
-<br />
+		<br />
 
-<liferay-ui:message key="powered-by" /> <a href="http://www.worldweatheronline.com" target="_blank">World Weather Online</a>
+		<liferay-ui:message key="powered-by" /> <a href="http://www.worldweatheronline.com" target="_blank">World Weather Online</a>
 
-<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
-	<aui:script>
-		Liferay.Util.focusFormField(document.<portlet:namespace />fm.where);
-	</aui:script>
-</c:if>
+		<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+			<aui:script>
+				Liferay.Util.focusFormField(document.<portlet:namespace />fm.where);
+			</aui:script>
+		</c:if>
+	</c:when>
+	<c:otherwise>
+		<liferay-util:include page="/html/portal/portlet_not_setup.jsp" />
+	</c:otherwise>
+</c:choose>
