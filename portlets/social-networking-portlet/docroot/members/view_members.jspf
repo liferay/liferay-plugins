@@ -32,7 +32,9 @@ int total = UserLocalServiceUtil.searchCount(company.getCompanyId(), null, Workf
 
 searchContainer.setTotal(total);
 
-List<User> results = UserLocalServiceUtil.search(company.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED, userParams, searchContainer.getStart(), searchContainer.getEnd(), new UserLoginDateComparator());
+OrderByComparator obc = OrderByComparatorFactoryUtil.create("User_", "logindate", false, "firstname", true, "lastname", true);
+
+List<User> results = UserLocalServiceUtil.search(company.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED, userParams, searchContainer.getStart(), searchContainer.getEnd(), obc);
 
 searchContainer.setResults(results);
 
