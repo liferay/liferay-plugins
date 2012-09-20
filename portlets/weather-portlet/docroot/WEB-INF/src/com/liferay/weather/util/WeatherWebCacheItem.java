@@ -31,7 +31,9 @@ import com.liferay.weather.model.Weather;
  */
 public class WeatherWebCacheItem implements WebCacheItem {
 
-	public WeatherWebCacheItem(String zip) {
+	public WeatherWebCacheItem(String apiKey, String zip) {
+		_apiKey = apiKey;
+
 		_zip = zip;
 
 		if (_zip.equals("Frankfurt/Main")) {
@@ -60,7 +62,7 @@ public class WeatherWebCacheItem implements WebCacheItem {
 		StringBundler sb = new StringBundler(5);
 
 		sb.append("http://free.worldweatheronline.com/feed/weather.ashx?key=");
-		sb.append(PortletPropsValues.WORLD_WEATHER_ONLINE_API_KEY);
+		sb.append(_apiKey);
 		sb.append("&q=");
 		sb.append(HttpUtil.encodeURL(_zip));
 		sb.append("&format=xml");
@@ -87,6 +89,7 @@ public class WeatherWebCacheItem implements WebCacheItem {
 
 	private static final long _REFRESH_TIME = Time.MINUTE * 60;
 
+	private String _apiKey;
 	private String _zip;
 
 }
