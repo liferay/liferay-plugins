@@ -45,7 +45,7 @@ try {
 		String fileName = uploadPortletRequest.getFileName(
 			 "attachment" + i);
 
- 		long size = uploadPortletRequest.getSize("attachment" + i);
+		long size = uploadPortletRequest.getSize("attachment" + i);
 
 		if (file == null) {
 			continue;

@@ -117,7 +117,7 @@
 
 		<finder name="A_F" return-type="Folder">
 			<finder-column name="accountId" />
-			<finder-column name="fullName" />			
+			<finder-column name="fullName" />
 		</finder>
 	</entity>
 	<entity name="Message" local-service="true" remote-service="false">

@@ -27,25 +27,25 @@
 		/>
 
 		<replace file="tmp/WEB-INF/web.xml">
-			<replacefilter 
+			<replacefilter
 				token="org.apache.shindig.common.servlet.GuiceServletContextListener"
-				value="com.liferay.opensocial.shindig.servlet.GuiceServletContextListener" 
+				value="com.liferay.opensocial.shindig.servlet.GuiceServletContextListener"
 			/>
-			<replacefilter 
+			<replacefilter
 				token="org.apache.shindig.gadgets.oauth.OAuthModule"
-				value="com.liferay.opensocial.shindig.oauth.LiferayOAuthModule" 
+				value="com.liferay.opensocial.shindig.oauth.LiferayOAuthModule"
 			/>
-			<replacefilter 
+			<replacefilter
 				token="org.apache.shindig.sample.container.SampleContainerGuiceModule:"
-				value="" 
+				value=""
 			/>
-			<replacefilter 
+			<replacefilter
 				token="org.apache.shindig.sample.shiro.ShiroGuiceModule:"
-				value="" 
+				value=""
 			/>
-			<replacefilter 
+			<replacefilter
 				token="org.apache.shindig.social.sample.SampleModule"
-				value="com.liferay.opensocial.shindig.guice.LiferayModule" 
+				value="com.liferay.opensocial.shindig.guice.LiferayModule"
 			/>
 		</replace>
 
@@ -77,21 +77,21 @@
 		<!-- Convert Mappings for Servlet 2.4 Compliance -->
 
 		<replace file="tmp/WEB-INF/web.xml">
-			<replacefilter 
-				token="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" 
-				value="http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" 
+			<replacefilter
+				token="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+				value="http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
 			/>
-			<replacefilter 
-				token="http://java.sun.com/xml/ns/javaee" 
-				value="http://java.sun.com/xml/ns/j2ee" 
+			<replacefilter
+				token="http://java.sun.com/xml/ns/javaee"
+				value="http://java.sun.com/xml/ns/j2ee"
 			/>
 			<replacefilter
 				token="id=&quot;Shindig&quot;"
 				value=""
 			/>
-			<replacefilter 
-				token="version=&quot;2.5&quot;" 
-				value="version=&quot;2.4&quot;" 
+			<replacefilter
+				token="version=&quot;2.5&quot;"
+				value="version=&quot;2.4&quot;"
 			/>
 		</replace>
 
@@ -117,16 +117,16 @@
 		/>
 
 		<replace file="tmp/WEB-INF/web.xml" propertyFile="docroot/WEB-INF/web.xml.properties">
-			<replacefilter 
-				token="@AUTH_FILTER_TOKEN@" 
-				property="auth.filter.replace" 
+			<replacefilter
+				token="@AUTH_FILTER_TOKEN@"
+				property="auth.filter.replace"
 			/>
-			<replacefilter 
-				token="@JSON_RPC_SERVLET_TOKEN@" 
+			<replacefilter
+				token="@JSON_RPC_SERVLET_TOKEN@"
 				property="json.rpc.servlet.replace"
 			/>
 			<replacefilter
-				token="@REST_API_SERVLET_TOKEN@" 
+				token="@REST_API_SERVLET_TOKEN@"
 				property="rest.api.servlet.replace"
 			/>
 		</replace>
