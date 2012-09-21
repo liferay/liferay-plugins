@@ -53,6 +53,7 @@ import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -292,6 +293,13 @@ public class CalendarPortlet extends MVCPortlet {
 					reminders[1], remindersType[1], status, serviceContext);
 			}
 		}
+
+		String redirect = ParamUtil.getString(actionRequest, "redirect");
+
+		redirect = HttpUtil.setParameter(
+			redirect, actionResponse.getNamespace() + "calendarId", calendarId);
+
+		actionRequest.setAttribute(WebKeys.REDIRECT, redirect);
 	}
 
 	public void updateCalendarResource(
