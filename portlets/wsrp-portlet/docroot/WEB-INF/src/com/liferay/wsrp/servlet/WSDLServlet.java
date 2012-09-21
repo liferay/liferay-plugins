@@ -17,6 +17,7 @@ package com.liferay.wsrp.servlet;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Http;
@@ -68,13 +69,11 @@ public class WSDLServlet extends HttpServlet {
 
 		ServletContext servletContext = getServletContext();
 
-		for (String curPath : _PATHS) {
-			if (path.equals(curPath)) {
-				String content = StringUtil.read(
-					servletContext.getResourceAsStream("/WEB-INF/wsdl" + path));
+		if (ArrayUtil.contains(_PATHS, path)) {
+			String content = StringUtil.read(
+				servletContext.getResourceAsStream("/WEB-INF/wsdl" + path));
 
-				return replaceLocations(request, content);
-			}
+			return replaceLocations(request, content);
 		}
 
 		String url = request.getRequestURL().toString();
