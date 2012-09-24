@@ -27,17 +27,17 @@ import java.util.Date;
 public class AkismetDataLocalServiceImpl
 	extends AkismetDataLocalServiceBaseImpl {
 
-	public void clearAkismetData(Date modifiedDate) throws SystemException {
-		akismetDataPersistence.removeByModifiedDate(modifiedDate);
+	public void deleteAkismetData(Date modifiedDate) throws SystemException {
+		akismetDataPersistence.removeByLtModifiedDate(modifiedDate);
 	}
 
-	public void deleteMessageAkismetData(long mbMessageId)
+	public void deleteMBMessageAkismetData(long mbMessageId)
 		throws PortalException, SystemException {
 
 		akismetDataPersistence.removeByMBMessageId(mbMessageId);
 	}
 
-	public AkismetData fetchAkismetData(long mbMessageId)
+	public AkismetData fetchMBMessageAkismetData(long mbMessageId)
 		throws SystemException {
 
 		return akismetDataPersistence.fetchByMBMessageId(mbMessageId);

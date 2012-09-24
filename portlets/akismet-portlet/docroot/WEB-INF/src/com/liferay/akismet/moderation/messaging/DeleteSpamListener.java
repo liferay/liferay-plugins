@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.akismet.messaging;
+package com.liferay.akismet.moderation.messaging;
 
-import com.liferay.akismet.util.PortletPropsValues;
+import com.liferay.akismet.util.AkismetUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Property;
@@ -24,47 +24,41 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
-import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.messageboards.NoSuchMessageException;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 
-import java.util.Date;
 import java.util.List;
 
 /**
  * @author Amos Fong
  */
-public class ClearSpamMessageListener extends BaseMessageListener {
+public class DeleteSpamListener extends BaseMessageListener {
 
-	protected void clearSpamMessages(long companyId)
+	protected void deleteSpamMessages(long companyId)
 		throws PortalException, SystemException {
-
-		int retainSpamTime = PortletPropsValues.RETAIN_SPAM_TIME;
-
-		Date clearBeforeDate = new Date(
-			System.currentTimeMillis() - (retainSpamTime * Time.DAY));
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			MBMessage.class, PortalClassLoaderUtil.getClassLoader());
 
-		Property property = PropertyFactoryUtil.forName("status");
+		Property statusProperty = PropertyFactoryUtil.forName("status");
 
-		dynamicQuery.add(property.eq(WorkflowConstants.STATUS_DENIED));
+		dynamicQuery.add(statusProperty.eq(WorkflowConstants.STATUS_DENIED));
 
-		property = PropertyFactoryUtil.forName("statusDate");
+		Property statusDateProperty = PropertyFactoryUtil.forName("statusDate");
 
-		dynamicQuery.add(property.lt(clearBeforeDate));
+		dynamicQuery.add(
+			statusDateProperty.lt(AkismetUtil.getRetainSpamTime()));
 
-		List<MBMessage> messages = MBMessageLocalServiceUtil.dynamicQuery(
+		List<MBMessage> mbMessages = MBMessageLocalServiceUtil.dynamicQuery(
 			dynamicQuery);
 
-		for (MBMessage message : messages) {
+		for (MBMessage mbMessage : mbMessages) {
 			try {
 				MBMessageLocalServiceUtil.deleteMBMessage(
-					message.getMessageId());
+					mbMessage.getMessageId());
 			}
 			catch (NoSuchMessageException nsme) {
 			}
@@ -76,7 +70,7 @@ public class ClearSpamMessageListener extends BaseMessageListener {
 		long[] companyIds = PortalUtil.getCompanyIds();
 
 		for (long companyId : companyIds) {
-			clearSpamMessages(companyId);
+			deleteSpamMessages(companyId);
 		}
 	}
 

@@ -12,32 +12,23 @@
  * details.
  */
 
-package com.liferay.akismet.messaging;
+package com.liferay.akismet.akismet.messaging;
 
 import com.liferay.akismet.service.AkismetDataLocalServiceUtil;
-import com.liferay.akismet.util.PortletPropsKeys;
-import com.liferay.akismet.util.PrefsPortletPropsUtil;
+import com.liferay.akismet.util.AkismetUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.util.PortalUtil;
-
-import java.util.Date;
 
 /**
  * @author Amos Fong
  */
-public class ClearAkismetDataMessageListener extends BaseMessageListener {
+public class DeleteAkismetDataMessageListener extends BaseMessageListener {
 
-	protected void clearAkismetData(long companyId) throws SystemException {
-		int allowReportMessageTime = PrefsPortletPropsUtil.getInteger(
-			companyId, PortletPropsKeys.AKISMET_ALLOW_REPORT_MESSAGE_TIME);
-
-		Date clearBeforeDate = new Date(
-			System.currentTimeMillis() - (allowReportMessageTime * Time.DAY));
-
-		AkismetDataLocalServiceUtil.clearAkismetData(clearBeforeDate);
+	protected void deleteAkismetData(long companyId) throws SystemException {
+		AkismetDataLocalServiceUtil.deleteAkismetData(
+			AkismetUtil.getRetainSpamTime());
 	}
 
 	@Override
@@ -45,7 +36,7 @@ public class ClearAkismetDataMessageListener extends BaseMessageListener {
 		long[] companyIds = PortalUtil.getCompanyIds();
 
 		for (long companyId : companyIds) {
-			clearAkismetData(companyId);
+			deleteAkismetData(companyId);
 		}
 	}
 

@@ -15,18 +15,18 @@
 package com.liferay.akismet.hook.listeners;
 
 import com.liferay.akismet.service.AkismetDataLocalServiceUtil;
-import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portlet.messageboards.model.MBMessage;
 
 /**
  * @author Amos Fong
  */
-public class MBMessageListener extends BaseModelListener<MBMessage> {
+public class AkismetMBMessageListener extends BaseModelListener<MBMessage> {
 
-	public void onAfterRemove(MBMessage message) throws ModelListenerException {
+	@Override
+	public void onAfterRemove(MBMessage message) {
 		try {
-			AkismetDataLocalServiceUtil.deleteMessageAkismetData(
+			AkismetDataLocalServiceUtil.deleteMBMessageAkismetData(
 				message.getMessageId());
 		}
 		catch (Exception e) {

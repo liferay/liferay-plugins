@@ -22,7 +22,7 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
-	public static final int RETAIN_SPAM_TIME = GetterUtil.getInteger(
-		PortletProps.get(PortletPropsKeys.RETAIN_SPAM_TIME));
+	public static final int AKISMET_RETAIN_SPAM_TIME = GetterUtil.getInteger(
+		PortletProps.get(PortletPropsKeys.AKISMET_RETAIN_SPAM_TIME));
 
 }

@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.User;
@@ -36,6 +37,7 @@ import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 
 import java.io.IOException;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,6 +45,12 @@ import java.util.Map;
  * @author Amos Fong
  */
 public class AkismetUtil {
+
+	public static Date getRetainSpamTime() {
+		return new Date(
+			System.currentTimeMillis() -
+				(PortletPropsValues.AKISMET_RETAIN_SPAM_TIME * Time.DAY));
+	}
 
 	public static boolean isDiscussionsEnabled(long companyId)
 		throws SystemException {
@@ -71,7 +79,7 @@ public class AkismetUtil {
 			PrefsPortletPropsUtil.getString(
 				companyId, PortletPropsKeys.AKISMET_API_KEY));
 		sb.append(StringPool.PERIOD);
-		sb.append(AkismetConstants.REST_URL);
+		sb.append(AkismetConstants.URL_REST);
 		sb.append(AkismetConstants.PATH_CHECK_SPAM);
 
 		String location = sb.toString();
@@ -95,8 +103,8 @@ public class AkismetUtil {
 	public static void submitHam(long mbMessageId)
 		throws PortalException, SystemException {
 
-		AkismetData akismetData = AkismetDataLocalServiceUtil.fetchAkismetData(
-			mbMessageId);
+		AkismetData akismetData =
+			AkismetDataLocalServiceUtil.fetchMBMessageAkismetData(mbMessageId);
 
 		if (akismetData == null) {
 			return;
@@ -128,7 +136,7 @@ public class AkismetUtil {
 			PrefsPortletPropsUtil.getString(
 				companyId, PortletPropsKeys.AKISMET_API_KEY));
 		sb.append(StringPool.PERIOD);
-		sb.append(AkismetConstants.REST_URL);
+		sb.append(AkismetConstants.URL_REST);
 		sb.append(AkismetConstants.PATH_SUBMIT_HAM);
 
 		String location = sb.toString();
@@ -145,8 +153,8 @@ public class AkismetUtil {
 	public static void submitSpam(long mbMessageId)
 		throws PortalException, SystemException {
 
-		AkismetData akismetData = AkismetDataLocalServiceUtil.fetchAkismetData(
-			mbMessageId);
+		AkismetData akismetData =
+			AkismetDataLocalServiceUtil.fetchMBMessageAkismetData(mbMessageId);
 
 		if (akismetData == null) {
 			return;
@@ -178,7 +186,7 @@ public class AkismetUtil {
 			PrefsPortletPropsUtil.getString(
 				companyId, PortletPropsKeys.AKISMET_API_KEY));
 		sb.append(StringPool.PERIOD);
-		sb.append(AkismetConstants.REST_URL);
+		sb.append(AkismetConstants.URL_REST);
 		sb.append(AkismetConstants.PATH_SUBMIT_SPAM);
 
 		String location = sb.toString();
@@ -196,7 +204,7 @@ public class AkismetUtil {
 		throws PortalException, SystemException {
 
 		String location =
-			Http.HTTP_WITH_SLASH + AkismetConstants.REST_URL +
+			Http.HTTP_WITH_SLASH + AkismetConstants.URL_REST +
 				AkismetConstants.PATH_VERIFY;
 
 		Map<String, String> parts = new HashMap<String, String>();

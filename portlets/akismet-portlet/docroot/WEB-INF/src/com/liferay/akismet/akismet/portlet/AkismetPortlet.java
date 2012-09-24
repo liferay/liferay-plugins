@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.akismet.portlet.akismet;
+package com.liferay.akismet.akismet.portlet;
 
 import com.liferay.akismet.util.AkismetUtil;
 import com.liferay.akismet.util.PortletPropsKeys;
@@ -42,28 +42,28 @@ public class AkismetPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		boolean messageBoardsEnabled = ParamUtil.getBoolean(
-			actionRequest, "messageBoardsEnabled");
+		String apiKey = ParamUtil.getString(actionRequest, "apiKey");
 		boolean discussionsEnabled = ParamUtil.getBoolean(
 			actionRequest, "discussionsEnabled");
-		String apiKey = ParamUtil.getString(actionRequest, "apiKey");
-		int allowReportMessageTime = ParamUtil.getInteger(
-			actionRequest, "allowReportMessageTime");
+		boolean messageBoardsEnabled = ParamUtil.getBoolean(
+			actionRequest, "messageBoardsEnabled");
+		int reportableTime = ParamUtil.getInteger(
+			actionRequest, "reportableTime");
 
 		PortletPreferences preferences =
 			PrefsPortletPropsUtil.getPortletPreferences(
 				themeDisplay.getCompanyId());
 
+		preferences.setValue(PortletPropsKeys.AKISMET_API_KEY, apiKey);
+		preferences.setValue(
+			PortletPropsKeys.AKISMET_DISCUSSIONS_CHECK_ENABLED,
+			String.valueOf(discussionsEnabled));
 		preferences.setValue(
 			PortletPropsKeys.AKISMET_MESSAGE_BOARDS_CHECK_ENABLED,
 			String.valueOf(messageBoardsEnabled));
 		preferences.setValue(
-			PortletPropsKeys.AKISMET_DISCUSSIONS_CHECK_ENABLED,
-			String.valueOf(discussionsEnabled));
-		preferences.setValue(PortletPropsKeys.AKISMET_API_KEY, apiKey);
-		preferences.setValue(
-			PortletPropsKeys.AKISMET_ALLOW_REPORT_MESSAGE_TIME,
-			String.valueOf(allowReportMessageTime));
+			PortletPropsKeys.AKISMET_REPORTABLE_TIME,
+			String.valueOf(reportableTime));
 
 		preferences.store();
 

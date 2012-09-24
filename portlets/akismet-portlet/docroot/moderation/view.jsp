@@ -21,9 +21,8 @@ String tabs1 = ParamUtil.getString(request, "tabs1");
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
-portletURL.setWindowState(WindowState.MAXIMIZED);
-
 portletURL.setParameter("tabs1", tabs1);
+portletURL.setWindowState(WindowState.MAXIMIZED);
 
 request.setAttribute("view.jsp-portletURL", portletURL);
 %>

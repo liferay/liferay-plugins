@@ -25,7 +25,7 @@
 
 		<!-- Finder methods -->
 
-		<finder name="ModifiedDate" return-type="Collection">
+		<finder name="LtModifiedDate" return-type="Collection">
 			<finder-column name="modifiedDate" comparator="&lt;" />
 		</finder>
 		<finder name="MBMessageId" return-type="AkismetData">
