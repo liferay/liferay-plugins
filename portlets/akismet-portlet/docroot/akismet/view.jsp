@@ -22,13 +22,13 @@
 	<liferay-ui:error key="apiKeyError" message="unable-to-validate-akismet-api-key" />
 
 	<aui:fieldset>
-		<aui:input label="enabled-for-message-boards" name="messageBoardsEnabled" type="checkbox" value='<%= AkismetUtil.isMessageBoardsEnabled(company.getCompanyId()) %>' />
+		<aui:input label="enabled-for-message-boards" name="messageBoardsEnabled" type="checkbox" value="<%= AkismetUtil.isMessageBoardsEnabled(company.getCompanyId()) %>" />
 
-		<aui:input label="enabled-for-discussions" name="discussionsEnabled" type="checkbox" value='<%= AkismetUtil.isDiscussionsEnabled(company.getCompanyId()) %>' />
+		<aui:input label="enabled-for-discussions" name="discussionsEnabled" type="checkbox" value="<%= AkismetUtil.isDiscussionsEnabled(company.getCompanyId()) %>" />
 
 		<aui:input label="api-key" name="apiKey" type="text" value="<%= PrefsPortletPropsUtil.getString(company.getCompanyId(), PortletPropsKeys.AKISMET_API_KEY) %>" />
 
-		<aui:input label="reportable-time" helpMessage="reportable-time-help" name="reportableTime" type="text" value='<%= PrefsPortletPropsUtil.getString(company.getCompanyId(), PortletPropsKeys.AKISMET_REPORTABLE_TIME) %>' />
+		<aui:input helpMessage="reportable-time-help" label="reportable-time" name="reportableTime" type="text" value="<%= PrefsPortletPropsUtil.getString(company.getCompanyId(), PortletPropsKeys.AKISMET_REPORTABLE_TIME) %>" />
 
 		<aui:button-row>
 			<aui:button type="submit" />
