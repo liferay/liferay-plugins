@@ -25,8 +25,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
-import com.liferay.portal.model.Company;
-import com.liferay.portal.service.CompanyLocalServiceUtil;
+import com.liferay.portal.util.PortalUtil;
 
 import java.io.InputStream;
 
@@ -61,8 +60,10 @@ public class LocalizationServletContextListener
 	protected void doPortalInit() throws Exception {
 		importSQL();
 
-		for (Company company : CompanyLocalServiceUtil.getCompanies()) {
-			InstanceUtil.localizeRoleNames(company.getCompanyId());
+		long[] companyIds = PortalUtil.getCompanyIds();
+
+		for (long companyId : companyIds) {
+			InstanceUtil.localizeRoleNames(companyId);
 		}
 	}
 
