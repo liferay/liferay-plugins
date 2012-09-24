@@ -26,8 +26,6 @@ import com.liferay.weather.model.Weather;
 public class WeatherUtil {
 
 	public static Weather getWeather(String apiKey, String zip) {
-		WebCacheItem wci = new WeatherWebCacheItem(apiKey, zip);
-
 		StringBundler sb = new StringBundler(5);
 
 		sb.append(WeatherUtil.class.getName());
@@ -37,6 +35,8 @@ public class WeatherUtil {
 		sb.append(zip);
 
 		String key = sb.toString();
+
+		WebCacheItem wci = new WeatherWebCacheItem(apiKey, zip);
 
 		try {
 			return (Weather)WebCachePoolUtil.get(key, wci);
