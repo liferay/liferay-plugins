@@ -70,7 +70,7 @@ public class AkismetEditMessageAction extends BaseStrutsPortletAction {
 				throw pe;
 			}
 			catch (Exception e) {
-				SessionErrors.add(actionRequest, e.getClass().getName());
+				SessionErrors.add(actionRequest, e.getClass());
 			}
 		}
 		else {
