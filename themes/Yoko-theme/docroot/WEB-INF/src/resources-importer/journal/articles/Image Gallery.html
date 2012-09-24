@@ -1,0 +1,50 @@
+<p>
+	A gallery of images found by <a>Brandon Pettit</a> of awesome landscapes
+</p>
+
+<div class="gallery" id="gallery1">
+
+	<a href="http://images2.fanpop.com/images/photos/6700000/Landscape-national-geographic-6761356-1024-768.jpg"> <img alt="Awesome Landscape 1" class="picture" src="http://images2.fanpop.com/images/photos/6700000/Landscape-national-geographic-6761356-1024-768.jpg" /> </a> 
+
+	<a href="http://3.bp.blogspot.com/_OPyD9vfIhCs/S9dPh1AKEHI/AAAAAAAAA3E/31P3MphhM9o/s1600/landscape-wallpapers-rezolucija-ekrana.jpg"> <img alt="Awesome Landscape 2" class="picture" src="http://3.bp.blogspot.com/_OPyD9vfIhCs/S9dPh1AKEHI/AAAAAAAAA3E/31P3MphhM9o/s1600/landscape-wallpapers-rezolucija-ekrana.jpg" /> </a> 
+
+	<a href="http://www.winwallpapers.net/w1/2010/05/Landscape-Pictures-31.jpg"> <img alt="Awesome Landscape 3" class="picture" src="http://www.winwallpapers.net/w1/2010/05/Landscape-Pictures-31.jpg" /> </a>
+
+	<a href="http://1.bp.blogspot.com/-3qpUvARrVsw/T9AK7HbqNUI/AAAAAAAAEtQ/nucth4Fh_PA/s1600/awesome-landscape-wallpapers-5.jpg"> <img alt="Awesome Landscape 4" class="picture" src="http://1.bp.blogspot.com/-3qpUvARrVsw/T9AK7HbqNUI/AAAAAAAAEtQ/nucth4Fh_PA/s1600/awesome-landscape-wallpapers-5.jpg" /> </a> 
+
+	<a href="http://i978.photobucket.com/albums/ae270/Caniotherapper/3D/Awesome-3d-Landscape.jpg"> <img alt="Awesome Landscape 5" class="picture" src="http://i978.photobucket.com/albums/ae270/Caniotherapper/3D/Awesome-3d-Landscape.jpg" /> </a> 
+
+	<a href="http://thingstolookathigh.com/wp-content/uploads/2011/03/non-earth-landscape.jpg"> <img alt="Awesome Landscape 6" class="picture" src="http://thingstolookathigh.com/wp-content/uploads/2011/03/non-earth-landscape.jpg" /> </a>
+
+</div>
+
+<p>
+	This gallery contains <a>6 photos</a>
+</p>
+	
+<script type="text/javascript">
+
+AUI().ready('aui-image-viewer-base', function(A) {
+
+	var imageViewer1 = new A.ImageViewer({
+		links: '#gallery1 a',
+		caption: 'Awesome Landscapes',
+		captionFromTitle: true,
+		preloadAllImages: true,
+		showInfo: true,
+
+		after: {
+			anim: function(event) {
+			},
+			request: function(event) {
+			},
+			load: function(event) {
+			}
+		}
+	})
+	.render();
+
+	A.one('#log').html('Ready, click on the images.');
+});
+
+</script>

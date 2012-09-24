@@ -1,0 +1,372 @@
+@import "compass";
+
+body, html {
+	background-color: #ECECEC; 
+	color: #008FAF; 
+	font: normal 12px Arial, Helvetica, sans-serif;
+	padding-bottom: 0;
+}
+
+#content {
+	border-bottom: 1px solid #DDD;
+}
+
+p {
+	color: #777;
+	font: 16px Arial, Helvetica, sans-serif;
+	margin: 40px 0 15px 0;
+	width: 74.5%;
+}
+
+a {
+	color: #008FAF;
+	text-decoration: none;
+
+	&:hover {
+		color: #777;
+		text-decoration: underline;
+	}
+}
+
+h2 {
+	font-size: 20px;
+
+	a:hover {
+		text-decoration: none;
+	}
+}
+
+.active-area-proxy, .aui-dialog-content, .aui-dialog .yui3-widget-hd, .aui-paginator-link, button, .entry-display-style .entry-thumbnail img, input[type="button"], input[type="reset"], input[type="submit"], .lfr-actions, .lfr-api-results, .lfr-header-row .aui-toolbar-only, .lfr-menu-list ul, .lfr-translation-manager, .lfr-translation-manager-translation, .modify-pages .delete-tab, .portlet-image-gallery-display .image-thumbnail img, .portlet-journal .lfr-table .journal-metadata, .portlet-search .search-facet .facet-value, .rule-group-instance-container .rule-group-instance, .select-documents, .select-files, .staging-icon-menu-container .staging-icon-menu.lfr-actions .lfr-trigger strong a, .taglib-logo-selector .lfr-change-logo.show-background, .taglib-ratings.stars:hover, .taglib-ratings.stars:hover .liferay-rating-vote, .tags-search-combobox .aui-field-input-text {
+	border-radius: 0;
+	letter-spacing: 1px;
+}
+
+#wrapper {
+	background-color: #FFF; 
+	color: #008FAF;
+	margin: 15px auto 15px auto;
+	padding: 25px;
+	position: relative;
+	width: 1100px; 
+}
+
+#footer {
+	color: #777;
+	padding-top: 15px;
+
+	p {
+		font-size: 12px;
+		margin: 15px 0 0;
+		padding: 0;
+		width: none;
+	}
+}
+
+.journal-content-article p {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+.portlet-column {
+	margin: 0 0 40px;
+
+	.portlet-topper {
+		text-align: center;
+	}
+}
+
+.aui-w15 {
+	input {
+		display: block;
+		width: 100%;
+	}
+
+	.portlet-title-text {
+		color: #777;
+		font-size: 15px;
+		text-transform: uppercase;
+	}
+}
+
+.portlet-column-only {
+	.portlet-boundary {
+		margin: 20px 0 0;
+		padding: 0;
+		width: 1102px;
+	}
+
+	.portlet-content {
+		padding: 0 10px 10px 0;
+	}
+}
+
+.icon {
+	display: none;
+}
+
+.icon-actions .icon {
+	display: inline-block;
+}
+
+.portlet-topper-toolbar .icon {
+	display: inline-block;
+}
+
+.portlet-title-text {
+	color: #008FAF;
+	font-size: 20px;
+
+		&:hover {
+		color: #777;
+	}
+}
+
+.portlet-body {
+	color: #777;
+	font: 15px Arial, Helvetica, sans-serif;
+}
+
+input[type="text"] {
+	background-color: #F0F0F0;
+	background-image: none;
+	color: #000;
+	font: normal 11px Arial, Helvetica, sans-serif;
+    padding: 6px 5px;
+}
+
+input.focus, textarea.focus {
+	background-color: #FFF;
+	border: 1px solid #D5D5D5;
+	color: #000;
+}
+
+.aui-field-input-text, button, input[type="button"], input[type="file"], input[type="password"], input[type="reset"], input[type="submit"], select, .textarea, textarea {
+	background-color: #777;
+	background-image: none;
+	color: #FFF;
+	font: normal 11px Arial, Helvetica, sans-serif;
+	padding: 6px 5px;
+	text-transform: uppercase;
+}
+
+input [type="submit"] {
+	background-color: #777;
+	color: #FFF;
+}
+
+button:hover, input[type="button"]:hover, input[type="file"]:hover, input[type="password"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, select:hover {
+	background-image: none!important;
+	background-color: #008FAF;
+	color: #FFF;
+	font-weight: none;
+}
+
+.aui-field-input-text {
+	background-color: none;
+	text-transform: none;
+}
+
+.aui-tab-label {
+	color: #FFF;
+
+	&:hover {
+		color: #FFF;
+	}
+}
+
+.aui-tab-active .aui-tab-label {
+	background-color: #008FAF;
+	background-image: none;
+
+	&:hover {
+		color: #FFF;
+		background-color: #008FAF;
+	}
+}
+
+.aui-tab-content, .aui-tabview-list {
+	background-color: #D5D5D5;
+	background-image: none;
+}
+
+.portlet-boundary {
+	border-bottom: 1px solid #D5D5D5;
+	margin: 20px 0 40px 0;
+	padding: 20px 0 40px 0; 
+}
+
+.portlet-dockbar {
+	border-width: 0;
+	margin: 0;
+	padding: 0;
+}
+
+.separator {
+	float: left;
+	height: 40px
+}
+
+.portlet-blogs {
+	.entry-date {
+		background-image: none;
+		color: #008FAF;
+		float: left;
+		padding-left: 0;
+		
+			&:hover {
+				color: #777;
+		}
+	}
+
+	.entry-author {
+		float: left;
+	}
+
+	p {
+		float: left;
+	}	
+}
+
+.subscribe a .taglib-text {
+	background-color: #464646;
+	bottom: 0px;
+	color: #CCC;
+	font: 13px/28px Helvetica Neue, sans-serif;
+	padding: 0 10px 0 8px;
+	position: fixed; 
+	right: 13px;
+	text-decoration: none;
+}
+
+.entry-tags {
+	float: left;
+}
+
+.aui-button-input {
+	background-image: none;
+	border-radius: none;
+	color: #FFF;
+
+	&:hover {
+		background-color: #008FAF;
+	}
+}
+
+.taglib-calendar .calendar-current-day a {
+	color: #008FAF;
+}
+
+#skipToContent {
+	display: none;
+}
+
+#navigation {
+	ul {
+		list-style: none;
+		position: absolute;
+		right: 4px;
+		top: 20px;
+		
+		a {
+			text-decoration: none;
+		}
+	}
+
+	h1 {
+		display: none;
+	}
+	
+	li {
+		color: #008FAF;
+		float: left;
+		font: 13px Arial, Helvetica, Sans-serif;
+		text-decoration: none;
+		margin: 0;
+		padding: 9px 14px;
+		text-transform: uppercase;
+	
+		&:hover {
+			color: #777;
+			background-color: #ECECEC;
+			text-decoration: none;
+		}
+	}
+}
+
+.site-title img {
+	border: 2px solid #FFF;
+	display: block;
+	height: 70px;
+	margin: 0;
+	text-align: left;
+	width: 193px;
+
+	&:hover {
+		border: 2px solid #008FAF;
+	}
+}
+
+.child-menu {
+	display: none;
+}
+
+#siteLogo {
+	color: #777;
+	display: block;
+	font: italic normal 17px Times, serif;
+	margin: 10px 0 0 0;
+	text-align: center;
+}
+
+.site-title {
+	margin: 0;
+}
+
+.page-title {
+	display: none;
+}
+
+#breadcrumbs {
+	h1 {
+		display: none;
+	}
+
+	ul {
+		display: none;
+	}
+}
+
+.gallery {
+	a {
+		height: 90px;
+		width: 150px;
+	}
+
+	p {
+		&:first-child {
+			margin: -15px 0 25px 0;
+		}
+
+		&:last-child {
+			margin: 25px 0 25px 0;
+		}
+	}
+		
+	.picture {
+		border: 2px solid #CFCFCF;
+		height: 90px;
+		margin: 20px 20px 20px 15px;
+		width: 150px;
+	}
+}
+
+/* Extras */
+
+.subscribe a .taglib-text {
+	@include box-shadow(0 -1px 5px)
+} 
+
+.aui-tab-active, .aui-field-input-text, .aui-tab-label, .aui-tab-label:hover, button, input[type="button"], input[type="file"], input[type="password"], input[type="reset"], input[type="submit"], input[type="text"], select, textarea, .textarea {
+	@include text-shadow(none)
+}

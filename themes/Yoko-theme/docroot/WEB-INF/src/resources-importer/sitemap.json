@@ -1,0 +1,482 @@
+{
+	"layouts": [
+		{ 
+			"name": "Home",
+			"title": "Home",
+			"friendlyURL": "/home",
+			"layoutTemplateId": "1_3_columns",
+			"columns": [
+				[
+					{
+					"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Header Image.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "",
+							"portletSetupUseCustomTitle": "true"
+						}
+					}
+				],
+				[
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Lorem Ipsum Long.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "Welcome to Liferay",
+							"portletSetupUseCustomTitle": "true",
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Image Gallery.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "Image Gallery",
+							"portletSetupUseCustomTitle": "true",
+						}
+					}
+				],
+				[
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Lorem Ipsum Long.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "Liferay Lorem",
+							"portletSetupUseCustomTitle": "true",
+						}
+					}
+				],
+				[
+					{
+						"portletId": "3",
+						"portletPreferences": {
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "Search",
+							"portletSetupUseCustomTitle": "true",
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Lorem Ipsum Long.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "The Ipsum of Life",
+							"portletSetupUseCustomTitle": "true",
+						}
+					}
+				],
+			],
+		},
+		{
+			"name": "About",
+			"title": "About Yoko",
+			"friendlyURL": "/about",
+			"columns": [
+				[
+					{
+					"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Header Image.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "",
+							"portletSetupUseCustomTitle": "true"
+						}
+					}
+				],
+				[
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "About Yoko.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "About Yoko",
+							"portletSetupUseCustomTitle": "true",
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "About B-ran.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "About B-ran",
+							"portletSetupUseCustomTitle": "true",
+						}
+					},
+				],
+				[
+					{
+						"portletId": "47",
+						"portletPreferences": {
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "Welcome",
+							"portletSetupUseCustomTitle": "true",
+						}
+					},
+					{
+						"portletId": "71",
+						"portletPreferences": {
+							"bulletStyle": "Dots",
+							"displayStyle": "[custom]",
+							"headerType": "none",
+							"nestedChildren": "1",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "Secondary Nav",
+							"portletSetupUseCustomTitle": "true",
+							"rootLayoutLevel": "0",
+							"rootLayoutType": "relative",	
+						}
+					},
+				],
+				[
+					{
+						"portletId": "3",
+						"portletPreferences": {
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "Search",
+							"portletSetupUseCustomTitle": "true",
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Lorem Ipsum Long.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "About Liferay Lorem",
+							"portletSetupUseCustomTitle": "true",
+							
+						}
+					},
+				]
+			],
+			"layouts": [
+				{
+					"name": "Secondary Nav 1",
+					"friendlyURL": "/secondary-nav-1",
+					"columns": [
+						[
+							{
+							"portletId": "56",
+								"portletPreferences": {
+									"articleId": "Header Image.html",
+									"groupId": "${groupId}",
+									"portletSetupShowBorders": "true",
+									"portletSetupTitle_en_US": "",
+									"portletSetupUseCustomTitle": "true"
+								}
+							}
+						],
+						["Lorem Ipsum Long.html"]
+					]
+				}
+			]
+		},
+		{
+			"name": "Bible Page",
+			"title": "Bible",
+			"friendlyURL": "/Bible Page",
+			"columns": [
+				[
+					{
+					"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Header Image.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "",
+							"portletSetupUseCustomTitle": "true"
+						}
+					}
+				],
+				[
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Bible History.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "The Bible",
+							"portletSetupUseCustomTitle": "true",
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Lorem Ipsum Long.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "Theology",
+							"portletSetupUseCustomTitle": "true",
+						}
+					}
+				],
+				[
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Lorem Ipsum Long.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "The New Testament",
+							"portletSetupUseCustomTitle": "true",
+						}
+					}
+				],
+				[
+					{
+						"portletId": "3",
+						"portletPreferences": {
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "Search",
+							"portletSetupUseCustomTitle": "true",
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Lorem Ipsum Long.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "John Calvin",
+							"portletSetupUseCustomTitle": "true",
+						}
+					}
+				],
+			]
+		},
+		{
+			"name": "Page 1",
+			"title": "Page 1",
+			"friendlyURL": "/Page 1",
+			"columns": [
+				[
+					{
+					"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Header Image.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "",
+							"portletSetupUseCustomTitle": "true"
+						}
+					}
+				],
+				[
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Lorem Ipsum Long.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "Page 1 Content",
+							"portletSetupUseCustomTitle": "true",
+						}
+					},
+					{
+						"portletId": "8",
+						"portletPreferences": {
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "Calender",
+							"portletSetupUseCustomTitle": "true",
+						}
+					}
+				],
+				[
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Lorem Ipsum Long.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "This is Cool!",
+							"portletSetupUseCustomTitle": "true",
+						}
+					}
+				],
+				[
+					{
+						"portletId": "3",
+						"portletPreferences": {
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "Search",
+							"portletSetupUseCustomTitle": "true",
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Lorem Ipsum Long.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "Liferay Page",
+							"portletSetupUseCustomTitle": "true",
+						}
+					}
+				],
+			]
+		},
+		{
+			"name": "Page 2",
+			"title": "Page 2",
+			"friendlyURL": "/Page 2",
+			"columns": [
+				[
+					{
+					"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Header Image.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "",
+							"portletSetupUseCustomTitle": "true"
+						}
+					}
+				],
+				[
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Lorem Ipsum Long.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "Information on Page",
+							"portletSetupUseCustomTitle": "true",
+						}
+					},
+					{
+						"portletId": "33",
+						"portletPreferences": {
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "Blog Posts",
+							"portletSetupUseCustomTitle": "true",
+						}
+					}
+				],
+				[
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Lorem Ipsum Long.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "The Cool-ness of Page 2",
+							"portletSetupUseCustomTitle": "true",
+						}
+					}
+				],
+				[
+					{
+						"portletId": "3",
+						"portletPreferences": {
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "Search",
+							"portletSetupUseCustomTitle": "true",
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Lorem Ipsum Long.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "Why Search?",
+							"portletSetupUseCustomTitle": "true",
+						}
+					}
+				],
+			]
+		},
+		{
+			"name": "Readability",
+			"title": "Readability",
+			"friendlyURL": "/Readability",
+			"columns": [
+				[
+					{
+					"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Header Image.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "",
+							"portletSetupUseCustomTitle": "true"
+						}
+					}
+				],
+				[
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Lorem Ipsum Long.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "Learn to Read",
+							"portletSetupUseCustomTitle": "true",
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Lorem Ipsum Long.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "Shakespeare",
+							"portletSetupUseCustomTitle": "true",
+						}
+					}
+				],
+				[
+					{
+						"portletId": "23",
+						"portletPreferences": {
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "Dictionary",
+							"portletSetupUseCustomTitle": "true",	
+						}
+					},
+				],
+				[
+					{
+						"portletId": "3",
+						"portletPreferences": {
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "Search",
+							"portletSetupUseCustomTitle": "true",
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Lorem Ipsum Long.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "Enjoyable Epics",
+							"portletSetupUseCustomTitle": "true",
+						}
+					}
+				],
+			]
+		},
+	],
+	"layoutTemplateId": "1_3_columns"
+}
