@@ -9,40 +9,40 @@
 		</test-sql>
 		<import-sql>
 			<![CDATA[
-				update Region set name = '安徽' where regionCode = 'CN-34';
-				update Region set name = '澳门' where regionCode = 'CN-92';
-				update Region set name = '北京' where regionCode = 'CN-11';
-				update Region set name = '重庆' where regionCode = 'CN-50';
-				update Region set name = '福建' where regionCode = 'CN-35';
-				update Region set name = '甘肃' where regionCode = 'CN-62';
-				update Region set name = '广东' where regionCode = 'CN-44';
-				update Region set name = '广西' where regionCode = 'CN-45';
-				update Region set name = '贵州' where regionCode = 'CN-52';
-				update Region set name = '海南' where regionCode = 'CN-46';
-				update Region set name = '河北' where regionCode = 'CN-13';
-				update Region set name = '黑龙江' where regionCode = 'CN-23';
-				update Region set name = '河南' where regionCode = 'CN-41';
-				update Region set name = '湖北' where regionCode = 'CN-42';
-				update Region set name = '湖南' where regionCode = 'CN-43';
-				update Region set name = '江苏' where regionCode = 'CN-32';
-				update Region set name = '江西' where regionCode = 'CN-36';
-				update Region set name = '吉林' where regionCode = 'CN-22';
-				update Region set name = '辽宁' where regionCode = 'CN-21';
-				update Region set name = '内蒙古' where regionCode = 'CN-15';
-				update Region set name = '宁夏' where regionCode = 'CN-64';
-				update Region set name = '青海' where regionCode = 'CN-63';
-				update Region set name = '陕西' where regionCode = 'CN-61';
-				update Region set name = '山东' where regionCode = 'CN-37';
-				update Region set name = '上海' where regionCode = 'CN-31';
-				update Region set name = '山西' where regionCode = 'CN-14';
-				update Region set name = '四川' where regionCode = 'CN-51';
-				update Region set name = '台湾' where regionCode = 'CN-71';
-				update Region set name = '天津' where regionCode = 'CN-12';
-				update Region set name = '香港' where regionCode = 'CN-91';
-				update Region set name = '新疆' where regionCode = 'CN-65';
-				update Region set name = '西藏' where regionCode = 'CN-54';
-				update Region set name = '云南' where regionCode = 'CN-53';
-				update Region set name = '浙江' where regionCode = 'CN-33';
+				update Region set name = '安徽' where regionId = '2001';
+				update Region set name = '澳门' where regionId = '2002';
+				update Region set name = '北京' where regionId = '2003';
+				update Region set name = '重庆' where regionId = '2004';
+				update Region set name = '福建' where regionId = '2005';
+				update Region set name = '甘肃' where regionId = '2006';
+				update Region set name = '广东' where regionId = '2007';
+				update Region set name = '广西' where regionId = '2008';
+				update Region set name = '贵州' where regionId = '2009';
+				update Region set name = '海南' where regionId = '2010';
+				update Region set name = '河北' where regionId = '2011';
+				update Region set name = '黑龙江' where regionId = '2012';
+				update Region set name = '河南' where regionId = '2013';
+				update Region set name = '湖北' where regionId = '2014';
+				update Region set name = '湖南' where regionId = '2015';
+				update Region set name = '江苏' where regionId = '2016';
+				update Region set name = '江西' where regionId = '2017';
+				update Region set name = '吉林' where regionId = '2018';
+				update Region set name = '辽宁' where regionId = '2019';
+				update Region set name = '内蒙古' where regionId = '2020';
+				update Region set name = '宁夏' where regionId = '2021';
+				update Region set name = '青海' where regionId = '2022';
+				update Region set name = '陕西' where regionId = '2023';
+				update Region set name = '山东' where regionId = '2024';
+				update Region set name = '上海' where regionId = '2025';
+				update Region set name = '山西' where regionId = '2026';
+				update Region set name = '四川' where regionId = '2027';
+				update Region set name = '台湾' where regionId = '2028';
+				update Region set name = '天津' where regionId = '2029';
+				update Region set name = '香港' where regionId = '2030';
+				update Region set name = '新疆' where regionId = '2031';
+				update Region set name = '西藏' where regionId = '2032';
+				update Region set name = '云南' where regionId = '2033';
+				update Region set name = '浙江' where regionId = '2034';
 			]]>
 		</import-sql>
 	</batch>
