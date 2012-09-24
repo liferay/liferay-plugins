@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.liferay.akismet.model.AkismetData" />
+	<class name="com.liferay.akismet.model.impl.AkismetDataImpl" table="Akismet_AkismetData">
+		<cache usage="read-write" />
+		<id name="akismetDataId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="mbMessageId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="type" type="com.liferay.portal.dao.orm.hibernate.StringType" column="type_" />
+		<property name="permalink" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="referrer" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="userAgent" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="userIP" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="userURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+</hibernate-mapping>
