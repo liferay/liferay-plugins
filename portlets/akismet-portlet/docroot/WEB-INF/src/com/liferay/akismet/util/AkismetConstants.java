@@ -27,8 +27,8 @@ public class AkismetConstants {
 
 	public static final String PATH_VERIFY = "/verify-key";
 
-	public static final String REST_URL = "rest.akismet.com/1.1";
-
 	public static final String TYPE_COMMENT = "comment";
+
+	public static final String URL_REST = "rest.akismet.com/1.1";
 
 }

@@ -4,7 +4,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Akismet</display-name>
-		<portlet-class>com.liferay.akismet.portlet.akismet.AkismetPortlet</portlet-class>
+		<portlet-class>com.liferay.akismet.akismet.portlet.AkismetPortlet</portlet-class>
 		<init-param>
 			<name>jsp-path</name>
 			<value>/akismet/</value>
@@ -38,7 +38,7 @@
 	<portlet>
 		<portlet-name>2</portlet-name>
 		<display-name>Spam Moderation</display-name>
-		<portlet-class>com.liferay.akismet.portlet.moderation.ModerationPortlet</portlet-class>
+		<portlet-class>com.liferay.akismet.moderation.portlet.ModerationPortlet</portlet-class>
 		<init-param>
 			<name>jsp-path</name>
 			<value>/moderation/</value>

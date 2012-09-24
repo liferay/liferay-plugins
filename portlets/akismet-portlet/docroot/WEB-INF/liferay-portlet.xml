@@ -5,7 +5,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.akismet.messaging.ClearAkismetDataMessageListener</scheduler-event-listener-class>
+			<scheduler-event-listener-class>com.liferay.akismet.akismet.messaging.DeleteAkismetDataMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<simple>
 					<simple-trigger-value>1</simple-trigger-value>
@@ -15,12 +15,12 @@
 		</scheduler-entry>
 		<control-panel-entry-category>portal</control-panel-entry-category>
 		<preferences-company-wide>true</preferences-company-wide>
-		<css-class-wrapper>akismet-portlet</css-class-wrapper>
+		<css-class-wrapper>akismet-portlet-akismet</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
 		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.akismet.messaging.ClearSpamMessageListener</scheduler-event-listener-class>
+			<scheduler-event-listener-class>com.liferay.akismet.moderation.messaging.DeleteSpamListener</scheduler-event-listener-class>
 			<trigger>
 				<simple>
 					<simple-trigger-value>1</simple-trigger-value>
@@ -29,7 +29,7 @@
 			</trigger>
 		</scheduler-entry>
 		<control-panel-entry-category>content</control-panel-entry-category>
-		<css-class-wrapper>spam-moderation-portlet</css-class-wrapper>
+		<css-class-wrapper>akismet-portlet-moderation</css-class-wrapper>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

@@ -281,9 +281,8 @@ public class AkismetMBMessageLocalServiceImpl
 		if (AkismetUtil.isMessageBoardsEnabled(user.getCompanyId())) {
 			return true;
 		}
-		else {
-			return false;
-		}
+
+		return false;
 	}
 
 	protected boolean isSpam(
@@ -315,8 +314,8 @@ public class AkismetMBMessageLocalServiceImpl
 
 		Map<String, String> headers = serviceContext.getHeaders();
 
-		String userAgent = headers.get(HttpHeaders.USER_AGENT.toLowerCase());
 		String referrer = headers.get("referer");
+		String userAgent = headers.get(HttpHeaders.USER_AGENT.toLowerCase());
 
 		String userIP = serviceContext.getRemoteAddr();
 

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.akismet.portlet.moderation;
+package com.liferay.akismet.moderation.portlet;
 
 import com.liferay.akismet.util.AkismetUtil;
 import com.liferay.portal.kernel.exception.PortalException;

@@ -28,7 +28,7 @@
 
 		<aui:input label="api-key" name="apiKey" type="text" value="<%= PrefsPortletPropsUtil.getString(company.getCompanyId(), PortletPropsKeys.AKISMET_API_KEY) %>" />
 
-		<aui:input label="time-in-days-after-a-message-is-created-or-updated-to-mark-it-as-spam-or-ham" name="allowReportMessageTime" type="text" value='<%= PrefsPortletPropsUtil.getString(company.getCompanyId(), PortletPropsKeys.AKISMET_ALLOW_REPORT_MESSAGE_TIME) %>' />
+		<aui:input label="reportable-time" helpMessage="reportable-time-help" name="reportableTime" type="text" value='<%= PrefsPortletPropsUtil.getString(company.getCompanyId(), PortletPropsKeys.AKISMET_REPORTABLE_TIME) %>' />
 
 		<aui:button-row>
 			<aui:button type="submit" />
