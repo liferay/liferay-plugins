@@ -38,10 +38,10 @@ zipsString = StringUtil.merge(zips, StringPool.NEW_LINE);
 		<liferay-ui:message key="the-following-are-invalid-cities-or-zip-codes" />
 
 		<%
-		Enumeration enu = ve.getFailedKeys();
+		Enumeration<String> enu = ve.getFailedKeys();
 
 		while (enu.hasMoreElements()) {
-			String zip = (String)enu.nextElement();
+			String zip = enu.nextElement();
 		%>
 
 			<strong><%= HtmlUtil.escape(zip) %></strong><%= (enu.hasMoreElements()) ? ", " : "." %>
