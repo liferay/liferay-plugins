@@ -70,7 +70,6 @@ public class ApplicationUserClp extends BaseModelImpl<ApplicationUser>
 		attributes.put("applicationId", getApplicationId());
 		attributes.put("accessToken", getAccessToken());
 		attributes.put("accessSecret", getAccessSecret());
-		attributes.put("authorized", getAuthorized());
 
 		return attributes;
 	}
@@ -105,12 +104,6 @@ public class ApplicationUserClp extends BaseModelImpl<ApplicationUser>
 
 		if (accessSecret != null) {
 			setAccessSecret(accessSecret);
-		}
-
-		Boolean authorized = (Boolean)attributes.get("authorized");
-
-		if (authorized != null) {
-			setAuthorized(authorized);
 		}
 	}
 
@@ -162,18 +155,6 @@ public class ApplicationUserClp extends BaseModelImpl<ApplicationUser>
 		_accessSecret = accessSecret;
 	}
 
-	public boolean getAuthorized() {
-		return _authorized;
-	}
-
-	public boolean isAuthorized() {
-		return _authorized;
-	}
-
-	public void setAuthorized(boolean authorized) {
-		_authorized = authorized;
-	}
-
 	public BaseModel<?> getApplicationUserRemoteModel() {
 		return _applicationUserRemoteModel;
 	}
@@ -208,7 +189,6 @@ public class ApplicationUserClp extends BaseModelImpl<ApplicationUser>
 		clone.setApplicationId(getApplicationId());
 		clone.setAccessToken(getAccessToken());
 		clone.setAccessSecret(getAccessSecret());
-		clone.setAuthorized(getAuthorized());
 
 		return clone;
 	}
@@ -259,7 +239,7 @@ public class ApplicationUserClp extends BaseModelImpl<ApplicationUser>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(11);
 
 		sb.append("{oaauId=");
 		sb.append(getOaauId());
@@ -271,15 +251,13 @@ public class ApplicationUserClp extends BaseModelImpl<ApplicationUser>
 		sb.append(getAccessToken());
 		sb.append(", accessSecret=");
 		sb.append(getAccessSecret());
-		sb.append(", authorized=");
-		sb.append(getAuthorized());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(22);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.oauth.model.ApplicationUser");
@@ -305,10 +283,6 @@ public class ApplicationUserClp extends BaseModelImpl<ApplicationUser>
 			"<column><column-name>accessSecret</column-name><column-value><![CDATA[");
 		sb.append(getAccessSecret());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>authorized</column-name><column-value><![CDATA[");
-		sb.append(getAuthorized());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -321,6 +295,5 @@ public class ApplicationUserClp extends BaseModelImpl<ApplicationUser>
 	private long _applicationId;
 	private String _accessToken;
 	private String _accessSecret;
-	private boolean _authorized;
 	private BaseModel<?> _applicationUserRemoteModel;
 }

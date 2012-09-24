@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -42,6 +43,7 @@ import com.liferay.portal.oauth.NoSuchApplicationException;
 import com.liferay.portal.oauth.model.Application;
 import com.liferay.portal.oauth.model.impl.ApplicationImpl;
 import com.liferay.portal.oauth.model.impl.ApplicationModelImpl;
+import com.liferay.portal.security.permission.InlineSQLHelperUtil;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
@@ -946,6 +948,300 @@ public class ApplicationPersistenceImpl extends BasePersistenceImpl<Application>
 	}
 
 	/**
+	 * Returns all the applications that the user has permission to view where companyId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @return the matching applications that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Application> filterFindByCompanyId(long companyId)
+		throws SystemException {
+		return filterFindByCompanyId(companyId, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the applications that the user has permission to view where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company ID
+	 * @param start the lower bound of the range of applications
+	 * @param end the upper bound of the range of applications (not inclusive)
+	 * @return the range of matching applications that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Application> filterFindByCompanyId(long companyId, int start,
+		int end) throws SystemException {
+		return filterFindByCompanyId(companyId, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the applications that the user has permissions to view where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company ID
+	 * @param start the lower bound of the range of applications
+	 * @param end the upper bound of the range of applications (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching applications that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Application> filterFindByCompanyId(long companyId, int start,
+		int end, OrderByComparator orderByComparator) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByCompanyId(companyId, start, end, orderByComparator);
+		}
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(3 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(2);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_APPLICATION_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_APPLICATION_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_COMPANYID_COMPANYID_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_APPLICATION_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Application.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, ApplicationImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, ApplicationImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(companyId);
+
+			return (List<Application>)QueryUtil.list(q, getDialect(), start, end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Returns the applications before and after the current application in the ordered set of applications that the user has permission to view where companyId = &#63;.
+	 *
+	 * @param applicationId the primary key of the current application
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next application
+	 * @throws com.liferay.portal.oauth.NoSuchApplicationException if a application with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Application[] filterFindByCompanyId_PrevAndNext(long applicationId,
+		long companyId, OrderByComparator orderByComparator)
+		throws NoSuchApplicationException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByCompanyId_PrevAndNext(applicationId, companyId,
+				orderByComparator);
+		}
+
+		Application application = findByPrimaryKey(applicationId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Application[] array = new ApplicationImpl[3];
+
+			array[0] = filterGetByCompanyId_PrevAndNext(session, application,
+					companyId, orderByComparator, true);
+
+			array[1] = application;
+
+			array[2] = filterGetByCompanyId_PrevAndNext(session, application,
+					companyId, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Application filterGetByCompanyId_PrevAndNext(Session session,
+		Application application, long companyId,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_APPLICATION_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_APPLICATION_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_COMPANYID_COMPANYID_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_APPLICATION_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Application.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, ApplicationImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, ApplicationImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(companyId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(application);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Application> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Returns the application where consumerKey = &#63; or throws a {@link com.liferay.portal.oauth.NoSuchApplicationException} if it could not be found.
 	 *
 	 * @param consumerKey the consumer key
@@ -1510,6 +1806,337 @@ public class ApplicationPersistenceImpl extends BasePersistenceImpl<Application>
 	}
 
 	/**
+	 * Returns all the applications that the user has permission to view where companyId = &#63; and name LIKE &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param name the name
+	 * @return the matching applications that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Application> filterFindByC_N(long companyId, String name)
+		throws SystemException {
+		return filterFindByC_N(companyId, name, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the applications that the user has permission to view where companyId = &#63; and name LIKE &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company ID
+	 * @param name the name
+	 * @param start the lower bound of the range of applications
+	 * @param end the upper bound of the range of applications (not inclusive)
+	 * @return the range of matching applications that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Application> filterFindByC_N(long companyId, String name,
+		int start, int end) throws SystemException {
+		return filterFindByC_N(companyId, name, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the applications that the user has permissions to view where companyId = &#63; and name LIKE &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company ID
+	 * @param name the name
+	 * @param start the lower bound of the range of applications
+	 * @param end the upper bound of the range of applications (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching applications that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Application> filterFindByC_N(long companyId, String name,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByC_N(companyId, name, start, end, orderByComparator);
+		}
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(4 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_APPLICATION_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_APPLICATION_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_C_N_COMPANYID_2);
+
+		if (name == null) {
+			query.append(_FINDER_COLUMN_C_N_NAME_1);
+		}
+		else {
+			if (name.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_C_N_NAME_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_C_N_NAME_2);
+			}
+		}
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_APPLICATION_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Application.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, ApplicationImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, ApplicationImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(companyId);
+
+			if (name != null) {
+				qPos.add(name);
+			}
+
+			return (List<Application>)QueryUtil.list(q, getDialect(), start, end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Returns the applications before and after the current application in the ordered set of applications that the user has permission to view where companyId = &#63; and name LIKE &#63;.
+	 *
+	 * @param applicationId the primary key of the current application
+	 * @param companyId the company ID
+	 * @param name the name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next application
+	 * @throws com.liferay.portal.oauth.NoSuchApplicationException if a application with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Application[] filterFindByC_N_PrevAndNext(long applicationId,
+		long companyId, String name, OrderByComparator orderByComparator)
+		throws NoSuchApplicationException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByC_N_PrevAndNext(applicationId, companyId, name,
+				orderByComparator);
+		}
+
+		Application application = findByPrimaryKey(applicationId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Application[] array = new ApplicationImpl[3];
+
+			array[0] = filterGetByC_N_PrevAndNext(session, application,
+					companyId, name, orderByComparator, true);
+
+			array[1] = application;
+
+			array[2] = filterGetByC_N_PrevAndNext(session, application,
+					companyId, name, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Application filterGetByC_N_PrevAndNext(Session session,
+		Application application, long companyId, String name,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_APPLICATION_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_APPLICATION_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_C_N_COMPANYID_2);
+
+		if (name == null) {
+			query.append(_FINDER_COLUMN_C_N_NAME_1);
+		}
+		else {
+			if (name.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_C_N_NAME_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_C_N_NAME_2);
+			}
+		}
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_APPLICATION_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Application.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, ApplicationImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, ApplicationImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(companyId);
+
+		if (name != null) {
+			qPos.add(name);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(application);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Application> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Returns all the applications where userId = &#63; and name LIKE &#63;.
 	 *
 	 * @param userId the user ID
@@ -1924,6 +2551,337 @@ public class ApplicationPersistenceImpl extends BasePersistenceImpl<Application>
 	}
 
 	/**
+	 * Returns all the applications that the user has permission to view where userId = &#63; and name LIKE &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param name the name
+	 * @return the matching applications that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Application> filterFindByU_N(long userId, String name)
+		throws SystemException {
+		return filterFindByU_N(userId, name, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the applications that the user has permission to view where userId = &#63; and name LIKE &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param userId the user ID
+	 * @param name the name
+	 * @param start the lower bound of the range of applications
+	 * @param end the upper bound of the range of applications (not inclusive)
+	 * @return the range of matching applications that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Application> filterFindByU_N(long userId, String name,
+		int start, int end) throws SystemException {
+		return filterFindByU_N(userId, name, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the applications that the user has permissions to view where userId = &#63; and name LIKE &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param userId the user ID
+	 * @param name the name
+	 * @param start the lower bound of the range of applications
+	 * @param end the upper bound of the range of applications (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching applications that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Application> filterFindByU_N(long userId, String name,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByU_N(userId, name, start, end, orderByComparator);
+		}
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(4 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_APPLICATION_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_APPLICATION_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_U_N_USERID_2);
+
+		if (name == null) {
+			query.append(_FINDER_COLUMN_U_N_NAME_1);
+		}
+		else {
+			if (name.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_U_N_NAME_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_U_N_NAME_2);
+			}
+		}
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_APPLICATION_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Application.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, ApplicationImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, ApplicationImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(userId);
+
+			if (name != null) {
+				qPos.add(name);
+			}
+
+			return (List<Application>)QueryUtil.list(q, getDialect(), start, end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Returns the applications before and after the current application in the ordered set of applications that the user has permission to view where userId = &#63; and name LIKE &#63;.
+	 *
+	 * @param applicationId the primary key of the current application
+	 * @param userId the user ID
+	 * @param name the name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next application
+	 * @throws com.liferay.portal.oauth.NoSuchApplicationException if a application with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Application[] filterFindByU_N_PrevAndNext(long applicationId,
+		long userId, String name, OrderByComparator orderByComparator)
+		throws NoSuchApplicationException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByU_N_PrevAndNext(applicationId, userId, name,
+				orderByComparator);
+		}
+
+		Application application = findByPrimaryKey(applicationId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Application[] array = new ApplicationImpl[3];
+
+			array[0] = filterGetByU_N_PrevAndNext(session, application, userId,
+					name, orderByComparator, true);
+
+			array[1] = application;
+
+			array[2] = filterGetByU_N_PrevAndNext(session, application, userId,
+					name, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Application filterGetByU_N_PrevAndNext(Session session,
+		Application application, long userId, String name,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_APPLICATION_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_APPLICATION_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_U_N_USERID_2);
+
+		if (name == null) {
+			query.append(_FINDER_COLUMN_U_N_NAME_1);
+		}
+		else {
+			if (name.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_U_N_NAME_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_U_N_NAME_2);
+			}
+		}
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_APPLICATION_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Application.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, ApplicationImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, ApplicationImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(userId);
+
+		if (name != null) {
+			qPos.add(name);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(application);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Application> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Returns all the applications where userId = &#63;.
 	 *
 	 * @param userId the user ID
@@ -2295,6 +3253,300 @@ public class ApplicationPersistenceImpl extends BasePersistenceImpl<Application>
 	}
 
 	/**
+	 * Returns all the applications that the user has permission to view where userId = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @return the matching applications that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Application> filterFindByUserId(long userId)
+		throws SystemException {
+		return filterFindByUserId(userId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
+	}
+
+	/**
+	 * Returns a range of all the applications that the user has permission to view where userId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param userId the user ID
+	 * @param start the lower bound of the range of applications
+	 * @param end the upper bound of the range of applications (not inclusive)
+	 * @return the range of matching applications that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Application> filterFindByUserId(long userId, int start, int end)
+		throws SystemException {
+		return filterFindByUserId(userId, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the applications that the user has permissions to view where userId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param userId the user ID
+	 * @param start the lower bound of the range of applications
+	 * @param end the upper bound of the range of applications (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching applications that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Application> filterFindByUserId(long userId, int start,
+		int end, OrderByComparator orderByComparator) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByUserId(userId, start, end, orderByComparator);
+		}
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(3 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(2);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_APPLICATION_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_APPLICATION_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_USERID_USERID_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_APPLICATION_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Application.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, ApplicationImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, ApplicationImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(userId);
+
+			return (List<Application>)QueryUtil.list(q, getDialect(), start, end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Returns the applications before and after the current application in the ordered set of applications that the user has permission to view where userId = &#63;.
+	 *
+	 * @param applicationId the primary key of the current application
+	 * @param userId the user ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next application
+	 * @throws com.liferay.portal.oauth.NoSuchApplicationException if a application with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Application[] filterFindByUserId_PrevAndNext(long applicationId,
+		long userId, OrderByComparator orderByComparator)
+		throws NoSuchApplicationException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByUserId_PrevAndNext(applicationId, userId,
+				orderByComparator);
+		}
+
+		Application application = findByPrimaryKey(applicationId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Application[] array = new ApplicationImpl[3];
+
+			array[0] = filterGetByUserId_PrevAndNext(session, application,
+					userId, orderByComparator, true);
+
+			array[1] = application;
+
+			array[2] = filterGetByUserId_PrevAndNext(session, application,
+					userId, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Application filterGetByUserId_PrevAndNext(Session session,
+		Application application, long userId,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_APPLICATION_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_APPLICATION_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_USERID_USERID_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_APPLICATION_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Application.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, ApplicationImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, ApplicationImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(userId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(application);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Application> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Returns all the applications.
 	 *
 	 * @return the applications
@@ -2539,6 +3791,54 @@ public class ApplicationPersistenceImpl extends BasePersistenceImpl<Application>
 	}
 
 	/**
+	 * Returns the number of applications that the user has permission to view where companyId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @return the number of matching applications that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int filterCountByCompanyId(long companyId) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return countByCompanyId(companyId);
+		}
+
+		StringBundler query = new StringBundler(2);
+
+		query.append(_FILTER_SQL_COUNT_APPLICATION_WHERE);
+
+		query.append(_FINDER_COLUMN_COMPANYID_COMPANYID_2);
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Application.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(companyId);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
 	 * Returns the number of applications where consumerKey = &#63;.
 	 *
 	 * @param consumerKey the consumer key
@@ -2675,6 +3975,72 @@ public class ApplicationPersistenceImpl extends BasePersistenceImpl<Application>
 	}
 
 	/**
+	 * Returns the number of applications that the user has permission to view where companyId = &#63; and name LIKE &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param name the name
+	 * @return the number of matching applications that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int filterCountByC_N(long companyId, String name)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return countByC_N(companyId, name);
+		}
+
+		StringBundler query = new StringBundler(3);
+
+		query.append(_FILTER_SQL_COUNT_APPLICATION_WHERE);
+
+		query.append(_FINDER_COLUMN_C_N_COMPANYID_2);
+
+		if (name == null) {
+			query.append(_FINDER_COLUMN_C_N_NAME_1);
+		}
+		else {
+			if (name.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_C_N_NAME_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_C_N_NAME_2);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Application.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(companyId);
+
+			if (name != null) {
+				qPos.add(name);
+			}
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
 	 * Returns the number of applications where userId = &#63; and name LIKE &#63;.
 	 *
 	 * @param userId the user ID
@@ -2745,6 +4111,72 @@ public class ApplicationPersistenceImpl extends BasePersistenceImpl<Application>
 	}
 
 	/**
+	 * Returns the number of applications that the user has permission to view where userId = &#63; and name LIKE &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param name the name
+	 * @return the number of matching applications that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int filterCountByU_N(long userId, String name)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return countByU_N(userId, name);
+		}
+
+		StringBundler query = new StringBundler(3);
+
+		query.append(_FILTER_SQL_COUNT_APPLICATION_WHERE);
+
+		query.append(_FINDER_COLUMN_U_N_USERID_2);
+
+		if (name == null) {
+			query.append(_FINDER_COLUMN_U_N_NAME_1);
+		}
+		else {
+			if (name.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_U_N_NAME_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_U_N_NAME_2);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Application.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(userId);
+
+			if (name != null) {
+				qPos.add(name);
+			}
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
 	 * Returns the number of applications where userId = &#63;.
 	 *
 	 * @param userId the user ID
@@ -2795,6 +4227,54 @@ public class ApplicationPersistenceImpl extends BasePersistenceImpl<Application>
 		}
 
 		return count.intValue();
+	}
+
+	/**
+	 * Returns the number of applications that the user has permission to view where userId = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @return the number of matching applications that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int filterCountByUserId(long userId) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return countByUserId(userId);
+		}
+
+		StringBundler query = new StringBundler(2);
+
+		query.append(_FILTER_SQL_COUNT_APPLICATION_WHERE);
+
+		query.append(_FINDER_COLUMN_USERID_USERID_2);
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Application.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(userId);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
 	}
 
 	/**
@@ -2889,7 +4369,17 @@ public class ApplicationPersistenceImpl extends BasePersistenceImpl<Application>
 	private static final String _FINDER_COLUMN_U_N_NAME_2 = "application.name LIKE ?";
 	private static final String _FINDER_COLUMN_U_N_NAME_3 = "(application.name IS NULL OR application.name LIKE ?)";
 	private static final String _FINDER_COLUMN_USERID_USERID_2 = "application.userId = ?";
+	private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN = "application.applicationId";
+	private static final String _FILTER_SQL_SELECT_APPLICATION_WHERE = "SELECT DISTINCT {application.*} FROM OAuth_Application application WHERE ";
+	private static final String _FILTER_SQL_SELECT_APPLICATION_NO_INLINE_DISTINCT_WHERE_1 =
+		"SELECT {OAuth_Application.*} FROM (SELECT DISTINCT application.applicationId FROM OAuth_Application application WHERE ";
+	private static final String _FILTER_SQL_SELECT_APPLICATION_NO_INLINE_DISTINCT_WHERE_2 =
+		") TEMP_TABLE INNER JOIN OAuth_Application ON TEMP_TABLE.applicationId = OAuth_Application.applicationId";
+	private static final String _FILTER_SQL_COUNT_APPLICATION_WHERE = "SELECT COUNT(DISTINCT application.applicationId) AS COUNT_VALUE FROM OAuth_Application application WHERE ";
+	private static final String _FILTER_ENTITY_ALIAS = "application";
+	private static final String _FILTER_ENTITY_TABLE = "OAuth_Application";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "application.";
+	private static final String _ORDER_BY_ENTITY_TABLE = "OAuth_Application.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Application exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Application exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(

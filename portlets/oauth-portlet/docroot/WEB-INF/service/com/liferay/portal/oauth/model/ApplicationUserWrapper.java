@@ -50,7 +50,6 @@ public class ApplicationUserWrapper implements ApplicationUser,
 		attributes.put("applicationId", getApplicationId());
 		attributes.put("accessToken", getAccessToken());
 		attributes.put("accessSecret", getAccessSecret());
-		attributes.put("authorized", getAuthorized());
 
 		return attributes;
 	}
@@ -84,12 +83,6 @@ public class ApplicationUserWrapper implements ApplicationUser,
 
 		if (accessSecret != null) {
 			setAccessSecret(accessSecret);
-		}
-
-		Boolean authorized = (Boolean)attributes.get("authorized");
-
-		if (authorized != null) {
-			setAuthorized(authorized);
 		}
 	}
 
@@ -219,33 +212,6 @@ public class ApplicationUserWrapper implements ApplicationUser,
 	*/
 	public void setAccessSecret(java.lang.String accessSecret) {
 		_applicationUser.setAccessSecret(accessSecret);
-	}
-
-	/**
-	* Returns the authorized of this application user.
-	*
-	* @return the authorized of this application user
-	*/
-	public boolean getAuthorized() {
-		return _applicationUser.getAuthorized();
-	}
-
-	/**
-	* Returns <code>true</code> if this application user is authorized.
-	*
-	* @return <code>true</code> if this application user is authorized; <code>false</code> otherwise
-	*/
-	public boolean isAuthorized() {
-		return _applicationUser.isAuthorized();
-	}
-
-	/**
-	* Sets whether this application user is authorized.
-	*
-	* @param authorized the authorized of this application user
-	*/
-	public void setAuthorized(boolean authorized) {
-		_applicationUser.setAuthorized(authorized);
 	}
 
 	public boolean isNew() {

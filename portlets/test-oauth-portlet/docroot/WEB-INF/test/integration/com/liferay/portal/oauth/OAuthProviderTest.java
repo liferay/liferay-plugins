@@ -14,29 +14,27 @@
 
 package com.liferay.portal.oauth;
 
-import java.io.InputStream;
-
-import java.sql.*;
-
-import java.util.List;
-import java.util.Properties;
-import java.util.concurrent.TimeUnit;
-
 import junit.framework.Assert;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.model.Token;
 import org.scribe.model.Verifier;
 import org.scribe.oauth.OAuthService;
+
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.List;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 /**
  * To run this test you need to have installed one of Firefox versions:
@@ -209,7 +207,7 @@ public class OAuthProviderTest {
 
 			for (WebElement webElement : elements) {
 				if (webElement.getText().contains(
-					"Your token has been expired.")) {
+					"Your token is expired.")) {
 
 					return;
 				}
@@ -222,8 +220,8 @@ public class OAuthProviderTest {
 	private OAuthService buildOAuthService(Object[][] data, int index) {
 		OAuthService service = new ServiceBuilder()
 			.provider(LiferayApi.class)
-			.apiKey((String) data[index][8])
-			.apiSecret((String) data[index][9])
+			.apiKey((String) data[index][7])
+			.apiSecret((String) data[index][8])
 			.build();
 
 		return service;
@@ -310,16 +308,15 @@ public class OAuthProviderTest {
 			pstmt.setInt(2, (Integer) data[i][1]);
 			pstmt.setInt(3, (Integer) data[i][2]);
 			pstmt.setString(4, (String) data[i][3]);
-			pstmt.setDate(5, new Date(System.currentTimeMillis()));
-			pstmt.setDate(6, new Date(System.currentTimeMillis()));
-			pstmt.setInt(7, (Integer) data[i][4]);
-			pstmt.setString(8, (String) data[i][5]);
-			pstmt.setString(9, (String) data[i][6]);
-			pstmt.setString(10, (String) data[i][7]);
-			pstmt.setString(11, (String) data[i][8]);
-			pstmt.setString(12, (String) data[i][9]);
-			pstmt.setString(13, (String) data[i][10]);
-			pstmt.setInt(14, (Integer) data[i][11]);
+			pstmt.setString(5, (String) data[i][4]);
+			pstmt.setString(6, (String) data[i][5]);
+			pstmt.setString(7, (String) data[i][6]);
+			pstmt.setString(8, (String) data[i][7]);
+			pstmt.setString(9, (String) data[i][8]);
+			pstmt.setString(10, (String) data[i][9]);
+			pstmt.setInt(11, (Integer) data[i][10]);
+			pstmt.setDate(12, new Date(System.currentTimeMillis()));
+			pstmt.setDate(13, new Date(System.currentTimeMillis()));
 
 			pstmt.executeUpdate();
 
@@ -350,20 +347,23 @@ public class OAuthProviderTest {
 	private static final String DELETE_STATEMENT_APPLICATIONUSER =
 			"delete from oauth_applicationuser where applicationId=?";
 	private static final String INSERT_STATEMENT_APPLICATION =
-		"INSERT INTO oauth_application VALUES " +
-			"(? ,? ,? ,? ,? ,? , ?, ?, ?, ?, ?, ?, ?, ?)";
+		"INSERT INTO oauth_application " +
+			"(applicationId, companyId, userId, userName, name, description, " +
+			"website, consumerKey, consumerSecret, callBackURL, accessLevel, " +
+			"createDate, modifiedDate)" +
+			"VALUES(? ,? ,? ,? ,? ,? , ?, ?, ?, ?, ?, ?, ?)";
 
 	private static final String OAUTH_PORTLET_ID =
 		"_3_WAR_oauthportlet_authorize";
 
 	Object[][] dataWithoutCallback = {
 		{
-			20000, 10152, 10194, "test@liferay.com", 10194, "application1",
+			20000, 10152, 10194, "test@liferay.com", "application1",
 			"this is a test application1", "http://liferay.com",
 			"af91876b105c6834ec", "521b0a6b31a3f8", null, 0
 		},
 		{
-			20001, 10152, 10194, "test@liferay.com", 10194, "application2",
+			20001, 10152, 10194, "test@liferay.com", "application2",
 			"this is a test application2", "http://liferay.com",
 			"13a795dcbd0acd97816", "a5385e50e6812", null, 0
 		}
@@ -371,12 +371,12 @@ public class OAuthProviderTest {
 
 	Object[][] dataWithCallback = {
 		{
-			20002, 10152, 10194, "test@liferay.com", 10194, "application3",
+			20002, 10152, 10194, "test@liferay.com", "application3",
 			"this is a test application3", "http://liferay.com",
 			"af91876uubfc6834ec", "521b0poj31a3f8", "http://liferay.com", 0
 		},
 		{
-			20003, 10152, 10194, "test@liferay.com", 10194, "application4",
+			20003, 10152, 10194, "test@liferay.com", "application4",
 			"this is a test application4", "http://liferay.com",
 			"13a795dvcd0acd97816", "a5385jbde6812", "http://liferay.com", 0
 		}

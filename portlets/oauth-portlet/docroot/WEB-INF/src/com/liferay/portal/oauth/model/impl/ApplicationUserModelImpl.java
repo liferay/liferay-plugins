@@ -63,10 +63,9 @@ public class ApplicationUserModelImpl extends BaseModelImpl<ApplicationUser>
 			{ "userId", Types.BIGINT },
 			{ "applicationId", Types.BIGINT },
 			{ "accessToken", Types.VARCHAR },
-			{ "accessSecret", Types.VARCHAR },
-			{ "authorized", Types.BOOLEAN }
+			{ "accessSecret", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table OAuth_ApplicationUser (oaauId LONG not null primary key,userId LONG,applicationId LONG,accessToken VARCHAR(75) null,accessSecret VARCHAR(75) null,authorized BOOLEAN)";
+	public static final String TABLE_SQL_CREATE = "create table OAuth_ApplicationUser (oaauId LONG not null primary key,userId LONG,applicationId LONG,accessToken VARCHAR(75) null,accessSecret VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table OAuth_ApplicationUser";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -82,8 +81,7 @@ public class ApplicationUserModelImpl extends BaseModelImpl<ApplicationUser>
 			true);
 	public static long ACCESSTOKEN_COLUMN_BITMASK = 1L;
 	public static long APPLICATIONID_COLUMN_BITMASK = 2L;
-	public static long AUTHORIZED_COLUMN_BITMASK = 4L;
-	public static long USERID_COLUMN_BITMASK = 8L;
+	public static long USERID_COLUMN_BITMASK = 4L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.portal.oauth.model.ApplicationUser"));
 
@@ -123,7 +121,6 @@ public class ApplicationUserModelImpl extends BaseModelImpl<ApplicationUser>
 		attributes.put("applicationId", getApplicationId());
 		attributes.put("accessToken", getAccessToken());
 		attributes.put("accessSecret", getAccessSecret());
-		attributes.put("authorized", getAuthorized());
 
 		return attributes;
 	}
@@ -158,12 +155,6 @@ public class ApplicationUserModelImpl extends BaseModelImpl<ApplicationUser>
 
 		if (accessSecret != null) {
 			setAccessSecret(accessSecret);
-		}
-
-		Boolean authorized = (Boolean)attributes.get("authorized");
-
-		if (authorized != null) {
-			setAuthorized(authorized);
 		}
 	}
 
@@ -259,30 +250,6 @@ public class ApplicationUserModelImpl extends BaseModelImpl<ApplicationUser>
 		_accessSecret = accessSecret;
 	}
 
-	public boolean getAuthorized() {
-		return _authorized;
-	}
-
-	public boolean isAuthorized() {
-		return _authorized;
-	}
-
-	public void setAuthorized(boolean authorized) {
-		_columnBitmask |= AUTHORIZED_COLUMN_BITMASK;
-
-		if (!_setOriginalAuthorized) {
-			_setOriginalAuthorized = true;
-
-			_originalAuthorized = _authorized;
-		}
-
-		_authorized = authorized;
-	}
-
-	public boolean getOriginalAuthorized() {
-		return _originalAuthorized;
-	}
-
 	public long getColumnBitmask() {
 		return _columnBitmask;
 	}
@@ -320,7 +287,6 @@ public class ApplicationUserModelImpl extends BaseModelImpl<ApplicationUser>
 		applicationUserImpl.setApplicationId(getApplicationId());
 		applicationUserImpl.setAccessToken(getAccessToken());
 		applicationUserImpl.setAccessSecret(getAccessSecret());
-		applicationUserImpl.setAuthorized(getAuthorized());
 
 		applicationUserImpl.resetOriginalValues();
 
@@ -385,10 +351,6 @@ public class ApplicationUserModelImpl extends BaseModelImpl<ApplicationUser>
 
 		applicationUserModelImpl._originalAccessToken = applicationUserModelImpl._accessToken;
 
-		applicationUserModelImpl._originalAuthorized = applicationUserModelImpl._authorized;
-
-		applicationUserModelImpl._setOriginalAuthorized = false;
-
 		applicationUserModelImpl._columnBitmask = 0;
 	}
 
@@ -418,14 +380,12 @@ public class ApplicationUserModelImpl extends BaseModelImpl<ApplicationUser>
 			applicationUserCacheModel.accessSecret = null;
 		}
 
-		applicationUserCacheModel.authorized = getAuthorized();
-
 		return applicationUserCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(11);
 
 		sb.append("{oaauId=");
 		sb.append(getOaauId());
@@ -437,15 +397,13 @@ public class ApplicationUserModelImpl extends BaseModelImpl<ApplicationUser>
 		sb.append(getAccessToken());
 		sb.append(", accessSecret=");
 		sb.append(getAccessSecret());
-		sb.append(", authorized=");
-		sb.append(getAuthorized());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(22);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.oauth.model.ApplicationUser");
@@ -471,10 +429,6 @@ public class ApplicationUserModelImpl extends BaseModelImpl<ApplicationUser>
 			"<column><column-name>accessSecret</column-name><column-value><![CDATA[");
 		sb.append(getAccessSecret());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>authorized</column-name><column-value><![CDATA[");
-		sb.append(getAuthorized());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -496,9 +450,6 @@ public class ApplicationUserModelImpl extends BaseModelImpl<ApplicationUser>
 	private String _accessToken;
 	private String _originalAccessToken;
 	private String _accessSecret;
-	private boolean _authorized;
-	private boolean _originalAuthorized;
-	private boolean _setOriginalAuthorized;
 	private long _columnBitmask;
 	private ApplicationUser _escapedModelProxy;
 }

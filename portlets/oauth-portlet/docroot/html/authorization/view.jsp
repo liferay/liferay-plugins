@@ -77,14 +77,14 @@ if (!adminUser) {
 			oAuthAppsCnt = ApplicationUserLocalServiceUtil.getApplicationUsersCount();
 		} else {
 			if (OAuthConstants.TOOLBAR_ITEM_MY_APPS.equals(toolbarItem)) {
-				oAuthApps = ApplicationUserLocalServiceUtil.getAuthorizedApplicationUsersByOwnerId(userId, true, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
-				oAuthAppsCnt = ApplicationUserLocalServiceUtil.getAuthorizedApplicationUsersByOwnerIdCount(userId, true);
+				oAuthApps = ApplicationUserLocalServiceUtil.getApplicationUsersByOwnerId(userId, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
+				oAuthAppsCnt = ApplicationUserLocalServiceUtil.getApplicationUsersByOwnerIdCount(userId);
 			}
 			else {
 				renderRevokeAction = true;
 
-				oAuthApps = ApplicationUserLocalServiceUtil.getAuthorizedApplicationUsersByUserId(userId, true, searchContainer.getStart(), searchContainer.getEnd(), null);
-				oAuthAppsCnt = ApplicationUserLocalServiceUtil.getAuthorizedApplicationUsersByUserIdCount(userId, true);
+				oAuthApps = ApplicationUserLocalServiceUtil.getApplicationUsersByUserId(userId, searchContainer.getStart(), searchContainer.getEnd(), null);
+				oAuthAppsCnt = ApplicationUserLocalServiceUtil.getApplicationUsersByUserIdCount(userId);
 			}
 		}
 	%>
@@ -120,10 +120,6 @@ if (!adminUser) {
 		<liferay-ui:search-container-column-text
 			name="access-token"
 			value="<%= appAuth.getAccessToken() %>"
-		/>
-		<liferay-ui:search-container-column-text
-			name="authorized"
-			value="<%= String.valueOf(appAuth.getAuthorized()) %>"
 		/>
 		<liferay-ui:search-container-column-text
 			name="access-level"

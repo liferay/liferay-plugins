@@ -253,7 +253,6 @@ public interface ApplicationUserLocalService extends BaseLocalService,
 	* or initial value (depending on data type). Method creates necessary
 	* resources used later by permissions algorithm.
 	*
-	* @param authorized
 	* @param applicationId
 	* @param userId
 	* @param accessSecret
@@ -265,7 +264,7 @@ public interface ApplicationUserLocalService extends BaseLocalService,
 	*/
 	public com.liferay.portal.oauth.model.ApplicationUser addApplicationUser(
 		long userId, long applicationId, java.lang.String accessToken,
-		java.lang.String accessSecret, boolean authorized,
+		java.lang.String accessSecret,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -295,6 +294,12 @@ public interface ApplicationUserLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.oauth.model.ApplicationUser getApplicationUserByApplicationId(
+		long userId, long applicationId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.oauth.NoSuchApplicationUserException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.portal.oauth.model.ApplicationUser> getApplicationUsers(
 		long applicationId)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -310,12 +315,6 @@ public interface ApplicationUserLocalService extends BaseLocalService,
 		long userId) throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.portal.oauth.model.ApplicationUser> getApplicationUsersByUserId(
-		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getApplicationUsersByUserIdCount(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -324,30 +323,19 @@ public interface ApplicationUserLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.portal.oauth.model.ApplicationUser> getAuthorizedApplicationUsersByOwnerId(
-		long ownerId, boolean authorized, int start, int end,
+	public java.util.List<com.liferay.portal.oauth.model.ApplicationUser> getApplicationUsersByOwnerId(
+		long ownerId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getAuthorizedApplicationUsersByOwnerIdCount(long ownerId,
-		boolean authorized)
+	public int getApplicationUsersByOwnerIdCount(long ownerId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.portal.oauth.model.ApplicationUser> getAuthorizedApplicationUsersByUserId(
-		long userId, boolean authorized)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.portal.oauth.model.ApplicationUser> getAuthorizedApplicationUsersByUserId(
-		long userId, boolean authorized, int start, int end,
+	public java.util.List<com.liferay.portal.oauth.model.ApplicationUser> getApplicationUsersByUserId(
+		long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getAuthorizedApplicationUsersByUserIdCount(long userId,
-		boolean authorized)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -355,9 +343,7 @@ public interface ApplicationUserLocalService extends BaseLocalService,
 	* registered to use OAuth feature. If entity doesn't exist new one (with
 	* resources for later permissions check) will be created.
 	*
-	* @param authorized
-	if set to false application access rights are revoked
-	* @param oAuthApplicationId
+	* @param applicationId
 	* @param userId
 	* @param accessSecret
 	* @param accessToken
@@ -369,12 +355,6 @@ public interface ApplicationUserLocalService extends BaseLocalService,
 	public com.liferay.portal.oauth.model.ApplicationUser updateApplicationUser(
 		long userId, long applicationId, java.lang.String accessToken,
 		java.lang.String accessSecret,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public com.liferay.portal.oauth.model.ApplicationUser updateAuthorized(
-		long userId, long applicationId, boolean authorized,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

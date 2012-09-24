@@ -14,6 +14,8 @@
 
 package com.liferay.portal.oauth.action;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.struts.BaseStrutsAction;
 import com.liferay.portal.oauth.OAuthAccessor;
 import com.liferay.portal.oauth.OAuthMessage;
@@ -23,10 +25,9 @@ import com.liferay.portal.oauth.util.OAuthConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 
-import java.io.OutputStream;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.OutputStream;
 
 /**
  * Access Token request handler action.
@@ -76,10 +77,15 @@ public class OAuthAccessTokenAction extends BaseStrutsAction {
 			out.close();
 		}
 		catch (Exception e) {
+			_log.error(e);
+
 			OAuthUtil.handleException(request, response, e, true);
 		}
 
 		return null;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		OAuthAccessTokenAction.class);
 
 }

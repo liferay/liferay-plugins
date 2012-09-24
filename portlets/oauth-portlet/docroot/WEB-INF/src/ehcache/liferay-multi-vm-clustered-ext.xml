@@ -1,0 +1,24 @@
+<ehcache
+	dynamicConfig="true"
+	monitoring="off"
+	name="liferay-multi-vm-clustered"
+	updateCheck="false"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="ehcache.xsd"
+>
+
+	<cache
+		eternal="false"
+		maxElementsInMemory="100000"
+		name="com.liferay.portal.oauth.OAuthImpl"
+		overflowToDisk="false"
+		timeToIdleSeconds="6000"
+	>
+		<cacheEventListenerFactory
+			class="com.liferay.portal.cache.ehcache.LiferayCacheEventListenerFactory"
+			properties="replicatePuts=false,replicateUpdatesViaCopy=false"
+			propertySeparator=","
+		/>
+		<bootstrapCacheLoaderFactory class="com.liferay.portal.cache.ehcache.LiferayBootstrapCacheLoaderFactory" />
+	</cache>
+</ehcache>

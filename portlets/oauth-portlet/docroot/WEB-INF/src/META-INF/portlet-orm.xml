@@ -39,7 +39,6 @@
 			<basic name="applicationId" />
 			<basic name="accessToken" />
 			<basic name="accessSecret" />
-			<basic name="authorized" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />

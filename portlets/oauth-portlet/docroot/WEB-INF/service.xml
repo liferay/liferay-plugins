@@ -59,8 +59,6 @@
 		<column name="applicationId" type="long" />
 		<column name="accessToken" type="String" />
 		<column name="accessSecret" type="String" />
-		<column name="authorized" type="boolean" />
-		
 
 		<!-- Finder methods -->
 
@@ -73,17 +71,9 @@
 		<finder name="UserId" return-type="Collection" >
 			<finder-column name="userId" />
 		</finder>
-		<finder name="A_A" return-type="Collection" >
-			<finder-column name="applicationId" />
-			<finder-column name="authorized" />
-		</finder>
 		<finder name="U_AP" return-type="ApplicationUser" unique="true">
 			<finder-column name="userId" />
 			<finder-column name="applicationId" />
-		</finder>
-		<finder name="U_AU" return-type="Collection" >
-			<finder-column name="userId" />
-			<finder-column name="authorized" />
 		</finder>
 	</entity>
 </service-builder>

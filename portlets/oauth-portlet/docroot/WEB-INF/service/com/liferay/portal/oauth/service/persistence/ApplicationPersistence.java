@@ -220,6 +220,69 @@ public interface ApplicationPersistence extends BasePersistence<Application> {
 			com.liferay.portal.oauth.NoSuchApplicationException;
 
 	/**
+	* Returns all the applications that the user has permission to view where companyId = &#63;.
+	*
+	* @param companyId the company ID
+	* @return the matching applications that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.portal.oauth.model.Application> filterFindByCompanyId(
+		long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns a range of all the applications that the user has permission to view where companyId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param companyId the company ID
+	* @param start the lower bound of the range of applications
+	* @param end the upper bound of the range of applications (not inclusive)
+	* @return the range of matching applications that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.portal.oauth.model.Application> filterFindByCompanyId(
+		long companyId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns an ordered range of all the applications that the user has permissions to view where companyId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param companyId the company ID
+	* @param start the lower bound of the range of applications
+	* @param end the upper bound of the range of applications (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching applications that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.portal.oauth.model.Application> filterFindByCompanyId(
+		long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the applications before and after the current application in the ordered set of applications that the user has permission to view where companyId = &#63;.
+	*
+	* @param applicationId the primary key of the current application
+	* @param companyId the company ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next application
+	* @throws com.liferay.portal.oauth.NoSuchApplicationException if a application with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.oauth.model.Application[] filterFindByCompanyId_PrevAndNext(
+		long applicationId, long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.oauth.NoSuchApplicationException;
+
+	/**
 	* Returns the application where consumerKey = &#63; or throws a {@link com.liferay.portal.oauth.NoSuchApplicationException} if it could not be found.
 	*
 	* @param consumerKey the consumer key
@@ -383,6 +446,73 @@ public interface ApplicationPersistence extends BasePersistence<Application> {
 			com.liferay.portal.oauth.NoSuchApplicationException;
 
 	/**
+	* Returns all the applications that the user has permission to view where companyId = &#63; and name LIKE &#63;.
+	*
+	* @param companyId the company ID
+	* @param name the name
+	* @return the matching applications that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.portal.oauth.model.Application> filterFindByC_N(
+		long companyId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns a range of all the applications that the user has permission to view where companyId = &#63; and name LIKE &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param companyId the company ID
+	* @param name the name
+	* @param start the lower bound of the range of applications
+	* @param end the upper bound of the range of applications (not inclusive)
+	* @return the range of matching applications that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.portal.oauth.model.Application> filterFindByC_N(
+		long companyId, java.lang.String name, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns an ordered range of all the applications that the user has permissions to view where companyId = &#63; and name LIKE &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param companyId the company ID
+	* @param name the name
+	* @param start the lower bound of the range of applications
+	* @param end the upper bound of the range of applications (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching applications that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.portal.oauth.model.Application> filterFindByC_N(
+		long companyId, java.lang.String name, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the applications before and after the current application in the ordered set of applications that the user has permission to view where companyId = &#63; and name LIKE &#63;.
+	*
+	* @param applicationId the primary key of the current application
+	* @param companyId the company ID
+	* @param name the name
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next application
+	* @throws com.liferay.portal.oauth.NoSuchApplicationException if a application with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.oauth.model.Application[] filterFindByC_N_PrevAndNext(
+		long applicationId, long companyId, java.lang.String name,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.oauth.NoSuchApplicationException;
+
+	/**
 	* Returns all the applications where userId = &#63; and name LIKE &#63;.
 	*
 	* @param userId the user ID
@@ -510,6 +640,73 @@ public interface ApplicationPersistence extends BasePersistence<Application> {
 			com.liferay.portal.oauth.NoSuchApplicationException;
 
 	/**
+	* Returns all the applications that the user has permission to view where userId = &#63; and name LIKE &#63;.
+	*
+	* @param userId the user ID
+	* @param name the name
+	* @return the matching applications that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.portal.oauth.model.Application> filterFindByU_N(
+		long userId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns a range of all the applications that the user has permission to view where userId = &#63; and name LIKE &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param userId the user ID
+	* @param name the name
+	* @param start the lower bound of the range of applications
+	* @param end the upper bound of the range of applications (not inclusive)
+	* @return the range of matching applications that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.portal.oauth.model.Application> filterFindByU_N(
+		long userId, java.lang.String name, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns an ordered range of all the applications that the user has permissions to view where userId = &#63; and name LIKE &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param userId the user ID
+	* @param name the name
+	* @param start the lower bound of the range of applications
+	* @param end the upper bound of the range of applications (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching applications that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.portal.oauth.model.Application> filterFindByU_N(
+		long userId, java.lang.String name, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the applications before and after the current application in the ordered set of applications that the user has permission to view where userId = &#63; and name LIKE &#63;.
+	*
+	* @param applicationId the primary key of the current application
+	* @param userId the user ID
+	* @param name the name
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next application
+	* @throws com.liferay.portal.oauth.NoSuchApplicationException if a application with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.oauth.model.Application[] filterFindByU_N_PrevAndNext(
+		long applicationId, long userId, java.lang.String name,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.oauth.NoSuchApplicationException;
+
+	/**
 	* Returns all the applications where userId = &#63;.
 	*
 	* @param userId the user ID
@@ -628,6 +825,68 @@ public interface ApplicationPersistence extends BasePersistence<Application> {
 			com.liferay.portal.oauth.NoSuchApplicationException;
 
 	/**
+	* Returns all the applications that the user has permission to view where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @return the matching applications that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.portal.oauth.model.Application> filterFindByUserId(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns a range of all the applications that the user has permission to view where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param userId the user ID
+	* @param start the lower bound of the range of applications
+	* @param end the upper bound of the range of applications (not inclusive)
+	* @return the range of matching applications that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.portal.oauth.model.Application> filterFindByUserId(
+		long userId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns an ordered range of all the applications that the user has permissions to view where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param userId the user ID
+	* @param start the lower bound of the range of applications
+	* @param end the upper bound of the range of applications (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching applications that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.portal.oauth.model.Application> filterFindByUserId(
+		long userId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the applications before and after the current application in the ordered set of applications that the user has permission to view where userId = &#63;.
+	*
+	* @param applicationId the primary key of the current application
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next application
+	* @throws com.liferay.portal.oauth.NoSuchApplicationException if a application with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.oauth.model.Application[] filterFindByUserId_PrevAndNext(
+		long applicationId, long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.oauth.NoSuchApplicationException;
+
+	/**
 	* Returns all the applications.
 	*
 	* @return the applications
@@ -739,6 +998,16 @@ public interface ApplicationPersistence extends BasePersistence<Application> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Returns the number of applications that the user has permission to view where companyId = &#63;.
+	*
+	* @param companyId the company ID
+	* @return the number of matching applications that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public int filterCountByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns the number of applications where consumerKey = &#63;.
 	*
 	* @param consumerKey the consumer key
@@ -760,6 +1029,17 @@ public interface ApplicationPersistence extends BasePersistence<Application> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Returns the number of applications that the user has permission to view where companyId = &#63; and name LIKE &#63;.
+	*
+	* @param companyId the company ID
+	* @param name the name
+	* @return the number of matching applications that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public int filterCountByC_N(long companyId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns the number of applications where userId = &#63; and name LIKE &#63;.
 	*
 	* @param userId the user ID
@@ -771,6 +1051,17 @@ public interface ApplicationPersistence extends BasePersistence<Application> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Returns the number of applications that the user has permission to view where userId = &#63; and name LIKE &#63;.
+	*
+	* @param userId the user ID
+	* @param name the name
+	* @return the number of matching applications that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public int filterCountByU_N(long userId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns the number of applications where userId = &#63;.
 	*
 	* @param userId the user ID
@@ -778,6 +1069,16 @@ public interface ApplicationPersistence extends BasePersistence<Application> {
 	* @throws SystemException if a system exception occurred
 	*/
 	public int countByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of applications that the user has permission to view where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @return the number of matching applications that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public int filterCountByUserId(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

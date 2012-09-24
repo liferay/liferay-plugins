@@ -145,27 +145,6 @@ public interface ApplicationUserModel extends BaseModel<ApplicationUser> {
 	 */
 	public void setAccessSecret(String accessSecret);
 
-	/**
-	 * Returns the authorized of this application user.
-	 *
-	 * @return the authorized of this application user
-	 */
-	public boolean getAuthorized();
-
-	/**
-	 * Returns <code>true</code> if this application user is authorized.
-	 *
-	 * @return <code>true</code> if this application user is authorized; <code>false</code> otherwise
-	 */
-	public boolean isAuthorized();
-
-	/**
-	 * Sets whether this application user is authorized.
-	 *
-	 * @param authorized the authorized of this application user
-	 */
-	public void setAuthorized(boolean authorized);
-
 	public boolean isNew();
 
 	public void setNew(boolean n);

@@ -277,7 +277,6 @@ public class ApplicationUserLocalServiceWrapper
 	* or initial value (depending on data type). Method creates necessary
 	* resources used later by permissions algorithm.
 	*
-	* @param authorized
 	* @param applicationId
 	* @param userId
 	* @param accessSecret
@@ -289,12 +288,12 @@ public class ApplicationUserLocalServiceWrapper
 	*/
 	public com.liferay.portal.oauth.model.ApplicationUser addApplicationUser(
 		long userId, long applicationId, java.lang.String accessToken,
-		java.lang.String accessSecret, boolean authorized,
+		java.lang.String accessSecret,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _applicationUserLocalService.addApplicationUser(userId,
-			applicationId, accessToken, accessSecret, authorized, serviceContext);
+			applicationId, accessToken, accessSecret, serviceContext);
 	}
 
 	public com.liferay.portal.oauth.model.ApplicationUser deleteApplicationUser(
@@ -328,6 +327,14 @@ public class ApplicationUserLocalServiceWrapper
 		return _applicationUserLocalService.getApplicationUserByAccessToken(accessToken);
 	}
 
+	public com.liferay.portal.oauth.model.ApplicationUser getApplicationUserByApplicationId(
+		long userId, long applicationId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.oauth.NoSuchApplicationUserException {
+		return _applicationUserLocalService.getApplicationUserByApplicationId(userId,
+			applicationId);
+	}
+
 	public java.util.List<com.liferay.portal.oauth.model.ApplicationUser> getApplicationUsers(
 		long applicationId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -347,14 +354,6 @@ public class ApplicationUserLocalServiceWrapper
 		return _applicationUserLocalService.getApplicationUsersByUserId(userId);
 	}
 
-	public java.util.List<com.liferay.portal.oauth.model.ApplicationUser> getApplicationUsersByUserId(
-		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _applicationUserLocalService.getApplicationUsersByUserId(userId,
-			start, end, orderByComparator);
-	}
-
 	public int getApplicationUsersByUserIdCount(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _applicationUserLocalService.getApplicationUsersByUserIdCount(userId);
@@ -365,41 +364,25 @@ public class ApplicationUserLocalServiceWrapper
 		return _applicationUserLocalService.getApplicationUsersCount(applicationId);
 	}
 
-	public java.util.List<com.liferay.portal.oauth.model.ApplicationUser> getAuthorizedApplicationUsersByOwnerId(
-		long ownerId, boolean authorized, int start, int end,
+	public java.util.List<com.liferay.portal.oauth.model.ApplicationUser> getApplicationUsersByOwnerId(
+		long ownerId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _applicationUserLocalService.getAuthorizedApplicationUsersByOwnerId(ownerId,
-			authorized, start, end, orderByComparator);
+		return _applicationUserLocalService.getApplicationUsersByOwnerId(ownerId,
+			start, end, orderByComparator);
 	}
 
-	public int getAuthorizedApplicationUsersByOwnerIdCount(long ownerId,
-		boolean authorized)
+	public int getApplicationUsersByOwnerIdCount(long ownerId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _applicationUserLocalService.getAuthorizedApplicationUsersByOwnerIdCount(ownerId,
-			authorized);
+		return _applicationUserLocalService.getApplicationUsersByOwnerIdCount(ownerId);
 	}
 
-	public java.util.List<com.liferay.portal.oauth.model.ApplicationUser> getAuthorizedApplicationUsersByUserId(
-		long userId, boolean authorized)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _applicationUserLocalService.getAuthorizedApplicationUsersByUserId(userId,
-			authorized);
-	}
-
-	public java.util.List<com.liferay.portal.oauth.model.ApplicationUser> getAuthorizedApplicationUsersByUserId(
-		long userId, boolean authorized, int start, int end,
+	public java.util.List<com.liferay.portal.oauth.model.ApplicationUser> getApplicationUsersByUserId(
+		long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _applicationUserLocalService.getAuthorizedApplicationUsersByUserId(userId,
-			authorized, start, end, orderByComparator);
-	}
-
-	public int getAuthorizedApplicationUsersByUserIdCount(long userId,
-		boolean authorized)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _applicationUserLocalService.getAuthorizedApplicationUsersByUserIdCount(userId,
-			authorized);
+		return _applicationUserLocalService.getApplicationUsersByUserId(userId,
+			start, end, orderByComparator);
 	}
 
 	/**
@@ -407,9 +390,7 @@ public class ApplicationUserLocalServiceWrapper
 	* registered to use OAuth feature. If entity doesn't exist new one (with
 	* resources for later permissions check) will be created.
 	*
-	* @param authorized
-	if set to false application access rights are revoked
-	* @param oAuthApplicationId
+	* @param applicationId
 	* @param userId
 	* @param accessSecret
 	* @param accessToken
@@ -426,15 +407,6 @@ public class ApplicationUserLocalServiceWrapper
 			com.liferay.portal.kernel.exception.SystemException {
 		return _applicationUserLocalService.updateApplicationUser(userId,
 			applicationId, accessToken, accessSecret, serviceContext);
-	}
-
-	public com.liferay.portal.oauth.model.ApplicationUser updateAuthorized(
-		long userId, long applicationId, boolean authorized,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _applicationUserLocalService.updateAuthorized(userId,
-			applicationId, authorized, serviceContext);
 	}
 
 	/**

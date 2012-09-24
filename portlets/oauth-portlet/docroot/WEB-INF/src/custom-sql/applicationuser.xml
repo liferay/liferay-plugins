@@ -9,7 +9,7 @@
 				ApplicationUser
 		]]>
 	</sql>
-	<sql id="com.liferay.portal.oauth.service.persistence.ApplicationUserFinder.countByO_A">
+	<sql id="com.liferay.portal.oauth.service.persistence.ApplicationUserFinder.countByO">
 		<![CDATA[
 			SELECT
 				COUNT(*) AS COUNT_VALUE
@@ -18,8 +18,7 @@
 				Application
 			WHERE
 				(Application.userId = ?) AND
-				(Application.applicationId = ApplicationUser.applicationId) AND
-				(ApplicationUser.authorized = ?)
+				(Application.applicationId = ApplicationUser.applicationId)
 		]]>
 	</sql>
 	<sql id="com.liferay.portal.oauth.service.persistence.ApplicationUserFinder.findAll">
@@ -30,7 +29,7 @@
 				ApplicationUser
 		]]>
 	</sql>
-	<sql id="com.liferay.portal.oauth.service.persistence.ApplicationUserFinder.findByO_A">
+	<sql id="com.liferay.portal.oauth.service.persistence.ApplicationUserFinder.findByO">
 		<![CDATA[
 			SELECT
 				{ApplicationUser.*}
@@ -39,8 +38,7 @@
 				Application
 			WHERE
 				(Application.userId = ?) AND
-				(Application.applicationId = ApplicationUser.applicationId) AND
-				(ApplicationUser.authorized = ?)
+				(Application.applicationId = ApplicationUser.applicationId)
 		]]>
 	</sql>
 </custom-sql>

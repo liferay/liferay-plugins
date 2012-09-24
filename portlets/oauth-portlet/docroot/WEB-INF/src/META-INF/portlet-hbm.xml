@@ -31,6 +31,5 @@
 		<property name="applicationId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="accessToken" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="accessSecret" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="authorized" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 	</class>
 </hibernate-mapping>

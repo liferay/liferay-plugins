@@ -26,9 +26,9 @@ public class ApplicationUserFinderUtil {
 		return getFinder().countAll();
 	}
 
-	public static int countByO_A(long ownerId, boolean authorized)
+	public static int countByO(long ownerId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getFinder().countByO_A(ownerId, authorized);
+		return getFinder().countByO(ownerId);
 	}
 
 	public static java.util.List<com.liferay.portal.oauth.model.ApplicationUser> findAll(
@@ -38,12 +38,11 @@ public class ApplicationUserFinderUtil {
 		return getFinder().findAll(start, end, orderByComparator);
 	}
 
-	public static java.util.List<com.liferay.portal.oauth.model.ApplicationUser> findByO_A(
-		long ownerId, boolean authorized, int start, int end,
+	public static java.util.List<com.liferay.portal.oauth.model.ApplicationUser> findByO(
+		long ownerId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getFinder()
-				   .findByO_A(ownerId, authorized, start, end, orderByComparator);
+		return getFinder().findByO(ownerId, start, end, orderByComparator);
 	}
 
 	public static ApplicationUserFinder getFinder() {

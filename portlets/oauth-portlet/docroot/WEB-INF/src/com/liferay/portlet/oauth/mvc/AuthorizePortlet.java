@@ -14,8 +14,11 @@
 
 package com.liferay.portlet.oauth.mvc;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.oauth.OAuthException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.oauth.OAuthAccessor;
 import com.liferay.portal.oauth.OAuthMessage;
 import com.liferay.portal.oauth.OAuthUtil;
@@ -23,12 +26,14 @@ import com.liferay.portal.oauth.util.OAuthConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.util.bridges.mvc.MVCPortlet;
-
-import java.io.IOException;
-
-import javax.portlet.*;
-
 import org.apache.commons.codec.digest.DigestUtils;
+
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
+import javax.portlet.PortletException;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
+import java.io.IOException;
 public class AuthorizePortlet extends MVCPortlet {
 
 	public void authorize(ActionRequest request, ActionResponse response) {
@@ -48,6 +53,8 @@ public class AuthorizePortlet extends MVCPortlet {
 			returnToConsumer(request, response, accessor);
 		}
 		catch (Exception e) {
+			_log.error(e);
+
 			if (e instanceof OAuthException) {
 				SessionErrors.add(
 						request, e.getMessage());
@@ -131,5 +138,8 @@ public class AuthorizePortlet extends MVCPortlet {
 			response.sendRedirect(callback);
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		AuthorizePortlet.class);
 
 }

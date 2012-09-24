@@ -14,15 +14,16 @@
 
 package com.liferay.portal.oauth.service.impl;
 
-import java.util.List;
-
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.ResourceConstants;
+import com.liferay.portal.oauth.NoSuchApplicationUserException;
 import com.liferay.portal.oauth.model.ApplicationUser;
 import com.liferay.portal.oauth.service.base.ApplicationUserLocalServiceBaseImpl;
 import com.liferay.portal.service.ServiceContext;
+
+import java.util.List;
 
 /**
  * The implementation of the application user local service. <p> All custom
@@ -52,8 +53,7 @@ public class ApplicationUserLocalServiceImpl
 	 * registered to use OAuth feature. All optional fields will be set to null
 	 * or initial value (depending on data type). Method creates necessary
 	 * resources used later by permissions algorithm.
-	 * 
-	 * @param authorized
+	 *
 	 * @param applicationId
 	 * @param userId
 	 * @param accessSecret
@@ -65,7 +65,7 @@ public class ApplicationUserLocalServiceImpl
 	 */
 	public ApplicationUser addApplicationUser(
 		long userId, long applicationId, String accessToken,
-		String accessSecret, boolean authorized, ServiceContext serviceContext)
+		String accessSecret, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		long oaauId = counterLocalService.increment();
@@ -77,7 +77,6 @@ public class ApplicationUserLocalServiceImpl
 		applicationUser.setApplicationId(applicationId);
 		applicationUser.setAccessToken(accessToken);
 		applicationUser.setAccessSecret(accessSecret);
-		applicationUser.setAuthorized(authorized);
 
 		applicationUser =
 			applicationUserPersistence.update(applicationUser, false);
@@ -144,6 +143,13 @@ public class ApplicationUserLocalServiceImpl
 		throw new SystemException("No such ApplicationUser.");
 	}
 
+	public ApplicationUser getApplicationUserByApplicationId(
+			long userId, long applicationId)
+		throws SystemException, NoSuchApplicationUserException {
+
+		return applicationUserPersistence.findByU_AP(userId, applicationId);
+	}
+
 	public List<ApplicationUser> getApplicationUsers(long applicationId)
 		throws SystemException {
 
@@ -165,14 +171,6 @@ public class ApplicationUserLocalServiceImpl
 		return applicationUserPersistence.findByUserId(userId);
 	}
 
-	public List<ApplicationUser> getApplicationUsersByUserId(
-		long userId, int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
-
-		return applicationUserPersistence.findByUserId(
-			userId, start, end, orderByComparator);
-	}
-
 	public int getApplicationUsersByUserIdCount(long userId)
 		throws SystemException {
 
@@ -185,53 +183,37 @@ public class ApplicationUserLocalServiceImpl
 		return applicationUserPersistence.countByApplicationId(applicationId);
 	}
 	
-	public List<ApplicationUser> getAuthorizedApplicationUsersByOwnerId(
-			long ownerId, boolean authorized, int start, int end,
+	public List<ApplicationUser> getApplicationUsersByOwnerId(
+			long ownerId, int start, int end,
 			OrderByComparator orderByComparator)
 		throws SystemException {
-		
-		return applicationUserFinder.findByO_A(
-			ownerId, authorized, start, end, orderByComparator);
-	}
-	
-	public int getAuthorizedApplicationUsersByOwnerIdCount(
-			long ownerId, boolean authorized)
-		throws SystemException {
-	
-		return applicationUserFinder.countByO_A(ownerId, authorized);
+
+		return applicationUserFinder.findByO(
+			ownerId, start, end, orderByComparator);
 	}
 
-	public List<ApplicationUser> getAuthorizedApplicationUsersByUserId(
-			long userId, boolean authorized)
+	public int getApplicationUsersByOwnerIdCount(
+		long ownerId)
 		throws SystemException {
 
-		return applicationUserPersistence.findByU_AU(userId, authorized);
+		return applicationUserFinder.countByO(ownerId);
 	}
 
-	public List<ApplicationUser> getAuthorizedApplicationUsersByUserId(
-		long userId, boolean authorized, int start, int end,
+	public List<ApplicationUser> getApplicationUsersByUserId(
+		long userId, int start, int end,
 		OrderByComparator orderByComparator)
 		throws SystemException {
 
-		return applicationUserPersistence.findByU_AU(
-			userId, authorized, start, end, orderByComparator);
-	}
-
-	public int getAuthorizedApplicationUsersByUserIdCount(
-		long userId, boolean authorized)
-		throws SystemException {
-
-		return applicationUserPersistence.countByU_AU(userId, authorized);
+		return applicationUserPersistence.findByUserId(
+			userId, start, end, orderByComparator);
 	}
 
 	/**
 	 * Update user's authorization for an existing application that is
 	 * registered to use OAuth feature. If entity doesn't exist new one (with
 	 * resources for later permissions check) will be created.
-	 * 
-	 * @param authorized
-	 *            if set to false application access rights are revoked
-	 * @param oAuthApplicationId
+	 *
+	 * @param applicationId
 	 * @param userId
 	 * @param accessSecret
 	 * @param accessToken
@@ -250,21 +232,6 @@ public class ApplicationUserLocalServiceImpl
 
 		applicationUser.setAccessToken(accessToken);
 		applicationUser.setAccessSecret(accessSecret);
-
-		applicationUserPersistence.update(applicationUser, false);
-
-		return applicationUser;
-	}
-	
-	public ApplicationUser updateAuthorized(
-		long userId, long applicationId, boolean authorized,
-		ServiceContext serviceContext)
-		throws PortalException, SystemException {
-
-		ApplicationUser applicationUser =
-			applicationUserPersistence.fetchByU_AP(userId, applicationId);
-
-		applicationUser.setAuthorized(authorized);
 
 		applicationUserPersistence.update(applicationUser, false);
 

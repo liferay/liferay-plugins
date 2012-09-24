@@ -116,7 +116,7 @@ public class ApplicationUserLocalServiceClpInvoker {
 
 		_methodParameterTypes44 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
-				"boolean", "com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName45 = "deleteApplicationUser";
@@ -136,27 +136,24 @@ public class ApplicationUserLocalServiceClpInvoker {
 
 		_methodParameterTypes47 = new String[] { "java.lang.String" };
 
-		_methodName48 = "getApplicationUsers";
+		_methodName48 = "getApplicationUserByApplicationId";
 
-		_methodParameterTypes48 = new String[] { "long" };
+		_methodParameterTypes48 = new String[] { "long", "long" };
 
 		_methodName49 = "getApplicationUsers";
 
-		_methodParameterTypes49 = new String[] {
+		_methodParameterTypes49 = new String[] { "long" };
+
+		_methodName50 = "getApplicationUsers";
+
+		_methodParameterTypes50 = new String[] {
 				"long", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
-
-		_methodName50 = "getApplicationUsersByUserId";
-
-		_methodParameterTypes50 = new String[] { "long" };
 
 		_methodName51 = "getApplicationUsersByUserId";
 
-		_methodParameterTypes51 = new String[] {
-				"long", "int", "int",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
+		_methodParameterTypes51 = new String[] { "long" };
 
 		_methodName52 = "getApplicationUsersByUserIdCount";
 
@@ -166,43 +163,28 @@ public class ApplicationUserLocalServiceClpInvoker {
 
 		_methodParameterTypes53 = new String[] { "long" };
 
-		_methodName54 = "getAuthorizedApplicationUsersByOwnerId";
+		_methodName54 = "getApplicationUsersByOwnerId";
 
 		_methodParameterTypes54 = new String[] {
-				"long", "boolean", "int", "int",
+				"long", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName55 = "getAuthorizedApplicationUsersByOwnerIdCount";
+		_methodName55 = "getApplicationUsersByOwnerIdCount";
 
-		_methodParameterTypes55 = new String[] { "long", "boolean" };
+		_methodParameterTypes55 = new String[] { "long" };
 
-		_methodName56 = "getAuthorizedApplicationUsersByUserId";
+		_methodName56 = "getApplicationUsersByUserId";
 
-		_methodParameterTypes56 = new String[] { "long", "boolean" };
+		_methodParameterTypes56 = new String[] {
+				"long", "int", "int",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			};
 
-		_methodName57 = "getAuthorizedApplicationUsersByUserId";
+		_methodName57 = "updateApplicationUser";
 
 		_methodParameterTypes57 = new String[] {
-				"long", "boolean", "int", "int",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
-
-		_methodName58 = "getAuthorizedApplicationUsersByUserIdCount";
-
-		_methodParameterTypes58 = new String[] { "long", "boolean" };
-
-		_methodName59 = "updateApplicationUser";
-
-		_methodParameterTypes59 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
-				"com.liferay.portal.service.ServiceContext"
-			};
-
-		_methodName60 = "updateAuthorized";
-
-		_methodParameterTypes60 = new String[] {
-				"long", "long", "boolean",
 				"com.liferay.portal.service.ServiceContext"
 			};
 	}
@@ -313,8 +295,7 @@ public class ApplicationUserLocalServiceClpInvoker {
 			return ApplicationUserLocalServiceUtil.addApplicationUser(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
-				((Boolean)arguments[4]).booleanValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[5]);
+				(com.liferay.portal.service.ServiceContext)arguments[4]);
 		}
 
 		if (_methodName45.equals(name) &&
@@ -337,28 +318,26 @@ public class ApplicationUserLocalServiceClpInvoker {
 
 		if (_methodName48.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
-			return ApplicationUserLocalServiceUtil.getApplicationUsers(((Long)arguments[0]).longValue());
+			return ApplicationUserLocalServiceUtil.getApplicationUserByApplicationId(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
 		}
 
 		if (_methodName49.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
+			return ApplicationUserLocalServiceUtil.getApplicationUsers(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName50.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
 			return ApplicationUserLocalServiceUtil.getApplicationUsers(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue(),
 				(com.liferay.portal.kernel.util.OrderByComparator)arguments[3]);
 		}
 
-		if (_methodName50.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
-			return ApplicationUserLocalServiceUtil.getApplicationUsersByUserId(((Long)arguments[0]).longValue());
-		}
-
 		if (_methodName51.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
-			return ApplicationUserLocalServiceUtil.getApplicationUsersByUserId(((Long)arguments[0]).longValue(),
-				((Integer)arguments[1]).intValue(),
-				((Integer)arguments[2]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[3]);
+			return ApplicationUserLocalServiceUtil.getApplicationUsersByUserId(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName52.equals(name) &&
@@ -373,54 +352,31 @@ public class ApplicationUserLocalServiceClpInvoker {
 
 		if (_methodName54.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
-			return ApplicationUserLocalServiceUtil.getAuthorizedApplicationUsersByOwnerId(((Long)arguments[0]).longValue(),
-				((Boolean)arguments[1]).booleanValue(),
+			return ApplicationUserLocalServiceUtil.getApplicationUsersByOwnerId(((Long)arguments[0]).longValue(),
+				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue(),
-				((Integer)arguments[3]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[4]);
+				(com.liferay.portal.kernel.util.OrderByComparator)arguments[3]);
 		}
 
 		if (_methodName55.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
-			return ApplicationUserLocalServiceUtil.getAuthorizedApplicationUsersByOwnerIdCount(((Long)arguments[0]).longValue(),
-				((Boolean)arguments[1]).booleanValue());
+			return ApplicationUserLocalServiceUtil.getApplicationUsersByOwnerIdCount(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName56.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
-			return ApplicationUserLocalServiceUtil.getAuthorizedApplicationUsersByUserId(((Long)arguments[0]).longValue(),
-				((Boolean)arguments[1]).booleanValue());
+			return ApplicationUserLocalServiceUtil.getApplicationUsersByUserId(((Long)arguments[0]).longValue(),
+				((Integer)arguments[1]).intValue(),
+				((Integer)arguments[2]).intValue(),
+				(com.liferay.portal.kernel.util.OrderByComparator)arguments[3]);
 		}
 
 		if (_methodName57.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
-			return ApplicationUserLocalServiceUtil.getAuthorizedApplicationUsersByUserId(((Long)arguments[0]).longValue(),
-				((Boolean)arguments[1]).booleanValue(),
-				((Integer)arguments[2]).intValue(),
-				((Integer)arguments[3]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[4]);
-		}
-
-		if (_methodName58.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
-			return ApplicationUserLocalServiceUtil.getAuthorizedApplicationUsersByUserIdCount(((Long)arguments[0]).longValue(),
-				((Boolean)arguments[1]).booleanValue());
-		}
-
-		if (_methodName59.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
 			return ApplicationUserLocalServiceUtil.updateApplicationUser(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
 				(com.liferay.portal.service.ServiceContext)arguments[4]);
-		}
-
-		if (_methodName60.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
-			return ApplicationUserLocalServiceUtil.updateAuthorized(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue(),
-				((Boolean)arguments[2]).booleanValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[3]);
 		}
 
 		throw new UnsupportedOperationException();
@@ -490,10 +446,4 @@ public class ApplicationUserLocalServiceClpInvoker {
 	private String[] _methodParameterTypes56;
 	private String _methodName57;
 	private String[] _methodParameterTypes57;
-	private String _methodName58;
-	private String[] _methodParameterTypes58;
-	private String _methodName59;
-	private String[] _methodParameterTypes59;
-	private String _methodName60;
-	private String[] _methodParameterTypes60;
 }

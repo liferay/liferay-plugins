@@ -32,7 +32,7 @@ public class ApplicationUserCacheModel implements CacheModel<ApplicationUser>,
 	Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(11);
 
 		sb.append("{oaauId=");
 		sb.append(oaauId);
@@ -44,8 +44,6 @@ public class ApplicationUserCacheModel implements CacheModel<ApplicationUser>,
 		sb.append(accessToken);
 		sb.append(", accessSecret=");
 		sb.append(accessSecret);
-		sb.append(", authorized=");
-		sb.append(authorized);
 		sb.append("}");
 
 		return sb.toString();
@@ -72,8 +70,6 @@ public class ApplicationUserCacheModel implements CacheModel<ApplicationUser>,
 			applicationUserImpl.setAccessSecret(accessSecret);
 		}
 
-		applicationUserImpl.setAuthorized(authorized);
-
 		applicationUserImpl.resetOriginalValues();
 
 		return applicationUserImpl;
@@ -84,5 +80,4 @@ public class ApplicationUserCacheModel implements CacheModel<ApplicationUser>,
 	public long applicationId;
 	public String accessToken;
 	public String accessSecret;
-	public boolean authorized;
 }

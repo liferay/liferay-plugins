@@ -83,7 +83,7 @@ public class ApplicationUserFinderImpl
 		}
 	}
 
-	public int countByO_A(long ownerId, boolean authorized)
+	public int countByO(long ownerId)
 		throws SystemException {
 		Session session = null;
 
@@ -99,7 +99,6 @@ public class ApplicationUserFinderImpl
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			qPos.add(ownerId);
-			qPos.add(authorized);
 
 			Iterator<Long> itr = q.iterate();
 
@@ -151,9 +150,9 @@ public class ApplicationUserFinderImpl
 		}
 	}
 
-	public List<ApplicationUser> findByO_A(
-			long ownerId, boolean authorized, int start, int end,
-			OrderByComparator orderByComparator)
+	public List<ApplicationUser> findByO(
+		long ownerId, int start, int end,
+		OrderByComparator orderByComparator)
 		throws SystemException {
 		Session session = null;
 
@@ -172,7 +171,6 @@ public class ApplicationUserFinderImpl
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			qPos.add(ownerId);
-			qPos.add(authorized);
 
 			return (List<ApplicationUser>)QueryUtil.list(
 					q, getDialect(), start, end);

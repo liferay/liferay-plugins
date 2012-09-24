@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -42,6 +43,7 @@ import com.liferay.portal.oauth.NoSuchApplicationUserException;
 import com.liferay.portal.oauth.model.ApplicationUser;
 import com.liferay.portal.oauth.model.impl.ApplicationUserImpl;
 import com.liferay.portal.oauth.model.impl.ApplicationUserModelImpl;
+import com.liferay.portal.security.permission.InlineSQLHelperUtil;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
@@ -141,27 +143,6 @@ public class ApplicationUserPersistenceImpl extends BasePersistenceImpl<Applicat
 			ApplicationUserModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUserId",
 			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_A_A = new FinderPath(ApplicationUserModelImpl.ENTITY_CACHE_ENABLED,
-			ApplicationUserModelImpl.FINDER_CACHE_ENABLED,
-			ApplicationUserImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-			"findByA_A",
-			new String[] {
-				Long.class.getName(), Boolean.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_A_A = new FinderPath(ApplicationUserModelImpl.ENTITY_CACHE_ENABLED,
-			ApplicationUserModelImpl.FINDER_CACHE_ENABLED,
-			ApplicationUserImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByA_A",
-			new String[] { Long.class.getName(), Boolean.class.getName() },
-			ApplicationUserModelImpl.APPLICATIONID_COLUMN_BITMASK |
-			ApplicationUserModelImpl.AUTHORIZED_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_A_A = new FinderPath(ApplicationUserModelImpl.ENTITY_CACHE_ENABLED,
-			ApplicationUserModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByA_A",
-			new String[] { Long.class.getName(), Boolean.class.getName() });
 	public static final FinderPath FINDER_PATH_FETCH_BY_U_AP = new FinderPath(ApplicationUserModelImpl.ENTITY_CACHE_ENABLED,
 			ApplicationUserModelImpl.FINDER_CACHE_ENABLED,
 			ApplicationUserImpl.class, FINDER_CLASS_NAME_ENTITY, "fetchByU_AP",
@@ -172,27 +153,6 @@ public class ApplicationUserPersistenceImpl extends BasePersistenceImpl<Applicat
 			ApplicationUserModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_AP",
 			new String[] { Long.class.getName(), Long.class.getName() });
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_U_AU = new FinderPath(ApplicationUserModelImpl.ENTITY_CACHE_ENABLED,
-			ApplicationUserModelImpl.FINDER_CACHE_ENABLED,
-			ApplicationUserImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-			"findByU_AU",
-			new String[] {
-				Long.class.getName(), Boolean.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_AU = new FinderPath(ApplicationUserModelImpl.ENTITY_CACHE_ENABLED,
-			ApplicationUserModelImpl.FINDER_CACHE_ENABLED,
-			ApplicationUserImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByU_AU",
-			new String[] { Long.class.getName(), Boolean.class.getName() },
-			ApplicationUserModelImpl.USERID_COLUMN_BITMASK |
-			ApplicationUserModelImpl.AUTHORIZED_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_U_AU = new FinderPath(ApplicationUserModelImpl.ENTITY_CACHE_ENABLED,
-			ApplicationUserModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_AU",
-			new String[] { Long.class.getName(), Boolean.class.getName() });
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(ApplicationUserModelImpl.ENTITY_CACHE_ENABLED,
 			ApplicationUserModelImpl.FINDER_CACHE_ENABLED,
 			ApplicationUserImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
@@ -486,48 +446,6 @@ public class ApplicationUserPersistenceImpl extends BasePersistenceImpl<Applicat
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
 					args);
 			}
-
-			if ((applicationUserModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_A_A.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						Long.valueOf(applicationUserModelImpl.getOriginalApplicationId()),
-						Boolean.valueOf(applicationUserModelImpl.getOriginalAuthorized())
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_A_A, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_A_A,
-					args);
-
-				args = new Object[] {
-						Long.valueOf(applicationUserModelImpl.getApplicationId()),
-						Boolean.valueOf(applicationUserModelImpl.getAuthorized())
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_A_A, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_A_A,
-					args);
-			}
-
-			if ((applicationUserModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_AU.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						Long.valueOf(applicationUserModelImpl.getOriginalUserId()),
-						Boolean.valueOf(applicationUserModelImpl.getOriginalAuthorized())
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_AU, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_AU,
-					args);
-
-				args = new Object[] {
-						Long.valueOf(applicationUserModelImpl.getUserId()),
-						Boolean.valueOf(applicationUserModelImpl.getAuthorized())
-					};
-
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_AU, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_AU,
-					args);
-			}
 		}
 
 		EntityCacheUtil.putResult(ApplicationUserModelImpl.ENTITY_CACHE_ENABLED,
@@ -579,7 +497,6 @@ public class ApplicationUserPersistenceImpl extends BasePersistenceImpl<Applicat
 		applicationUserImpl.setApplicationId(applicationUser.getApplicationId());
 		applicationUserImpl.setAccessToken(applicationUser.getAccessToken());
 		applicationUserImpl.setAccessSecret(applicationUser.getAccessSecret());
-		applicationUserImpl.setAuthorized(applicationUser.isAuthorized());
 
 		return applicationUserImpl;
 	}
@@ -1085,6 +1002,326 @@ public class ApplicationUserPersistenceImpl extends BasePersistenceImpl<Applicat
 	}
 
 	/**
+	 * Returns all the application users that the user has permission to view where accessToken = &#63;.
+	 *
+	 * @param accessToken the access token
+	 * @return the matching application users that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<ApplicationUser> filterFindByAccessToken(String accessToken)
+		throws SystemException {
+		return filterFindByAccessToken(accessToken, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the application users that the user has permission to view where accessToken = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param accessToken the access token
+	 * @param start the lower bound of the range of application users
+	 * @param end the upper bound of the range of application users (not inclusive)
+	 * @return the range of matching application users that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<ApplicationUser> filterFindByAccessToken(String accessToken,
+		int start, int end) throws SystemException {
+		return filterFindByAccessToken(accessToken, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the application users that the user has permissions to view where accessToken = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param accessToken the access token
+	 * @param start the lower bound of the range of application users
+	 * @param end the upper bound of the range of application users (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching application users that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<ApplicationUser> filterFindByAccessToken(String accessToken,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByAccessToken(accessToken, start, end, orderByComparator);
+		}
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(3 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(2);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_APPLICATIONUSER_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_APPLICATIONUSER_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		if (accessToken == null) {
+			query.append(_FINDER_COLUMN_ACCESSTOKEN_ACCESSTOKEN_1);
+		}
+		else {
+			if (accessToken.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_ACCESSTOKEN_ACCESSTOKEN_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_ACCESSTOKEN_ACCESSTOKEN_2);
+			}
+		}
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_APPLICATIONUSER_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				ApplicationUser.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, ApplicationUserImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, ApplicationUserImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			if (accessToken != null) {
+				qPos.add(accessToken);
+			}
+
+			return (List<ApplicationUser>)QueryUtil.list(q, getDialect(),
+				start, end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Returns the application users before and after the current application user in the ordered set of application users that the user has permission to view where accessToken = &#63;.
+	 *
+	 * @param oaauId the primary key of the current application user
+	 * @param accessToken the access token
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next application user
+	 * @throws com.liferay.portal.oauth.NoSuchApplicationUserException if a application user with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public ApplicationUser[] filterFindByAccessToken_PrevAndNext(long oaauId,
+		String accessToken, OrderByComparator orderByComparator)
+		throws NoSuchApplicationUserException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByAccessToken_PrevAndNext(oaauId, accessToken,
+				orderByComparator);
+		}
+
+		ApplicationUser applicationUser = findByPrimaryKey(oaauId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			ApplicationUser[] array = new ApplicationUserImpl[3];
+
+			array[0] = filterGetByAccessToken_PrevAndNext(session,
+					applicationUser, accessToken, orderByComparator, true);
+
+			array[1] = applicationUser;
+
+			array[2] = filterGetByAccessToken_PrevAndNext(session,
+					applicationUser, accessToken, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected ApplicationUser filterGetByAccessToken_PrevAndNext(
+		Session session, ApplicationUser applicationUser, String accessToken,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_APPLICATIONUSER_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_APPLICATIONUSER_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		if (accessToken == null) {
+			query.append(_FINDER_COLUMN_ACCESSTOKEN_ACCESSTOKEN_1);
+		}
+		else {
+			if (accessToken.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_ACCESSTOKEN_ACCESSTOKEN_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_ACCESSTOKEN_ACCESSTOKEN_2);
+			}
+		}
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_APPLICATIONUSER_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				ApplicationUser.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, ApplicationUserImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, ApplicationUserImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		if (accessToken != null) {
+			qPos.add(accessToken);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(applicationUser);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<ApplicationUser> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Returns all the application users where applicationId = &#63;.
 	 *
 	 * @param applicationId the application ID
@@ -1441,6 +1678,303 @@ public class ApplicationUserPersistenceImpl extends BasePersistenceImpl<Applicat
 
 		q.setFirstResult(0);
 		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(applicationId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(applicationUser);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<ApplicationUser> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Returns all the application users that the user has permission to view where applicationId = &#63;.
+	 *
+	 * @param applicationId the application ID
+	 * @return the matching application users that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<ApplicationUser> filterFindByApplicationId(long applicationId)
+		throws SystemException {
+		return filterFindByApplicationId(applicationId, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the application users that the user has permission to view where applicationId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param applicationId the application ID
+	 * @param start the lower bound of the range of application users
+	 * @param end the upper bound of the range of application users (not inclusive)
+	 * @return the range of matching application users that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<ApplicationUser> filterFindByApplicationId(long applicationId,
+		int start, int end) throws SystemException {
+		return filterFindByApplicationId(applicationId, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the application users that the user has permissions to view where applicationId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param applicationId the application ID
+	 * @param start the lower bound of the range of application users
+	 * @param end the upper bound of the range of application users (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching application users that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<ApplicationUser> filterFindByApplicationId(long applicationId,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByApplicationId(applicationId, start, end,
+				orderByComparator);
+		}
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(3 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(2);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_APPLICATIONUSER_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_APPLICATIONUSER_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_APPLICATIONID_APPLICATIONID_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_APPLICATIONUSER_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				ApplicationUser.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, ApplicationUserImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, ApplicationUserImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(applicationId);
+
+			return (List<ApplicationUser>)QueryUtil.list(q, getDialect(),
+				start, end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Returns the application users before and after the current application user in the ordered set of application users that the user has permission to view where applicationId = &#63;.
+	 *
+	 * @param oaauId the primary key of the current application user
+	 * @param applicationId the application ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next application user
+	 * @throws com.liferay.portal.oauth.NoSuchApplicationUserException if a application user with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public ApplicationUser[] filterFindByApplicationId_PrevAndNext(
+		long oaauId, long applicationId, OrderByComparator orderByComparator)
+		throws NoSuchApplicationUserException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByApplicationId_PrevAndNext(oaauId, applicationId,
+				orderByComparator);
+		}
+
+		ApplicationUser applicationUser = findByPrimaryKey(oaauId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			ApplicationUser[] array = new ApplicationUserImpl[3];
+
+			array[0] = filterGetByApplicationId_PrevAndNext(session,
+					applicationUser, applicationId, orderByComparator, true);
+
+			array[1] = applicationUser;
+
+			array[2] = filterGetByApplicationId_PrevAndNext(session,
+					applicationUser, applicationId, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected ApplicationUser filterGetByApplicationId_PrevAndNext(
+		Session session, ApplicationUser applicationUser, long applicationId,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_APPLICATIONUSER_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_APPLICATIONUSER_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_APPLICATIONID_APPLICATIONID_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_APPLICATIONUSER_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				ApplicationUser.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, ApplicationUserImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, ApplicationUserImpl.class);
+		}
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1839,278 +2373,140 @@ public class ApplicationUserPersistenceImpl extends BasePersistenceImpl<Applicat
 	}
 
 	/**
-	 * Returns all the application users where applicationId = &#63; and authorized = &#63;.
+	 * Returns all the application users that the user has permission to view where userId = &#63;.
 	 *
-	 * @param applicationId the application ID
-	 * @param authorized the authorized
-	 * @return the matching application users
+	 * @param userId the user ID
+	 * @return the matching application users that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<ApplicationUser> findByA_A(long applicationId,
-		boolean authorized) throws SystemException {
-		return findByA_A(applicationId, authorized, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<ApplicationUser> filterFindByUserId(long userId)
+		throws SystemException {
+		return filterFindByUserId(userId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
-	 * Returns a range of all the application users where applicationId = &#63; and authorized = &#63;.
+	 * Returns a range of all the application users that the user has permission to view where userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param applicationId the application ID
-	 * @param authorized the authorized
+	 * @param userId the user ID
 	 * @param start the lower bound of the range of application users
 	 * @param end the upper bound of the range of application users (not inclusive)
-	 * @return the range of matching application users
+	 * @return the range of matching application users that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<ApplicationUser> findByA_A(long applicationId,
-		boolean authorized, int start, int end) throws SystemException {
-		return findByA_A(applicationId, authorized, start, end, null);
+	public List<ApplicationUser> filterFindByUserId(long userId, int start,
+		int end) throws SystemException {
+		return filterFindByUserId(userId, start, end, null);
 	}
 
 	/**
-	 * Returns an ordered range of all the application users where applicationId = &#63; and authorized = &#63;.
+	 * Returns an ordered range of all the application users that the user has permissions to view where userId = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param applicationId the application ID
-	 * @param authorized the authorized
+	 * @param userId the user ID
 	 * @param start the lower bound of the range of application users
 	 * @param end the upper bound of the range of application users (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching application users
+	 * @return the ordered range of matching application users that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<ApplicationUser> findByA_A(long applicationId,
-		boolean authorized, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
-		FinderPath finderPath = null;
-		Object[] finderArgs = null;
+	public List<ApplicationUser> filterFindByUserId(long userId, int start,
+		int end, OrderByComparator orderByComparator) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByUserId(userId, start, end, orderByComparator);
+		}
 
-		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_A_A;
-			finderArgs = new Object[] { applicationId, authorized };
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(3 +
+					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_A_A;
-			finderArgs = new Object[] {
-					applicationId, authorized,
-					
-					start, end, orderByComparator
-				};
+			query = new StringBundler(2);
 		}
 
-		List<ApplicationUser> list = (List<ApplicationUser>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
-
-		if ((list != null) && !list.isEmpty()) {
-			for (ApplicationUser applicationUser : list) {
-				if ((applicationId != applicationUser.getApplicationId()) ||
-						(authorized != applicationUser.getAuthorized())) {
-					list = null;
-
-					break;
-				}
-			}
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_APPLICATIONUSER_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_APPLICATIONUSER_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
-		if (list == null) {
-			StringBundler query = null;
+		query.append(_FINDER_COLUMN_USERID_USERID_2);
 
-			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(3);
-			}
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_APPLICATIONUSER_NO_INLINE_DISTINCT_WHERE_2);
+		}
 
-			query.append(_SQL_SELECT_APPLICATIONUSER_WHERE);
-
-			query.append(_FINDER_COLUMN_A_A_APPLICATIONID_2);
-
-			query.append(_FINDER_COLUMN_A_A_AUTHORIZED_2);
-
-			if (orderByComparator != null) {
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
 					orderByComparator);
 			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(applicationId);
-
-				qPos.add(authorized);
-
-				list = (List<ApplicationUser>)QueryUtil.list(q, getDialect(),
-						start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
-
-				closeSession(session);
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator);
 			}
 		}
 
-		return list;
-	}
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				ApplicationUser.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
 
-	/**
-	 * Returns the first application user in the ordered set where applicationId = &#63; and authorized = &#63;.
-	 *
-	 * @param applicationId the application ID
-	 * @param authorized the authorized
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching application user
-	 * @throws com.liferay.portal.oauth.NoSuchApplicationUserException if a matching application user could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public ApplicationUser findByA_A_First(long applicationId,
-		boolean authorized, OrderByComparator orderByComparator)
-		throws NoSuchApplicationUserException, SystemException {
-		ApplicationUser applicationUser = fetchByA_A_First(applicationId,
-				authorized, orderByComparator);
+		Session session = null;
 
-		if (applicationUser != null) {
-			return applicationUser;
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, ApplicationUserImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, ApplicationUserImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(userId);
+
+			return (List<ApplicationUser>)QueryUtil.list(q, getDialect(),
+				start, end);
 		}
-
-		StringBundler msg = new StringBundler(6);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("applicationId=");
-		msg.append(applicationId);
-
-		msg.append(", authorized=");
-		msg.append(authorized);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchApplicationUserException(msg.toString());
-	}
-
-	/**
-	 * Returns the first application user in the ordered set where applicationId = &#63; and authorized = &#63;.
-	 *
-	 * @param applicationId the application ID
-	 * @param authorized the authorized
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching application user, or <code>null</code> if a matching application user could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public ApplicationUser fetchByA_A_First(long applicationId,
-		boolean authorized, OrderByComparator orderByComparator)
-		throws SystemException {
-		List<ApplicationUser> list = findByA_A(applicationId, authorized, 0, 1,
-				orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
+		catch (Exception e) {
+			throw processException(e);
 		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the last application user in the ordered set where applicationId = &#63; and authorized = &#63;.
-	 *
-	 * @param applicationId the application ID
-	 * @param authorized the authorized
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching application user
-	 * @throws com.liferay.portal.oauth.NoSuchApplicationUserException if a matching application user could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public ApplicationUser findByA_A_Last(long applicationId,
-		boolean authorized, OrderByComparator orderByComparator)
-		throws NoSuchApplicationUserException, SystemException {
-		ApplicationUser applicationUser = fetchByA_A_Last(applicationId,
-				authorized, orderByComparator);
-
-		if (applicationUser != null) {
-			return applicationUser;
+		finally {
+			closeSession(session);
 		}
-
-		StringBundler msg = new StringBundler(6);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("applicationId=");
-		msg.append(applicationId);
-
-		msg.append(", authorized=");
-		msg.append(authorized);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchApplicationUserException(msg.toString());
 	}
 
 	/**
-	 * Returns the last application user in the ordered set where applicationId = &#63; and authorized = &#63;.
-	 *
-	 * @param applicationId the application ID
-	 * @param authorized the authorized
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching application user, or <code>null</code> if a matching application user could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public ApplicationUser fetchByA_A_Last(long applicationId,
-		boolean authorized, OrderByComparator orderByComparator)
-		throws SystemException {
-		int count = countByA_A(applicationId, authorized);
-
-		List<ApplicationUser> list = findByA_A(applicationId, authorized,
-				count - 1, count, orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the application users before and after the current application user in the ordered set where applicationId = &#63; and authorized = &#63;.
+	 * Returns the application users before and after the current application user in the ordered set of application users that the user has permission to view where userId = &#63;.
 	 *
 	 * @param oaauId the primary key of the current application user
-	 * @param applicationId the application ID
-	 * @param authorized the authorized
+	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next application user
 	 * @throws com.liferay.portal.oauth.NoSuchApplicationUserException if a application user with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public ApplicationUser[] findByA_A_PrevAndNext(long oaauId,
-		long applicationId, boolean authorized,
-		OrderByComparator orderByComparator)
+	public ApplicationUser[] filterFindByUserId_PrevAndNext(long oaauId,
+		long userId, OrderByComparator orderByComparator)
 		throws NoSuchApplicationUserException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByUserId_PrevAndNext(oaauId, userId, orderByComparator);
+		}
+
 		ApplicationUser applicationUser = findByPrimaryKey(oaauId);
 
 		Session session = null;
@@ -2120,13 +2516,13 @@ public class ApplicationUserPersistenceImpl extends BasePersistenceImpl<Applicat
 
 			ApplicationUser[] array = new ApplicationUserImpl[3];
 
-			array[0] = getByA_A_PrevAndNext(session, applicationUser,
-					applicationId, authorized, orderByComparator, true);
+			array[0] = filterGetByUserId_PrevAndNext(session, applicationUser,
+					userId, orderByComparator, true);
 
 			array[1] = applicationUser;
 
-			array[2] = getByA_A_PrevAndNext(session, applicationUser,
-					applicationId, authorized, orderByComparator, false);
+			array[2] = filterGetByUserId_PrevAndNext(session, applicationUser,
+					userId, orderByComparator, false);
 
 			return array;
 		}
@@ -2138,10 +2534,9 @@ public class ApplicationUserPersistenceImpl extends BasePersistenceImpl<Applicat
 		}
 	}
 
-	protected ApplicationUser getByA_A_PrevAndNext(Session session,
-		ApplicationUser applicationUser, long applicationId,
-		boolean authorized, OrderByComparator orderByComparator,
-		boolean previous) {
+	protected ApplicationUser filterGetByUserId_PrevAndNext(Session session,
+		ApplicationUser applicationUser, long userId,
+		OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -2152,11 +2547,18 @@ public class ApplicationUserPersistenceImpl extends BasePersistenceImpl<Applicat
 			query = new StringBundler(3);
 		}
 
-		query.append(_SQL_SELECT_APPLICATIONUSER_WHERE);
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_APPLICATIONUSER_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_APPLICATIONUSER_NO_INLINE_DISTINCT_WHERE_1);
+		}
 
-		query.append(_FINDER_COLUMN_A_A_APPLICATIONID_2);
+		query.append(_FINDER_COLUMN_USERID_USERID_2);
 
-		query.append(_FINDER_COLUMN_A_A_AUTHORIZED_2);
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_APPLICATIONUSER_NO_INLINE_DISTINCT_WHERE_2);
+		}
 
 		if (orderByComparator != null) {
 			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
@@ -2166,7 +2568,13 @@ public class ApplicationUserPersistenceImpl extends BasePersistenceImpl<Applicat
 			}
 
 			for (int i = 0; i < orderByConditionFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
 				query.append(orderByConditionFields[i]);
 
 				if ((i + 1) < orderByConditionFields.length) {
@@ -2192,7 +2600,13 @@ public class ApplicationUserPersistenceImpl extends BasePersistenceImpl<Applicat
 			String[] orderByFields = orderByComparator.getOrderByFields();
 
 			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
 				query.append(orderByFields[i]);
 
 				if ((i + 1) < orderByFields.length) {
@@ -2214,18 +2628,25 @@ public class ApplicationUserPersistenceImpl extends BasePersistenceImpl<Applicat
 			}
 		}
 
-		String sql = query.toString();
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				ApplicationUser.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
 
-		Query q = session.createQuery(sql);
+		SQLQuery q = session.createSQLQuery(sql);
 
 		q.setFirstResult(0);
 		q.setMaxResults(2);
 
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, ApplicationUserImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, ApplicationUserImpl.class);
+		}
+
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		qPos.add(applicationId);
-
-		qPos.add(authorized);
+		qPos.add(userId);
 
 		if (orderByComparator != null) {
 			Object[] values = orderByComparator.getOrderByConditionValues(applicationUser);
@@ -2394,409 +2815,6 @@ public class ApplicationUserPersistenceImpl extends BasePersistenceImpl<Applicat
 	}
 
 	/**
-	 * Returns all the application users where userId = &#63; and authorized = &#63;.
-	 *
-	 * @param userId the user ID
-	 * @param authorized the authorized
-	 * @return the matching application users
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<ApplicationUser> findByU_AU(long userId, boolean authorized)
-		throws SystemException {
-		return findByU_AU(userId, authorized, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
-	}
-
-	/**
-	 * Returns a range of all the application users where userId = &#63; and authorized = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param userId the user ID
-	 * @param authorized the authorized
-	 * @param start the lower bound of the range of application users
-	 * @param end the upper bound of the range of application users (not inclusive)
-	 * @return the range of matching application users
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<ApplicationUser> findByU_AU(long userId, boolean authorized,
-		int start, int end) throws SystemException {
-		return findByU_AU(userId, authorized, start, end, null);
-	}
-
-	/**
-	 * Returns an ordered range of all the application users where userId = &#63; and authorized = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param userId the user ID
-	 * @param authorized the authorized
-	 * @param start the lower bound of the range of application users
-	 * @param end the upper bound of the range of application users (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching application users
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<ApplicationUser> findByU_AU(long userId, boolean authorized,
-		int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
-		FinderPath finderPath = null;
-		Object[] finderArgs = null;
-
-		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_AU;
-			finderArgs = new Object[] { userId, authorized };
-		}
-		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_U_AU;
-			finderArgs = new Object[] {
-					userId, authorized,
-					
-					start, end, orderByComparator
-				};
-		}
-
-		List<ApplicationUser> list = (List<ApplicationUser>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
-
-		if ((list != null) && !list.isEmpty()) {
-			for (ApplicationUser applicationUser : list) {
-				if ((userId != applicationUser.getUserId()) ||
-						(authorized != applicationUser.getAuthorized())) {
-					list = null;
-
-					break;
-				}
-			}
-		}
-
-		if (list == null) {
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(3);
-			}
-
-			query.append(_SQL_SELECT_APPLICATIONUSER_WHERE);
-
-			query.append(_FINDER_COLUMN_U_AU_USERID_2);
-
-			query.append(_FINDER_COLUMN_U_AU_AUTHORIZED_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(userId);
-
-				qPos.add(authorized);
-
-				list = (List<ApplicationUser>)QueryUtil.list(q, getDialect(),
-						start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(finderPath, finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(finderPath, finderArgs, list);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	/**
-	 * Returns the first application user in the ordered set where userId = &#63; and authorized = &#63;.
-	 *
-	 * @param userId the user ID
-	 * @param authorized the authorized
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching application user
-	 * @throws com.liferay.portal.oauth.NoSuchApplicationUserException if a matching application user could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public ApplicationUser findByU_AU_First(long userId, boolean authorized,
-		OrderByComparator orderByComparator)
-		throws NoSuchApplicationUserException, SystemException {
-		ApplicationUser applicationUser = fetchByU_AU_First(userId, authorized,
-				orderByComparator);
-
-		if (applicationUser != null) {
-			return applicationUser;
-		}
-
-		StringBundler msg = new StringBundler(6);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("userId=");
-		msg.append(userId);
-
-		msg.append(", authorized=");
-		msg.append(authorized);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchApplicationUserException(msg.toString());
-	}
-
-	/**
-	 * Returns the first application user in the ordered set where userId = &#63; and authorized = &#63;.
-	 *
-	 * @param userId the user ID
-	 * @param authorized the authorized
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching application user, or <code>null</code> if a matching application user could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public ApplicationUser fetchByU_AU_First(long userId, boolean authorized,
-		OrderByComparator orderByComparator) throws SystemException {
-		List<ApplicationUser> list = findByU_AU(userId, authorized, 0, 1,
-				orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the last application user in the ordered set where userId = &#63; and authorized = &#63;.
-	 *
-	 * @param userId the user ID
-	 * @param authorized the authorized
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching application user
-	 * @throws com.liferay.portal.oauth.NoSuchApplicationUserException if a matching application user could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public ApplicationUser findByU_AU_Last(long userId, boolean authorized,
-		OrderByComparator orderByComparator)
-		throws NoSuchApplicationUserException, SystemException {
-		ApplicationUser applicationUser = fetchByU_AU_Last(userId, authorized,
-				orderByComparator);
-
-		if (applicationUser != null) {
-			return applicationUser;
-		}
-
-		StringBundler msg = new StringBundler(6);
-
-		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-		msg.append("userId=");
-		msg.append(userId);
-
-		msg.append(", authorized=");
-		msg.append(authorized);
-
-		msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchApplicationUserException(msg.toString());
-	}
-
-	/**
-	 * Returns the last application user in the ordered set where userId = &#63; and authorized = &#63;.
-	 *
-	 * @param userId the user ID
-	 * @param authorized the authorized
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching application user, or <code>null</code> if a matching application user could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public ApplicationUser fetchByU_AU_Last(long userId, boolean authorized,
-		OrderByComparator orderByComparator) throws SystemException {
-		int count = countByU_AU(userId, authorized);
-
-		List<ApplicationUser> list = findByU_AU(userId, authorized, count - 1,
-				count, orderByComparator);
-
-		if (!list.isEmpty()) {
-			return list.get(0);
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns the application users before and after the current application user in the ordered set where userId = &#63; and authorized = &#63;.
-	 *
-	 * @param oaauId the primary key of the current application user
-	 * @param userId the user ID
-	 * @param authorized the authorized
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the previous, current, and next application user
-	 * @throws com.liferay.portal.oauth.NoSuchApplicationUserException if a application user with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public ApplicationUser[] findByU_AU_PrevAndNext(long oaauId, long userId,
-		boolean authorized, OrderByComparator orderByComparator)
-		throws NoSuchApplicationUserException, SystemException {
-		ApplicationUser applicationUser = findByPrimaryKey(oaauId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			ApplicationUser[] array = new ApplicationUserImpl[3];
-
-			array[0] = getByU_AU_PrevAndNext(session, applicationUser, userId,
-					authorized, orderByComparator, true);
-
-			array[1] = applicationUser;
-
-			array[2] = getByU_AU_PrevAndNext(session, applicationUser, userId,
-					authorized, orderByComparator, false);
-
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	protected ApplicationUser getByU_AU_PrevAndNext(Session session,
-		ApplicationUser applicationUser, long userId, boolean authorized,
-		OrderByComparator orderByComparator, boolean previous) {
-		StringBundler query = null;
-
-		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
-			query = new StringBundler(3);
-		}
-
-		query.append(_SQL_SELECT_APPLICATIONUSER_WHERE);
-
-		query.append(_FINDER_COLUMN_U_AU_USERID_2);
-
-		query.append(_FINDER_COLUMN_U_AU_AUTHORIZED_2);
-
-		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
-
-			if (orderByConditionFields.length > 0) {
-				query.append(WHERE_AND);
-			}
-
-			for (int i = 0; i < orderByConditionFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByConditionFields[i]);
-
-				if ((i + 1) < orderByConditionFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN);
-					}
-				}
-			}
-
-			query.append(ORDER_BY_CLAUSE);
-
-			String[] orderByFields = orderByComparator.getOrderByFields();
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
-						query.append(ORDER_BY_DESC_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC);
-					}
-					else {
-						query.append(ORDER_BY_DESC);
-					}
-				}
-			}
-		}
-
-		String sql = query.toString();
-
-		Query q = session.createQuery(sql);
-
-		q.setFirstResult(0);
-		q.setMaxResults(2);
-
-		QueryPos qPos = QueryPos.getInstance(q);
-
-		qPos.add(userId);
-
-		qPos.add(authorized);
-
-		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(applicationUser);
-
-			for (Object value : values) {
-				qPos.add(value);
-			}
-		}
-
-		List<ApplicationUser> list = q.list();
-
-		if (list.size() == 2) {
-			return list.get(1);
-		}
-		else {
-			return null;
-		}
-	}
-
-	/**
 	 * Returns all the application users.
 	 *
 	 * @return the application users
@@ -2951,21 +2969,6 @@ public class ApplicationUserPersistenceImpl extends BasePersistenceImpl<Applicat
 	}
 
 	/**
-	 * Removes all the application users where applicationId = &#63; and authorized = &#63; from the database.
-	 *
-	 * @param applicationId the application ID
-	 * @param authorized the authorized
-	 * @throws SystemException if a system exception occurred
-	 */
-	public void removeByA_A(long applicationId, boolean authorized)
-		throws SystemException {
-		for (ApplicationUser applicationUser : findByA_A(applicationId,
-				authorized)) {
-			remove(applicationUser);
-		}
-	}
-
-	/**
 	 * Removes the application user where userId = &#63; and applicationId = &#63; from the database.
 	 *
 	 * @param userId the user ID
@@ -2978,20 +2981,6 @@ public class ApplicationUserPersistenceImpl extends BasePersistenceImpl<Applicat
 		ApplicationUser applicationUser = findByU_AP(userId, applicationId);
 
 		return remove(applicationUser);
-	}
-
-	/**
-	 * Removes all the application users where userId = &#63; and authorized = &#63; from the database.
-	 *
-	 * @param userId the user ID
-	 * @param authorized the authorized
-	 * @throws SystemException if a system exception occurred
-	 */
-	public void removeByU_AU(long userId, boolean authorized)
-		throws SystemException {
-		for (ApplicationUser applicationUser : findByU_AU(userId, authorized)) {
-			remove(applicationUser);
-		}
 	}
 
 	/**
@@ -3071,6 +3060,67 @@ public class ApplicationUserPersistenceImpl extends BasePersistenceImpl<Applicat
 	}
 
 	/**
+	 * Returns the number of application users that the user has permission to view where accessToken = &#63;.
+	 *
+	 * @param accessToken the access token
+	 * @return the number of matching application users that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int filterCountByAccessToken(String accessToken)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return countByAccessToken(accessToken);
+		}
+
+		StringBundler query = new StringBundler(2);
+
+		query.append(_FILTER_SQL_COUNT_APPLICATIONUSER_WHERE);
+
+		if (accessToken == null) {
+			query.append(_FINDER_COLUMN_ACCESSTOKEN_ACCESSTOKEN_1);
+		}
+		else {
+			if (accessToken.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_ACCESSTOKEN_ACCESSTOKEN_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_ACCESSTOKEN_ACCESSTOKEN_2);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				ApplicationUser.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			if (accessToken != null) {
+				qPos.add(accessToken);
+			}
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
 	 * Returns the number of application users where applicationId = &#63;.
 	 *
 	 * @param applicationId the application ID
@@ -3122,6 +3172,55 @@ public class ApplicationUserPersistenceImpl extends BasePersistenceImpl<Applicat
 		}
 
 		return count.intValue();
+	}
+
+	/**
+	 * Returns the number of application users that the user has permission to view where applicationId = &#63;.
+	 *
+	 * @param applicationId the application ID
+	 * @return the number of matching application users that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int filterCountByApplicationId(long applicationId)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return countByApplicationId(applicationId);
+		}
+
+		StringBundler query = new StringBundler(2);
+
+		query.append(_FILTER_SQL_COUNT_APPLICATIONUSER_WHERE);
+
+		query.append(_FINDER_COLUMN_APPLICATIONID_APPLICATIONID_2);
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				ApplicationUser.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(applicationId);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
 	}
 
 	/**
@@ -3178,62 +3277,51 @@ public class ApplicationUserPersistenceImpl extends BasePersistenceImpl<Applicat
 	}
 
 	/**
-	 * Returns the number of application users where applicationId = &#63; and authorized = &#63;.
+	 * Returns the number of application users that the user has permission to view where userId = &#63;.
 	 *
-	 * @param applicationId the application ID
-	 * @param authorized the authorized
-	 * @return the number of matching application users
+	 * @param userId the user ID
+	 * @return the number of matching application users that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByA_A(long applicationId, boolean authorized)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { applicationId, authorized };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_A_A,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(3);
-
-			query.append(_SQL_COUNT_APPLICATIONUSER_WHERE);
-
-			query.append(_FINDER_COLUMN_A_A_APPLICATIONID_2);
-
-			query.append(_FINDER_COLUMN_A_A_AUTHORIZED_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(applicationId);
-
-				qPos.add(authorized);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_A_A, finderArgs,
-					count);
-
-				closeSession(session);
-			}
+	public int filterCountByUserId(long userId) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return countByUserId(userId);
 		}
 
-		return count.intValue();
+		StringBundler query = new StringBundler(2);
+
+		query.append(_FILTER_SQL_COUNT_APPLICATIONUSER_WHERE);
+
+		query.append(_FINDER_COLUMN_USERID_USERID_2);
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				ApplicationUser.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(userId);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
 	}
 
 	/**
@@ -3286,65 +3374,6 @@ public class ApplicationUserPersistenceImpl extends BasePersistenceImpl<Applicat
 				}
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_AP,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	/**
-	 * Returns the number of application users where userId = &#63; and authorized = &#63;.
-	 *
-	 * @param userId the user ID
-	 * @param authorized the authorized
-	 * @return the number of matching application users
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByU_AU(long userId, boolean authorized)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { userId, authorized };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_U_AU,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(3);
-
-			query.append(_SQL_COUNT_APPLICATIONUSER_WHERE);
-
-			query.append(_FINDER_COLUMN_U_AU_USERID_2);
-
-			query.append(_FINDER_COLUMN_U_AU_AUTHORIZED_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(userId);
-
-				qPos.add(authorized);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_AU,
 					finderArgs, count);
 
 				closeSession(session);
@@ -3438,13 +3467,19 @@ public class ApplicationUserPersistenceImpl extends BasePersistenceImpl<Applicat
 	private static final String _FINDER_COLUMN_ACCESSTOKEN_ACCESSTOKEN_3 = "(applicationUser.accessToken IS NULL OR applicationUser.accessToken = ?)";
 	private static final String _FINDER_COLUMN_APPLICATIONID_APPLICATIONID_2 = "applicationUser.applicationId = ?";
 	private static final String _FINDER_COLUMN_USERID_USERID_2 = "applicationUser.userId = ?";
-	private static final String _FINDER_COLUMN_A_A_APPLICATIONID_2 = "applicationUser.applicationId = ? AND ";
-	private static final String _FINDER_COLUMN_A_A_AUTHORIZED_2 = "applicationUser.authorized = ?";
 	private static final String _FINDER_COLUMN_U_AP_USERID_2 = "applicationUser.userId = ? AND ";
 	private static final String _FINDER_COLUMN_U_AP_APPLICATIONID_2 = "applicationUser.applicationId = ?";
-	private static final String _FINDER_COLUMN_U_AU_USERID_2 = "applicationUser.userId = ? AND ";
-	private static final String _FINDER_COLUMN_U_AU_AUTHORIZED_2 = "applicationUser.authorized = ?";
+	private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN = "applicationUser.oaauId";
+	private static final String _FILTER_SQL_SELECT_APPLICATIONUSER_WHERE = "SELECT DISTINCT {applicationUser.*} FROM OAuth_ApplicationUser applicationUser WHERE ";
+	private static final String _FILTER_SQL_SELECT_APPLICATIONUSER_NO_INLINE_DISTINCT_WHERE_1 =
+		"SELECT {OAuth_ApplicationUser.*} FROM (SELECT DISTINCT applicationUser.oaauId FROM OAuth_ApplicationUser applicationUser WHERE ";
+	private static final String _FILTER_SQL_SELECT_APPLICATIONUSER_NO_INLINE_DISTINCT_WHERE_2 =
+		") TEMP_TABLE INNER JOIN OAuth_ApplicationUser ON TEMP_TABLE.oaauId = OAuth_ApplicationUser.oaauId";
+	private static final String _FILTER_SQL_COUNT_APPLICATIONUSER_WHERE = "SELECT COUNT(DISTINCT applicationUser.oaauId) AS COUNT_VALUE FROM OAuth_ApplicationUser applicationUser WHERE ";
+	private static final String _FILTER_ENTITY_ALIAS = "applicationUser";
+	private static final String _FILTER_ENTITY_TABLE = "OAuth_ApplicationUser";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "applicationUser.";
+	private static final String _ORDER_BY_ENTITY_TABLE = "OAuth_ApplicationUser.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No ApplicationUser exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No ApplicationUser exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(

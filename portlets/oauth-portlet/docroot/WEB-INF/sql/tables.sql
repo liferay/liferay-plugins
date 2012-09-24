@@ -19,6 +19,5 @@ create table OAuth_ApplicationUser (
 	userId LONG,
 	applicationId LONG,
 	accessToken VARCHAR(75) null,
-	accessSecret VARCHAR(75) null,
-	authorized BOOLEAN
+	accessSecret VARCHAR(75) null
 );

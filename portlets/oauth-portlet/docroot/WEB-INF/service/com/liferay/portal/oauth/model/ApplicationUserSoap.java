@@ -34,7 +34,6 @@ public class ApplicationUserSoap implements Serializable {
 		soapModel.setApplicationId(model.getApplicationId());
 		soapModel.setAccessToken(model.getAccessToken());
 		soapModel.setAccessSecret(model.getAccessSecret());
-		soapModel.setAuthorized(model.getAuthorized());
 
 		return soapModel;
 	}
@@ -129,22 +128,9 @@ public class ApplicationUserSoap implements Serializable {
 		_accessSecret = accessSecret;
 	}
 
-	public boolean getAuthorized() {
-		return _authorized;
-	}
-
-	public boolean isAuthorized() {
-		return _authorized;
-	}
-
-	public void setAuthorized(boolean authorized) {
-		_authorized = authorized;
-	}
-
 	private long _oaauId;
 	private long _userId;
 	private long _applicationId;
 	private String _accessToken;
 	private String _accessSecret;
-	private boolean _authorized;
 }

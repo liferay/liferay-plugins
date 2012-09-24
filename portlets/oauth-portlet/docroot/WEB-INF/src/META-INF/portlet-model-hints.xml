@@ -22,6 +22,5 @@
 		<field name="applicationId" type="long" />
 		<field name="accessToken" type="String" />
 		<field name="accessSecret" type="String" />
-		<field name="authorized" type="boolean" />
 	</model>
 </model-hints>
