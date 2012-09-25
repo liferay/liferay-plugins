@@ -46,6 +46,16 @@ import java.util.Map;
  */
 public class AkismetUtil {
 
+	public static Date getReportableTime(long companyId)
+		throws SystemException {
+
+		int reportableTime = PrefsPortletPropsUtil.getInteger(
+			companyId, PortletPropsKeys.AKISMET_REPORTABLE_TIME);
+
+		return new Date(
+			System.currentTimeMillis() - (reportableTime * Time.DAY));
+	}
+
 	public static Date getRetainSpamTime() {
 		return new Date(
 			System.currentTimeMillis() -
