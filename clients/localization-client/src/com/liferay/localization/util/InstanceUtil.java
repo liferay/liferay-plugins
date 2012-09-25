@@ -14,6 +14,7 @@
 
 package com.liferay.localization.util;
 
+import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -22,6 +23,7 @@ import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletPreferencesThreadLocal;
+import com.liferay.util.portlet.PortletProps;
 
 import java.util.Locale;
 import java.util.Map;
@@ -30,7 +32,7 @@ import java.util.Map;
  * @author Eric Min
  * @author Brian Wing Shun Chan
  */
-public class InstanceUtil {
+public class InstanceUtil implements PortletPropsKeys {
 
 	public static void initInstance(long companyId) {
 		try {
@@ -47,6 +49,13 @@ public class InstanceUtil {
 	}
 
 	public static void localizeRoleNames(long companyId) throws Exception {
+		for (String languageId : PortletPropsValues.LANGUAGE_IDS) {
+			_localizeRoleNames(companyId, languageId);
+		}
+	}
+
+	private static void _localizeRoleNames(long companyId, String languageId)
+		throws Exception {
 
 		// Regular roles
 
@@ -57,33 +66,26 @@ public class InstanceUtil {
 			Map<Locale, String> titleMap = role.getTitleMap();
 
 			if (name.equals(RoleConstants.ADMINISTRATOR)) {
-				descriptionMap.put(
-					_getLocale(),
-					PortletPropsValues.ROLE_ADMINISTRATOR_DESCRIPTION);
-				titleMap.put(
-					_getLocale(), PortletPropsValues.ROLE_ADMINISTRATOR_NAME);
+				_putMap(
+					descriptionMap, languageId, ROLE_ADMINISTRATOR_DESCRIPTION);
+				_putMap(titleMap, languageId, ROLE_ADMINISTRATOR_NAME);
 			}
 			else if (name.equals(RoleConstants.GUEST)) {
-				descriptionMap.put(
-					_getLocale(), PortletPropsValues.ROLE_GUEST_DESCRIPTION);
-				titleMap.put(_getLocale(), PortletPropsValues.ROLE_GUEST_NAME);
+				_putMap(descriptionMap, languageId, ROLE_GUEST_DESCRIPTION);
+				_putMap(titleMap, languageId, ROLE_GUEST_NAME);
 			}
 			else if (name.equals(RoleConstants.OWNER)) {
-				descriptionMap.put(
-					_getLocale(), PortletPropsValues.ROLE_OWNER_DESCRIPTION);
-				titleMap.put(_getLocale(), PortletPropsValues.ROLE_OWNER_NAME);
+				_putMap(descriptionMap, languageId, ROLE_OWNER_DESCRIPTION);
+				_putMap(titleMap, languageId, ROLE_OWNER_NAME);
 			}
 			else if (name.equals(RoleConstants.POWER_USER)) {
-				descriptionMap.put(
-					_getLocale(),
-					PortletPropsValues.ROLE_POWER_USER_DESCRIPTION);
-				titleMap.put(
-					_getLocale(), PortletPropsValues.ROLE_POWER_USER_NAME);
+				_putMap(
+					descriptionMap, languageId, ROLE_POWER_USER_DESCRIPTION);
+				_putMap(titleMap, languageId, ROLE_POWER_USER_NAME);
 			}
 			else if (name.equals(RoleConstants.USER)) {
-				descriptionMap.put(
-					_getLocale(), PortletPropsValues.ROLE_USER_DESCRIPTION);
-				titleMap.put(_getLocale(), PortletPropsValues.ROLE_USER_NAME);
+				_putMap(descriptionMap, languageId, ROLE_USER_DESCRIPTION);
+				_putMap(titleMap, languageId, ROLE_USER_NAME);
 			}
 
 			RoleLocalServiceUtil.updateRole(
@@ -100,29 +102,23 @@ public class InstanceUtil {
 			Map<Locale, String> titleMap = role.getTitleMap();
 
 			if (name.equals(RoleConstants.ORGANIZATION_ADMINISTRATOR)) {
-				descriptionMap.put(
-					_getLocale(),
-					PortletPropsValues.
-						ROLE_ORGANIZATION_ADMINISTRATOR_DESCRIPTION);
-				titleMap.put(
-					_getLocale(),
-					PortletPropsValues.ROLE_ORGANIZATION_ADMINISTRATOR_NAME);
+				_putMap(
+					descriptionMap, languageId,
+					ROLE_ORGANIZATION_ADMINISTRATOR_DESCRIPTION);
+				_putMap(
+					titleMap, languageId, ROLE_ORGANIZATION_ADMINISTRATOR_NAME);
 			}
 			else if (name.equals(RoleConstants.ORGANIZATION_OWNER)) {
-				descriptionMap.put(
-					_getLocale(),
-					PortletPropsValues.ROLE_ORGANIZATION_OWNER_DESCRIPTION);
-				titleMap.put(
-					_getLocale(),
-					PortletPropsValues.ROLE_ORGANIZATION_OWNER_NAME);
+				_putMap(
+					descriptionMap, languageId,
+					ROLE_ORGANIZATION_OWNER_DESCRIPTION);
+				_putMap(titleMap, languageId, ROLE_ORGANIZATION_OWNER_NAME);
 			}
 			else if (name.equals(RoleConstants.ORGANIZATION_USER)) {
-				descriptionMap.put(
-					_getLocale(),
-					PortletPropsValues.ROLE_ORGANIZATION_USER_DESCRIPTION);
-				titleMap.put(
-					_getLocale(),
-					PortletPropsValues.ROLE_ORGANIZATION_USER_NAME);
+				_putMap(
+					descriptionMap, languageId,
+					ROLE_ORGANIZATION_USER_DESCRIPTION);
+				_putMap(titleMap, languageId, ROLE_ORGANIZATION_USER_NAME);
 			}
 
 			RoleLocalServiceUtil.updateRole(
@@ -139,26 +135,20 @@ public class InstanceUtil {
 			Map<Locale, String> titleMap = role.getTitleMap();
 
 			if (name.equals(RoleConstants.SITE_ADMINISTRATOR)) {
-				descriptionMap.put(
-					_getLocale(),
-					PortletPropsValues.ROLE_SITE_ADMINISTRATOR_DESCRIPTION);
-				titleMap.put(
-					_getLocale(),
-					PortletPropsValues.ROLE_SITE_ADMINISTRATOR_NAME);
+				_putMap(
+					descriptionMap, languageId,
+					ROLE_SITE_ADMINISTRATOR_DESCRIPTION);
+				_putMap(titleMap, languageId, ROLE_SITE_ADMINISTRATOR_NAME);
 			}
 			else if (name.equals(RoleConstants.SITE_MEMBER)) {
-				descriptionMap.put(
-					_getLocale(),
-					PortletPropsValues.ROLE_SITE_MEMBER_DESCRIPTION);
-				titleMap.put(
-					_getLocale(), PortletPropsValues.ROLE_SITE_MEMBER_NAME);
+				_putMap(
+					descriptionMap, languageId, ROLE_SITE_MEMBER_DESCRIPTION);
+				_putMap(titleMap, languageId, ROLE_SITE_MEMBER_NAME);
 			}
 			else if (name.equals(RoleConstants.SITE_OWNER)) {
-				descriptionMap.put(
-					_getLocale(),
-					PortletPropsValues.ROLE_SITE_OWNER_DESCRIPTION);
-				titleMap.put(
-					_getLocale(), PortletPropsValues.ROLE_SITE_OWNER_NAME);
+				_putMap(
+					descriptionMap, languageId, ROLE_SITE_OWNER_DESCRIPTION);
+				_putMap(titleMap, languageId, ROLE_SITE_OWNER_NAME);
 			}
 
 			RoleLocalServiceUtil.updateRole(
@@ -167,8 +157,14 @@ public class InstanceUtil {
 		}
 	}
 
-	private static Locale _getLocale() {
-		return LocaleUtil.fromLanguageId(PortletPropsValues.LANGUAGE_ID);
+	private static void _putMap(
+		Map<Locale, String> map, String languageId, String key) {
+
+		Locale locale = LocaleUtil.fromLanguageId(languageId);
+
+		String value = PortletProps.get(key, new Filter(languageId));
+
+		map.put(locale, value);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(InstanceUtil.class);
