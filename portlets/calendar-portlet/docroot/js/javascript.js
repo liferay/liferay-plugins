@@ -14,7 +14,6 @@ AUI.add(
 		var isFunction = Lang.isFunction;
 		var isObject = Lang.isObject;
 		var isString = Lang.isString;
-		var isUndefined = Lang.isUndefined;
 
 		var toInt = Lang.toInt;
 
@@ -395,7 +394,7 @@ AUI.add(
 						}
 					},
 					{
-						cache: isUndefined(cache) ? false : cache,
+						cache: !!cache,
 						failure: failure,
 						success: success
 					}
