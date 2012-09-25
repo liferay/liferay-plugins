@@ -34,11 +34,11 @@
 		if ((x > 0) && (y > 0) && (messageIdPos > 0)) {
 			String messageId = html.substring(messageIdPos + 14, html.indexOf("\"", messageIdPos));
 
+			MBMessage message = MBMessageLocalServiceUtil.getMessage(GetterUtil.getLong(messageId));
+
 			boolean spam = false;
 
-			int statusPos = html.indexOf(WorkflowConstants.toLabel(WorkflowConstants.STATUS_DENIED), messagePos);
-
-			if ((statusPos > 0) && (statusPos < x)) {
+			if (message.getStatus() == WorkflowConstants.STATUS_DENIED) {
 				spam = true;
 			}
 	%>
