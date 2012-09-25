@@ -65,12 +65,26 @@ public class AkismetUtil {
 	public static boolean isDiscussionsEnabled(long companyId)
 		throws SystemException {
 
+		String apiKey = PrefsPortletPropsUtil.getString(
+			companyId, PortletPropsKeys.AKISMET_API_KEY);
+
+		if (Validator.isNull(apiKey)) {
+			return false;
+		}
+
 		return PrefsPortletPropsUtil.getBoolean(
 			companyId, PortletPropsKeys.AKISMET_DISCUSSIONS_CHECK_ENABLED);
 	}
 
 	public static boolean isMessageBoardsEnabled(long companyId)
 		throws SystemException {
+
+		String apiKey = PrefsPortletPropsUtil.getString(
+			companyId, PortletPropsKeys.AKISMET_API_KEY);
+
+		if (Validator.isNull(apiKey)) {
+			return false;
+		}
 
 		return PrefsPortletPropsUtil.getBoolean(
 			companyId, PortletPropsKeys.AKISMET_MESSAGE_BOARDS_CHECK_ENABLED);
