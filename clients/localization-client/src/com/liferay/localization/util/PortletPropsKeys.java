@@ -19,7 +19,7 @@ package com.liferay.localization.util;
  */
 public interface PortletPropsKeys {
 
-	public static final String LANGUAGE_ID = "language.id";
+	public static final String LANGUAGE_IDS = "language.ids";
 
 	public static final String ROLE_ADMINISTRATOR_DESCRIPTION =
 		"role.administrator.description";

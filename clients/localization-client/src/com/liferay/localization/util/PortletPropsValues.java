@@ -21,74 +21,7 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
-	public static final String LANGUAGE_ID = PortletProps.get(
-		PortletPropsKeys.LANGUAGE_ID);
-
-	public static final String ROLE_ADMINISTRATOR_DESCRIPTION =
-		PortletProps.get(PortletPropsKeys.ROLE_ADMINISTRATOR_DESCRIPTION);
-
-	public static final String ROLE_ADMINISTRATOR_NAME = PortletProps.get(
-		PortletPropsKeys.ROLE_ADMINISTRATOR_NAME);
-
-	public static final String ROLE_GUEST_DESCRIPTION = PortletProps.get(
-		PortletPropsKeys.ROLE_GUEST_DESCRIPTION);
-
-	public static final String ROLE_GUEST_NAME = PortletProps.get(
-		PortletPropsKeys.ROLE_GUEST_NAME);
-
-	public static final String ROLE_ORGANIZATION_ADMINISTRATOR_DESCRIPTION =
-		PortletProps.get(
-			PortletPropsKeys.ROLE_ORGANIZATION_ADMINISTRATOR_DESCRIPTION);
-
-	public static final String ROLE_ORGANIZATION_ADMINISTRATOR_NAME =
-		PortletProps.get(PortletPropsKeys.ROLE_ORGANIZATION_ADMINISTRATOR_NAME);
-
-	public static final String ROLE_ORGANIZATION_OWNER_DESCRIPTION =
-		PortletProps.get(PortletPropsKeys.ROLE_ORGANIZATION_OWNER_DESCRIPTION);
-
-	public static final String ROLE_ORGANIZATION_OWNER_NAME = PortletProps.get(
-		PortletPropsKeys.ROLE_ORGANIZATION_OWNER_NAME);
-
-	public static final String ROLE_ORGANIZATION_USER_DESCRIPTION =
-		PortletProps.get(PortletPropsKeys.ROLE_ORGANIZATION_USER_DESCRIPTION);
-
-	public static final String ROLE_ORGANIZATION_USER_NAME = PortletProps.get(
-		PortletPropsKeys.ROLE_ORGANIZATION_USER_NAME);
-
-	public static final String ROLE_OWNER_DESCRIPTION = PortletProps.get(
-		PortletPropsKeys.ROLE_OWNER_DESCRIPTION);
-
-	public static final String ROLE_OWNER_NAME = PortletProps.get(
-		PortletPropsKeys.ROLE_OWNER_NAME);
-
-	public static final String ROLE_POWER_USER_DESCRIPTION = PortletProps.get(
-		PortletPropsKeys.ROLE_POWER_USER_DESCRIPTION);
-
-	public static final String ROLE_POWER_USER_NAME = PortletProps.get(
-		PortletPropsKeys.ROLE_POWER_USER_NAME);
-
-	public static final String ROLE_SITE_ADMINISTRATOR_DESCRIPTION =
-		PortletProps.get(PortletPropsKeys.ROLE_SITE_ADMINISTRATOR_DESCRIPTION);
-
-	public static final String ROLE_SITE_ADMINISTRATOR_NAME = PortletProps.get(
-		PortletPropsKeys.ROLE_SITE_ADMINISTRATOR_NAME);
-
-	public static final String ROLE_SITE_MEMBER_DESCRIPTION = PortletProps.get(
-		PortletPropsKeys.ROLE_SITE_MEMBER_DESCRIPTION);
-
-	public static final String ROLE_SITE_MEMBER_NAME = PortletProps.get(
-		PortletPropsKeys.ROLE_SITE_MEMBER_NAME);
-
-	public static final String ROLE_SITE_OWNER_DESCRIPTION = PortletProps.get(
-		PortletPropsKeys.ROLE_SITE_OWNER_DESCRIPTION);
-
-	public static final String ROLE_SITE_OWNER_NAME = PortletProps.get(
-		PortletPropsKeys.ROLE_SITE_OWNER_NAME);
-
-	public static final String ROLE_USER_DESCRIPTION = PortletProps.get(
-		PortletPropsKeys.ROLE_USER_DESCRIPTION);
-
-	public static final String ROLE_USER_NAME = PortletProps.get(
-		PortletPropsKeys.ROLE_USER_NAME);
+	public static final String[] LANGUAGE_IDS = PortletProps.getArray(
+		PortletPropsKeys.LANGUAGE_IDS);
 
 }
