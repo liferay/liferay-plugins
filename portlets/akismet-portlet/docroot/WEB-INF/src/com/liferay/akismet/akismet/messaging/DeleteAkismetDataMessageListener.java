@@ -28,7 +28,7 @@ public class DeleteAkismetDataMessageListener extends BaseMessageListener {
 
 	protected void deleteAkismetData(long companyId) throws SystemException {
 		AkismetDataLocalServiceUtil.deleteAkismetData(
-			AkismetUtil.getRetainSpamTime());
+			AkismetUtil.getReportableTime(companyId));
 	}
 
 	@Override
