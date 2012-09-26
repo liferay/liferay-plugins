@@ -650,24 +650,23 @@ AUI().use(
 			init: function() {
 				var instance = this;
 
-				instance._chatContainer = A.one('#chatBar');
-				instance._tabsContainer = instance._chatContainer.one('.chat-tabs');
+				instance._closedChats = {};
+				instance._notificationTimeout = 8000;
+				instance._initialRequest = true;
 
+				instance._chatContainer = A.one('#chatBar');
 				instance._activePanelId = A.one('#activePanelId').val() || '';
 				instance._portletId = A.one('#chatPortletId').val();
 
-				instance._closedChats = {};
+				instance._myStatus = instance._chatContainer.one('.status-message');
+				instance._soundContainer = instance._chatContainer.one('.chat-sound');
+				instance._tabsContainer = instance._chatContainer.one('.chat-tabs');
 
 				instance._created = Liferay.Chat.Util.getCurrentTimestamp();
-
-				instance._myStatus = instance._chatContainer.one('.status-message');
 
 				instance._sendTask = A.debounce(instance.send, 100, instance);
 
 				instance._sound = new SWFObject('/chat-portlet/alert.swf', 'alertsound', '0', '0', '8');
-				instance._soundContainer = instance._chatContainer.one('.chat-sound');
-
-				instance._notificationTimeout = 8000;
 
 				instance._updatePresenceTask = A.debounce(instance._updatePresence, 30000, instance);
 
@@ -1097,7 +1096,7 @@ AUI().use(
 					instance._updateConversations(response.entries);
 				}
 
-				if (response.initialRequest) {
+				if (instance._initialRequest) {
 					instance._loadCache(response.entries);
 
 					if (instance._activePanelId.length) {
@@ -1109,6 +1108,7 @@ AUI().use(
 					}
 
 					instance._cacheLoaded = true;
+					instance._initialRequest = false;
 				}
 			},
 
