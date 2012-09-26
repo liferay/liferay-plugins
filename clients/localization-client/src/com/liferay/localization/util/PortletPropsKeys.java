@@ -45,10 +45,10 @@ public interface PortletPropsKeys {
 		"role.organization.owner.name";
 
 	public static final String ROLE_ORGANIZATION_USER_DESCRIPTION =
-		"role.organization.owner.description";
+		"role.organization.user.description";
 
 	public static final String ROLE_ORGANIZATION_USER_NAME =
-		"role.organization.owner.name";
+		"role.organization.user.name";
 
 	public static final String ROLE_OWNER_DESCRIPTION =
 		"role.owner.description";
