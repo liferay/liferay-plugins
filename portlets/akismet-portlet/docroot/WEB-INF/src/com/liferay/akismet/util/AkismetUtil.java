@@ -119,7 +119,7 @@ public class AkismetUtil {
 		}
 		else if (response.equals("true")) {
 			if (_log.isDebugEnabled()) {
-				_log.debug("Spam Detected: " + permalink);
+				_log.debug("Spam detected: " + permalink);
 			}
 
 			return true;
