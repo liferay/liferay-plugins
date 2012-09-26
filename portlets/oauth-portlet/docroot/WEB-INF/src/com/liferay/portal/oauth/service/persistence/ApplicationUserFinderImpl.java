@@ -42,13 +42,13 @@ public class ApplicationUserFinderImpl
 			ApplicationUserFinder.class.getName() + ".countAll";
 
 	public static final String COUNT_BY_OWNER_AUTHORIZED =
-			ApplicationUserFinder.class.getName() + ".countByO_A";
+			ApplicationUserFinder.class.getName() + ".countByO";
 
 	public static final String FIND_ALL =
 			ApplicationUserFinder.class.getName() + ".findAll";
 
 	public static final String FIND_BY_OWNER_AUTHORIZED =
-			ApplicationUserFinder.class.getName() + ".findByO_A";
+			ApplicationUserFinder.class.getName() + ".findByO";
 
 	public int countAll() throws SystemException {
 		Session session = null;
@@ -176,7 +176,7 @@ public class ApplicationUserFinderImpl
 					q, getDialect(), start, end);
 		}
 		catch (Exception e) {
-			throw new SystemException();
+			throw new SystemException(e);
 		}
 		finally {
 			closeSession(session);

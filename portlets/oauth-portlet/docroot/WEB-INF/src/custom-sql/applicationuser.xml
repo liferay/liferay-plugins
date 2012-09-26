@@ -6,7 +6,7 @@
 			SELECT
 				COUNT(*) AS COUNT_VALUE
 			FROM
-				ApplicationUser
+				OAuth_ApplicationUser
 		]]>
 	</sql>
 	<sql id="com.liferay.portal.oauth.service.persistence.ApplicationUserFinder.countByO">
@@ -14,11 +14,11 @@
 			SELECT
 				COUNT(*) AS COUNT_VALUE
 			FROM
-				ApplicationUser,
-				Application
+				OAuth_ApplicationUser,
+				OAuth_Application
 			WHERE
-				(Application.userId = ?) AND
-				(Application.applicationId = ApplicationUser.applicationId)
+				(OAuth_Application.userId = ?) AND
+				(OAuth_Application.applicationId = OAuth_ApplicationUser.applicationId)
 		]]>
 	</sql>
 	<sql id="com.liferay.portal.oauth.service.persistence.ApplicationUserFinder.findAll">
@@ -26,19 +26,19 @@
 			SELECT
 				*
 			FROM
-				ApplicationUser
+				OAuth_ApplicationUser
 		]]>
 	</sql>
 	<sql id="com.liferay.portal.oauth.service.persistence.ApplicationUserFinder.findByO">
 		<![CDATA[
 			SELECT
-				{ApplicationUser.*}
+				OAuth_ApplicationUser.*
 			FROM
-				ApplicationUser,
-				Application
+				OAuth_ApplicationUser,
+				OAuth_Application
 			WHERE
-				(Application.userId = ?) AND
-				(Application.applicationId = ApplicationUser.applicationId)
+				(OAuth_Application.userId = ?) AND
+				(OAuth_Application.applicationId = OAuth_ApplicationUser.applicationId)
 		]]>
 	</sql>
 </custom-sql>

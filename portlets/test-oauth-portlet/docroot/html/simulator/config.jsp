@@ -39,8 +39,8 @@ String applicationId = (String)request.getAttribute("applicationId");
 		<aui:form action="<%= setupOAuthSimulatorURL %>" method="post">
 			<aui:fieldset>
 				<aui:input id="oauth-simulator-user-cnt" label="Number of users to generate" name="oauth-simulator-user-cnt" />
-				<aui:input helpMessage="Accordinglly to given percentage, portlet will assign OAuth Developer role to this subset of generated users, and register test oauth applications owned by them." id="oauth-simulator-vendor-percentage" label="Percentage of developers" name="oauth-simulator-vendor-percentage" />
-				<aui:input helpMessage="This is number of test oauth applications that will be created for each developer." id="oauth-simulator-max-applications" label="MAX APPS. per developer" name="oauth-simulator-max-applications" />
+				<aui:input helpMessage="Accordinglly to given percentage, portlet will assign OAuth Developer role to this subset of generated users, and register test oauth applications owned by them. (ieg. enter 10 if you want 10% created users to be application developers)" id="oauth-simulator-vendor-percentage" label="Percentage of developers" name="oauth-simulator-vendor-percentage" />
+				<aui:input helpMessage="This is number of test oauth applications that will be created for each developer. (ieg. enter 3 if you want that developer has 1 to 3 registered applications - final number is choosen randomly)" id="oauth-simulator-max-applications" label="MAX APPS. per developer" name="oauth-simulator-max-applications" />
 				<aui:button-row>
 				<aui:button type="submit" value="go" />
 				</aui:button-row>
