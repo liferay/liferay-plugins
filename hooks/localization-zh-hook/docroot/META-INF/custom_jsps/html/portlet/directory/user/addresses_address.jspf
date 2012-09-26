@@ -21,7 +21,7 @@ Region region = address.getRegion();
 <em class="mailing-name"><%= mailingName %></em>
 
 <c:if test="<%= Validator.isNotNull(region.getName()) %>">
-	<%= HtmlUtil.escape(address.getRegion().getName()) %><liferay-ui:message key="region-label" />
+	<%= HtmlUtil.escape(region.getName()) %>
 </c:if>
 
 <c:if test="<%= Validator.isNotNull(city) %>">
