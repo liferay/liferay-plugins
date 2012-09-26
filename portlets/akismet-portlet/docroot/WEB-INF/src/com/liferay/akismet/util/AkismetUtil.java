@@ -118,7 +118,15 @@ public class AkismetUtil {
 			return false;
 		}
 		else if (response.equals("true")) {
+			if (_log.isDebugEnabled()) {
+				_log.debug("Spam Detected: " + permalink);
+			}
+
 			return true;
+		}
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("Passed: " + permalink);
 		}
 
 		return false;
@@ -152,6 +160,10 @@ public class AkismetUtil {
 			String permalink, String commentType, String userName,
 			String emailAddress, String content)
 		throws PortalException, SystemException {
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("Submitting message as ham: " + permalink);
+		}
 
 		StringBundler sb = new StringBundler(5);
 
@@ -202,6 +214,10 @@ public class AkismetUtil {
 			String permalink, String commentType, String userName,
 			String emailAddress, String content)
 		throws PortalException, SystemException {
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("Submitting message as spam: " + permalink);
+		}
 
 		StringBundler sb = new StringBundler(5);
 
