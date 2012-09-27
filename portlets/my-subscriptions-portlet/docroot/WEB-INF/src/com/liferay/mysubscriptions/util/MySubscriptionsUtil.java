@@ -86,14 +86,12 @@ public class MySubscriptionsUtil {
 		if (className.equals(BlogsEntry.class.getName())) {
 			title = "Blog at ";
 		}
-
-		if (className.equals(Layout.class.getName())) {
+		else if (className.equals(Layout.class.getName())) {
 			classPK = LayoutLocalServiceUtil.getLayout(classPK).getGroupId();
 
 			title = "Page at ";
 		}
-
-		if (className.equals(MBCategory.class.getName())) {
+		else if (className.equals(MBCategory.class.getName())) {
 			title = "Message Board at ";
 		}
 
@@ -119,8 +117,7 @@ public class MySubscriptionsUtil {
 		if (className.equals(Layout.class.getName())) {
 			classPK = LayoutLocalServiceUtil.getLayout(classPK).getGroupId();
 		}
-
-		if (className.equals(MBThread.class.getName())) {
+		else if (className.equals(MBThread.class.getName())) {
 			className = MBMessage.class.getName();
 
 			MBThread mbThread = MBThreadLocalServiceUtil.getThread(classPK);
