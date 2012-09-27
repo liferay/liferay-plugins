@@ -44,18 +44,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class WSDLServlet extends HttpServlet {
 
-	public WSDLServlet() {
-		_paths = SetUtil.fromArray(
-				new String[] {
-					"/wsrp-1.0-bindings.wsdl", "/wsrp-1.0-interfaces.wsdl",
-					"/wsrp-1.0-service.wsdl", "/wsrp-1.0-types.xsd",
-					"/wsrp-2.0-bindings.wsdl", "/wsrp-2.0-extra.xsd",
-					"/wsrp-2.0-interfaces.wsdl", "/wsrp-2.0-service.wsdl",
-					"/wsrp-2.0-types.xsd"
-				}
-			);
-	}
-
 	@Override
 	public void service(
 			HttpServletRequest request, HttpServletResponse response)
@@ -168,6 +156,13 @@ public class WSDLServlet extends HttpServlet {
 
 	private static Log _log = LogFactoryUtil.getLog(WSDLServlet.class);
 
-	private static Set<String> _paths;
+	private static Set<String> _paths = SetUtil.fromArray(
+		new String[] {
+			"/wsrp-1.0-bindings.wsdl", "/wsrp-1.0-interfaces.wsdl",
+			"/wsrp-1.0-service.wsdl", "/wsrp-1.0-types.xsd",
+			"/wsrp-2.0-bindings.wsdl", "/wsrp-2.0-extra.xsd",
+			"/wsrp-2.0-interfaces.wsdl", "/wsrp-2.0-service.wsdl",
+			"/wsrp-2.0-types.xsd"
+		});
 
 }
