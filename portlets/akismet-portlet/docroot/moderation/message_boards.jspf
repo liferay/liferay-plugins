@@ -14,12 +14,6 @@
  */
 --%>
 
-<%@ include file="/init.jsp" %>
-
-<%
-PortletURL portletURL = (PortletURL)request.getAttribute("view.jsp-portletURL");
-%>
-
 <aui:form method="post" name="fm">
 	<aui:input name="deleteMBMessageIds" type="hidden" />
 	<aui:input name="notSpamMBMessageIds" type="hidden" />
@@ -101,7 +95,7 @@ PortletURL portletURL = (PortletURL)request.getAttribute("view.jsp-portletURL");
 		function() {
 			if (confirm('<%= UnicodeLanguageUtil.get(pageContext, "are-you-sure-you-want-to-delete-the-selected-messages") %>')) {
 				document.<portlet:namespace />fm.<portlet:namespace />deleteMBMessageIds.value = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
-				submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="deleteMessages"><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>");
+				submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="deleteMBMessages"><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>");
 			}
 		},
 		['liferay-util-list-fields']

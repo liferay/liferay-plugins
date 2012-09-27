@@ -21,27 +21,39 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 
 MBMessage message = (MBMessage)row.getObject();
 
-long messageBoardsPlid = PortalUtil.getPlidFromPortletId(message.getGroupId(), PortletKeys.MESSAGE_BOARDS);
+MBDiscussion mbDiscussion = MBDiscussionLocalServiceUtil.getThreadDiscussion(message.getThreadId());
+
+long blogsPlid = PortalUtil.getPlidFromPortletId(message.getGroupId(), PortletKeys.BLOGS);
 %>
 
 <liferay-ui:icon-menu>
-	<liferay-portlet:renderURL plid="<%= messageBoardsPlid %>" portletName="<%= PortletKeys.MESSAGE_BOARDS %>" var="viewURL">
-		<portlet:param name="struts_action" value="/message_boards/view_message" />
-		<portlet:param name="messageId" value="<%= String.valueOf(message.getMessageId()) %>" />
+	<liferay-portlet:renderURL plid="<%= blogsPlid %>" portletName="<%= PortletKeys.BLOGS %>" varImpl="viewURL">
+		<portlet:param name="struts_action" value="/blogs/view_entry" />
+		<portlet:param name="entryId" value="<%= String.valueOf(mbDiscussion.getClassPK()) %>" />
 	</liferay-portlet:renderURL>
 
-	<liferay-ui:icon image="page" message="view-in-context" target="_blank" url="<%= viewURL %>" />
+	<%
+	ClassName className = ClassNameLocalServiceUtil.getClassName(mbDiscussion.getClassNameId());
+
+	String classNameValue = className.getValue();
+
+	if (!classNameValue.equals(BlogsEntry.class.getName())) {
+		viewURL = null;
+	}
+	%>
+
+	<liferay-ui:icon image="page" message="view-in-context" target="_blank" url="<%= String.valueOf(viewURL) %>" />
 
 	<portlet:actionURL name="markNotSpam" var="markAsHamURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
 		<portlet:param name="redirect" value="<%= currentURL %>" />
-		<portlet:param name="notSpamMBMessageIds" value="<%= String.valueOf(message.getMessageId()) %>" />
+		<portlet:param name="notSpamMBMessageIds" value="<%= String.valueOf(mbDiscussion.getClassPK()) %>" />
 	</portlet:actionURL>
 
 	<liferay-ui:icon image="../mail/compose" message="not-spam" url="<%= markAsHamURL %>" />
 
 	<portlet:actionURL name="deleteMBMessages" var="deleteURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
 		<portlet:param name="redirect" value="<%= currentURL %>" />
-		<portlet:param name="deleteMBMessageIds" value="<%= String.valueOf(message.getMessageId()) %>" />
+		<portlet:param name="deleteMBMessageIds" value="<%= String.valueOf(mbDiscussion.getClassPK()) %>" />
 	</portlet:actionURL>
 
 	<liferay-ui:icon-delete url="<%= deleteURL %>" />
