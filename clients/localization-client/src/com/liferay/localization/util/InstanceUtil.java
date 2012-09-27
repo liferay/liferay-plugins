@@ -69,38 +69,23 @@ public class InstanceUtil implements PortletPropsKeys {
 				_putMap(
 					descriptionMap, languageId, ROLE_ADMINISTRATOR_DESCRIPTION);
 				_putMap(titleMap, languageId, ROLE_ADMINISTRATOR_NAME);
-
-				role.setDescriptionMap(descriptionMap);
-				role.setTitleMap(titleMap);
 			}
 			else if (name.equals(RoleConstants.GUEST)) {
 				_putMap(descriptionMap, languageId, ROLE_GUEST_DESCRIPTION);
 				_putMap(titleMap, languageId, ROLE_GUEST_NAME);
-
-				role.setDescriptionMap(descriptionMap);
-				role.setTitleMap(titleMap);
 			}
 			else if (name.equals(RoleConstants.OWNER)) {
 				_putMap(descriptionMap, languageId, ROLE_OWNER_DESCRIPTION);
 				_putMap(titleMap, languageId, ROLE_OWNER_NAME);
-
-				role.setDescriptionMap(descriptionMap);
-				role.setTitleMap(titleMap);
 			}
 			else if (name.equals(RoleConstants.POWER_USER)) {
 				_putMap(
 					descriptionMap, languageId, ROLE_POWER_USER_DESCRIPTION);
 				_putMap(titleMap, languageId, ROLE_POWER_USER_NAME);
-
-				role.setDescriptionMap(descriptionMap);
-				role.setTitleMap(titleMap);
 			}
 			else if (name.equals(RoleConstants.USER)) {
 				_putMap(descriptionMap, languageId, ROLE_USER_DESCRIPTION);
 				_putMap(titleMap, languageId, ROLE_USER_NAME);
-
-				role.setDescriptionMap(descriptionMap);
-				role.setTitleMap(titleMap);
 			}
 
 			RoleLocalServiceUtil.updateRole(
@@ -122,28 +107,18 @@ public class InstanceUtil implements PortletPropsKeys {
 					ROLE_ORGANIZATION_ADMINISTRATOR_DESCRIPTION);
 				_putMap(
 					titleMap, languageId, ROLE_ORGANIZATION_ADMINISTRATOR_NAME);
-
-				role.setDescriptionMap(descriptionMap);
-				role.setTitleMap(titleMap);
-
 			}
 			else if (name.equals(RoleConstants.ORGANIZATION_OWNER)) {
 				_putMap(
 					descriptionMap, languageId,
 					ROLE_ORGANIZATION_OWNER_DESCRIPTION);
 				_putMap(titleMap, languageId, ROLE_ORGANIZATION_OWNER_NAME);
-
-				role.setDescriptionMap(descriptionMap);
-				role.setTitleMap(titleMap);
 			}
 			else if (name.equals(RoleConstants.ORGANIZATION_USER)) {
 				_putMap(
 					descriptionMap, languageId,
 					ROLE_ORGANIZATION_USER_DESCRIPTION);
 				_putMap(titleMap, languageId, ROLE_ORGANIZATION_USER_NAME);
-
-				role.setDescriptionMap(descriptionMap);
-				role.setTitleMap(titleMap);
 			}
 
 			RoleLocalServiceUtil.updateRole(
@@ -164,25 +139,16 @@ public class InstanceUtil implements PortletPropsKeys {
 					descriptionMap, languageId,
 					ROLE_SITE_ADMINISTRATOR_DESCRIPTION);
 				_putMap(titleMap, languageId, ROLE_SITE_ADMINISTRATOR_NAME);
-
-				role.setDescriptionMap(descriptionMap);
-				role.setTitleMap(titleMap);
 			}
 			else if (name.equals(RoleConstants.SITE_MEMBER)) {
 				_putMap(
 					descriptionMap, languageId, ROLE_SITE_MEMBER_DESCRIPTION);
 				_putMap(titleMap, languageId, ROLE_SITE_MEMBER_NAME);
-
-				role.setDescriptionMap(descriptionMap);
-				role.setTitleMap(titleMap);
 			}
 			else if (name.equals(RoleConstants.SITE_OWNER)) {
 				_putMap(
 					descriptionMap, languageId, ROLE_SITE_OWNER_DESCRIPTION);
 				_putMap(titleMap, languageId, ROLE_SITE_OWNER_NAME);
-
-				role.setDescriptionMap(descriptionMap);
-				role.setTitleMap(titleMap);
 			}
 
 			RoleLocalServiceUtil.updateRole(
