@@ -63,7 +63,6 @@ import java.util.Map;
 public class InstanceUtil {
 
 	public static void initInstance(long companyId) {
-
 		boolean strict = PortletPreferencesThreadLocal.isStrict();
 
 		try {
