@@ -77,38 +77,6 @@ public class OAuthProviderTest {
 	}
 
 	@Test
-	public void testAlreadyAuthorized() throws Exception {
-		for (int i = 0; i < dataWithCallback.length; i++) {
-			OAuthService service = buildOAuthService(dataWithCallback, i);
-
-			Token requestToken = service.getRequestToken();
-
-			goToAuthorizationPage(requestToken);
-
-			if (i == 0) {
-				redirectedToLoginPage();
-			}
-
-			WebElement element = _driver.findElement(By.id(OAUTH_PORTLET_ID));
-			element.submit();
-
-			goToAuthorizationPage(requestToken);
-
-			List<WebElement> elements = _driver.findElements(
-				By.className("portlet-msg-error"));
-
-			for (WebElement webElement : elements) {
-				if (webElement.getText().
-						contains("You are already authorized.")) {
-					return;
-				}
-			}
-
-			Assert.fail();
-		}
-	}
-
-	@Test
 	public void testGetAccessTokenWithCallbackUrl() throws Exception {
 		for (int i = 0; i < dataWithCallback.length; i++) {
 			OAuthService service = buildOAuthService(dataWithCallback, i);
@@ -178,6 +146,40 @@ public class OAuthProviderTest {
 
 	@Test
 	public void testTokenExpired() throws Exception {
+		for (int i = 0; i < dataWithCallback.length; i++) {
+			OAuthService service = buildOAuthService(dataWithCallback, i);
+
+			Token requestToken = service.getRequestToken();
+
+			goToAuthorizationPage(requestToken);
+
+			if (i == 0) {
+				redirectedToLoginPage();
+			}
+
+			WebElement element = _driver.findElement(By.id(OAUTH_PORTLET_ID));
+			element.submit();
+
+			_driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+			goToAuthorizationPage(requestToken);
+
+			List<WebElement> elements = _driver.findElements(
+				By.className("portlet-msg-error"));
+
+			for (WebElement webElement : elements) {
+				if (webElement.getText().
+					contains("Your token is expired.")) {
+					return;
+				}
+			}
+
+			Assert.fail();
+		}
+	}
+
+	@Test
+	public void testTokenExpired2() throws Exception {
 		for (int i = 0; i < dataWithCallback.length; i++) {
 			OAuthService service = buildOAuthService(dataWithCallback, i);
 

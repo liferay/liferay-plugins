@@ -70,13 +70,16 @@ public class OAuthConstants {
 	public static final String WEBSITE = "website";
 	
 	// TODO dump rest - That is what Ray did
-
-	public static final String ALREADY_AUTHORIZED = "already-authorized";
 	
 	public static final String EMPTY_RESULTS_MESSAGE = "no-apps-were-found";
+
+	public static final String PERMISSION_DENIED = "permission_denied";
 	
 	public static final String PORTLET_KEY_OAUTH_ADMIN = "OA01";
 	public static final String PORTLET_KEY_OAUTH_USERS = "OA02";
+
+	public static final String TOKEN_EXPIRED = "token_expired";
+	public static final String TOKEN_REJECTED = "token_rejected";
 
 	public static final String TOOLBAR_ITEM = "toolbarItem";
 	public static final String TOOLBAR_ITEM_MY_APPS = "my-applications";

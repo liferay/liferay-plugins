@@ -24,20 +24,14 @@ String verifier = (String)request.getAttribute(OAuthConstants.VERIFIER);
 
 String callback = ParamUtil.getString(request, OAuthConstants.OAUTH_CALLBACK, OAuthConstants.NONE);
 
-boolean alreadyAuthorized = GetterUtil.get(SessionErrors.contains(renderRequest, OAuthConstants.ALREADY_AUTHORIZED), false);
-
-Object value = SessionErrors.get(renderRequest, OAuthException.class);
+boolean tokenExpired =
+		GetterUtil.get(SessionErrors.contains(renderRequest, OAuthConstants.TOKEN_EXPIRED), false) ||
+		OAuthConstants.TOKEN_EXPIRED.equals(SessionErrors.get(renderRequest, OAuthException.class));
 %>
 
-<c:if test='<%= (value != null) && OAuthProblemException.TOKEN_EXPIRED.equals(value) %>'>
+<c:if test='<%= tokenExpired  %>'>
 	<div class="portlet-msg-error">
 		<liferay-ui:message key="your-token-is-expired" />
-	</div>
-</c:if>
-
-<c:if test='<%= alreadyAuthorized %>'>
-	<div class="portlet-msg-error">
-		<liferay-ui:message key="you-are-already-authorized" />
 	</div>
 </c:if>
 
@@ -73,7 +67,7 @@ Object value = SessionErrors.get(renderRequest, OAuthException.class);
 					<aui:input name="oauth_token" type="hidden" value="<%= accessor.getRequestToken() %>" />
 					<aui:input name="oauth_callback" type="hidden" value="<%= callback %>" />
 					<aui:button-row>
-						<c:if test="<%= !alreadyAuthorized %>">
+						<c:if test="<%= !tokenExpired %>">
 							<aui:button name="authorize" type="submit" value="authorize" />
 						</c:if>
 					</aui:button-row>

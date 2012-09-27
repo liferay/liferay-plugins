@@ -12,7 +12,7 @@
 		maxElementsInMemory="100000"
 		name="com.liferay.portal.oauth.OAuthImpl"
 		overflowToDisk="false"
-		timeToIdleSeconds="6000"
+		timeToIdleSeconds="600"
 	>
 		<cacheEventListenerFactory
 			class="com.liferay.portal.cache.ehcache.LiferayCacheEventListenerFactory"

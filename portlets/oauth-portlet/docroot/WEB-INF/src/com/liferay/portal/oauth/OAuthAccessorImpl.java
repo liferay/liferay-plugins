@@ -14,10 +14,12 @@
 
 package com.liferay.portal.oauth;
 
+import java.io.Serializable;
+
 /**
  * @author Ivica Cardic
  */
-public class OAuthAccessorImpl implements OAuthAccessor {
+public class OAuthAccessorImpl implements OAuthAccessor, Serializable {
 
 	public OAuthAccessorImpl(OAuthConsumer oAuthConsumer) {
 		this(new net.oauth.OAuthAccessor(

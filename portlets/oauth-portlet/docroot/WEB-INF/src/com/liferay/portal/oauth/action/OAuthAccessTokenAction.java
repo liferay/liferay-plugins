@@ -16,10 +16,10 @@ package com.liferay.portal.oauth.action;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.oauth.OAuthException;
 import com.liferay.portal.kernel.struts.BaseStrutsAction;
 import com.liferay.portal.oauth.OAuthAccessor;
 import com.liferay.portal.oauth.OAuthMessage;
-import com.liferay.portal.oauth.OAuthProblemException;
 import com.liferay.portal.oauth.OAuthUtil;
 import com.liferay.portal.oauth.util.OAuthConstants;
 import com.liferay.portal.service.ServiceContext;
@@ -57,8 +57,8 @@ public class OAuthAccessTokenAction extends BaseStrutsAction {
 				OAuthConstants.AUTHORIZED);
 
 			if (!Boolean.TRUE.equals(authorized)) {
-				throw new OAuthProblemException(
-					OAuthProblemException.PERMISSION_DENIED);
+				throw new OAuthException(
+					OAuthConstants.PERMISSION_DENIED);
 			}
 
 			long userId = (Long)accessor.getProperty(OAuthConstants.USER);
@@ -79,7 +79,7 @@ public class OAuthAccessTokenAction extends BaseStrutsAction {
 		catch (Exception e) {
 			_log.error(e);
 
-			OAuthUtil.handleException(request, response, e, true);
+			OAuthUtil.handleException(request, response, e, false);
 		}
 
 		return null;
