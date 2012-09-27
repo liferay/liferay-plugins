@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String tabs1 = ParamUtil.getString(request, "tabs1");
+String tabs1 = ParamUtil.getString(request, "tabs1", "message-boards");
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
@@ -28,9 +28,16 @@ request.setAttribute("view.jsp-portletURL", portletURL);
 %>
 
 <liferay-ui:tabs
-	names="message-boards"
+	names="message-boards,discussions"
 	param="tabs1"
 	url="<%= portletURL.toString() %>"
 />
 
-<liferay-util:include page="/moderation/message_boards.jsp" servletContext="<%= application %>" />
+<c:choose>
+	<c:when test='<%= tabs1.equals("message-boards") %>'>
+		<%@ include file="/moderation/message_boards.jspf" %>
+	</c:when>
+	<c:otherwise>
+		<%@ include file="/moderation/discussions.jspf" %>
+	</c:otherwise>
+</c:choose>
