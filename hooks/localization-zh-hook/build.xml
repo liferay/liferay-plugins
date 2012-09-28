@@ -27,7 +27,19 @@
 			/>
 			<fileset
 				dir="${app.server.portal.dir}"
+				includes="html/portlet/login/create_account.jsp"
+			/>
+			<fileset
+				dir="${app.server.portal.dir}"
 				includes="html/portlet/users_admin/common/addresses.jsp"
+			/>
+			<fileset
+				dir="${app.server.portal.dir}"
+				includes="html/portlet/users_admin/user/details.jsp"
+			/>
+			<fileset
+				dir="${app.server.portal.dir}"
+				includes="html/portlet/users_admin/user/search_columns.jspf"
 			/>
 		</copy>
 
