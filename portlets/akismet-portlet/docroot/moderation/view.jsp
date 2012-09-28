@@ -41,3 +41,37 @@ request.setAttribute("view.jsp-portletURL", portletURL);
 		<%@ include file="/moderation/discussions.jspf" %>
 	</c:otherwise>
 </c:choose>
+
+<aui:script>
+	Liferay.provide(
+		window,
+		'<portlet:namespace />deleteMBMessages',
+		function() {
+			var deleteMBMessages = true;
+
+			var deleteMBMessageIds = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
+
+			if (deleteMBMessageIds && confirm('<%= UnicodeLanguageUtil.get(pageContext, "are-you-sure-you-want-to-delete-the-selected-messages") %>')) {
+				document.<portlet:namespace />fm.<portlet:namespace />deleteMBMessageIds.value = deleteMBMessageIds;
+				submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="deleteMBMessages"><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>");
+			}
+		},
+		['liferay-util-list-fields']
+	);
+
+	Liferay.provide(
+		window,
+		'<portlet:namespace />notSpam',
+		function() {
+			var notSpam = true;
+
+			var notSpamMBMessageIds = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
+
+			if (deleteMBMessageIds && confirm('<%= UnicodeLanguageUtil.get(pageContext, "are-you-sure-you-want-to-mark-the-selected-messages-as-not-spam") %>')) {
+				document.<portlet:namespace />fm.<portlet:namespace />notSpamMBMessageIds.value = notSpamMBMessageIds;
+				submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="markNotSpam"><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>");
+			}
+		},
+		['liferay-util-list-fields']
+	);
+</aui:script>
