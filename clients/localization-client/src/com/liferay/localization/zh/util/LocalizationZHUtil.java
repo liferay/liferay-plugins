@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.io.InputStream;
 
@@ -27,6 +28,7 @@ import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
+ * @author Samuel Kong
  */
 public class LocalizationZHUtil {
 
@@ -36,6 +38,36 @@ public class LocalizationZHUtil {
 
 	public static String getTraditionalText(String simplifiedText) {
 		return _instance._getTraditionalText(simplifiedText);
+	}
+
+	public static boolean isCJKUnifiedIdeographString(String s) {
+		if (Validator.isNull(s)) {
+			return false;
+		}
+
+		for (int i = 0; i < s.length(); i++) {
+			int codePoint = s.codePointAt(i);
+
+			if ((codePoint >= _CJK_UNIFIED_IDEOGRAPHS_START) &&
+				(codePoint <= _CJK_UNIFIED_IDEOGRAPHS_END)) {
+
+				return true;
+			}
+
+			if ((codePoint >= _CJK_UNIFIED_IDEOGRAPHS_EXT_A_START) &&
+				(codePoint <= _CJK_UNIFIED_IDEOGRAPHS_EXT_A_END)) {
+
+				return true;
+			}
+
+			if ((codePoint >= _CJK_UNIFIED_IDEOGRAPHS_EXT_B_START) &&
+				(codePoint <= _CJK_UNIFIED_IDEOGRAPHS_EXT_B_END)) {
+
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	private LocalizationZHUtil() {
@@ -91,6 +123,18 @@ public class LocalizationZHUtil {
 
 		return sb.toString();
 	}
+
+	private static final int _CJK_UNIFIED_IDEOGRAPHS_END = 40959;
+
+	private static final int _CJK_UNIFIED_IDEOGRAPHS_EXT_A_END = 19903;
+
+	private static final int _CJK_UNIFIED_IDEOGRAPHS_EXT_A_START = 13312;
+
+	private static final int _CJK_UNIFIED_IDEOGRAPHS_EXT_B_END = 173791;
+
+	private static final int _CJK_UNIFIED_IDEOGRAPHS_EXT_B_START = 131072;
+
+	private static final int _CJK_UNIFIED_IDEOGRAPHS_START = 19968;
 
 	private static Log _log = LogFactoryUtil.getLog(LocalizationZHUtil.class);
 
