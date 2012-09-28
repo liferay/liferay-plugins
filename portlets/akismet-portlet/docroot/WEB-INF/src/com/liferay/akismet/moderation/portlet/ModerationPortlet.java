@@ -37,6 +37,23 @@ import javax.portlet.ActionResponse;
  */
 public class ModerationPortlet extends MVCPortlet {
 
+	public void deleteDiscussionMBMessages(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		checkPermission(themeDisplay.getScopeGroupId());
+
+		long[] mbMessageIds = ParamUtil.getLongValues(
+			actionRequest, "deleteMBMessageIds");
+
+		for (long mbMessageId : mbMessageIds) {
+			MBMessageLocalServiceUtil.deleteDiscussionMessage(mbMessageId);
+		}
+	}
+
 	public void deleteMBMessages(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -50,7 +67,7 @@ public class ModerationPortlet extends MVCPortlet {
 			actionRequest, "deleteMBMessageIds");
 
 		for (long mbMessageId : mbMessageIds) {
-			MBMessageLocalServiceUtil.deleteMBMessage(mbMessageId);
+			MBMessageLocalServiceUtil.deleteMessage(mbMessageId);
 		}
 	}
 
