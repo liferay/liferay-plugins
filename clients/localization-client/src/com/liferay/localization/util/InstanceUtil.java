@@ -60,7 +60,7 @@ public class InstanceUtil implements PortletPropsKeys {
 		// Regular roles
 
 		for (String name : PortalUtil.getSystemRoles()) {
-			Role role = RoleLocalServiceUtil.getRole(companyId, name);
+			Role role = RoleLocalServiceUtil.loadGetRole(companyId, name);
 
 			Map<Locale, String> descriptionMap = role.getDescriptionMap();
 			Map<Locale, String> titleMap = role.getTitleMap();
@@ -96,7 +96,7 @@ public class InstanceUtil implements PortletPropsKeys {
 		// Organization roles
 
 		for (String name : PortalUtil.getSystemOrganizationRoles()) {
-			Role role = RoleLocalServiceUtil.getRole(companyId, name);
+			Role role = RoleLocalServiceUtil.loadGetRole(companyId, name);
 
 			Map<Locale, String> descriptionMap = role.getDescriptionMap();
 			Map<Locale, String> titleMap = role.getTitleMap();
@@ -129,7 +129,7 @@ public class InstanceUtil implements PortletPropsKeys {
 		// Site roles
 
 		for (String name : PortalUtil.getSystemSiteRoles()) {
-			Role role = RoleLocalServiceUtil.getRole(companyId, name);
+			Role role = RoleLocalServiceUtil.loadGetRole(companyId, name);
 
 			Map<Locale, String> descriptionMap = role.getDescriptionMap();
 			Map<Locale, String> titleMap = role.getTitleMap();
