@@ -15,7 +15,6 @@
 		<header-portlet-css>/invite_members/css/main.css</header-portlet-css>
 		<header-portlet-javascript>/invite_members/js/main.js</header-portlet-javascript>
 		<css-class-wrapper>so-portlet-invite-members</css-class-wrapper>
-		<system>true</system>
 	</portlet>
 	<portlet>
 		<portlet-name>4</portlet-name>
