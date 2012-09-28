@@ -100,7 +100,7 @@ additional useful resource links.
 
 For more information about filing bugs, keeping up with Liferay on social media,
 and other ways to participate, check out the [Liferay Community
-Homepage](http://liferay.org) and read the
+Homepage](http://liferay.org) and consult the
 [README](https://github.com/liferay/liferay-portal/blob/master/README.markdown)
 file located in the liferay-portal repository. 
 
