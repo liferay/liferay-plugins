@@ -46,14 +46,18 @@ request.setAttribute("view.jsp-portletURL", portletURL);
 	Liferay.provide(
 		window,
 		'<portlet:namespace />deleteMBMessages',
-		function() {
-			var deleteMBMessages = true;
-
+		function(dicussion) {
 			var deleteMBMessageIds = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
 
 			if (deleteMBMessageIds && confirm('<%= UnicodeLanguageUtil.get(pageContext, "are-you-sure-you-want-to-delete-the-selected-messages") %>')) {
 				document.<portlet:namespace />fm.<portlet:namespace />deleteMBMessageIds.value = deleteMBMessageIds;
-				submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="deleteMBMessages"><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>");
+
+				if (dicussion) {
+					submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="deleteDiscussionMBMessages"><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>");
+				}
+				else {
+					submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="deleteMBMessages"><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>");
+				}
 			}
 		},
 		['liferay-util-list-fields']
@@ -63,11 +67,9 @@ request.setAttribute("view.jsp-portletURL", portletURL);
 		window,
 		'<portlet:namespace />notSpam',
 		function() {
-			var notSpam = true;
-
 			var notSpamMBMessageIds = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
 
-			if (deleteMBMessageIds && confirm('<%= UnicodeLanguageUtil.get(pageContext, "are-you-sure-you-want-to-mark-the-selected-messages-as-not-spam") %>')) {
+			if (notSpamMBMessageIds && confirm('<%= UnicodeLanguageUtil.get(pageContext, "are-you-sure-you-want-to-mark-the-selected-messages-as-not-spam") %>')) {
 				document.<portlet:namespace />fm.<portlet:namespace />notSpamMBMessageIds.value = notSpamMBMessageIds;
 				submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="markNotSpam"><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>");
 			}

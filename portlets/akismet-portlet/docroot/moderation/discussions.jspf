@@ -33,7 +33,7 @@
 			<aui:button-row>
 				<aui:button onClick='<%= renderResponse.getNamespace() + "notSpam();" %>' value="not-spam" />
 
-				<aui:button onClick='<%= renderResponse.getNamespace() + "deleteMBMessages();" %>' value="delete" />
+				<aui:button onClick='<%= renderResponse.getNamespace() + "deleteMBMessages(true);" %>' value="delete" />
 			</aui:button-row>
 		</c:if>
 

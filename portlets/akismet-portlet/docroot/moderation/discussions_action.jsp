@@ -49,7 +49,7 @@ long blogsPlid = PortalUtil.getPlidFromPortletId(message.getGroupId(), PortletKe
 
 	<liferay-ui:icon image="../mail/compose" message="not-spam" url="<%= markAsHamURL %>" />
 
-	<portlet:actionURL name="deleteMBMessages" var="deleteURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
+	<portlet:actionURL name="deleteDiscussionMBMessages" var="deleteURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
 		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="deleteMBMessageIds" value="<%= String.valueOf(mbDiscussion.getClassPK()) %>" />
 	</portlet:actionURL>
