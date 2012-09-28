@@ -33,11 +33,9 @@ long blogsPlid = PortalUtil.getPlidFromPortletId(message.getGroupId(), PortletKe
 	</liferay-portlet:renderURL>
 
 	<%
-	ClassName className = ClassNameLocalServiceUtil.getClassName(mbDiscussion.getClassNameId());
+	String className = PortalUtil.getClassName(mbDiscussion.getClassNameId());
 
-	String classNameValue = className.getValue();
-
-	if (!classNameValue.equals(BlogsEntry.class.getName())) {
+	if (!className.equals(BlogsEntry.class.getName())) {
 		viewURL = null;
 	}
 	%>
