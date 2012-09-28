@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.localizationzh.hook.security.auth;
+package com.liferay.localization.zh.hook.security.auth;
 
 import com.liferay.localization.zh.util.LocalizationZHUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -20,7 +20,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.security.auth.FamilyNameFirstFullNameGenerator;
 
 /**
- * @author Andy Yang
+ * @author Andrew Yang
  * @author Samuel Kong
  */
 public class ChineseFullNameGenerator extends FamilyNameFirstFullNameGenerator {
