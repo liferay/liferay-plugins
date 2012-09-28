@@ -1,20 +1,27 @@
-# How to contribute
+# How to Contribute
 
-Liferay is developed by its community, including Liferay users, enthusiasts,
-employees, customers, partners, and others. Contributions can originate with any
-community member, and are highly encouraged. There are several ways in which you
-can contribute to Liferay's open source project, including bugfixes, new
-features, documentation improvements, translations, and enhancements to existing
-features.
+Liferay is developed by its community consisting of Liferay users, enthusiasts,
+employees, customers, partners, and others. We strongly encourage you to
+contribute to Liferay's open source projects by implementing new features,
+enhancing existing features, and fixing bugs. We also welcome your participation
+in our forums, writing documentation, and translating existing documentation.
 
-To maintain the quality and innovation Liferay has come to be known for, all
-changes will be code reviewed by a core set of Liferay project maintainers. All
-community contributors are encouraged to get to know and work with the [core
+Liferay is known for its innovative top quality features. To maintain this
+reputation, all code changes are reviewed by a core set of Liferay project
+maintainers. We encourage you to introduce yourself to the [core
 maintainer(s)](http://issues.liferay.com/browse/LPS#selectedTab=com.atlassian.jira.plugin.system.project%3Acomponents-panel)
-for the area in which they are working.
+and engage them as you contribute to the areas they maintain.
 
-If you have an idea for a new feature, and wish to implement it, follow the
-contribution steps outlined in the
-[CONTRIBUTING](https://github.com/liferay/liferay-portal/CONTRIBUTING.md) guide
-found in the `liferay-portal` repository. This guide contains details on how to
-contribute to Liferay and additional useful resource links.
+As you have ideas for features you want to implement, follow the contribution
+steps outlined in the
+[CONTRIBUTING](https://github.com/liferay/liferay-portal/blob/master/CONTRIBUTING.markdown)
+guide found in the `liferay-portal` repository. This guide contains details on
+how to contribute to Liferay and additional useful resource links. For more
+details on specific steps, and to get a deeper understanding of Liferay in
+general, make sure to read Liferay's Official [User
+Guide](http://www.liferay.com/documentation/liferay-portal/6.1/user-guide) and
+[Development
+Guide](http://www.liferay.com/documentation/liferay-portal/6.1/development).
+These guides contain extensive explanations, examples, and reference material
+for you to consult time and time again.
+
