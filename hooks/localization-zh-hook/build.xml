@@ -15,7 +15,19 @@
 		<copy overwrite="true" preservelastmodified="true" todir="docroot/META-INF/custom_jsps">
 			<fileset
 				dir="${app.server.portal.dir}"
+				includes="html/portal/update_reminder_query.jsp"
+			/>
+			<fileset
+				dir="${app.server.portal.dir}"
+				includes="html/portlet/directory/user/addresses.jsp"
+			/>
+			<fileset
+				dir="${app.server.portal.dir}"
 				includes="html/portlet/directory/user/search_columns.jspf"
+			/>
+			<fileset
+				dir="${app.server.portal.dir}"
+				includes="html/portlet/users_admin/common/addresses.jsp"
 			/>
 		</copy>
 
