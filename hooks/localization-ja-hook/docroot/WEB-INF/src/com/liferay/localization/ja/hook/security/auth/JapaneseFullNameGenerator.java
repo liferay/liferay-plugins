@@ -12,37 +12,36 @@
  * details.
  */
 
-package com.liferay.localization.zh.hook.security.auth;
+package com.liferay.localization.ja.hook.security.auth;
 
-import com.liferay.localization.zh.util.LocalizationZHUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.security.auth.FamilyNameFirstFullNameGenerator;
+import com.liferay.portal.security.auth.DefaultFullNameGenerator;
 
 /**
- * @author Andrew Yang
- * @author Samuel Kong
+ * @author Andy Yang
  */
-public class ChineseFullNameGenerator extends FamilyNameFirstFullNameGenerator {
+public class JapaneseFullNameGenerator extends DefaultFullNameGenerator {
 
 	@Override
 	public String[] splitFullName(String fullName) {
-		if (!LocalizationZHUtil.isCJKUnifiedIdeographString(fullName)) {
-			return super.splitFullName(fullName);
-		}
-
 		String firstName = StringPool.BLANK;
 		String middleName = StringPool.BLANK;
 		String lastName = StringPool.BLANK;
 
 		if (Validator.isNotNull(fullName)) {
-			if (fullName.length() == 1) {
-				firstName = fullName;
+			String[] name = StringUtil.split(fullName, StringPool.SPACE);
+
+			if (name.length == 1) {
+				firstName = name[0];
+
+				return new String[] {firstName, middleName, lastName};
 			}
 
-			firstName = fullName.substring(1);
-			lastName = fullName.substring(0, 1);
-		}
+			lastName = name[0];
+			firstName = name[1]; }
 
 		return new String[] {firstName, middleName, lastName};
 	}
@@ -52,19 +51,16 @@ public class ChineseFullNameGenerator extends FamilyNameFirstFullNameGenerator {
 		String firstName, String middleName, String lastName,
 		boolean useInitials) {
 
-		if (!LocalizationZHUtil.isCJKUnifiedIdeographString(firstName) &&
-			!LocalizationZHUtil.isCJKUnifiedIdeographString(middleName) &&
-			!LocalizationZHUtil.isCJKUnifiedIdeographString(lastName)) {
+		StringBundler sb = new StringBundler(3);
 
-			return super.buildFullName(
-				firstName, middleName, lastName, useInitials);
+		if (Validator.isNotNull(lastName)) {
+			sb.append(lastName);
+			sb.append(StringPool.SPACE);
 		}
 
-		if (Validator.isNull(lastName)) {
-			return firstName;
-		}
+		sb.append(firstName);
 
-		return lastName + firstName;
+		return sb.toString();
 	}
 
 }
