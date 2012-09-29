@@ -47,9 +47,7 @@ SDK](http://www.liferay.com/documentation/liferay-portal/6.1/development/-/ai/th
 chapter of Liferay's [Development
 Guide](http://www.liferay.com/documentation/liferay-portal/6.1/development)
 explains how to create, build, and deploy your plugins. Follow the instructions
-in this section to build and deploy any of the existing SDK plugins quickly. 
-
-**Quick Start Steps**
+in this section to build and deploy any of the existing SDK plugins quickly.
 
 For demonstration purposes, let's pretend your user name is *joe* and you have a
 Liferay instance bundled with Apache Tomcat running in your `/home/joe/`
