@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+
+<sql>
+	<batch>
+		<test-sql>
+			<![CDATA[
+				select count(*) from Region where name = 'ABC'
+			]]>
+		</test-sql>
+		<import-sql>
+			<![CDATA[
+				update Region set name = '安徽省' where regionId = '2001';
+				update Region set name = '澳门特别行政区' where regionId = '2002';
+				update Region set name = '北京市' where regionId = '2003';
+				update Region set name = '重庆市' where regionId = '2004';
+				update Region set name = '福建省' where regionId = '2005';
+				update Region set name = '甘肃省' where regionId = '2006';
+				update Region set name = '广东省' where regionId = '2007';
+				update Region set name = '广西省' where regionId = '2008';
+				update Region set name = '贵州省' where regionId = '2009';
+				update Region set name = '海南省' where regionId = '2010';
+				update Region set name = '河北省' where regionId = '2011';
+				update Region set name = '黑龙江省' where regionId = '2012';
+				update Region set name = '河南省' where regionId = '2013';
+				update Region set name = '湖北省' where regionId = '2014';
+				update Region set name = '湖南省' where regionId = '2015';
+				update Region set name = '江苏省' where regionId = '2016';
+				update Region set name = '江西省' where regionId = '2017';
+				update Region set name = '吉林省' where regionId = '2018';
+				update Region set name = '辽宁省' where regionId = '2019';
+				update Region set name = '内蒙古自治区' where regionId = '2020';
+				update Region set name = '宁夏省' where regionId = '2021';
+				update Region set name = '青海省' where regionId = '2022';
+				update Region set name = '陕西省' where regionId = '2023';
+				update Region set name = '山东省' where regionId = '2024';
+				update Region set name = '上海市' where regionId = '2025';
+				update Region set name = '山西省' where regionId = '2026';
+				update Region set name = '四川省' where regionId = '2027';
+				update Region set name = '台湾省' where regionId = '2028';
+				update Region set name = '天津市' where regionId = '2029';
+				update Region set name = '香港特别行政区' where regionId = '2030';
+				update Region set name = '新疆维吾尔族自治区' where regionId = '2031';
+				update Region set name = '西藏自治区' where regionId = '2032';
+				update Region set name = '云南省' where regionId = '2033';
+				update Region set name = '浙江省' where regionId = '2034';
+			]]>
+		</import-sql>
+	</batch>
+</sql>
