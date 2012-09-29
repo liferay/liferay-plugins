@@ -26,8 +26,6 @@
 	<aui:input fieldParam='<%= "addressStreet1_" + addressesIndex %>' id='<%= "addressStreet1_" + addressesIndex %>' name="street1" />
 
 	<aui:input fieldParam='<%= "addressStreet2_" + addressesIndex %>' id='<%= "addressStreet2_" + addressesIndex %>' name="street2" />
-
-	<aui:input fieldParam='<%= "addressStreet3_" + addressesIndex %>' id='<%= "addressStreet3_" + addressesIndex %>' name="street3" type="hidden" />
 </aui:column>
 
 <aui:column columnWidth="50">
