@@ -20,32 +20,20 @@ Region region = address.getRegion();
 
 <em class="mailing-name"><%= mailingName %></em>
 
-<c:if test="<%= Validator.isNotNull(region.getName()) %>">
-	<%= HtmlUtil.escape(region.getName()) %>
+<c:if test="<%= Validator.isNotNull(zipCode) %>">
+	<liferay-ui:message key="zip-code-label" /><%= zipCode %><br />
 </c:if>
 
-<c:if test="<%= Validator.isNotNull(city) %>">
-	<%= HtmlUtil.escape(city) %><liferay-ui:message key="city-label" />
-</c:if>
-
-<c:if test="<%= Validator.isNotNull(street3) %>">
-	<%= HtmlUtil.escape(street3) %>
+<c:if test="<%= Validator.isNotNull(region.getName()) || Validator.isNotNull(city) %>">
+	<%= HtmlUtil.escape(region.getName()) + HtmlUtil.escape(city) %><br />
 </c:if>
 
 <c:if test="<%= Validator.isNotNull(street1) %>">
-	<%= HtmlUtil.escape(street1) %>
+	<%= HtmlUtil.escape(street1) %><br />
 </c:if>
 
 <c:if test="<%= Validator.isNotNull(street2) %>">
-	<%= HtmlUtil.escape(street2) %>
-</c:if>
-
-<c:if test="<%= Validator.isNotNull(region.getName()) || Validator.isNotNull(city) || Validator.isNotNull(street3) || Validator.isNotNull(street1) || Validator.isNotNull(street2) %>">
-	<br />
-</c:if>
-
-<c:if test="<%= Validator.isNotNull(zipCode) %>">
-	<liferay-ui:message key="zip-code-label" /> <%= zipCode %>
+	<%= HtmlUtil.escape(street2) %><br />
 </c:if>
 
 <c:if test="<%= address.isMailing() %>">(<liferay-ui:message key="mailing" />)</c:if>
