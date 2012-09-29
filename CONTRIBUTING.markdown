@@ -13,12 +13,13 @@ maintainer(s)](http://issues.liferay.com/browse/LPS#selectedTab=com.atlassian.ji
 and engage them as you contribute to the areas they maintain.
 
 As you have ideas for features you want to implement, follow the contribution
-steps outlined in the
-[CONTRIBUTING](https://github.com/liferay/liferay-portal/blob/master/CONTRIBUTING.markdown)
-guide found in the `liferay-portal` repository. This guide contains details on
-how to contribute to Liferay and additional useful resource links. For more
-details on specific steps, and to get a deeper understanding of Liferay in
-general, make sure to read Liferay's Official [User
+steps outlined in the [CONTRIBUTING
+guide](https://github.com/liferay/liferay-portal/blob/master/CONTRIBUTING.markdown)
+found in the [liferay-portal](https://github.com/liferay/liferay-portal)
+repository. This guide contains details on how to contribute to Liferay and
+additional useful resource links. For more details on specific steps, and to get
+a deeper understanding of Liferay in general, make sure to read Liferay's
+official [User
 Guide](http://www.liferay.com/documentation/liferay-portal/6.1/user-guide) and
 [Development
 Guide](http://www.liferay.com/documentation/liferay-portal/6.1/development).

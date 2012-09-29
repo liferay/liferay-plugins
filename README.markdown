@@ -10,8 +10,9 @@ To get started, check out the project's community homepage at
 [http://liferay.org](http://liferay.org)!
 
 Most of the plugins found in the liferay-plugins repository can be easily
-installed using [Liferay Marketplace](http://liferay.com/marketplace). If you
-wish to build one or more of the plugins yourself, read below for details.
+installed on Liferay Portal via [Liferay
+Marketplace](http://liferay.com/marketplace). To build one or more of the
+plugins yourself, read below for details.
 
 ## Source Code
 
@@ -32,43 +33,59 @@ include select plugins from the liferay-plugins repository. You can build
 Liferay Portal, its plugins, and/or any of the other supporting technologies
 from their respective repositories.
 
-For more information on building liferay-portal, visit the
-[README](https://github.com/liferay/liferay-portal/blob/master/README.markdown)
-from the liferay-portal repository.
+For more information on building liferay-portal, see the [README
+file](https://github.com/liferay/liferay-portal/blob/master/README.markdown) in
+the liferay-portal repository.
 
 ## Quick Start
 
-In the liferay-plugins repository, plugins are laid out in the form of a Liferay
-Plugins SDK. Read [The Plugins
+In the [liferay-plugins](https://github.com/liferay/liferay-plugins) repository,
+plugins are laid out in a software development kit (SDK) -- the Liferay Plugins
+SDK. All Liferay plugin types, including portlets, themes, layout templates,
+hooks, and EXT plugins, can be created and maintained in the SDK. [The Plugins
 SDK](http://www.liferay.com/documentation/liferay-portal/6.1/development/-/ai/the-plugins-s-3)
-chapter of Liferay's Development Guide to learn more about working with the
-Liferay Plugins SDK.
+chapter of Liferay's [Development
+Guide](http://www.liferay.com/documentation/liferay-portal/6.1/development)
+explains how to create, build, and deploy your plugins. Follow the instructions
+in this section to build and deploy any of the existing SDK plugins quickly. 
 
-Once you fork this repository, to quickly build and deploy one or more plugins,
-create a `build.${username}.properties` file in the root directory of your
-clone. Make sure to replace `${username}` with your login name, which on Windows
-can be determined through the `%USERNAME%` environment variable, and on Unix by
-using the `whoami` command). Within this file, override any necessary settings
-from the base `build.properties` file (do not edit the base file). If you are
-using Tomcat, for example, all you need to do is override the `app.server.dir`
-setting to point to an existing copy of a deployed instance of Liferay bundled
-with Tomcat. For example, if your user name is *joe*, then create a
-`build.joe.properties` text file, with a single line:
+**Quick Start Steps**
 
-    app.server.dir=/Users/joe/liferay-portal-6.1.1-ga2/tomcat-7.0.27
+For demonstration purposes, let's pretend your user name is *joe* and you have a
+Liferay instance bundled with Apache Tomcat running in your `/home/joe/`
+directory.
 
-Then, visit any of the directories containing your desired plugin, and use the
-`ant deploy` command to build and deploy the plugin to your configured Liferay
-instance.
+1. Fork the [liferay-plugins](https://github.com/liferay/liferay-plugins)
+repository.
 
-For example, to build the sample JSP portlet, use the following commands on Unix
-(similar to Windows):
+2. Clone your fork of the repository.
+3. Create a `build.${username}.properties` file in the root directory of your
+liferay-plugins repository clone. Be sure to replace `${username}` with your
+user name.
 
-    cd portlets/sample-jsp-portlet
-    ant deploy
+		/home/joe/liferay-plugins/build.joe.properties
 
-This will compile the plugin, build a WAR file in the `dist` directory, and copy
-the resulting WAR file to Liferay's *Hot Deploy* directory.
+	Note, to determine your user name, execute `echo %USERNAME%` on Windows or
+	`whoami` on Unix/Linux.
+
+4. In your `build.${username}.properties` file, specify the `appserver.dir`
+property set to the path of your app server.
+
+    	app.server.dir=/home/joe/liferay-portal-6.1.1-ga2/tomcat-7.0.27
+
+	Use your `build.${username}.properties` file to specify any additional
+	properties you wish to override from the base `build.properties` file; do
+	not modify the base file.
+
+5. Navigate to the directory of a plugin (e.g. *Sample JSP Portlet*) and deploy
+it using Ant.
+
+		cd /home/joe/liferay-plugins/portlets/sample-jsp-portlet
+		ant deploy
+
+	The plugin compiles, its WAR file is built to the plugin's `dist` directory,
+	the WAR file is copied to your Liferay *Hot Deploy* directory, and the
+	plugin is deployed immediately. It's just that easy!
 
 There are many other options for developing new Liferay plugins using the
 Plugins SDK. Consult the [Liferay Development
@@ -91,18 +108,18 @@ SDK](http://www.liferay.com/web/mika.koivisto/blog/-/blogs/12322618).
 
 Liferay welcomes any and all contributions! If you have an idea for a new plugin
 or a new feature in an existing plugin, and wish to implement it, follow the
-contribution steps outlined in the
-[CONTRIBUTING](https://github.com/liferay/liferay-portal/blob/master/CONTRIBUTING.markdown)
-guide. This guide contains details on how to contribute to Liferay and
-additional useful resource links.
+contribution steps outlined in the [CONTRIBUTING
+guide](https://github.com/liferay/liferay-portal/blob/master/CONTRIBUTING.markdown).
+It explains how to contribute to Liferay and contains links to additional useful
+resources.
 
 ## More Information
 
-For more information about filing bugs, keeping up with Liferay on social media,
-and other ways to participate, check out the [Liferay Community
-Homepage](http://liferay.org) and consult the
-[README](https://github.com/liferay/liferay-portal/blob/master/README.markdown)
-file located in the liferay-portal repository. 
+For more information about filing bugs, staying updated with Liferay on social
+media, and other ways to participate, check out the [Liferay Community
+Homepage](http://liferay.org) and consult the [README
+file](https://github.com/liferay/liferay-portal/blob/master/README.markdown) in
+the liferay-portal repository.
 
 ## Liferay Portal Community Edition License
 
