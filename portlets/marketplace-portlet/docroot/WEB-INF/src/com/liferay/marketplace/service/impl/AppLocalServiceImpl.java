@@ -152,8 +152,9 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 			SystemProperties.get(SystemProperties.TMP_DIR) + StringPool.SLASH +
 				Time.getTimestamp();
 
-		ZipFile zipFile = null;
 		InputStream inputStream = null;
+
+		ZipFile zipFile = null;
 
 		try {
 			inputStream = DLStoreUtil.getFileAsStream(
