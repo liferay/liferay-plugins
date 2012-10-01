@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hook PUBLIC "-//Liferay//DTD Hook 6.2.0//EN" "http://www.liferay.com/dtd/liferay-hook_6_2_0.dtd">
+
+<hook>
+	<language-properties>content/Language.properties</language-properties>
+	<servlet-filter>
+		<servlet-filter-name>Plugin Security Manager Filter</servlet-filter-name>
+		<servlet-filter-impl>com.liferay.pluginsecuritymanager.hook.filter.PluginSecurityManagerFilter</servlet-filter-impl>
+	</servlet-filter>
+	<servlet-filter-mapping>
+		<servlet-filter-name>Plugin Security Manager Filter</servlet-filter-name>
+		<url-pattern>*.jsp</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</servlet-filter-mapping>
+</hook>
