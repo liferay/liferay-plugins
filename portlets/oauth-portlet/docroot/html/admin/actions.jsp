@@ -28,7 +28,7 @@ Application app = (Application)row.getObject();
 
 <liferay-ui:icon-menu>
 	<liferay-portlet:renderURL var="viewURL">
-		<portlet:param name="mvcPath" value="/html/admin/edit.jsp" />
+		<portlet:param name="mvcPath" value="/html/admin/view_application.jsp" />
 		<portlet:param name="referer" value="<%= currentURL %>" />
 		<portlet:param name="applicationId" value="<%= String.valueOf(app.getApplicationId()) %>" />
 	</liferay-portlet:renderURL>

@@ -124,14 +124,14 @@ public class ApplicationUserLocalServiceClp
 		_methodName20 = "deleteApplicationUser";
 
 		_methodParameterTypes20 = new String[] {
-				"long", "long", "com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.oauth.model.ApplicationUser",
+				"com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName21 = "deleteApplicationUser";
 
 		_methodParameterTypes21 = new String[] {
-				"com.liferay.portal.oauth.model.ApplicationUser",
-				"com.liferay.portal.service.ServiceContext"
+				"long", "long", "com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName22 = "getApplicationUserByAccessToken";
@@ -153,35 +153,35 @@ public class ApplicationUserLocalServiceClp
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName26 = "getApplicationUsersByUserId";
+		_methodName26 = "getApplicationUsersByOwnerId";
 
-		_methodParameterTypes26 = new String[] { "long" };
+		_methodParameterTypes26 = new String[] {
+				"long", "int", "int",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			};
 
-		_methodName27 = "getApplicationUsersByUserIdCount";
+		_methodName27 = "getApplicationUsersByOwnerIdCount";
 
 		_methodParameterTypes27 = new String[] { "long" };
 
-		_methodName28 = "getApplicationUsersCount";
+		_methodName28 = "getApplicationUsersByUserId";
 
 		_methodParameterTypes28 = new String[] { "long" };
 
-		_methodName29 = "getApplicationUsersByOwnerId";
+		_methodName29 = "getApplicationUsersByUserId";
 
 		_methodParameterTypes29 = new String[] {
 				"long", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName30 = "getApplicationUsersByOwnerIdCount";
+		_methodName30 = "getApplicationUsersByUserIdCount";
 
 		_methodParameterTypes30 = new String[] { "long" };
 
-		_methodName31 = "getApplicationUsersByUserId";
+		_methodName31 = "getApplicationUsersCount";
 
-		_methodParameterTypes31 = new String[] {
-				"long", "int", "int",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
+		_methodParameterTypes31 = new String[] { "long" };
 
 		_methodName32 = "updateApplicationUser";
 
@@ -768,7 +768,7 @@ public class ApplicationUserLocalServiceClp
 	}
 
 	public com.liferay.portal.oauth.model.ApplicationUser deleteApplicationUser(
-		long userId, long applicationId,
+		com.liferay.portal.oauth.model.ApplicationUser applicationUser,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -778,9 +778,7 @@ public class ApplicationUserLocalServiceClp
 			returnObj = _invokableLocalService.invokeMethod(_methodName20,
 					_methodParameterTypes20,
 					new Object[] {
-						userId,
-						
-					applicationId,
+						ClpSerializer.translateInput(applicationUser),
 						
 					ClpSerializer.translateInput(serviceContext)
 					});
@@ -809,7 +807,7 @@ public class ApplicationUserLocalServiceClp
 	}
 
 	public com.liferay.portal.oauth.model.ApplicationUser deleteApplicationUser(
-		com.liferay.portal.oauth.model.ApplicationUser applicationUser,
+		long userId, long applicationId,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -819,7 +817,9 @@ public class ApplicationUserLocalServiceClp
 			returnObj = _invokableLocalService.invokeMethod(_methodName21,
 					_methodParameterTypes21,
 					new Object[] {
-						ClpSerializer.translateInput(applicationUser),
+						userId,
+						
+					applicationId,
 						
 					ClpSerializer.translateInput(serviceContext)
 					});
@@ -976,87 +976,6 @@ public class ApplicationUserLocalServiceClp
 		return (java.util.List<com.liferay.portal.oauth.model.ApplicationUser>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<com.liferay.portal.oauth.model.ApplicationUser> getApplicationUsersByUserId(
-		long userId) throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName26,
-					_methodParameterTypes26, new Object[] { userId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.util.List<com.liferay.portal.oauth.model.ApplicationUser>)ClpSerializer.translateOutput(returnObj);
-	}
-
-	public int getApplicationUsersByUserIdCount(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName27,
-					_methodParameterTypes27, new Object[] { userId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return ((Integer)returnObj).intValue();
-	}
-
-	public int getApplicationUsersCount(long applicationId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName28,
-					_methodParameterTypes28, new Object[] { applicationId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return ((Integer)returnObj).intValue();
-	}
-
 	public java.util.List<com.liferay.portal.oauth.model.ApplicationUser> getApplicationUsersByOwnerId(
 		long ownerId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -1064,8 +983,8 @@ public class ApplicationUserLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName29,
-					_methodParameterTypes29,
+			returnObj = _invokableLocalService.invokeMethod(_methodName26,
+					_methodParameterTypes26,
 					new Object[] {
 						ownerId,
 						
@@ -1100,8 +1019,8 @@ public class ApplicationUserLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName30,
-					_methodParameterTypes30, new Object[] { ownerId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName27,
+					_methodParameterTypes27, new Object[] { ownerId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1123,14 +1042,41 @@ public class ApplicationUserLocalServiceClp
 	}
 
 	public java.util.List<com.liferay.portal.oauth.model.ApplicationUser> getApplicationUsersByUserId(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName28,
+					_methodParameterTypes28, new Object[] { userId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.portal.oauth.model.ApplicationUser>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<com.liferay.portal.oauth.model.ApplicationUser> getApplicationUsersByUserId(
 		long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName31,
-					_methodParameterTypes31,
+			returnObj = _invokableLocalService.invokeMethod(_methodName29,
+					_methodParameterTypes29,
 					new Object[] {
 						userId,
 						
@@ -1158,6 +1104,60 @@ public class ApplicationUserLocalServiceClp
 		}
 
 		return (java.util.List<com.liferay.portal.oauth.model.ApplicationUser>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public int getApplicationUsersByUserIdCount(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName30,
+					_methodParameterTypes30, new Object[] { userId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	public int getApplicationUsersCount(long applicationId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName31,
+					_methodParameterTypes31, new Object[] { applicationId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
 	}
 
 	public com.liferay.portal.oauth.model.ApplicationUser updateApplicationUser(

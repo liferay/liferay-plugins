@@ -16,8 +16,8 @@
 
 <%@ include file="/html/init.jsp" %>
 
-<c:if test="<%= SessionMessages.contains(request, OAuthConstants.WEB_APP_REQ_PROCESSED) %>">
-	<liferay-ui:success key="<%= OAuthConstants.WEB_APP_REQ_PROCESSED %>" message="your-request-completed-successfully"></liferay-ui:success>
+<c:if test="<%= SessionMessages.contains(request, OAuthConstants.REQUEST_PROCESSED) %>">
+	<liferay-ui:success key="<%= OAuthConstants.REQUEST_PROCESSED %>" message="your-request-completed-successfully"></liferay-ui:success>
 </c:if>
 
 <portlet:actionURL var="searchActionURL">
@@ -62,7 +62,8 @@ String replaceParm0 = "{0}";
 	<liferay-ui:search-container-row
 		className="com.liferay.portal.oauth.model.Application"
 		keyProperty="applicationId"
-		modelVar="app">
+		modelVar="app"
+		>
 
 		<%
 		int authorizationsCount = ApplicationUserLocalServiceUtil.getApplicationUsersCount(app.getApplicationId());
@@ -84,7 +85,7 @@ String replaceParm0 = "{0}";
 		<liferay-ui:search-container-column-text
 					name="access-level"
 				>
-				<liferay-ui:message key="<%= OAuthConstants.WEB_APP_LANG_KEY_ACCESS_TYPE_SHORT.replace(replaceParm0, String.valueOf(app.getAccessLevel())) %>" />
+				<liferay-ui:message key="<%= OAuthConstants.ACCESS_TYPE_SHORT.replace(replaceParm0, String.valueOf(app.getAccessLevel())) %>" />
 		</liferay-ui:search-container-column-text>
 		<liferay-ui:search-container-column-text
 					name="authorizations-count-short"

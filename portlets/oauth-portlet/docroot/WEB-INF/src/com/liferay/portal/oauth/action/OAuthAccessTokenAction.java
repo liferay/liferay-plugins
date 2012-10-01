@@ -25,9 +25,10 @@ import com.liferay.portal.oauth.util.OAuthConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 
+import java.io.OutputStream;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.OutputStream;
 
 /**
  * Access Token request handler action.
@@ -57,8 +58,7 @@ public class OAuthAccessTokenAction extends BaseStrutsAction {
 				OAuthConstants.AUTHORIZED);
 
 			if (!Boolean.TRUE.equals(authorized)) {
-				throw new OAuthException(
-					OAuthConstants.PERMISSION_DENIED);
+				throw new OAuthException(OAuthConstants.PERMISSION_DENIED);
 			}
 
 			long userId = (Long)accessor.getProperty(OAuthConstants.USER);

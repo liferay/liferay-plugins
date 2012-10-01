@@ -99,7 +99,7 @@ boolean verifyStep = Validator.isNotNull(oauthURL);
 					orderable="<%= false %>"
 				/>
 		<liferay-ui:search-container-column-text
-					name="access-level"
+					name="access-type"
 					orderable="<%= false %>"
 					value='<%= 0 == app.getAccessLevel() ? "READ" : "WRITE" %>'
 				>

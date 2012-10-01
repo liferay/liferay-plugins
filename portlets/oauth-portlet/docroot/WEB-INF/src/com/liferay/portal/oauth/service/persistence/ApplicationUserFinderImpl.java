@@ -83,8 +83,7 @@ public class ApplicationUserFinderImpl
 		}
 	}
 
-	public int countByO(long ownerId)
-		throws SystemException {
+	public int countByO(long ownerId) throws SystemException {
 		Session session = null;
 
 		try {
@@ -135,8 +134,7 @@ public class ApplicationUserFinderImpl
 
 			SQLQuery q = session.createSQLQuery(query);
 
-			q.addEntity(
-				"ApplicationUser", ApplicationUserImpl.class);
+			q.addEntity("ApplicationUser", ApplicationUserImpl.class);
 
 			return (List<ApplicationUser>)QueryUtil.list(
 					q, getDialect(), start, end);
@@ -151,8 +149,7 @@ public class ApplicationUserFinderImpl
 	}
 
 	public List<ApplicationUser> findByO(
-		long ownerId, int start, int end,
-		OrderByComparator orderByComparator)
+		long ownerId, int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Session session = null;
 
@@ -165,8 +162,7 @@ public class ApplicationUserFinderImpl
 
 			SQLQuery q = session.createSQLQuery(query);
 
-			q.addEntity(
-				"ApplicationUser", ApplicationUserImpl.class);
+			q.addEntity("ApplicationUser", ApplicationUserImpl.class);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 

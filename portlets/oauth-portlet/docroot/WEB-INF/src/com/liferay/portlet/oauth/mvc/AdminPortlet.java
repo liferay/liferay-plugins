@@ -47,8 +47,7 @@ public class AdminPortlet extends MVCPortlet {
 	public void addApplication(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
-		String name = ParamUtil.getString(
-			actionRequest, OAuthConstants.NAME);
+		String name = ParamUtil.getString(actionRequest, OAuthConstants.NAME);
 		String description = ParamUtil.getString(
 			actionRequest, OAuthConstants.DESCRIPTION);
 		String website = ParamUtil.getString(
@@ -56,7 +55,7 @@ public class AdminPortlet extends MVCPortlet {
 		String callBackURL = ParamUtil.getString(
 			actionRequest, OAuthConstants.CALLBACK_URL);
 		int accessLevel = ParamUtil.getInteger(
-			actionRequest, OAuthConstants.WEB_APP_ACCESS_TYPE,
+			actionRequest, OAuthConstants.ACCESS_TYPE,
 			OAuthConstants.ACCESS_TYPE_READ);
 
 		try {
@@ -73,8 +72,7 @@ public class AdminPortlet extends MVCPortlet {
 
 			// TODO this won't work see above
 
-			actionRequest.setAttribute(
-				OAuthConstants.BEAN_ID, application);
+			actionRequest.setAttribute(OAuthConstants.BEAN_ID, application);
 		}
 		catch (Exception e) {
 			if (e instanceof SystemException) {
@@ -122,6 +120,34 @@ public class AdminPortlet extends MVCPortlet {
 		}
 	}
 
+	@Override
+	public void render(
+			RenderRequest renderRequest, RenderResponse renberResponse)
+		throws IOException, PortletException {
+
+		long applicationId = ParamUtil.getLong(
+			renderRequest, OAuthConstants.APPLICATION_ID);
+
+		if (applicationId > 0) {
+			try {
+				Application application =
+					ApplicationLocalServiceUtil.fetchApplication(applicationId);
+
+				renderRequest.setAttribute(OAuthConstants.BEAN_ID, application);
+			}
+			catch (Exception e) {
+				if (e instanceof SystemException) {
+					SessionErrors.add(renderRequest, e.getClass().getName(), e);
+				}
+				else {
+					throw new PortletException(e.fillInStackTrace());
+				}
+			}
+		}
+
+		super.render(renderRequest, renberResponse);
+	}
+
 	public void updateApplication(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
@@ -141,8 +167,7 @@ public class AdminPortlet extends MVCPortlet {
 
 			try {
 				Application application =
-					ApplicationLocalServiceUtil.fetchApplication(
-						applicationId);
+					ApplicationLocalServiceUtil.fetchApplication(applicationId);
 
 				ServiceContext serviceContext =
 						ServiceContextFactory.getInstance(actionRequest);
@@ -152,8 +177,7 @@ public class AdminPortlet extends MVCPortlet {
 						serviceContext.getUserId(), applicationId, name,
 						description, website, callBackURL, serviceContext);
 
-				actionRequest.setAttribute(
-					OAuthConstants.BEAN_ID, application);
+				actionRequest.setAttribute(OAuthConstants.BEAN_ID, application);
 			}
 			catch (Exception e) {
 				if (e instanceof SystemException) {
@@ -171,37 +195,6 @@ public class AdminPortlet extends MVCPortlet {
 		}
 	}
 
-	@Override
-	public void render(
-			RenderRequest renderRequest, RenderResponse renberResponse)
-		throws IOException, PortletException {
-
-		long applicationId = ParamUtil.getLong(
-			renderRequest, OAuthConstants.APPLICATION_ID);
-
-		if (applicationId > 0) {
-			try {
-				Application application =
-					ApplicationLocalServiceUtil.fetchApplication(
-						applicationId);
-
-				renderRequest.setAttribute(
-					OAuthConstants.BEAN_ID, application);
-			}
-			catch (Exception e) {
-				if (e instanceof SystemException) {
-					SessionErrors.add(renderRequest, e.getClass().getName(), e);
-				}
-				else {
-					throw new PortletException(e.fillInStackTrace());
-				}
-			}
-		}
-
-		super.render(renderRequest, renberResponse);
-	}
-
-	private static Log _log = LogFactoryUtil.getLog(
-		AdminPortlet.class);
+	private static Log _log = LogFactoryUtil.getLog(AdminPortlet.class);
 
 }

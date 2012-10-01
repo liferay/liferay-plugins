@@ -28,25 +28,33 @@ import com.liferay.portal.oauth.util.OAuthConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.PwdGenerator;
-import net.oauth.OAuth;
-import net.oauth.server.OAuthServlet;
-import org.apache.commons.codec.digest.DigestUtils;
 
-import javax.portlet.PortletRequest;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
 
+import javax.portlet.PortletRequest;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import net.oauth.OAuth;
+import net.oauth.server.OAuthServlet;
+
+import org.apache.commons.codec.digest.DigestUtils;
+
 /**
+ * Implements OAuth 1.0 Revision A. For detailed information about revision
+ * please check <a href="http://oauth.net/core/1.0a/">OAuth 1.0a Spec</a> and
+ * <a href="http://tools.ietf.org/html/rfc5849">OAuth 1.0 RFC 5849</a>.
+ *
  * @author Ivica Cardic
  * @author Raymond Augé
  */
-public class OAuthImpl implements com.liferay.portal.oauth.OAuth {
+public class OAuth_1_0_AImpl implements com.liferay.portal.oauth.OAuth {
 
-	public OAuthImpl(OAuthValidator oAuthValidator) {
+	public OAuth_1_0_AImpl(OAuthValidator oAuthValidator) {
 
 		this._oAuthValidator = oAuthValidator;
 	}
@@ -64,8 +72,8 @@ public class OAuthImpl implements com.liferay.portal.oauth.OAuth {
 		Boolean authorized = (Boolean)accessor.getProperty(
 			OAuthConstants.AUTHORIZED);
 
-		if(authorized != null && authorized.equals(Boolean.TRUE) &&
-			accessor.getRequestToken() != null){
+		if ((authorized != null) && authorized.equals(Boolean.TRUE) &&
+			(accessor.getRequestToken() != null)) {
 			throw new OAuthException(OAuthConstants.TOKEN_EXPIRED);
 		}
 
@@ -84,9 +92,10 @@ public class OAuthImpl implements com.liferay.portal.oauth.OAuth {
 		String oauthToken, String tokenSecret, OutputStream out)
 		throws IOException {
 
-		OAuth.formEncode(OAuth.newList(
-			OAuthConstants.OAUTH_TOKEN, oauthToken,
-			OAuthConstants.OAUTH_TOKEN_SECRET, tokenSecret), out);
+		OAuth.formEncode(
+			OAuth.newList(
+				OAuthConstants.OAUTH_TOKEN, oauthToken,
+				OAuthConstants.OAUTH_TOKEN_SECRET, tokenSecret), out);
 	}
 
 	public void generateAccessToken(
@@ -96,8 +105,8 @@ public class OAuthImpl implements com.liferay.portal.oauth.OAuth {
 		Boolean authorized = (Boolean)accessor.getProperty(
 			OAuthConstants.AUTHORIZED);
 
-		if(authorized != null && authorized.equals(Boolean.TRUE) &&
-			accessor.getAccessToken() != null){
+		if ((authorized != null) && authorized.equals(Boolean.TRUE) &&
+			(accessor.getAccessToken() != null)) {
 			throw new OAuthException(OAuthConstants.TOKEN_EXPIRED);
 		}
 
@@ -116,7 +125,6 @@ public class OAuthImpl implements com.liferay.portal.oauth.OAuth {
 		accessor.setTokenSecret(secret);
 		accessor.setRequestToken(null);
 
-		
 		ApplicationUser applicationUser = null;
 
 		try {
@@ -125,12 +133,12 @@ public class OAuthImpl implements com.liferay.portal.oauth.OAuth {
 			userId, application.getApplicationId());
 		}catch (NoSuchApplicationUserException e){}
 
-		if(applicationUser == null){
+		if (applicationUser == null) {
 			ApplicationUserLocalServiceUtil.addApplicationUser(
 				userId, application.getApplicationId(),
 				accessor.getAccessToken(), accessor.getTokenSecret(),
 				serviceContext);
-		}else{
+		}else {
 			applicationUser.setAccessToken(accessor.getAccessToken());
 			applicationUser.setAccessSecret(accessor.getTokenSecret());
 
@@ -202,16 +210,15 @@ public class OAuthImpl implements com.liferay.portal.oauth.OAuth {
 	}
 
 	public OAuthConsumer getConsumer(OAuthMessage requestMessage)
-		throws PortalException, SystemException, IOException {
+		throws IOException, PortalException, SystemException {
 
 		String consumerKey = requestMessage.getConsumerKey();
 
-		Application application =
-			ApplicationLocalServiceUtil.getApplication(consumerKey);
+		Application application = ApplicationLocalServiceUtil.getApplication(
+			consumerKey);
 
 		if (application == null) {
-			throw new OAuthException(
-				OAuthConstants.TOKEN_REJECTED);
+			throw new OAuthException(OAuthConstants.TOKEN_REJECTED);
 		}
 
 		return new OAuthConsumerImpl(application);
@@ -234,8 +241,8 @@ public class OAuthImpl implements com.liferay.portal.oauth.OAuth {
 
 	public OAuthMessage getMessage(PortletRequest portletRequest, String url) {
 
-		HttpServletRequest request =
-			PortalUtil.getHttpServletRequest(portletRequest);
+		HttpServletRequest request = PortalUtil.getHttpServletRequest(
+			portletRequest);
 
 		return getMessage(request, url);
 	}
@@ -263,9 +270,11 @@ public class OAuthImpl implements com.liferay.portal.oauth.OAuth {
 	public String randomizeToken(String token) {
 
 		token =
-			token.concat(PwdGenerator.getPassword(
-				PwdGenerator.KEY1.concat(PwdGenerator.KEY2).concat(
-					PwdGenerator.KEY3), 12));
+			token.concat(
+				PwdGenerator.getPassword(
+					PwdGenerator.KEY1
+					.concat(PwdGenerator.KEY2)
+					.concat(PwdGenerator.KEY3), 12));
 
 		return DigestUtils.md5Hex(token);
 	}
@@ -276,7 +285,7 @@ public class OAuthImpl implements com.liferay.portal.oauth.OAuth {
 		_oAuthValidator.validateMessage(message, accessor);
 	}
 
-	private static final String _CACHE_NAME = OAuthImpl.class.getName();
+	private static final String _CACHE_NAME = OAuth_1_0_AImpl.class.getName();
 
 	private static PortalCache<String, Serializable> _portalCache =
 		MultiVMPoolUtil.getCache(_CACHE_NAME);

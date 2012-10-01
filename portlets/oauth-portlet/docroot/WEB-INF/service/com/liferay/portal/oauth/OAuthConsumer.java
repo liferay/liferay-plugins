@@ -21,9 +21,9 @@ import com.liferay.portal.oauth.model.Application;
  */
 public interface OAuthConsumer {
 
-	public String getCallbackURL();
-
 	public Application getApplication();
+
+	public String getCallbackURL();
 
 	public Object getProperty(String name);
 

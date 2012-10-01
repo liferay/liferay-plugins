@@ -14,104 +14,53 @@
  */
 --%>
 
-<%@ page import="com.liferay.portal.kernel.servlet.SessionMessages" %><%@
-page import="com.liferay.portal.oauth.model.ApplicationUser" %><%@
-page import="com.liferay.portlet.oauth.search.OAuthApplicationDisplayTerms" %><%@
-page import="com.liferay.portlet.oauth.search.OAuthApplicationSearchTerms" %><%@
-page import="com.liferay.portlet.oauth.search.OAuthApplicationUserSearch" %>
+<%@ page import="com.liferay.portal.kernel.servlet.SessionMessages" %>
+<%@ page import="com.liferay.portal.oauth.model.ApplicationUser" %>
+<%@ page import="com.liferay.portlet.oauth.search.OAuthApplicationDisplayTerms" %>
+<%@ page import="com.liferay.portlet.oauth.search.OAuthApplicationSearchTerms" %>
 
 <%@ include file="/html/init.jsp" %>
 
 <%
-int myAppsCount = 0;
 long userId = themeDisplay.getUserId();
-
-String noResultsMsgKey = "no-authorized-apps-were-found";
-String toolbarItem = ParamUtil.getString(request, OAuthConstants.TOOLBAR_ITEM, OAuthConstants.TOOLBAR_ITEM_VIEW_ALL);
-
-if (!adminUser) {
-	myAppsCount = ApplicationLocalServiceUtil.getApplicationsByUserIdCount(userId);
-
-	if (OAuthConstants.TOOLBAR_ITEM_MY_APPS.equals(toolbarItem)) {
-		noResultsMsgKey = "no-authorized-my-apps-were-found";
-	}
-}
 %>
-
-<c:if test="<%= SessionMessages.contains(request, OAuthConstants.WEB_APP_REQ_PROCESSED) %>">
-	<liferay-ui:success key="<%= OAuthConstants.WEB_APP_REQ_PROCESSED %>" message="your-request-completed-successfully"></liferay-ui:success>
-</c:if>
 
 <portlet:actionURL var="searchActionURL">
 </portlet:actionURL>
 
-<aui:form action="<%= searchActionURL %>" name="fm">
-
-<liferay-util:include page="/html/authorization/toolbar.jsp" servletContext="<%= application %>">
-		<liferay-util:param name="myAppsCount" value="<%= Integer.toString(myAppsCount) %>" />
-</liferay-util:include>
-
-<liferay-ui:search-container
-	delta="5"
-	emptyResultsMessage="<%= noResultsMsgKey %>"
-	searchContainer="<%= new OAuthApplicationUserSearch(renderRequest, currentURLObj) %>"
-	>
-
-	<liferay-ui:search-form
-				page="/html/authorization/search.jsp"
-				servletContext="<%= application %>"
-			/>
+<aui:form action="<%= searchActionURL %>" method="get" name="fm">
+	<liferay-portlet:renderURLParams varImpl="searchURL" />
+	<liferay-ui:search-container delta="5">
 
 	<%
-		String name = ((OAuthApplicationSearchTerms)searchContainer.getSearchTerms()).getName();
-
-		List<ApplicationUser> oAuthApps = null;
-		int oAuthAppsCnt = 0;
-
-		boolean renderRevokeAction = false;
-
-		if (adminUser) {
-			renderRevokeAction = true;
-
-			oAuthApps = ApplicationUserLocalServiceUtil.getApplicationUsers(searchContainer.getStart(), searchContainer.getEnd());
-			oAuthAppsCnt = ApplicationUserLocalServiceUtil.getApplicationUsersCount();
-		} else {
-			if (OAuthConstants.TOOLBAR_ITEM_MY_APPS.equals(toolbarItem)) {
-				oAuthApps = ApplicationUserLocalServiceUtil.getApplicationUsersByOwnerId(userId, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
-				oAuthAppsCnt = ApplicationUserLocalServiceUtil.getApplicationUsersByOwnerIdCount(userId);
-			}
-			else {
-				renderRevokeAction = true;
-
-				oAuthApps = ApplicationUserLocalServiceUtil.getApplicationUsersByUserId(userId, searchContainer.getStart(), searchContainer.getEnd(), null);
-				oAuthAppsCnt = ApplicationUserLocalServiceUtil.getApplicationUsersByUserIdCount(userId);
-			}
-		}
+		List<ApplicationUser> applications = ApplicationUserLocalServiceUtil.getApplicationUsersByUserId(userId, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
+		int applicationsCount = ApplicationUserLocalServiceUtil.getApplicationUsersByUserIdCount(userId);
 	%>
 
 	<liferay-ui:search-container-results
-	results="<%= oAuthApps %>"
-	total="<%= oAuthAppsCnt %>"
+	results="<%= applications %>"
+	total="<%= applicationsCount %>"
 	 />
 
 	<liferay-ui:search-container-row
 		className="com.liferay.portal.oauth.model.ApplicationUser"
 		keyProperty="oaauId"
-		modelVar="appAuth">
+		modelVar="applicationUser"
+		>
 
 		<%
-		Application app = ApplicationLocalServiceUtil.getApplication(appAuth.getApplicationId());
+		Application app = ApplicationLocalServiceUtil.getApplication(applicationUser.getApplicationId());
 		%>
 
 		<liferay-ui:search-container-column-text
 			name="oaauid"
 			orderable="<%= true %>"
-			value="<%= String.valueOf(appAuth.getOaauId()) %>"
+			value="<%= String.valueOf(applicationUser.getOaauId()) %>"
 		/>
 		<liferay-ui:search-container-column-text
 			name="application-id-short"
 			orderable="<%= true %>"
-			value="<%= String.valueOf(appAuth.getApplicationId()) %>"
+			value="<%= String.valueOf(applicationUser.getApplicationId()) %>"
 		/>
 		<liferay-ui:search-container-column-text
 			name="name"
@@ -119,23 +68,25 @@ if (!adminUser) {
 		/>
 		<liferay-ui:search-container-column-text
 			name="access-token"
-			value="<%= appAuth.getAccessToken() %>"
+			value="<%= applicationUser.getAccessToken() %>"
 		/>
 		<liferay-ui:search-container-column-text
-			name="access-level"
+			name="access-type"
 		>
-			<liferay-ui:message key='<%= OAuthConstants.WEB_APP_LANG_KEY_ACCESS_TYPE_SHORT.replace("{0}", Integer.toString(app.getAccessLevel())) %>' />
+			<liferay-ui:message key='<%= OAuthConstants.ACCESS_TYPE_SHORT.replace("{0}", Integer.toString(app.getAccessLevel())) %>' />
 		</liferay-ui:search-container-column-text>
 
-		<c:if test="<%= renderRevokeAction %>">
-			<liferay-portlet:actionURL name="deleteOAuthAppUsr" var="revokeURL">
-				<portlet:param name="<%=OAuthConstants.APPLICATION_ID%>" value="<%= String.valueOf(appAuth.getApplicationId()) %>" />
-			</liferay-portlet:actionURL>
+		<c:if test="<%= permissionChecker.hasPermission(0, ApplicationUser.class.getName(), applicationUser.getApplicationId(), ActionKeys.DELETE) %>">
+				<liferay-portlet:actionURL name="deleteApplicationUser" var="revokeURL">
+					<portlet:param name="<%= OAuthConstants.APPLICATION_ID %>" value="<%= String.valueOf(applicationUser.getApplicationId()) %>" />
+				</liferay-portlet:actionURL>
 
-			<liferay-ui:search-container-column-text href="<%= revokeURL %>">
-				<liferay-ui:message key="revoke" />
-			</liferay-ui:search-container-column-text>
-		</c:if>
+				<liferay-ui:search-container-column-text
+					href="<%= revokeURL %>"
+				>
+					<liferay-ui:message key="revoke" />
+				</liferay-ui:search-container-column-text>
+			</c:if>
 	</liferay-ui:search-container-row>
 
 	<liferay-ui:search-iterator />

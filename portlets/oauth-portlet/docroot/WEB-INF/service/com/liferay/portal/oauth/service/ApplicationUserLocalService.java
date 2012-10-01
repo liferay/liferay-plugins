@@ -270,13 +270,13 @@ public interface ApplicationUserLocalService extends BaseLocalService,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.portal.oauth.model.ApplicationUser deleteApplicationUser(
-		long userId, long applicationId,
+		com.liferay.portal.oauth.model.ApplicationUser applicationUser,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.portal.oauth.model.ApplicationUser deleteApplicationUser(
-		com.liferay.portal.oauth.model.ApplicationUser applicationUser,
+		long userId, long applicationId,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -311,18 +311,6 @@ public interface ApplicationUserLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.portal.oauth.model.ApplicationUser> getApplicationUsersByUserId(
-		long userId) throws com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getApplicationUsersByUserIdCount(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getApplicationUsersCount(long applicationId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.portal.oauth.model.ApplicationUser> getApplicationUsersByOwnerId(
 		long ownerId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -334,8 +322,20 @@ public interface ApplicationUserLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.portal.oauth.model.ApplicationUser> getApplicationUsersByUserId(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.portal.oauth.model.ApplicationUser> getApplicationUsersByUserId(
 		long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getApplicationUsersByUserIdCount(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getApplicationUsersCount(long applicationId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

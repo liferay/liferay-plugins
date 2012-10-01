@@ -9,7 +9,7 @@
 	>
 	<bean id="com.liferay.portal.kernel.oauth.OAuthProviderManagerUtil" class="com.liferay.portal.oauth.OAuthUtil">
 		<property name="OAuth">
-			<bean class="com.liferay.portal.oauth.OAuthImpl" >
+			<bean class="com.liferay.portal.oauth.OAuth_1_0_AImpl" >
 				<constructor-arg>
 					<bean class="com.liferay.portal.oauth.SimpleOAuthValidator"/>
 				</constructor-arg>

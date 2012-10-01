@@ -181,21 +181,21 @@ public class ApplicationLocalServiceClpInvoker {
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName56 = "getApplicationsCount";
+		_methodName56 = "getApplicationsByUserIdCount";
 
 		_methodParameterTypes56 = new String[] { "long" };
 
-		_methodName57 = "getApplicationsCountByCN";
+		_methodName57 = "getApplicationsCount";
 
-		_methodParameterTypes57 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes57 = new String[] { "long" };
 
-		_methodName58 = "getApplicationsCountByON";
+		_methodName58 = "getApplicationsCountByCN";
 
 		_methodParameterTypes58 = new String[] { "long", "java.lang.String" };
 
-		_methodName59 = "getApplicationsByUserIdCount";
+		_methodName59 = "getApplicationsCountByON";
 
-		_methodParameterTypes59 = new String[] { "long" };
+		_methodParameterTypes59 = new String[] { "long", "java.lang.String" };
 
 		_methodName60 = "updateApplication";
 
@@ -391,24 +391,24 @@ public class ApplicationLocalServiceClpInvoker {
 
 		if (_methodName56.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
-			return ApplicationLocalServiceUtil.getApplicationsCount(((Long)arguments[0]).longValue());
+			return ApplicationLocalServiceUtil.getApplicationsByUserIdCount(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName57.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
-			return ApplicationLocalServiceUtil.getApplicationsCountByCN(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1]);
+			return ApplicationLocalServiceUtil.getApplicationsCount(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName58.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
-			return ApplicationLocalServiceUtil.getApplicationsCountByON(((Long)arguments[0]).longValue(),
+			return ApplicationLocalServiceUtil.getApplicationsCountByCN(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1]);
 		}
 
 		if (_methodName59.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
-			return ApplicationLocalServiceUtil.getApplicationsByUserIdCount(((Long)arguments[0]).longValue());
+			return ApplicationLocalServiceUtil.getApplicationsCountByON(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1]);
 		}
 
 		if (_methodName60.equals(name) &&

@@ -14,12 +14,13 @@
  */
 --%>
 
-<%@page import="com.liferay.portal.kernel.oauth.OAuthException"%>
+<%@ page import="com.liferay.portal.kernel.oauth.OAuthException" %>
+
 <%@ include file="/html/init.jsp" %>
 
 <%
 OAuthAccessor accessor = (OAuthAccessor)request.getAttribute(OAuthConstants.OAUTH_ACCESSOR);
-			 
+
 String verifier = (String)request.getAttribute(OAuthConstants.VERIFIER);
 
 String callback = ParamUtil.getString(request, OAuthConstants.OAUTH_CALLBACK, OAuthConstants.NONE);
@@ -29,7 +30,7 @@ boolean tokenExpired =
 		OAuthConstants.TOKEN_EXPIRED.equals(SessionErrors.get(renderRequest, OAuthException.class));
 %>
 
-<c:if test='<%= tokenExpired  %>'>
+<c:if test="<%= tokenExpired %>">
 	<div class="portlet-msg-error">
 		<liferay-ui:message key="your-token-is-expired" />
 	</div>

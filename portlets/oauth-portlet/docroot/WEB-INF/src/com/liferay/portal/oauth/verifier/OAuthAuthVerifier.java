@@ -31,6 +31,12 @@ import java.util.Properties;
  * @author Ivica Cardic
  */
 public class OAuthAuthVerifier implements AuthVerifier {
+
+	public String getAuthType() {
+
+		return "OAuth";
+	}
+
 	public AuthVerifierResult verify(
 		AccessControlContext accessControlContext, Properties properties)
 		throws AuthException {
@@ -65,11 +71,6 @@ public class OAuthAuthVerifier implements AuthVerifier {
 		result.setUserId(userId);
 
 		return result;
-	}
-
-	public String getAuthType() {
-
-		return "OAuth";
 	}
 
 }

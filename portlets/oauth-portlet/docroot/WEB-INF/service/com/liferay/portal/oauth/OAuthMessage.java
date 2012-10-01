@@ -20,7 +20,7 @@ import java.io.IOException;
  * @author Ivica Cardic
  */
 public interface OAuthMessage {
-	
+
 	String getConsumerKey() throws IOException;
 
 	String getToken() throws IOException;

@@ -14,24 +14,25 @@
 
 package com.liferay.portal.oauth.service.impl;
 
-import java.net.MalformedURLException;
-import java.util.Date;
-import java.util.List;
-
 import com.liferay.portal.RequiredFieldException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.DigesterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.oauth.NoSuchApplicationException;
+import com.liferay.portal.oauth.OAuthUtil;
 import com.liferay.portal.oauth.model.Application;
 import com.liferay.portal.oauth.service.base.ApplicationLocalServiceBaseImpl;
 import com.liferay.portal.oauth.util.OAuthConstants;
 import com.liferay.portal.service.ServiceContext;
+
+import java.net.MalformedURLException;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * The implementation of the application local service.
@@ -45,18 +46,18 @@ import com.liferay.portal.service.ServiceContext;
  *
  * @author Igor Beslic
  * @author Raymond Augé
- * 
+ *
  * @see com.liferay.portal.oauth.service.base.ApplicationLocalServiceBaseImpl
  * @see com.liferay.portal.oauth.service.ApplicationLocalServiceUtil
  */
 public class ApplicationLocalServiceImpl
 	extends ApplicationLocalServiceBaseImpl {
-	/*
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never reference this interface directly. Always use {@link com.liferay.portal.oauth.service.ApplicationLocalServiceUtil} to access the application local service.
 	 */
-	
+
 	/**
 	 * Add info about new application that should use OAuth feature. Method will
 	 * generate new consumer key and secret that will be used by this
@@ -75,10 +76,11 @@ public class ApplicationLocalServiceImpl
 
 		Date now = new Date();
 
+		// Application
+
 		long applicationId = counterLocalService.increment();
 
-		Application application = applicationPersistence.create(
-			applicationId);
+		Application application = applicationPersistence.create(applicationId);
 
 		application.setCompanyId(user.getCompanyId());
 		application.setUserId(user.getUserId());
@@ -88,43 +90,52 @@ public class ApplicationLocalServiceImpl
 		application.setName(name);
 		application.setDescription(description);
 		application.setWebsite(website);
-		application.setConsumerKey(PortalUUIDUtil.generate());
-
-		String secretSeed = application.getConsumerKey().concat(
-			String.valueOf(System.nanoTime()));
-
-		application.setConsumerSecret(DigesterUtil.digestHex(secretSeed));
 		application.setCallBackURL(callBackURL);
 		application.setAccessLevel(accessLevel);
 
-		applicationPersistence.update(application, true);
+		// This is to support potential import
+
+		String consumerKey = serviceContext.getUuid();
+
+		if (Validator.isNull(consumerKey)) {
+			consumerKey = PortalUUIDUtil.generate();
+		}
+
+		String consumerSecret = OAuthUtil.randomizeToken(consumerKey);
+
+		application.setConsumerKey(consumerKey);
+		application.setConsumerSecret(consumerSecret);
+
+		applicationPersistence.update(application, false);
 
 		// Resources
 
-		resourceLocalService.addModelResources(application, serviceContext);
+		resourceLocalService.addResources(
+			application.getCompanyId(), 0, userId, Application.class.getName(),
+			application.getApplicationId(), false, false, false);
 
 		return application;
 	}
-	
+
 	public Application deleteApplication(
 			Application application, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// Applications
-		
+
 		applicationUserPersistence.removeByApplicationId(
 			application.getApplicationId());
-		
+
 		// Resources
-		
+
 		resourceLocalService.deleteResource(
 			application.getCompanyId(), Application.class.getName(),
 			ResourceConstants.SCOPE_INDIVIDUAL, application.getApplicationId());
-		
+
 		// Application
-		
+
 			applicationPersistence.remove(application);
-		
+
 			return application;
 	}
 
@@ -132,7 +143,7 @@ public class ApplicationLocalServiceImpl
 	 * Delete OAuth application designated by applicationId. Method will
 	 * delete all application user's authorizations, application and
 	 * corresponding resource entries.
-	 * 
+	 *
 	 * @param applicationId
 	 * @param serviceContext
 	 * @return
@@ -143,15 +154,15 @@ public class ApplicationLocalServiceImpl
 			long applicationId, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		Application application =
-				applicationPersistence.findByPrimaryKey(applicationId);
+		Application application = applicationPersistence.findByPrimaryKey(
+				applicationId);
 
 		return deleteApplication(application, serviceContext);
 	}
-	
+
 	public Application fetchApplication(String consumerKey)
 		throws SystemException {
-		
+
 		return applicationPersistence.fetchByConsumerKey(consumerKey);
 	}
 
@@ -193,8 +204,7 @@ public class ApplicationLocalServiceImpl
 			companyId, name, start, end, orderByComparator);
 	}
 
-	public List<Application> getApplicationsByCN(
-			long companyId, String name)
+	public List<Application> getApplicationsByCN(long companyId, String name)
 		throws SystemException {
 
 		return applicationPersistence.findByC_N(companyId, name);
@@ -230,6 +240,12 @@ public class ApplicationLocalServiceImpl
 			userId, start, end, orderByComparator);
 	}
 
+	public int getApplicationsByUserIdCount(long userId)
+		throws SystemException {
+
+		return applicationPersistence.countByUserId(userId);
+	}
+
 	public int getApplicationsCount(long companyId) throws SystemException {
 		return applicationPersistence.countByCompanyId(companyId);
 	}
@@ -252,12 +268,6 @@ public class ApplicationLocalServiceImpl
 		return applicationPersistence.countByU_N(userId, name);
 	}
 
-	public int getApplicationsByUserIdCount(long userId)
-		throws SystemException {
-
-		return applicationPersistence.countByUserId(userId);
-	}
-
 	/**
 	 * Update existing application that should use OAuth feature. If changed
 	 * method will update name, description, website, callbackURL and
@@ -276,8 +286,8 @@ public class ApplicationLocalServiceImpl
 
 		Date now = new Date();
 
-		Application application =
-				applicationPersistence.findByPrimaryKey(applicationId);
+		Application application = applicationPersistence.findByPrimaryKey(
+				applicationId);
 
 		application.setUserId(user.getUserId());
 		application.setUserName(user.getFullName());
@@ -318,4 +328,5 @@ public class ApplicationLocalServiceImpl
 			throw new PortalException(new MalformedURLException(website));
 		}
 	}
+
 }

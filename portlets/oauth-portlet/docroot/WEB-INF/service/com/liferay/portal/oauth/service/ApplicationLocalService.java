@@ -334,6 +334,10 @@ public interface ApplicationLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getApplicationsByUserIdCount(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getApplicationsCount(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -343,10 +347,6 @@ public interface ApplicationLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getApplicationsCountByON(long userId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getApplicationsByUserIdCount(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

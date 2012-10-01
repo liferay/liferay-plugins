@@ -133,16 +133,15 @@ public class SimulatorPortlet extends MVCPortlet {
 				}
 
 				Role role = null;
-				
+
 				try {
-					RoleServiceUtil.getRole(
-						sc.getCompanyId(), OAUTH_ROLE_NAME);
+					RoleServiceUtil.getRole(sc.getCompanyId(), OAUTH_ROLE_NAME);
 				}
 				catch (PortalException e) {
 					_log.warn("Role "
 						.concat(OAUTH_ROLE_NAME)
 						.concat(" does not exist. Creating new role."));
-					
+
 					Map<Locale, String> titleMap =
 									new HashMap<Locale, String>();
 					titleMap.put(LocaleUtil.getDefault(), OAUTH_ROLE_TITLE);
@@ -160,7 +159,6 @@ public class SimulatorPortlet extends MVCPortlet {
 							OAUTH_ROLE_NAME, titleMap, descMap,
 							RoleConstants.TYPE_REGULAR);
 				}
-				
 
 				long addedAppsCnt = 0L;
 				String base = "oauths";

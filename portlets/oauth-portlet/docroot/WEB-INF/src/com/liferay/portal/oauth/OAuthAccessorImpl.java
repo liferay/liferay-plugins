@@ -21,15 +21,15 @@ import java.io.Serializable;
  */
 public class OAuthAccessorImpl implements OAuthAccessor, Serializable {
 
-	public OAuthAccessorImpl(OAuthConsumer oAuthConsumer) {
-		this(new net.oauth.OAuthAccessor(
-			(net.oauth.OAuthConsumer)oAuthConsumer.getWrappedOAuthConsumer()));
-
-		this._oAuthConsumer = oAuthConsumer;
-	}
-
 	public OAuthAccessorImpl(net.oauth.OAuthAccessor oAuthAccessor) {
 		this._oAuthAccessor = oAuthAccessor;
+	}
+
+	public OAuthAccessorImpl(OAuthConsumer oAuthConsumer) {
+		this(new net.oauth.OAuthAccessor((net.oauth.OAuthConsumer)
+				oAuthConsumer.getWrappedOAuthConsumer()));
+
+		this._oAuthConsumer = oAuthConsumer;
 	}
 
 	public String getAccessToken() {

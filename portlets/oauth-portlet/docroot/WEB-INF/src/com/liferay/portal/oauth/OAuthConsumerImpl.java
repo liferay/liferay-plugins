@@ -22,10 +22,9 @@ import com.liferay.portal.oauth.model.Application;
 public class OAuthConsumerImpl implements OAuthConsumer {
 
 	public OAuthConsumerImpl(Application oAuthApplication) {
-		this(new net.oauth.OAuthConsumer(
-			oAuthApplication.getCallBackURL(),
-			oAuthApplication.getConsumerKey(),
-			oAuthApplication.getConsumerSecret(), null));
+		this(new net.oauth.OAuthConsumer(oAuthApplication.getCallBackURL(),
+		oAuthApplication.getConsumerKey(), oAuthApplication.getConsumerSecret(),
+		null));
 
 		this._oAuthApplication = oAuthApplication;
 	}
@@ -34,12 +33,12 @@ public class OAuthConsumerImpl implements OAuthConsumer {
 		this._oAuthConsumer = oAuthConsumer;
 	}
 
-	public String getCallbackURL() {
-		return _oAuthConsumer.callbackURL;
-	}
-
 	public Application getApplication() {
 		return _oAuthApplication;
+	}
+
+	public String getCallbackURL() {
+		return _oAuthConsumer.callbackURL;
 	}
 
 	public Object getProperty(String name) {

@@ -25,23 +25,23 @@ import com.liferay.portal.oauth.util.OAuthConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.util.bridges.mvc.MVCPortlet;
-import org.apache.commons.codec.digest.DigestUtils;
+
+import java.io.IOException;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
-import java.io.IOException;
+
+import org.apache.commons.codec.digest.DigestUtils;
 public class AuthorizePortlet extends MVCPortlet {
 
 	public void authorize(ActionRequest request, ActionResponse response) {
-		OAuthMessage requestMessage = OAuthUtil.getMessage(
-				request, null);
+		OAuthMessage requestMessage = OAuthUtil.getMessage(request, null);
 
 		try {
-			OAuthAccessor accessor = OAuthUtil.getAccessor(
-				requestMessage);
+			OAuthAccessor accessor = OAuthUtil.getAccessor(requestMessage);
 
 			ServiceContext serviceContext = ServiceContextFactory.getInstance(
 					request);
@@ -55,8 +55,7 @@ public class AuthorizePortlet extends MVCPortlet {
 			_log.error(e);
 
 			if (e instanceof OAuthException) {
-				SessionErrors.add(
-						request, e.getMessage());
+				SessionErrors.add(request, e.getMessage());
 			}
 			else {
 				SessionErrors.add(request, e.getClass());
@@ -68,12 +67,10 @@ public class AuthorizePortlet extends MVCPortlet {
 	public void render(RenderRequest request, RenderResponse response)
 		throws IOException, PortletException {
 
-		OAuthMessage requestMessage = OAuthUtil.getMessage(
-			request, null);
+		OAuthMessage requestMessage = OAuthUtil.getMessage(request, null);
 
 		try {
-			OAuthAccessor accessor = OAuthUtil.getAccessor(
-				requestMessage);
+			OAuthAccessor accessor = OAuthUtil.getAccessor(requestMessage);
 
 			request.setAttribute(OAuthConstants.OAUTH_ACCESSOR, accessor);
 
@@ -86,8 +83,7 @@ public class AuthorizePortlet extends MVCPortlet {
 		catch (Exception e) {
 			if (e instanceof OAuthException) {
 				SessionErrors.add(
-					request, OAuthException.class,
-					e.getMessage());
+					request, OAuthException.class, e.getMessage());
 			}
 			else {
 				SessionErrors.add(request, e.getClass());

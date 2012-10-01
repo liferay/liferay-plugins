@@ -382,6 +382,11 @@ public class ApplicationLocalServiceUtil {
 				   .getApplicationsByOwner(userId, start, end, orderByComparator);
 	}
 
+	public static int getApplicationsByUserIdCount(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getApplicationsByUserIdCount(userId);
+	}
+
 	public static int getApplicationsCount(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getApplicationsCount(companyId);
@@ -397,11 +402,6 @@ public class ApplicationLocalServiceUtil {
 		java.lang.String name)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getApplicationsCountByON(userId, name);
-	}
-
-	public static int getApplicationsByUserIdCount(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getApplicationsByUserIdCount(userId);
 	}
 
 	/**

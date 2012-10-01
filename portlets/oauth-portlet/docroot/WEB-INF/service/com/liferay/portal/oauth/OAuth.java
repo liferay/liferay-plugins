@@ -49,8 +49,6 @@ public interface OAuth {
 			OAuthAccessor accessor, long userId, ServiceContext serviceContext)
 		throws PortalException, SystemException;
 
-	public String randomizeToken(String token);
-
 	public void generateRequestToken( OAuthAccessor accessor);
 
 	public OAuthAccessor getAccessor(OAuthMessage requestMessage)
@@ -71,6 +69,8 @@ public interface OAuth {
 			HttpServletRequest request, HttpServletResponse response,
 			Exception exception, boolean sendBody)
 		throws IOException, ServletException;
+
+	public String randomizeToken(String token);
 
 	void validateMessage(OAuthMessage message, OAuthAccessor accessor)
 		throws OAuthException;

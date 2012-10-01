@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.oauth.model.Application;
 import com.liferay.portal.oauth.util.OAuthConstants;
+import com.liferay.portal.oauth.util.comparator.OAuthApplicationOrderByComparator;
 import com.liferay.portlet.PortalPreferences;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 
@@ -38,23 +39,18 @@ import javax.portlet.PortletURL;
  * @author Igor Beslic
  *
  */
-public class OAuthApplicationSearch extends SearchContainer<Application> {
-	public static final String ORDER_BY_ASC = "name ASC";
-
-	public static final String ORDER_BY_DESC = "name DESC";
-
-	public static final String[] ORDER_BY_FIELDS = {"name"};
+public class OAuthApplicationSearch extends SearchContainer<Application>
+		implements OAuthConstants {
 
 	static List<String> headerNames = new ArrayList<String>();
 	static Map<String, String> orderableHeaders = new HashMap<String, String>();
 
 	static {
-		headerNames.add(OAuthConstants.NAME);
-		headerNames.add(OAuthConstants.WEBSITE);
-		headerNames.add(OAuthConstants.CALLBACK_URL);
+		headerNames.add(NAME);
+		headerNames.add(WEBSITE);
+		headerNames.add(CALLBACK_URL);
 
-		orderableHeaders.put(
-				OAuthConstants.NAME, OAuthConstants.NAME);
+		orderableHeaders.put(NAME, NAME);
 	}
 
 	public OAuthApplicationSearch(
@@ -62,14 +58,12 @@ public class OAuthApplicationSearch extends SearchContainer<Application> {
 		super(
 			portletRequest, new OAuthApplicationDisplayTerms(portletRequest),
 			new OAuthApplicationSearchTerms(portletRequest), DEFAULT_CUR_PARAM,
-			DEFAULT_DELTA, iteratorURL, headerNames,
-			OAuthConstants.EMPTY_RESULTS_MESSAGE);
+			DEFAULT_DELTA, iteratorURL, headerNames, NO_APPLICATIONS);
 
 		OAuthApplicationDisplayTerms displayTerms =
 				(OAuthApplicationDisplayTerms)getDisplayTerms();
 
-		iteratorURL.setParameter(
-			OAuthApplicationDisplayTerms.NAME, displayTerms.getName());
+		iteratorURL.setParameter(NAME, displayTerms.getName());
 
 		try {
 			PortalPreferences preferences =
@@ -85,19 +79,15 @@ public class OAuthApplicationSearch extends SearchContainer<Application> {
 					Validator.isNotNull(orderByType)) {
 
 					preferences.setValue(
-						OAuthConstants.PORTLET_KEY_OAUTH_ADMIN,
-							"apps-order-by-col", orderByCol);
+						OAUTH_ADMIN, "apps-order-by-col", orderByCol);
 					preferences.setValue(
-							OAuthConstants.PORTLET_KEY_OAUTH_ADMIN,
-								"apps-order-by-type", orderByType);
+						OAUTH_ADMIN, "apps-order-by-type", orderByType);
 				}
 				else {
 					orderByCol = preferences.getValue(
-							OAuthConstants.PORTLET_KEY_OAUTH_ADMIN,
-								"apps-order-by-col", "name");
+						OAUTH_ADMIN, "apps-order-by-col", NAME);
 					orderByType = preferences.getValue(
-							OAuthConstants.PORTLET_KEY_OAUTH_ADMIN,
-								"apps-order-by-type", "asc");
+						OAUTH_ADMIN, "apps-order-by-type", ASC);
 
 					setOrderableHeaders(orderableHeaders);
 					setOrderByCol(orderByCol);
@@ -115,55 +105,12 @@ public class OAuthApplicationSearch extends SearchContainer<Application> {
 	protected OrderByComparator getOAuthApplicationOrderByComparator(
 			final String orderByColumn, final String orderByType) {
 		return getOAuthApplicationOrderByComparator(
-				"asc".equals(orderByType), orderByColumn);
+				ASC.equals(orderByType), orderByColumn);
 	}
 
 	protected OrderByComparator getOAuthApplicationOrderByComparator(
 			final boolean ascending, final String orderByColumn) {
-		return new OrderByComparator() {
-
-			@Override
-			public int compare(Object obj1, Object obj2) {
-				// TODO implement reflections (try to find get method for
-				// column - default is name
-				Application app1 = (Application)obj1;
-				Application app2 = (Application)obj2;
-
-				int value = app1.getName().compareTo(app2.getName());
-
-				if (_ascending) {
-					return value;
-				}
-				else {
-					return -value;
-				}
-			}
-
-			@Override
-			public String getOrderBy() {
-				if (_ascending) {
-					return ORDER_BY_ASC;
-				}
-				else {
-					return ORDER_BY_DESC;
-				}
-			}
-
-			@Override
-			public String[] getOrderByFields() {
-				return ORDER_BY_FIELDS;
-			}
-
-			@Override
-			public boolean isAscending() {
-				return _ascending;
-			}
-
-			private boolean _ascending = ascending;
-
-			private String _orderByColumn = orderByColumn;
-
-		};
+		return new OAuthApplicationOrderByComparator(ascending, orderByColumn);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(

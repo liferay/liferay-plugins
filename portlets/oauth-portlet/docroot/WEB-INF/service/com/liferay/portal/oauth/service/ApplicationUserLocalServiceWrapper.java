@@ -297,21 +297,21 @@ public class ApplicationUserLocalServiceWrapper
 	}
 
 	public com.liferay.portal.oauth.model.ApplicationUser deleteApplicationUser(
-		long userId, long applicationId,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _applicationUserLocalService.deleteApplicationUser(userId,
-			applicationId, serviceContext);
-	}
-
-	public com.liferay.portal.oauth.model.ApplicationUser deleteApplicationUser(
 		com.liferay.portal.oauth.model.ApplicationUser applicationUser,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _applicationUserLocalService.deleteApplicationUser(applicationUser,
 			serviceContext);
+	}
+
+	public com.liferay.portal.oauth.model.ApplicationUser deleteApplicationUser(
+		long userId, long applicationId,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _applicationUserLocalService.deleteApplicationUser(userId,
+			applicationId, serviceContext);
 	}
 
 	/**
@@ -349,21 +349,6 @@ public class ApplicationUserLocalServiceWrapper
 			start, end, orderByComparator);
 	}
 
-	public java.util.List<com.liferay.portal.oauth.model.ApplicationUser> getApplicationUsersByUserId(
-		long userId) throws com.liferay.portal.kernel.exception.SystemException {
-		return _applicationUserLocalService.getApplicationUsersByUserId(userId);
-	}
-
-	public int getApplicationUsersByUserIdCount(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _applicationUserLocalService.getApplicationUsersByUserIdCount(userId);
-	}
-
-	public int getApplicationUsersCount(long applicationId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _applicationUserLocalService.getApplicationUsersCount(applicationId);
-	}
-
 	public java.util.List<com.liferay.portal.oauth.model.ApplicationUser> getApplicationUsersByOwnerId(
 		long ownerId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -378,11 +363,26 @@ public class ApplicationUserLocalServiceWrapper
 	}
 
 	public java.util.List<com.liferay.portal.oauth.model.ApplicationUser> getApplicationUsersByUserId(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		return _applicationUserLocalService.getApplicationUsersByUserId(userId);
+	}
+
+	public java.util.List<com.liferay.portal.oauth.model.ApplicationUser> getApplicationUsersByUserId(
 		long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _applicationUserLocalService.getApplicationUsersByUserId(userId,
 			start, end, orderByComparator);
+	}
+
+	public int getApplicationUsersByUserIdCount(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _applicationUserLocalService.getApplicationUsersByUserIdCount(userId);
+	}
+
+	public int getApplicationUsersCount(long applicationId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _applicationUserLocalService.getApplicationUsersCount(applicationId);
 	}
 
 	/**

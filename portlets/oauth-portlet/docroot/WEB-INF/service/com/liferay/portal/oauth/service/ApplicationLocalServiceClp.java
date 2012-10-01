@@ -182,21 +182,21 @@ public class ApplicationLocalServiceClp implements ApplicationLocalService {
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName31 = "getApplicationsCount";
+		_methodName31 = "getApplicationsByUserIdCount";
 
 		_methodParameterTypes31 = new String[] { "long" };
 
-		_methodName32 = "getApplicationsCountByCN";
+		_methodName32 = "getApplicationsCount";
 
-		_methodParameterTypes32 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes32 = new String[] { "long" };
 
-		_methodName33 = "getApplicationsCountByON";
+		_methodName33 = "getApplicationsCountByCN";
 
 		_methodParameterTypes33 = new String[] { "long", "java.lang.String" };
 
-		_methodName34 = "getApplicationsByUserIdCount";
+		_methodName34 = "getApplicationsCountByON";
 
-		_methodParameterTypes34 = new String[] { "long" };
+		_methodParameterTypes34 = new String[] { "long", "java.lang.String" };
 
 		_methodName35 = "updateApplication";
 
@@ -1171,13 +1171,40 @@ public class ApplicationLocalServiceClp implements ApplicationLocalService {
 		return (java.util.List<com.liferay.portal.oauth.model.Application>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public int getApplicationsCount(long companyId)
+	public int getApplicationsByUserIdCount(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName31,
-					_methodParameterTypes31, new Object[] { companyId });
+					_methodParameterTypes31, new Object[] { userId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	public int getApplicationsCount(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName32,
+					_methodParameterTypes32, new Object[] { companyId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1203,8 +1230,8 @@ public class ApplicationLocalServiceClp implements ApplicationLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName32,
-					_methodParameterTypes32,
+			returnObj = _invokableLocalService.invokeMethod(_methodName33,
+					_methodParameterTypes33,
 					new Object[] { companyId, ClpSerializer.translateInput(name) });
 		}
 		catch (Throwable t) {
@@ -1231,36 +1258,9 @@ public class ApplicationLocalServiceClp implements ApplicationLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName33,
-					_methodParameterTypes33,
-					new Object[] { userId, ClpSerializer.translateInput(name) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return ((Integer)returnObj).intValue();
-	}
-
-	public int getApplicationsByUserIdCount(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName34,
-					_methodParameterTypes34, new Object[] { userId });
+					_methodParameterTypes34,
+					new Object[] { userId, ClpSerializer.translateInput(name) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

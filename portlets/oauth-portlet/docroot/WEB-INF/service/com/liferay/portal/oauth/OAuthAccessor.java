@@ -14,12 +14,10 @@
 
 package com.liferay.portal.oauth;
 
-import java.io.Serializable;
-
 /**
  * @author Ivica Cardic
  */
-public interface OAuthAccessor{
+public interface OAuthAccessor {
 
 	public String getAccessToken();
 

@@ -33,7 +33,7 @@ import java.util.List;
  * interface. <p> This is a local service. Methods of this service will not have
  * security checks based on the propagated JAAS credentials because this service
  * can only be accessed from within the same VM. </p>
- * 
+ *
  * @author Igor Beslic
  * @author Raymond Augé
  * @see com.liferay.portal.oauth.service.base.ApplicationUserLocalServiceBaseImpl
@@ -42,7 +42,7 @@ import java.util.List;
 public class ApplicationUserLocalServiceImpl
 	extends ApplicationUserLocalServiceBaseImpl {
 
-	/*
+	/**
 	 * NOTE FOR DEVELOPERS: Never reference this interface directly. Always use
 	 * {@link com.liferay.portal.oauth.service.ApplicationUserLocalServiceUtil}
 	 * to access the application user local service.
@@ -70,16 +70,16 @@ public class ApplicationUserLocalServiceImpl
 
 		long oaauId = counterLocalService.increment();
 
-		ApplicationUser applicationUser =
-			applicationUserPersistence.create(oaauId);
+		ApplicationUser applicationUser = applicationUserPersistence.create(
+			oaauId);
 
 		applicationUser.setUserId(userId);
 		applicationUser.setApplicationId(applicationId);
 		applicationUser.setAccessToken(accessToken);
 		applicationUser.setAccessSecret(accessSecret);
 
-		applicationUser =
-			applicationUserPersistence.update(applicationUser, false);
+		applicationUser = applicationUserPersistence.update(
+			applicationUser, false);
 
 		resourceLocalService.addResources(
 			serviceContext.getCompanyId(), serviceContext.getScopeGroupId(),
@@ -87,16 +87,6 @@ public class ApplicationUserLocalServiceImpl
 			applicationUser.getPrimaryKey(), false, false, false);
 
 		return applicationUser;
-	}
-
-	public ApplicationUser deleteApplicationUser(
-		long userId, long applicationId, ServiceContext serviceContext)
-		throws PortalException, SystemException {
-
-		ApplicationUser applicationUser =
-			applicationUserPersistence.findByU_AP(userId, applicationId);
-
-		return deleteApplicationUser(applicationUser, serviceContext);
 	}
 
 	public ApplicationUser deleteApplicationUser(
@@ -111,7 +101,17 @@ public class ApplicationUserLocalServiceImpl
 
 		return applicationUser;
 	}
-	
+
+	public ApplicationUser deleteApplicationUser(
+		long userId, long applicationId, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		ApplicationUser applicationUser = applicationUserPersistence.findByU_AP(
+			userId, applicationId);
+
+		return deleteApplicationUser(applicationUser, serviceContext);
+	}
+
 	/**
 	 * Return ApplicationUser with accessToken given by parameter.
 	 * @param accessToken
@@ -120,32 +120,31 @@ public class ApplicationUserLocalServiceImpl
 	 */
 	public ApplicationUser getApplicationUserByAccessToken(String accessToken)
 		throws SystemException {
-		
+
 		if (null == accessToken) {
 			throw new SystemException("AccessToken can not be null.");
 		}
-		
+
 		/*
 		 * accessToken value if defined it is unique across applicationUser
-		 * entity. 
+		 * entity.
 		 * */
 		List<ApplicationUser> applicationUserLst =
 					applicationUserPersistence.findByAccessToken(accessToken);
-		
+
 		if (applicationUserLst.size() > 1) {
-			throw new SystemException(
-				"No unique ApplicationUser.");	
+			throw new SystemException("No unique ApplicationUser.");
 		}
 		else if (applicationUserLst.size() == 1) {
 			return applicationUserLst.get(0);
 		}
-		
+
 		throw new SystemException("No such ApplicationUser.");
 	}
 
 	public ApplicationUser getApplicationUserByApplicationId(
 			long userId, long applicationId)
-		throws SystemException, NoSuchApplicationUserException {
+		throws NoSuchApplicationUserException, SystemException {
 
 		return applicationUserPersistence.findByU_AP(userId, applicationId);
 	}
@@ -165,10 +164,32 @@ public class ApplicationUserLocalServiceImpl
 			applicationId, start, end, orderByComparator);
 	}
 
+	public List<ApplicationUser> getApplicationUsersByOwnerId(
+		long ownerId, int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+
+		return applicationUserFinder.findByO(
+			ownerId, start, end, orderByComparator);
+	}
+
+	public int getApplicationUsersByOwnerIdCount(long ownerId)
+					throws SystemException {
+
+					return applicationUserFinder.countByO(ownerId);
+				}
+
 	public List<ApplicationUser> getApplicationUsersByUserId(long userId)
 		throws SystemException {
 
 		return applicationUserPersistence.findByUserId(userId);
+	}
+
+	public List<ApplicationUser> getApplicationUsersByUserId(
+		long userId, int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+
+		return applicationUserPersistence.findByUserId(
+			userId, start, end, orderByComparator);
 	}
 
 	public int getApplicationUsersByUserIdCount(long userId)
@@ -181,31 +202,6 @@ public class ApplicationUserLocalServiceImpl
 		throws SystemException {
 
 		return applicationUserPersistence.countByApplicationId(applicationId);
-	}
-	
-	public List<ApplicationUser> getApplicationUsersByOwnerId(
-			long ownerId, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
-
-		return applicationUserFinder.findByO(
-			ownerId, start, end, orderByComparator);
-	}
-
-	public int getApplicationUsersByOwnerIdCount(
-		long ownerId)
-		throws SystemException {
-
-		return applicationUserFinder.countByO(ownerId);
-	}
-
-	public List<ApplicationUser> getApplicationUsersByUserId(
-		long userId, int start, int end,
-		OrderByComparator orderByComparator)
-		throws SystemException {
-
-		return applicationUserPersistence.findByUserId(
-			userId, start, end, orderByComparator);
 	}
 
 	/**

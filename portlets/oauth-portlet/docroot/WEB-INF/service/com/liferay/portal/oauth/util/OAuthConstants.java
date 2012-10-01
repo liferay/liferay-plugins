@@ -14,14 +14,16 @@
 
 package com.liferay.portal.oauth.util;
 
-public class OAuthConstants {
-	
-
-	public static final String ASC = "asc";
+public interface OAuthConstants {
 
 	public static final String ACCESS_TYPE = "accessType";
 
+	public static final String ACCESS_TYPE_OPTION = "access-type-option-";
+
 	public static final int ACCESS_TYPE_READ = 0;
+
+	public static final String ACCESS_TYPE_SHORT =
+					"access-type-option-{0}-short";
 
 	public static final int ACCESS_TYPE_WRITE = 1;
 
@@ -32,6 +34,8 @@ public class OAuthConstants {
 	public static final String ACCESSOR_SECRET = "oauth_accessor_secret";
 
 	public static final String APPLICATION_ID = "applicationId";
+
+	public static final String ASC = "asc";
 
 	public static final String AUTHORIZED = "authorized";
 
@@ -47,55 +51,41 @@ public class OAuthConstants {
 
 	public static final String NAME = "name";
 
+	public static final String NO_APPLICATION_USERS =
+					"no-authorized-applications-were-found";
+
+	public static final String NO_APPLICATIONS = "no-applications-were-found";
+
 	public static final String NONE = "none";
 
 	public static final String OAUTH_ACCESSOR = "OAUTH_ACCESSOR";
 
-	public static final String OAUTH_CALLBACK = "oauth_callback";
-
 	public static final String OAUTH_ADMIN = "1_WAR_oauthportlet";
 
-	public static final String OAUTH_USERS = "2_WAR_oauthportlet";
+	public static final String OAUTH_CALLBACK = "oauth_callback";
 
 	public static final String OAUTH_TOKEN = "oauth_token";
 
 	public static final String OAUTH_TOKEN_SECRET = "oauth_token_secret";
 
+	public static final String OAUTH_USERS = "2_WAR_oauthportlet";
+
 	public static final String OAUTH_VERIFIER = "oauth_verifier";
+
+	public static final String PERMISSION_DENIED = "permission_denied";
+
+	public static final String REQUEST_PROCESSED = "request_processed";
+
+	public static final String TOKEN_EXPIRED = "token_expired";
+
+	public static final String TOKEN_REJECTED = "token_rejected";
+
+	public static final String TOOLBAR_ITEM = "toolbarItem";
 
 	public static final String USER = "user";
 
 	public static final String VERIFIER = "VERIFIER";
 
 	public static final String WEBSITE = "website";
-	
-	// TODO dump rest - That is what Ray did
-	
-	public static final String EMPTY_RESULTS_MESSAGE = "no-apps-were-found";
-
-	public static final String PERMISSION_DENIED = "permission_denied";
-	
-	public static final String PORTLET_KEY_OAUTH_ADMIN = "OA01";
-	public static final String PORTLET_KEY_OAUTH_USERS = "OA02";
-
-	public static final String TOKEN_EXPIRED = "token_expired";
-	public static final String TOKEN_REJECTED = "token_rejected";
-
-	public static final String TOOLBAR_ITEM = "toolbarItem";
-	public static final String TOOLBAR_ITEM_MY_APPS = "my-applications";
-	public static final String TOOLBAR_ITEM_MY_AUTHORISATIONS =
-												"my-authorizations";
-	public static final String TOOLBAR_ITEM_VIEW_ALL = "view-all";
-
-	public static final String WEB_APP_ACCESS_TYPE = "accessLevel";
-	
-	public static final String WEB_APP_KEY = "consumerKey";
-	public static final String WEB_APP_LANG_KEY_ACCESS_TYPE_OPTION =
-			"access-level-option-";
-	public static final String WEB_APP_LANG_KEY_ACCESS_TYPE_SHORT =
-			"access-level-option-{0}-short";
-	
-	public static final String WEB_APP_NAME_ID = "nameId";
-	public static final String WEB_APP_REQ_PROCESSED = "request_processed";
 
 }

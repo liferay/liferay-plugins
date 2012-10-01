@@ -10,7 +10,7 @@
 	<cache
 		eternal="false"
 		maxElementsInMemory="100000"
-		name="com.liferay.portal.oauth.OAuthImpl"
+		name="com.liferay.portal.oauth.OAuth_1_0_AImpl"
 		overflowToDisk="false"
 		timeToIdleSeconds="600"
 	>

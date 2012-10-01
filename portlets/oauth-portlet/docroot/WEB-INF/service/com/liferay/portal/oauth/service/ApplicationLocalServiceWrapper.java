@@ -376,6 +376,11 @@ public class ApplicationLocalServiceWrapper implements ApplicationLocalService,
 			end, orderByComparator);
 	}
 
+	public int getApplicationsByUserIdCount(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _applicationLocalService.getApplicationsByUserIdCount(userId);
+	}
+
 	public int getApplicationsCount(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _applicationLocalService.getApplicationsCount(companyId);
@@ -389,11 +394,6 @@ public class ApplicationLocalServiceWrapper implements ApplicationLocalService,
 	public int getApplicationsCountByON(long userId, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _applicationLocalService.getApplicationsCountByON(userId, name);
-	}
-
-	public int getApplicationsByUserIdCount(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _applicationLocalService.getApplicationsByUserIdCount(userId);
 	}
 
 	/**

@@ -16,18 +16,18 @@ package com.liferay.portlet.oauth.search;
 
 import com.liferay.portal.kernel.dao.search.DisplayTerms;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.oauth.util.OAuthConstants;
 
 import javax.portlet.PortletRequest;
 
 /**
  *
  * @author Igor Beslic
+ * @author Raymond Augé
  *
  */
-public class OAuthApplicationDisplayTerms extends DisplayTerms {
-	public static final String DESCRIPTION = "description";
-
-	public static final String NAME = "name";
+public class OAuthApplicationDisplayTerms extends DisplayTerms
+		implements OAuthConstants {
 
 	public OAuthApplicationDisplayTerms(PortletRequest portletRequest) {
 		super(portletRequest);

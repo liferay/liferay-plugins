@@ -36,11 +36,9 @@ public class OAuthRequestTokenAction extends BaseStrutsAction {
 		throws Exception {
 
 		try {
-			OAuthMessage requestMessage = OAuthUtil.getMessage(
-				request, null);
+			OAuthMessage requestMessage = OAuthUtil.getMessage(request, null);
 
-			OAuthConsumer consumer = OAuthUtil.getConsumer(
-				requestMessage);
+			OAuthConsumer consumer = OAuthUtil.getConsumer(requestMessage);
 
 			OAuthAccessor accessor = new OAuthAccessorImpl(consumer);
 
@@ -66,8 +64,7 @@ public class OAuthRequestTokenAction extends BaseStrutsAction {
 
 			out.close();
 		} catch (Exception e) {
-			OAuthUtil.handleException(
-				request, response, e, true);
+			OAuthUtil.handleException(request, response, e, true);
 		}
 
 		return null;

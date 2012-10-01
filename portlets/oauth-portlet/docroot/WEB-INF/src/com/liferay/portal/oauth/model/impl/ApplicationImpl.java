@@ -24,11 +24,12 @@ package com.liferay.portal.oauth.model.impl;
  * @author Brian Wing Shun Chan
  */
 public class ApplicationImpl extends ApplicationBaseImpl {
-	/*
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never reference this class directly. All methods that expect a application model instance should use the {@link com.liferay.portal.oauth.model.Application} interface instead.
 	 */
 	public ApplicationImpl() {
 	}
+
 }

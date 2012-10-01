@@ -122,14 +122,14 @@ public class ApplicationUserLocalServiceClpInvoker {
 		_methodName45 = "deleteApplicationUser";
 
 		_methodParameterTypes45 = new String[] {
-				"long", "long", "com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.oauth.model.ApplicationUser",
+				"com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName46 = "deleteApplicationUser";
 
 		_methodParameterTypes46 = new String[] {
-				"com.liferay.portal.oauth.model.ApplicationUser",
-				"com.liferay.portal.service.ServiceContext"
+				"long", "long", "com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName47 = "getApplicationUserByAccessToken";
@@ -151,35 +151,35 @@ public class ApplicationUserLocalServiceClpInvoker {
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName51 = "getApplicationUsersByUserId";
+		_methodName51 = "getApplicationUsersByOwnerId";
 
-		_methodParameterTypes51 = new String[] { "long" };
+		_methodParameterTypes51 = new String[] {
+				"long", "int", "int",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			};
 
-		_methodName52 = "getApplicationUsersByUserIdCount";
+		_methodName52 = "getApplicationUsersByOwnerIdCount";
 
 		_methodParameterTypes52 = new String[] { "long" };
 
-		_methodName53 = "getApplicationUsersCount";
+		_methodName53 = "getApplicationUsersByUserId";
 
 		_methodParameterTypes53 = new String[] { "long" };
 
-		_methodName54 = "getApplicationUsersByOwnerId";
+		_methodName54 = "getApplicationUsersByUserId";
 
 		_methodParameterTypes54 = new String[] {
 				"long", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName55 = "getApplicationUsersByOwnerIdCount";
+		_methodName55 = "getApplicationUsersByUserIdCount";
 
 		_methodParameterTypes55 = new String[] { "long" };
 
-		_methodName56 = "getApplicationUsersByUserId";
+		_methodName56 = "getApplicationUsersCount";
 
-		_methodParameterTypes56 = new String[] {
-				"long", "int", "int",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			};
+		_methodParameterTypes56 = new String[] { "long" };
 
 		_methodName57 = "updateApplicationUser";
 
@@ -300,15 +300,15 @@ public class ApplicationUserLocalServiceClpInvoker {
 
 		if (_methodName45.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes45, parameterTypes)) {
-			return ApplicationUserLocalServiceUtil.deleteApplicationUser(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[2]);
+			return ApplicationUserLocalServiceUtil.deleteApplicationUser((com.liferay.portal.oauth.model.ApplicationUser)arguments[0],
+				(com.liferay.portal.service.ServiceContext)arguments[1]);
 		}
 
 		if (_methodName46.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
-			return ApplicationUserLocalServiceUtil.deleteApplicationUser((com.liferay.portal.oauth.model.ApplicationUser)arguments[0],
-				(com.liferay.portal.service.ServiceContext)arguments[1]);
+			return ApplicationUserLocalServiceUtil.deleteApplicationUser(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				(com.liferay.portal.service.ServiceContext)arguments[2]);
 		}
 
 		if (_methodName47.equals(name) &&
@@ -337,22 +337,25 @@ public class ApplicationUserLocalServiceClpInvoker {
 
 		if (_methodName51.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
-			return ApplicationUserLocalServiceUtil.getApplicationUsersByUserId(((Long)arguments[0]).longValue());
+			return ApplicationUserLocalServiceUtil.getApplicationUsersByOwnerId(((Long)arguments[0]).longValue(),
+				((Integer)arguments[1]).intValue(),
+				((Integer)arguments[2]).intValue(),
+				(com.liferay.portal.kernel.util.OrderByComparator)arguments[3]);
 		}
 
 		if (_methodName52.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
-			return ApplicationUserLocalServiceUtil.getApplicationUsersByUserIdCount(((Long)arguments[0]).longValue());
+			return ApplicationUserLocalServiceUtil.getApplicationUsersByOwnerIdCount(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName53.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
-			return ApplicationUserLocalServiceUtil.getApplicationUsersCount(((Long)arguments[0]).longValue());
+			return ApplicationUserLocalServiceUtil.getApplicationUsersByUserId(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName54.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
-			return ApplicationUserLocalServiceUtil.getApplicationUsersByOwnerId(((Long)arguments[0]).longValue(),
+			return ApplicationUserLocalServiceUtil.getApplicationUsersByUserId(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue(),
 				(com.liferay.portal.kernel.util.OrderByComparator)arguments[3]);
@@ -360,15 +363,12 @@ public class ApplicationUserLocalServiceClpInvoker {
 
 		if (_methodName55.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
-			return ApplicationUserLocalServiceUtil.getApplicationUsersByOwnerIdCount(((Long)arguments[0]).longValue());
+			return ApplicationUserLocalServiceUtil.getApplicationUsersByUserIdCount(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName56.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
-			return ApplicationUserLocalServiceUtil.getApplicationUsersByUserId(((Long)arguments[0]).longValue(),
-				((Integer)arguments[1]).intValue(),
-				((Integer)arguments[2]).intValue(),
-				(com.liferay.portal.kernel.util.OrderByComparator)arguments[3]);
+			return ApplicationUserLocalServiceUtil.getApplicationUsersCount(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName57.equals(name) &&
