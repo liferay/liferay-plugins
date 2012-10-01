@@ -21,6 +21,7 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
+import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
@@ -53,7 +54,7 @@ public class MySubscriptionsUtil {
 	}
 
 	public static String getAssetURLViewInContext(
-			String className, long classPK)
+			String className, long classPK, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		if (className.equals(BlogsEntry.class.getName())) {
@@ -61,10 +62,8 @@ public class MySubscriptionsUtil {
 		}
 
 		if (className.equals(Layout.class.getName())) {
-			classPK = LayoutLocalServiceUtil.getLayout(classPK).getGroupId();
-
 			return PortalUtil.getLayoutFullURL(
-				classPK, PortletKeys.PAGE_COMMENTS);
+				LayoutLocalServiceUtil.getLayout(classPK), themeDisplay);
 		}
 
 		if (className.equals(MBCategory.class.getName())) {
@@ -87,9 +86,7 @@ public class MySubscriptionsUtil {
 			title = "Blog at ";
 		}
 		else if (className.equals(Layout.class.getName())) {
-			classPK = LayoutLocalServiceUtil.getLayout(classPK).getGroupId();
-
-			title = "Page at ";
+			return LayoutLocalServiceUtil.getLayout(classPK).getName(locale);
 		}
 		else if (className.equals(MBCategory.class.getName())) {
 			title = "Message Board at ";
@@ -114,10 +111,7 @@ public class MySubscriptionsUtil {
 			String className, long classPK)
 		throws Exception {
 
-		if (className.equals(Layout.class.getName())) {
-			classPK = LayoutLocalServiceUtil.getLayout(classPK).getGroupId();
-		}
-		else if (className.equals(MBThread.class.getName())) {
+		if (className.equals(MBThread.class.getName())) {
 			className = MBMessage.class.getName();
 
 			MBThread mbThread = MBThreadLocalServiceUtil.getThread(classPK);
