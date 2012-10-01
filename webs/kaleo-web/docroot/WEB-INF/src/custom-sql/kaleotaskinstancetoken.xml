@@ -4,7 +4,7 @@
 	<sql id="com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenFinder.countByC_KTAI">
 		<![CDATA[
 			SELECT
-				DISTINCT COUNT(KaleoTaskInstanceToken.kaleoTaskInstanceTokenId) AS COUNT_VALUE
+				COUNT(DISTINCT KaleoTaskInstanceToken.kaleoTaskInstanceTokenId) AS COUNT_VALUE
 			FROM
 				KaleoTaskInstanceToken
 			INNER JOIN
