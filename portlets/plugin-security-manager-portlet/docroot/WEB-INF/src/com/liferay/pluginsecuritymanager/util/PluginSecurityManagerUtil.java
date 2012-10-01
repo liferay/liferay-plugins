@@ -168,16 +168,16 @@ public class PluginSecurityManagerUtil {
 	}
 
 	private static Class<?> _getPACLPolicyClass() throws Exception {
-		ClassLoader portalClassLoader = PortalClassLoaderUtil.getClassLoader();
+		ClassLoader classLoader = PortalClassLoaderUtil.getClassLoader();
 
-		return portalClassLoader.loadClass(
+		return classLoader.loadClass(
 			"com.liferay.portal.security.pacl.PACLPolicy");
 	}
 
 	private static Class<?> _getPACLPolicyManagerClass() throws Exception {
-		ClassLoader portalClassLoader = PortalClassLoaderUtil.getClassLoader();
+		ClassLoader classLoader = PortalClassLoaderUtil.getClassLoader();
 
-		return portalClassLoader.loadClass(
+		return classLoader.loadClass(
 			"com.liferay.portal.security.pacl.PACLPolicyManager");
 	}
 
