@@ -29,12 +29,21 @@
 		int x = html.indexOf("<ul class=\"edit-controls lfr-component\">", messagePos);
 		int y = html.indexOf("</ul>", x);
 
-		int messageIdPos = html.indexOf("_19_messageId=", messagePos);
+		int messageIdPos = html.indexOf("_19_messageId=", x);
 
 		if ((x > 0) && (y > 0) && (messageIdPos > 0)) {
 			String messageId = html.substring(messageIdPos + 14, html.indexOf("\"", messageIdPos));
 
-			MBMessage message = MBMessageLocalServiceUtil.getMessage(GetterUtil.getLong(messageId));
+			MBMessage message = null;
+
+			try {
+				message = MBMessageLocalServiceUtil.getMessage(GetterUtil.getLong(messageId));
+			}
+			catch (Exception e) {
+				messagePos++;
+
+				continue;
+			}
 
 			boolean spam = false;
 
