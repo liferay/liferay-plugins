@@ -30,7 +30,7 @@ public class State extends Node {
 	}
 
 	public boolean isTerminal() {
-		if (getTransitions().isEmpty()) {
+		if (getOutgoingTransitions().isEmpty()) {
 			return true;
 		}
 		else {

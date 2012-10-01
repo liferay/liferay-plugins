@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.util.Validator;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -34,8 +35,12 @@ public abstract class Node implements ActionAware, NotificationAware {
 		_description = description;
 	}
 
-	public void addTransition(Transition transition) {
-		_transitions.put(transition.getName(), transition);
+	public void addIncomingTransition(Transition transition) {
+		_incomingTransitions.add(transition);
+	}
+
+	public void addOutgoingTransition(Transition transition) {
+		_outgoingTransitions.put(transition.getName(), transition);
 	}
 
 	@Override
@@ -69,6 +74,14 @@ public abstract class Node implements ActionAware, NotificationAware {
 		return _description;
 	}
 
+	public Set<Transition> getIncomingTransitions() {
+		return _incomingTransitions;
+	}
+
+	public int getIncomingTransitionsCount() {
+		return _incomingTransitions.size();
+	}
+
 	public String getMetadata() {
 		return _metadata;
 	}
@@ -89,20 +102,25 @@ public abstract class Node implements ActionAware, NotificationAware {
 		return _notifications;
 	}
 
+	public Map<String, Transition> getOutgoingTransitions() {
+		return _outgoingTransitions;
+	}
+
+	public int getOutgoingTransitionsCount() {
+		return _outgoingTransitions.size();
+	}
+
+	public Collection<Transition> getOutgoingTransitionsEntries() {
+		return Collections.unmodifiableCollection(
+			_outgoingTransitions.values());
+	}
+
 	public Set<Timer> getTimers() {
 		if (_timers == null) {
 			return Collections.emptySet();
 		}
 
 		return _timers;
-	}
-
-	public Map<String, Transition> getTransitions() {
-		return _transitions;
-	}
-
-	public Collection<Transition> getTransitionsEntries() {
-		return Collections.unmodifiableCollection(_transitions.values());
 	}
 
 	@Override
@@ -128,12 +146,13 @@ public abstract class Node implements ActionAware, NotificationAware {
 
 	private Set<Action> _actions;
 	private String _description;
+	private Set<Transition> _incomingTransitions = new HashSet<Transition>();
 	private String _metadata;
 	private String _name;
 	private NodeType _nodeType;
 	private Set<Notification> _notifications;
-	private Set<Timer> _timers;
-	private Map<String, Transition> _transitions =
+	private Map<String, Transition> _outgoingTransitions =
 		new HashMap<String, Transition>();
+	private Set<Timer> _timers;
 
 }
