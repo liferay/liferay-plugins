@@ -54,7 +54,7 @@ public class MySubscriptionsUtil {
 	}
 
 	public static String getAssetURLViewInContext(
-			String className, long classPK, ThemeDisplay themeDisplay)
+			ThemeDisplay themeDisplay, String className, long classPK)
 		throws PortalException, SystemException {
 
 		if (className.equals(BlogsEntry.class.getName())) {
