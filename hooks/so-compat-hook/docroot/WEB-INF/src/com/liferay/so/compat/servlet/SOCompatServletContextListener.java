@@ -14,6 +14,8 @@
 
 package com.liferay.so.compat.servlet;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletBag;
 import com.liferay.portal.kernel.portlet.PortletBagPool;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
@@ -57,11 +59,13 @@ public class SOCompatServletContextListener
 
 	@Override
 	protected void doPortalDestroy() throws Exception {
+		updateSharepointMethods();
 		updateWebDAVStorage();
 	}
 
 	@Override
 	protected void doPortalInit() throws Exception {
+		updateSharepointMethods();
 		updateWebDAVStorage();
 	}
 
@@ -86,12 +90,24 @@ public class SOCompatServletContextListener
 
 		}
 
-		Field field = methodFactoryClass.getField("_methods");
+		Field instanceField = methodFactoryClass.getDeclaredField("_instance");
 
-		field.setAccessible(true);
+		instanceField.setAccessible(true);
 
-		Map<String, Object> sharepointMethods = (Map<String, Object>)field.get(
-			null);
+		Object instance = instanceField.get(null);
+
+		Field methodsField = methodFactoryClass.getDeclaredField("_methods");
+
+		methodsField.setAccessible(true);
+
+		Map<String, Object> sharepointMethods =
+			(Map<String, Object>)methodsField.get(instance);
+
+		if (_log.isInfoEnabled()) {
+			_log.info(
+				"Retrieved " + sharepointMethods.size() +
+					" Sharepoint methods");
+		}
 
 		updateSharepointMethods(classLoader, sharepointMethods);
 	}
@@ -123,6 +139,12 @@ public class SOCompatServletContextListener
 					classLoader, new Class<?>[] {sharepointMethodClass},
 					new SharepointInvocationHandler(sharepointMethod));
 
+				if (_log.isInfoEnabled()) {
+					_log.info(
+						"Overriding " + sharepointMethod.getClass() + " with " +
+							newSharepointMethod.getClass());
+				}
+
 				sharepointMethods.put(
 					sharepointMethodName, newSharepointMethod);
 			}
@@ -139,6 +161,12 @@ public class SOCompatServletContextListener
 
 					Object oldSharepointMethod =
 						sharepointInvocationHandler.getSharepointMethod();
+
+					if (_log.isInfoEnabled()) {
+						_log.info(
+							"Restoring " + sharepointMethod.getClass() +
+								" with " + oldSharepointMethod.getClass());
+					}
 
 					sharepointMethods.put(
 						sharepointMethodName, oldSharepointMethod);
@@ -172,6 +200,12 @@ public class SOCompatServletContextListener
 			WebDAVStorageWrapper webDAVStorageWrapper =
 				new SOCompatDLWebDAVStorageImpl(webDAVStorage);
 
+			if (_log.isInfoEnabled()) {
+				_log.info(
+					"Overriding WebDAV storage " + webDAVStorageClass +
+						" with " + webDAVStorageWrapper.getClass());
+			}
+
 			updateWebDAVStorage(portletBag, webDAVStorageWrapper);
 		}
 		else if (webDAVStorage instanceof SOCompatDLWebDAVStorageImpl) {
@@ -181,8 +215,17 @@ public class SOCompatServletContextListener
 			WebDAVStorageWrapper webDAVStorageWrapper =
 				(WebDAVStorageWrapper)webDAVStorage;
 
-			updateWebDAVStorage(
-				portletBag, webDAVStorageWrapper.getWrappedWebDAVStorage());
+			WebDAVStorage wrappedWebDAVStorage =
+				webDAVStorageWrapper.getWrappedWebDAVStorage();
+
+			if (_log.isInfoEnabled()) {
+				_log.info(
+					"Restoring WebDAV storage " +
+						webDAVStorageWrapper.getClass() + " with " +
+							wrappedWebDAVStorage.getClass());
+			}
+
+			updateWebDAVStorage(portletBag, wrappedWebDAVStorage);
 		}
 	}
 
@@ -198,5 +241,8 @@ public class SOCompatServletContextListener
 
 		field.set(portletBag, webDAVStorage);
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(
+		SOCompatServletContextListener.class);
 
 }
