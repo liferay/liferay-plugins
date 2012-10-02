@@ -189,6 +189,10 @@ public class SOCompatServletContextListener
 
 		WebDAVStorage webDAVStorage = portletBag.getWebDAVStorageInstance();
 
+		if (webDAVStorage == null) {
+			return;
+		}
+
 		Class<?> webDAVStorageClass = webDAVStorage.getClass();
 
 		String webDAVStorageClassName = webDAVStorageClass.getName();
@@ -236,7 +240,8 @@ public class SOCompatServletContextListener
 
 		Class<?> portletBagClass = portletBag.getClass();
 
-		Field field = portletBagClass.getField("_webDAVStorageInstance");
+		Field field = portletBagClass.getDeclaredField(
+			"_webDAVStorageInstance");
 
 		field.setAccessible(true);
 
