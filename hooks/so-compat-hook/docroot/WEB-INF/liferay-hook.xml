@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hook PUBLIC "-//Liferay//DTD Hook 6.1.0//EN" "http://www.liferay.com/dtd/liferay-hook_6_1_0.dtd">
+
+<hook>
+	<service>
+		<service-type>com.liferay.portlet.documentlibrary.service.DLFileEntryLocalService</service-type>
+		<service-impl>com.liferay.so.compat.hook.service.impl.SOCompatDLFileEntryLocalServiceImpl</service-impl>
+	</service>
+	<servlet-filter>
+		<servlet-filter-name>Social Office Compatibility Filter</servlet-filter-name>
+		<servlet-filter-impl>com.liferay.so.compat.hook.filter.SOCompatWebDAVFilter</servlet-filter-impl>
+	</servlet-filter>
+	<servlet-filter-mapping>
+		<servlet-filter-name>Social Office Compatibility Filter</servlet-filter-name>
+		<before-filter>SSO Open SSO Filter</before-filter>
+		<url-pattern>/api/secure/webdav/*</url-pattern>
+	</servlet-filter-mapping>
+</hook>

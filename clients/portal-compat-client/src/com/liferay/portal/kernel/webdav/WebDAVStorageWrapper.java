@@ -71,6 +71,10 @@ public class WebDAVStorageWrapper implements WebDAVStorage {
 		return _webDAVStorage.getToken();
 	}
 
+	public WebDAVStorage getWrappedWebDAVStorage() {
+		return _webDAVStorage;
+	}
+
 	public boolean isAvailable(WebDAVRequest webDavRequest)
 		throws WebDAVException {
 
