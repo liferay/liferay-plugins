@@ -53,7 +53,7 @@ zipsString = StringUtil.merge(zips, StringPool.NEW_LINE);
 	</liferay-ui:error>
 
 	<div class="portlet-msg-info">
-		<a href="http://www.worldweatheronline.com/free-weather-feed.aspx"><liferay-ui:message key="you-can-get-an-api-key-directly-from-world-weather-online" /></a>
+		<a href="http://www.worldweatheronline.com/free-weather-feed.aspx" target="_blank"><liferay-ui:message key="you-can-get-an-api-key-directly-from-world-weather-online" /></a>
 	</div>
 
 	<aui:fieldset>
