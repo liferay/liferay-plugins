@@ -71,8 +71,9 @@ public class XAction extends PortletAction {
 			throw new SampleException();
 		}
 
-		return mapping.findForward(getForward(
-			renderRequest, "portlet.sample_struts_liferay_portlet.x"));
+		return mapping.findForward(
+			getForward(
+				renderRequest, "portlet.sample_struts_liferay_portlet.x"));
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(XAction.class);
