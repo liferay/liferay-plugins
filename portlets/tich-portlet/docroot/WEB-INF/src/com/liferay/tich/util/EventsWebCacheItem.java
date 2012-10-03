@@ -52,8 +52,8 @@ public class EventsWebCacheItem implements WebCacheItem {
 				y = array[i].indexOf("</b>");
 
 				if ((x != -1) && (y != -1)) {
-					int year = GetterUtil.getInteger(StringUtil.extractDigits(
-						array[i].substring(x + 3, y)));
+					int year = GetterUtil.getInteger(
+						StringUtil.extractDigits(array[i].substring(x + 3, y)));
 
 					String description = HtmlUtil.extractText(
 						array[i].substring(y, array[i].length())).trim();

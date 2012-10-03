@@ -65,8 +65,8 @@ public class ConnectionPool {
 
 			_props = new Properties();
 
-			_props.load(classLoader.getResourceAsStream(
-				"connection-pool.properties"));
+			_props.load(
+				classLoader.getResourceAsStream("connection-pool.properties"));
 
 			_props.list(System.out);
 

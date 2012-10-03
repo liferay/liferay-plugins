@@ -117,8 +117,9 @@ public class WCUtil {
 				"scriptures");
 
 			for (Element scriptures : scripturesElements) {
-				proofs.add(StringUtil.split(
-					scriptures.getText(), StringPool.SEMICOLON));
+				proofs.add(
+					StringUtil.split(
+						scriptures.getText(), StringPool.SEMICOLON));
 			}
 
 			_larger.add(

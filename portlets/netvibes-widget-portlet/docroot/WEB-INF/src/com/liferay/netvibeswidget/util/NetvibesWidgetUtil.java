@@ -31,8 +31,9 @@ import java.util.List;
 public class NetvibesWidgetUtil {
 
 	public static String[][] getCategories() throws Exception {
-		String jsonString = HttpUtil.URLtoString(HtmlUtil.stripComments(
-			"http://api.eco.netvibes.com/categories?format=json"));
+		String jsonString = HttpUtil.URLtoString(
+			HtmlUtil.stripComments(
+				"http://api.eco.netvibes.com/categories?format=json"));
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(jsonString);
 
