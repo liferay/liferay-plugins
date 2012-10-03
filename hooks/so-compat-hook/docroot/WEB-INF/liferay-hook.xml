@@ -3,6 +3,10 @@
 
 <hook>
 	<service>
+		<service-type>com.liferay.portal.service.CompanyLocalService</service-type>
+		<service-impl>com.liferay.so.compat.hook.service.impl.SOCompatCompanyLocalServiceImpl</service-impl>
+	</service>
+	<service>
 		<service-type>com.liferay.portlet.documentlibrary.service.DLFileEntryLocalService</service-type>
 		<service-impl>com.liferay.so.compat.hook.service.impl.SOCompatDLFileEntryLocalServiceImpl</service-impl>
 	</service>
