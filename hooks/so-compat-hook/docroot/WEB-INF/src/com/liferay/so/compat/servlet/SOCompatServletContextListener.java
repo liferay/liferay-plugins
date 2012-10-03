@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.webdav.WebDAVStorage;
 import com.liferay.portal.kernel.webdav.WebDAVStorageWrapper;
 import com.liferay.portal.kernel.webdav.WebDAVUtil;
+import com.liferay.so.compat.hook.repository.cmis.CMISRepositoryFactoryInvocationHandler;
 import com.liferay.so.compat.hook.sharepoint.SharepointInvocationHandler;
 import com.liferay.so.compat.hook.webdav.SOCompatDLWebDAVStorageImpl;
 import com.liferay.so.compat.util.SOCompatConstants;
@@ -56,14 +57,156 @@ public class SOCompatServletContextListener
 
 	@Override
 	protected void doPortalDestroy() throws Exception {
+		updateRepositories();
 		updateSharepointMethods();
 		updateWebDAVStorages();
 	}
 
 	@Override
 	protected void doPortalInit() throws Exception {
+		updateRepositories();
 		updateSharepointMethods();
 		updateWebDAVStorages();
+	}
+
+	protected void updateRepositories() throws Exception {
+		ClassLoader classLoader = PortalClassLoaderUtil.getClassLoader();
+
+		Class<?> repositoryFactoryUtilClass = classLoader.loadClass(
+			"com.liferay.portal.repository.util.RepositoryFactoryUtil");
+
+		Field repositoryFactoriesField =
+			repositoryFactoryUtilClass.getDeclaredField("_repositoryFactories");
+
+		repositoryFactoriesField.setAccessible(true);
+
+		Map<String, Object> repositoryFactories =
+			(Map<String, Object>)repositoryFactoriesField.get(null);
+
+		if (_log.isInfoEnabled()) {
+			_log.info(
+				"Retrieved " + repositoryFactories.size() +
+					" repository factories");
+		}
+
+		Set<Map.Entry<String, Object>> entrySet =
+			new HashSet<Map.Entry<String, Object>>(
+				repositoryFactories.entrySet());
+
+		for (Map.Entry<String, Object> entry : entrySet) {
+			updateRepository(
+				classLoader, repositoryFactories, entry.getKey(),
+				entry.getValue());
+		}
+	}
+
+	protected void updateRepository(
+			ClassLoader classLoader, Map<String, Object> repositoryFactories,
+			String repositoryClassName, Object repositoryFactory)
+		throws Exception {
+
+		if (!repositoryClassName.startsWith(
+				"com.liferay.portal.repository.cmis.CMIS")) {
+
+			return;
+		}
+
+		Class<?> repositoryFactoryImplClass = classLoader.loadClass(
+			"com.liferay.portal.repository.util.RepositoryFactoryImpl");
+
+		if (ClassUtil.isSubclass(
+				repositoryFactory.getClass(), repositoryFactoryImplClass)) {
+
+			Class<?> repositoryFactoryClass = classLoader.loadClass(
+				"com.liferay.portal.repository.util.RepositoryFactory");
+
+			Object newRepositoryFactory = ProxyUtil.newProxyInstance(
+				classLoader, new Class<?>[] {repositoryFactoryClass},
+				new CMISRepositoryFactoryInvocationHandler(repositoryFactory));
+
+			if (_log.isInfoEnabled()) {
+				_log.info(
+					"Overriding " + repositoryFactory.getClass() + " with " +
+						newRepositoryFactory.getClass());
+			}
+
+			repositoryFactories.put(repositoryClassName, newRepositoryFactory);
+		}
+		else {
+			InvocationHandler invocationHandler =
+				ProxyUtil.getInvocationHandler(repositoryFactory);
+
+			if (invocationHandler
+					instanceof CMISRepositoryFactoryInvocationHandler) {
+
+				CMISRepositoryFactoryInvocationHandler
+					cmisRepositoryFactoryInvocationHandler =
+						(CMISRepositoryFactoryInvocationHandler)
+							invocationHandler;
+
+				Object oldRepositoryFactory =
+					cmisRepositoryFactoryInvocationHandler.
+						getRepositoryFactory();
+
+				if (_log.isInfoEnabled()) {
+					_log.info(
+						"Restoring " + repositoryFactory.getClass() + " with " +
+							oldRepositoryFactory.getClass());
+				}
+
+				repositoryFactories.put(
+					repositoryClassName, oldRepositoryFactory);
+			}
+		}
+	}
+
+	protected void updateSharepointMethod(
+			ClassLoader classLoader, Map<String, Object> sharepointMethods,
+			String sharepointMethodName, Object sharepointMethod)
+		throws Exception {
+
+		Class<?> sharepointBaseMethodImplClass = classLoader.loadClass(
+			"com.liferay.portal.sharepoint.methods.BaseMethodImpl");
+
+		if (ClassUtil.isSubclass(
+				sharepointMethod.getClass(), sharepointBaseMethodImplClass)) {
+
+			Class<?> sharepointMethodClass = classLoader.loadClass(
+				"com.liferay.portal.sharepoint.methods.Method");
+
+			Object newSharepointMethod = ProxyUtil.newProxyInstance(
+				classLoader, new Class<?>[] {sharepointMethodClass},
+				new SharepointInvocationHandler(sharepointMethod));
+
+			if (_log.isInfoEnabled()) {
+				_log.info(
+					"Overriding " + sharepointMethod.getClass() + " with " +
+						newSharepointMethod.getClass());
+			}
+
+			sharepointMethods.put(sharepointMethodName, newSharepointMethod);
+		}
+		else {
+			InvocationHandler invocationHandler =
+				ProxyUtil.getInvocationHandler(sharepointMethod);
+
+			if (invocationHandler instanceof SharepointInvocationHandler) {
+				SharepointInvocationHandler sharepointInvocationHandler =
+					(SharepointInvocationHandler)invocationHandler;
+
+				Object oldSharepointMethod =
+					sharepointInvocationHandler.getSharepointMethod();
+
+				if (_log.isInfoEnabled()) {
+					_log.info(
+						"Restoring " + sharepointMethod.getClass() +
+							" with " + oldSharepointMethod.getClass());
+				}
+
+				sharepointMethods.put(
+					sharepointMethodName, oldSharepointMethod);
+			}
+		}
 	}
 
 	protected void updateSharepointMethods() throws Exception {
@@ -111,56 +254,9 @@ public class SOCompatServletContextListener
 				sharepointMethods.entrySet());
 
 		for (Map.Entry<String, Object> entry : entrySet) {
-			updateSharepointMethods(
+			updateSharepointMethod(
 				classLoader, sharepointMethods, entry.getKey(),
 				entry.getValue());
-		}
-	}
-
-	protected void updateSharepointMethods(
-			ClassLoader classLoader, Map<String, Object> sharepointMethods,
-			String sharepointMethodName, Object sharepointMethod)
-		throws Exception {
-
-		Class<?> sharepointBaseMethodImplClass = classLoader.loadClass(
-			"com.liferay.portal.sharepoint.methods.BaseMethodImpl");
-		Class<?> sharepointMethodClass = classLoader.loadClass(
-			"com.liferay.portal.sharepoint.methods.Method");
-
-		if (ClassUtil.isSubclass(
-				sharepointMethod.getClass(), sharepointBaseMethodImplClass)) {
-			Object newSharepointMethod = ProxyUtil.newProxyInstance(
-				classLoader, new Class<?>[] {sharepointMethodClass},
-				new SharepointInvocationHandler(sharepointMethod));
-
-			if (_log.isInfoEnabled()) {
-				_log.info(
-					"Overriding " + sharepointMethod.getClass() + " with " +
-						newSharepointMethod.getClass());
-			}
-
-			sharepointMethods.put(sharepointMethodName, newSharepointMethod);
-		}
-		else {
-			InvocationHandler invocationHandler =
-				ProxyUtil.getInvocationHandler(sharepointMethod);
-
-			if (invocationHandler instanceof SharepointInvocationHandler) {
-				SharepointInvocationHandler sharepointInvocationHandler =
-					(SharepointInvocationHandler)invocationHandler;
-
-				Object oldSharepointMethod =
-					sharepointInvocationHandler.getSharepointMethod();
-
-				if (_log.isInfoEnabled()) {
-					_log.info(
-						"Restoring " + sharepointMethod.getClass() +
-							" with " + oldSharepointMethod.getClass());
-				}
-
-				sharepointMethods.put(
-					sharepointMethodName, oldSharepointMethod);
-			}
 		}
 	}
 
