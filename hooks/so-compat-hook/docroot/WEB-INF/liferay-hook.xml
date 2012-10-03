@@ -2,6 +2,7 @@
 <!DOCTYPE hook PUBLIC "-//Liferay//DTD Hook 6.1.0//EN" "http://www.liferay.com/dtd/liferay-hook_6_1_0.dtd">
 
 <hook>
+    <portal-properties>portal.properties</portal-properties>
 	<service>
 		<service-type>com.liferay.portal.service.CompanyLocalService</service-type>
 		<service-impl>com.liferay.so.compat.hook.service.impl.SOCompatCompanyLocalServiceImpl</service-impl>
