@@ -16,8 +16,6 @@ package com.liferay.so.compat.servlet;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.portlet.PortletBag;
-import com.liferay.portal.kernel.portlet.PortletBagPool;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
 import com.liferay.portal.kernel.util.ClassUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
@@ -25,8 +23,6 @@ import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.webdav.WebDAVStorage;
 import com.liferay.portal.kernel.webdav.WebDAVStorageWrapper;
 import com.liferay.portal.kernel.webdav.WebDAVUtil;
-import com.liferay.portal.model.Portlet;
-import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.so.compat.hook.sharepoint.SharepointInvocationHandler;
 import com.liferay.so.compat.hook.webdav.SOCompatDLWebDAVStorageImpl;
 import com.liferay.so.compat.util.SOCompatConstants;
@@ -36,8 +32,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -61,13 +57,13 @@ public class SOCompatServletContextListener
 	@Override
 	protected void doPortalDestroy() throws Exception {
 		updateSharepointMethods();
-		updateWebDAVStorage();
+		updateWebDAVStorages();
 	}
 
 	@Override
 	protected void doPortalInit() throws Exception {
 		updateSharepointMethods();
-		updateWebDAVStorage();
+		updateWebDAVStorages();
 	}
 
 	protected void updateSharepointMethods() throws Exception {
@@ -110,11 +106,20 @@ public class SOCompatServletContextListener
 					" Sharepoint methods");
 		}
 
-		updateSharepointMethods(classLoader, sharepointMethods);
+		Set<Map.Entry<String, Object>> entrySet =
+			new HashSet<Map.Entry<String, Object>>(
+				sharepointMethods.entrySet());
+
+		for (Map.Entry<String, Object> entry : entrySet) {
+			updateSharepointMethods(
+				classLoader, sharepointMethods, entry.getKey(),
+				entry.getValue());
+		}
 	}
 
 	protected void updateSharepointMethods(
-			ClassLoader classLoader, Map<String, Object> sharepointMethods)
+			ClassLoader classLoader, Map<String, Object> sharepointMethods,
+			String sharepointMethodName, Object sharepointMethod)
 		throws Exception {
 
 		Class<?> sharepointBaseMethodImplClass = classLoader.loadClass(
@@ -122,76 +127,45 @@ public class SOCompatServletContextListener
 		Class<?> sharepointMethodClass = classLoader.loadClass(
 			"com.liferay.portal.sharepoint.methods.Method");
 
-		Set<Map.Entry<String, Object>> entrySet =
-			new HashSet<Map.Entry<String, Object>>(
-				sharepointMethods.entrySet());
+		if (ClassUtil.isSubclass(
+				sharepointMethod.getClass(), sharepointBaseMethodImplClass)) {
+			Object newSharepointMethod = ProxyUtil.newProxyInstance(
+				classLoader, new Class<?>[] {sharepointMethodClass},
+				new SharepointInvocationHandler(sharepointMethod));
 
-		for (Map.Entry<String, Object> entry : entrySet) {
-			String sharepointMethodName = entry.getKey();
-			Object sharepointMethod = entry.getValue();
+			if (_log.isInfoEnabled()) {
+				_log.info(
+					"Overriding " + sharepointMethod.getClass() + " with " +
+						newSharepointMethod.getClass());
+			}
 
-			if (ClassUtil.isSubclass(
-					sharepointMethod.getClass(),
-					sharepointBaseMethodImplClass)) {
+			sharepointMethods.put(sharepointMethodName, newSharepointMethod);
+		}
+		else {
+			InvocationHandler invocationHandler =
+				ProxyUtil.getInvocationHandler(sharepointMethod);
 
-				// Override portal Sharepoint method
+			if (invocationHandler instanceof SharepointInvocationHandler) {
+				SharepointInvocationHandler sharepointInvocationHandler =
+					(SharepointInvocationHandler)invocationHandler;
 
-				Object newSharepointMethod = ProxyUtil.newProxyInstance(
-					classLoader, new Class<?>[] {sharepointMethodClass},
-					new SharepointInvocationHandler(sharepointMethod));
+				Object oldSharepointMethod =
+					sharepointInvocationHandler.getSharepointMethod();
 
 				if (_log.isInfoEnabled()) {
 					_log.info(
-						"Overriding " + sharepointMethod.getClass() + " with " +
-							newSharepointMethod.getClass());
+						"Restoring " + sharepointMethod.getClass() +
+							" with " + oldSharepointMethod.getClass());
 				}
 
 				sharepointMethods.put(
-					sharepointMethodName, newSharepointMethod);
-			}
-			else {
-
-				// Restore portal Sharepoint method
-
-				InvocationHandler invocationHandler =
-					ProxyUtil.getInvocationHandler(sharepointMethod);
-
-				if (invocationHandler instanceof SharepointInvocationHandler) {
-					SharepointInvocationHandler sharepointInvocationHandler =
-						(SharepointInvocationHandler)invocationHandler;
-
-					Object oldSharepointMethod =
-						sharepointInvocationHandler.getSharepointMethod();
-
-					if (_log.isInfoEnabled()) {
-						_log.info(
-							"Restoring " + sharepointMethod.getClass() +
-								" with " + oldSharepointMethod.getClass());
-					}
-
-					sharepointMethods.put(
-						sharepointMethodName, oldSharepointMethod);
-				}
+					sharepointMethodName, oldSharepointMethod);
 			}
 		}
 	}
 
-	protected void updateWebDAVStorage() throws Exception {
-		List<Portlet> portlets = PortletLocalServiceUtil.getPortlets();
-
-		for (Portlet portlet : portlets) {
-			updateWebDAVStorage(portlet);
-		}
-	}
-
-	protected void updateWebDAVStorage(Portlet portlet) throws Exception {
-		PortletBag portletBag = PortletBagPool.get(portlet.getRootPortletId());
-
-		WebDAVStorage webDAVStorage = portletBag.getWebDAVStorageInstance();
-
-		if (webDAVStorage == null) {
-			return;
-		}
+	protected void updateWebDAVStorage(String token) throws Exception {
+		WebDAVStorage webDAVStorage = WebDAVUtil.getStorage(token);
 
 		Class<?> webDAVStorageClass = webDAVStorage.getClass();
 
@@ -199,8 +173,6 @@ public class SOCompatServletContextListener
 
 		if (webDAVStorageClassName.equals(
 				SOCompatConstants.CLASS_NAME_DL_WEBDAV_STORAGE_IMPL)) {
-
-			// Override portal DLWebDAVStorageImpl
 
 			WebDAVStorageWrapper webDAVStorageWrapper =
 				new SOCompatDLWebDAVStorageImpl(webDAVStorage);
@@ -211,12 +183,9 @@ public class SOCompatServletContextListener
 						" with " + webDAVStorageWrapper.getClass());
 			}
 
-			updateWebDAVStorage(portletBag, webDAVStorageWrapper);
+			WebDAVUtil.addStorage(webDAVStorageWrapper);
 		}
 		else if (webDAVStorage instanceof SOCompatDLWebDAVStorageImpl) {
-
-			// Restore portal DLWebDAVStorageImpl
-
 			WebDAVStorageWrapper webDAVStorageWrapper =
 				(WebDAVStorageWrapper)webDAVStorage;
 
@@ -230,24 +199,20 @@ public class SOCompatServletContextListener
 							wrappedWebDAVStorage.getClass());
 			}
 
-			updateWebDAVStorage(portletBag, wrappedWebDAVStorage);
+			WebDAVUtil.addStorage(wrappedWebDAVStorage);
 		}
 	}
 
-	protected void updateWebDAVStorage(
-			PortletBag portletBag, WebDAVStorage webDAVStorage)
-		throws Exception {
+	protected void updateWebDAVStorages() throws Exception {
+		Collection<String> tokens = WebDAVUtil.getStorageTokens();
 
-		Class<?> portletBagClass = portletBag.getClass();
+		if (_log.isInfoEnabled()) {
+			_log.info("Retrieved " + tokens.size() + " WebDAV storage tokens");
+		}
 
-		Field field = portletBagClass.getDeclaredField(
-			"_webDAVStorageInstance");
-
-		field.setAccessible(true);
-
-		field.set(portletBag, webDAVStorage);
-
-		WebDAVUtil.addStorage(webDAVStorage);
+		for (String token : tokens) {
+			updateWebDAVStorage(token);
+		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
