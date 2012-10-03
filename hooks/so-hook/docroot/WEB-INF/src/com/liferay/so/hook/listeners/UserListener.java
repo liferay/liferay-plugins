@@ -30,7 +30,6 @@ import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portlet.expando.model.ExpandoBridge;
-import com.liferay.so.util.InstanceUtil;
 import com.liferay.so.util.LayoutSetPrototypeUtil;
 import com.liferay.so.util.RoleConstants;
 import com.liferay.so.util.SocialOfficeConstants;
@@ -51,14 +50,16 @@ public class UserListener extends BaseModelListener<User> {
 		try {
 			User user = UserLocalServiceUtil.getUser((Long)classPK);
 
-			initInstance(user.getCompanyId());
-
 			if (associationClassName.equals(Group.class.getName()) ||
 				associationClassName.equals(Organization.class.getName()) ||
 				associationClassName.equals(UserGroup.class.getName())) {
 
-				Role role = RoleLocalServiceUtil.getRole(
+				Role role = RoleLocalServiceUtil.fetchRole(
 					user.getCompanyId(), RoleConstants.SOCIAL_OFFICE_USER);
+
+				if (role == null) {
+					return;
+				}
 
 				Group group = null;
 
@@ -200,14 +201,6 @@ public class UserListener extends BaseModelListener<User> {
 			SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_USER_PRIVATE);
 
 		SocialOfficeUtil.enableSocialOffice(group);
-	}
-
-	protected void initInstance(long companyId) {
-		InstanceUtil.initRuntime(companyId);
-
-		if (!InstanceUtil.isInitialized(companyId)) {
-			InstanceUtil.initInstance(companyId);
-		}
 	}
 
 }
