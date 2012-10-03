@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -12,13 +12,18 @@
  * details.
  */
 
-package com.liferay.portal.workflow.kaleo.definition;
+package com.liferay.portal.workflow.kaleo.parser;
+
+import com.liferay.portal.kernel.workflow.WorkflowException;
+import com.liferay.portal.workflow.kaleo.definition.Definition;
+import com.liferay.portal.workflow.kaleo.definition.Node;
 
 /**
  * @author Michael C. Han
  */
-public enum NodeType {
+public interface NodeValidator<T extends Node> {
 
-	CONDITION, FORK, JOIN, STATE, TASK
+	public void validate(Definition definition, T node)
+		throws WorkflowException;
 
 }

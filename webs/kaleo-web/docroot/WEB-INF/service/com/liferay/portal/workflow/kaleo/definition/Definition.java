@@ -109,6 +109,10 @@ public class Definition {
 		return _version;
 	}
 
+	public boolean hasNode(String name) {
+		return _nodesMap.containsKey(name);
+	}
+
 	private String _content;
 	private String _description;
 	private List<Fork> _forks = new ArrayList<Fork>();

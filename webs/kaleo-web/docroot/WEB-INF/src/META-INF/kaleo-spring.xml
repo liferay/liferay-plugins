@@ -229,5 +229,55 @@
 
 	<!-- Validator -->
 
-	<bean id="com.liferay.portal.workflow.kaleo.parser.WorkflowValidator" class="com.liferay.portal.workflow.kaleo.parser.DefaultWorkflowValidator" />
+	<bean id="com.liferay.portal.workflow.kaleo.parser.NodeValidatorRegistry" class="com.liferay.portal.workflow.kaleo.parser.NodeValidatorRegistry">
+		<property name="nodeValidators">
+			<map>
+				<entry>
+					<key>
+						<bean class="com.liferay.portal.workflow.kaleo.definition.NodeType" factory-method="valueOf">
+							<constructor-arg value="CONDITION" />
+						</bean>
+					</key>
+					<bean class="com.liferay.portal.workflow.kaleo.parser.ConditionNodeValidator" />
+				</entry>
+				<entry>
+					<key>
+						<bean class="com.liferay.portal.workflow.kaleo.definition.NodeType" factory-method="valueOf">
+							<constructor-arg value="FORK" />
+						</bean>
+					</key>
+					<bean class="com.liferay.portal.workflow.kaleo.parser.ForkNodeValidator" />
+				</entry>
+				<entry>
+					<key>
+						<bean class="com.liferay.portal.workflow.kaleo.definition.NodeType" factory-method="valueOf">
+							<constructor-arg value="JOIN" />
+						</bean>
+					</key>
+					<bean class="com.liferay.portal.workflow.kaleo.parser.JoinNodeValidator" />
+				</entry>
+				<entry>
+					<key>
+						<bean class="com.liferay.portal.workflow.kaleo.definition.NodeType" factory-method="valueOf">
+							<constructor-arg value="STATE" />
+						</bean>
+					</key>
+					<bean class="com.liferay.portal.workflow.kaleo.parser.StateNodeValidator" />
+				</entry>
+				<entry>
+					<key>
+						<bean class="com.liferay.portal.workflow.kaleo.definition.NodeType" factory-method="valueOf">
+							<constructor-arg value="TASK" />
+						</bean>
+					</key>
+					<bean class="com.liferay.portal.workflow.kaleo.parser.TaskNodeValidator" />
+				</entry>
+			</map>
+		</property>
+
+	</bean>
+
+	<bean id="com.liferay.portal.workflow.kaleo.parser.WorkflowValidator" class="com.liferay.portal.workflow.kaleo.parser.DefaultWorkflowValidator">
+		<property name="nodeValidatorRegistry" ref="com.liferay.portal.workflow.kaleo.parser.NodeValidatorRegistry" />
+	</bean>
 </beans>
