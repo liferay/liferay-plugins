@@ -1,0 +1,34 @@
+<p class="powered-by">
+		#language("powered-by") <a href="http://www.liferay.com" rel="external">Liferay</a>
+</p>
+
+<a href="#wrapper" id="backToTopLink" ><b>Top</b></a>
+
+<script type="text/javascript" charset="utf-8">
+	AUI().ready(
+		'aui-simple-anim',
+		function(A) {
+			var fx = new A.SimpleAnim(
+				{
+					duration: 500,
+					from: 0,
+					intervalRate: 1,
+					to: 0,
+					onTween: function(value) {
+						window.scrollTo(window, value);
+					}
+				}
+			);
+
+			A.all('#backToTopLink, #toBottomLink').on(
+				'click',
+				function(event) {
+					event.preventDefault();
+					fx.from = event.currentTarget.getXY()[1];
+					fx.to = A.one(event.currentTarget.getAttribute('href')).getXY()[1];
+					fx.start();
+				}
+			);
+		}
+	);
+</script>

@@ -1,0 +1,5 @@
+#*
+This file allows you to override and define new Velocity variables.
+*#
+
+#set ($header_text = "Enterprise. Open Source. For Life.")
