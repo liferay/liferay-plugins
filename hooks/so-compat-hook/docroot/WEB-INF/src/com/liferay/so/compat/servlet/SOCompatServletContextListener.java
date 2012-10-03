@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.webdav.WebDAVStorage;
 import com.liferay.portal.kernel.webdav.WebDAVStorageWrapper;
+import com.liferay.portal.kernel.webdav.WebDAVUtil;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.so.compat.hook.sharepoint.SharepointInvocationHandler;
@@ -240,6 +241,8 @@ public class SOCompatServletContextListener
 		field.setAccessible(true);
 
 		field.set(portletBag, webDAVStorage);
+
+		WebDAVUtil.addStorage(webDAVStorage);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
