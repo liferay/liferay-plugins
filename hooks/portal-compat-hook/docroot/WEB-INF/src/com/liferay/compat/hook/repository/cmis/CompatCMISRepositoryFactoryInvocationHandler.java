@@ -26,10 +26,12 @@ import java.lang.reflect.Method;
 /**
  * @author Brian Wing Shun Chan
  */
-public class CMISRepositoryFactoryInvocationHandler
+public class CompatCMISRepositoryFactoryInvocationHandler
 	implements InvocationHandler {
 
-	public CMISRepositoryFactoryInvocationHandler(Object repositoryFactory) {
+	public CompatCMISRepositoryFactoryInvocationHandler(
+		Object repositoryFactory) {
+
 		_repositoryFactory = repositoryFactory;
 	}
 

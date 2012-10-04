@@ -14,8 +14,8 @@
 
 package com.liferay.compat.servlet;
 
-import com.liferay.compat.hook.repository.cmis.CMISRepositoryFactoryInvocationHandler;
-import com.liferay.compat.hook.sharepoint.SharepointInvocationHandler;
+import com.liferay.compat.hook.repository.cmis.CompatCMISRepositoryFactoryInvocationHandler;
+import com.liferay.compat.hook.sharepoint.CompatSharepointInvocationHandler;
 import com.liferay.compat.hook.webdav.CompatDLWebDAVStorageImpl;
 import com.liferay.compat.util.CompatConstants;
 import com.liferay.portal.kernel.log.Log;
@@ -122,7 +122,8 @@ public class CompatServletContextListener
 
 			Object newRepositoryFactory = ProxyUtil.newProxyInstance(
 				classLoader, new Class<?>[] {repositoryFactoryClass},
-				new CMISRepositoryFactoryInvocationHandler(repositoryFactory));
+				new CompatCMISRepositoryFactoryInvocationHandler(
+					repositoryFactory));
 
 			if (_log.isInfoEnabled()) {
 				_log.info(
@@ -137,15 +138,15 @@ public class CompatServletContextListener
 				ProxyUtil.getInvocationHandler(repositoryFactory);
 
 			if (invocationHandler
-					instanceof CMISRepositoryFactoryInvocationHandler) {
+					instanceof CompatCMISRepositoryFactoryInvocationHandler) {
 
-				CMISRepositoryFactoryInvocationHandler
-					cmisRepositoryFactoryInvocationHandler =
-						(CMISRepositoryFactoryInvocationHandler)
+				CompatCMISRepositoryFactoryInvocationHandler
+					compatCMISRepositoryFactoryInvocationHandler =
+						(CompatCMISRepositoryFactoryInvocationHandler)
 							invocationHandler;
 
 				Object oldRepositoryFactory =
-					cmisRepositoryFactoryInvocationHandler.
+					compatCMISRepositoryFactoryInvocationHandler.
 						getRepositoryFactory();
 
 				if (_log.isInfoEnabled()) {
@@ -176,7 +177,7 @@ public class CompatServletContextListener
 
 			Object newSharepointMethod = ProxyUtil.newProxyInstance(
 				classLoader, new Class<?>[] {sharepointMethodClass},
-				new SharepointInvocationHandler(sharepointMethod));
+				new CompatSharepointInvocationHandler(sharepointMethod));
 
 			if (_log.isInfoEnabled()) {
 				_log.info(
@@ -190,12 +191,15 @@ public class CompatServletContextListener
 			InvocationHandler invocationHandler =
 				ProxyUtil.getInvocationHandler(sharepointMethod);
 
-			if (invocationHandler instanceof SharepointInvocationHandler) {
-				SharepointInvocationHandler sharepointInvocationHandler =
-					(SharepointInvocationHandler)invocationHandler;
+			if (invocationHandler
+					instanceof CompatSharepointInvocationHandler) {
+
+				CompatSharepointInvocationHandler
+					compatSharepointInvocationHandler =
+						(CompatSharepointInvocationHandler)invocationHandler;
 
 				Object oldSharepointMethod =
-					sharepointInvocationHandler.getSharepointMethod();
+					compatSharepointInvocationHandler.getSharepointMethod();
 
 				if (_log.isInfoEnabled()) {
 					_log.info(

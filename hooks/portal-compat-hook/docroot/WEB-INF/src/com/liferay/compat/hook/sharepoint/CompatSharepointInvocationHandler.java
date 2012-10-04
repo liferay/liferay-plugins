@@ -24,9 +24,9 @@ import java.lang.reflect.Method;
 /**
  * @author Brian Wing Shun Chan
  */
-public class SharepointInvocationHandler implements InvocationHandler {
+public class CompatSharepointInvocationHandler implements InvocationHandler {
 
-	public SharepointInvocationHandler(Object sharepointMethod) {
+	public CompatSharepointInvocationHandler(Object sharepointMethod) {
 		_sharepointMethod = sharepointMethod;
 	}
 

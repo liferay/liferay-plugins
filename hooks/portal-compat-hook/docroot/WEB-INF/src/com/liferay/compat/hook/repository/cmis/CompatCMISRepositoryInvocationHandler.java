@@ -32,9 +32,10 @@ import java.lang.reflect.Method;
 /**
  * @author Brian Wing Shun Chan
  */
-public class CMISRepositoryInvocationHandler implements InvocationHandler {
+public class CompatCMISRepositoryInvocationHandler
+	implements InvocationHandler {
 
-	public CMISRepositoryInvocationHandler(Repository repository) {
+	public CompatCMISRepositoryInvocationHandler(Repository repository) {
 		_repository = repository;
 	}
 
