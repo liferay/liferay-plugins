@@ -12,9 +12,11 @@
  * details.
  */
 
-package com.liferay.so.compat.hook.webdav;
+package com.liferay.compat.hook.webdav;
 
+import com.liferay.compat.hook.filter.CompatWebDAVThreadLocal;
 import com.liferay.compat.portlet.documentlibrary.util.DLUtil;
+import com.liferay.compat.util.CompatConstants;
 import com.liferay.portal.DuplicateLockException;
 import com.liferay.portal.InvalidLockException;
 import com.liferay.portal.kernel.log.Log;
@@ -44,8 +46,6 @@ import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
 import com.liferay.portlet.expando.model.ExpandoBridge;
-import com.liferay.so.compat.hook.filter.SOCompatWebDAVThreadLocal;
-import com.liferay.so.compat.util.SOCompatConstants;
 
 import java.io.File;
 
@@ -57,9 +57,9 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author Brian Wing Shun Chan
  */
-public class SOCompatDLWebDAVStorageImpl extends WebDAVStorageWrapper {
+public class CompatDLWebDAVStorageImpl extends WebDAVStorageWrapper {
 
-	public SOCompatDLWebDAVStorageImpl(WebDAVStorage webDAVStorage) {
+	public CompatDLWebDAVStorageImpl(WebDAVStorage webDAVStorage) {
 		super(webDAVStorage);
 	}
 
@@ -124,7 +124,7 @@ public class SOCompatDLWebDAVStorageImpl extends WebDAVStorageWrapper {
 
 				serviceContext.setAttribute(
 					DLUtil.MANUAL_CHECK_IN_REQUIRED,
-					SOCompatWebDAVThreadLocal.isManualCheckInRequired());
+					CompatWebDAVThreadLocal.isManualCheckInRequired());
 
 				DLAppServiceUtil.checkOutFileEntry(
 					fileEntry.getFileEntryId(), owner, timeout, serviceContext);
@@ -254,7 +254,7 @@ public class SOCompatDLWebDAVStorageImpl extends WebDAVStorageWrapper {
 		String className = clazz.getName();
 
 		if (className.equals(
-				SOCompatConstants.CLASS_NAME_DL_FILE_ENTRY_RESOURCE_IMPL)) {
+				CompatConstants.CLASS_NAME_DL_FILE_ENTRY_RESOURCE_IMPL)) {
 
 			return true;
 		}
@@ -269,7 +269,7 @@ public class SOCompatDLWebDAVStorageImpl extends WebDAVStorageWrapper {
 
 		String className = clazz.getName();
 
-		if (className.equals(SOCompatConstants.CLASS_NAME_LIFERAY_FILE_ENTRY)) {
+		if (className.equals(CompatConstants.CLASS_NAME_LIFERAY_FILE_ENTRY)) {
 			Method method = clazz.getMethod("getDLFileEntry");
 
 			DLFileEntry dlFileEntry = (DLFileEntry)method.invoke(fileEntry);
@@ -325,6 +325,6 @@ public class SOCompatDLWebDAVStorageImpl extends WebDAVStorageWrapper {
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
-		SOCompatConstants.CLASS_NAME_DL_WEBDAV_STORAGE_IMPL);
+		CompatConstants.CLASS_NAME_DL_WEBDAV_STORAGE_IMPL);
 
 }

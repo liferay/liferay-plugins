@@ -12,9 +12,11 @@
  * details.
  */
 
-package com.liferay.so.compat.hook.sharepoint;
+package com.liferay.compat.hook.repository.cmis;
 
-import com.liferay.compat.portal.kernel.webdav.WebDAVUtil;
+import com.liferay.portal.kernel.repository.Repository;
+import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
+import com.liferay.portal.kernel.util.ProxyUtil;
 
 import java.lang.Object;
 import java.lang.reflect.InvocationHandler;
@@ -24,14 +26,15 @@ import java.lang.reflect.Method;
 /**
  * @author Brian Wing Shun Chan
  */
-public class SharepointInvocationHandler implements InvocationHandler {
+public class CMISRepositoryFactoryInvocationHandler
+	implements InvocationHandler {
 
-	public SharepointInvocationHandler(Object sharepointMethod) {
-		_sharepointMethod = sharepointMethod;
+	public CMISRepositoryFactoryInvocationHandler(Object repositoryFactory) {
+		_repositoryFactory = repositoryFactory;
 	}
 
-	public Object getSharepointMethod() {
-		return _sharepointMethod;
+	public Object getRepositoryFactory() {
+		return _repositoryFactory;
 	}
 
 	public Object invoke(Object proxy, Method method, Object[] arguments)
@@ -40,14 +43,15 @@ public class SharepointInvocationHandler implements InvocationHandler {
 		try {
 			String methodName = method.getName();
 
-			Object value = method.invoke(_sharepointMethod, arguments);
+			Object value = method.invoke(_repositoryFactory, arguments);
 
-			if (methodName.equals("getRootPath")) {
-				String rootPath = (String)value;
+			if (methodName.equals("getInstance")) {
+				ClassLoader classLoader =
+					PortalClassLoaderUtil.getClassLoader();
 
-				rootPath = WebDAVUtil.stripManualCheckInRequiredPath(rootPath);
-
-				value = rootPath;
+				value = ProxyUtil.newProxyInstance(
+					classLoader, new Class<?>[] {Repository.class},
+					new CMISRepositoryInvocationHandler((Repository)value));
 			}
 
 			return value;
@@ -57,6 +61,6 @@ public class SharepointInvocationHandler implements InvocationHandler {
 		}
 	}
 
-	private Object _sharepointMethod;
+	private Object _repositoryFactory;
 
 }

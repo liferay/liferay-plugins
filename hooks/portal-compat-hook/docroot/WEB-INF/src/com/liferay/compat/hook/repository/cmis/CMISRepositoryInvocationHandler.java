@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.so.compat.hook.repository.cmis;
+package com.liferay.compat.hook.repository.cmis;
 
 import com.liferay.compat.portlet.documentlibrary.util.DLUtil;
 import com.liferay.portal.NoSuchRepositoryEntryException;

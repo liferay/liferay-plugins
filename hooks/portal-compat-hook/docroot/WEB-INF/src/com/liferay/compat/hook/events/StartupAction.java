@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.so.compat.hook.events;
+package com.liferay.compat.hook.events;
 
 import com.liferay.compat.portlet.documentlibrary.util.DLUtil;
 import com.liferay.portal.kernel.events.ActionException;

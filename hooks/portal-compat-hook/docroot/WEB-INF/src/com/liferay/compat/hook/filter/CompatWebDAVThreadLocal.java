@@ -12,14 +12,14 @@
  * details.
  */
 
-package com.liferay.so.compat.hook.filter;
+package com.liferay.compat.hook.filter;
 
 import com.liferay.portal.kernel.util.InitialThreadLocal;
 
 /**
  * @author Brian Wing Shun Chan
  */
-public class SOCompatWebDAVThreadLocal {
+public class CompatWebDAVThreadLocal {
 
 	public static boolean isManualCheckInRequired() {
 		return _manualCheckInRequired.get();
@@ -31,6 +31,6 @@ public class SOCompatWebDAVThreadLocal {
 
 	private static ThreadLocal<Boolean> _manualCheckInRequired =
 		new InitialThreadLocal<Boolean>(
-			SOCompatWebDAVThreadLocal.class + "._manualCheckInRequired", false);
+			CompatWebDAVThreadLocal.class + "._manualCheckInRequired", false);
 
 }

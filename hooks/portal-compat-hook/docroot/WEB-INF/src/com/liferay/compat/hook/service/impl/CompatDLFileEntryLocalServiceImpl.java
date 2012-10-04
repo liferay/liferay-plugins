@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.so.compat.hook.service.impl;
+package com.liferay.compat.hook.service.impl;
 
 import com.liferay.compat.portlet.documentlibrary.util.DLUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -29,10 +29,10 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 /**
  * @author Brian Wing Shun Chan
  */
-public class SOCompatDLFileEntryLocalServiceImpl
+public class CompatDLFileEntryLocalServiceImpl
 	extends DLFileEntryLocalServiceWrapper {
 
-	public SOCompatDLFileEntryLocalServiceImpl(
+	public CompatDLFileEntryLocalServiceImpl(
 		DLFileEntryLocalService dlFileEntryLocalService) {
 
 		super(dlFileEntryLocalService);

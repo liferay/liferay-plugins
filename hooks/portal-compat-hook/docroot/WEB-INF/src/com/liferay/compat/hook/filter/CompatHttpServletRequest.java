@@ -12,21 +12,29 @@
  * details.
  */
 
-package com.liferay.so.compat.util;
+package com.liferay.compat.hook.filter;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 
 /**
  * @author Brian Wing Shun Chan
  */
-public class SOCompatConstants {
+public class CompatHttpServletRequest extends HttpServletRequestWrapper {
 
-	public static final String CLASS_NAME_DL_FILE_ENTRY_RESOURCE_IMPL =
-		"com.liferay.portlet.documentlibrary.webdav.DLFileEntryResourceImpl";
+	public CompatHttpServletRequest(
+		HttpServletRequest request, String pathInfo) {
 
-	public static final String CLASS_NAME_DL_WEBDAV_STORAGE_IMPL =
-		"com.liferay.portlet.documentlibrary.webdav.DLWebDAVStorageImpl";
+		super(request);
 
-	public static final String CLASS_NAME_LIFERAY_FILE_ENTRY =
-		"com.liferay.portal.repository.liferayrepository.model." +
-			"LiferayFileEntry";
+		_pathInfo = pathInfo;
+	}
+
+	@Override
+	public String getPathInfo() {
+		return _pathInfo;
+	}
+
+	private String _pathInfo;
 
 }

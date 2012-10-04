@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.so.compat.hook.service.impl;
+package com.liferay.compat.hook.service.impl;
 
 import com.liferay.compat.portlet.documentlibrary.util.DLUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -28,10 +28,9 @@ import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 /**
  * @author Brian Wing Shun Chan
  */
-public class SOCompatCompanyLocalServiceImpl
-	extends CompanyLocalServiceWrapper {
+public class CompatCompanyLocalServiceImpl extends CompanyLocalServiceWrapper {
 
-	public SOCompatCompanyLocalServiceImpl(
+	public CompatCompanyLocalServiceImpl(
 		CompanyLocalService companyLocalService) {
 
 		super(companyLocalService);

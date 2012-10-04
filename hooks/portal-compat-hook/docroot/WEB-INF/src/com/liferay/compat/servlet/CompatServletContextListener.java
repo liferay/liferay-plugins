@@ -12,8 +12,12 @@
  * details.
  */
 
-package com.liferay.so.compat.servlet;
+package com.liferay.compat.servlet;
 
+import com.liferay.compat.hook.repository.cmis.CMISRepositoryFactoryInvocationHandler;
+import com.liferay.compat.hook.sharepoint.SharepointInvocationHandler;
+import com.liferay.compat.hook.webdav.CompatDLWebDAVStorageImpl;
+import com.liferay.compat.util.CompatConstants;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
@@ -23,10 +27,6 @@ import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.webdav.WebDAVStorage;
 import com.liferay.portal.kernel.webdav.WebDAVStorageWrapper;
 import com.liferay.portal.kernel.webdav.WebDAVUtil;
-import com.liferay.so.compat.hook.repository.cmis.CMISRepositoryFactoryInvocationHandler;
-import com.liferay.so.compat.hook.sharepoint.SharepointInvocationHandler;
-import com.liferay.so.compat.hook.webdav.SOCompatDLWebDAVStorageImpl;
-import com.liferay.so.compat.util.SOCompatConstants;
 
 import java.lang.Object;
 import java.lang.reflect.Field;
@@ -44,7 +44,7 @@ import javax.servlet.ServletContextListener;
 /**
  * @author Brian Wing Shun Chan
  */
-public class SOCompatServletContextListener
+public class CompatServletContextListener
 	extends BasePortalLifecycle implements ServletContextListener {
 
 	public void contextDestroyed(ServletContextEvent servletContextEvent) {
@@ -268,10 +268,10 @@ public class SOCompatServletContextListener
 		String webDAVStorageClassName = webDAVStorageClass.getName();
 
 		if (webDAVStorageClassName.equals(
-				SOCompatConstants.CLASS_NAME_DL_WEBDAV_STORAGE_IMPL)) {
+				CompatConstants.CLASS_NAME_DL_WEBDAV_STORAGE_IMPL)) {
 
 			WebDAVStorageWrapper webDAVStorageWrapper =
-				new SOCompatDLWebDAVStorageImpl(webDAVStorage);
+				new CompatDLWebDAVStorageImpl(webDAVStorage);
 
 			if (_log.isInfoEnabled()) {
 				_log.info(
@@ -281,7 +281,7 @@ public class SOCompatServletContextListener
 
 			WebDAVUtil.addStorage(webDAVStorageWrapper);
 		}
-		else if (webDAVStorage instanceof SOCompatDLWebDAVStorageImpl) {
+		else if (webDAVStorage instanceof CompatDLWebDAVStorageImpl) {
 			WebDAVStorageWrapper webDAVStorageWrapper =
 				(WebDAVStorageWrapper)webDAVStorage;
 
@@ -312,6 +312,6 @@ public class SOCompatServletContextListener
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
-		SOCompatServletContextListener.class);
+		CompatServletContextListener.class);
 
 }

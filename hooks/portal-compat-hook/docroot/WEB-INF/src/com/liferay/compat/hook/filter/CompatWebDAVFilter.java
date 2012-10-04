@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.so.compat.hook.filter;
+package com.liferay.compat.hook.filter;
 
 import com.liferay.compat.portal.kernel.webdav.WebDAVUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author Brian Wing Shun Chan
  */
-public class SOCompatWebDAVFilter implements Filter {
+public class CompatWebDAVFilter implements Filter {
 
 	public void destroy() {
 	}
@@ -51,14 +51,14 @@ public class SOCompatWebDAVFilter implements Filter {
 			pathInfo = strippedPathInfo;
 
 			try {
-				SOCompatWebDAVThreadLocal.setManualCheckInRequired(true);
+				CompatWebDAVThreadLocal.setManualCheckInRequired(true);
 
 				filterChain.doFilter(
-					new SOCompatHttpServletRequest(request, pathInfo),
+					new CompatHttpServletRequest(request, pathInfo),
 					servletResponse);
 			}
 			finally {
-				SOCompatWebDAVThreadLocal.setManualCheckInRequired(false);
+				CompatWebDAVThreadLocal.setManualCheckInRequired(false);
 			}
 		}
 		else {

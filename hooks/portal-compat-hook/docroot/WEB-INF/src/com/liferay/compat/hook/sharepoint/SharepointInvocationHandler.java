@@ -12,11 +12,9 @@
  * details.
  */
 
-package com.liferay.so.compat.hook.repository.cmis;
+package com.liferay.compat.hook.sharepoint;
 
-import com.liferay.portal.kernel.repository.Repository;
-import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
-import com.liferay.portal.kernel.util.ProxyUtil;
+import com.liferay.compat.portal.kernel.webdav.WebDAVUtil;
 
 import java.lang.Object;
 import java.lang.reflect.InvocationHandler;
@@ -26,15 +24,14 @@ import java.lang.reflect.Method;
 /**
  * @author Brian Wing Shun Chan
  */
-public class CMISRepositoryFactoryInvocationHandler
-	implements InvocationHandler {
+public class SharepointInvocationHandler implements InvocationHandler {
 
-	public CMISRepositoryFactoryInvocationHandler(Object repositoryFactory) {
-		_repositoryFactory = repositoryFactory;
+	public SharepointInvocationHandler(Object sharepointMethod) {
+		_sharepointMethod = sharepointMethod;
 	}
 
-	public Object getRepositoryFactory() {
-		return _repositoryFactory;
+	public Object getSharepointMethod() {
+		return _sharepointMethod;
 	}
 
 	public Object invoke(Object proxy, Method method, Object[] arguments)
@@ -43,15 +40,14 @@ public class CMISRepositoryFactoryInvocationHandler
 		try {
 			String methodName = method.getName();
 
-			Object value = method.invoke(_repositoryFactory, arguments);
+			Object value = method.invoke(_sharepointMethod, arguments);
 
-			if (methodName.equals("getInstance")) {
-				ClassLoader classLoader =
-					PortalClassLoaderUtil.getClassLoader();
+			if (methodName.equals("getRootPath")) {
+				String rootPath = (String)value;
 
-				value = ProxyUtil.newProxyInstance(
-					classLoader, new Class<?>[] {Repository.class},
-					new CMISRepositoryInvocationHandler((Repository)value));
+				rootPath = WebDAVUtil.stripManualCheckInRequiredPath(rootPath);
+
+				value = rootPath;
 			}
 
 			return value;
@@ -61,6 +57,6 @@ public class CMISRepositoryFactoryInvocationHandler
 		}
 	}
 
-	private Object _repositoryFactory;
+	private Object _sharepointMethod;
 
 }
