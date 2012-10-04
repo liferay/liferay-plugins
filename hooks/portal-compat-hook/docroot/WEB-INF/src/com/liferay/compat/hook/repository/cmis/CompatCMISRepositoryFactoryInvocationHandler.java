@@ -53,7 +53,8 @@ public class CompatCMISRepositoryFactoryInvocationHandler
 
 				value = ProxyUtil.newProxyInstance(
 					classLoader, new Class<?>[] {Repository.class},
-					new CMISRepositoryInvocationHandler((Repository)value));
+					new CompatCMISRepositoryInvocationHandler(
+						(Repository)value));
 			}
 
 			return value;
