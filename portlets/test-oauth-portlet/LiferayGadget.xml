@@ -3,8 +3,8 @@
     <ModulePrefs
             title="Liferay Gadget"
             description="A simple example of an OpenSocial Liferay Gadget using OAuth"
-            author="Ivica Cardic"
-            author_email="ivica.cardic@liferay.com"
+            author="Ivica Cardic, Igor Beslic"
+            author_email="ivica.cardic@liferay.com, igor.beslic@liferay.com"
             >
         <Require feature="opensocial-0.8"/>
         <Require feature="dynamic-height" />
@@ -78,7 +78,7 @@
         // URL that includes a Liferay-supplied request token. This is presented in the
         // gadget as a link that the user clicks to begin the approval process.
         function fetchData() {
-          var url = "http://localhost:8080/api/jsonws/dlapp/get-folders/repository-id/" + repositoryId + "/parent-folder-id/" + folderId + "/include-mount-folders/true";
+          var url = "http://localhost:8080/api/jsonws/dlapp/get-file-entries/repository-id/" + repositoryId + "/folder-id/" + folderId;
 
           var callback = function(response) {
             if (response.oauthApprovalUrl) { 
@@ -188,13 +188,14 @@
           for ( var i = 0; i < data.length; i++) {
             var entry = data[i];
             var text = entry.name;
-            var createdAt = entry.createDate;
+            var title = entry.title;
+            var createdAt = new Date(entry.createDate);
             var screenName = entry.userName;
 
       var li = document.createElement('li');
 
             if (typeof entry != 'undefined') {
-              var textNode = document.createTextNode(text + " by " + screenName + " at " + createdAt);
+              var textNode = document.createTextNode(text + " ("+ title +") by " + screenName + " at " + createdAt);
 
               li.appendChild(textNode);
             }

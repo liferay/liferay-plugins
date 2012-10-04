@@ -37,24 +37,27 @@ boolean tokenExpired =
 </c:if>
 
 <c:if test="<%= accessor != null %>">
+	<%
+	Application oAuthApp = accessor.getConsumer().getApplication();
+	%>
 	<aui:layout>
 		<aui:column columnWidth="50">
-			<h3><liferay-ui:message arguments="<%= accessor.getConsumer().getApplication().getName() %>" key="authorize-application-to-use-your-information" /></h3>
+			<h3><liferay-ui:message arguments="<%= HtmlUtil.escape(oAuthApp.getName()) %>" key="authorize-x-to-use-your-account" /></h3>
 
 			<div>
 				<span><liferay-ui:message key="this-application-will-be-able-to" /></span>
 				<br />
 				<span>
 					<c:choose>
-						<c:when test="<%= accessor.getConsumer().getApplication().getAccessLevel() == 0 %>">
+						<c:when test="<%= oAuthApp.getAccessLevel() == 0 %>">
 							<ul>
-								<li><liferay-ui:message key="read-data-from-system" /></li>
+								<li><liferay-ui:message key="read-data-from-the-system-on-your-behalf" /></li>
 							</ul>
 						</c:when>
 						<c:otherwise>
 							<ul>
-								<li><liferay-ui:message key="read-data-from-system" /></li>
-								<li><liferay-ui:message key="write-data-from-system" /></li>
+								<li><liferay-ui:message key="read-data-from-the-system-on-your-behalf" /></li>
+								<li><liferay-ui:message key="write-data-to-the-system-on-your-behalf" /></li>
 							</ul>
 						</c:otherwise>
 					</c:choose>
@@ -76,23 +79,39 @@ boolean tokenExpired =
 			</div>
 			<c:if test="<%= verifier != null %>">
 				<div class="portlet-msg-info">
-					<liferay-ui:message arguments="<%= verifier %>" key="authorization-successfull-verification" />
+					<liferay-ui:message arguments="<%= verifier %>" key="authorization-was-successful-verification-code-is-x" />
 				</div>
 			</c:if>
 		</aui:column>
 		<aui:column columnWidth="50">
 			<img height="90px" width="90px" />
+
 			<br />
-			<h4><%= accessor.getConsumer().getApplication().getName() %></h4>
-			<span><%= accessor.getConsumer().getApplication().getWebsite() %></span>
+
+			<h3><%= HtmlUtil.escape(oAuthApp.getName()) %></h3>
+
+			<strong><%= HtmlUtil.escape(oAuthApp.getWebsite()) %></strong>
+
 			<br />
-			<span><%= accessor.getConsumer().getApplication().getDescription() %></span>
+
+			<%
+			String description = HtmlUtil.escape(oAuthApp.getDescription());
+			%>
+
+			<c:choose>
+				<c:when test="<%= Validator.isNull(description) %>">
+					<liferay-ui:message key="no-description" />
+				</c:when>
+				<c:otherwise>
+					<span><%= description %></span>
+				</c:otherwise>
+			</c:choose>
 		</aui:column>
 	</aui:layout>
 
 	<br />
 
 	<div>
-		<liferay-ui:message key="you-can-revoke-application-at-any-time" />
+		<liferay-ui:message key="you-can-revoke-access-to-any-application-at-any-time" />
 	</div>
 </c:if>

@@ -83,7 +83,7 @@ String replaceParm0 = "{0}";
 					name="website"
 				/>
 		<liferay-ui:search-container-column-text
-					name="access-level"
+					name="access-type"
 				>
 				<liferay-ui:message key="<%= OAuthConstants.ACCESS_TYPE_SHORT.replace(replaceParm0, String.valueOf(app.getAccessLevel())) %>" />
 		</liferay-ui:search-container-column-text>

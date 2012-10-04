@@ -33,8 +33,8 @@ String backURL = ParamUtil.getString(request, "referer");
 <liferay-ui:message key="callback-url" />: <%= app.getCallBackURL() %> <br />
 
 <aui:field-wrapper helpMessage="application-credentials-description" label="application-credentials">
-		<liferay-ui:message key="application-key" />: <%= app.getConsumerKey() %> <br />
-		<liferay-ui:message key="application-secret" />: <%= app.getConsumerSecret() %>
+		<liferay-ui:message key="consumer-key" />: <%= app.getConsumerKey() %> <br />
+		<liferay-ui:message key="consumer-secret" />: <%= app.getConsumerSecret() %>
 </aui:field-wrapper>
 
 <liferay-portlet:actionURL name="updateApplication" var="updateApplicationURL">

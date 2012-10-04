@@ -19,7 +19,10 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.oauth.model.Application;
 
-import java.io.Serializable;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 
 import java.util.Date;
 
@@ -31,7 +34,7 @@ import java.util.Date;
  * @generated
  */
 public class ApplicationCacheModel implements CacheModel<Application>,
-	Serializable {
+	Externalizable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(27);
@@ -142,6 +145,83 @@ public class ApplicationCacheModel implements CacheModel<Application>,
 		applicationImpl.resetOriginalValues();
 
 		return applicationImpl;
+	}
+
+	public void readExternal(ObjectInput objectInput) throws IOException {
+		applicationId = objectInput.readLong();
+		companyId = objectInput.readLong();
+		userId = objectInput.readLong();
+		userName = objectInput.readUTF();
+		createDate = objectInput.readLong();
+		modifiedDate = objectInput.readLong();
+		name = objectInput.readUTF();
+		description = objectInput.readUTF();
+		website = objectInput.readUTF();
+		callBackURL = objectInput.readUTF();
+		accessLevel = objectInput.readInt();
+		consumerKey = objectInput.readUTF();
+		consumerSecret = objectInput.readUTF();
+	}
+
+	public void writeExternal(ObjectOutput objectOutput)
+		throws IOException {
+		objectOutput.writeLong(applicationId);
+		objectOutput.writeLong(companyId);
+		objectOutput.writeLong(userId);
+
+		if (userName == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(userName);
+		}
+
+		objectOutput.writeLong(createDate);
+		objectOutput.writeLong(modifiedDate);
+
+		if (name == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(name);
+		}
+
+		if (description == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(description);
+		}
+
+		if (website == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(website);
+		}
+
+		if (callBackURL == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(callBackURL);
+		}
+
+		objectOutput.writeInt(accessLevel);
+
+		if (consumerKey == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(consumerKey);
+		}
+
+		if (consumerSecret == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(consumerSecret);
+		}
 	}
 
 	public long applicationId;
