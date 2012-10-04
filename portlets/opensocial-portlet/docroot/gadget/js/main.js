@@ -118,7 +118,14 @@ AUI.add(
 						}
 					},
 					userPrefs: {
-						value: {}
+						setter: function(v) {
+							if (v) {
+								return v;
+							}
+							else {
+								return {};
+							}
+						}
 					},
 					view: {
 						value: 'default'
