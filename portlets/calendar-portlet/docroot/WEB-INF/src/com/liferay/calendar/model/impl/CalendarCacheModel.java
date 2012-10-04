@@ -20,7 +20,10 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 
-import java.io.Serializable;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 
 import java.util.Date;
 
@@ -31,7 +34,7 @@ import java.util.Date;
  * @see Calendar
  * @generated
  */
-public class CalendarCacheModel implements CacheModel<Calendar>, Serializable {
+public class CalendarCacheModel implements CacheModel<Calendar>, Externalizable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(29);
@@ -128,6 +131,67 @@ public class CalendarCacheModel implements CacheModel<Calendar>, Serializable {
 		calendarImpl.resetOriginalValues();
 
 		return calendarImpl;
+	}
+
+	public void readExternal(ObjectInput objectInput) throws IOException {
+		uuid = objectInput.readUTF();
+		calendarId = objectInput.readLong();
+		groupId = objectInput.readLong();
+		companyId = objectInput.readLong();
+		userId = objectInput.readLong();
+		userName = objectInput.readUTF();
+		createDate = objectInput.readLong();
+		modifiedDate = objectInput.readLong();
+		resourceBlockId = objectInput.readLong();
+		calendarResourceId = objectInput.readLong();
+		name = objectInput.readUTF();
+		description = objectInput.readUTF();
+		color = objectInput.readInt();
+		defaultCalendar = objectInput.readBoolean();
+	}
+
+	public void writeExternal(ObjectOutput objectOutput)
+		throws IOException {
+		if (uuid == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(uuid);
+		}
+
+		objectOutput.writeLong(calendarId);
+		objectOutput.writeLong(groupId);
+		objectOutput.writeLong(companyId);
+		objectOutput.writeLong(userId);
+
+		if (userName == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(userName);
+		}
+
+		objectOutput.writeLong(createDate);
+		objectOutput.writeLong(modifiedDate);
+		objectOutput.writeLong(resourceBlockId);
+		objectOutput.writeLong(calendarResourceId);
+
+		if (name == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(name);
+		}
+
+		if (description == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(description);
+		}
+
+		objectOutput.writeInt(color);
+		objectOutput.writeBoolean(defaultCalendar);
 	}
 
 	public String uuid;

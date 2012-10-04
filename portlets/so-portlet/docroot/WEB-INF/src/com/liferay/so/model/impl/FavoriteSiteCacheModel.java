@@ -19,7 +19,10 @@ import com.liferay.portal.model.CacheModel;
 
 import com.liferay.so.model.FavoriteSite;
 
-import java.io.Serializable;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 
 /**
  * The cache model class for representing FavoriteSite in entity cache.
@@ -29,7 +32,7 @@ import java.io.Serializable;
  * @generated
  */
 public class FavoriteSiteCacheModel implements CacheModel<FavoriteSite>,
-	Serializable {
+	Externalizable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(9);
@@ -58,6 +61,21 @@ public class FavoriteSiteCacheModel implements CacheModel<FavoriteSite>,
 		favoriteSiteImpl.resetOriginalValues();
 
 		return favoriteSiteImpl;
+	}
+
+	public void readExternal(ObjectInput objectInput) throws IOException {
+		favoriteSiteId = objectInput.readLong();
+		groupId = objectInput.readLong();
+		companyId = objectInput.readLong();
+		userId = objectInput.readLong();
+	}
+
+	public void writeExternal(ObjectOutput objectOutput)
+		throws IOException {
+		objectOutput.writeLong(favoriteSiteId);
+		objectOutput.writeLong(groupId);
+		objectOutput.writeLong(companyId);
+		objectOutput.writeLong(userId);
 	}
 
 	public long favoriteSiteId;

@@ -20,7 +20,10 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 
-import java.io.Serializable;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 
 import java.util.Date;
 
@@ -32,7 +35,7 @@ import java.util.Date;
  * @generated
  */
 public class AkismetDataCacheModel implements CacheModel<AkismetData>,
-	Serializable {
+	Externalizable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
@@ -119,6 +122,67 @@ public class AkismetDataCacheModel implements CacheModel<AkismetData>,
 		akismetDataImpl.resetOriginalValues();
 
 		return akismetDataImpl;
+	}
+
+	public void readExternal(ObjectInput objectInput) throws IOException {
+		akismetDataId = objectInput.readLong();
+		modifiedDate = objectInput.readLong();
+		mbMessageId = objectInput.readLong();
+		type = objectInput.readUTF();
+		permalink = objectInput.readUTF();
+		referrer = objectInput.readUTF();
+		userAgent = objectInput.readUTF();
+		userIP = objectInput.readUTF();
+		userURL = objectInput.readUTF();
+	}
+
+	public void writeExternal(ObjectOutput objectOutput)
+		throws IOException {
+		objectOutput.writeLong(akismetDataId);
+		objectOutput.writeLong(modifiedDate);
+		objectOutput.writeLong(mbMessageId);
+
+		if (type == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(type);
+		}
+
+		if (permalink == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(permalink);
+		}
+
+		if (referrer == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(referrer);
+		}
+
+		if (userAgent == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(userAgent);
+		}
+
+		if (userIP == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(userIP);
+		}
+
+		if (userURL == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(userURL);
+		}
 	}
 
 	public long akismetDataId;

@@ -20,7 +20,10 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 
-import java.io.Serializable;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 
 import java.util.Date;
 
@@ -31,7 +34,7 @@ import java.util.Date;
  * @see Folder
  * @generated
  */
-public class FolderCacheModel implements CacheModel<Folder>, Serializable {
+public class FolderCacheModel implements CacheModel<Folder>, Externalizable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
@@ -110,6 +113,53 @@ public class FolderCacheModel implements CacheModel<Folder>, Serializable {
 		folderImpl.resetOriginalValues();
 
 		return folderImpl;
+	}
+
+	public void readExternal(ObjectInput objectInput) throws IOException {
+		folderId = objectInput.readLong();
+		companyId = objectInput.readLong();
+		userId = objectInput.readLong();
+		userName = objectInput.readUTF();
+		createDate = objectInput.readLong();
+		modifiedDate = objectInput.readLong();
+		accountId = objectInput.readLong();
+		fullName = objectInput.readUTF();
+		displayName = objectInput.readUTF();
+		remoteMessageCount = objectInput.readInt();
+	}
+
+	public void writeExternal(ObjectOutput objectOutput)
+		throws IOException {
+		objectOutput.writeLong(folderId);
+		objectOutput.writeLong(companyId);
+		objectOutput.writeLong(userId);
+
+		if (userName == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(userName);
+		}
+
+		objectOutput.writeLong(createDate);
+		objectOutput.writeLong(modifiedDate);
+		objectOutput.writeLong(accountId);
+
+		if (fullName == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(fullName);
+		}
+
+		if (displayName == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(displayName);
+		}
+
+		objectOutput.writeInt(remoteMessageCount);
 	}
 
 	public long folderId;

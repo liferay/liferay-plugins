@@ -19,7 +19,10 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 
-import java.io.Serializable;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 
 import java.util.Date;
 
@@ -31,7 +34,7 @@ import java.util.Date;
  * @generated
  */
 public class KaleoInstanceCacheModel implements CacheModel<KaleoInstance>,
-	Serializable {
+	Externalizable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(33);
@@ -141,6 +144,72 @@ public class KaleoInstanceCacheModel implements CacheModel<KaleoInstance>,
 		kaleoInstanceImpl.resetOriginalValues();
 
 		return kaleoInstanceImpl;
+	}
+
+	public void readExternal(ObjectInput objectInput) throws IOException {
+		kaleoInstanceId = objectInput.readLong();
+		groupId = objectInput.readLong();
+		companyId = objectInput.readLong();
+		userId = objectInput.readLong();
+		userName = objectInput.readUTF();
+		createDate = objectInput.readLong();
+		modifiedDate = objectInput.readLong();
+		kaleoDefinitionId = objectInput.readLong();
+		kaleoDefinitionName = objectInput.readUTF();
+		kaleoDefinitionVersion = objectInput.readInt();
+		rootKaleoInstanceTokenId = objectInput.readLong();
+		className = objectInput.readUTF();
+		classPK = objectInput.readLong();
+		completed = objectInput.readBoolean();
+		completionDate = objectInput.readLong();
+		workflowContext = objectInput.readUTF();
+	}
+
+	public void writeExternal(ObjectOutput objectOutput)
+		throws IOException {
+		objectOutput.writeLong(kaleoInstanceId);
+		objectOutput.writeLong(groupId);
+		objectOutput.writeLong(companyId);
+		objectOutput.writeLong(userId);
+
+		if (userName == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(userName);
+		}
+
+		objectOutput.writeLong(createDate);
+		objectOutput.writeLong(modifiedDate);
+		objectOutput.writeLong(kaleoDefinitionId);
+
+		if (kaleoDefinitionName == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(kaleoDefinitionName);
+		}
+
+		objectOutput.writeInt(kaleoDefinitionVersion);
+		objectOutput.writeLong(rootKaleoInstanceTokenId);
+
+		if (className == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(className);
+		}
+
+		objectOutput.writeLong(classPK);
+		objectOutput.writeBoolean(completed);
+		objectOutput.writeLong(completionDate);
+
+		if (workflowContext == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(workflowContext);
+		}
 	}
 
 	public long kaleoInstanceId;

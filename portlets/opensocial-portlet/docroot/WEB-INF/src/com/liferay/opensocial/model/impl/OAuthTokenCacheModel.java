@@ -20,7 +20,10 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 
-import java.io.Serializable;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 
 import java.util.Date;
 
@@ -32,7 +35,7 @@ import java.util.Date;
  * @generated
  */
 public class OAuthTokenCacheModel implements CacheModel<OAuthToken>,
-	Serializable {
+	Externalizable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(29);
@@ -147,6 +150,86 @@ public class OAuthTokenCacheModel implements CacheModel<OAuthToken>,
 		oAuthTokenImpl.resetOriginalValues();
 
 		return oAuthTokenImpl;
+	}
+
+	public void readExternal(ObjectInput objectInput) throws IOException {
+		oAuthTokenId = objectInput.readLong();
+		companyId = objectInput.readLong();
+		userId = objectInput.readLong();
+		userName = objectInput.readUTF();
+		createDate = objectInput.readLong();
+		modifiedDate = objectInput.readLong();
+		gadgetKey = objectInput.readUTF();
+		serviceName = objectInput.readUTF();
+		moduleId = objectInput.readLong();
+		accessToken = objectInput.readUTF();
+		tokenName = objectInput.readUTF();
+		tokenSecret = objectInput.readUTF();
+		sessionHandle = objectInput.readUTF();
+		expiration = objectInput.readLong();
+	}
+
+	public void writeExternal(ObjectOutput objectOutput)
+		throws IOException {
+		objectOutput.writeLong(oAuthTokenId);
+		objectOutput.writeLong(companyId);
+		objectOutput.writeLong(userId);
+
+		if (userName == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(userName);
+		}
+
+		objectOutput.writeLong(createDate);
+		objectOutput.writeLong(modifiedDate);
+
+		if (gadgetKey == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(gadgetKey);
+		}
+
+		if (serviceName == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(serviceName);
+		}
+
+		objectOutput.writeLong(moduleId);
+
+		if (accessToken == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(accessToken);
+		}
+
+		if (tokenName == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(tokenName);
+		}
+
+		if (tokenSecret == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(tokenSecret);
+		}
+
+		if (sessionHandle == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(sessionHandle);
+		}
+
+		objectOutput.writeLong(expiration);
 	}
 
 	public long oAuthTokenId;

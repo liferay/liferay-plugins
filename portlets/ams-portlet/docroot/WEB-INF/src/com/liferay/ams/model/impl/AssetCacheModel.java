@@ -20,7 +20,10 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 
-import java.io.Serializable;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 
 import java.util.Date;
 
@@ -31,7 +34,7 @@ import java.util.Date;
  * @see Asset
  * @generated
  */
-public class AssetCacheModel implements CacheModel<Asset>, Serializable {
+public class AssetCacheModel implements CacheModel<Asset>, Externalizable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
@@ -110,6 +113,47 @@ public class AssetCacheModel implements CacheModel<Asset>, Serializable {
 		assetImpl.resetOriginalValues();
 
 		return assetImpl;
+	}
+
+	public void readExternal(ObjectInput objectInput) throws IOException {
+		assetId = objectInput.readLong();
+		companyId = objectInput.readLong();
+		userId = objectInput.readLong();
+		userName = objectInput.readUTF();
+		createDate = objectInput.readLong();
+		modifiedDate = objectInput.readLong();
+		definitionId = objectInput.readLong();
+		serialNumber = objectInput.readUTF();
+		inactiveDate = objectInput.readLong();
+		active = objectInput.readBoolean();
+	}
+
+	public void writeExternal(ObjectOutput objectOutput)
+		throws IOException {
+		objectOutput.writeLong(assetId);
+		objectOutput.writeLong(companyId);
+		objectOutput.writeLong(userId);
+
+		if (userName == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(userName);
+		}
+
+		objectOutput.writeLong(createDate);
+		objectOutput.writeLong(modifiedDate);
+		objectOutput.writeLong(definitionId);
+
+		if (serialNumber == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(serialNumber);
+		}
+
+		objectOutput.writeLong(inactiveDate);
+		objectOutput.writeBoolean(active);
 	}
 
 	public long assetId;

@@ -19,7 +19,10 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient;
 
-import java.io.Serializable;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 
 import java.util.Date;
 
@@ -31,7 +34,7 @@ import java.util.Date;
  * @generated
  */
 public class KaleoNotificationRecipientCacheModel implements CacheModel<KaleoNotificationRecipient>,
-	Serializable {
+	Externalizable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(27);
@@ -120,6 +123,59 @@ public class KaleoNotificationRecipientCacheModel implements CacheModel<KaleoNot
 		kaleoNotificationRecipientImpl.resetOriginalValues();
 
 		return kaleoNotificationRecipientImpl;
+	}
+
+	public void readExternal(ObjectInput objectInput) throws IOException {
+		kaleoNotificationRecipientId = objectInput.readLong();
+		groupId = objectInput.readLong();
+		companyId = objectInput.readLong();
+		userId = objectInput.readLong();
+		userName = objectInput.readUTF();
+		createDate = objectInput.readLong();
+		modifiedDate = objectInput.readLong();
+		kaleoDefinitionId = objectInput.readLong();
+		kaleoNotificationId = objectInput.readLong();
+		recipientClassName = objectInput.readUTF();
+		recipientClassPK = objectInput.readLong();
+		recipientRoleType = objectInput.readInt();
+		address = objectInput.readUTF();
+	}
+
+	public void writeExternal(ObjectOutput objectOutput)
+		throws IOException {
+		objectOutput.writeLong(kaleoNotificationRecipientId);
+		objectOutput.writeLong(groupId);
+		objectOutput.writeLong(companyId);
+		objectOutput.writeLong(userId);
+
+		if (userName == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(userName);
+		}
+
+		objectOutput.writeLong(createDate);
+		objectOutput.writeLong(modifiedDate);
+		objectOutput.writeLong(kaleoDefinitionId);
+		objectOutput.writeLong(kaleoNotificationId);
+
+		if (recipientClassName == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(recipientClassName);
+		}
+
+		objectOutput.writeLong(recipientClassPK);
+		objectOutput.writeInt(recipientRoleType);
+
+		if (address == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(address);
+		}
 	}
 
 	public long kaleoNotificationRecipientId;

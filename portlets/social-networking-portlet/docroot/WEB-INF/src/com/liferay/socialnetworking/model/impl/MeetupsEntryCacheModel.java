@@ -20,7 +20,10 @@ import com.liferay.portal.model.CacheModel;
 
 import com.liferay.socialnetworking.model.MeetupsEntry;
 
-import java.io.Serializable;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 
 import java.util.Date;
 
@@ -32,7 +35,7 @@ import java.util.Date;
  * @generated
  */
 public class MeetupsEntryCacheModel implements CacheModel<MeetupsEntry>,
-	Serializable {
+	Externalizable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(29);
@@ -134,6 +137,61 @@ public class MeetupsEntryCacheModel implements CacheModel<MeetupsEntry>,
 		meetupsEntryImpl.resetOriginalValues();
 
 		return meetupsEntryImpl;
+	}
+
+	public void readExternal(ObjectInput objectInput) throws IOException {
+		meetupsEntryId = objectInput.readLong();
+		companyId = objectInput.readLong();
+		userId = objectInput.readLong();
+		userName = objectInput.readUTF();
+		createDate = objectInput.readLong();
+		modifiedDate = objectInput.readLong();
+		title = objectInput.readUTF();
+		description = objectInput.readUTF();
+		startDate = objectInput.readLong();
+		endDate = objectInput.readLong();
+		totalAttendees = objectInput.readInt();
+		maxAttendees = objectInput.readInt();
+		price = objectInput.readDouble();
+		thumbnailId = objectInput.readLong();
+	}
+
+	public void writeExternal(ObjectOutput objectOutput)
+		throws IOException {
+		objectOutput.writeLong(meetupsEntryId);
+		objectOutput.writeLong(companyId);
+		objectOutput.writeLong(userId);
+
+		if (userName == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(userName);
+		}
+
+		objectOutput.writeLong(createDate);
+		objectOutput.writeLong(modifiedDate);
+
+		if (title == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(title);
+		}
+
+		if (description == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(description);
+		}
+
+		objectOutput.writeLong(startDate);
+		objectOutput.writeLong(endDate);
+		objectOutput.writeInt(totalAttendees);
+		objectOutput.writeInt(maxAttendees);
+		objectOutput.writeDouble(price);
+		objectOutput.writeLong(thumbnailId);
 	}
 
 	public long meetupsEntryId;

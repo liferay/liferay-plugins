@@ -20,7 +20,10 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 
-import java.io.Serializable;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 
 /**
  * The cache model class for representing Entry in entity cache.
@@ -29,7 +32,7 @@ import java.io.Serializable;
  * @see Entry
  * @generated
  */
-public class EntryCacheModel implements CacheModel<Entry>, Serializable {
+public class EntryCacheModel implements CacheModel<Entry>, Externalizable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(11);
@@ -67,6 +70,29 @@ public class EntryCacheModel implements CacheModel<Entry>, Serializable {
 		entryImpl.resetOriginalValues();
 
 		return entryImpl;
+	}
+
+	public void readExternal(ObjectInput objectInput) throws IOException {
+		entryId = objectInput.readLong();
+		createDate = objectInput.readLong();
+		fromUserId = objectInput.readLong();
+		toUserId = objectInput.readLong();
+		content = objectInput.readUTF();
+	}
+
+	public void writeExternal(ObjectOutput objectOutput)
+		throws IOException {
+		objectOutput.writeLong(entryId);
+		objectOutput.writeLong(createDate);
+		objectOutput.writeLong(fromUserId);
+		objectOutput.writeLong(toUserId);
+
+		if (content == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(content);
+		}
 	}
 
 	public long entryId;

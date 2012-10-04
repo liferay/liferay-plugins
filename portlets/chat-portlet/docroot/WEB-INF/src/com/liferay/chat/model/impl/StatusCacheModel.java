@@ -20,7 +20,10 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 
-import java.io.Serializable;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 
 /**
  * The cache model class for representing Status in entity cache.
@@ -29,7 +32,7 @@ import java.io.Serializable;
  * @see Status
  * @generated
  */
-public class StatusCacheModel implements CacheModel<Status>, Serializable {
+public class StatusCacheModel implements CacheModel<Status>, Externalizable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(17);
@@ -83,6 +86,42 @@ public class StatusCacheModel implements CacheModel<Status>, Serializable {
 		statusImpl.resetOriginalValues();
 
 		return statusImpl;
+	}
+
+	public void readExternal(ObjectInput objectInput) throws IOException {
+		statusId = objectInput.readLong();
+		userId = objectInput.readLong();
+		modifiedDate = objectInput.readLong();
+		online = objectInput.readBoolean();
+		awake = objectInput.readBoolean();
+		activePanelId = objectInput.readUTF();
+		message = objectInput.readUTF();
+		playSound = objectInput.readBoolean();
+	}
+
+	public void writeExternal(ObjectOutput objectOutput)
+		throws IOException {
+		objectOutput.writeLong(statusId);
+		objectOutput.writeLong(userId);
+		objectOutput.writeLong(modifiedDate);
+		objectOutput.writeBoolean(online);
+		objectOutput.writeBoolean(awake);
+
+		if (activePanelId == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(activePanelId);
+		}
+
+		if (message == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(message);
+		}
+
+		objectOutput.writeBoolean(playSound);
 	}
 
 	public long statusId;

@@ -20,7 +20,10 @@ import com.liferay.portal.model.CacheModel;
 
 import com.liferay.socialcoding.model.SVNRevision;
 
-import java.io.Serializable;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 
 import java.util.Date;
 
@@ -32,7 +35,7 @@ import java.util.Date;
  * @generated
  */
 public class SVNRevisionCacheModel implements CacheModel<SVNRevision>,
-	Serializable {
+	Externalizable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(13);
@@ -86,6 +89,38 @@ public class SVNRevisionCacheModel implements CacheModel<SVNRevision>,
 		svnRevisionImpl.resetOriginalValues();
 
 		return svnRevisionImpl;
+	}
+
+	public void readExternal(ObjectInput objectInput) throws IOException {
+		svnRevisionId = objectInput.readLong();
+		svnUserId = objectInput.readUTF();
+		createDate = objectInput.readLong();
+		svnRepositoryId = objectInput.readLong();
+		revisionNumber = objectInput.readLong();
+		comments = objectInput.readUTF();
+	}
+
+	public void writeExternal(ObjectOutput objectOutput)
+		throws IOException {
+		objectOutput.writeLong(svnRevisionId);
+
+		if (svnUserId == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(svnUserId);
+		}
+
+		objectOutput.writeLong(createDate);
+		objectOutput.writeLong(svnRepositoryId);
+		objectOutput.writeLong(revisionNumber);
+
+		if (comments == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(comments);
+		}
 	}
 
 	public long svnRevisionId;

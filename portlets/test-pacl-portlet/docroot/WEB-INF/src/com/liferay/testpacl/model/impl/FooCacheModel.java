@@ -19,7 +19,10 @@ import com.liferay.portal.model.CacheModel;
 
 import com.liferay.testpacl.model.Foo;
 
-import java.io.Serializable;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 
 /**
  * The cache model class for representing Foo in entity cache.
@@ -28,7 +31,7 @@ import java.io.Serializable;
  * @see Foo
  * @generated
  */
-public class FooCacheModel implements CacheModel<Foo>, Serializable {
+public class FooCacheModel implements CacheModel<Foo>, Externalizable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(3);
@@ -47,6 +50,15 @@ public class FooCacheModel implements CacheModel<Foo>, Serializable {
 		fooImpl.resetOriginalValues();
 
 		return fooImpl;
+	}
+
+	public void readExternal(ObjectInput objectInput) throws IOException {
+		fooId = objectInput.readLong();
+	}
+
+	public void writeExternal(ObjectOutput objectOutput)
+		throws IOException {
+		objectOutput.writeLong(fooId);
 	}
 
 	public long fooId;
