@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -14,12 +14,14 @@
 
 package com.liferay.portal.workflow.kaleo.parser;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.workflow.kaleo.definition.Definition;
 import com.liferay.portal.workflow.kaleo.definition.State;
 
 /**
  * @author Michael C. Han
+ * @author Marcellus Tavares
  */
 public class StateNodeValidator extends BaseNodeValidator<State> {
 
@@ -38,6 +40,12 @@ public class StateNodeValidator extends BaseNodeValidator<State> {
 
 	protected void validateInitialState(Definition definition, State state)
 		throws WorkflowException {
+
+		if (!Validator.equals(definition.getInitialState(), state)) {
+			throw new WorkflowException(
+				"Multiple initial states defined {" + state.getName() + ", " +
+					definition.getInitialState().getName() + "}");
+		}
 
 		if (state.getIncomingTransitionsCount() > 0) {
 			throw new WorkflowException(

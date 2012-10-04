@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -15,11 +15,15 @@
 package com.liferay.portal.workflow.kaleo.parser;
 
 import com.liferay.portal.kernel.workflow.WorkflowException;
+import com.liferay.portal.workflow.kaleo.definition.Assignment;
 import com.liferay.portal.workflow.kaleo.definition.Definition;
 import com.liferay.portal.workflow.kaleo.definition.Task;
 
+import java.util.Set;
+
 /**
  * @author Michael C. Han
+ * @author Marcellus Tavares
  */
 public class TaskNodeValidator extends BaseNodeValidator<Task> {
 
@@ -37,9 +41,12 @@ public class TaskNodeValidator extends BaseNodeValidator<Task> {
 				"No outgoing transition found for task " + task.getName());
 		}
 
-		if (task.getAssignments().size() == 0) {
+		Set<Assignment> assignments = task.getAssignments();
+
+		if ((assignments == null) || assignments.isEmpty()) {
 			throw new WorkflowException(
 				"No assignments for task " + task.getName());
 		}
 	}
+
 }
