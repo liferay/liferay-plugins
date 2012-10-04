@@ -15,7 +15,6 @@
 package com.liferay.pluginsecuritymanager.util;
 
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -30,7 +29,9 @@ import java.lang.Object;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -42,7 +43,9 @@ import javax.portlet.PortletPreferences;
  */
 public class PluginSecurityManagerUtil {
 
-	public static JSONArray getPACLPoliciesJSONArray() throws Exception {
+	public static List<JSONObject> getPACLPoliciesJSONObjectList()
+		throws Exception {
+
 		Map<String, JSONObject> sortedPACLPolicies =
 			new TreeMap<String, JSONObject>();
 
@@ -60,17 +63,17 @@ public class PluginSecurityManagerUtil {
 			sortedPACLPolicies.put(servletContextName, jsonObject);
 		}
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+		List<JSONObject> jsonObjectList = new ArrayList<JSONObject>();
 
 		for (Map.Entry<String, JSONObject> entry :
 				sortedPACLPolicies.entrySet()) {
 
 			JSONObject jsonObject = entry.getValue();
 
-			jsonArray.put(jsonObject);
+			jsonObjectList.add(jsonObject);
 		}
 
-		return jsonArray;
+		return jsonObjectList;
 	}
 
 	public static PortletPreferences getPreferences() throws SystemException {

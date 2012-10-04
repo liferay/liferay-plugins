@@ -26,9 +26,9 @@
 <%@ page import="com.liferay.pluginsecuritymanager.util.PluginSecurityManagerUtil" %><%@
 page import="com.liferay.portal.kernel.dao.search.ResultRow" %><%@
 page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@
-page import="com.liferay.portal.kernel.json.JSONArray" %><%@
 page import="com.liferay.portal.kernel.json.JSONObject" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
+page import="com.liferay.portal.kernel.util.ListUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %>
 
 <%@ page import="java.util.ArrayList" %><%@
