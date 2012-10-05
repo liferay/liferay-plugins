@@ -28,6 +28,8 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
+import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.webdav.Resource;
 import com.liferay.portal.kernel.webdav.Status;
@@ -51,6 +53,9 @@ import java.io.File;
 
 import java.lang.reflect.Method;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -61,6 +66,42 @@ public class CompatDLWebDAVStorageImpl extends WebDAVStorageWrapper {
 
 	public CompatDLWebDAVStorageImpl(WebDAVStorage webDAVStorage) {
 		super(webDAVStorage);
+	}
+
+	@Override
+	public Resource getResource(WebDAVRequest webDavRequest)
+		throws WebDAVException {
+
+		Resource resource = super.getResource(webDavRequest);
+
+		if (isInstanceOfDLFileEntryResourceImpl(resource)) {
+			return toCompatResource(resource);
+		}
+
+		return resource;
+	}
+
+	@Override
+	public List<Resource> getResources(WebDAVRequest webDavRequest)
+		throws WebDAVException {
+
+		List<Resource> resources = super.getResources(webDavRequest);
+
+		List<Resource> compatResources = new ArrayList<Resource>(
+			resources.size());
+
+		for (Resource resource : resources) {
+			if (isInstanceOfDLFileEntryResourceImpl(resource)) {
+				Resource compatResource = toCompatResource(resource);
+
+				compatResources.add(compatResource);
+			}
+			else {
+				compatResources.add(resource);
+			}
+		}
+
+		return compatResources;
 	}
 
 	@Override
@@ -234,6 +275,8 @@ public class CompatDLWebDAVStorageImpl extends WebDAVStorageWrapper {
 		Method method = clazz.getDeclaredMethod(
 			"getParentFolderId", long.class, String[].class);
 
+		method.setAccessible(true);
+
 		return (Long)method.invoke(webDAVStorage, companyId, pathArray);
 	}
 
@@ -302,6 +345,14 @@ public class CompatDLWebDAVStorageImpl extends WebDAVStorageWrapper {
 		}
 	}
 
+	protected Resource toCompatResource(Resource resource) {
+		ClassLoader classLoader = PortalClassLoaderUtil.getClassLoader();
+
+		return (Resource)ProxyUtil.newProxyInstance(
+			classLoader, new Class<?>[] {Resource.class},
+			new CompatResourceInvocationHandler(resource));
+	}
+
 	protected Resource toResource(
 		WebDAVRequest webDavRequest, FileEntry fileEntry, boolean appendPath) {
 
@@ -315,6 +366,8 @@ public class CompatDLWebDAVStorageImpl extends WebDAVStorageWrapper {
 				new Class<?>[] {
 					WebDAVRequest.class, FileEntry.class, boolean.class
 				});
+
+			method.setAccessible(true);
 
 			return (Resource)method.invoke(
 				webDAVStorage, webDavRequest, fileEntry, appendPath);
