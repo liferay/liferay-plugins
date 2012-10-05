@@ -33,7 +33,6 @@ import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.util.CookieUtil;
 import com.liferay.util.Encryptor;
 import com.liferay.util.EncryptorException;
 
@@ -105,7 +104,7 @@ public class ShindigFilter extends InjectedFilter {
 	}
 
 	protected boolean setPermissionChecker(ServletRequest servletRequest) {
-		String companyIdString = CookieUtil.get(
+		String companyIdString = CookieKeys.getCookie(
 			(HttpServletRequest)servletRequest, CookieKeys.COMPANY_ID);
 
 		if (Validator.isNull(companyIdString)) {
@@ -123,7 +122,7 @@ public class ShindigFilter extends InjectedFilter {
 				return false;
 			}
 
-			String userUUIDString = CookieUtil.get(
+			String userUUIDString = CookieKeys.getCookie(
 				(HttpServletRequest)servletRequest, CookieKeys.USER_UUID);
 
 			if (Validator.isNull(userUUIDString)) {
