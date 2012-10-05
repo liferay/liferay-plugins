@@ -19,21 +19,17 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
+import com.liferay.portal.kernel.util.SortedArrayList;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
 
-import java.lang.Class;
-import java.lang.ClassLoader;
-import java.lang.Exception;
-import java.lang.Object;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import javax.portlet.PortletPreferences;
 
@@ -43,11 +39,24 @@ import javax.portlet.PortletPreferences;
  */
 public class PluginSecurityManagerUtil {
 
-	public static List<JSONObject> getPACLPoliciesJSONObjectList()
+	public static List<JSONObject> getPACLPoliciesJSONObjects()
 		throws Exception {
 
-		Map<String, JSONObject> sortedPACLPolicies =
-			new TreeMap<String, JSONObject>();
+		Comparator<JSONObject> comparator = new Comparator<JSONObject>() {
+
+			public int compare(JSONObject jsonObject1, JSONObject jsonObject2) {
+				String servletContextName1 = jsonObject1.getString(
+					"servletContextName");
+				String servletContextName2 = jsonObject2.getString(
+					"servletContextName");
+
+				return servletContextName1.compareTo(servletContextName2);
+			}
+
+		};
+
+		List<JSONObject> jsonObjects = new SortedArrayList<JSONObject>(
+			comparator);
 
 		Map<ClassLoader, Object> paclPolicies = _getPACLPolicies();
 
@@ -57,23 +66,10 @@ public class PluginSecurityManagerUtil {
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 				JSONFactoryUtil.serialize(value));
 
-			String servletContextName = jsonObject.getString(
-				"servletContextName");
-
-			sortedPACLPolicies.put(servletContextName, jsonObject);
+			jsonObjects.add(jsonObject);
 		}
 
-		List<JSONObject> jsonObjectList = new ArrayList<JSONObject>();
-
-		for (Map.Entry<String, JSONObject> entry :
-				sortedPACLPolicies.entrySet()) {
-
-			JSONObject jsonObject = entry.getValue();
-
-			jsonObjectList.add(jsonObject);
-		}
-
-		return jsonObjectList;
+		return jsonObjects;
 	}
 
 	public static PortletPreferences getPreferences() throws SystemException {

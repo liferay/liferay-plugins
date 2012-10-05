@@ -51,15 +51,18 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 
 List<ResultRow> resultRows = searchContainer.getResultRows();
 
-List<JSONObject> paclPoliciesJSONObjectList = PluginSecurityManagerUtil.getPACLPoliciesJSONObjectList();
+List<JSONObject> paclPoliciesJSONObjects = PluginSecurityManagerUtil.getPACLPoliciesJSONObjects();
 
-List results = ListUtil.subList(paclPoliciesJSONObjectList, searchContainer.getStart(), searchContainer.getEnd());
+int total = paclPoliciesJSONObjects.size();
+
+searchContainer.setTotal(total);
+
+List<JSONObject> results = ListUtil.subList(paclPoliciesJSONObjects, searchContainer.getStart(), searchContainer.getEnd());
 
 searchContainer.setResults(results);
-searchContainer.setTotal(paclPoliciesJSONObjectList.size());
 
 for (int i = 0; i < results.size(); i++) {
-	JSONObject paclPolicyJSONObject = (JSONObject)results.get(i);
+	JSONObject paclPolicyJSONObject = results.get(i);
 
 	String servletContextName = paclPolicyJSONObject.getString("servletContextName");
 
