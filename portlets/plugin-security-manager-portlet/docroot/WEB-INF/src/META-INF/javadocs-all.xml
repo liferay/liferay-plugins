@@ -5,6 +5,7 @@
 		<name>PluginSecurityManagerFilter</name>
 		<type>com.liferay.pluginsecuritymanager.hook.filter.PluginSecurityManagerFilter</type>
 		<author><![CDATA[Shinn Lok]]></author>
+		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
 			<name>doFilterTry</name>
 			<param>
@@ -31,6 +32,7 @@
 		<name>PluginSecurityManagerPortlet</name>
 		<type>com.liferay.pluginsecuritymanager.portlet.PluginSecurityManagerPortlet</type>
 		<author><![CDATA[Shinn Lok]]></author>
+		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
 			<name>updateConfiguration</name>
 			<param>
@@ -51,8 +53,9 @@
 		<name>PluginSecurityManagerUtil</name>
 		<type>com.liferay.pluginsecuritymanager.util.PluginSecurityManagerUtil</type>
 		<author><![CDATA[Shinn Lok]]></author>
+		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
-			<name>getPACLPoliciesJSONArray</name>
+			<name>getPACLPoliciesJSONObjects</name>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
