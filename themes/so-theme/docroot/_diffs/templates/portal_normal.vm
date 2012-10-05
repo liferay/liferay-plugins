@@ -105,7 +105,31 @@ $theme.include($body_top_include)
 			#if ($page_group.isUser())
 				<div class="$user_detail_class">
 					<div class="profile-image">
-						<a href="$current_user_profile_url"><img src="$current_user_profile_portrait_url" alt="$current_user_name"></a>
+
+						#set ($groupService = $serviceLocator.findService('com.liferay.portal.service.GroupLocalService'))
+						#set ($layoutService = $serviceLocator.findService('com.liferay.portal.service.LayoutLocalService'))
+						#set ($controlPanelGroup = $groupService.getGroup($company_id, "Control Panel"))
+						#set ($controlPanelPlid = $layoutService.getDefaultPlid($controlPanelGroup.getGroupId(), true))
+
+						#set ($current_user_edit_profile_portrait_url = $portletURLFactory.create($request, "2", $controlPanelPlid, "RENDER_PHASE"))
+						$current_user_edit_profile_portrait_url.setParameter("struts_action", "/my_account/edit_user_portrait")
+						$current_user_edit_profile_portrait_url.setParameter("p_u_i_d", "$user_id")
+						$current_user_edit_profile_portrait_url.setParameter("redirect", "$current_user_profile_url")
+						$current_user_edit_profile_portrait_url.setPortletMode("view")
+						$current_user_edit_profile_portrait_url.setWindowState("pop_up")
+
+						<div class="taglib-logo-selector" id="_SO_THEME_taglibLogoSelector">
+							<div class="taglib-logo-selector-content" id="_SO_THEME_taglibLogoSelectorContent">
+								<a href="$current_user_profile_url">
+									<img class="avatar" id="_SO_THEME_avatar" src="$current_user_profile_portrait_url" alt="$current_user_name">
+								</a>
+								#if ("$current_user.getUserId()" == "$user.getUserId()" && $layout.isPublicLayout())
+									<a class="lfr-change-logo edit-logo-link" href="javascript:;" onClick="editPortrait._openEditLogoWindow();">
+										<span class="edit-portrait">$languageUtil.get($locale, "edit-profile-picture")</span>
+									</a>
+								#end
+							</div>
+						</div>
 					</div>
 
 					#if (!$layout.isPublicLayout())
@@ -150,3 +174,42 @@ $theme.include($body_bottom_include)
 $theme.include($bottom_include)
 
 </html>
+
+<script type="text/javascript">
+	AUI().use(
+		'liferay-logo-selector', 'aui-base',
+		function(A) {
+			editPortrait = new Liferay.LogoSelector(
+				{
+					boundingBox: '#_SO_THEME_taglibLogoSelector',
+					contentBox: '#_SO_THEME_taglibLogoSelectorContent',
+					defaultLogoURL: '$current_user_profile_portrait_url',
+					editLogoURL: '$current_user_edit_profile_portrait_url',
+					randomNamespace: '_SO_THEME_',
+					logoDisplaySelector: '#_SO_THEME_avatar',
+					portletNamespace: ''
+				}
+			);
+
+			window['_2_changeLogo'] = function (logoURL) {
+				var avatarDialog = A.one('#_SO_THEME_avatar');
+
+				if (avatarDialog) {
+					avatarDialog.attr('src', logoURL);
+				}
+
+				var avatarContext = A.all('#so-context .avatar img');
+
+				if (avatarContext) {
+					avatarContext.attr('src', logoURL);
+				}
+
+				var avatarDockbar = A.one('.user-fullname.user-portrait img');
+
+				if (avatarDockbar) {
+					avatarDockbar.attr('src', logoURL);
+				}
+			}
+		}
+	);
+</script>
