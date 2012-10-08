@@ -14,6 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.definition;
 
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Collections;
@@ -111,8 +112,7 @@ public abstract class Node implements ActionAware, NotificationAware {
 	}
 
 	public List<Transition> getOutgoingTransitionsList() {
-		return Collections.unmodifiableList(
-			(List<? extends Transition>)_outgoingTransitions.values());
+		return ListUtil.fromCollection(_outgoingTransitions.values());
 	}
 
 	public Set<Timer> getTimers() {
