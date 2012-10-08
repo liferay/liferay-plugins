@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<workflow-definition
+	xmlns="urn:liferay.com:liferay-workflow_6.2.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:liferay.com:liferay-workflow_6.2.0 http://www.liferay.com/dtd/liferay-workflow-definition_6_2_0.xsd"
+>
+	<name>Test</name>
+	<version>1</version>
+	<state>
+		<name>start</name>
+		<initial>true</initial>
+		<transitions>
+			<transition>
+				<name>task</name>
+				<target>task</target>
+			</transition>
+		</transitions>
+	</state>
+	<task>
+		<name>task</name>
+		<assignments>
+			<user />
+		</assignments>
+	</task>
+	<state>
+		<name>end</name>
+	</state>
+</workflow-definition>
