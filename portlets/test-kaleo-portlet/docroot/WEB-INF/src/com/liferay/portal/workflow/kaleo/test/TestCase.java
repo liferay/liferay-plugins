@@ -18,9 +18,7 @@ import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.MethodComparator;
-
-import java.io.PrintWriter;
-import java.io.StringWriter;
+import com.liferay.portal.kernel.util.StackTraceUtil;
 
 import java.lang.reflect.Method;
 
@@ -28,31 +26,29 @@ import java.util.Arrays;
 
 import javax.servlet.ServletContext;
 
-import org.apache.commons.lang.Validate;
-
 /**
  * @author Shuyang Zhou
  */
 public class TestCase {
 
 	public void assertEquals(Object expected, Object actual) {
-		Validate.isTrue(expected.equals(actual));
+		isTrue(expected.equals(actual));
 	}
 
 	public void assertFalse(boolean value) {
-		Validate.isTrue(!value);
+		isTrue(!value);
 	}
 
 	public void assertNotNull(Object object) {
-		Validate.notNull(object);
+		isTrue(object != null);
 	}
 
 	public void assertNull(Object object) {
-		Validate.isTrue(object == null);
+		isTrue(object == null);
 	}
 
 	public void assertTrue(boolean value) {
-		Validate.isTrue(value);
+		isTrue(value);
 	}
 
 	public void fail() {
@@ -64,13 +60,11 @@ public class TestCase {
 	}
 
 	public JSONObject runTests() {
-		JSONObject testCaseResult = JSONFactoryUtil.createJSONObject();
+		JSONObject testCaseJSONObject = JSONFactoryUtil.createJSONObject();
 
 		Class<? extends TestCase> testCaseClass = getClass();
 
-		String testCaseName = testCaseClass.getName();
-
-		testCaseResult.put("name", testCaseName);
+		testCaseJSONObject.put("name", testCaseClass.getName());
 
 		Method setUpMethod = null;
 
@@ -88,9 +82,9 @@ public class TestCase {
 		catch (Exception e) {
 		}
 
-		JSONArray testResults = JSONFactoryUtil.createJSONArray();
+		JSONArray testResultsJSONArray = JSONFactoryUtil.createJSONArray();
 
-		testCaseResult.put("testResults", testResults);
+		testCaseJSONObject.put("testResults", testResultsJSONArray);
 
 		Method[] methods = testCaseClass.getMethods();
 
@@ -115,30 +109,23 @@ public class TestCase {
 						tearDownMethod.invoke(this);
 					}
 
-					testResult.put("status", _STATUS_PASSED);
+					testResult.put("status", "PASSED");
 				}
 				catch (Exception e) {
-					Throwable cause = e.getCause();
+					Throwable throwable = e.getCause();
 
-					testResult.put("status", _STATUS_FAILED);
-					testResult.put("exceptionMessage", cause.getMessage());
-
-					StringWriter stringWriter = new StringWriter();
-					PrintWriter printWriter = new PrintWriter(stringWriter);
-
-					cause.printStackTrace(printWriter);
-
+					testResult.put("exceptionMessage", throwable.getMessage());
 					testResult.put(
-						"exceptionStackTrace", stringWriter.toString());
-
-					printWriter.close();
+						"exceptionStackTrace",
+						StackTraceUtil.getStackTrace(throwable));
+					testResult.put("status", "FAILED");
 				}
 
-				testResults.put(testResult);
+				testResultsJSONArray.put(testResult);
 			}
 		}
 
-		return testCaseResult;
+		return testCaseJSONObject;
 	}
 
 	public void setServletContext(ServletContext servletContext) {
@@ -151,10 +138,13 @@ public class TestCase {
 	public void tearDown() throws Exception {
 	}
 
+	protected void isTrue(boolean expression) {
+		if (!expression) {
+			throw new IllegalArgumentException(
+				"The validated expression is false");
+		}
+	}
+
 	protected ServletContext servletContext;
-
-	private static final String _STATUS_FAILED = "FAILED";
-
-	private static final String _STATUS_PASSED = "PASSED";
 
 }

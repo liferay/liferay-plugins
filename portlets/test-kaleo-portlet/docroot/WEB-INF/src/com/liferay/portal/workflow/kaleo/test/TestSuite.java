@@ -36,19 +36,19 @@ public class TestSuite {
 	public JSONArray runTestSuite(ServletContext servletContext)
 		throws Exception {
 
-		JSONArray testSuiteResult = JSONFactoryUtil.createJSONArray();
+		JSONArray testSuiteJSONArray = JSONFactoryUtil.createJSONArray();
 
 		for (Class<?> testCaseClass : _testCaseClasses) {
 			TestCase testCase = (TestCase)testCaseClass.newInstance();
 
 			testCase.setServletContext(servletContext);
 
-			JSONObject testCaseResult = testCase.runTests();
+			JSONObject testCaseJSONObject = testCase.runTests();
 
-			testSuiteResult.put(testCaseResult);
+			testSuiteJSONArray.put(testCaseJSONObject);
 		}
 
-		return testSuiteResult;
+		return testSuiteJSONArray;
 	}
 
 	private List<Class<? extends TestCase>> _testCaseClasses =

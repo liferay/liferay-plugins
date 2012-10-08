@@ -1,7 +1,3 @@
-<%@ page import="com.liferay.portal.kernel.json.JSONArray" %>
-<%@ page import="com.liferay.portal.kernel.json.JSONObject" %>
-<%@ page import="com.liferay.portal.workflow.kaleo.test.KaleoTestSuite" %>
-
 <%--
 /**
  * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
@@ -18,9 +14,7 @@
  */
 --%>
 
-<%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
-
-<liferay-theme:defineObjects />
+<%@ include file="/init.jsp" %>
 
 <%
 if (!themeDisplay.isSignedIn()) {
@@ -34,33 +28,27 @@ if (!themeDisplay.isSignedIn()) {
 
 KaleoTestSuite kaleoTestSuite = new KaleoTestSuite();
 
-JSONArray testSuiteResult = kaleoTestSuite.runTestSuite(application);
+JSONArray testSuiteJSONArray = kaleoTestSuite.runTestSuite(application);
 
-for (int i = 0; i < testSuiteResult.length(); i++) {
-	JSONObject testCaseResult = testSuiteResult.getJSONObject(i);
-
-	String testCaseName = testCaseResult.getString("name");
+for (int i = 0; i < testSuiteJSONArray.length(); i++) {
+	JSONObject testCaseJSONObject = testSuiteJSONArray.getJSONObject(i);
 %>
 
-	<h3><%= testCaseName %></h3>
+	<h3><%= testCaseJSONObject.getString("name") %></h3>
 
 <%
-	JSONArray testResults = testCaseResult.getJSONArray("testResults");
+	JSONArray testResultsJSONArray = testCaseJSONObject.getJSONArray("testResults");
 
-	for (int j = 0; j < testResults.length(); j++) {
-		JSONObject testResult = testResults.getJSONObject(j);
-
-		String name = testResult.getString("name");
-		String status = testResult.getString("status");
-		String exceptionMessage = testResult.getString("exceptionMessage");
-		String exceptionStackTrace = testResult.getString("exceptionStackTrace");
+	for (int j = 0; j < testResultsJSONArray.length(); j++) {
+		JSONObject testResultsJSONObject = testResultsJSONArray.getJSONObject(j);
 %>
 
 		<p>
-			<%= name %> <%= status %> <%= exceptionMessage %>
+			<%= testResultsJSONObject.getString("name") %> <%= testResultsJSONObject.getString("status") %> <%= testResultsJSONObject.getString("exceptionMessage") %>
 		</p>
+
 		<p>
-			<%= exceptionStackTrace %>
+			<%= testResultsJSONObject.getString("exceptionStackTrace") %>
 		</p>
 
 <%

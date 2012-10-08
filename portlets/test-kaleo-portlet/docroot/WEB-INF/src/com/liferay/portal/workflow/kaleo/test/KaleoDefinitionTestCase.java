@@ -40,7 +40,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 		String error = assertInvalid(inputStream);
 
 		assertEquals(
-			"Incoming transitions were found for initial state start", error);
+			"An incoming transition was found for initial state start", error);
 	}
 
 	public void testValidateIncomingTransitionsJoinNodeDefinition()
@@ -117,21 +117,21 @@ public class KaleoDefinitionTestCase extends TestCase {
 
 		String error = assertInvalid(inputStream);
 
-		assertEquals("Fork and Join are not in pair {fork2, join2}", error);
+		assertEquals("Fork fork2 and join join2 are not paired", error);
 
 		inputStream = getResource(
 			"/META-INF/definitions/matching-fork-and-join-2.xml");
 
 		error = assertInvalid(inputStream);
 
-		assertEquals("Fork and Join are not in pair {fork2, join2}", error);
+		assertEquals("Fork fork2 and join join2 are not paired", error);
 
 		inputStream = getResource(
 			"/META-INF/definitions/matching-fork-and-join-3.xml");
 
 		error = assertInvalid(inputStream);
 
-		assertEquals("Fork and Join are not in pair {fork3, join6}", error);
+		assertEquals("Fork fork3 and join join6 are not paired", error);
 	}
 
 	public void testValidateMultipleInitialStatesDefinedDefinition()
@@ -142,7 +142,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 
 		String error = assertInvalid(inputStream);
 
-		assertEquals("Multiple initial states defined {start1, start2}", error);
+		assertEquals("Multiple initial states start1 and start2", error);
 	}
 
 	public void testValidateNoAssignmentsTaskNodeDefinition() throws Exception {
@@ -312,8 +312,8 @@ public class KaleoDefinitionTestCase extends TestCase {
 
 			fail();
 		}
-		catch (WorkflowException e) {
-			Throwable throwable = e.getCause();
+		catch (WorkflowException we) {
+			Throwable throwable = we.getCause();
 
 			return throwable.getMessage();
 		}
@@ -326,13 +326,15 @@ public class KaleoDefinitionTestCase extends TestCase {
 			WorkflowDefinitionManagerUtil.validateWorkflowDefinition(
 				inputStream);
 		}
-		catch (WorkflowException e) {
-			fail(e.getMessage());
+		catch (WorkflowException we) {
+			fail(we.getMessage());
 		}
 	}
 
 	protected InputStream getResource(String name) {
-		ClassLoader classLoader = getClass().getClassLoader();
+		Class<?> clazz = getClass();
+
+		ClassLoader classLoader = clazz.getClassLoader();
 
 		return classLoader.getResourceAsStream(name);
 	}

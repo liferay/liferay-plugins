@@ -3,7 +3,7 @@
 <portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" version="2.0">
 	<portlet>
 		<portlet-name>1</portlet-name>
-		<display-name>Test Kaleo Web Engine</display-name>
+		<display-name>Test Kaleo</display-name>
 		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
 		<init-param>
 			<name>view-template</name>
@@ -14,9 +14,9 @@
 			<mime-type>text/html</mime-type>
 		</supports>
 		<portlet-info>
-			<title>Test Kaleo Web Engine</title>
-			<short-title>Test Kaleo Web Engine</short-title>
-			<keywords>Test Kaleo Web Engine</keywords>
+			<title>Test Kaleo</title>
+			<short-title>Test Kaleo</short-title>
+			<keywords>Test Kaleo</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>
