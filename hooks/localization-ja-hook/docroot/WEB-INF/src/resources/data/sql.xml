@@ -4,7 +4,7 @@
 	<batch>
 		<test-sql>
 			<![CDATA[
-				select count(*) from Region where countryId = 9 and name = '愛知県'
+				select count(*) from Region where countryId = 9
 			]]>
 		</test-sql>
 		<import-sql>
@@ -56,6 +56,64 @@
 				insert into Region (regionId, countryId, regionCode, name, active_) values (9045, 9, 'JP-06', '山形県', TRUE);
 				insert into Region (regionId, countryId, regionCode, name, active_) values (9046, 9, 'JP-35', '山口県', TRUE);
 				insert into Region (regionId, countryId, regionCode, name, active_) values (9047, 9, 'JP-19', '山梨県', TRUE);
+			]]>
+		</import-sql>
+	</batch>
+	<batch>
+		<test-sql>
+			<![CDATA[
+				select count(*) from Region where name = '愛知県'
+			]]>
+		</test-sql>
+		<import-sql>
+			<![CDATA[
+				update Region set name = '愛知県' where regionId = '9001';
+				update Region set name = '秋田県' where regionId = '9002';
+				update Region set name = '青森県' where regionId = '9003';
+				update Region set name = '愛媛県' where regionId = '9004';
+				update Region set name = '岐阜県' where regionId = '9005';
+				update Region set name = '群馬県' where regionId = '9006';
+				update Region set name = '広島県' where regionId = '9007';
+				update Region set name = '北海道' where regionId = '9008';
+				update Region set name = '福井県' where regionId = '9009';
+				update Region set name = '福岡県' where regionId = '9010';
+				update Region set name = '福島県' where regionId = '9011';
+				update Region set name = '兵庫県' where regionId = '9012';
+				update Region set name = '茨城県' where regionId = '9013';
+				update Region set name = '石川県' where regionId = '9014';
+				update Region set name = '岩手県' where regionId = '9015';
+				update Region set name = '香川県' where regionId = '9016';
+				update Region set name = '鹿児島県' where regionId = '9017';
+				update Region set name = '神奈川県' where regionId = '9018';
+				update Region set name = '高知県' where regionId = '9019';
+				update Region set name = '熊本県' where regionId = '9020';
+				update Region set name = '京都府' where regionId = '9021';
+				update Region set name = '三重県' where regionId = '9022';
+				update Region set name = '宮城県' where regionId = '9023';
+				update Region set name = '宮崎県' where regionId = '9024';
+				update Region set name = '長野県' where regionId = '9025';
+				update Region set name = '長崎県' where regionId = '9026';
+				update Region set name = '奈良県' where regionId = '9027';
+				update Region set name = '新潟県' where regionId = '9028';
+				update Region set name = '大分県' where regionId = '9029';
+				update Region set name = '岡山県' where regionId = '9030';
+				update Region set name = '沖縄県' where regionId = '9031';
+				update Region set name = '大阪府' where regionId = '9032';
+				update Region set name = '佐賀県' where regionId = '9033';
+				update Region set name = '埼玉県' where regionId = '9034';
+				update Region set name = '滋賀県' where regionId = '9035';
+				update Region set name = '島根県' where regionId = '9036';
+				update Region set name = '静岡県' where regionId = '9037';
+				update Region set name = '千葉県' where regionId = '9038';
+				update Region set name = '徳島県' where regionId = '9039';
+				update Region set name = '東京都' where regionId = '9040';
+				update Region set name = '栃木県' where regionId = '9041';
+				update Region set name = '鳥取県' where regionId = '9042';
+				update Region set name = '富山県' where regionId = '9043';
+				update Region set name = '和歌山県' where regionId = '9044';
+				update Region set name = '山形県' where regionId = '9045';
+				update Region set name = '山口県' where regionId = '9046';
+				update Region set name = '山梨県' where regionId = '9047';
 			]]>
 		</import-sql>
 	</batch>
