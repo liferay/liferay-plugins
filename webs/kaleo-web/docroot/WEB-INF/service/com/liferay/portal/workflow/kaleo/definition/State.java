@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.definition;
 
+import java.util.Map;
+
 /**
  * @author Michael C. Han
  */
@@ -30,12 +32,9 @@ public class State extends Node {
 	}
 
 	public boolean isTerminal() {
-		if (getOutgoingTransitions().isEmpty()) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		Map<String, Transition> outgoingTransitions = getOutgoingTransitions();
+
+		return outgoingTransitions.isEmpty();
 	}
 
 	private boolean _initial;

@@ -16,10 +16,10 @@ package com.liferay.portal.workflow.kaleo.definition;
 
 import com.liferay.portal.kernel.util.Validator;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -110,9 +110,9 @@ public abstract class Node implements ActionAware, NotificationAware {
 		return _outgoingTransitions.size();
 	}
 
-	public Collection<Transition> getOutgoingTransitionsEntries() {
-		return Collections.unmodifiableCollection(
-			_outgoingTransitions.values());
+	public List<Transition> getOutgoingTransitionsList() {
+		return Collections.unmodifiableList(
+			(List<? extends Transition>)_outgoingTransitions.values());
 	}
 
 	public Set<Timer> getTimers() {

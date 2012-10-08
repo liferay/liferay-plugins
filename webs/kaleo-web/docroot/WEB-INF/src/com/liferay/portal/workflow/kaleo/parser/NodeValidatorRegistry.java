@@ -14,6 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.parser;
 
+import com.liferay.portal.workflow.kaleo.definition.Node;
 import com.liferay.portal.workflow.kaleo.definition.NodeType;
 
 import java.util.HashMap;
@@ -23,22 +24,25 @@ import java.util.Map;
  * @author Michael C. Han
  */
 public class NodeValidatorRegistry {
-	public NodeValidator getValidator(NodeType nodeType) {
-		NodeValidator nodeValidator = _nodeValidators.get(nodeType);
+
+	public NodeValidator<Node> getValidator(NodeType nodeType) {
+		NodeValidator<Node> nodeValidator = _nodeValidators.get(nodeType);
 
 		if (nodeValidator == null) {
 			throw new IllegalArgumentException(
-				"No validator found for: " + nodeType);
+				"No node validator found for " + nodeType);
 		}
 
 		return nodeValidator;
 	}
 
-	public void setNodeValidators(Map<NodeType, NodeValidator> nodeValidators) {
+	public void setNodeValidators(
+		Map<NodeType, NodeValidator<Node>> nodeValidators) {
+
 		_nodeValidators = nodeValidators;
 	}
 
-	private Map<NodeType, NodeValidator> _nodeValidators =
-		new HashMap<NodeType, NodeValidator>();
+	private Map<NodeType, NodeValidator<Node>> _nodeValidators =
+		new HashMap<NodeType, NodeValidator<Node>>();
 
 }

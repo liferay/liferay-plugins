@@ -274,9 +274,7 @@
 				</entry>
 			</map>
 		</property>
-
 	</bean>
-
 	<bean id="com.liferay.portal.workflow.kaleo.parser.WorkflowValidator" class="com.liferay.portal.workflow.kaleo.parser.DefaultWorkflowValidator">
 		<property name="nodeValidatorRegistry" ref="com.liferay.portal.workflow.kaleo.parser.NodeValidatorRegistry" />
 	</bean>

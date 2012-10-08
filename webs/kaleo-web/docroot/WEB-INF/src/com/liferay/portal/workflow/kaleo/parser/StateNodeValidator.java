@@ -41,15 +41,17 @@ public class StateNodeValidator extends BaseNodeValidator<State> {
 	protected void validateInitialState(Definition definition, State state)
 		throws WorkflowException {
 
-		if (!Validator.equals(definition.getInitialState(), state)) {
+		State initialState = definition.getInitialState();
+
+		if (!Validator.equals(initialState, state)) {
 			throw new WorkflowException(
-				"Multiple initial states defined {" + state.getName() + ", " +
-					definition.getInitialState().getName() + "}");
+				"Multiple initial states " + state.getName() + " and " +
+					initialState.getName());
 		}
 
 		if (state.getIncomingTransitionsCount() > 0) {
 			throw new WorkflowException(
-				"Incoming transitions were found for initial state " +
+				"An incoming transition was found for initial state " +
 					state.getName());
 		}
 

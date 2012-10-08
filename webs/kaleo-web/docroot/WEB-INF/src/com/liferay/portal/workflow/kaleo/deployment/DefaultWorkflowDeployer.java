@@ -95,12 +95,9 @@ public class DefaultWorkflowDeployer implements WorkflowDeployer {
 		}
 
 		for (Node node : nodes) {
-			Collection<Transition> transitions =
-				node.getOutgoingTransitionsEntries();
-
 			KaleoNode kaleoNode = kaleoNodesMap.get(node.getName());
 
-			for (Transition transition : transitions) {
+			for (Transition transition : node.getOutgoingTransitionsList()) {
 				KaleoNode sourceKaleoNode = kaleoNodesMap.get(
 					transition.getSourceNode().getName());
 

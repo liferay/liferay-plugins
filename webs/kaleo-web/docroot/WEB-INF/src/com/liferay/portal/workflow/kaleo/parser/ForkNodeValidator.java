@@ -52,8 +52,7 @@ public class ForkNodeValidator extends BaseNodeValidator<Fork> {
 	}
 
 	protected List<Node> getUnvisitedTargetNodes(
-			List<Node> targetNodes, Collection<Transition> outgoingTransitions)
-		throws WorkflowException {
+		List<Node> targetNodes, Collection<Transition> outgoingTransitions) {
 
 		List<Node> unvisitedTargetNodes = new ArrayList<Node>();
 
@@ -77,7 +76,7 @@ public class ForkNodeValidator extends BaseNodeValidator<Fork> {
 
 		targetNodes.add(fork);
 
-		for (Transition transition : fork.getOutgoingTransitionsEntries()) {
+		for (Transition transition : fork.getOutgoingTransitionsList()) {
 			targetNodes.add(transition.getTargetNode());
 		}
 
@@ -88,7 +87,7 @@ public class ForkNodeValidator extends BaseNodeValidator<Fork> {
 				Join localJoin = traverse((Fork)targetNode);
 
 				List<Node> unvisitedTargetNodes = getUnvisitedTargetNodes(
-					targetNodes, localJoin.getOutgoingTransitionsEntries());
+					targetNodes, localJoin.getOutgoingTransitionsList());
 
 				if (unvisitedTargetNodes.size() > 1) {
 					joinIncomingTransitions += unvisitedTargetNodes.size() - 1;
@@ -102,13 +101,13 @@ public class ForkNodeValidator extends BaseNodeValidator<Fork> {
 				}
 				else if (!Validator.equals(join, targetNode)) {
 					throw new WorkflowException(
-						"Fork and Join are not in pair {" +
-							fork.getName() + ", " + targetNode.getName() + "}");
+						"Fork " + fork.getName() + " and join " +
+							targetNode.getName() + " are not paired");
 				}
 			}
 			else {
 				List<Node> unvisitedTargetNodes = getUnvisitedTargetNodes(
-					targetNodes, targetNode.getOutgoingTransitionsEntries());
+					targetNodes, targetNode.getOutgoingTransitionsList());
 
 				if (unvisitedTargetNodes.size() > 1) {
 					joinIncomingTransitions += unvisitedTargetNodes.size() - 1;
