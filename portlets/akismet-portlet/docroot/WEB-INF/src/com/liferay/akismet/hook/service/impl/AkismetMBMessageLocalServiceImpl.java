@@ -175,13 +175,12 @@ public class AkismetMBMessageLocalServiceImpl
 	public void deleteMessage(MBMessage message)
 		throws PortalException, SystemException {
 
-		// LPS-30367
+		// Temporary workaround for LPS-30367
 
-		int messageCount =
-			MBMessageUtil.countByT_S(
-				message.getThreadId(), WorkflowConstants.STATUS_APPROVED);
+		int count = MBMessageUtil.countByT_S(
+			message.getThreadId(), WorkflowConstants.STATUS_APPROVED);
 
-		if (messageCount == 0) {
+		if (count == 0) {
 			message.setStatus(WorkflowConstants.STATUS_APPROVED);
 
 			MBMessageUtil.update(message, false);
