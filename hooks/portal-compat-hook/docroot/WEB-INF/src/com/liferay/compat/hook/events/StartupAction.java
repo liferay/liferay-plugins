@@ -18,6 +18,7 @@ import com.liferay.compat.portlet.documentlibrary.util.DLUtil;
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.SimpleAction;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.model.ExpandoColumnConstants;
@@ -50,6 +51,14 @@ public class StartupAction extends SimpleAction {
 			expandoBridge.addAttribute(
 				DLUtil.MANUAL_CHECK_IN_REQUIRED, ExpandoColumnConstants.BOOLEAN,
 				false);
+
+			UnicodeProperties properties = expandoBridge.getAttributeProperties(
+				DLUtil.MANUAL_CHECK_IN_REQUIRED);
+
+			properties.setProperty("hidden", Boolean.toString(true));
+
+			expandoBridge.setAttributeProperties(
+				DLUtil.MANUAL_CHECK_IN_REQUIRED, properties, false);
 		}
 	}
 
