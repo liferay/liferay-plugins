@@ -32,6 +32,7 @@ import com.liferay.portlet.blogs.model.BlogsEntry;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.service.MBMessageLocalService;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceWrapper;
+import com.liferay.portlet.messageboards.service.persistence.MBMessageUtil;
 import com.liferay.portlet.wiki.model.WikiPage;
 
 import java.io.InputStream;
@@ -159,6 +160,34 @@ public class AkismetMBMessageLocalServiceImpl
 
 		return super.updateStatus(
 			userId, message.getMessageId(), status, serviceContext);
+	}
+
+	@Override
+	public void deleteMessage(long messageId)
+		throws PortalException, SystemException {
+
+		MBMessage message = MBMessageUtil.findByPrimaryKey(messageId);
+
+		deleteMessage(message);
+	}
+
+	@Override
+	public void deleteMessage(MBMessage message)
+		throws PortalException, SystemException {
+
+		// LPS-30367
+
+		int messageCount =
+			MBMessageUtil.countByT_S(
+				message.getThreadId(), WorkflowConstants.STATUS_APPROVED);
+
+		if (messageCount == 0) {
+			message.setStatus(WorkflowConstants.STATUS_APPROVED);
+
+			MBMessageUtil.update(message, false);
+		}
+
+		super.deleteMessage(message);
 	}
 
 	@Override
