@@ -17,6 +17,8 @@
 <%@ include file="/init.jsp" %>
 
 <%
+portletURL.setParameter("tabs1", "message-boards");
+
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
 MBMessage message = (MBMessage)row.getObject();
@@ -33,14 +35,14 @@ long messageBoardsPlid = PortalUtil.getPlidFromPortletId(message.getGroupId(), P
 	<liferay-ui:icon image="page" message="view-in-context" target="_blank" url="<%= viewURL %>" />
 
 	<portlet:actionURL name="markNotSpam" var="markAsHamURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
-		<portlet:param name="redirect" value="<%= currentURL %>" />
+		<portlet:param name="redirect" value="<%= portletURL.toString() %>" />
 		<portlet:param name="notSpamMBMessageIds" value="<%= String.valueOf(message.getMessageId()) %>" />
 	</portlet:actionURL>
 
 	<liferay-ui:icon image="../mail/compose" message="not-spam" url="<%= markAsHamURL %>" />
 
 	<portlet:actionURL name="deleteMBMessages" var="deleteURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
-		<portlet:param name="redirect" value="<%= currentURL %>" />
+		<portlet:param name="redirect" value="<%= portletURL.toString() %>" />
 		<portlet:param name="deleteMBMessageIds" value="<%= String.valueOf(message.getMessageId()) %>" />
 	</portlet:actionURL>
 

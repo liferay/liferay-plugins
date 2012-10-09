@@ -26,6 +26,8 @@ import com.liferay.portal.security.permission.PermissionThreadLocal;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portlet.messageboards.NoSuchMessageException;
+import com.liferay.portlet.messageboards.RequiredMessageException;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
@@ -105,6 +107,18 @@ public class ModerationPortlet extends MVCPortlet {
 
 			throw new PrincipalException();
 		}
+	}
+
+	@Override
+	protected boolean isSessionErrorException(Throwable cause) {
+		if (cause instanceof NoSuchMessageException ||
+			cause instanceof PrincipalException ||
+			cause instanceof RequiredMessageException) {
+
+			return true;
+		}
+
+		return false;
 	}
 
 }
