@@ -85,7 +85,7 @@
 										%>
 
 											<li class="user active" userId="<%= userId %>">
-												<img alt="" src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= portraitId %>&t=<%= WebServerServletTokenUtil.getToken(portraitId) %>">
+												<img alt="" src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= portraitId %>&t=<%= WebServerServletTokenUtil.getToken(portraitId) %>" />
 
 												<div class="name">
 													<%= HtmlUtil.escape(ContactConstants.getFullName(firstName, middleName, lastName)) %>
