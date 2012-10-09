@@ -276,31 +276,22 @@ a:hover {
 		padding: 0 7px;
 	}
 
-	.profile-image {
-		position: relative;
-	}
-
-	.edit-portrait {
-		display: none;
-	}
-
-	.profile-image:hover .edit-portrait {
-		background: #E9E8E8 url(/so-theme/images/common/edit.png) no-repeat 2px 2px;
-		border: 1px solid $gray;
+	.edit-logo-button {
 		bottom: 20px;
-		color: #34404F;
-		display: block;
-		font-size: 12px;
-		font-weight: bold;
-		line-height: 1em;
-		padding: 5px 5px 5px 21px;
+		display: none;
 		position: absolute;
 		right: 10px;
 
-		&:hover {
-			background-color: #EEE;
-			border-color: #AAA;
-			color: #5A5A5A;
+		.aui-icon-edit {
+			background-image: url(../images/common/edit.png);
+		}
+	}
+
+	.profile-image {
+		position: relative;
+
+		&:hover .edit-logo-button {
+			display: block;
 		}
 	}
 
@@ -545,7 +536,7 @@ button, input[type=button], input[type=submit], input[type=reset], #toggleFluid,
 	text-shadow: none;
 }
 
-input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .contacts-portlet .social-relations a, .edit-controls a:hover, .invite-members:hover, .lfr-actions.lfr-extended, .portlet-blogs .lfr-meta-actions a, .thread-controls a:hover, .tasks-dialog .control a.taglib-icon, .top-links-navigation a:hover {
+input[type=button], input[type=reset], input[type=submit], .aui-button button, .aui-state-hover, .contacts-portlet .social-relations a, .edit-controls a:hover, .invite-members:hover, .lfr-actions.lfr-extended, .portlet-blogs .lfr-meta-actions a, .thread-controls a:hover, .tasks-dialog .control a.taglib-icon, .top-links-navigation a:hover {
 	&:hover {
 		background: #EEE;
 		border-color: #AAA;
@@ -2269,7 +2260,7 @@ input[type=password], input[type=text], textarea, .aui-field-select select, .aui
 	@include box-shadow(0 1px 3px #C9C9C9 inset);
 }
 
-button, input[type=button], input[type=reset], input[type=submit], #toggleFluid, .aui-button-disabled input[type], .aui-button-disabled input[type]:hover, .aui-button-disabled input[type]:focus, .aui-button-disabled button, .aui-button-disabled button:focus, .aui-button-disabled button:hover, .aui-dialog-hd, .aui-form-validator-message, .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .contacts-portlet .social-relations a:hover, .edit-controls a, .invite-members, .lfr-actions.lfr-extended, .lfr-header-row .aui-button-input, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .microblogs-portlet .microblogs-countdown, .portlet-blogs .lfr-meta-actions, .portlet-blogs .lfr-meta-actions a, .portlet-document-library .select-documents, .portlet-document-library-display .select-documents, .portlet-message-boards .edit-controls, .profile-image:hover .edit-portrait, .results-header th, .tasks-dialog .control a.taglib-icon, .thread-controls a:hover, .top-links-navigation a:hover, .portlet-wiki .top-links-nodes .top-link-node a.node-current {
+button, input[type=button], input[type=reset], input[type=submit], #toggleFluid, .aui-button-disabled input[type], .aui-button-disabled input[type=button]:hover, .aui-button-disabled input[type]:focus, .aui-button-disabled button, .aui-button-disabled button:focus, .aui-button-disabled button:hover, .aui-dialog-hd, .aui-form-validator-message, .aui-panel-hd, .aui-state-default, .aui-tabview-list, .aui-tab, .aui-tab-content, .contacts-portlet .social-relations a:hover, .edit-controls a, .invite-members, .lfr-actions.lfr-extended, .lfr-header-row .aui-button-input, .lfr-header-row .aui-buttonitem-content, .lfr-header-row .lfr-actions.lfr-extended, .lfr-header-row .lfr-search-combobox, .microblogs-portlet .microblogs-countdown, .portlet-blogs .lfr-meta-actions, .portlet-blogs .lfr-meta-actions a, .portlet-document-library .select-documents, .portlet-document-library-display .select-documents, .portlet-message-boards .edit-controls, .profile-image:hover .edit-portrait, .results-header th, .tasks-dialog .control a.taglib-icon, .thread-controls a:hover, .top-links-navigation a:hover, .portlet-wiki .top-links-nodes .top-link-node a.node-current {
 	@include border-radius(3px);
 }
 
@@ -2285,7 +2276,7 @@ button, input[type=button], input[type=reset], input[type=submit], #toggleFluid,
 	@include box-shadow(0 3px 2px #DDD);
 }
 
-input[type=button], input[type=reset], input[type=submit], .aui-state-hover, .contacts-portlet .social-relations a:hover, .edit-controls a:hover, .invite-members:hover, .lfr-actions.lfr-extended:hover, .portlet-blogs .lfr-meta-actions a, .portlet-wiki .top-links-nodes .top-link-node a.node-current, .profile-image:hover .edit-portrait, .signed-in-as .user-name, .tasks-dialog .control a.taglib-icon:hover, .thread-controls a:hover, .top-links-navigation a:hover {
+input[type=button], input[type=reset], input[type=submit], .aui-button button, .aui-state-hover, .contacts-portlet .social-relations a:hover, .edit-controls a:hover, .invite-members:hover, .lfr-actions.lfr-extended:hover, .portlet-blogs .lfr-meta-actions a, .portlet-wiki .top-links-nodes .top-link-node a.node-current, .profile-image:hover .edit-portrait, .signed-in-as .user-name, .tasks-dialog .control a.taglib-icon:hover, .thread-controls a:hover, .top-links-navigation a:hover {
 	&:active {
 		@include box-shadow(0 1px 1px #C9C9C9 inset);
 	}

@@ -44,6 +44,23 @@
 	#set ($current_user_profile_url = $theme_display.getURLPortal() + $theme_display.getPathFriendlyURLPublic() + "/" + $current_user.getScreenName())
 	#set ($current_user_profile_portrait_url = $current_user.getPortraitURL($themeDisplay))
 
+	#set ($is_current_users_public_layout = (($current_user.getUserId() == $user.getUserId()) && $layout.isPublicLayout()))
+
+	#if ($is_current_users_public_layout)
+		#set ($groupService = $serviceLocator.findService('com.liferay.portal.service.GroupLocalService'))
+		#set ($layoutService = $serviceLocator.findService('com.liferay.portal.service.LayoutLocalService'))
+		#set ($controlPanelGroup = $groupService.getGroup($company_id, "Control Panel"))
+		#set ($controlPanelPlid = $layoutService.getDefaultPlid($controlPanelGroup.getGroupId(), true))
+
+		#set ($current_user_edit_profile_portrait_url = $portletURLFactory.create($request, "2", $controlPanelPlid, "RENDER_PHASE"))
+
+		$current_user_edit_profile_portrait_url.setParameter("struts_action", "/my_account/edit_user_portrait")
+		$current_user_edit_profile_portrait_url.setParameter("p_u_i_d", "$user_id")
+		$current_user_edit_profile_portrait_url.setParameter("redirect", "$current_user_profile_url")
+		$current_user_edit_profile_portrait_url.setPortletMode("view")
+		$current_user_edit_profile_portrait_url.setWindowState("pop_up")
+	#end
+
 	#if ($current_user.getPortraitId() == 0)
 		#set ($current_user_profile_portrait_url = $images_folder + "/custom/so_user_profile_male_default.png")
 	#end
