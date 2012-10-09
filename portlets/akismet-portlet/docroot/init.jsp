@@ -36,9 +36,12 @@ page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.StringUtil" %><%@
 page import="com.liferay.portal.kernel.util.WebKeys" %><%@
 page import="com.liferay.portal.kernel.workflow.WorkflowConstants" %><%@
+page import="com.liferay.portal.security.auth.PrincipalException" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
 page import="com.liferay.portal.util.PortletKeys" %><%@
 page import="com.liferay.portlet.blogs.model.BlogsEntry" %><%@
+page import="com.liferay.portlet.messageboards.NoSuchMessageException" %><%@
+page import="com.liferay.portlet.messageboards.RequiredMessageException" %><%@
 page import="com.liferay.portlet.messageboards.model.MBCategoryConstants" %><%@
 page import="com.liferay.portlet.messageboards.model.MBDiscussion" %><%@
 page import="com.liferay.portlet.messageboards.model.MBMessage" %><%@
@@ -55,7 +58,7 @@ page import="javax.portlet.WindowState" %>
 <liferay-theme:defineObjects />
 
 <%
-String currentURL = PortalUtil.getCurrentURL(request);
+PortletURL portletURL = renderResponse.createRenderURL();
 
 DateFormat longDateFormatDate = DateFormat.getDateInstance(DateFormat.LONG, locale);
 
