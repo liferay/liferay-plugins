@@ -55,6 +55,12 @@ public class FooServiceWrapper implements FooService,
 		return _fooService.invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public com.liferay.portal.model.User getUser(long userId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _fooService.getUser(userId);
+	}
+
 	/**
 	 * @deprecated Renamed to {@link #getWrappedService}
 	 */

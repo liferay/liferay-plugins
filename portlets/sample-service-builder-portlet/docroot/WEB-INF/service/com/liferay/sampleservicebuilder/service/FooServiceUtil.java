@@ -62,6 +62,12 @@ public class FooServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static com.liferay.portal.model.User getUser(long userId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getUser(userId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}
