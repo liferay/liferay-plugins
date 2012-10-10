@@ -151,11 +151,13 @@ $theme.include($body_top_include)
 		</div>
 	</div>
 
-	<footer id="footer" role="contentinfo">
-		<p class="powered-by">
-			#language ("powered-by") <a href="http://www.liferay.com" rel="external">Liferay</a>
-		</p>
-	</footer>
+	#if (!releaseInfo.getReleaseInfo().contains("EE"))
+		<footer id="footer" role="contentinfo">
+			<p class="powered-by">
+				#language ("powered-by") <a href="http://www.liferay.com" rel="external">Liferay</a>
+			</p>
+		</footer>
+	#end
 </div>
 
 $theme.include($body_bottom_include)
