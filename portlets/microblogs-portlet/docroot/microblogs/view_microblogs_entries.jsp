@@ -89,13 +89,11 @@ for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 			<div class="content">
 
 				<%
-				String content = microblogsEntry.getContent();
+				String content = HtmlUtil.escape(microblogsEntry.getContent());
 
 				Pattern pattern = Pattern.compile("\\#\\S*");
 
-				Matcher matcher = pattern.matcher(content);
-
-				content = HtmlUtil.escape(content);
+				Matcher matcher = pattern.matcher(microblogsEntry.getContent());
 
 				while (matcher.find()) {
 					String result = matcher.group();
