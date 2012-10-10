@@ -111,7 +111,7 @@ $theme.include($body_top_include)
 									<img class="avatar" id="_SO_THEME_avatar" src="$current_user_profile_portrait_url" alt="$current_user_name">
 								</a>
 
-								#if ($is_current_users_public_layout)
+								#if ($show_edit_profile_button)
 									<span class="aui-button edit-logo-button">
 										<button class="aui-button-content" onClick="editPortrait._openEditLogoWindow();">
 											<span class="aui-buttonitem-icon aui-icon aui-icon-edit"></span>
@@ -166,7 +166,7 @@ $theme.include($bottom_include)
 
 </html>
 
-#if ($is_current_users_public_layout)
+#if ($show_edit_profile_button)
 	<script type="text/javascript">
 		AUI().use(
 			'liferay-logo-selector',
