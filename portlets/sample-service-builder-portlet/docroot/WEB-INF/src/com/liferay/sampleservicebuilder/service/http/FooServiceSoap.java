@@ -14,6 +14,13 @@
 
 package com.liferay.sampleservicebuilder.service.http;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
+import com.liferay.sampleservicebuilder.service.FooServiceUtil;
+
+import java.rmi.RemoteException;
+
 /**
  * <p>
  * This class provides a SOAP utility for the
@@ -57,4 +64,19 @@ package com.liferay.sampleservicebuilder.service.http;
  * @generated
  */
 public class FooServiceSoap {
+	public static com.liferay.portal.model.User getUser(long userId)
+		throws RemoteException {
+		try {
+			com.liferay.portal.model.User returnValue = FooServiceUtil.getUser(userId);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(FooServiceSoap.class);
 }
