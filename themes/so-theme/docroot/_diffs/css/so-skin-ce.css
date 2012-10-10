@@ -228,8 +228,14 @@ a:hover {
 
 /* Portlet Controls */
 
-.controls-hidden .delete-tab {
-	display: none;
+.controls-hidden {
+	.delete-tab {
+		display: none;
+	}
+
+	.portlet-blogs .lfr-meta-actions {
+		display: block;
+	}
 }
 
 .controls-visible .portlet .portlet-topper .portlet-topper-toolbar {
