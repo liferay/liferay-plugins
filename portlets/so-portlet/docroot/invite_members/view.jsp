@@ -61,7 +61,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 							modal: true,
 							resizable: false,
 							title: title,
-							width: 700,
+							width: 700
 						}
 					).plug(
 						A.Plugin.IO,
