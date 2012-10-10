@@ -1832,6 +1832,13 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	.microblogs-countdown {
 		font-size: .9em;
 	}
+
+	.microblogs-button-input-disabled .microblogs-button-input, .microblogs-button-input-disabled:hover .microblogs-button-input {
+		background: #C10000;
+		border-color: #8A0808;
+		color: #FFF;
+		opacity: 1;
+	}
 }
 
 .user-group .microblogs-status-container {
@@ -2284,6 +2291,10 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 
 .portlet-calendar .day-grid .event-box {
 	@include box-shadow(0 3px 10px -6px rgba(0, 0, 0, .5));
+}
+
+.microblogs-portlet .microblogs-button-input-disabled .microblogs-button-input, .microblogs-portlet .microblogs-button-input-disabled:hover .microblogs-button-input, .microblogs-portlet .microblogs-button-input-disabled:active .microblogs-button-input {
+	@include box-shadow(0 1px 0 #DE7777 inset, 0 -1px 0 #B00000 inset);
 }
 
 .user-tags li a {
