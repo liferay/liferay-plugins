@@ -18,6 +18,7 @@
 
 	#if ($liferay_toggle_controls == "")
 		$sessionClicks.put($request, "liferay_toggle_controls", "hidden")
+
 		#set ($liferay_toggle_controls = "hidden")
 		#set ($css_class = $css_class.replaceAll("controls-visible", "controls-hidden"))
 	#end
@@ -44,15 +45,16 @@
 	#set ($current_user_profile_url = $theme_display.getURLPortal() + $theme_display.getPathFriendlyURLPublic() + "/" + $current_user.getScreenName())
 	#set ($current_user_profile_portrait_url = $current_user.getPortraitURL($themeDisplay))
 
-	#set ($is_current_users_public_layout = (($current_user.getUserId() == $user.getUserId()) && $layout.isPublicLayout()))
+	#if (($current_user.getUserId() == $user.getUserId()) && $layout.isPublicLayout())
+		#set ($group_local_service = $serviceLocator.findService('com.liferay.portal.service.GroupLocalService'))
 
-	#if ($is_current_users_public_layout)
-		#set ($groupService = $serviceLocator.findService('com.liferay.portal.service.GroupLocalService'))
-		#set ($layoutService = $serviceLocator.findService('com.liferay.portal.service.LayoutLocalService'))
-		#set ($controlPanelGroup = $groupService.getGroup($company_id, "Control Panel"))
-		#set ($controlPanelPlid = $layoutService.getDefaultPlid($controlPanelGroup.getGroupId(), true))
+		#set ($control_panel_group = $group_local_service.getGroup($company_id, "Control Panel"))
 
-		#set ($current_user_edit_profile_portrait_url = $portletURLFactory.create($request, "2", $controlPanelPlid, "RENDER_PHASE"))
+		#set ($layout_local_service = $serviceLocator.findService('com.liferay.portal.service.LayoutLocalService'))
+
+		#set ($control_panel_plid = $layout_local_service.getDefaultPlid($control_panel_group.getGroupId(), true))
+
+		#set ($current_user_edit_profile_portrait_url = $portletURLFactory.create($request, "2", $control_panel_plid, "RENDER_PHASE"))
 
 		$current_user_edit_profile_portrait_url.setParameter("struts_action", "/my_account/edit_user_portrait")
 		$current_user_edit_profile_portrait_url.setParameter("p_u_i_d", "$user_id")
@@ -79,8 +81,8 @@
 	#end
 #end
 
-#set ($layoutFluid = $getterUtil.getBoolean($sessionClicks.get($request, "so-layout-fluid", "false")))
+#set ($layout_fluid = $getterUtil.getBoolean($sessionClicks.get($request, "so-layout-fluid", "false")))
 
-#if ($layoutFluid == true)
+#if ($layout_fluid == true)
 	#set ($css_class = "${css_class} so-layout-fluid")
 #end
