@@ -29,56 +29,56 @@ $theme.include($body_top_include)
 				</a>
 			</div>
 
-		#if (!$page_group.isUser())
-			<div class="community-title">
-				<a href="$community_default_url" title='#language ("go-to") $community_name'>
-					<span>$community_name</span>
-				</a>
+			#if (!$page_group.isUser())
+				<div class="community-title">
+					<a href="$community_default_url" title='#language ("go-to") $community_name'>
+						<span>$community_name</span>
+					</a>
 
-				#if ($is_signed_in)
-					<div class="member-button" id="memberButton">
-						#set ($member = $user_local_service.hasGroupUser($page_group.getGroupId(), $user_id))
-						#set ($membership_request = $membership_request_local_service.hasMembershipRequest($user_id, $page_group.getGroupId(), 0))
+					#if ($is_signed_in)
+						<div class="member-button" id="memberButton">
+							#set ($member = $user_local_service.hasGroupUser($page_group.getGroupId(), $user_id))
+							#set ($membership_request = $membership_request_local_service.hasMembershipRequest($user_id, $page_group.getGroupId(), 0))
 
-						#if (!$member)
-							#if ($page_group.getType() == 1)
-								#set ($join_url = $portletURLFactory.create($request, "174", $page.getPlid(), "ACTION_PHASE"))
+							#if (!$member)
+								#if ($page_group.getType() == 1)
+									#set ($join_url = $portletURLFactory.create($request, "174", $page.getPlid(), "ACTION_PHASE"))
 
-								$join_url.setWindowState("normal")
-								$join_url.setParameter("struts_action", "/sites_admin/edit_site_assignments")
-								$join_url.setParameter("cmd", "group_users")
-								$join_url.setParameter("redirect", $community_default_url)
-								$join_url.setParameter("groupId", "$page_group.getGroupId()")
-								$join_url.setParameter("addUserIds", "$user_id")
+									$join_url.setWindowState("normal")
+									$join_url.setParameter("struts_action", "/sites_admin/edit_site_assignments")
+									$join_url.setParameter("cmd", "group_users")
+									$join_url.setParameter("redirect", $community_default_url)
+									$join_url.setParameter("groupId", "$page_group.getGroupId()")
+									$join_url.setParameter("addUserIds", "$user_id")
 
-								<span class="action request">
-									<a href="$join_url">#language ("join-site")</a>
-								</span>
-							#elseif (($page_group.getType() == 2) && !$membership_request)
-								#set ($membership_request_url = $portletURLFactory.create($request, "174", $page.getPlid(), "ACTION_PHASE"))
+									<span class="action request">
+										<a href="$join_url">#language ("join-site")</a>
+									</span>
+								#elseif (($page_group.getType() == 2) && !$membership_request)
+									#set ($membership_request_url = $portletURLFactory.create($request, "174", $page.getPlid(), "ACTION_PHASE"))
 
-								$membership_request_url.setWindowState("normal")
-								$membership_request_url.setParameter("struts_action", "/sites_admin/post_membership_request")
-								$membership_request_url.setParameter("redirect", $community_default_url)
-								$membership_request_url.setParameter("groupId", "$page_group.getGroupId()")
+									$membership_request_url.setWindowState("normal")
+									$membership_request_url.setParameter("struts_action", "/sites_admin/post_membership_request")
+									$membership_request_url.setParameter("redirect", $community_default_url)
+									$membership_request_url.setParameter("groupId", "$page_group.getGroupId()")
 
-								#set ($arguments = [$user_name, $community_name])
+									#set ($arguments = [$user_name, $community_name])
 
-								$membership_request_url.setParameter("comments", $languageUtil.format($locale, "x-wishes-to-join-x", $arguments.toArray()))
+									$membership_request_url.setParameter("comments", $languageUtil.format($locale, "x-wishes-to-join-x", $arguments.toArray()))
 
-								<span class="action request">
-									<a href="$membership_request_url">#language ("request-membership")</a>
-								</span>
-							#elseif ($membership_request)
-								<span class="action requested">
-									<a>#language ("membership-requested")</a>
-								</span>
+									<span class="action request">
+										<a href="$membership_request_url">#language ("request-membership")</a>
+									</span>
+								#elseif ($membership_request)
+									<span class="action requested">
+										<a>#language ("membership-requested")</a>
+									</span>
+								#end
 							#end
-						#end
-					</div>
-				#end
-			</div>
-		#end
+						</div>
+					#end
+				</div>
+			#end
 
 			<h3 class="page-title">
 				<span>$the_title</span>
@@ -178,9 +178,9 @@ $theme.include($bottom_include)
 						contentBox: '#_SO_THEME_taglibLogoSelectorContent',
 						defaultLogoURL: '$current_user_profile_portrait_url',
 						editLogoURL: '$current_user_edit_profile_portrait_url',
-						randomNamespace: '_SO_THEME_',
 						logoDisplaySelector: '#_SO_THEME_avatar',
-						portletNamespace: ''
+						portletNamespace: '',
+						randomNamespace: '_SO_THEME_'
 					}
 				);
 
