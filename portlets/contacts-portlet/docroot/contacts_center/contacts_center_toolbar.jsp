@@ -117,7 +117,7 @@ if (user2 != null) {
 			icon: 'unfollow',
 			id: '<portlet:namespace />unfollowButton',
 			label: '<%= UnicodeLanguageUtil.get(pageContext, "unfollow") %>',
-			visible: <%= showUnFollowButton %>,
+			visible: <%= showUnFollowButton %>
 		}
 	);
 

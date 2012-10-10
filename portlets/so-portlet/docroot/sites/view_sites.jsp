@@ -380,9 +380,6 @@ else {
 		var start = (targetPage - 1) * <%= maxResultSize %>;
 		var end = start + <%= maxResultSize %>;
 
-		console.log(start);
-		console.log(end);
-
 		return function(query) {
 			return {
 				directory: true,
