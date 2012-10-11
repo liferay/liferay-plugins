@@ -1815,6 +1815,68 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 			margin: 0;
 		}
 	}
+
+	.displayStyle-question {
+		.stats a {
+			display: block;
+			padding: 8px 0;
+
+			.question-details {
+				display: block;
+				text-align: center;
+
+				.status, .votes {
+					padding: 5px;
+					margin: 0 3px 0 0;
+					display: inline-block;
+					font-weight: bold;
+				}
+			}
+		}
+
+		.count {
+			display: block;
+			font-size: 190%;
+			padding-top: .3em;
+			min-width: 50px;
+		}
+
+		.summary {
+			font-size: 1.25em;
+			font-weight: normal;
+			margin-top: 0.5em;
+		}
+
+		.question-subject {
+			font-weight: normal;
+		}
+
+		.question {
+			vertical-align: middle;
+			width: auto;
+		}
+
+		.user-info {
+			margin: -5px -10px;
+
+			div {
+				padding: 10px;
+			}
+
+			.portrait {
+				padding-bottom: 0;
+			}
+
+			.username {
+				font-weight: bold;
+				padding: 0 10px;
+			}
+
+			.time {
+				padding-top: 0;
+			}
+		}
+	}
 }
 
 .portlet-message-boards, .portlet-wiki {
@@ -2324,7 +2386,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	@include box-shadow(0 1px 0 #DE7777 inset, 0 -1px 0 #B00000 inset);
 }
 
-.user-tags li a {
+.user-tags li a, .portlet-message-boards .unanswered, .portlet-message-boards .answered {
 	@include border-radius(4px);
 }
 
