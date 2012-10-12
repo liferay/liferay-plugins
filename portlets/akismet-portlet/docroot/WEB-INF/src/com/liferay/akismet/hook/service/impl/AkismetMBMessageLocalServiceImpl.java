@@ -290,10 +290,10 @@ public class AkismetMBMessageLocalServiceImpl
 			user.getCompanyId(), PortletPropsKeys.AKISMET_CHECK_THRESHOLD);
 
 		if (checkThreshold > 0) {
-			int userMessagesCount = super.getGroupMessagesCount(
+			int count = super.getGroupMessagesCount(
 				groupId, userId, WorkflowConstants.STATUS_APPROVED);
 
-			if (userMessagesCount > checkThreshold) {
+			if (count > checkThreshold) {
 				return false;
 			}
 		}
