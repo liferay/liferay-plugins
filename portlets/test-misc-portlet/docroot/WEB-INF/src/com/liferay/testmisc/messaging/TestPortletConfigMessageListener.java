@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author Brian Wing Shun Chan
  */
-public class TestMessageListenerForXMLConfigJob extends BaseMessageListener {
+public class TestPortletConfigMessageListener extends BaseMessageListener {
 
 	public static boolean isReceived() {
 		try {

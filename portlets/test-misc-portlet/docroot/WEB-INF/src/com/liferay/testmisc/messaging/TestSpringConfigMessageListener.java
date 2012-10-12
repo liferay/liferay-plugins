@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author Tina Tian
  */
-public class TestMessageListenerForSpringConfigJob extends BaseMessageListener {
+public class TestSpringConfigMessageListener extends BaseMessageListener {
 
 	public static boolean isReceived() {
 		try {
