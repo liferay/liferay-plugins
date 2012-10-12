@@ -12,13 +12,13 @@
 
 <body class="${css_class}">
 
+<a href="#main-content" id="skip-to-content"><@liferay.language key="skip-to-content" /></a>
+
 <#if is_signed_in>
 	<@liferay.dockbar />
 </#if>
 
 <div id="wrapper">
-	<a href="#main-content" id="skip-to-content"><@liferay.language key="skip-to-content" /></a>
-
 	<div id="banner" role="banner">
 		<div id="heading">
 			<h1 class="company-title">
