@@ -25,8 +25,8 @@ page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.portal.kernel.util.WebKeys" %><%@
 page import="com.liferay.portal.model.Portlet" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
-page import="com.liferay.testmisc.messaging.TestSchedulerMessageListener" %><%@
-page import="com.liferay.testmisc.scheduler.TestSchedulerUtil" %>
+page import="com.liferay.testmisc.messaging.TestMessageListenerForSpringConfigJob" %><%@
+page import="com.liferay.testmisc.messaging.TestMessageListenerForXMLConfigJob" %>
 
 <%@ page import="java.util.Locale" %>
 
