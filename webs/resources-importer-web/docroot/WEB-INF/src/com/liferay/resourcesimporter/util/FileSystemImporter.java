@@ -416,12 +416,12 @@ public class FileSystemImporter extends BaseImporter {
 				nameMap, null, xsd, serviceContext);
 
 		addJournalTemplates(
-			journalStructure.getStructureId(), _journalTemplatesDir + name);
+			journalStructure.getStructureId(), _JOURNAL_TEMPLATES_DIR_NAME + name);
 
 		if (Validator.isNull(parentStructureId)) {
 			addJournalStructures(
 				journalStructure.getStructureId(),
-				_journalStructuresDir + name);
+				_JOURNAL_STRUCTURES_DIR_NAME + name);
 		}
 	}
 
@@ -443,7 +443,7 @@ public class FileSystemImporter extends BaseImporter {
 
 		addJournalArticles(
 			journalStructureId, journalTemplate.getTemplateId(),
-			_journalArticlesDir + name);
+			_JOURNAL_ARTICLES_DIR_NAME + name);
 	}
 
 	protected void doImportResources() throws Exception {
@@ -590,14 +590,14 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected void setupAssets() throws Exception {
-		addDLFileEntries(_dlDocumentsDir);
+		addDLFileEntries(_DL_DOCUMENTS_DIR_NAME);
 
 		addJournalArticles(
-			StringPool.BLANK, StringPool.BLANK, _journalArticlesDir);
+			StringPool.BLANK, StringPool.BLANK, _JOURNAL_ARTICLES_DIR_NAME);
 
-		addJournalStructures(StringPool.BLANK, _journalStructuresDir);
+		addJournalStructures(StringPool.BLANK, _JOURNAL_STRUCTURES_DIR_NAME);
 
-		addJournalTemplates(StringPool.BLANK, _journalTemplatesDir);
+		addJournalTemplates(StringPool.BLANK, _JOURNAL_TEMPLATES_DIR_NAME);
 	}
 
 	protected void setupSettings(InputStream inputStream) throws Exception {
@@ -718,11 +718,17 @@ public class FileSystemImporter extends BaseImporter {
 
 	protected ServiceContext serviceContext;
 
-	private static final String _dlDocumentsDir =
+	private static final String _DL_DOCUMENTS_DIR_NAME =
 		"/document_library/documents/";
-	private static final String _journalArticlesDir = "/journal/articles/";
-	private static final String _journalStructuresDir = "/journal/structures/";
-	private static final String _journalTemplatesDir = "/journal/templates/";
+
+	private static final String _JOURNAL_ARTICLES_DIR_NAME =
+		"/journal/articles/";
+	
+	private static final String _JOURNAL_STRUCTURES_DIR_NAME =
+		"/journal/structures/";
+	
+	private static final String _JOURNAL_TEMPLATES_DIR_NAME =
+		"/journal/templates/";
 
 	private String _defaultLayoutTemplateId;
 	private Map<String, FileEntry> _fileEntries =

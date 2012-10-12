@@ -50,9 +50,9 @@ public class ResourceImporter extends FileSystemImporter {
 
 			String name = getName(resourcePath);
 
-			URL resourceURL = servletContext.getResource(resourcePath);
+			URL url = servletContext.getResource(resourcePath);
 
-			URLConnection urlConnection = resourceURL.openConnection();
+			URLConnection urlConnection = url.openConnection();
 
 			doAddDLFileEntries(
 				name, urlConnection.getInputStream(),
