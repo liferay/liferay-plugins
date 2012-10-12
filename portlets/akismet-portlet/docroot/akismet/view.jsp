@@ -30,6 +30,8 @@
 
 		<aui:input helpMessage="reportable-time-help" label="reportable-time" name="reportableTime" type="text" value="<%= PrefsPortletPropsUtil.getString(company.getCompanyId(), PortletPropsKeys.AKISMET_REPORTABLE_TIME) %>" />
 
+		<aui:input helpMessage="check-threshold-help" label="check-threshold" name="checkThreshold" type="text" value="<%= PrefsPortletPropsUtil.getInteger(company.getCompanyId(), PortletPropsKeys.AKISMET_CHECK_THRESHOLD) %>" />
+
 		<aui:button-row>
 			<aui:button type="submit" />
 		</aui:button-row>

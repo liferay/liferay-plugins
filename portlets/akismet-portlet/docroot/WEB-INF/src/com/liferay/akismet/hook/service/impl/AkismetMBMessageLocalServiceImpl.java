@@ -18,6 +18,8 @@ import com.liferay.akismet.model.AkismetData;
 import com.liferay.akismet.service.AkismetDataLocalServiceUtil;
 import com.liferay.akismet.util.AkismetConstants;
 import com.liferay.akismet.util.AkismetUtil;
+import com.liferay.akismet.util.PortletPropsKeys;
+import com.liferay.akismet.util.PrefsPortletPropsUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
@@ -96,7 +98,7 @@ public class AkismetMBMessageLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		boolean enabled = isMessageBoardsEnabled(userId);
+		boolean enabled = isMessageBoardsEnabled(userId, groupId);
 
 		if (enabled) {
 			serviceContext.setWorkflowAction(
@@ -133,7 +135,7 @@ public class AkismetMBMessageLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		boolean enabled = isMessageBoardsEnabled(userId);
+		boolean enabled = isMessageBoardsEnabled(userId, groupId);
 
 		if (enabled) {
 			serviceContext.setWorkflowAction(
@@ -202,14 +204,16 @@ public class AkismetMBMessageLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		boolean enabled = isMessageBoardsEnabled(userId);
+		MBMessage message = super.getMBMessage(messageId);
+
+		boolean enabled = isMessageBoardsEnabled(userId, message.getGroupId());
 
 		if (enabled) {
 			serviceContext.setWorkflowAction(
 				WorkflowConstants.ACTION_SAVE_DRAFT);
 		}
 
-		MBMessage message = super.updateMessage(
+		message = super.updateMessage(
 			userId, messageId, subject, body, inputStreamOVPs, existingFiles,
 			priority, allowPingbacks, serviceContext);
 
@@ -273,16 +277,28 @@ public class AkismetMBMessageLocalServiceImpl
 		}
 	}
 
-	protected boolean isMessageBoardsEnabled(long userId)
+	protected boolean isMessageBoardsEnabled(long userId, long groupId)
 		throws PortalException, SystemException {
 
 		User user = UserLocalServiceUtil.getUser(userId);
 
-		if (AkismetUtil.isMessageBoardsEnabled(user.getCompanyId())) {
-			return true;
+		if (!AkismetUtil.isMessageBoardsEnabled(user.getCompanyId())) {
+			return false;
 		}
 
-		return false;
+		int checkThreshold = PrefsPortletPropsUtil.getInteger(
+			user.getCompanyId(), PortletPropsKeys.AKISMET_CHECK_THRESHOLD);
+
+		if (checkThreshold > 0) {
+			int userMessagesCount = super.getGroupMessagesCount(
+				groupId, userId, WorkflowConstants.STATUS_APPROVED);
+
+			if (userMessagesCount > checkThreshold) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	protected boolean isSpam(

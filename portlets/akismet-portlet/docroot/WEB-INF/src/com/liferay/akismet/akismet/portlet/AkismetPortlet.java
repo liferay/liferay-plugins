@@ -43,6 +43,8 @@ public class AkismetPortlet extends MVCPortlet {
 			WebKeys.THEME_DISPLAY);
 
 		String apiKey = ParamUtil.getString(actionRequest, "apiKey");
+		int checkThreshold = ParamUtil.getInteger(
+			actionRequest, "checkThreshold");
 		boolean discussionsEnabled = ParamUtil.getBoolean(
 			actionRequest, "discussionsEnabled");
 		boolean messageBoardsEnabled = ParamUtil.getBoolean(
@@ -55,6 +57,9 @@ public class AkismetPortlet extends MVCPortlet {
 				themeDisplay.getCompanyId());
 
 		preferences.setValue(PortletPropsKeys.AKISMET_API_KEY, apiKey);
+		preferences.setValue(
+			PortletPropsKeys.AKISMET_CHECK_THRESHOLD,
+			String.valueOf(checkThreshold));
 		preferences.setValue(
 			PortletPropsKeys.AKISMET_DISCUSSIONS_CHECK_ENABLED,
 			String.valueOf(discussionsEnabled));

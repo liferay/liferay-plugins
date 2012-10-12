@@ -21,6 +21,9 @@ public interface PortletPropsKeys {
 
 	public static final String AKISMET_API_KEY = "akismet.api.key";
 
+	public static final String AKISMET_CHECK_THRESHOLD =
+		"akismet.check.threshold";
+
 	public static final String AKISMET_DISCUSSIONS_CHECK_ENABLED =
 		"akismet.discussions.check.enabled";
 
