@@ -4,8 +4,26 @@
 	default-destroy-method="destroy"
 	default-init-method="afterPropertiesSet"
 	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
 >
-	<bean class="com.liferay.testmisc.scheduler.TestSchedulerBean" />
+	<bean name="test.scheduler.entry" class="com.liferay.portal.kernel.scheduler.SchedulerEntryImpl">
+		<property name="description" value="" />
+		<property name="eventListenerClass" value="com.liferay.testmisc.messaging.TestMessageListenerForSpringConfigJob" />
+		<property name="timeUnit">
+			<util:constant static-field="com.liferay.portal.kernel.scheduler.TimeUnit.HOUR" />
+		</property>
+		<property name="triggerType">
+			<util:constant static-field="com.liferay.portal.kernel.scheduler.TriggerType.SIMPLE" />
+		</property>
+		<property name="triggerValue" value="1" />
+	</bean>
+	<bean name="com.liferay.portal.kernel.scheduler.config.SchedulingConfigurator" class="com.liferay.portal.kernel.scheduler.config.PluginSchedulingConfigurator" >
+		<property name="schedulerEntries">
+			<list value-type="com.liferay.portal.kernel.scheduler.SchedulerEntry">
+				<ref bean="test.scheduler.entry" />
+			</list>
+		</property>
+	</bean>
 </beans>

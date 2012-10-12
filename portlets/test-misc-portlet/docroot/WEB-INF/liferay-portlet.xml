@@ -5,7 +5,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.testmisc.messaging.TestSchedulerMessageListener</scheduler-event-listener-class>
+			<scheduler-event-listener-class>com.liferay.testmisc.messaging.TestMessageListenerForXMLConfigJob</scheduler-event-listener-class>
 			<trigger>
 				<simple>
 					<simple-trigger-value>1</simple-trigger-value>
