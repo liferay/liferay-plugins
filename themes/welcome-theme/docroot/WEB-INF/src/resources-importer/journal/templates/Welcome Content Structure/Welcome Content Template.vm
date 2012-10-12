@@ -10,7 +10,7 @@
 			<ul id="contentNav">
 				#foreach($link in $links.siblings)
 					#if($velocityCount == 1)
-						<li class="selected"><a href="#pageId$velocityCount">$link.data</a></li>
+						<li aria-selected="true" class="selected"><a href="#pageId$velocityCount">$link.data</a></li>
 					#else
 						<li><a href="#pageId$velocityCount">$link.data</a></li>
 					#end

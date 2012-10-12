@@ -102,6 +102,8 @@ $theme.include($body_top_include)
 									#foreach ($nav_item in $nav_items)
 										#set ($navItemClass = "item-" + $velocityCount)
 
+										#set ($selected_attr = "")
+
 										#if ($velocityCount == 1)
 											#set ($navItemClass = $navItemClass + " first")
 										#end
@@ -112,9 +114,11 @@ $theme.include($body_top_include)
 
 										#if ($nav_item.isSelected())
 											#set ($navItemClass = $navItemClass + " selected")
+
+											#set ($selected_attr = "aria-selected=\"true\"")
 										#end
 
-										<li class="$navItemClass">
+										<li $selected_attr class="$navItemClass">
 											<a href="$nav_item.getURL()" $nav_item.getTarget()>
 												<span>$nav_item.icon() $nav_item.getName()</span>
 											</a>

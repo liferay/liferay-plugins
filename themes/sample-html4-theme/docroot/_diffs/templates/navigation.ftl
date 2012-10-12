@@ -6,7 +6,7 @@
 	<ul>
 		<#list nav_items as nav_item>
 			<#if nav_item.isSelected()>
-				<li class="selected">
+				<li aria-selected="true" class="selected">
 			<#else>
 				<li>
 			</#if>
@@ -17,7 +17,7 @@
 					<ul class="child-menu">
 						<#list nav_item.getChildren() as nav_child>
 							<#if nav_child.isSelected()>
-								<li class="selected">
+								<li aria-selected="true" class="selected">
 							<#else>
 								<li>
 							</#if>
