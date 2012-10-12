@@ -109,7 +109,8 @@ public class ResourceImporter extends FileSystemImporter {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	protected void addJournalStructures(String structuresDirName)
+	protected void addJournalStructures(
+			String parentStructureId, String structuresDirName)
 		throws Exception {
 
 		Set<String> resourcePaths = servletContext.getResourcePaths(
@@ -138,7 +139,8 @@ public class ResourceImporter extends FileSystemImporter {
 				name = name.substring(pos + 1);
 			}
 
-			doAddJournalStructures(name, urlConnection.getInputStream());
+			doAddJournalStructures(
+				parentStructureId, name, urlConnection.getInputStream());
 		}
 	}
 

@@ -151,7 +151,8 @@ public class FileSystemImporter extends BaseImporter {
 		}
 	}
 
-	protected void addJournalStructures(String structuresDirName)
+	protected void addJournalStructures(
+			String parentStructureId, String structuresDirName)
 		throws Exception {
 
 		File journalStructuresDir = new File(_resourcesDir, structuresDirName);
@@ -172,7 +173,8 @@ public class FileSystemImporter extends BaseImporter {
 				inputStream = new BufferedInputStream(
 					new FileInputStream(file));
 
-				doAddJournalStructures(file.getName(), inputStream);
+				doAddJournalStructures(
+					parentStructureId, file.getName(), inputStream);
 			}
 			finally {
 				if (inputStream != null) {
@@ -405,7 +407,8 @@ public class FileSystemImporter extends BaseImporter {
 			StringPool.BLANK, serviceContext);
 	}
 
-	protected void doAddJournalStructures(String name, InputStream inputStream)
+	protected void doAddJournalStructures(
+			String parentStructureId, String name, InputStream inputStream)
 		throws Exception {
 
 		name = getName(name);
@@ -416,11 +419,17 @@ public class FileSystemImporter extends BaseImporter {
 
 		JournalStructure journalStructure =
 			JournalStructureLocalServiceUtil.addStructure(
-				userId, groupId, StringPool.BLANK, true, StringPool.BLANK,
+				userId, groupId, StringPool.BLANK, true, parentStructureId,
 				nameMap, null, xsd, serviceContext);
 
 		addJournalTemplates(
 			journalStructure.getStructureId(), "/journal/templates/" + name);
+
+		if (Validator.isNull(parentStructureId)) {
+			addJournalStructures(
+				journalStructure.getStructureId(),
+				"/journal/structures/" + name);
+		}
 	}
 
 	protected void doAddJournalTemplates(
@@ -598,7 +607,7 @@ public class FileSystemImporter extends BaseImporter {
 		addJournalArticles(
 			StringPool.BLANK, StringPool.BLANK, "/journal/articles");
 
-		addJournalStructures("/journal/structures");
+		addJournalStructures(StringPool.BLANK, "/journal/structures");
 
 		addJournalTemplates(StringPool.BLANK, "/journal/templates");
 	}
