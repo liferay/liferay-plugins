@@ -6,7 +6,7 @@
 	<ul>
 		#foreach ($nav_item in $nav_items)
 			#if ($nav_item.isSelected())
-				<li class="selected">
+				<li aria-selected="true" class="selected">
 			#else
 				<li>
 			#end
@@ -17,7 +17,7 @@
 					<ul class="child-menu">
 						#foreach ($nav_child in $nav_item.getChildren())
 							#if ($nav_child.isSelected())
-								<li class="selected">
+								<li aria-selected="true" class="selected">
 							#else
 								<li>
 							#end

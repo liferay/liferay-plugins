@@ -7,8 +7,12 @@
 		#foreach ($nav_item in $nav_items)
 			#set ($order = "")
 
+			#set ($selected_attr = "")
+
 			#if ($nav_item.isSelected())
 				#set ($order = $order + " selected")
+
+				#set ($selected_attr = "aria-selected=\"true\"")
 			#end
 
 			#if ($velocityCount == 1)
@@ -19,7 +23,7 @@
 				#set ($order = $order + " last")
 			#end
 
-			<li class="$order">
+			<li $selected_attr class="$order">
 				<a href="$nav_item.getURL()" $nav_item.getTarget()>
 					<span>$nav_item.icon() $nav_item.getName()</span>
 				</a>
@@ -28,7 +32,7 @@
 					<ul class="child-menu">
 						#foreach ($nav_child in $nav_item.getChildren())
 							#if ($nav_child.isSelected())
-								<li class="selected">
+								<li aria-selected="true" class="selected">
 							#else
 								<li>
 							#end
