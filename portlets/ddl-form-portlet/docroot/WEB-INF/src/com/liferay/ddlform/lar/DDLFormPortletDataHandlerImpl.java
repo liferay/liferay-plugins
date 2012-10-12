@@ -49,6 +49,10 @@ public class DDLFormPortletDataHandlerImpl extends BasePortletDataHandler {
 			PortletPreferences portletPreferences)
 		throws Exception {
 
+		if (portletPreferences == null) {
+			return null;
+		}
+
 		portletPreferences.setValue("detailDDMTemplateId", StringPool.BLANK);
 		portletPreferences.setValue(
 			"multipleSubmissions", Boolean.FALSE.toString());
