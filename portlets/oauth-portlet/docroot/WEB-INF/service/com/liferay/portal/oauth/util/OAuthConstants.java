@@ -32,7 +32,7 @@ public interface OAuthConstants {
 	 * href="http://oauth.pbwiki.com/AccessorSecret">Accessor Secret</a>.
 	 */
 	public static final String ACCESSOR_SECRET = "oauth_accessor_secret";
-	
+
 	public static final String ALREADY_AUTHORIZED_KEY = "already-authorized";
 
 	public static final String APPLICATION_ID = "applicationId";

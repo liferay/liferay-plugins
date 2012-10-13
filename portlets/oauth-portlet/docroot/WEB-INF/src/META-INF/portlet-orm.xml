@@ -26,6 +26,7 @@
 			<basic name="accessLevel" />
 			<basic name="consumerKey" />
 			<basic name="consumerSecret" />
+			<basic name="logoId" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />

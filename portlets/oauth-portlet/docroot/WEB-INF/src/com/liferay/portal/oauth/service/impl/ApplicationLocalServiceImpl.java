@@ -27,6 +27,7 @@ import com.liferay.portal.oauth.OAuthUtil;
 import com.liferay.portal.oauth.model.Application;
 import com.liferay.portal.oauth.service.base.ApplicationLocalServiceBaseImpl;
 import com.liferay.portal.oauth.util.OAuthConstants;
+import com.liferay.portal.service.ImageLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 
 import java.net.MalformedURLException;
@@ -132,11 +133,15 @@ public class ApplicationLocalServiceImpl
 			application.getCompanyId(), Application.class.getName(),
 			ResourceConstants.SCOPE_INDIVIDUAL, application.getApplicationId());
 
+		//Image
+
+		ImageLocalServiceUtil.deleteImage(application.getLogoId());
+
 		// Application
 
-			applicationPersistence.remove(application);
+		applicationPersistence.remove(application);
 
-			return application;
+		return application;
 	}
 
 	/**
@@ -298,6 +303,35 @@ public class ApplicationLocalServiceImpl
 		application.setCallBackURL(callBackURL);
 
 		applicationPersistence.update(application, true);
+
+		return application;
+	}
+
+	public Application updateLogo(long applicationId, byte[] bytes)
+		throws PortalException, SystemException {
+
+		Application application = checkLogo(applicationId);
+
+		ImageLocalServiceUtil.updateImage(application.getLogoId(), bytes);
+
+		return application;
+	}
+
+	protected Application checkLogo(long applicationId)
+		throws PortalException, SystemException {
+
+		Application application = applicationPersistence.findByPrimaryKey(
+			applicationId);
+
+		long logoId = application.getLogoId();
+
+		if (logoId <= 0) {
+			logoId = counterLocalService.increment();
+
+			application.setLogoId(logoId);
+
+			application = applicationPersistence.update(application, false);
+		}
 
 		return application;
 	}

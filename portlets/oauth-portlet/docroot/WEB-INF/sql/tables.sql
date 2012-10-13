@@ -11,7 +11,8 @@ create table OAuth_Application (
 	callBackURL VARCHAR(75) null,
 	accessLevel INTEGER,
 	consumerKey VARCHAR(75) null,
-	consumerSecret VARCHAR(75) null
+	consumerSecret VARCHAR(75) null,
+	logoId LONG
 );
 
 create table OAuth_ApplicationUser (

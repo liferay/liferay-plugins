@@ -14,32 +14,27 @@
 
 package com.liferay.portal.oauth;
 
-import java.io.InputStream;
-
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-
-import java.util.List;
-import java.util.Properties;
-import java.util.concurrent.TimeUnit;
-
 import junit.framework.Assert;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.model.Token;
 import org.scribe.model.Verifier;
 import org.scribe.oauth.OAuthService;
+
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.List;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 /**
  * To run this test you need to have installed one of Firefox versions:
@@ -174,7 +169,7 @@ public class OAuthProviderTest {
 
 			for (WebElement webElement : elements) {
 				if (webElement.getText().
-					contains("Your token is expired.")) {
+					contains("Your token has expired.")) {
 					return;
 				}
 			}
@@ -213,7 +208,7 @@ public class OAuthProviderTest {
 				By.className("portlet-msg-error"));
 
 			for (WebElement webElement : elements) {
-				if (webElement.getText().contains("Your token is expired.")) {
+				if (webElement.getText().contains("Your token has expired.")) {
 					return;
 				}
 			}

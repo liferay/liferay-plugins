@@ -19,10 +19,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.oauth.model.ApplicationUser;
 
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
+import java.io.Serializable;
 
 /**
  * The cache model class for representing ApplicationUser in entity cache.
@@ -32,7 +29,7 @@ import java.io.ObjectOutput;
  * @generated
  */
 public class ApplicationUserCacheModel implements CacheModel<ApplicationUser>,
-	Externalizable {
+	Serializable {
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(11);
@@ -76,35 +73,6 @@ public class ApplicationUserCacheModel implements CacheModel<ApplicationUser>,
 		applicationUserImpl.resetOriginalValues();
 
 		return applicationUserImpl;
-	}
-
-	public void readExternal(ObjectInput objectInput) throws IOException {
-		oaauId = objectInput.readLong();
-		userId = objectInput.readLong();
-		applicationId = objectInput.readLong();
-		accessToken = objectInput.readUTF();
-		accessSecret = objectInput.readUTF();
-	}
-
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
-		objectOutput.writeLong(oaauId);
-		objectOutput.writeLong(userId);
-		objectOutput.writeLong(applicationId);
-
-		if (accessToken == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
-		}
-		else {
-			objectOutput.writeUTF(accessToken);
-		}
-
-		if (accessSecret == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
-		}
-		else {
-			objectOutput.writeUTF(accessSecret);
-		}
 	}
 
 	public long oaauId;

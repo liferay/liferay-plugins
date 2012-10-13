@@ -469,6 +469,7 @@ public class ApplicationPersistenceImpl extends BasePersistenceImpl<Application>
 		applicationImpl.setAccessLevel(application.getAccessLevel());
 		applicationImpl.setConsumerKey(application.getConsumerKey());
 		applicationImpl.setConsumerSecret(application.getConsumerSecret());
+		applicationImpl.setLogoId(application.getLogoId());
 
 		return applicationImpl;
 	}

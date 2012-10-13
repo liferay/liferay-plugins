@@ -265,6 +265,20 @@ public interface ApplicationModel extends AuditedModel, BaseModel<Application> {
 	 */
 	public void setConsumerSecret(String consumerSecret);
 
+	/**
+	 * Returns the logo ID of this application.
+	 *
+	 * @return the logo ID of this application
+	 */
+	public long getLogoId();
+
+	/**
+	 * Sets the logo ID of this application.
+	 *
+	 * @param logoId the logo ID of this application
+	 */
+	public void setLogoId(long logoId);
+
 	public boolean isNew();
 
 	public void setNew(boolean n);

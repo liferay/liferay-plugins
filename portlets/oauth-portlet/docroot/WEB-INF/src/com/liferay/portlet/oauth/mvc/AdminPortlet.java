@@ -14,28 +14,37 @@
 
 package com.liferay.portlet.oauth.mvc;
 
+import com.liferay.portal.ImageTypeException;
 import com.liferay.portal.RequiredFieldException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.image.ImageBag;
+import com.liferay.portal.kernel.image.ImageToolUtil;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
-import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.upload.UploadException;
+import com.liferay.portal.kernel.upload.UploadPortletRequest;
+import com.liferay.portal.kernel.util.*;
 import com.liferay.portal.oauth.model.Application;
 import com.liferay.portal.oauth.service.ApplicationLocalServiceUtil;
 import com.liferay.portal.oauth.util.OAuthConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
+import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.documentlibrary.DuplicateFileException;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
+import javax.portlet.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
 import java.io.IOException;
-
+import java.io.InputStream;
 import java.net.MalformedURLException;
-
-import javax.portlet.ActionRequest;
-import javax.portlet.ActionResponse;
-import javax.portlet.PortletException;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
 
 /**
  *
@@ -60,8 +69,6 @@ public class AdminPortlet extends MVCPortlet {
 
 		try {
 
-			// TODO always use a ServiceContext with adds and updates.
-
 			ServiceContext serviceContext = ServiceContextFactory.getInstance(
 				actionRequest);
 
@@ -69,8 +76,6 @@ public class AdminPortlet extends MVCPortlet {
 				ApplicationLocalServiceUtil.addApplication(
 					serviceContext.getUserId(), name, description, website,
 					callBackURL, accessLevel, serviceContext);
-
-			// TODO this won't work see above
 
 			actionRequest.setAttribute(OAuthConstants.BEAN_ID, application);
 		}
@@ -87,6 +92,31 @@ public class AdminPortlet extends MVCPortlet {
 				throw new PortletException(e.fillInStackTrace());
 			}
 		}
+	}
+
+	public void addTempImageFile(
+		ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		UploadPortletRequest uploadPortletRequest =
+			PortalUtil.getUploadPortletRequest(actionRequest);
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		InputStream inputStream = uploadPortletRequest.getFileAsStream(
+			"fileName");
+
+		String mimeType = MimeTypesUtil.getContentType(inputStream, null);
+
+		if (!MimeTypesUtil.isWebImage(mimeType)) {
+			throw new ImageTypeException();
+		}
+
+		addTempImageFile(
+			themeDisplay.getUserId(), getTempImageFileName(actionRequest),
+			getTempImageFolderName(), getTempImageFilePath(actionRequest),
+			inputStream);
 	}
 
 	public void deleteApplication(
@@ -148,6 +178,79 @@ public class AdminPortlet extends MVCPortlet {
 		super.render(renderRequest, renberResponse);
 	}
 
+	public void saveTempImageFile(
+		ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long applicationId = ParamUtil.getLong(
+			actionRequest, "applicationId", 0);
+
+		String tempFilePath = getTempImageFilePath(actionRequest);
+		InputStream tempImageStream = null;
+
+		try {
+			tempImageStream = getTempImageStream(tempFilePath);
+
+			if (tempImageStream == null) {
+				throw new UploadException();
+			}
+
+			ImageBag imageBag = ImageToolUtil.read(tempImageStream);
+
+			RenderedImage renderedImage = imageBag.getRenderedImage();
+
+			String cropRegionJSON = ParamUtil.getString(
+				actionRequest, "cropRegion");
+
+			if (Validator.isNotNull(cropRegionJSON)) {
+				JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+					cropRegionJSON);
+
+				int height = jsonObject.getInt("height");
+				int width = jsonObject.getInt("width");
+				int x = jsonObject.getInt("x");
+				int y = jsonObject.getInt("y");
+
+				renderedImage = getCroppedRenderedImage(
+					renderedImage, height, width, x, y);
+			}
+
+			byte[] bytes = ImageToolUtil.getBytes(
+				renderedImage, imageBag.getType());
+
+			saveTempImageFile(applicationId, bytes);
+		}
+		finally {
+			TempFileUtil.deleteTempFile(tempFilePath);
+			StreamUtil.cleanUp(tempImageStream);
+		}
+
+		addSuccessMessage(actionRequest, actionResponse);
+	}
+
+	@Override
+	public void serveResource(
+		ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws IOException, PortletException {
+
+		try {
+			String cmd = ParamUtil.getString(resourceRequest, Constants.CMD);
+
+			if (cmd.equals(Constants.GET_TEMP)) {
+				String folderName = getTempImageFilePath(resourceRequest);
+
+				InputStream tempImageStream = getTempImageStream(folderName);
+
+				if (tempImageStream != null) {
+					serveTempImageFile(resourceResponse, tempImageStream);
+				}
+			}
+		}
+		catch (Exception e) {
+			_log.error(e);
+		}
+	}
+
 	public void updateApplication(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
@@ -193,6 +296,97 @@ public class AdminPortlet extends MVCPortlet {
 				actionRequest,
 				"can-not-complete-operation-without-application-id");
 		}
+	}
+
+	protected void addTempImageFile(
+			long userId, String tempImageFileName, String tempImageFolderName,
+			String tempImageFilePath, InputStream inputStream)
+		throws Exception {
+
+		try {
+			TempFileUtil.addTempFile(
+				userId, tempImageFileName, tempImageFolderName, inputStream);
+		}
+		catch (DuplicateFileException dfe) {
+			TempFileUtil.deleteTempFile(tempImageFilePath);
+
+			TempFileUtil.addTempFile(
+				userId, tempImageFileName, tempImageFolderName, inputStream);
+		}
+		finally {
+			StreamUtil.cleanUp(inputStream);
+		}
+	}
+
+	protected RenderedImage getCroppedRenderedImage(
+		RenderedImage renderedImage, int height, int width, int x, int y) {
+
+		Rectangle rectangle = new Rectangle(width, height);
+
+		Rectangle croppedRectangle = rectangle.intersection(
+			new Rectangle(renderedImage.getWidth(), renderedImage.getHeight()));
+
+		BufferedImage bufferedImage = ImageToolUtil.getBufferedImage(
+			renderedImage);
+
+		return bufferedImage.getSubimage(
+			x, y, croppedRectangle.width, croppedRectangle.height);
+	}
+
+	protected String getTempImageFileName(PortletRequest portletRequest) {
+		long applicationId = ParamUtil.getLong(
+			portletRequest, OAuthConstants.APPLICATION_ID);
+
+		return String.valueOf(applicationId);
+	}
+
+	protected String getTempImageFilePath(PortletRequest portletRequest)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		return TempFileUtil.getTempFileName(
+			themeDisplay.getUserId(), getTempImageFileName(portletRequest),
+			getTempImageFolderName());
+	}
+
+	protected String getTempImageFolderName() {
+		Class<?> clazz = getClass();
+
+		return clazz.getName();
+	}
+
+	protected InputStream getTempImageStream(String tempFilePath) {
+		try {
+			return TempFileUtil.getTempFileAsStream(tempFilePath);
+		}
+		catch (Exception e) {
+			return null;
+		}
+	}
+
+	protected void saveTempImageFile(long applicationId, byte[] bytes)
+		throws Exception {
+
+		ApplicationLocalServiceUtil.updateLogo(applicationId, bytes);
+	}
+
+	protected void serveTempImageFile(
+		MimeResponse mimeResponse, InputStream tempImageStream)
+		throws Exception {
+
+		ImageBag imageBag = ImageToolUtil.read(tempImageStream);
+
+		byte[] bytes = ImageToolUtil.getBytes(
+			imageBag.getRenderedImage(), imageBag.getType());
+
+		String contentType = MimeTypesUtil.getContentType(
+			"A." + imageBag.getType());
+
+		mimeResponse.setContentType(contentType);
+
+		PortletResponseUtil.write(mimeResponse, bytes);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(AdminPortlet.class);

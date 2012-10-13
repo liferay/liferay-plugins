@@ -72,9 +72,10 @@ public class ApplicationModelImpl extends BaseModelImpl<Application>
 			{ "callBackURL", Types.VARCHAR },
 			{ "accessLevel", Types.INTEGER },
 			{ "consumerKey", Types.VARCHAR },
-			{ "consumerSecret", Types.VARCHAR }
+			{ "consumerSecret", Types.VARCHAR },
+			{ "logoId", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table OAuth_Application (applicationId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,description VARCHAR(75) null,website VARCHAR(75) null,callBackURL VARCHAR(75) null,accessLevel INTEGER,consumerKey VARCHAR(75) null,consumerSecret VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table OAuth_Application (applicationId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,description VARCHAR(75) null,website VARCHAR(75) null,callBackURL VARCHAR(75) null,accessLevel INTEGER,consumerKey VARCHAR(75) null,consumerSecret VARCHAR(75) null,logoId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table OAuth_Application";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -139,6 +140,7 @@ public class ApplicationModelImpl extends BaseModelImpl<Application>
 		attributes.put("accessLevel", getAccessLevel());
 		attributes.put("consumerKey", getConsumerKey());
 		attributes.put("consumerSecret", getConsumerSecret());
+		attributes.put("logoId", getLogoId());
 
 		return attributes;
 	}
@@ -221,6 +223,12 @@ public class ApplicationModelImpl extends BaseModelImpl<Application>
 
 		if (consumerSecret != null) {
 			setConsumerSecret(consumerSecret);
+		}
+
+		Long logoId = (Long)attributes.get("logoId");
+
+		if (logoId != null) {
+			setLogoId(logoId);
 		}
 	}
 
@@ -415,6 +423,14 @@ public class ApplicationModelImpl extends BaseModelImpl<Application>
 		_consumerSecret = consumerSecret;
 	}
 
+	public long getLogoId() {
+		return _logoId;
+	}
+
+	public void setLogoId(long logoId) {
+		_logoId = logoId;
+	}
+
 	public long getColumnBitmask() {
 		return _columnBitmask;
 	}
@@ -460,6 +476,7 @@ public class ApplicationModelImpl extends BaseModelImpl<Application>
 		applicationImpl.setAccessLevel(getAccessLevel());
 		applicationImpl.setConsumerKey(getConsumerKey());
 		applicationImpl.setConsumerSecret(getConsumerSecret());
+		applicationImpl.setLogoId(getLogoId());
 
 		applicationImpl.resetOriginalValues();
 
@@ -615,12 +632,14 @@ public class ApplicationModelImpl extends BaseModelImpl<Application>
 			applicationCacheModel.consumerSecret = null;
 		}
 
+		applicationCacheModel.logoId = getLogoId();
+
 		return applicationCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(29);
 
 		sb.append("{applicationId=");
 		sb.append(getApplicationId());
@@ -648,13 +667,15 @@ public class ApplicationModelImpl extends BaseModelImpl<Application>
 		sb.append(getConsumerKey());
 		sb.append(", consumerSecret=");
 		sb.append(getConsumerSecret());
+		sb.append(", logoId=");
+		sb.append(getLogoId());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler(46);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.oauth.model.Application");
@@ -712,6 +733,10 @@ public class ApplicationModelImpl extends BaseModelImpl<Application>
 			"<column><column-name>consumerSecret</column-name><column-value><![CDATA[");
 		sb.append(getConsumerSecret());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>logoId</column-name><column-value><![CDATA[");
+		sb.append(getLogoId());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -742,6 +767,7 @@ public class ApplicationModelImpl extends BaseModelImpl<Application>
 	private String _consumerKey;
 	private String _originalConsumerKey;
 	private String _consumerSecret;
+	private long _logoId;
 	private long _columnBitmask;
 	private Application _escapedModelProxy;
 }

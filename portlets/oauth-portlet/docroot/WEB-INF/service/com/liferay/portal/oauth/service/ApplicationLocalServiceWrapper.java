@@ -413,6 +413,13 @@ public class ApplicationLocalServiceWrapper implements ApplicationLocalService,
 			serviceContext);
 	}
 
+	public com.liferay.portal.oauth.model.Application updateLogo(
+		long applicationId, byte[] bytes)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _applicationLocalService.updateLogo(applicationId, bytes);
+	}
+
 	/**
 	 * @deprecated Renamed to {@link #getWrappedService}
 	 */

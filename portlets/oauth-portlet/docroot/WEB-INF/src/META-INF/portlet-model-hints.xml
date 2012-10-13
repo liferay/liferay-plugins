@@ -15,6 +15,7 @@
 		<field name="accessLevel" type="int" />
 		<field name="consumerKey" type="String" />
 		<field name="consumerSecret" type="String" />
+		<field name="logoId" type="long" />
 	</model>
 	<model name="com.liferay.portal.oauth.model.ApplicationUser">
 		<field name="oaauId" type="long" />

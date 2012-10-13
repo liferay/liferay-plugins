@@ -26,6 +26,7 @@
 		<column name="accessLevel" type="int" />
 		<column name="consumerKey" type="String" />
 		<column name="consumerSecret" type="String" />
+		<column name="logoId" type="long" />
 
 		<!-- Finder methods -->
 

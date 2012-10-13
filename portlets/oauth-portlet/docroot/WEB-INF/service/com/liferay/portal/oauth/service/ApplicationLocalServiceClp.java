@@ -205,6 +205,10 @@ public class ApplicationLocalServiceClp implements ApplicationLocalService {
 				"java.lang.String", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
+
+		_methodName36 = "updateLogo";
+
+		_methodParameterTypes36 = new String[] { "long", "byte[][]" };
 	}
 
 	public com.liferay.portal.oauth.model.Application addApplication(
@@ -1332,6 +1336,44 @@ public class ApplicationLocalServiceClp implements ApplicationLocalService {
 		return (com.liferay.portal.oauth.model.Application)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.portal.oauth.model.Application updateLogo(
+		long applicationId, byte[] bytes)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName36,
+					_methodParameterTypes36,
+					new Object[] {
+						applicationId,
+						
+					ClpSerializer.translateInput(bytes)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.oauth.model.Application)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -1403,4 +1445,6 @@ public class ApplicationLocalServiceClp implements ApplicationLocalService {
 	private String[] _methodParameterTypes34;
 	private String _methodName35;
 	private String[] _methodParameterTypes35;
+	private String _methodName36;
+	private String[] _methodParameterTypes36;
 }

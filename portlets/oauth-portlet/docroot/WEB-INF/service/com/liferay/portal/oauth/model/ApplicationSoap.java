@@ -43,6 +43,7 @@ public class ApplicationSoap implements Serializable {
 		soapModel.setAccessLevel(model.getAccessLevel());
 		soapModel.setConsumerKey(model.getConsumerKey());
 		soapModel.setConsumerSecret(model.getConsumerSecret());
+		soapModel.setLogoId(model.getLogoId());
 
 		return soapModel;
 	}
@@ -199,6 +200,14 @@ public class ApplicationSoap implements Serializable {
 		_consumerSecret = consumerSecret;
 	}
 
+	public long getLogoId() {
+		return _logoId;
+	}
+
+	public void setLogoId(long logoId) {
+		_logoId = logoId;
+	}
+
 	private long _applicationId;
 	private long _companyId;
 	private long _userId;
@@ -212,4 +221,5 @@ public class ApplicationSoap implements Serializable {
 	private int _accessLevel;
 	private String _consumerKey;
 	private String _consumerSecret;
+	private long _logoId;
 }

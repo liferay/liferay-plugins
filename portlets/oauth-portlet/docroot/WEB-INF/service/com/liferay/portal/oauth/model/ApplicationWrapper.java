@@ -59,6 +59,7 @@ public class ApplicationWrapper implements Application,
 		attributes.put("accessLevel", getAccessLevel());
 		attributes.put("consumerKey", getConsumerKey());
 		attributes.put("consumerSecret", getConsumerSecret());
+		attributes.put("logoId", getLogoId());
 
 		return attributes;
 	}
@@ -140,6 +141,12 @@ public class ApplicationWrapper implements Application,
 
 		if (consumerSecret != null) {
 			setConsumerSecret(consumerSecret);
+		}
+
+		Long logoId = (Long)attributes.get("logoId");
+
+		if (logoId != null) {
+			setLogoId(logoId);
 		}
 	}
 
@@ -413,6 +420,24 @@ public class ApplicationWrapper implements Application,
 	*/
 	public void setConsumerSecret(java.lang.String consumerSecret) {
 		_application.setConsumerSecret(consumerSecret);
+	}
+
+	/**
+	* Returns the logo ID of this application.
+	*
+	* @return the logo ID of this application
+	*/
+	public long getLogoId() {
+		return _application.getLogoId();
+	}
+
+	/**
+	* Sets the logo ID of this application.
+	*
+	* @param logoId the logo ID of this application
+	*/
+	public void setLogoId(long logoId) {
+		_application.setLogoId(logoId);
 	}
 
 	public boolean isNew() {

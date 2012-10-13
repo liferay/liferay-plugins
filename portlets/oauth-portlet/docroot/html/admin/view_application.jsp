@@ -1,3 +1,5 @@
+<%@ page import="com.liferay.portal.webserver.WebServerServletTokenUtil" %>
+
 <%--
 /**
  * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
@@ -20,6 +22,8 @@
 Application app = (Application)request.getAttribute(OAuthConstants.BEAN_ID);
 
 String backURL = ParamUtil.getString(request, "referer");
+
+String logoURL = themeDisplay.getPathImage() + "/logo?img_id=" + app.getLogoId() + "&t=" + WebServerServletTokenUtil.getToken(company.getLogoId());
 %>
 
 <liferay-ui:error-marker key="errorSection" value="details" />
@@ -35,6 +39,10 @@ String backURL = ParamUtil.getString(request, "referer");
 <aui:field-wrapper helpMessage="application-credentials-description" label="application-credentials">
 		<liferay-ui:message key="consumer-key" />: <%= app.getConsumerKey() %> <br />
 		<liferay-ui:message key="consumer-secret" />: <%= app.getConsumerSecret() %>
+</aui:field-wrapper>
+
+<aui:field-wrapper label="logo">
+	<img class="lfr-portrait-preview-img" src="<%= HtmlUtil.escape(logoURL) %>" />
 </aui:field-wrapper>
 
 <liferay-portlet:actionURL name="updateApplication" var="updateApplicationURL">

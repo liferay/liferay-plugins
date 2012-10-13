@@ -79,6 +79,7 @@ public class ApplicationClp extends BaseModelImpl<Application>
 		attributes.put("accessLevel", getAccessLevel());
 		attributes.put("consumerKey", getConsumerKey());
 		attributes.put("consumerSecret", getConsumerSecret());
+		attributes.put("logoId", getLogoId());
 
 		return attributes;
 	}
@@ -161,6 +162,12 @@ public class ApplicationClp extends BaseModelImpl<Application>
 
 		if (consumerSecret != null) {
 			setConsumerSecret(consumerSecret);
+		}
+
+		Long logoId = (Long)attributes.get("logoId");
+
+		if (logoId != null) {
+			setLogoId(logoId);
 		}
 	}
 
@@ -276,6 +283,14 @@ public class ApplicationClp extends BaseModelImpl<Application>
 		_consumerSecret = consumerSecret;
 	}
 
+	public long getLogoId() {
+		return _logoId;
+	}
+
+	public void setLogoId(long logoId) {
+		_logoId = logoId;
+	}
+
 	public BaseModel<?> getApplicationRemoteModel() {
 		return _applicationRemoteModel;
 	}
@@ -316,6 +331,7 @@ public class ApplicationClp extends BaseModelImpl<Application>
 		clone.setAccessLevel(getAccessLevel());
 		clone.setConsumerKey(getConsumerKey());
 		clone.setConsumerSecret(getConsumerSecret());
+		clone.setLogoId(getLogoId());
 
 		return clone;
 	}
@@ -366,7 +382,7 @@ public class ApplicationClp extends BaseModelImpl<Application>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(29);
 
 		sb.append("{applicationId=");
 		sb.append(getApplicationId());
@@ -394,13 +410,15 @@ public class ApplicationClp extends BaseModelImpl<Application>
 		sb.append(getConsumerKey());
 		sb.append(", consumerSecret=");
 		sb.append(getConsumerSecret());
+		sb.append(", logoId=");
+		sb.append(getLogoId());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler(46);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.oauth.model.Application");
@@ -458,6 +476,10 @@ public class ApplicationClp extends BaseModelImpl<Application>
 			"<column><column-name>consumerSecret</column-name><column-value><![CDATA[");
 		sb.append(getConsumerSecret());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>logoId</column-name><column-value><![CDATA[");
+		sb.append(getLogoId());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -478,5 +500,6 @@ public class ApplicationClp extends BaseModelImpl<Application>
 	private int _accessLevel;
 	private String _consumerKey;
 	private String _consumerSecret;
+	private long _logoId;
 	private BaseModel<?> _applicationRemoteModel;
 }

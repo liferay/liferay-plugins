@@ -421,6 +421,13 @@ public class ApplicationLocalServiceUtil {
 			website, callBackURL, serviceContext);
 	}
 
+	public static com.liferay.portal.oauth.model.Application updateLogo(
+		long applicationId, byte[] bytes)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().updateLogo(applicationId, bytes);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

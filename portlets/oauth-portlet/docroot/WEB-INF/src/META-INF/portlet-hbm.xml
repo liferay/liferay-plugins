@@ -21,6 +21,7 @@
 		<property name="accessLevel" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="consumerKey" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="consumerSecret" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="logoId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 	<class name="com.liferay.portal.oauth.model.impl.ApplicationUserImpl" table="OAuth_ApplicationUser">
 		<cache usage="read-write" />

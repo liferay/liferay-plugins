@@ -14,8 +14,6 @@
  */
 --%>
 
-<%@ page import="com.liferay.portal.kernel.oauth.OAuthException" %>
-
 <%@ include file="/html/init.jsp" %>
 
 <%
@@ -37,9 +35,13 @@ boolean tokenExpired =
 </c:if>
 
 <c:if test="<%= accessor != null %>">
+
 	<%
 	Application oAuthApp = accessor.getConsumer().getApplication();
+
+	String logoURL = themeDisplay.getPathImage() + "/logo?img_id=" + oAuthApp.getLogoId() + "&t=" + WebServerServletTokenUtil.getToken(company.getLogoId());
 	%>
+
 	<aui:layout>
 		<aui:column columnWidth="50">
 			<h3><liferay-ui:message arguments="<%= HtmlUtil.escape(oAuthApp.getName()) %>" key="authorize-x-to-use-your-account" /></h3>
@@ -74,6 +76,7 @@ boolean tokenExpired =
 						<c:if test="<%= !tokenExpired %>">
 							<aui:button name="authorize" type="submit" value="authorize" />
 						</c:if>
+						<input type="button" value="<liferay-ui:message key="cancel" />" onClick="document.location = '<%= HtmlUtil.escape(oAuthApp.getWebsite()) %>'" />
 					</aui:button-row>
 				</aui:form>
 			</div>
@@ -84,7 +87,7 @@ boolean tokenExpired =
 			</c:if>
 		</aui:column>
 		<aui:column columnWidth="50">
-			<img height="90px" width="90px" />
+			<img class="lfr-portrait-preview-img" src="<%= HtmlUtil.escape(logoURL) %>" />
 
 			<br />
 
