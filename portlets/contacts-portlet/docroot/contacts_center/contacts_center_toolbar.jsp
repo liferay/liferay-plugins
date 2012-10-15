@@ -149,11 +149,11 @@ if (user2 != null) {
 		{
 			handler: function(event) {
 				<c:choose>
-					<c:when test="<%= (user2 == null) %>">
-						<portlet:namespace />relationAction(event, '<liferay-portlet:resourceURL id="exportVCards" />');
+					<c:when test="<%= (user2 != null) %>">
+						location.href = '<liferay-portlet:resourceURL id="exportVCard"><portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" /></liferay-portlet:resourceURL>';
 					</c:when>
 					<c:otherwise>
-						location.href = '<liferay-portlet:resourceURL id="exportVCard"><portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" /></liferay-portlet:resourceURL>';
+						location.href = '<liferay-portlet:resourceURL id="exportVCards"/>' + '&<portlet:namespace />userIds=' + A.all('.lfr-contact-grid-item input').val();
 					</c:otherwise>
 				</c:choose>
 			},
