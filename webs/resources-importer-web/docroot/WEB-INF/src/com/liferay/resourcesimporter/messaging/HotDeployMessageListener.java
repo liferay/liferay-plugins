@@ -46,8 +46,6 @@ import java.util.Set;
 
 import javax.servlet.ServletContext;
 
-import org.apache.commons.lang.time.StopWatch;
-
 /**
  * @author Ryan Park
  * @author Raymond Augé
@@ -152,21 +150,21 @@ public class HotDeployMessageListener extends BaseMessageListener {
 					continue;
 				}
 
-				StopWatch stopWatch = null;
+				long startTime = 0;
 
 				if (_log.isInfoEnabled()) {
-					stopWatch = new StopWatch();
-
-					stopWatch.start();
+					startTime = System.currentTimeMillis();
 				}
 
 				importer.importResources();
 
 				if (_log.isInfoEnabled()) {
+					long endTime = System.currentTimeMillis() - startTime;
+
 					_log.info(
 						"Importing resources from " + servletContextName +
 							" to group " + importer.getGroupId() + " takes " +
-								stopWatch.getTime() + " ms");
+								endTime + " ms");
 				}
 
 				Message newMessage = new Message();
