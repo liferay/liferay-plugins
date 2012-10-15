@@ -51,25 +51,31 @@ public abstract class BaseImporter implements Importer {
 		Group group = null;
 
 		if (targetClassName.equals(LayoutSetPrototype.class.getName())) {
-			if (!hasLayoutSetPrototype(companyId, targetValue)) {
-				LayoutSetPrototype layoutSetPrototype =
+			LayoutSetPrototype layoutSetPrototype = getLayoutSetPrototype(
+				companyId, targetValue);
+
+			if (layoutSetPrototype != null) {
+				existing = true;
+			}
+			else {
+				layoutSetPrototype =
 					LayoutSetPrototypeLocalServiceUtil.addLayoutSetPrototype(
 						userId, companyId, getTargetValueMap(),
 						StringPool.BLANK, true, true, new ServiceContext());
-
-				group = layoutSetPrototype.getGroup();
-
-				privateLayout = true;
-				targetClassPK = layoutSetPrototype.getLayoutSetPrototypeId();
 			}
+
+			group = layoutSetPrototype.getGroup();
+
+			privateLayout = true;
+			targetClassPK = layoutSetPrototype.getLayoutSetPrototypeId();
 		}
 		else if (targetClassName.equals(Group.class.getName())) {
 			if (targetValue.equals(GroupConstants.GUEST)) {
-				Group guestGroup = GroupLocalServiceUtil.getGroup(
+				group = GroupLocalServiceUtil.getGroup(
 					companyId, GroupConstants.GUEST);
 
 				List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
-					guestGroup.getGroupId(), false,
+					group.getGroupId(), false,
 					LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, false, 0, 1);
 
 				if (!layouts.isEmpty()) {
@@ -81,39 +87,41 @@ public abstract class BaseImporter implements Importer {
 					List<String> portletIds = layoutTypePortlet.getPortletIds();
 
 					if (portletIds.size() != 2) {
-						return;
+						existing = true;
 					}
 
 					for (String portletId : portletIds) {
 						if (!portletId.equals("47") &&
 							!portletId.equals("58")) {
 
-							return;
+							existing = true;
 						}
 					}
 				}
+			}
+			else {
+				group = GroupLocalServiceUtil.fetchGroup(
+					companyId, targetValue);
 
-				group = guestGroup;
-			}
-			else if (!hasGroup(companyId, targetValue)) {
-				group = GroupLocalServiceUtil.addGroup(
-					userId, GroupConstants.DEFAULT_PARENT_GROUP_ID,
-					StringPool.BLANK, 0, targetValue, StringPool.BLANK,
-					GroupConstants.TYPE_SITE_OPEN, null, true, true,
-					new ServiceContext());
+				if (group != null) {
+					existing = true;
+				}
+				else {
+					group = GroupLocalServiceUtil.addGroup(
+						userId, GroupConstants.DEFAULT_PARENT_GROUP_ID,
+						StringPool.BLANK, 0, targetValue, StringPool.BLANK,
+						GroupConstants.TYPE_SITE_OPEN, null, true, true,
+						new ServiceContext());
+				}
 			}
 
-			if (group != null) {
-				privateLayout = false;
-				targetClassPK = group.getGroupId();
-			}
+			privateLayout = false;
+			targetClassPK = group.getGroupId();
 		}
 
-		if (group == null) {
-			return;
+		if (group != null) {
+			groupId = group.getGroupId();
 		}
-
-		groupId = group.getGroupId();
 	}
 
 	public long getGroupId() {
@@ -132,6 +140,10 @@ public abstract class BaseImporter implements Importer {
 		targetValueMap.put(locale, targetValue);
 
 		return targetValueMap;
+	}
+
+	public boolean isExisting() {
+		return existing;
 	}
 
 	public void setCompanyId(long companyId) {
@@ -158,17 +170,8 @@ public abstract class BaseImporter implements Importer {
 		this.targetValue = targetValue;
 	}
 
-	protected boolean hasGroup(long companyId, String name) throws Exception {
-		Group group = GroupLocalServiceUtil.fetchGroup(companyId, name);
-
-		if (group != null) {
-			return true;
-		}
-
-		return false;
-	}
-
-	protected boolean hasLayoutSetPrototype(long companyId, String name)
+	protected LayoutSetPrototype getLayoutSetPrototype(
+			long companyId, String name)
 		throws Exception {
 
 		Locale locale = LocaleUtil.getDefault();
@@ -179,14 +182,15 @@ public abstract class BaseImporter implements Importer {
 
 		for (LayoutSetPrototype layoutSetPrototype : layoutSetPrototypes) {
 			if (name.equals(layoutSetPrototype.getName(locale))) {
-				return true;
+				return layoutSetPrototype;
 			}
 		}
 
-		return false;
+		return null;
 	}
 
 	protected long companyId;
+	protected boolean existing;
 	protected long groupId;
 	protected boolean privateLayout;
 	protected String resourcesDir;

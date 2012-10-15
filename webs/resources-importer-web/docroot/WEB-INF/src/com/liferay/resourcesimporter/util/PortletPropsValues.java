@@ -14,34 +14,15 @@
 
 package com.liferay.resourcesimporter.util;
 
-import javax.servlet.ServletContext;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.util.portlet.PortletProps;
 
 /**
- * @author Brian Wing Shun Chan
- * @author Raymond Augé
+ * @author Shinn Lok
  */
-public interface Importer {
+public class PortletPropsValues {
 
-	public void afterPropertiesSet() throws Exception;
-
-	public long getGroupId();
-
-	public long getTargetClassPK();
-
-	public void importResources() throws Exception;
-
-	public boolean isExisting();
-
-	public void setCompanyId(long companyId);
-
-	public void setResourcesDir(String resourcesDir);
-
-	public void setServletContext(ServletContext servletContext);
-
-	public void setServletContextName(String servletContextName);
-
-	public void setTargetClassName(String className);
-
-	public void setTargetValue(String targetValue);
+	public static final boolean DEVELOPER_MODE_ENABLED = GetterUtil.getBoolean(
+		PortletProps.get(PortletPropsKeys.DEVELOPER_MODE_ENABLED));
 
 }
