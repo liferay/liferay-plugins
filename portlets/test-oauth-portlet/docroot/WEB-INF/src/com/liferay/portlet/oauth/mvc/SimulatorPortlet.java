@@ -135,7 +135,8 @@ public class SimulatorPortlet extends MVCPortlet {
 				Role role = null;
 
 				try {
-					RoleServiceUtil.getRole(sc.getCompanyId(), OAUTH_ROLE_NAME);
+					role = RoleServiceUtil.getRole(
+						sc.getCompanyId(), OAUTH_ROLE_NAME);
 				}
 				catch (PortalException e) {
 					_log.warn("Role "
@@ -185,11 +186,13 @@ public class SimulatorPortlet extends MVCPortlet {
 								added < maxApplicationsPerUser; added++) {
 							randomIdx = (int)(addedAppsCnt%APP_NAMES.length);
 
-							titleSb.append((addedAppsCnt%2==0?"":"IT"));
-							titleSb.append(" ");
+							titleSb.append((addedAppsCnt%2==0?"":"IT "));
 							titleSb.append(APP_NAMES[randomIdx]);
 							titleSb.append(" ");
-							titleSb.append(String.valueOf(added%3));
+							if (added%3 != 0) {
+								titleSb.append(String.valueOf(added%3));
+								titleSb.append(" ");
+							}
 
 							ApplicationLocalServiceUtil
 							.addApplication(
@@ -198,6 +201,7 @@ public class SimulatorPortlet extends MVCPortlet {
 								added%2, sc);
 
 							addedAppsCnt++;
+							titleSb = new StringBundler(6);
 						}
 					}
 

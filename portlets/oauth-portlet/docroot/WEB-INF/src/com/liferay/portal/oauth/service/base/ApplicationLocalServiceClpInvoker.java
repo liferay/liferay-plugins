@@ -205,9 +205,9 @@ public class ApplicationLocalServiceClpInvoker {
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName62 = "updateLogo";
+		_methodName61 = "updateLogo";
 
-		_methodParameterTypes62 = new String[] { "long", "byte[][]" };
+		_methodParameterTypes61 = new String[] { "long", "byte[][]" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -424,8 +424,8 @@ public class ApplicationLocalServiceClpInvoker {
 				(com.liferay.portal.service.ServiceContext)arguments[6]);
 		}
 
-		if (_methodName62.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
+		if (_methodName61.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
 			return ApplicationLocalServiceUtil.updateLogo(((Long)arguments[0]).longValue(),
 				(byte[])arguments[1]);
 		}
@@ -503,6 +503,6 @@ public class ApplicationLocalServiceClpInvoker {
 	private String[] _methodParameterTypes59;
 	private String _methodName60;
 	private String[] _methodParameterTypes60;
-	private String _methodName62;
-	private String[] _methodParameterTypes62;
+	private String _methodName61;
+	private String[] _methodParameterTypes61;
 }

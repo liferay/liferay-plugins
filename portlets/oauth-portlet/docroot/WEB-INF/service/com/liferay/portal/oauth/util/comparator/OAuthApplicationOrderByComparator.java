@@ -24,7 +24,8 @@ import com.liferay.portal.oauth.util.OAuthConstants;
 public class OAuthApplicationOrderByComparator extends OrderByComparator {
 
 	public static final String[] ORDER_BY_FIELDS = {
-		OAuthConstants.NAME
+		OAuthConstants.NAME,
+		OAuthConstants.APPLICATION_ID
 	};
 
 	public OAuthApplicationOrderByComparator(

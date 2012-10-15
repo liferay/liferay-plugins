@@ -46,11 +46,10 @@ public class OAuthApplicationSearch extends SearchContainer<Application>
 	static Map<String, String> orderableHeaders = new HashMap<String, String>();
 
 	static {
+		headerNames.add(APPLICATION_ID);
 		headerNames.add(NAME);
-		headerNames.add(WEBSITE);
-		headerNames.add(CALLBACK_URL);
-
-		orderableHeaders.put(NAME, NAME);
+		
+		orderableHeaders.put(APPLICATION_ID, NAME);
 	}
 
 	public OAuthApplicationSearch(

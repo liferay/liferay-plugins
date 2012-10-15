@@ -32,19 +32,19 @@ public class OAuthApplicationDisplayTerms extends DisplayTerms
 	public OAuthApplicationDisplayTerms(PortletRequest portletRequest) {
 		super(portletRequest);
 
-		description = ParamUtil.getString(portletRequest, DESCRIPTION);
+		applicationId = ParamUtil.getInteger(portletRequest, APPLICATION_ID);
 		name = ParamUtil.getString(portletRequest, NAME);
 	}
 
-	public String getDescription() {
-		return description;
+	public int getApplicationId() {
+		return applicationId;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	protected String description;
+	protected int applicationId;
 	protected String name;
 
 }
