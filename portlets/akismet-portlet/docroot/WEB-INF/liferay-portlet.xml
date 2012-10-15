@@ -4,6 +4,7 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
+		<icon>/icons/akismet.png</icon>
 		<scheduler-entry>
 			<scheduler-event-listener-class>com.liferay.akismet.akismet.messaging.DeleteAkismetDataMessageListener</scheduler-event-listener-class>
 			<trigger>
@@ -19,6 +20,7 @@
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
+		<icon>/icons/moderation.png</icon>
 		<scheduler-entry>
 			<scheduler-event-listener-class>com.liferay.akismet.moderation.messaging.DeleteSpamListener</scheduler-event-listener-class>
 			<trigger>
