@@ -35,6 +35,7 @@ import com.liferay.portal.model.Theme;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
+import com.liferay.portal.service.RepositoryLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ThemeLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
@@ -416,7 +417,8 @@ public class FileSystemImporter extends BaseImporter {
 				nameMap, null, xsd, serviceContext);
 
 		addJournalTemplates(
-			journalStructure.getStructureId(), _JOURNAL_TEMPLATES_DIR_NAME + name);
+			journalStructure.getStructureId(),
+			_JOURNAL_TEMPLATES_DIR_NAME + name);
 
 		if (Validator.isNull(parentStructureId)) {
 			addJournalStructures(
@@ -590,6 +592,14 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected void setupAssets() throws Exception {
+		RepositoryLocalServiceUtil.deleteRepositories(groupId);
+
+		JournalArticleLocalServiceUtil.deleteArticles(groupId);
+
+		JournalTemplateLocalServiceUtil.deleteTemplates(groupId);
+
+		JournalStructureLocalServiceUtil.deleteStructures(groupId);
+
 		addDLFileEntries(_DL_DOCUMENTS_DIR_NAME);
 
 		addJournalArticles(
@@ -723,10 +733,10 @@ public class FileSystemImporter extends BaseImporter {
 
 	private static final String _JOURNAL_ARTICLES_DIR_NAME =
 		"/journal/articles/";
-	
+
 	private static final String _JOURNAL_STRUCTURES_DIR_NAME =
 		"/journal/structures/";
-	
+
 	private static final String _JOURNAL_TEMPLATES_DIR_NAME =
 		"/journal/templates/";
 
