@@ -158,7 +158,9 @@ public class CompatDLWebDAVStorageImpl extends WebDAVStorageWrapper {
 				resource = toResource(webDavRequest, fileEntry, false);
 			}
 
-			if (isInstanceOfDLFileEntryResourceImpl(resource)) {
+			if (isInstanceOfDLFileEntryResourceImpl(
+					super.getResource(webDavRequest))) {
+
 				FileEntry fileEntry = (FileEntry)resource.getModel();
 
 				ServiceContext serviceContext = new ServiceContext();
@@ -210,7 +212,8 @@ public class CompatDLWebDAVStorageImpl extends WebDAVStorageWrapper {
 		Resource resource = getResource(webDavRequest);
 
 		try {
-			if (isInstanceOfDLFileEntryResourceImpl(resource)) {
+			if (isInstanceOfDLFileEntryResourceImpl(
+					super.getResource(webDavRequest))) {
 				FileEntry fileEntry = (FileEntry)resource.getModel();
 
 				// Do not allow WebDAV to check in a file entry if it requires
