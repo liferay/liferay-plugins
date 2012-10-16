@@ -40,10 +40,8 @@ public class UpgradeBookmarks extends UpgradeProcess {
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		for (Group group : groups) {
-			boolean privateLayout = group.hasPrivateLayouts();
-
 			LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
-				group.getGroupId(), privateLayout);
+				group.getGroupId(), group.hasPrivateLayouts());
 
 			String themeId = layoutSet.getThemeId();
 
@@ -55,14 +53,15 @@ public class UpgradeBookmarks extends UpgradeProcess {
 				BookmarksFolderLocalServiceUtil.getFolders(group.getGroupId());
 
 			for (BookmarksFolder folder : folders) {
-				String folderName = folder.getName();
+				String name = folder.getName();
 
-				if (folderName.equals("Bookmarks")) {
-					BookmarksFolderLocalServiceUtil.updateFolder(
-						folder.getFolderId(), folder.getParentFolderId(),
-						folderName, folder.getDescription(), true,
-						new ServiceContext());
+				if (!name.equals("Bookmarks")) {
+					continue;
 				}
+
+				BookmarksFolderLocalServiceUtil.updateFolder(
+					folder.getFolderId(), folder.getParentFolderId(), name,
+					folder.getDescription(), true, new ServiceContext());
 			}
 		}
 	}
