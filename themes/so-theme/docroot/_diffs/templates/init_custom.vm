@@ -1,7 +1,3 @@
-#set ($membership_request_local_service = $serviceLocator.findService("com.liferay.portal.service.MembershipRequestLocalService"))
-#set ($user_local_service = $serviceLocator.findService("com.liferay.portal.service.UserLocalService"))
-#set ($releaseInfo = $portal.getClass().forName("com.liferay.portal.kernel.util.ReleaseInfo"))
-
 #set ($logo = "logo")
 
 #set ($user_dashboard_portlet_url = $site_default_url)

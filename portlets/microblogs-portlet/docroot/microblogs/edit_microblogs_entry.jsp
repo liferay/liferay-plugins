@@ -235,6 +235,7 @@ if (comment) {
 			var remaining = (150 - contentInput.val().length);
 
 			var error = (remaining < 0);
+
 			var disabled = ((remaining == 150) || (contentInput.get('value') == "") || error);
 
 			countdown.html(remaining);
