@@ -44,11 +44,10 @@
 	#set ($current_user_name = $current_user.getFullName())
 	#set ($current_user_profile_url = $theme_display.getURLPortal() + $theme_display.getPathFriendlyURLPublic() + "/" + $current_user.getScreenName())
 	#set ($current_user_profile_portrait_url = $current_user.getPortraitURL($themeDisplay))
+
 	#set ($show_edit_profile_button = false)
 
 	#if (($current_user.getUserId() == $user.getUserId()) && $layout.isPublicLayout())
-		#set ($show_edit_profile_button = true)
-
 		#set ($group_local_service = $serviceLocator.findService('com.liferay.portal.service.GroupLocalService'))
 
 		#set ($control_panel_group = $group_local_service.getGroup($company_id, "Control Panel"))
@@ -64,6 +63,8 @@
 		$current_user_edit_profile_portrait_url.setParameter("redirect", "$current_user_profile_url")
 		$current_user_edit_profile_portrait_url.setPortletMode("view")
 		$current_user_edit_profile_portrait_url.setWindowState("pop_up")
+
+		#set ($show_edit_profile_button = true)
 	#end
 
 	#if ($current_user.getPortraitId() == 0)
