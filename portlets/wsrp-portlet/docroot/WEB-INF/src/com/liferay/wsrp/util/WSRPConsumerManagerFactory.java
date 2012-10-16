@@ -103,8 +103,7 @@ public class WSRPConsumerManagerFactory {
 
 		HttpSession session = getSession();
 
-		Map<String, WSRPConsumerManager> wsrpConsumerManagers =
-			_wsrpConsumerManagers;
+		Map<String, WSRPConsumerManager> wsrpConsumerManagers = null;
 
 		if (session != null) {
 			TransientValue<Map<String, WSRPConsumerManager>> transientValue =
@@ -121,10 +120,10 @@ public class WSRPConsumerManagerFactory {
 			}
 
 			wsrpConsumerManagers = transientValue.getValue();
+		}
 
-			if (wsrpConsumerManagers == null ) {
-				wsrpConsumerManagers = _wsrpConsumerManagers;
-			}
+		if (wsrpConsumerManagers == null ) {
+			wsrpConsumerManagers = _wsrpConsumerManagers;
 		}
 
 		WSRPConsumerManager wsrpConsumerManager = wsrpConsumerManagers.get(url);
