@@ -16,6 +16,8 @@ package com.liferay.resourcesimporter.util;
 
 import com.liferay.portal.kernel.util.StringPool;
 
+import java.io.InputStream;
+
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -48,7 +50,9 @@ public class ResourceImporter extends FileSystemImporter {
 				continue;
 			}
 
-			String name = getName(resourcePath);
+			int pos = resourcePath.lastIndexOf(StringPool.SLASH);
+
+			String name = resourcePath.substring(pos + 1);
 
 			URL url = servletContext.getResource(resourcePath);
 
@@ -152,31 +156,17 @@ public class ResourceImporter extends FileSystemImporter {
 	}
 
 	@Override
-	protected void setupSettings(String settingsName) throws Exception {
-		URL settingsJSONURL = servletContext.getResource(
-			resourcesDir.concat(settingsName));
+	protected InputStream getInputStream(String jsonFileName) throws Exception {
+		URL jsonURL = servletContext.getResource(
+			resourcesDir.concat(jsonFileName));
 
-		if (settingsJSONURL == null) {
-			return;
+		if (jsonURL == null) {
+			return null;
 		}
 
-		URLConnection urlConnection = settingsJSONURL.openConnection();
+		URLConnection urlConnection = jsonURL.openConnection();
 
-		setupSettings(urlConnection.getInputStream());
-	}
-
-	@Override
-	protected void setupSitemap(String sitemapName) throws Exception {
-		URL sitemapJSONURL = servletContext.getResource(
-			resourcesDir.concat(sitemapName));
-
-		if (sitemapJSONURL == null) {
-			return;
-		}
-
-		URLConnection urlConnection = sitemapJSONURL.openConnection();
-
-		setupSitemap(urlConnection.getInputStream());
+		return urlConnection.getInputStream();
 	}
 
 }
