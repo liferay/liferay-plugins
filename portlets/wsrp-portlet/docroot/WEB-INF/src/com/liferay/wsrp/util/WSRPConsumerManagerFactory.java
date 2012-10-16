@@ -121,6 +121,10 @@ public class WSRPConsumerManagerFactory {
 			}
 
 			wsrpConsumerManagers = transientValue.getValue();
+
+			if (wsrpConsumerManagers == null ) {
+				wsrpConsumerManagers = _wsrpConsumerManagers;
+			}
 		}
 
 		WSRPConsumerManager wsrpConsumerManager = wsrpConsumerManagers.get(url);
