@@ -81,7 +81,7 @@ public class UserListener extends BaseModelListener<User> {
 				}
 
 				if (GroupLocalServiceUtil.hasRoleGroup(
-					role.getRoleId(), group.getGroupId())) {
+						role.getRoleId(), group.getGroupId())) {
 
 					enableSocialOffice(user.getGroup());
 				}
@@ -140,7 +140,7 @@ public class UserListener extends BaseModelListener<User> {
 				}
 
 				if (GroupLocalServiceUtil.hasRoleGroup(
-					role.getRoleId(), group.getGroupId())) {
+						role.getRoleId(), group.getGroupId())) {
 
 					disableSocialOffice(user.getGroup());
 				}
