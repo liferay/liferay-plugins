@@ -37,7 +37,12 @@ $theme.include($body_top_include)
 
 					#if ($is_signed_in)
 						<div class="member-button" id="memberButton">
+							#set ($user_local_service = $serviceLocator.findService("com.liferay.portal.service.UserLocalService"))
+
 							#set ($member = $user_local_service.hasGroupUser($page_group.getGroupId(), $user_id))
+
+							#set ($membership_request_local_service = $serviceLocator.findService("com.liferay.portal.service.MembershipRequestLocalService"))
+
 							#set ($membership_request = $membership_request_local_service.hasMembershipRequest($user_id, $page_group.getGroupId(), 0))
 
 							#if (!$member)
@@ -150,6 +155,8 @@ $theme.include($body_top_include)
 			#end
 		</div>
 	</div>
+
+	#set ($releaseInfo = $portal.getClass().forName("com.liferay.portal.kernel.util.ReleaseInfo"))
 
 	#if (!releaseInfo.getReleaseInfo().contains("EE"))
 		<footer id="footer" role="contentinfo">
