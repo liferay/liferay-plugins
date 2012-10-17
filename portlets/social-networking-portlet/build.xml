@@ -3,4 +3,6 @@
 
 <project name="social-networking-portlet" basedir="." default="deploy">
 	<import file="../build-common-portlet.xml" />
+
+	<property name="dependent.clients" value="ip-geocoder-client" />
 </project>
