@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.client.json.ipgeocoder.model;
+package com.liferay.ipgeocoder.model;
 
 /**
  * @author Brian Wing Shun Chan
