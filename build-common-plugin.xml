@@ -532,8 +532,33 @@
 
 		<copy todir="docroot/WEB-INF/lib">
 			<fileset dir="${app.server.lib.portal.dir}" includes="${plugin.jars}" />
-			<fileset dir="${project.dir}/lib" includes="portal-compat-client.jar" />
 		</copy>
+
+		<if>
+			<isset property="dependent.clients" />
+			<then>
+				<var name="dependent.clients" value="portal-compat-client,${dependent.clients}" />
+			</then>
+			<else>
+				<var name="dependent.clients" value="portal-compat-client" />
+			</else>
+		</if>
+
+		<for list="${dependent.clients}" param="dependent.client">
+			<sequential>
+				<if>
+					<available file="${project.dir}/clients/@{dependent.client}/src" />
+					<then>
+						<ant dir="${project.dir}/clients/@{dependent.client}" target="jar" inheritAll="false" />
+
+						<copy
+							file="${project.dir}/dist/@{dependent.client}-${lp.version}.1.jar"
+							tofile="docroot/WEB-INF/lib/@{dependent.client}.jar"
+						/>
+					</then>
+				</if>
+			</sequential>
+		</for>
 
 		<if>
 			<available file="overwrite" />
