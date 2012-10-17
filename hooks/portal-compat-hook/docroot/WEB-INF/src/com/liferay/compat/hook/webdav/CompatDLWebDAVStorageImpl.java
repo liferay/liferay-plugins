@@ -214,6 +214,7 @@ public class CompatDLWebDAVStorageImpl extends WebDAVStorageWrapper {
 		try {
 			if (isInstanceOfDLFileEntryResourceImpl(
 					super.getResource(webDavRequest))) {
+
 				FileEntry fileEntry = (FileEntry)resource.getModel();
 
 				// Do not allow WebDAV to check in a file entry if it requires
