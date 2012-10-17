@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.client.json.ipgeocoder.util;
+package com.liferay.ipgeocoder.util;
 
-import com.liferay.client.json.ipgeocoder.model.IPInfo;
+import com.liferay.ipgeocoder.model.IPInfo;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.messaging.DestinationNames;
