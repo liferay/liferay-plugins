@@ -117,6 +117,10 @@ public abstract class BaseDeployListenerMessageListener
 				else if (_command.equals(COMMAND_ON_BEFORE_UNDEPLOY)) {
 					onBeforeUndeploy(_message);
 				}
+
+				if (Validator.isNull(processMessageResponse)) {
+					processMessageResponse = MESSAGE_RESPONSE_SUCCESS;
+				}
 			}
 			catch (Exception e) {
 				_log.error(e, e);
