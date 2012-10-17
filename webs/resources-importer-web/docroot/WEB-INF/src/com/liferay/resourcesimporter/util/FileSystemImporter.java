@@ -364,9 +364,7 @@ public class FileSystemImporter extends BaseImporter {
 
 		String mimeType = MimeTypesUtil.getContentType(name);
 
-		String[] assetTagNames = _assetTagsMap.get(name);
-
-		serviceContext.setAssetTagNames(assetTagNames);
+		setServiceContext(name);
 
 		FileEntry fileEntry = DLAppLocalServiceUtil.addFileEntry(
 			userId, groupId, 0, name, mimeType, name, StringPool.BLANK,
@@ -390,9 +388,7 @@ public class FileSystemImporter extends BaseImporter {
 
 		content = processJournalArticleContent(content);
 
-		String[] assetTagNames = _assetTagsMap.get(name);
-
-		serviceContext.setAssetTagNames(assetTagNames);
+		setServiceContext(name);
 
 		JournalArticle journalArticle =
 			JournalArticleLocalServiceUtil.addArticle(
@@ -418,6 +414,8 @@ public class FileSystemImporter extends BaseImporter {
 
 		String xsd = StringUtil.read(inputStream);
 
+		setServiceContext(name);
+
 		JournalStructure journalStructure =
 			JournalStructureLocalServiceUtil.addStructure(
 				userId, groupId, StringPool.BLANK, true, parentStructureId,
@@ -441,6 +439,8 @@ public class FileSystemImporter extends BaseImporter {
 		Map<Locale, String> nameMap = getNameMap(name);
 
 		String xsl = StringUtil.read(inputStream);
+
+		setServiceContext(name);
 
 		JournalTemplate journalTemplate =
 			JournalTemplateLocalServiceUtil.addTemplate(
@@ -487,8 +487,8 @@ public class FileSystemImporter extends BaseImporter {
 		return portletJSONObject;
 	}
 
-	protected InputStream getInputStream(String jsonFileName) throws Exception {
-		File file = new File(_resourcesDir, jsonFileName);
+	protected InputStream getInputStream(String fileName) throws Exception {
+		File file = new File(_resourcesDir, fileName);
 
 		if (!file.exists() || file.isDirectory() || !file.canRead()) {
 			return null;
@@ -506,10 +506,22 @@ public class FileSystemImporter extends BaseImporter {
 			journalArticleId, StringPool.SPACE, StringPool.DASH);
 	}
 
-	protected JSONObject getJSONObject(String jsonFileName) throws Exception {
+	protected String[] getJSONArrayAsStringArray(
+		JSONObject jsonObject, String key) {
+
+		JSONArray jsonArray = jsonObject.getJSONArray(key);
+
+		if (jsonArray != null) {
+			return ArrayUtil.toStringArray(jsonArray);
+		}
+
+		return new String[0];
+	}
+
+	protected JSONObject getJSONObject(String fileName) throws Exception {
 		String json = null;
 
-		InputStream inputStream = getInputStream(jsonFileName);
+		InputStream inputStream = getInputStream(fileName);
 
 		try {
 			json = StringUtil.read(inputStream);
@@ -613,7 +625,30 @@ public class FileSystemImporter extends BaseImporter {
 		return sb.toString();
 	}
 
-	protected void setupAssets(String jsonFileName) throws Exception {
+	protected void setServiceContext(String name) {
+		String[] assetTagNames = _assetTagNames.get(name);
+
+		serviceContext.setAssetTagNames(assetTagNames);
+	}
+
+	protected void setupAssets(JSONArray assetsJSONArray) {
+		if (assetsJSONArray == null) {
+			return;
+		}
+
+		for (int i = 0; i < assetsJSONArray.length(); i++) {
+			JSONObject assetJSONObject = assetsJSONArray.getJSONObject(i);
+
+			String name = assetJSONObject.getString("name");
+
+			String[] assetTagNames = getJSONArrayAsStringArray(
+				assetJSONObject, "tags");
+
+			_assetTagNames.put(name, assetTagNames);
+		}
+	}
+
+	protected void setupAssets(String fileName) throws Exception {
 		RepositoryLocalServiceUtil.deleteRepositories(groupId);
 
 		JournalArticleLocalServiceUtil.deleteArticles(groupId);
@@ -622,31 +657,12 @@ public class FileSystemImporter extends BaseImporter {
 
 		JournalStructureLocalServiceUtil.deleteStructures(groupId);
 
-		JSONObject jsonObject = getJSONObject(jsonFileName);
+		JSONObject jsonObject = getJSONObject(fileName);
 
 		if (jsonObject != null) {
 			JSONArray assetsJSONArray = jsonObject.getJSONArray("assets");
 
-			if (assetsJSONArray != null) {
-				for (int i = 0; i < assetsJSONArray.length(); i++) {
-					JSONObject assetJSONObject = assetsJSONArray.getJSONObject(
-						i);
-
-					String assetName = assetJSONObject.getString("name");
-
-					String[] assetTagNames = new String[0];
-
-					JSONArray assetTagJSONArray = assetJSONObject.getJSONArray(
-						"tags");
-
-					if (assetTagJSONArray != null) {
-						assetTagNames = ArrayUtil.toStringArray(
-							assetTagJSONArray);
-					}
-
-					_assetTagsMap.put(assetName, assetTagNames);
-				}
-			}
+			setupAssets(assetsJSONArray);
 		}
 
 		addDLFileEntries(_DL_DOCUMENTS_DIR_NAME);
@@ -659,12 +675,12 @@ public class FileSystemImporter extends BaseImporter {
 		addJournalTemplates(StringPool.BLANK, _JOURNAL_TEMPLATES_DIR_NAME);
 	}
 
-	protected void setupSettings(String jsonFileName) throws Exception {
+	protected void setupSettings(String fileName) throws Exception {
 		if (targetClassName.equals(Group.class.getName())) {
 			return;
 		}
 
-		JSONObject jsonObject = getJSONObject(jsonFileName);
+		JSONObject jsonObject = getJSONObject(fileName);
 
 		if (jsonObject == null) {
 			return;
@@ -683,11 +699,11 @@ public class FileSystemImporter extends BaseImporter {
 			layoutSetPrototype);
 	}
 
-	protected void setupSitemap(String jsonFileName) throws Exception {
+	protected void setupSitemap(String fileName) throws Exception {
 		LayoutLocalServiceUtil.deleteLayouts(
 			groupId, privateLayout, new ServiceContext());
 
-		JSONObject jsonObject = getJSONObject(jsonFileName);
+		JSONObject jsonObject = getJSONObject(fileName);
 
 		if (jsonObject == null) {
 			return;
@@ -755,7 +771,7 @@ public class FileSystemImporter extends BaseImporter {
 	private static final String _JOURNAL_TEMPLATES_DIR_NAME =
 		"/journal/templates/";
 
-	private Map<String, String[]> _assetTagsMap =
+	private Map<String, String[]> _assetTagNames =
 		new HashMap<String, String[]>();
 	private String _defaultLayoutTemplateId;
 	private Map<String, FileEntry> _fileEntries =
