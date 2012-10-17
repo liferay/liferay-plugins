@@ -32,7 +32,7 @@
 	</antelope:stringutil>
 
 	<if>
-		<antelope:endswith string="${plugin.name}" with="-client" />
+		<antelope:endswith string="${plugin.name}" with="-shared" />
 		<then>
 			<property name="plugin.file" value="${project.dir}/dist/${plugin.name}-${lp.version}.${plugin.version}${lp.version.file.suffix}.jar" />
 			<property name="plugin.src.file" value="${project.dir}/dist/${plugin.name}-src-${lp.version}.${plugin.version}${lp.version.file.suffix}.zip" />
@@ -535,25 +535,25 @@
 		</copy>
 
 		<if>
-			<isset property="dependent.clients" />
+			<isset property="import.shared" />
 			<then>
-				<var name="dependent.clients" value="portal-compat-client,${dependent.clients}" />
+				<var name="import.shared" value="portal-compat-shared,${import.shared}" />
 			</then>
 			<else>
-				<var name="dependent.clients" value="portal-compat-client" />
+				<var name="import.shared" value="portal-compat-shared" />
 			</else>
 		</if>
 
-		<for list="${dependent.clients}" param="dependent.client">
+		<for list="${import.shared}" param="import.shared.current">
 			<sequential>
 				<if>
-					<available file="${project.dir}/clients/@{dependent.client}/src" />
+					<available file="${project.dir}/shared/@{import.shared.current}/src" />
 					<then>
-						<ant dir="${project.dir}/clients/@{dependent.client}" target="jar" inheritAll="false" />
+						<ant dir="${project.dir}/shared/@{import.shared.current}" target="jar" inheritAll="false" />
 
 						<copy
-							file="${project.dir}/dist/@{dependent.client}-${lp.version}.1.jar"
-							tofile="docroot/WEB-INF/lib/@{dependent.client}.jar"
+							file="${project.dir}/dist/@{import.shared.current}-${lp.version}.1.jar"
+							tofile="docroot/WEB-INF/lib/@{import.shared.current}.jar"
 						/>
 					</then>
 				</if>

@@ -4,7 +4,7 @@
 <project name="localization-ja-hook" basedir="." default="deploy">
 	<import file="../build-common-hook.xml" />
 
-	<property name="dependent.clients" value="localization-client" />
+	<property name="import.shared" value="localization-shared" />
 
 	<target name="compile">
 		<copy overwrite="true" preservelastmodified="true" todir="docroot/META-INF/custom_jsps">
