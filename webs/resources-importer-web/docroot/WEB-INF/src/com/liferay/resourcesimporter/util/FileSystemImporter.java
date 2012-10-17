@@ -530,6 +530,10 @@ public class FileSystemImporter extends BaseImporter {
 
 		InputStream inputStream = getInputStream(fileName);
 
+		if (inputStream == null) {
+			return null;
+		}
+
 		try {
 			json = StringUtil.read(inputStream);
 		}
