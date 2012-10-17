@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="build-common-client">
+<project name="build-common-shared">
 	<property name="project.dir" value="../.." />
 
 	<import file="../build-common-plugin.xml" />
