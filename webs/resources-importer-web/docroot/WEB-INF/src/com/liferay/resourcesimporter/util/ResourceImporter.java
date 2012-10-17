@@ -14,6 +14,7 @@
 
 package com.liferay.resourcesimporter.util;
 
+import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.StringPool;
 
 import java.io.InputStream;
@@ -50,9 +51,7 @@ public class ResourceImporter extends FileSystemImporter {
 				continue;
 			}
 
-			int pos = resourcePath.lastIndexOf(StringPool.SLASH);
-
-			String name = resourcePath.substring(pos + 1);
+			String name = FileUtil.getShortFileName(resourcePath);
 
 			URL url = servletContext.getResource(resourcePath);
 
@@ -83,9 +82,7 @@ public class ResourceImporter extends FileSystemImporter {
 				continue;
 			}
 
-			int pos = resourcePath.lastIndexOf(StringPool.SLASH);
-
-			String name = resourcePath.substring(pos + 1);
+			String name = FileUtil.getShortFileName(resourcePath);
 
 			URL url = servletContext.getResource(resourcePath);
 
@@ -115,7 +112,7 @@ public class ResourceImporter extends FileSystemImporter {
 				continue;
 			}
 
-			String name = getName(resourcePath);
+			String name = FileUtil.getShortFileName(resourcePath);
 
 			URL url = servletContext.getResource(resourcePath);
 
@@ -144,7 +141,7 @@ public class ResourceImporter extends FileSystemImporter {
 				continue;
 			}
 
-			String name = getName(resourcePath);
+			String name = FileUtil.getShortFileName(resourcePath);
 
 			URL url = servletContext.getResource(resourcePath);
 
