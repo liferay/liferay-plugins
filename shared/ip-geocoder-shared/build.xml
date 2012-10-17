@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="ip-geocoder-client" basedir="." default="deploy">
+<project name="ip-geocoder-shared" basedir="." default="deploy">
 	<property name="plugin.version" value="1" />
 
-	<import file="../build-common-client.xml" />
+	<import file="../build-common-shared.xml" />
 </project>
