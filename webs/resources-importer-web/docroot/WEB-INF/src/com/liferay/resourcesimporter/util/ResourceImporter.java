@@ -87,9 +87,9 @@ public class ResourceImporter extends FileSystemImporter {
 
 			String name = resourcePath.substring(pos + 1);
 
-			URL resourceURL = servletContext.getResource(resourcePath);
+			URL url = servletContext.getResource(resourcePath);
 
-			URLConnection urlConnection = resourceURL.openConnection();
+			URLConnection urlConnection = url.openConnection();
 
 			doAddJournalArticles(
 				journalStructureId, journalTemplateId, name,
@@ -117,9 +117,9 @@ public class ResourceImporter extends FileSystemImporter {
 
 			String name = getName(resourcePath);
 
-			URL resourceURL = servletContext.getResource(resourcePath);
+			URL url = servletContext.getResource(resourcePath);
 
-			URLConnection urlConnection = resourceURL.openConnection();
+			URLConnection urlConnection = url.openConnection();
 
 			doAddJournalStructures(
 				parentStructureId, name, urlConnection.getInputStream());
@@ -146,9 +146,9 @@ public class ResourceImporter extends FileSystemImporter {
 
 			String name = getName(resourcePath);
 
-			URL resourceURL = servletContext.getResource(resourcePath);
+			URL url = servletContext.getResource(resourcePath);
 
-			URLConnection urlConnection = resourceURL.openConnection();
+			URLConnection urlConnection = url.openConnection();
 
 			doAddJournalTemplates(
 				journalStructureId, name, urlConnection.getInputStream());
@@ -156,15 +156,14 @@ public class ResourceImporter extends FileSystemImporter {
 	}
 
 	@Override
-	protected InputStream getInputStream(String jsonFileName) throws Exception {
-		URL jsonURL = servletContext.getResource(
-			resourcesDir.concat(jsonFileName));
+	protected InputStream getInputStream(String fileName) throws Exception {
+		URL url = servletContext.getResource(resourcesDir.concat(fileName));
 
-		if (jsonURL == null) {
+		if (url == null) {
 			return null;
 		}
 
-		URLConnection urlConnection = jsonURL.openConnection();
+		URLConnection urlConnection = url.openConnection();
 
 		return urlConnection.getInputStream();
 	}
