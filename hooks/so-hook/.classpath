@@ -18,7 +18,7 @@
 	<classpathentry kind="lib" path="/portal-6.1.x/util-taglib/util-taglib.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/contacts-portlet-service.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/microblogs-portlet-service.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/portal-compat-client.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/portal-compat-shared.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/private-messaging-portlet-service.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/so-portlet-service.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/tasks-portlet-service.jar" />
