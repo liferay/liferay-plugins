@@ -188,7 +188,6 @@ public class SitesPortlet extends MVCPortlet {
 		String keywords = DAOParamUtil.getLike(resourceRequest, "keywords");
 		int maxResultSize = ParamUtil.getInteger(
 			resourceRequest, "maxResultSize", 10);
-		String name = ParamUtil.getString(resourceRequest, "keywords");
 		String searchTab = ParamUtil.getString(resourceRequest, "searchTab");
 		int start = ParamUtil.getInteger(resourceRequest, "start");
 
@@ -248,8 +247,6 @@ public class SitesPortlet extends MVCPortlet {
 				"name", group.getDescriptiveName(themeDisplay.getLocale()));
 
 			if (group.hasPrivateLayouts() || group.hasPublicLayouts()) {
-				Layout layout = themeDisplay.getLayout();
-
 				PortletURL portletURL = liferayPortletResponse.createActionURL(
 					PortletKeys.SITE_REDIRECTOR);
 
@@ -267,8 +264,6 @@ public class SitesPortlet extends MVCPortlet {
 				SocialOfficeServiceUtil.isSocialOfficeGroup(group.getGroupId());
 
 			groupJSONObject.put("socialOfficeGroup", socialOfficeGroup);
-
-			Layout layout = themeDisplay.getLayout();
 
 			PortletURL siteAssignmentsPortletURL =
 				liferayPortletResponse.createActionURL(PortletKeys.SITES_ADMIN);
