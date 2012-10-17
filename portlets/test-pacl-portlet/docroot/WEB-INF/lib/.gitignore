@@ -1,7 +1,9 @@
+/chat-portlet-service.jar
 /commons-logging.jar
 /jstl-api.jar
 /jstl-impl.jar
 /log4j.jar
+/sample-service-builder-portlet-service.jar
 /slf4j-api.jar
 /util-bridges.jar
 /util-java.jar
