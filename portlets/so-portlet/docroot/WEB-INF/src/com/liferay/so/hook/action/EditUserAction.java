@@ -228,7 +228,7 @@ public class EditUserAction extends BaseStrutsPortletAction {
 
 		for (ProjectsEntry projectsEntry : projectsEntries) {
 			if (!projectsEntryIds.contains(
-				projectsEntry.getProjectsEntryId())) {
+					projectsEntry.getProjectsEntryId())) {
 
 				ProjectsEntryLocalServiceUtil.deleteProjectsEntry(
 					projectsEntry.getProjectsEntryId());

@@ -344,7 +344,7 @@ public class MemberRequestLocalServiceImpl
 	}
 
 	protected void sendNotificationEvent(MemberRequest memberRequest)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		JSONObject notificationEventJSONObject =
 			JSONFactoryUtil.createJSONObject();

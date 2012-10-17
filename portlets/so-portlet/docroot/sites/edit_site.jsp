@@ -161,7 +161,7 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 
 		<div class="step" id="<portlet:namespace />step">
 			<span>
-				<liferay-ui:message arguments="<%= new Integer[] {1, 2}%>" key="step-x-of-x" />
+				<liferay-ui:message arguments="<%= new Integer[] {1, 2} %>" key="step-x-of-x" />
 			</span>
 		</div>
 
