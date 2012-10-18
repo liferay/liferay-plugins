@@ -31,6 +31,8 @@
 	</target>
 
 	<target name="jar" depends="compile">
+		<mkdir dir="${project.dir}/dist" />
+
 		<jar
 			basedir="classes"
 			jarfile="${plugin.file}"
