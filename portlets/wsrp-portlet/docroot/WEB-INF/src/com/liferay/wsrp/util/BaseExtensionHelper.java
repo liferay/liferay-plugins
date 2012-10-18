@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -27,19 +27,16 @@ import org.apache.axis.message.MessageElement;
 public abstract class BaseExtensionHelper implements ExtensionHelper {
 
 	public Extension[] getExtensions(List<MessageElement> messageElements) {
-
-		int size = messageElements.size();
-
-		Extension[] extensions = new Extension[size];
+		Extension[] extensions = new Extension[messageElements.size()];
 
 		// Wrap the extension in an extension to be compatible with Oracle's
 		// producer
 
-		for (int i = 0; i < size; i ++) {
+		for (int i = 0; i < messageElements.size(); i ++) {
 			MessageElement messageElement = messageElements.get(i);
 
-			extensions[i] =
-				new Extension(new MessageElement[] {messageElement});
+			extensions[i] = new Extension(
+				new MessageElement[] {messageElement});
 		}
 
 		return extensions;

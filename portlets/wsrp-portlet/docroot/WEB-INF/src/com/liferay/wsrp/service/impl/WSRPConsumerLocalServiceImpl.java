@@ -195,7 +195,7 @@ public class WSRPConsumerLocalServiceImpl
 					wsrpConsumerId, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 			for (WSRPConsumerPortlet wsrpConsumerPortlet :
-				wsrpConsumerPortlets) {
+					wsrpConsumerPortlets) {
 
 				long companyId = wsrpConsumerPortlet.getCompanyId();
 				long wsrpConsumerPortletId =
