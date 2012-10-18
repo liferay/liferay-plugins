@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -14,11 +14,7 @@
 
 package com.liferay.wsrp.util;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import oasis.names.tc.wsrp.v2.types.Extension;
@@ -26,33 +22,11 @@ import oasis.names.tc.wsrp.v2.types.Extension;
 import org.apache.axis.message.MessageElement;
 
 /**
- * @author Michael Young
+ * @author Michael C. Han
  */
-public class ExtensionUtil {
+public abstract class BaseExtensionHelper implements ExtensionHelper {
 
-	public static final String NAME = "name";
-
-	public static void addMessageElement(
-		List<MessageElement> messageElements, String name, String value) {
-
-		MessageElement messageElement = new MessageElement(
-			"http://www.liferay.com/wsrp", "extension");
-
-		try {
-			messageElement.addAttribute(
-				"http://www.liferay.com/wsrp", NAME, name);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-		}
-
-		messageElement.setValue(value);
-
-		messageElements.add(messageElement);
-	}
-
-	public static Extension[] getExtensions(
-		List<MessageElement> messageElements) {
+	public Extension[] getExtensions(List<MessageElement> messageElements) {
 
 		int size = messageElements.size();
 
@@ -71,15 +45,15 @@ public class ExtensionUtil {
 		return extensions;
 	}
 
-	public static Extension[] getExtensions(String name, String value) {
+	public Extension[] getExtensions(String localPart, String value) {
 		List<MessageElement> messageElements = new ArrayList<MessageElement>();
 
-		addMessageElement(messageElements, name, value);
+		addMessageElement(messageElements, localPart, value);
 
 		return getExtensions(messageElements);
 	}
 
-	public static MessageElement[] getMessageElements(Extension[] extensions) {
+	public MessageElement[] getMessageElements(Extension[] extensions) {
 		if ((extensions == null) || (extensions.length <= 0)) {
 			return null;
 		}
@@ -95,17 +69,5 @@ public class ExtensionUtil {
 
 		return messageElements;
 	}
-
-	public static String getNameAttribute(MessageElement messageElement) {
-		Iterator<String> itr = messageElement.getNamespacePrefixes();
-
-		String namespacePrefix = itr.next();
-
-		String namespaceURI = messageElement.getNamespaceURI(namespacePrefix);
-
-		return messageElement.getAttributeNS(namespaceURI, NAME);
-	}
-
-	private static Log _log = LogFactoryUtil.getLog(ExtensionUtil.class);
 
 }

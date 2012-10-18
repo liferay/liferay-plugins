@@ -59,7 +59,7 @@ import com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 import com.liferay.wsrp.servlet.ServiceHolder;
 import com.liferay.wsrp.util.ConsumerRequestExtensionsHelper;
-import com.liferay.wsrp.util.ExtensionUtil;
+import com.liferay.wsrp.util.ExtensionHelperUtil;
 import com.liferay.wsrp.util.PortletPropsValues;
 import com.liferay.wsrp.util.WSRPConsumerManager;
 import com.liferay.wsrp.util.WSRPConsumerManagerFactory;
@@ -1071,22 +1071,24 @@ public class ConsumerPortlet extends GenericPortlet {
 
 			String value = request.getHeader(name);
 
-			ExtensionUtil.addMessageElement(clientAttributes, name, value);
+			ExtensionHelperUtil.addMessageElement(
+				clientAttributes, name, value);
 		}
 
-		ExtensionUtil.addMessageElement(
+		ExtensionHelperUtil.addMessageElement(
 			clientAttributes, HttpHeaders.LIFERAY_EMAIL_ADDRESS,
 			user.getEmailAddress());
-		ExtensionUtil.addMessageElement(
+		ExtensionHelperUtil.addMessageElement(
 			clientAttributes, HttpHeaders.LIFERAY_SCREEN_NAME,
 			user.getScreenName());
-		ExtensionUtil.addMessageElement(
+		ExtensionHelperUtil.addMessageElement(
 			clientAttributes, HttpHeaders.LIFERAY_USER_ID,
 			String.valueOf(user.getUserId()));
 
 		ConsumerRequestExtensionsHelper.addClientAttributes(clientAttributes);
 
-		clientData.setExtensions(ExtensionUtil.getExtensions(clientAttributes));
+		clientData.setExtensions(
+			ExtensionHelperUtil.getExtensions(clientAttributes));
 
 		mimeRequest.setClientData(clientData);
 
@@ -1370,13 +1372,13 @@ public class ConsumerPortlet extends GenericPortlet {
 			}
 
 			for (String value : values) {
-				ExtensionUtil.addMessageElement(formParameters, name, value);
+				ExtensionHelperUtil.addMessageElement(formParameters, name, value);
 			}
 		}
 
 		if (!formParameters.isEmpty()) {
 			mimeRequest.setExtensions(
-				ExtensionUtil.getExtensions(formParameters));
+				ExtensionHelperUtil.getExtensions(formParameters));
 		}
 	}
 

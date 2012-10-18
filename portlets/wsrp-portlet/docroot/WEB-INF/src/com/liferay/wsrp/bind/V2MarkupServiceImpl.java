@@ -39,7 +39,7 @@ import com.liferay.portal.util.PortletKeys;
 import com.liferay.util.Encryptor;
 import com.liferay.util.axis.ServletUtil;
 import com.liferay.wsrp.model.WSRPProducer;
-import com.liferay.wsrp.util.ExtensionUtil;
+import com.liferay.wsrp.util.ExtensionHelperUtil;
 import com.liferay.wsrp.util.WebKeys;
 
 import java.rmi.RemoteException;
@@ -204,15 +204,15 @@ public class V2MarkupServiceImpl
 
 		Extension[] extensions = clientData.getExtensions();
 
-		MessageElement[] clientAttributes = ExtensionUtil.getMessageElements(
-			extensions);
+		MessageElement[] clientAttributes =
+			ExtensionHelperUtil.getMessageElements(extensions);
 
 		if (clientAttributes == null) {
 			return;
 		}
 
 		for (MessageElement clientAttribute : clientAttributes) {
-			String name = ExtensionUtil.getNameAttribute(clientAttribute);
+			String name = ExtensionHelperUtil.getNameAttribute(clientAttribute);
 			String value = clientAttribute.getValue();
 
 			if (name.equalsIgnoreCase(HttpHeaders.ACCEPT_ENCODING) ||
@@ -761,8 +761,9 @@ public class V2MarkupServiceImpl
 		}
 
 		if (lifecycle.equals("0")) {
-			MessageElement[] formParameters = ExtensionUtil.getMessageElements(
-				mimeRequest.getExtensions());
+			MessageElement[] formParameters =
+				ExtensionHelperUtil.getMessageElements(
+					mimeRequest.getExtensions());
 
 			if (formParameters != null) {
 				String namespace = PortalUtil.getPortletNamespace(portletId);
@@ -771,7 +772,7 @@ public class V2MarkupServiceImpl
 					sb.append(StringPool.AMPERSAND);
 
 					String name = namespace.concat(
-						ExtensionUtil.getNameAttribute(formParameter));
+						ExtensionHelperUtil.getNameAttribute(formParameter));
 
 					sb.append(name);
 					sb.append(StringPool.EQUAL);
