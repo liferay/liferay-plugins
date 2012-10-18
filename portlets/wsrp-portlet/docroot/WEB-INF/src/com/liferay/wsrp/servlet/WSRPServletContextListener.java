@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
+import com.liferay.wsrp.util.ExtensionHelperUtil;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -43,6 +44,8 @@ public class WSRPServletContextListener
 
 	@Override
 	protected void doPortalInit() {
+		ExtensionHelperUtil.initialize();
+
 		try {
 			WSRPConsumerPortletLocalServiceUtil.initWSRPConsumerPortlets();
 		}

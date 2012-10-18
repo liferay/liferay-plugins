@@ -4758,7 +4758,7 @@
 	</javadoc>
 	<javadoc>
 		<name>ExtensionUtil</name>
-		<type>com.liferay.wsrp.util.ExtensionUtil</type>
+		<type>com.liferay.wsrp.util.ExtensionHelperUtil</type>
 		<author><![CDATA[Michael Young]]></author>
 		<method>
 			<name>addMessageElement</name>
