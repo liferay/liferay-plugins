@@ -78,6 +78,7 @@ import javax.portlet.WindowState;
 /**
  * @author Ryan Park
  * @author Jonathan Lee
+ * @author Evan Thibodeau
  */
 public class SitesPortlet extends MVCPortlet {
 
@@ -336,8 +337,14 @@ public class SitesPortlet extends MVCPortlet {
 				siteAssignmentsPortletURL.setParameter(
 					"removeUserIds", String.valueOf(themeDisplay.getUserId()));
 
-				groupJSONObject.put(
-					"leaveUrl", siteAssignmentsPortletURL.toString());
+				if ((group.getType() != GroupConstants.TYPE_SITE_PRIVATE) ||
+					GroupPermissionUtil.contains(
+						permissionChecker, group.getGroupId(),
+						ActionKeys.ASSIGN_MEMBERS)) {
+
+					groupJSONObject.put(
+						"leaveUrl", siteAssignmentsPortletURL.toString());
+				}
 			}
 
 			if (GroupPermissionUtil.contains(
