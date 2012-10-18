@@ -14,10 +14,6 @@
 
 package com.liferay.wsrp.util;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.axis.message.MessageElement;
@@ -25,21 +21,13 @@ import org.apache.axis.message.MessageElement;
 /**
  * @author Michael C. Han
  */
-public class AttributeBasedExtensionHelper extends BaseExtensionHelper {
-	public static final String NAME = "name";
+public class ElementExtensionHelper extends BaseExtensionHelper {
 
 	public void addMessageElement(
-		List<MessageElement> messageElements, String name, String value) {
+		List<MessageElement> messageElements, String localPart, String value) {
 
 		MessageElement messageElement = new MessageElement(
-			"http://www.liferay.com/wsrp", "extension");
-
-		try {
-			messageElement.addAttribute(
-				"http://www.liferay.com/wsrp", NAME, name);
-		} catch (Exception e) {
-			_log.error(e, e);
-		}
+			"http://www.liferay.com/wsrp", localPart);
 
 		messageElement.setValue(value);
 
@@ -47,15 +35,7 @@ public class AttributeBasedExtensionHelper extends BaseExtensionHelper {
 	}
 
 	public String getNameAttribute(MessageElement messageElement) {
-		Iterator<String> itr = messageElement.getNamespacePrefixes();
-
-		String namespacePrefix = itr.next();
-
-		String namespaceURI = messageElement.getNamespaceURI(namespacePrefix);
-
-		return messageElement.getAttributeNS(namespaceURI, NAME);
+		return messageElement.getName();
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(
-		AttributeBasedExtensionHelper.class);
 }

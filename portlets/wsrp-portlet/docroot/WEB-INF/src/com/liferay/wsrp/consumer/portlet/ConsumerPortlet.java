@@ -1372,7 +1372,8 @@ public class ConsumerPortlet extends GenericPortlet {
 			}
 
 			for (String value : values) {
-				ExtensionHelperUtil.addMessageElement(formParameters, name, value);
+				ExtensionHelperUtil.addMessageElement(
+					formParameters, name, value);
 			}
 		}
 

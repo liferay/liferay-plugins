@@ -18,7 +18,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.InstanceFactory;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.util.portlet.PortletProps;
 
 import java.util.List;
 
@@ -32,14 +31,10 @@ import org.apache.axis.message.MessageElement;
 public class ExtensionHelperUtil {
 
 	public static void initialize() {
-
-		String extensionHelperClassName = PortletProps.get(
-			_EXTENSION_HELPER_IMPL_PROPERTY);
-
 		try {
-			if (Validator.isNotNull(extensionHelperClassName)) {
+			if (Validator.isNotNull(PortletPropsValues.EXTENSION_HELPER_IMPL)) {
 				_extensionHelper = (ExtensionHelper)InstanceFactory.newInstance(
-					extensionHelperClassName);
+					PortletPropsValues.EXTENSION_HELPER_IMPL);
 			}
 		}
 		catch (Exception e) {
@@ -49,9 +44,8 @@ public class ExtensionHelperUtil {
 		}
 
 		if (_extensionHelper == null) {
-			_extensionHelper = new AttributeBasedExtensionHelper();
+			_extensionHelper = new AttributeExtensionHelper();
 		}
-
 	}
 
 	public static void addMessageElement(
@@ -62,6 +56,7 @@ public class ExtensionHelperUtil {
 
 	public static Extension[] getExtensions(
 		List<MessageElement> messageElements) {
+
 		return _extensionHelper.getExtensions(messageElements);
 	}
 
@@ -77,11 +72,8 @@ public class ExtensionHelperUtil {
 		return _extensionHelper.getNameAttribute(messageElement);
 	}
 
-	private static final String _EXTENSION_HELPER_IMPL_PROPERTY =
-		"extension.helper.impl";
+	private static Log _log = LogFactoryUtil.getLog(ExtensionHelperUtil.class);
 
 	private static ExtensionHelper _extensionHelper;
-
-	private static Log _log = LogFactoryUtil.getLog(ExtensionHelperUtil.class);
 
 }
