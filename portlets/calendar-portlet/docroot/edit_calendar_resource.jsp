@@ -46,10 +46,10 @@ String code = BeanParamUtil.getString(calendarResource, request, "code");
 </liferay-portlet:actionURL>
 
 <aui:form action="<%= updateCalendarResourceURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateCalendarResource();" %>'>
-	<aui:model-context bean="<%= calendarResource %>" model="<%= CalendarResource.class %>" />
-
 	<liferay-ui:error exception="<%= CalendarResourceCodeException.class %>" message="please-enter-a-valid-code" />
 	<liferay-ui:error exception="<%= DuplicateCalendarResourceException.class %>" message="please-enter-a-unique-resource-code" />
+
+	<aui:model-context bean="<%= calendarResource %>" model="<%= CalendarResource.class %>" />
 
 	<aui:fieldset>
 		<c:choose>
