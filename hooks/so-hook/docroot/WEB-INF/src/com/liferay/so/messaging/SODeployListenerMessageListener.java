@@ -170,7 +170,7 @@ public class SODeployListenerMessageListener
 		}
 	}
 
-	private void updateLayoutSetPrototype(LayoutSet layoutSet)
+	protected void updateLayoutSetPrototype(LayoutSet layoutSet)
 		throws Exception {
 
 		UnicodeProperties settingsProperties =
