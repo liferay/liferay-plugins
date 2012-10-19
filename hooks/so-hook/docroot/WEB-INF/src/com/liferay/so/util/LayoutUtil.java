@@ -38,7 +38,6 @@ import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.permission.PortletPermissionUtil;
-import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.util.portlet.PortletProps;
 
@@ -151,8 +150,12 @@ public class LayoutUtil {
 				configureBlogsAggregator(layout);
 				updatePortletTitle(layout, portletId, "Recent Blogs");
 			}
+			else if (portletId.startsWith(PortletKeys.BREADCRUMB)) {
+				removePortletBorder(layout, portletId);
+			}
 			else if (portletId.startsWith(PortletKeys.MESSAGE_BOARDS)) {
 				configureMessageBoards(layout);
+				removePortletBorder(layout, portletId);
 			}
 			else if (portletId.equals(PortletKeys.CALENDAR) ||
 					 portletId.equals(PortletKeys.DOCUMENT_LIBRARY) ||
