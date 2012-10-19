@@ -57,7 +57,7 @@ public class SocialOfficeServiceImpl extends SocialOfficeServiceBaseImpl {
 		ExpandoBridge expandoBridge = group.getExpandoBridge();
 
 		return GetterUtil.getBoolean(
-			expandoBridge.getAttribute("socialOfficeEnabled"));
+			expandoBridge.getAttribute("socialOfficeEnabled", false));
 	}
 
 }

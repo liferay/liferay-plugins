@@ -19,8 +19,18 @@
 
 <%@ include file="/html/portlet/dockbar/init.jsp" %>
 
+<%
+boolean isSocialOfficeUser = false;
+
+try {
+    isSocialOfficeUser = UserLocalServiceUtil.hasRoleUser(themeDisplay.getCompanyId(), "Social Office User", themeDisplay.getUserId(), true);
+}
+catch (Exception e) {
+}
+%>
+
 <c:choose>
-	<c:when test='<%= !UserLocalServiceUtil.hasRoleUser(themeDisplay.getCompanyId(), "Social Office User", themeDisplay.getUserId(), true) %>'>
+	<c:when test='<%= !isSocialOfficeUser %>'>
 		<liferay-util:include page="/html/portlet/dockbar/view.portal.jsp" />
 	</c:when>
 	<c:otherwise>
