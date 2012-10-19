@@ -23,14 +23,14 @@
 boolean isSocialOfficeUser = false;
 
 try {
-    isSocialOfficeUser = UserLocalServiceUtil.hasRoleUser(themeDisplay.getCompanyId(), "Social Office User", themeDisplay.getUserId(), true);
+	isSocialOfficeUser = UserLocalServiceUtil.hasRoleUser(themeDisplay.getCompanyId(), "Social Office User", themeDisplay.getUserId(), true);
 }
 catch (Exception e) {
 }
 %>
 
 <c:choose>
-	<c:when test='<%= !isSocialOfficeUser %>'>
+	<c:when test="<%= !isSocialOfficeUser %>">
 		<liferay-util:include page="/html/taglib/ui/my_sites/page.portal.jsp" />
 	</c:when>
 	<c:otherwise>
