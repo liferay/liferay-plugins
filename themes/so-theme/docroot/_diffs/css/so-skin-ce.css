@@ -1639,25 +1639,6 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 		padding: 0;
 	}
 
-	.displayStyle-question .stats {
-		width: auto;
-	}
-
-	.stats {
-		.status, .votes {
-			display: block;
-			height: auto;
-			margin: 0;
-			padding: 0;
-			width: auto;
-		}
-
-		.count {
-			display: inline;
-			font-size: 1em;
-		}
-	}
-
 	.category-search {
 		padding: 5px;
 	}
@@ -1816,20 +1797,39 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 		}
 	}
 
-	.displayStyle-question {
-		.stats a {
+	.stats {
+		.status, .votes {
 			display: block;
-			padding: 8px 0;
+			height: auto;
+			margin: 0;
+			padding: 0;
+			width: auto;
+		}
 
-			.question-details {
+		.count {
+			display: inline;
+			font-size: 1em;
+		}
+	}
+
+	.displayStyle-question {
+		.stats {
+			width: auto;
+
+			a {
 				display: block;
-				text-align: center;
+				padding: 8px 0;
 
-				.status, .votes {
-					padding: 5px;
-					margin: 0 3px 0 0;
-					display: inline-block;
-					font-weight: bold;
+				.question-details {
+					display: block;
+					text-align: center;
+
+					.status, .votes {
+						display: inline-block;
+						font-weight: bold;
+						margin: 0 3px 0 0;
+						padding: 5px;
+					}
 				}
 			}
 		}
@@ -1837,8 +1837,8 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 		.count {
 			display: block;
 			font-size: 190%;
-			padding-top: .3em;
 			min-width: 50px;
+			padding-top: .3em;
 		}
 
 		.summary {
