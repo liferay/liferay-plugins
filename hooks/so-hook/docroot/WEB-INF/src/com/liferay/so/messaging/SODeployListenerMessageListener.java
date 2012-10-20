@@ -18,10 +18,10 @@
 package com.liferay.so.messaging;
 
 import com.liferay.deploylistener.messaging.BaseDeployListenerMessageListener;
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
+import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.model.Company;
@@ -29,16 +29,15 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.model.LayoutSet;
 import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.model.Role;
-import com.liferay.portal.model.User;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
-import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.so.service.SocialOfficeServiceUtil;
 import com.liferay.so.util.InstanceUtil;
 import com.liferay.so.util.LayoutSetPrototypeUtil;
+import com.liferay.so.util.RoleConstants;
 import com.liferay.so.util.SocialOfficeConstants;
 
 import java.util.List;
@@ -55,11 +54,20 @@ public class SODeployListenerMessageListener
 		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 
 		for (Company company : companies) {
-			socialOfficeCleanup(company.getCompanyId());
+			cleanUpSocialOffice(company.getCompanyId());
 		}
 	}
 
-	protected void removeSocialOfficeLayoutSetPrototypes(long companyId)
+	protected void cleanUpSocialOffice(long companyId) throws Exception {
+		updateGroups(companyId);
+
+		deleteSocialOfficeLayoutSetPrototypes(companyId);
+		deleteSocialOfficeUserRole(companyId);
+
+		InstanceUtil.setInitialized(companyId, false);
+	}
+
+	protected void deleteSocialOfficeLayoutSetPrototypes(long companyId)
 		throws Exception {
 
 		LayoutSetPrototype layoutSetPrototype =
@@ -72,11 +80,7 @@ public class SODeployListenerMessageListener
 					layoutSetPrototype);
 			}
 			catch (Exception e) {
-				if (_log.isInfoEnabled()) {
-					_log.info(
-						"Unable to delete site template: " +
-							layoutSetPrototype.getName());
-				}
+				_log.error(e, e);
 			}
 		}
 
@@ -90,11 +94,7 @@ public class SODeployListenerMessageListener
 					layoutSetPrototype);
 			}
 			catch (Exception e) {
-				if (_log.isInfoEnabled()) {
-					_log.info(
-						"Unable to delete site template: " +
-							layoutSetPrototype.getName());
-				}
+				_log.error(e, e);
 			}
 		}
 
@@ -108,70 +108,64 @@ public class SODeployListenerMessageListener
 					layoutSetPrototype);
 			}
 			catch (Exception e) {
-				if (_log.isInfoEnabled()) {
-					_log.info(
-						"Unable to delete site template: " +
-							layoutSetPrototype.getName());
-				}
+				_log.error(e, e);
 			}
 		}
 	}
 
-	protected void removeSocialOfficeRole(long companyId) throws Exception {
+	protected void deleteSocialOfficeUserRole(long companyId) throws Exception {
 		Role role = RoleLocalServiceUtil.fetchRole(
-			companyId, "Social Office User");
+			companyId, RoleConstants.SOCIAL_OFFICE_USER);
 
 		if (role != null) {
 			try {
 				RoleLocalServiceUtil.deleteRole(role);
 			}
 			catch (Exception e) {
-				if (_log.isInfoEnabled()) {
-					_log.info("Unable to delete role Social Office User");
-				}
+				_log.error(e, e);
 			}
 		}
-	}
-
-	protected void socialOfficeCleanup(long companyId) throws Exception {
-		updateUsers(companyId);
-		updateGroups(companyId);
-
-		removeSocialOfficeRole(companyId);
-		removeSocialOfficeLayoutSetPrototypes(companyId);
-
-		InstanceUtil.setInitialized(companyId, false);
 	}
 
 	protected void updateGroups(long companyId) throws Exception {
-		List<Group> groups = GroupLocalServiceUtil.getCompanyGroups(
-			companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+		int count = GroupLocalServiceUtil.getCompanyGroupsCount(companyId);
 
-		for (Group group : groups) {
-			if (!group.isRegularSite()) {
-				continue;
-			}
+		int pages = count / Indexer.DEFAULT_INTERVAL;
 
-			if (SocialOfficeServiceUtil.isSocialOfficeGroup(
-				group.getGroupId())) {
+		for (int i = 0; i <= pages; i++) {
+			int start = (i * Indexer.DEFAULT_INTERVAL);
+			int end = start + Indexer.DEFAULT_INTERVAL;
 
-				if (group.hasPublicLayouts()) {
-					updateLayoutSetPrototype(
-						LayoutSetLocalServiceUtil.getLayoutSet(
-							group.getGroupId(), false));
+			List<Group> groups = GroupLocalServiceUtil.getCompanyGroups(
+				companyId, start, end);
+
+			for (Group group : groups) {
+				if (!group.isRegularSite()) {
+					continue;
+				}
+
+				if (!SocialOfficeServiceUtil.isSocialOfficeGroup(
+						group.getGroupId())) {
+
+					continue;
 				}
 
 				if (group.hasPrivateLayouts()) {
-					updateLayoutSetPrototype(
-						LayoutSetLocalServiceUtil.getLayoutSet(
-							group.getGroupId(), true));
+					updateLayoutSetPrototype(group.getGroupId(), true);
+				}
+
+				if (group.hasPublicLayouts()) {
+					updateLayoutSetPrototype(group.getGroupId(), false);
 				}
 			}
 		}
 	}
 
-	protected void updateLayoutSetPrototype(LayoutSet layoutSet)
+	protected void updateLayoutSetPrototype(long groupId, boolean privateLayout)
 		throws Exception {
+
+		LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
+			groupId, privateLayout);
 
 		UnicodeProperties settingsProperties =
 			layoutSet.getSettingsProperties();
@@ -187,27 +181,6 @@ public class SODeployListenerMessageListener
 
 		LayoutSetLocalServiceUtil.updateLookAndFeel(
 			layoutSet.getGroupId(), null, null, StringPool.BLANK, false);
-	}
-
-	protected void updateUsers(long companyId) throws Exception {
-		List<User> users = UserLocalServiceUtil.getCompanyUsers(
-			companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-
-		Role role = RoleLocalServiceUtil.fetchRole(
-			companyId, "Social Office User");
-
-		if (role == null) {
-			return;
-		}
-
-		for (User user : users) {
-			if (UserLocalServiceUtil.hasRoleUser(
-				companyId, role.getName(), user.getUserId(), true)) {
-
-				UserLocalServiceUtil.unsetRoleUsers(
-					role.getRoleId(), new long[] {user.getUserId()});
-			}
-		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
