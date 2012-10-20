@@ -17,6 +17,7 @@
 	<classpathentry kind="lib" path="/portal-trunk/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/util-taglib/util-taglib.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/contacts-portlet-service.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/deploy-listener-shared.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/microblogs-portlet-service.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/private-messaging-portlet-service.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/so-portlet-service.jar" />
