@@ -21,11 +21,19 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.PortalClassInvoker;
-import com.liferay.portal.model.*;
-import com.liferay.portal.service.*;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.model.LayoutSet;
+import com.liferay.portal.model.Role;
+import com.liferay.portal.model.User;
+import com.liferay.portal.service.LayoutLocalServiceUtil;
+import com.liferay.portal.service.LayoutSetLocalServiceUtil;
+import com.liferay.portal.service.RoleLocalServiceUtil;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialRelationConstants;
 import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
 import com.liferay.so.util.LayoutSetPrototypeUtil;
+import com.liferay.so.util.RoleConstants;
 import com.liferay.so.util.SocialOfficeConstants;
 import com.liferay.so.util.SocialOfficeUtil;
 
@@ -59,7 +67,7 @@ public class UpgradeUser extends UpgradeProcess {
 				}
 
 				Role role = RoleLocalServiceUtil.getRole(
-					user.getCompanyId(), "Social Office User");
+					user.getCompanyId(), RoleConstants.SOCIAL_OFFICE_USER);
 
 				UserLocalServiceUtil.addRoleUsers(
 					role.getRoleId(), new long[] {user.getUserId()});
