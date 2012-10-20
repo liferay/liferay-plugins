@@ -19,18 +19,23 @@
 
 <%@ include file="/html/portlet/dockbar/init.jsp" %>
 
+<%@ page import="com.liferay.portal.NoSuchRoleException" %>
+
 <%
-boolean isSocialOfficeUser = false;
+boolean socialOfficeUser = false;
 
 try {
-	isSocialOfficeUser = UserLocalServiceUtil.hasRoleUser(themeDisplay.getCompanyId(), "Social Office User", themeDisplay.getUserId(), true);
+	socialOfficeUser = UserLocalServiceUtil.hasRoleUser(themeDisplay.getCompanyId(), "Social Office User", themeDisplay.getUserId(), true);
 }
-catch (Exception e) {
+catch (NoSuchRoleException nsre) {
+
+	// This exception should never be thrown except while SO is being uninstalled
+
 }
 %>
 
 <c:choose>
-	<c:when test="<%= !isSocialOfficeUser %>">
+	<c:when test="<%= !socialOfficeUser %>">
 		<liferay-util:include page="/html/portlet/dockbar/view.portal.jsp" />
 	</c:when>
 	<c:otherwise>
