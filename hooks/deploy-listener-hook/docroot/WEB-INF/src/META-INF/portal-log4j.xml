@@ -3,6 +3,6 @@
 
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 	<category name="com.liferay.powerdeploy.hook.deploy">
-		<priority value="DEBUG" />
+		<priority value="INFO" />
 	</category>
 </log4j:configuration>
