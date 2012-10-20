@@ -135,7 +135,7 @@ public class InstanceUtil {
 			group.getTypeSettingsProperties();
 
 		typeSettingsProperties.setProperty(
-			"social-office-initialized", Boolean.toString(initialized));
+			"social-office-initialized", String.valueOf(initialized));
 
 		GroupLocalServiceUtil.updateGroup(
 			group.getGroupId(), typeSettingsProperties.toString());
