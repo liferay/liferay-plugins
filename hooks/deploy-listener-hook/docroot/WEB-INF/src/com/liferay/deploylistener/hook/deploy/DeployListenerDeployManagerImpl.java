@@ -130,8 +130,8 @@ public class DeployListenerDeployManagerImpl
 			message.put(MESSAGE_KEY_CONTEXT, context);
 
 			try {
-				if (_log.isInfoEnabled()) {
-					_log.info(
+				if (_log.isDebugEnabled()) {
+					_log.debug(
 						"Send message " + i + " for context " + context +
 							" with command " + command);
 				}
@@ -140,8 +140,8 @@ public class DeployListenerDeployManagerImpl
 					destinationName, message,
 					PortletPropsValues.MESSAGE_TIMEOUT);
 
-				if (_log.isInfoEnabled()) {
-					_log.info(
+				if (_log.isDebugEnabled()) {
+					_log.debug(
 						"Message " + i + " for context " + context +
 							" with command " + command + " received response " +
 								response);
