@@ -27,6 +27,7 @@ if (portletPlid != 0) {
 }
 else {
 	portletURL = PortletURLFactoryUtil.create(request, PortletKeys.ANNOUNCEMENTS, plid, PortletRequest.RENDER_PHASE);
+
 	portletURL.setWindowState(WindowState.MAXIMIZED);
 }
 %>
