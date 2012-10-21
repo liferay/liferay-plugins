@@ -10,5 +10,12 @@
 			<taglib-uri>http://java.sun.com/jsp/jstl/core</taglib-uri>
 			<taglib-location>/WEB-INF/tld/c.tld</taglib-location>
 		</taglib>
+		<taglib>
+			<taglib-uri>http://java.sun.com/portlet_2_0</taglib-uri>
+			<taglib-location>
+				/WEB-INF/tld/liferay-portlet.tld
+			</taglib-location>
+		</taglib>
 	</jsp-config>
+	
 </web-app>

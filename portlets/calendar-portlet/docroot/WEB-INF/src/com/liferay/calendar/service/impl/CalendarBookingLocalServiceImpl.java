@@ -14,11 +14,17 @@
 
 package com.liferay.calendar.service.impl;
 
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
 import com.liferay.calendar.CalendarBookingDurationException;
 import com.liferay.calendar.CalendarBookingTitleException;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.CalendarBookingConstants;
+import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.notification.NotificationType;
 import com.liferay.calendar.recurrence.Recurrence;
 import com.liferay.calendar.recurrence.RecurrenceSerializer;
@@ -33,16 +39,17 @@ import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import com.liferay.portal.util.PortalUtil;
 
 /**
  * @author Eduardo Lundgren
@@ -122,6 +129,7 @@ public class CalendarBookingLocalServiceImpl
 		calendarBooking.setFirstReminderType(firstReminderType);
 		calendarBooking.setSecondReminder(secondReminder);
 		calendarBooking.setSecondReminderType(secondReminderType);
+		calendarBooking.setExpandoBridgeAttributes(serviceContext);
 
 		int status = CalendarBookingWorkflowConstants.STATUS_PENDING;
 
@@ -137,6 +145,12 @@ public class CalendarBookingLocalServiceImpl
 
 		addChildCalendarBookings(
 			calendarBooking, childCalendarIds, serviceContext);
+
+		// Asset
+
+		updateAsset(
+			userId, calendarBooking, serviceContext.getAssetCategoryIds(),
+			serviceContext.getAssetTagNames());
 
 		// Workflow
 
@@ -188,6 +202,12 @@ public class CalendarBookingLocalServiceImpl
 		for (CalendarBooking childCalendarBooking : childCalendarBookings) {
 			deleteCalendarBooking(childCalendarBooking);
 		}
+
+		// Asset
+
+		assetEntryLocalService.deleteEntry(
+			CalendarBooking.class.getName(),
+			calendarBooking.getCalendarBookingId());
 
 		return calendarBooking;
 	}
@@ -384,6 +404,45 @@ public class CalendarBookingLocalServiceImpl
 			endDate, statuses, andOperator);
 	}
 
+
+	public void updateAsset(
+			long userId, CalendarBooking calendarBooking,
+			long[] assetCategoryIds, String[] assetTagNames)
+		throws PortalException, SystemException {
+
+		long assetGroupId = calendarBooking.getGroupId();
+
+		CalendarResource calendarResource =
+			calendarBooking.getCalendarResource();
+
+		if (calendarResource.getClassNameId() ==
+				PortalUtil.getClassNameId(Group.class)) {
+
+			Group group = GroupLocalServiceUtil.getGroup(
+				calendarResource.getClassPK());
+
+			assetGroupId = group.getGroupId();
+		}
+
+		boolean visible = false;
+
+		if (calendarBooking.isApproved()) {
+			visible = true;
+		}
+
+		String summary = HtmlUtil.extractText(
+			StringUtil.shorten(calendarBooking.getDescription(), 500));
+
+		assetEntryLocalService.updateEntry(
+			userId, assetGroupId, calendarBooking.getCreateDate(),
+			calendarBooking.getModifiedDate(), CalendarBooking.class.getName(),
+			calendarBooking.getCalendarBookingId(), calendarBooking.getUuid(), 0,
+			assetCategoryIds, assetTagNames, visible, null, null, null,
+			ContentTypes.TEXT_HTML, calendarBooking.getTitle(),
+			calendarBooking.getDescription(), summary, null, null, 0, 0, null,
+			false);
+	}
+
 	public CalendarBooking updateCalendarBooking(
 			long userId, long calendarBookingId, long calendarId,
 			long[] childCalendarIds, Map<Locale, String> titleMap,
@@ -437,11 +496,18 @@ public class CalendarBookingLocalServiceImpl
 		calendarBooking.setFirstReminderType(firstReminderType);
 		calendarBooking.setSecondReminder(secondReminder);
 		calendarBooking.setSecondReminderType(secondReminderType);
+		calendarBooking.setExpandoBridgeAttributes(serviceContext);
 
 		calendarBookingPersistence.update(calendarBooking);
 
 		addChildCalendarBookings(
 			calendarBooking, childCalendarIds, serviceContext);
+
+		// Asset
+
+		updateAsset(
+			userId, calendarBooking, serviceContext.getAssetCategoryIds(),
+			serviceContext.getAssetTagNames());
 
 		// Workflow
 
