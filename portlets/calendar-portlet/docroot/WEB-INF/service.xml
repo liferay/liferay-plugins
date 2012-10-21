@@ -130,6 +130,7 @@
 		<!-- References -->
 
 		<reference package-path="com.liferay.mail" entity="Mail" />
+		<reference package-path="com.liferay.portlet.asset" entity="AssetEntry" />
 	</entity>
 
 	<entity name="CalendarResource" uuid="true" local-service="true" remote-service="true">
